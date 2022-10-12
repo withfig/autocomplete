@@ -10,6 +10,25 @@ const completionSpec: Fig.Spec = {
   },
   options: [
     {
+      name: "--assert",
+      description:
+        "Control assertion debugging tools. \
+                    'plain' performs no assertion debugging. \
+                    'rewrite' (the default) rewrites assert statements in \
+                    test modules on import to provide assert expression information",
+      args: {
+        name: "Mode",
+      },
+    },
+    {
+      name: "--basetemp",
+      description:
+        "Base temporary directory for this test run.(warning: this directory is removed if it exists)",
+      args: {
+        name: "Directory",
+      },
+    },
+    {
       name: "-c",
       description:
         "Load configuration from `file` instead of trying to locate one of the implicit configuration files",
@@ -75,6 +94,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "--continue-on-collection-errors",
       description: "Force test execution even if collection errors occur",
+    },
+    {
+      name: "--debug",
+      description:
+        "Store internal tracing debug information in this log file. \
+                    This file is opened with 'w' and truncated as a result, care advised. \
+                    Defaults to 'pytestdebug.log'",
+      args: {
+        name: "DEBUG_FILE_NAME",
+        isOptional: true,
+        default: "pytestdebug.log",
+      },
     },
     {
       name: "--durations",
@@ -232,6 +263,82 @@ const completionSpec: Fig.Spec = {
         "Rerun only the tests that failed at the last run (or all if none failed)",
     },
     {
+      name: "--log-auto-indent",
+      description:
+        "Auto-indent multiline messages passed to the logging module. \
+                  Accepts true|on, false|off or an integer",
+      args: {
+        name: "Log Auto Indent Setting",
+      },
+    },
+    {
+      name: "--log-cli-level",
+      description: "Cli logging level",
+      args: {
+        name: "Log CLI Level",
+      },
+    },
+    {
+      name: "--log-cli-format",
+      description: "Log format as used by the logging module",
+      args: {
+        name: "Log CLI Format",
+      },
+    },
+    {
+      name: "--log-cli-date-format",
+      description: "Log date format as used by the logging module",
+      args: { name: "Log CLI Date Format" },
+    },
+    {
+      name: "--log-date-format",
+      description: "Log date format as used by the logging module",
+      args: { name: "Log Date Format" },
+    },
+    {
+      name: "--log-format",
+      description: "Log format as used by the logging module",
+      args: {
+        name: "Log Format",
+      },
+    },
+    {
+      name: "--log-file",
+      description: "Path to a file when logging will be written to",
+      args: {
+        name: "Log File Path",
+      },
+    },
+    {
+      name: "--log-file-level",
+      description: "Log file logging level",
+      args: {
+        name: "Log File Level",
+      },
+    },
+    {
+      name: "--log-file-date-format",
+      description: "Log date format as used by the logging module",
+      args: { name: "Log File Date Format" },
+    },
+    {
+      name: "--log-file-format",
+      description: "Log format as used by the logging module",
+      args: {
+        name: "Log File Format",
+      },
+    },
+    {
+      name: "--log-level",
+      description:
+        "Level of messages to catch/display. \
+          Not set by default, so it depends on the root/parent \
+          log handler's effective level, where it is `WARNING` by default",
+      args: {
+        name: "Level",
+      },
+    },
+    {
       name: "-m",
       description: "Only run tests matching given mark expression",
       args: {
@@ -265,6 +372,22 @@ const completionSpec: Fig.Spec = {
     {
       name: "--no-summary",
       description: "Disable summary",
+    },
+    {
+      name: ["--override-ini", "-o"],
+      description:
+        "Override ini option with `option=value` style, e.g. `-o xfail_strict=True -o cache_dir=cache`",
+      args: {
+        name: "OVERRIDE_INI",
+      },
+    },
+    {
+      name: "-p",
+      description:
+        "Early-load given plugin module name or entry point (multi-allowed)",
+      args: {
+        name: "Plugin name",
+      },
     },
     {
       name: "--pastebin",
@@ -311,7 +434,7 @@ const completionSpec: Fig.Spec = {
         "Define root directory for tests. Can be relative path: 'root_dir', './root_dir', 'root_dir/another_dir/'; absolute path: '/home/user/root_dir'; path with variables:\
                     '$HOME/root_dir'",
       args: {
-        name: "ROOTDIR",
+        name: "Root Dir",
       },
     },
     {
@@ -324,11 +447,24 @@ const completionSpec: Fig.Spec = {
       description: "Shortcut for --capture=no",
     },
     {
+      name: "--setup-only",
+      description: "Only setup fixtures, do not execute tests",
+    },
+    {
+      name: "--setup-show",
+      description: "Show setup of fixtures while executing tests",
+    },
+    {
+      name: "--setup-plan",
+      description:
+        "Show what fixtures and tests would be executed but don't execute anything",
+    },
+    {
       name: "--show-capture",
       description:
         "Controls how captured stdout/stderr/log is shown on failed tests",
       args: {
-        name: "Capture",
+        name: "Capture method",
         description: "No,stdout,stderr,log,all",
         default: "all",
       },
@@ -361,13 +497,17 @@ const completionSpec: Fig.Spec = {
       name: "--tb",
       description: "Traceback print mode",
       args: {
-        name: "Style",
+        name: "Traceback print mode",
         description: "(auto/long/short/line/native/no)",
       },
     },
     {
       name: "--trace",
       description: "Immediately break when running each test",
+    },
+    {
+      name: " --trace-config",
+      description: "Trace considerations of conftest.py files",
     },
     {
       name: ["--verbose", "-v"],
@@ -377,7 +517,7 @@ const completionSpec: Fig.Spec = {
       name: "--verbosity",
       description: "Set verbosity. Default is 0",
       args: {
-        name: "verbosity",
+        name: "Verbosity level",
         default: "0",
       },
     },
@@ -392,7 +532,7 @@ const completionSpec: Fig.Spec = {
       description:
         "Set which warnings to report, see -W option of python itself",
       args: {
-        name: "Python Warnings",
+        name: "Warnings to report",
       },
     },
   ],
