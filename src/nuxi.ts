@@ -52,6 +52,18 @@ const mainNuxiSubcommands: Fig.Subcommand[] = [
         name: ["--template", "-t"],
         description: "Specify a Git repository to use as a template",
       },
+      {
+        name: "--force",
+        description: "Force clone to any existing directory",
+      },
+      {
+        name: "--prefer-offline",
+        description: "Try local cache first to download templates",
+      },
+      {
+        name: "--shell",
+        description: "Open shell in cloned directory (experimental)",
+      },
     ],
   },
   {
@@ -59,16 +71,6 @@ const mainNuxiSubcommands: Fig.Subcommand[] = [
     displayName: "Add",
     icon: "fig://template?color=2ecc71&badge=+",
     description: "Generate a entity into your Nuxt application",
-    options: [
-      {
-        name: "--cwd",
-        description: "The directory of the target application",
-      },
-      {
-        name: "--force",
-        description: "Force override file if it already exists",
-      },
-    ],
     args: [
       {
         name: "TEMPLATE",
@@ -84,6 +86,16 @@ const mainNuxiSubcommands: Fig.Subcommand[] = [
         description: "Specify a name of the file that will be created",
       },
     ],
+    options: [
+      {
+        name: "--cwd",
+        description: "The current working directory of the target application",
+      },
+      {
+        name: "--force",
+        description: "Force override file if it already exists",
+      },
+    ],
   },
   {
     name: "analyze",
@@ -96,10 +108,22 @@ const mainNuxiSubcommands: Fig.Subcommand[] = [
   {
     name: "build",
     displayName: "Build",
-    icon: "🛠",
+    icon: "🏗",
     description:
       "The build command creates a .output directory with all your application, server and dependencies ready for production",
     args: defaultRootDirArg,
+    options: [
+      {
+        name: "--dotenv",
+        description:
+          "Point to another .env file to load, relative to the root directory",
+      },
+      {
+        name: "--prerender",
+        description:
+          "Pre-render every route of your application. (note: This is an experimental flag. The behavior might be changed)",
+      },
+    ],
   },
   {
     name: "dev",
@@ -110,12 +134,21 @@ const mainNuxiSubcommands: Fig.Subcommand[] = [
     args: defaultRootDirArg,
     options: [
       {
+        name: "--dotenv",
+        description:
+          "Point to another .env file to load, relative to the root directory",
+      },
+      {
         name: "--clipboard",
         description: "Copy URL to clipboard",
       },
       {
         name: ["--open", "-o"],
         description: "Open URL in browser",
+      },
+      {
+        name: "--no-clear",
+        description: "Does not clear the console after startup",
       },
       {
         name: ["--port", "-p"],
@@ -141,8 +174,10 @@ const mainNuxiSubcommands: Fig.Subcommand[] = [
     ],
   },
   {
+    icon: "📦",
     name: "prepare",
-    description: "Prepare nuxt for development/build",
+    description:
+      "The prepare command creates a .nuxt directory in your application and generates ts types",
   },
   {
     name: "preview",
@@ -151,6 +186,13 @@ const mainNuxiSubcommands: Fig.Subcommand[] = [
     description:
       "The preview command starts a server to preview your Nuxt application after running the build command",
     args: defaultRootDirArg,
+    options: [
+      {
+        name: "--dotenv",
+        description:
+          "Point to another .env file to load, relative to the root directory",
+      },
+    ],
   },
   {
     name: "generate",
@@ -160,9 +202,17 @@ const mainNuxiSubcommands: Fig.Subcommand[] = [
     args: defaultRootDirArg,
   },
   {
+    icon: "🧼",
+    name: ["clean", "cleanup"],
+    displayName: "Cleanup",
+    description:
+      "The cleanup command removes common generated Nuxt files and caches including .nuxt/, .output/, node_modules/.vite and node_modules/.cache",
+    args: defaultRootDirArg,
+  },
+  {
+    icon: "🧪",
     name: "test",
     displayName: "Test",
-    icon: "🏁",
     description: "Run the test files for your Nuxt application",
     args: defaultRootDirArg,
     options: [
@@ -177,9 +227,9 @@ const mainNuxiSubcommands: Fig.Subcommand[] = [
     ],
   },
   {
+    icon: "⭐️",
     name: "upgrade",
     displayName: "Upgrade",
-    icon: "🆕",
     description: "The upgrade command upgrades Nuxt 3 to the latest version",
     options: [
       {
@@ -190,7 +240,7 @@ const mainNuxiSubcommands: Fig.Subcommand[] = [
   },
   {
     name: "typecheck",
-    icon: "💬",
+    icon: "✅",
     description:
       "The typecheck command runs vue-tsc to check types throughout your app",
     args: defaultRootDirArg,
