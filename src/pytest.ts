@@ -40,7 +40,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--cache-show",
-      description: "Show cache contents, don't perform collection or tests. Optional argument: glob (default: '*').",
+      description: "Show cache contents, don't perform collection or tests. Optional argument: glob (default: '*')",
       args: {
         name: "Glob",
         isOptional: true,
