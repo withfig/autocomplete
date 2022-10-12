@@ -20,7 +20,7 @@ const completionSpec: Fig.Spec = {
       description: "Custom Zed.app path",
       args: {
         name: "bundle_path",
-        template: "filepaths",
+        template: "folders",
       },
     },
   ],
