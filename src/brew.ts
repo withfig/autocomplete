@@ -44,17 +44,28 @@ const outdatedformulaeGenerator: Fig.Generator = {
   },
 };
 
-const generateAllInstallableItems: Fig.Generator = {
-  script:
-    "brew --repository | xargs -I% ls -1 %/Library/Taps/homebrew/homebrew-core/Formula %/Library/Taps/homebrew/homebrew-cask/Casks",
-  postProcess: (out) =>
-    [...new Set(out.split("\n"))].map((formula) => ({
-      name: formula.replace(".rb", ""),
-      description: "Formula",
+const generateAllFormulae: Fig.Generator = {
+  script: "brew formulae",
+  postProcess: function (out) {
+    return out.split("\n").map((formula) => ({
+      name: formula,
       icon: "🍺",
-      hidden: formula[0] == "/",
-      priority: formula[0] >= "0" && formula[0] <= "9" ? 0 : 51,
-    })),
+      description: "Formula",
+      priority: 51,
+    }));
+  },
+};
+
+const generateAllCasks: Fig.Generator = {
+  script: "brew casks",
+  postProcess: function (out) {
+    return out.split("\n").map((cask) => ({
+      name: cask,
+      icon: "🍺",
+      description: "Cask",
+      priority: 52,
+    }));
+  },
 };
 
 const commonOptions: Fig.Option[] = [
@@ -82,7 +93,7 @@ const brewInfo = (name: string): Fig.Subcommand => ({
     isOptional: true,
     name: "formula",
     description: "Formula or cask to summarize",
-    generators: generateAllInstallableItems,
+    generators: [generateAllFormulae, generateAllCasks],
   },
   options: [
     {
@@ -1085,7 +1096,7 @@ const completionSpec: Fig.Spec = {
         isVariadic: true,
         name: "formula",
         description: "Formula or cask to install",
-        generators: generateAllInstallableItems,
+        generators: [generateAllFormulae, generateAllCasks],
       },
     },
     {
@@ -1520,7 +1531,7 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
         name: "formula",
         description: "Formula or cask to install",
-        generators: generateAllInstallableItems,
+        generators: [generateAllFormulae, generateAllCasks],
       },
       options: [
         ...commonOptions,
