@@ -7,17 +7,15 @@ const completionSpec: Fig.Spec = {
       of the files of the form test_*.py or *_test.py in the current directory \
       and its subdirectories",
     isOptional: true,
+    template: ["filepaths", "folders"]
   },
   options: [
     {
       name: "--assert",
-      description:
-        "Control assertion debugging tools. \
-                    'plain' performs no assertion debugging. \
-                    'rewrite' (the default) rewrites assert statements in \
-                    test modules on import to provide assert expression information",
+      description: "Control assertion debugging tools. 'plain' performs no assertion debugging. 'rewrite' (the default) rewrites assert statements in test modules on import to provide assert expression information",
       args: {
         name: "Mode",
+        suggestions: ["plain", "rewrite"]
       },
     },
     {
@@ -30,10 +28,10 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-c",
-      description:
-        "Load configuration from `file` instead of trying to locate one of the implicit configuration files",
+      description: "Load configuration from `file` instead of trying to locate one of the implicit configuration files",
       args: {
         name: "File",
+        template: "filepaths"
       },
     },
     {
@@ -42,10 +40,9 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--cache-show",
-      description: "",
+      description: "Show cache contents, don't perform collection or tests. Optional argument: glob (default: '*').",
       args: {
         name: "Glob",
-        description: "",
         isOptional: true,
         default: "*",
       },
@@ -56,15 +53,17 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "Method",
         description: "One of fd|sys|no|tee-sys",
+        suggestions: ["fd", "sys", "no", "tee-sys"]
       },
     },
     {
       name: "--code-highlight",
       description:
         "Whether code should be highlighted (only if --color is also enabled)",
+      dependsOn: "--color",
       args: {
-        name: "",
-        description: "{yes,no}",
+        name: "Highlight",
+        suggestions: ["yes", "no"]
       },
     },
     {
@@ -80,7 +79,7 @@ const completionSpec: Fig.Spec = {
       description: "Color terminal output",
       args: {
         name: "Color",
-        description: "(yes/no/auto)",
+        suggestions: ["yes", "no", "auto"]
       },
     },
     {
@@ -88,6 +87,7 @@ const completionSpec: Fig.Spec = {
       description: "Only load conftest.py's relative to specified dir",
       args: {
         name: "Dir",
+        template: ["folders"]
       },
     },
 
@@ -98,11 +98,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "--debug",
       description:
-        "Store internal tracing debug information in this log file. \
-                    This file is opened with 'w' and truncated as a result, care advised. \
-                    Defaults to 'pytestdebug.log'",
+        "Store internal tracing debug information in this log file. This file is opened with 'w' and truncated as a result, care advised. Defaults to 'pytestdebug.log'",
       args: {
-        name: "DEBUG_FILE_NAME",
+        name: "Debug File Name",
         isOptional: true,
         default: "pytestdebug.log",
       },
@@ -154,6 +152,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "Output format",
         description: "None,cdiff,ndiff,udiff,only_first_failure",
+        suggestions: ["none", "cdiff", "ndiff", "udiff", "only_first_failure"]
       },
     },
     {
@@ -161,6 +160,7 @@ const completionSpec: Fig.Spec = {
       description: "Doctests file matching pattern, default: test*.txt",
       args: {
         name: "Pattern",
+        default: "test*.txt"
       },
     },
     {
@@ -174,8 +174,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--fixtures",
       description:
-        "Shows builtin and custom fixtures. \
-        Note that this command omits fixtures with leading _ unless the -v option is added",
+        "Shows builtin and custom fixtures. Note that this command omits fixtures with leading _ unless the -v option is added",
     },
     {
       name: "--fixtures-per-test",
@@ -194,6 +193,7 @@ const completionSpec: Fig.Spec = {
       description: "Ignore path during collection (multi-allowed)",
       args: {
         name: "Path",
+        template: "filepaths"
       },
     },
     {
@@ -201,6 +201,7 @@ const completionSpec: Fig.Spec = {
       description: "Ignore path pattern during collection (multi-allowed)",
       args: {
         name: "Path",
+        template: "filepaths"
       },
     },
     {
@@ -217,6 +218,7 @@ const completionSpec: Fig.Spec = {
       description: "Create junit-xml style report file at given path",
       args: {
         name: "Path",
+        template: ["filepaths", "folders"]
       },
     },
     {
@@ -230,11 +232,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-k",
       description:
-        "Only run tests which match the given substring expression. An expression is a python evaluatable expression where all names are substring-matched against test names and their \
-                    parent classes. Example: -k 'test_method or test_other' matches all test functions and classes whose name contains 'test_method' or 'test_other', while -k 'not test_method' \
-                    matches those that don't contain 'test_method' in their names. -k 'not test_method and not test_other' will eliminate the matches. Additionally keywords are matched to \
-                    classes and functions containing extra names in their 'extra_keyword_matches' set, as well as functions which have names assigned directly to them. The matching is case- \
-                    insensitive",
+        "Only run tests which match the given substring expression. An expression is a python evaluatable expression where all names are substring-matched against test names and their parent classes. Example: -k 'test_method or test_other' matches all test functions and classes whose name contains 'test_method' or 'test_other', while -k 'not test_method' matches those that don't contain 'test_method' in their names. -k 'not test_method and not test_other' will eliminate the matches. Additionally keywords are matched to classes and functions containing extra names in their 'extra_keyword_matches' set, as well as functions which have names assigned directly to them. The matching is case- insensitive",
       args: {
         name: "Expression",
         description: "Ex: 'test_method or test_other'",
@@ -253,7 +251,8 @@ const completionSpec: Fig.Spec = {
       name: ["--last-failed-no-failures", "--lfnf"],
       description: "Which tests to run with no previously (known) failures",
       args: {
-        name: "{all, none}",
+        name: "Tests",
+        suggestions: ["all", "none"],
         default: "all",
       },
     },
@@ -265,10 +264,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "--log-auto-indent",
       description:
-        "Auto-indent multiline messages passed to the logging module. \
-                  Accepts true|on, false|off or an integer",
+        "Auto-indent multiline messages passed to the logging module. Accepts true|on, false|off or an integer",
       args: {
         name: "Log Auto Indent Setting",
+        suggestions: ["true", "false"]
       },
     },
     {
@@ -304,9 +303,10 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--log-file",
-      description: "Path to a file when logging will be written to",
+      description: "Path to a file where logging will be written to",
       args: {
         name: "Log File Path",
+        template: "filepaths"
       },
     },
     {
@@ -331,9 +331,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--log-level",
       description:
-        "Level of messages to catch/display. \
-          Not set by default, so it depends on the root/parent \
-          log handler's effective level, where it is `WARNING` by default",
+        "Level of messages to catch/display. Not set by default, so it depends on the root/parent log handler's effective level, where it is `WARNING` by default",
       args: {
         name: "Level",
       },
@@ -376,9 +374,10 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--override-ini", "-o"],
       description:
-        "Override ini option with `option=value` style, e.g. `-o xfail_strict=True -o cache_dir=cache`",
+        "Override ini option with `option=value` style`",
       args: {
-        name: "OVERRIDE_INI",
+        name: "Override INI",
+        description: "Ex: `-o xfail_strict=True -o cache_dir=cache"
       },
     },
     {
@@ -394,6 +393,7 @@ const completionSpec: Fig.Spec = {
       description: "Send failed|all info to bpaste.net pastebin service",
       args: {
         name: "mode",
+        suggestions: ["failed", "all"]
       },
     },
     {
@@ -421,20 +421,20 @@ const completionSpec: Fig.Spec = {
     {
       name: "-r",
       description:
-        "Show extra test summary info as specified by chars: (f)ailed, (E)rror, (s)kipped, (x)failed, (X)passed, (p)assed, (P)assed with output, (a)ll except passed (p/P), or (A)ll. \
-                    (w)arnings are enabled by default (see --disable-warnings), 'N' can be used to reset the list. (default: 'fE')",
+        "Show extra test summary info as specified by chars: (f)ailed, (E)rror, (s)kipped, (x)failed, (X)passed, (p)assed, (P)assed with output, (a)ll except passed (p/P), or (A)ll. (w)arnings are enabled by default (see --disable-warnings), 'N' can be used to reset the list. (default: 'fE')",
       args: {
         name: "chars",
-        description: "",
+        suggestions: ["a", "A", "E", "f", "N", "p", "P", "s", "w", "x", "X"],
+        default: 'fE'
       },
     },
     {
       name: "--rootdir",
       description:
-        "Define root directory for tests. Can be relative path: 'root_dir', './root_dir', 'root_dir/another_dir/'; absolute path: '/home/user/root_dir'; path with variables:\
-                    '$HOME/root_dir'",
+        "Define root directory for tests. Can be relative path: 'root_dir', './root_dir', 'root_dir/another_dir/'; absolute path: '/home/user/root_dir'; path with variables:'$HOME/root_dir'",
       args: {
         name: "Root Dir",
+        template: "filepaths"
       },
     },
     {
@@ -465,7 +465,7 @@ const completionSpec: Fig.Spec = {
         "Controls how captured stdout/stderr/log is shown on failed tests",
       args: {
         name: "Capture method",
-        description: "No,stdout,stderr,log,all",
+        suggestions: ["no", "stdout", "stderr", "log", "all"],
         default: "all",
       },
     },
@@ -498,7 +498,7 @@ const completionSpec: Fig.Spec = {
       description: "Traceback print mode",
       args: {
         name: "Traceback print mode",
-        description: "(auto/long/short/line/native/no)",
+        suggestions: ["auto", "long", "short", "line", "native", "no"]
       },
     },
     {
@@ -524,8 +524,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--version", "-V"],
       description:
-        "Display pytest version and information about plugins. \
-        When given twice, also display information about plugins",
+        "Display pytest version and information about plugins. When given twice, also display information about plugins",
     },
     {
       name: "--pythonwarnings, -W",
