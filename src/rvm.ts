@@ -66,7 +66,7 @@ const interpreters = [
 
 const completionSpec: Fig.Spec = {
   name: "rvm",
-  description: "",
+  description: "Ruby version manager",
   options: [
     {
       name: ["--help", "-h"],
