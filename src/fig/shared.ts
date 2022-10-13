@@ -118,13 +118,13 @@ export const settingsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
   _,
   executeShellCommand
 ) => {
-  const [settingsJson, actionsJson] = await Promise.all([
-    executeShellCommand(`\\cat ${SETTINGS_PATH}`),
-    executeShellCommand(`\\cat ${ACTIONS_PATH}`),
-  ]);
-
-  const settings: Setting[] = JSON.parse(settingsJson);
-  const actions: Action[] = JSON.parse(actionsJson);
+  const text = await executeShellCommand(
+    "fig _ request --method GET --route '/settings/all'"
+  );
+  const { settings, actions } = JSON.parse(text) as {
+    settings: Setting[];
+    actions: Action[];
+  };
 
   const actionSuggestions: Fig.Suggestion[] = actions.flatMap((action) => ({
     name: action.identifier,
