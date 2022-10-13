@@ -87,8 +87,8 @@
     "@fig/autocomplete-helpers": "^1.0.4",
     "@types/glob": "^7.2.0",
     "fs": "^0.0.1-security",
+    "semver": "^7.3.7",
     "strip-json-comments": "^4.0.0",
-    "yaml": "^1.10.2",
-    "semver": "^7.3.7"
+    "yaml": "^1.10.2"
   }
 }
