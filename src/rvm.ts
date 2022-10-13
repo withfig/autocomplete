@@ -78,7 +78,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "use",
       description: "Setup current shell to use a specific ruby version",
-      subcommands: [...interpreters],
+      subcommands: interpreters,
     },
     {
       name: "reset",
