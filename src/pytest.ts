@@ -306,7 +306,8 @@ const completionSpec: Fig.Spec = {
       description: "Path to a file where logging will be written to",
       args: {
         name: "Log File Path",
-        template: "filepaths"
+        template: "filepaths",
+        suggestCurrentToken: true,
       },
     },
     {
