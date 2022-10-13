@@ -50,6 +50,7 @@ const styleOptionGenerator = (element: string) =>
       ...style,
       name: (style.name as string).replace("--", `--${element}.`),
       description: `${style.description} for ${element}`,
+      priority: 45,
     })
   );
 
@@ -187,6 +188,10 @@ const completionSpec: Fig.Spec = {
           name: "--value",
           description: "Initial filter",
           args: { name: "value" },
+        },
+        {
+          name: "--reverse",
+          description: "Display from the bottom of the screen",
         },
         ...styleOptionGenerator("indicator"),
         ...styleOptionGenerator("selected-indicator"),
@@ -368,6 +373,11 @@ const completionSpec: Fig.Spec = {
           description: "Maximum value length (0 for no limit)",
           args: {},
         },
+        {
+          name: "--header",
+          description: "Header value",
+          args: { name: "name" },
+        },
         ...styleOptionGenerator("base"),
         ...styleOptionGenerator("cursor-line-number"),
         ...styleOptionGenerator("cursor-line"),
@@ -377,6 +387,88 @@ const completionSpec: Fig.Spec = {
         ...styleOptionGenerator("placeholder"),
         ...styleOptionGenerator("prompt"),
       ],
+    },
+    {
+      name: "file",
+      description: "Pick a file from a folder",
+      options: [
+        {
+          name: ["--cursor", "-c"],
+          description: "The cursor character",
+          args: { name: "cursor" },
+        },
+        {
+          name: ["--all", "-a"],
+          description: "Show hidden and 'dot' files",
+        },
+        {
+          name: "--height",
+          description: "Maximum number of files to display",
+          args: { name: "lines" },
+        },
+        ...styleOptionGenerator("cursor"),
+        ...styleOptionGenerator("symlink"),
+        ...styleOptionGenerator("directory"),
+        ...styleOptionGenerator("file"),
+        ...styleOptionGenerator("permissions"),
+        ...styleOptionGenerator("selected"),
+        ...styleOptionGenerator("file-size"),
+      ],
+      args: {
+        name: "path",
+        description: "The path to the folder to begin traversing",
+      },
+    },
+    {
+      name: "table",
+      description: "Render a table of data",
+      options: [
+        {
+          name: ["--separator", "-s"],
+          description: "Row separator",
+          args: { name: "separator" },
+        },
+        {
+          name: ["--columns", "-c"],
+          description: "Column names",
+          args: { name: "names" },
+        },
+        {
+          name: ["--widths", "-w"],
+          description: "Column widths",
+          args: { name: "widths" },
+        },
+        {
+          name: "--height",
+          description: "Table height",
+          args: { name: "lines" },
+        },
+        {
+          name: ["--file", "-f"],
+          description: "File path",
+          args: { name: "filename" },
+        },
+        ...styleOptionGenerator("cell"),
+        ...styleOptionGenerator("header"),
+        ...styleOptionGenerator("selected"),
+      ],
+    },
+    {
+      name: "pager",
+      description: "Scroll through a file",
+      options: [
+        {
+          name: "--show-line-numbers",
+          description: "Show line numbers",
+        },
+        ...styleOptions,
+        ...styleOptionGenerator("help"),
+        ...styleOptionGenerator("line-number"),
+      ],
+      args: {
+        name: "content",
+        description: "Display content to scroll",
+      },
     },
   ],
   options: [
