@@ -7,15 +7,16 @@ const completionSpec: Fig.Spec = {
       of the files of the form test_*.py or *_test.py in the current directory \
       and its subdirectories",
     isOptional: true,
-    template: ["filepaths", "folders"]
+    template: ["filepaths", "folders"],
   },
   options: [
     {
       name: "--assert",
-      description: "Control assertion debugging tools. 'plain' performs no assertion debugging. 'rewrite' (the default) rewrites assert statements in test modules on import to provide assert expression information",
+      description:
+        "Control assertion debugging tools. 'plain' performs no assertion debugging. 'rewrite' (the default) rewrites assert statements in test modules on import to provide assert expression information",
       args: {
         name: "Mode",
-        suggestions: ["plain", "rewrite"]
+        suggestions: ["plain", "rewrite"],
       },
     },
     {
@@ -28,10 +29,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-c",
-      description: "Load configuration from `file` instead of trying to locate one of the implicit configuration files",
+      description:
+        "Load configuration from `file` instead of trying to locate one of the implicit configuration files",
       args: {
         name: "File",
-        template: "filepaths"
+        template: "filepaths",
       },
     },
     {
@@ -40,7 +42,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--cache-show",
-      description: "Show cache contents, don't perform collection or tests. Optional argument: glob (default: '*')",
+      description:
+        "Show cache contents, don't perform collection or tests. Optional argument: glob (default: '*')",
       args: {
         name: "Glob",
         isOptional: true,
@@ -53,7 +56,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "Method",
         description: "One of fd|sys|no|tee-sys",
-        suggestions: ["fd", "sys", "no", "tee-sys"]
+        suggestions: ["fd", "sys", "no", "tee-sys"],
       },
     },
     {
@@ -63,7 +66,7 @@ const completionSpec: Fig.Spec = {
       dependsOn: "--color",
       args: {
         name: "Highlight",
-        suggestions: ["yes", "no"]
+        suggestions: ["yes", "no"],
       },
     },
     {
@@ -79,7 +82,7 @@ const completionSpec: Fig.Spec = {
       description: "Color terminal output",
       args: {
         name: "Color",
-        suggestions: ["yes", "no", "auto"]
+        suggestions: ["yes", "no", "auto"],
       },
     },
     {
@@ -87,7 +90,7 @@ const completionSpec: Fig.Spec = {
       description: "Only load conftest.py's relative to specified dir",
       args: {
         name: "Dir",
-        template: ["folders"]
+        template: ["folders"],
       },
     },
 
@@ -152,7 +155,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "Output format",
         description: "None,cdiff,ndiff,udiff,only_first_failure",
-        suggestions: ["none", "cdiff", "ndiff", "udiff", "only_first_failure"]
+        suggestions: ["none", "cdiff", "ndiff", "udiff", "only_first_failure"],
       },
     },
     {
@@ -160,7 +163,7 @@ const completionSpec: Fig.Spec = {
       description: "Doctests file matching pattern, default: test*.txt",
       args: {
         name: "Pattern",
-        default: "test*.txt"
+        default: "test*.txt",
       },
     },
     {
@@ -193,7 +196,7 @@ const completionSpec: Fig.Spec = {
       description: "Ignore path during collection (multi-allowed)",
       args: {
         name: "Path",
-        template: "filepaths"
+        template: "filepaths",
       },
     },
     {
@@ -201,7 +204,7 @@ const completionSpec: Fig.Spec = {
       description: "Ignore path pattern during collection (multi-allowed)",
       args: {
         name: "Path",
-        template: "filepaths"
+        template: "filepaths",
       },
     },
     {
@@ -218,7 +221,7 @@ const completionSpec: Fig.Spec = {
       description: "Create junit-xml style report file at given path",
       args: {
         name: "Path",
-        template: ["filepaths", "folders"]
+        template: ["filepaths", "folders"],
       },
     },
     {
@@ -267,7 +270,7 @@ const completionSpec: Fig.Spec = {
         "Auto-indent multiline messages passed to the logging module. Accepts true|on, false|off or an integer",
       args: {
         name: "Log Auto Indent Setting",
-        suggestions: ["true", "false"]
+        suggestions: ["true", "false"],
       },
     },
     {
@@ -374,11 +377,10 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["--override-ini", "-o"],
-      description:
-        "Override ini option with `option=value` style`",
+      description: "Override ini option with `option=value` style`",
       args: {
         name: "Override INI",
-        description: "Ex: `-o xfail_strict=True -o cache_dir=cache"
+        description: "Ex: `-o xfail_strict=True -o cache_dir=cache",
       },
     },
     {
@@ -394,7 +396,7 @@ const completionSpec: Fig.Spec = {
       description: "Send failed|all info to bpaste.net pastebin service",
       args: {
         name: "mode",
-        suggestions: ["failed", "all"]
+        suggestions: ["failed", "all"],
       },
     },
     {
@@ -426,7 +428,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "chars",
         suggestions: ["a", "A", "E", "f", "N", "p", "P", "s", "w", "x", "X"],
-        default: 'fE'
+        default: "fE",
       },
     },
     {
@@ -435,7 +437,7 @@ const completionSpec: Fig.Spec = {
         "Define root directory for tests. Can be relative path: 'root_dir', './root_dir', 'root_dir/another_dir/'; absolute path: '/home/user/root_dir'; path with variables:'$HOME/root_dir'",
       args: {
         name: "Root Dir",
-        template: "filepaths"
+        template: "filepaths",
       },
     },
     {
@@ -482,7 +484,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--strict",
-      description: "(deprecated) alias to --strict-markers",
+      description: "Alias to --strict-markers",
+      deprecated: true,
     },
     {
       name: "--strict-config",
@@ -499,7 +502,7 @@ const completionSpec: Fig.Spec = {
       description: "Traceback print mode",
       args: {
         name: "Traceback print mode",
-        suggestions: ["auto", "long", "short", "line", "native", "no"]
+        suggestions: ["auto", "long", "short", "line", "native", "no"],
       },
     },
     {
