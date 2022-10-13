@@ -512,6 +512,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--verbose", "-v"],
       description: "Increase verbosity",
+      isRepeatable: true,
     },
     {
       name: "--verbosity",
