@@ -71,6 +71,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--help", "-h"],
       description: "Show help for rvm",
+      isPersistent: true,
     },
   ],
   subcommands: [
