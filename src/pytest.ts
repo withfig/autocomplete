@@ -63,7 +63,7 @@ const completionSpec: Fig.Spec = {
       name: "--code-highlight",
       description:
         "Whether code should be highlighted (only if --color is also enabled)",
-      dependsOn: "--color",
+      dependsOn: ["--color"],
       args: {
         name: "Highlight",
         suggestions: ["yes", "no"],
