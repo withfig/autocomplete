@@ -35,7 +35,7 @@ const interpreters = [
   {
     name: "rbx",
     description: "Rubinius",
-    options: [...options],
+    options,
   },
   {
     name: "jruby",
