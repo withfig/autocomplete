@@ -1524,6 +1524,14 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "formulae",
+      description: "List all available formulae",
+    },
+    {
+      name: "casks",
+      description: "List all available casks",
+    },
+    {
       name: "edit",
       description: "",
       args: {
