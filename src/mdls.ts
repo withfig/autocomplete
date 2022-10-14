@@ -64,6 +64,7 @@ const completionSpec: Fig.Spec = {
       insertValue: `--nullMarker "{cursor}"`,
       dependsOn: ["--raw", "-raw"],
     },
+    // TODO(platform): Add --plist macos only option
   ],
 };
 export default completionSpec;
