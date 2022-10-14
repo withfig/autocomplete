@@ -279,6 +279,7 @@ const completionSpec: Fig.Spec = {
       description: "Cli logging level",
       args: {
         name: "Log CLI Level",
+        suggestions: ["CRITICAL", "ERROR", "WARNING", "INFO", "DEBUG"],
       },
     },
     {
