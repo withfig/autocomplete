@@ -49,7 +49,7 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--quite",
+          name: "--quiet",
           description: "Quiet standard output, except vulnerability report",
         },
         {
