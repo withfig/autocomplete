@@ -83,7 +83,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "reset",
       description: "Remove default and current settings, exit the shell",
-      subcommands: [...interpreters],
+      subcommands: interpreters,
     },
     {
       name: "info",
