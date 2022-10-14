@@ -55,7 +55,7 @@ const interpreters = [
   {
     name: "system",
     description: "Use the system ruby (eg. pre-RVM state)",
-    options: [...options],
+    options,
   },
   {
     name: "default",
