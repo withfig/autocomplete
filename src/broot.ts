@@ -20,12 +20,21 @@ const completionSpec: Fig.Spec = {
       description: "Show folders and files alike",
     },
     {
+      name: "--show-root-fs",
+      description: "Show filesystem info on top",
+    },
+    {
       name: ["--show-git-info", "-g"],
       description: "Show git statuses on files and stats of repository",
     },
     {
       name: ["--no-show-git-info", "-G"],
       description: "Don't show git statuses on files nor stats",
+    },
+    {
+      name: "--git-status",
+      description:
+        "Only show files having an interesting git status, including hidden ones",
     },
     {
       name: ["--hidden", "-h"],
@@ -61,6 +70,26 @@ const completionSpec: Fig.Spec = {
       description: "Don't show sizes",
     },
     {
+      name: "--sort-by-count",
+      description: "Sort by count (only show one level of the tree)",
+    },
+    {
+      name: "--sort-by-date",
+      description: "Sort by date (only show one level of the tree)",
+    },
+    {
+      name: "--sort-by-size",
+      description: "Sort by size (only show one level of the tree)",
+    },
+    {
+      name: ["--whale-spotting", "-w"],
+      description: "Sort by size, show ignored and hidden files",
+    },
+    {
+      name: "--no-sort",
+      description: "Don't sort",
+    },
+    {
       name: ["--trim-root", "-t"],
       description:
         "Trim the root: remove elements which would exceed the screen size. This removes the scrollbar",
@@ -73,6 +102,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "--install",
       description: "Install or reinstall the br shell function",
+    },
+    {
+      name: "--get-root",
+      description: "Ask for the current root of the remote broot",
     },
     {
       name: "--color",
@@ -107,6 +140,13 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: "--conf",
+      description: "Semicolon separated paths to specific config files",
+      args: {
+        name: "conf",
+      },
+    },
+    {
       name: "--height",
       description:
         "Height to use if you don't want to fill the screen or for file export (by default the terminal height is used)",
@@ -126,6 +166,7 @@ const completionSpec: Fig.Spec = {
       description:
         "Set the installation state. This is mostly useful in installation scripts to override the normal installation process",
       args: {
+        name: "state",
         suggestions: ["undefined", "refused", "installed"],
       },
     },
@@ -134,9 +175,28 @@ const completionSpec: Fig.Spec = {
       description:
         "Print to stdout the br function for the given shell. This can be used in your own installation process overriden the standard one",
       args: {
+        name: "shell",
         suggestions: ["bash", "fish", "zsh"],
       },
     },
+    {
+      name: "--listen",
+      description: "Listen for commands",
+      args: {
+        name: "listen",
+      },
+    },
+    {
+      name: "--send",
+      description: "Send commands to a remote broot then quits",
+      args: {
+        name: "send",
+      },
+    },
   ],
+  args: {
+    name: "ROOT",
+    description: "Sets the root directory",
+  },
 };
 export default completionSpec;
