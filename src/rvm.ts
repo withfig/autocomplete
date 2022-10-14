@@ -88,59 +88,59 @@ const completionSpec: Fig.Spec = {
     {
       name: "info",
       description: "Show information about the current ruby environment",
-      subcommands: [...interpreters],
+      subcommands: interpreters,
     },
     {
       name: "list",
       description: "List currently installed version",
-      subcommands: [...interpreters],
+      subcommands: interpreters,
     },
     {
       name: "reload",
       description:
         "Reload RVM source itself (useful after changing RVM source)",
-      subcommands: [...interpreters],
+      subcommands: interpreters,
     },
     {
       name: "implode",
       description: "Remove all ruby installations it manages",
-      subcommands: [...interpreters],
+      subcommands: interpreters,
     },
     {
       name: "get",
       description: "Upgrades RVM to the stable or git head branches",
-      subcommands: [...interpreters],
+      subcommands: interpreters,
     },
     {
       name: "do",
       description: "Runs a named ruby file against specified and/or all rubies",
-      subcommands: [...interpreters],
+      subcommands: interpreters,
     },
     {
       name: "install",
       description: "Install one or many ruby versions",
-      subcommands: [...interpreters],
+      subcommands: interpreters,
     },
     {
       name: "upgrade",
       description:
         "Install new ruby, copy gemsets, make gems pristine, remove old rubies",
-      subcommands: [...interpreters],
+      subcommands: interpreters,
     },
     {
       name: "reinstall",
       description: "Remove ruby, install it, make gems pristine",
-      subcommands: [...interpreters],
+      subcommands: interpreters,
     },
     {
       name: "uninstall",
       description: "Uninstall one or many ruby versions, leaves their sources",
-      subcommands: [...interpreters],
+      subcommands: interpreters,
     },
     {
       name: "remove",
       description: "Remove one or many ruby versions, including their sources",
-      subcommands: [...interpreters],
+      subcommands: interpreters,
     },
     ...interpreters,
   ],
