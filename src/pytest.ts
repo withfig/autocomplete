@@ -341,6 +341,7 @@ const completionSpec: Fig.Spec = {
         "Level of messages to catch/display. Not set by default, so it depends on the root/parent log handler's effective level, where it is `WARNING` by default",
       args: {
         name: "Level",
+        suggestions: ["CRITICAL", "ERROR", "WARNING", "INFO", "DEBUG"],
       },
     },
     {
