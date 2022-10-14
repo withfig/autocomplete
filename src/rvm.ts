@@ -40,7 +40,7 @@ const interpreters = [
   {
     name: "jruby",
     description: "JRuby",
-    options: [...options],
+    options,
   },
   {
     name: "ruby",
