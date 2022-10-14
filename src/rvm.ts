@@ -60,7 +60,7 @@ const interpreters = [
   {
     name: "default",
     description: "Use RVM set default ruby and system if it hasn't been set",
-    options: [...options],
+    options,
   },
 ];
 
