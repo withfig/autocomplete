@@ -1,6 +1,9 @@
 const completionSpec: Fig.Spec = {
   name: "mdls",
   description: "Lists the metadata attributes for the specified file",
+  parserDirectives: {
+    flagsArePosixNoncompliant: true,
+  },
   args: {
     name: "file",
     template: "filepaths",
