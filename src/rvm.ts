@@ -45,7 +45,7 @@ const interpreters = [
   {
     name: "ruby",
     description: "MRI/YARV Ruby (The Standard), defaults to 1.8.6",
-    options: [...options],
+    options,
   },
   {
     name: "ree",
