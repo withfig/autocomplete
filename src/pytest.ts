@@ -214,6 +214,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "Mode",
         default: "prepend",
+        suggestions: ["prepend", "append", "importlib"],
       },
     },
     {
