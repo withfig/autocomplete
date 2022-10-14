@@ -3,7 +3,7 @@
  * Tue, 11 Oct 2022 12:43:14 GMT
  */
 
- const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "ffmpeg",
   description: "Play, record, convert, and stream audio and video",
 
@@ -124,11 +124,15 @@
         generators: {
           script: "ffmpeg -devices",
           postProcess: (out) => {
-            return out.split("\n").filter(Boolean).map((k) =>
-              k.split(" ").filter(Boolean)[1]
-            ).filter(Boolean).filter((k) => k !== "=").map((k) => ({
-              name: k,
-            }));
+            return out
+              .split("\n")
+              .filter(Boolean)
+              .map((k) => k.split(" ").filter(Boolean)[1])
+              .filter(Boolean)
+              .filter((k) => k !== "=")
+              .map((k) => ({
+                name: k,
+              }));
           },
         },
       },
@@ -141,11 +145,15 @@
         generators: {
           script: "ffmpeg -devices",
           postProcess: (out) => {
-            return out.split("\n").filter(Boolean).map((k) =>
-              k.split(" ").filter(Boolean)[1]
-            ).filter(Boolean).filter((k) => k !== "=").map((k) => ({
-              name: k,
-            }));
+            return out
+              .split("\n")
+              .filter(Boolean)
+              .map((k) => k.split(" ").filter(Boolean)[1])
+              .filter(Boolean)
+              .filter((k) => k !== "=")
+              .map((k) => ({
+                name: k,
+              }));
           },
         },
       },
@@ -381,11 +389,15 @@
         generators: {
           script: "ffmpeg -devices",
           postProcess: (out) => {
-            return out.split("\n").filter(Boolean).map((k) =>
-              k.split(" ").filter(Boolean)[1]
-            ).filter(Boolean).filter((k) => k !== "=").map((k) => ({
-              name: k,
-            }));
+            return out
+              .split("\n")
+              .filter(Boolean)
+              .map((k) => k.split(" ").filter(Boolean)[1])
+              .filter(Boolean)
+              .filter((k) => k !== "=")
+              .map((k) => ({
+                name: k,
+              }));
           },
         },
       },
@@ -403,11 +415,15 @@
         generators: {
           script: "ffmpeg -codecs",
           postProcess: (out) => {
-            return out.split("\n").filter(Boolean).map((k) =>
-              k.split(" ").filter(Boolean)[1]
-            ).filter(Boolean).filter((k) => k !== "=").map((k) => ({
-              name: k,
-            }));
+            return out
+              .split("\n")
+              .filter(Boolean)
+              .map((k) => k.split(" ").filter(Boolean)[1])
+              .filter(Boolean)
+              .filter((k) => k !== "=")
+              .map((k) => ({
+                name: k,
+              }));
           },
         },
       },
@@ -420,11 +436,15 @@
         generators: {
           script: "ffmpeg -codecs",
           postProcess: (out) => {
-            return out.split("\n").filter(Boolean).map((k) =>
-              k.split(" ").filter(Boolean)[1]
-            ).filter(Boolean).filter((k) => k !== "=").map((k) => ({
-              name: k,
-            }));
+            return out
+              .split("\n")
+              .filter(Boolean)
+              .map((k) => k.split(" ").filter(Boolean)[1])
+              .filter(Boolean)
+              .filter((k) => k !== "=")
+              .map((k) => ({
+                name: k,
+              }));
           },
         },
       },
@@ -525,8 +545,7 @@
       name: "-map",
       description: "Set input stream mapping",
       args: {
-        name:
-          "[-]input_file_id[:stream_specifier][,sync_file_id[:stream_specifier]]",
+        name: "[-]input_file_id[:stream_specifier][,sync_file_id[:stream_specifier]]",
       },
     },
     {
@@ -698,11 +717,15 @@
         generators: {
           script: "ffmpeg -codecs",
           postProcess: (out) => {
-            return out.split("\n").filter(Boolean).map((k) =>
-              k.split(" ").filter(Boolean)[1]
-            ).filter(Boolean).filter((k) => k !== "=").map((k) => ({
-              name: k,
-            }));
+            return out
+              .split("\n")
+              .filter(Boolean)
+              .map((k) => k.split(" ").filter(Boolean)[1])
+              .filter(Boolean)
+              .filter((k) => k !== "=")
+              .map((k) => ({
+                name: k,
+              }));
           },
         },
       },
@@ -744,11 +767,15 @@
         generators: {
           script: "ffmpeg -codecs",
           postProcess: (out) => {
-            return out.split("\n").filter(Boolean).map((k) =>
-              k.split(" ").filter(Boolean)[1]
-            ).filter(Boolean).filter((k) => k !== "=").map((k) => ({
-              name: k,
-            }));
+            return out
+              .split("\n")
+              .filter(Boolean)
+              .map((k) => k.split(" ").filter(Boolean)[1])
+              .filter(Boolean)
+              .filter((k) => k !== "=")
+              .map((k) => ({
+                name: k,
+              }));
           },
         },
       },
@@ -899,11 +926,15 @@
         generators: {
           script: "ffmpeg -codecs",
           postProcess: (out) => {
-            return out.split("\n").filter(Boolean).map((k) =>
-              k.split(" ").filter(Boolean)[1]
-            ).filter(Boolean).filter((k) => k !== "=").map((k) => ({
-              name: k,
-            }));
+            return out
+              .split("\n")
+              .filter(Boolean)
+              .map((k) => k.split(" ").filter(Boolean)[1])
+              .filter(Boolean)
+              .filter((k) => k !== "=")
+              .map((k) => ({
+                name: k,
+              }));
           },
         },
       },
@@ -961,11 +992,15 @@
         generators: {
           script: "ffmpeg -codecs",
           postProcess: (out) => {
-            return out.split("\n").filter(Boolean).map((k) =>
-              k.split(" ").filter(Boolean)[1]
-            ).filter(Boolean).filter((k) => k !== "=").map((k) => ({
-              name: k,
-            }));
+            return out
+              .split("\n")
+              .filter(Boolean)
+              .map((k) => k.split(" ").filter(Boolean)[1])
+              .filter(Boolean)
+              .filter((k) => k !== "=")
+              .map((k) => ({
+                name: k,
+              }));
           },
         },
       },
