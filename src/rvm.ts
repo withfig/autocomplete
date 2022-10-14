@@ -25,7 +25,7 @@ const options = [
     description: "Used with 'do' to print out a summary of the commands run",
   },
   {
-    name: "C",
+    name: "-C",
     description:
       "Custom configure options, comma separated, double quote args that need quoting, default",
   },
