@@ -50,7 +50,7 @@ const interpreters = [
   {
     name: "ree",
     description: "Ruby Enterprise Edition",
-    options: [...options],
+    options,
   },
   {
     name: "system",
