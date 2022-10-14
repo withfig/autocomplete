@@ -25,6 +25,7 @@ const completionSpec: Fig.Spec = {
         "Base temporary directory for this test run.(warning: this directory is removed if it exists)",
       args: {
         name: "Directory",
+        template: "folders",
       },
     },
     {
@@ -128,6 +129,7 @@ const completionSpec: Fig.Spec = {
       name: "--deselect",
       description:
         "Deselect item (via node id prefix) during collection (multi-allowed)",
+      isRepeatable: true,
       args: {
         name: "nodeid_prefix",
       },
@@ -194,6 +196,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--ignore",
       description: "Ignore path during collection (multi-allowed)",
+      isRepeatable: true,
       args: {
         name: "Path",
         template: "filepaths",
@@ -202,6 +205,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--ignore-glob",
       description: "Ignore path pattern during collection (multi-allowed)",
+      isRepeatable: true,
       args: {
         name: "Path",
         template: "filepaths",
@@ -391,6 +395,7 @@ const completionSpec: Fig.Spec = {
       name: "-p",
       description:
         "Early-load given plugin module name or entry point (multi-allowed)",
+      isRepeatable: true,
       args: {
         name: "Plugin name",
       },
@@ -441,7 +446,7 @@ const completionSpec: Fig.Spec = {
         "Define root directory for tests. Can be relative path: 'root_dir', './root_dir', 'root_dir/another_dir/'; absolute path: '/home/user/root_dir'; path with variables:'$HOME/root_dir'",
       args: {
         name: "Root Dir",
-        template: "filepaths",
+        template: "folders",
       },
     },
     {
