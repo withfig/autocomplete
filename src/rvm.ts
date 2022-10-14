@@ -142,6 +142,7 @@ const completionSpec: Fig.Spec = {
       description: "Remove one or many ruby versions, including their sources",
       subcommands: [...interpreters],
     },
+    ...interpreters,
   ],
 };
 
