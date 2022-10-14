@@ -6,18 +6,22 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--dates", "-d"],
       description: "Show the last modified date of files and directories",
+      exclusiveOn: ["--no-dates", "-D"],
     },
     {
       name: ["--no-dates", "-D"],
       description: "Don't show the last modified date",
+      exclusiveOn: ["--dates", "-d"],
     },
     {
       name: ["--only-folders", "-f"],
       description: "Only show folders",
+      exclusiveOn: ["--no-only-folders", "-F"],
     },
     {
       name: ["--no-only-folders", "-F"],
       description: "Show folders and files alike",
+      exclusiveOn: ["--only-folders", "-f"],
     },
     {
       name: "--show-root-fs",
@@ -26,10 +30,12 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--show-git-info", "-g"],
       description: "Show git statuses on files and stats of repository",
+      exclusiveOn: ["--no-show-git-info", "-G"],
     },
     {
       name: ["--no-show-git-info", "-G"],
       description: "Don't show git statuses on files nor stats",
+      exclusiveOn: ["--show-git-info", "-g"],
     },
     {
       name: "--git-status",
@@ -39,47 +45,58 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--hidden", "-h"],
       description: "Show hidden files",
+      exclusiveOn: ["--no-hidden", "-H"],
     },
     {
       name: ["--no-hidden", "-H"],
       description: "Don't show hidden files",
+      exclusiveOn: ["--hidden", "-h"],
     },
     {
       name: ["--show-gitignored", "-i"],
       description: "Show files which should be ignored according to git",
+      exclusiveOn: ["--no-show-gitignored", "-I"],
     },
     {
       name: ["--no-show-gitignored", "-I"],
       description: "Don't show gitignored files",
+      exclusiveOn: ["--show-gitignored", "-i"],
     },
     {
       name: ["--permissions", "-p"],
       description: "Show permissions with owner and group",
+      exclusiveOn: ["--no-permissions", "-P"],
     },
     {
       name: ["--no-permissions", "-P"],
       description: "Don't show permissions",
+      exclusiveOn: ["--permissions", "-p"],
     },
     {
       name: ["--sizes", "-s"],
       description:
         "Show the sizes of files and directories. When this mode is on, children aren't shown so that the biggest entries at the selected level can be sorted first",
+      exclusiveOn: ["--no-sizes", "-S"],
     },
     {
       name: ["--no-sizes", "-S"],
       description: "Don't show sizes",
+      exclusiveOn: ["--sizes", "-s"],
     },
     {
       name: "--sort-by-count",
       description: "Sort by count (only show one level of the tree)",
+      exclusiveOn: ["--no-sort"],
     },
     {
       name: "--sort-by-date",
       description: "Sort by date (only show one level of the tree)",
+      exclusiveOn: ["--no-sort"],
     },
     {
       name: "--sort-by-size",
       description: "Sort by size (only show one level of the tree)",
+      exclusiveOn: ["--no-sort"],
     },
     {
       name: ["--whale-spotting", "-w"],
@@ -88,16 +105,19 @@ const completionSpec: Fig.Spec = {
     {
       name: "--no-sort",
       description: "Don't sort",
+      exclusiveOn: ["--sort-by-count", "--sort-by-date", "--sort-by-size"],
     },
     {
       name: ["--trim-root", "-t"],
       description:
         "Trim the root: remove elements which would exceed the screen size. This removes the scrollbar",
+      exclusiveOn: ["--no-trim-root", "-T"],
     },
     {
       name: ["--no-trim-root", "-T"],
       description:
         "Don't trim the root (still trim the deeper levels). A scrollbar may be used when there are too many elements to show on screen",
+      exclusiveOn: ["--trim-root", "-t"],
     },
     {
       name: "--install",
@@ -159,6 +179,8 @@ const completionSpec: Fig.Spec = {
       description: "Where to write the produced path, if any",
       args: {
         name: "file-export-path",
+        template: "filepaths",
+        suggestCurrentToken: true,
       },
     },
     {
