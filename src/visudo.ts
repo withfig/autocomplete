@@ -37,6 +37,8 @@ const completionSpec: Fig.Spec = {
       description: "Export JSON and write it to output_file",
       args: {
         name: "Output file name",
+        template: "filepaths",
+        suggestCurrentToken: true,
       },
     },
     {
