@@ -63,7 +63,7 @@
   "repository": "https://github.com/withfig/autocomplete",
   "devDependencies": {
     "@fig/eslint-config-autocomplete": "^1.1.0",
-    "@types/inquirer": "^7.3.1",
+    "@types/inquirer": "^9.0.2",
     "@types/node": "^14.14.33",
     "@types/progress": "^2.0.3",
     "@typescript-eslint/eslint-plugin": "^5.17.0",
