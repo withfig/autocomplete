@@ -13,6 +13,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "New sudoers location",
         description: "Specify the alternate sudoers file location",
+        template: "filepaths",
       },
     },
     {
