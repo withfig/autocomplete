@@ -15,6 +15,7 @@ const completionSpec: Fig.Spec = {
       description:
         "Print only the matching metadata attribute value.  Can be used multiple times",
       isRepeatable: true,
+      exclusiveOn: ["--plist", "-plist"],
       args: {
         name: "attributeName",
         description: "Metadata attribute name",
@@ -56,6 +57,7 @@ const completionSpec: Fig.Spec = {
       name: ["--raw", "-raw"],
       description:
         "Print raw attribute data in the order that was requested. Fields will be separated with a ASCII NUL character, suitable for piping to xargs(1) -0",
+      exclusiveOn: ["--plist", "-plist"],
     },
     {
       name: ["--nullMarker", "-nullMarker"],
@@ -63,8 +65,41 @@ const completionSpec: Fig.Spec = {
         "Sets a marker string to be used when a requested attribute is null. Only used in -raw mode.  Default is '(null)'",
       insertValue: `--nullMarker "{cursor}"`,
       dependsOn: ["--raw", "-raw"],
+      exclusiveOn: ["--plist", "-plist"],
     },
-    // TODO(platform): Add --plist macos only option
+    // TODO(platform): macos only option
+    {
+      name: ["--plist", "-plist"],
+      description:
+        "Output attributes in XML format to file. Use - to write to stdout option. Incompatible with options -raw, -nullMarker, and -name",
+      exclusiveOn: [
+        "--raw",
+        "-raw",
+        "--nullMarker",
+        "-nullMarker",
+        "--name",
+        "-name",
+      ],
+      args: [
+        {
+          name: "stdout or file",
+          description: "XML output location",
+          template: "filepaths",
+          suggestions: [
+            {
+              name: "-",
+              description: "Writes to stdout",
+              priority: 77,
+            },
+          ],
+        },
+        {
+          name: "file",
+          description: "File to read from",
+          template: "filepaths",
+        },
+      ],
+    },
   ],
 };
 export default completionSpec;
