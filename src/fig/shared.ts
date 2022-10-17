@@ -65,7 +65,7 @@ const disableForCommandsGenerator: Fig.Generator = {
 };
 
 export const themesGenerator: Fig.Generator = {
-  script: "\\ls -1 ~/.fig/themes",
+  script: "fig theme --list",
   postProcess: (output) => {
     const builtinThemes = [
       {
@@ -118,13 +118,13 @@ export const settingsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
   _,
   executeShellCommand
 ) => {
-  const [settingsJson, actionsJson] = await Promise.all([
-    executeShellCommand(`\\cat ${SETTINGS_PATH}`),
-    executeShellCommand(`\\cat ${ACTIONS_PATH}`),
-  ]);
-
-  const settings: Setting[] = JSON.parse(settingsJson);
-  const actions: Action[] = JSON.parse(actionsJson);
+  const text = await executeShellCommand(
+    "fig _ request --method GET --route '/settings/all'"
+  );
+  const { settings, actions } = JSON.parse(text) as {
+    settings: Setting[];
+    actions: Action[];
+  };
 
   const actionSuggestions: Fig.Suggestion[] = actions.flatMap((action) => ({
     name: action.identifier,
@@ -350,9 +350,9 @@ export const workflowsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
 
     return {
       displayName,
-      icon: "⚡️",
+      icon: workflow.icon ?? "⚡️",
       name,
-      insertValue: `${workflow.isOwnedByUser ? workflow.name : name[0]} `,
+      insertValue: workflow.isOwnedByUser ? workflow.name : name[0],
       description: workflow.description,
       options,
     };
@@ -367,16 +367,20 @@ export const sshHostsGenerator: Fig.Generator = {
   script: "fig _ request --method GET --route /access/hosts/all",
   cache: {
     strategy: "stale-while-revalidate",
-    ttl: 1000 * 60 * 3,
   },
   postProcess: (out) => {
-    return (JSON.parse(out) as { nickName: string; namespace: string }[]).map(
-      (host) => ({
-        insertValue: `'@${host.namespace}/${host.nickName}'`,
-        displayName: `${host.nickName} (${host.namespace})`,
-        name: [host.namespace, host.nickName],
-      })
-    );
+    return (
+      JSON.parse(out) as {
+        nickName: string;
+        namespace: string;
+        description: string;
+      }[]
+    ).map((host) => ({
+      insertValue: `@${host.namespace}/${host.nickName}`,
+      displayName: `${host.nickName} (@${host.namespace})`,
+      name: `@${host.namespace}/${host.nickName}`,
+      description: host.description,
+    }));
   },
 };
 

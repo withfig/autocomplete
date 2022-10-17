@@ -35,11 +35,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--plugin-dir", "-d"],
           description: "Plugins directory",
-          args: {
-            name: "plugin-dir",
-            default: ".devstream",
-            template: ["folders"],
-          },
+          args: { name: "plugin-dir", template: ["folders"] },
         },
         {
           name: ["--yes", "-y"],
@@ -86,11 +82,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--plugin-dir", "-d"],
           description: "Plugins directory",
-          args: {
-            name: "plugin-dir",
-            default: ".devstream",
-            template: ["folders"],
-          },
+          args: { name: "plugin-dir", template: ["folders"] },
         },
         {
           name: ["--yes", "-y"],
@@ -113,6 +105,12 @@ const completionSpec: Fig.Spec = {
             generators: dtmGenerators.yamlFiles,
           },
         },
+        { name: "--force", description: "Force destroy by config" },
+        {
+          name: ["--plugin-dir", "-d"],
+          description: "Plugins directory",
+          args: { name: "plugin-dir" },
+        },
         {
           name: ["--yes", "-y"],
           description: "Destroy directly without confirmation",
@@ -129,7 +127,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["--name", "-n"],
-              description: "Specify name with the new plugin",
+              description: "Specify name of the plugin to be created",
               isPersistent: true,
               args: { name: "name" },
             },
@@ -146,7 +144,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--name", "-n"],
-              description: "Specify name with the new plugin",
+              description: "Specify name of the plugin to be validated",
               isPersistent: true,
               args: { name: "name" },
             },
@@ -158,6 +156,12 @@ const completionSpec: Fig.Spec = {
       name: "init",
       description: "Download needed plugins according to the config file",
       options: [
+        { name: ["--all", "-a"], description: "Download all plugins" },
+        {
+          name: "--arch",
+          description: "Download plugins for specific arch",
+          args: { name: "arch", default: "amd64" },
+        },
         {
           name: ["--config-file", "-f"],
           description: "Config file",
@@ -168,14 +172,21 @@ const completionSpec: Fig.Spec = {
             generators: dtmGenerators.yamlFiles,
           },
         },
+        { name: "--download-only", description: "Download plugins only" },
+        {
+          name: "--os",
+          description: "Download plugins for specific os",
+          args: { name: "os", default: "linux" },
+        },
         {
           name: ["--plugin-dir", "-d"],
           description: "Plugins directory",
-          args: {
-            name: "plugin-dir",
-            default: ".devstream",
-            template: ["folders"],
-          },
+          args: { name: "plugin-dir", template: ["folders"] },
+        },
+        {
+          name: ["--plugins", "-p"],
+          description: "The plugins to be downloaded",
+          args: { name: "plugins" },
         },
       ],
     },
@@ -199,7 +210,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "show",
-      description: "Show is used to print some useful information",
+      description:
+        "Show is used to print plugins' configuration templates or status",
       subcommands: [
         {
           name: "config",
@@ -243,7 +255,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--plugin-dir", "-d"],
               description: "Plugins directory",
-              args: { name: "plugin-dir", default: ".devstream" },
+              args: { name: "plugin-dir" },
             },
           ],
         },
@@ -255,7 +267,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["--yes", "-y"],
-          description: "Apply directly without confirmation",
+          description: "Upgrade directly without confirmation",
         },
       ],
     },
@@ -277,11 +289,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--plugin-dir", "-d"],
           description: "Plugins directory",
-          args: {
-            name: "plugin-dir",
-            default: ".devstream",
-            template: ["folders"],
-          },
+          args: { name: "plugin-dir", template: ["folders"] },
         },
       ],
     },
@@ -347,7 +355,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "show",
-          description: "Show is used to print some useful information",
+          description:
+            "Show is used to print plugins' configuration templates or status",
           subcommands: [
             { name: "config", description: "Show configuration information" },
             { name: "status", description: "Show status information" },
