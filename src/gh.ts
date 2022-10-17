@@ -519,7 +519,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "pager",
-              insertValue: "pager {cursor}",
               description:
                 "The terminal pager program to send standard output to",
               args: { name: "value" },
