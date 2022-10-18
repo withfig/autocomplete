@@ -26,7 +26,7 @@ const completionSpec: Fig.Spec = {
           name: ["--output", "-o"],
           description:
             "Copy the binary to the path after the build. Only taken into account when using --single-target and a single id (either with --id or if configuration only has one build)",
-          args: { name: "output", template: "filepaths" },
+          args: { name: "output", template: ["filepaths"] },
         },
         {
           name: ["--parallelism", "-p"],
@@ -141,8 +141,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["--output", "-o"],
-          description: "Where to save the json schema",
-          args: { name: "output", default: "-", template: "filepaths" },
+          description: "Where to save the JSONSchema file",
+          args: { name: "output", default: "-", template: ["filepaths"] },
         },
       ],
     },
@@ -157,7 +157,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--config", "-f"],
           description: "Load configuration from file",
-          args: { name: "config" },
+          args: { name: "config", template: ["filepaths"] },
         },
         {
           name: "--deprecated",
