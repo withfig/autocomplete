@@ -25,6 +25,13 @@ const localRenderAndStillOptions: Fig.Option[] = [
     },
   },
   {
+    name: "--ffprobe-executable",
+    description: "Custom path for FFProbe executable",
+    args: {
+      template: "filepaths",
+    },
+  },
+  {
     name: "--bundle-cache",
     description: "Cache webpack bundle, boolean, default true",
   },
@@ -763,6 +770,16 @@ const completionSpec: Fig.Spec = {
       name: "upgrade",
       description:
         "Upgrade all Remotion-related dependencies to the newest version",
+      options: [
+        {
+          name: "--package-manager",
+          description: "Force a specific package manager to be used",
+          args: {
+            name: "package-manager",
+            suggestions: [{ name: "npm" }, { name: "yarn" }, { name: "pnpm" }],
+          },
+        },
+      ],
     },
   ],
   options: [
