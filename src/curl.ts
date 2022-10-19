@@ -814,6 +814,10 @@ const completionSpec: Fig.Spec = {
     },
     { name: "--ssl", description: "Try SSL/TLS" },
     {
+      name: "--ssl-auto-client-cert",
+      description: "Obtain and use a client certificate automatically",
+    },
+    {
       name: "--ssl-allow-beast",
       description: "Allow security flaw to improve interop",
     },

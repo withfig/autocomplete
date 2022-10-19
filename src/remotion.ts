@@ -94,16 +94,6 @@ const lambdaRenderOptions: Fig.Option[] = [
     name: "--overwrite",
     description: "Overwrite a video if it already exists in the S3 bucket",
   },
-  {
-    name: "--webhook",
-    description:
-      "URL of webhook to be called when render is done. To be used together with --webhook-secret",
-  },
-  {
-    name: "--webhook-secret",
-    description:
-      "Secret to sign payload of the webhook that is called upon render finish. To be used together with --webhook",
-  },
 ];
 
 const localRenderOptions: Fig.Option[] = [
@@ -765,28 +755,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "--disable-keyboard-shortcuts",
           description: "Disable all keyboard shortcuts",
-        },
-      ],
-    },
-    {
-      name: "benchmark",
-
-      priority: 45,
-      description: "Measure and compare multiple render configurations",
-      args: [
-        {
-          name: "entry",
-          template: ["filepaths"],
-        },
-        {
-          name: "comp-ids",
-          description: "Composition IDs, comma-separated",
-          suggestions: [
-            {
-              type: "arg",
-              displayName: "[comp-ids]",
-            },
-          ],
         },
       ],
       options: benchmarkOptions,
