@@ -1456,6 +1456,16 @@ const completionSpec: Fig.Spec = {
           name: ["-h", "--help"],
           description: "Output usage information",
         },
+        {
+          name: "--peers",
+          description:
+            "Print the peer dependencies that match the specified name",
+        },
+        {
+          name: ["-R", "--recursive"],
+          description:
+            "List, for each workspace, what are all the paths that lead to the dependency",
+        },
       ],
     },
     {
