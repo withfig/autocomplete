@@ -139,8 +139,7 @@ const localRenderOptions: Fig.Option[] = [
   },
   {
     name: "--enforce-audio-track",
-    description:
-      "Renders an silent audio track if otherwise there would be none",
+    description: "Include an audio track even if it's silent",
   },
   {
     name: "--muted",
