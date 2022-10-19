@@ -13,7 +13,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "email address",
           },
-          isOptional: false,
+          isRequired: true,
         },
         {
           name: ["-p", "--password"],
@@ -21,7 +21,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "password",
           },
-          isOptional: true,
         },
       ],
     },
@@ -36,17 +35,15 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "alias",
           },
-          isOptional: false,
+          isRequired: true,
         },
         {
           name: "--management",
           description: "Alias (name) you want to assign to the token",
-          isOptional: true,
         },
         {
           name: "--delivery",
           description: "Flag to set delivery token",
-          isOptional: true,
         },
         {
           name: ["-k", "--stack-api-key"],
@@ -54,7 +51,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "stack-api-key",
           },
-          isOptional: false,
+          isRequired: true,
         },
         {
           name: "--token",
@@ -63,12 +60,10 @@ const completionSpec: Fig.Spec = {
             name: "token",
           },
           dependsOn: ["--stack-api-key"],
-          isOptional: true,
         },
         {
           name: ["-f", "--force"],
           description: "Force token replace",
-          isOptional: true,
         },
       ],
     },
@@ -83,12 +78,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "alias",
           },
-          isOptional: false,
+          isRequired: true,
         },
         {
           name: ["-i", "--ignore"],
           description: "Ignores if token not present. Command",
-          isOptional: true,
         },
       ],
     },
@@ -161,12 +155,10 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-x", "--extended"],
           description: "To show extra columns",
-          isOptional: true,
         },
         {
           name: "--columns",
           description: "To display specific columns, separated by comma",
-          isOptional: true,
           args: {
             name: "columns",
           },
@@ -174,13 +166,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "--csv",
           description: "Output is csv format",
-          isOptional: true,
         },
         {
           name: "--filter",
           description:
             "To filter the property by partial string matching, ex: name=foo",
-          isOptional: true,
           args: {
             name: "filter",
           },
@@ -188,17 +178,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--no-header",
           description: "To hide table’s header in output",
-          isOptional: true,
         },
         {
           name: "--no-truncate",
           description: "To not truncate output to fit screen",
-          isOptional: true,
         },
         {
           name: "--output",
           description: "To display output in a particular format",
-          isOptional: true,
           args: {
             name: "format",
             suggestions: [{ name: "csv" }, { name: "json" }, { name: "yaml" }],
@@ -208,7 +195,6 @@ const completionSpec: Fig.Spec = {
           name: "--sort",
           description:
             "To sort the list, prepend '-' to sort in a descending order",
-          isOptional: true,
           args: {
             name: "sort",
           },
@@ -227,24 +213,20 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "region",
         description: "The ContentStack AWS region you want to use",
-
         suggestions: [
           {
             name: "EU",
             displayName: "Europe",
-
             type: "option",
           },
           {
             name: "AZURE-NA",
             displayName: "Azure North America",
-
             type: "option",
           },
           {
             name: "NA",
             displayName: "North America",
-
             type: "option",
             priority: 100,
           },
@@ -259,7 +241,6 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-c", "--config"],
           description: "[optional] path of the config",
-          isOptional: true,
           args: {
             name: "config",
           },
@@ -267,7 +248,6 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-k", "--stack-api-key"],
           description: "API key of the source stack",
-          isOptional: true,
           args: {
             name: "stack-api-key",
           },
@@ -276,7 +256,6 @@ const completionSpec: Fig.Spec = {
           name: ["-a", "--alias"],
           description:
             "The management token of the source stack from which you will export content",
-          isOptional: true,
           args: {
             name: "alias",
           },
@@ -285,7 +264,6 @@ const completionSpec: Fig.Spec = {
           name: ["-d", "--data-dir"],
           description:
             "The path or the location in your file system to store the exported content. For e.g., ./content",
-          isOptional: true,
           args: {
             name: "data-dir",
           },
@@ -294,7 +272,6 @@ const completionSpec: Fig.Spec = {
           name: "--branch",
           description:
             "The name of the branch where you want to export your content. If you don’t mention the branch name, then by default the content will be exported from all the branches of your stack",
-          isOptional: true,
           args: {
             name: "branch",
           },
@@ -303,7 +280,6 @@ const completionSpec: Fig.Spec = {
           name: "--module",
           description:
             "[optional] Specific module name. If not specified, the export command will export all the modules to the stack. The available modules are assets, content-types, entries, environments, extensions, global-fields, labels, locales, webhooks, and workflows",
-          isOptional: true,
           args: {
             name: "module",
             suggestions: [
@@ -323,7 +299,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-types",
           description: "[optional] content type",
-          isOptional: true,
           args: {
             name: "content-types",
           },
@@ -331,7 +306,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "--secured-assets",
           description: "[optional] use when assets are secured",
-          isOptional: true,
           args: {
             name: "secured-assets",
           },
