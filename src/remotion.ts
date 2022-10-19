@@ -585,6 +585,14 @@ const completionSpec: Fig.Spec = {
                   exclusiveOn: ["--retention-period"],
                 },
                 {
+                  name: "--custom-role-arn",
+                  description:
+                    "Set a custom role ARN to be used instead of the default",
+                  args: {
+                    name: "Role ARN",
+                  },
+                },
+                {
                   name: "--retention-period",
                   description: "CloudWatch log retention period in days",
                   exclusiveOn: ["--disable-cloudwatch"],
