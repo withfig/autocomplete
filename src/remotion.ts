@@ -1,3 +1,28 @@
+const alwaysOptions: Fig.Option[] = [
+  {
+    name: "--quiet",
+    description: "Print less output",
+  },
+  {
+    name: "-q",
+    hidden: true,
+    description: "Print less output",
+  },
+  {
+    name: "--log",
+    description: 'Log level, "error", "warning", "verbose", "info" (default)',
+    args: {
+      default: "info",
+      suggestions: [
+        { name: "error" },
+        { name: "warning" },
+        { name: "verbose" },
+        { name: "info" },
+      ],
+    },
+  },
+];
+
 const localRenderAndStillOptions: Fig.Option[] = [
   {
     name: "--env-file",
@@ -242,19 +267,6 @@ const renderOptions: Fig.Option[] = [
     },
   },
   {
-    name: "--log",
-    description: 'Log level, "error", "warning", "verbose", "info" (default)',
-    args: {
-      default: "info",
-      suggestions: [
-        { name: "error" },
-        { name: "warning" },
-        { name: "verbose" },
-        { name: "info" },
-      ],
-    },
-  },
-  {
     name: "--prores-profile",
     description: "ProRes profile, need --codec=prores to be set",
     args: {
@@ -297,15 +309,7 @@ const renderOptions: Fig.Option[] = [
 ];
 
 const globalLambdaOptions: Fig.Option[] = [
-  {
-    name: "--quiet",
-    description: "Print less output",
-  },
-  {
-    name: "-q",
-    hidden: true,
-    description: "Print less output",
-  },
+  ...alwaysOptions,
   {
     name: "--yes",
     description: "Skip confirmation",
@@ -382,6 +386,7 @@ const benchmarkOptions: Fig.Option[] = [
   ...renderOptions,
   ...localRenderOptions,
   ...localRenderAndStillOptions,
+  ...alwaysOptions,
   {
     name: "--concurrencies",
     description:
@@ -487,7 +492,6 @@ const completionSpec: Fig.Spec = {
                   displayName: "[out-name]",
                 },
               ],
-
               isOptional: true,
             },
           ],
@@ -496,6 +500,7 @@ const completionSpec: Fig.Spec = {
             ...lambdaRenderOptions,
             ...renderOptions,
             ...globalLambdaOptions,
+            ...alwaysOptions,
           ],
         },
         {
@@ -539,6 +544,7 @@ const completionSpec: Fig.Spec = {
             ...lambdaRenderAndStillOptions,
             ...stillOptions,
             ...globalLambdaOptions,
+            ...alwaysOptions,
           ],
         },
         {
@@ -678,11 +684,10 @@ const completionSpec: Fig.Spec = {
           ],
         },
       ],
-      options: [...globalLambdaOptions],
+      options: globalLambdaOptions,
     },
     {
       name: "render",
-
       priority: 60,
       description:
         "Render a video based on the entry point, the composition ID and save it to the output location",
@@ -704,15 +709,16 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "output",
-
           template: ["filepaths"],
           suggestions: ["out.mp4"],
+          isOptional: true,
         },
       ],
       options: [
         ...renderOptions,
         ...localRenderOptions,
         ...localRenderAndStillOptions,
+        ...alwaysOptions,
       ],
     },
     {
@@ -738,10 +744,15 @@ const completionSpec: Fig.Spec = {
         {
           name: "output",
           template: ["filepaths"],
-          suggestions: ["out.mp4"],
+          suggestions: ["out.png"],
+          isOptional: true,
         },
       ],
-      options: [...stillOptions, ...localRenderAndStillOptions],
+      options: [
+        ...stillOptions,
+        ...localRenderAndStillOptions,
+        ...alwaysOptions,
+      ],
     },
     {
       name: "preview",
@@ -798,15 +809,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "--help",
       description: "Prints the list of commands and flags for quick lookup",
-    },
-    {
-      name: "--quiet",
-      description: "Print less output",
-    },
-    {
-      name: "-q",
-      hidden: true,
-      description: "Print less output",
     },
   ],
 };
