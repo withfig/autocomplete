@@ -80,9 +80,6 @@ const lambdaRenderAndStillOptions: Fig.Option[] = [
       suggestions: ["public", "private"],
     },
   },
-];
-
-const lambdaRenderOptions: Fig.Option[] = [
   {
     name: "--frames-per-lambda",
     description: "How many frames should be rendered per chunk",
@@ -90,6 +87,9 @@ const lambdaRenderOptions: Fig.Option[] = [
       name: "framesPerLambda",
     },
   },
+];
+
+const lambdaRenderOptions: Fig.Option[] = [
   {
     name: "--concurrency-per-lambda",
     description: "Concurrency with which each Lambda function should render",
@@ -114,7 +114,8 @@ const localRenderOptions: Fig.Option[] = [
   },
   {
     name: "--enforce-audio-track",
-    description: "Include an audio track even if it's silent",
+    description:
+      "Renders an silent audio track if otherwise there would be none",
   },
   {
     name: "--muted",
@@ -193,7 +194,7 @@ const renderOptions: Fig.Option[] = [
       suggestions: [
         { name: "h264" },
         { name: "h265" },
-        { name: "png" },
+        { name: "gif" },
         { name: "vp8" },
         { name: "vp9" },
         { name: "mp3" },
@@ -219,6 +220,15 @@ const renderOptions: Fig.Option[] = [
       default: "1",
       suggestions: [{ name: "0" }, { name: "1" }, { name: "2" }, { name: "3" }],
     },
+  },
+  {
+    name: "--audio-bitrate",
+    description: "Customize the output audio bitrate",
+  },
+  {
+    name: "--video-bitrate",
+    description:
+      "Customize the output video bitrate. Mutually exclusive with --crf",
   },
   {
     name: "--crf",
@@ -280,26 +290,11 @@ const renderOptions: Fig.Option[] = [
       ],
     },
   },
-];
-
-const benchmarkOptions: Fig.Option[] = [
-  ...renderOptions,
-  ...localRenderOptions,
-  ...localRenderAndStillOptions,
   {
-    name: "--concurrencies",
-    description:
-      "Comma-separated list of concurrency values to include in benchmark",
+    name: "--muted",
+    description: "Outputs no audio",
   },
-].filter((b) => {
-  if (b.name === "--overwrite") {
-    return false;
-  }
-  if (b.name === "--concurrency") {
-    return false;
-  }
-  return true;
-});
+];
 
 const globalLambdaOptions: Fig.Option[] = [
   {
@@ -383,9 +378,27 @@ const globalLambdaOptions: Fig.Option[] = [
   },
 ];
 
+const benchmarkOptions: Fig.Option[] = [
+  ...renderOptions,
+  ...localRenderOptions,
+  ...localRenderAndStillOptions,
+  {
+    name: "--concurrencies",
+    description:
+      "Comma-separated list of concurrency values to include in benchmark",
+  },
+].filter((b) => {
+  if (b.name === "--overwrite") {
+    return false;
+  }
+  if (b.name === "--concurrency") {
+    return false;
+  }
+  return true;
+});
+
 const completionSpec: Fig.Spec = {
   name: "remotion",
-
   description: "Create videos programmatically in React",
   subcommands: [
     {
@@ -400,17 +413,6 @@ const completionSpec: Fig.Spec = {
         description: "The entry point of your Remotion app",
         template: ["filepaths"],
       },
-      options: [
-        {
-          name: "--quiet",
-          description: "Print less output",
-        },
-        {
-          name: "-q",
-          hidden: true,
-          description: "Print less output",
-        },
-      ],
     },
     {
       name: "lambda",
@@ -485,6 +487,7 @@ const completionSpec: Fig.Spec = {
                   displayName: "[out-name]",
                 },
               ],
+
               isOptional: true,
             },
           ],
@@ -581,7 +584,6 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--disable-cloudwatch",
                   description: "Disable CloudWatch logging",
-
                   exclusiveOn: ["--retention-period"],
                 },
                 {
@@ -705,7 +707,6 @@ const completionSpec: Fig.Spec = {
 
           template: ["filepaths"],
           suggestions: ["out.mp4"],
-          isOptional: true,
         },
       ],
       options: [
@@ -737,8 +738,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "output",
           template: ["filepaths"],
-          suggestions: ["out.png"],
-          isOptional: true,
+          suggestions: ["out.mp4"],
         },
       ],
       options: [...stillOptions, ...localRenderAndStillOptions],
@@ -772,7 +772,6 @@ const completionSpec: Fig.Spec = {
           description: "Disable all keyboard shortcuts",
         },
       ],
-      options: benchmarkOptions,
     },
     {
       name: "upgrade",
@@ -789,11 +788,25 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "benchmark",
+      description: "Try different render configurations and compare them",
+      options: benchmarkOptions,
+    },
   ],
   options: [
     {
       name: "--help",
       description: "Prints the list of commands and flags for quick lookup",
+    },
+    {
+      name: "--quiet",
+      description: "Print less output",
+    },
+    {
+      name: "-q",
+      hidden: true,
+      description: "Print less output",
     },
   ],
 };
