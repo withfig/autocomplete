@@ -919,6 +919,39 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "secrets",
+      description:
+        "Handle and manage sensitive information for pipeline execution in a safe manner",
+      options: [
+        {
+          name: "list",
+          description:
+            "List secrets available in the current store e.g. nextflow secrets list",
+        },
+        {
+          name: "get",
+          description:
+            "Allows retrieving a secret value e.g. nextflow secrets get FOO",
+          args: {
+            name: "secret name",
+          },
+        },
+        {
+          name: "set",
+          description:
+            "Allows creating a new secret or overriding an existing one e.g. nextflow secrets set FOO 'Hello world'",
+          args: {
+            name: "secret name and value",
+          },
+        },
+        {
+          name: "delete",
+          description:
+            "Allows deleting an existing secret e.g. nextflow secrets delete FOO",
+        },
+      ],
+    },
+    {
       name: "self-update",
       description: "Update nextflow runtime to the latest available version",
       options: [
