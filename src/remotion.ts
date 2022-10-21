@@ -248,6 +248,7 @@ const renderOptions: Fig.Option[] = [
     name: "--video-bitrate",
     description:
       "Customize the output video bitrate. Mutually exclusive with --crf",
+    exclusiveOn: ["--crf"],
   },
   {
     name: "--crf",
