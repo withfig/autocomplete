@@ -1,11 +1,6 @@
 const alwaysOptions: Fig.Option[] = [
   {
-    name: "--quiet",
-    description: "Print less output",
-  },
-  {
-    name: "-q",
-    hidden: true,
+    name: ["--quiet", "-q"],
     description: "Print less output",
   },
   {
