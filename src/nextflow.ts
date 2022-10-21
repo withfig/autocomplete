@@ -25,6 +25,21 @@ const projectname: Fig.Generator = {
   },
 };
 
+const secretname: Fig.Generator = {
+  script: `grep -o '"name": *"[^"]*"' $HOME/.nextflow/secrets/store.json | grep -o '"[^"]*"$' | tr -d \\"`,
+  postProcess: (output) => {
+    if (output == "") {
+      return [];
+    }
+    return output.split("\n").map((secretname) => {
+      return {
+        name: secretname.replace("*", "").trim(),
+        description: "Secret name",
+      };
+    });
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "nextflow",
   description:
@@ -934,6 +949,7 @@ const completionSpec: Fig.Spec = {
             "Allows retrieving a secret value e.g. nextflow secrets get FOO",
           args: {
             name: "secret name",
+            generators: secretname,
           },
         },
         {
