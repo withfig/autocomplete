@@ -253,6 +253,7 @@ const renderOptions: Fig.Option[] = [
   {
     name: "--crf",
     description: "FFMPEG CRF value, controls quality, see docs for info",
+    exclusiveOn: ["--video-bitrate"],
   },
   {
     name: "--frames",
