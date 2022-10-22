@@ -6097,6 +6097,654 @@ const completionSpec: Fig.Spec = {
       description: "Define and run multi-container applications with Docker",
       loadSpec: "docker-compose",
     },
+    {
+      name: "buildx",
+      description: "Extended build capabilities with BuildKit",
+      options: [
+        {
+          name: "--builder",
+          args: {
+            name: "string",
+            description: "Override the configured builder instance",
+          },
+        },
+      ],
+      subcommands: [
+        {
+          name: "bake",
+          description: "Display detailed information on one or more images",
+          args: {
+            name: "target",
+            isVariadic: true,
+            // todo: get from hcl/json/compose file
+          },
+          options: [
+            {
+              name: "--builder",
+              description: "Override the configured builder instance",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-f", "--file"],
+              description: "Build definition file",
+              args: {
+                name: "string",
+                generators: {
+                  template: "filepaths",
+                },
+              },
+            },
+            {
+              name: "--load",
+              description: "Shorthand for --set=*.output=type=docker",
+            },
+            {
+              name: "--metadata-file",
+              description: "Write build result metadata to the file",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--no-cache",
+              description: "Do not use cache when building the image",
+            },
+            {
+              name: "--print",
+              description: "Print the options without building",
+            },
+            {
+              name: "--progress",
+              description:
+                "Set type of progress output (auto, plain, tty). Use plain to show container output",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--pull",
+              description: "Always attempt to pull all referenced images",
+            },
+            {
+              name: "--push",
+              description: "Shorthand for --set=*.output=type=registry",
+            },
+            {
+              name: "--set",
+              description:
+                "Override target value (e.g., targetpattern.key=value)",
+              args: {
+                name: "stringArray",
+              },
+            },
+          ],
+        },
+        {
+          name: "build",
+          description: "Build an image from a Dockerfile",
+          args: {
+            name: "pathOrUrl",
+            generators: {
+              template: "folders",
+            },
+          },
+          options: [
+            {
+              name: "--add-host",
+              args: {
+                name: "list",
+                description: "Add a custom host-to-IP mapping (host:ip)",
+              },
+            },
+            {
+              name: "--allow",
+              description:
+                "Allow extra privileged entitlement (e.g., network.host, security.insecure)",
+              arg: {
+                name: "stringSlice",
+              },
+            },
+            {
+              name: "--build-arg",
+              args: {
+                name: "stringArray",
+                description: "Set build-time variables",
+              },
+            },
+            {
+              name: "--build-context",
+              args: {
+                name: "stringArray",
+                description: "Additional build contexts (e.g., name=path)",
+              },
+            },
+            {
+              name: "--builder",
+              args: {
+                name: "string",
+                description: "Override the configured builder instance",
+              },
+            },
+            {
+              name: "--cache-from",
+              args: {
+                name: "stringArray",
+                description:
+                  "External cache sources (e.g., user/app:cache, type=local,src=path/to/dir)",
+              },
+            },
+            {
+              name: "--cache-to",
+              args: {
+                name: "stringArray",
+                description:
+                  "Cache export destinations (e.g., user/app:cache, type=local,dest=path/to/dir)",
+              },
+            },
+            {
+              name: "--cgroup-parent",
+              args: {
+                name: "string",
+                description: "Optional parent cgroup for the container",
+              },
+            },
+            {
+              name: ["-f", "--file"],
+              description:
+                "Name of the Dockerfile (Default is 'PATH/Dockerfile')",
+              args: {
+                name: "string",
+                generators: {
+                  template: "filepaths",
+                },
+              },
+            },
+            {
+              name: "--iidfile",
+              description: "Write the image ID to the file",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--invoke",
+              description: "Invoke a command after the build [experimental]",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--label",
+              description: "Set metadata for an image",
+              args: {
+                name: "stringArray",
+              },
+            },
+            {
+              name: "--load",
+              description: "Shorthand for --output=type=docker",
+            },
+            {
+              name: "--metadata-file",
+              description: "Write build result metadata to the file",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--network",
+              description:
+                'Set the networking mode for the RUN instructions during build (default "default")',
+              args: {
+                name: "string",
+                suggestions: ["default"].map((i) => ({ name: i })),
+              },
+            },
+            {
+              name: "--no-cache",
+              description: "Do not use cache when building the image",
+            },
+            {
+              name: "--no-cache-filter",
+              description: "Do not cache specified stages",
+              args: {
+                name: "stringArray",
+              },
+            },
+            {
+              name: ["-o", "--output"],
+              description: "Output destination (format: type=local,dest=path)",
+              args: {
+                name: "stringArray",
+              },
+            },
+            {
+              name: "--platform",
+              description: "Set target platform for build",
+              args: {
+                name: "stringArray",
+              },
+            },
+            {
+              name: "--print",
+              description:
+                "Print result of information request (e.g., outline, targets) [experimental]",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--progress",
+              description:
+                "Set type of progress output (auto, plain, tty). Use plain to show container output",
+              args: {
+                name: "string",
+                suggestions: ["auto", "plain", "tty"].map((i) => ({ name: i })),
+              },
+            },
+            {
+              name: "--pull",
+              description: "Always attempt to pull all referenced images",
+            },
+            {
+              name: "--push",
+              description: "Shorthand for --output=type=registry",
+            },
+            {
+              name: ["-q", "--quiet"],
+              description:
+                "Suppress the build output and print image ID on success",
+            },
+            {
+              name: "--secret",
+              description: `Secret file to expose to the build (only if BuildKit enabled): id=mysecret,src=/local/secret`,
+              args: {
+                name: "stringArray",
+              },
+            },
+            {
+              name: "--shm-size",
+              description: "Size of /dev/shm",
+              args: {
+                name: "bytes",
+              },
+            },
+            {
+              name: "--ssh",
+              description: `SSH agent socket or keys to expose to the build (only if BuildKit enabled) (format: default|<id>[=<socket>|<key>[,<key>]])`,
+              args: {
+                name: "stringArray",
+              },
+            },
+            {
+              name: ["-t", "--tag"],
+              description: "Name and optionally a tag in the 'name:tag' format",
+              args: {
+                name: "stringArray",
+              },
+            },
+            {
+              name: "--target",
+              description: "Set the target build stage to build",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--ulimit",
+              description: "Ulimit options",
+              args: {
+                name: "ulimit",
+              },
+            },
+          ],
+        },
+        {
+          name: "create",
+          description: "Create a new builder instance",
+          args: {
+            name: "contextOrEndpoint",
+          },
+          options: [
+            {
+              name: "--append",
+              description: "Append a node to builder instead of changing it",
+            },
+            {
+              name: "--bootstrap",
+              description: "Boot builder after creation",
+            },
+            {
+              name: "--buildkitd-flags",
+              description: "Flags for buildkitd daemon",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--config",
+              description: "BuildKit config file",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--driver",
+              description:
+                "Driver to use (available: docker-container, kubernetes, remote)",
+              args: {
+                name: "string",
+                suggestions: ["docker-container", "kubernetes", "remote"].map(
+                  (i) => ({ name: i })
+                ),
+              },
+            },
+            {
+              name: "--driver-opt",
+              description: "Options for the driver",
+              args: {
+                name: "stringArray",
+              },
+            },
+            {
+              name: "--leave",
+              description: "Remove a node from builder instead of changing it",
+            },
+            {
+              name: "--name",
+              description: "Builder instance name",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--node",
+              description: "Create/modify node with given name",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--platform",
+              description: "Fixed platforms for current node",
+              args: {
+                name: "stringArray",
+              },
+            },
+            {
+              name: "--use",
+              description: "Set the current builder instance",
+            },
+          ],
+        },
+        {
+          name: "du",
+          description: "Disk usage",
+          options: [
+            {
+              name: "--builder",
+              description: "Override the configured builder instance",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--filter",
+              description: "Provide filter values",
+              args: {
+                name: "filter",
+              },
+            },
+            {
+              name: "--verbose",
+              description: "Provide a more verbose output",
+            },
+          ],
+        },
+        {
+          name: "imagetools",
+          description: "Commands to work on images in registry",
+          options: [
+            {
+              name: "--builder",
+              description: "Override the configured builder instance",
+              args: {
+                name: "string",
+              },
+            },
+          ],
+          subcommands: [
+            {
+              name: "create",
+              description: "Create a new image based on source images",
+              args: {
+                name: "source",
+                isVariadic: true,
+              },
+              options: [
+                {
+                  name: "--append",
+                  description: "Append to existing manifest",
+                },
+                {
+                  name: "--builder",
+                  description: "Override the configured builder instance",
+                  args: {
+                    name: "string",
+                  },
+                },
+                {
+                  name: "--dry-run",
+                  description: "Show final image instead of pushing",
+                },
+                {
+                  name: ["-f", "--file"],
+                  description: "Read source descriptor from file",
+                  args: {
+                    name: "stringArray",
+                  },
+                },
+                {
+                  name: "--progress",
+                  description:
+                    "Set type of progress output (auto, plain, tty). Use plain to show container output (default auto)",
+                  args: {
+                    name: "string",
+                    suggestions: ["auto", "plain", "tty"].map((i) => ({
+                      name: i,
+                    })),
+                  },
+                },
+                {
+                  name: ["-t", "--tag"],
+                  description: "Set reference for new image",
+                  args: {
+                    name: "stringArray",
+                  },
+                },
+              ],
+            },
+            {
+              name: "inspect",
+              description: "Show details of an image in the registry",
+              args: {
+                name: "name",
+              },
+              options: [
+                {
+                  name: "--builder",
+                  description: "Override the configured builder instance",
+                  args: {
+                    name: "string",
+                  },
+                },
+                {
+                  name: "--format",
+                  description:
+                    "Format the output using the given Go template (default {{.Manifest}})",
+                  args: {
+                    name: "string",
+                  },
+                },
+                {
+                  name: "--raw",
+                  description: "Show original, unformatted JSON manifest",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "inspect",
+          description: "Display detailed information on one or more images",
+          args: {
+            name: "name",
+          },
+          options: [
+            {
+              name: "--bootstrap",
+              description: "Ensure builder has booted before inspecting",
+            },
+            {
+              name: "--builder",
+              description: "Override the configured builder instance",
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
+        {
+          name: "install",
+          description: "Install buildx as a 'docker builder' alias",
+        },
+        {
+          name: "ls",
+          description: "List builder instances",
+        },
+        {
+          name: "prune",
+          description: "Remove build cache",
+          options: [
+            {
+              name: ["-a", "--all"],
+              description: "Include internal/frontend images",
+            },
+            {
+              name: "--builder",
+              description: "Override the configured builder instance",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--filter",
+              description: "Provide filter values (e.g., until=24h)",
+              args: {
+                name: "filter",
+              },
+            },
+            {
+              name: ["-f", "--force"],
+              description: "Do not prompt for confirmation",
+            },
+            {
+              name: "--keep-storage",
+              description: "Amount of disk space to keep for cache (default 0)",
+              args: {
+                name: "bytes",
+              },
+            },
+            {
+              name: "--verbose",
+              description: "Provide a more verbose outpu",
+            },
+          ],
+        },
+        {
+          name: "rm",
+          description: "Remove a builder instance",
+          args: {
+            name: "name",
+          },
+          options: [
+            {
+              name: "--all-inactive",
+              description: "Remove all inactive builders",
+            },
+            {
+              name: "--builder",
+              description: "Override the configured builder instance",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-f", "--force"],
+              description: "Do not prompt for confirmation",
+            },
+            {
+              name: "--keep-daemon",
+              description: "Keep the buildkitd daemon running",
+            },
+            {
+              name: "--keep-state",
+              description: "Keep BuildKit state",
+            },
+          ],
+        },
+        {
+          name: "stop",
+          description: "Stop builder instance",
+          args: {
+            name: "name",
+          },
+          options: [
+            {
+              name: "--builder",
+              description: "Override the configured builder instance",
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
+        {
+          name: "uninstall",
+          description: "Uninstall the 'docker builder' alias",
+        },
+        {
+          name: "use",
+          description: "Set the current builder instance",
+          args: {
+            name: "name",
+          },
+          options: [
+            {
+              name: "--builder",
+              description: "Override the configured builder instance",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--default",
+              description: "Set builder as default for current context",
+            },
+            {
+              name: "--global",
+              description: "Builder persists context changes",
+            },
+          ],
+        },
+        {
+          name: "version",
+          description: "Show buildx version information",
+        },
+      ],
+    },
   ],
 };
 
