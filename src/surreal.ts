@@ -158,6 +158,7 @@ const completionSpec: Fig.Spec = {
             name: "log",
             description:
               "The logging level for the database server [env: LOG=] [default: info] [possible values: warn, info, debug, trace, full]",
+            suggestions: ["warn", "info", "debug", "trace", "full"],
           },
         },
         {
