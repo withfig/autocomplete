@@ -64,7 +64,8 @@ const connectionOptionsAndArgs = (
 
 const completionSpec: Fig.Spec = {
   name: "surreal",
-  description: "",
+  description:
+    "SurrealDB is the ultimate cloud database for tomorrow's applications - https://surrealdb.com/",
   subcommands: [
     {
       name: "help",
