@@ -6202,7 +6202,7 @@ const completionSpec: Fig.Spec = {
               name: "--allow",
               description:
                 "Allow extra privileged entitlement (e.g., network.host, security.insecure)",
-              arg: {
+              args: {
                 name: "stringSlice",
               },
             },
