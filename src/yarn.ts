@@ -1148,6 +1148,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "policies",
       description: "Defines project-wide policies for your project",
+      subcommands: [
+        {
+          name: "set-version",
+          description: "Will download the latest stable release",
+          options: [
+            {
+              name: "--rc",
+              description: "Download the latest rc release",
+            },
+          ],
+        },
+      ],
     },
     {
       name: "publish",
@@ -1254,6 +1266,49 @@ const completionSpec: Fig.Spec = {
     {
       name: "team",
       description: "Maintain team memberships",
+      subcommands: [
+        {
+          name: "create",
+          description: "Create a new team",
+          args: {
+            name: "<scope:team>",
+          },
+        },
+        {
+          name: "destroy",
+          description: "Destroys an existing team",
+          args: {
+            name: "<scope:team>",
+          },
+        },
+        {
+          name: "add",
+          description: "Add a user to an existing team",
+          args: [
+            {
+              name: "<scope:team>",
+            },
+            {
+              name: "<user>",
+            },
+          ],
+        },
+        {
+          name: "remove",
+          description: "Remove a user from a team they belong to",
+          args: {
+            name: "<scope:team> <user>",
+          },
+        },
+        {
+          name: "list",
+          description:
+            "If performed on an organization name, will return a list of existing teams under that organization. If performed on a team, it will instead return a list of all users belonging to that particular team",
+          args: {
+            name: "<scope>|<scope:team>",
+          },
+        },
+      ],
     },
     {
       name: "unlink",
@@ -1400,6 +1455,16 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-h", "--help"],
           description: "Output usage information",
+        },
+        {
+          name: "--peers",
+          description:
+            "Print the peer dependencies that match the specified name",
+        },
+        {
+          name: ["-R", "--recursive"],
+          description:
+            "List, for each workspace, what are all the paths that lead to the dependency",
         },
       ],
     },

@@ -19,7 +19,8 @@ const commonOptions: Fig.Option[] = [
   },
   {
     name: ["-m", "--merge"],
-    description: "Perform a three-way merge by providing paths for two modified versions of a file, the common origin of both modified versions and the output file to save merge results",
+    description:
+      "Perform a three-way merge by providing paths for two modified versions of a file, the common origin of both modified versions and the output file to save merge results",
     args: [
       {
         name: "path1",
@@ -132,7 +133,8 @@ const extensionManagementOptions: Fig.Option[] = [
   },
   {
     name: "--show-versions",
-    description: "Show versions of installed extensions, when using --list-extensions",
+    description:
+      "Show versions of installed extensions, when using --list-extensions",
   },
   {
     name: "--category",
@@ -173,7 +175,8 @@ const extensionManagementOptions: Fig.Option[] = [
   },
   {
     name: "--pre-release",
-    description: "Installs the pre-release version of the extension, when using --install-extension",
+    description:
+      "Installs the pre-release version of the extension, when using --install-extension",
   },
   {
     name: "--uninstall-extension",
