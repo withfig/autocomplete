@@ -1,6 +1,6 @@
 import { createVersionedSpec } from "@fig/autocomplete-helpers";
 import { clean } from "semver";
-const versionFiles = ["0.9.0"];
+const versionFiles = ["0.9.0", "0.10.0"];
 
 export const getVersionCommand: Fig.GetVersionCommand = async (
   executeShellCommand
