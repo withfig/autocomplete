@@ -1,3 +1,5 @@
+import { filepaths } from "@fig/autocomplete-generators";
+
 const completionSpec: Fig.Spec = {
   name: "rojo",
   description:
@@ -24,6 +26,10 @@ const completionSpec: Fig.Spec = {
             name: "OUTPUT",
             description:
               "Where to output the result. Should end in .rbxm, .rbxl, .rbxmx, or .rbxlx",
+            generators: filepaths({
+              extensions: ["rbxm", "rbxl", "rbxmx", "rbxlx"],
+            }),
+            suggestCurrentToken: true,
           },
         },
         {
@@ -64,6 +70,7 @@ const completionSpec: Fig.Spec = {
             name: "KIND",
             description:
               "The kind of project to create, 'place' or 'model'. Defaults to place",
+            suggestions: ["place", "model"],
           },
         },
       ],
@@ -108,6 +115,10 @@ const completionSpec: Fig.Spec = {
             name: "OUTPUT",
             description:
               "Where to output the sourcemap. Omit this to use stdout instead of writing to a file. Should end in .json",
+            generators: filepaths({
+              extensions: ["rbxm", "rbxl", "rbxmx", "rbxlx"],
+            }),
+            suggestCurrentToken: true,
           },
         },
       ],
@@ -174,6 +185,11 @@ const completionSpec: Fig.Spec = {
       description:
         "Set color behavior. Valid values are auto, always, and never [default: auto]",
       isPersistent: true,
+      args: {
+        name: "COLOR",
+        suggestions: ["auto", "always", "never"],
+        default: "auto",
+      },
     },
     {
       name: ["--verbose", "-v"],
