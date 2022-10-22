@@ -21,7 +21,10 @@ const authOptions: Fig.Option[] = [
   },
 ];
 
-const connectionOptions = (state: string, preposition: string) => ({
+const connectionOptions = (
+  state: string,
+  preposition: string
+): Partial<Fig.Subcommand> => ({
   options: [
     ...authOptions,
     {
