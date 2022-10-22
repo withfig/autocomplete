@@ -21,7 +21,7 @@ const authOptions: Fig.Option[] = [
   },
 ];
 
-const connectionOptions = (
+const connectionOptionsAndArgs = (
   state: string,
   preposition: string
 ): Partial<Fig.Subcommand> => ({
@@ -231,12 +231,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "import",
       description: "Import a SurrealQL script into an existing database",
-      ...connectionOptions("import", "into"),
+      ...connectionOptionsAndArgs("import", "into"),
     },
     {
       name: "export",
       description: "Export an existing database as a SurrealQL script",
-      ...connectionOptions("export", "from"),
+      ...connectionOptionsAndArgs("export", "from"),
     },
     {
       name: "version",
@@ -246,13 +246,13 @@ const completionSpec: Fig.Spec = {
       name: "sql",
       description: "Start an SQL REPL in your terminal with pipe support",
       options: [
-        ...connectionOptions("export", "from").options,
+        ...connectionOptionsAndArgs("export", "from").options,
         {
           name: "--pretty",
           description: "Whether database responses should be pretty printed",
         },
       ],
-      args: connectionOptions("export", "from").args,
+      args: connectionOptionsAndArgs("export", "from").args,
     },
   ],
   options: [
