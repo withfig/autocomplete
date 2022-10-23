@@ -72,7 +72,7 @@ const completionSpec: Fig.Spec = {
         "During signing, specifies a set of option flags to be embedded in the code signature",
       args: {
         name: "version-string",
-        generators: keyValue(),
+        generators: valueList(),
       },
     },
     {
