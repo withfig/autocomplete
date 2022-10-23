@@ -16,6 +16,9 @@ async function getZHistory(
     return {
       name,
       path,
+      // Fig should defer assigning priority to z.
+      // 75 added to keep args above options.
+      // NOTE: 9000 is the default max priority. If a custom value is set this will work if "custom_value <= 9000" but not otherwise
       weight: 75 + (Number(weight) * 25) / 9000,
       time: Number(time),
     };
@@ -40,9 +43,14 @@ function filterHistoryBySearchTerms(
   searchPath: string[],
   history: ZSuggestion[]
 ): ZSuggestion[] {
-  return history
-    .filter(({ path }) => searchPath.every((item) => path.includes(item)))
-    .filter(({ name }) => !searchPath.includes(name));
+  return (
+    history
+      .filter(({ path }) => searchPath.every((item) => path.includes(item)))
+      // we don't want to suggest something
+      // that's already been entered. This 'if' prevents redundant
+      // suggestions.
+      .filter(({ name }) => !searchPath.includes(name))
+  );
 }
 
 // https://github.com/rupa/z
