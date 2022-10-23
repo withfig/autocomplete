@@ -185,11 +185,11 @@ const completionSpec: Fig.Spec = {
       name: "--timestamp",
       description:
         "During signing, requests that a timestamp authority server be contacted to authenticate the time of signing",
-        requiresSeparator: true,
-        args: {
-          name: "URL",
-          isOptional: true,
-        },
+      requiresSeparator: true,
+      args: {
+        name: "URL",
+        isOptional: true,
+      },
     },
   ],
 };
