@@ -1,3 +1,5 @@
+import { valueList, filepaths } from "@fig/autocomplete-generators";
+
 const completionSpec: Fig.Spec = {
   name: "codesign",
   description: "Create and manipulate code signatures",
@@ -11,11 +13,17 @@ const completionSpec: Fig.Spec = {
       name: ["-a", "--architecture"],
       description:
         "When verifying or displaying signatures, explicitly select the Mach-O architecture given",
+      args: {
+        name: "architecture"
+      },
     },
     {
       name: "--bundle-version",
       description:
         "When handling versioned bundles such as frameworks, explicitly specify the version to operate on",
+      args: {
+        name: "version-string"
+      },
     },
     {
       name: ["-d", "--display"],
@@ -25,6 +33,10 @@ const completionSpec: Fig.Spec = {
       name: ["-D", "--detached"],
       description:
         "When signing, designates that a detached signature should be written to the specified file",
+      args: {
+        name: "file",
+        template: "filepaths",
+      },
     },
     {
       name: "--deep",
@@ -50,30 +62,49 @@ const completionSpec: Fig.Spec = {
       name: ["-i", "--identifier"],
       description:
         "During signing, explicitly specify the unique identifier string that is embedded in code signatures",
+      args: {
+        name: "identifier"
+      },
     },
     {
       name: ["-o", "--options"],
       description:
         "During signing, specifies a set of option flags to be embedded in the code signature",
+      args: {
+        name: "version-string"
+        generators: [keyValue()],
+      },
     },
     {
       name: ["-P", "--pagesize"],
       description:
         "Indicates the granularity of code signing. Pagesize must be a power of two",
+      args: {
+        name: "size",
+      },
     },
     {
       name: ["-r", "--requirements"],
       description:
         "During signing, indicates that internal requirements should be embedded in the code path(s) as specified",
+      args: {
+        name: "requirements",
+      },
     },
     {
       name: ["-R", "--test-requirement"],
       description:
         "During verification, indicates that the path(s) given should be verified against the code requirement specified",
+      args: {
+        name: "requirement",
+      },
     },
     {
       name: ["-s", "--sign"],
       description: "Sign the code at the path(s) given using this identity",
+      args: {
+        name: "identity",
+      },
     },
     {
       name: ["-v", "--verify"],
@@ -93,16 +124,27 @@ const completionSpec: Fig.Spec = {
       name: "--entitlements",
       description:
         "When signing, take the file at the given path and embed its contents in the signature as entitlement data",
+      args: {
+        name: "path",
+      },
     },
     {
       name: "--extract-certificates",
       description:
         "When displaying a signature, extract the certificates in the embedded certificate chain and write them to individual files",
+      args: {
+        name: "prefix"
+      },
     },
     {
       name: "--file-list",
       description:
         "When signing or displaying a signature, codesign writes to the given path a list of files that may have been modified as part of the signing process",
+      args: {
+        name: "file",
+        template: "filepaths",
+        isVariadic: true,
+      },
     },
     {
       name: "--ignore-resources",
@@ -113,11 +155,17 @@ const completionSpec: Fig.Spec = {
       name: "--keychain",
       description:
         "During signing, only search for the signing identity in the keychain file specified",
+      args: {
+        name: "filename"
+      },
     },
     {
       name: "--prefix",
       description:
         "If no explicit unique identifier is specified (using the -i option), and if the implicitly generated identifier does not contain any dot (.) characters, then the given string is prefixed to the identifier before use",
+      args: {
+        name: "prefix",
+      },
     },
     {
       name: "--preserve-metadata=list",
@@ -126,6 +174,10 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--resource-rules",
+      args: {
+        name: "file",
+        generators: [filepaths({ extensions: [".plist"] })],
+      },
       description:
         "During signing, this option overrides the default rules for identifying and collecting bundle resources and nested code to be sealed into the signature",
     },
@@ -133,6 +185,11 @@ const completionSpec: Fig.Spec = {
       name: "--timestamp",
       description:
         "During signing, requests that a timestamp authority server be contacted to authenticate the time of signing",
+        requiresSeparator: true,
+        args: {
+          name: "URL",
+          isOptional: true,
+        },
     },
   ],
 };
