@@ -4,26 +4,14 @@ export const awsProfileGenerator: Fig.Generator = {
     cacheByDirectory: true,
   },
   script: "aws configure list-profiles",
-  postProcess: function (out, [awsClient]) {
+  postProcess: function (out) {
     if (out.trim() == "") {
       return [];
     }
 
-    try {
-      const lines = out.split("\n");
-
-      if (lines) {
-        return lines.map((line) => {
-          return {
-            name: line,
-          };
-        });
-      }
-    } catch (e) {
-      console.error(e);
-    }
-
-    return [];
+    return out.split("\n").map((line) => ({
+      name: line,
+    }));
   },
 };
 
