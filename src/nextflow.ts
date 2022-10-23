@@ -40,6 +40,21 @@ const secretname: Fig.Generator = {
   },
 };
 
+const dockerimage: Fig.Generator = {
+  script: `docker images | cut -w -f 1 | grep -v REPOSITORY`,
+  postProcess: (output) => {
+    if (output == "") {
+      return [];
+    }
+    return output.split("\n").map((dockerimage) => {
+      return {
+        name: dockerimage.replace("*", "").trim(),
+        description: "Docker image",
+      };
+    });
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "nextflow",
   description:
@@ -475,6 +490,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "-with-docker",
           description: "Enable process execution in a Docker container",
+          args: {
+            name: "a docker container image",
+            isOptional: true,
+            generators: dockerimage,
+          },
         },
         {
           name: ["-N", "-with-notification"],
@@ -867,6 +887,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "-with-docker",
           description: "Enable process execution in a Docker container",
+          args: {
+            name: "a docker container image",
+            isOptional: true,
+            generators: dockerimage,
+          },
         },
         {
           name: ["-N", "-with-notification"],
