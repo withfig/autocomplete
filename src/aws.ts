@@ -11,6 +11,7 @@ export const awsProfileGenerator: Fig.Generator = {
 
     return out.split("\n").map((line) => ({
       name: line,
+      icon: "👤",
     }));
   },
 };
