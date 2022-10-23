@@ -14,7 +14,7 @@ const completionSpec: Fig.Spec = {
       description:
         "When verifying or displaying signatures, explicitly select the Mach-O architecture given",
       args: {
-        name: "architecture"
+        name: "architecture",
       },
     },
     {
@@ -22,7 +22,7 @@ const completionSpec: Fig.Spec = {
       description:
         "When handling versioned bundles such as frameworks, explicitly specify the version to operate on",
       args: {
-        name: "version-string"
+        name: "version-string",
       },
     },
     {
@@ -63,7 +63,7 @@ const completionSpec: Fig.Spec = {
       description:
         "During signing, explicitly specify the unique identifier string that is embedded in code signatures",
       args: {
-        name: "identifier"
+        name: "identifier",
       },
     },
     {
@@ -71,8 +71,8 @@ const completionSpec: Fig.Spec = {
       description:
         "During signing, specifies a set of option flags to be embedded in the code signature",
       args: {
-        name: "version-string"
-        generators: [keyValue()],
+        name: "version-string",
+        generators: keyValue(),
       },
     },
     {
@@ -133,7 +133,7 @@ const completionSpec: Fig.Spec = {
       description:
         "When displaying a signature, extract the certificates in the embedded certificate chain and write them to individual files",
       args: {
-        name: "prefix"
+        name: "prefix",
       },
     },
     {
@@ -156,7 +156,7 @@ const completionSpec: Fig.Spec = {
       description:
         "During signing, only search for the signing identity in the keychain file specified",
       args: {
-        name: "filename"
+        name: "filename",
       },
     },
     {
@@ -176,7 +176,7 @@ const completionSpec: Fig.Spec = {
       name: "--resource-rules",
       args: {
         name: "file",
-        generators: [filepaths({ extensions: [".plist"] })],
+        generators: filepaths({ extensions: ["plist"] }),
       },
       description:
         "During signing, this option overrides the default rules for identifying and collecting bundle resources and nested code to be sealed into the signature",
