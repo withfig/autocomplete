@@ -40,7 +40,7 @@ async function getCurrentDirectoryFolders(
 }
 
 function filterHistoryBySearchTerms(
-  searchPath: string[],
+  insertedTerms: string[],
   history: ZSuggestion[]
 ): ZSuggestion[] {
   return (
