@@ -45,11 +45,7 @@ function filterHistoryBySearchTerms(
 ): ZSuggestion[] {
   return (
     history
-      .filter(({ path }) => searchPath.every((item) => path.includes(item)))
-      // we don't want to suggest something
-      // that's already been entered. This 'if' prevents redundant
-      // suggestions.
-      .filter(({ name }) => !searchPath.includes(name))
+      .filter(({ name, path }) => !insertedTermsMap.has(name) && insertedTerms.every((item) => path.includes(item)))
   );
 }
 
