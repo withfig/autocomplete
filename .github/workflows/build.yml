@@ -35,7 +35,7 @@ jobs:
         # Bump the version and create a git tag with the new version
       - name: Bump version and push tag
         id: tag_version
-        uses: mathieudutour/github-tag-action@v6.0
+        uses: mathieudutour/github-tag-action@v6.1
         with:
           tag_prefix: spec-build-number-
           # Bump versions in full numbers (1.0.0 -> 2.0.0)
