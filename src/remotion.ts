@@ -148,6 +148,16 @@ const stillOptions: Fig.Option[] = [
     description: "Which frame to render (default 0)",
     args: { name: "frame", default: "0" },
   },
+  {
+    name: "--height",
+    description: "Override the composition height",
+    args: { name: "height" },
+  },
+  {
+    name: "--width",
+    description: "Override the composition width",
+    args: { name: "height" },
+  },
 ];
 
 const renderOptions: Fig.Option[] = [
@@ -301,6 +311,16 @@ const renderOptions: Fig.Option[] = [
   {
     name: "--muted",
     description: "Outputs no audio",
+  },
+  {
+    name: "--height",
+    description: "Override the composition height",
+    args: { name: "height" },
+  },
+  {
+    name: "--width",
+    description: "Override the composition width",
+    args: { name: "height" },
   },
 ];
 
