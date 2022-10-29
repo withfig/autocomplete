@@ -104,27 +104,6 @@ const completionSpec: Fig.Spec = {
     isOptional: true,
     isVariadic: true,
   },
-  subcommands: [
-    {
-      name: "ditto",
-      description: "Copy directory hierarchies, create and extract archives",
-      options: [
-        {
-          name: "-x",
-          description:
-            "When copying one or more source directories, do not descend into directories",
-        },
-        {
-          name: "-c",
-          description: "Create an archive at the destination path",
-        },
-        {
-          name: "-h",
-          description: "Print full usage",
-        },
-      ],
-    },
-  ],
   options: [
     {
       name: "-C",
