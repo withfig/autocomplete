@@ -1,10 +1,10 @@
-const serviceOrDomain = {
+const serviceOrDomain: Fig.Arg = {
   name: "service",
   description: "Service or domain target",
   template: "filepaths",
 };
 
-const servicePath = {
+const servicePath: Fig.Arg = {
   name: "service-path",
   isVariadic: true,
   description: "Service path(s)",
@@ -266,14 +266,14 @@ const completionSpec: Fig.Spec = {
       description: "Reads or modifies launchd's resource limits",
       options: [
         { name: "cpu", args: limitArgs },
-        { name: "filesize", limitArgs },
-        { name: "data", limitArgs },
-        { name: "stack", limitArgs },
-        { name: "core", limitArgs },
-        { name: "rss", limitArgs },
-        { name: "memlock", limitArgs },
-        { name: "maxproc", limitArgs },
-        { name: "maxfiles", limitArgs },
+        { name: "filesize", args: limitArgs },
+        { name: "data", args: limitArgs },
+        { name: "stack", args: limitArgs },
+        { name: "core", args: limitArgs },
+        { name: "rss", args: limitArgs },
+        { name: "memlock", args: limitArgs },
+        { name: "maxproc", args: limitArgs },
+        { name: "maxfiles", args: limitArgs },
       ],
     },
     {
@@ -305,16 +305,12 @@ const completionSpec: Fig.Spec = {
           suggestions: ["system"],
         },
         {
-          name: "[param value]",
-          description: "A key/value pair",
-          args: [
-            {
-              name: "param",
-            },
-            {
-              name: "value",
-            },
-          ],
+          name: "param",
+          description: "A key for a key/value pair",
+        },
+        {
+          name: "value",
+          description: "A value for a key/value pair",
         },
       ],
     },
