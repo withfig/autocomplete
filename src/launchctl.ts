@@ -54,6 +54,8 @@ const limitArgs = [
 
 const listGenerator: Fig.Generator = {
   script: "launchctl list",
+  // The list command outputs 3 columns: PID	Status	Label
+  // we want the last column ([2])
   postProcess: function (out) {
     return out
       .split("\n")
