@@ -140,14 +140,17 @@ const completionSpec: Fig.Spec = {
         "When extracting a password-encrypted ZIP archive, you must specify --password to allow ditto to prompt for a password to use to extract the contents of the file. If this option is not provided, and a password-encrypted file is encountered, ditto will emit an error message",
     },
   ],
-  args: [{
-    name: "source",
-    template: ["filepaths", "folders"],
-    isVariadic: true,
-  }, {
-    name: "dest",
-    template: "folders",
-    suggestCurrentToken: true,
-  }],
+  args: [
+    {
+      name: "source",
+      template: ["filepaths", "folders"],
+      isVariadic: true,
+    },
+    {
+      name: "dest",
+      template: "folders",
+      suggestCurrentToken: true,
+    },
+  ],
 };
 export default completionSpec;
