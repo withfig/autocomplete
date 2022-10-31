@@ -48,7 +48,14 @@ const completionSpec: Fig.Spec = {
         "Create or extract from a PKZip archive instead of the default CPIO",
     },
   ],
-  // Only uncomment if ditto takes an argument
-  // args: {}
+  args: [{
+    name: "source",
+    template: ["filepaths", "folders"],
+    isVariadic: true,
+  }, {
+    name: "dest",
+    template: "folders",
+    suggestCurrentToken: true,
+  }],
 };
 export default completionSpec;
