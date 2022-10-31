@@ -52,6 +52,27 @@ const limitArgs = [
   },
 ];
 
+const listGenerator: Fig.Generator = {
+  script: "launchctl list",
+  postProcess: function (out) {
+    return out
+      .split("\n")
+      .slice(1)
+      .map((line) => {
+        const parts = line.split(/\s/);
+        return {
+          name: parts[2],
+        };
+      })
+      .filter((data) => data.name);
+  },
+};
+
+const labelArg = {
+  name: "label",
+  generators: listGenerator,
+};
+
 const completionSpec: Fig.Spec = {
   name: "launchctl",
   description: "Interfaces with launchd",
@@ -358,9 +379,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "remove",
       description: "Unloads the specified service name",
-      args: {
-        name: "label",
-      },
+      args: labelArg,
     },
     {
       name: "list",
@@ -368,21 +387,18 @@ const completionSpec: Fig.Spec = {
       args: {
         isOptional: true,
         name: "label",
+        generators: listGenerator,
       },
     },
     {
       name: "start",
       description: "Starts the specified service",
-      args: {
-        name: "label",
-      },
+      args: labelArg,
     },
     {
       name: "stop",
       description: "Stops the specified service if it is running",
-      args: {
-        name: "label",
-      },
+      args: labelArg,
     },
     {
       name: "setenv",
@@ -483,6 +499,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "label",
           description: "Unique label to assign to launchd",
+          generators: listGenerator,
         },
         {
           name: "command",
