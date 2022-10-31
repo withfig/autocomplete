@@ -47,6 +47,7 @@ const limitArgs = [
     description: "Specify a limit for both soft and hard",
   },
   {
+    isOptional: true,
     name: "[soft | hard]",
     description: "Specify a soft/hard limit pair",
   },
