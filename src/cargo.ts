@@ -1,4 +1,4 @@
-import { filepaths } from "@fig/autocomplete-generators";
+import { filepaths, keyValue } from "@fig/autocomplete-generators";
 
 const testGenerator: Fig.Generator = {
   cache: {
@@ -132,7 +132,7 @@ type Crate = {
   description?: string;
   name: string;
   newest_version: string;
-  downloads: number;
+  recent_downloads: number;
 };
 
 type VersionSearchResults = {
@@ -142,6 +142,22 @@ type VersionSearchResults = {
 type Version = {
   num: string;
   downloads: number;
+  created_at: string;
+  yanked: boolean;
+};
+
+const toHumanReadable = (num: number) => {
+  if (num < 1000) {
+    return `${num}`;
+  } else if (num < 1000000) {
+    return `${(num / 1000).toPrecision(4)}k`;
+  } else if (num < 1000000000) {
+    return `${(num / 1000000).toPrecision(4)}m`;
+  } else if (num < 1000000000000) {
+    return `${(num / 1000000000).toFixed(4)}b`;
+  } else {
+    return `${num}`;
+  }
 };
 
 // Search for crates
@@ -157,10 +173,14 @@ const searchGenerator: Fig.Generator = {
         `curl -sfL 'https://crates.io/api/v1/crates/${query}/versions'`
       );
       const json: VersionSearchResults = JSON.parse(out);
+
       return json.versions.map((version) => ({
         name: `${crate}@${version.num}`,
         insertValue: `${version.num}`,
-        description: `${version.num} - ${version.downloads} downloads`,
+        description: `${toHumanReadable(
+          version.downloads
+        )} downloads - ${new Date(version.created_at).toLocaleDateString()}`,
+        hidden: version.yanked,
       }));
     } else if (lastToken.length > 0) {
       const query = encodeURIComponent(lastToken);
@@ -169,18 +189,26 @@ const searchGenerator: Fig.Generator = {
       );
       const json: CrateSearchResults = JSON.parse(out);
       return json.crates
-        .sort((a, b) => a.downloads - b.downloads)
+        .sort((a, b) => b.recent_downloads - a.recent_downloads)
         .map((crate) => ({
           icon: "📦",
           displayName: `${crate.name}@${crate.newest_version}`,
           name: crate.name,
-          description: crate.description,
+          description: `${toHumanReadable(crate.recent_downloads)}${
+            crate.description ? ` - ${crate.description}` : ""
+          }`,
         }));
     } else {
       return [];
     }
   },
-  trigger: "@",
+  trigger: (oldTokens, newTokens) => {
+    const atIndexOld = oldTokens.indexOf("@");
+    const atIndexNew = newTokens.indexOf("@");
+    return (
+      (atIndexOld === -1 && atIndexNew === -1) || atIndexOld !== atIndexNew
+    );
+  },
   getQueryTerm: "@",
 };
 
@@ -195,6 +223,65 @@ const tripleGenerator: Fig.Generator = {
       }));
   },
 };
+
+const tomlBool: Fig.Suggestion[] = [
+  {
+    name: "true",
+  },
+  {
+    name: "false",
+  },
+];
+
+const configPairs: Record<
+  string,
+  Omit<Fig.Suggestion, "name"> & {
+    tomlSuggestions?: Fig.Suggestion[];
+  }
+> = {
+  "build.jobs": {
+    description:
+      "Sets the maximum number of compiler processes to run in parallel",
+  },
+  "build.rustc": {
+    description: "Path to the rustc compiler",
+  },
+  "build.rustc-wrapper": {
+    description: "Sets a wrapper to execute instead of rustc",
+  },
+  "build.target": {
+    description: "The default target platform triples to compile to",
+  },
+  "build.target-dir": {
+    description: "The path to where all compiler output is placed",
+  },
+  "build.rustflags": {
+    description: "Extra command-line flags to pass to rustc",
+  },
+  "build.rustdocflags": {
+    description: "Extra command-line flags to pass to rustdoc",
+  },
+  "build.incremental": {
+    description: "Whether or not to perform incremental compilation",
+    tomlSuggestions: tomlBool,
+  },
+};
+
+// Configs are in the format `key=value` where value is a toml value
+const configGenerator: Fig.Generator = keyValue({
+  keys: Object.entries(configPairs).map(([key, other]) => ({
+    name: key,
+    ...other,
+  })),
+  values: async (tokens, execute) => {
+    const key = tokens[tokens.length - 1].split("=")?.[0];
+    const pair = configPairs[key];
+    if (pair?.tomlSuggestions) {
+      return pair.tomlSuggestions;
+    }
+  },
+  separator: "=",
+});
 
 const rustEditions: Fig.Suggestion[] = [
   {
@@ -380,6 +467,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -629,6 +717,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -868,6 +957,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -1028,6 +1118,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -1113,6 +1204,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
               isRepeatable: true,
               args: {
                 name: "config",
+                generators: configGenerator,
               },
             },
             {
@@ -1175,6 +1267,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
               isRepeatable: true,
               args: {
                 name: "config",
+                generators: configGenerator,
               },
             },
             {
@@ -1233,6 +1326,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -1381,6 +1475,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -1512,6 +1607,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -1684,6 +1780,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -1827,6 +1924,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -1885,6 +1983,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -1970,6 +2069,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -2175,6 +2275,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -2290,6 +2391,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -2359,6 +2461,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -2426,6 +2529,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -2519,6 +2623,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -2621,6 +2726,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -2727,6 +2833,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -2851,6 +2958,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -2953,6 +3061,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -3086,6 +3195,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -3173,6 +3283,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -3252,6 +3363,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
               isRepeatable: true,
               args: {
                 name: "config",
+                generators: configGenerator,
               },
             },
             {
@@ -3310,6 +3422,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
               isRepeatable: true,
               args: {
                 name: "config",
+                generators: configGenerator,
               },
             },
             {
@@ -3368,6 +3481,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -3507,6 +3621,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -3714,6 +3829,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -3934,6 +4050,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -4067,6 +4184,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -4248,6 +4366,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -4509,6 +4628,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -4629,6 +4749,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -4721,6 +4842,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -4808,6 +4930,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -4901,6 +5024,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -4958,6 +5082,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -5043,6 +5168,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -5107,6 +5233,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -5312,6 +5439,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
       isRepeatable: true,
       args: {
         name: "config",
+        generators: configGenerator,
       },
     },
     {
