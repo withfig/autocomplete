@@ -1,3 +1,18 @@
+import {
+  settingsSpecGenerator,
+  subsystemsGenerator,
+  themesGenerator,
+  pluginsGenerator,
+  tokensGenerators,
+  invitationsGenerators,
+  membersGenerators,
+  teamsGenerators,
+  workflowsSpecGenerator,
+  sshHostsGenerator,
+  sshIdentityGenerator,
+  userGenerator,
+} from "./shared";
+
 const completion: Fig.Subcommand = {
   name: "fig_cli",
   description: "Top level cli commands",
@@ -454,6 +469,7 @@ const completion: Fig.Subcommand = {
             name: "files",
             isVariadic: true,
             isOptional: true,
+            generators: subsystemsGenerator,
           },
         },
         {
@@ -847,6 +863,7 @@ const completion: Fig.Subcommand = {
           isOptional: true,
         },
       ],
+      generateSpec: settingsSpecGenerator,
     },
     {
       name: "tips",
@@ -977,6 +994,7 @@ const completion: Fig.Subcommand = {
           args: {
             name: "auth",
             isOptional: true,
+            generators: sshIdentityGenerator,
           },
         },
         {
@@ -994,6 +1012,7 @@ const completion: Fig.Subcommand = {
       args: {
         name: "host",
         isOptional: true,
+        generators: sshHostsGenerator,
       },
     },
     {
@@ -1161,6 +1180,7 @@ const completion: Fig.Subcommand = {
       args: {
         name: "theme",
         isOptional: true,
+        generators: themesGenerator,
       },
     },
     {
@@ -1318,6 +1338,7 @@ const completion: Fig.Subcommand = {
                   isRepeatable: true,
                   args: {
                     name: "team",
+                    generators: teamsGenerators,
                   },
                 },
                 {
@@ -1338,6 +1359,7 @@ const completion: Fig.Subcommand = {
                   isRepeatable: true,
                   args: {
                     name: "team",
+                    generators: teamsGenerators,
                   },
                 },
                 {
@@ -1378,6 +1400,7 @@ const completion: Fig.Subcommand = {
                   isRepeatable: true,
                   args: {
                     name: "team",
+                    generators: teamsGenerators,
                   },
                 },
                 {
@@ -1387,6 +1410,7 @@ const completion: Fig.Subcommand = {
               ],
               args: {
                 name: "name",
+                generators: tokensGenerators,
               },
             },
             {
@@ -1556,6 +1580,7 @@ const completion: Fig.Subcommand = {
           ],
           args: {
             name: "email",
+            generators: userGenerator,
           },
         },
         {
@@ -1627,108 +1652,118 @@ const completion: Fig.Subcommand = {
     {
       name: "team",
       description: "Manage your fig team",
-      subcommands: [
-        {
-          name: "members",
-          description: "List all members on a team",
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Print help information",
-            },
-          ],
-        },
-        {
-          name: "remove",
-          description: "Remove a member from a team",
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Print help information",
-            },
-          ],
-          args: {
-            name: "email",
-          },
-        },
-        {
-          name: "add",
-          description: "Invite a member to a team",
-          options: [
-            {
-              name: "--role",
-              isRepeatable: true,
-              args: {
-                name: "role",
-                isOptional: true,
-                suggestions: ["owner", "admin", "member"],
-              },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Print help information",
-            },
-          ],
-          args: {
-            name: "email",
-          },
-        },
-        {
-          name: "invitations",
-          description: "List pending invitations to a team",
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Print help information",
-            },
-          ],
-        },
-        {
-          name: "revoke",
-          description: "Revoke an invitation to a team",
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Print help information",
-            },
-          ],
-          args: {
-            name: "email",
-          },
-        },
-        {
-          name: "help",
-          description:
-            "Print this message or the help of the given subcommand(s)",
+      args: {
+        name: "team",
+        generators: teamsGenerators,
+        isOptional: true,
+        loadSpec: {
+          name: "team",
           subcommands: [
             {
               name: "members",
               description: "List all members on a team",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
             },
             {
               name: "remove",
               description: "Remove a member from a team",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+              args: {
+                name: "email",
+                generators: membersGenerators,
+              },
             },
             {
               name: "add",
               description: "Invite a member to a team",
+              options: [
+                {
+                  name: "--role",
+                  isRepeatable: true,
+                  args: {
+                    name: "role",
+                    isOptional: true,
+                    suggestions: ["owner", "admin", "member"],
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+              args: {
+                name: "email",
+              },
             },
             {
               name: "invitations",
               description: "List pending invitations to a team",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
             },
             {
               name: "revoke",
               description: "Revoke an invitation to a team",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+              args: {
+                name: "email",
+                generators: invitationsGenerators,
+              },
             },
             {
               name: "help",
               description:
                 "Print this message or the help of the given subcommand(s)",
+              subcommands: [
+                {
+                  name: "members",
+                  description: "List all members on a team",
+                },
+                {
+                  name: "remove",
+                  description: "Remove a member from a team",
+                },
+                {
+                  name: "add",
+                  description: "Invite a member to a team",
+                },
+                {
+                  name: "invitations",
+                  description: "List pending invitations to a team",
+                },
+                {
+                  name: "revoke",
+                  description: "Revoke an invitation to a team",
+                },
+                {
+                  name: "help",
+                  description:
+                    "Print this message or the help of the given subcommand(s)",
+                },
+              ],
             },
           ],
         },
-      ],
+      },
       options: [
         {
           name: ["-f", "--format"],
@@ -2571,6 +2606,7 @@ const completion: Fig.Subcommand = {
           ],
           args: {
             name: "plugin",
+            generators: pluginsGenerator({ installed: false }),
           },
         },
         {
@@ -2584,6 +2620,7 @@ const completion: Fig.Subcommand = {
           ],
           args: {
             name: "plugin",
+            generators: pluginsGenerator({ installed: true }),
           },
         },
         {
@@ -2778,6 +2815,7 @@ const completion: Fig.Subcommand = {
       options: [
         {
           name: ["-h", "--help"],
+          priority: 20,
           description: "Print help information",
         },
       ],
@@ -2786,6 +2824,7 @@ const completion: Fig.Subcommand = {
         isVariadic: true,
         isOptional: true,
       },
+      generateSpec: workflowsSpecGenerator,
     },
     {
       name: ["integrations", "integration"],
