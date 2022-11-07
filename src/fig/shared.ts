@@ -126,7 +126,7 @@ export const settingsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
     actions: Action[];
   };
 
-  const actionSuggestions: Fig.Suggestion[] = actions.flatMap((action) => ({
+  const actionSuggestions: Fig.Suggestion[] = actions.map((action) => ({
     name: action.identifier,
     description: action.description,
     icon: "⚡️",
