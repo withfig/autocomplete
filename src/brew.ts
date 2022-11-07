@@ -97,6 +97,10 @@ const brewInfo = (name: string): Fig.Subcommand => ({
   },
   options: [
     {
+      name: ["--cask", "--casks"],
+      description: "List only casks, or treat all named arguments as casks",
+    },
+    {
       name: "--analytics",
       description:
         "List global Homebrew analytics data or, if specified, installation and build error data for formula",
