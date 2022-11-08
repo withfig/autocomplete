@@ -1558,7 +1558,7 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "home",
+      name: ["home", "homepage"],
       description:
         "Open a formula, cask's homepage in a browser, or open Homebrew's own homepage if no argument is provided",
       args: {
