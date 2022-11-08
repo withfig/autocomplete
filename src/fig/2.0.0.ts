@@ -1804,10 +1804,6 @@ const completion: Fig.Subcommand = {
           description: "Print help information (use `--help` for more detail)",
         },
       ],
-      args: {
-        name: "team",
-        isOptional: true,
-      },
     },
     {
       name: "doctor",
