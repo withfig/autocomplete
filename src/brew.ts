@@ -1557,6 +1557,29 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: ["home", "homepage"],
+      description:
+        "Open a formula, cask's homepage in a browser, or open Homebrew's own homepage if no argument is provided",
+      args: {
+        isVariadic: true,
+        isOptional: true,
+        name: "formula",
+        description: "Formula or cask to open homepage for",
+        generators: [generateAllFormulae, generateAllCasks],
+      },
+      options: [
+        ...commonOptions,
+        {
+          name: ["--formula", "--formulae"],
+          description: "Treat all named arguments as formulae",
+        },
+        {
+          name: ["--cask", "--casks"],
+          description: "Treat all named arguments as casks",
+        },
+      ],
+    },
   ],
   options: [
     {
