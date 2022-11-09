@@ -14,7 +14,7 @@ import {
 } from "./shared";
 
 const completion: Fig.Subcommand = {
-  name: "fig_cli",
+  name: "fig",
   description: "Top level cli commands",
   subcommands: [
     {
