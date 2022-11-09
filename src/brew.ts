@@ -81,7 +81,7 @@ const commonOptions: Fig.Option[] = [
     name: ["-v", "--verbose"],
     description: "Make some output more verbose",
   },
-  { name: ["-h", "--help"], description: "Show this message" },
+  { name: ["-h", "--help"], description: "Show help message" },
 ];
 
 // brew info is equiv to brew abv. Everything but 'name' is shared.
