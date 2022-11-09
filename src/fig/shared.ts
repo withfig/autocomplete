@@ -127,7 +127,9 @@ export const settingsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
   };
 
   const actionSuggestions: Fig.Suggestion[] = actions.map((action) => ({
-    name: action.identifier,
+    name: action.identifier.startsWith("autocomplete.")
+      ? action.identifier.slice(13)
+      : action.identifier,
     description: action.description,
     icon: "⚡️",
   }));
