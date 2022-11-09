@@ -1194,8 +1194,8 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: "uninstall",
-      description: "Uninstall <formula>",
+      name: ["uninstall", "remove", "rm"],
+      description: "Uninstall a formula or cask",
       args: {
         isVariadic: true,
         name: "formula",
