@@ -1739,6 +1739,8 @@ const completionSpec: Fig.Spec = {
             "The actions to execute when this alarm transitions to the INSUFFICIENT_DATA state from any other state. Each action is specified as an Amazon Resource Name (ARN). Valid Values: arn:aws:sns:region:account-id:sns-topic-name",
           args: {
             name: "list",
+            isVariadic: true,
+            generators: generators.listSNSTopics,
           },
         },
         {

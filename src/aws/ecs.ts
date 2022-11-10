@@ -3944,6 +3944,7 @@ const completionSpec: Fig.Spec = {
             "The short name or full Amazon Resource Name (ARN) of the service to update",
           args: {
             name: "string",
+            generators: generators.listServices,
           },
         },
         {

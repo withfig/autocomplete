@@ -142,6 +142,7 @@ const completionSpec: Fig.Spec = {
             "An Amazon Resource Name (ARN) of the issued certificate. This must be of the form:  arn:aws:acm:region:account:certificate/12345678-1234-1234-1234-123456789012",
           args: {
             name: "string",
+            generators: generators.listCertificates,
           },
         },
         {

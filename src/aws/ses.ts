@@ -2286,7 +2286,7 @@ const completionSpec: Fig.Spec = {
             "The email addresses of the primary recipients.  You can specify multiple recipients as space-separated values",
           args: {
             name: "string",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -2295,7 +2295,7 @@ const completionSpec: Fig.Spec = {
             "The email addresses of copy recipients (Cc).  You can specify multiple recipients as space-separated values",
           args: {
             name: "string",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -2304,7 +2304,7 @@ const completionSpec: Fig.Spec = {
             "The email addresses of blind-carbon-copy recipients (Bcc).  You can specify multiple recipients as space-separated values",
           args: {
             name: "string",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
