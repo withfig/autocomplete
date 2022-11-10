@@ -206,7 +206,7 @@ const completionSpec: Fig.Spec = {
             "Grant specific permissions to individual users or groups. You can supply a list of grants of the form--grants Permission=Grantee_Type=Grantee_ID [Permission=Grantee_Type=Grantee_ID ...]To specify the same permission type for multiple grantees, specify the permission as such as --grants Permission=Grantee_Type=Grantee_ID,Grantee_Type=Grantee_ID,...Each value contains the following elements:Permission - Specifies the granted permissions, and can be set to read, readacl, writeacl, or full.Grantee_Type - Specifies how the grantee is to be identified, and can be set to uri or id.Grantee_ID - Specifies the grantee based on Grantee_Type. The Grantee_ID value can be one of:uri - The group's URI. For more information, see Who Is a Grantee?id - The account's canonical IDFor more information on Amazon S3 access control, see Access Control",
           args: {
             name: "string",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -489,7 +489,7 @@ const completionSpec: Fig.Spec = {
             "Grant specific permissions to individual users or groups. You can supply a list of grants of the form--grants Permission=Grantee_Type=Grantee_ID [Permission=Grantee_Type=Grantee_ID ...]To specify the same permission type for multiple grantees, specify the permission as such as --grants Permission=Grantee_Type=Grantee_ID,Grantee_Type=Grantee_ID,...Each value contains the following elements:Permission - Specifies the granted permissions, and can be set to read, readacl, writeacl, or full.Grantee_Type - Specifies how the grantee is to be identified, and can be set to uri or id.Grantee_ID - Specifies the grantee based on Grantee_Type. The Grantee_ID value can be one of:uri - The group's URI. For more information, see Who Is a Grantee?id - The account's canonical IDFor more information on Amazon S3 access control, see Access Control",
           args: {
             name: "string",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -826,7 +826,7 @@ const completionSpec: Fig.Spec = {
             "Grant specific permissions to individual users or groups. You can supply a list of grants of the form--grants Permission=Grantee_Type=Grantee_ID [Permission=Grantee_Type=Grantee_ID ...]To specify the same permission type for multiple grantees, specify the permission as such as --grants Permission=Grantee_Type=Grantee_ID,Grantee_Type=Grantee_ID,...Each value contains the following elements:Permission - Specifies the granted permissions, and can be set to read, readacl, writeacl, or full.Grantee_Type - Specifies how the grantee is to be identified, and can be set to uri or id.Grantee_ID - Specifies the grantee based on Grantee_Type. The Grantee_ID value can be one of:uri - The group's URI. For more information, see Who Is a Grantee?id - The account's canonical IDFor more information on Amazon S3 access control, see Access Control",
           args: {
             name: "string",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {

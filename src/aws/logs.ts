@@ -2559,7 +2559,7 @@ const completionSpec: Fig.Spec = {
             "The list of stream names to filter logs by. This parameter cannot be specified when ``--log-stream-name-prefix`` is also specified",
           args: {
             name: "string",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
