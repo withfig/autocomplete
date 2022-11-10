@@ -378,7 +378,7 @@ const completionSpec: Fig.Spec = {
             "The space-separated paths to be invalidated. Note: --invalidation-batch and --paths are mutually exclusive",
           args: {
             name: "string",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {

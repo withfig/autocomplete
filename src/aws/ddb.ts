@@ -21,7 +21,7 @@ const completionSpec: Fig.Spec = {
             "A string that identifies one or more attributes to retrieve from the specified table or index. These attributes can include scalars, sets, or elements of a JSON document. The attributes in the expression must be separated by commas. If any of the requested attributes are not found, they will not appear in the result.For more information, see Accessing Item Attributes in the Amazon DynamoDB Developer Guide.For CLI specific syntax see aws help ddb-expressions",
           args: {
             name: "string",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -30,7 +30,7 @@ const completionSpec: Fig.Spec = {
             "A string that contains conditions that DynamoDB applies after the operation, but before the data is returned to you. Items that do not satisfy the ``--filter`` criteria are not returned.A ``--filter`` is applied after the items have already been read; the process of filtering does not consume any additional read capacity units.For more information, see Filter Expressions in the Amazon DynamoDB Developer Guide.For CLI specific syntax see aws help ddb-expressions",
           args: {
             name: "string",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -39,7 +39,7 @@ const completionSpec: Fig.Spec = {
             "The condition that specifies the key value(s) for items to be retrieved. Must perform an equality test on a single partition key value. The condition can optionally perform one of several comparison tests on a single sort key value. This allows select to retrieve one item with a given partition key value and sort key value, or several items that have the same partition key value but different sort key values.The partition key equality test must be specified in the following format:partitionKeyName = :partitionkeyvalIf you also want to provide a condition for the sort key, it must be combined using AND with the condition for the sort key.Valid comparisons for the sort key condition are as follows:sortKeyName = :sortkeyval - true if the sort key value is equal to :sortkeyval.sortKeyName &lt; :sortkeyval - true if the sort key value is less than :sortkeyval.sortKeyName &lt;= :sortkeyval - true if the sort key value is less than or equal to :sortkeyval.sortKeyName &gt; :sortkeyval - true if the sort key value is greater than :sortkeyval.sortKeyName &gt;= :sortkeyval - true if the sort key value is greater than or equal to :sortkeyval.sortKeyName BETWEEN :sortkeyval1 AND :sortkeyval2 - true if the sort key value is greater than or equal to :sortkeyval1, and less than or equal to :sortkeyval2.begins_with(sortKeyName, :sortkeyval) - true if the sort key value begins with a particular operand. (You cannot use this function with a sort key that is of type Number.) Note that the function name begins_with is case-sensitive.For CLI specific syntax see aws help ddb-expressions",
           args: {
             name: "string",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -107,7 +107,7 @@ const completionSpec: Fig.Spec = {
             "A condition that must be satisfied in order for a conditional put operation to succeed.For more information, see Comparison Operator and Function Reference in the Amazon DynamoDB Developer GuideFor CLI specific syntax see aws help ddb-expressions",
           args: {
             name: "string",
-            variadic: true,
+            isVariadic: true,
           },
         },
       ],
