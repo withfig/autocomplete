@@ -362,6 +362,7 @@ export const workflowsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
   return {
     name: "run",
     subcommands,
+    filterStrategy: "fuzzy",
   };
 };
 

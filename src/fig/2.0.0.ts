@@ -2797,16 +2797,7 @@ const completion: Fig.Subcommand = {
       },
     },
     {
-      name: [
-        "workflow",
-        "run",
-        "r",
-        "workflows",
-        "snippet",
-        "snippets",
-        "flow",
-        "flows",
-      ],
+      name: ["run", "r", "workflows"],
       description: "Fig Workflows",
       options: [
         {
@@ -2821,6 +2812,7 @@ const completion: Fig.Subcommand = {
         isOptional: true,
       },
       generateSpec: workflowsSpecGenerator,
+      filterStrategy: "fuzzy",
     },
     {
       name: ["integrations", "integration"],
