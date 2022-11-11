@@ -1,3 +1,180 @@
+const postPrecessGenerator = (
+  out: string,
+  parentKey: string,
+  childKey = ""
+): Fig.Suggestion[] => {
+  try {
+    const list = JSON.parse(out)[parentKey];
+
+    if (!Array.isArray(list)) {
+      return [
+        {
+          name: list[childKey],
+          icon: "fig://icon?type=aws",
+        },
+      ];
+    }
+
+    return list.map((elm) => {
+      const name = (childKey ? elm[childKey] : elm) as string;
+      return {
+        name,
+        icon: "fig://icon?type=aws",
+      };
+    });
+  } catch (e) {
+    console.log(e);
+  }
+  return [];
+};
+
+const _prefixFile = "file://";
+const _prefixBlob = "fileb://";
+
+const appendFolderPath = (tokens: string[], prefix: string): string => {
+  const baseLSCommand = "\\ls -1ApL ";
+  let whatHasUserTyped = tokens[tokens.length - 1];
+
+  if (!whatHasUserTyped.startsWith(prefix)) {
+    return `echo '${prefix}'`;
+  }
+  whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
+
+  let folderPath = "";
+  const lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
+
+  if (lastSlashIndex > -1) {
+    if (whatHasUserTyped.startsWith("/") && lastSlashIndex === 0) {
+      folderPath = "/";
+    } else {
+      folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+    }
+  }
+
+  return baseLSCommand + folderPath;
+};
+
+const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
+  if (out.trim() === prefix) {
+    return [
+      {
+        name: prefix,
+        insertValue: prefix,
+      },
+    ];
+  }
+  const sortFnStrings = (a, b) => {
+    return a.localeCompare(b);
+  };
+
+  const alphabeticalSortFilesAndFolders = (arr) => {
+    const dotsArr = [];
+    const otherArr = [];
+
+    arr.map((elm) => {
+      if (elm.toLowerCase() == ".ds_store") return;
+      if (elm.slice(0, 1) === ".") dotsArr.push(elm);
+      else otherArr.push(elm);
+    });
+
+    return [
+      ...otherArr.sort(sortFnStrings),
+      "../",
+      ...dotsArr.sort(sortFnStrings),
+    ];
+  };
+
+  const tempArr = alphabeticalSortFilesAndFolders(out.split("\n"));
+
+  const finalArr = [];
+  tempArr.forEach((item) => {
+    if (!(item === "" || item === null || item === undefined)) {
+      const outputType = item.slice(-1) === "/" ? "folder" : "file";
+
+      finalArr.push({
+        type: outputType,
+        name: item,
+        insertValue: item,
+      });
+    }
+  });
+
+  return finalArr;
+};
+
+const triggerPrefix = (
+  newToken: string,
+  oldToken: string,
+  prefix: string
+): boolean => {
+  if (!newToken.startsWith(prefix)) {
+    if (!oldToken) return false;
+
+    return oldToken.startsWith(prefix);
+  }
+
+  return newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/");
+};
+
+const filterWithPrefix = (token: string, prefix: string): string => {
+  if (!token.startsWith(prefix)) return token;
+  return token.slice(token.lastIndexOf("/") + 1);
+};
+
+const generators: Record<string, Fig.Generator> = {
+  listFiles: {
+    script: (tokens) => {
+      return appendFolderPath(tokens, _prefixFile);
+    },
+    postProcess: (out) => {
+      return postProcessFiles(out, _prefixFile);
+    },
+
+    trigger: (newToken, oldToken) => {
+      return triggerPrefix(newToken, oldToken, _prefixFile);
+    },
+
+    getQueryTerm: (token) => {
+      return filterWithPrefix(token, _prefixFile);
+    },
+  },
+
+  listBlobs: {
+    script: (tokens) => {
+      return appendFolderPath(tokens, _prefixBlob);
+    },
+    postProcess: (out) => {
+      return postProcessFiles(out, _prefixBlob);
+    },
+
+    trigger: (newToken, oldToken) => {
+      return triggerPrefix(newToken, oldToken, _prefixBlob);
+    },
+
+    getQueryTerm: (token) => {
+      return filterWithPrefix(token, _prefixBlob);
+    },
+  },
+
+  listCertificates: {
+    script: "aws acm list-certificates",
+    postProcess: (out) => {
+      return postPrecessGenerator(
+        out,
+        "CertificateSummaryList",
+        "CertificateArn"
+      );
+    },
+  },
+
+  listCertificateAuthorities: {
+    script: "aws acm-pca list-certificate-authorities",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "CertificateAuthorities", "Arn");
+    },
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "acm",
   description:

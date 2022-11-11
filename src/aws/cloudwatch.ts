@@ -1,3 +1,573 @@
+const statistics = ["SampleCount", "Average", "Sum", "Minimum", "Maximum"];
+const alarmStates = ["OK", "ALARM", "INSUFFICIENT_DATA"];
+const metricTypes = ["CompositeAlarm", "MetricAlarm"];
+const unit = [
+  "Seconds",
+  "Microseconds",
+  "Milliseconds",
+  "Bytes",
+  "Kilobytes",
+  "Megabytes",
+  "Gigabytes",
+  "Terabytes",
+  "Bits",
+  "Kilobits",
+  "Megabits",
+  "Gigabits",
+  "Terabits",
+  "Percent",
+  "Count",
+  "Bytes/Second",
+  "Kilobytes/Second",
+  "Megabytes/Second",
+  "Gigabytes/Second",
+  "Terabytes/Second",
+  "Bits/Second",
+  "Kilobits/Second",
+  "Megabits/Second",
+  "Gigabits/Second",
+  "Terabits/Second",
+  "Count/Second",
+  "None",
+];
+const namespaces = [
+  "AWS/AmplifyHosting",
+  "AWS/ApiGateway",
+  "AWS/AppRunner",
+  "AWS/AppStream",
+  "AWS/AppSync",
+  "AWS/Athena",
+  "Backup",
+  "AWS/Billing",
+  "AWS/CertificateManager",
+  "AWS/ACMPrivateCA",
+  "AWS/Chatbot",
+  "AWS/ClientVPN",
+  "AWS/CloudFront",
+  "AWS/CloudHSM",
+  "AWS/CloudSearch",
+  "AWS/Logs",
+  "AWS/CodeBuild",
+  "AWS/CodeGuruProfiler",
+  "AWS/Cognito",
+  "AWS/Connect",
+  "AWS/DataSync",
+  "AWS/DMS",
+  "AWS/DX",
+  "AWS/DocDB",
+  "AWS/DynamoDB",
+  "AWS/DAX",
+  "AWS/EC2",
+  "AWS/ElasticGPUs",
+  "AWS/EC2Spot",
+  "AWS/AutoScaling",
+  "AWS/ElasticBeanstalk",
+  "AWS/EBS",
+  "AWS/ECS",
+  "AWS/ECS/ManagedScaling",
+  "AWS/EFS",
+  "AWS/ElasticInference",
+  "AWS/ApplicationELB",
+  "AWS/NetworkELB",
+  "AWS/GatewayELB",
+  "AWS/ELB",
+  "AWS/ElasticTranscoder",
+  "AWS/ElastiCache",
+  "AWS/ElastiCache",
+  "AWS/ES",
+  "AWS/ElasticMapReduce",
+  "AWS/MediaConnect",
+  "AWS/MediaConvert",
+  "AWS/MediaLive",
+  "AWS/MediaPackage",
+  "AWS/MediaStore",
+  "AWS/MediaTailor",
+  "AWS/Events",
+  "AWS/FSx",
+  "AWS/FSx",
+  "AWS/GameLift",
+  "AWS/GlobalAccelerator",
+  "Glue",
+  "AWS/GroundStation",
+  "AWS/Inspector",
+  "AWS/IVS",
+  "AWS/IoT",
+  "AWS/IoTAnalytics",
+  "AWS/IoTSiteWise",
+  "AWS/ThingsGraph",
+  "AWS/KMS",
+  "AWS/Cassandra",
+  "AWS/KinesisAnalytics",
+  "AWS/Firehose",
+  "AWS/Kinesis",
+  "AWS/KinesisVideo",
+  "AWS/Lambda",
+  "AWS/Lex",
+  "AWS/Location",
+  "AWS/LookoutMetrics",
+  "AWS/ML",
+  "AWS/Kafka",
+  "AWS/AmazonMQ",
+  "AWS/Neptune",
+  "AWS/NetworkFirewall",
+  "AWS/OpsWorks",
+  "AWS/Polly",
+  "AWS/QLDB",
+  "AWS/Redshift",
+  "AWS/RDS",
+  "AWS/Robomaker",
+  "AWS/Route53",
+  "AWS/SageMaker",
+  "AWS/SDKMetrics",
+  "AWS/ServiceCatalog",
+  "AWS/DDoSProtection",
+  "AWS/SES",
+  "AWS/SNS",
+  "AWS/SQS",
+  "AWS/S3",
+  "AWS/SWF",
+  "AWS/States",
+  "AWS/StorageGateway",
+  "AWS/SSM-RunCommand",
+  "AWS/Textract",
+  "AWS/Timestream",
+  "AWS/Transfer",
+  "AWS/Translate",
+  "AWS/TrustedAdvisor",
+  "AWS/NATGateway",
+  "AWS/TransitGateway",
+  "AWS/VPN",
+  "AWS/WAFV2",
+  "WAF",
+  "AWS/WorkMail",
+  "AWS/WorkSpaces",
+];
+
+const postPrecessGenerator = (
+  out: string,
+  parentKey: string,
+  childKey = ""
+): Fig.Suggestion[] => {
+  try {
+    const list = JSON.parse(out)[parentKey];
+
+    if (!Array.isArray(list)) {
+      return [
+        {
+          name: list[childKey],
+          icon: "fig://icon?type=aws",
+        },
+      ];
+    }
+
+    return list
+      .map((elm) => {
+        const name = (childKey ? elm[childKey] : elm) as string;
+        return {
+          name,
+          icon: "fig://icon?type=aws",
+        };
+      })
+      .filter(uniqueNames);
+  } catch (e) {
+    console.log(e);
+  }
+  return [];
+};
+
+const listCustomGenerator = async (
+  tokens: string[],
+  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  command: string,
+  options: string[],
+  parentKey: string,
+  childKey = ""
+): Promise<Fig.Suggestion[]> => {
+  try {
+    let cmd = `aws cloudwatch ${command}`;
+
+    for (let i = 0; i < options.length; i++) {
+      const option = options[i];
+      const idx = tokens.indexOf(option);
+      if (idx < 0) {
+        continue;
+      }
+      const param = tokens[idx + 1];
+      cmd += ` ${option} ${param}`;
+    }
+
+    const out = await executeShellCommand(cmd);
+
+    const list = JSON.parse(out)[parentKey];
+
+    if (!Array.isArray(list)) {
+      return [
+        {
+          name: list[childKey],
+          icon: "fig://icon?type=aws",
+        },
+      ];
+    }
+
+    return list
+      .map((elm) => {
+        const name = (childKey ? elm[childKey] : elm) as string;
+        return {
+          name,
+          icon: "fig://icon?type=aws",
+        };
+      })
+      .filter(uniqueNames);
+  } catch (e) {
+    console.log(e);
+  }
+  return [];
+};
+
+const listDimensionTypes = async (
+  tokens: string[],
+  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  command: string,
+  option: string,
+  parentKey: string,
+  childKey: string
+): Promise<Fig.Suggestion[]> => {
+  try {
+    const idx = tokens.indexOf(option);
+    if (idx < 0) {
+      return [];
+    }
+    const cmd = `aws cloudwatch ${command} ${option} ${tokens[idx + 1]}`;
+
+    const out = await executeShellCommand(cmd);
+
+    const metrics = JSON.parse(out)[parentKey];
+
+    // traverse JSON & compose key-value style suggestion
+    return metrics
+      .map((metric) => {
+        return metric[childKey].map((dimension) => {
+          const composite = `Name=${dimension.Name},Value=${dimension.Value}`;
+          return {
+            name: composite,
+            insertValue: composite,
+            icon: "fig://icon?type=aws",
+          };
+        });
+      })
+      .flat()
+      .filter(uniqueNames);
+  } catch (e) {
+    console.log(e);
+  }
+  return [];
+};
+
+const MultiSuggestionsGenerator = async (
+  tokens: string[],
+  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  enabled: Record<string, string>[]
+) => {
+  try {
+    const list: Fig.Suggestion[][] = [];
+    const promises: Promise<string>[] = [];
+    for (let i = 0; i < enabled.length; i++) {
+      promises[i] = executeShellCommand(enabled[i]["command"]);
+    }
+    const result = await Promise.all(promises);
+
+    for (let i = 0; i < enabled.length; i++) {
+      list[i] = postPrecessGenerator(
+        result[i],
+        enabled[i]["parentKey"],
+        enabled[i]["childKey"]
+      );
+    }
+
+    return list.flat();
+  } catch (e) {
+    console.log(e);
+  }
+  return [];
+};
+
+const getResultList = async (
+  tokens: string[],
+  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  command: string,
+  key: string
+): Promise<Fig.Suggestion[]> => {
+  const out = await executeShellCommand(command);
+  return JSON.parse(out)[key];
+};
+
+const _prefixFile = "file://";
+
+const appendFolderPath = (tokens: string[], prefix: string): string => {
+  const baseLSCommand = "\\ls -1ApL ";
+  let whatHasUserTyped = tokens[tokens.length - 1];
+
+  if (!whatHasUserTyped.startsWith(prefix)) {
+    return `echo '${prefix}'`;
+  }
+  whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
+
+  let folderPath = "";
+  const lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
+
+  if (lastSlashIndex > -1) {
+    if (whatHasUserTyped.startsWith("/") && lastSlashIndex === 0) {
+      folderPath = "/";
+    } else {
+      folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+    }
+  }
+
+  return baseLSCommand + folderPath;
+};
+
+const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
+  if (out.trim() === prefix) {
+    return [
+      {
+        name: prefix,
+        insertValue: prefix,
+      },
+    ];
+  }
+  const sortFnStrings = (a, b) => {
+    return a.localeCompare(b);
+  };
+
+  const alphabeticalSortFilesAndFolders = (arr) => {
+    const dotsArr = [];
+    const otherArr = [];
+
+    arr.map((elm) => {
+      if (elm.toLowerCase() == ".ds_store") return;
+      if (elm.slice(0, 1) === ".") dotsArr.push(elm);
+      else otherArr.push(elm);
+    });
+
+    return [
+      ...otherArr.sort(sortFnStrings),
+      "../",
+      ...dotsArr.sort(sortFnStrings),
+    ];
+  };
+
+  const tempArr = alphabeticalSortFilesAndFolders(out.split("\n"));
+
+  const finalArr = [];
+  tempArr.forEach((item) => {
+    if (!(item === "" || item === null || item === undefined)) {
+      const outputType = item.slice(-1) === "/" ? "folder" : "file";
+
+      finalArr.push({
+        type: outputType,
+        name: item,
+        insertValue: item,
+      });
+    }
+  });
+
+  return finalArr;
+};
+
+const uniqueNames = (value, index, self) =>
+  self.map((x) => x.name).indexOf(value.name) === index;
+
+const triggerPrefix = (
+  newToken: string,
+  oldToken: string,
+  prefix: string
+): boolean => {
+  if (!newToken.startsWith(prefix)) {
+    if (!oldToken) return false;
+
+    return oldToken.startsWith(prefix);
+  }
+
+  return newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/");
+};
+
+const filterWithPrefix = (token: string, prefix: string): string => {
+  if (!token.startsWith(prefix)) return token;
+  return token.slice(token.lastIndexOf("/") + 1);
+};
+
+const generators: Record<string, Fig.Generator> = {
+  listFiles: {
+    script: (tokens) => {
+      return appendFolderPath(tokens, _prefixFile);
+    },
+    postProcess: (out) => {
+      return postProcessFiles(out, _prefixFile);
+    },
+
+    trigger: (newToken, oldToken) => {
+      return triggerPrefix(newToken, oldToken, _prefixFile);
+    },
+
+    getQueryTerm: (token) => {
+      return filterWithPrefix(token, _prefixFile);
+    },
+  },
+
+  listAlarms: {
+    script: "aws cloudwatch describe-alarms",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "MetricAlarms", "AlarmName");
+    },
+  },
+
+  listAlarmArns: {
+    script: "aws cloudwatch describe-alarms",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "MetricAlarms", "AlarmArn");
+    },
+  },
+
+  listAdNamespaces: {
+    script: "aws cloudwatch describe-anomaly-detectors",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "AnomalyDetectors", "Namespace");
+    },
+  },
+
+  listMetricNamespaces: {
+    script: "aws cloudwatch list-metrics",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "Metrics", "Namespace");
+    },
+  },
+
+  listMetricsForNamespace: {
+    custom: async function (tokens, executeShellCommand) {
+      return listCustomGenerator(
+        tokens,
+        executeShellCommand,
+        "list-metrics",
+        ["--namespace"],
+        "Metrics",
+        "MetricName"
+      );
+    },
+  },
+
+  listMetricDimensions: {
+    custom: async function (tokens, executeShellCommand) {
+      return listDimensionTypes(
+        tokens,
+        executeShellCommand,
+        "list-metrics",
+        "--namespace",
+        "Metrics",
+        "Dimensions"
+      );
+    },
+  },
+
+  listAdDimensions: {
+    custom: async function (tokens, executeShellCommand) {
+      return listDimensionTypes(
+        tokens,
+        executeShellCommand,
+        "describe-anomaly-detectors",
+        "--namespace",
+        "AnomalyDetectors",
+        "Dimensions"
+      );
+    },
+  },
+
+  listAssociatedStats: {
+    custom: async function (tokens, executeShellCommand) {
+      return listCustomGenerator(
+        tokens,
+        executeShellCommand,
+        "describe-anomaly-detectors",
+        ["--namespace", "--metric-name"],
+        "AnomalyDetectors",
+        "Stat"
+      );
+    },
+  },
+
+  listDashboards: {
+    script: "aws cloudwatch list-dashboards",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "DashboardEntries", "DashboardName");
+    },
+  },
+
+  listInsightRules: {
+    script: "aws cloudwatch describe-insight-rules",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "InsightRules", "Name");
+    },
+  },
+
+  listMetricStreams: {
+    script: "aws cloudwatch list-metric-streams",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "Entries", "Name");
+    },
+  },
+
+  listMetrics: {
+    script: "aws cloudwatch list-metrics",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "Metrics", "MetricName");
+    },
+  },
+
+  listSNSTopics: {
+    script: "aws sns list-topics",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "Topics", "TopicArn");
+    },
+  },
+
+  listFirehoseArns: {
+    // AWS is dumb, and firehose cli works totally different than other CLIs.
+    // First we need to get a list of stream names, then we have to describe each
+    // individually, to get an ARN
+    custom: async function (tokens, executeShellCommand) {
+      // get list of stream names
+      const result = await Promise.all([
+        getResultList(
+          tokens,
+          executeShellCommand,
+          "aws firehose list-delivery-streams",
+          "DeliveryStreamNames"
+        ),
+      ]);
+
+      // construct "query"
+      const objects = result.flat().map((stream) => {
+        return {
+          command: `aws firehose describe-delivery-stream --delivery-stream-name ${stream}`,
+          parentKey: "DeliveryStreamDescription",
+          childKey: "DeliveryStreamARN",
+        };
+      });
+
+      // Fire up multiple API calls
+      return MultiSuggestionsGenerator(tokens, executeShellCommand, [
+        ...objects,
+      ]);
+    },
+  },
+
+  listRoles: {
+    script: "aws iam list-roles",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "Roles", "Arn");
+    },
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "cloudwatch",
   description:
