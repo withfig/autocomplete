@@ -736,7 +736,6 @@ const completionSpec: Fig.Spec = {
         name: "path",
         generators: filepaths({
           extensions: ["zip"],
-          suggestFolders: "always",
         }),
       },
     },

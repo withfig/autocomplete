@@ -7998,7 +7998,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "cherry-pick",
       description: "Apply the changes introduced by some existing commits",
-      subcommands: [
+      args: {
+        name: "commit",
+        description: "Commits to cherry-pick",
+        isVariadic: true,
+        generators: gitGenerators.commits,
+      },
+      options: [
         {
           name: "--continue",
           description:
@@ -8018,14 +8024,6 @@ const completionSpec: Fig.Spec = {
           description:
             "Cancel the operation and return to the pre-sequence state",
         },
-      ],
-      args: {
-        name: "commit",
-        description: "Commits to cherry-pick",
-        isVariadic: true,
-        generators: gitGenerators.commits,
-      },
-      options: [
         {
           name: ["-e", "--edit"],
           description:

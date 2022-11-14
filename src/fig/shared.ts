@@ -126,8 +126,10 @@ export const settingsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
     actions: Action[];
   };
 
-  const actionSuggestions: Fig.Suggestion[] = actions.flatMap((action) => ({
-    name: action.identifier,
+  const actionSuggestions: Fig.Suggestion[] = actions.map((action) => ({
+    name: action.identifier.startsWith("autocomplete.")
+      ? action.identifier.slice(13)
+      : action.identifier,
     description: action.description,
     icon: "⚡️",
   }));
@@ -360,6 +362,7 @@ export const workflowsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
   return {
     name: "run",
     subcommands,
+    filterStrategy: "fuzzy",
   };
 };
 
