@@ -820,6 +820,14 @@ const completionSpec: Fig.Spec = {
       description: "Try different render configurations and compare them",
       options: benchmarkOptions,
     },
+    {
+      name: "install",
+      description: "Ensure Remotion dependencies",
+      args: {
+        name: "dependency",
+        suggestions: [{ name: "ffmpeg" }, { name: "ffprobe" }],
+      },
+    },
   ],
   options: [
     {
