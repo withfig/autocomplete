@@ -20,6 +20,7 @@ const completionSpec: Fig.Spec = {
     name: "string",
     isVariadic: true,
     optionsCanBreakVariadicArg: false,
+    suggestCurrentToken: true,
     generators: environmentVariableGenerator,
   },
   options: [

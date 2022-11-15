@@ -1,3 +1,23 @@
+const alwaysOptions: Fig.Option[] = [
+  {
+    name: ["--quiet", "-q"],
+    description: "Print less output",
+  },
+  {
+    name: "--log",
+    description: 'Log level, "error", "warning", "verbose", "info" (default)',
+    args: {
+      default: "info",
+      suggestions: [
+        { name: "error" },
+        { name: "warning" },
+        { name: "verbose" },
+        { name: "info" },
+      ],
+    },
+  },
+];
+
 const localRenderAndStillOptions: Fig.Option[] = [
   {
     name: "--env-file",
@@ -25,6 +45,13 @@ const localRenderAndStillOptions: Fig.Option[] = [
     },
   },
   {
+    name: "--ffprobe-executable",
+    description: "Custom path for FFProbe executable",
+    args: {
+      template: "filepaths",
+    },
+  },
+  {
     name: "--bundle-cache",
     description: "Cache webpack bundle, boolean, default true",
   },
@@ -45,6 +72,13 @@ const localRenderAndStillOptions: Fig.Option[] = [
     description: "Custom location for a Remotion config file",
     args: {
       template: "filepaths",
+    },
+  },
+  {
+    name: "--public-dir",
+    description: "Location of the public/ directory",
+    args: {
+      template: "folders",
     },
   },
 ];
@@ -73,12 +107,19 @@ const lambdaRenderAndStillOptions: Fig.Option[] = [
       name: "framesPerLambda",
     },
   },
+];
+
+const lambdaRenderOptions: Fig.Option[] = [
   {
     name: "--concurrency-per-lambda",
     description: "Concurrency with which each Lambda function should render",
     args: {
       name: "concurrencyPerLambda",
     },
+  },
+  {
+    name: "--overwrite",
+    description: "Overwrite a video if it already exists in the S3 bucket",
   },
 ];
 
@@ -90,6 +131,14 @@ const localRenderOptions: Fig.Option[] = [
   {
     name: "--concurrency",
     description: "How many frames to render in parallel",
+  },
+  {
+    name: "--enforce-audio-track",
+    description: "Include an audio track even if it's silent",
+  },
+  {
+    name: "--muted",
+    description: "Mute the output video",
   },
 ];
 
@@ -164,7 +213,7 @@ const renderOptions: Fig.Option[] = [
       suggestions: [
         { name: "h264" },
         { name: "h265" },
-        { name: "png" },
+        { name: "gif" },
         { name: "vp8" },
         { name: "vp9" },
         { name: "mp3" },
@@ -192,27 +241,25 @@ const renderOptions: Fig.Option[] = [
     },
   },
   {
+    name: "--audio-bitrate",
+    description: "Customize the output audio bitrate",
+  },
+  {
+    name: "--video-bitrate",
+    description:
+      "Customize the output video bitrate. Mutually exclusive with --crf",
+    exclusiveOn: ["--crf"],
+  },
+  {
     name: "--crf",
     description: "FFMPEG CRF value, controls quality, see docs for info",
+    exclusiveOn: ["--video-bitrate"],
   },
   {
     name: "--frames",
     description: "Render a portion or a still of a video, 0-9, 50",
     args: {
       name: "frames",
-    },
-  },
-  {
-    name: "--log",
-    description: 'Log level, "error", "warning", "verbose", "info" (default)',
-    args: {
-      default: "info",
-      suggestions: [
-        { name: "error" },
-        { name: "warning" },
-        { name: "verbose" },
-        { name: "info" },
-      ],
     },
   },
   {
@@ -251,18 +298,14 @@ const renderOptions: Fig.Option[] = [
       ],
     },
   },
+  {
+    name: "--muted",
+    description: "Outputs no audio",
+  },
 ];
 
 const globalLambdaOptions: Fig.Option[] = [
-  {
-    name: "--quiet",
-    description: "Print less output",
-  },
-  {
-    name: "-q",
-    hidden: true,
-    description: "Print less output",
-  },
+  ...alwaysOptions,
   {
     name: "--yes",
     description: "Skip confirmation",
@@ -335,9 +378,28 @@ const globalLambdaOptions: Fig.Option[] = [
   },
 ];
 
+const benchmarkOptions: Fig.Option[] = [
+  ...renderOptions,
+  ...localRenderOptions,
+  ...localRenderAndStillOptions,
+  ...alwaysOptions,
+  {
+    name: "--concurrencies",
+    description:
+      "Comma-separated list of concurrency values to include in benchmark",
+  },
+].filter((b) => {
+  if (b.name === "--overwrite") {
+    return false;
+  }
+  if (b.name === "--concurrency") {
+    return false;
+  }
+  return true;
+});
+
 const completionSpec: Fig.Spec = {
   name: "remotion",
-
   description: "Create videos programmatically in React",
   subcommands: [
     {
@@ -352,17 +414,6 @@ const completionSpec: Fig.Spec = {
         description: "The entry point of your Remotion app",
         template: ["filepaths"],
       },
-      options: [
-        {
-          name: "--quiet",
-          description: "Print less output",
-        },
-        {
-          name: "-q",
-          hidden: true,
-          description: "Print less output",
-        },
-      ],
     },
     {
       name: "lambda",
@@ -442,8 +493,10 @@ const completionSpec: Fig.Spec = {
           ],
           options: [
             ...lambdaRenderAndStillOptions,
+            ...lambdaRenderOptions,
             ...renderOptions,
             ...globalLambdaOptions,
+            ...alwaysOptions,
           ],
         },
         {
@@ -487,6 +540,7 @@ const completionSpec: Fig.Spec = {
             ...lambdaRenderAndStillOptions,
             ...stillOptions,
             ...globalLambdaOptions,
+            ...alwaysOptions,
           ],
         },
         {
@@ -532,8 +586,15 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--disable-cloudwatch",
                   description: "Disable CloudWatch logging",
-
                   exclusiveOn: ["--retention-period"],
+                },
+                {
+                  name: "--custom-role-arn",
+                  description:
+                    "Set a custom role ARN to be used instead of the default",
+                  args: {
+                    name: "Role ARN",
+                  },
                 },
                 {
                   name: "--retention-period",
@@ -619,11 +680,10 @@ const completionSpec: Fig.Spec = {
           ],
         },
       ],
-      options: [...globalLambdaOptions],
+      options: globalLambdaOptions,
     },
     {
       name: "render",
-
       priority: 60,
       description:
         "Render a video based on the entry point, the composition ID and save it to the output location",
@@ -645,7 +705,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "output",
-
           template: ["filepaths"],
           suggestions: ["out.mp4"],
           isOptional: true,
@@ -655,6 +714,7 @@ const completionSpec: Fig.Spec = {
         ...renderOptions,
         ...localRenderOptions,
         ...localRenderAndStillOptions,
+        ...alwaysOptions,
       ],
     },
     {
@@ -684,7 +744,11 @@ const completionSpec: Fig.Spec = {
           isOptional: true,
         },
       ],
-      options: [...stillOptions, ...localRenderAndStillOptions],
+      options: [
+        ...stillOptions,
+        ...localRenderAndStillOptions,
+        ...alwaysOptions,
+      ],
     },
     {
       name: "preview",
@@ -710,12 +774,31 @@ const completionSpec: Fig.Spec = {
             ],
           },
         },
+        {
+          name: "--disable-keyboard-shortcuts",
+          description: "Disable all keyboard shortcuts",
+        },
       ],
     },
     {
       name: "upgrade",
       description:
         "Upgrade all Remotion-related dependencies to the newest version",
+      options: [
+        {
+          name: "--package-manager",
+          description: "Force a specific package manager to be used",
+          args: {
+            name: "package-manager",
+            suggestions: [{ name: "npm" }, { name: "yarn" }, { name: "pnpm" }],
+          },
+        },
+      ],
+    },
+    {
+      name: "benchmark",
+      description: "Try different render configurations and compare them",
+      options: benchmarkOptions,
     },
   ],
   options: [

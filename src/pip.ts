@@ -16608,6 +16608,7 @@ const completionSpec: Fig.Spec = {
           description: "Exclude specified package from the output",
           args: {
             name: "package",
+            suggestCurrentToken: true,
             generators: listPackages,
           },
         },

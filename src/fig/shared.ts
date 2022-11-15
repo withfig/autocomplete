@@ -65,7 +65,7 @@ const disableForCommandsGenerator: Fig.Generator = {
 };
 
 export const themesGenerator: Fig.Generator = {
-  script: "\\ls -1 ~/.fig/themes",
+  script: "fig theme --list",
   postProcess: (output) => {
     const builtinThemes = [
       {
@@ -118,16 +118,18 @@ export const settingsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
   _,
   executeShellCommand
 ) => {
-  const [settingsJson, actionsJson] = await Promise.all([
-    executeShellCommand(`\\cat ${SETTINGS_PATH}`),
-    executeShellCommand(`\\cat ${ACTIONS_PATH}`),
-  ]);
+  const text = await executeShellCommand(
+    "fig _ request --method GET --route '/settings/all'"
+  );
+  const { settings, actions } = JSON.parse(text) as {
+    settings: Setting[];
+    actions: Action[];
+  };
 
-  const settings: Setting[] = JSON.parse(settingsJson);
-  const actions: Action[] = JSON.parse(actionsJson);
-
-  const actionSuggestions: Fig.Suggestion[] = actions.flatMap((action) => ({
-    name: action.identifier,
+  const actionSuggestions: Fig.Suggestion[] = actions.map((action) => ({
+    name: action.identifier.startsWith("autocomplete.")
+      ? action.identifier.slice(13)
+      : action.identifier,
     description: action.description,
     icon: "⚡️",
   }));
@@ -360,6 +362,7 @@ export const workflowsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
   return {
     name: "run",
     subcommands,
+    filterStrategy: "fuzzy",
   };
 };
 

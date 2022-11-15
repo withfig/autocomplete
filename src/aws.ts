@@ -1,3 +1,21 @@
+export const awsProfileGenerator: Fig.Generator = {
+  cache: {
+    strategy: "stale-while-revalidate",
+    cacheByDirectory: true,
+  },
+  script: "aws configure list-profiles",
+  postProcess: function (out) {
+    if (out.trim() == "") {
+      return [];
+    }
+
+    return out.split("\n").map((line) => ({
+      name: line,
+      icon: "👤",
+    }));
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "aws",
   async generateSpec(_, executeShellCommand) {
@@ -19,6 +37,16 @@ const completionSpec: Fig.Spec = {
       ],
     };
   },
+  options: [
+    {
+      name: "--profile",
+      description: "Use a specific profile from your credential file",
+      args: {
+        generators: awsProfileGenerator,
+        filterStrategy: "fuzzy",
+      },
+    },
+  ],
   subcommands: [
     {
       name: "accessanalyzer",

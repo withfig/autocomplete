@@ -9,7 +9,6 @@ const completionSpec: Fig.Spec = {
     isVariadic: true,
     generators: filepaths({
       extensions: ["md"],
-      suggestFolders: "always",
       editFileSuggestions: { priority: 52 },
       editFolderSuggestions: { priority: 51 },
     }),
@@ -79,7 +78,6 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
         generators: filepaths({
           extensions: ["md"],
-          suggestFolders: "always",
         }),
       },
       options: [
