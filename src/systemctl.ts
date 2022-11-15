@@ -104,6 +104,7 @@ const completionSpec: Fig.Spec = {
       description: "List units currently in memory",
       args: {
         name: "PATTERN",
+        generators: unitGenerator,
         isVariadic: true,
         isOptional: true,
       },
@@ -132,6 +133,7 @@ const completionSpec: Fig.Spec = {
       description: "Check whether units are active",
       args: {
         name: "PATTERN",
+        generators: unitGenerator,
         isVariadic: true,
       },
     },
@@ -140,6 +142,7 @@ const completionSpec: Fig.Spec = {
       description: "Check whether units are failed",
       args: {
         name: "PATTERN",
+        generators: unitGenerator,
         isVariadic: true,
       },
     },
@@ -148,6 +151,7 @@ const completionSpec: Fig.Spec = {
       description: "Show runtime status of one or more units",
       args: {
         name: "PATTERN or PID",
+        generators: unitGenerator,
         isVariadic: true,
         isOptional: true,
       },
@@ -157,6 +161,7 @@ const completionSpec: Fig.Spec = {
       description: "Show properties of one or more",
       args: {
         name: "PATTERN or JOB",
+        generators: unitGenerator,
         isVariadic: true,
         isOptional: true,
       },
@@ -166,6 +171,7 @@ const completionSpec: Fig.Spec = {
       description: "Show files and drop-ins of specified units",
       args: {
         name: "PATTERN",
+        generators: unitGenerator,
         isVariadic: true,
       },
     },
@@ -174,6 +180,7 @@ const completionSpec: Fig.Spec = {
       description: "Show manual for one or more units",
       args: {
         name: "PATTERN or PID",
+        generators: unitGenerator,
         isVariadic: true,
       },
     },
@@ -183,6 +190,7 @@ const completionSpec: Fig.Spec = {
         "Recursively show units which are required or wanted by the units or by which those",
       args: {
         name: "PATTERN",
+        generators: unitGenerator,
         isVariadic: true,
         isOptional: true,
       },
@@ -192,8 +200,8 @@ const completionSpec: Fig.Spec = {
       description: "Start (activate) one or more units",
       args: {
         name: "UNIT",
-        isVariadic: true,
         generators: unitGenerator,
+        isVariadic: true,
       },
     },
     {
@@ -201,8 +209,8 @@ const completionSpec: Fig.Spec = {
       description: "Stop (deactivate) one or more units",
       args: {
         name: "UNIT",
-        isVariadic: true,
         generators: unitGenerator,
+        isVariadic: true,
       },
     },
     {
@@ -210,8 +218,8 @@ const completionSpec: Fig.Spec = {
       description: "Reload one or more units",
       args: {
         name: "UNIT",
-        isVariadic: true,
         generators: unitGenerator,
+        isVariadic: true,
       },
     },
     {
@@ -219,8 +227,8 @@ const completionSpec: Fig.Spec = {
       description: "Start or restart one or more units",
       args: {
         name: "UNIT",
-        isVariadic: true,
         generators: unitGenerator,
+        isVariadic: true,
       },
     },
     {
@@ -228,8 +236,8 @@ const completionSpec: Fig.Spec = {
       description: "Restart one or more units if active",
       args: {
         name: "UNIT",
-        isVariadic: true,
         generators: unitGenerator,
+        isVariadic: true,
       },
     },
     {
@@ -247,8 +255,8 @@ const completionSpec: Fig.Spec = {
         "If active, reload one or more units, if supported, otherwise restart",
       args: {
         name: "UNIT",
-        isVariadic: true,
         generators: unitGenerator,
+        isVariadic: true,
       },
     },
     {
@@ -264,8 +272,8 @@ const completionSpec: Fig.Spec = {
       description: "Send signal to processes of a unit",
       args: {
         name: "UNIT",
-        isVariadic: true,
         generators: unitGenerator,
+        isVariadic: true,
       },
     },
     {
@@ -273,8 +281,8 @@ const completionSpec: Fig.Spec = {
       description: "Clean runtime, cache, state, logs or configuration of unit",
       args: {
         name: "UNIT",
-        isVariadic: true,
         generators: unitGenerator,
+        isVariadic: true,
       },
     },
     {
@@ -388,6 +396,7 @@ const completionSpec: Fig.Spec = {
       description: "List installed unit files",
       args: {
         name: "PATTERN",
+        generators: unitFileGenerator,
         isVariadic: true,
         isOptional: true,
       },
@@ -398,7 +407,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "UNIT|PATH",
         generators: [
-          unitGenerator,
+          unitFileGenerator,
           filepaths({
             extensions: ["service"],
           }),
@@ -426,7 +435,7 @@ const completionSpec: Fig.Spec = {
       description: "Reenable one or more unit files",
       args: {
         name: "UNIT",
-        generators: unitGenerator,
+        generators: unitFileGenerator,
         isVariadic: true,
       },
     },
@@ -436,7 +445,7 @@ const completionSpec: Fig.Spec = {
         "Enable/disable one or more unit files based on preset configuration",
       args: {
         name: "UNIT",
-        generators: unitGenerator,
+        generators: unitFileGenerator,
         isVariadic: true,
       },
     },
@@ -446,7 +455,7 @@ const completionSpec: Fig.Spec = {
         "Enable/disable all unit files based on preset configuration",
       args: {
         name: "UNIT",
-        generators: unitGenerator,
+        generators: unitFileGenerator,
         isVariadic: true,
       },
     },
@@ -455,7 +464,7 @@ const completionSpec: Fig.Spec = {
       description: "Mask one or more unit files",
       args: {
         name: "UNIT",
-        generators: unitGenerator,
+        generators: unitFileGenerator,
         isVariadic: true,
       },
     },
@@ -464,7 +473,7 @@ const completionSpec: Fig.Spec = {
       description: "Unmask one or more unit files",
       args: {
         name: "UNIT",
-        generators: unitGenerator,
+        generators: unitFileGenerator,
         isVariadic: true,
       },
     },
@@ -482,7 +491,7 @@ const completionSpec: Fig.Spec = {
       description: "Revert one or more unit files to vendor version",
       args: {
         name: "UNIT",
-        generators: unitGenerator,
+        generators: unitFileGenerator,
         isVariadic: true,
       },
     },
@@ -620,30 +629,37 @@ const completionSpec: Fig.Spec = {
     {
       name: "default",
       description: "Enter system default mode",
+      isDangerous: true,
     },
     {
       name: "rescue",
       description: "Enter system rescue mode",
+      isDangerous: true,
     },
     {
       name: "emergency",
       description: "Enter system emergency mode",
+      isDangerous: true,
     },
     {
       name: "halt",
       description: "Shut down and halt the system",
+      isDangerous: true,
     },
     {
       name: "poweroff",
       description: "Shut down and power-off the system",
+      isDangerous: true,
     },
     {
       name: "reboot",
       description: "Shut down and reboot the system",
+      isDangerous: true,
     },
     {
       name: "kexec",
       description: "Shut down and reboot the system with kexec",
+      isDangerous: true,
     },
     {
       name: "exit",
@@ -652,6 +668,7 @@ const completionSpec: Fig.Spec = {
         name: "EXIT_CODE",
         isOptional: true,
       },
+      isDangerous: true,
     },
     {
       name: "switch-root",
@@ -664,23 +681,28 @@ const completionSpec: Fig.Spec = {
           name: "INIT",
         },
       ],
+      isDangerous: true,
     },
     {
       name: "suspend",
       description: "Suspend the system",
+      isDangerous: true,
     },
     {
       name: "hibernate",
       description: "Hibernate the system",
+      isDangerous: true,
     },
     {
       name: "hybrid-sleep",
       description: "Hibernate and suspend the system",
+      isDangerous: true,
     },
     {
       name: "suspend-then-hibernate",
       description:
         "Suspend the system, wake after a period of time, and hibernate",
+      isDangerous: true,
     },
   ],
   options: [
