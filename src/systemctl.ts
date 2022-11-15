@@ -1,3 +1,100 @@
+import { filepaths } from "@fig/autocomplete-generators";
+
+type Unit = {
+  unit: string;
+  load: "loaded" | "not-found" | "bad-setting" | "error" | "masked";
+  active:
+    | "active"
+    | "reloading"
+    | "inactive"
+    | "failed"
+    | "activating"
+    | "deactivating";
+  sub: string;
+  description: string;
+};
+
+const unitGenerator: Fig.Generator = {
+  custom: async (tokens, executeShellCommand) => {
+    const user = tokens.includes("--user");
+    const out = await executeShellCommand(
+      `systemctl list-units -o json --all --full ${user ? " --user" : ""}`
+    );
+    const units: Unit[] = JSON.parse(out);
+
+    const suggustions = units.map((unit) => {
+      let activeEmoji: string;
+      if (unit.active === "active") {
+        activeEmoji = "✅";
+      } else if (unit.active === "reloading") {
+        activeEmoji = "🔄";
+      } else if (unit.active === "inactive") {
+        activeEmoji = "🛑";
+      } else if (unit.active === "failed") {
+        activeEmoji = "❌";
+      } else if (unit.active === "activating") {
+        activeEmoji = "⏳";
+      } else if (unit.active === "deactivating") {
+        activeEmoji = "⏳";
+      } else {
+        activeEmoji = "❓";
+      }
+
+      const activeString =
+        unit.active.charAt(0).toUpperCase() + unit.active.slice(1);
+
+      return {
+        name: unit.unit,
+        description: `${activeString} - ${unit.description}`,
+        icon: activeEmoji,
+      };
+    });
+    suggustions.sort((a, b) =>
+      a.name.localeCompare(b.name, undefined, { usage: "sort" })
+    );
+    return suggustions;
+  },
+};
+
+type UnitFile = {
+  unit_file: string;
+  state?: string;
+  preset?: "enabled" | "disabled";
+};
+
+const unitFileGenerator: Fig.Generator = {
+  custom: async (tokens, executeShellCommand) => {
+    const user = tokens.includes("--user");
+    const out = await executeShellCommand(
+      `systemctl list-unit-files -o json --all --full ${user ? " --user" : ""}`
+    );
+    const units: UnitFile[] = JSON.parse(out);
+    const suggustions = units.map((unit) => {
+      let loadedEmoji: string;
+      if (unit.state === "enabled") {
+        loadedEmoji = "✅";
+      } else if (unit.state === "disabled") {
+        loadedEmoji = "🛑";
+      } else {
+        loadedEmoji = "❓";
+      }
+
+      const loadedString =
+        unit.state?.charAt(0).toUpperCase() + unit.state?.slice(1);
+
+      return {
+        name: unit.unit_file,
+        description: loadedString,
+        icon: loadedEmoji,
+      };
+    });
+    suggustions.sort((a, b) =>
+      a.name.localeCompare(b.name, undefined, { usage: "sort" })
+    );
+    return suggustions;
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "systemctl",
   description: "",
@@ -8,6 +105,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "PATTERN",
         isVariadic: true,
+        isOptional: true,
       },
     },
     {
@@ -16,6 +114,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "PATTERN",
         isVariadic: true,
+        isOptional: true,
       },
     },
     {
@@ -25,6 +124,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "PATTERN",
         isVariadic: true,
+        isOptional: true,
       },
     },
     {
@@ -49,6 +149,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "PATTERN or PID",
         isVariadic: true,
+        isOptional: true,
       },
     },
     {
@@ -57,6 +158,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "PATTERN or JOB",
         isVariadic: true,
+        isOptional: true,
       },
     },
     {
@@ -78,10 +180,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-dependencies",
       description:
-        "Recursively show units which are requiredor wanted by the units or by which those units are required or wanted",
+        "Recursively show units which are required or wanted by the units or by which those",
       args: {
         name: "PATTERN",
         isVariadic: true,
+        isOptional: true,
       },
     },
     {
@@ -90,6 +193,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "UNIT",
         isVariadic: true,
+        generators: unitGenerator,
       },
     },
     {
@@ -98,6 +202,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "UNIT",
         isVariadic: true,
+        generators: unitGenerator,
       },
     },
     {
@@ -106,6 +211,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "UNIT",
         isVariadic: true,
+        generators: unitGenerator,
       },
     },
     {
@@ -114,7 +220,467 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "UNIT",
         isVariadic: true,
+        generators: unitGenerator,
       },
+    },
+    {
+      name: "try-restart",
+      description: "Restart one or more units if active",
+      args: {
+        name: "UNIT",
+        isVariadic: true,
+        generators: unitGenerator,
+      },
+    },
+    {
+      name: "reload-or-restart",
+      description:
+        "Reload one or more units if possible, otherwise start or restart",
+      args: {
+        name: "UNIT",
+        isVariadic: true,
+      },
+    },
+    {
+      name: "try-reload-or-restart",
+      description:
+        "If active, reload one or more units, if supported, otherwise restart",
+      args: {
+        name: "UNIT",
+        isVariadic: true,
+        generators: unitGenerator,
+      },
+    },
+    {
+      name: "isolate",
+      description: "Start one unit and stop all others",
+      args: {
+        name: "UNIT",
+        generators: unitGenerator,
+      },
+    },
+    {
+      name: "kill",
+      description: "Send signal to processes of a unit",
+      args: {
+        name: "UNIT",
+        isVariadic: true,
+        generators: unitGenerator,
+      },
+    },
+    {
+      name: "clean",
+      description: "Clean runtime, cache, state, logs or configuration of unit",
+      args: {
+        name: "UNIT",
+        isVariadic: true,
+        generators: unitGenerator,
+      },
+    },
+    {
+      name: "freeze",
+      description: "Freeze execution of unit processes",
+      args: {
+        name: "PATTERN",
+        isVariadic: true,
+      },
+    },
+    {
+      name: "thaw",
+      description: "Resume execution of a frozen unit",
+      args: {
+        name: "PATTERN",
+        isVariadic: true,
+      },
+    },
+    {
+      name: "set-property",
+      description: "Sets one or more properties of a unit",
+      args: [
+        {
+          name: "UNIT",
+          generators: unitGenerator,
+        },
+        {
+          name: "PROPERTY=VALUE",
+        },
+      ],
+    },
+    {
+      name: "bind",
+      description: "Bind-mount a path from the host into a unit's namespace",
+      args: [
+        {
+          name: "UNIT",
+          generators: unitGenerator,
+        },
+        {
+          name: "PATH",
+          template: "filepaths",
+        },
+        {
+          name: "PATH",
+          template: "filepaths",
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "mount-image",
+      description: "Mount an image from the host into a unit's namespace",
+      args: [
+        {
+          name: "UNIT",
+          generators: unitGenerator,
+        },
+        {
+          name: "PATH",
+          template: "filepaths",
+        },
+        {
+          name: "PATH",
+          template: "filepaths",
+          isOptional: true,
+        },
+        {
+          name: "OPTS",
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "service-log-level",
+      description: "Get/set logging threshold for service",
+      args: [
+        {
+          name: "SERVICE",
+        },
+        {
+          name: "LEVEL",
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "service-log-target",
+      description: "Get/set logging target for service",
+      args: [
+        {
+          name: "SERVICE",
+        },
+        {
+          name: "TARGET",
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "reset-failed",
+      description: "Reset failed state for all, one, or more units",
+      args: {
+        name: "PATTERN",
+        isVariadic: true,
+        isOptional: true,
+      },
+    },
+    {
+      name: "list-unit-files",
+      description: "List installed unit files",
+      args: {
+        name: "PATTERN",
+        isVariadic: true,
+        isOptional: true,
+      },
+    },
+    {
+      name: "enable",
+      description: "Enable one or more unit files",
+      args: {
+        name: "UNIT|PATH",
+        generators: [
+          unitGenerator,
+          filepaths({
+            extensions: ["service"],
+          }),
+        ],
+        isVariadic: true,
+        isOptional: true,
+      },
+    },
+    {
+      name: "disable",
+      description: "Disable one or more unit files",
+      args: {
+        name: "UNIT|PATH",
+        generators: [
+          unitGenerator,
+          filepaths({
+            extensions: ["service"],
+          }),
+        ],
+        isVariadic: true,
+      },
+    },
+    {
+      name: "reenable",
+      description: "Reenable one or more unit files",
+      args: {
+        name: "UNIT",
+        generators: unitGenerator,
+        isVariadic: true,
+      },
+    },
+    {
+      name: "preset",
+      description:
+        "Enable/disable one or more unit files based on preset configuration",
+      args: {
+        name: "UNIT",
+        generators: unitGenerator,
+        isVariadic: true,
+      },
+    },
+    {
+      name: "preset-all",
+      description:
+        "Enable/disable all unit files based on preset configuration",
+      args: {
+        name: "UNIT",
+        generators: unitGenerator,
+        isVariadic: true,
+      },
+    },
+    {
+      name: "mask",
+      description: "Mask one or more unit files",
+      args: {
+        name: "UNIT",
+        generators: unitGenerator,
+        isVariadic: true,
+      },
+    },
+    {
+      name: "unmask",
+      description: "Unmask one or more unit files",
+      args: {
+        name: "UNIT",
+        generators: unitGenerator,
+        isVariadic: true,
+      },
+    },
+    {
+      name: "link",
+      description: "Link one or more units files into the search path",
+      args: {
+        name: "PATH",
+        template: "filepaths",
+        isVariadic: true,
+      },
+    },
+    {
+      name: "revert",
+      description: "Revert one or more unit files to vendor version",
+      args: {
+        name: "UNIT",
+        generators: unitGenerator,
+        isVariadic: true,
+      },
+    },
+    {
+      name: "add-wants",
+      description:
+        "Add 'Wants' dependency for the target on specified one or more units",
+      args: [
+        {
+          name: "TARGET",
+        },
+        {
+          name: "UNIT",
+          isVariadic: true,
+        },
+      ],
+    },
+    {
+      name: "add-requires",
+      description:
+        "Add 'Requires' dependency for the target on specified one or more units",
+      args: [
+        {
+          name: "TARGET",
+        },
+        {
+          name: "UNIT",
+          isVariadic: true,
+        },
+      ],
+    },
+    {
+      name: "edit",
+      description: "Edit one or more unit files",
+      args: {
+        name: "UNIT",
+        generators: unitGenerator,
+        isVariadic: true,
+      },
+    },
+    {
+      name: "get-default",
+      description: "Get the name of the default target",
+    },
+    {
+      name: "set-default",
+      description: "Set the default target",
+      args: {
+        name: "TARGET",
+      },
+    },
+    {
+      name: "list-jobs",
+      description: "List jobs",
+      args: {
+        name: "PATTERN",
+        isVariadic: true,
+        isOptional: true,
+      },
+    },
+    {
+      name: "cancel",
+      description: "Cancel all, one, or more jobs",
+      args: {
+        name: "JOB",
+        isVariadic: true,
+        isOptional: true,
+      },
+    },
+    {
+      name: "show-environment",
+      description: "Dump environment",
+    },
+    {
+      name: "set-environment",
+      description: "Set one or more environment variables",
+      args: {
+        name: "VARIABLE=VALUE",
+        isVariadic: true,
+      },
+    },
+    {
+      name: "unset-environment",
+      description: "Unset one or more environment variables",
+      args: {
+        name: "VARIABLE",
+        isVariadic: true,
+      },
+    },
+    {
+      name: "import-environment",
+      description: "Import all or some environment variables",
+      args: {
+        name: "VARIABLE",
+        isVariadic: true,
+      },
+    },
+    {
+      name: "daemon-reload",
+      description: "Reload systemd manager configuration",
+    },
+    {
+      name: "daemon-reexec",
+      description: "Reexecute systemd manager",
+    },
+    {
+      name: "log-level",
+      description: "Get/set logging threshold for manager",
+      args: {
+        name: "LEVEL",
+        isOptional: true,
+      },
+    },
+    {
+      name: "log-target",
+      description: "Get/set logging target for manager",
+      args: {
+        name: "TARGET",
+        isOptional: true,
+      },
+    },
+    {
+      name: "service-watchdogs",
+      description: "Get/set service watchdog state",
+      args: {
+        name: "BOOL",
+        isOptional: true,
+        suggestions: ["true", "false"],
+      },
+    },
+    {
+      name: "is-system-running",
+      description: "Check whether system is fully running",
+    },
+    {
+      name: "default",
+      description: "Enter system default mode",
+    },
+    {
+      name: "rescue",
+      description: "Enter system rescue mode",
+    },
+    {
+      name: "emergency",
+      description: "Enter system emergency mode",
+    },
+    {
+      name: "halt",
+      description: "Shut down and halt the system",
+    },
+    {
+      name: "poweroff",
+      description: "Shut down and power-off the system",
+    },
+    {
+      name: "reboot",
+      description: "Shut down and reboot the system",
+    },
+    {
+      name: "kexec",
+      description: "Shut down and reboot the system with kexec",
+    },
+    {
+      name: "exit",
+      description: "Request user instance or container exit",
+      args: {
+        name: "EXIT_CODE",
+        isOptional: true,
+      },
+    },
+    {
+      name: "switch-root",
+      description: "Change to a different root file system",
+      args: [
+        {
+          name: "ROOT",
+        },
+        {
+          name: "INIT",
+        },
+      ],
+    },
+    {
+      name: "suspend",
+      description: "Suspend the system",
+    },
+    {
+      name: "hibernate",
+      description: "Hibernate the system",
+    },
+    {
+      name: "hybrid-sleep",
+      description: "Hibernate and suspend the system",
+    },
+    {
+      name: "suspend-then-hibernate",
+      description:
+        "Suspend the system, wake after a period of time, and hibernate",
     },
   ],
   options: [
