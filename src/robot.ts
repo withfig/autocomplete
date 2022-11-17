@@ -64,7 +64,7 @@ const testCasesGenerator: Fig.Generator = {
     for (const [_, block] of iter) {
       // get every test case name
       // regex: word/s at the start of a line until '#'
-      const lines = block.matchAll(/^(\w+ *)+(?!.\#.*)(?!.\#.*)/gm);
+      const lines = block.matchAll(/^(\w+( |-)*)+(?!.\#.*)(?!.\#.*)/gm);
       // go through all the test cases names found
       for (let [testCase] of lines) {
         testCase = testCase.trim();
