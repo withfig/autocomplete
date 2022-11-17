@@ -18,14 +18,58 @@ const alwaysOptions: Fig.Option[] = [
   },
 ];
 
-const localRenderAndStillOptions: Fig.Option[] = [
+const propsOption: Fig.Option = {
+  name: "--props",
+  description: "Pass input props as filename or as JSON",
+  args: {
+    template: ["filepaths"],
+    suggestions: [
+      {
+        type: "arg",
+        displayName: "[json string]",
+        insertValue: "'{cursor}'",
+      },
+    ],
+  },
+};
+
+const envOption: Fig.Option = {
+  name: "--env-file",
+  description: "Specify a location for a dotenv file",
+  args: {
+    template: "filepaths",
+  },
+};
+
+const chromeOptions: Fig.Option[] = [
   {
-    name: "--env-file",
-    description: "Specify a location for a dotenv file",
+    name: "--disable-headless",
+    description: "Run Chrome in normal mode rather than headless",
+  },
+  {
+    name: "--gl",
+    description: "Which OpenGL renderer to use",
     args: {
-      template: "filepaths",
+      suggestions: ["angle", "egl", "swiftshader", "swangle"],
     },
   },
+  {
+    name: "--ignore-certificate-errors",
+    description: "Ignore SSL errors",
+  },
+  {
+    name: "--disable-web-security",
+    description: "Disable CORS and other web security features",
+  },
+];
+const compositionsOptions: Fig.Option[] = [
+  propsOption,
+  envOption,
+  ...chromeOptions,
+];
+
+const localRenderAndStillOptions: Fig.Option[] = [
+  envOption,
   {
     name: "--overwrite",
     description: "Overwrite if file exists, default true",
@@ -64,10 +108,6 @@ const localRenderAndStillOptions: Fig.Option[] = [
     },
   },
   {
-    name: "--disable-headless",
-    description: "Run Chrome in normal mode rather than headless",
-  },
-  {
     name: "--config",
     description: "Custom location for a Remotion config file",
     args: {
@@ -81,6 +121,8 @@ const localRenderAndStillOptions: Fig.Option[] = [
       template: "folders",
     },
   },
+  propsOption,
+  ...chromeOptions,
 ];
 
 const lambdaRenderAndStillOptions: Fig.Option[] = [
@@ -107,6 +149,7 @@ const lambdaRenderAndStillOptions: Fig.Option[] = [
       name: "framesPerLambda",
     },
   },
+  ...chromeOptions,
 ];
 
 const lambdaRenderOptions: Fig.Option[] = [
@@ -161,39 +204,11 @@ const stillOptions: Fig.Option[] = [
 ];
 
 const renderOptions: Fig.Option[] = [
-  {
-    name: "--gl",
-    description: "Which OpenGL renderer to use",
-    args: {
-      suggestions: ["angle", "egl", "swiftshader", "swangle"],
-    },
-  },
+  ...chromeOptions,
   {
     name: "--timeout",
     description:
       "The time in milisecond that a delayRender() may take before it times out",
-  },
-  {
-    name: "--ignore-certificate-errors",
-    description: "Ignore SSL errors",
-  },
-  {
-    name: "--disable-web-security",
-    description: "Disable CORS and other web security features",
-  },
-  {
-    name: "--props",
-    description: "Pass input props as filename or as JSON",
-    args: {
-      template: ["filepaths"],
-      suggestions: [
-        {
-          type: "arg",
-          displayName: "[json string]",
-          insertValue: "'{cursor}'",
-        },
-      ],
-    },
   },
   {
     name: "--quality",
@@ -434,6 +449,7 @@ const completionSpec: Fig.Spec = {
         description: "The entry point of your Remotion app",
         template: ["filepaths"],
       },
+      options: compositionsOptions,
     },
     {
       name: "lambda",
@@ -518,6 +534,21 @@ const completionSpec: Fig.Spec = {
             ...globalLambdaOptions,
             ...alwaysOptions,
           ],
+        },
+        {
+          name: "compositions",
+          description: "Get the list of available compositions on Lambda",
+          args: {
+            name: "serve-url",
+            description: "URL or name of the site",
+            suggestions: [
+              {
+                type: "arg",
+                displayName: "[serve-url]",
+              },
+            ],
+          },
+          options: [...globalLambdaOptions, ...compositionsOptions],
         },
         {
           name: "still",
@@ -780,30 +811,18 @@ const completionSpec: Fig.Spec = {
         template: ["filepaths"],
       },
       options: [
-        {
-          name: "--props",
-          description: "Pass input props as filename or as JSON",
-          args: {
-            template: ["filepaths"],
-            suggestions: [
-              {
-                type: "arg",
-                displayName: "[json string]",
-                insertValue: "'{cursor}'",
-              },
-            ],
-          },
-        },
+        propsOption,
         {
           name: "--disable-keyboard-shortcuts",
           description: "Disable all keyboard shortcuts",
         },
         {
           name: "--number-of-shared-audio-tags",
-          description: "Set the number of shared audio tags to prevent autoplay issues",
-            args: {
-              name: "numberOfSharedAudioTags",
-            },        
+          description:
+            "Set the number of shared audio tags to prevent autoplay issues",
+          args: {
+            name: "numberOfSharedAudioTags",
+          },
         },
       ],
     },
