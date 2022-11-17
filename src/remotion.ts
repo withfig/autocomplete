@@ -798,6 +798,13 @@ const completionSpec: Fig.Spec = {
           name: "--disable-keyboard-shortcuts",
           description: "Disable all keyboard shortcuts",
         },
+        {
+          name: "--number-of-shared-audio-tags",
+          description: "Set the number of shared audio tags to prevent autoplay issues",
+            args: {
+              name: "numberOfSharedAudioTags",
+            },        
+        },
       ],
     },
     {
