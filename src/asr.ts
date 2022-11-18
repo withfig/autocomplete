@@ -198,7 +198,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--interface",
-          description: "Source has to be a UDIF disk image",
+          description: "The network interface to be used for multicasting",
           args: {
             name: "interface",
             description: "The network interface to be used for multicasting",
