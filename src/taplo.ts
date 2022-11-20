@@ -13,6 +13,11 @@ const verboseOption: Fig.Option = {
   description: "Enable verbose logging format",
 };
 
+const logSpansOption: Fig.Option = {
+  name: "--log-spans",
+  description: "Enable logging spans",
+};
+
 const completionSpec: Fig.Spec = {
   name: "taplo",
   description:
@@ -26,10 +31,7 @@ const completionSpec: Fig.Spec = {
           name: ["--help", "-h"],
           description: "Print help information for config",
         },
-        {
-          name: "--log-spans",
-          description: "Enable logging spans",
-        },
+        logSpansOption,
         verboseOption,
         colorOptions,
       ],
@@ -109,10 +111,7 @@ const completionSpec: Fig.Spec = {
           name: ["--help", "-h"],
           description: "Print help information for format",
         },
-        {
-          name: "--log-spans",
-          description: "Enable logging spans",
-        },
+        logSpansOption,
         {
           name: "--no-auto-config",
           description: "Do not search for a configuration file",
@@ -159,10 +158,7 @@ const completionSpec: Fig.Spec = {
           name: ["--help", "-h"],
           description: "Print help information for get",
         },
-        {
-          name: "--log-spans",
-          description: "Enable logging spans",
-        },
+        logSpansOption,
         {
           name: ["-o", "--output-format"],
           description: "The format specifying how the output is printed",
@@ -222,10 +218,7 @@ const completionSpec: Fig.Spec = {
           name: ["--help", "-h"],
           description: "Print help information for lint",
         },
-        {
-          name: "--log-spans",
-          description: "Enable logging spans",
-        },
+        logSpansOption,
         {
           name: "--no-schema",
           description: "Disable all schema validation",
@@ -254,7 +247,32 @@ const completionSpec: Fig.Spec = {
     {
       name: "lsp",
       description: "Language server operations",
+      subcommands: [
+        {
+          name: "help",
+          description: "Print help information for lsp",
+        },
+        {
+          name: "stdio",
+          description:
+            "Run the language server over the standard input and output",
+        },
+        {
+          name: "tcp",
+          description: "Run the language server and listen on a TCP address",
+        },
+      ],
+      options: [
+        colorOptions,
+        {
+          name: ["--help", "-h"],
+          description: "Print help information for lsp",
+        },
+        logSpansOption,
+        verboseOption,
+      ],
     },
+
     {
       name: "check",
       description:
@@ -294,10 +312,7 @@ const completionSpec: Fig.Spec = {
         "[default: auto] [possible values: auto, always, never]",
       ],
     },
-    {
-      name: "--log-spans",
-      description: "Enable logging of spans",
-    },
+    logSpansOption,
   ],
   // Only uncomment if taplo takes an argument
   // args: {}
