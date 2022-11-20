@@ -4,7 +4,7 @@ const completionSpec: Fig.Spec = {
     "Tool for validation, formatting, and querying TOML documents with a jq-like fashion",
   subcommands: [
     {
-      name: "config",
+      name: ["config", "cfg"],
       description: "Operations with the Taplo config file",
       options: [
         {
@@ -47,7 +47,8 @@ const completionSpec: Fig.Spec = {
     },
 
     {
-      name: "format",
+      name: ["format", "fmt"],
+
       description: "Format TOML documents",
 
       args: {
@@ -57,6 +58,93 @@ const completionSpec: Fig.Spec = {
         suggestCurrentToken: true,
         isOptional: true,
       },
+      options: [
+        {
+          name: ["--config", "-c"],
+          description: "Path to the Taplo configuration file",
+          args: {
+            name: "CONFIG",
+            template: "filepaths",
+            suggestCurrentToken: true,
+          },
+        },
+        {
+          name: "--cache-path",
+          description: "Set a cache path",
+          args: {
+            name: "CACHE_PATH",
+            template: "filepaths",
+            suggestCurrentToken: true,
+          },
+        },
+        {
+          name: "--check",
+          description: "Report any files that are not correctly formatted",
+          args: {
+            name: "CACHE_PATH",
+            template: "filepaths",
+            suggestCurrentToken: true,
+            isOptional: true,
+          },
+        },
+        {
+          name: "--colors",
+          args: {
+            name: "COLORS",
+            default: "auto",
+            suggestions: ["auto", "always", "never"],
+          },
+        },
+        {
+          name: "--diff",
+          description: "Print the differences in patch formatting to `stdout`",
+        },
+        {
+          name: ["f", "--force"],
+          description: "Force formatting of files",
+          args: {
+            name: "FILES ...",
+            template: "filepaths",
+            suggestCurrentToken: true,
+            isOptional: true,
+          },
+        },
+        {
+          name: ["--help", "-h"],
+          description: "Print help information for format",
+        },
+        {
+          name: "--log-spans",
+          description: "Enable logging spans",
+        },
+        {
+          name: "--no-auto-config",
+          description: "Do not search for a configuration file",
+        },
+        {
+          name: ["--option", "-o"],
+          description:
+            "A formatter option given as a 'key=value', can be set multiple times",
+          args: {
+            name: "OPTIONS",
+            suggestions: ["indent_tables=true", "indent_tables=false"],
+          },
+        },
+        {
+          name: "--stdin-filepath",
+          description:
+            "A path to the file that the taplo will treat like stdin",
+          args: {
+            name: "STDIN_FILEPATH",
+            template: "filepaths",
+            suggestCurrentToken: true,
+          },
+        },
+        {
+          name: "--verbose",
+          description: "Enable verbose logging format",
+        },
+      ],
     },
 
     {
@@ -99,34 +187,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "URL",
             template: "history",
-          },
-        },
-      ],
-    },
-    {
-      name: "fmt",
-      description: "Format files in-place or via standard i/o",
-      args: {
-        name: "file",
-        description: "The TOML file to validate",
-        template: "filepaths",
-        suggestCurrentToken: true,
-        isOptional: true,
-      },
-      options: [
-        {
-          name: "--option",
-          description: "Formatter options are read from the configuration file",
-          args: {
-            suggestions: ["indent_tables=true", "indent_tables=false"],
-          },
-        },
-        {
-          name: "--check",
-          description:
-            "Check whether the given files are properly formatted. When this flag is supplied, no formatting will be done",
-          args: {
-            suggestions: ["indent_tables=true", "indent_tables=false"],
           },
         },
       ],
