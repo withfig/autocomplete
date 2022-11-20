@@ -184,16 +184,73 @@ const completionSpec: Fig.Spec = {
       name: "help",
       description: "Print help information for taplo",
     },
+
     {
       name: "lint",
       description: "Lint a TOML documents",
       args: {
-        name: "TOML file",
+        name: "FILES ...",
         template: "filepaths",
         suggestCurrentToken: true,
         isOptional: true,
       },
+      options: [
+        {
+          name: ["--config", "-c"],
+          description: "Path to the Taplo configuration file",
+          args: {
+            name: "CONFIG",
+            template: "filepaths",
+            suggestCurrentToken: true,
+          },
+        },
+        {
+          name: "--cache-path",
+          description: "Set a cache path",
+          args: {
+            name: "CACHE_PATH",
+            template: "filepaths",
+            suggestCurrentToken: true,
+          },
+        },
+        colorOptions,
+        {
+          name: "--default-schema-catalogs",
+          description: "Use the default online catalogs for schemas",
+        },
+        {
+          name: ["--help", "-h"],
+          description: "Print help information for lint",
+        },
+        {
+          name: "--log-spans",
+          description: "Enable logging spans",
+        },
+        {
+          name: "--no-schema",
+          description: "Disable all schema validation",
+        },
+        {
+          name: "--schema",
+          description: "URL to the schema to be used for validation",
+          args: {
+            name: "SCHEMA",
+            template: "history",
+          },
+        },
+        {
+          name: "--schema-catalog",
+          description: "URL to the schema catalog to be used for validation",
+          isRepeatable: true,
+          args: {
+            name: "SCHEMA_CATALOG",
+            template: "history",
+          },
+        },
+        verboseOption,
+      ],
     },
+
     {
       name: "lsp",
       description: "Language server operations",
