@@ -182,7 +182,7 @@ const completionSpec: Fig.Spec = {
     },
 
     {
-      name: "lint",
+      name: ["lint", "check", "validate"],
       description: "Lint a TOML documents",
       args: {
         name: "FILES ...",
@@ -270,29 +270,6 @@ const completionSpec: Fig.Spec = {
         },
         logSpansOption,
         verboseOption,
-      ],
-    },
-
-    {
-      name: "check",
-      description:
-        "Validate a TOML file , by default looks for syntax and semantic errors",
-      args: {
-        name: "file",
-        description: "The TOML file to validate",
-        template: "filepaths",
-        suggestCurrentToken: true,
-        isOptional: true,
-      },
-      options: [
-        {
-          name: "--schema",
-          description: "The JSON schema to validate against",
-          args: {
-            name: "URL",
-            template: "history",
-          },
-        },
       ],
     },
   ],
