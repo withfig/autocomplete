@@ -176,6 +176,113 @@ const completionSpec: Fig.Spec = {
         ],
       },
     },
+    {
+      name: ["--ignore-failure", "-i"],
+      description: "Ignore non-zero exit codes of the benchmarked commands",
+      args: {
+        name: "CMD ...",
+        isVariadic: true,
+      },
+    },
+    {
+      name: ["--time-unit", "-u"],
+      description: "Set the time unit to use for the benchmark results",
+      args: {
+        name: "UNIT",
+        suggestions: ["millisecond", "second"],
+        default: "second",
+      },
+    },
+    {
+      name: "--export-asciidoc",
+      description:
+        "Export the timing summary statistics as an AsciiDoc table to the given file",
+      args: [
+        {
+          name: "FILE",
+          template: "filepaths",
+        },
+        {
+          name: "CMD ...",
+          isVariadic: true,
+        },
+      ],
+    },
+    {
+      name: "--export-csv",
+      description:
+        "Export the timing summary statistics as CSV to the given file",
+      args: [
+        {
+          name: "FILE",
+          template: "filepaths",
+        },
+        {
+          name: "CMD ...",
+          isVariadic: true,
+        },
+      ],
+    },
+    {
+      name: "--export-json",
+      description:
+        "Export the timing summary statistics and timings of individual runs as JSON to the given file",
+      args: [
+        {
+          name: "FILE",
+          template: "filepaths",
+        },
+        {
+          name: "CMD ...",
+          isVariadic: true,
+        },
+      ],
+    },
+    {
+      name: "--export-markdown",
+      description:
+        "Export the timing summary statistics as a Markdown table to the given file",
+      args: [
+        {
+          name: "FILE",
+          template: "filepaths",
+        },
+        {
+          name: "CMD ...",
+          isVariadic: true,
+        },
+      ],
+    },
+    {
+      name: "--show-output",
+      description:
+        "Print the stdout and stderr of the benchmark instead of suppressing it",
+      args: {
+        name: "CMD ...",
+        isVariadic: true,
+      },
+    },
+    {
+      name: "--command-name",
+      description: "Identify a command with the given name",
+      args: [
+        {
+          name: "NAME",
+        },
+        {
+          name: "CMD ...",
+          isVariadic: true,
+        },
+      ],
+    },
+    {
+      name: "--help",
+      description: "Prints help message",
+    },
+    {
+      name: "--version",
+      description: "Shows version information",
+    },
   ],
   // Only uncomment if hyperfine takes an argument
   args: {
