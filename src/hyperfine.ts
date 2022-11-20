@@ -113,6 +113,69 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "--style",
+      description: "Set output style type",
+      args: {
+        name: "STYLE",
+        suggestions: [
+          {
+            name: "basic",
+            description: "Disable output coloring and interactive elements",
+          },
+          {
+            name: "full",
+            description:
+              "Enable all effects even if no interactive terminal was detected",
+          },
+          {
+            name: "nocolor",
+            description: "Keep the interactive output without any colors",
+          },
+          {
+            name: "color",
+            description: "Keep the colors without any interactive output",
+          },
+          {
+            name: "none",
+            description: "Disable all the output of the tool",
+          },
+        ],
+      },
+    },
+    {
+      name: ["--shell", "-S"],
+      description: "Set the shell to use for executing benchmarked commands",
+      args: {
+        name: "SHELL",
+        suggestions: [
+          {
+            name: "bash",
+            description: "Use bash as the shell",
+          },
+          {
+            name: "zsh",
+            description: "Use zsh as the shell",
+          },
+          {
+            name: "sh",
+            description: "Use sh as the shell",
+          },
+          {
+            name: "fish",
+            description: "Use fish as the shell",
+          },
+          {
+            name: "pwsh",
+            description: "Use pwsh as the shell",
+          },
+          {
+            name: "powershell",
+            description: "Use powershell as the shell",
+          },
+        ],
+      },
+    },
   ],
   // Only uncomment if hyperfine takes an argument
   args: {
