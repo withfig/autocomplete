@@ -1,3 +1,18 @@
+const colorOptions: Fig.Option = {
+  name: "--colors",
+  args: {
+    name: "COLORS",
+    default: "auto",
+    suggestions: ["auto", "always", "never"],
+  },
+  description: "Set color values for the output",
+};
+
+const verboseOption: Fig.Option = {
+  name: "--verbose",
+  description: "Enable verbose logging format",
+};
+
 const completionSpec: Fig.Spec = {
   name: "taplo",
   description:
@@ -8,14 +23,6 @@ const completionSpec: Fig.Spec = {
       description: "Operations with the Taplo config file",
       options: [
         {
-          name: "--colors",
-          args: {
-            name: "COLORS",
-            default: "auto",
-            suggestions: ["auto", "always", "never"],
-          },
-        },
-        {
           name: ["--help", "-h"],
           description: "Print help information for config",
         },
@@ -23,10 +30,8 @@ const completionSpec: Fig.Spec = {
           name: "--log-spans",
           description: "Enable logging spans",
         },
-        {
-          name: "--verbose",
-          description: "Enable verbose logging format",
-        },
+        verboseOption,
+        colorOptions,
       ],
       subcommands: [
         {
@@ -48,9 +53,7 @@ const completionSpec: Fig.Spec = {
 
     {
       name: ["format", "fmt"],
-
       description: "Format TOML documents",
-
       args: {
         name: "FILES ...",
         description: "Paths or glob patterns to TOML documents",
@@ -87,14 +90,7 @@ const completionSpec: Fig.Spec = {
             isOptional: true,
           },
         },
-        {
-          name: "--colors",
-          args: {
-            name: "COLORS",
-            default: "auto",
-            suggestions: ["auto", "always", "never"],
-          },
-        },
+        colorOptions,
         {
           name: "--diff",
           description: "Print the differences in patch formatting to `stdout`",
@@ -140,17 +136,50 @@ const completionSpec: Fig.Spec = {
             suggestCurrentToken: true,
           },
         },
-        {
-          name: "--verbose",
-          description: "Enable verbose logging format",
-        },
+        verboseOption,
       ],
     },
 
     {
       name: "get",
       description: "Extract a value from the given TOML document",
+      options: [
+        {
+          name: ["--file-path", "-f"],
+          description: "Path to the TOML document",
+          args: {
+            name: "FILE_PATH",
+            template: "filepaths",
+            suggestCurrentToken: true,
+          },
+          isRequired: true,
+        },
+        colorOptions,
+        {
+          name: ["--help", "-h"],
+          description: "Print help information for get",
+        },
+        {
+          name: "--log-spans",
+          description: "Enable logging spans",
+        },
+        {
+          name: ["-o", "--output-format"],
+          description: "The format specifying how the output is printed",
+          args: {
+            name: "OUTPUT_FORMAT",
+            default: "value",
+            suggestions: ["value", "json", "toml"],
+          },
+        },
+        {
+          name: ["--strip-newline", "-s"],
+          description: "Strip the trailing newline from the output",
+        },
+        verboseOption,
+      ],
     },
+
     {
       name: "help",
       description: "Print help information for taplo",
@@ -201,10 +230,7 @@ const completionSpec: Fig.Spec = {
       name: ["--version", "-V"],
       description: "Print version information for taplo",
     },
-    {
-      name: "--verbose",
-      description: "Enable verbose logging format",
-    },
+    verboseOption,
     {
       name: [
         "--colors <COLORS>",
