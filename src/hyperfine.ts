@@ -59,6 +59,60 @@ const completionSpec: Fig.Spec = {
         name: "CMD",
       },
     },
+    {
+      name: ["--parameter-scan", "-P"],
+      description:
+        "Perform benchmark runs for each value in the range min..max",
+      args: [
+        {
+          name: "VAR",
+        },
+        {
+          name: "MIN",
+        },
+        {
+          name: "MAX",
+        },
+
+        {
+          name: "CMD",
+          description: "Command to benchmark",
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: ["--parameter-step-size", "-D"],
+      description:
+        "This argument requires --parameter-scan to be specified as well. Traverse the range min..max in steps of delta",
+      args: [
+        {
+          name: "delta",
+        },
+        {
+          name: "CMD",
+          description: "Command to benchmark",
+        },
+      ],
+      dependsOn: ["--parameter-scan", "-P"],
+    },
+    {
+      name: ["--parameter-list", "-L"],
+      description:
+        "Perform benchmark runs for each value in the comma-separated list of values",
+      args: [
+        {
+          name: "VAR",
+        },
+        {
+          name: "VALS",
+        },
+        {
+          name: "CMD",
+          description: "Command to benchmark",
+        },
+      ],
+    },
   ],
   // Only uncomment if hyperfine takes an argument
   args: {
