@@ -140,7 +140,6 @@ function getRecipeSuggestions(
 function getRecipeUsage(recipe: Recipe): string {
   const parts = [recipe.name];
   for (const parameter of recipe.parameters) {
-    // Fig sanitizes things like "<NAME>", so this has to be encoded
     if (parameter.kind === "singular") {
       parts.push(`<${parameter.name}>`);
     } else if (parameter.kind === "plus") {
