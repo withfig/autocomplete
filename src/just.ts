@@ -142,9 +142,9 @@ function getRecipeUsage(recipe: Recipe): string {
   for (const parameter of recipe.parameters) {
     // Fig sanitizes things like "<NAME>", so this has to be encoded
     if (parameter.kind === "singular") {
-      parts.push(`&lt;${parameter.name}&gt;`);
+      parts.push(`<${parameter.name}>`);
     } else if (parameter.kind === "plus") {
-      parts.push(`&lt;${parameter.name}...&gt;`);
+      parts.push(`<${parameter.name}...>`);
     } else if (parameter.kind === "star") {
       parts.push(`[${parameter.name}...]`);
     } else {

@@ -458,12 +458,12 @@ const completionSpec: Fig.Spec = {
         name: "pattern",
         suggestions: [
           {
-            name: "name:&lt;pattern&gt;",
+            name: "name:<pattern>",
             insertValue: "name:{cursor}",
             type: "option",
           },
           {
-            name: "tag:&lt;pattern&gt;",
+            name: "tag:<pattern>",
             insertValue: "tag:{cursor}",
             type: "option",
           },
@@ -504,12 +504,12 @@ const completionSpec: Fig.Spec = {
             type: "option",
           },
           {
-            name: "name:&lt;pattern&gt;",
+            name: "name:<pattern>",
             insertValue: "name:{cursor}",
             type: "option",
           },
           {
-            name: "tag:&lt;pattern&gt;",
+            name: "tag:<pattern>",
             insertValue: "tag:{cursor}",
             type: "option",
           },
@@ -538,12 +538,12 @@ const completionSpec: Fig.Spec = {
             type: "option",
           },
           {
-            name: "name:&lt;pattern&gt;",
+            name: "name:<pattern>",
             insertValue: "name:{cursor}",
             type: "option",
           },
           {
-            name: "tag:&lt;pattern&gt;",
+            name: "tag:<pattern>",
             insertValue: "tag:{cursor}",
             type: "option",
           },

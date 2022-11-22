@@ -166,7 +166,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--industry-type",
           description:
-            "The industry type for the workload. If specified, must be one of the following:    Agriculture     Automobile     Defense     Design and Engineering     Digital Advertising     Education     Environmental Protection     Financial Services     Gaming     General Public Services     Healthcare     Hospitality     InfoTech     Justice and Public Safety     Life Sciences     Manufacturing     Media &amp; Entertainment     Mining &amp; Resources     Oil &amp; Gas     Power &amp; Utilities     Professional Services     Real Estate &amp; Construction     Retail &amp; Wholesale     Social Protection     Telecommunications     Travel, Transportation &amp; Logistics     Other",
+            "The industry type for the workload. If specified, must be one of the following:    Agriculture     Automobile     Defense     Design and Engineering     Digital Advertising     Education     Environmental Protection     Financial Services     Gaming     General Public Services     Healthcare     Hospitality     InfoTech     Justice and Public Safety     Life Sciences     Manufacturing     Media & Entertainment     Mining & Resources     Oil & Gas     Power & Utilities     Professional Services     Real Estate & Construction     Retail & Wholesale     Social Protection     Telecommunications     Travel, Transportation & Logistics     Other",
           args: {
             name: "string",
           },
@@ -1493,7 +1493,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--industry-type",
           description:
-            "The industry type for the workload. If specified, must be one of the following:    Agriculture     Automobile     Defense     Design and Engineering     Digital Advertising     Education     Environmental Protection     Financial Services     Gaming     General Public Services     Healthcare     Hospitality     InfoTech     Justice and Public Safety     Life Sciences     Manufacturing     Media &amp; Entertainment     Mining &amp; Resources     Oil &amp; Gas     Power &amp; Utilities     Professional Services     Real Estate &amp; Construction     Retail &amp; Wholesale     Social Protection     Telecommunications     Travel, Transportation &amp; Logistics     Other",
+            "The industry type for the workload. If specified, must be one of the following:    Agriculture     Automobile     Defense     Design and Engineering     Digital Advertising     Education     Environmental Protection     Financial Services     Gaming     General Public Services     Healthcare     Hospitality     InfoTech     Justice and Public Safety     Life Sciences     Manufacturing     Media & Entertainment     Mining & Resources     Oil & Gas     Power & Utilities     Professional Services     Real Estate & Construction     Retail & Wholesale     Social Protection     Telecommunications     Travel, Transportation & Logistics     Other",
           args: {
             name: "string",
           },

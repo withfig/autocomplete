@@ -7816,7 +7816,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--theme",
               description:
-                "Create files in the active theme directory. Specify a theme with --theme=&lt;theme&gt; to have the file placed in that theme",
+                "Create files in the active theme directory. Specify a theme with --theme=<theme> to have the file placed in that theme",
             },
             {
               name: "--plugin",
@@ -8030,7 +8030,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--theme",
               description:
-                "Create a file in the active theme directory, instead of sending to STDOUT. Specify a theme with --theme=&lt;theme&gt; to have the file placed in that theme",
+                "Create a file in the active theme directory, instead of sending to STDOUT. Specify a theme with --theme=<theme> to have the file placed in that theme",
             },
             {
               name: "--plugin",
@@ -8079,7 +8079,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--theme",
               description:
-                "Create a file in the active theme directory, instead of sending to STDOUT. Specify a theme with --theme=&lt;theme&gt; to have the file placed in that theme",
+                "Create a file in the active theme directory, instead of sending to STDOUT. Specify a theme with --theme=<theme> to have the file placed in that theme",
             },
             {
               name: "--plugin",
