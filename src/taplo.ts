@@ -44,6 +44,9 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description:
             "Print this message or the help of the given subcommand(s)",
+          args: {
+            template: "help",
+          },
         },
         {
           name: "schema",
@@ -62,6 +65,7 @@ const completionSpec: Fig.Spec = {
         template: "filepaths",
         suggestCurrentToken: true,
         isOptional: true,
+        isVariadic: true,
       },
       options: [
         {
@@ -104,6 +108,7 @@ const completionSpec: Fig.Spec = {
             name: "FILES ...",
             template: "filepaths",
             suggestCurrentToken: true,
+            isVariadic: true,
             isOptional: true,
           },
         },
@@ -187,6 +192,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "FILES ...",
         template: "filepaths",
+        isVariadic: true,
         suggestCurrentToken: true,
         isOptional: true,
       },
@@ -284,10 +290,10 @@ const completionSpec: Fig.Spec = {
     },
     verboseOption,
     {
-      name: [
-        "--colors <COLORS>",
-        "[default: auto] [possible values: auto, always, never]",
-      ],
+      name: "--colors",
+      args: {
+        suggestions: ["auto", "always", "never"],
+      },
     },
     logSpansOption,
   ],
