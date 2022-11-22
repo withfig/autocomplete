@@ -4,7 +4,7 @@ const completion: Fig.Spec = {
   options: [
     {
       name: ["-s", "--store"],
-      description: "Store the current directory as a bookmark STORE",
+      description: "Store the current directory as a bookmark",
       isRepeatable: true,
       args: {
         name: "store",
@@ -13,7 +13,7 @@ const completion: Fig.Spec = {
     },
     {
       name: ["-r", "--remove"],
-      description: "Remove a specified bookmark REMOVE",
+      description: "Remove a specified bookmark",
       isRepeatable: true,
       args: {
         name: "remove",
