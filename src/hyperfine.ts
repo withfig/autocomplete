@@ -284,7 +284,6 @@ const completionSpec: Fig.Spec = {
       description: "Shows version information",
     },
   ],
-  // Only uncomment if hyperfine takes an argument
   args: {
     name: "CMD",
     description: "Command to benchmark",
