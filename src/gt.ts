@@ -1,46 +1,3 @@
-const defaultOptions = [
-  {
-    name: "--version",
-    description: "Show Graphite CLI version",
-    priority: 0,
-  },
-  {
-    name: ["--help", "-h"],
-    description: "Show help for Graphite CLI",
-    priority: 20,
-  },
-  {
-    name: "--interactive",
-    description: "Prompt the user. Disable with --no-interactive",
-    priority: 10,
-  },
-  {
-    name: "--no-interactive",
-    description: "Run non interactive",
-    priority: 10,
-  },
-  {
-    name: ["--quiet", "-q"],
-    description: "Minimize output to the terminal",
-    priority: 10,
-  },
-  {
-    name: "--verify",
-    description: "Run git hooks. Disable with --no-verify",
-    priority: 10,
-  },
-  {
-    name: "--no-verify",
-    description: "Disable git hooks",
-    priority: 10,
-  },
-  {
-    name: "--debug",
-    description: "Display debug output",
-    priority: 10,
-  },
-];
-
 const submitOptions = [
   {
     name: ["--draft", "-d"],
@@ -95,20 +52,17 @@ const completionSpec: Fig.Spec = {
       name: "auth",
       description:
         "Add your auth token to enable Graphite CLI to create and update your PRs on GitHub",
-      options: defaultOptions,
       priority: 50,
     },
     {
       name: ["branch", "b"],
       description: "Commands that operate on your current branch",
-      options: defaultOptions,
       requiresSubcommand: true,
       subcommands: [
         {
           name: ["bottom", "b"],
           description:
             "Switch to the first branch from trunk in the current stack",
-          options: defaultOptions,
         },
         {
           name: ["checkout", "co"],
@@ -120,7 +74,6 @@ const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           options: [
-            ...defaultOptions,
             {
               name: ["--show-untracked", "-u"],
               description:
@@ -138,7 +91,6 @@ const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           options: [
-            ...defaultOptions,
             {
               name: ["--message", "-m"],
               description:
@@ -173,7 +125,6 @@ const completionSpec: Fig.Spec = {
             description: "Branch name",
           },
           options: [
-            ...defaultOptions,
             {
               name: ["--force", "-f"],
               description:
@@ -191,7 +142,6 @@ const completionSpec: Fig.Spec = {
             default: "1",
           },
           options: [
-            ...defaultOptions,
             {
               name: ["--steps", "-n"],
               description: "The number of levels to traverse downstack",
@@ -206,14 +156,12 @@ const completionSpec: Fig.Spec = {
           name: ["edit", "e"],
           description:
             "Run an interactive rebase on the current branch's commits and restack upstack branches",
-          options: defaultOptions,
         },
         {
           name: ["fold", "f"],
           description:
             "Fold a branch's changes into its parent, update dependencies of descendants of the new combined branch, and restack",
           options: [
-            ...defaultOptions,
             {
               name: ["--keep", "-k"],
               description:
@@ -225,7 +173,6 @@ const completionSpec: Fig.Spec = {
           name: ["info", "i"],
           description: "Display information about the current branch",
           options: [
-            ...defaultOptions,
             {
               name: ["--patch", "-p"],
               description: "Show the changes made by each commit",
@@ -250,7 +197,6 @@ const completionSpec: Fig.Spec = {
             description: "Branch name",
           },
           options: [
-            ...defaultOptions,
             {
               name: ["--force", "-f"],
               description:
@@ -262,14 +208,12 @@ const completionSpec: Fig.Spec = {
           name: ["restack", "r"],
           description:
             "Ensure the current branch is based on its parent, rebasing if necessary",
-          options: defaultOptions,
         },
         {
           name: ["split", "sp"],
           description:
             "Split the current branch into multiple single-commit branches",
           options: [
-            ...defaultOptions,
             {
               name: ["--by-commit", "--commit", "-c"],
               description:
@@ -287,7 +231,6 @@ const completionSpec: Fig.Spec = {
           description:
             "Squash all commits in the current branch and restack upstack branches",
           options: [
-            ...defaultOptions,
             {
               name: ["--message", "-m"],
               description: "The updated message for the commit",
@@ -311,13 +254,12 @@ const completionSpec: Fig.Spec = {
           name: ["submit", "s"],
           description:
             "Idempotently force push the current branch to GitHub, creating or updating a pull request",
-          options: [...defaultOptions, ...submitOptions],
+          options: submitOptions,
         },
         {
           name: ["top", "t"],
           description:
             "Switch to the tip branch of the current stack. Prompts if ambiguous",
-          options: defaultOptions,
         },
         {
           name: ["track", "tr"],
@@ -328,7 +270,6 @@ const completionSpec: Fig.Spec = {
             description: "Branch name",
           },
           options: [
-            ...defaultOptions,
             {
               name: ["--parent", "-p"],
               description:
@@ -354,7 +295,6 @@ const completionSpec: Fig.Spec = {
             description: "Branch name",
           },
           options: [
-            ...defaultOptions,
             {
               name: ["--force", "-f"],
               description:
@@ -373,7 +313,6 @@ const completionSpec: Fig.Spec = {
             default: "1",
           },
           options: [
-            ...defaultOptions,
             {
               name: ["--steps", "-n"],
               description: "The number of levels to traverse upstack",
@@ -389,13 +328,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "changelog",
       description: "Show the Graphite CLI changelog",
-      options: defaultOptions,
       priority: 50,
     },
     {
       name: ["commit", "c"],
       description: "Commands that operate on commits",
-      options: defaultOptions,
       requiresSubcommand: true,
       subcommands: [
         {
@@ -403,7 +340,6 @@ const completionSpec: Fig.Spec = {
           description:
             "Amend the most recent commit and restack upstack branches",
           options: [
-            ...defaultOptions,
             {
               name: ["--all", "-a"],
               description: "Stage all changes before committing",
@@ -434,7 +370,6 @@ const completionSpec: Fig.Spec = {
           name: ["create", "c"],
           description: "Create a new commit and restack upstack branches",
           options: [
-            ...defaultOptions,
             {
               name: ["--all", "-a"],
               description: "Stage all changes before committing",
@@ -463,7 +398,6 @@ const completionSpec: Fig.Spec = {
       description:
         "Continues the most recent Graphite command halted by a merge conflict",
       options: [
-        ...defaultOptions,
         {
           name: ["--all", "-a"],
           description: "Stage all changes before continuing",
@@ -473,7 +407,6 @@ const completionSpec: Fig.Spec = {
     {
       name: ["dash", "d"],
       description: "Open the web dashboard",
-      options: defaultOptions,
       subcommands: [
         {
           name: "d",
@@ -493,19 +426,16 @@ const completionSpec: Fig.Spec = {
     {
       name: "docs",
       description: "Show the Graphite CLI docs",
-      options: defaultOptions,
     },
     {
       name: ["downstack", "ds"],
       description: "Commands that operate on a branch and its ancestors",
       requiresSubcommand: true,
-      options: defaultOptions,
       subcommands: [
         {
           name: ["edit", "e"],
           description:
             "Edit the order of the branches between trunk and the current branch, restacking all of their descendants",
-          options: defaultOptions,
         },
         {
           name: ["get", "g"],
@@ -517,7 +447,6 @@ const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           options: [
-            ...defaultOptions,
             {
               name: ["--force", "-f"],
               description:
@@ -529,13 +458,12 @@ const completionSpec: Fig.Spec = {
           name: ["restack", "r"],
           description:
             "From trunk to the current branch, ensure each is based on its parent, rebasing if necessary",
-          options: defaultOptions,
         },
         {
           name: ["submit", "s"],
           description:
             "Idempotently force push all branches from trunk to the current branch to GitHub, creating or updating distinct pull requests for each",
-          options: [...defaultOptions, ...submitOptions],
+          options: submitOptions,
         },
         {
           name: ["test", "t"],
@@ -545,7 +473,6 @@ const completionSpec: Fig.Spec = {
             name: "command",
           },
           options: [
-            ...defaultOptions,
             {
               name: ["--trunk", "-t"],
               description:
@@ -563,7 +490,6 @@ const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           options: [
-            ...defaultOptions,
             {
               name: ["--force", "-f"],
               description:
@@ -583,7 +509,6 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
       },
       options: [
-        ...defaultOptions,
         {
           name: "--with-debug-context",
           description:
@@ -596,7 +521,6 @@ const completionSpec: Fig.Spec = {
           description:
             "Print a debug summary of your repo. Useful for creating bug report details",
           options: [
-            ...defaultOptions,
             {
               name: ["--recreate", "-r"],
               description:
@@ -621,7 +545,6 @@ const completionSpec: Fig.Spec = {
       name: ["log", "l"],
       description: "Commands that log your stacks",
       options: [
-        ...defaultOptions,
         {
           name: ["--reverse", "-r"],
           description:
@@ -667,14 +590,12 @@ const completionSpec: Fig.Spec = {
       name: ["repo", "r"],
       description:
         "Read or write Graphite's configuration settings for the current repo",
-      options: defaultOptions,
       requiresSubcommand: true,
       subcommands: [
         {
           name: ["init", "i"],
           description: "Create or regenerate a `.graphite_repo_config` file",
           options: [
-            ...defaultOptions,
             {
               name: "--trunk",
               description: "The name of your trunk branch",
@@ -692,7 +613,6 @@ const completionSpec: Fig.Spec = {
           name: "name",
           description: "The current repo's name stored in Graphite",
           options: [
-            ...defaultOptions,
             {
               name: ["--set", "-s"],
               description:
@@ -707,7 +627,6 @@ const completionSpec: Fig.Spec = {
           name: "owner",
           description: "The current repo owner's name stored in Graphite",
           options: [
-            ...defaultOptions,
             {
               name: ["--set", "-s"],
               description:
@@ -722,14 +641,12 @@ const completionSpec: Fig.Spec = {
           name: "pr-templates",
           description:
             "A list of your GitHub PR templates. These are used to pre-fill the bodies of your PRs created using the submit command",
-          options: defaultOptions,
         },
         {
           name: "remote",
           description:
             "Specifies the remote that graphite pushes to/pulls from (defaults to 'origin')",
           options: [
-            ...defaultOptions,
             {
               name: ["--set", "-s"],
               description:
@@ -745,7 +662,6 @@ const completionSpec: Fig.Spec = {
           description:
             "Pull the trunk branch from remote and delete any branches that have been merged",
           options: [
-            ...defaultOptions,
             {
               name: ["--pull", "-p"],
               description: "Pull the trunk branch from remote",
@@ -775,20 +691,18 @@ const completionSpec: Fig.Spec = {
     {
       name: ["stack", "s"],
       description: "Commands that operate on your current stack of branches",
-      options: defaultOptions,
       requiresSubcommand: true,
       subcommands: [
         {
           name: ["restack", "r", "fix", "f"],
           description:
             "Ensure each branch in the current stack is based on its parent, rebasing if necessary",
-          options: defaultOptions,
         },
         {
           name: ["submit", "s"],
           description:
             "Idempotently force push all branches in the current stack to GitHub, creating or updating distinct pull requests for each",
-          options: [...defaultOptions, ...submitOptions],
+          options: submitOptions,
         },
         {
           name: ["test", "t"],
@@ -798,7 +712,6 @@ const completionSpec: Fig.Spec = {
             name: "command",
           },
           options: [
-            ...defaultOptions,
             {
               name: ["--trunk", "-t"],
               description:
@@ -811,7 +724,6 @@ const completionSpec: Fig.Spec = {
     {
       name: ["upstack", "us"],
       description: "Commands that operate on a branch and its descendants",
-      options: defaultOptions,
       requiresSubcommand: true,
       subcommands: [
         {
@@ -823,19 +735,17 @@ const completionSpec: Fig.Spec = {
             description: "Name of branch",
             isOptional: true,
           },
-          options: defaultOptions,
         },
         {
           name: ["restack", "r", "fix", "f"],
           description:
             "Ensure each branch in the current stack is based on its parent, rebasing if necessary",
-          options: defaultOptions,
         },
         {
           name: ["submit", "s"],
           description:
             "Idempotently force push all branches in the current stack to GitHub, creating or updating distinct pull requests for each",
-          options: [...defaultOptions, ...submitOptions],
+          options: submitOptions,
         },
         {
           name: ["test", "t"],
@@ -845,7 +755,6 @@ const completionSpec: Fig.Spec = {
             name: "command",
           },
           options: [
-            ...defaultOptions,
             {
               name: ["--trunk", "-t"],
               description:
@@ -858,7 +767,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "user",
       description: "Read or write Graphite's user configuration settings",
-      options: defaultOptions,
       requiresSubcommand: true,
       subcommands: [
         {
@@ -866,7 +774,6 @@ const completionSpec: Fig.Spec = {
           description:
             "Toggle prepending date to auto-generated branch names on branch creation",
           options: [
-            ...defaultOptions,
             {
               name: "--enable",
               description: "Enable date in auto-generated branch names",
@@ -882,7 +789,6 @@ const completionSpec: Fig.Spec = {
           description:
             "The prefix which Graphite will prepend to generated branch names",
           options: [
-            ...defaultOptions,
             {
               name: ["--set", "-s"],
               description: "Set a new prefix for branch names",
@@ -902,7 +808,6 @@ const completionSpec: Fig.Spec = {
           description:
             "The character that will replace unsupported characters in generated branch names",
           options: [
-            ...defaultOptions,
             {
               name: "--set-underscore",
               description: "Use underscore (_) as the replacement character",
@@ -922,7 +827,6 @@ const completionSpec: Fig.Spec = {
           name: "editor",
           description: "The editor opened by Graphite",
           options: [
-            ...defaultOptions,
             {
               name: "--set",
               description: "Set default editor for Graphite. eg --set vim",
@@ -942,7 +846,6 @@ const completionSpec: Fig.Spec = {
           name: "pager",
           description: "The pager opened by Graphite",
           options: [
-            ...defaultOptions,
             {
               name: "--set",
               description:
@@ -967,7 +870,6 @@ const completionSpec: Fig.Spec = {
           description:
             "Configure how committer date is handled by restack internal rebases",
           options: [
-            ...defaultOptions,
             {
               name: "--use-author-date",
               description:
@@ -979,7 +881,6 @@ const completionSpec: Fig.Spec = {
           name: "submit-body",
           description: "Options for default PR descriptions",
           options: [
-            ...defaultOptions,
             {
               name: "--include-commit-messages",
               description:
@@ -996,7 +897,6 @@ const completionSpec: Fig.Spec = {
           name: "tips",
           description: "Show tips while using Graphite",
           options: [
-            ...defaultOptions,
             {
               name: "--enable",
               description: "Enable tips",
@@ -1010,7 +910,56 @@ const completionSpec: Fig.Spec = {
       ],
     },
   ],
-  options: [...defaultOptions],
+  options: [
+    {
+      name: "--version",
+      description: "Show Graphite CLI version",
+      priority: 0,
+      isPersistent: true,
+    },
+    {
+      name: ["--help", "-h"],
+      description: "Show help for Graphite CLI",
+      priority: 20,
+      isPersistent: true,
+    },
+    {
+      name: "--interactive",
+      description: "Prompt the user. Disable with --no-interactive",
+      priority: 10,
+      isPersistent: true,
+    },
+    {
+      name: "--no-interactive",
+      description: "Run non interactive",
+      priority: 10,
+      isPersistent: true,
+    },
+    {
+      name: ["--quiet", "-q"],
+      description: "Minimize output to the terminal",
+      priority: 10,
+      isPersistent: true,
+    },
+    {
+      name: "--verify",
+      description: "Run git hooks. Disable with --no-verify",
+      priority: 10,
+      isPersistent: true,
+    },
+    {
+      name: "--no-verify",
+      description: "Disable git hooks",
+      priority: 10,
+      isPersistent: true,
+    },
+    {
+      name: "--debug",
+      description: "Display debug output",
+      priority: 10,
+      isPersistent: true,
+    },
+  ],
 };
 
 export default completionSpec;
