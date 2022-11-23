@@ -8546,6 +8546,108 @@ const completionSpec: Fig.Spec = {
         isVariadic: true,
       },
     },
+    {
+      name: "cat-file",
+      description:
+        "Provide content or type and size information for repository objects",
+      subcommands: [
+        {
+          name: ["blob", "tree", "commit", "tag"],
+          description:
+            'Typically this matches the real type of <object> but asking for a type that can trivially be dereferenced from the given <object> is also permitted. An example is to ask for a "tree" with <object> being a commit object that contains it, or to ask for a "blob" with <object> being a tag object that points at it',
+          args: { name: "object" },
+        },
+        {
+          name: "-e",
+          description:
+            "Exit with zero status if <object> exists and is a valid object. If <object> is of an invalid format exit with non-zero and emits an error on stderr",
+          args: { name: "object" },
+        },
+        {
+          name: "-p",
+          description:
+            "Pretty-print the contents of <object> based on its type",
+          args: { name: "object" },
+        },
+        {
+          name: "-t",
+          description:
+            "Instead of the content, show the object type identified by <object>",
+          args: { name: "object" },
+          options: [
+            {
+              name: "--allow-unknown-type",
+              description:
+                "Allow -t to query broken/corrupt objects of unknown type",
+            },
+          ],
+        },
+        {
+          name: "-s",
+          description:
+            "Instead of the content, show the object size identified by <object>",
+          args: { name: "object" },
+          options: [
+            {
+              name: "--allow-unknown-type",
+              description:
+                "Allow -s to query broken/corrupt objects of unknown type",
+            },
+          ],
+        },
+        {
+          name: "--textconv",
+          description:
+            "Show the content as transformed by a textconv filter. In this case, <object> has to be of the form <tree-ish>:<path>, or :<path> in order to apply the filter to the content recorded in the index at <path>",
+          args: { name: "object" },
+          options: [
+            {
+              name: "--path",
+              description:
+                "Allows specifying an object name and a path separately, e.g. when it is difficult to figure out the revision from which the blob came",
+              requiresSeparator: true,
+            },
+          ],
+        },
+        {
+          name: "--filters",
+          description:
+            "Show the content as converted by the filters configured in the current working tree for the given <path> (i.e. smudge filters, end-of-line conversion, etc). In this case, <object> has to be of the form <tree-ish>:<path>, or :<path>",
+          args: { name: "object" },
+          options: [
+            {
+              name: "--path",
+              description:
+                "Allows specifying an object name and a path separately, e.g. when it is difficult to figure out the revision from which the blob came",
+              requiresSeparator: true,
+            },
+          ],
+        },
+        {
+          name: "--batch",
+          description:
+            "Print object information and contents for each object provided on stdin. May not be combined with any other options or arguments except --textconv or --filters, in which case the input lines also need to specify the path, separated by whitespace",
+          // requiresSeparator: true,
+          args: {
+            name: "format",
+            description: "Format to use for the output",
+            isOptional: true,
+          },
+          // TODO: options
+        },
+        {
+          name: "--batch-check",
+          description:
+            "Print object information for each object provided on stdin. May not be combined with any other options or arguments except --textconv or --filters, in which case the input lines also need to specify the path, separated by whitespace. See the section BATCH OUTPUT below for details",
+          // requiresSeparator: true,
+          args: {
+            name: "format",
+            description: "Format to use for the output",
+            isOptional: true,
+          },
+        },
+      ],
+    },
   ],
   additionalSuggestions: [
     {
