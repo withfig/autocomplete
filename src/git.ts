@@ -310,13 +310,14 @@ export const gitGenerators: Record<string, Fig.Generator> = {
   files_for_staging: {
     script: "git --no-optional-locks status --short",
     postProcess: (out, context) => {
+      // This whole function is a mess
+
       const output = filterMessages(out);
 
       if (output.startsWith("fatal:")) {
         return [];
       }
-
-      const files = output.split("\n").map((file) => {
+      let files = output.split("\n").map((file) => {
         // From "git --no-optional-locks status --short"
         // M  dev/github.ts // test file that was added
         //  M dev/kubectl.ts // test file that was not added
@@ -359,6 +360,19 @@ export const gitGenerators: Record<string, Fig.Generator> = {
         }
       }
 
+      // Filter out the files that the user has already input in the current edit buffer
+      files = files.filter((item) => {
+        const file = item.file.replace(/^"|"$/g, "");
+        return !context.some((ctx) => {
+          return (
+            ctx === file ||
+            // Need to add support for proper globbing one day
+            (ctx.endsWith("*") && file.startsWith(ctx.slice(0, -1))) ||
+            (ctx.startsWith("*") && file.endsWith(ctx.slice(1)))
+          );
+        });
+      });
+
       return [
         ...dirArr.map((name) => {
           return {
@@ -370,7 +384,6 @@ export const gitGenerators: Record<string, Fig.Generator> = {
         ...files.map((item) => {
           const file = item.file.replace(/^"|"$/g, "");
           let ext = "";
-
           try {
             ext = file.split(".").slice(-1)[0];
           } catch (e) {}
@@ -381,10 +394,7 @@ export const gitGenerators: Record<string, Fig.Generator> = {
 
           // If the current file is already added
           // we want to lower the priority
-          const priority =
-            item.alreadyAdded || context.some((ctx) => ctx.includes(file))
-              ? 50
-              : 100;
+          const priority = item.alreadyAdded ? 50 : 100;
           return {
             name: file,
             icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
