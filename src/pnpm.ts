@@ -53,8 +53,8 @@ const FILTER_OPTION: Fig.Option = {
       "To only select packages under the specified directory, you may specify any absolute path, typically in POSIX format",
   },
   description: `Filtering allows you to restrict commands to specific subsets of packages.
-     pnpm supports a rich selector syntax for picking packages by name or by relation.
-     More details: https://pnpm.io/filtering`,
+pnpm supports a rich selector syntax for picking packages by name or by relation.
+More details: https://pnpm.io/filtering`,
 };
 
 /** Options that being appended for `pnpm i` and `add` */
@@ -76,7 +76,7 @@ const INSTALL_BASE_OPTIONS: Fig.Option[] = [
   },
   {
     name: "--reporter",
-    description: `Allows you to choose the reporter that will log debug info to the terminal about the installation progress.`,
+    description: `Allows you to choose the reporter that will log debug info to the terminal about the installation progress`,
     args: {
       name: "Reporter Type",
       suggestions: ["silent", "default", "append-only", "ndjson"],
@@ -88,8 +88,8 @@ const INSTALL_BASE_OPTIONS: Fig.Option[] = [
 const INSTALL_OPTIONS: Fig.Option[] = [
   {
     name: ["-P", "--save-prod"],
-    description: `pnpm will not install any package listed in devDependencies if the NODE_ENV environment variable is set to production.
-             Use this flag to instruct pnpm to ignore NODE_ENV and take its production status from this flag instead.`,
+    description: `Pnpm will not install any package listed in devDependencies if the NODE_ENV environment variable is set to production.
+Use this flag to instruct pnpm to ignore NODE_ENV and take its production status from this flag instead`,
   },
   {
     name: ["-D", "--save-dev"],
@@ -153,7 +153,7 @@ const INSTALL_PACKAGE_OPTIONS: Fig.Option[] = [
   {
     name: ["--ignore-workspace-root-check", "-W#"],
     description: `Adding a new dependency to the root workspace package fails, unless the --ignore-workspace-root-check or -W flag is used.
-        For instance, pnpm add debug -W.`,
+For instance, pnpm add debug -W`,
   },
   {
     name: ["--global", "-g"],
@@ -161,7 +161,7 @@ const INSTALL_PACKAGE_OPTIONS: Fig.Option[] = [
   },
   {
     name: "--workspace",
-    description: `Only adds the new dependency if it is found in the workspace.`,
+    description: `Only adds the new dependency if it is found in the workspace`,
   },
   FILTER_OPTION,
 ];
@@ -170,7 +170,7 @@ const INSTALL_PACKAGE_OPTIONS: Fig.Option[] = [
 const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
   {
     name: "add",
-    description: `Installs a package and any packages that it depends on. By default, any new package is installed as a production dependency.`,
+    description: `Installs a package and any packages that it depends on. By default, any new package is installed as a production dependency`,
     args: {
       name: "package",
       generators: npmSearchGenerator,
@@ -181,10 +181,10 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
   },
   {
     name: ["install", "i"],
-    description: `pnpm install is used to install all dependencies for a project.
-      In a CI environment, installation fails if a lockfile is present but needs an update.
-      Inside a workspace, pnpm install installs all dependencies in all the projects.
-      If you want to disable this behavior, set the recursive-install setting to false.`,
+    description: `Pnpm install is used to install all dependencies for a project.
+In a CI environment, installation fails if a lockfile is present but needs an update.
+Inside a workspace, pnpm install installs all dependencies in all the projects.
+If you want to disable this behavior, set the recursive-install setting to false`,
     async generateSpec(tokens) {
       // `pnpm i` with args is an `pnpm add` alias
       const hasArgs =
@@ -215,11 +215,12 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
   },
   {
     name: ["update", "upgrade", "up"],
-    description: `pnpm update updates packages to their latest version based on the specified range.
-      When used without arguments, updates all dependencies. You can use patterns to update specific dependencies.`,
+    description: `Pnpm update updates packages to their latest version based on the specified range.
+When used without arguments, updates all dependencies. You can use patterns to update specific dependencies`,
     args: {
       name: "Package",
       isOptional: true,
+      filterStrategy: "fuzzy",
       generators: dependenciesGenerator,
       isVariadic: true,
     },
@@ -258,16 +259,17 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       {
         name: "--workspace",
         description: `Tries to link all packages from the workspace. Versions are updated to match the versions of packages inside the workspace.
-          If specific packages are updated, the command will fail if any of the updated dependencies are not found inside the workspace. For instance, the following command fails if express is not a workspace package: pnpm up -r --workspace express`,
+If specific packages are updated, the command will fail if any of the updated dependencies are not found inside the workspace. For instance, the following command fails if express is not a workspace package: pnpm up -r --workspace express`,
       },
       FILTER_OPTION,
     ],
   },
   {
     name: ["remove", "rm", "uninstall", "un"],
-    description: `Removes packages from node_modules and from the project's package.json.`,
+    description: `Removes packages from node_modules and from the project's package.json`,
     args: {
       name: "Package",
+      filterStrategy: "fuzzy",
       generators: dependenciesGenerator,
       isVariadic: true,
     },
@@ -275,7 +277,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       {
         name: ["--recursive", "-r"],
         description: `When used inside a workspace, removes a dependency (or dependencies) from every workspace package.
-          When used not inside a workspace, removes a dependency (or dependencies) from every package found in subdirectories.`,
+When used not inside a workspace, removes a dependency (or dependencies) from every package found in subdirectories`,
       },
       {
         name: "--global",
@@ -298,10 +300,11 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
   },
   {
     name: ["link", "ln"],
-    description: `Makes the current local package accessible system-wide, or in another location.`,
+    description: `Makes the current local package accessible system-wide, or in another location`,
     args: [
       {
         name: "Package",
+        filterStrategy: "fuzzy",
         generators: dependenciesGenerator,
         isVariadic: true,
       },
@@ -310,7 +313,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
     options: [
       {
         name: ["--dir", "-C"],
-        description: `Changes the link location to <dir>.`,
+        description: `Changes the link location to <dir>`,
       },
       {
         name: "--global",
@@ -322,11 +325,12 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
   {
     name: "unlink",
     description: `Unlinks a system-wide package (inverse of pnpm link).
-      If called without arguments, all linked dependencies will be unlinked.
-      This is similar to yarn unlink, except pnpm re-installs the dependency after removing the external link.`,
+If called without arguments, all linked dependencies will be unlinked.
+This is similar to yarn unlink, except pnpm re-installs the dependency after removing the external link`,
     args: [
       {
         name: "Package",
+        filterStrategy: "fuzzy",
         generators: dependenciesGenerator,
         isVariadic: true,
       },
@@ -335,7 +339,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
     options: [
       {
         name: ["--recursive", "-r"],
-        description: `Unlink in every package found in subdirectories or in every workspace package, when executed inside a workspace.`,
+        description: `Unlink in every package found in subdirectories or in every workspace package, when executed inside a workspace`,
       },
       FILTER_OPTION,
     ],
@@ -347,10 +351,11 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
   },
   {
     name: ["rebuild", "rb"],
-    description: `Rebuild a package.`,
+    description: `Rebuild a package`,
     args: [
       {
         name: "Package",
+        filterStrategy: "fuzzy",
         generators: dependenciesGenerator,
         isVariadic: true,
       },
@@ -359,14 +364,14 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
     options: [
       {
         name: ["--recursive", "-r"],
-        description: `This command runs the pnpm rebuild command in every package of the monorepo.`,
+        description: `This command runs the pnpm rebuild command in every package of the monorepo`,
       },
       FILTER_OPTION,
     ],
   },
   {
     name: "prune",
-    description: `Removes unnecessary packages.`,
+    description: `Removes unnecessary packages`,
     options: [
       {
         name: "--prod",
@@ -400,13 +405,14 @@ const SUBCOMMANDS_RUN_SCRIPTS: Fig.Subcommand[] = [
     description: "Runs a script defined in the package's manifest file",
     args: {
       name: "Scripts",
+      filterStrategy: "fuzzy",
       generators: npmScriptsGenerator,
       isVariadic: true,
     },
     options: [
       {
         name: ["-r", "--recursive"],
-        description: `This runs an arbitrary command from each package's "scripts" object. If a package doesn't have the command, it is skipped. If none of the packages have the command, the command fails.`,
+        description: `This runs an arbitrary command from each package's "scripts" object. If a package doesn't have the command, it is skipped. If none of the packages have the command, the command fails`,
       },
       {
         name: "--if-present",
@@ -429,9 +435,10 @@ const SUBCOMMANDS_RUN_SCRIPTS: Fig.Subcommand[] = [
   {
     name: "exec",
     description: `Execute a shell command in scope of a project.
-      node_modules/.bin is added to the PATH, so pnpm exec allows executing commands of dependencies.`,
+node_modules/.bin is added to the PATH, so pnpm exec allows executing commands of dependencies`,
     args: {
       name: "Scripts",
+      filterStrategy: "fuzzy",
       generators: dependenciesGenerator,
       isVariadic: true,
     },
@@ -439,7 +446,7 @@ const SUBCOMMANDS_RUN_SCRIPTS: Fig.Subcommand[] = [
       {
         name: ["-r", "--recursive"],
         description: `Execute the shell command in every project of the workspace.
-          The name of the current package is available through the environment variable PNPM_PACKAGE_NAME (supported from pnpm v2.22.0 onwards).`,
+The name of the current package is available through the environment variable PNPM_PACKAGE_NAME (supported from pnpm v2.22.0 onwards)`,
       },
       {
         name: "--parallel",
@@ -452,12 +459,12 @@ const SUBCOMMANDS_RUN_SCRIPTS: Fig.Subcommand[] = [
   {
     name: ["test", "t", "tst"],
     description: `Runs an arbitrary command specified in the package's test property of its scripts object.
-      The intended usage of the property is to specify a command that runs unit or integration testing for your program.`,
+The intended usage of the property is to specify a command that runs unit or integration testing for your program`,
   },
   {
     name: "start",
     description: `Runs an arbitrary command specified in the package's start property of its scripts object. If no start property is specified on the scripts object, it will attempt to run node server.js as a default, failing if neither are present.
-      The intended usage of the property is to specify a command that starts your program.`,
+The intended usage of the property is to specify a command that starts your program`,
   },
 ];
 
@@ -465,14 +472,14 @@ const SUBCOMMANDS_REVIEW_DEPS: Fig.Subcommand[] = [
   {
     name: "audit",
     description: `Checks for known security issues with the installed packages.
-      If security issues are found, try to update your dependencies via pnpm update.
-      If a simple update does not fix all the issues, use overrides to force versions that are not vulnerable.
-      For instance, if lodash@<2.1.0 is vulnerable, use overrides to force lodash@^2.1.0.
-      Details at: https://pnpm.io/cli/audit`,
+If security issues are found, try to update your dependencies via pnpm update.
+If a simple update does not fix all the issues, use overrides to force versions that are not vulnerable.
+For instance, if lodash@<2.1.0 is vulnerable, use overrides to force lodash@^2.1.0.
+Details at: https://pnpm.io/cli/audit`,
     options: [
       {
         name: "--audit-level",
-        description: `Only print advisories with severity greater than or equal to <severity>.`,
+        description: `Only print advisories with severity greater than or equal to <severity>`,
         args: {
           name: "Audit Level",
           suggestions: ["low", "moderate", "high", "critical"],
@@ -480,130 +487,131 @@ const SUBCOMMANDS_REVIEW_DEPS: Fig.Subcommand[] = [
       },
       {
         name: "--json",
-        description: `Output audit report in JSON format.`,
+        description: `Output audit report in JSON format`,
       },
       {
         name: ["--dev", "-D"],
-        description: `Only audit dev dependencies.`,
+        description: `Only audit dev dependencies`,
       },
       {
         name: ["--prod", "-P"],
-        description: `Only audit production dependencies.`,
+        description: `Only audit production dependencies`,
       },
       {
         name: "--no-optional",
-        description: `Don't audit optionalDependencies.`,
+        description: `Don't audit optionalDependencies`,
       },
       {
         name: "--ignore-registry-errors",
-        description: `If the registry responds with a non-200 status code, the process should exit with 0. So the process will fail only if the registry actually successfully responds with found vulnerabilities.`,
+        description: `If the registry responds with a non-200 status code, the process should exit with 0. So the process will fail only if the registry actually successfully responds with found vulnerabilities`,
       },
     ],
   },
   {
     name: ["list", "ls"],
     description: `This command will output all the versions of packages that are installed, as well as their dependencies, in a tree-structure.
-      Positional arguments are name-pattern@version-range identifiers, which will limit the results to only the packages named. For example, pnpm list "babel-*" "eslint-*" semver@5.`,
+Positional arguments are name-pattern@version-range identifiers, which will limit the results to only the packages named. For example, pnpm list "babel-*" "eslint-*" semver@5`,
     options: [
       {
         name: ["--recursive", "-r"],
-        description: `Perform command on every package in subdirectories or on every workspace package, when executed inside a workspace.`,
+        description: `Perform command on every package in subdirectories or on every workspace package, when executed inside a workspace`,
       },
       {
         name: "--json",
-        description: `Log output in JSON format.`,
+        description: `Log output in JSON format`,
       },
       {
         name: "--long",
-        description: `Show extended information.`,
+        description: `Show extended information`,
       },
       {
         name: "--parseable",
-        description: `Outputs package directories in a parseable format instead of their tree view.`,
+        description: `Outputs package directories in a parseable format instead of their tree view`,
       },
       {
         name: "--global",
-        description: `List packages in the global install directory instead of in the current project.`,
+        description: `List packages in the global install directory instead of in the current project`,
       },
       {
         name: "--depth",
         description: `Max display depth of the dependency tree.
-          pnpm ls --depth 0 will list direct dependencies only. pnpm ls --depth -1 will list projects only. Useful inside a workspace when used with the -r option.`,
+pnpm ls --depth 0 will list direct dependencies only. pnpm ls --depth -1 will list projects only. Useful inside a workspace when used with the -r option`,
         args: { name: "number" },
       },
       {
         name: ["--dev", "-D"],
-        description: `Only list dev dependencies.`,
+        description: `Only list dev dependencies`,
       },
       {
         name: ["--prod", "-P"],
-        description: `Only list production dependencies.`,
+        description: `Only list production dependencies`,
       },
       {
         name: "--no-optional",
-        description: `Don't list optionalDependencies.`,
+        description: `Don't list optionalDependencies`,
       },
       FILTER_OPTION,
     ],
   },
   {
     name: "outdated",
-    description: `Checks for outdated packages. The check can be limited to a subset of the installed packages by providing arguments (patterns are supported).`,
+    description: `Checks for outdated packages. The check can be limited to a subset of the installed packages by providing arguments (patterns are supported)`,
     options: [
       {
         name: ["--recursive", "-r"],
-        description: `Check for outdated dependencies in every package found in subdirectories, or in every workspace package when executed inside a workspace.`,
+        description: `Check for outdated dependencies in every package found in subdirectories, or in every workspace package when executed inside a workspace`,
       },
       {
         name: "--long",
-        description: `Print details.`,
+        description: `Print details`,
       },
       {
         name: "--global",
-        description: `List outdated global packages.`,
+        description: `List outdated global packages`,
       },
       {
         name: "--no-table",
-        description: `Prints the outdated dependencies in a list format instead of the default table. Good for small consoles.`,
+        description: `Prints the outdated dependencies in a list format instead of the default table. Good for small consoles`,
       },
       {
         name: "--compatible",
-        description: `Prints only versions that satisfy specifications in package.json.`,
+        description: `Prints only versions that satisfy specifications in package.json`,
       },
       {
         name: ["--dev", "-D"],
-        description: `Only list dev dependencies.`,
+        description: `Only list dev dependencies`,
       },
       {
         name: ["--prod", "-P"],
-        description: `Only list production dependencies.`,
+        description: `Only list production dependencies`,
       },
       {
         name: "--no-optional",
-        description: `Doesn't check optionalDependencies.`,
+        description: `Doesn't check optionalDependencies`,
       },
     ],
   },
   {
     name: "why",
-    description: `Shows all packages that depend on the specified package.`,
+    description: `Shows all packages that depend on the specified package`,
     args: {
       name: "Scripts",
+      filterStrategy: "fuzzy",
       generators: dependenciesGenerator,
       isVariadic: true,
     },
     options: [
       {
         name: ["--recursive", "-r"],
-        description: `Show the dependency tree for the specified package on every package in subdirectories or on every workspace package when executed inside a workspace.`,
+        description: `Show the dependency tree for the specified package on every package in subdirectories or on every workspace package when executed inside a workspace`,
       },
       {
         name: "--json",
-        description: `Log output in JSON format.`,
+        description: `Log output in JSON format`,
       },
       {
         name: "--long",
-        description: `Show verbose output.`,
+        description: `Show verbose output`,
       },
       {
         name: "--parseable",
@@ -611,15 +619,15 @@ const SUBCOMMANDS_REVIEW_DEPS: Fig.Subcommand[] = [
       },
       {
         name: "--global",
-        description: `List packages in the global install directory instead of in the current project.`,
+        description: `List packages in the global install directory instead of in the current project`,
       },
       {
         name: ["--dev", "-D"],
-        description: `Only display the dependency tree for packages in devDependencies.`,
+        description: `Only display the dependency tree for packages in devDependencies`,
       },
       {
         name: ["--prod", "-P"],
-        description: `Only display the dependency tree for packages in dependencies.`,
+        description: `Only display the dependency tree for packages in dependencies`,
       },
       FILTER_OPTION,
     ],
@@ -630,9 +638,9 @@ const SUBCOMMANDS_MISC: Fig.Subcommand[] = [
   {
     name: "publish",
     description: `Publishes a package to the registry.
-    When publishing a package inside a workspace, the LICENSE file from the root of the workspace is packed with the package (unless the package has a license of its own).
-    You may override some fields before publish, using the publishConfig field in package.json. You also can use the publishConfig.directory to customize the published subdirectory (usually using third party build tools).
-    When running this command recursively (pnpm -r publish), pnpm will publish all the packages that have versions not yet published to the registry.`,
+When publishing a package inside a workspace, the LICENSE file from the root of the workspace is packed with the package (unless the package has a license of its own).
+You may override some fields before publish, using the publishConfig field in package.json. You also can use the publishConfig.directory to customize the published subdirectory (usually using third party build tools).
+When running this command recursively (pnpm -r publish), pnpm will publish all the packages that have versions not yet published to the registry`,
     args: {
       name: "Branch",
       generators: searchBranches,
@@ -640,26 +648,26 @@ const SUBCOMMANDS_MISC: Fig.Subcommand[] = [
     options: [
       {
         name: "--tag",
-        description: `Publishes the package with the given tag. By default, pnpm publish updates the latest tag.`,
+        description: `Publishes the package with the given tag. By default, pnpm publish updates the latest tag`,
         args: {
           name: "<tag>",
         },
       },
       {
         name: "--dry-run",
-        description: `Does everything a publish would do except actually publishing to the registry.`,
+        description: `Does everything a publish would do except actually publishing to the registry`,
       },
       {
         name: "--ignore-scripts",
-        description: `Ignores any publish related lifecycle scripts (prepublishOnly, postpublish, and the like).`,
+        description: `Ignores any publish related lifecycle scripts (prepublishOnly, postpublish, and the like)`,
       },
       {
         name: "--no-git-checks",
-        description: `Don't check if current branch is your publish branch, clean, and up-to-date.`,
+        description: `Don't check if current branch is your publish branch, clean, and up-to-date`,
       },
       {
         name: "--access",
-        description: `Tells the registry whether the published package should be public or restricted.`,
+        description: `Tells the registry whether the published package should be public or restricted`,
         args: {
           name: "Type",
           suggestions: ["public", "private"],
@@ -671,20 +679,20 @@ const SUBCOMMANDS_MISC: Fig.Subcommand[] = [
       },
       {
         name: "--report-summary",
-        description: `Save the list of published packages to pnpm-publish-summary.json. Useful when some other tooling is used to report the list of published packages.`,
+        description: `Save the list of published packages to pnpm-publish-summary.json. Useful when some other tooling is used to report the list of published packages`,
       },
       FILTER_OPTION,
     ],
   },
   {
     name: ["recursive", "m", "multi", "-r"],
-    description: `Runs a pnpm command recursively on all subdirectories in the package or every available workspace.`,
+    description: `Runs a pnpm command recursively on all subdirectories in the package or every available workspace`,
     options: [
       {
         name: "--link-workspace-packages",
         description: `Link locally available packages in workspaces of a monorepo into node_modules instead of re-downloading them from the registry. This emulates functionality similar to yarn workspaces.
-        When this is set to deep, local packages can also be linked to subdependencies.
-        Be advised that it is encouraged instead to use npmrc for this setting, to enforce the same behaviour in all environments. This option exists solely so you may override that if necessary.`,
+When this is set to deep, local packages can also be linked to subdependencies.
+Be advised that it is encouraged instead to use npmrc for this setting, to enforce the same behaviour in all environments. This option exists solely so you may override that if necessary`,
         args: {
           name: "bool or `deep`",
           suggestions: ["dee["],
@@ -697,15 +705,15 @@ const SUBCOMMANDS_MISC: Fig.Subcommand[] = [
       },
       {
         name: "--bail",
-        description: `Stops when a task throws an error.`,
+        description: `Stops when a task throws an error`,
       },
       {
         name: "--no-bail",
-        description: `Don't stop when a task throws an error.`,
+        description: `Don't stop when a task throws an error`,
       },
       {
         name: "--sort",
-        description: `Packages are sorted topologically (dependencies before dependents).`,
+        description: `Packages are sorted topologically (dependencies before dependents)`,
       },
       {
         name: "--no-sort",
@@ -713,14 +721,14 @@ const SUBCOMMANDS_MISC: Fig.Subcommand[] = [
       },
       {
         name: "--reverse",
-        description: `The order of packages is reversed.`,
+        description: `The order of packages is reversed`,
       },
       FILTER_OPTION,
     ],
   },
   {
     name: "server",
-    description: `Manage a store server.`,
+    description: `Manage a store server`,
     subcommands: [
       {
         name: "start",
@@ -729,16 +737,16 @@ const SUBCOMMANDS_MISC: Fig.Subcommand[] = [
         options: [
           {
             name: "--background",
-            description: `Runs the server in the background, similar to daemonizing on UNIX systems.`,
+            description: `Runs the server in the background, similar to daemonizing on UNIX systems`,
           },
           {
             name: "--network-concurrency",
-            description: `The maximum number of network requests to process simultaneously.`,
+            description: `The maximum number of network requests to process simultaneously`,
             args: { name: "number" },
           },
           {
             name: "--protocol",
-            description: `The communication protocol used by the server. When this is set to auto, IPC is used on all systems except for Windows, which uses TCP.`,
+            description: `The communication protocol used by the server. When this is set to auto, IPC is used on all systems except for Windows, which uses TCP`,
             args: {
               name: "Type",
               suggestions: ["auto", "tcp", "ipc"],
@@ -746,29 +754,29 @@ const SUBCOMMANDS_MISC: Fig.Subcommand[] = [
           },
           {
             name: "--port",
-            description: `The port number to use when TCP is used for communication. If a port is specified and the protocol is set to auto, regardless of system type, the protocol is automatically set to use TCP.`,
+            description: `The port number to use when TCP is used for communication. If a port is specified and the protocol is set to auto, regardless of system type, the protocol is automatically set to use TCP`,
             args: { name: "port number" },
           },
           {
             name: "--store-dir",
-            description: `The directory to use for the content addressable store.`,
+            description: `The directory to use for the content addressable store`,
             args: { name: "Path", template: "filepaths" },
           },
           {
             name: "--lock",
-            description: `Set to make the package store immutable to external processes while the server is running or not.`,
+            description: `Set to make the package store immutable to external processes while the server is running or not`,
           },
           {
             name: "--no-lock",
-            description: `Set to make the package store mutable to external processes while the server is running or not.`,
+            description: `Set to make the package store mutable to external processes while the server is running or not`,
           },
           {
             name: "--ignore-stop-requests",
-            description: `Prevents you from stopping the server using pnpm server stop.`,
+            description: `Prevents you from stopping the server using pnpm server stop`,
           },
           {
             name: "--ignore-upload-requests",
-            description: `Prevents creating a new side effect cache during install.`,
+            description: `Prevents creating a new side effect cache during install`,
           },
         ],
       },
@@ -789,20 +797,20 @@ const SUBCOMMANDS_MISC: Fig.Subcommand[] = [
       {
         name: "status",
         description: `Checks for modified packages in the store.
-          Returns exit code 0 if the content of the package is the same as it was at the time of unpacking.`,
+Returns exit code 0 if the content of the package is the same as it was at the time of unpacking`,
       },
       {
         name: "add",
         description: `Functionally equivalent to pnpm add,
-          except this adds new packages to the store directly without modifying any projects or files outside of the store.`,
+except this adds new packages to the store directly without modifying any projects or files outside of the store`,
       },
       {
         name: "prune",
         description: `Removes orphan packages from the store.
-          Pruning the store will save disk space, however may slow down future installations involving pruned packages.
-          Ultimately, it is a safe operation, however not recommended if you have orphaned packages from a package you intend to reinstall.
-          Please read the FAQ for more information on unreferenced packages and best practices.
-          Please note that this is prohibited when a store server is running.`,
+Pruning the store will save disk space, however may slow down future installations involving pruned packages.
+Ultimately, it is a safe operation, however not recommended if you have orphaned packages from a package you intend to reinstall.
+Please read the FAQ for more information on unreferenced packages and best practices.
+Please note that this is prohibited when a store server is running`,
       },
       {
         name: "path",
@@ -853,14 +861,17 @@ const completionSpec: Fig.Spec = {
   description: "Fast, disk space efficient package manager",
   args: {
     name: "Scripts",
+    filterStrategy: "fuzzy",
     generators: npmScriptsGenerator,
     isVariadic: true,
   },
-  generateSpec: async (_tokens, executeShellCommand) => {
+  filterStrategy: "fuzzy",
+  generateSpec: async (tokens, executeShellCommand) => {
     const { script, postProcess } = dependenciesGenerator;
 
     const packages = postProcess(
-      await executeShellCommand(script as string)
+      await executeShellCommand(script as string),
+      tokens
     ).map(({ name }) => name as string);
 
     const subcommands = packages

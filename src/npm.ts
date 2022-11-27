@@ -5,6 +5,7 @@ function uninstallSubcommand(named: string | string[]): Fig.Subcommand {
     args: {
       name: "package",
       generators: dependenciesGenerator,
+      filterStrategy: "fuzzy",
       isVariadic: true,
     },
     options: npmUninstallOptions,
@@ -12,33 +13,24 @@ function uninstallSubcommand(named: string | string[]): Fig.Subcommand {
 }
 
 const atsInStr = (s: string) => (s.match(/@/g) || []).length;
-// GENERATORS
-export const npmSearchGenerator: Fig.Generator = {
-  trigger: (newToken, oldToken) => {
-    // If the package name starts with '@', we want to trigger when
-    // the 2nd '@' is typed because we'll need to generate version
-    // suggetsions
-    // e.g. @typescript-eslint/types
-    if (oldToken.startsWith("@")) {
-      return !(atsInStr(oldToken) > 1 && atsInStr(newToken) > 1);
-    }
 
-    // If the package name doesn't start with '@', then trigger when
-    // we see the first '@' so we can generate version suggestions
-    return !(oldToken.includes("@") && newToken.includes("@"));
-  },
-  getQueryTerm: "@",
-  cache: {
-    ttl: 1000 * 60 * 60 * 24 * 2, // 2 days
-  },
-  custom: async (context, executeShellCommand) => {
+export const createNpmSearchHandler =
+  (keywords?: string[]) =>
+  async (
+    context: string[],
+    executeShellCommand: Fig.ExecuteShellCommandFunction,
+    shellContext: Fig.ShellContext
+  ): Promise<Fig.Suggestion[]> => {
     const searchTerm = context[context.length - 1];
     if (searchTerm === "") {
       return [];
     }
 
+    // Add optional keyword parameter
+    const keywordParameter =
+      keywords?.length > 0 ? `+keywords:${keywords.join(",")}` : "";
     // Query the API with the package name
-    const queryPackages = `curl -s -H "Accept: application/json" "https://api.npms.io/v2/search?size=20&q=${searchTerm}"`;
+    const queryPackages = `curl -s -H "Accept: application/json" "https://api.npms.io/v2/search?size=20&q=${searchTerm}${keywordParameter}"`;
     // We need to remove the '@' at the end of the searchTerm before querying versions
     const queryVersions = `curl -s -H "Accept: application/vnd.npm.install-v1+json" https://registry.npmjs.org/${searchTerm.slice(
       0,
@@ -86,11 +78,32 @@ export const npmSearchGenerator: Fig.Generator = {
       console.error({ error });
       return [];
     }
+  };
+
+// GENERATORS
+export const npmSearchGenerator: Fig.Generator = {
+  trigger: (newToken, oldToken) => {
+    // If the package name starts with '@', we want to trigger when
+    // the 2nd '@' is typed because we'll need to generate version
+    // suggetsions
+    // e.g. @typescript-eslint/types
+    if (oldToken.startsWith("@")) {
+      return !(atsInStr(oldToken) > 1 && atsInStr(newToken) > 1);
+    }
+
+    // If the package name doesn't start with '@', then trigger when
+    // we see the first '@' so we can generate version suggestions
+    return !(oldToken.includes("@") && newToken.includes("@"));
   },
+  getQueryTerm: "@",
+  cache: {
+    ttl: 1000 * 60 * 60 * 24 * 2, // 2 days
+  },
+  custom: createNpmSearchHandler(),
 };
 
 const workspaceGenerator: Fig.Generator = {
-  script: "cat package.json",
+  script: "cat $(npm prefix)/package.json",
   postProcess: function (out: string) {
     const suggestions = [];
 
@@ -122,9 +135,7 @@ export const dependenciesGenerator: Fig.Generator = {
   trigger: (newToken) => newToken === "-g" || newToken === "--global",
   custom: async function (tokens, executeShellCommand) {
     if (!tokens.includes("-g") && !tokens.includes("--global")) {
-      const out = await executeShellCommand(
-        "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json"
-      );
+      const out = await executeShellCommand("cat $(npm prefix)/package.json");
       const packageContent = JSON.parse(out);
       const dependencies = packageContent["dependencies"] ?? {};
       const devDependencies = packageContent["devDependencies"];
@@ -160,6 +171,7 @@ export const dependenciesGenerator: Fig.Generator = {
 export const npmScriptsGenerator: Fig.Generator = {
   cache: {
     strategy: "stale-while-revalidate",
+    cacheByDirectory: true,
   },
   script:
     "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json",
@@ -184,6 +196,7 @@ export const npmScriptsGenerator: Fig.Generator = {
             name: scriptName,
             icon,
             description: scriptContents as string,
+            priority: 51,
             /**
              * If there are custom definitions for the scripts
              * we want to override the default values
@@ -197,17 +210,6 @@ export const npmScriptsGenerator: Fig.Generator = {
     }
 
     return [];
-  },
-};
-
-export const npmParserDirectives: Fig.Arg["parserDirectives"] = {
-  alias: async (token, executeShellCommand) => {
-    const out = await executeShellCommand("cat $(npm prefix)/package.json");
-    const script: string = JSON.parse(out).scripts?.[token];
-    if (!script) {
-      throw new Error(`Script not found: '${token}'`);
-    }
-    return script;
   },
 };
 
@@ -455,13 +457,20 @@ const completionSpec: Fig.Spec = {
         },
         ignoreScriptsOption,
         scriptShellOption,
+        {
+          name: "--",
+          args: {
+            name: "args",
+            isVariadic: true,
+            // TODO: load the spec based on the runned script (see yarn spec `yarnScriptParsedDirectives`)
+          },
+        },
       ],
       args: {
         name: "script",
         description: "Script to run from your package.json",
+        filterStrategy: "fuzzy",
         generators: npmScriptsGenerator,
-        parserDirectives: npmParserDirectives,
-        isCommand: true,
       },
     },
     {
@@ -672,10 +681,6 @@ const completionSpec: Fig.Spec = {
           options: [
             { name: "--global", description: "Edits the global config" },
           ],
-          args: {
-            name: "package",
-            generators: dependenciesGenerator,
-          },
         },
       ],
     },
@@ -737,6 +742,7 @@ const completionSpec: Fig.Spec = {
       description: "Browse an installed package",
       args: {
         name: "package",
+        filterStrategy: "fuzzy",
         generators: dependenciesGenerator,
       },
     },

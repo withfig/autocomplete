@@ -9,20 +9,23 @@
 [![Badge: Sign up (public beta)](https://img.shields.io/badge/signup-public%20beta-blueviolet)](https://fig.io?ref=github_autocomplete)
 [![Badge: Documentation](https://img.shields.io/badge/documentation-black)](https://fig.io/docs/)
 [![Badge: contributors](https://img.shields.io/github/contributors/withfig/autocomplete)](#Contributors)
-[![Badge: Join the Discord server](https://img.shields.io/discord/837809111248535583?color=768ad4&label=discord)](https://fig.io/community)
+[![Badge: Join the Discord server](https://img.shields.io/discord/837809111248535583?color=5865F2&label=discord)](https://fig.io/community)
 [![Badge: Follow on Twitter](https://img.shields.io/twitter/follow/fig.svg?style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=fig)
 
-**[Fig](https://fig.io?ref=github_autocomplete) adds autocomplete to your terminal.**
+**[Fig](https://fig.io?ref=github_autocomplete) makes the command line easier for individuals and more collaborative for teams.**
 
-As you type, Fig pops up subcommands, options, and contextually relevant arguments in your existing terminal on macOS.
+Our most popular product is Autocomplete. As you type, Fig pops up subcommands, options, and contextually relevant arguments in your existing terminal.
 
 ## ⚡️ Installation
 
-* **macOS**:
-  * **Homebrew**: `brew install --cask fig`
-  * **DMG**: Download from our website: [fig.io](https://fig.io/welcome)
-* **Windows/Linux**:
-  * Join the [waitlist](https://withfig.typeform.com/linux)
+- **macOS**:
+  - **DMG**: Download from our website: [fig.io](https://fig.io/welcome)
+  - **Homebrew**: `brew install fig`
+- **Windows/Linux**:
+  - Join the [waitlist](https://withfig.typeform.com/linux)
+- **Remote machines**
+  - [Autocomplete in SSH](https://fig.io/user-manual/autocomplete/ssh)
+  - [Autocomplete in Docker Containers](https://fig.io/user-manual/autocomplete/docker)
 
 > NOTE: Once it's downloaded, launch the app to set up Fig!
 
@@ -75,7 +78,6 @@ Use the steps below or follow our getting started guide: [fig.io/docs](https://f
 
 3. Now go to your terminal and type `abc[space]`. Your example spec will appear. 😊
 
-
 #### Other things to know
 
 - Edit your spec in TypeScript in the `src/` folder
@@ -98,7 +100,7 @@ cd ~/.fig/autocomplete
 
 # Create your completions!
 npm run create-spec xyz
-npm run build
+npm run publish-spec -p src/xyz.ts
 ```
 
 You can also create completions for project scripts, or even add custom suggestions to official specs. Read more at [fig.io/docs/guides/private-autocomplete](https://fig.io/docs/guides/private-autocomplete)
@@ -121,11 +123,12 @@ npm run lint:fix
 ## 🔥 Contributions
 
 We would love contributions for:
-* new completion specs
-* errors with existing completion specs (e.g. missing subcommands, options, or arguments)
-* [generators](https://fig.io/docs/getting-started/generating-argument-suggestions) for argument suggestions
-* better descriptions, icons etc
-* [themes](https://github.com/withfig/themes)!
+
+- new completion specs
+- errors with existing completion specs (e.g. missing subcommands, options, or arguments)
+- [generators](https://fig.io/docs/getting-started/generating-argument-suggestions) for argument suggestions
+- better descriptions, icons etc
+- [themes](https://github.com/withfig/themes)!
 
 If you aren't able to contribute, please feel free to open an [issue](https://github.com/withfig/autocomplete/issues/new/choose).
 
@@ -140,7 +143,8 @@ If you aren't able to contribute, please feel free to open an [issue](https://gi
 </p>
 
 ## 🧑‍💻 Teams / Enterprise
-Want to use Fig to add autocomplete internal CLI tools? Or want to use Fig at work but have security / compliance concerns.
+
+Want to use Fig to add autocomplete internal CLI tools? Or want to use Fig at work but have security / compliance concerns?
 
 We would love to help get you set up. Please email [enterprise@fig.io](mailto:enterprise@fig.io)
 
@@ -150,16 +154,16 @@ We would love to help get you set up. Please email [enterprise@fig.io](mailto:en
 
 Fig works with the native macOS Terminal app, [iTerm], [Tabby], [Hyper], [Kitty], [WezTerm], and [Alacritty]. It also works in the integrated terminals of [VSCode], [JetBrains IDEs], [Android Studio], and [Nova].
 
-[iTerm]: https://iterm2.com
-[Tabby]: https://tabby.sh
-[Hyper]: https://hyper.is
-[Kitty]: https://sw.kovidgoyal.net/kitty
-[WezTerm]: https://wezfurlong.org/wezterm/
-[Alacritty]: https://alacritty.org/
-[VSCode]: https://code.visualstudio.com/
-[JetBrains IDEs]: https://www.jetbrains.com/
-[Android Studio]: https://developer.android.com/studio
-[Nova]: https://nova.app/
+[iterm]: https://iterm2.com
+[tabby]: https://tabby.sh
+[hyper]: https://hyper.is
+[kitty]: https://sw.kovidgoyal.net/kitty
+[wezterm]: https://wezfurlong.org/wezterm/
+[alacritty]: https://alacritty.org/
+[vscode]: https://code.visualstudio.com/
+[jetbrains ides]: https://www.jetbrains.com/
+[android studio]: https://developer.android.com/studio
+[nova]: https://nova.app/
 
 Want to see another terminal included? Check our [issue tracker](https://github.com/withfig/fig) and add your support for it!
 
@@ -169,7 +173,7 @@ Fig uses the Accessibility API on Mac to position the window, and integrates wit
 
 #### Does Fig work on Windows or Linux?
 
-Not yet, Fig is only available on MacOS for now. [Windows](https://github.com/withfig/fig/issues/35) and [Linux](https://github.com/withfig/fig/issues/34) support is in progress!
+Not yet, Fig is only available on macOS for now. [Windows](https://github.com/withfig/fig/issues/35) and [Linux](https://github.com/withfig/fig/issues/34) support is in progress!
 
 #### How can I download Fig?
 

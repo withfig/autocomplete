@@ -89,6 +89,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "info",
       description: "Get helpful environment information",
+      options: [
+        {
+          name: ["-C", "--clipboard"],
+          description: "Copy environment information to your clipboard",
+        },
+      ],
     },
     {
       name: "plugin",

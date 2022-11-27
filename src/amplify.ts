@@ -153,6 +153,15 @@ const completionSpec: Fig.Spec = {
       subcommands: amplifyCategories,
     },
     {
+      name: "upgrade",
+      description: "Download and install the latest version of the Amplify CLI",
+    },
+    {
+      name: "uninstall",
+      description:
+        "Remove all global Amplify configuration files and uninstall the Amplify CLI. This will not delete any Amplify projects",
+    },
+    {
       name: "notifications",
       subcommands: categoryCommands,
     },

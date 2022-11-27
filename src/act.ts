@@ -288,7 +288,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "workflows",
         default: "./.github/workflows/",
-        template: "folders",
+        template: ["folders", "filepaths"],
       },
     },
     { name: ["--help", "-h"], description: "Display help", isPersistent: true },

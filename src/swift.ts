@@ -1,3 +1,5 @@
+import { keyValue } from "@fig/autocomplete-generators";
+
 const commonOptions: Fig.Option[] = [
   {
     name: ["--help", "-h", "-help"],
@@ -37,6 +39,11 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: "-async-main",
+      description:
+        "Resolve main function as if it were called from an asynchronous context",
+    },
+    {
       name: "-clang-target",
       description:
         "Separately set the target we should use for internal Clang instance",
@@ -58,12 +65,17 @@ const completionSpec: Fig.Spec = {
       description: "Remap source paths in coverage info",
       args: {
         name: "prefix",
-        description: "Remap source paths in coverage info",
+        description: "The remap source paths in coverage info",
+        generators: keyValue({
+          separator: "=",
+        }),
       },
     },
     {
       name: "-debug-info-format",
       description: "Specify the debug info format type",
+      dependsOn: ["-g"],
+      requiresSeparator: true,
       args: {
         name: "type",
         description: "The debug info format type",
@@ -78,18 +90,25 @@ const completionSpec: Fig.Spec = {
       name: "-debug-prefix-map",
       description: "Remap source paths in debug info",
       args: {
-        name: "prefix",
-        description: "Remap source paths in debug info",
+        name: "prefix=replacement",
+        description: "The remap source paths in debug info",
+        generators: keyValue({
+          separator: "=",
+        }),
       },
     },
     {
       name: "-diagnostic-style",
       description: "The formatting style used when printing diagnostics",
       args: {
-        name: "prefix",
+        name: "style",
         description: "The formatting style used when printing diagnostics",
         suggestions: ["swift", "llvm"],
       },
+    },
+    {
+      name: "-disable-actor-data-race-checks",
+      description: "Disable runtime checks for actor data races",
     },
     {
       name: "-disable-autolinking-runtime-compatibility-concurrency",
@@ -141,6 +160,15 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: "-enable-actor-data-race-checks",
+      description: "Emit runtime checks for actor data races",
+    },
+    {
+      name: "-enable-bare-slash-regex",
+      description:
+        "Enable the use of forward slash regular-expression literal syntax",
+    },
+    {
       name: "-enable-experimental-additive-arithmetic-derivation",
       description:
         "Enable experimental 'AdditiveArithmetic' derived conformances",
@@ -176,6 +204,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-enforce-exclusivity",
       description: "Enforce law of exclusivity",
+      requiresSeparator: true,
       args: {
         name: "enforcement",
         description: "Enforce law of exclusivity",
@@ -189,6 +218,27 @@ const completionSpec: Fig.Spec = {
         name: "stdlib",
         description:
           "C++ standard library to use; forwarded to Clang's -std lib flag",
+      },
+    },
+    {
+      name: "-file-compilation-dir",
+      description:
+        "The compilation directory to embed in the debug info. Coverage mapping is not supported yet",
+      args: {
+        name: "path",
+        description: "The compilation directory to embed in the debug info",
+      },
+    },
+    {
+      name: "-file-prefix-map",
+      description: "Remap source paths in debug, coverage, and index info",
+      args: {
+        name: "prefix",
+        description:
+          "The remap source paths in debug, coverage, and index info",
+        generators: keyValue({
+          separator: "=",
+        }),
       },
     },
     {
@@ -231,6 +281,10 @@ const completionSpec: Fig.Spec = {
       name: "-g",
       description:
         "Emit debug info. This is the preferred setting for debugging with LLDB",
+    },
+    {
+      name: "-index-ignore-clang-modules",
+      description: "Avoid indexing clang modules (pcms)",
     },
     {
       name: "-index-store-path",
@@ -315,6 +369,18 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: "-module-alias",
+      description:
+        "If a source file imports or references module <alias_name>, the <underlying_name> is used for the contents of the file",
+      args: {
+        name: "alias",
+        description: "The module alias and the contents of the file to be used",
+        generators: keyValue({
+          separator: "=",
+        }),
+      },
+    },
+    {
       name: "-module-cache-path",
       description: "Specifies the Clang module cache path",
       args: {
@@ -376,6 +442,11 @@ const completionSpec: Fig.Spec = {
       description: "Compile with optimizations",
     },
     {
+      name: "-prefix-serialized-debugging-options",
+      description:
+        "Apply debug prefix mappings to serialized debug info in Swiftmodule files",
+    },
+    {
       name: "-pretty-print",
       description: "Pretty-print the output JSON",
     },
@@ -398,6 +469,42 @@ const completionSpec: Fig.Spec = {
       description: "Remove runtime safety checks",
     },
     {
+      name: "-requirement-machine-abstract-signatures",
+      description:
+        "Control usage of experimental generic signature minimization",
+      requiresSeparator: true,
+      args: {
+        name: "value",
+        description:
+          "The control usage of experimental generic signature minimization",
+        suggestions: ["on", "off", "verify", "check"],
+      },
+    },
+    {
+      name: "-requirement-machine-inferred-signatures",
+      description:
+        "Control usage of experimental generic signature minimization",
+      requiresSeparator: true,
+      args: {
+        name: "value",
+        description:
+          "The control usage of experimental generic signature minimization",
+        suggestions: ["on", "off", "verify", "check"],
+      },
+    },
+    {
+      name: "-requirement-machine-protocol-signatures",
+      description:
+        "Control usage of experimental protocol requirement signature minimization",
+      requiresSeparator: true,
+      args: {
+        name: "value",
+        description:
+          "The control usage of experimental protocol requirement signature minimization",
+        suggestions: ["on", "off", "verify", "check"],
+      },
+    },
+    {
       name: "-Rmodule-loading",
       description: "Emit a remark and file path of each loaded module",
     },
@@ -405,6 +512,7 @@ const completionSpec: Fig.Spec = {
       name: "-Rpass-missed",
       description:
         "Report missed transformations by optimization passes whose name matches the given POSIX regular expression",
+      requiresSeparator: true,
       args: {
         name: "regex",
         description: "Regex to match missed transformations",
@@ -414,6 +522,7 @@ const completionSpec: Fig.Spec = {
       name: "-Rpass",
       description:
         "Report performed transformations by optimization passes whose name matches the given POSIX regular expression",
+      requiresSeparator: true,
       args: {
         name: "regex",
         description: "Regex to match performed transformations",
@@ -449,6 +558,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-save-optimization-record",
       description: "Generate an optimization record file in a specific format",
+      requiresSeparator: true,
       args: {
         name: "format",
         description: "The format",
@@ -482,6 +592,16 @@ const completionSpec: Fig.Spec = {
     {
       name: "-static-stdlib",
       description: "Statically link the Swift standard library",
+    },
+    {
+      name: "-strict-concurrency",
+      description: "Specify the how strict concurrency checking will be",
+      requiresSeparator: true,
+      args: {
+        name: "concurrency",
+        description: "The concurrency",
+        suggestions: ["minimal", "targeted", "complete"],
+      },
     },
     {
       name: "-suppress-warnings",
@@ -523,6 +643,15 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: "-target-min-inlining-version",
+      description:
+        "Require inlinable code with no '@available' attribute to back-deploy to this version of the '-target' OS",
+      args: {
+        name: "version",
+        description: "The target version",
+      },
+    },
+    {
       name: "-target-variant",
       description:
         "Generate 'zippered' code for macCatalyst that can run on the specified variant target triple in addition to the main -target triple",
@@ -543,6 +672,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-use-ld",
       description: "Specifies the linker to be used",
+      requiresSeparator: true,
       args: {
         name: "linker",
         description: "The linker to be used",

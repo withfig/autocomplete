@@ -14,6 +14,10 @@ const completionSpec: Fig.Spec = {
       subcommands.push({ name: "please", loadSpec: "php/please" });
     }
 
+    if ((await executeShellCommand("ls -1 bin/console")) === "bin/console") {
+      subcommands.push({ name: "bin/console", loadSpec: "php/bin-console" });
+    }
+
     return {
       name: "php",
       subcommands,

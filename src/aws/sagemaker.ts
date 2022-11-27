@@ -1618,7 +1618,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--base-image",
           description:
-            "The registry path of the container image to use as the starting point for this version. The path is an Amazon Container Registry (ECR) URI in the following format:  &lt;acct-id&gt;.dkr.ecr.&lt;region&gt;.amazonaws.com/&lt;repo-name[:tag] or [@digest]&gt;",
+            "The registry path of the container image to use as the starting point for this version. The path is an Amazon Container Registry (ECR) URI in the following format:  <acct-id>.dkr.ecr.<region>.amazonaws.com/<repo-name[:tag] or [@digest]>",
           args: {
             name: "string",
           },
@@ -7776,7 +7776,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "If the result of the previous ListDataQualityJobDefinitions request was truncated, the response includes a NextToken. To retrieve the next set of transform jobs, use the token in the next request.&gt;",
+            "If the result of the previous ListDataQualityJobDefinitions request was truncated, the response includes a NextToken. To retrieve the next set of transform jobs, use the token in the next request.>",
           args: {
             name: "string",
           },
