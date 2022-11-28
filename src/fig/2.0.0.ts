@@ -11,6 +11,7 @@ import {
   sshHostsGenerator,
   sshIdentityGenerator,
   userGenerator,
+  stateGenerator,
 } from "./shared";
 
 const completion: Fig.Subcommand = {
@@ -2003,6 +2004,7 @@ const completion: Fig.Subcommand = {
             {
               name: "key",
               isOptional: true,
+              generators: stateGenerator,
             },
             {
               name: "value",
@@ -2797,7 +2799,7 @@ const completion: Fig.Subcommand = {
       },
     },
     {
-      name: ["run", "r", "workflows"],
+      name: ["run", "r"],
       description: "Fig Workflows",
       options: [
         {
@@ -3409,7 +3411,8 @@ const completion: Fig.Subcommand = {
       ],
     },
     {
-      name: "help-all",
+      name: ["help-all", "--help-all"],
+      insertValue: "help-all",
       description: "Print help for all subcommands",
       options: [
         {
