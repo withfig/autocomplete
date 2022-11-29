@@ -192,8 +192,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "-,",
       description: `When the -l option is set, print file sizes grouped and separated by thousands using the non-monetary separator returned
-        by localeconv(3), typically a comma or period.  If no locale is set, or the locale does not have a non-monetary separator, this
-        option has no effect.  This option is not defined in IEEE Std 1003.1-2001 (“POSIX.1”)`,
+by localeconv(3), typically a comma or period.  If no locale is set, or the locale does not have a non-monetary separator, this
+option has no effect.  This option is not defined in IEEE Std 1003.1-2001 (“POSIX.1”)`,
       dependsOn: ["-l"],
     },
     {
