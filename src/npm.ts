@@ -15,7 +15,7 @@ function uninstallSubcommand(named: string | string[]): Fig.Subcommand {
 const atsInStr = (s: string) => (s.match(/@/g) || []).length;
 
 export const createNpmSearchHandler =
-  (keywords?: string[]) =>
+  () =>
   async (
     context: string[],
     executeShellCommand: Fig.ExecuteShellCommandFunction,
@@ -26,11 +26,8 @@ export const createNpmSearchHandler =
       return [];
     }
 
-    // Add optional keyword parameter
-    const keywordParameter =
-      keywords?.length > 0 ? `+keywords:${keywords.join(",")}` : "";
     // Query the API with the package name
-    const queryPackages = `curl -s -H "Accept: application/json" "https://api.npms.io/v2/search?size=20&q=${searchTerm}${keywordParameter}"`;
+    const queryPackages = `curl -s -H "Accept: application/json" "https://api.npms.io/v2/search/suggestions?q=${searchTerm}&size=20"`;
     // We need to remove the '@' at the end of the searchTerm before querying versions
     const queryVersions = `curl -s -H "Accept: application/vnd.npm.install-v1+json" https://registry.npmjs.org/${searchTerm.slice(
       0,
@@ -70,7 +67,7 @@ export const createNpmSearchHandler =
         return versions;
       }
 
-      return data.results.map((item) => ({
+      return data.map((item) => ({
         name: item.package.name,
         description: item.package.description,
       })) as Fig.Suggestion[];
