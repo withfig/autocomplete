@@ -129,7 +129,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--device-ids",
           description:
-            "Devices whose position you want to retrieve.   For example, for two devices: device-ids=DeviceId1&amp;device-ids=DeviceId2",
+            "Devices whose position you want to retrieve.   For example, for two devices: device-ids=DeviceId1&device-ids=DeviceId2",
           args: {
             name: "list",
           },
@@ -1481,7 +1481,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--position",
           description:
-            "Specifies a coordinate for the query defined by a longitude, and latitude.   The first position is the X coordinate, or longitude.   The second position is the Y coordinate, or latitude.    For example, position=xLongitude&amp;position=yLatitude",
+            "Specifies a coordinate for the query defined by a longitude, and latitude.   The first position is the X coordinate, or longitude.   The second position is the Y coordinate, or latitude.    For example, position=xLongitude&position=yLatitude",
           args: {
             name: "list",
           },
@@ -1513,7 +1513,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bias-position",
           description:
-            "Searches for results closest to the given position. An optional parameter defined by longitude, and latitude.   The first bias position is the X coordinate, or longitude.   The second bias position is the Y coordinate, or latitude.    For example, bias=xLongitude&amp;bias=yLatitude",
+            "Searches for results closest to the given position. An optional parameter defined by longitude, and latitude.   The first bias position is the X coordinate, or longitude.   The second bias position is the Y coordinate, or latitude.    For example, bias=xLongitude&bias=yLatitude",
           args: {
             name: "list",
           },
@@ -1521,7 +1521,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--filter-b-box",
           description:
-            "Filters the results by returning only Places within the provided bounding box. An optional parameter. The first 2 bbox parameters describe the lower southwest corner:   The first bbox position is the X coordinate or longitude of the lower southwest corner.   The second bbox position is the Y coordinate or latitude of the lower southwest corner.   For example, bbox=xLongitudeSW&amp;bbox=yLatitudeSW. The next bbox parameters describe the upper northeast corner:   The third bbox position is the X coordinate, or longitude of the upper northeast corner.   The fourth bbox position is the Y coordinate, or longitude of the upper northeast corner.   For example, bbox=xLongitudeNE&amp;bbox=yLatitudeNE",
+            "Filters the results by returning only Places within the provided bounding box. An optional parameter. The first 2 bbox parameters describe the lower southwest corner:   The first bbox position is the X coordinate or longitude of the lower southwest corner.   The second bbox position is the Y coordinate or latitude of the lower southwest corner.   For example, bbox=xLongitudeSW&bbox=yLatitudeSW. The next bbox parameters describe the upper northeast corner:   The third bbox position is the X coordinate, or longitude of the upper northeast corner.   The fourth bbox position is the Y coordinate, or longitude of the upper northeast corner.   For example, bbox=xLongitudeNE&bbox=yLatitudeNE",
           args: {
             name: "list",
           },
