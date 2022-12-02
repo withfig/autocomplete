@@ -29,11 +29,9 @@ export const createNpmSearchHandler =
     const keywordParameter =
       keywords?.length > 0 ? `+keywords:${keywords.join(",")}` : "";
 
-    let queryPackagesUrl = `https://api.npms.io/v2/search/suggestions?q=${searchTerm}&size=20`;
-
-    if (keywordParameter) {
-      queryPackagesUrl = `https://api.npms.io/v2/search?size=20&q=${searchTerm}${keywordParameter}`;
-    }
+    const queryPackagesUrl = keywordParameter
+      ? `https://api.npms.io/v2/search/suggestions?q=${searchTerm}&size=20`
+      : `https://api.npms.io/v2/search?size=20&q=${searchTerm}${keywordParameter}`;
 
     // Query the API with the package name
     const queryPackages = `curl -s -H "Accept: application/json" "${queryPackagesUrl}"`;
@@ -103,7 +101,7 @@ export const npmSearchGenerator: Fig.Generator = {
   },
   getQueryTerm: "@",
   cache: {
-    ttl: 1, // 2 days
+    ttl: 1000 * 60 * 60 * 24 * 2, // 2 days
   },
   custom: createNpmSearchHandler(),
 };
