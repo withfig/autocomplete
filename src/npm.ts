@@ -15,7 +15,7 @@ function uninstallSubcommand(named: string | string[]): Fig.Subcommand {
 const atsInStr = (s: string) => (s.match(/@/g) || []).length;
 
 export const createNpmSearchHandler =
-  () =>
+  (keywords?: string[]) =>
   async (
     context: string[],
     executeShellCommand: Fig.ExecuteShellCommandFunction,
@@ -25,15 +25,23 @@ export const createNpmSearchHandler =
     if (searchTerm === "") {
       return [];
     }
+    // Add optional keyword parameter
+    const keywordParameter =
+      keywords?.length > 0 ? `+keywords:${keywords.join(",")}` : "";
+
+    let queryPackagesUrl = `https://api.npms.io/v2/search/suggestions?q=${searchTerm}&size=20`;
+
+    if (keywordParameter) {
+      queryPackagesUrl = `https://api.npms.io/v2/search?size=20&q=${searchTerm}${keywordParameter}`;
+    }
 
     // Query the API with the package name
-    const queryPackages = `curl -s -H "Accept: application/json" "https://api.npms.io/v2/search/suggestions?q=${searchTerm}&size=20"`;
+    const queryPackages = `curl -s -H "Accept: application/json" "${queryPackagesUrl}"`;
     // We need to remove the '@' at the end of the searchTerm before querying versions
     const queryVersions = `curl -s -H "Accept: application/vnd.npm.install-v1+json" https://registry.npmjs.org/${searchTerm.slice(
       0,
       -1
     )}`;
-
     // If the end of our token is '@', then we want to generate version suggestions
     // Otherwise, we want packages
     const out = (query: string) =>
@@ -67,7 +75,8 @@ export const createNpmSearchHandler =
         return versions;
       }
 
-      return data.map((item) => ({
+      const results = keywordParameter ? data.results : data;
+      return results.map((item) => ({
         name: item.package.name,
         description: item.package.description,
       })) as Fig.Suggestion[];
@@ -94,7 +103,7 @@ export const npmSearchGenerator: Fig.Generator = {
   },
   getQueryTerm: "@",
   cache: {
-    ttl: 1000 * 60 * 60 * 24 * 2, // 2 days
+    ttl: 1, // 2 days
   },
   custom: createNpmSearchHandler(),
 };
