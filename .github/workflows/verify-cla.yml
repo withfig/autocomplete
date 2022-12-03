@@ -17,7 +17,7 @@ jobs:
           PERSONAL_ACCESS_TOKEN: ${{ secrets.FIG_BOT_TOKEN }}
         with:
           path-to-signatures: 'cla/signatures.json'
-          path-to-document: 'https://github.com/cla/blob/master/cla.md'
+          path-to-document: 'https://github.com/withfig/autocomplete/blob/master/cla/cla.md'
           branch: 'main'
           allowlist: mschrage,brendanfalk,bot*
           create-file-commit-message: 'chore: create `.cla-signatures.json`'
