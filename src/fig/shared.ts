@@ -354,6 +354,14 @@ export const workflowsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
             suggestions: param.typeData.suggestions,
             generators,
           };
+        case "filepicker":
+          option.args = {
+            template: "folders",
+          };
+        case "checkbox":
+          option.args = {
+            suggestions: ["true", "false"],
+          };
       }
       return option;
     });
