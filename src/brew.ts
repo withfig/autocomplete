@@ -165,7 +165,7 @@ const completionSpec: Fig.Spec = {
       options: [
         ...commonOptions,
         {
-          name: "--formula,",
+          name: "--formula",
           description:
             "List only formulae, or treat all named arguments as formulae",
         },
@@ -765,7 +765,7 @@ const completionSpec: Fig.Spec = {
       options: [
         ...commonOptions,
         {
-          name: "--formula,",
+          name: "--formula",
           description: "Search online and locally for formulae",
         },
         {
@@ -864,7 +864,7 @@ const completionSpec: Fig.Spec = {
         },
         { name: ["-h", "--help"], description: "Show this message" },
         {
-          name: "--formula,",
+          name: "--formula",
           description: "Treat all named arguments as formulae",
         },
         {
@@ -1129,7 +1129,7 @@ const completionSpec: Fig.Spec = {
         },
         { name: ["-g", "--git"], description: "Create a Git repository" },
         {
-          name: "--formula,",
+          name: "--formula",
           description: "Treat all named arguments as formulae",
         },
         {
@@ -1227,7 +1227,7 @@ const completionSpec: Fig.Spec = {
                 "Don't fail uninstall, even if formula is a dependency of any installed formulae",
             },
             {
-              name: "--formula,",
+              name: "--formula",
               description: "Treat all named arguments as formulae",
             },
             {
