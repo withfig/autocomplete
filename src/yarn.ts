@@ -34,7 +34,7 @@ export const nodeClis = new Set([
   "@fig/publish-spec-to-team",
   "capacitor",
   "cap",
-];
+]);
 
 type SearchResult = {
   package: {
@@ -362,7 +362,7 @@ const completionSpec: Fig.Spec = {
     const { script, postProcess } = dependenciesGenerator;
 
     const packages = new Set(
-      postProcess(await executeShellCommand(script as string)).map(
+      postProcess(await executeShellCommand(script as string), tokens).map(
         ({ name }) => name as string
       )
     );
