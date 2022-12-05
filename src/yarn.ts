@@ -11,7 +11,7 @@ export const yarnScriptParserDirectives: Fig.Arg["parserDirectives"] = {
   },
 };
 
-export const nodeClis = [
+export const nodeClis = new Set([
   "vue",
   "vite",
   "nuxt",
@@ -34,7 +34,7 @@ export const nodeClis = [
   "@fig/publish-spec-to-team",
   "capacitor",
   "cap",
-];
+]);
 
 type SearchResult = {
   package: {
@@ -361,16 +361,25 @@ const completionSpec: Fig.Spec = {
   generateSpec: async (tokens, executeShellCommand) => {
     const { script, postProcess } = dependenciesGenerator;
 
-    const packages = postProcess(
-      await executeShellCommand(script as string),
-      tokens
-    ).map(({ name }) => name as string);
+    const packages = new Set(
+      postProcess(await executeShellCommand(script as string), tokens).map(
+        ({ name }) => name as string
+      )
+    );
 
-    const subcommands = packages
-      .filter((name) => nodeClis.includes(name))
+    const binaries = (
+      await executeShellCommand(
+        `until [[ -d node_modules/ ]] || [[ $PWD = '/' ]]; do cd ..; done; ls -1 node_modules/.bin/`
+      )
+    ).split("\n");
+
+    const subcommands = binaries
+      .filter((name) => packages.has(name))
       .map((name) => ({
         name: name === "@redwoodjs/core" ? ["redwood", "rw"] : name,
-        loadSpec: name === "@redwoodjs/core" ? "redwood" : name,
+        ...(nodeClis.has(name) && {
+          loadSpec: name === "@redwoodjs/core" ? "redwood" : name,
+        }),
         icon: "fig://icon?type=package",
       }));
 
