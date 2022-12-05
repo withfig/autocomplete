@@ -24,7 +24,7 @@ const devCompletionsFolderGenerator: Fig.Generator = {
       return {
         name: paths.pop(),
         insertValue: folder,
-        icon: `fig://${folder}`,
+        icon: `fig://path/${folder}`,
       };
     }),
 };
