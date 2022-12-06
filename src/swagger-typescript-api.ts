@@ -136,7 +136,7 @@ const completionSpec: Fig.Spec = {
       description:
         "Determines which path index should be used for routes separation",
       args: {
-        name: "",
+        name: "Index",
       },
     },
     {
@@ -169,21 +169,21 @@ const completionSpec: Fig.Spec = {
       name: "--default-response",
       description: "Default type for empty response schema",
       args: {
-        name: "",
+        name: "Type",
       },
     },
     {
       name: "--type-prefix",
       description: "Data contract name prefix",
       args: {
-        name: "",
+        name: "Prefix",
       },
     },
     {
       name: "--type-suffix",
       description: "Data contract name suffix",
       args: {
-        name: "",
+        name: "Suffix",
       },
     },
     {
@@ -195,7 +195,7 @@ const completionSpec: Fig.Spec = {
       name: "--api-class-name",
       description: "Name of the api class",
       args: {
-        name: "",
+        name: "Name",
       },
     },
     {
