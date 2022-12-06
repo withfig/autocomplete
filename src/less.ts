@@ -397,9 +397,7 @@ other words, the beginning of each line is assumed to be normal
 lines.  For the purpose of keeping track of screen appearance,
 these escape sequences are assumed to not move the cursor.
 OSC 8 hyperlinks are sequences of the form:
-ESC ] 8 ; ... \7
-The terminating sequence may be either a BEL character (\7) or
-the two-character sequence "ESC \".
+ESC ] 8 ; 
 ANSI color escape sequences are sequences of the form:
 ESC [ ... m
 where the "..." is zero or more color specification characters.
