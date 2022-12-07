@@ -13,7 +13,7 @@ jobs:
         if: (github.event.comment.body == 'recheck' || github.event.comment.body == 'I have read the CLA Document and I hereby sign the CLA') || github.event_name == 'pull_request_target'
         uses: contributor-assistant/github-action@v2.2.1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.FIG_BOT_TOKEN }}
           PERSONAL_ACCESS_TOKEN: ${{ secrets.FIG_BOT_TOKEN }}
         with:
           path-to-signatures: 'cla/signatures.json'
@@ -21,5 +21,3 @@ jobs:
           branch: 'master'
           allowlist: mschrage,brendanfalk,bot*
           create-file-commit-message: 'chore: create `.cla-signatures.json`'
-          signed-commit-message: '$contributorName has signed the CLA in #$pullRequestNo'
-          custom-pr-sign-comment: 'The signature to be committed in order to sign the CLA'
