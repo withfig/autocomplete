@@ -20,4 +20,4 @@ jobs:
           path-to-document: 'https://github.com/withfig/autocomplete/blob/master/cla/cla.md'
           branch: 'master'
           allowlist: mschrage,brendanfalk,bot*
-          create-file-commit-message: 'chore: create `.cla-signatures.json`'
+          create-file-commit-message: 'chore: create `cla/signatures.json`'

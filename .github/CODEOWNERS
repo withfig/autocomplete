@@ -5,4 +5,3 @@
 # @global-owner1 and @global-owner2 will be requested for
 # review when someone opens a pull request.
 *       @fedeci @mschrage @SeparateRecords 
-cla/cla.md
