@@ -18,7 +18,7 @@ jobs:
         with:
           path-to-signatures: 'cla/signatures.json'
           path-to-document: 'https://github.com/withfig/autocomplete/blob/master/cla/cla.md'
-          branch: 'main'
+          branch: 'master'
           allowlist: mschrage,brendanfalk,bot*
           create-file-commit-message: 'chore: create `.cla-signatures.json`'
           signed-commit-message: '$contributorName has signed the CLA in #$pullRequestNo'
