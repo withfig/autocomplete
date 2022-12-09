@@ -875,7 +875,7 @@ const completionSpec: Fig.Spec = {
     ).map(({ name }) => name as string);
 
     const subcommands = packages
-      .filter((name) => nodeClis.includes(name))
+      .filter((name) => nodeClis.has(name))
       .map((name) => ({
         name,
         loadSpec: name,

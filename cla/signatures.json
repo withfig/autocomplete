@@ -1,0 +1,116 @@
+{
+  "signedContributors": [
+    {
+      "name": "fedeci",
+      "id": 38510000,
+      "comment_id": 1340864342,
+      "created_at": "2022-12-07T11:59:37Z",
+      "repoId": 299482335,
+      "pullRequestNo": 1740
+    },
+    {
+      "name": "itaikeren",
+      "id": 16226013,
+      "comment_id": 1340554138,
+      "created_at": "2022-12-07T08:07:19Z",
+      "repoId": 299482335,
+      "pullRequestNo": 1725
+    },
+    {
+      "name": "saminarp",
+      "id": 71540402,
+      "comment_id": 1341559572,
+      "created_at": "2022-12-07T20:34:01Z",
+      "repoId": 299482335,
+      "pullRequestNo": 1714
+    },
+    {
+      "name": "mribeirodantas",
+      "id": 1023197,
+      "comment_id": 1341605335,
+      "created_at": "2022-12-07T21:13:09Z",
+      "repoId": 299482335,
+      "pullRequestNo": 1724
+    },
+    {
+      "name": "matthew-ia",
+      "id": 17885141,
+      "comment_id": 1341909125,
+      "created_at": "2022-12-08T02:51:47Z",
+      "repoId": 299482335,
+      "pullRequestNo": 1741
+    },
+    {
+      "name": "loosheng",
+      "id": 30114549,
+      "comment_id": 1341937060,
+      "created_at": "2022-12-08T03:26:33Z",
+      "repoId": 299482335,
+      "pullRequestNo": 1728
+    },
+    {
+      "name": "tmwrnr",
+      "id": 39673874,
+      "comment_id": 1341941929,
+      "created_at": "2022-12-08T03:34:11Z",
+      "repoId": 299482335,
+      "pullRequestNo": 1727
+    },
+    {
+      "name": "thijsdewitt",
+      "id": 74593418,
+      "comment_id": 1342405977,
+      "created_at": "2022-12-08T09:56:10Z",
+      "repoId": 299482335,
+      "pullRequestNo": 1699
+    },
+    {
+      "name": "mbd-s",
+      "id": 13588399,
+      "comment_id": 1342796606,
+      "created_at": "2022-12-08T14:10:58Z",
+      "repoId": 299482335,
+      "pullRequestNo": 1709
+    },
+    {
+      "name": "mwarkentin",
+      "id": 67560,
+      "comment_id": 1342966646,
+      "created_at": "2022-12-08T16:15:38Z",
+      "repoId": 299482335,
+      "pullRequestNo": 1710
+    },
+    {
+      "name": "atjbramley",
+      "id": 71517198,
+      "comment_id": 1342247144,
+      "created_at": "2022-12-08T08:13:59Z",
+      "repoId": 299482335,
+      "pullRequestNo": 1701
+    },
+    {
+      "name": "beyazit",
+      "id": 79628065,
+      "comment_id": 1343322232,
+      "created_at": "2022-12-08T20:35:41Z",
+      "repoId": 299482335,
+      "pullRequestNo": 1723
+    },
+    {
+      "name": "SerpentBytes",
+      "id": 50856799,
+      "comment_id": 1343330358,
+      "created_at": "2022-12-08T20:43:58Z",
+      "repoId": 299482335,
+      "pullRequestNo": 1711
+    },
+    {
+      "name": "grant0417",
+      "id": 7355421,
+      "comment_id": 1343811501,
+      "created_at": "2022-12-09T03:53:02Z",
+      "repoId": 299482335,
+      "pullRequestNo": 1742
+    }
+  ]
+}

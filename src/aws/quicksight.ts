@@ -511,7 +511,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-group",
       description:
-        "Creates an Amazon QuickSight group. The permissions resource is arn:aws:quicksight:us-east-1:&lt;relevant-aws-account-id&gt;:group/default/&lt;group-name&gt; . The response is a group object",
+        "Creates an Amazon QuickSight group. The permissions resource is arn:aws:quicksight:us-east-1:<relevant-aws-account-id>:group/default/<group-name> . The response is a group object",
       options: [
         {
           name: "--group-name",

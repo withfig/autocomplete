@@ -1,6 +1,3 @@
-const SETTINGS_PATH = "~/.fig/tools/all-settings.json";
-const ACTIONS_PATH = "~/.fig/apps/autocomplete/actions.json";
-
 interface Setting {
   settingName: string;
   description: string;
@@ -27,7 +24,7 @@ const devCompletionsFolderGenerator: Fig.Generator = {
       return {
         name: paths.pop(),
         insertValue: folder,
-        icon: `fig://${folder}`,
+        icon: `fig://path/${folder}`,
       };
     }),
 };
@@ -67,7 +64,7 @@ const disableForCommandsGenerator: Fig.Generator = {
 export const themesGenerator: Fig.Generator = {
   script: "fig theme --list",
   postProcess: (output) => {
-    const builtinThemes = [
+    const builtinThemes: Fig.Suggestion[] = [
       {
         name: "system",
         icon: "💻",
@@ -86,7 +83,13 @@ export const themesGenerator: Fig.Generator = {
     ];
     return output
       .split("\n")
-      .map((theme) => ({ name: theme.replace(".json", "") }))
+      .map(
+        (theme) =>
+          ({
+            name: theme.replace(".json", ""),
+            icon: "🎨",
+          } as Fig.Suggestion)
+      )
       .concat(builtinThemes);
   },
 };
@@ -126,8 +129,10 @@ export const settingsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
     actions: Action[];
   };
 
-  const actionSuggestions: Fig.Suggestion[] = actions.flatMap((action) => ({
-    name: action.identifier,
+  const actionSuggestions: Fig.Suggestion[] = actions.map((action) => ({
+    name: action.identifier.startsWith("autocomplete.")
+      ? action.identifier.slice(13)
+      : action.identifier,
     description: action.description,
     icon: "⚡️",
   }));
@@ -171,6 +176,17 @@ export const settingsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
       }
     ),
   };
+};
+
+export const stateGenerator: Fig.Generator = {
+  script: "fig internal local-state all --format json",
+  postProcess: (out) => {
+    const state = JSON.parse(out);
+    return Object.keys(state).map((key) => ({
+      name: key,
+      description: JSON.stringify(state[key]),
+    }));
+  },
 };
 
 interface Plugin {
@@ -338,6 +354,14 @@ export const workflowsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
             suggestions: param.typeData.suggestions,
             generators,
           };
+        case "filepicker":
+          option.args = {
+            template: "folders",
+          };
+        case "checkbox":
+          option.args = {
+            suggestions: ["true", "false"],
+          };
       }
       return option;
     });
@@ -360,6 +384,7 @@ export const workflowsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
   return {
     name: "run",
     subcommands,
+    filterStrategy: "fuzzy",
   };
 };
 
