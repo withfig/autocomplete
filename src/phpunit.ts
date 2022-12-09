@@ -4,7 +4,7 @@ const completionSpec: Fig.Spec = {
     "The PHPUnit is a command-line test runner that can be invoked through the phpunit command",
   options: [
     { 
-      name: ["--coverage-clover"],
+      name: "--coverage-clover",
       description: "Generate code coverage report in Clover XML format,",
       args: {
         name: "file",
@@ -12,7 +12,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--coverage-crap4j"],
+      name: "--coverage-crap4j",
       description: "Generate code coverage report in Crap4J XML format",
       args: {
         name: "file",
@@ -20,7 +20,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--coverage-html"],
+      name: "--coverage-html",
       description: "Generate code coverage report in HTML format",
       args: {
         name: "dir",
@@ -28,7 +28,7 @@ const completionSpec: Fig.Spec = {
       }
     },
     {
-      name: ["--coverage-php"],
+      name: "--coverage-php",
       description: "Export PHP_CodeCoverage object to file",
       args: {
         name: "file",
@@ -36,7 +36,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--coverage-text="],
+      name: "--coverage-text=",
       description: "Generate code coverage report in text format [default: standard output]",
       args: {
         name: "file",
@@ -44,7 +44,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--coverage-xml"],
+      name: "--coverage-xml",
       description: "Generate code coverage report in PHPUnit XML format",
       args: {
         name: "dir",
@@ -52,7 +52,7 @@ const completionSpec: Fig.Spec = {
       }
     },
     {
-      name: ["--coverage-cache"],
+      name: "--coverage-cache",
       description: "Cache static analysis results",
       args: {
         name: "dir",
@@ -60,11 +60,11 @@ const completionSpec: Fig.Spec = {
       }
     },
     {
-      name: ["--warm-coverage-cache"],
+      name: "--warm-coverage-cache",
       description: "Warm static analysis cache",
     },
     {
-      name: ["--coverage-filter"],
+      name: "--coverage-filter",
       description: "Include <dir> in code coverage analysis",
       args: {
         name: "dir",
@@ -73,57 +73,57 @@ const completionSpec: Fig.Spec = {
     },
     
     {
-      name: ["--path-coverage"],
+      name: "--path-coverage",
       description: "Perform path coverage analysis",
     },
 
     {
-      name: ["--disable-coverage-ignore"],
+      name: "--disable-coverage-ignore",
       description: "Disable annotations for ignoring code coverage",
     },
 
     {
-      name: ["--no-coverage"],
+      name: "--no-coverage",
       description: "Ignore code coverage configuration",
     },
     {
-      name: ["--dont-report-useless-tests"],
+      name: "--dont-report-useless-tests",
       description: "Do not report tests that do not test anything",
     }, 
     
     {
-      name: ["--strict-coverage"],
+      name: "--strict-coverage",
       description: "Be strict about @covers annotation usage",
     },
     {
-      name: ["--strict-global-state"],
+      name: "--strict-global-state",
       description: "Be strict about changes to global state",
     },
     {
-      name: ["--disallow-test-output"],
+      name: "--disallow-test-output",
       description: "Be strict about output during tests",
     },
     {
-      name: ["--disallow-resource-usage"],
+      name: "--disallow-resource-usage",
       description: "Be strict about resource usage during small tests",
     },
     {
-      name: ["--enforce-time-limit"],
+      name: "--enforce-time-limit",
       description: "Enforce time limit based on test size",
     },
     {
-      name: ["--default-time-limit"],
+      name: "--default-time-limit",
       description: "Timeout in seconds for tests without @small, @medium or @large",
       args: {
         name: "seconds"
       }
     },
     {
-      name: ["--disallow-todo-tests"],
+      name: "--disallow-todo-tests",
       description: "Disallow @todo-annotated tests",
     },
     {
-      name: ["--log-junit"],
+      name: "--log-junit",
       description: "Log test execution in JUnit XML format to file",
       args: {
         name: "file",
@@ -131,7 +131,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--log-teamcity"],
+      name: "--log-teamcity",
       description: "Log test execution in TeamCity format to file",
       args: {
         name: "file",
@@ -139,7 +139,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-    name: ["--testdox-html"],
+    name: "--testdox-html",
     description: "Write agile documentation in HTML format to file",
     args: {
         name: "file",
@@ -147,7 +147,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-    name: ["--testdox-text"],
+    name: "--testdox-text",
     description: "Write agile documentation in Text format to file",
     args: {
         name: "file",
@@ -155,7 +155,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-    name: ["--testdox-xml"],
+    name: "--testdox-xml",
     description: "Write agile documentation in HTML format to file",
     args: {
         name: "file",
@@ -163,15 +163,15 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-    name: ["--reverse-list"],
+    name: "--reverse-list",
     description: "Print defects in reverse order",
     },
     {
-    name: ["--no-logging"],
+    name: "--no-logging",
     description: "Ignore logging configuration",
     },
     {
-    name: ["--prepend"],
+    name: "--prepend",
     description: "A PHP script that is included as early as possible",
     args: {
         name: "file",
@@ -179,7 +179,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-    name: ["--bootstrap"],
+    name: "--bootstrap",
     description: "A PHP script that is included before the tests run",
     args: {
         name: "file",
@@ -195,36 +195,36 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-    name: ["--no-configuration"],
+    name: "--no-configuration",
     description: "Ignore default configuration file (phpunit.xml)",
     },
     {
-    name: ["--extensions"],
+    name: "--extensions",
     description: "A comma separated list of PHPUnit extensions to load",
     args: {
         name: "extensions",
       },
     },
     {
-    name: ["--no-extensions"],
+    name: "--no-extensions",
     description: "Do not load PHPUnit extensions",
     },
     {
-    name: ["--include-path"],
+    name: "--include-path",
     description: "Prepend PHP's include_path with given path(s)",
     args: {
         name: "path(s)",
       },
     },
     {
-    name: ["-d"],
+    name: "-d",
     description: "Sets a php.ini value",
     args: {
         name: "key[=value]",
       },
     },
     {
-    name: ["--cache-result-file"],
+    name: "--cache-result-file",
     description: "Specify result cache path and filename",
     args: {
         name: "file",
@@ -232,11 +232,11 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-    name: ["--generate-configuration"],
+    name: "--generate-configuration",
     description: "Generate configuration file with suggested settings",
     },
     {
-    name: ["--migrate-configuration"],
+    name: "--migrate-configuration",
     description: "Migrate configuration file to current format",
     },
   ], 
