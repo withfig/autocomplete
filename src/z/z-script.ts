@@ -1,5 +1,5 @@
 // https://github.com/rupa/z
-const completionSpec: Fig.Spec = {
+const zScriptCompletionSpec: Fig.Spec = {
   name: "z",
   description: "CLI tool to jump around directories",
   args: {
@@ -70,4 +70,4 @@ const completionSpec: Fig.Spec = {
   ],
 };
 
-export default completionSpec;
+export default zScriptCompletionSpec;
