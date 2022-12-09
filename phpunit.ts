@@ -22,6 +22,10 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--coverage-html"],
       description: "Generate code coverage report in HTML format",
+      args: {
+        name: "dir",
+        template: "filepaths"
+      }
     },
     {
       name: ["--coverage-php"],
@@ -42,10 +46,18 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--coverage-xml"],
       description: "Generate code coverage report in PHPUnit XML format",
+      args: {
+        name: "dir",
+        template: "filepaths"
+      }
     },
     {
       name: ["--coverage-cache"],
       description: "Cache static analysis results",
+      args: {
+        name: "dir",
+        template: "filepaths"
+      }
     },
     {
       name: ["--warm-coverage-cache"],
@@ -54,6 +66,10 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--coverage-filter"],
       description: "Include <dir> in code coverage analysis",
+      args: {
+        name: "dir",
+        template: "filepaths"
+      }
     },
     
     {
@@ -98,6 +114,9 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--default-time-limit"],
       description: "Timeout in seconds for tests without @small, @medium or @large",
+      args: {
+        name: "seconds"
+      }
     },
     {
       name: ["--disallow-todo-tests"],
