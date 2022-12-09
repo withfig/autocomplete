@@ -215,7 +215,5 @@ const completionSpec: Fig.Spec = {
       isPersistent: true,
     },
   ],
-  // Only uncomment if helmfile takes an argument
-  // args: {}
 };
 export default completionSpec;
