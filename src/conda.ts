@@ -1228,7 +1228,20 @@ const completionSpec: Fig.Spec = {
       name: "env",
       description: "",
       args: {},
-      subcommands: [{ name: "list" }],
+      subcommands: [
+        { name: "list" },
+        {
+          name: "remove",
+          options: [
+            {
+              name: "-n",
+              args: {
+                name: "environment variable",
+              },
+            },
+          ],
+        },
+      ],
     },
     {
       name: "index",
