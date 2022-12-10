@@ -36,7 +36,7 @@ const memoizedFetchData = () => {
     }
 
     try {
-      const query = `curl -s -H "Accept: application/json" "https://start.spring.io/metadata/client"`;
+      const query = `curl -sfL -H "Accept: application/json" "https://start.spring.io/metadata/client"`;
       const response = await executeShellCommand(query);
       data = JSON.parse(response);
       return data;
