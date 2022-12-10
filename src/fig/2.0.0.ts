@@ -4131,8 +4131,6 @@ const completion: Fig.Subcommand = {
 
 const versions: Fig.VersionDiffMap = {};
 
-versions["2.7.5"] = {};
-
 versions["2.9.0"] = {
   subcommands: [
     {
@@ -4667,6 +4665,22 @@ versions["2.9.0"] = {
         {
           name: "workflow",
           remove: true,
+        },
+      ],
+    },
+  ],
+};
+
+versions["2.9.1"] = {
+  subcommands: [
+    {
+      name: "wrapped",
+      icon: "🎁",
+      priority: 51,
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
         },
       ],
     },
