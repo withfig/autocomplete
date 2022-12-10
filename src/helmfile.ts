@@ -17,9 +17,10 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "charts",
-      deprecated: true,
-      description:
-        "DEPRECATED: sync releases from state file (helm upgrade --install)",
+      deprecated: {
+        description:
+          "DEPRECATED: sync releases from state file (helm upgrade --install)",
+      },
     },
     {
       name: "completion",
@@ -27,8 +28,10 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete",
-      deprecated: true,
-      description: "DEPRECATED: delete releases from state file (helm delete)",
+      deprecated: {
+        description:
+          "DEPRECATED: delete releases from state file (helm delete)",
+      },
     },
     {
       name: "deps",
