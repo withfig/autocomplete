@@ -1,3 +1,4 @@
+import { filepaths } from "@fig/autocomplete-generators";
 const restoreRestoreExactOptions: Fig.Option[] = [
   {
     name: "--source",
@@ -194,6 +195,8 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "source",
             description: "UDIF disk image local/remote path",
+            template: "filepaths",
+            suggestCurrentToken: true,
           },
         },
         {
@@ -210,6 +213,9 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "configuration",
             description: "Configuration file in standard property list format",
+            generators: filepaths({
+              extensions: ["plist"],
+            }),
           },
         },
       ],
