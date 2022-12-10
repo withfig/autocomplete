@@ -74,27 +74,15 @@ const completionSpec: Fig.Spec = {
         {
           name: "MAX",
         },
-
-        {
-          name: "CMD",
-          description: "Command to benchmark",
-          isOptional: true,
-        },
       ],
     },
     {
       name: ["--parameter-step-size", "-D"],
       description:
         "This argument requires --parameter-scan to be specified as well. Traverse the range min..max in steps of delta",
-      args: [
-        {
-          name: "delta",
-        },
-        {
-          name: "CMD",
-          description: "Command to benchmark",
-        },
-      ],
+      args: {
+        name: "delta",
+      },
       dependsOn: ["--parameter-scan", "-P"],
     },
     {
@@ -243,16 +231,10 @@ const completionSpec: Fig.Spec = {
       name: "--export-markdown",
       description:
         "Export the timing summary statistics as a Markdown table to the given file",
-      args: [
-        {
-          name: "FILE",
-          template: "filepaths",
-        },
-        {
-          name: "CMD ...",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "FILE",
+        template: "filepaths",
+      },
     },
     {
       name: "--show-output",
