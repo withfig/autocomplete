@@ -101,7 +101,7 @@ const completionSpec: Fig.Spec = {
   name: "spring",
   description:
     "The Spring Boot CLI is a command line tool that you can use to bootstrap a new project from start.spring.io or encode a password",
-  icon: "https://spring.io/images/favicon-9d25009f65637a49ac8d91eb1cf7b75e.ico",
+  icon: "https://start.spring.io/images/icon-48x48.png",
   subcommands: [
     {
       name: "init",
