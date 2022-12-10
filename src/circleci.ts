@@ -41,6 +41,27 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a new context",
+          args: [
+            {
+              name: "vcs-type",
+              description:
+                "Your VCS provider, can be either 'github' or 'bitbucket'",
+              isOptional: true,
+              suggestions: [
+                {
+                  name: "github",
+                },
+                {
+                  name: "bitbucket",
+                },
+              ],
+            },
+            {
+              name: "org-name",
+              description: "The name of your organization",
+              isOptional: true,
+            },
+          ],
         },
         {
           name: "delete",
