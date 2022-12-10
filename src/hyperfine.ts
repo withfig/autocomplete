@@ -39,6 +39,7 @@ const completionSpec: Fig.Spec = {
       description: "Execute cmd once before each set of timing runs",
       args: {
         name: "CMD",
+        isCommand: true,
       },
       isRepeatable: false,
     },
