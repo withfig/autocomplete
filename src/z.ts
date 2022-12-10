@@ -105,6 +105,9 @@ const zoxideCompletionSpec: Fig.Spec = {
           };
         });
       },
+      trigger: {
+        on: "change",
+      },
     },
   },
 };
