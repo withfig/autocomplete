@@ -17,6 +17,8 @@ const environmentVariableGenerator: Fig.Generator = {
       return [];
     }
   },
+  getQueryTerm: "$",
+  trigger: "$",
 };
 
 const completionSpec: Fig.Spec = {
