@@ -26,7 +26,6 @@ const completionSpec: Fig.Spec = {
       description: "Generate the autocompletion script for the specified shell",
     },
     {
-    {
       name: "delete",
       description:
         "The helmfile delete sub-command deletes all the releases defined in the manifests",
