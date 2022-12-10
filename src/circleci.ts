@@ -61,27 +61,167 @@ const completionSpec: Fig.Spec = {
               description: "The name of your organization",
               isOptional: true,
             },
+            {
+              name: "context-name",
+              description: "The name for your context",
+              isOptional: true,
+            },
           ],
         },
         {
           name: "delete",
           description: "Delete the named context",
+          args: [
+            {
+              name: "vcs-type",
+              description:
+                "Your VCS provider, can be either 'github' or 'bitbucket'",
+              isOptional: true,
+              suggestions: [
+                {
+                  name: "github",
+                },
+                {
+                  name: "bitbucket",
+                },
+              ],
+            },
+            {
+              name: "org-name",
+              description: "The name of your organization",
+              isOptional: true,
+            },
+            {
+              name: "context-name",
+              description: "The name of your context",
+              isOptional: true,
+            },
+          ],
         },
         {
           name: "list",
           description: "List all contexts",
+          args: [
+            {
+              name: "vcs-type",
+              description:
+                "Your VCS provider, can be either 'github' or 'bitbucket'",
+              isOptional: true,
+              suggestions: [
+                {
+                  name: "github",
+                },
+                {
+                  name: "bitbucket",
+                },
+              ],
+            },
+            {
+              name: "org-name",
+              description: "The name of your organization",
+              isOptional: true,
+            },
+          ],
         },
         {
           name: "remove-secret",
           description: "Remove environment variable from a context",
+          args: [
+            {
+              name: "vcs-type",
+              description:
+                "Your VCS provider, can be either 'github' or 'bitbucket'",
+              isOptional: true,
+              suggestions: [
+                {
+                  name: "github",
+                },
+                {
+                  name: "bitbucket",
+                },
+              ],
+            },
+            {
+              name: "org-name",
+              description: "The name of your organization",
+              isOptional: true,
+            },
+            {
+              name: "context-name",
+              description: "The name of your context",
+              isOptional: true,
+            },
+            {
+              name: "secret name",
+              description: "The name of the env variable to remove",
+              isOptional: true,
+            },
+          ],
         },
         {
           name: "show",
           description: "Show a context",
+          args: [
+            {
+              name: "vcs-type",
+              description:
+                "Your VCS provider, can be either 'github' or 'bitbucket'",
+              isOptional: true,
+              suggestions: [
+                {
+                  name: "github",
+                },
+                {
+                  name: "bitbucket",
+                },
+              ],
+            },
+            {
+              name: "org-name",
+              description: "The name of your organization",
+              isOptional: true,
+            },
+            {
+              name: "context-name",
+              description: "The name of your context",
+              isOptional: true,
+            },
+          ],
         },
         {
           name: "store-secret",
           description: "Store environment variables",
+          args: [
+            {
+              name: "vcs-type",
+              description:
+                "Your VCS provider, can be either 'github' or 'bitbucket'",
+              isOptional: true,
+              suggestions: [
+                {
+                  name: "github",
+                },
+                {
+                  name: "bitbucket",
+                },
+              ],
+            },
+            {
+              name: "org-name",
+              description: "The name of your organization",
+              isOptional: true,
+            },
+            {
+              name: "context-name",
+              description: "The name of your context",
+              isOptional: true,
+            },
+            {
+              name: "secret name",
+              description: "The name of the env variable to store",
+              isOptional: true,
+            },
+          ],
         },
       ],
     },
