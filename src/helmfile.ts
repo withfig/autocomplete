@@ -17,14 +17,15 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "charts",
+      deprecated: true,
       description:
         "DEPRECATED: sync releases from state file (helm upgrade --install)",
-      deprecated: true,
     },
     {
       name: "completion",
       description: "Generate the autocompletion script for the specified shell",
     },
+    {
     {
       name: "delete",
       description:
