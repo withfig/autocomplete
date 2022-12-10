@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "helmfile",
-  description: "",
+  description: "Deploy helm charts",
   subcommands: [
     {
       name: "apply",
