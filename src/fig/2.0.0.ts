@@ -4133,5 +4133,545 @@ const versions: Fig.VersionDiffMap = {};
 
 versions["2.7.5"] = {};
 
+versions["2.9.0"] = {
+  subcommands: [
+    {
+      name: "debug",
+      subcommands: [
+        {
+          name: "build",
+          description: "Switch to another branch of a Fig.js app",
+          args: [
+            {
+              name: "app",
+              suggestions: ["dashboard", "autocomplete"],
+            },
+            {
+              name: "build",
+              isOptional: true,
+              suggestions: ["production", "staging", "develop"],
+            },
+          ],
+        },
+        {
+          name: "devtools",
+          args: {
+            name: "app",
+            suggestions: ["dashboard", "autocomplete"],
+          },
+        },
+        {
+          name: "get-index",
+          description: "Displays remote index",
+          options: [
+            {
+              name: ["-d", "--debug"],
+              description: "Display using debug formatting",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "channel",
+          },
+        },
+        {
+          name: "list-intelli-j-variants",
+          description: "Lists installed IntelliJ variants",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "help",
+          subcommands: [
+            {
+              name: "build",
+              description: "Switch to another branch of a Fig.js app",
+            },
+            {
+              name: "get-index",
+              description: "Displays remote index",
+            },
+            {
+              name: "list-intelli-j-variants",
+              description: "Lists installed IntelliJ variants",
+            },
+            {
+              name: "unix-socket",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "unix-socket",
+          remove: true,
+        },
+      ],
+    },
+    {
+      name: "ssh",
+      options: [
+        {
+          name: "--ignore-default-identity",
+          description: "Ignore saved identities",
+        },
+        {
+          name: "--remove-default-identity",
+        },
+        {
+          name: "--ignore-saved",
+          remove: true,
+        },
+      ],
+    },
+    {
+      name: "team",
+      subcommands: [
+        {
+          name: "members",
+          description: "List all members on a team",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "remove",
+          description: "Remove a member from a team",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "email",
+          },
+        },
+        {
+          name: "add",
+          description: "Invite a member to a team",
+          options: [
+            {
+              name: "--role",
+              isRepeatable: true,
+              args: {
+                name: "role",
+                isOptional: true,
+                suggestions: ["owner", "admin", "member"],
+              },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "email",
+          },
+        },
+        {
+          name: "invitations",
+          description: "List pending invitations to a team",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "revoke",
+          description: "Revoke an invitation to a team",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "email",
+          },
+        },
+        {
+          name: "help",
+          description:
+            "Print this message or the help of the given subcommand(s)",
+          subcommands: [
+            {
+              name: "members",
+              description: "List all members on a team",
+            },
+            {
+              name: "remove",
+              description: "Remove a member from a team",
+            },
+            {
+              name: "add",
+              description: "Invite a member to a team",
+            },
+            {
+              name: "invitations",
+              description: "List pending invitations to a team",
+            },
+            {
+              name: "revoke",
+              description: "Revoke an invitation to a team",
+            },
+            {
+              name: "help",
+              description:
+                "Print this message or the help of the given subcommand(s)",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: ["internal", "_"],
+      subcommands: [
+        {
+          name: "check-ssh",
+          hidden: true,
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "generate-ssh",
+          description: "Generates an SSH configuration file",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description:
+                "Print help information (use `--help` for more detail)",
+            },
+          ],
+          args: {
+            name: "remote_username",
+          },
+        },
+        {
+          name: "help",
+          subcommands: [
+            {
+              name: "check-ssh",
+              hidden: true,
+            },
+            {
+              name: "generate-ssh",
+              description: "Generates an SSH configuration file",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: ["run", "r"],
+      description: "Execute a Fig Script",
+    },
+    {
+      name: ["scripts", "script"],
+      description: "Manage your Fig Scripts",
+      subcommands: [
+        {
+          name: "refresh",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "help",
+          description:
+            "Print this message or the help of the given subcommand(s)",
+          subcommands: [
+            {
+              name: "refresh",
+            },
+            {
+              name: "help",
+              description:
+                "Print this message or the help of the given subcommand(s)",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+    },
+    {
+      name: ["integrations", "integration"],
+      subcommands: [
+        {
+          name: "reinstall",
+          subcommands: [
+            {
+              name: "dotfiles",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description:
+                    "Print help information (use `--help` for more detail)",
+                },
+              ],
+              args: {
+                name: "shell",
+                isOptional: true,
+                suggestions: [
+                  {
+                    name: "bash",
+                    description: "Bash shell",
+                  },
+                  {
+                    name: "zsh",
+                    description: "Zsh shell",
+                  },
+                  {
+                    name: "fish",
+                    description: "Fish shell",
+                  },
+                ],
+              },
+            },
+            {
+              name: "daemon",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+            },
+            {
+              name: "ssh",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+            },
+            {
+              name: "input-method",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+            },
+            {
+              name: "vscode",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+            },
+            {
+              name: ["intellij", "jetbrains"],
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+            },
+            {
+              name: "all",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+            },
+            {
+              name: "help",
+              description:
+                "Print this message or the help of the given subcommand(s)",
+              subcommands: [
+                {
+                  name: "dotfiles",
+                },
+                {
+                  name: "daemon",
+                },
+                {
+                  name: "ssh",
+                },
+                {
+                  name: "input-method",
+                },
+                {
+                  name: "vscode",
+                },
+                {
+                  name: "intellij",
+                },
+                {
+                  name: "all",
+                },
+                {
+                  name: "help",
+                  description:
+                    "Print this message or the help of the given subcommand(s)",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: ["-s", "--silent"],
+              description: "Suppress status messages",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "help",
+          subcommands: [
+            {
+              name: "reinstall",
+              subcommands: [
+                {
+                  name: "dotfiles",
+                },
+                {
+                  name: "daemon",
+                },
+                {
+                  name: "ssh",
+                },
+                {
+                  name: "input-method",
+                },
+                {
+                  name: "vscode",
+                },
+                {
+                  name: "intellij",
+                },
+                {
+                  name: "all",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "help",
+      subcommands: [
+        {
+          name: "debug",
+          subcommands: [
+            {
+              name: "build",
+              description: "Switch to another branch of a Fig.js app",
+            },
+            {
+              name: "get-index",
+              description: "Displays remote index",
+            },
+            {
+              name: "list-intelli-j-variants",
+              description: "Lists installed IntelliJ variants",
+            },
+            {
+              name: "unix-socket",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "internal",
+          subcommands: [
+            {
+              name: "check-ssh",
+              hidden: true,
+            },
+            {
+              name: "generate-ssh",
+              description: "Generates an SSH configuration file",
+            },
+          ],
+        },
+        {
+          name: "run",
+          description: "Execute a Fig Script",
+        },
+        {
+          name: "scripts",
+          description: "Manage your Fig Scripts",
+          subcommands: [
+            {
+              name: "refresh",
+            },
+          ],
+        },
+        {
+          name: "integrations",
+          subcommands: [
+            {
+              name: "reinstall",
+              subcommands: [
+                {
+                  name: "dotfiles",
+                },
+                {
+                  name: "daemon",
+                },
+                {
+                  name: "ssh",
+                },
+                {
+                  name: "input-method",
+                },
+                {
+                  name: "vscode",
+                },
+                {
+                  name: "intellij",
+                },
+                {
+                  name: "all",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "workflow",
+          remove: true,
+        },
+      ],
+    },
+  ],
+};
+
 export { versions };
 export default completion;
