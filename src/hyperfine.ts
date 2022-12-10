@@ -49,7 +49,7 @@ const completionSpec: Fig.Spec = {
         "Execute cmd before each timing run. This is useful for clearing disk caches, for example",
       args: {
         name: "CMD ...",
-        isVariadic: true,
+        isCommand: true,
       },
     },
     {
@@ -58,6 +58,7 @@ const completionSpec: Fig.Spec = {
         "Execute cmd after the completion of all benchmarking runs for each individual command to be benchmarked",
       args: {
         name: "CMD",
+        isCommand: true,
       },
     },
     {
@@ -95,10 +96,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "VALS",
-        },
-        {
-          name: "CMD",
-          description: "Command to benchmark",
         },
       ],
     },
@@ -168,10 +165,6 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--ignore-failure", "-i"],
       description: "Ignore non-zero exit codes of the benchmarked commands",
-      args: {
-        name: "CMD ...",
-        isVariadic: true,
-      },
     },
     {
       name: ["--time-unit", "-u"],
@@ -186,46 +179,28 @@ const completionSpec: Fig.Spec = {
       name: "--export-asciidoc",
       description:
         "Export the timing summary statistics as an AsciiDoc table to the given file",
-      args: [
-        {
-          name: "FILE",
-          template: "filepaths",
-        },
-        {
-          name: "CMD ...",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "FILE",
+        template: "filepaths",
+      },
     },
     {
       name: "--export-csv",
       description:
         "Export the timing summary statistics as CSV to the given file",
-      args: [
-        {
-          name: "FILE",
-          template: "filepaths",
-        },
-        {
-          name: "CMD ...",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "FILE",
+        template: "filepaths",
+      },
     },
     {
       name: "--export-json",
       description:
         "Export the timing summary statistics and timings of individual runs as JSON to the given file",
-      args: [
-        {
-          name: "FILE",
-          template: "filepaths",
-        },
-        {
-          name: "CMD ...",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "FILE",
+        template: "filepaths",
+      },
     },
     {
       name: "--export-markdown",
@@ -240,23 +215,13 @@ const completionSpec: Fig.Spec = {
       name: "--show-output",
       description:
         "Print the stdout and stderr of the benchmark instead of suppressing it",
-      args: {
-        name: "CMD ...",
-        isVariadic: true,
-      },
     },
     {
       name: "--command-name",
       description: "Identify a command with the given name",
-      args: [
-        {
-          name: "NAME",
-        },
-        {
-          name: "CMD ...",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "NAME",
+      },
     },
     {
       name: "--help",
