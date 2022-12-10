@@ -17,10 +17,9 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "charts",
-      deprecated: {
-        description:
-          "DEPRECATED: sync releases from state file (helm upgrade --install)",
-      },
+      description:
+        "DEPRECATED: sync releases from state file (helm upgrade --install)",
+      deprecated: true,
     },
     {
       name: "completion",
@@ -28,9 +27,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete",
+      description:
+        "The helmfile delete sub-command deletes all the releases defined in the manifests",
       deprecated: {
         description:
-          "DEPRECATED: delete releases from state file (helm delete)",
+          "Note that delete doesn’t purge releases. If you really want to remove releases for reuse, add --purge flag to run it like helmfile delete --purge",
       },
     },
     {
