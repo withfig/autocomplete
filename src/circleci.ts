@@ -183,6 +183,16 @@ const completionSpec: Fig.Spec = {
     {
       name: "update",
       description: "Update and switch to new CLI version",
+      subcommands: [
+        {
+          name: "check",
+          description: "Check for new CLI version",
+        },
+        {
+          name: "install",
+          description: "Install new CLI version",
+        },
+      ],
     },
     {
       name: "version",
