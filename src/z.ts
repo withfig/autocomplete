@@ -43,10 +43,11 @@ function filterHistoryBySearchTerms(
   insertedTerms: string[],
   history: ZSuggestion[]
 ): ZSuggestion[] {
-  const insertedTermsMap = new Set(insertedTerms)
-  return (
-    history
-      .filter(({ name, path }) => !insertedTermsMap.has(name) && insertedTerms.every((item) => path.includes(item)))
+  const insertedTermsMap = new Set(insertedTerms);
+  return history.filter(
+    ({ name, path }) =>
+      !insertedTermsMap.has(name) &&
+      insertedTerms.every((item) => path.includes(item))
   );
 }
 
