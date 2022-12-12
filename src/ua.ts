@@ -1,7 +1,7 @@
 import completionSpec from "./pro";
 const Spec: Fig.Spec = {
   ...completionSpec,
-  name: "pro",
+  name: "ua",
 };
 
 export default Spec;
