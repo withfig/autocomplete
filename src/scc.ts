@@ -183,7 +183,7 @@ const completionSpec: Fig.Spec = {
               .split("\n")
               .map((path) => ({
                 name: path.slice(path.lastIndexOf("/") + 1),
-                icon: `fig://${path}`,
+                icon: `fig://path/${path}`,
               }));
             suggestions.push({ name: "stdout", priority: 75 });
             return suggestions;

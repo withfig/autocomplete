@@ -51,7 +51,7 @@ function filterHistoryBySearchTerms(
 }
 
 // https://github.com/rupa/z
-const completionSpec: Fig.Spec = {
+const zShCompletionSpec: Fig.Spec = {
   name: "z",
   description: "CLI tool to jump around directories",
   args: {
@@ -110,4 +110,62 @@ const completionSpec: Fig.Spec = {
   ],
 };
 
-export default completionSpec;
+// https://github.com/ajeetdsouza/zoxide
+const zoxideCompletionSpec: Fig.Spec = {
+  name: "z",
+  description: "Smarter cd command, inspired by z and autojump",
+  args: {
+    name: "directory",
+    filterStrategy: "fuzzy",
+    suggestCurrentToken: true,
+    isVariadic: true,
+    generators: {
+      custom: async (tokens, executeShellCommand) => {
+        console.log(tokens);
+        let command;
+        if (tokens.length < 2 || tokens[1] === "") {
+          command = "zoxide query --list --score";
+        } else {
+          command = `zoxide query --list --score -- ${tokens
+            .slice(1)
+            .join(" ")}`;
+        }
+
+        console.log(command);
+        const out = await executeShellCommand(command);
+
+        return out.split("\n").map((line) => {
+          const trimmedLine = line.trim();
+          const spaceIndex = trimmedLine.indexOf(" ");
+          const score = Number(trimmedLine.slice(0, spaceIndex));
+          const path = trimmedLine.slice(spaceIndex + 1);
+          return {
+            name: path,
+            description: `Score: ${score}`,
+          };
+        });
+      },
+      trigger: {
+        on: "change",
+      },
+    },
+  },
+};
+
+const zCompletionSpec: Fig.Spec = {
+  name: "z",
+  generateSpec: async (_, executeShellCommand) => {
+    // Assume if zoxide is installed, use that completion spec
+    try {
+      const zoxideInstalled = await executeShellCommand("command -v zoxide");
+      if (zoxideInstalled.length > 0) {
+        return zoxideCompletionSpec;
+      }
+    } catch (_) {}
+
+    // Otherwise, use the z.sh completion spec
+    return zShCompletionSpec;
+  },
+};
+
+export default zCompletionSpec;

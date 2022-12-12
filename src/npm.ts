@@ -25,18 +25,21 @@ export const createNpmSearchHandler =
     if (searchTerm === "") {
       return [];
     }
-
     // Add optional keyword parameter
     const keywordParameter =
       keywords?.length > 0 ? `+keywords:${keywords.join(",")}` : "";
+
+    const queryPackagesUrl = keywordParameter
+      ? `https://api.npms.io/v2/search/suggestions?q=${searchTerm}&size=20`
+      : `https://api.npms.io/v2/search?size=20&q=${searchTerm}${keywordParameter}`;
+
     // Query the API with the package name
-    const queryPackages = `curl -s -H "Accept: application/json" "https://api.npms.io/v2/search?size=20&q=${searchTerm}${keywordParameter}"`;
+    const queryPackages = `curl -s -H "Accept: application/json" "${queryPackagesUrl}"`;
     // We need to remove the '@' at the end of the searchTerm before querying versions
     const queryVersions = `curl -s -H "Accept: application/vnd.npm.install-v1+json" https://registry.npmjs.org/${searchTerm.slice(
       0,
       -1
     )}`;
-
     // If the end of our token is '@', then we want to generate version suggestions
     // Otherwise, we want packages
     const out = (query: string) =>
@@ -70,7 +73,8 @@ export const createNpmSearchHandler =
         return versions;
       }
 
-      return data.results.map((item) => ({
+      const results = keywordParameter ? data.results : data;
+      return results.map((item) => ({
         name: item.package.name,
         description: item.package.description,
       })) as Fig.Suggestion[];

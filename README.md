@@ -12,17 +12,20 @@
 [![Badge: Join the Discord server](https://img.shields.io/discord/837809111248535583?color=5865F2&label=discord)](https://fig.io/community)
 [![Badge: Follow on Twitter](https://img.shields.io/twitter/follow/fig.svg?style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=fig)
 
-**[Fig](https://fig.io?ref=github_autocomplete) adds autocomplete to your terminal.**
+**[Fig](https://fig.io?ref=github_autocomplete) makes the command line easier for individuals and more collaborative for teams.**
 
-As you type, Fig pops up subcommands, options, and contextually relevant arguments in your existing terminal on macOS.
+Our most popular product is Autocomplete. As you type, Fig pops up subcommands, options, and contextually relevant arguments in your existing terminal.
 
 ## ⚡️ Installation
 
 - **macOS**:
-  - **Homebrew**: `brew install fig`
   - **DMG**: Download from our website: [fig.io](https://fig.io/welcome)
+  - **Homebrew**: `brew install fig`
 - **Windows/Linux**:
   - Join the [waitlist](https://withfig.typeform.com/linux)
+- **Remote machines**
+  - [Autocomplete in SSH](https://fig.io/user-manual/autocomplete/ssh)
+  - [Autocomplete in Docker Containers](https://fig.io/user-manual/autocomplete/docker)
 
 > NOTE: Once it's downloaded, launch the app to set up Fig!
 
@@ -174,7 +177,7 @@ Not yet, Fig is only available on macOS for now. [Windows](https://github.com/wi
 
 #### How can I download Fig?
 
-Run `brew install --cask fig` or, downloading the app at [fig.io/download](https://fig.io/download). Then, launch the Fig app!
+Run `brew install fig` or, downloading the app at [fig.io/download](https://fig.io/download). Then, launch the Fig app!
 
 #### Can I use Fig to build autocomplete for my team's internal scripts and CLI tools?
 

@@ -310,13 +310,14 @@ export const gitGenerators: Record<string, Fig.Generator> = {
   files_for_staging: {
     script: "git --no-optional-locks status --short",
     postProcess: (out, context) => {
+      // This whole function is a mess
+
       const output = filterMessages(out);
 
       if (output.startsWith("fatal:")) {
         return [];
       }
-
-      const files = output.split("\n").map((file) => {
+      let files = output.split("\n").map((file) => {
         // From "git --no-optional-locks status --short"
         // M  dev/github.ts // test file that was added
         //  M dev/kubectl.ts // test file that was not added
@@ -359,6 +360,19 @@ export const gitGenerators: Record<string, Fig.Generator> = {
         }
       }
 
+      // Filter out the files that the user has already input in the current edit buffer
+      files = files.filter((item) => {
+        const file = item.file.replace(/^"|"$/g, "");
+        return !context.some((ctx) => {
+          return (
+            ctx === file ||
+            // Need to add support for proper globbing one day
+            (ctx.endsWith("*") && file.startsWith(ctx.slice(0, -1))) ||
+            (ctx.startsWith("*") && file.endsWith(ctx.slice(1)))
+          );
+        });
+      });
+
       return [
         ...dirArr.map((name) => {
           return {
@@ -370,7 +384,6 @@ export const gitGenerators: Record<string, Fig.Generator> = {
         ...files.map((item) => {
           const file = item.file.replace(/^"|"$/g, "");
           let ext = "";
-
           try {
             ext = file.split(".").slice(-1)[0];
           } catch (e) {}
@@ -381,10 +394,7 @@ export const gitGenerators: Record<string, Fig.Generator> = {
 
           // If the current file is already added
           // we want to lower the priority
-          const priority =
-            item.alreadyAdded || context.some((ctx) => ctx.includes(file))
-              ? 50
-              : 100;
+          const priority = item.alreadyAdded ? 50 : 100;
           return {
             name: file,
             icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
@@ -663,37 +673,37 @@ const configSuggestions: Fig.Suggestion[] = [
       "Do not treat root commits as boundaries in git-blame[1]. This option defaults to false",
   },
   {
-    name: "branch.&lt;name&gt;.description",
+    name: "branch.<name>.description",
     insertValue: "branch.{cursor}.description",
     description:
       "Branch description, can be edited with `git branch --edit-description`. Branch description is automatically added in the format-patch cover letter or request-pull summary",
   },
   {
-    name: "branch.&lt;name&gt;.merge",
+    name: "branch.<name>.merge",
     insertValue: "branch.{cursor}.merge",
     description:
       "Defines, together with branch.<name>.remote, the upstream branch for the given branch. It tells 'git fetch'/'git pull'/'git rebase' which branch to merge and can also affect 'git push' (see push.default). When in branch <name>, it tells 'git fetch' the default refspec to be marked for merging in FETCH_HEAD. The value is handled like the remote part of a refspec, and must match a ref which is fetched from the remote given by \"branch.<name>.remote\". The merge information is used by 'git pull' (which at first calls 'git fetch') to lookup the default branch for merging. Without this option, 'git pull' defaults to merge the first refspec fetched. Specify multiple values to get an octopus merge. If you wish to setup 'git pull' so that it merges into <name> from another branch in the local repository, you can point branch.<name>.merge to the desired branch, and use the relative path setting `.` (a period) for branch.<name>.remote",
   },
   {
-    name: "branch.&lt;name&gt;.mergeOptions",
+    name: "branch.<name>.mergeOptions",
     insertValue: "branch.{cursor}.mergeOptions",
     description:
       "Sets default options for merging into branch <name>. The syntax and supported options are the same as those of git-merge[1], but option values containing whitespace characters are currently not supported",
   },
   {
-    name: "branch.&lt;name&gt;.pushRemote",
+    name: "branch.<name>.pushRemote",
     insertValue: "branch.{cursor}.pushRemote",
     description:
       "When on branch <name>, it overrides `branch.<name>.remote` for pushing. It also overrides `remote.pushDefault` for pushing from branch <name>. When you pull from one place (e.g. your upstream) and push to another place (e.g. your own publishing repository), you would want to set `remote.pushDefault` to specify the remote to push to for all branches, and use this option to override it for a specific branch",
   },
   {
-    name: "branch.&lt;name&gt;.rebase",
+    name: "branch.<name>.rebase",
     insertValue: "branch.{cursor}.rebase",
     description:
       'When true, rebase the branch <name> on top of the fetched branch, instead of merging the default branch from the default remote when "git pull" is run. See "pull.rebase" for doing this in a non branch-specific manner',
   },
   {
-    name: "branch.&lt;name&gt;.remote",
+    name: "branch.<name>.remote",
     insertValue: "branch.{cursor}.remote",
     description:
       "When on branch <name>, it tells 'git fetch' and 'git push' which remote to fetch from/push to. The remote to push to may be overridden with `remote.pushDefault` (for all branches). The remote to push to, for the current branch, may be further overridden by `branch.<name>.pushRemote`. If no remote is configured, or if you are not on any branch and there is more than one remote defined in the repository, it defaults to `origin` for fetching and `remote.pushDefault` for pushing. Additionally, `.` (a period) is the current local repository (a dot-repository), see `branch.<name>.merge`'s final note below",
@@ -714,13 +724,13 @@ const configSuggestions: Fig.Suggestion[] = [
       'This variable controls the sort ordering of branches when displayed by git-branch[1]. Without the "--sort=<value>" option provided, the value of this variable will be used as the default. See git-for-each-ref[1] field names for valid values',
   },
   {
-    name: "browser.&lt;tool&gt;.cmd",
+    name: "browser.<tool>.cmd",
     insertValue: "browser.{cursor}.cmd",
     description:
       "Specify the command to invoke the specified browser. The specified command is evaluated in shell with the URLs passed as arguments. (See git-web{litdd}browse[1].)",
   },
   {
-    name: "browser.&lt;tool&gt;.path",
+    name: "browser.<tool>.path",
     insertValue: "browser.{cursor}.path",
     description:
       "Override the path for the given tool that may be used to browse HTML help (see `-w` option in git-help[1]) or a working repository in gitweb (see git-instaweb[1])",
@@ -790,13 +800,13 @@ const configSuggestions: Fig.Suggestion[] = [
       "A boolean to enable/disable color in the output of git-branch[1]. May be set to `always`, `false` (or `never`) or `auto` (or `true`), in which case colors are used only when the output is to a terminal. If unset, then the value of `color.ui` is used (`auto` by default)",
   },
   {
-    name: "color.branch.&lt;slot&gt;",
+    name: "color.branch.<slot>",
     insertValue: "color.branch.{cursor}",
     description:
       "Use customized color for branch coloration. `<slot>` is one of `current` (the current branch), `local` (a local branch), `remote` (a remote-tracking branch in refs/remotes/), `upstream` (upstream tracking branch), `plain` (other refs)",
   },
   {
-    name: "color.decorate.&lt;slot&gt;",
+    name: "color.decorate.<slot>",
     insertValue: "color.decorate.{cursor}",
     description:
       "Use customized color for 'git log --decorate' output. `<slot>` is one of `branch`, `remoteBranch`, `tag`, `stash` or `HEAD` for local branches, remote-tracking branches, tags, stash and HEAD, respectively and `grafted` for grafted commits",
@@ -807,7 +817,7 @@ const configSuggestions: Fig.Suggestion[] = [
       "Whether to use ANSI escape sequences to add color to patches. If this is set to `always`, git-diff[1], git-log[1], and git-show[1] will use color for all patches. If it is set to `true` or `auto`, those commands will only use color when output is to the terminal. If unset, then the value of `color.ui` is used (`auto` by default)",
   },
   {
-    name: "color.diff.&lt;slot&gt;",
+    name: "color.diff.<slot>",
     insertValue: "color.diff.{cursor}",
     description:
       "Use customized color for diff colorization. `<slot>` specifies which part of the patch to use the specified color, and is one of `context` (context text - `plain` is a historical synonym), `meta` (metainformation), `frag` (hunk header), 'func' (function in hunk header), `old` (removed lines), `new` (added lines), `commit` (commit headers), `whitespace` (highlighting whitespace errors), `oldMoved` (deleted lines), `newMoved` (added lines), `oldMovedDimmed`, `oldMovedAlternative`, `oldMovedAlternativeDimmed`, `newMovedDimmed`, `newMovedAlternative` `newMovedAlternativeDimmed` (See the '<mode>' setting of '--color-moved' in git-diff[1] for details), `contextDimmed`, `oldDimmed`, `newDimmed`, `contextBold`, `oldBold`, and `newBold` (see git-range-diff[1] for details)",
@@ -818,7 +828,7 @@ const configSuggestions: Fig.Suggestion[] = [
       "When set to `always`, always highlight matches. When `false` (or `never`), never. When set to `true` or `auto`, use color only when the output is written to the terminal. If unset, then the value of `color.ui` is used (`auto` by default)",
   },
   {
-    name: "color.grep.&lt;slot&gt;",
+    name: "color.grep.<slot>",
     insertValue: "color.grep.{cursor}",
     description:
       "Use customized color for grep colorization. `<slot>` specifies which part of the line to use the specified color, and is one of",
@@ -829,7 +839,7 @@ const configSuggestions: Fig.Suggestion[] = [
       'When set to `always`, always use colors for interactive prompts and displays (such as those used by "git-add --interactive" and "git-clean --interactive"). When false (or `never`), never. When set to `true` or `auto`, use colors only when the output is to the terminal. If unset, then the value of `color.ui` is used (`auto` by default)',
   },
   {
-    name: "color.interactive.&lt;slot&gt;",
+    name: "color.interactive.<slot>",
     insertValue: "color.interactive.{cursor}",
     description:
       "Use customized color for 'git add --interactive' and 'git clean --interactive' output. `<slot>` may be `prompt`, `header`, `help` or `error`, for four distinct types of normal output from interactive commands",
@@ -854,7 +864,7 @@ const configSuggestions: Fig.Suggestion[] = [
       'If set, keywords at the start of the line are highlighted. The keywords are "error", "warning", "hint" and "success", and are matched case-insensitively. May be set to `always`, `false` (or `never`) or `auto` (or `true`). If unset, then the value of `color.ui` is used (`auto` by default)',
   },
   {
-    name: "color.remote.&lt;slot&gt;",
+    name: "color.remote.<slot>",
     insertValue: "color.remote.{cursor}",
     description:
       "Use customized color for each remote keyword. `<slot>` may be `hint`, `warning`, `success` or `error` which match the corresponding keyword",
@@ -870,7 +880,7 @@ const configSuggestions: Fig.Suggestion[] = [
       "A boolean to enable/disable color in the output of git-status[1]. May be set to `always`, `false` (or `never`) or `auto` (or `true`), in which case colors are used only when the output is to a terminal. If unset, then the value of `color.ui` is used (`auto` by default)",
   },
   {
-    name: "color.status.&lt;slot&gt;",
+    name: "color.status.<slot>",
     insertValue: "color.status.{cursor}",
     description:
       "Use customized color for status colorization. `<slot>` is one of `header` (the header text of the status message), `added` or `updated` (files which are added but not committed), `changed` (files which are changed but not added in the index), `untracked` (files which are not tracked by Git), `branch` (the current branch), `nobranch` (the color the 'no branch' warning is shown in, defaulting to red), `localBranch` or `remoteBranch` (the local and remote branch names, respectively, when branch and tracking information is displayed in the status short-format), or `unmerged` (files which have unmerged changes)",
@@ -1284,67 +1294,67 @@ const configSuggestions: Fig.Suggestion[] = [
       "The length of time, in milliseconds, for git-credential-store to retry when trying to lock the credentials file. Value 0 means not to retry at all; -1 means to try indefinitely. Default is 1000 (i.e., retry for 1s)",
   },
   {
-    name: "credential.&lt;url&gt;.helper",
+    name: "credential.<url>.helper",
     insertValue: "credential.{cursor}.helper",
     description:
       "Specify an external helper to be called when a username or password credential is needed; the helper may consult external storage to avoid prompting the user for the credentials. This is normally the name of a credential helper with possible arguments, but may also be an absolute path with arguments or, if preceded by `!`, shell commands",
   },
   {
-    name: "credential.&lt;url&gt;.useHttpPath",
+    name: "credential.<url>.useHttpPath",
     insertValue: "credential.{cursor}.useHttpPath",
     description:
       'When acquiring credentials, consider the "path" component of an http or https URL to be important. Defaults to false. See gitcredentials[7] for more information',
   },
   {
-    name: "credential.&lt;url&gt;.username",
+    name: "credential.<url>.username",
     insertValue: "credential.{cursor}.username",
     description:
       "If no username is set for a network authentication, use this username by default. See credential.<context>.* below, and gitcredentials[7]",
   },
   {
-    name: "credentialCache.&lt;url&gt;.ignoreSIGHUP",
+    name: "credentialCache.<url>.ignoreSIGHUP",
     insertValue: "credentialCache.{cursor}.ignoreSIGHUP",
     description:
       "Tell git-credential-cache--daemon to ignore SIGHUP, instead of quitting",
   },
   {
-    name: "credentialStore.&lt;url&gt;.lockTimeoutMS",
+    name: "credentialStore.<url>.lockTimeoutMS",
     insertValue: "credentialStore.{cursor}.lockTimeoutMS",
     description:
       "The length of time, in milliseconds, for git-credential-store to retry when trying to lock the credentials file. Value 0 means not to retry at all; -1 means to try indefinitely. Default is 1000 (i.e., retry for 1s)",
   },
   {
-    name: "diff.&lt;driver&gt;.binary",
+    name: "diff.<driver>.binary",
     insertValue: "diff.{cursor}.binary",
     description:
       "Set this option to true to make the diff driver treat files as binary. See gitattributes[5] for details",
   },
   {
-    name: "diff.&lt;driver&gt;.cachetextconv",
+    name: "diff.<driver>.cachetextconv",
     insertValue: "diff.{cursor}.cachetextconv",
     description:
       "Set this option to true to make the diff driver cache the text conversion outputs. See gitattributes[5] for details",
   },
   {
-    name: "diff.&lt;driver&gt;.command",
+    name: "diff.<driver>.command",
     insertValue: "diff.{cursor}.command",
     description:
       "The custom diff driver command. See gitattributes[5] for details",
   },
   {
-    name: "diff.&lt;driver&gt;.textconv",
+    name: "diff.<driver>.textconv",
     insertValue: "diff.{cursor}.textconv",
     description:
       "The command that the diff driver should call to generate the text-converted version of a file. The result of the conversion is used to generate a human-readable diff. See gitattributes[5] for details",
   },
   {
-    name: "diff.&lt;driver&gt;.wordRegex",
+    name: "diff.<driver>.wordRegex",
     insertValue: "diff.{cursor}.wordRegex",
     description:
       "The regular expression that the diff driver should use to split words in a line. See gitattributes[5] for details",
   },
   {
-    name: "diff.&lt;driver&gt;.xfuncname",
+    name: "diff.<driver>.xfuncname",
     insertValue: "diff.{cursor}.xfuncname",
     description:
       "The regular expression that the diff driver should use to recognize the hunk header. A built-in pattern may also be used. See gitattributes[5] for details",
@@ -1464,13 +1474,13 @@ const configSuggestions: Fig.Suggestion[] = [
       "Highlight whitespace errors in the `context`, `old` or `new` lines of the diff. Multiple values are separated by comma, `none` resets previous values, `default` reset the list to `new` and `all` is a shorthand for `old,new,context`. The whitespace errors are colored with `color.diff.whitespace`. The command line option `--ws-error-highlight=<kind>` overrides this setting",
   },
   {
-    name: "difftool.&lt;tool&gt;.cmd",
+    name: "difftool.<tool>.cmd",
     insertValue: "difftool.{cursor}.cmd",
     description:
       "Specify the command to invoke the specified diff tool. The specified command is evaluated in shell with the following variables available: 'LOCAL' is set to the name of the temporary file containing the contents of the diff pre-image and 'REMOTE' is set to the name of the temporary file containing the contents of the diff post-image",
   },
   {
-    name: "difftool.&lt;tool&gt;.path",
+    name: "difftool.<tool>.path",
     insertValue: "difftool.{cursor}.path",
     description:
       "Override the path for the given tool. This is useful in case your tool is not in the PATH",
@@ -1511,7 +1521,7 @@ const configSuggestions: Fig.Suggestion[] = [
       "Enable config options that optimize for repos with many files in the working directory. With many files, commands such as `git status` and `git checkout` may be slow and these new defaults improve performance:",
   },
   {
-    name: "fetch.fsck.&lt;msg-id&gt;",
+    name: "fetch.fsck.<msg-id>",
     insertValue: "fetch.fsck.{cursor}",
     description:
       "Acts like `fsck.<msg-id>`, but is used by git-fetch-pack[1] instead of git-fsck[1]. See the `fsck.<msg-id>` documentation for details",
@@ -1572,13 +1582,13 @@ const configSuggestions: Fig.Suggestion[] = [
       "Set to true to write a commit-graph after every `git fetch` command that downloads a pack-file from a remote. Using the `--split` option, most executions will create a very small commit-graph file on top of the existing commit-graph file(s). Occasionally, these files will merge and the write may take longer. Having an updated commit-graph file helps performance of many Git commands, including `git merge-base`, `git push -f`, and `git log --graph`. Defaults to false",
   },
   {
-    name: "filter.&lt;driver&gt;.clean",
+    name: "filter.<driver>.clean",
     insertValue: "filter.{cursor}.clean",
     description:
       "The command which is used to convert the content of a worktree file to a blob upon checkin. See gitattributes[5] for details",
   },
   {
-    name: "filter.&lt;driver&gt;.smudge",
+    name: "filter.<driver>.smudge",
     insertValue: "filter.{cursor}.smudge",
     description:
       "The command which is used to convert the content of a blob object to a worktree file upon checkout. See gitattributes[5] for details",
@@ -1679,7 +1689,7 @@ const configSuggestions: Fig.Suggestion[] = [
       'A boolean value which lets you enable the `--base=auto` option of format-patch by default. Can also be set to "whenAble" to allow enabling `--base=auto` if a suitable base is available, but to skip adding base info otherwise without the format dying',
   },
   {
-    name: "fsck.&lt;msg-id&gt;",
+    name: "fsck.<msg-id>",
     insertValue: "fsck.{cursor}",
     description:
       "During fsck git may find issues with legacy data which wouldn't be generated by current versions of git, and which wouldn't be sent over the wire if `transfer.fsckObjects` was set. This feature is intended to support working with legacy repositories containing such data",
@@ -1690,13 +1700,13 @@ const configSuggestions: Fig.Suggestion[] = [
       "The path to a list of object names (i.e. one unabbreviated SHA-1 per line) that are known to be broken in a non-fatal way and should be ignored. On versions of Git 2.20 and later comments ('#'), empty lines, and any leading and trailing whitespace is ignored. Everything but a SHA-1 per line will error out on older versions",
   },
   {
-    name: "gc.&lt;pattern&gt;.reflogExpire",
+    name: "gc.<pattern>.reflogExpire",
     insertValue: "gc.{cursor}.reflogExpire",
     description:
       '\'git reflog expire\' removes reflog entries older than this time; defaults to 90 days. The value "now" expires all entries immediately, and "never" suppresses expiration altogether. With "<pattern>" (e.g. "refs/stash") in the middle the setting applies only to the refs that match the <pattern>',
   },
   {
-    name: "gc.&lt;pattern&gt;.reflogExpireUnreachable",
+    name: "gc.<pattern>.reflogExpireUnreachable",
     insertValue: "gc.{cursor}.reflogExpireUnreachable",
     description:
       '\'git reflog expire\' removes reflog entries older than this time and are not reachable from the current tip; defaults to 30 days. The value "now" expires all entries immediately, and "never" suppresses expiration altogether. With "<pattern>" (e.g. "refs/stash") in the middle, the setting applies only to the refs that match the <pattern>',
@@ -1825,7 +1835,7 @@ const configSuggestions: Fig.Suggestion[] = [
     description: "See gitweb[1] for description",
   },
   {
-    name: "gpg.&lt;format&gt;.program",
+    name: "gpg.<format>.program",
     insertValue: "gpg.{cursor}.program",
     description:
       'Use this to customize the program used for the signing format you chose. (see `gpg.program` and `gpg.format`) `gpg.program` can still be used as a legacy synonym for `gpg.openpgp.program`. The default value for `gpg.x509.program` is "gpgsm" and `gpg.ssh.program` is "ssh-keygen"',
@@ -1949,60 +1959,60 @@ const configSuggestions: Fig.Suggestion[] = [
       "Determines if git-gui[1] should trust the file modification timestamp or not. By default the timestamps are not trusted",
   },
   {
-    name: "guitool.&lt;name&gt;.argPrompt",
+    name: "guitool.<name>.argPrompt",
     insertValue: "guitool.{cursor}.argPrompt",
     description:
       "Request a string argument from the user, and pass it to the tool through the `ARGS` environment variable. Since requesting an argument implies confirmation, the 'confirm' option has no effect if this is enabled. If the option is set to 'true', 'yes', or '1', the dialog uses a built-in generic prompt; otherwise the exact value of the variable is used",
   },
   {
-    name: "guitool.&lt;name&gt;.cmd",
+    name: "guitool.<name>.cmd",
     insertValue: "guitool.{cursor}.cmd",
     description:
       "Specifies the shell command line to execute when the corresponding item of the git-gui[1] `Tools` menu is invoked. This option is mandatory for every tool. The command is executed from the root of the working directory, and in the environment it receives the name of the tool as `GIT_GUITOOL`, the name of the currently selected file as 'FILENAME', and the name of the current branch as 'CUR_BRANCH' (if the head is detached, 'CUR_BRANCH' is empty)",
   },
   {
-    name: "guitool.&lt;name&gt;.confirm",
+    name: "guitool.<name>.confirm",
     insertValue: "guitool.{cursor}.confirm",
     description: "Show a confirmation dialog before actually running the tool",
   },
   {
-    name: "guitool.&lt;name&gt;.needsFile",
+    name: "guitool.<name>.needsFile",
     insertValue: "guitool.{cursor}.needsFile",
     description:
       "Run the tool only if a diff is selected in the GUI. It guarantees that 'FILENAME' is not empty",
   },
   {
-    name: "guitool.&lt;name&gt;.noConsole",
+    name: "guitool.<name>.noConsole",
     insertValue: "guitool.{cursor}.noConsole",
     description:
       "Run the command silently, without creating a window to display its output",
   },
   {
-    name: "guitool.&lt;name&gt;.noRescan",
+    name: "guitool.<name>.noRescan",
     insertValue: "guitool.{cursor}.noRescan",
     description:
       "Don't rescan the working directory for changes after the tool finishes execution",
   },
   {
-    name: "guitool.&lt;name&gt;.prompt",
+    name: "guitool.<name>.prompt",
     insertValue: "guitool.{cursor}.prompt",
     description:
       "Specifies the general prompt string to display at the top of the dialog, before subsections for 'argPrompt' and 'revPrompt'. The default value includes the actual command",
   },
   {
-    name: "guitool.&lt;name&gt;.revPrompt",
+    name: "guitool.<name>.revPrompt",
     insertValue: "guitool.{cursor}.revPrompt",
     description:
       "Request a single valid revision from the user, and set the `REVISION` environment variable. In other aspects this option is similar to 'argPrompt', and can be used together with it",
   },
   {
-    name: "guitool.&lt;name&gt;.revUnmerged",
+    name: "guitool.<name>.revUnmerged",
     insertValue: "guitool.{cursor}.revUnmerged",
     description:
       "Show only unmerged branches in the 'revPrompt' subdialog. This is useful for tools similar to merge or rebase, but not for things like checkout or reset",
   },
   {
-    name: "guitool.&lt;name&gt;.title",
+    name: "guitool.<name>.title",
     insertValue: "guitool.{cursor}.title",
     description:
       "Specifies the title to use for the prompt dialog. The default is the tool name",
@@ -2188,193 +2198,193 @@ const configSuggestions: Fig.Suggestion[] = [
       "Use the specified HTTP protocol version when communicating with a server. If you want to force the default. The available and default version depend on libcurl. Currently the possible values of this option are:",
   },
   {
-    name: "http.&lt;url&gt;.cookieFile",
+    name: "http.<url>.cookieFile",
     insertValue: "http.{cursor}.cookieFile",
     description:
       "The pathname of a file containing previously stored cookie lines, which should be used in the Git http session, if they match the server. The file format of the file to read cookies from should be plain HTTP headers or the Netscape/Mozilla cookie file format (see `curl(1)`). NOTE that the file specified with http.cookieFile is used only as input unless http.saveCookies is set",
   },
   {
-    name: "http.&lt;url&gt;.curloptResolve",
+    name: "http.<url>.curloptResolve",
     insertValue: "http.{cursor}.curloptResolve",
     description:
       "Hostname resolution information that will be used first by libcurl when sending HTTP requests. This information should be in one of the following formats:",
   },
   {
-    name: "http.&lt;url&gt;.delegation",
+    name: "http.<url>.delegation",
     insertValue: "http.{cursor}.delegation",
     description:
       "Control GSSAPI credential delegation. The delegation is disabled by default in libcurl since version 7.21.7. Set parameter to tell the server what it is allowed to delegate when it comes to user credentials. Used with GSS/kerberos. Possible values are:",
   },
   {
-    name: "http.&lt;url&gt;.emptyAuth",
+    name: "http.<url>.emptyAuth",
     insertValue: "http.{cursor}.emptyAuth",
     description:
       "Attempt authentication without seeking a username or password. This can be used to attempt GSS-Negotiate authentication without specifying a username in the URL, as libcurl normally requires a username for authentication",
   },
   {
-    name: "http.&lt;url&gt;.extraHeader",
+    name: "http.<url>.extraHeader",
     insertValue: "http.{cursor}.extraHeader",
     description:
       "Pass an additional HTTP header when communicating with a server. If more than one such entry exists, all of them are added as extra headers. To allow overriding the settings inherited from the system config, an empty value will reset the extra headers to the empty list",
   },
   {
-    name: "http.&lt;url&gt;.followRedirects",
+    name: "http.<url>.followRedirects",
     insertValue: "http.{cursor}.followRedirects",
     description:
       "Whether git should follow HTTP redirects. If set to `true`, git will transparently follow any redirect issued by a server it encounters. If set to `false`, git will treat all redirects as errors. If set to `initial`, git will follow redirects only for the initial request to a remote, but not for subsequent follow-up HTTP requests. Since git uses the redirected URL as the base for the follow-up requests, this is generally sufficient. The default is `initial`",
   },
   {
-    name: "http.&lt;url&gt;.lowSpeedLimit",
+    name: "http.<url>.lowSpeedLimit",
     insertValue: "http.{cursor}.lowSpeedLimit",
     description:
       "If the HTTP transfer speed is less than 'http.lowSpeedLimit' for longer than 'http.lowSpeedTime' seconds, the transfer is aborted. Can be overridden by the `GIT_HTTP_LOW_SPEED_LIMIT` and `GIT_HTTP_LOW_SPEED_TIME` environment variables",
   },
   {
-    name: "http.&lt;url&gt;.maxRequests",
+    name: "http.<url>.maxRequests",
     insertValue: "http.{cursor}.maxRequests",
     description:
       "How many HTTP requests to launch in parallel. Can be overridden by the `GIT_HTTP_MAX_REQUESTS` environment variable. Default is 5",
   },
   {
-    name: "http.&lt;url&gt;.minSessions",
+    name: "http.<url>.minSessions",
     insertValue: "http.{cursor}.minSessions",
     description:
       "The number of curl sessions (counted across slots) to be kept across requests. They will not be ended with curl_easy_cleanup() until http_cleanup() is invoked. If USE_CURL_MULTI is not defined, this value will be capped at 1. Defaults to 1",
   },
   {
-    name: "http.&lt;url&gt;.noEPSV",
+    name: "http.<url>.noEPSV",
     insertValue: "http.{cursor}.noEPSV",
     description:
       'A boolean which disables using of EPSV ftp command by curl. This can helpful with some "poor" ftp servers which don\'t support EPSV mode. Can be overridden by the `GIT_CURL_FTP_NO_EPSV` environment variable. Default is false (curl will use EPSV)',
   },
   {
-    name: "http.&lt;url&gt;.pinnedPubkey",
+    name: "http.<url>.pinnedPubkey",
     insertValue: "http.{cursor}.pinnedPubkey",
     description:
       "Public key of the https service. It may either be the filename of a PEM or DER encoded public key file or a string starting with 'sha256//' followed by the base64 encoded sha256 hash of the public key. See also libcurl 'CURLOPT_PINNEDPUBLICKEY'. git will exit with an error if this option is set but not supported by cURL",
   },
   {
-    name: "http.&lt;url&gt;.postBuffer",
+    name: "http.<url>.postBuffer",
     insertValue: "http.{cursor}.postBuffer",
     description:
       "Maximum size in bytes of the buffer used by smart HTTP transports when POSTing data to the remote system. For requests larger than this buffer size, HTTP/1.1 and Transfer-Encoding: chunked is used to avoid creating a massive pack file locally. Default is 1 MiB, which is sufficient for most requests",
   },
   {
-    name: "http.&lt;url&gt;.proxy",
+    name: "http.<url>.proxy",
     insertValue: "http.{cursor}.proxy",
     description:
       "Override the HTTP proxy, normally configured using the 'http_proxy', 'https_proxy', and 'all_proxy' environment variables (see `curl(1)`). In addition to the syntax understood by curl, it is possible to specify a proxy string with a user name but no password, in which case git will attempt to acquire one in the same way it does for other credentials. See gitcredentials[7] for more information. The syntax thus is '[protocol://][user[:password]@]proxyhost[:port]'. This can be overridden on a per-remote basis; see remote.<name>.proxy",
   },
   {
-    name: "http.&lt;url&gt;.proxyAuthMethod",
+    name: "http.<url>.proxyAuthMethod",
     insertValue: "http.{cursor}.proxyAuthMethod",
     description:
       "Set the method with which to authenticate against the HTTP proxy. This only takes effect if the configured proxy string contains a user name part (i.e. is of the form 'user@host' or 'user@host:port'). This can be overridden on a per-remote basis; see `remote.<name>.proxyAuthMethod`. Both can be overridden by the `GIT_HTTP_PROXY_AUTHMETHOD` environment variable. Possible values are:",
   },
   {
-    name: "http.&lt;url&gt;.proxySSLCAInfo",
+    name: "http.<url>.proxySSLCAInfo",
     insertValue: "http.{cursor}.proxySSLCAInfo",
     description:
       "Pathname to the file containing the certificate bundle that should be used to verify the proxy with when using an HTTPS proxy. Can be overridden by the `GIT_PROXY_SSL_CAINFO` environment variable",
   },
   {
-    name: "http.&lt;url&gt;.proxySSLCert",
+    name: "http.<url>.proxySSLCert",
     insertValue: "http.{cursor}.proxySSLCert",
     description:
       "The pathname of a file that stores a client certificate to use to authenticate with an HTTPS proxy. Can be overridden by the `GIT_PROXY_SSL_CERT` environment variable",
   },
   {
-    name: "http.&lt;url&gt;.proxySSLCertPasswordProtected",
+    name: "http.<url>.proxySSLCertPasswordProtected",
     insertValue: "http.{cursor}.proxySSLCertPasswordProtected",
     description:
       "Enable Git's password prompt for the proxy SSL certificate. Otherwise OpenSSL will prompt the user, possibly many times, if the certificate or private key is encrypted. Can be overridden by the `GIT_PROXY_SSL_CERT_PASSWORD_PROTECTED` environment variable",
   },
   {
-    name: "http.&lt;url&gt;.proxySSLKey",
+    name: "http.<url>.proxySSLKey",
     insertValue: "http.{cursor}.proxySSLKey",
     description:
       "The pathname of a file that stores a private key to use to authenticate with an HTTPS proxy. Can be overridden by the `GIT_PROXY_SSL_KEY` environment variable",
   },
   {
-    name: "http.&lt;url&gt;.saveCookies",
+    name: "http.<url>.saveCookies",
     insertValue: "http.{cursor}.saveCookies",
     description:
       "If set, store cookies received during requests to the file specified by http.cookieFile. Has no effect if http.cookieFile is unset",
   },
   {
-    name: "http.&lt;url&gt;.schannelCheckRevoke",
+    name: "http.<url>.schannelCheckRevoke",
     insertValue: "http.{cursor}.schannelCheckRevoke",
     description:
       'Used to enforce or disable certificate revocation checks in cURL when http.sslBackend is set to "schannel". Defaults to `true` if unset. Only necessary to disable this if Git consistently errors and the message is about checking the revocation status of a certificate. This option is ignored if cURL lacks support for setting the relevant SSL option at runtime',
   },
   {
-    name: "http.&lt;url&gt;.schannelUseSSLCAInfo",
+    name: "http.<url>.schannelUseSSLCAInfo",
     insertValue: "http.{cursor}.schannelUseSSLCAInfo",
     description:
       "As of cURL v7.60.0, the Secure Channel backend can use the certificate bundle provided via `http.sslCAInfo`, but that would override the Windows Certificate Store. Since this is not desirable by default, Git will tell cURL not to use that bundle by default when the `schannel` backend was configured via `http.sslBackend`, unless `http.schannelUseSSLCAInfo` overrides this behavior",
   },
   {
-    name: "http.&lt;url&gt;.sslBackend",
+    name: "http.<url>.sslBackend",
     insertValue: "http.{cursor}.sslBackend",
     description:
       'Name of the SSL backend to use (e.g. "openssl" or "schannel"). This option is ignored if cURL lacks support for choosing the SSL backend at runtime',
   },
   {
-    name: "http.&lt;url&gt;.sslCAInfo",
+    name: "http.<url>.sslCAInfo",
     insertValue: "http.{cursor}.sslCAInfo",
     description:
       "File containing the certificates to verify the peer with when fetching or pushing over HTTPS. Can be overridden by the `GIT_SSL_CAINFO` environment variable",
   },
   {
-    name: "http.&lt;url&gt;.sslCAPath",
+    name: "http.<url>.sslCAPath",
     insertValue: "http.{cursor}.sslCAPath",
     description:
       "Path containing files with the CA certificates to verify the peer with when fetching or pushing over HTTPS. Can be overridden by the `GIT_SSL_CAPATH` environment variable",
   },
   {
-    name: "http.&lt;url&gt;.sslCert",
+    name: "http.<url>.sslCert",
     insertValue: "http.{cursor}.sslCert",
     description:
       "File containing the SSL certificate when fetching or pushing over HTTPS. Can be overridden by the `GIT_SSL_CERT` environment variable",
   },
   {
-    name: "http.&lt;url&gt;.sslCertPasswordProtected",
+    name: "http.<url>.sslCertPasswordProtected",
     insertValue: "http.{cursor}.sslCertPasswordProtected",
     description:
       "Enable Git's password prompt for the SSL certificate. Otherwise OpenSSL will prompt the user, possibly many times, if the certificate or private key is encrypted. Can be overridden by the `GIT_SSL_CERT_PASSWORD_PROTECTED` environment variable",
   },
   {
-    name: "http.&lt;url&gt;.sslKey",
+    name: "http.<url>.sslKey",
     insertValue: "http.{cursor}.sslKey",
     description:
       "File containing the SSL private key when fetching or pushing over HTTPS. Can be overridden by the `GIT_SSL_KEY` environment variable",
   },
   {
-    name: "http.&lt;url&gt;.sslTry",
+    name: "http.<url>.sslTry",
     insertValue: "http.{cursor}.sslTry",
     description:
       "Attempt to use AUTH SSL/TLS and encrypted data transfers when connecting via regular FTP protocol. This might be needed if the FTP server requires it for security reasons or you wish to connect securely whenever remote FTP server supports it. Default is false since it might trigger certificate verification errors on misconfigured servers",
   },
   {
-    name: "http.&lt;url&gt;.sslVerify",
+    name: "http.<url>.sslVerify",
     insertValue: "http.{cursor}.sslVerify",
     description:
       "Whether to verify the SSL certificate when fetching or pushing over HTTPS. Defaults to true. Can be overridden by the `GIT_SSL_NO_VERIFY` environment variable",
   },
   {
-    name: "http.&lt;url&gt;.sslVersion",
+    name: "http.<url>.sslVersion",
     insertValue: "http.{cursor}.sslVersion",
     description:
       "The SSL version to use when negotiating an SSL connection, if you want to force the default. The available and default version depend on whether libcurl was built against NSS or OpenSSL and the particular configuration of the crypto library in use. Internally this sets the 'CURLOPT_SSL_VERSION' option; see the libcurl documentation for more details on the format of this option and for the ssl version supported. Currently the possible values of this option are:",
   },
   {
-    name: "http.&lt;url&gt;.userAgent",
+    name: "http.<url>.userAgent",
     insertValue: "http.{cursor}.userAgent",
     description:
       "The HTTP USER_AGENT string presented to an HTTP server. The default value represents the version of the client Git such as git/1.7.1. This option allows you to override this value to a more common value such as Mozilla/4.0. This may be necessary, for instance, if connecting through a firewall that restricts HTTP connections to a set of common USER_AGENT strings (but not including those like git/1.7.1). Can be overridden by the `GIT_HTTP_USER_AGENT` environment variable",
   },
   {
-    name: "http.&lt;url&gt;.version",
+    name: "http.<url>.version",
     insertValue: "http.{cursor}.version",
     description:
       "Use the specified HTTP protocol version when communicating with a server. If you want to force the default. The available and default version depend on libcurl. Currently the possible values of this option are:",
@@ -2433,7 +2443,7 @@ const configSuggestions: Fig.Suggestion[] = [
     description: "The username to use when logging in to the server",
   },
   {
-    name: "includeIf.&lt;condition&gt;.path",
+    name: "includeIf.<condition>.path",
     insertValue: "includeIf.{cursor}.path",
     description:
       'Special variables to include other configuration files. See the "CONFIGURATION FILE" section in the main git-config[1] documentation, specifically the "Includes" and "Conditional Includes" subsections',
@@ -2584,13 +2594,13 @@ const configSuggestions: Fig.Suggestion[] = [
       "The location of an augmenting mailmap file. The default mailmap, located in the root of the repository, is loaded first, then the mailmap file pointed to by this variable. The location of the mailmap file may be in a repository subdirectory, or somewhere outside of the repository itself. See git-shortlog[1] and git-blame[1]",
   },
   {
-    name: "maintenance.&lt;task&gt;.enabled",
+    name: "maintenance.<task>.enabled",
     insertValue: "maintenance.{cursor}.enabled",
     description:
       "This boolean config option controls whether the maintenance task with name `<task>` is run when no `--task` option is specified to `git maintenance run`. These config values are ignored if a `--task` option exists. By default, only `maintenance.gc.enabled` is true",
   },
   {
-    name: "maintenance.&lt;task&gt;.schedule",
+    name: "maintenance.<task>.schedule",
     insertValue: "maintenance.{cursor}.schedule",
     description:
       'This config option controls whether or not the given `<task>` runs during a `git maintenance run --schedule=<frequency>` command. The value must be one of "hourly", "daily", or "weekly"',
@@ -2621,13 +2631,13 @@ const configSuggestions: Fig.Suggestion[] = [
       "This string config option provides a way to specify one of a few recommended schedules for background maintenance. This only affects which tasks are run during `git maintenance run --schedule=X` commands, provided no `--task=<task>` arguments are provided. Further, if a `maintenance.<task>.schedule` config value is set, then that value is used instead of the one provided by `maintenance.strategy`. The possible strategy strings are:",
   },
   {
-    name: "man.&lt;tool&gt;.cmd",
+    name: "man.<tool>.cmd",
     insertValue: "man.{cursor}.cmd",
     description:
       "Specify the command to invoke the specified man viewer. The specified command is evaluated in shell with the man page passed as argument. (See git-help[1].)",
   },
   {
-    name: "man.&lt;tool&gt;.path",
+    name: "man.<tool>.path",
     insertValue: "man.{cursor}.path",
     description:
       "Override the path for the given tool that may be used to display help in the 'man' format. See git-help[1]",
@@ -2638,19 +2648,19 @@ const configSuggestions: Fig.Suggestion[] = [
       "Specify the programs that may be used to display help in the 'man' format. See git-help[1]",
   },
   {
-    name: "merge.&lt;driver&gt;.driver",
+    name: "merge.<driver>.driver",
     insertValue: "merge.{cursor}.driver",
     description:
       "Defines the command that implements a custom low-level merge driver. See gitattributes[5] for details",
   },
   {
-    name: "merge.&lt;driver&gt;.name",
+    name: "merge.<driver>.name",
     insertValue: "merge.{cursor}.name",
     description:
       "Defines a human-readable name for a custom low-level merge driver. See gitattributes[5] for details",
   },
   {
-    name: "merge.&lt;driver&gt;.recursive",
+    name: "merge.<driver>.recursive",
     insertValue: "merge.{cursor}.recursive",
     description:
       "Names a low-level merge driver to be used when performing an internal merge between common ancestors. See gitattributes[5] for details",
@@ -2736,25 +2746,25 @@ const configSuggestions: Fig.Suggestion[] = [
       "If true, this is equivalent to the --verify-signatures command line option. See git-merge[1] for details",
   },
   {
-    name: "mergetool.&lt;tool&gt;.cmd",
+    name: "mergetool.<tool>.cmd",
     insertValue: "mergetool.{cursor}.cmd",
     description:
       "Specify the command to invoke the specified merge tool. The specified command is evaluated in shell with the following variables available: 'BASE' is the name of a temporary file containing the common base of the files to be merged, if available; 'LOCAL' is the name of a temporary file containing the contents of the file on the current branch; 'REMOTE' is the name of a temporary file containing the contents of the file from the branch being merged; 'MERGED' contains the name of the file to which the merge tool should write the results of a successful merge",
   },
   {
-    name: "mergetool.&lt;tool&gt;.hideResolved",
+    name: "mergetool.<tool>.hideResolved",
     insertValue: "mergetool.{cursor}.hideResolved",
     description:
       "Allows the user to override the global `mergetool.hideResolved` value for a specific tool. See `mergetool.hideResolved` for the full description",
   },
   {
-    name: "mergetool.&lt;tool&gt;.path",
+    name: "mergetool.<tool>.path",
     insertValue: "mergetool.{cursor}.path",
     description:
       "Override the path for the given tool. This is useful in case your tool is not in the PATH",
   },
   {
-    name: "mergetool.&lt;tool&gt;.trustExitCode",
+    name: "mergetool.<tool>.trustExitCode",
     insertValue: "mergetool.{cursor}.trustExitCode",
     description:
       "For a custom merge command, specify whether the exit code of the merge command can be used to determine whether the merge was successful. If this is not set to true then the merge target file timestamp is checked and the merge assumed to have been successful if the file has been updated, otherwise the user is prompted to indicate the success of the merge",
@@ -2800,7 +2810,7 @@ const configSuggestions: Fig.Suggestion[] = [
       "Git writes temporary 'BASE', 'LOCAL', and 'REMOTE' versions of conflicting files in the worktree by default. Git will attempt to use a temporary directory for these files when set `true`. Defaults to `false`",
   },
   {
-    name: "notes.&lt;name&gt;.mergeStrategy",
+    name: "notes.<name>.mergeStrategy",
     insertValue: "notes.{cursor}.mergeStrategy",
     description:
       'Which merge strategy to choose when doing a notes merge into refs/notes/<name>. This overrides the more general "notes.mergeStrategy". See the "NOTES MERGE STRATEGIES" section in git-notes[1] for more information on the available strategies',
@@ -2816,7 +2826,7 @@ const configSuggestions: Fig.Suggestion[] = [
       'Which merge strategy to choose by default when resolving notes conflicts. Must be one of `manual`, `ours`, `theirs`, `union`, or `cat_sort_uniq`. Defaults to `manual`. See "NOTES MERGE STRATEGIES" section of git-notes[1] for more information on each strategy',
   },
   {
-    name: "notes.rewrite.&lt;command&gt;",
+    name: "notes.rewrite.<command>",
     insertValue: "notes.rewrite.{cursor}",
     description:
       'When rewriting commits with <command> (currently `amend` or `rebase`) and this variable is set to `true`, Git automatically copies your notes from the original to the rewritten commit. Defaults to `true`, but see "notes.rewriteRef" below',
@@ -2928,19 +2938,19 @@ const configSuggestions: Fig.Suggestion[] = [
       "When true, git will write a corresponding .rev file (see: gitformat-pack[5]) for each new packfile that it writes in all places except for git-fast-import[1] and in the bulk checkin mechanism. Defaults to false",
   },
   {
-    name: "pager.&lt;cmd&gt;",
+    name: "pager.<cmd>",
     insertValue: "pager.{cursor}",
     description:
       "If the value is boolean, turns on or off pagination of the output of a particular Git subcommand when writing to a tty. Otherwise, turns on pagination for the subcommand using the pager specified by the value of `pager.<cmd>`. If `--paginate` or `--no-pager` is specified on the command line, it takes precedence over this option. To disable pagination for all commands, set `core.pager` or `GIT_PAGER` to `cat`",
   },
   {
-    name: "pretty.&lt;name&gt;",
+    name: "pretty.<name>",
     insertValue: "pretty.{cursor}",
     description:
       'Alias for a --pretty= format string, as specified in git-log[1]. Any aliases defined here can be used just as the built-in pretty formats could. For example, running `git config pretty.changelog "format:* %H %s"` would cause the invocation `git log --pretty=changelog` to be equivalent to running `git log "--pretty=format:* %H %s"`. Note that an alias with the same name as a built-in format will be silently ignored',
   },
   {
-    name: "protocol.&lt;name&gt;.allow",
+    name: "protocol.<name>.allow",
     insertValue: "protocol.{cursor}.allow",
     description:
       "Set a policy to be used by protocol `<name>` with clone/fetch/push commands. See `protocol.allow` above for the available policies",
@@ -3113,7 +3123,7 @@ const configSuggestions: Fig.Suggestion[] = [
       "If set to true, git-receive-pack will deny a ref update which is not a fast-forward. Use this to prevent such an update via a push, even if that push is forced. This configuration variable is set when initializing a shared repository",
   },
   {
-    name: "receive.fsck.&lt;msg-id&gt;",
+    name: "receive.fsck.<msg-id>",
     insertValue: "receive.fsck.{cursor}",
     description:
       "Acts like `fsck.<msg-id>`, but is used by git-receive-pack[1] instead of git-fsck[1]. See the `fsck.<msg-id>` documentation for details",
@@ -3164,102 +3174,102 @@ const configSuggestions: Fig.Suggestion[] = [
       "If set to true, git-receive-pack will run git-update-server-info after receiving data from git-push and updating refs",
   },
   {
-    name: "remote.&lt;name&gt;.fetch",
+    name: "remote.<name>.fetch",
     insertValue: "remote.{cursor}.fetch",
     description:
       'The default set of "refspec" for git-fetch[1]. See git-fetch[1]',
   },
   {
-    name: "remote.&lt;name&gt;.mirror",
+    name: "remote.<name>.mirror",
     insertValue: "remote.{cursor}.mirror",
     description:
       "If true, pushing to this remote will automatically behave as if the `--mirror` option was given on the command line",
   },
   {
-    name: "remote.&lt;name&gt;.partialclonefilter",
+    name: "remote.<name>.partialclonefilter",
     insertValue: "remote.{cursor}.partialclonefilter",
     description:
       "The filter that will be applied when fetching from this promisor remote. Changing or clearing this value will only affect fetches for new commits. To fetch associated objects for commits already present in the local object database, use the `--refetch` option of git-fetch[1]",
   },
   {
-    name: "remote.&lt;name&gt;.promisor",
+    name: "remote.<name>.promisor",
     insertValue: "remote.{cursor}.promisor",
     description:
       "When set to true, this remote will be used to fetch promisor objects",
   },
   {
-    name: "remote.&lt;name&gt;.proxy",
+    name: "remote.<name>.proxy",
     insertValue: "remote.{cursor}.proxy",
     description:
       "For remotes that require curl (http, https and ftp), the URL to the proxy to use for that remote. Set to the empty string to disable proxying for that remote",
   },
   {
-    name: "remote.&lt;name&gt;.proxyAuthMethod",
+    name: "remote.<name>.proxyAuthMethod",
     insertValue: "remote.{cursor}.proxyAuthMethod",
     description:
       "For remotes that require curl (http, https and ftp), the method to use for authenticating against the proxy in use (probably set in `remote.<name>.proxy`). See `http.proxyAuthMethod`",
   },
   {
-    name: "remote.&lt;name&gt;.prune",
+    name: "remote.<name>.prune",
     insertValue: "remote.{cursor}.prune",
     description:
       "When set to true, fetching from this remote by default will also remove any remote-tracking references that no longer exist on the remote (as if the `--prune` option was given on the command line). Overrides `fetch.prune` settings, if any",
   },
   {
-    name: "remote.&lt;name&gt;.pruneTags",
+    name: "remote.<name>.pruneTags",
     insertValue: "remote.{cursor}.pruneTags",
     description:
       "When set to true, fetching from this remote by default will also remove any local tags that no longer exist on the remote if pruning is activated in general via `remote.<name>.prune`, `fetch.prune` or `--prune`. Overrides `fetch.pruneTags` settings, if any",
   },
   {
-    name: "remote.&lt;name&gt;.push",
+    name: "remote.<name>.push",
     insertValue: "remote.{cursor}.push",
     description:
       'The default set of "refspec" for git-push[1]. See git-push[1]',
   },
   {
-    name: "remote.&lt;name&gt;.pushurl",
+    name: "remote.<name>.pushurl",
     insertValue: "remote.{cursor}.pushurl",
     description: "The push URL of a remote repository. See git-push[1]",
   },
   {
-    name: "remote.&lt;name&gt;.receivepack",
+    name: "remote.<name>.receivepack",
     insertValue: "remote.{cursor}.receivepack",
     description:
       "The default program to execute on the remote side when pushing. See option --receive-pack of git-push[1]",
   },
   {
-    name: "remote.&lt;name&gt;.skipDefaultUpdate",
+    name: "remote.<name>.skipDefaultUpdate",
     insertValue: "remote.{cursor}.skipDefaultUpdate",
     description:
       "If true, this remote will be skipped by default when updating using git-fetch[1] or the `update` subcommand of git-remote[1]",
   },
   {
-    name: "remote.&lt;name&gt;.skipFetchAll",
+    name: "remote.<name>.skipFetchAll",
     insertValue: "remote.{cursor}.skipFetchAll",
     description:
       "If true, this remote will be skipped by default when updating using git-fetch[1] or the `update` subcommand of git-remote[1]",
   },
   {
-    name: "remote.&lt;name&gt;.tagOpt",
+    name: "remote.<name>.tagOpt",
     insertValue: "remote.{cursor}.tagOpt",
     description:
       "Setting this value to --no-tags disables automatic tag following when fetching from remote <name>. Setting it to --tags will fetch every tag from remote <name>, even if they are not reachable from remote branch heads. Passing these flags directly to git-fetch[1] can override this setting. See options --tags and --no-tags of git-fetch[1]",
   },
   {
-    name: "remote.&lt;name&gt;.uploadpack",
+    name: "remote.<name>.uploadpack",
     insertValue: "remote.{cursor}.uploadpack",
     description:
       "The default program to execute on the remote side when fetching. See option --upload-pack of git-fetch-pack[1]",
   },
   {
-    name: "remote.&lt;name&gt;.url",
+    name: "remote.<name>.url",
     insertValue: "remote.{cursor}.url",
     description:
       "The URL of a remote repository. See git-fetch[1] or git-push[1]",
   },
   {
-    name: "remote.&lt;name&gt;.vcs",
+    name: "remote.<name>.vcs",
     insertValue: "remote.{cursor}.vcs",
     description:
       "Setting this to a value <vcs> will cause Git to interact with the remote with the git-remote-<vcs> helper",
@@ -3270,7 +3280,7 @@ const configSuggestions: Fig.Suggestion[] = [
       "The remote to push to by default. Overrides `branch.<name>.remote` for all branches, and is overridden by `branch.<name>.pushRemote` for specific branches",
   },
   {
-    name: "remotes.&lt;group&gt;",
+    name: "remotes.<group>",
     insertValue: "remotes.{cursor}",
     description:
       'The list of remotes which are fetched by "git remote update <group>". See git-remote[1]',
@@ -3376,49 +3386,49 @@ const configSuggestions: Fig.Suggestion[] = [
       "Text editor used by `git rebase -i` for editing the rebase instruction file. The value is meant to be interpreted by the shell when it is used. It can be overridden by the `GIT_SEQUENCE_EDITOR` environment variable. When not configured the default commit message editor is used instead",
   },
   {
-    name: "sendemail.&lt;identity&gt;.forbidSendmailVariables",
+    name: "sendemail.<identity>.forbidSendmailVariables",
     insertValue: "sendemail.{cursor}.forbidSendmailVariables",
     description:
       'To avoid common misconfiguration mistakes, git-send-email[1] will abort with a warning if any configuration options for "sendmail" exist. Set this variable to bypass the check',
   },
   {
-    name: "sendemail.&lt;identity&gt;.signedoffcc",
+    name: "sendemail.<identity>.signedoffcc",
     insertValue: "sendemail.{cursor}.signedoffcc",
     description: "Deprecated alias for `sendemail.signedoffbycc`",
     deprecated: true,
     hidden: true,
   },
   {
-    name: "sendemail.&lt;identity&gt;.smtpBatchSize",
+    name: "sendemail.<identity>.smtpBatchSize",
     insertValue: "sendemail.{cursor}.smtpBatchSize",
     description:
       "Number of messages to be sent per connection, after that a relogin will happen. If the value is 0 or undefined, send all messages in one connection. See also the `--batch-size` option of git-send-email[1]",
   },
   {
-    name: "sendemail.&lt;identity&gt;.smtpEncryption",
+    name: "sendemail.<identity>.smtpEncryption",
     insertValue: "sendemail.{cursor}.smtpEncryption",
     description:
       "See git-send-email[1] for description. Note that this setting is not subject to the 'identity' mechanism",
   },
   {
-    name: "sendemail.&lt;identity&gt;.smtpReloginDelay",
+    name: "sendemail.<identity>.smtpReloginDelay",
     insertValue: "sendemail.{cursor}.smtpReloginDelay",
     description:
       "Seconds wait before reconnecting to smtp server. See also the `--relogin-delay` option of git-send-email[1]",
   },
   {
-    name: "sendemail.&lt;identity&gt;.smtpsslcertpath",
+    name: "sendemail.<identity>.smtpsslcertpath",
     insertValue: "sendemail.{cursor}.smtpsslcertpath",
     description:
       "Path to ca-certificates (either a directory or a single file). Set it to an empty string to disable certificate verification",
   },
   {
-    name: "sendemail.&lt;identity&gt;.xmailer",
+    name: "sendemail.<identity>.xmailer",
     insertValue: "sendemail.{cursor}.xmailer",
     description: "See git-send-email[1] for description",
   },
   {
-    name: "sequence.&lt;identity&gt;.editor",
+    name: "sequence.<identity>.editor",
     insertValue: "sequence.{cursor}.editor",
     description:
       "Text editor used by `git rebase -i` for editing the rebase instruction file. The value is meant to be interpreted by the shell when it is used. It can be overridden by the `GIT_SEQUENCE_EDITOR` environment variable. When not configured the default commit message editor is used instead",
@@ -3514,37 +3524,37 @@ const configSuggestions: Fig.Suggestion[] = [
       "Defaults to false. If this is set to a non zero number or true (identical to -1 or an unlimited number), the submodule summary will be enabled and a summary of commits for modified submodules will be shown (see --summary-limit option of git-submodule[1]). Please note that the summary output command will be suppressed for all submodules when `diff.ignoreSubmodules` is set to 'all' or only for those submodules where `submodule.<name>.ignore=all`. The only exception to that rule is that status and commit will show staged submodule changes. To also view the summary for ignored submodules you can either use the --ignore-submodules=dirty command-line option or the 'git submodule summary' command, which shows a similar output but does not honor these settings",
   },
   {
-    name: "submodule.&lt;name&gt;.active",
+    name: "submodule.<name>.active",
     insertValue: "submodule.{cursor}.active",
     description:
       "Boolean value indicating if the submodule is of interest to git commands. This config option takes precedence over the submodule.active config option. See gitsubmodules[7] for details",
   },
   {
-    name: "submodule.&lt;name&gt;.branch",
+    name: "submodule.<name>.branch",
     insertValue: "submodule.{cursor}.branch",
     description:
       "The remote branch name for a submodule, used by `git submodule update --remote`. Set this option to override the value found in the `.gitmodules` file. See git-submodule[1] and gitmodules[5] for details",
   },
   {
-    name: "submodule.&lt;name&gt;.fetchRecurseSubmodules",
+    name: "submodule.<name>.fetchRecurseSubmodules",
     insertValue: "submodule.{cursor}.fetchRecurseSubmodules",
     description:
       'This option can be used to control recursive fetching of this submodule. It can be overridden by using the --[no-]recurse-submodules command-line option to "git fetch" and "git pull". This setting will override that from in the gitmodules[5] file',
   },
   {
-    name: "submodule.&lt;name&gt;.ignore",
+    name: "submodule.<name>.ignore",
     insertValue: "submodule.{cursor}.ignore",
     description:
       'Defines under what circumstances "git status" and the diff family show a submodule as modified. When set to "all", it will never be considered modified (but it will nonetheless show up in the output of status and commit when it has been staged), "dirty" will ignore all changes to the submodules work tree and takes only differences between the HEAD of the submodule and the commit recorded in the superproject into account. "untracked" will additionally let submodules with modified tracked files in their work tree show up. Using "none" (the default when this option is not set) also shows submodules that have untracked files in their work tree as changed. This setting overrides any setting made in .gitmodules for this submodule, both settings can be overridden on the command line by using the "--ignore-submodules" option. The \'git submodule\' commands are not affected by this setting',
   },
   {
-    name: "submodule.&lt;name&gt;.update",
+    name: "submodule.<name>.update",
     insertValue: "submodule.{cursor}.update",
     description:
       "The method by which a submodule is updated by 'git submodule update', which is the only affected command, others such as 'git checkout --recurse-submodules' are unaffected. It exists for historical reasons, when 'git submodule' was the only command to interact with submodules; settings like `submodule.active` and `pull.rebase` are more specific. It is populated by `git submodule init` from the gitmodules[5] file. See description of 'update' command in git-submodule[1]",
   },
   {
-    name: "submodule.&lt;name&gt;.url",
+    name: "submodule.<name>.url",
     insertValue: "submodule.{cursor}.url",
     description:
       "The URL for a submodule. This variable is copied from the .gitmodules file to the git config via 'git submodule init'. The user can change the configured URL before obtaining the submodule via 'git submodule update'. If neither submodule.<name>.active or submodule.active are set, the presence of this variable is used as a fallback to indicate whether the submodule is of interest to git commands. See git-submodule[1] and gitmodules[5] for details",
@@ -3725,7 +3735,7 @@ const configSuggestions: Fig.Suggestion[] = [
       "If this option is set, when `upload-pack` would run `git pack-objects` to create a packfile for a client, it will run this shell command instead. The `pack-objects` command and arguments it _would_ have run (including the `git pack-objects` at the beginning) are appended to the shell command. The stdin and stdout of the hook are treated as if `pack-objects` itself was run. I.e., `upload-pack` will feed input intended for `pack-objects` to the hook, and expects a completed packfile on stdout",
   },
   {
-    name: "uploadpackfilter.&lt;filter&gt;.allow",
+    name: "uploadpackfilter.<filter>.allow",
     insertValue: "uploadpackfilter.{cursor}.allow",
     description:
       "Explicitly allow or ban the object filter corresponding to `<filter>`, where `<filter>` may be one of: `blob:none`, `blob:limit`, `object:type`, `tree`, `sparse:oid`, or `combine`. If using combined filters, both `combine` and all of the nested filter kinds must be allowed. Defaults to `uploadpackfilter.allow`",
@@ -3741,13 +3751,13 @@ const configSuggestions: Fig.Suggestion[] = [
       "Only allow `--filter=tree:<n>` when `<n>` is no more than the value of `uploadpackfilter.tree.maxDepth`. If set, this also implies `uploadpackfilter.tree.allow=true`, unless this configuration variable had already been set. Has no effect if unset",
   },
   {
-    name: "url.&lt;base&gt;.insteadOf",
+    name: "url.<base>.insteadOf",
     insertValue: "url.{cursor}.insteadOf",
     description:
       "Any URL that starts with this value will be rewritten to start, instead, with <base>. In cases where some site serves a large number of repositories, and serves them with multiple access methods, and some users need to use different access methods, this feature allows people to specify any of the equivalent URLs and have Git automatically rewrite the URL to the best alternative for the particular user, even for a never-before-seen repository on the site. When more than one insteadOf strings match a given URL, the longest match is used",
   },
   {
-    name: "url.&lt;base&gt;.pushInsteadOf",
+    name: "url.<base>.pushInsteadOf",
     insertValue: "url.{cursor}.pushInsteadOf",
     description:
       "Any URL that starts with this value will not be pushed to; instead, it will be rewritten to start with <base>, and the resulting URL will be pushed to. In cases where some site serves a large number of repositories, and serves them with multiple access methods, some of which do not allow push, this feature allows people to specify a pull-only URL and have Git automatically use an appropriate URL to push, even for a never-before-seen repository on the site. When more than one pushInsteadOf strings match a given URL, the longest match is used. If a remote has an explicit pushurl, Git will ignore this setting for that remote",
@@ -3895,7 +3905,7 @@ const headSuggestions = [
     description: "The most recent commit",
   },
   {
-    name: "HEAD~&lt;N&gt;",
+    name: "HEAD~<N>",
     description: "A specific number of commits",
     insertValue: "HEAD~",
   },
@@ -4017,7 +4027,7 @@ const completionSpec: Fig.Spec = {
         name: "path",
         template: "folders",
       },
-      description: "Run as if git was started in &lt;path&gt;",
+      description: "Run as if git was started in <path>",
     },
     {
       name: "-c",
@@ -6048,7 +6058,7 @@ const completionSpec: Fig.Spec = {
           requiresSeparator: true,
           args: {
             isOptional: true,
-            name: "[=< width >[,< name-width >[,&lt; count &gt;]]]",
+            name: "[=< width >[,< name-width >[,< count >]]]",
           },
         },
         {
@@ -6059,7 +6069,7 @@ const completionSpec: Fig.Spec = {
             isVariadic: true,
             optionsCanBreakVariadicArg: false,
             template: "filepaths",
-            name: "[&lt; path &gt;...]",
+            name: "[< path >...]",
           },
         },
       ],
@@ -7998,7 +8008,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "cherry-pick",
       description: "Apply the changes introduced by some existing commits",
-      subcommands: [
+      args: {
+        name: "commit",
+        description: "Commits to cherry-pick",
+        isVariadic: true,
+        generators: gitGenerators.commits,
+      },
+      options: [
         {
           name: "--continue",
           description:
@@ -8018,14 +8034,6 @@ const completionSpec: Fig.Spec = {
           description:
             "Cancel the operation and return to the pre-sequence state",
         },
-      ],
-      args: {
-        name: "commit",
-        description: "Commits to cherry-pick",
-        isVariadic: true,
-        generators: gitGenerators.commits,
-      },
-      options: [
         {
           name: ["-e", "--edit"],
           description:

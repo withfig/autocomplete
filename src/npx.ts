@@ -133,6 +133,14 @@ const suggestions: Fig.Suggestion[] = [
     name: "stencil",
     icon: "https://stenciljs.com/assets/icon/favicon.ico",
   },
+  {
+    name: "swagger-typescript-api",
+    icon: "https://static1.smartbear.co/swagger/media/assets/swagger_fav.png",
+  },
+  {
+    name: "sta",
+    icon: "https://static1.smartbear.co/swagger/media/assets/swagger_fav.png",
+  },
 ];
 
 const completionSpec: Fig.Spec = {

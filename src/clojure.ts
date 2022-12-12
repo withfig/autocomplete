@@ -5,7 +5,7 @@
  * @returns The content with brackets
  */
 function bracketize<T>(content: T): string {
-  return `&lt;${content}&gt;`;
+  return `<${content}>`;
 }
 
 /**

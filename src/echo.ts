@@ -1,16 +1,24 @@
 const environmentVariableGenerator: Fig.Generator = {
-  script: "env",
-  postProcess: (out) =>
-    out.length === 0
-      ? []
-      : out
-          .split("\n")
-          .map((env) => env.split("=")[0])
-          .map((suggestion) => ({
-            name: `$${suggestion}`,
-            type: "arg",
-            description: "Environment Variable",
-          })),
+  custom: async (tokens, executeShellCommand) => {
+    if (tokens.length < 3 || tokens[tokens.length - 1].startsWith("$")) {
+      // TODO: this should use the shell context when it is available
+      const output = await executeShellCommand("env");
+      return output.length === 0
+        ? []
+        : output
+            .split("\n")
+            .map((env) => env.split("=")[0])
+            .map((suggestion) => ({
+              name: `$${suggestion}`,
+              type: "arg",
+              description: "Environment Variable",
+            }));
+    } else {
+      return [];
+    }
+  },
+  getQueryTerm: "$",
+  trigger: "$",
 };
 
 const completionSpec: Fig.Spec = {
@@ -20,6 +28,7 @@ const completionSpec: Fig.Spec = {
     name: "string",
     isVariadic: true,
     optionsCanBreakVariadicArg: false,
+    suggestCurrentToken: true,
     generators: environmentVariableGenerator,
   },
   options: [
