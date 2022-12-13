@@ -746,6 +746,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--skip-update-check",
       description: "Skip update check before every command",
+      isPersistent: true,
     },
   ],
 };
