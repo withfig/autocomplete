@@ -4687,5 +4687,151 @@ versions["2.9.1"] = {
   ],
 };
 
+versions["2.10.0"] = {
+  subcommands: [
+    {
+      name: ["internal", "_"],
+      subcommands: [
+        {
+          name: "ssh-local-command",
+          description: "Displays prompt to install remote shell integrations",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: [
+            {
+              name: "remote_dest",
+            },
+            {
+              name: "uuid",
+            },
+          ],
+        },
+        {
+          name: "prompt-ssh",
+          description:
+            "[Deprecated] Displays prompt to install remote shell integrations",
+        },
+        {
+          name: "codex",
+          options: [
+            {
+              name: "--buffer",
+              isRepeatable: true,
+              args: {
+                name: "buffer",
+              },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "codex-accept",
+          options: [
+            {
+              name: "--buffer",
+              isRepeatable: true,
+              args: {
+                name: "buffer",
+              },
+            },
+            {
+              name: "--suggestion",
+              isRepeatable: true,
+              args: {
+                name: "suggestion",
+              },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "help",
+          subcommands: [
+            {
+              name: "ssh-local-command",
+              description:
+                "Displays prompt to install remote shell integrations",
+            },
+            {
+              name: "prompt-ssh",
+              description:
+                "[Deprecated] Displays prompt to install remote shell integrations",
+            },
+            {
+              name: "codex",
+            },
+            {
+              name: "codex-accept",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "wrapped",
+      description: "Show fig wrapped",
+    },
+    {
+      name: "cli",
+      description: "Run a Fig CLI",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+      args: {
+        name: "args",
+        isVariadic: true,
+        isOptional: true,
+      },
+    },
+    {
+      name: "help",
+      subcommands: [
+        {
+          name: "internal",
+          subcommands: [
+            {
+              name: "ssh-local-command",
+              description:
+                "Displays prompt to install remote shell integrations",
+            },
+            {
+              name: "prompt-ssh",
+              description:
+                "[Deprecated] Displays prompt to install remote shell integrations",
+            },
+            {
+              name: "codex",
+            },
+            {
+              name: "codex-accept",
+            },
+          ],
+        },
+        {
+          name: "wrapped",
+          description: "Show fig wrapped",
+        },
+        {
+          name: "cli",
+          description: "Run a Fig CLI",
+        },
+      ],
+    },
+  ],
+};
+
 export { versions };
 export default completion;
