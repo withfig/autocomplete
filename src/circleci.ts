@@ -514,6 +514,186 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "diff",
+          description: "Get diff between local and remote policy bundles",
+          options: [
+            {
+              name: "policy_dir_path",
+              description: "Policy file or directory path",
+              isRequired: true,
+            },
+            {
+              name: "--context string",
+              description: "Policy context for decision, default is 'config'",
+              dependsOn: ["policy_dir_path"],
+            },
+            {
+              name: "--owner-id string",
+              description: "The id of the policy's owner",
+              dependsOn: ["policy_dir_path"],
+            },
+          ],
+        },
+        {
+          name: "eval",
+          description: "Perform raw opa evaluation locally",
+          options: [
+            {
+              name: "policy_dir_path",
+              description: "Policy file or directory path",
+              isRequired: true,
+            },
+            {
+              name: "--input string",
+              description: "Path to input file, i.e. ./.circleci/config.yml",
+              dependsOn: ["policy_dir_path"],
+            },
+            {
+              name: "--metafile string",
+              description: "Path to decision metadata file",
+              dependsOn: ["policy_dir_path"],
+            },
+            {
+              name: "--query string",
+              description: "Policy decision query, default is 'data'",
+              dependsOn: ["policy_dir_path"],
+            },
+          ],
+        },
+        {
+          name: "fetch",
+          description: "Fetch policy bundle (or a single policy)",
+          options: [
+            {
+              name: "policy name",
+              description: "Name of policy to fetch",
+              isRequired: true,
+            },
+            {
+              name: "--context string",
+              description: "Policy context for decision, default is 'config'",
+              dependsOn: ["policy name"],
+            },
+            {
+              name: "--owner-id string",
+              description: "The id of the policy's owner",
+              dependsOn: ["policy name"],
+            },
+          ],
+        },
+        {
+          name: "logs",
+          description:
+            "Get policy decision logs / decision log (or policy bundle) by decision ID",
+          options: [
+            {
+              name: "decision ID",
+              description: "Decision ID to get logs for",
+              isRequired: true,
+            },
+            {
+              name: "--after string",
+              description: "Filter decision logs triggered AFTER this datetime",
+              dependsOn: ["decision ID"],
+            },
+            {
+              name: "--before string",
+              description:
+                "Filter decision logs triggered BEFORE this datetime",
+              dependsOn: ["decision ID"],
+            },
+            {
+              name: "--branch string",
+              description: "Filter decision logs based on branch name",
+              dependsOn: ["decision ID"],
+            },
+            {
+              name: "--context string",
+              description: "Policy context for decision, default is 'config'",
+              dependsOn: ["decision ID"],
+            },
+            {
+              name: "--owner-id string",
+              description: "The id of the policy's owner",
+              dependsOn: ["policy name"],
+            },
+            {
+              name: "--out string",
+              description: "Specify output file name",
+              dependsOn: ["decision ID"],
+            },
+            {
+              name: "--policy-bundle",
+              description: "Get only the policy bundle for given decisionID",
+              dependsOn: ["decision ID"],
+            },
+            {
+              name: "--project-id string",
+              description: "Filter decision logs based on project-id",
+              dependsOn: ["decision ID"],
+            },
+            {
+              name: "--status string",
+              description: "Filter decision logs based on their status",
+              dependsOn: ["decision ID"],
+            },
+          ],
+        },
+        {
+          name: "push",
+          description: "Push policy bundle (or a single policy)",
+          options: [
+            {
+              name: "policy_dir_path",
+              description: "Policy file or directory path",
+              isRequired: true,
+            },
+            {
+              name: "--context string",
+              description: "Policy context for decision, default is 'config'",
+              dependsOn: ["policy_dir_path"],
+            },
+            {
+              name: "--owner-id string",
+              description: "The id of the policy's owner",
+              dependsOn: ["policy_dir_path"],
+            },
+            {
+              name: "--no-prompt",
+              description: "Removes the prompt",
+              dependsOn: ["policy_dir_path"],
+            },
+          ],
+        },
+        {
+          name: "settings",
+          description:
+            "Get/set policy decision settings (To read settings: run command without any settings flags)",
+          options: [
+            {
+              name: "--context string",
+              description: "Policy context for decision, default is 'config'",
+            },
+            {
+              name: "--enabled",
+              description:
+                "Enable/disable policy decision evaluation in build pipeline",
+              args: [
+                {
+                  name: "=true",
+                },
+                {
+                  name: "=false",
+                },
+              ],
+            },
+            {
+              name: "--owner-id string",
+              description: "The id of the policy's owner",
+            },
+          ],
+        },
       ],
     },
     {
