@@ -4676,7 +4676,7 @@ versions["2.9.1"] = {
     {
       name: "wrapped",
       icon: "🎁",
-      priority: 51,
+      priority: 100,
       options: [
         {
           name: ["-h", "--help"],
