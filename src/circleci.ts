@@ -338,9 +338,19 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--sort string",
-              description:
-                "Specify the sorting, with string as one of 'builds', 'projects', 'orgs'",
+              description: "Specify the sorting",
               dependsOn: ["namespace"],
+              args: [
+                {
+                  name: "builds",
+                },
+                {
+                  name: "projects",
+                },
+                {
+                  name: "orgs",
+                },
+              ],
             },
             {
               name: ["-u ", "--uncertified"],
@@ -439,6 +449,14 @@ const completionSpec: Fig.Spec = {
               description: "Use either true|false",
               isRequired: true,
               dependsOn: ["namespace/orb"],
+              args: [
+                {
+                  name: "true",
+                },
+                {
+                  name: "false",
+                },
+              ],
             },
           ],
         },
