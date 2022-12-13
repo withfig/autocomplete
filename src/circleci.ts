@@ -474,6 +474,49 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "policy",
+      description: "Manage security policies",
+      subcommands: [
+        {
+          name: "decide",
+          description: "Make a decision",
+          options: [
+            {
+              name: "path",
+              description: "Policy file or directory path",
+              isRequired: true,
+            },
+            {
+              name: "--input string",
+              description: "Path to input file, i.e. ./.circleci/config.yml",
+              dependsOn: ["path"],
+            },
+            {
+              name: "--metafile string",
+              description: "Path to decision metadata file",
+              dependsOn: ["path"],
+            },
+            {
+              name: "--owner-id string",
+              description: "The id of the policy's owner",
+              dependsOn: ["path"],
+            },
+            {
+              name: "--strict",
+              description:
+                "Return non-zero status code for decision resulting in HARD_FAIL",
+              dependsOn: ["path"],
+            },
+            {
+              name: "--context string",
+              description: "Policy context for decision, default is 'config'",
+              dependsOn: ["path"],
+            },
+          ],
+        },
+      ],
+    },
+    {
       name: "runner",
       description: "Operate on runners",
       subcommands: [
