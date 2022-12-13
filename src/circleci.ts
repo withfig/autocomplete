@@ -41,13 +41,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a new context",
-          args: [
+          options: [
             {
               name: "vcs-type",
               description:
                 "Your VCS provider, can be either 'github' or 'bitbucket'",
-              isOptional: true,
-              suggestions: [
+              args: [
                 {
                   name: "github",
                 },
@@ -59,25 +58,24 @@ const completionSpec: Fig.Spec = {
             {
               name: "org-name",
               description: "The name of your organization",
-              isOptional: true,
+              dependsOn: ["vcs-type"],
             },
             {
               name: "context-name",
               description: "The name for your context",
-              isOptional: true,
+              dependsOn: ["org-name"],
             },
           ],
         },
         {
           name: "delete",
           description: "Delete the named context",
-          args: [
+          options: [
             {
               name: "vcs-type",
               description:
                 "Your VCS provider, can be either 'github' or 'bitbucket'",
-              isOptional: true,
-              suggestions: [
+              args: [
                 {
                   name: "github",
                 },
@@ -89,25 +87,24 @@ const completionSpec: Fig.Spec = {
             {
               name: "org-name",
               description: "The name of your organization",
-              isOptional: true,
+              dependsOn: ["vcs-type"],
             },
             {
               name: "context-name",
-              description: "The name of your context",
-              isOptional: true,
+              description: "The name for your context",
+              dependsOn: ["org-name"],
             },
           ],
         },
         {
           name: "list",
           description: "List all contexts",
-          args: [
+          options: [
             {
               name: "vcs-type",
               description:
                 "Your VCS provider, can be either 'github' or 'bitbucket'",
-              isOptional: true,
-              suggestions: [
+              args: [
                 {
                   name: "github",
                 },
@@ -119,20 +116,19 @@ const completionSpec: Fig.Spec = {
             {
               name: "org-name",
               description: "The name of your organization",
-              isOptional: true,
+              dependsOn: ["vcs-type"],
             },
           ],
         },
         {
           name: "remove-secret",
           description: "Remove environment variable from a context",
-          args: [
+          options: [
             {
               name: "vcs-type",
               description:
                 "Your VCS provider, can be either 'github' or 'bitbucket'",
-              isOptional: true,
-              suggestions: [
+              args: [
                 {
                   name: "github",
                 },
@@ -144,30 +140,29 @@ const completionSpec: Fig.Spec = {
             {
               name: "org-name",
               description: "The name of your organization",
-              isOptional: true,
+              dependsOn: ["vcs-type"],
             },
             {
               name: "context-name",
-              description: "The name of your context",
-              isOptional: true,
+              description: "The name for your context",
+              dependsOn: ["org-name"],
             },
             {
               name: "secret name",
               description: "The name of the env variable to remove",
-              isOptional: true,
+              dependsOn: ["context-name"],
             },
           ],
         },
         {
           name: "show",
           description: "Show a context",
-          args: [
+          options: [
             {
               name: "vcs-type",
               description:
                 "Your VCS provider, can be either 'github' or 'bitbucket'",
-              isOptional: true,
-              suggestions: [
+              args: [
                 {
                   name: "github",
                 },
@@ -179,25 +174,24 @@ const completionSpec: Fig.Spec = {
             {
               name: "org-name",
               description: "The name of your organization",
-              isOptional: true,
+              dependsOn: ["vcs-type"],
             },
             {
               name: "context-name",
-              description: "The name of your context",
-              isOptional: true,
+              description: "The name for your context",
+              dependsOn: ["org-name"],
             },
           ],
         },
         {
           name: "store-secret",
           description: "Store environment variables",
-          args: [
+          options: [
             {
               name: "vcs-type",
               description:
                 "Your VCS provider, can be either 'github' or 'bitbucket'",
-              isOptional: true,
-              suggestions: [
+              args: [
                 {
                   name: "github",
                 },
@@ -209,17 +203,17 @@ const completionSpec: Fig.Spec = {
             {
               name: "org-name",
               description: "The name of your organization",
-              isOptional: true,
+              dependsOn: ["vcs-type"],
             },
             {
               name: "context-name",
-              description: "The name of your context",
-              isOptional: true,
+              description: "The name for your context",
+              dependsOn: ["org-name"],
             },
             {
               name: "secret name",
               description: "The name of the env variable to store",
-              isOptional: true,
+              dependsOn: ["context-name"],
             },
           ],
         },
@@ -268,22 +262,92 @@ const completionSpec: Fig.Spec = {
         {
           name: "add-to-category",
           description: "Add an orb to a category",
+          options: [
+            {
+              name: "namespace/orb",
+              description: "The namespace and orb to add to a category",
+              isRequired: true,
+            },
+            {
+              name: "category name",
+              description:
+                "The name of the category to add the orb to, in quotes",
+              dependsOn: ["namespace/orb"],
+              isRequired: true,
+            },
+          ],
         },
         {
           name: "create",
           description: "Create an orb in a namespace",
+          options: [
+            {
+              name: "namespace/orb",
+              description: "Create an orb in the specified namespace",
+              isRequired: true,
+            },
+            {
+              name: "--private",
+              description:
+                "Specify that this orb is for private use within your org, unlisted from the public registry",
+              dependsOn: ["namespace/orb"],
+            },
+          ],
         },
         {
           name: "info",
           description: "Show metadata of an orb",
+          options: [
+            {
+              name: "orb",
+              description: "The namespace and orb to show metadata for",
+              isRequired: true,
+            },
+          ],
         },
         {
           name: "init",
           description: "Initialize a new orb",
+          options: [
+            {
+              name: "path",
+              description: "The /path/to/myProject-orb",
+              isRequired: true,
+            },
+            {
+              name: "--private",
+              description:
+                "Specify that this orb is for private use within your org, unlisted from the public registry",
+              dependsOn: ["orb"],
+            },
+          ],
         },
         {
           name: "list",
           description: "List orbs",
+          options: [
+            {
+              name: "namespace",
+              description: "The namespace used for the orb (i.e. circleci)",
+            },
+            {
+              name: "--private",
+              description:
+                "Specify that this orb is for private use within your org, unlisted from the public registry",
+              dependsOn: ["namespace"],
+            },
+            {
+              name: "--sort string",
+              description:
+                "Specify the sorting, with string as one of 'builds', 'projects', 'orgs'",
+              dependsOn: ["namespace"],
+            },
+            {
+              name: ["-u ", "--uncertified"],
+              description: "Include uncertified orbs",
+              dependsOn: ["namespace"],
+            },
+          ],
         },
         {
           name: "list-categories",
@@ -292,30 +356,102 @@ const completionSpec: Fig.Spec = {
         {
           name: "pack",
           description: "Pack an orb with local scripts",
+          options: [
+            {
+              name: "path",
+              description: "The /path/to/myProject-orb",
+              isRequired: true,
+            },
+          ],
         },
         {
           name: "process",
-          description: "Validate an orb and print its form",
+          description:
+            "Validate an orb and print its form after all pre-registration processing is complete",
+          options: [
+            {
+              name: "path",
+              description: "The path to your orb (use '-' for STDIN)",
+              isRequired: true,
+            },
+          ],
         },
         {
           name: "publish",
           description: "Publish an orb to the registry",
+          options: [
+            {
+              name: "path",
+              description: "The /path/to/myProject-orb",
+              isRequired: true,
+            },
+            {
+              name: "orb",
+              description:
+                "A fully-qualified reference to an orb, i.e. namespace/orb@version",
+              isRequired: true,
+              dependsOn: ["path"],
+            },
+          ],
         },
         {
           name: "remove-from-category",
           description: "Remove an orb from a category",
+          options: [
+            {
+              name: "namespace/orb",
+              description: "The namespace and orb to add to a category",
+              isRequired: true,
+            },
+            {
+              name: "category name",
+              description:
+                "The name of the category to add the orb to, in quotes",
+              dependsOn: ["namespace/orb"],
+              isRequired: true,
+            },
+          ],
         },
         {
           name: "source",
           description: "Show source code of an orb",
+          options: [
+            {
+              name: "orb",
+              description:
+                "A fully-qualified reference to an orb, i.e. namespace/orb@version",
+              isRequired: true,
+            },
+          ],
         },
         {
           name: "unlist",
           description: "Disable/enable an orb's listing in the registry",
+          options: [
+            {
+              name: "namespace/orb",
+              description:
+                "The namespace and orb to unlist/list from the registry",
+              isRequired: true,
+            },
+            {
+              name: "condition",
+              description: "Use either true|false",
+              isRequired: true,
+              dependsOn: ["namespace/orb"],
+            },
+          ],
         },
         {
           name: "validate",
           description: "Validate an orb.yml",
+          options: [
+            {
+              name: "path",
+              description: "The /path/to/myProject-orb",
+              isRequired: true,
+            },
+          ],
         },
       ],
     },
@@ -364,6 +500,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--help", "-h"],
       description: "Show help for CircleCI",
+      isPersistent: true,
     },
     {
       name: "--skip-update-check",
