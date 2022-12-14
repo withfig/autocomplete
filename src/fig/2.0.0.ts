@@ -4833,5 +4833,7 @@ versions["2.10.0"] = {
   ],
 };
 
+versions["2.10.1"] = {};
+
 export { versions };
 export default completion;
