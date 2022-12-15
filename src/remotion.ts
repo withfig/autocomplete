@@ -817,6 +817,14 @@ const completionSpec: Fig.Spec = {
           description: "Disable all keyboard shortcuts",
         },
         {
+          name: "--webpack-poll",
+          description: "Enable webpack polling instead of file system watchers",
+          args: {
+            name: "polling-interval",
+            description: "Polling interval in milliseconds",
+          },
+        },
+        {
           name: "--number-of-shared-audio-tags",
           description:
             "Set the number of shared audio tags to prevent autoplay issues",
