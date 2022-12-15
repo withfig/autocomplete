@@ -493,6 +493,13 @@ const completionSpec: Fig.Spec = {
         {
           name: "regions",
           description: "Prints list of supported regions",
+          options: [
+            {
+              name: "--default-only",
+              description:
+                "Only print the regions enabled by default in a new AWS account",
+            },
+          ],
         },
         {
           name: "render",
