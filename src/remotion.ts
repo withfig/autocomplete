@@ -82,6 +82,10 @@ const localRenderAndStillOptions: Fig.Option[] = [
     },
   },
   {
+    name: "--enable-extensions",
+    description: "Enable Chrome browser extensions while rendering",
+  },
+  {
     name: "--ffmpeg-executable",
     description: "Custom path for FFMPEG executable",
     args: {
