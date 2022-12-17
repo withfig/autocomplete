@@ -117,6 +117,30 @@ const suggestions: Fig.Suggestion[] = [
   {
     name: "pod-install",
   },
+  {
+    name: "capacitor",
+    icon: "https://capacitorjs.com/docs/img/meta/favicon.png",
+  },
+  {
+    name: "cap",
+    icon: "https://capacitorjs.com/docs/img/meta/favicon.png",
+  },
+  {
+    name: "@magnolia/cli",
+    icon: "https://avatars.githubusercontent.com/u/25686615?s=200&v=4",
+  },
+  {
+    name: "stencil",
+    icon: "https://stenciljs.com/assets/icon/favicon.ico",
+  },
+  {
+    name: "swagger-typescript-api",
+    icon: "https://static1.smartbear.co/swagger/media/assets/swagger_fav.png",
+  },
+  {
+    name: "sta",
+    icon: "https://static1.smartbear.co/swagger/media/assets/swagger_fav.png",
+  },
 ];
 
 const completionSpec: Fig.Spec = {

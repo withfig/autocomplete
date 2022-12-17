@@ -136,19 +136,26 @@ const ghGenerators: Record<string, Fig.Generator> = {
     },
   },
   listPR: {
-    script: "gh pr list",
-    postProcess: (out) =>
-      out.split("\n").map((line) => {
-        const { id, name, branch, status } = line.match(
-          /^(?<id>[\d]+)\t(?<name>.+)\t(?<branch>.*)\t(?<status>OPEN|DRAFT)$/
-        ).groups;
+    cache: { strategy: "stale-while-revalidate" },
+    script: "gh pr list --json=number,title,headRefName,state",
+    postProcess: (out) => {
+      interface PR {
+        headRefName: string;
+        number: number;
+        state: string;
+        title: string;
+      }
+      const items = JSON.parse(out) as PR[];
+      return items.map((line) => {
+        const { number, title, headRefName, state } = line;
         return {
-          name: id,
-          displayName: name,
-          description: `#${id} | ${branch}`,
-          icon: status === "OPEN" ? "✅" : "☑️",
+          name: number.toString(),
+          displayName: title,
+          description: `#${number} | ${headRefName}`,
+          icon: state === "OPEN" ? "✅" : "☑️",
         };
-      }),
+      });
+    },
   },
   listAlias: {
     script: "gh alias list",
@@ -176,6 +183,16 @@ const ghGenerators: Record<string, Fig.Generator> = {
 const ghOptions: Record<string, Fig.Option> = {
   help: { name: "--help", description: "Show help for command" },
   clone: { name: "--clone", description: "Clone the fork {true|false}" },
+  cloneGitFlags: {
+    name: "--",
+    description: "Flags to pass to git when cloning",
+    priority: 25,
+    args: {
+      name: "flags",
+      description: "Flags to pass to git when cloning",
+      isVariadic: true,
+    },
+  },
   confirm: {
     name: ["-y", "--confirm"],
     description: "Skip the confirmation prompt",
@@ -211,6 +228,20 @@ const completionSpec: Fig.Spec = {
     description: "Custom user defined gh alias",
     isOptional: true,
     generators: ghGenerators.listAlias,
+    parserDirectives: {
+      alias: async (token, executeShellCommand) => {
+        const out = await executeShellCommand(`gh alias list`);
+        const alias = out
+          .split("\n")
+          .find((line) => line.startsWith(`${token}:\t`));
+
+        if (!alias) {
+          throw new Error("Failed to parse alias");
+        }
+
+        return alias.slice(token.length + 1).trim();
+      },
+    },
   },
   subcommands: [
     {
@@ -1520,7 +1551,18 @@ Pass additional 'git clone' flags by listing them after '--'`,
               isOptional: true,
             },
           ],
-          options: [ghOptions.help],
+          options: [
+            ghOptions.help,
+            ghOptions.cloneGitFlags,
+            {
+              name: ["-u", "--upstream-remote-name"],
+              description:
+                'Upstream remote name when cloning a fork (default "upstream")',
+              args: {
+                name: "string",
+              },
+            },
+          ],
         },
         {
           name: "create",
@@ -1558,12 +1600,126 @@ Pass '--push' to push any local commits to the new repository`,
               description: "Make the repository internal",
             },
             {
-              name: "--enable-issues",
-              description: "Enable issues in the new repository {true|false}",
+              name: ["-p", "--template"],
+              description:
+                "Make the new repository based on a template repository",
+              args: {
+                name: "string",
+              },
             },
             {
-              name: "--enable-wiki",
-              description: "Enable wiki in the new repository {true|false}",
+              name: ["-c", "--clone"],
+              description: "Clone the new repository to the current directory",
+            },
+            {
+              name: "--disable-issues",
+              description: "Disable issues in the new repository",
+            },
+            {
+              name: "--disable-wiki",
+              description: "Disable wiki in the new repository",
+            },
+            {
+              name: ["-g", "--gitignore"],
+              description: "Specify a gitignore template for the repository",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-l", "--license"],
+              description: "Specify an Open Source License for the repository",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-r", "--remote"],
+              description: "Specify remote name for the new repository",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-s", "--source"],
+              description: "Specify path to local repository to use as source",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-t", "--team"],
+              description:
+                "The name of the organization team to be granted access",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--include-all-branches",
+              description: "Include all branches from template repository",
+            },
+            {
+              name: "--push",
+              description: "Push local commits to the new repository",
+            },
+            {
+              name: "--add-readme",
+              description: "Add a README file to the new repository",
+            },
+          ],
+        },
+        {
+          name: "deploy-key",
+          description: "Manage deploy keys in a repository",
+          subcommands: [
+            {
+              name: "add",
+              description: "Add a deploy key to a GitHub repository",
+              args: {
+                name: "key-file",
+                description: "Path to the public key file",
+                template: "filepaths",
+              },
+              options: [
+                ghOptions.help,
+                {
+                  name: ["-w", "--allow-write"],
+                  description: "Allow write access for the key",
+                },
+                {
+                  name: ["-t", "--title"],
+                  description: "Title of the new key",
+                  args: {
+                    name: "string",
+                  },
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description: "Delete a deploy key from a GitHub repository",
+              args: {
+                name: "key-id",
+                description: "ID of the key to delete",
+              },
+              options: [ghOptions.help],
+            },
+            {
+              name: "list",
+              description: "List deploy keys in a GitHub repository",
+              options: [ghOptions.help],
+            },
+          ],
+          options: [
+            ghOptions.help,
+            {
+              name: ["-R", "--repo"],
+              description:
+                "Select another repository using the `[HOST/]OWNER/REPO` format",
+              args: {
+                name: "[HOST/]OWNER/REPO",
+              },
             },
           ],
         },
@@ -1596,7 +1752,7 @@ To authorize, run "gh auth refresh -s delete_repo"`,
               name: "--add-topic",
               description: "Add repository topic",
               args: {
-                name: "topic name",
+                name: "topic names",
               },
             },
             {
@@ -1660,7 +1816,7 @@ To authorize, run "gh auth refresh -s delete_repo"`,
               name: "--remove-topic",
               description: "Remove repository topic",
               args: {
-                name: "topic name",
+                name: "topic names",
               },
             },
             {
@@ -1669,9 +1825,13 @@ To authorize, run "gh auth refresh -s delete_repo"`,
                 "Make the repository available as a template repository",
             },
             {
-              name: "--visibility string",
+              name: "--visibility",
               description:
                 "Change the visibility of the repository to {public,private,internal}",
+              args: {
+                name: "string",
+                suggestions: ["public", "private", "internal"],
+              },
             },
           ],
         },
@@ -1693,7 +1853,11 @@ Additional 'git clone' flags can be passed in by listing them after '--'`,
           },
           options: [
             ghOptions.help,
-            ghOptions.clone,
+            ghOptions.cloneGitFlags,
+            {
+              name: "--clone",
+              description: "Clone the fork",
+            },
             {
               name: "--remote",
               description: "Add remote for fork {true|false}",
@@ -1702,6 +1866,20 @@ Additional 'git clone' flags can be passed in by listing them after '--'`,
               name: "--remote-name",
               description:
                 'Specify a name for a fork\'s new remote. (default "origin")',
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--org",
+              description: "Create the fork in an organization",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--fork-name",
+              description: "Rename the forked repository",
               args: {
                 name: "string",
               },
@@ -1718,6 +1896,14 @@ For more information about output formatting flags, see 'gh help formatting'`,
           },
           options: [
             ghOptions.help,
+            {
+              name: "--visibility",
+              description: "Filter repositories by visibility",
+              args: {
+                name: "visibility",
+                suggestions: ["public", "private", "internal"],
+              },
+            },
             {
               name: "--archived",
               description: "Show only archived repositories",
@@ -1739,14 +1925,6 @@ For more information about output formatting flags, see 'gh help formatting'`,
               name: "--no-archived",
               description: "Omit archived repositories",
             },
-            {
-              name: "--private",
-              description: "Show only private repositories",
-            },
-            {
-              name: "--public",
-              description: "Show only public repositories",
-            },
             { name: "--source", description: "Show only non-forks" },
             {
               name: ["-q", "--jq"],
@@ -1760,6 +1938,23 @@ For more information about output formatting flags, see 'gh help formatting'`,
               name: ["-t", "--template"],
               description: "Format JSON output using a Go template",
             },
+            {
+              name: "--topic",
+              description: "Filter by topic",
+              args: {
+                name: "topic",
+              },
+            },
+            {
+              name: "--private",
+              description: "Show only private repositories",
+              deprecated: true,
+            },
+            {
+              name: "--public",
+              description: "Show only public repositories",
+              deprecated: true,
+            },
           ],
         },
         {
@@ -1770,7 +1965,19 @@ By default, this renames the current repository; otherwise renames the specified
             name: "new-name",
             isOptional: true,
           },
-          options: [ghOptions.help, ghOptions.confirm, ghOptions.all],
+          options: [
+            ghOptions.help,
+            ghOptions.confirm,
+            ghOptions.all,
+            {
+              name: ["-R", "--repo"],
+              description:
+                "Select another repository using the `[HOST/]OWNER/REPO` format",
+              args: {
+                name: "[HOST/]OWNER/REPO",
+              },
+            },
+          ],
         },
         {
           name: "sync",
@@ -1837,6 +2044,27 @@ For more information about output formatting flags, see 'gh help formatting'`,
             {
               name: ["-w", "--web"],
               description: "Open a repository in the browser",
+            },
+            {
+              name: ["-q", "--jq"],
+              description: "Filter JSON output using a jq expression",
+              args: {
+                name: "expression",
+              },
+            },
+            {
+              name: "--json",
+              description: "Output JSON with the specified fields",
+              args: {
+                name: "fields",
+              },
+            },
+            {
+              name: ["-t", "--template"],
+              description: "Format JSON output using a Go template",
+              args: {
+                name: "string",
+              },
             },
           ],
         },

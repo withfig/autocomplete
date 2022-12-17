@@ -5,6 +5,7 @@ const completionSpec: Fig.Spec = {
   args: [
     {
       name: "search pattern",
+      suggestCurrentToken: true,
     },
     {
       name: "file",

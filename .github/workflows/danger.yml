@@ -5,8 +5,8 @@ jobs:
   danger:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 14.x
       - run: npm install -g yarn
@@ -17,6 +17,6 @@ jobs:
       - run: yarn danger ci -d ./dangerfile-greeting.ts
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
-      - run: yarn danger ci -d ./dangerfile-invite.ts
-        env:
-          DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
+#       - run: yarn danger ci -d ./dangerfile-invite.ts
+#         env:
+#           DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}

@@ -13,39 +13,33 @@ function uninstallSubcommand(named: string | string[]): Fig.Subcommand {
 }
 
 const atsInStr = (s: string) => (s.match(/@/g) || []).length;
-// GENERATORS
-export const npmSearchGenerator: Fig.Generator = {
-  trigger: (newToken, oldToken) => {
-    // If the package name starts with '@', we want to trigger when
-    // the 2nd '@' is typed because we'll need to generate version
-    // suggetsions
-    // e.g. @typescript-eslint/types
-    if (oldToken.startsWith("@")) {
-      return !(atsInStr(oldToken) > 1 && atsInStr(newToken) > 1);
-    }
 
-    // If the package name doesn't start with '@', then trigger when
-    // we see the first '@' so we can generate version suggestions
-    return !(oldToken.includes("@") && newToken.includes("@"));
-  },
-  getQueryTerm: "@",
-  cache: {
-    ttl: 1000 * 60 * 60 * 24 * 2, // 2 days
-  },
-  custom: async (context, executeShellCommand) => {
+export const createNpmSearchHandler =
+  (keywords?: string[]) =>
+  async (
+    context: string[],
+    executeShellCommand: Fig.ExecuteShellCommandFunction,
+    shellContext: Fig.ShellContext
+  ): Promise<Fig.Suggestion[]> => {
     const searchTerm = context[context.length - 1];
     if (searchTerm === "") {
       return [];
     }
+    // Add optional keyword parameter
+    const keywordParameter =
+      keywords?.length > 0 ? `+keywords:${keywords.join(",")}` : "";
+
+    const queryPackagesUrl = keywordParameter
+      ? `https://api.npms.io/v2/search?size=20&q=${searchTerm}${keywordParameter}`
+      : `https://api.npms.io/v2/search/suggestions?q=${searchTerm}&size=20`;
 
     // Query the API with the package name
-    const queryPackages = `curl -s -H "Accept: application/json" "https://api.npms.io/v2/search?size=20&q=${searchTerm}"`;
+    const queryPackages = `curl -s -H "Accept: application/json" "${queryPackagesUrl}"`;
     // We need to remove the '@' at the end of the searchTerm before querying versions
     const queryVersions = `curl -s -H "Accept: application/vnd.npm.install-v1+json" https://registry.npmjs.org/${searchTerm.slice(
       0,
       -1
     )}`;
-
     // If the end of our token is '@', then we want to generate version suggestions
     // Otherwise, we want packages
     const out = (query: string) =>
@@ -79,7 +73,8 @@ export const npmSearchGenerator: Fig.Generator = {
         return versions;
       }
 
-      return data.results.map((item) => ({
+      const results = keywordParameter ? data.results : data;
+      return results.map((item) => ({
         name: item.package.name,
         description: item.package.description,
       })) as Fig.Suggestion[];
@@ -87,7 +82,28 @@ export const npmSearchGenerator: Fig.Generator = {
       console.error({ error });
       return [];
     }
+  };
+
+// GENERATORS
+export const npmSearchGenerator: Fig.Generator = {
+  trigger: (newToken, oldToken) => {
+    // If the package name starts with '@', we want to trigger when
+    // the 2nd '@' is typed because we'll need to generate version
+    // suggetsions
+    // e.g. @typescript-eslint/types
+    if (oldToken.startsWith("@")) {
+      return !(atsInStr(oldToken) > 1 && atsInStr(newToken) > 1);
+    }
+
+    // If the package name doesn't start with '@', then trigger when
+    // we see the first '@' so we can generate version suggestions
+    return !(oldToken.includes("@") && newToken.includes("@"));
   },
+  getQueryTerm: "@",
+  cache: {
+    ttl: 1000 * 60 * 60 * 24 * 2, // 2 days
+  },
+  custom: createNpmSearchHandler(),
 };
 
 const workspaceGenerator: Fig.Generator = {
