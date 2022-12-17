@@ -137,6 +137,11 @@ const completionSpec: Fig.Spec = {
       description: "Prints version, git commit, built date (utc)",
     },
     {
+      name: "--debug",
+      description:
+        "Iterates the scenario once and prints curl-like verbose result",
+    },
+    {
       name: "--help",
       description: "Prints CLI flags",
     },
