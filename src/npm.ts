@@ -30,8 +30,8 @@ export const createNpmSearchHandler =
       keywords?.length > 0 ? `+keywords:${keywords.join(",")}` : "";
 
     const queryPackagesUrl = keywordParameter
-      ? `https://api.npms.io/v2/search/suggestions?q=${searchTerm}&size=20`
-      : `https://api.npms.io/v2/search?size=20&q=${searchTerm}${keywordParameter}`;
+      ? `https://api.npms.io/v2/search?size=20&q=${searchTerm}${keywordParameter}`
+      : `https://api.npms.io/v2/search/suggestions?q=${searchTerm}&size=20`;
 
     // Query the API with the package name
     const queryPackages = `curl -s -H "Accept: application/json" "${queryPackagesUrl}"`;
