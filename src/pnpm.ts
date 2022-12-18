@@ -429,6 +429,14 @@ const SUBCOMMANDS_RUN_SCRIPTS: Fig.Subcommand[] = [
         description:
           "Stream output from child processes immediately, prefixed with the originating package directory. This allows output from different packages to be interleaved",
       },
+      {
+        name: ["-C", "--dir"],
+        description: "Run a script in another directory",
+        args: {
+          name: "directory",
+          template: "folders",
+        },
+      },
       FILTER_OPTION,
     ],
   },
