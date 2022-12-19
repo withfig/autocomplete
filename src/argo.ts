@@ -1328,6 +1328,30 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "resume",
+      description: "Resume zero or more workflows",
+      args: [
+        {
+          name: "WORKFLOW1",
+        },
+        {
+          name: "WORKFLOW2...",
+        },
+      ],
+      options: [
+        {
+          name: ["--help", "-h"],
+          description: "Help for resume",
+        },
+        {
+          name: "--node-field-selector",
+          description:
+            "Selector of node to resume, Eg: --node-field-selector inputs.paramaters.myparam.value=abc",
+          args: { name: "string" },
+        },
+      ],
+    },
 };
 
 export default completionSpec;
