@@ -1132,6 +1132,84 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "logs",
+      description: "View logs of a pod or workflow",
+      args: [
+        {
+          name: "WORKFOW",
+        },
+        {
+          name: "POD",
+          isOptional: true,
+        },
+      ],
+      options: [
+        {
+          name: ["--container", "-c"],
+          description: 'Print the logs of this container (default "main")',
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["--follow", "-f"],
+          description: "Specify if the logs should be streamed",
+        },
+        {
+          name: "--grep",
+          description: "Grep for lines",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["--help", "-h"],
+          description: "Help for logs",
+        },
+        {
+          name: "--no-color",
+          description: "Disable colorized output",
+        },
+        {
+          name: ["--previous", "-p"],
+          description:
+            "Specify if the previously terminated container logs should be returned",
+        },
+        {
+          name: ["--selector", "-l"],
+          description: "Log selector for some pod",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--since duration",
+          description:
+            "Only return logs newer than a relative duration like 5s 2m or 3h. Defaults to all logs. Only one of since-time / since may be used",
+        },
+        {
+          name: "--since-time",
+          description:
+            "Only return logs after a specific date (RFC3339). Defaults to all logs. Only one of since-time / since may be used",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tail",
+          description:
+            "If set the number of lines from the end of the logs to show. If not specified logs are shown from the creation of the container or sinceSeconds or sinceTime (default -1)",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--timestamps",
+          description: "Include timestamps on each line in the log output",
+        },
+      ],
+    },
 };
 
 export default completionSpec;
