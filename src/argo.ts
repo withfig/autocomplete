@@ -1261,6 +1261,73 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "resubmit",
+      description: "Resubmit one or more workflows",
+      args: { name: "WORKFLOW..." },
+      options: [
+        {
+          name: "--field-selector",
+          description:
+            "Selector (field query) to filter on: supports '=' '==' and '!='.(e.g. --field-selector key1=value1,key2=value2). The server only supports a limited number of field queries per type",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["--help", "-h"],
+          description: "Help for resubmit",
+        },
+        {
+          name: "--log",
+          description: "Log the workflow until it completes",
+        },
+        {
+          name: "--memoized",
+          description:
+            "Re-use successful steps & outputs from the previous run",
+        },
+        {
+          name: ["--output", "-o"],
+          description: "Output format. One of: name|json|yaml|wide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["--parameter", "-p"],
+          description:
+            "Input parameter to override on the original workflow spec",
+          args: {
+            name: "stringArray",
+          },
+        },
+        {
+          name: "--priority",
+          description: "Workflow priority",
+          args: {
+            name: "int32",
+          },
+        },
+        {
+          name: ["--selector", "-l"],
+          description: "Selector (label query) to filter on",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["--wait", "-w"],
+          description:
+            "Wait for the workflow to complete - only works when a single workflow is resubmitted",
+        },
+        {
+          name: "--watch",
+          description:
+            "Watch the workflow until it completes - only works when a single workflow is resubmitted",
+        },
+      ],
+    },
 };
 
 export default completionSpec;
