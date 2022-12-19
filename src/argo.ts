@@ -609,6 +609,98 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "cron",
+      description: "Manage cron workflows",
+      options: [
+        {
+          name: "--help",
+          description: "Help for cron",
+        },
+      ],
+      subcommands: [
+        {
+          name: "create",
+          description: "Create a cron workflow",
+          args: {
+            name: "FILE1 FILE2...",
+          },
+          options: [
+            {
+              name: "--entrypoint",
+              description: "Override entrypoint",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--generate-name",
+              description: "Override metadata.generateName",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["--help", "-h"],
+              description: "Help for create",
+            },
+            {
+              name: ["--labels", "-l"],
+              description:
+                "Comma separated labels to apply to the workflow. Will override previous values",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--name",
+              description: "Override metadata.name",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format. One of: name|json|yaml|wide",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["--parameter", "-p"],
+              description: "Pass an input parameter",
+              args: {
+                name: "stringArray",
+              },
+            },
+            {
+              name: ["--parameter-file", "-f"],
+              description: "Pass a file containing all input parameters",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--schedule",
+              description: "Override cron workflow schedule",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--serviceaccount",
+              description:
+                "Run all pods in the workflow using specified serviceaccount",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--strict",
+              description: "Perform strict workflow validation (default true)",
+            },
+          ],
+        },
 };
 
 export default completionSpec;
