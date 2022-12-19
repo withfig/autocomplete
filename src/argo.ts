@@ -941,6 +941,19 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "executor-plugin",
+      description: "Manage executor plugins",
+      subcommands: [
+        {
+          name: "build",
+          description: "Build an executor plugin",
+          args: {
+            name: "DIR",
+          },
+        },
+      ],
+    },
 };
 
 export default completionSpec;
