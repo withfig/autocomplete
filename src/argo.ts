@@ -764,6 +764,98 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "list",
+          description: "List cron workflows",
+          options: [
+            {
+              name: ["--all-namespaces", "-A"],
+              description: "Show workflows from all namespaces",
+            },
+            {
+              name: "--chunk-size",
+              description:
+                "Return large lists in chunks rather than all at once. Pass 0 to disable",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--completed",
+              description:
+                "Show completed workflows. Mutually exclusive with --running",
+            },
+            {
+              name: "--field-selector",
+              description:
+                "Selector (field query) to filter on. Supports '=' '==' and '!='.(e.g. --field-selector key1=value1,key2=value2). The server only supports a limited number of field queries per type",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["--help", "-h"],
+              description: "Help for list",
+            },
+            {
+              name: "--no-headers",
+              description: "Don't print headers (default print headers)",
+            },
+            {
+              name: "--older",
+              description:
+                "List completed workflows finished before the specified duration (e.g. 10m 3h 1d)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format. One of: name|wide|yaml|json",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--prefix",
+              description: "Filter workflows by prefix",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--resubmitted",
+              description: "Show resubmitted workflows",
+            },
+            {
+              name: "--running",
+              description:
+                "Show running workflows. Mutually exclusive with --completed",
+            },
+            {
+              name: ["--selector", "-l"],
+              description: "Selector (label query) to filter on",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--since",
+              description:
+                "Show only workflows created after than a relative duration",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--status",
+              description: "Filter by status (comma separated)",
+              args: {
+                name: "strings",
+              },
+            },
+          ],
+        },
 };
 
 export default completionSpec;
