@@ -718,6 +718,26 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "get",
+          description: "Display details about a cron workflow",
+          args: {
+            name: "CRON_WORKFLOW",
+          },
+          options: [
+            {
+              name: ["--help", "-h"],
+              description: "Help for get",
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format. One of: json|yaml|wide",
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
 };
 
 export default completionSpec;
