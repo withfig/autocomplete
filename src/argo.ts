@@ -872,6 +872,75 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "delete",
+      description: "Delete workflows",
+      args: {
+        name: "WORKFLOW",
+      },
+      options: [
+        {
+          name: "--all",
+          description: "Delete all workflows",
+        },
+        {
+          name: ["--all-namespaces", "-A"],
+          description: "Delete workflows from all namespaces",
+        },
+        {
+          name: "--completed",
+          description: "Delete completed workflows",
+        },
+        {
+          name: "--dry-run",
+          description:
+            "Do not delete the workflow only print what would happen",
+        },
+        {
+          name: "--field-selector",
+          description:
+            "Selector (field query) to filter on supports '=' '==' and '!='.(e.g. --field-selector key1=value1,key2=value2). The server only supports a limited number of field queries per type",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--force",
+          description: "Force delete workflows by removing finalizers",
+        },
+        {
+          name: ["--help", "-h"],
+          description: "Help for delete",
+        },
+        {
+          name: "--older",
+          description:
+            "Delete completed workflows finished before the specified duration (e.g. 10m 3h 1d)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--prefix",
+          description: "Delete workflows by prefix",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--resubmitted",
+          description: "Delete resubmitted workflows",
+        },
+        {
+          name: ["--selector", "-l"],
+          description:
+            "Selector (label query) to filter on not including uninitialized ones supports '=''=='and '!='.(e.g. -l key1=value1,key2=value2)",
+          args: {
+            name: "string",
+          },
+        },
+      ],
+    },
 };
 
 export default completionSpec;
