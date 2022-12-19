@@ -1799,6 +1799,23 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "delete",
+          description: "Delete a workflow template",
+          args: {
+            name: "WORKFLOW_TEMPLATE",
+          },
+          options: [
+            {
+              name: "--all",
+              description: "Delete all workflow templates",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Help for delete",
+            },
+          ],
+        },
 };
 
 export default completionSpec;
