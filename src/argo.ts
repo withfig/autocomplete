@@ -215,6 +215,31 @@ globalOptions = globalOptions.map((option) => ({
 const completionSpec: Fig.Spec = {
   name: "argo",
   description: "",
+  subcommands: [
+    {
+      name: "archive",
+      description: "Manage the workflow archive",
+      subcommands: [
+        {
+          name: "delete",
+          description: "Delete a workflow in the archive",
+          args: sharedArgs.UID,
+        },
+        {
+          name: "get",
+          description: "Get a workflow in the archive",
+          args: sharedArgs.UID,
+          options: [
+            {
+              name: ["--output", "-o"],
+              description:
+                'Output format. One of: json|yaml|wide (default "wide")',
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
 };
 
 export default completionSpec;
