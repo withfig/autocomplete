@@ -1742,6 +1742,24 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "suspend",
+      description: "Suspend zero or more workflow",
+      args: [
+        {
+          name: "WORKFLOW1",
+        },
+        {
+          name: "WORKFLOW2...",
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Help for suspend",
+        },
+      ],
+    },
 };
 
 export default completionSpec;
