@@ -1890,6 +1890,40 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "terminate",
+      description: "Terminate zero or more workflows immediately",
+      args: {
+        name: "WORKFLOOW WORKFLOW2...",
+      },
+      options: [
+        {
+          name: "--dry-run",
+          description:
+            "Do not terminate the workflow only print what would happen",
+        },
+        {
+          name: "--field-selector",
+          description:
+            "Selector (field query) to filter on supports '=' '==' and '!='.(e.g. --field-selector key1=value1key2=value2). The server only supports a limited number of field queries per type",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Help for terminate",
+        },
+        {
+          name: ["-l", "--selector"],
+          description:
+            "Selector (label query) to filter on not including uninitialized ones supports '=' '==' and '!='.(e.g. -l key1=value1key2=value2)",
+          args: {
+            name: "string",
+          },
+        },
+      ],
+    },
 };
 
 export default completionSpec;
