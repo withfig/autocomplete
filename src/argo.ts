@@ -362,6 +362,76 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "retry",
+          description: "Retry zero or more workflows",
+          args: sharedArgs.UID,
+          options: [
+            {
+              name: "--field-selector",
+              description: "Selector (field query) to filter on, supports '='",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["--help", "-h"],
+              description: "Help for retry",
+            },
+            {
+              name: "--log",
+              description: "Log the workflow until it completes",
+            },
+            {
+              name: "--node-field-selector",
+              description:
+                "Selector of nodes to reset eg: --node-field-selector inputs.paramaters.myparam.value=abc",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format. One of: name|json|yaml|wide",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["--parameter", "-p"],
+              description:
+                "Input parameter to override on the original workflow spec",
+              args: {
+                name: "stringArray",
+              },
+            },
+            {
+              name: "--restart-successful",
+              description:
+                "Indicates to restart successful nodes matching the --node-field-selector",
+            },
+            {
+              name: ["--selector", "-l"],
+              description:
+                "Selector (label query) to filter on not including uninitialized ones supports '=' '=='",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["--wait", "-w"],
+              description:
+                "Wait for the workflow to complete only works when a single workflow is retried",
+            },
+            {
+              name: "--watch",
+              description:
+                "Watch the workflow until it completes only works when a single workflow is retried",
+            },
+          ],
+        },
+      ],
+    },
 };
 
 export default completionSpec;
