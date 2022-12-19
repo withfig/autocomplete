@@ -1,0 +1,1 @@
+import fig from "./fig";
