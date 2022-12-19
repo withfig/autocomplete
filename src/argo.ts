@@ -1867,6 +1867,29 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "list",
+          description: "List workflow templates",
+          options: [
+            {
+              name: ["--all-namespaces", "-A"],
+              description: "Show workflows from all namespaces",
+            },
+            {
+              name: ["--help", "-h"],
+              description: "Help for list",
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format. One of: wide|name",
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
+      ],
+    },
 };
 
 export default completionSpec;
