@@ -211,3 +211,10 @@ globalOptions = globalOptions.map((option) => ({
   isPersistent: true,
   ...option,
 }));
+
+const completionSpec: Fig.Spec = {
+  name: "argo",
+  description: "",
+};
+
+export default completionSpec;
