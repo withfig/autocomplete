@@ -313,71 +313,175 @@ export const invitationsGenerators: Fig.Generator = {
 };
 
 /**
- * Fig workflows
+ * Fig Scripts
  */
 
-export const workflowsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
+export const scriptsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
   _,
   exec
 ) => {
+  const query = `query Scripts {
+    currentUser {
+      namespace {
+        username
+        scripts {
+          ...ScriptFields
+        }
+      }
+      teamMemberships {
+        team {
+          namespace {
+            username
+            scripts {
+              ...ScriptFields
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  fragment ScriptFields on Script {
+    name
+    fields {
+      icon
+      displayName
+      description
+      templateVersion
+      tags
+      parameters {
+        type
+        name
+        displayName
+        description
+        text {
+          placeholder
+        }
+        checkbox {
+          trueValueSubstitution
+          falseValueSubstitution
+        }
+        selector {
+          generators {
+            named {
+              name
+            }
+            shellScript {
+              script
+            }
+            type
+          }
+          placeholder
+          suggestions
+        }
+        path {
+          extensions
+          fileType
+        }
+      }
+      runtime
+    }
+    relevanceScore
+    lastInvokedAt
+    lastInvokedAtByUser
+    isOwnedByCurrentUser
+  }`;
+
   const response = await exec(
-    "fig _ request --route '/workflows' --method GET"
+    `fig _ request --route '/graphql' --method POST --body '{ "query": "${query
+      .split(/\s+/)
+      .join(" ")}" }'`
   );
-  const workflows = JSON.parse(response);
-  const subcommands = workflows.map((workflow) => {
-    const displayName = `${workflow.displayName ?? workflow.name} | @${
-      workflow.namespace
+
+  const data = JSON.parse(response).data;
+
+  const scripts = [
+    ...data.currentUser.namespace.scripts.map((script) => ({
+      ...script,
+      namespace: data.currentUser.namespace.username,
+    })),
+    ...data.currentUser.teamMemberships.flatMap((team) =>
+      team.team.namespace.scripts.map((script) => ({
+        ...script,
+        namespace: team.team.namespace.username,
+      }))
+    ),
+  ];
+
+  const subcommands = scripts.map((script) => {
+    const displayName = `${script.fields.displayName ?? script.name} | @${
+      script.namespace
     }`;
 
-    const options = workflow.parameters.map((param) => {
+    const options: Fig.Option[] = [
+      {
+        name: ["-h", "--help"],
+        description: "Show help for the script",
+      },
+    ];
+
+    for (const param of script.fields.parameters) {
       const option: Fig.Option = {
         name: `--${param.name}`,
-        description: param.description,
+        description: param?.description ?? param?.type,
+        isRequired: true,
       };
+
       switch (param.type) {
-        case "text":
+        case "Text":
           option.args = {
             name: param.name,
           };
-        case "selector":
+          break;
+        case "Selector":
           let generators: Fig.Generator[] = [];
-          if (param.typeData.generators) {
-            generators = param.typeData.generators
-              .filter((generator) => generator.type === "script")
+          if (param?.selector?.generators) {
+            generators = param?.selector?.generators
+              .filter((generator) => generator.type === "ShellScript")
               .map((generator) => ({
-                script: generator.script,
+                script: generator?.shellScript?.script,
                 splitOn: "\n",
               }));
           }
           option.args = {
             name: param.name,
-            suggestions: param.typeData.suggestions,
+            suggestions: param?.selector?.suggestions,
             generators,
           };
-        case "filepicker":
+          break;
+        case "Path":
           option.args = {
-            template: "folders",
+            name: param.name,
+            template: "filepaths",
           };
-        case "checkbox":
-          option.args = {
-            suggestions: ["true", "false"],
-          };
+          break;
+        case "Checkbox":
+          // Also make the `--no-` version of the option
+          options.push({
+            ...option,
+            name: `--no-${param.name}`,
+            exclusiveOn: [`--${param.name}`],
+          });
+
+          option.exclusiveOn = [`--no-${param.name}`];
+          break;
       }
-      return option;
-    });
+
+      options.push(option);
+    }
 
     // Add @namespace/name and name (if this workflow is associated with user's namespace)
-    const name = [`@${workflow.namespace}/${workflow.name}`];
-    if (workflow.isOwnedByUser) {
-      name.push(workflow.name);
+    const name = [`@${script.namespace}/${script.name}`];
+    if (script?.isOwnedByCurrentUser) {
+      name.push(script.name);
     }
 
     return {
       displayName,
-      icon: workflow.icon ?? "⚡️",
+      icon: script?.fields?.icon ?? "⚡️",
       name,
-      insertValue: workflow.isOwnedByUser ? workflow.name : name[0],
-      description: workflow.description,
+      insertValue: script?.isOwnedByCurrentUser ? script.name : name[0],
+      description: script?.fields?.description,
       options,
     };
   });

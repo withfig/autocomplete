@@ -7,7 +7,7 @@ import {
   invitationsGenerators,
   membersGenerators,
   teamsGenerators,
-  workflowsSpecGenerator,
+  scriptsSpecGenerator,
   sshHostsGenerator,
   sshIdentityGenerator,
   userGenerator,
@@ -2813,7 +2813,7 @@ const completion: Fig.Subcommand = {
         isVariadic: true,
         isOptional: true,
       },
-      generateSpec: workflowsSpecGenerator,
+      generateSpec: scriptsSpecGenerator,
       filterStrategy: "fuzzy",
     },
     {
