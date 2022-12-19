@@ -1002,6 +1002,43 @@ const completionSpec: Fig.Spec = {
       name: "help",
       description: "Help about any command",
     },
+    {
+      name: "lint",
+      description: "Validate files or directories of manifests",
+      args: {
+        name: "FILE",
+      },
+      options: [
+        {
+          name: ["--help", "-h"],
+          description: "Help for lint",
+        },
+        {
+          name: "--kinds",
+          description:
+            "Which kinds will be linted. Can be: workflows|workflowtemplates|cronworkflows|clusterworkflowtemplates (default [all])",
+          args: {
+            name: "strings",
+          },
+        },
+        {
+          name: "--offline",
+          description: "Perform offline linting",
+        },
+        {
+          name: ["--output", "-o"],
+          description:
+            'Linting results output format. One of: pretty|simple (default "pretty")',
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--strict",
+          description: "Perform strict workflow validation (default true)",
+        },
+      ],
+    },
 };
 
 export default completionSpec;
