@@ -1816,6 +1816,26 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "get",
+          description: "Display details about a workflow template",
+          args: {
+            name: "WORKFLOW_TEMPLATE",
+          },
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Help for get",
+            },
+            {
+              name: ["-o", "--output"],
+              args: {
+                name: "string",
+              },
+              description: "Output format. One of: json|yaml|wide",
+            },
+          ],
+        },
 };
 
 export default completionSpec;
