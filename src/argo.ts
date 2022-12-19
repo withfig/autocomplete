@@ -1924,6 +1924,37 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "version",
+      description: "Print version information",
+      options: [
+        {
+          name: ["--help", "-h"],
+          description: "Help for version",
+        },
+        {
+          name: "--short",
+          description: "Print just the version number",
+        },
+      ],
+    },
+    {
+      name: "wait",
+      description: "Waits for workflows to complete",
+      args: {
+        name: "[WORKFLOW...]",
+      },
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Help for wait",
+        },
+        {
+          name: "--ignore-not-found",
+          description: "Ignore the wait if the workflow is not found",
+        },
+      ],
+    },
 };
 
 export default completionSpec;
