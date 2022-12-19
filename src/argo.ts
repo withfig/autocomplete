@@ -1760,6 +1760,45 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "template",
+      description: "Manipulate workflow templates",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Help for template",
+        },
+      ],
+      subcommands: [
+        {
+          name: "create",
+          description: "Create a workflow template",
+          args: [
+            {
+              name: "FILE1",
+            },
+            {
+              name: "FILE2...",
+            },
+          ],
+          options: [
+            {
+              name: ["--help", "-h"],
+              description: "Help for create",
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format. One of: name|json|yaml|wide",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--strict",
+              description: "Perform strict workflow validation (default true)",
+            },
+          ],
+        },
 };
 
 export default completionSpec;
