@@ -240,6 +240,40 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "list",
+          description: "List workflows in the archive",
+          options: [
+            {
+              name: "--chunk-size",
+              description:
+                "Return large lists in chunks rather than all at once. Pass 0 to disable",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: ["--help", "-h"],
+              description: "Help for list",
+            },
+            {
+              name: ["--output", "-o"],
+              description:
+                'Output format. One of: json|yaml|wide (default "wide")',
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["--selector", "-l"],
+              description:
+                "Selector (label query) to filter on not including uninitialized ones supports '=' '==' and '!='.(e.g. -l key1=value1,key2=value2)",
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
 };
 
 export default completionSpec;
