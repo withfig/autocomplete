@@ -1955,6 +1955,38 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "watch",
+      description: "Watch a workflow until it completes",
+      args: {
+        name: "WORKFLOW",
+      },
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Help for watch",
+        },
+        {
+          name: "--node-field-selector",
+          description:
+            "Selector of node to display eg: --node-field-selector phase=abc",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--status",
+          description:
+            "Filter by status (Pending, Running, Succeeded, Skipped, Failed, Error)",
+          args: {
+            name: "string",
+          },
+        },
+      ],
+    },
+  ],
+  options: globalOptions,
+  // Only uncomment if argo takes an argument
+  // args: {}
 };
-
 export default completionSpec;
