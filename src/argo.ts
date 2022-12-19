@@ -1210,6 +1210,57 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "node",
+      description: "Perform action on a node in a workflow",
+      args: [
+        {
+          name: "ACTION",
+        },
+        {
+          name: "WORKFLOW",
+        },
+        {
+          name: "FLAGS",
+        },
+      ],
+      options: [
+        {
+          name: ["--help", "-h"],
+          description: "Help for node",
+        },
+        {
+          name: ["--message", "-m"],
+          description: 'Set the message of a node eg: --message "Hello World"',
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--node-field-selector",
+          description:
+            "Selector of node to set eg: --node-field-selector inputs.paramaters.myparam.value=abc",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["--output-parameter", "-p"],
+          description:
+            'Set a "supplied" output parameter of node eg: --output-parameter parameter-name="Hello world!"',
+          args: {
+            name: "stringArray",
+          },
+        },
+        {
+          name: "--phase",
+          description: "Phase to set the node to eg: --phase Succeeded",
+          args: {
+            name: "string",
+          },
+        },
+      ],
+    },
 };
 
 export default completionSpec;
