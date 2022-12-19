@@ -1423,6 +1423,134 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "server",
+      description: "Start the Argo Server",
+      options: [
+        {
+          name: "--access-control-allow-origin",
+          description:
+            "Set Access-Control-Allow-Origin header in HTTP responses",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--allowed-link-protocol",
+          description:
+            "Allowed link protocol in configMap. Used if the allowed configMap links protocol are different from http https. Defaults to the environment variable ALLOWED_LINK_PROTOCOL (default [http https])",
+          args: {
+            name: "stringArray",
+          },
+        },
+        {
+          name: "--api-rate-limit",
+          description: "Set limit per IP for api ratelimiter (default 1000)",
+          args: {
+            name: "uint",
+          },
+        },
+        {
+          name: "--auth-mode",
+          description:
+            "API server authentication mode. Any 1 or more length permutation of: client server sso (default [client])",
+          args: {
+            name: "stringArray",
+          },
+        },
+        {
+          name: "--basehref",
+          description:
+            'Value for base href in index.html. Used if the server is running behind reverse proxy under subpath different from /. Defaults to the environment variable BASE_HREF. (default " /")',
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["-b", "--browser"],
+          description: "Enable automatic launching of the browser [local mode]",
+        },
+        {
+          name: "--configmap",
+          description:
+            'Name of K8s configmap to retrieve workflow controller configuration (default "workflow-controller-configmap")',
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--event-async-dispatch",
+          description: "Dispatch event async",
+        },
+        {
+          name: "--event-operation-queue-size",
+          description:
+            "How many events operations that can be queued at once (default 16)",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--event-worker-count",
+          description: "How many event workers to run (default 4)",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Help for server",
+        },
+        {
+          name: "--hsts",
+          description:
+            "Whether or not we should add a HTTP Secure Transport Security header. This only has effect if secure is enabled. (default true)",
+        },
+        {
+          name: "--log-format",
+          description:
+            'The formatter to use for logs. One of: text|json (default "text")',
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--managed-namespace",
+          description:
+            "Namespace that watches default to the installation namespace",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--namespaced",
+          description: "Run as namespaced mode",
+        },
+        {
+          name: ["-p", "--port"],
+          description: "Port to listen on (default 2746)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tls-certificate-secret-name",
+          description:
+            "The name of a Kubernetes secret that contains the server certificates",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--x-frame-options",
+          description:
+            'Set X-Frame-Options header in HTTP responses. (default "DENY")',
+          args: {
+            name: "string",
+          },
+        },
+      ],
+    },
 };
 
 export default completionSpec;
