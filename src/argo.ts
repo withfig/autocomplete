@@ -569,6 +569,46 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "cp",
+      description: "Copy artifacts from workflow",
+      args: [{ name: "my-wf" }, { name: "output-directory" }],
+      options: [
+        {
+          name: "--artifact-name",
+          description: "Name of output artifact in workflow",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["--help", "-h"],
+          description: "Help for cp",
+        },
+        {
+          name: "--node-id",
+          description: "Id of node in workflow",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--path",
+          description:
+            'Use variables {workflowName} {nodeId} {templateName} {artifactName} and {namespace} to create a customized path to store the artifacts; example: {workflowName}/{templateName}/{artifactName} (default "{namespace}/{workflowName}/{nodeId}/outputs/{artifactName}")',
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--template-name",
+          description: "Name of template in workflow",
+          args: {
+            name: "string",
+          },
+        },
+      ],
+    },
 };
 
 export default completionSpec;
