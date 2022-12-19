@@ -701,6 +701,23 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "delete",
+          description: "Delete a cron workflow",
+          args: {
+            name: "[CRON_WORKFLOW... | --all]",
+          },
+          options: [
+            {
+              name: "--all",
+              description: "Delete all cron workflows",
+            },
+            {
+              name: ["--help", "-h"],
+              description: "Help for delete",
+            },
+          ],
+        },
 };
 
 export default completionSpec;
