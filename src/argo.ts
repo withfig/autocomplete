@@ -856,6 +856,22 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "resume",
+          description: "Resume zero or more cron workflows",
+          args: {
+            name: "CRON_WORKFLOW",
+          },
+        },
+        {
+          name: "suspend",
+          description: "Suspend zero or more cron workflows",
+          args: {
+            name: "CRON_WORKFLOW",
+          },
+        },
+      ],
+    },
 };
 
 export default completionSpec;
