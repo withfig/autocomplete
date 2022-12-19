@@ -1836,6 +1836,37 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "lint",
+          description:
+            "Validate a file or directory of workflow template manifests",
+          args: [
+            {
+              name: "DIRECTORY",
+            },
+            {
+              name: "FILE1 FILE2 FILE3...",
+            },
+          ],
+          options: [
+            {
+              name: ["--help", "-h"],
+              description: "Help for lint",
+            },
+            {
+              name: ["--output", "-o"],
+              description:
+                'Linting results output format. One of: pretty|simple (default "pretty")',
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--strict",
+              description: "Perform strict workflow validation (default true)",
+            },
+          ],
+        },
 };
 
 export default completionSpec;
