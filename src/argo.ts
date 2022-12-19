@@ -432,6 +432,16 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "auth",
+      description: "Manage authentication settings",
+      subcommands: [
+        {
+          name: "token",
+          description: "Print the auth token",
+        },
+      ],
+    },
 };
 
 export default completionSpec;
