@@ -557,6 +557,18 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "completion",
+      description:
+        "Output shell completion code for the specified shell (bash or zsh)",
+      args: { name: "SHELL" },
+      options: [
+        {
+          name: ["--help", "-h"],
+          description: "Help for completion",
+        },
+      ],
+    },
 };
 
 export default completionSpec;
