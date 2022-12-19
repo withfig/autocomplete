@@ -442,6 +442,121 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: ["cluster-template", "cwftmpl", "cwft"],
+      description: "Manipulate cluster workflow templates",
+      subcommands: [
+        {
+          name: "create",
+          description: "Create a cluster workflow template",
+          args: {
+            name: "files",
+          },
+          options: [
+            {
+              name: ["--help", "-h"],
+              description: "Help for create",
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format. One of: name|json|yaml|wide",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--strict",
+              description: "Perform strict workflow validation (default true)",
+            },
+          ],
+        },
+        {
+          name: "delete",
+          description: "Delete a cluster workflow template",
+          args: {
+            name: "WORKFLOW_TEMPLATE",
+          },
+          options: [
+            {
+              name: "--all",
+              description: "Delete all cluster workflow templates",
+            },
+            {
+              name: ["--help", "-h"],
+              description: "Help for delete",
+            },
+          ],
+        },
+        {
+          name: "get",
+          description: "Display details about a cluster workflow template",
+          args: [
+            {
+              name: "CLUSTER",
+            },
+            {
+              name: "WORKFLOW_TEMPLATE",
+            },
+          ],
+          options: [
+            {
+              name: ["--help", "-h"],
+              description: "Help for get",
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format. One of: json|yaml|wide",
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
+        {
+          name: "lint",
+          description:
+            "Validate files or directories of cluster workflow template manifests",
+          args: {
+            name: "FILE",
+          },
+          options: [
+            {
+              name: ["--help", "-h"],
+              description: "Help for lint",
+            },
+            {
+              name: ["--output", "-o"],
+              description:
+                'Linting results output format. One of: pretty|simple (default "pretty")',
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--strict",
+              description: "Perform strict workflow validation (default true)",
+            },
+          ],
+        },
+        {
+          name: "list",
+          description: "List cluster workflow templates",
+          options: [
+            {
+              name: ["--help", "-h"],
+              description: "Help for list",
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format. One of: wide|name",
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
+      ],
+    },
 };
 
 export default completionSpec;
