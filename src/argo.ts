@@ -274,6 +274,26 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "list-label-keys",
+          description: "List workflows label keys in the archive",
+        },
+        {
+          name: "list-label-values",
+          description: "Get workflow label values in the archive",
+          options: [
+            {
+              name: ["--help", "-h"],
+              description: "Help for list-label-values",
+            },
+            {
+              name: ["--selector", "-l"],
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
 };
 
 export default completionSpec;
