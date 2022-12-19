@@ -738,6 +738,32 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "lint",
+          description:
+            "Validate files or directories of cron workflow manifests",
+          args: {
+            name: "FILE",
+          },
+          options: [
+            {
+              name: ["--help", "-h"],
+              description: "Help for lint",
+            },
+            {
+              name: ["--output", "-o"],
+              description:
+                'Linting results output format. One of: pretty|simple (default "pretty")',
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--strict",
+              description: "Perform strict validation (default true)",
+            },
+          ],
+        },
 };
 
 export default completionSpec;
