@@ -1606,6 +1606,142 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "submit",
+      description: "Submit a workflow",
+      args: {
+        name: "FILE...",
+      },
+      options: [
+        {
+          name: "--dry-run",
+          description:
+            "Modify the workflow on the client-side without creating it",
+        },
+        {
+          name: "--entrypoint",
+          description: "Override entrypoint",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--from",
+          description:
+            "Submit from an existing kind/name E.g. --from=cronwf/hello-world-cwf",
+          args: {
+            name: "kind/name",
+          },
+        },
+        {
+          name: "--generate-name",
+          description: "Override metadata.generateName",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Help for submit",
+        },
+        {
+          name: ["-l", "--labels"],
+          description:
+            "Comma separated labels to apply to the workflow. Will override previous values",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--log",
+          description: "Log the workflow until it completes",
+        },
+        {
+          name: "--name",
+          description: "Override metadata.name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--node-field-selector",
+          description:
+            "Selector of node to display eg: --node-field-selector phase=abc",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["-o", "--output"],
+          description: "Output format. One of: name|json|yaml|wide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["-p", "--parameter"],
+          description: "Pass an input parameter",
+          args: {
+            name: "stringArray",
+          },
+        },
+        {
+          name: ["-f", "--parameter-file"],
+          description: "Pass a file containing all input parameters",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--priority",
+          description: "Workflow priority",
+          args: {
+            name: "int32",
+          },
+        },
+        {
+          name: "--scheduled-time",
+          description:
+            "Override the workflow's scheduledTime parameter (useful for backfilling). The time must be RFC3339",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--server-dry-run",
+          description:
+            "Send request to server with dry-run flag which will modify the workflow without creating it",
+        },
+        {
+          name: "--serviceaccount",
+          description:
+            "Run all pods in the workflow using specified serviceaccount",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--status",
+          description:
+            "Filter by status (Pending Running Succeeded Skipped Failed Error). Should only be used with --watch",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--strict",
+          description: "Perform strict workflow validation (default true)",
+        },
+        {
+          name: ["-w", "--wait"],
+          description: "Wait for the workflow to complete",
+        },
+        {
+          name: "--watch",
+          description: "Watch the workflow until it completes",
+        },
+      ],
+    },
 };
 
 export default completionSpec;
