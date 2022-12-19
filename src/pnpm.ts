@@ -70,9 +70,13 @@ const generatorInstalledPackages: Fig.Generator = {
     const output = out
       .split("\n")
       .slice(3)
-      .filter((item) => !item.toLowerCase().includes("dependencies")) // filter "dependencies:" line
-      .filter((item) => !!item) // filter empty line
-      .filter((item) => !item.includes("link:")) // filter local workspace package. eg: "foo":"workspace:*"
+      // remove empty lines, "*dependencies:" lines, local workspace packages (eg: "foo":"workspace:*")
+      .filter(
+        (item) =>
+          !!item &&
+          !item.toLowerCase().includes("dependencies") &&
+          !item.includes("link:")
+      )
       .map((item) => item.replace(/\s/, "@")); // typescript 4.7.4 -> typescript@4.7.4
 
     return output.map((pkg) => {
