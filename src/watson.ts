@@ -570,6 +570,7 @@ const completionSpec: Fig.Spec = {
       description: "Restart monitoring time for a previously stopped project",
       args: {
         name: "FRAME",
+        isOptional: true,
         generators: listFrames,
       },
       options: [

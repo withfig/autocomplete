@@ -1469,7 +1469,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--tags",
-          description: "A list of tags to add to the resource.&gt;",
+          description: "A list of tags to add to the resource.>",
           args: {
             name: "list",
           },

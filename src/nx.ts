@@ -6,7 +6,7 @@ interface NxProject {
 
 type PostProcessWorkspaceFn = (
   filterFn: (
-    projectEntry: [string, NxProject],
+    projectEntry: [string, NxProject | string],
     index: number,
     array: [string, NxProject][]
   ) => boolean
@@ -25,8 +25,22 @@ interface NxGenerators {
 const processWorkspaceJson: PostProcessWorkspaceFn = (filterFn) => (out) => {
   try {
     const workspace = JSON.parse(out);
-    return Object.entries<NxProject>(workspace.projects)
+    const oldWorkspaceMap: Fig.Suggestion[] = Object.entries<NxProject>(
+      workspace.projects
+    )
       .filter(filterFn)
+      .map(([projectName]) => projectName)
+      .map((suggestion) => ({
+        name: suggestion,
+        type: "option",
+      }));
+
+    if (oldWorkspaceMap.length > 0) return oldWorkspaceMap;
+
+    return Object.entries<string>(workspace.projects)
+      .filter((proj) =>
+        proj[1].startsWith("apps") || proj[1].startsWith("e2e") ? true : false
+      )
       .map(([projectName]) => projectName)
       .map((suggestion) => ({
         name: suggestion,
@@ -55,16 +69,18 @@ const oneDayCache: Fig.Cache = {
 const nxGenerators: NxGenerators = {
   apps: {
     script: "cat workspace.json",
-    postProcess: processWorkspaceJson(
-      ([projectName, project], _, projects) =>
-        project.projectType === "application" && !projectName.endsWith("-e2e")
+    postProcess: processWorkspaceJson(([projectName, project], _, projects) =>
+      typeof project === "string"
+        ? !project.startsWith("e2e") && !project.endsWith("e2e")
+        : project.projectType === "application" && !projectName.endsWith("-e2e")
     ),
   },
   e2eApps: {
     script: "cat workspace.json",
-    postProcess: processWorkspaceJson(
-      ([projectName, project], _, projects) =>
-        project.projectType === "application" && projectName.endsWith("-e2e")
+    postProcess: processWorkspaceJson(([projectName, project], _, projects) =>
+      typeof project === "string"
+        ? project.startsWith("e2e") || project.endsWith("e2e")
+        : project.projectType === "application" && projectName.endsWith("-e2e")
     ),
   },
   appsAndLibs: {

@@ -4841,7 +4841,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-channels",
       description:
-        "Lists all Channels created under a single Chime App as a paginated list. You can specify filters to narrow results.  Functionality &amp; restrictions     Use privacy = PUBLIC to retrieve all public channels in the account    Only an AppInstanceAdmin can set privacy = PRIVATE to list the private channels in an account.    The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn of the user that makes the API call as the value in the header",
+        "Lists all Channels created under a single Chime App as a paginated list. You can specify filters to narrow results.  Functionality & restrictions     Use privacy = PUBLIC to retrieve all public channels in the account    Only an AppInstanceAdmin can set privacy = PRIVATE to list the private channels in an account.    The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn of the user that makes the API call as the value in the header",
       options: [
         {
           name: "--app-instance-arn",

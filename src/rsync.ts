@@ -1,3 +1,5 @@
+import { knownHosts, configHosts } from "./ssh";
+
 const infoArgs: Fig.SingleOrArray<Fig.Arg> = [
   { name: "BACKUP", description: "Mention files backed up" },
   {
@@ -101,11 +103,20 @@ const completionSpec: Fig.Spec = {
   args: [
     {
       name: "SRC",
-      template: "history",
+      isVariadic: true,
+      generators: [
+        knownHosts,
+        configHosts,
+        { template: ["history", "filepaths", "folders"] },
+      ],
     },
     {
       name: "DEST",
-      template: "history",
+      generators: [
+        knownHosts,
+        configHosts,
+        { template: ["history", "filepaths", "folders"] },
+      ],
     },
   ],
   options: [

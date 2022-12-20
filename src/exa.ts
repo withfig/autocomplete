@@ -248,6 +248,21 @@ const completionSpec: Fig.Spec = {
       description: "List each file's extended attributes and sizes",
       name: ["-@", "--extended"],
     },
+    {
+      description: "Shows icons before each folder or file",
+      name: "--icons",
+      exclusiveOn: ["--no-icons"],
+    },
+    {
+      description: "Does not display icons",
+      exclusiveOn: ["--icons"],
+      name: "--no-icons",
+    },
+    {
+      description:
+        "Displays when a file or folder got changed instead of modified in the header",
+      name: "--changed",
+    },
   ],
 };
 

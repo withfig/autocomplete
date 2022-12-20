@@ -44,6 +44,50 @@ const searchBranches: Fig.Generator = {
   },
 };
 
+const generatorInstalledPackages: Fig.Generator = {
+  script: "pnpm ls",
+  postProcess: function (out) {
+    /**
+     * out
+     * @example
+     * ```
+     * Legend: production dependency, optional only, dev only
+     *
+     * /xxxx/xxxx/<package-name> (PRIVATE)
+     *
+     * dependencies:
+     * lodash 4.17.21
+     * foo link:packages/foo
+     *
+     * devDependencies:
+     * typescript 4.7.4
+     * ```
+     */
+    if (out.includes("ERR_PNPM")) {
+      return [];
+    }
+
+    const output = out
+      .split("\n")
+      .slice(3)
+      // remove empty lines, "*dependencies:" lines, local workspace packages (eg: "foo":"workspace:*")
+      .filter(
+        (item) =>
+          !!item &&
+          !item.toLowerCase().includes("dependencies") &&
+          !item.includes("link:")
+      )
+      .map((item) => item.replace(/\s/, "@")); // typescript 4.7.4 -> typescript@4.7.4
+
+    return output.map((pkg) => {
+      return {
+        name: pkg,
+        icon: "fig://icon?type=package",
+      };
+    });
+  },
+};
+
 const FILTER_OPTION: Fig.Option = {
   name: "--filter",
   args: {
@@ -220,6 +264,7 @@ When used without arguments, updates all dependencies. You can use patterns to u
     args: {
       name: "Package",
       isOptional: true,
+      filterStrategy: "fuzzy",
       generators: dependenciesGenerator,
       isVariadic: true,
     },
@@ -268,6 +313,7 @@ If specific packages are updated, the command will fail if any of the updated de
     description: `Removes packages from node_modules and from the project's package.json`,
     args: {
       name: "Package",
+      filterStrategy: "fuzzy",
       generators: dependenciesGenerator,
       isVariadic: true,
     },
@@ -302,6 +348,7 @@ When used not inside a workspace, removes a dependency (or dependencies) from ev
     args: [
       {
         name: "Package",
+        filterStrategy: "fuzzy",
         generators: dependenciesGenerator,
         isVariadic: true,
       },
@@ -327,6 +374,7 @@ This is similar to yarn unlink, except pnpm re-installs the dependency after rem
     args: [
       {
         name: "Package",
+        filterStrategy: "fuzzy",
         generators: dependenciesGenerator,
         isVariadic: true,
       },
@@ -351,6 +399,7 @@ This is similar to yarn unlink, except pnpm re-installs the dependency after rem
     args: [
       {
         name: "Package",
+        filterStrategy: "fuzzy",
         generators: dependenciesGenerator,
         isVariadic: true,
       },
@@ -392,6 +441,27 @@ This is similar to yarn unlink, except pnpm re-installs the dependency after rem
       },
     ],
   },
+  {
+    name: "patch",
+    description: `This command will cause a package to be extracted in a temporary directory intended to be editable at will`,
+    args: {
+      name: "package",
+      generators: generatorInstalledPackages,
+    },
+    options: [
+      {
+        name: "--edit-dir",
+        description: `The package that needs to be patched will be extracted to this directory`,
+      },
+    ],
+  },
+  {
+    name: "patch-commit",
+    args: {
+      name: "dir",
+    },
+    description: `Generate a patch out of a directory`,
+  },
 ];
 
 const SUBCOMMANDS_RUN_SCRIPTS: Fig.Subcommand[] = [
@@ -400,6 +470,7 @@ const SUBCOMMANDS_RUN_SCRIPTS: Fig.Subcommand[] = [
     description: "Runs a script defined in the package's manifest file",
     args: {
       name: "Scripts",
+      filterStrategy: "fuzzy",
       generators: npmScriptsGenerator,
       isVariadic: true,
     },
@@ -432,6 +503,7 @@ const SUBCOMMANDS_RUN_SCRIPTS: Fig.Subcommand[] = [
 node_modules/.bin is added to the PATH, so pnpm exec allows executing commands of dependencies`,
     args: {
       name: "Scripts",
+      filterStrategy: "fuzzy",
       generators: dependenciesGenerator,
       isVariadic: true,
     },
@@ -589,6 +661,7 @@ pnpm ls --depth 0 will list direct dependencies only. pnpm ls --depth -1 will li
     description: `Shows all packages that depend on the specified package`,
     args: {
       name: "Scripts",
+      filterStrategy: "fuzzy",
       generators: dependenciesGenerator,
       isVariadic: true,
     },
@@ -847,15 +920,49 @@ const recursiveSubcommands = subcommands.filter((subcommand) => {
 // RECURSIVE SUBCOMMAND INDEX
 SUBCOMMANDS_MISC[1].subcommands = recursiveSubcommands;
 
+// common options
+const COMMON_OPTIONS: Fig.Option[] = [
+  {
+    name: ["-C", "--dir"],
+    args: {
+      name: "path",
+      template: "folders",
+    },
+    isPersistent: true,
+    description:
+      "Run as if pnpm was started in <path> instead of the current working directory",
+  },
+  {
+    name: ["-w", "--workspace-root"],
+    args: {
+      name: "workspace",
+    },
+    isPersistent: true,
+    description:
+      "Run as if pnpm was started in the root of the <workspace> instead of the current working directory",
+  },
+  {
+    name: ["-h", "--help"],
+    isPersistent: true,
+    description: "Output usage information",
+  },
+  {
+    name: ["-v", "--version"],
+    description: "Show pnpm's version",
+  },
+];
+
 // SPEC
 const completionSpec: Fig.Spec = {
   name: "pnpm",
   description: "Fast, disk space efficient package manager",
   args: {
     name: "Scripts",
+    filterStrategy: "fuzzy",
     generators: npmScriptsGenerator,
     isVariadic: true,
   },
+  filterStrategy: "fuzzy",
   generateSpec: async (tokens, executeShellCommand) => {
     const { script, postProcess } = dependenciesGenerator;
 
@@ -865,7 +972,7 @@ const completionSpec: Fig.Spec = {
     ).map(({ name }) => name as string);
 
     const subcommands = packages
-      .filter((name) => nodeClis.includes(name))
+      .filter((name) => nodeClis.has(name))
       .map((name) => ({
         name,
         loadSpec: name,
@@ -878,6 +985,7 @@ const completionSpec: Fig.Spec = {
     } as Fig.Spec;
   },
   subcommands,
+  options: COMMON_OPTIONS,
 };
 
 export default completionSpec;

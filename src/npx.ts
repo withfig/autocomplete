@@ -76,6 +76,10 @@ const suggestions: Fig.Suggestion[] = [
     icon: "https://nextjs.org/static/favicon/favicon-16x16.png",
   },
   {
+    name: "create-t3-app",
+    icon: "https://create.t3.gg/favicon.svg",
+  },
+  {
     name: "create-video",
     icon: "https://raw.githubusercontent.com/remotion-dev/remotion/main/packages/docs/static/img/logo-small.png",
   },
@@ -109,6 +113,33 @@ const suggestions: Fig.Suggestion[] = [
   {
     name: "mikro-orm",
     icon: "https://raw.githubusercontent.com/mikro-orm/mikro-orm/master/docs/static/img/favicon.ico",
+  },
+  {
+    name: "pod-install",
+  },
+  {
+    name: "capacitor",
+    icon: "https://capacitorjs.com/docs/img/meta/favicon.png",
+  },
+  {
+    name: "cap",
+    icon: "https://capacitorjs.com/docs/img/meta/favicon.png",
+  },
+  {
+    name: "@magnolia/cli",
+    icon: "https://avatars.githubusercontent.com/u/25686615?s=200&v=4",
+  },
+  {
+    name: "stencil",
+    icon: "https://stenciljs.com/assets/icon/favicon.ico",
+  },
+  {
+    name: "swagger-typescript-api",
+    icon: "https://static1.smartbear.co/swagger/media/assets/swagger_fav.png",
+  },
+  {
+    name: "sta",
+    icon: "https://static1.smartbear.co/swagger/media/assets/swagger_fav.png",
   },
 ];
 

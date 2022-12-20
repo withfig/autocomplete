@@ -34,14 +34,27 @@ A few things to keep in mind when writing your spec:
 
 **Git Commit Messages**
 
-- Use the present tense ("Add feature" not "Added feature")
-- Use the imperative mood ("Move cursor to..." not "Moves cursor to...")
+- Use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) using the CLI tool name you are making changes as the scope ("feat(npm): add generator" and not "Add generator" or "feat: add generator to npm spec")
+- Use the present tense ("feat(npm): add feature" not "feat(npm): added feature")
+- Use the imperative mood ("feat(git): move cursor to..." not "feat(git): moves cursor to...")
 - Limit the first line to 72 characters or less
-- Reference issues and pull requests liberally after the first line
+- Do not reference issues and pull requests in the commit message but reference them in the PR body (you can also use [GitHub's linking keywords](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword))
+- When opening large PRs create multiple commits in a new branch (see this great example: https://github.com/withfig/autocomplete/pull/1337), it helps reviewers to be faster and to get your work merged as soon as possible
 
 ## Bug reports and feature requests
 
 We use GitHub issues to track public bugs as well as new feature requests. If you have any input, [open a new issue](https://github.com/withfig/fig)! Note that all issues should be filed under the [withfig/fig](https://github.com/withfig/fig) repo, not under independent feature repos.
+
+## Hacktoberfest
+
+We welcome all contributions! However, to reduce maintenance burden, we will mark PRs that **do not significantly contribute** as invalid for Hacktoberfest.
+
+- Small typo fixes will be marked as invalid
+  - However, contributing typo checking to our CI would **definitely** be valid!
+- Contributions to our README will be marked as invalid
+- Fixes to incorrect specs are **valid**
+- Fixes to generators are **valid**
+- Contributing new completions specs is **valid**
 
 ## License
 

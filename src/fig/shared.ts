@@ -1,6 +1,3 @@
-const SETTINGS_PATH = "~/.fig/tools/all-settings.json";
-const ACTIONS_PATH = "~/.fig/apps/autocomplete/actions.json";
-
 interface Setting {
   settingName: string;
   description: string;
@@ -27,7 +24,7 @@ const devCompletionsFolderGenerator: Fig.Generator = {
       return {
         name: paths.pop(),
         insertValue: folder,
-        icon: `fig://${folder}`,
+        icon: `fig://path/${folder}`,
       };
     }),
 };
@@ -65,9 +62,9 @@ const disableForCommandsGenerator: Fig.Generator = {
 };
 
 export const themesGenerator: Fig.Generator = {
-  script: "\\ls -1 ~/.fig/themes",
+  script: "fig theme --list",
   postProcess: (output) => {
-    const builtinThemes = [
+    const builtinThemes: Fig.Suggestion[] = [
       {
         name: "system",
         icon: "💻",
@@ -86,7 +83,13 @@ export const themesGenerator: Fig.Generator = {
     ];
     return output
       .split("\n")
-      .map((theme) => ({ name: theme.replace(".json", "") }))
+      .map(
+        (theme) =>
+          ({
+            name: theme.replace(".json", ""),
+            icon: "🎨",
+          } as Fig.Suggestion)
+      )
       .concat(builtinThemes);
   },
 };
@@ -118,16 +121,18 @@ export const settingsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
   _,
   executeShellCommand
 ) => {
-  const [settingsJson, actionsJson] = await Promise.all([
-    executeShellCommand(`\\cat ${SETTINGS_PATH}`),
-    executeShellCommand(`\\cat ${ACTIONS_PATH}`),
-  ]);
+  const text = await executeShellCommand(
+    "fig _ request --method GET --route '/settings/all'"
+  );
+  const { settings, actions } = JSON.parse(text) as {
+    settings: Setting[];
+    actions: Action[];
+  };
 
-  const settings: Setting[] = JSON.parse(settingsJson);
-  const actions: Action[] = JSON.parse(actionsJson);
-
-  const actionSuggestions: Fig.Suggestion[] = actions.flatMap((action) => ({
-    name: action.identifier,
+  const actionSuggestions: Fig.Suggestion[] = actions.map((action) => ({
+    name: action.identifier.startsWith("autocomplete.")
+      ? action.identifier.slice(13)
+      : action.identifier,
     description: action.description,
     icon: "⚡️",
   }));
@@ -173,6 +178,17 @@ export const settingsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
   };
 };
 
+export const stateGenerator: Fig.Generator = {
+  script: "fig internal local-state all --format json",
+  postProcess: (out) => {
+    const state = JSON.parse(out);
+    return Object.keys(state).map((key) => ({
+      name: key,
+      description: JSON.stringify(state[key]),
+    }));
+  },
+};
+
 interface Plugin {
   name: string;
   icon: string;
@@ -198,5 +214,332 @@ export const pluginsGenerator = (init: {
     }));
   },
 });
+
+/**
+ * Fig team
+ */
+
+// For insertions like `fig user tokens <subcommand> --team <team name> <arg holding this generator>`
+export const tokensGenerators: Fig.Generator = {
+  cache: {
+    strategy: "stale-while-revalidate",
+  },
+  custom: async (tokens, executeShellCommand) => {
+    const teamOptionIndex = tokens.findIndex((value) =>
+      value.startsWith("--team")
+    );
+    if (teamOptionIndex === -1) return [];
+    let teamName: string;
+    if (tokens[teamOptionIndex].includes("=")) {
+      teamName = tokens[teamOptionIndex + 1].split("=")[1];
+    } else {
+      teamName = tokens[teamOptionIndex + 1];
+    }
+    const out = JSON.parse(
+      await executeShellCommand(
+        `fig user tokens list --team ${teamName} --format json`
+      )
+    ) as {
+      createdAt: string;
+      description?: string;
+      expiresAt?: string;
+      lastUsedAt: string;
+      name: string;
+      namespace: { username: string };
+    }[];
+    return out.map((token) => {
+      return {
+        name: token.name,
+        description: `Team: ${token.namespace.username}.${
+          token.description ? " " + token.description : ""
+        }`,
+      };
+    });
+  },
+};
+
+export const teamsGenerators: Fig.Generator = {
+  cache: {
+    strategy: "stale-while-revalidate",
+  },
+  script: "fig team --list --format json",
+  postProcess: (out) => {
+    return (
+      JSON.parse(out) as { id: number; name: string; specs: string[] }[]
+    ).map((team) => ({ name: team.name, priority: 75 }));
+  },
+};
+
+// For insertions like `fig teams <team name> <members subcommand> <arg holding this generator>`
+export const membersGenerators: Fig.Generator = {
+  cache: {
+    strategy: "stale-while-revalidate",
+    ttl: 1000 * 60,
+  },
+  custom: async (tokens, executeShellCommand) => {
+    const teamName = tokens.at(-3);
+    const out = JSON.parse(
+      await executeShellCommand(`fig team --format json ${teamName} members`)
+    ) as { email: string; role: string }[];
+    return out.map((member) => {
+      return {
+        name: member.email,
+        description: `Role: ${member.role}`,
+      };
+    });
+  },
+};
+
+// For insertions like `fig teams <team name> <invitations subcommand>`
+export const invitationsGenerators: Fig.Generator = {
+  cache: {
+    strategy: "stale-while-revalidate",
+    ttl: 1000 * 60,
+  },
+  custom: async (tokens, executeShellCommand) => {
+    const teamName = tokens.at(-3);
+    const out = JSON.parse(
+      await executeShellCommand(
+        `fig team --format json ${teamName} invitations`
+      )
+    ) as { email: string; role: string }[];
+    return out.map((invitation) => {
+      return {
+        name: invitation.email,
+        description: `Role: ${invitation.role}`,
+      };
+    });
+  },
+};
+
+/**
+ * Fig Scripts
+ */
+
+export const scriptsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
+  _,
+  exec
+) => {
+  const query = `query Scripts {
+    currentUser {
+      namespace {
+        username
+        scripts {
+          ...ScriptFields
+        }
+      }
+      teamMemberships {
+        team {
+          namespace {
+            username
+            scripts {
+              ...ScriptFields
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  fragment ScriptFields on Script {
+    name
+    fields {
+      icon
+      displayName
+      description
+      templateVersion
+      tags
+      parameters {
+        type
+        name
+        displayName
+        description
+        text {
+          placeholder
+        }
+        checkbox {
+          trueValueSubstitution
+          falseValueSubstitution
+        }
+        selector {
+          generators {
+            named {
+              name
+            }
+            shellScript {
+              script
+            }
+            type
+          }
+          placeholder
+          suggestions
+        }
+        path {
+          extensions
+          fileType
+        }
+      }
+      runtime
+    }
+    relevanceScore
+    lastInvokedAt
+    lastInvokedAtByUser
+    isOwnedByCurrentUser
+  }`;
+
+  const response = await exec(
+    `fig _ request --route '/graphql' --method POST --body '{ "query": "${query
+      .split(/\s+/)
+      .join(" ")}" }'`
+  );
+
+  const data = JSON.parse(response).data;
+
+  const scripts = [
+    ...data.currentUser.namespace.scripts.map((script) => ({
+      ...script,
+      namespace: data.currentUser.namespace.username,
+    })),
+    ...data.currentUser.teamMemberships.flatMap((team) =>
+      team.team.namespace.scripts.map((script) => ({
+        ...script,
+        namespace: team.team.namespace.username,
+      }))
+    ),
+  ];
+
+  const subcommands = scripts.map((script) => {
+    const displayName = `${script.fields.displayName ?? script.name} | @${
+      script.namespace
+    }`;
+
+    const options: Fig.Option[] = [
+      {
+        name: ["-h", "--help"],
+        description: "Show help for the script",
+      },
+    ];
+
+    for (const param of script.fields.parameters) {
+      const option: Fig.Option = {
+        name: `--${param.name}`,
+        description: param?.description ?? param?.type,
+        isRequired: true,
+      };
+
+      switch (param.type) {
+        case "Text":
+          option.args = {
+            name: param.name,
+          };
+          break;
+        case "Selector":
+          let generators: Fig.Generator[] = [];
+          if (param?.selector?.generators) {
+            generators = param?.selector?.generators
+              .filter((generator) => generator.type === "ShellScript")
+              .map((generator) => ({
+                script: generator?.shellScript?.script,
+                splitOn: "\n",
+              }));
+          }
+          option.args = {
+            name: param.name,
+            suggestions: param?.selector?.suggestions,
+            generators,
+          };
+          break;
+        case "Path":
+          option.args = {
+            name: param.name,
+            template: "filepaths",
+          };
+          break;
+        case "Checkbox":
+          // Also make the `--no-` version of the option
+          options.push({
+            ...option,
+            name: `--no-${param.name}`,
+            exclusiveOn: [`--${param.name}`],
+          });
+
+          option.exclusiveOn = [`--no-${param.name}`];
+          break;
+      }
+
+      options.push(option);
+    }
+
+    // Add @namespace/name and name (if this workflow is associated with user's namespace)
+    const name = [`@${script.namespace}/${script.name}`];
+    if (script?.isOwnedByCurrentUser) {
+      name.push(script.name);
+    }
+
+    return {
+      displayName,
+      icon: script?.fields?.icon ?? "⚡️",
+      name,
+      insertValue: script?.isOwnedByCurrentUser ? script.name : name[0],
+      description: script?.fields?.description,
+      options,
+    };
+  });
+  return {
+    name: "run",
+    subcommands,
+    filterStrategy: "fuzzy",
+  };
+};
+
+export const sshHostsGenerator: Fig.Generator = {
+  script: "fig _ request --method GET --route /access/hosts/all",
+  cache: {
+    strategy: "stale-while-revalidate",
+  },
+  postProcess: (out) => {
+    return (
+      JSON.parse(out) as {
+        nickName: string;
+        namespace: string;
+        description: string;
+      }[]
+    ).map((host) => ({
+      insertValue: `@${host.namespace}/${host.nickName}`,
+      displayName: `${host.nickName} (@${host.namespace})`,
+      name: `@${host.namespace}/${host.nickName}`,
+      description: host.description,
+    }));
+  },
+};
+
+export const sshIdentityGenerator: Fig.Generator = {
+  custom: async (tokens, executeShellCommand) => {
+    const host = tokens.slice(2).find((value) => !value.startsWith("-"));
+    if (host === undefined) {
+      return [];
+    }
+    const hosts = JSON.parse(
+      await executeShellCommand(`fig ssh ${host} --get-identities`)
+    ) as { displayName: string; username: string }[];
+
+    return hosts.map((host) => ({
+      name: host.displayName,
+    }));
+  },
+};
+
+export const userGenerator: Fig.Generator = {
+  script: "fig user list-accounts",
+  postProcess: (out) => {
+    if (out.startsWith("error: ")) {
+      return [];
+    }
+    return out
+      .trim()
+      .split("\n")
+      .map((name) => ({ name, icon: "👤" }));
+  },
+};
 
 export default {};
