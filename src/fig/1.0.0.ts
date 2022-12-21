@@ -7,7 +7,7 @@ import {
   invitationsGenerators,
   membersGenerators,
   teamsGenerators,
-  workflowsSpecGenerator,
+  scriptsSpecGenerator,
   sshHostsGenerator,
   sshIdentityGenerator,
   userGenerator,
@@ -3547,7 +3547,7 @@ versions["1.4.1"] = {
           description: "Print help information",
         },
       ],
-      generateSpec: workflowsSpecGenerator,
+      generateSpec: scriptsSpecGenerator,
     },
     {
       name: "bg:tmux",
