@@ -1,3 +1,8 @@
+// can be found at https://github.com/mavthedev/svokit.io
+/*
+  Svokit is a library that combines sveltekit with socket.io.
+*/
+
 const completionSpec: Fig.Spec = {
   name: "svokit",
   description: "Runs built svokit project",
