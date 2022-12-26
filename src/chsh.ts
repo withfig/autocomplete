@@ -1,3 +1,4 @@
+// TODO: this does not work on macos
 const shells: Fig.Generator = {
   script: "chsh -l",
   postProcess: (output) => {
@@ -38,6 +39,7 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "username",
     description: "Target user",
+    isOptional: true,
   },
 };
 export default completionSpec;
