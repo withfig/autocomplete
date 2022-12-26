@@ -56,6 +56,7 @@ const completionSpec: Fig.Spec = {
     name: "file",
     description: "With no FILE, or when FILE is -, read standard input",
     template: "filepaths",
+    suggestions: ["-"],
     isOptional: true,
   },
 };
