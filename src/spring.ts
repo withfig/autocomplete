@@ -52,19 +52,24 @@ const cache: Fig.Generator["cache"] = {
   ttl: 1000 * 60 * 60 * 24, // 24 hours, in milliseconds
 };
 
+const delimiter = ",";
 const dependencyGenerator: Fig.Generator = {
   cache,
-  getQueryTerm: ",",
-  custom: async (_, executeShellCommand) => {
+  getQueryTerm: (token) =>
+    token.slice(token.lastIndexOf(delimiter) + delimiter.length),
+  trigger: (newToken, oldToken) =>
+    newToken.lastIndexOf(delimiter) !== oldToken.lastIndexOf(delimiter),
+  custom: async (tokens, executeShellCommand) => {
     const data = await fetchData(executeShellCommand);
     if (!data) return [];
 
+    const seen = new Set(tokens[tokens.length - 1]?.split(delimiter));
     return data.dependencies.values
-      .map(({ values }) => values)
-      .flat()
+      .flatMap(({ values }) => values)
+      .filter(({ id }) => !seen.has(id))
       .sort((a, b) => a.name.localeCompare(b.name))
       .map((dependency) => ({
-        name: dependency.id + ",",
+        name: dependency.id,
         displayName: dependency.name,
         description: dependency.description,
       }));
