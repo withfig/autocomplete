@@ -76,6 +76,7 @@ export const createNpmSearchHandler =
       const results = keywordParameter ? data.results : data;
       return results.map((item) => ({
         name: item.package.name,
+        icon: `https://github-icons.com/npm/${item.package.name}`,
         description: item.package.description,
       })) as Fig.Suggestion[];
     } catch (error) {
