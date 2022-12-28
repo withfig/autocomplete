@@ -74,11 +74,18 @@ export const createNpmSearchHandler =
       }
 
       const results = keywordParameter ? data.results : data;
-      return results.map((item) => ({
-        name: item.package.name,
-        icon: `https://github-icons.com/npm/${item.package.name}`,
-        description: item.package.description,
-      })) as Fig.Suggestion[];
+      return results.map((item) => {
+        const [, slug] =
+          /github\.com\/([^\/]+\/[^\/]+)/.exec(
+            item.package.links?.repository
+          ) || [];
+
+        return {
+          name: item.package.name,
+          icon: slug ? `https://github-icons.com/${slug}` : undefined,
+          description: item.package.description,
+        };
+      }) as Fig.Suggestion[];
     } catch (error) {
       console.error({ error });
       return [];
