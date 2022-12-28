@@ -66,6 +66,92 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "uninstall",
+      description: "Uninstall gems from the local repository",
+      args: {
+        name: "GEMNAME",
+        generators: gems,
+        debounce: true,
+      },
+      options: [
+        {
+          name: ["-a", "--all"],
+          description: "Uninstall all matching versions",
+        },
+        {
+          name: ["-I", "--ignore-dependencies"],
+          description: "Ignore dependency requirements while uninstalling",
+        },
+        {
+          name: ["-D", "--check-development"],
+          description:
+            "Check development dependencies while uninstalling (default: false)",
+        },
+        {
+          name: ["-x", "--executables"],
+          description: "Uninstall applicable executables without confirmation",
+        },
+        {
+          name: ["-i", "--install-dir"],
+          description: "Directory to uninstall gem from",
+          args: {
+            name: "DIR",
+            template: "folders",
+            filterStrategy: "fuzzy",
+          },
+        },
+        {
+          name: ["-n", "--bindir"],
+          description: "Directory to remove executables from",
+          args: {
+            name: "DIR",
+            template: "folders",
+            filterStrategy: "fuzzy",
+          },
+        },
+        {
+          name: "--user-install",
+          description:
+            "Uninstall from user’s home directory in addition to GEM_HOME",
+        },
+        {
+          name: "--format-executable",
+          description: "Assume executable names match Ruby’s prefix and suffix",
+        },
+        {
+          name: "--force",
+          description:
+            "Uninstall all versions of the named gems ignoring dependencies",
+        },
+        {
+          name: "--abort-on-dependent",
+          description:
+            "Prevent uninstalling gems that are depended on by other gems",
+        },
+        {
+          name: ["-v", "--version"],
+          description: "Specify version of gem to uninstall",
+          args: {
+            name: "VERSION",
+            description: "The specify version of gem",
+          },
+        },
+        {
+          name: "--platform",
+          description: "Specify the platform of gem to uninstall",
+          args: {
+            name: "PLATFORM",
+            description: "The platform of gem",
+          },
+        },
+        {
+          name: "--vendor",
+          description:
+            "Uninstall gem from the vendor directory. Only for use by gem repackagers",
+        },
+      ],
+    },
+    {
       name: "list",
       description: "Display local gems whose name matches REGEXP",
       args: {
