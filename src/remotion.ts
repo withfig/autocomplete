@@ -843,6 +843,11 @@ const completionSpec: Fig.Spec = {
             name: "numberOfSharedAudioTags",
           },
         },
+        {
+          name: "--no-open",
+          description:
+            "Prevent the browser from opening automatically when the server starts",
+        },
       ],
     },
     {
