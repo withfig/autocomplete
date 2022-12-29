@@ -37,6 +37,35 @@ const httpProxyOptions: Fig.Option[] = [
   },
 ];
 
+const AuthenticationOptions: Fig.Option[] = [
+  {
+    name: "--host",
+    description:
+      "Use another gemcutter-compatible host (e.g. https://rubygems.org)",
+    args: {
+      name: "HOST",
+      description: "The host",
+    },
+  },
+  {
+    name: ["-k", "--key"],
+    description: "Use the given API key",
+    args: {
+      name: "KEYNAME",
+      description: "The API key",
+    },
+  },
+  {
+    name: "--otp",
+    description:
+      "Digit code for multifactor authentication You can also use the environment variable GEM_HOST_OTP_CODE",
+    args: {
+      name: "CODE",
+      description: "The GEM host otp code",
+    },
+  },
+];
+
 const completionSpec: Fig.Spec = {
   name: "gem",
   description: "Ruby package manager",
@@ -304,40 +333,40 @@ const completionSpec: Fig.Spec = {
         name: "GEM",
         description: "Built gem to push up",
       },
-      options: [
-        {
-          name: ["-k", "--key"],
-          description: "Use the given API key",
-          args: {
-            name: "KEYNAME",
-            description: "The API key",
-          },
-        },
-        {
-          name: "--otp",
-          description:
-            "Digit code for multifactor authentication You can also use the environment variable GEM_HOST_OTP_CODE",
-          args: {
-            name: "CODE",
-            description: "The GEM host otp code",
-          },
-        },
-        {
-          name: "--host",
-          description:
-            "Push to another gemcutter-compatible host (e.g. https://rubygems.org)",
-          args: {
-            name: "HOST",
-            description: "The gemcutter-compatible host",
-          },
-        },
-        ...httpProxyOptions,
-      ],
+      options: [...AuthenticationOptions, ...httpProxyOptions],
     },
     {
       name: "server",
       description:
         "Starts up a web server that hosts the RDoc (requires rubygems-server)",
+    },
+    {
+      name: "owner",
+      description: "Manage gem owners of a gem on the push server",
+      args: {
+        name: "GEMNAME",
+        generators: gems,
+        debounce: true,
+      },
+      options: [
+        {
+          name: ["-a", "--add"],
+          description: "Add an owner by user identifier",
+          args: {
+            name: "NEW_OWNER",
+            description: "The new owner",
+          },
+        },
+        {
+          name: ["-r", "--remove"],
+          description: "Remove an owner by user identifier",
+          args: {
+            name: "OLD_OWNER",
+            description: "The old owner",
+          },
+        },
+        ...AuthenticationOptions,
+      ],
     },
     {
       name: "outdated",
