@@ -231,6 +231,14 @@
       "created_at": "2022-12-28T23:00:30Z",
       "repoId": 299482335,
       "pullRequestNo": 1770
+    },
+    {
+      "name": "mercpls",
+      "id": 18640611,
+      "comment_id": 1367461918,
+      "created_at": "2022-12-29T16:55:15Z",
+      "repoId": 299482335,
+      "pullRequestNo": 1772
     }
   ]
 }
