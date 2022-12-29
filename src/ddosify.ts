@@ -45,15 +45,6 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: "-p",
-      description: "Protocol. Default: HTTPS",
-      args: {
-        name: "Protocol",
-        default: "HTTPS",
-        suggestions: [{ name: "HTTP" }, { name: "HTTPS" }],
-      },
-    },
-    {
       name: "-m",
       description: "HTTP Methods. Default: GET",
       args: {
