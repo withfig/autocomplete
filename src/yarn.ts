@@ -28,21 +28,14 @@ export const nodeClis = new Set([
   "typeorm",
   "babel",
   "remotion",
-  "@withfig/autocomplete-tools",
-  "@redwoodjs/core",
+  "autocomplete-tools",
+  "redwood",
+  "rw",
   "create-completion-spec",
-  "@fig/publish-spec-to-team",
+  "publish-spec-to-team",
   "capacitor",
   "cap",
 ]);
-
-type SearchResult = {
-  package: {
-    name: string;
-    description: string;
-  };
-  searchScore: number;
-};
 
 // generate global package list from global package.json file
 const getGlobalPackagesGenerator: Fig.Generator = {
@@ -359,14 +352,6 @@ const completionSpec: Fig.Spec = {
   name: "yarn",
   description: "Manage packages and run scripts",
   generateSpec: async (tokens, executeShellCommand) => {
-    const { script, postProcess } = dependenciesGenerator;
-
-    const packages = new Set(
-      postProcess(await executeShellCommand(script as string), tokens).map(
-        ({ name }) => name as string
-      )
-    );
-
     const binaries = (
       await executeShellCommand(
         `until [[ -d node_modules/ ]] || [[ $PWD = '/' ]]; do cd ..; done; ls -1 node_modules/.bin/`
@@ -374,12 +359,10 @@ const completionSpec: Fig.Spec = {
     ).split("\n");
 
     const subcommands = binaries
-      .filter((name) => packages.has(name))
+      .filter((name) => nodeClis.has(name))
       .map((name) => ({
-        name: name === "@redwoodjs/core" ? ["redwood", "rw"] : name,
-        ...(nodeClis.has(name) && {
-          loadSpec: name === "@redwoodjs/core" ? "redwood" : name,
-        }),
+        name: name,
+        loadSpec: name === "rw" ? "redwood" : name,
         icon: "fig://icon?type=package",
       }));
 
