@@ -247,6 +247,14 @@
       "created_at": "2022-12-30T18:30:35Z",
       "repoId": 299482335,
       "pullRequestNo": 1774
+    },
+    {
+      "name": "getninjaN",
+      "id": 1355935,
+      "comment_id": 1368943411,
+      "created_at": "2023-01-02T13:22:36Z",
+      "repoId": 299482335,
+      "pullRequestNo": 1777
     }
   ]
 }
