@@ -68,6 +68,26 @@ const generateAllCasks: Fig.Generator = {
   },
 };
 
+const generatorAlias: Fig.Generator = {
+  custom: async (tokens, executeShellCommand) => {
+    const targets = await executeShellCommand(
+      "brew alias | cut -d '=' -f 1 | cut -d ' ' -f 3"
+    );
+    const targetSuggestions = new Map<string, Fig.Suggestion>();
+    for (const target of targets.split("\n")) {
+      if (target && target.trim() !== "") {
+        targetSuggestions.set(target, {
+          name: target,
+          description: "Run " + target + " command",
+          icon: "fig://icon?type=command",
+        });
+      }
+    }
+
+    return [...targetSuggestions.values()];
+  },
+};
+
 const commonOptions: Fig.Option[] = [
   {
     name: ["-d", "--debug"],
@@ -1583,6 +1603,10 @@ const completionSpec: Fig.Spec = {
       description: "The current Homebrew version",
     },
   ],
+  args: {
+    name: "alias",
+    generators: generatorAlias,
+  },
 };
 
 export default completionSpec;
