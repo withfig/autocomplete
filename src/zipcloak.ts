@@ -42,6 +42,7 @@ const completionSpec: Fig.Spec = {
         name: "zipfile",
         description: "New zipfile that will be written to",
         template: ["filepaths"],
+        suggestCurrentToken: true,
       },
     },
     {
