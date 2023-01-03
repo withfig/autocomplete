@@ -6,6 +6,7 @@ const completionSpec: Fig.Spec = {
     name: "zipfile",
     description: "Zipped file to encrypt entries into",
     template: ["filepaths"],
+    suggestCurrentToken: true,
   },
   options: [
     {
