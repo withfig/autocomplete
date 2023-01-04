@@ -1,3 +1,5 @@
+import { describe } from "node:test";
+
 const completionSpec: Fig.Spec = {
   name: "simctl",
   description: "",
@@ -19,32 +21,32 @@ const completionSpec: Fig.Spec = {
     {
       name: "boot",
       description: "Boot a device or device pair",
+      args: {
+        name: "device",
+      },
       options: [
         {
-          name: "arch",
+          name: "--arch",
           description:
             "Specify the architecture to use when booting the simulator (eg: 'arm64' or 'x86_64')",
           requiresSeparator: "=",
           isRepeatable: true,
         },
         {
-          name: "disabledJob",
+          name: "--disabledJob",
           description:
             "Disables the given launchd job. Multiple jobs can be disabled by passing multiple flags",
           requiresSeparator: "=",
           isRepeatable: true,
         },
         {
-          name: "enabledJob",
+          name: "--enabledJob",
           description:
             "Enables the given launchd job when it would normally be disabled. Multiple jobs can be enabled by passing multiple flags",
           requiresSeparator: "=",
           isRepeatable: true,
         },
       ],
-      args: {
-        name: "device",
-      },
     },
     {
       name: "clone",
@@ -106,44 +108,44 @@ const completionSpec: Fig.Spec = {
       description: "Collect diagnostic information and logs",
       options: [
         {
-          name: "b",
+          name: "-b",
           description:
             "Do NOT show the resulting archive in a Finder window upon completion",
         },
         {
-          name: "X",
+          name: "-X",
           description:
             "Run all diagnostics with no timeout. It ignores the --timeout value if it is specified",
           exclusiveOn: ["timeout"],
         },
         {
-          name: "timeout",
+          name: "--timeout",
           description:
             "Specify a duration (in seconds) to wait for the log collection before timeout",
           requiresSeparator: "=",
         },
         {
-          name: "output",
+          name: "--output",
           description:
             "Specify the output directory. If not provided the temporary directory is used",
           requiresSeparator: "=",
         },
         {
-          name: "no-archive",
+          name: "--no-archive",
           description:
             "Do not create an archive, leave the collected files uncompressed",
         },
         {
-          name: "all-logs",
+          name: "--all-logs",
           description: "Include all device logs, even for non-booted devices",
         },
         {
-          name: "data-containers",
+          name: "--data-containers",
           description:
             "Include booted device(s) data directory. Warning: May include private information, app data containers, and increases the size of the archive! Default is NOT to collect the data container",
         },
         {
-          name: "udid",
+          name: "--udid",
           description:
             "Collect diagnostics only from the specified device. This option may be specified more than once to consider multiple devices. The --all-logs option causes all --udid options to be ignored",
           requiresSeparator: "=",
@@ -177,8 +179,28 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "container",
-          isVariadic: true,
-          loadSpec: "getAppContainerContainerSpec",
+          description:
+            "Optionally specify the container. Defaults to app.\napp                 The .app bundle\ndata                The application's data container\ngroups              The App Group containers\n<group identifier>  A specific App Group container",
+          isOptional: true,
+          default: "app",
+          suggestions: [
+            {
+              name: "app",
+              description: "The .app bundle",
+            },
+            {
+              name: "data",
+              description: "The application's data container",
+            },
+            {
+              name: "groups",
+              description: "The App Group containers",
+            },
+            {
+              name: "<group identifier>",
+              description: "A specific App Group container",
+            },
+          ],
         },
       ],
     },
@@ -197,12 +219,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "help",
       description: "Prints the usage for a given subcommand",
-      subcommands: [
-        {
-          name: "subcommand",
-          loadSpec: "simctl",
-        },
-      ],
     },
     {
       name: "icloud_sync",
@@ -239,96 +255,84 @@ const completionSpec: Fig.Spec = {
     {
       name: "io",
       description: "Set up a device IO operation",
-      args: [
-        {
-          name: "device",
-        },
-        {
-          name: "arguments",
-        },
-      ],
+      args: {
+        name: "device",
+      },
       subcommands: [
         {
-          name: "",
-          // eslint-disable-next-line @withfig/fig-linter/conventional-descriptions
-          description: "operation",
-          subcommands: [
+          name: "enumerate",
+          description: "Lists all available IO ports and descriptor states",
+          options: [
             {
-              name: "enumerate",
-              description: "Lists all available IO ports and descriptor states",
-              options: [
-                {
-                  name: "poll",
-                  description: "Poll after enumeration",
-                },
-              ],
+              name: "--poll",
+              description: "Poll after enumeration",
             },
+          ],
+        },
+        {
+          name: "poll",
+          description: "Polls all available IO ports for events",
+        },
+        {
+          name: "recordVideo",
+          description:
+            "Records the display to a QuickTime movie at the specified file or url",
+          args: {
+            name: "file or url",
+          },
+          options: [
             {
-              name: "poll",
-              description: "Polls all available IO ports for events",
-            },
-            {
-              name: "recordVideo",
+              name: "--codec",
               description:
-                "Records the display to a QuickTime movie at the specified file or url",
-              args: {
-                name: "file or url",
-              },
-              options: [
-                {
-                  name: "codec",
-                  description:
-                    "Specifies the codec type: 'h264' or 'hevc'. Default is 'hevc'",
-                  requiresSeparator: "=",
-                },
-                {
-                  name: "display",
-                  description:
-                    // eslint-disable-next-line @withfig/fig-linter/conventional-descriptions
-                    "iOS: supports 'internal' or 'external'. Default is 'internal'. tvOS: supports only 'external' watchOS: supports only 'internal'",
-                  requiresSeparator: "=",
-                },
-                {
-                  name: "mask",
-                  description:
-                    "For non-rectangular displays, handle the mask by policy: ignored: The mask is ignored and the unmasked framebuffer is saved. alpha: Not supported, but retained for compatibility; the mask is rendered black. black: The mask is rendered black",
-                  requiresSeparator: "=",
-                },
-                {
-                  name: "force",
-                  description:
-                    "Force the output file to be written to, even if the file already exists",
-                },
-              ],
+                "Specifies the codec type: 'h264' or 'hevc'. Default is 'hevc'",
+              requiresSeparator: "=",
             },
             {
-              name: "screenshot",
+              name: "--display",
               description:
-                "Saves a screenshot as a PNG to the specified file or url(use '-' for stdout)",
-              args: {
-                name: "file or url",
-              },
-              options: [
-                {
-                  name: "type",
-                  description:
-                    "Can be 'png', 'tiff', 'bmp', 'gif', 'jpeg'. Default is png",
-                  requiresSeparator: "=",
-                },
-                {
-                  name: "display",
-                  description:
-                    // eslint-disable-next-line @withfig/fig-linter/conventional-descriptions
-                    "iOS: supports 'internal' or 'external'. Default is 'internal'. tvOS: supports only 'external' watchOS: supports only 'internal'. You may also specify a port by UUID",
-                  requiresSeparator: "=",
-                },
-                {
-                  name: "mask",
-                  description:
-                    "For non-rectangular displays, handle the mask by policy: ignored: The mask is ignored and the unmasked framebuffer is saved. alpha: The mask is used as premultiplied alpha. black: The mask is rendered black",
-                  requiresSeparator: "=",
-                },
-              ],
+                // eslint-disable-next-line @withfig/fig-linter/conventional-descriptions
+                "iOS: supports 'internal' or 'external'. Default is 'internal'. tvOS: supports only 'external' watchOS: supports only 'internal'",
+              requiresSeparator: "=",
+            },
+            {
+              name: "--mask",
+              description:
+                "For non-rectangular displays, handle the mask by policy: ignored: The mask is ignored and the unmasked framebuffer is saved. alpha: Not supported, but retained for compatibility; the mask is rendered black. black: The mask is rendered black",
+              requiresSeparator: "=",
+            },
+            {
+              name: "--force",
+              description:
+                "Force the output file to be written to, even if the file already exists",
+            },
+          ],
+        },
+        {
+          name: "screenshot",
+          description:
+            "Saves a screenshot as a PNG to the specified file or url(use '-' for stdout)",
+          args: {
+            name: "file or url",
+          },
+          options: [
+            {
+              name: "--type",
+              description:
+                "Can be 'png', 'tiff', 'bmp', 'gif', 'jpeg'. Default is png",
+              requiresSeparator: "=",
+            },
+            {
+              name: "--display",
+              description:
+                // eslint-disable-next-line @withfig/fig-linter/conventional-descriptions
+                "iOS: supports 'internal' or 'external'. Default is 'internal'. tvOS: supports only 'external' watchOS: supports only 'internal'. You may also specify a port by UUID",
+              requiresSeparator: "=",
+            },
+            {
+              name: "--mask",
+              description:
+                "For non-rectangular displays, handle the mask by policy: ignored: The mask is ignored and the unmasked framebuffer is saved. alpha: The mask is used as premultiplied alpha. black: The mask is rendered black",
+              requiresSeparator: "=",
             },
           ],
         },
@@ -375,22 +379,22 @@ const completionSpec: Fig.Spec = {
       ],
       options: [
         {
-          name: ["w", "wait-for-debugger"],
+          name: ["-w", "--wait-for-debugger"],
         },
         {
-          name: "console",
+          name: "--console",
           description:
             "Block and print the application's stdout and stderr to the current terminal. Signals received by simctl are passed through to the application. (Cannot be combined with --stdout or --stderr)",
           exclusiveOn: ["console-pty", "stdout", "stderr"],
         },
         {
-          name: "console-pty",
+          name: "--console-pty",
           description:
             "Block and print the application's stdout and stderr to the current terminal via a PTY. Signals received by simctl are passed through to the application. (Cannot be combined with --stdout or --stderr)",
           exclusiveOn: ["console", "stdout", "stderr"],
         },
         {
-          name: "stdout",
+          name: "--stdout",
           description: "Redirect the application's standard output to a file",
           requiresSeparator: "=",
           args: {
@@ -399,7 +403,7 @@ const completionSpec: Fig.Spec = {
           exclusiveOn: ["console", "console-pty"],
         },
         {
-          name: "stderr",
+          name: "--stderr",
           description: "Redirect the application's standard error to a file",
           requiresSeparator: "=",
           args: {
@@ -408,7 +412,7 @@ const completionSpec: Fig.Spec = {
           exclusiveOn: ["console", "console-pty"],
         },
         {
-          name: "terminate-running-process",
+          name: "--terminate-running-process",
           description:
             "Terminate any running copy of the application. Note: Log output is often directed to stderr, not stdout",
         },
@@ -430,15 +434,15 @@ const completionSpec: Fig.Spec = {
       ],
       options: [
         {
-          name: ["j", "json"],
+          name: ["-j", "--json"],
           description: "Print as JSON",
         },
         {
-          name: ["e", "no-escape-slashes"],
+          name: ["-e", "--no-escape-slashes"],
           description: "Encode slashes without escapes in JSON output",
         },
         {
-          name: "v",
+          name: "-v",
           description: "More verbose output",
         },
       ],
@@ -560,7 +564,7 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: "v",
+          name: "-v",
         },
       ],
     },
@@ -573,7 +577,7 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: "v",
+          name: "-v",
         },
       ],
     },
@@ -590,12 +594,12 @@ const completionSpec: Fig.Spec = {
       ],
       options: [
         {
-          name: "p",
+          name: "-p",
           description:
             "Causes simctl to use promise data for secondary types.  simctl will continue to run to provide that promise data until something else replaces it on the pasteboard",
         },
         {
-          name: "v",
+          name: "-v",
         },
       ],
     },
@@ -674,100 +678,300 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "add",
+          description:
+            "Add a runtime disk image to the secure storage area. The image will be staged, verified, and mounted. When possible the image file will be cloned so no additional disk space will be used. If stdout is a terminal and a copy is required then progress will be reported",
           args: {
             name: "path",
           },
           options: [
             {
-              name: "m",
-              description: "",
+              name: ["-m", "--move"],
+              description:
+                "Remove the original file if the image is added successfully. If the image cannot be staged or the add fails the original is not removed",
             },
             {
-              name: "a",
-              description: "",
+              name: ["-a", "--async"],
+              description:
+                "Print the UUID of the new image then exit, do not wait on the results of the add operation",
             },
           ],
         },
         {
           name: "delete",
+          description:
+            "Delete a simulator runtime from the secure storage area. If runtime is a disk image any booted simulators are shutdown and the disk is unmounted first. Use the alias 'all' to delete all images",
+          args: {
+            name: "identifier",
+          },
+          options: [
+            {
+              name: ["-d", "--notUsedSinceDays"],
+              description: "Delete images not used within the past <days> days",
+            },
+            {
+              name: ["-n", "--dry-run"],
+              description:
+                "Print what images would be deleted without actually deleting anything",
+              exclusiveOn: ["identifier"],
+            },
+          ],
+        },
+        {
+          name: "verify",
+          description: "Re-verify the signature of a given runtime",
+          args: {
+            name: "identifier",
+          },
+        },
+        {
+          name: "list",
+          description: "",
+          options: [
+            {
+              name: "-v",
+              description: "Print more verbose output",
+            },
+            {
+              name: ["-j", "--json"],
+              description: "Print as JSON",
+            },
+          ],
+        },
+        {
+          name: "match list",
+          description:
+            "List the SDK build to runtime build mapping rules for the selected Xcode. Preferred means the runtime was either bundled with Xcode, exactly matched your SDK version, or the downloadable index indicated a better match for your SDK Manual overrides using 'match set' have the highest priority",
+          options: [
+            {
+              name: "-v",
+              description:
+                "Verbose mode. Includes the full preferred build map, user override map, and known SDK names",
+            },
+            {
+              name: ["-j", "--json"],
+              description: "Print as JSON",
+            },
+          ],
+        },
+        {
+          name: "match set",
+          description:
+            "Override the SDK to runtime build mapping. This controls which build of a given runtime Xcode will prefer for building and running when using that SDK. This matters most often during Beta releases when there are multiple builds for a given OS version. If --sdkBuild is not specified it is assumed you mean the SDK build for the currently selected Xcode.\n\nNote: Remember this is about build numbers, not semantic versions. When using the iOS 16.0 SDK Xcwill always prefer an iOS 16.0 runtime. Matching policy controls what to do when there are multiiOS 16.0 runtimes availabeg if the iOS 16.0 SDK is 20A245 and the available runtimes are (20A248, 20A252, 20A254) which should Xcode use for building, SwiftUI Previews, and when launching iOS 16.0 Simulators? They are all iOS 16.0 runtimes so a policy must decide which one is selected",
+          args: [
+            {
+              name: "sdk canonical name",
+            },
+            {
+              name: "runtime build",
+            },
+          ],
+          options: [
+            {
+              name: "--default",
+              description:
+                "Clear the override for the given SDK and revert to default behavior",
+              exclusiveOn: ["runtime build"],
+            },
+            {
+              name: "--sdkBuild",
+              description:
+                "Explicitly specify the SDK build, eg for an Xcode other than the selected Xcode",
+            },
+          ],
         },
       ],
     },
     {
       name: "shutdown",
       description: "Shutdown a device",
+      args: [
+        {
+          name: "device",
+        },
+        {
+          name: "all",
+          suggestions: ["all"],
+        },
+      ],
     },
     {
       name: "spawn",
       description:
         "Spawn a process by executing a given executable on a device",
+      args: [
+        {
+          name: "device",
+        },
+        {
+          name: "path to executable",
+        },
+        {
+          name: "argv",
+          isVariadic: true,
+        },
+      ],
+      options: [
+        {
+          name: ["-w", "--wait-for-debugger"],
+        },
+        {
+          name: ["-s", "--standalone"],
+        },
+        {
+          name: ["-a", "--arch"],
+        },
+      ],
     },
     {
       name: "status_bar",
       description: "Set or clear status bar overrides",
+      args: {
+        name: "device",
+      },
+      subcommands: [
+        {
+          name: "list",
+          description: "List existing overrides",
+        },
+        {
+          name: "clear",
+          description: "Clear all existing status bar overrides",
+        },
+        {
+          name: "override",
+          description:
+            "Set status bar override values, according to these flags. You may specify any combination of these flags (at least one is required)",
+          options: [
+            {
+              name: "--time",
+              description:
+                "Set the date or time to a fixed value. If the string is a valid ISO date string it will also set the date on relevant devices",
+            },
+            {
+              name: "--dataNetwork",
+              description:
+                "If specified must be one of 'hide', 'wifi', '3g', '4g', 'lte', 'lte-a', 'lte+', '5g', '5g+', '5g-uwb', or '5g-uc'",
+            },
+            {
+              name: "--wifiMode",
+              description:
+                "If specified must be one of 'searching', 'failed', or 'active'",
+            },
+            {
+              name: "--wifiBars",
+              description: "If specified must be 0-3",
+            },
+            {
+              name: "--cellularMode",
+              description:
+                "If specified must be one of 'notSupported', 'searching', 'failed', or 'active'",
+            },
+            {
+              name: "--cellularBars",
+              description: "If specified must be 0-4",
+            },
+            {
+              name: "--operatorName",
+              description:
+                "Set the cellular operator/carrier name. Use '' for the empty string",
+            },
+            {
+              name: "--batteryState",
+              description:
+                "If specified must be one of 'charging', 'charged', or 'discharging'",
+            },
+            {
+              name: "--batteryLevel",
+              description: "If specified must be 0-100",
+            },
+          ],
+        },
+      ],
     },
     {
       name: "terminate",
       description: "Terminate an application by identifier on a device",
+      args: [
+        {
+          name: "device",
+        },
+        {
+          name: "app bundle identifier",
+        },
+      ],
     },
     {
       name: "ui",
       description: "Get or Set UI options",
+      args: {
+        name: "device",
+      },
+      subcommands: [
+        {
+          name: "appearance",
+          description:
+            "When invoked without arguments prints the current user interface appearance style:\nlight\nThe Light appearance style.\ndark\nThe Dark appearance style.\nunsupported\nThe platform or runtime version do not support appearance styles.\nunknown\nThe current style is unknown or there was an error detecting it",
+          additionalSuggestions: ["light", "dark"],
+        },
+        {
+          name: "increase_contrast",
+          description:
+            "When invoked without arguments prints whether the Increase Contrast mode is currently enabled:\nenabled\nIncrease Contrast is enabled.\ndisabled\nIncrease Contrast is disabled.\nunsupported\nThe platform or runtime version do not support the Increase Contrast setting.\nunknown\nThe current setting is unknown or there was an error detecting it",
+          additionalSuggestions: ["enabled", "disabled"],
+        },
+        {
+          name: "content_size",
+          description:
+            "When invoked without arguments prints the current preferred content size category, from the following possible values:",
+          additionalSuggestions: [
+            "extra-small",
+            "small",
+            "medium",
+            "large",
+            "extra-large",
+            "extra-extra-large",
+            "extra-extra-extra-large",
+            "accessibility-medium",
+            "accessibility-large",
+            "accessibility-extra-large",
+            "accessibility-extra-extra-large",
+            "accessibility-extra-extra-extra-large",
+            "unknown",
+            "unsupported",
+          ],
+        },
+      ],
     },
     {
       name: "uninstall",
       description: "Uninstall an app from a device",
+      args: [
+        {
+          name: "device",
+        },
+        {
+          name: "app bundle identifier",
+        },
+      ],
     },
     {
       name: "unpair",
       description: "Unpair a watch and phone pair",
+      args: {
+        name: "pair UUID",
+      },
     },
     {
       name: "upgrade",
       description: "Upgrade a device to a newer runtime",
-    },
-  ],
-};
-
-const getAppContainerContainerSpec: Fig.Spec = {
-  name: "container",
-  args: [
-    {
-      name: "app",
-      description: "The .app bundle",
-    },
-    {
-      name: "data",
-      description: "The application's data container",
-    },
-    {
-      name: "groups",
-      description: "The App Group containers",
-    },
-    {
-      name: "<group identifier>",
-      description: "A specific App Group container",
-    },
-  ],
-};
-const listTypeSpec: Fig.Spec = {
-  name: "type",
-  args: [
-    {
-      name: "app",
-      description: "The .app bundle",
-    },
-    {
-      name: "data",
-      description: "The application's data container",
-    },
-    {
-      name: "groups",
-      description: "The App Group containers",
-    },
-    {
-      name: "<group identifier>",
-      description: "A specific App Group container",
+      args: [
+        {
+          name: "device",
+        },
+        {
+          name: "runtime id",
+        },
+      ],
     },
   ],
 };
