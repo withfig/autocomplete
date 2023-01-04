@@ -219,6 +219,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "help",
       description: "Prints the usage for a given subcommand",
+      loadSpec: "simctl",
     },
     {
       name: "icloud_sync",
