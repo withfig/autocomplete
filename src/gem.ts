@@ -369,6 +369,24 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "which",
+      description: "Find the location of a library file you can require",
+      args: {
+        name: "FILE",
+        template: "filepaths",
+      },
+      options: [
+        {
+          name: ["-a", "--all"],
+          description: "Show all matching files",
+        },
+        {
+          name: ["-g", "--gems-first"],
+          description: "Search gems before non-gems",
+        },
+      ],
+    },
+    {
       name: "outdated",
       description: "Display all gems that need updates",
       options: [
