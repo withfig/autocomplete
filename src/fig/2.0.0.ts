@@ -1,17 +1,17 @@
 import {
-  settingsSpecGenerator,
-  subsystemsGenerator,
-  themesGenerator,
-  pluginsGenerator,
-  tokensGenerators,
   invitationsGenerators,
   membersGenerators,
-  teamsGenerators,
+  pluginsGenerator,
   scriptsSpecGenerator,
+  settingsSpecGenerator,
   sshHostsGenerator,
   sshIdentityGenerator,
-  userGenerator,
   stateGenerator,
+  subsystemsGenerator,
+  teamsGenerators,
+  themesGenerator,
+  tokensGenerators,
+  userGenerator,
 } from "./shared";
 
 const completion: Fig.Subcommand = {
@@ -4671,22 +4671,6 @@ versions["2.9.0"] = {
   ],
 };
 
-versions["2.9.1"] = {
-  subcommands: [
-    {
-      name: "wrapped",
-      icon: "🎁",
-      priority: 100,
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Print help information",
-        },
-      ],
-    },
-  ],
-};
-
 versions["2.10.0"] = {
   subcommands: [
     {
@@ -4780,6 +4764,13 @@ versions["2.10.0"] = {
     {
       name: "wrapped",
       description: "Show fig wrapped",
+      icon: "🎁",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
     },
     {
       name: "cli",
