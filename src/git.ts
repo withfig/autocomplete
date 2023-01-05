@@ -191,7 +191,8 @@ export const gitGenerators: Record<string, Fig.Generator> = {
 
       return output.split("\n").map((file) => {
         return {
-          name: file.split(":")[2],
+          // account for conventional commit messages
+          name: file.split(":").slice(2).join(":"),
           insertValue: file.split(":")[0],
           icon: `fig://icon?type=node`,
         };
