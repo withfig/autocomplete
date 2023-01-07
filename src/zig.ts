@@ -2307,8 +2307,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "-frosetta",
           description:
-            "Rely on Rosetta to execute x86_64 programs on\n" +
-            "                               ARM64 macOS hosts.",
+            "Rely on Rosetta to execute x86_64 programs on ARM64 macOS hosts",
           exclusiveOn: ["-fno-rosetta"],
           priority: 25,
         },
