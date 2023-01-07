@@ -2182,6 +2182,9 @@ const llvmOptions: Fig.Option[] = [
 
 const completionSpec: Fig.Spec = {
   name: "zig",
+  parserDirectives: {
+    flagsArePosixNoncompliant: true,
+  },
   description:
     "Zig is a general-purpose programming language and toolchain for " +
     "maintaining robust, optimal, and reusable software",
