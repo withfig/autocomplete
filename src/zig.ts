@@ -2314,40 +2314,35 @@ const completionSpec: Fig.Spec = {
         {
           name: "-fno-rosetta",
           description:
-            "Don't rely on Rosetta to execute x86_64 programs on\n" +
-            "                               ARM64 macOS hosts.",
+            "Don't rely on Rosetta to execute x86_64 programs on ARM64 macOS hosts",
           exclusiveOn: ["-frosetta"],
           priority: 25,
         },
         {
           name: "-fwasmtime",
           description:
-            "Integration with system-installed wasmtime to\n" +
-            " execute WASI binaries.",
+            "Integration with system-installed wasmtime to execute WASI binaries",
           exclusiveOn: ["-fno-wasmtime"],
           priority: 25,
         },
         {
           name: "-fno-wasmtime",
           description:
-            "No integration with system-installed wasmtime to\n" +
-            " execute WASI binaries.",
+            "No integration with system-installed wasmtime to execute WASI binaries",
           exclusiveOn: ["-fwasmtime"],
           priority: 25,
         },
         {
           name: "-fwine",
           description:
-            "Integration with system-installed Wine to execute\n" +
-            "Windows programs on Linux hosts.",
+            "Integration with system-installed Wine to execute Windows programs on Linux hosts",
           exclusiveOn: ["-fno-wine"],
           priority: 25,
         },
         {
           name: "-fno-wine",
           description:
-            "No integration with system-installed Wine to execute\n" +
-            "Windows programs on Linux hosts.",
+            "No integration with system-installed Wine to execute Windows programs on Linux hosts",
           exclusiveOn: ["-fwine"],
           priority: 25,
         },
