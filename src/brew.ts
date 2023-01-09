@@ -1589,6 +1589,38 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "alias",
+      description: "Manage custom user created brew aliases",
+      options: [
+        {
+          name: "--edit",
+          description: "Edit aliases in a text editor",
+        },
+        {
+          name: ["-d", "--debug"],
+          description: "Display any debugging information",
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Make some output more quiet",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "Make some output more verbose",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Show help message",
+        },
+      ],
+      args: {
+        name: "alias",
+        generators: generatorAlias(),
+        description: "Display the alias command",
+        isOptional: true,
+      },
+    },
   ],
   options: [
     {
