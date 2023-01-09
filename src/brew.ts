@@ -67,26 +67,19 @@ const generateAllCasks: Fig.Generator = {
     }));
   },
 };
-
-const generatorAlias: Fig.Generator = {
-  custom: async (tokens, executeShellCommand) => {
-    const targets = await executeShellCommand(
-      "brew alias | cut -d '=' -f 1 | cut -d ' ' -f 3"
-    );
-    const targetSuggestions = new Map<string, Fig.Suggestion>();
-    for (const target of targets.split("\n")) {
-      if (target && target.trim() !== "") {
-        targetSuggestions.set(target, {
-          name: target,
-          description: "Run " + target + " command",
-          icon: "fig://icon?type=command",
-        });
-      }
-    }
-
-    return [...targetSuggestions.values()];
+const generatorAlias = (): Fig.Generator => ({
+  script: 'find ~/.brew-aliases/ -type f ! -name "*.*" -d 1 | sed "s/.*\\///"',
+  postProcess: function (out) {
+    return out
+      .split("\n")
+      .filter((line) => line && line.trim() !== "")
+      .map((line) => ({
+        name: line,
+        icon: "fig://icon?type=command",
+        description: `Execute alias ${line}`,
+      }));
   },
-};
+});
 
 const commonOptions: Fig.Option[] = [
   {
@@ -1605,7 +1598,9 @@ const completionSpec: Fig.Spec = {
   ],
   args: {
     name: "alias",
-    generators: generatorAlias,
+    generators: generatorAlias(),
+    description: "Custom user defined brew alias",
+    isOptional: true,
   },
 };
 
