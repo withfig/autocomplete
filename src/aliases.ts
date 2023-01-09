@@ -2,6 +2,7 @@ const helpAndVersionOptions: Fig.Option[] = [
   {
     name: ["--help", "-h"],
     description: "Prints help information",
+    isPersistent: true,
   },
   {
     name: ["--version", "-V"],
