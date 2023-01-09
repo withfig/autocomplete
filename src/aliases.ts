@@ -7,6 +7,7 @@ const helpAndVersionOptions: Fig.Option[] = [
   {
     name: ["--version", "-V"],
     description: "Prints version information",
+    isPersistent: true,
   },
 ];
 
@@ -17,7 +18,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "add",
       description: "Add an alias via the cli",
-      options: [...helpAndVersionOptions],
       args: [
         {
           name: "name",
@@ -33,7 +33,6 @@ const completionSpec: Fig.Spec = {
       name: "clone",
       description: "Clone external aliases",
       options: [
-        ...helpAndVersionOptions,
         {
           name: ["-E", "--enable"],
           description:
@@ -55,12 +54,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "directories",
       description: "List all directories initialized with aliases",
-      options: [...helpAndVersionOptions],
     },
     {
       name: "exec",
       description: "Execute an alias for a given directory",
-      options: [...helpAndVersionOptions],
       args: [
         {
           name: "directory",
@@ -82,7 +79,6 @@ const completionSpec: Fig.Spec = {
       name: "init",
       description: "Initialize a directory for aliases",
       options: [
-        ...helpAndVersionOptions,
         {
           name: ["-g", "--global"],
           description: "Returns the global initialization for the app",
@@ -100,7 +96,6 @@ const completionSpec: Fig.Spec = {
       name: "list",
       description: "List the aliases available",
       options: [
-        ...helpAndVersionOptions,
         {
           name: ["-g", "--global"],
           description: "List only global aliases",
@@ -129,7 +124,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "pull",
       description: "Pull a cloned user's aliases",
-      options: [...helpAndVersionOptions],
       args: {
         name: "username",
         description:
@@ -139,12 +133,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "rehash",
       description: "Update the aliases",
-      options: [...helpAndVersionOptions],
     },
     {
       name: "remove",
       description: "Remove an alias via the cli",
-      options: [...helpAndVersionOptions],
       args: {
         name: "name",
         description: "The name of the alias",
@@ -153,12 +145,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "users",
       description: "List the users",
-      options: [...helpAndVersionOptions],
       subcommands: [
         {
           name: "disable",
           description: "Disable a user's aliases",
-          options: [...helpAndVersionOptions],
           args: {
             name: "username",
           },
@@ -166,7 +156,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "enable",
           description: "Enable a user's aliases",
-          options: [...helpAndVersionOptions],
           args: {
             name: "username",
           },
@@ -175,12 +164,10 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description:
             "Prints this message or the help of the given subcommand(s)",
-          options: [...helpAndVersionOptions],
         },
         {
           name: "move",
           description: "Move a user up or down the prioritization list",
-          options: [...helpAndVersionOptions],
           args: [
             {
               name: "username",
@@ -193,7 +180,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "use",
           description: "Assign a user to the top of the priority list",
-          options: [...helpAndVersionOptions],
           args: {
             name: "username",
           },
