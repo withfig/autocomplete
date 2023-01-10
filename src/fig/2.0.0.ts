@@ -1,4 +1,5 @@
 import {
+  commandLineToolSpecGenerator,
   invitationsGenerators,
   membersGenerators,
   pluginsGenerator,
@@ -4775,17 +4776,7 @@ versions["2.10.0"] = {
     {
       name: "cli",
       description: "Run a Fig CLI",
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Print help information",
-        },
-      ],
-      args: {
-        name: "args",
-        isVariadic: true,
-        isOptional: true,
-      },
+      generateSpec: commandLineToolSpecGenerator,
     },
     {
       name: "help",

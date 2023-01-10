@@ -14,6 +14,22 @@ interface Action {
   defaultBindings: string[];
 }
 
+const graphql = async ({
+  exec,
+  query,
+}: {
+  exec: Fig.ExecuteShellCommandFunction;
+  query: string;
+}) => {
+  const response = await exec(
+    `fig _ request --route '/graphql' --method POST --body '{ "query": "${query
+      .split(/\s+/)
+      .join(" ")}" }'`
+  );
+
+  return JSON.parse(response).data;
+};
+
 const devCompletionsFolderGenerator: Fig.Generator = {
   script: '\\ls -d -1 "$PWD/"**/',
   postProcess: (out) =>
@@ -387,13 +403,7 @@ export const scriptsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
     isOwnedByCurrentUser
   }`;
 
-  const response = await exec(
-    `fig _ request --route '/graphql' --method POST --body '{ "query": "${query
-      .split(/\s+/)
-      .join(" ")}" }'`
-  );
-
-  const data = JSON.parse(response).data;
+  const data = await graphql({ exec, query });
 
   const scripts = [
     ...data.currentUser.namespace.scripts.map((script) => ({
@@ -491,6 +501,82 @@ export const scriptsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
     filterStrategy: "fuzzy",
   };
 };
+
+/**
+ * Fig CLI
+ */
+export const commandLineToolSpecGenerator: Fig.Subcommand["generateSpec"] =
+  async (_, exec) => {
+    const query = `query CommandLineTool {
+      currentUser {
+        namespace {
+          username
+          commandlineTools {
+            ...CommandlineToolFields
+          }
+        }
+        teamMemberships {
+          team {
+            namespace {
+              username
+              commandlineTools {
+                ...CommandlineToolFields
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    fragment CommandlineToolFields on CommandlineTool {
+      root {
+        ...CLICommandFields
+      }
+      flattenedCommands {
+        ...CLICommandFields
+      }
+    }
+    
+    fragment CLICommandFields on ICLICommand {
+      uuid
+      name
+      description
+      ... on NestedCommand {
+        subcommands {
+          uuid
+        }
+      }
+      ... on ScriptCommand {
+        script {
+          name
+        }
+      }
+    }`;
+
+    const data = await graphql({ exec, query });
+
+    const commandlineTools = [
+      ...data.currentUser.namespace.commandlineTools.map(
+        (commandlineTools) => ({
+          ...commandlineTools,
+          namespace: data.currentUser.namespace.username,
+        })
+      ),
+      ...data.currentUser.teamMemberships.flatMap((team) =>
+        team.team.namespace.commandlineTools.map((commandlineTools) => ({
+          ...commandlineTools,
+          namespace: team.team.namespace.username,
+        }))
+      ),
+    ];
+
+    return {
+      name: "cli",
+      subcommands: commandlineTools.map((commandlineTool) => ({
+        name: `@${commandlineTool.namespace}/${commandlineTool.root.name}`,
+      })),
+    };
+  };
 
 export const sshHostsGenerator: Fig.Generator = {
   script: "fig _ request --method GET --route /access/hosts/all",
