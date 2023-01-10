@@ -37,7 +37,7 @@ const completion: Fig.Subcommand = {
 
 const versions: Fig.VersionDiffMap = {};
 
-versions["0.0.4"] = {};
+versions["v0.0.4"] = {};
 
 export { versions };
 export default completion;

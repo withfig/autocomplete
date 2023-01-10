@@ -5,4 +5,4 @@ export const getVersionCommand: Fig.GetVersionCommand = async (
 ) => {
   return await executeShellCommand("npx @usermn/sdc --version");
 };
-export default createVersionedSpec("usermn/sdc", versionFiles);
+export default createVersionedSpec("@usermn/sdc", versionFiles);
