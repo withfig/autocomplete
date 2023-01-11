@@ -14,6 +14,22 @@ interface Action {
   defaultBindings: string[];
 }
 
+const graphql = async ({
+  exec,
+  query,
+}: {
+  exec: Fig.ExecuteShellCommandFunction;
+  query: string;
+}) => {
+  const response = await exec(
+    `fig _ request --route '/graphql' --method POST --body '{ "query": "${query
+      .split(/\s+/)
+      .join(" ")}" }'`
+  );
+
+  return JSON.parse(response).data;
+};
+
 const devCompletionsFolderGenerator: Fig.Generator = {
   script: '\\ls -d -1 "$PWD/"**/',
   postProcess: (out) =>
@@ -316,10 +332,180 @@ export const invitationsGenerators: Fig.Generator = {
  * Fig Scripts
  */
 
+const scriptsFieldsFragment = `fragment ScriptFields on Script {
+  name
+  fields {
+    icon
+    displayName
+    description
+    templateVersion
+    tags
+    parameters {
+      type
+      name
+      displayName
+      description
+      text {
+        placeholder
+      }
+      checkbox {
+        trueValueSubstitution
+        falseValueSubstitution
+      }
+      selector {
+        generators {
+          named {
+            name
+          }
+          shellScript {
+            script
+          }
+          type
+        }
+        placeholder
+        suggestions
+      }
+      path {
+        extensions
+        fileType
+      }
+    }
+    runtime
+  }
+  relevanceScore
+  lastInvokedAt
+  lastInvokedAtByUser
+  isOwnedByCurrentUser
+}`;
+
+type ScriptFields = {
+  name: string;
+  fields: {
+    icon?: string;
+    displayName?: string;
+    description: string;
+    templateVersion: string;
+    tags: string[];
+    parameters: {
+      type: string;
+      name: string;
+      displayName: string;
+      description: string;
+      text?: {
+        placeholder: string;
+      };
+      checkbox?: {
+        trueValueSubstitution: string;
+        falseValueSubstitution: string;
+      };
+      selector?: {
+        generators: {
+          named: {
+            name: string;
+          };
+          shellScript: {
+            script: string;
+          };
+          type: string;
+        }[];
+        placeholder?: string;
+        suggestions?: string[];
+      };
+      path?: {
+        extensions: string[];
+        fileType: string;
+      };
+    }[];
+    runtime: string;
+  };
+  relevanceScore: number;
+  lastInvokedAt: string;
+  lastInvokedAtByUser: string;
+  isOwnedByCurrentUser: boolean;
+};
+
+const scriptOptions = (script: ScriptFields) => {
+  const options: Fig.Option[] = [
+    {
+      name: ["-h", "--help"],
+      description: "Show help for the script",
+    },
+  ];
+
+  for (const param of script.fields.parameters) {
+    const option: Fig.Option = {
+      name: `--${param.name}`,
+      description: param?.description ?? param?.type,
+      isRequired: true,
+    };
+
+    switch (param.type) {
+      case "Text":
+        option.args = {
+          name: param.name,
+        };
+        break;
+      case "Selector":
+        let generators: Fig.Generator[] = [];
+        if (param?.selector?.generators) {
+          generators = param?.selector?.generators
+            .filter((generator) => generator.type === "ShellScript")
+            .map((generator) => ({
+              script: generator?.shellScript?.script,
+              splitOn: "\n",
+            }));
+        }
+        option.args = {
+          name: param.name,
+          suggestions: param?.selector?.suggestions,
+          generators,
+        };
+        break;
+      case "Path":
+        option.args = {
+          name: param.name,
+          template: "filepaths",
+        };
+        break;
+      case "Checkbox":
+        // Also make the `--no-` version of the option
+        options.push({
+          ...option,
+          name: `--no-${param.name}`,
+          exclusiveOn: [`--${param.name}`],
+        });
+
+        option.exclusiveOn = [`--no-${param.name}`];
+        break;
+    }
+
+    options.push(option);
+  }
+
+  return options;
+};
+
 export const scriptsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
   _,
   exec
 ) => {
+  type Scripts = {
+    currentUser: {
+      namespace: {
+        username: string;
+        scripts: ScriptFields[];
+      };
+      teamMemberships: {
+        team: {
+          namespace: {
+            username: string;
+            scripts: ScriptFields[];
+          };
+        };
+      }[];
+    };
+  };
+
   const query = `query Scripts {
     currentUser {
       namespace {
@@ -340,60 +526,10 @@ export const scriptsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
       }
     }
   }
-  
-  fragment ScriptFields on Script {
-    name
-    fields {
-      icon
-      displayName
-      description
-      templateVersion
-      tags
-      parameters {
-        type
-        name
-        displayName
-        description
-        text {
-          placeholder
-        }
-        checkbox {
-          trueValueSubstitution
-          falseValueSubstitution
-        }
-        selector {
-          generators {
-            named {
-              name
-            }
-            shellScript {
-              script
-            }
-            type
-          }
-          placeholder
-          suggestions
-        }
-        path {
-          extensions
-          fileType
-        }
-      }
-      runtime
-    }
-    relevanceScore
-    lastInvokedAt
-    lastInvokedAtByUser
-    isOwnedByCurrentUser
-  }`;
 
-  const response = await exec(
-    `fig _ request --route '/graphql' --method POST --body '{ "query": "${query
-      .split(/\s+/)
-      .join(" ")}" }'`
-  );
+  ${scriptsFieldsFragment}`;
 
-  const data = JSON.parse(response).data;
+  const data: Scripts = await graphql({ exec, query });
 
   const scripts = [
     ...data.currentUser.namespace.scripts.map((script) => ({
@@ -413,68 +549,13 @@ export const scriptsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
       script.namespace
     }`;
 
-    const options: Fig.Option[] = [
-      {
-        name: ["-h", "--help"],
-        description: "Show help for the script",
-      },
-    ];
-
-    for (const param of script.fields.parameters) {
-      const option: Fig.Option = {
-        name: `--${param.name}`,
-        description: param?.description ?? param?.type,
-        isRequired: true,
-      };
-
-      switch (param.type) {
-        case "Text":
-          option.args = {
-            name: param.name,
-          };
-          break;
-        case "Selector":
-          let generators: Fig.Generator[] = [];
-          if (param?.selector?.generators) {
-            generators = param?.selector?.generators
-              .filter((generator) => generator.type === "ShellScript")
-              .map((generator) => ({
-                script: generator?.shellScript?.script,
-                splitOn: "\n",
-              }));
-          }
-          option.args = {
-            name: param.name,
-            suggestions: param?.selector?.suggestions,
-            generators,
-          };
-          break;
-        case "Path":
-          option.args = {
-            name: param.name,
-            template: "filepaths",
-          };
-          break;
-        case "Checkbox":
-          // Also make the `--no-` version of the option
-          options.push({
-            ...option,
-            name: `--no-${param.name}`,
-            exclusiveOn: [`--${param.name}`],
-          });
-
-          option.exclusiveOn = [`--no-${param.name}`];
-          break;
-      }
-
-      options.push(option);
-    }
-
     // Add @namespace/name and name (if this workflow is associated with user's namespace)
     const name = [`@${script.namespace}/${script.name}`];
     if (script?.isOwnedByCurrentUser) {
       name.push(script.name);
     }
+
+    const options = scriptOptions(script);
 
     return {
       displayName,
@@ -491,6 +572,164 @@ export const scriptsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
     filterStrategy: "fuzzy",
   };
 };
+
+/**
+ * Fig CLI
+ */
+export const commandLineToolSpecGenerator: Fig.Subcommand["generateSpec"] =
+  async (_, exec) => {
+    type CLICommandFields = {
+      uuid: string;
+      name: string;
+      description?: string;
+    } & (
+      | {
+          subcommands: {
+            uuid: string;
+          }[];
+        }
+      | {
+          script: ScriptFields;
+        }
+    );
+
+    type CommandlineToolFields = {
+      root: CLICommandFields;
+      flattenedCommands: CLICommandFields[];
+    };
+
+    type CommandLineTool = {
+      currentUser: {
+        namespace: {
+          username: string;
+          commandlineTools: CommandlineToolFields[];
+        };
+        teamMemberships: {
+          team: {
+            namespace: {
+              username: string;
+              commandlineTools: CommandlineToolFields[];
+            };
+          };
+        }[];
+      };
+    };
+
+    const query = `query CommandLineTool {
+      currentUser {
+        namespace {
+          username
+          commandlineTools {
+            ...CommandlineToolFields
+          }
+        }
+        teamMemberships {
+          team {
+            namespace {
+              username
+              commandlineTools {
+                ...CommandlineToolFields
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    fragment CommandlineToolFields on CommandlineTool {
+      root {
+        ...CLICommandFields
+      }
+      flattenedCommands {
+        ...CLICommandFields
+      }
+    }
+    
+    fragment CLICommandFields on ICLICommand {
+      uuid
+      name
+      description
+      ... on NestedCommand {
+        subcommands {
+          uuid
+        }
+      }
+      ... on ScriptCommand {
+        script {
+          ...ScriptFields
+        }
+      }
+    }
+    
+    ${scriptsFieldsFragment}`;
+
+    const data: CommandLineTool = await graphql({ exec, query });
+
+    const commandlineTools = [
+      ...data.currentUser.namespace.commandlineTools.map(
+        (commandlineTools) => ({
+          ...commandlineTools,
+          namespace: data.currentUser.namespace.username,
+        })
+      ),
+      ...data.currentUser.teamMemberships.flatMap((team) =>
+        team.team.namespace.commandlineTools.map((commandlineTools) => ({
+          ...commandlineTools,
+          namespace: team.team.namespace.username,
+        }))
+      ),
+    ];
+
+    const subcommands = commandlineTools.map((commandlineTools) => {
+      // Create map from uuid to command
+      const commands: Record<string, CLICommandFields> = {};
+      for (const command of commandlineTools.flattenedCommands) {
+        commands[command.uuid] = command;
+      }
+
+      const createTree = (
+        root: CLICommandFields,
+        depth: number
+      ): Fig.Subcommand => {
+        if ("subcommands" in root) {
+          const subcommands: Fig.Subcommand[] = [];
+          for (const command of root.subcommands) {
+            subcommands.push(createTree(commands[command.uuid], depth + 1));
+          }
+          return {
+            name:
+              depth === 0
+                ? `@${commandlineTools.namespace}/${root.name}`
+                : root.name,
+            description: root.description,
+            subcommands,
+            options: [
+              {
+                name: ["-h", "--help"],
+                description: "Print help information",
+              },
+            ],
+          };
+        } else {
+          const script = root.script;
+          const options = scriptOptions(script);
+          return {
+            icon: script?.fields?.icon,
+            name: root.name,
+            description: root.description,
+            options,
+          };
+        }
+      };
+
+      return createTree(commandlineTools.root, 0);
+    });
+
+    return {
+      name: "cli",
+      subcommands,
+    };
+  };
 
 export const sshHostsGenerator: Fig.Generator = {
   script: "fig _ request --method GET --route /access/hosts/all",
