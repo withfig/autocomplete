@@ -1,4 +1,3 @@
-
 const completionSpec: Fig.Spec = {
   name: "zipcloak",
   description: "Encrypt entries in a zipfile",
