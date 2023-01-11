@@ -187,6 +187,6 @@ const completionSpec: Fig.Spec = {
       ],
     },
   ],
-  options: [...helpAndVersionOptions],
+  options: helpAndVersionOptions,
 };
 export default completionSpec;
