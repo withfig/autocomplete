@@ -1,17 +1,18 @@
 import {
-  settingsSpecGenerator,
-  subsystemsGenerator,
-  themesGenerator,
-  pluginsGenerator,
-  tokensGenerators,
+  commandLineToolSpecGenerator,
   invitationsGenerators,
   membersGenerators,
-  teamsGenerators,
+  pluginsGenerator,
   scriptsSpecGenerator,
+  settingsSpecGenerator,
   sshHostsGenerator,
   sshIdentityGenerator,
-  userGenerator,
   stateGenerator,
+  subsystemsGenerator,
+  teamsGenerators,
+  themesGenerator,
+  tokensGenerators,
+  userGenerator,
 } from "./shared";
 
 const completion: Fig.Subcommand = {
@@ -4671,22 +4672,6 @@ versions["2.9.0"] = {
   ],
 };
 
-versions["2.9.1"] = {
-  subcommands: [
-    {
-      name: "wrapped",
-      icon: "🎁",
-      priority: 100,
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Print help information",
-        },
-      ],
-    },
-  ],
-};
-
 versions["2.10.0"] = {
   subcommands: [
     {
@@ -4780,21 +4765,18 @@ versions["2.10.0"] = {
     {
       name: "wrapped",
       description: "Show fig wrapped",
-    },
-    {
-      name: "cli",
-      description: "Run a Fig CLI",
+      icon: "🎁",
       options: [
         {
           name: ["-h", "--help"],
           description: "Print help information",
         },
       ],
-      args: {
-        name: "args",
-        isVariadic: true,
-        isOptional: true,
-      },
+    },
+    {
+      name: "cli",
+      description: "Run a Fig CLI",
+      generateSpec: commandLineToolSpecGenerator,
     },
     {
       name: "help",
@@ -4827,6 +4809,213 @@ versions["2.10.0"] = {
         {
           name: "cli",
           description: "Run a Fig CLI",
+        },
+      ],
+    },
+  ],
+};
+
+versions["2.11.0"] = {
+  subcommands: [
+    {
+      name: "debug",
+      subcommands: [
+        {
+          name: "build",
+          args: [
+            {},
+            {
+              suggestions: ["production", "beta", "develop"],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "init",
+      args: [
+        {
+          suggestions: [
+            {
+              name: "bash",
+              description: "Bash shell",
+            },
+            {
+              name: "zsh",
+              description: "Zsh shell",
+            },
+            {
+              name: "fish",
+              description: "Fish shell",
+            },
+            {
+              name: "nu",
+              description: "Nu shell",
+            },
+          ],
+        },
+        {},
+      ],
+    },
+    {
+      name: ["internal", "_"],
+      subcommands: [
+        {
+          name: "should-figterm-launch",
+          description: "Detects if Figterm should be launched",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description:
+                "Print help information (use `--help` for more detail)",
+            },
+          ],
+        },
+        {
+          name: "dump-state",
+          args: {
+            suggestions: ["figterm", "web-notifications"],
+          },
+        },
+        {
+          name: "help",
+          subcommands: [
+            {
+              name: "should-figterm-launch",
+              description: "Detects if Figterm should be launched",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: ["integrations", "integration"],
+      subcommands: [
+        {
+          name: "install",
+          subcommands: [
+            {
+              name: "dotfiles",
+              args: {
+                suggestions: [
+                  {
+                    name: "bash",
+                    description: "Bash shell",
+                  },
+                  {
+                    name: "zsh",
+                    description: "Zsh shell",
+                  },
+                  {
+                    name: "fish",
+                    description: "Fish shell",
+                  },
+                  {
+                    name: "nu",
+                    description: "Nu shell",
+                  },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "uninstall",
+          subcommands: [
+            {
+              name: "dotfiles",
+              args: {
+                suggestions: [
+                  {
+                    name: "bash",
+                    description: "Bash shell",
+                  },
+                  {
+                    name: "zsh",
+                    description: "Zsh shell",
+                  },
+                  {
+                    name: "fish",
+                    description: "Fish shell",
+                  },
+                  {
+                    name: "nu",
+                    description: "Nu shell",
+                  },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "reinstall",
+          subcommands: [
+            {
+              name: "dotfiles",
+              args: {
+                suggestions: [
+                  {
+                    name: "bash",
+                    description: "Bash shell",
+                  },
+                  {
+                    name: "zsh",
+                    description: "Zsh shell",
+                  },
+                  {
+                    name: "fish",
+                    description: "Fish shell",
+                  },
+                  {
+                    name: "nu",
+                    description: "Nu shell",
+                  },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "status",
+          subcommands: [
+            {
+              name: "dotfiles",
+              args: {
+                suggestions: [
+                  {
+                    name: "bash",
+                    description: "Bash shell",
+                  },
+                  {
+                    name: "zsh",
+                    description: "Zsh shell",
+                  },
+                  {
+                    name: "fish",
+                    description: "Fish shell",
+                  },
+                  {
+                    name: "nu",
+                    description: "Nu shell",
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "help",
+      subcommands: [
+        {
+          name: "internal",
+          subcommands: [
+            {
+              name: "should-figterm-launch",
+              description: "Detects if Figterm should be launched",
+            },
+          ],
         },
       ],
     },
