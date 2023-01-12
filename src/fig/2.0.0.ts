@@ -5022,5 +5022,24 @@ versions["2.11.0"] = {
   ],
 };
 
+versions["2.12.0"] = {
+  subcommands: [
+    {
+      name: "cli",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+      args: {
+        name: "args",
+        isVariadic: true,
+        isOptional: true,
+      },
+    },
+  ],
+};
+
 export { versions };
 export default completion;
