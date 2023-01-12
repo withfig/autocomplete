@@ -1616,7 +1616,7 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "alias",
-        generators: generatorAlias(),
+        generators: generatorAlias,
         description: "Display the alias command",
         isOptional: true,
       },
