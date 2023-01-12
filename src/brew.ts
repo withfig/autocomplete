@@ -67,7 +67,7 @@ const generateAllCasks: Fig.Generator = {
     }));
   },
 };
-const generatorAlias = (): Fig.Generator => ({
+const generatorAlias: Fig.Generator = {
   script: 'find ~/.brew-aliases/ -type f ! -name "*.*" -d 1 | sed "s/.*\\///"',
   postProcess: function (out) {
     return out
@@ -79,7 +79,7 @@ const generatorAlias = (): Fig.Generator => ({
         description: `Execute alias ${line}`,
       }));
   },
-});
+};
 
 const commonOptions: Fig.Option[] = [
   {
