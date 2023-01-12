@@ -1630,7 +1630,7 @@ const completionSpec: Fig.Spec = {
   ],
   args: {
     name: "alias",
-    generators: generatorAlias(),
+    generators: generatorAlias,
     description: "Custom user defined brew alias",
     isOptional: true,
   },
