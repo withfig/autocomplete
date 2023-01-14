@@ -67,7 +67,7 @@ const generateAllCasks: Fig.Generator = {
     }));
   },
 };
-const generatorAlias: Fig.Generator = {
+const generateAliases: Fig.Generator = {
   script: 'find ~/.brew-aliases/ -type f ! -name "*.*" -d 1 | sed "s/.*\\///"',
   postProcess: function (out) {
     return out
@@ -1616,7 +1616,7 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "alias",
-        generators: generatorAlias,
+        generators: generateAliases,
         description: "Display the alias command",
         isOptional: true,
       },
@@ -1630,7 +1630,7 @@ const completionSpec: Fig.Spec = {
   ],
   args: {
     name: "alias",
-    generators: generatorAlias,
+    generators: generateAliases,
     description: "Custom user defined brew alias",
     isOptional: true,
   },
