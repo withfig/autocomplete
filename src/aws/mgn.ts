@@ -338,7 +338,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-jobs",
       description:
-        "Returns a list of Jobs. Use the JobsID and fromDate and toData filters to limit which jobs are returned. The response is sorted by creationDataTime - latest date first. Jobs are normaly created by the StartTest, StartCutover, and TerminateTargetInstances APIs. Jobs are also created by DiagnosticLaunch and TerminateDiagnosticInstances, which are APIs available only to *Support* and only used in response to relevant support tickets",
+        "Returns a list of Jobs. Use the JobsID and fromDate and toData filters to limit which jobs are returned. The response is sorted by creationDataTime - latest date first. Jobs are normally created by the StartTest, StartCutover, and TerminateTargetInstances APIs. Jobs are also created by DiagnosticLaunch and TerminateDiagnosticInstances, which are APIs available only to *Support* and only used in response to relevant support tickets",
       options: [
         {
           name: "--filters",
@@ -581,11 +581,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "finalize-cutover",
       description:
-        "Finalizes the cutover immediately for specific Source Servers. All AWS resources created by Application Migration Service for enabling the replication of these source servers will be terminated / deleted within 90 minutes. Launched Test or Cutover instances will NOT be terminated. The AWS Replication Agent will receive a command to uninstall itself (within 10 minutes). The following properties of the SourceServer will be changed immediately: dataReplicationInfo.dataReplicationState will be to DISCONNECTED; The SourceServer.lifeCycle.state will be changed to CUTOVER; The totalStorageBytes property fo each of dataReplicationInfo.replicatedDisks will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDurationwill be nullified",
+        "Finalizes the cutover immediately for specific Source Servers. All AWS resources created by Application Migration Service for enabling the replication of these source servers will be terminated / deleted within 90 minutes. Launched Test or Cutover instances will NOT be terminated. The AWS Replication Agent will receive a command to uninstall itself (within 10 minutes). The following properties of the SourceServer will be changed immediately: dataReplicationInfo.dataReplicationState will be to DISCONNECTED; The SourceServer.lifeCycle.state will be changed to CUTOVER; The totalStorageBytes property of each of dataReplicationInfo.replicatedDisks will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDurationwill be nullified",
       options: [
         {
           name: "--source-server-id",
-          description: "Request to finalize Cutover by Soure Server ID",
+          description: "Request to finalize Cutover by Source Server ID",
           args: {
             name: "string",
           },
@@ -649,7 +649,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--source-server-id",
           description:
-            "Request to get Replication Configuaration by Source Server ID",
+            "Request to get Replication Configuration by Source Server ID",
           args: {
             name: "string",
           },
@@ -830,7 +830,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "start-test",
       description:
-        "Lauches a Test Instance for specific Source Servers. This command starts a LAUNCH job whose initiatedBy property is StartTest and changes the SourceServer.lifeCycle.state property to TESTING",
+        "Launches a Test Instance for specific Source Servers. This command starts a LAUNCH job whose initiatedBy property is StartTest and changes the SourceServer.lifeCycle.state property to TESTING",
       options: [
         {
           name: "--source-server-i-ds",

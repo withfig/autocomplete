@@ -1,36 +1,6 @@
-const projectGenerator: Fig.Generator = {
-  template: ["filepaths", "folders"],
-  filterTemplateSuggestions(param) {
-    const suffixes = [".csproj", ".sln", ".dll"];
+import { filepaths } from "@fig/autocomplete-generators";
 
-    return param.filter((file) => {
-      if (typeof file.name === "string") {
-        const fileName = file.name;
-
-        return suffixes.some((suffix) => fileName.endsWith(suffix));
-      }
-
-      return false;
-    });
-  },
-};
-
-const settingsGenerator: Fig.Generator = {
-  template: "filepaths",
-  filterTemplateSuggestions(param) {
-    const suffix = ".runsettings";
-
-    return param.filter((file) => {
-      if (typeof file.name === "string") {
-        const fileName = file.name;
-
-        return fileName.endsWith(suffix);
-      }
-
-      return false;
-    });
-  },
-};
+const projectGenerator = filepaths({ extensions: ["csproj", "sln", "dll"] });
 
 const completionSpec: Fig.Spec = {
   name: "test",
@@ -55,7 +25,7 @@ const completionSpec: Fig.Spec = {
       description:
         "Specifies the target architecture. This is a shorthand syntax for setting the Runtime Identifier (RID), where the provided value is combined with the default RID. For example, on a win-x64 machine, specifying --arch x86 sets the RID to win-x86. If you use this option, don't use the -r|--runtime option. Available since .NET 6 Preview 7",
       args: {
-        name: "architechture",
+        name: "architecture",
       },
     },
     {
@@ -194,7 +164,7 @@ const completionSpec: Fig.Spec = {
         "The .runsettings file to use for running the tests. The TargetPlatform element (x86|x64) has no effect for dotnet test. To run tests that target x86, install the x86 version of .NET Core. The bitness of the dotnet.exe that is on the path is what will be used for running tests",
       args: {
         name: "file",
-        generators: settingsGenerator,
+        generators: filepaths({ extensions: ["runsettings"] }),
       },
     },
     {

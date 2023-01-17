@@ -2602,7 +2602,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--user-id",
           description:
-            "The identifer for the user for whom to update the mailbox quota",
+            "The identifier for the user for whom to update the mailbox quota",
           args: {
             name: "string",
           },

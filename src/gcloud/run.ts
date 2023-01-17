@@ -9,7 +9,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Obtain details about a given configuration",
-
           options: [
             {
               name: "--account",
@@ -212,13 +211,11 @@ const completionSpec: Fig.Spec = {
             name: "CONFIGURATION",
             description:
               "ID of the configuration or fully qualified identifier for the configuration",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List available Configurations",
-
           options: [
             {
               name: "--account",
@@ -656,7 +653,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "deploy",
       description: "Deploy a container to Cloud Run",
-
       options: [
         {
           name: "--account",
@@ -1189,7 +1185,6 @@ const completionSpec: Fig.Spec = {
         name: "SERVICE",
         description:
           "ID of the service or fully qualified identifier for the service",
-        isVariadic: false,
       },
     },
     {
@@ -1199,7 +1194,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create domain mappings for Cloud Run for Anthos",
-
           options: [
             {
               name: "--account",
@@ -1428,7 +1422,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete domain mappings for Cloud Run for Anthos",
-
           options: [
             {
               name: "--account",
@@ -1642,7 +1635,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe domain mappings for Cloud Run for Anthos",
-
           options: [
             {
               name: "--account",
@@ -1856,7 +1848,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "Lists domain mappings for Cloud Run for Anthos",
-
           options: [
             {
               name: "--account",
@@ -2298,7 +2289,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List available Cloud Run (fully managed) regions",
-
           options: [
             {
               name: "--account",
@@ -2730,7 +2720,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a revision",
-
           options: [
             {
               name: "--account",
@@ -2933,13 +2922,11 @@ const completionSpec: Fig.Spec = {
             name: "REVISION",
             description:
               "ID of the revision or fully qualified identifier for the revision",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "Obtain details about revisions",
-
           options: [
             {
               name: "--account",
@@ -3142,13 +3129,11 @@ const completionSpec: Fig.Spec = {
             name: "REVISION",
             description:
               "ID of the revision or fully qualified identifier for the revision",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List available revisions",
-
           options: [
             {
               name: "--account",
@@ -3599,7 +3584,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Obtain details about a given route",
-
           options: [
             {
               name: "--account",
@@ -3802,13 +3786,11 @@ const completionSpec: Fig.Spec = {
             name: "ROUTE",
             description:
               "ID of the route or fully qualified identifier for the route",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List available Routes",
-
           options: [
             {
               name: "--account",
@@ -4250,7 +4232,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "add-iam-policy-binding",
           description: "Add IAM policy binding to a Cloud Run service",
-
           options: [
             {
               name: "--account",
@@ -4484,13 +4465,11 @@ const completionSpec: Fig.Spec = {
             name: "SERVICE",
             description:
               "ID of the service or fully qualified identifier for the service",
-            isVariadic: false,
           },
         },
         {
           name: "delete",
           description: "Delete a service",
-
           options: [
             {
               name: "--account",
@@ -4693,13 +4672,11 @@ const completionSpec: Fig.Spec = {
             name: "SERVICE",
             description:
               "ID of the service or fully qualified identifier for the service",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "Obtain details about a given service",
-
           options: [
             {
               name: "--account",
@@ -4902,13 +4879,11 @@ const completionSpec: Fig.Spec = {
             name: "SERVICE",
             description:
               "ID of the service or fully qualified identifier for the service",
-            isVariadic: false,
           },
         },
         {
           name: "get-iam-policy",
           description: "Get the IAM policy for a Cloud Run service",
-
           options: [
             {
               name: "--account",
@@ -5141,13 +5116,11 @@ const completionSpec: Fig.Spec = {
             name: "SERVICE",
             description:
               "ID of the service or fully qualified identifier for the service",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List available services",
-
           options: [
             {
               name: "--account",
@@ -5395,7 +5368,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "remove-iam-policy-binding",
           description: "Remove IAM policy binding of a Cloud Run service",
-
           options: [
             {
               name: "--account",
@@ -5634,13 +5606,11 @@ const completionSpec: Fig.Spec = {
             name: "SERVICE",
             description:
               "ID of the service or fully qualified identifier for the service",
-            isVariadic: false,
           },
         },
         {
           name: "set-iam-policy",
           description: "Set the IAM policy for a service",
-
           options: [
             {
               name: "--account",
@@ -5834,13 +5804,11 @@ const completionSpec: Fig.Spec = {
               name: "SERVICE",
               description:
                 "ID of the service or fully qualified identifier for the service",
-              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy)",
-              isVariadic: false,
             },
           ],
         },
@@ -5848,7 +5816,6 @@ const completionSpec: Fig.Spec = {
           name: "update",
           description:
             "Update Cloud Run environment variables and other configuration settings",
-
           options: [
             {
               name: "--account",
@@ -6375,13 +6342,11 @@ const completionSpec: Fig.Spec = {
             name: "SERVICE",
             description:
               "ID of the service or fully qualified identifier for the service",
-            isVariadic: false,
           },
         },
         {
           name: "update-traffic",
           description: "Adjust the traffic assignments for a Cloud Run service",
-
           options: [
             {
               name: "--account",
@@ -6560,7 +6525,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--to-revisions",
               description:
-                "Comma separated list of traffic assignments in the form REVISION-NAME=PERCENTAGE. REVISION-NAME must be the name for a revision for the service as returned by 'gcloud beta run list revisions'. PERCENTAGE must be an integer percentage between 0 and 100 inclusive.  Ex service-nw9hs=10,service-nw9hs=20 Up to 100 percent of traffic may be assigned. If 100 percent of traffic is assigned,  the Service traffic is updated as specified. If under 100 percent of traffic is assigned, the Service traffic is updated as specified for revisions with assignments and traffic is scaled up or down down proportionally as needed for revision that are currently serving traffic but that do not have new assignments. For example assume revision-1 is serving 40 percent of traffic and revision-2 is serving 60 percent. If revision-1 is assigned 45 percent of traffic and no assignment is made for revision-2, the service is updated with revsion-1 assigned 45 percent of traffic and revision-2 scaled down to 55 percent. You can use \"LATEST\" as a special revision name to always put the given percentage of traffic on the latest ready revision",
+                "Comma separated list of traffic assignments in the form REVISION-NAME=PERCENTAGE. REVISION-NAME must be the name for a revision for the service as returned by 'gcloud beta run list revisions'. PERCENTAGE must be an integer percentage between 0 and 100 inclusive.  Ex service-nw9hs=10,service-nw9hs=20 Up to 100 percent of traffic may be assigned. If 100 percent of traffic is assigned,  the Service traffic is updated as specified. If under 100 percent of traffic is assigned, the Service traffic is updated as specified for revisions with assignments and traffic is scaled up or down down proportionally as needed for revision that are currently serving traffic but that do not have new assignments. For example assume revision-1 is serving 40 percent of traffic and revision-2 is serving 60 percent. If revision-1 is assigned 45 percent of traffic and no assignment is made for revision-2, the service is updated with revision-1 assigned 45 percent of traffic and revision-2 scaled down to 55 percent. You can use \"LATEST\" as a special revision name to always put the given percentage of traffic on the latest ready revision",
               args: {
                 name: "REVISION-NAME=PERCENTAGE",
                 description: "Dict",
@@ -6604,7 +6569,6 @@ const completionSpec: Fig.Spec = {
             name: "SERVICE",
             description:
               "ID of the service or fully qualified identifier for the service",
-            isVariadic: false,
           },
         },
       ],

@@ -391,7 +391,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--robot-software-suite",
           description:
-            "The robot software suite (ROS distribuition) used by the robot application",
+            "The robot software suite (ROS distribution) used by the robot application",
           args: {
             name: "structure",
           },

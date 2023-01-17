@@ -5,7 +5,7 @@ const defaultOptions: Fig.Option[] = [
   },
   {
     name: "--quiet",
-    description: "Prevents unnecesary output",
+    description: "Prevents unnecessary output",
   },
   {
     name: ["-h", "--help"],
@@ -25,7 +25,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "fetch",
       description: "Fetches a tool to the local machine",
-
       args: {
         isVariadic: true,
         name: "tool | tool@version",
@@ -141,7 +140,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--quiet",
-          description: "Prevents unnecesary output",
+          description: "Prevents unnecessary output",
         },
         {
           name: "--node",

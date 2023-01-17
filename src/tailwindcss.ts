@@ -57,7 +57,7 @@ const buildOptions: Fig.Option[] = [
 const completionSpec: Fig.Spec = {
   name: "tailwindcss",
   description: "Tailwindcss CLI tools",
-  icon: "https://tailwindcss.com/favicon-32x32.png",
+  icon: "https://tailwindcss.com/favicons/favicon-32x32.png",
   options: buildOptions,
   subcommands: [
     {

@@ -374,7 +374,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-f", "--force"],
           description:
-            "Should we overwrite an exisiting trigger/search/create file?",
+            "Should we overwrite an existing trigger/search/create file?",
         },
         {
           name: "--no-help",
@@ -458,7 +458,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-f", "--force"],
-          description: "Skip confirmation. Useful for running programatically",
+          description: "Skip confirmation. Useful for running programmatically",
           isDangerous: true,
         },
         debugFlag,
@@ -495,7 +495,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-f", "--force"],
-          description: "Skips confirmation. Useful for running programatically",
+          description:
+            "Skips confirmation. Useful for running programmatically",
           isDangerous: true,
         },
         debugFlag,
@@ -524,7 +525,6 @@ const completionSpec: Fig.Spec = {
         "List the versions of your integration available for use in the Zapier editor",
       options: [formatFlag, debugFlag],
     },
-
     {
       name: "help",
       description: "Display help for <%= config.bin %>",

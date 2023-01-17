@@ -1,6 +1,5 @@
 // To learn more about Fig's autocomplete standard visit: https://fig.io/docs/concepts/cli-skeleton
 
-// The below is a dummy example for git. Make sure to change the file name!
 const completionSpec: Fig.Spec = {
   name: "php",
   description: "Run the PHP interpreter",
@@ -13,6 +12,10 @@ const completionSpec: Fig.Spec = {
 
     if ((await executeShellCommand("ls -1 please")) === "please") {
       subcommands.push({ name: "please", loadSpec: "php/please" });
+    }
+
+    if ((await executeShellCommand("ls -1 bin/console")) === "bin/console") {
+      subcommands.push({ name: "bin/console", loadSpec: "php/bin-console" });
     }
 
     return {

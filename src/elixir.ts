@@ -1,31 +1,16 @@
-const completionSpec: Fig.Spec = {
+import { filepaths } from "@fig/autocomplete-generators";
+
+const completionSpec: Fig.Subcommand = {
   name: "elixir",
   description: "Elixir Language",
   args: [
     {
       name: "file",
       description: ".exs file",
-      generators: {
-        template: "filepaths",
-        filterTemplateSuggestions: function (paths) {
-          return paths
-            .filter((file) => {
-              if (typeof file.name === "string") {
-                return file.name.endsWith(".exs") || file.name.endsWith("/");
-              }
-              return false;
-            })
-            .map((file) => {
-              const isExsFile =
-                typeof file.name === "string" && file.name.endsWith(".exs");
-
-              return {
-                ...file,
-                priority: isExsFile && 76,
-              };
-            });
-        },
-      },
+      generators: filepaths({
+        extensions: ["exs"],
+        editFileSuggestions: { priority: 76 },
+      }),
     },
     {
       name: "data",

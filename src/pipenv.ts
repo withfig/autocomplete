@@ -1,4 +1,5 @@
 // REFERENCE: https://pipenv.pypa.io/en/stable/cli/
+import { filepaths } from "@fig/autocomplete-generators";
 import { packageList } from "./pip";
 
 const completionSpec: Fig.Spec = {
@@ -14,16 +15,25 @@ const completionSpec: Fig.Spec = {
           name: "--unused",
           description:
             "Given a code path, show potentially unused dependencies",
+          args: {
+            name: "code path",
+          },
         },
         {
           name: "--db",
           description:
             "Path to a local PyUp Safety vulnerabilities database. Default: ENV PIPENV_SAFETY_DB or None",
+          args: {
+            name: "Database",
+          },
         },
         {
           name: ["-i", "--ignore"],
           description:
             "Ignore specified vulnerability during PyUp Safety checks",
+          args: {
+            name: "Vulnerability ID",
+          },
         },
         {
           name: "--output",
@@ -34,14 +44,20 @@ const completionSpec: Fig.Spec = {
           name: "--key",
           description:
             "Safety API key from PyUp.io for scanning dependencies against a live vulnerabilities database. Leave blank for scanning against a database that only updates once a month",
+          args: {
+            name: "API key",
+          },
         },
         {
-          name: "--quite",
+          name: "--quiet",
           description: "Quiet standard output, except vulnerability report",
         },
         {
           name: "--python",
           description: "Specify which version of Python virtualenv should use",
+          args: {
+            name: "py_version",
+          },
         },
         {
           name: "--three",
@@ -62,6 +78,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "--pypi-mirror",
           description: "Specify a PyPI mirror",
+          args: {
+            name: "mirror",
+          },
         },
         {
           name: "--system",
@@ -69,7 +88,6 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-
     {
       name: "clean",
       description: "Uninstalls all packages not specified in Pipfile.lock",
@@ -85,6 +103,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "--python",
           description: "Specify which version of Python virtualenv should use",
+          args: {
+            name: "py_version",
+          },
         },
         {
           name: "--three",
@@ -100,7 +121,6 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-
     {
       name: "graph",
       description: "Displays currently-installed dependency graph information",
@@ -123,11 +143,10 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-
     {
       name: "install",
       description:
-        "Initalizes a package manager or installs all packages from Pipfile",
+        "Initializes a package manager or installs all packages from Pipfile",
       args: {
         name: "package",
         description: "Package to install",
@@ -168,6 +187,9 @@ const completionSpec: Fig.Spec = {
           name: ["-e", "--editable"],
           description:
             "An editable Python package URL or path, often to a VCS repository",
+          args: {
+            name: "Package URL | path",
+          },
         },
         {
           name: "--ignore-pipfile",
@@ -176,19 +198,33 @@ const completionSpec: Fig.Spec = {
         {
           name: "--selective-upgrade",
           description: "Update specified packages",
+          args: {
+            name: "package",
+            isVariadic: true,
+          },
         },
         {
           name: ["-r", "--requirements"],
           description: "Import a requirements.txt file",
+          args: {
+            name: "path",
+            generators: filepaths({ extensions: ["txt", "yml", "yaml"] }),
+          },
         },
         {
           name: "--extra-index-url",
           description:
             "URLs to the extra PyPI compatible indexes to query for package look-ups",
+          args: {
+            name: "URL",
+          },
         },
         {
           name: ["-i", "--index"],
           description: "Target PyPI-compatible package index url",
+          args: {
+            name: "URL",
+          },
         },
         {
           name: "--sequential",
@@ -211,6 +247,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "--python",
           description: "Specify which version of Python virtualenv should use",
+          args: {
+            name: "py_version",
+          },
         },
         {
           name: "--three",
@@ -232,10 +271,12 @@ const completionSpec: Fig.Spec = {
           name: "--pypi-mirror",
           description:
             "If you would like to override the default PyPI index URLs with the URL for a PyPI mirror",
+          args: {
+            name: "mirror url",
+          },
         },
       ],
     },
-
     {
       name: "lock",
       description: "Generates Pipfile.lock",
@@ -303,13 +344,11 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-
     {
       name: "open",
       description: "View a given module in your editor",
       args: {
         name: "module",
-        isOptional: false,
       },
       options: [
         {
@@ -339,7 +378,6 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-
     {
       name: "run",
       description: "Spawns a command installed into the virtualenv",
@@ -352,6 +390,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "--python",
           description: "Specify which version of Python virtualenv should use",
+          args: {
+            name: "py_version",
+          },
         },
         {
           name: "--three",
@@ -373,10 +414,12 @@ const completionSpec: Fig.Spec = {
           name: "--pypi-mirror",
           description:
             "If you would like to override the default PyPI index URLs with the URL for a PyPI mirror",
+          args: {
+            name: "mirror url",
+          },
         },
       ],
     },
-
     {
       name: "scripts",
       description: "Lists scripts in current environment config",
@@ -384,6 +427,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "--python",
           description: "Specify which version of Python virtualenv should use",
+          args: {
+            name: "py_version",
+          },
         },
         {
           name: "--three",
@@ -405,10 +451,12 @@ const completionSpec: Fig.Spec = {
           name: "--pypi-mirror",
           description:
             "If you would like to override the default PyPI index URLs with the URL for a PyPI mirror",
+          args: {
+            name: "mirror url",
+          },
         },
       ],
     },
-
     {
       name: "shell",
       description: "Start a shell within the environment",
@@ -421,6 +469,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "--python",
           description: "Specify which version of Python virtualenv should use",
+          args: {
+            name: "py_version",
+          },
         },
         {
           name: "--three",
@@ -439,10 +490,12 @@ const completionSpec: Fig.Spec = {
           name: "--pypi-mirror",
           description:
             "If you would like to override the default PyPI index URLs with the URL for a PyPI mirror",
+          args: {
+            name: "mirror url",
+          },
         },
       ],
     },
-
     {
       name: "sync",
       description: "Installs all packages specified in Pipfile.lock",
@@ -476,6 +529,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "--python",
           description: "Specify which version of Python virtualenv should use",
+          args: {
+            name: "py_version",
+          },
         },
         {
           name: "--three",
@@ -497,10 +553,12 @@ const completionSpec: Fig.Spec = {
           name: "--pypi-mirror",
           description:
             "If you would like to override the default PyPI index URLs with the URL for a PyPI mirror",
+          args: {
+            name: "mirror url",
+          },
         },
       ],
     },
-
     {
       name: "uninstall",
       description: "Uninstalls a provided package and removes it from Pipfile",
@@ -524,6 +582,10 @@ const completionSpec: Fig.Spec = {
           name: ["-e", "--editable"],
           description:
             "An editable Python package URL or path, often to a VCS repository",
+          args: {
+            name: "path",
+            template: "folders",
+          },
         },
         {
           name: "--skip-lock",
@@ -546,6 +608,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "--python",
           description: "Specify which version of Python virtualenv should use",
+          args: {
+            name: "py_version",
+          },
         },
         {
           name: "--three",
@@ -567,10 +632,12 @@ const completionSpec: Fig.Spec = {
           name: "--pypi-mirror",
           description:
             "If you would like to override the default PyPI index URLs with the URL for a PyPI mirror",
+          args: {
+            name: "mirror url",
+          },
         },
       ],
     },
-
     {
       name: "update",
       description: "Runs lock, then sync",
@@ -591,6 +658,10 @@ const completionSpec: Fig.Spec = {
           name: ["-e", "--editable"],
           description:
             "An editable Python package URL or path, often to a VCS repository",
+          args: {
+            name: "path",
+            template: "folders",
+          },
         },
         {
           name: "--ignore-pipfile",
@@ -599,6 +670,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "--selective-upgrade",
           description: "Update specified packages",
+          args: {
+            name: "packages",
+            isVariadic: true,
+          },
         },
         {
           name: ["-r", "--requirements"],
@@ -608,10 +683,17 @@ const completionSpec: Fig.Spec = {
           name: "--extra-index-url",
           description:
             "URLs to the extra PyPI compatible indexes to query for package look-ups",
+          args: {
+            name: "url",
+            isVariadic: true,
+          },
         },
         {
           name: ["-i", "--index"],
           description: "Target PyPI-compatible package index url",
+          args: {
+            name: "index",
+          },
         },
         {
           name: "--sequential",
@@ -634,6 +716,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "--python",
           description: "Specify which version of Python virtualenv should use",
+          args: {
+            name: "py_version",
+          },
         },
         {
           name: "--three",
@@ -655,6 +740,9 @@ const completionSpec: Fig.Spec = {
           name: "--pypi-mirror",
           description:
             "If you would like to override the default PyPI index URLs with the URL for a PyPI mirror",
+          args: {
+            name: "mirror url",
+          },
         },
       ],
     },
@@ -665,59 +753,48 @@ const completionSpec: Fig.Spec = {
       name: "--where",
       description: "View project home information",
     },
-
     {
       name: "--venv",
       description: "View virtualenv information",
     },
-
     {
       name: "--py",
       description: "View python interpreter information",
     },
-
     {
       name: "--envs",
       description: "View environment variable options",
     },
-
     {
       name: "--rm",
       description: "Remove the virtualenv",
     },
-
     {
       name: "--bare",
       description: "Minimal output",
     },
-
     {
       name: "--completion",
       description: "Output completion (to be executed by shell)",
     },
-
     {
       name: "--man",
       description: "Display manpage",
     },
-
     {
       name: "--support",
       description: "View diagnostic information for use in GitHub issues",
     },
-
     {
       name: "--site-packages",
       description:
         "Enable site-packages for the virtualenv [env var: PIPENV_SITE_PACKAGES]",
     },
-
     {
       name: "--no-site-packages",
       description:
         "Enable site-packages for the virtualenv [env var: PIPENV_SITE_PACKAGES]",
     },
-
     {
       name: "--python",
       description: "Specify which version of Python virtualenv should use",
@@ -728,28 +805,23 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
       },
     },
-
     {
       name: "--three",
       description: "Use python 3 when creating virtualenv",
     },
-
     {
       name: "--two",
       description: "Use python 2 when creating virtualenv",
     },
-
     {
       name: "--clear",
       description:
         "Clears caches (pipenv, pip, and pip-tools). [env var: PIPENV_CLEAR]",
     },
-
     {
       name: ["-v", "--verbose"],
       description: "Verbose mode",
     },
-
     {
       name: "--pypi-mirror",
       description: "Specify a PyPi mirror",
@@ -757,12 +829,10 @@ const completionSpec: Fig.Spec = {
         name: "mirror",
       },
     },
-
     {
       name: "--version",
       description: "View your current pipenv version",
     },
-
     {
       name: ["-h", "--help"],
       description: "List commands",

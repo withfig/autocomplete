@@ -302,7 +302,6 @@ const completion: Fig.Spec = {
         {
           name: "update",
           description: "Updates all installed infra services",
-
           options: [...commonOptions],
         },
       ],
@@ -328,7 +327,7 @@ const completion: Fig.Spec = {
         {
           name: "ITHAPPID",
           description:
-            "	Names and versions of the multiple apps ({vendor}.{appname}@{x.x.x}) to install",
+            "Names and versions of the multiple apps ({vendor}.{appname}@{x.x.x}) to install",
           isOptional: true,
         },
       ],

@@ -1618,7 +1618,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--base-image",
           description:
-            "The registry path of the container image to use as the starting point for this version. The path is an Amazon Container Registry (ECR) URI in the following format:  &lt;acct-id&gt;.dkr.ecr.&lt;region&gt;.amazonaws.com/&lt;repo-name[:tag] or [@digest]&gt;",
+            "The registry path of the container image to use as the starting point for this version. The path is an Amazon Container Registry (ECR) URI in the following format:  <acct-id>.dkr.ecr.<region>.amazonaws.com/<repo-name[:tag] or [@digest]>",
           args: {
             name: "string",
           },
@@ -2318,7 +2318,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-monitoring-schedule",
       description:
-        "Creates a schedule that regularly starts Amazon SageMaker Processing Jobs to monitor the data captured for an Amazon SageMaker Endoint",
+        "Creates a schedule that regularly starts Amazon SageMaker Processing Jobs to monitor the data captured for an Amazon SageMaker Endpoint",
       options: [
         {
           name: "--monitoring-schedule-name",
@@ -4722,7 +4722,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-workforce",
       description:
-        "Use this operation to delete a workforce. If you want to create a new workforce in an AWS Region where a workforce already exists, use this operation to delete the existing workforce and then use to create a new workforce.  If a private workforce contains one or more work teams, you must use the operation to delete all work teams before you delete the workforce. If you try to delete a workforce that contains one or more work teams, you will recieve a ResourceInUse error",
+        "Use this operation to delete a workforce. If you want to create a new workforce in an AWS Region where a workforce already exists, use this operation to delete the existing workforce and then use to create a new workforce.  If a private workforce contains one or more work teams, you must use the operation to delete all work teams before you delete the workforce. If you try to delete a workforce that contains one or more work teams, you will receive a ResourceInUse error",
       options: [
         {
           name: "--workforce-name",
@@ -7776,7 +7776,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "If the result of the previous ListDataQualityJobDefinitions request was truncated, the response includes a NextToken. To retrieve the next set of transform jobs, use the token in the next request.&gt;",
+            "If the result of the previous ListDataQualityJobDefinitions request was truncated, the response includes a NextToken. To retrieve the next set of transform jobs, use the token in the next request.>",
           args: {
             name: "string",
           },
@@ -12247,7 +12247,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-model-package-group-policy",
       description:
-        "Adds a resouce policy to control access to a model group. For information about resoure policies, see Identity-based policies and resource-based policies in the AWS Identity and Access Management User Guide",
+        "Adds a resource policy to control access to a model group. For information about resource policies, see Identity-based policies and resource-based policies in the AWS Identity and Access Management User Guide",
       options: [
         {
           name: "--model-package-group-name",

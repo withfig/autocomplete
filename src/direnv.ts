@@ -1,3 +1,5 @@
+import { filepaths } from "@fig/autocomplete-generators";
+
 const PRIORITY_TOP_THRESHOLD = 76;
 const PRIORITY_BOTTOM_THRESHOLD = 49;
 
@@ -20,21 +22,9 @@ const envrcFilepathsGenerator = (
   },
 });
 
-const dotenvFilepathsGenerator = (
-  suggestOptions?: Partial<Fig.Suggestion>
-): Fig.Generator => ({
-  template: "filepaths",
-  filterTemplateSuggestions: (paths) => {
-    const isEnv = (fileName: string) =>
-      fileName.includes(".env") && !fileName.includes(".envrc");
-    return paths
-      .filter((file) => isEnv(file.name) || file.name.endsWith("/"))
-      .map((file) => ({
-        ...file,
-        priority: isEnv(file.name) && PRIORITY_TOP_THRESHOLD,
-        ...suggestOptions,
-      }));
-  },
+const dotenvFilepathsGenerator = filepaths({
+  matches: /\.env(?!rc)/g,
+  editFileSuggestions: { priority: PRIORITY_TOP_THRESHOLD },
 });
 
 /*
@@ -208,7 +198,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "PATH_TO_DOTENV",
-          generators: dotenvFilepathsGenerator(),
+          generators: dotenvFilepathsGenerator,
         },
       ],
     },

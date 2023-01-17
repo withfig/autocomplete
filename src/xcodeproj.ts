@@ -1,14 +1,14 @@
-const getProjectsAndFolders: Fig.Function<
-  Fig.Modify<Fig.Suggestion, { name?: string }>[],
-  Fig.Suggestion[]
-> = (paths) => {
-  return paths.map((file) => {
-    const isXcodeProjFolder = file.name.endsWith(".xcodeproj/");
-    return {
-      ...file,
-      priority: isXcodeProjFolder && 76,
-    };
-  });
+const projectsAndFoldersGenerator: Fig.Generator = {
+  template: "folders",
+  filterTemplateSuggestions: (paths) => {
+    return paths.map((file) => {
+      const isXcodeProjFolder = file.name.endsWith(".xcodeproj/");
+      return {
+        ...file,
+        priority: isXcodeProjFolder && 76,
+      };
+    });
+  },
 };
 
 const completionSpec: Fig.Spec = {
@@ -23,10 +23,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "PROJECT",
           isOptional: true,
-          generators: {
-            template: "folders",
-            filterTemplateSuggestions: getProjectsAndFolders,
-          },
+          generators: projectsAndFoldersGenerator,
         },
         {
           name: "OUTPUT",
@@ -41,7 +38,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--ignore",
-          requiresEquals: true,
+          requiresSeparator: true,
           isRepeatable: true,
           description:
             "A key to ignore in the comparison. Can be specified multiple times",
@@ -53,17 +50,11 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "PROJECT1",
-          generators: {
-            template: "folders",
-            filterTemplateSuggestions: getProjectsAndFolders,
-          },
+          generators: projectsAndFoldersGenerator,
         },
         {
           name: "PROJECT2",
-          generators: {
-            template: "folders",
-            filterTemplateSuggestions: getProjectsAndFolders,
-          },
+          generators: projectsAndFoldersGenerator,
         },
       ],
     },
@@ -73,7 +64,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--format",
-          requiresEquals: true,
+          requiresSeparator: true,
           description: "YAML output format",
           args: {
             name: "FORMAT",
@@ -84,10 +75,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "PROJECT",
         isOptional: true,
-        generators: {
-          template: "folders",
-          filterTemplateSuggestions: getProjectsAndFolders,
-        },
+        generators: projectsAndFoldersGenerator,
       },
     },
     {
@@ -96,7 +84,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--group-option",
-          requiresEquals: true,
+          requiresSeparator: true,
           description:
             "The position of the groups when sorting. If no option is specified sorting will interleave groups and files",
           args: {
@@ -107,10 +95,7 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "PROJECT",
-        generators: {
-          template: "folders",
-          filterTemplateSuggestions: getProjectsAndFolders,
-        },
+        generators: projectsAndFoldersGenerator,
         isOptional: true,
       },
     },
@@ -123,10 +108,7 @@ const completionSpec: Fig.Spec = {
           description: "The Xcode project document to use",
           args: {
             name: "PATH",
-            generators: {
-              template: "folders",
-              filterTemplateSuggestions: getProjectsAndFolders,
-            },
+            generators: projectsAndFoldersGenerator,
           },
         },
       ],

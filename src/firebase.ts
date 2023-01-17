@@ -72,7 +72,6 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-
     {
       name: "apps:android:sha:create",
       description: "Add a SHA certificate hash for a given app id",
@@ -798,7 +797,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--only",
           description:
-            'Only show logs of specified, comma-seperated functions (e.g. "funcA,funcB")',
+            'Only show logs of specified, comma-separated functions (e.g. "funcA,funcB")',
           args: {},
         },
         {

@@ -39,6 +39,17 @@ const completionSpec: Fig.Spec = {
       description: "Open Railway Documentation in default browser",
     },
     {
+      name: "down",
+      description: "Remove the most recent deployment",
+      options: [
+        {
+          name: ["-e", "--environment"],
+          description: "Environment to delete from",
+          args: {},
+        },
+      ],
+    },
+    {
       name: "environment",
       description: "Change your environment",
       args: {
@@ -63,7 +74,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "link",
-      description: "Connect to an exisiting railway project",
+      description: "Connect to an existing railway project",
       args: {
         name: "project-id",
         description: "The project to link to",
@@ -130,6 +141,22 @@ const completionSpec: Fig.Spec = {
           description: "Environment to run in",
           args: {},
         },
+        {
+          name: ["-s", "--service"],
+          description: "Define specific service",
+          args: { name: "Service name" },
+        },
+      ],
+    },
+    {
+      name: "shell",
+      description: "Open a subshell with Railway variables available",
+      options: [
+        {
+          name: ["-s", "--service"],
+          description: "Deploy app to specific service",
+          args: { name: "Service name" },
+        },
       ],
     },
     {
@@ -152,6 +179,11 @@ const completionSpec: Fig.Spec = {
       options: [
         { name: ["-d", "--detach"], description: "Detach from build logs" },
         { name: ["-e", "--environment"], description: "Environment to run in" },
+        {
+          name: ["-s", "--service"],
+          description: "Deploy app to specific service",
+          args: { name: "Service name" },
+        },
       ],
     },
     {
@@ -189,7 +221,14 @@ const completionSpec: Fig.Spec = {
           ],
         },
       ],
-      options: [{ name: ["-e", "--environment"], description: "Environment" }],
+      options: [
+        { name: ["-e", "--environment"], description: "Environment" },
+        {
+          name: ["-s", "--service"],
+          description: "Deploy app to specific service",
+          args: { name: "Service name" },
+        },
+      ],
     },
     {
       name: "version",

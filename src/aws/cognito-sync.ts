@@ -633,7 +633,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--dataset-name",
-          description: "The name of the dataset to subcribe to",
+          description: "The name of the dataset to subscribe to",
           args: {
             name: "string",
           },

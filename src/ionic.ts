@@ -330,14 +330,12 @@ const completionSpec = {
         {
           name: "name",
           description: 'The name of your new project (e.g. myApp, "My App")',
-          isOptional: false,
         },
         // Hard to do suggestions for template b/c different templates exist for different --types
         {
           name: "template",
           description:
             "The starter template to use (e.g. blank, tabs; use --list to see all)",
-          isOptional: false,
         },
       ],
       description: "Create a new project",
@@ -393,12 +391,10 @@ const completionSpec = {
             {
               name: "property",
               description: "The property name you wish to set",
-              isOptional: false,
             },
             {
               name: "value",
               description: "The new value of the given property",
-              isOptional: false,
             },
           ],
           description: "Set config values",
@@ -418,7 +414,6 @@ const completionSpec = {
           args: {
             name: "property",
             description: "The property name you wish to delete",
-            isOptional: false,
           },
           description: "Delete config values",
         },
@@ -433,7 +428,6 @@ const completionSpec = {
           args: {
             name: "platform",
             description: "The platform to add (e.g. android, ios)",
-            isOptional: false,
             suggestions: ["ios", "android"],
           },
           description: "Add a native platform to your Ionic project",
@@ -469,7 +463,6 @@ const completionSpec = {
           args: {
             name: "platform",
             description: "The platform to build for (e.g. android, ios)",
-            isOptional: false,
             suggestions: ["ios", "android"],
           },
           description: "Build an Ionic project for a given platform",
@@ -510,7 +503,6 @@ const completionSpec = {
           args: {
             name: "platform",
             description: "The platform to open (e.g. android, ios)",
-            isOptional: false,
             suggestions: ["ios", "android"],
           },
           description: "Open the IDE for a given native platform project",
@@ -601,7 +593,6 @@ const completionSpec = {
           args: {
             name: "platform",
             description: "The platform to run (e.g. android, ios)",
-            isOptional: false,
             suggestions: ["ios", "android"],
           },
           description: "Run an Ionic project on a connected device",
@@ -917,14 +908,12 @@ const completionSpec = {
             {
               name: "platform",
               description: "The platform to package (android, ios)",
-              isOptional: false,
               suggestions: ["ios", "android"],
             },
             {
               name: "type",
               description:
                 "The build type (debug, release, development, ad-hoc, app-store, enterprise)",
-              isOptional: false,
               suggestions: [
                 "debug",
                 "release",
@@ -944,13 +933,11 @@ const completionSpec = {
               name: "build-id",
               description:
                 "The build id of the desired successful package build",
-              isOptional: false,
             },
             {
               name: "destination",
               description:
                 "The destination to deploy the build artifact to the app store",
-              isOptional: false,
             },
           ],
           description:
@@ -1051,7 +1038,6 @@ const completionSpec = {
           args: {
             name: "pubkey-path",
             description: "Location of public key file to add to Ionic",
-            isOptional: false,
           },
           description: "Add an SSH public key to Ionic",
         },
@@ -1060,7 +1046,6 @@ const completionSpec = {
           args: {
             name: "key-id",
             description: "The ID of the public key to delete",
-            isOptional: false,
           },
           description: "Delete an SSH public key from Ionic",
         },
@@ -1119,7 +1104,6 @@ const completionSpec = {
           args: {
             name: "key-path",
             description: "Location of private key file to use",
-            isOptional: false,
           },
           description: "Set your active Ionic SSH key",
         },
@@ -1163,7 +1147,6 @@ const completionSpec = {
             name: "name",
             description:
               "The integration to disable (e.g. capacitor, cordova, enterprise)",
-            isOptional: false,
             suggestions: ["capacitor", "cordova", "enterprise"],
           },
           description: "Disable an integration",
@@ -1192,7 +1175,6 @@ const completionSpec = {
             name: "name",
             description:
               "The integration to enable (e.g. capacitor, cordova, enterprise)",
-            isOptional: false,
             suggestions: ["capacitor", "cordova", "enterprise"],
           },
           description: "Add & enable integrations to your app",
@@ -1284,7 +1266,6 @@ const completionSpec = {
           args: {
             name: "platform",
             description: "The platform to build (e.g. android, ios)",
-            isOptional: false,
             suggestions: ["ios", "android"],
           },
           description:
@@ -1321,7 +1302,6 @@ const completionSpec = {
           args: {
             name: "platform",
             description: "The platform to compile (android, ios)",
-            isOptional: false,
             suggestions: ["ios", "android"],
           },
           description: "Compile native platform code",
@@ -1463,7 +1443,6 @@ const completionSpec = {
           args: {
             name: "platform",
             description: "The platform to run (e.g. android, ios)",
-            isOptional: false,
             suggestions: ["ios", "android"],
           },
           description: "Emulate an Ionic project on a simulator/emulator",
@@ -1724,7 +1703,6 @@ const completionSpec = {
           args: {
             name: "platform",
             description: "The platform to run (e.g. android, ios)",
-            isOptional: false,
             suggestions: ["ios", "android"],
           },
           description: "Run an Ionic project on a connected device",

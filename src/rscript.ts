@@ -1,3 +1,5 @@
+import { filepaths } from "@fig/autocomplete-generators";
+
 const completionSpec: Fig.Spec = {
   name: "Rscript",
   description: "Scripting Front-End for R",
@@ -64,7 +66,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--default-packages",
       description: "Comma separated list of default packages",
-      requiresEquals: true,
+      requiresSeparator: true,
       icon: "📦",
       args: {
         name: "packages",
@@ -77,22 +79,10 @@ const completionSpec: Fig.Spec = {
       name: "file",
       description: "R script to run",
       isScript: true,
-      generators: {
-        template: "filepaths",
-        filterTemplateSuggestions: function (paths) {
-          return paths
-            .filter((file) => {
-              return file.name.endsWith(".R") || file.name.endsWith("/");
-            })
-            .map((file) => {
-              const isRFile = file.name.endsWith(".R");
-              return {
-                ...file,
-                priority: isRFile && 76,
-              };
-            });
-        },
-      },
+      generators: filepaths({
+        extensions: ["R"],
+        editFileSuggestions: { priority: 76 },
+      }),
     },
     {
       name: "args",

@@ -180,7 +180,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--semantic-version",
           description:
-            "The semantic version of the container recipe (&lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;)",
+            "The semantic version of the container recipe (<major>.<minor>.<patch>)",
           args: {
             name: "string",
           },
@@ -1729,7 +1729,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maxiumum number of results to return from the ListImagePackages request",
+            "The maximum number of results to return from the ListImagePackages request",
           args: {
             name: "integer",
           },

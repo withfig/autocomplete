@@ -1,5 +1,46 @@
+const contexts: Fig.Generator = {
+  script: "okteto context list",
+  cache: {
+    ttl: 1000 * 60 * 30, // 30 minutes
+  },
+  postProcess: (output) => {
+    return output
+      .split("\n")
+      .slice(1)
+      .map((context, ind) => {
+        context = context.split(" ")[0];
+        return {
+          name: context.replace("*", "").trim(),
+          description: "Context",
+          icon: "fig://icon?type=okteto",
+        };
+      });
+  },
+};
+
+const namespaces: Fig.Generator = {
+  script: "okteto namespace list",
+  cache: {
+    ttl: 1000 * 60 * 30, // 30 minutes
+  },
+  postProcess: (output) => {
+    return output
+      .split("\n")
+      .slice(1)
+      .map((namespace, ind) => {
+        namespace = namespace.split(" ")[0];
+        return {
+          name: namespace.replace("*", "").trim(),
+          description: "Namespace",
+          icon: "fig://icon?type=okteto",
+        };
+      });
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "okteto",
+  icon: "fig://icon?type=okteto",
   description: "Okteto - Remote Development Environments powered by Kubernetes",
   subcommands: [
     {
@@ -12,6 +53,12 @@ const completionSpec: Fig.Spec = {
             "Amount of information outputted (debug, info, warn, error)",
           displayName: "loglevel",
           args: { name: "loglevel", default: "warn" },
+        },
+        {
+          name: ["--output", "-o"],
+          description: "Output format (tty, plain, json)",
+          displayName: "output",
+          args: { name: "output", default: "tty" },
         },
         {
           name: ["--disable", "-d"],
@@ -37,6 +84,12 @@ const completionSpec: Fig.Spec = {
           args: { name: "loglevel", default: "warn" },
         },
         {
+          name: ["--output", "-o"],
+          description: "Output format (tty, plain, json)",
+          displayName: "output",
+          args: { name: "output", default: "tty" },
+        },
+        {
           name: "--build-arg",
           description: "Set build-time variables",
           isRepeatable: true,
@@ -55,6 +108,13 @@ const completionSpec: Fig.Spec = {
           description: "Name of the Dockerfile (Default is 'PATH/Dockerfile')",
           displayName: "file",
           args: { name: "file" },
+        },
+        {
+          name: "--namespace",
+          description:
+            "Namespace against which the image will be consumed. Default is the one defined at okteto context or okteto manifest",
+          displayName: "namespace",
+          args: { name: "namespace" },
         },
         {
           name: "--no-cache",
@@ -111,6 +171,12 @@ const completionSpec: Fig.Spec = {
               args: { name: "loglevel", default: "warn" },
             },
             {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
+            },
+            {
               name: "--no-descriptions",
               description: "Disable completion descriptions",
               displayName: "no-descriptions",
@@ -132,6 +198,12 @@ const completionSpec: Fig.Spec = {
                 "Amount of information outputted (debug, info, warn, error)",
               displayName: "loglevel",
               args: { name: "loglevel", default: "warn" },
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
             },
             {
               name: "--no-descriptions",
@@ -157,6 +229,12 @@ const completionSpec: Fig.Spec = {
               args: { name: "loglevel", default: "warn" },
             },
             {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
+            },
+            {
               name: "--no-descriptions",
               description: "Disable completion descriptions",
               displayName: "no-descriptions",
@@ -180,6 +258,12 @@ const completionSpec: Fig.Spec = {
               args: { name: "loglevel", default: "warn" },
             },
             {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
+            },
+            {
               name: "--no-descriptions",
               description: "Disable completion descriptions",
               displayName: "no-descriptions",
@@ -201,6 +285,12 @@ const completionSpec: Fig.Spec = {
           args: { name: "loglevel", default: "warn" },
         },
         {
+          name: ["--output", "-o"],
+          description: "Output format (tty, plain, json)",
+          displayName: "output",
+          args: { name: "output", default: "tty" },
+        },
+        {
           name: ["--help", "-h"],
           description: "Help for completion",
           displayName: "help",
@@ -212,44 +302,11 @@ const completionSpec: Fig.Spec = {
       description: "Set the default context",
       subcommands: [
         {
-          name: "create",
-          description: "Add a context",
-          options: [
-            {
-              name: ["--loglevel", "-l"],
-              description:
-                "Amount of information outputted (debug, info, warn, error)",
-              displayName: "loglevel",
-              args: { name: "loglevel", default: "warn" },
-            },
-            {
-              name: ["--builder", "-b"],
-              description: "Url of the builder service",
-              displayName: "builder",
-              args: { name: "builder" },
-            },
-            {
-              name: ["--namespace", "-n"],
-              description: "Namespace of your okteto context",
-              displayName: "namespace",
-              args: { name: "namespace" },
-            },
-            {
-              name: ["--token", "-t"],
-              description: "API token for authentication",
-              displayName: "token",
-              args: { name: "token" },
-            },
-            {
-              name: ["--help", "-h"],
-              description: "Help for create",
-              displayName: "help",
-            },
-          ],
-        },
-        {
           name: "delete",
           description: "Delete a context",
+          args: {
+            generators: contexts,
+          },
           options: [
             {
               name: ["--loglevel", "-l"],
@@ -257,6 +314,12 @@ const completionSpec: Fig.Spec = {
                 "Amount of information outputted (debug, info, warn, error)",
               displayName: "loglevel",
               args: { name: "loglevel", default: "warn" },
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
             },
             {
               name: ["--help", "-h"],
@@ -275,6 +338,12 @@ const completionSpec: Fig.Spec = {
                 "Amount of information outputted (debug, info, warn, error)",
               displayName: "loglevel",
               args: { name: "loglevel", default: "warn" },
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
             },
             {
               name: ["--help", "-h"],
@@ -296,9 +365,9 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--output", "-o"],
-              description: "Output format. One of: ['json', 'yaml']",
+              description: "Output format (tty, plain, json)",
               displayName: "output",
-              args: { name: "output", default: "json" },
+              args: { name: "output", default: "tty" },
             },
             {
               name: ["--help", "-h"],
@@ -308,26 +377,11 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: "update-kubeconfig",
-          description: "Download kubectl credentials for the current context",
-          options: [
-            {
-              name: ["--loglevel", "-l"],
-              description:
-                "Amount of information outputted (debug, info, warn, error)",
-              displayName: "loglevel",
-              args: { name: "loglevel", default: "warn" },
-            },
-            {
-              name: ["--help", "-h"],
-              description: "Help for update-kubeconfig",
-              displayName: "help",
-            },
-          ],
-        },
-        {
           name: "use",
           description: "Set the default context",
+          args: {
+            generators: contexts,
+          },
           options: [
             {
               name: ["--loglevel", "-l"],
@@ -335,6 +389,12 @@ const completionSpec: Fig.Spec = {
                 "Amount of information outputted (debug, info, warn, error)",
               displayName: "loglevel",
               args: { name: "loglevel", default: "warn" },
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
             },
             {
               name: ["--builder", "-b"],
@@ -366,24 +426,6 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
-        {
-          name: "use-namespace",
-          description: "Set the namespace of the current context",
-          options: [
-            {
-              name: ["--loglevel", "-l"],
-              description:
-                "Amount of information outputted (debug, info, warn, error)",
-              displayName: "loglevel",
-              args: { name: "loglevel", default: "warn" },
-            },
-            {
-              name: ["--help", "-h"],
-              description: "Help for use-namespace",
-              displayName: "help",
-            },
-          ],
-        },
       ],
       options: [
         {
@@ -392,6 +434,12 @@ const completionSpec: Fig.Spec = {
             "Amount of information outputted (debug, info, warn, error)",
           displayName: "loglevel",
           args: { name: "loglevel", default: "warn" },
+        },
+        {
+          name: ["--output", "-o"],
+          description: "Output format (tty, plain, json)",
+          displayName: "output",
+          args: { name: "output", default: "tty" },
         },
         {
           name: ["--builder", "-b"],
@@ -424,90 +472,6 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "create",
-      description: "Create resources",
-      subcommands: [
-        {
-          name: "namespace",
-          description: "Create a namespace",
-          options: [
-            {
-              name: ["--loglevel", "-l"],
-              description:
-                "Amount of information outputted (debug, info, warn, error)",
-              displayName: "loglevel",
-              args: { name: "loglevel", default: "warn" },
-            },
-            {
-              name: ["--members", "-m"],
-              description:
-                "Members of the namespace, it can the username or email",
-              isRepeatable: true,
-              displayName: "members",
-              args: { name: "members" },
-            },
-            {
-              name: ["--help", "-h"],
-              description: "Help for namespace",
-              displayName: "help",
-            },
-          ],
-        },
-      ],
-      options: [
-        {
-          name: ["--loglevel", "-l"],
-          description:
-            "Amount of information outputted (debug, info, warn, error)",
-          displayName: "loglevel",
-          args: { name: "loglevel", default: "warn" },
-        },
-        {
-          name: ["--help", "-h"],
-          description: "Help for create",
-          displayName: "help",
-        },
-      ],
-    },
-    {
-      name: "delete",
-      description: "Delete resources",
-      subcommands: [
-        {
-          name: "namespace",
-          description: "Delete a namespace",
-          options: [
-            {
-              name: ["--loglevel", "-l"],
-              description:
-                "Amount of information outputted (debug, info, warn, error)",
-              displayName: "loglevel",
-              args: { name: "loglevel", default: "warn" },
-            },
-            {
-              name: ["--help", "-h"],
-              description: "Help for namespace",
-              displayName: "help",
-            },
-          ],
-        },
-      ],
-      options: [
-        {
-          name: ["--loglevel", "-l"],
-          description:
-            "Amount of information outputted (debug, info, warn, error)",
-          displayName: "loglevel",
-          args: { name: "loglevel", default: "warn" },
-        },
-        {
-          name: ["--help", "-h"],
-          description: "Help for delete",
-          displayName: "help",
-        },
-      ],
-    },
-    {
       name: "doctor",
       description: "Generate a zip file with the okteto logs",
       options: [
@@ -517,6 +481,12 @@ const completionSpec: Fig.Spec = {
             "Amount of information outputted (debug, info, warn, error)",
           displayName: "loglevel",
           args: { name: "loglevel", default: "warn" },
+        },
+        {
+          name: ["--output", "-o"],
+          description: "Output format (tty, plain, json)",
+          displayName: "output",
+          args: { name: "output", default: "tty" },
         },
         {
           name: ["--context", "-c"],
@@ -553,6 +523,12 @@ const completionSpec: Fig.Spec = {
             "Amount of information outputted (debug, info, warn, error)",
           displayName: "loglevel",
           args: { name: "loglevel", default: "warn" },
+        },
+        {
+          name: ["--output", "-o"],
+          description: "Output format (tty, plain, json)",
+          displayName: "output",
+          args: { name: "output", default: "tty" },
         },
         {
           name: ["--context", "-c"],
@@ -596,6 +572,12 @@ const completionSpec: Fig.Spec = {
           args: { name: "loglevel", default: "warn" },
         },
         {
+          name: ["--output", "-o"],
+          description: "Output format (tty, plain, json)",
+          displayName: "output",
+          args: { name: "output", default: "tty" },
+        },
+        {
           name: ["--context", "-c"],
           description: "Context where the exec command is executed",
           displayName: "context",
@@ -632,6 +614,12 @@ const completionSpec: Fig.Spec = {
           args: { name: "loglevel", default: "warn" },
         },
         {
+          name: ["--output", "-o"],
+          description: "Output format (tty, plain, json)",
+          displayName: "output",
+          args: { name: "output", default: "tty" },
+        },
+        {
           name: ["--context", "-c"],
           description: "Context target for generating the okteto manifest",
           displayName: "context",
@@ -650,7 +638,7 @@ const completionSpec: Fig.Spec = {
           args: { name: "namespace" },
         },
         {
-          name: ["--overwrite", "-o"],
+          name: "--overwrite",
           description: "Overwrite existing manifest file",
           displayName: "overwrite",
         },
@@ -662,11 +650,95 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "list",
-      description: "List resources",
+      name: "kubeconfig",
+      description:
+        "Download credentials for the Kubernetes cluster selected via 'okteto context'",
+      options: [
+        {
+          name: ["--loglevel", "-l"],
+          description:
+            "Amount of information outputted (debug, info, warn, error)",
+          displayName: "loglevel",
+          args: { name: "loglevel", default: "warn" },
+        },
+        {
+          name: ["--output", "-o"],
+          description: "Output format (tty, plain, json)",
+          displayName: "output",
+          args: { name: "output", default: "tty" },
+        },
+        {
+          name: ["--help", "-h"],
+          description: "Help for kubeconfig",
+          displayName: "help",
+        },
+      ],
+    },
+    {
+      name: ["ns", "namespace"],
+      description: "Configure the current namespace of the okteto context",
       subcommands: [
         {
-          name: "namespace",
+          name: "create",
+          description: "Create a namespace",
+          options: [
+            {
+              name: ["--loglevel", "-l"],
+              description:
+                "Amount of information outputted (debug, info, warn, error)",
+              displayName: "loglevel",
+              args: { name: "loglevel", default: "warn" },
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
+            },
+            {
+              name: ["--members", "-m"],
+              description:
+                "Members of the namespace, it can the username or email",
+              isRepeatable: true,
+              displayName: "members",
+              args: { name: "members" },
+            },
+            {
+              name: ["--help", "-h"],
+              description: "Help for create",
+              displayName: "help",
+            },
+          ],
+        },
+        {
+          name: "delete",
+          description: "Delete a namespace",
+          args: {
+            generators: namespaces,
+          },
+          options: [
+            {
+              name: ["--loglevel", "-l"],
+              description:
+                "Amount of information outputted (debug, info, warn, error)",
+              displayName: "loglevel",
+              args: { name: "loglevel", default: "warn" },
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
+            },
+            {
+              name: ["--help", "-h"],
+              description: "Help for delete",
+              displayName: "help",
+            },
+          ],
+        },
+        {
+          name: ["ls", "list"],
           description:
             "List namespaces managed by Okteto in your current context",
           options: [
@@ -678,8 +750,46 @@ const completionSpec: Fig.Spec = {
               args: { name: "loglevel", default: "warn" },
             },
             {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
+            },
+            {
               name: ["--help", "-h"],
-              description: "Help for namespace",
+              description: "Help for list",
+              displayName: "help",
+            },
+          ],
+        },
+        {
+          name: ["ns", "use"],
+          description: "Configure the current namespace of the okteto context",
+          args: {
+            generators: namespaces,
+          },
+          options: [
+            {
+              name: ["--loglevel", "-l"],
+              description:
+                "Amount of information outputted (debug, info, warn, error)",
+              displayName: "loglevel",
+              args: { name: "loglevel", default: "warn" },
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
+            },
+            {
+              name: "--personal",
+              description: "Load personal account",
+              displayName: "personal",
+            },
+            {
+              name: ["--help", "-h"],
+              description: "Help for use",
               displayName: "help",
             },
           ],
@@ -694,8 +804,19 @@ const completionSpec: Fig.Spec = {
           args: { name: "loglevel", default: "warn" },
         },
         {
+          name: ["--output", "-o"],
+          description: "Output format (tty, plain, json)",
+          displayName: "output",
+          args: { name: "output", default: "tty" },
+        },
+        {
+          name: "--personal",
+          description: "Load personal account",
+          displayName: "personal",
+        },
+        {
           name: ["--help", "-h"],
-          description: "Help for list",
+          description: "Help for namespace",
           displayName: "help",
         },
       ],
@@ -714,6 +835,12 @@ const completionSpec: Fig.Spec = {
                 "Amount of information outputted (debug, info, warn, error)",
               displayName: "loglevel",
               args: { name: "loglevel", default: "warn" },
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
             },
             {
               name: ["--branch", "-b"],
@@ -803,6 +930,12 @@ const completionSpec: Fig.Spec = {
               args: { name: "loglevel", default: "warn" },
             },
             {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
+            },
+            {
               name: ["--name", "-p"],
               description:
                 "Name of the pipeline (defaults to the git config name)",
@@ -852,6 +985,12 @@ const completionSpec: Fig.Spec = {
           args: { name: "loglevel", default: "warn" },
         },
         {
+          name: ["--output", "-o"],
+          description: "Output format (tty, plain, json)",
+          displayName: "output",
+          args: { name: "output", default: "tty" },
+        },
+        {
           name: ["--help", "-h"],
           description: "Help for pipeline",
           displayName: "help",
@@ -872,6 +1011,12 @@ const completionSpec: Fig.Spec = {
                 "Amount of information outputted (debug, info, warn, error)",
               displayName: "loglevel",
               args: { name: "loglevel", default: "warn" },
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
             },
             {
               name: ["--branch", "-b"],
@@ -954,6 +1099,12 @@ const completionSpec: Fig.Spec = {
               args: { name: "loglevel", default: "warn" },
             },
             {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
+            },
+            {
               name: ["--help", "-h"],
               description: "Help for destroy",
               displayName: "help",
@@ -973,9 +1124,9 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--output", "-o"],
-              description: "Output format. One of: ['json']",
+              description: "Output format (tty, plain, json)",
               displayName: "output",
-              args: { name: "output" },
+              args: { name: "output", default: "tty" },
             },
             {
               name: ["--help", "-h"],
@@ -996,6 +1147,12 @@ const completionSpec: Fig.Spec = {
               args: { name: "loglevel", default: "warn" },
             },
             {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
+            },
+            {
               name: ["--help", "-h"],
               description: "Help for list",
               displayName: "help",
@@ -1010,6 +1167,12 @@ const completionSpec: Fig.Spec = {
             "Amount of information outputted (debug, info, warn, error)",
           displayName: "loglevel",
           args: { name: "loglevel", default: "warn" },
+        },
+        {
+          name: ["--output", "-o"],
+          description: "Output format (tty, plain, json)",
+          displayName: "output",
+          args: { name: "output", default: "tty" },
         },
         {
           name: ["--help", "-h"],
@@ -1028,6 +1191,12 @@ const completionSpec: Fig.Spec = {
             "Amount of information outputted (debug, info, warn, error)",
           displayName: "loglevel",
           args: { name: "loglevel", default: "warn" },
+        },
+        {
+          name: ["--output", "-o"],
+          description: "Output format (tty, plain, json)",
+          displayName: "output",
+          args: { name: "output", default: "tty" },
         },
         {
           name: ["--context", "-c"],
@@ -1096,6 +1265,12 @@ const completionSpec: Fig.Spec = {
           args: { name: "loglevel", default: "warn" },
         },
         {
+          name: ["--output", "-o"],
+          description: "Output format (tty, plain, json)",
+          displayName: "output",
+          args: { name: "output", default: "tty" },
+        },
+        {
           name: ["--context", "-c"],
           description: "Context where the restart command is executed",
           displayName: "context",
@@ -1134,6 +1309,12 @@ const completionSpec: Fig.Spec = {
                 "Amount of information outputted (debug, info, warn, error)",
               displayName: "loglevel",
               args: { name: "loglevel", default: "warn" },
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
             },
             {
               name: "--build",
@@ -1204,6 +1385,12 @@ const completionSpec: Fig.Spec = {
               args: { name: "loglevel", default: "warn" },
             },
             {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
+            },
+            {
               name: ["--file", "-f"],
               description: "Path to the stack manifest file",
               isRepeatable: true,
@@ -1247,6 +1434,12 @@ const completionSpec: Fig.Spec = {
               args: { name: "loglevel", default: "warn" },
             },
             {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
+            },
+            {
               name: ["--file", "-f"],
               description:
                 "Path to the stack manifest files. If more than one is passed the latest will overwrite the fields from the previous",
@@ -1268,12 +1461,6 @@ const completionSpec: Fig.Spec = {
               args: { name: "namespace" },
             },
             {
-              name: ["--output", "-o"],
-              description: "Output format. One of: ['json']",
-              displayName: "output",
-              args: { name: "output" },
-            },
-            {
               name: ["--help", "-h"],
               description: "Help for endpoints",
               displayName: "help",
@@ -1288,6 +1475,12 @@ const completionSpec: Fig.Spec = {
             "Amount of information outputted (debug, info, warn, error)",
           displayName: "loglevel",
           args: { name: "loglevel", default: "warn" },
+        },
+        {
+          name: ["--output", "-o"],
+          description: "Output format (tty, plain, json)",
+          displayName: "output",
+          args: { name: "output", default: "tty" },
         },
         {
           name: ["--help", "-h"],
@@ -1306,6 +1499,12 @@ const completionSpec: Fig.Spec = {
             "Amount of information outputted (debug, info, warn, error)",
           displayName: "loglevel",
           args: { name: "loglevel", default: "warn" },
+        },
+        {
+          name: ["--output", "-o"],
+          description: "Output format (tty, plain, json)",
+          displayName: "output",
+          args: { name: "output", default: "tty" },
         },
         {
           name: ["--context", "-c"],
@@ -1353,6 +1552,12 @@ const completionSpec: Fig.Spec = {
             "Amount of information outputted (debug, info, warn, error)",
           displayName: "loglevel",
           args: { name: "loglevel", default: "warn" },
+        },
+        {
+          name: ["--output", "-o"],
+          description: "Output format (tty, plain, json)",
+          displayName: "output",
+          args: { name: "output", default: "tty" },
         },
         {
           name: "--build",
@@ -1418,6 +1623,12 @@ const completionSpec: Fig.Spec = {
           args: { name: "loglevel", default: "warn" },
         },
         {
+          name: ["--output", "-o"],
+          description: "Output format (tty, plain, json)",
+          displayName: "output",
+          args: { name: "output", default: "tty" },
+        },
+        {
           name: ["--help", "-h"],
           description: "Help for update",
           displayName: "help",
@@ -1434,6 +1645,12 @@ const completionSpec: Fig.Spec = {
             "Amount of information outputted (debug, info, warn, error)",
           displayName: "loglevel",
           args: { name: "loglevel", default: "warn" },
+        },
+        {
+          name: ["--output", "-o"],
+          description: "Output format (tty, plain, json)",
+          displayName: "output",
+          args: { name: "output", default: "tty" },
         },
         {
           name: ["--help", "-h"],
@@ -1458,6 +1675,12 @@ const completionSpec: Fig.Spec = {
               args: { name: "loglevel", default: "warn" },
             },
             {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
+            },
+            {
               name: ["--help", "-h"],
               description: "Help for analytics",
               displayName: "help",
@@ -1474,6 +1697,12 @@ const completionSpec: Fig.Spec = {
                 "Amount of information outputted (debug, info, warn, error)",
               displayName: "loglevel",
               args: { name: "loglevel", default: "warn" },
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
             },
             {
               name: ["--help", "-h"],
@@ -1499,6 +1728,12 @@ const completionSpec: Fig.Spec = {
                   args: { name: "loglevel", default: "warn" },
                 },
                 {
+                  name: ["--output", "-o"],
+                  description: "Output format (tty, plain, json)",
+                  displayName: "output",
+                  args: { name: "output", default: "tty" },
+                },
+                {
                   name: "--no-descriptions",
                   description: "Disable completion descriptions",
                   displayName: "no-descriptions",
@@ -1520,6 +1755,12 @@ const completionSpec: Fig.Spec = {
                     "Amount of information outputted (debug, info, warn, error)",
                   displayName: "loglevel",
                   args: { name: "loglevel", default: "warn" },
+                },
+                {
+                  name: ["--output", "-o"],
+                  description: "Output format (tty, plain, json)",
+                  displayName: "output",
+                  args: { name: "output", default: "tty" },
                 },
                 {
                   name: "--no-descriptions",
@@ -1545,6 +1786,12 @@ const completionSpec: Fig.Spec = {
                   args: { name: "loglevel", default: "warn" },
                 },
                 {
+                  name: ["--output", "-o"],
+                  description: "Output format (tty, plain, json)",
+                  displayName: "output",
+                  args: { name: "output", default: "tty" },
+                },
+                {
                   name: "--no-descriptions",
                   description: "Disable completion descriptions",
                   displayName: "no-descriptions",
@@ -1568,6 +1815,12 @@ const completionSpec: Fig.Spec = {
                   args: { name: "loglevel", default: "warn" },
                 },
                 {
+                  name: ["--output", "-o"],
+                  description: "Output format (tty, plain, json)",
+                  displayName: "output",
+                  args: { name: "output", default: "tty" },
+                },
+                {
                   name: "--no-descriptions",
                   description: "Disable completion descriptions",
                   displayName: "no-descriptions",
@@ -1589,6 +1842,12 @@ const completionSpec: Fig.Spec = {
               args: { name: "loglevel", default: "warn" },
             },
             {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
+            },
+            {
               name: ["--help", "-h"],
               description: "Help for completion",
               displayName: "help",
@@ -1600,42 +1859,6 @@ const completionSpec: Fig.Spec = {
           description: "Set the default context",
           subcommands: [
             {
-              name: "create",
-              description: "Add a context",
-              options: [
-                {
-                  name: ["--loglevel", "-l"],
-                  description:
-                    "Amount of information outputted (debug, info, warn, error)",
-                  displayName: "loglevel",
-                  args: { name: "loglevel", default: "warn" },
-                },
-                {
-                  name: ["--builder", "-b"],
-                  description: "Url of the builder service",
-                  displayName: "builder",
-                  args: { name: "builder" },
-                },
-                {
-                  name: ["--namespace", "-n"],
-                  description: "Namespace of your okteto context",
-                  displayName: "namespace",
-                  args: { name: "namespace" },
-                },
-                {
-                  name: ["--token", "-t"],
-                  description: "API token for authentication",
-                  displayName: "token",
-                  args: { name: "token" },
-                },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for create",
-                  displayName: "help",
-                },
-              ],
-            },
-            {
               name: "delete",
               description: "Delete a context",
               options: [
@@ -1645,6 +1868,12 @@ const completionSpec: Fig.Spec = {
                     "Amount of information outputted (debug, info, warn, error)",
                   displayName: "loglevel",
                   args: { name: "loglevel", default: "warn" },
+                },
+                {
+                  name: ["--output", "-o"],
+                  description: "Output format (tty, plain, json)",
+                  displayName: "output",
+                  args: { name: "output", default: "tty" },
                 },
                 {
                   name: ["--help", "-h"],
@@ -1663,6 +1892,12 @@ const completionSpec: Fig.Spec = {
                     "Amount of information outputted (debug, info, warn, error)",
                   displayName: "loglevel",
                   args: { name: "loglevel", default: "warn" },
+                },
+                {
+                  name: ["--output", "-o"],
+                  description: "Output format (tty, plain, json)",
+                  displayName: "output",
+                  args: { name: "output", default: "tty" },
                 },
                 {
                   name: ["--help", "-h"],
@@ -1684,32 +1919,13 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: ["--output", "-o"],
-                  description: "Output format. One of: ['json', 'yaml']",
+                  description: "Output format (tty, plain, json)",
                   displayName: "output",
-                  args: { name: "output", default: "json" },
+                  args: { name: "output", default: "tty" },
                 },
                 {
                   name: ["--help", "-h"],
                   description: "Help for show",
-                  displayName: "help",
-                },
-              ],
-            },
-            {
-              name: "update-kubeconfig",
-              description:
-                "Download kubectl credentials for the current context",
-              options: [
-                {
-                  name: ["--loglevel", "-l"],
-                  description:
-                    "Amount of information outputted (debug, info, warn, error)",
-                  displayName: "loglevel",
-                  args: { name: "loglevel", default: "warn" },
-                },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for update-kubeconfig",
                   displayName: "help",
                 },
               ],
@@ -1724,6 +1940,12 @@ const completionSpec: Fig.Spec = {
                     "Amount of information outputted (debug, info, warn, error)",
                   displayName: "loglevel",
                   args: { name: "loglevel", default: "warn" },
+                },
+                {
+                  name: ["--output", "-o"],
+                  description: "Output format (tty, plain, json)",
+                  displayName: "output",
+                  args: { name: "output", default: "tty" },
                 },
                 {
                   name: ["--builder", "-b"],
@@ -1755,24 +1977,6 @@ const completionSpec: Fig.Spec = {
                 },
               ],
             },
-            {
-              name: "use-namespace",
-              description: "Set the namespace of the current context",
-              options: [
-                {
-                  name: ["--loglevel", "-l"],
-                  description:
-                    "Amount of information outputted (debug, info, warn, error)",
-                  displayName: "loglevel",
-                  args: { name: "loglevel", default: "warn" },
-                },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for use-namespace",
-                  displayName: "help",
-                },
-              ],
-            },
           ],
           options: [
             {
@@ -1781,94 +1985,16 @@ const completionSpec: Fig.Spec = {
                 "Amount of information outputted (debug, info, warn, error)",
               displayName: "loglevel",
               args: { name: "loglevel", default: "warn" },
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
             },
             {
               name: ["--help", "-h"],
               description: "Help for context",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "create",
-          description: "Create resources",
-          subcommands: [
-            {
-              name: "namespace",
-              description: "Create a namespace",
-              options: [
-                {
-                  name: ["--loglevel", "-l"],
-                  description:
-                    "Amount of information outputted (debug, info, warn, error)",
-                  displayName: "loglevel",
-                  args: { name: "loglevel", default: "warn" },
-                },
-                {
-                  name: ["--members", "-m"],
-                  description:
-                    "Members of the namespace, it can the username or email",
-                  isRepeatable: true,
-                  displayName: "members",
-                  args: { name: "members" },
-                },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for namespace",
-                  displayName: "help",
-                },
-              ],
-            },
-          ],
-          options: [
-            {
-              name: ["--loglevel", "-l"],
-              description:
-                "Amount of information outputted (debug, info, warn, error)",
-              displayName: "loglevel",
-              args: { name: "loglevel", default: "warn" },
-            },
-            {
-              name: ["--help", "-h"],
-              description: "Help for create",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "delete",
-          description: "Delete resources",
-          subcommands: [
-            {
-              name: "namespace",
-              description: "Delete a namespace",
-              options: [
-                {
-                  name: ["--loglevel", "-l"],
-                  description:
-                    "Amount of information outputted (debug, info, warn, error)",
-                  displayName: "loglevel",
-                  args: { name: "loglevel", default: "warn" },
-                },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for namespace",
-                  displayName: "help",
-                },
-              ],
-            },
-          ],
-          options: [
-            {
-              name: ["--loglevel", "-l"],
-              description:
-                "Amount of information outputted (debug, info, warn, error)",
-              displayName: "loglevel",
-              args: { name: "loglevel", default: "warn" },
-            },
-            {
-              name: ["--help", "-h"],
-              description: "Help for delete",
               displayName: "help",
             },
           ],
@@ -1883,6 +2009,12 @@ const completionSpec: Fig.Spec = {
                 "Amount of information outputted (debug, info, warn, error)",
               displayName: "loglevel",
               args: { name: "loglevel", default: "warn" },
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
             },
             {
               name: ["--help", "-h"],
@@ -1903,6 +2035,12 @@ const completionSpec: Fig.Spec = {
               args: { name: "loglevel", default: "warn" },
             },
             {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
+            },
+            {
               name: ["--help", "-h"],
               description: "Help for down",
               displayName: "help",
@@ -1919,6 +2057,12 @@ const completionSpec: Fig.Spec = {
                 "Amount of information outputted (debug, info, warn, error)",
               displayName: "loglevel",
               args: { name: "loglevel", default: "warn" },
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
             },
             {
               name: ["--help", "-h"],
@@ -1939,6 +2083,12 @@ const completionSpec: Fig.Spec = {
               args: { name: "loglevel", default: "warn" },
             },
             {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
+            },
+            {
               name: ["--help", "-h"],
               description: "Help for init",
               displayName: "help",
@@ -1946,11 +2096,92 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: "list",
-          description: "List resources",
+          name: "kubeconfig",
+          description:
+            "Download credentials for the Kubernetes cluster selected via 'okteto context'",
+          options: [
+            {
+              name: ["--loglevel", "-l"],
+              description:
+                "Amount of information outputted (debug, info, warn, error)",
+              displayName: "loglevel",
+              args: { name: "loglevel", default: "warn" },
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
+            },
+            {
+              name: ["--help", "-h"],
+              description: "Help for kubeconfig",
+              displayName: "help",
+            },
+          ],
+        },
+        {
+          name: ["ns", "namespace"],
+          description: "Configure the current namespace of the okteto context",
           subcommands: [
             {
-              name: "namespace",
+              name: "create",
+              description: "Create a namespace",
+              options: [
+                {
+                  name: ["--loglevel", "-l"],
+                  description:
+                    "Amount of information outputted (debug, info, warn, error)",
+                  displayName: "loglevel",
+                  args: { name: "loglevel", default: "warn" },
+                },
+                {
+                  name: ["--output", "-o"],
+                  description: "Output format (tty, plain, json)",
+                  displayName: "output",
+                  args: { name: "output", default: "tty" },
+                },
+                {
+                  name: ["--members", "-m"],
+                  description:
+                    "Members of the namespace, it can the username or email",
+                  isRepeatable: true,
+                  displayName: "members",
+                  args: { name: "members" },
+                },
+                {
+                  name: ["--help", "-h"],
+                  description: "Help for create",
+                  displayName: "help",
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description: "Delete a namespace",
+              options: [
+                {
+                  name: ["--loglevel", "-l"],
+                  description:
+                    "Amount of information outputted (debug, info, warn, error)",
+                  displayName: "loglevel",
+                  args: { name: "loglevel", default: "warn" },
+                },
+                {
+                  name: ["--output", "-o"],
+                  description: "Output format (tty, plain, json)",
+                  displayName: "output",
+                  args: { name: "output", default: "tty" },
+                },
+                {
+                  name: ["--help", "-h"],
+                  description: "Help for delete",
+                  displayName: "help",
+                },
+              ],
+            },
+            {
+              name: ["ls", "list"],
               description:
                 "List namespaces managed by Okteto in your current context",
               options: [
@@ -1962,8 +2193,44 @@ const completionSpec: Fig.Spec = {
                   args: { name: "loglevel", default: "warn" },
                 },
                 {
+                  name: ["--output", "-o"],
+                  description: "Output format (tty, plain, json)",
+                  displayName: "output",
+                  args: { name: "output", default: "tty" },
+                },
+                {
                   name: ["--help", "-h"],
-                  description: "Help for namespace",
+                  description: "Help for list",
+                  displayName: "help",
+                },
+              ],
+            },
+            {
+              name: ["ns", "use"],
+              description:
+                "Configure the current namespace of the okteto context",
+              options: [
+                {
+                  name: ["--loglevel", "-l"],
+                  description:
+                    "Amount of information outputted (debug, info, warn, error)",
+                  displayName: "loglevel",
+                  args: { name: "loglevel", default: "warn" },
+                },
+                {
+                  name: ["--output", "-o"],
+                  description: "Output format (tty, plain, json)",
+                  displayName: "output",
+                  args: { name: "output", default: "tty" },
+                },
+                {
+                  name: "--personal",
+                  description: "Load personal account",
+                  displayName: "personal",
+                },
+                {
+                  name: ["--help", "-h"],
+                  description: "Help for use",
                   displayName: "help",
                 },
               ],
@@ -1978,8 +2245,14 @@ const completionSpec: Fig.Spec = {
               args: { name: "loglevel", default: "warn" },
             },
             {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
+            },
+            {
               name: ["--help", "-h"],
-              description: "Help for list",
+              description: "Help for namespace",
               displayName: "help",
             },
           ],
@@ -1998,6 +2271,12 @@ const completionSpec: Fig.Spec = {
                     "Amount of information outputted (debug, info, warn, error)",
                   displayName: "loglevel",
                   args: { name: "loglevel", default: "warn" },
+                },
+                {
+                  name: ["--output", "-o"],
+                  description: "Output format (tty, plain, json)",
+                  displayName: "output",
+                  args: { name: "output", default: "tty" },
                 },
                 {
                   name: ["--branch", "-b"],
@@ -2087,6 +2366,12 @@ const completionSpec: Fig.Spec = {
                   args: { name: "loglevel", default: "warn" },
                 },
                 {
+                  name: ["--output", "-o"],
+                  description: "Output format (tty, plain, json)",
+                  displayName: "output",
+                  args: { name: "output", default: "tty" },
+                },
+                {
                   name: ["--name", "-p"],
                   description:
                     "Name of the pipeline (defaults to the git config name)",
@@ -2136,6 +2421,12 @@ const completionSpec: Fig.Spec = {
               args: { name: "loglevel", default: "warn" },
             },
             {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
+            },
+            {
               name: ["--help", "-h"],
               description: "Help for pipeline",
               displayName: "help",
@@ -2156,6 +2447,12 @@ const completionSpec: Fig.Spec = {
                     "Amount of information outputted (debug, info, warn, error)",
                   displayName: "loglevel",
                   args: { name: "loglevel", default: "warn" },
+                },
+                {
+                  name: ["--output", "-o"],
+                  description: "Output format (tty, plain, json)",
+                  displayName: "output",
+                  args: { name: "output", default: "tty" },
                 },
                 {
                   name: ["--branch", "-b"],
@@ -2238,6 +2535,12 @@ const completionSpec: Fig.Spec = {
                   args: { name: "loglevel", default: "warn" },
                 },
                 {
+                  name: ["--output", "-o"],
+                  description: "Output format (tty, plain, json)",
+                  displayName: "output",
+                  args: { name: "output", default: "tty" },
+                },
+                {
                   name: ["--help", "-h"],
                   description: "Help for destroy",
                   displayName: "help",
@@ -2257,9 +2560,9 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: ["--output", "-o"],
-                  description: "Output format. One of: ['json']",
+                  description: "Output format (tty, plain, json)",
                   displayName: "output",
-                  args: { name: "output" },
+                  args: { name: "output", default: "tty" },
                 },
                 {
                   name: ["--help", "-h"],
@@ -2280,6 +2583,12 @@ const completionSpec: Fig.Spec = {
                   args: { name: "loglevel", default: "warn" },
                 },
                 {
+                  name: ["--output", "-o"],
+                  description: "Output format (tty, plain, json)",
+                  displayName: "output",
+                  args: { name: "output", default: "tty" },
+                },
+                {
                   name: ["--help", "-h"],
                   description: "Help for list",
                   displayName: "help",
@@ -2294,6 +2603,12 @@ const completionSpec: Fig.Spec = {
                 "Amount of information outputted (debug, info, warn, error)",
               displayName: "loglevel",
               args: { name: "loglevel", default: "warn" },
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
             },
             {
               name: ["--help", "-h"],
@@ -2314,6 +2629,12 @@ const completionSpec: Fig.Spec = {
               args: { name: "loglevel", default: "warn" },
             },
             {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
+            },
+            {
               name: ["--help", "-h"],
               description: "Help for push",
               displayName: "help",
@@ -2331,6 +2652,12 @@ const completionSpec: Fig.Spec = {
                 "Amount of information outputted (debug, info, warn, error)",
               displayName: "loglevel",
               args: { name: "loglevel", default: "warn" },
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
             },
             {
               name: ["--help", "-h"],
@@ -2353,6 +2680,12 @@ const completionSpec: Fig.Spec = {
                     "Amount of information outputted (debug, info, warn, error)",
                   displayName: "loglevel",
                   args: { name: "loglevel", default: "warn" },
+                },
+                {
+                  name: ["--output", "-o"],
+                  description: "Output format (tty, plain, json)",
+                  displayName: "output",
+                  args: { name: "output", default: "tty" },
                 },
                 {
                   name: "--build",
@@ -2423,6 +2756,12 @@ const completionSpec: Fig.Spec = {
                   args: { name: "loglevel", default: "warn" },
                 },
                 {
+                  name: ["--output", "-o"],
+                  description: "Output format (tty, plain, json)",
+                  displayName: "output",
+                  args: { name: "output", default: "tty" },
+                },
+                {
                   name: ["--file", "-f"],
                   description: "Path to the stack manifest file",
                   isRepeatable: true,
@@ -2466,6 +2805,12 @@ const completionSpec: Fig.Spec = {
                   args: { name: "loglevel", default: "warn" },
                 },
                 {
+                  name: ["--output", "-o"],
+                  description: "Output format (tty, plain, json)",
+                  displayName: "output",
+                  args: { name: "output", default: "tty" },
+                },
+                {
                   name: ["--file", "-f"],
                   description:
                     "Path to the stack manifest files. If more than one is passed the latest will overwrite the fields from the previous",
@@ -2487,12 +2832,6 @@ const completionSpec: Fig.Spec = {
                   args: { name: "namespace" },
                 },
                 {
-                  name: ["--output", "-o"],
-                  description: "Output format. One of: ['json']",
-                  displayName: "output",
-                  args: { name: "output" },
-                },
-                {
                   name: ["--help", "-h"],
                   description: "Help for endpoints",
                   displayName: "help",
@@ -2507,6 +2846,12 @@ const completionSpec: Fig.Spec = {
                 "Amount of information outputted (debug, info, warn, error)",
               displayName: "loglevel",
               args: { name: "loglevel", default: "warn" },
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
             },
             {
               name: ["--help", "-h"],
@@ -2527,6 +2872,12 @@ const completionSpec: Fig.Spec = {
               args: { name: "loglevel", default: "warn" },
             },
             {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
+            },
+            {
               name: ["--help", "-h"],
               description: "Help for status",
               displayName: "help",
@@ -2543,6 +2894,12 @@ const completionSpec: Fig.Spec = {
                 "Amount of information outputted (debug, info, warn, error)",
               displayName: "loglevel",
               args: { name: "loglevel", default: "warn" },
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
             },
             {
               name: ["--help", "-h"],
@@ -2563,6 +2920,12 @@ const completionSpec: Fig.Spec = {
               args: { name: "loglevel", default: "warn" },
             },
             {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
+            },
+            {
               name: ["--help", "-h"],
               description: "Help for update",
               displayName: "help",
@@ -2581,6 +2944,12 @@ const completionSpec: Fig.Spec = {
               args: { name: "loglevel", default: "warn" },
             },
             {
+              name: ["--output", "-o"],
+              description: "Output format (tty, plain, json)",
+              displayName: "output",
+              args: { name: "output", default: "tty" },
+            },
+            {
               name: ["--help", "-h"],
               description: "Help for version",
               displayName: "help",
@@ -2597,6 +2966,12 @@ const completionSpec: Fig.Spec = {
           args: { name: "loglevel", default: "warn" },
         },
         {
+          name: ["--output", "-o"],
+          description: "Output format (tty, plain, json)",
+          displayName: "output",
+          args: { name: "output", default: "tty" },
+        },
+        {
           name: ["--help", "-h"],
           description: "Help for help",
           displayName: "help",
@@ -2610,6 +2985,12 @@ const completionSpec: Fig.Spec = {
       description: "Amount of information outputted (debug, info, warn, error)",
       displayName: "loglevel",
       args: { name: "loglevel", default: "warn" },
+    },
+    {
+      name: ["--output", "-o"],
+      description: "Output format (tty, plain, json)",
+      displayName: "output",
+      args: { name: "output", default: "tty" },
     },
     {
       name: ["--help", "-h"],

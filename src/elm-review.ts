@@ -46,8 +46,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Copy the review configuration from a GitHub repository, at the root or in a folder",
           args: {
-            name:
-              "<author>/<repo>[/path-to-the-config-folder][#branch-or-commit]",
+            name: "<author>/<repo>[/path-to-the-config-folder][#branch-or-commit]",
           },
         },
         {

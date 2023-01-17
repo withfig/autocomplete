@@ -78,7 +78,6 @@ const globalOptions: Fig.Option[] = [
     name: "-a",
     description: "Force rebuilding of packages that are already up-to-date",
   },
-
   {
     name: "-p",
     description: "The number of programs, such as build commands or",
@@ -88,21 +87,21 @@ const globalOptions: Fig.Option[] = [
   },
   {
     name: "-race",
-    description: `enable data race detection.
-    Supported only on linux/amd64, freebsd/amd64, darwin/amd64, windows/amd64,
-    linux/ppc64le and linux/arm64 (only for 48-bit VMA).`,
+    description: `Enable data race detection.
+Supported only on linux/amd64, freebsd/amd64, darwin/amd64, windows/amd64,
+linux/ppc64le and linux/arm64 (only for 48-bit VMA)`,
   },
   {
     name: "-msan",
-    description: `enable interoperation with memory sanitizer.
-    Supported only on linux/amd64, linux/arm64
-    and only with Clang/LLVM as the host C compiler.
-    On linux/arm64, pie build mode will be used.`,
+    description: `Enable interoperation with memory sanitizer.
+Supported only on linux/amd64, linux/arm64
+and only with Clang/LLVM as the host C compiler.
+On linux/arm64, pie build mode will be used`,
   },
   {
     name: "-work",
-    description: `print the name of the temporary work directory and
-    do not delete it when exiting.`,
+    description: `Print the name of the temporary work directory and
+do not delete it when exiting`,
   },
   {
     name: "-asmflags",
@@ -226,6 +225,7 @@ const packagesArg: Fig.Arg = {
   name: "packages",
   isVariadic: true,
   isOptional: true,
+  template: ["filepaths"],
 };
 
 const completionSpec: Fig.Spec = {
@@ -366,7 +366,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "-x",
-          description: "Print the commands as they are exectued",
+          description: "Print the commands as they are executed",
         },
         {
           name: "-mod",
@@ -543,7 +543,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-go",
-              insertValue: "-go=",
+              requiresSeparator: true,
               description: "Set the expected Go language version",
               args: {
                 name: "version",
@@ -551,7 +551,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-require",
-              insertValue: "-require=",
+              requiresSeparator: true,
               description: "Add a requirement on the given module",
               args: {
                 name: "path",
@@ -559,7 +559,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-droprequire",
-              insertValue: "-droprequire=",
+              requiresSeparator: true,
               description: "Drop a requirement on the given module",
               args: {
                 name: "path",
@@ -567,7 +567,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-exclude",
-              insertValue: "-exclude=",
+              requiresSeparator: true,
               description: "Add an exclusion on the given module",
               args: {
                 name: "path",
@@ -575,7 +575,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-dropexclude",
-              insertValue: "-dropexclude=",
+              requiresSeparator: true,
               description: "Drop an exclusion on the given module",
               args: {
                 name: "path",
@@ -583,7 +583,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-replace",
-              insertValue: "-replace=",
+              requiresSeparator: true,
               description:
                 "Add a replacement of the given module path and version pair",
               args: {
@@ -592,7 +592,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-dropreplace",
-              insertValue: "-dropreplace=",
+              requiresSeparator: true,
               description:
                 "Drops a replacement of the given module path and version pair",
               args: {
@@ -601,7 +601,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-retract",
-              insertValue: "-retract=",
+              requiresSeparator: true,
               description: "Add a retraction for the given version",
               args: {
                 name: "version",
@@ -609,7 +609,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-dropretract",
-              insertValue: "-dropretract=",
+              requiresSeparator: true,
               description: "Drop a retraction for the given version",
               args: {
                 name: "version",
@@ -699,6 +699,104 @@ const completionSpec: Fig.Spec = {
           ],
           args: {
             name: "packages",
+            isVariadic: true,
+          },
+        },
+      ],
+    },
+    {
+      name: "work",
+      description: "Workspace maintenance",
+      subcommands: [
+        {
+          name: "edit",
+          description: "Edit go.work from tools or scripts",
+          options: [
+            {
+              name: "-fmt",
+              description:
+                "The -fmt flag reformats the go.work file without making other changes. This reformatting is also implied by any other modifications that use or rewrite the go.mod file. The only time this flag is needed is if no other flags are specified, as in 'go work edit -fmt'",
+            },
+            {
+              name: "-use",
+              requiresSeparator: true,
+              description:
+                "The -use=path and -dropuse=path flags add and drop a use directive from the go.work file's set of module directories",
+              args: {
+                name: "path",
+              },
+            },
+            {
+              name: "-dropuse",
+              requiresSeparator: true,
+              description:
+                "The -use=path and -dropuse=path flags add and drop a use directive from the go.work file's set of module directories",
+              args: {
+                name: "path",
+              },
+            },
+            {
+              name: "-replace",
+              requiresSeparator: true,
+              description:
+                "The -replace=old[@v]=new[@v] flag adds a replacement of the given module path and version pair. If the @v in old@v is omitted, a replacement without a version on the left side is added, which applies to all versions of the old module path. If the @v in new@v is omitted, the new path should be a local module root directory, not a module path. Note that -replace overrides any redundant replacements for old[@v], so omitting @v will drop existing replacements for specific versions",
+              args: {
+                name: "old[@v]=new[@v]",
+              },
+            },
+            {
+              name: "-dropreplace",
+              requiresSeparator: true,
+              description:
+                "The -dropreplace=old[@v] flag drops a replacement of the given module path and version pair. If the @v is omitted, a replacement without a version on the left side is dropped",
+              args: {
+                name: "old[@v]",
+              },
+            },
+            {
+              name: "-go",
+              requiresSeparator: true,
+              description: "Set the expected Go language version",
+              args: {
+                name: "version",
+              },
+            },
+            {
+              name: "-print",
+              description:
+                "The -print flag prints the final go.work in its text format instead of writing it back to go.mod",
+            },
+            {
+              name: "-json",
+              description:
+                "The -json flag prints the final go.work file in JSON format instead of writing it back to go.mod",
+            },
+          ],
+        },
+        {
+          name: "init",
+          description: "Initialize workspace file",
+          args: {
+            name: "moddirs",
+            isVariadic: true,
+          },
+        },
+        {
+          name: "sync",
+          description: "Sync workspace build list to modules",
+        },
+        {
+          name: "use",
+          description: "Add modules to workspace file",
+          options: [
+            {
+              name: "-r",
+              description:
+                "The -r flag searches recursively for modules in the argument directories, and the use command operates as if each of the directories were specified as arguments: namely, use directives will be added for directories that exist, and removed for directories that do not exist",
+            },
+          ],
+          args: {
+            name: "moddirs",
             isVariadic: true,
           },
         },
@@ -804,7 +902,7 @@ const completionSpec: Fig.Spec = {
         ...resolutionAndExecutionOptions,
         {
           name: "-vettool",
-          insertValue: "-vettool=",
+          requiresSeparator: true,
           description:
             "Select a different analysis tool with alternative or additional checks",
           args: {

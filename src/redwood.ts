@@ -122,7 +122,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "side",
             description: "Select side to build",
-
             suggestions: ["api", "web"],
           },
           options: [
@@ -258,7 +257,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--force", "-f"],
               isDangerous: true,
-              description: "Overwrite existing filess",
+              description: "Overwrite existing files",
             },
             {
               name: ["--typescript", "--ts"],
@@ -291,7 +290,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--force", "-f"],
               isDangerous: true,
-              description: "Overwrite existing filess",
+              description: "Overwrite existing files",
             },
             {
               name: ["--typescript", "--ts"],
@@ -327,7 +326,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--force", "-f"],
               isDangerous: true,
-              description: "Overwrite existing filess",
+              description: "Overwrite existing files",
             },
             {
               name: ["--typescript", "--ts"],
@@ -352,7 +351,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--force", "-f"],
               isDangerous: true,
-              description: "Overwrite existing filess",
+              description: "Overwrite existing files",
             },
             {
               name: ["--typescript", "--ts"],
@@ -372,7 +371,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--force", "-f"],
               isDangerous: true,
-              description: "Overwrite existing filess",
+              description: "Overwrite existing files",
             },
             {
               name: ["--typescript", "--ts"],
@@ -412,7 +411,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--force", "-f"],
               isDangerous: true,
-              description: "Overwrite existing filess",
+              description: "Overwrite existing files",
             },
             {
               name: ["--typescript", "--ts"],
@@ -442,7 +441,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--force", "-f"],
               isDangerous: true,
-              description: "Overwrite existing filess",
+              description: "Overwrite existing files",
             },
             {
               name: ["--typescript", "--ts"],
@@ -462,7 +461,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--force", "-f"],
               isDangerous: true,
-              description: "Overwrite existing filess",
+              description: "Overwrite existing files",
             },
             {
               name: ["--typescript", "--ts"],
@@ -486,7 +485,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--force", "-f"],
               isDangerous: true,
-              description: "Overwrite existing filess",
+              description: "Overwrite existing files",
             },
             {
               name: ["--typescript", "--ts"],
@@ -881,7 +880,6 @@ const completionSpec: Fig.Spec = {
       description: "Data migration tools",
       args: {
         name: "command",
-
         suggestions: [
           {
             name: "install",
@@ -897,8 +895,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "prisma",
-      icon:
-        "https://raw.githubusercontent.com/prisma/docs/main/src/images/favicon-16x16.png",
+      icon: "https://raw.githubusercontent.com/prisma/docs/main/src/images/favicon-16x16.png",
       description: "Prisma commands",
       subcommands: (prismaSpec as Fig.Subcommand).subcommands,
     },

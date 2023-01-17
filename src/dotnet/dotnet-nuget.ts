@@ -1,36 +1,8 @@
-const configFileGenerator: Fig.Generator = {
-  template: "filepaths",
-  filterTemplateSuggestions(param) {
-    const expected = "nuget.config";
+import { filepaths } from "@fig/autocomplete-generators";
 
-    return param.filter((file) => {
-      if (typeof file.name === "string") {
-        const fileName = file.name;
+const configFileGenerator = filepaths({ equals: "nuget.config" });
 
-        return fileName === expected;
-      }
-
-      return false;
-    });
-  },
-};
-
-const nupkgGenerator: Fig.Generator = {
-  template: "filepaths",
-  filterTemplateSuggestions(param) {
-    const suffix = ".nupkg";
-
-    return param.filter((file) => {
-      if (typeof file.name === "string") {
-        const fileName = file.name;
-
-        return fileName.endsWith(suffix);
-      }
-
-      return false;
-    });
-  },
-};
+const nupkgGenerator = filepaths({ extensions: ["nupkg"] });
 
 const sourceCommonOptions: Fig.Option[] = [
   {
@@ -369,8 +341,7 @@ const completionSpec: Fig.Spec = {
           },
           options: [
             {
-              name:
-                "The NuGet configuration file (nuget.config) to use. If specified, only the settings from this file will be used. If not specified, the hierarchy of configuration files from the current directory will be used.",
+              name: "The NuGet configuration file (nuget.config) to use. If specified, only the settings from this file will be used. If not specified, the hierarchy of configuration files from the current directory will be used.",
               args: {
                 name: "file",
                 generators: configFileGenerator,
@@ -583,22 +554,7 @@ const completionSpec: Fig.Spec = {
             "Specifies the file path to the certificate to be used in signing the package",
           args: {
             name: "path",
-            generators: {
-              template: "filepaths",
-              filterTemplateSuggestions(param) {
-                const suffix = ".pfx";
-
-                return param.filter((file) => {
-                  if (typeof file.name === "string") {
-                    const fileName = file.name;
-
-                    return fileName.endsWith(suffix);
-                  }
-
-                  return false;
-                });
-              },
-            },
+            generators: filepaths({ extensions: ["pfx"] }),
           },
         },
         {
@@ -670,7 +626,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Hash algorithm to be used by the RFC 3161 timestamp server. Defaults to SHA256",
           args: {
-            name: "algoritm",
+            name: "algorithm",
             suggestions: ["SHA256"],
           },
         },

@@ -1,15 +1,22 @@
 import { npmScriptsGenerator, npmSearchGenerator } from "./npm";
 
-const createCLIs = [
-  "create-next-app",
-  "create-react-native-app",
-  "create-video",
-  "create-redwood-app",
-];
+export const yarnScriptParserDirectives: Fig.Arg["parserDirectives"] = {
+  alias: async (token, executeShellCommand) => {
+    const out = await executeShellCommand("cat $(npm prefix)/package.json");
+    const script: string = JSON.parse(out).scripts?.[token];
+    if (!script) {
+      throw new Error(`Script not found: '${token}'`);
+    }
+    return script;
+  },
+};
 
-export const nodeClis = [
+export const nodeClis = new Set([
   "vue",
+  "vite",
   "nuxt",
+  "react-native",
+  "degit",
   "expo",
   "jest",
   "next",
@@ -21,22 +28,19 @@ export const nodeClis = [
   "typeorm",
   "babel",
   "remotion",
-  "@withfig/autocomplete-tools",
-  "@redwoodjs/core",
-];
-
-type SearchResult = {
-  package: {
-    name: string;
-    description: string;
-  };
-  searchScore: number;
-};
+  "autocomplete-tools",
+  "redwood",
+  "rw",
+  "create-completion-spec",
+  "publish-spec-to-team",
+  "capacitor",
+  "cap",
+]);
 
 // generate global package list from global package.json file
 const getGlobalPackagesGenerator: Fig.Generator = {
   script: 'cat "$(yarn global dir)/package.json"',
-  postProcess: (out, context) => {
+  postProcess: (out, tokens) => {
     if (out.trim() == "") return [];
 
     try {
@@ -49,36 +53,32 @@ const getGlobalPackagesGenerator: Fig.Generator = {
       ];
 
       const filteredDependencies = dependencies.filter(
-        (dependency) => !context.includes(dependency)
+        (dependency) => !tokens.includes(dependency)
       );
 
       return filteredDependencies.map((dependencyName) => ({
         name: dependencyName,
         icon: "📦",
       }));
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
 
     return [];
   },
 };
 
-// generate workspace argument completion
-const scriptList: Fig.Generator = {
-  script: function (context) {
-    return `\cat ${context[context.length - 2]}/package.json`;
-  },
-  postProcess: function (out) {
-    if (out.trim() == "") {
-      return [];
-    }
+// generate package list of direct and indirect dependencies
+const allDependenciesGenerator: Fig.Generator = {
+  script: "yarn list --depth=0 --json",
+  postProcess: (out) => {
+    if (out.trim() == "") return [];
+
     try {
       const packageContent = JSON.parse(out);
-      const scripts = packageContent["scripts"];
-      if (scripts) {
-        return Object.keys(scripts).map((script) => ({ name: script }));
-      }
+      const dependencies = packageContent.data.trees;
+      return dependencies.map((dependency: { name: string }) => ({
+        name: dependency.name.split("@")[0],
+        icon: "📦",
+      }));
     } catch (e) {}
     return [];
   },
@@ -324,21 +324,45 @@ const commonOptions: Fig.Option[] = [
   },
 ];
 
+export const createCLIsGenerator: Fig.Generator = {
+  script: function (context) {
+    if (context[context.length - 1] === "") return "";
+    const searchTerm = "create-" + context[context.length - 1];
+    return `curl -s -H "Accept: application/json" "https://api.npms.io/v2/search?q=${searchTerm}&size=20"`;
+  },
+  cache: {
+    ttl: 100 * 24 * 60 * 60 * 3, // 3 days
+  },
+  postProcess: function (out) {
+    try {
+      return JSON.parse(out).results.map(
+        (item) =>
+          ({
+            name: item.package.name.substring(7),
+            description: item.package.description,
+          } as Fig.Suggestion)
+      ) as Fig.Suggestion[];
+    } catch (e) {
+      return [];
+    }
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "yarn",
   description: "Manage packages and run scripts",
-  generateSpec: async (_tokens, executeShellCommand) => {
-    const { script, postProcess } = dependenciesGenerator;
+  generateSpec: async (tokens, executeShellCommand) => {
+    const binaries = (
+      await executeShellCommand(
+        `until [[ -d node_modules/ ]] || [[ $PWD = '/' ]]; do cd ..; done; ls -1 node_modules/.bin/`
+      )
+    ).split("\n");
 
-    const packages = postProcess(
-      await executeShellCommand(script as string)
-    ).map(({ name }) => name as string);
-
-    const subcommands = packages
-      .filter((name) => nodeClis.includes(name))
+    const subcommands = binaries
+      .filter((name) => nodeClis.has(name))
       .map((name) => ({
-        name: name === "@redwoodjs/core" ? ["redwood", "rw"] : name,
-        loadSpec: name === "@redwoodjs/core" ? "redwood" : name,
+        name: name,
+        loadSpec: name === "rw" ? "redwood" : name,
         icon: "fig://icon?type=package",
       }));
 
@@ -349,7 +373,10 @@ const completionSpec: Fig.Spec = {
   },
   args: {
     generators: npmScriptsGenerator,
+    filterStrategy: "fuzzy",
+    parserDirectives: yarnScriptParserDirectives,
     isOptional: true,
+    isCommand: true,
   },
   options: [
     {
@@ -771,14 +798,14 @@ const completionSpec: Fig.Spec = {
     {
       name: "create",
       description: "Creates new projects from any create-* starter kits",
-      generateSpec: async () => {
-        return {
-          name: "create",
-          subcommands: createCLIs.map((name) => ({
-            name: name.slice(7),
-            loadSpec: name,
-          })),
-        };
+      args: {
+        name: "cli",
+        generators: createCLIsGenerator,
+        loadSpec: async (token) => ({
+          name: "create-" + token,
+          type: "global",
+        }),
+        isCommand: true,
       },
       options: [
         ...commonOptions,
@@ -859,6 +886,7 @@ const completionSpec: Fig.Spec = {
           description: "Remove globally installed packages",
           args: {
             name: "package",
+            filterStrategy: "fuzzy",
             generators: getGlobalPackagesGenerator,
             isVariadic: true,
           },
@@ -911,13 +939,11 @@ const completionSpec: Fig.Spec = {
                 "Install most recent release with the same major version. Only used when --latest is specified",
               dependsOn: ["--latest"],
             },
-
             {
               name: ["-A", "--audit"],
               description: "Run vulnerability audit on installed packages",
             },
             { name: ["-h", "--help"], description: "Output usage information" },
-            { name: "--help", description: "Output usage information" },
           ],
         },
         {
@@ -1005,7 +1031,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "licenses",
       description: "",
-
       subcommands: [
         {
           name: "list",
@@ -1072,7 +1097,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "owner",
       description: "Manage package owners",
-
       subcommands: [
         {
           name: "list",
@@ -1116,6 +1140,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "policies",
       description: "Defines project-wide policies for your project",
+      subcommands: [
+        {
+          name: "set-version",
+          description: "Will download the latest stable release",
+          options: [
+            {
+              name: "--rc",
+              description: "Download the latest rc release",
+            },
+          ],
+        },
+      ],
     },
     {
       name: "publish",
@@ -1175,6 +1211,7 @@ const completionSpec: Fig.Spec = {
       name: "remove",
       description: "Remove installed package",
       args: {
+        filterStrategy: "fuzzy",
         generators: dependenciesGenerator,
         isVariadic: true,
       },
@@ -1198,28 +1235,18 @@ const completionSpec: Fig.Spec = {
         { name: ["-h", "--help"], description: "Output usage information" },
       ],
       args: [
-        // TODO get this generator to work and combine the logic of both of these
-        //     {
-        //         generators: {
-        //            script: "ls -1 $(yarn bin)", // ISSUE: this runs in /bin/sh, yarn may not be defined in sh PATH
-        //            splitOn: "\n",
-        //            postProcess: function (out) {
-        //                try {
-        //                    if (out) {
-        //                        return out
-        //                    }
-        //                } catch(e) { }
-        //                return []
-        //            }
-        //           }
-        //     },
         {
+          name: "script",
+          description: "Script to run from your package.json",
           generators: npmScriptsGenerator,
+          filterStrategy: "fuzzy",
+          parserDirectives: yarnScriptParserDirectives,
+          isCommand: true,
         },
         {
           name: "env",
           suggestions: ["env"],
-          description: "Lists enviornment variables available to scripts",
+          description: "Lists environment variables available to scripts",
           isOptional: true,
         },
       ],
@@ -1231,6 +1258,49 @@ const completionSpec: Fig.Spec = {
     {
       name: "team",
       description: "Maintain team memberships",
+      subcommands: [
+        {
+          name: "create",
+          description: "Create a new team",
+          args: {
+            name: "<scope:team>",
+          },
+        },
+        {
+          name: "destroy",
+          description: "Destroys an existing team",
+          args: {
+            name: "<scope:team>",
+          },
+        },
+        {
+          name: "add",
+          description: "Add a user to an existing team",
+          args: [
+            {
+              name: "<scope:team>",
+            },
+            {
+              name: "<user>",
+            },
+          ],
+        },
+        {
+          name: "remove",
+          description: "Remove a user from a team they belong to",
+          args: {
+            name: "<scope:team> <user>",
+          },
+        },
+        {
+          name: "list",
+          description:
+            "If performed on an organization name, will return a list of existing teams under that organization. If performed on a team, it will instead return a list of all users belonging to that particular team",
+          args: {
+            name: "<scope>|<scope:team>",
+          },
+        },
+      ],
     },
     {
       name: "unlink",
@@ -1245,9 +1315,51 @@ const completionSpec: Fig.Spec = {
       description:
         "Upgrades packages to their latest version based on the specified range",
       args: {
+        name: "package",
         generators: dependenciesGenerator,
+        filterStrategy: "fuzzy",
         isVariadic: true,
+        isOptional: true,
       },
+      options: [
+        ...commonOptions,
+        {
+          name: ["-S", "--scope"],
+          description: "Upgrade packages under the specified scope",
+          args: { name: "scope" },
+        },
+        {
+          name: ["-L", "--latest"],
+          description: "List the latest version of packages",
+        },
+        {
+          name: ["-E", "--exact"],
+          description:
+            "Install exact version. Only used when --latest is specified",
+          dependsOn: ["--latest"],
+        },
+        {
+          name: ["-P", "--pattern"],
+          description: "Upgrade packages that match pattern",
+          args: { name: "pattern" },
+        },
+        {
+          name: ["-T", "--tilde"],
+          description:
+            "Install most recent release with the same minor version. Only used when --latest is specified",
+        },
+        {
+          name: ["-C", "--caret"],
+          description:
+            "Install most recent release with the same major version. Only used when --latest is specified",
+          dependsOn: ["--latest"],
+        },
+        {
+          name: ["-A", "--audit"],
+          description: "Run vulnerability audit on installed packages",
+        },
+        { name: ["-h", "--help"], description: "Output usage information" },
+      ],
     },
     {
       name: "upgrade-interactive",
@@ -1263,6 +1375,13 @@ const completionSpec: Fig.Spec = {
       name: "version",
       description: "Update version of your package",
       options: [
+        ...commonOptions,
+        { name: ["-h", "--help"], description: "Output usage information" },
+        {
+          name: "--new-version",
+          description: "New version",
+          args: { name: "version" },
+        },
         {
           name: "--major",
           description: "Auto-increment major version number",
@@ -1275,6 +1394,39 @@ const completionSpec: Fig.Spec = {
           name: "--patch",
           description: "Auto-increment patch version number",
         },
+        {
+          name: "--premajor",
+          description: "Auto-increment premajor version number",
+        },
+        {
+          name: "--preminor",
+          description: "Auto-increment preminor version number",
+        },
+        {
+          name: "--prepatch",
+          description: "Auto-increment prepatch version number",
+        },
+        {
+          name: "--prerelease",
+          description: "Auto-increment prerelease version number",
+        },
+        {
+          name: "--preid",
+          description: "Add a custom identifier to the prerelease",
+          args: { name: "preid" },
+        },
+        {
+          name: "--message",
+          description: "Message",
+          args: { name: "message" },
+        },
+        { name: "--no-git-tag-version", description: "No git tag version" },
+        {
+          name: "--no-commit-hooks",
+          description: "Bypass git hooks when committing new version",
+        },
+        { name: "--access", description: "Access", args: { name: "access" } },
+        { name: "--tag", description: "Tag", args: { name: "tag" } },
       ],
     },
     {
@@ -1285,83 +1437,107 @@ const completionSpec: Fig.Spec = {
     {
       name: "why",
       description: "Show information about why a package is installed",
+      args: {
+        name: "package",
+        filterStrategy: "fuzzy",
+        generators: allDependenciesGenerator,
+      },
+      options: [
+        ...commonOptions,
+        {
+          name: ["-h", "--help"],
+          description: "Output usage information",
+        },
+        {
+          name: "--peers",
+          description:
+            "Print the peer dependencies that match the specified name",
+        },
+        {
+          name: ["-R", "--recursive"],
+          description:
+            "List, for each workspace, what are all the paths that lead to the dependency",
+        },
+      ],
     },
     {
       name: "workspace",
       description: "Manage workspace",
+      filterStrategy: "fuzzy",
       generateSpec: async (_tokens, executeShellCommand) => {
-        const { postProcess } = scriptList;
-        const subcommands = [];
+        const version = await executeShellCommand("yarn --version");
+        const isYarnV1 = version.startsWith("1.");
+
+        const getWorkspacesDefinitionsV1 = async () => {
+          const out = await executeShellCommand(`yarn workspaces info`);
+
+          const startJson = out.indexOf("{");
+          const endJson = out.lastIndexOf("}");
+
+          return Object.entries(
+            JSON.parse(out.slice(startJson, endJson + 1)) as Record<
+              string,
+              { location: string }
+            >
+          ).map(([name, { location }]) => ({
+            name,
+            location,
+          }));
+        };
+
+        // For yarn >= 2.0.0
+        const getWorkspacesDefinitionsVOther = async () => {
+          const out = await executeShellCommand(`yarn workspaces list --json`);
+          return out.split("\n").map((line) => JSON.parse(line.trim()));
+        };
 
         try {
-          const out = await executeShellCommand("cat package.json");
+          const workspacesDefinitions = isYarnV1
+            ? // transform Yarn V1 output to array of workspaces like Yarn V2
+              await getWorkspacesDefinitionsV1()
+            : // in yarn v>=2.0.0, workspaces definitions are a list of JSON lines
+              await getWorkspacesDefinitionsVOther();
 
-          if (out.trim() == "") {
-            return { name: "workspaces" };
-          }
-          const packageContent = JSON.parse(out);
-          const workspaces = packageContent["workspaces"];
-
-          const getPackageName = async (workspace: string): Promise<string> => {
-            const workspacePackage = await executeShellCommand(
-              `\cat ${workspace}/package.json`
-            );
-
-            try {
-              return JSON.parse(workspacePackage)["name"] || workspace;
-            } catch (e) {
-              console.error(e);
-              return workspace;
-            }
-          };
-
-          if (workspaces) {
-            for (const workspace of workspaces) {
-              if (workspace.includes("*")) {
-                const workspacePath = workspace.slice(0, -1);
-                const out = await executeShellCommand(`\ls ${workspacePath}`);
-                const workspaceList = out.split("\n");
-
-                for (const space of workspaceList) {
-                  subcommands.push({
-                    name: await getPackageName(workspacePath + space),
-                    description: "Workspaces",
-                    args: {
-                      name: "script",
-                      generators: {
-                        script: `\cat ${workspace.slice(
-                          0,
-                          -1
-                        )}/${space}/package.json`,
-                        postProcess,
-                      },
-                    },
-                  });
-                }
-              } else {
-                subcommands.push({
-                  name: await getPackageName(workspace),
-                  description: "Workspaces",
-                  args: {
-                    name: "script",
-                    generators: {
-                      script: `\cat ${workspace}/package.json`,
-                      postProcess,
-                    },
+          const subcommands: Fig.Subcommand[] = workspacesDefinitions.map(
+            ({ name, location }: { name: string; location: string }) => ({
+              name,
+              description: "Workspaces",
+              args: {
+                name: "script",
+                generators: {
+                  cache: {
+                    strategy: "stale-while-revalidate",
+                    ttl: 60_000, // 60s
                   },
-                });
-              }
-            }
-          }
+                  script: `\\cat ${location}/package.json`,
+                  postProcess: function (out: string) {
+                    if (out.trim() == "") {
+                      return [];
+                    }
+                    try {
+                      const packageContent = JSON.parse(out);
+                      const scripts = packageContent["scripts"];
+                      if (scripts) {
+                        return Object.keys(scripts).map((script) => ({
+                          name: script,
+                        }));
+                      }
+                    } catch (e) {}
+                    return [];
+                  },
+                },
+              },
+            })
+          );
+
+          return {
+            name: "workspace",
+            subcommands,
+          };
         } catch (e) {
           console.error(e);
-          return { name: "workspaces" };
         }
-
-        return {
-          name: "workspace",
-          subcommands,
-        };
+        return { name: "workspaces" };
       },
     },
     {

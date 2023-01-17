@@ -1,19 +1,4 @@
-const configFileGenerator: Fig.Generator = {
-  template: "filepaths",
-  filterTemplateSuggestions(param) {
-    const expected = "nuget.config";
-
-    return param.filter((file) => {
-      if (typeof file.name === "string") {
-        const fileName = file.name;
-
-        return fileName === expected;
-      }
-
-      return false;
-    });
-  },
-};
+import { filepaths } from "@fig/autocomplete-generators";
 
 const completionSpec: Fig.Spec = {
   name: "restore",
@@ -23,22 +8,7 @@ const completionSpec: Fig.Spec = {
     name: "root",
     description: "Optional path to the project file to restore",
     isOptional: true,
-    generators: {
-      template: "filepaths",
-      filterTemplateSuggestions(param) {
-        const suffixes = [".csproj", ".sln"];
-
-        return param.filter((file) => {
-          if (typeof file.name === "string") {
-            const fileName = file.name;
-
-            return suffixes.some((suffix) => fileName.endsWith(suffix));
-          }
-
-          return false;
-        });
-      },
-    },
+    generators: filepaths({ extensions: ["csproj", "sln"] }),
   },
   options: [
     {
@@ -47,7 +17,7 @@ const completionSpec: Fig.Spec = {
         "The NuGet configuration file (nuget.config) to use. If specified, only the settings from this file will be used. If not specified, the hierarchy of configuration files from the current directory will be used",
       args: {
         name: "file",
-        generators: configFileGenerator,
+        generators: filepaths({ equals: "nuget.config" }),
       },
     },
     {

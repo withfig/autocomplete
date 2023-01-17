@@ -9,7 +9,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Show details about a DNS key resource",
-
           options: [
             {
               name: "--account",
@@ -151,13 +150,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "KEY-ID",
             description: "The DNS key identifier",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List DNS key resources",
-
           options: [
             {
               name: "--account",
@@ -464,7 +461,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a Cloud DNS managed-zone",
-
           options: [
             {
               name: "--account",
@@ -766,13 +762,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "ZONE_NAME",
             description: "The name of the managed-zone to be created",
-            isVariadic: false,
           },
         },
         {
           name: "delete",
           description: "Delete an empty Cloud DNS managed-zone",
-
           options: [
             {
               name: "--account",
@@ -904,13 +898,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "ZONE_NAME",
             description: "The name of the empty managed-zone to be deleted",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "View the details of a Cloud DNS managed-zone",
-
           options: [
             {
               name: "--account",
@@ -1043,13 +1035,11 @@ const completionSpec: Fig.Spec = {
             name: "ZONE",
             description:
               "ID of the zone or fully qualified identifier for the zone",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "View the list of all your managed-zones",
-
           options: [
             {
               name: "--account",
@@ -1227,7 +1217,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update an existing Cloud DNS managed-zone",
-
           options: [
             {
               name: "--account",
@@ -1528,7 +1517,6 @@ const completionSpec: Fig.Spec = {
             name: "ZONE",
             description:
               "ID of the zone or fully qualified identifier for the zone",
-            isVariadic: false,
           },
         },
       ],
@@ -1668,7 +1656,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe an operation",
-
           options: [
             {
               name: "--account",
@@ -1810,13 +1797,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "OPERATION_ID",
             description: "The id of the operation to display",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List Cloud DNS operations",
-
           options: [
             {
               name: "--account",
@@ -2124,7 +2109,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Creates a new Cloud DNS policy",
-
           options: [
             {
               name: "--account",
@@ -2308,13 +2292,11 @@ const completionSpec: Fig.Spec = {
             name: "POLICY",
             description:
               "ID of the policy or fully qualified identifier for the policy",
-            isVariadic: false,
           },
         },
         {
           name: "delete",
           description: "Deletes a Cloud DNS policy",
-
           options: [
             {
               name: "--account",
@@ -2447,13 +2429,11 @@ const completionSpec: Fig.Spec = {
             name: "POLICY",
             description:
               "ID of the policy or fully qualified identifier for the policy",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "Describes a Cloud DNS policy",
-
           options: [
             {
               name: "--account",
@@ -2586,13 +2566,11 @@ const completionSpec: Fig.Spec = {
             name: "POLICY",
             description:
               "ID of the policy or fully qualified identifier for the policy",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "View the list of all your Cloud DNS policies",
-
           options: [
             {
               name: "--account",
@@ -2770,7 +2748,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update an existing Cloud DNS policy",
-
           options: [
             {
               name: "--account",
@@ -2952,7 +2929,6 @@ const completionSpec: Fig.Spec = {
             name: "POLICY",
             description:
               "ID of the policy or fully qualified identifier for the policy",
-            isVariadic: false,
           },
         },
       ],
@@ -3092,7 +3068,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "View Cloud DNS related information for a project",
-
           options: [
             {
               name: "--account",
@@ -3225,7 +3200,6 @@ const completionSpec: Fig.Spec = {
             name: "PROJECT_ID",
             description:
               "The identifier for the project you want DNS related info for",
-            isVariadic: false,
           },
         },
       ],
@@ -3370,7 +3344,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "describe",
               description: "View the details of a change",
-
               options: [
                 {
                   name: "--account",
@@ -3513,14 +3486,12 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "CHANGE_ID",
                 description: "The ID of the change you want details for",
-                isVariadic: false,
               },
             },
             {
               name: "list",
               description:
                 "View the list of changes that have been made to your record-sets",
-
               options: [
                 {
                   name: "--account",
@@ -3849,7 +3820,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "export",
           description: "Export your record-sets into a file",
-
           options: [
             {
               name: "--account",
@@ -3997,13 +3967,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "RECORDS_FILE",
             description: "File to which record-sets should be exported",
-            isVariadic: false,
           },
         },
         {
           name: "import",
           description: "Import record-sets into your managed-zone",
-
           options: [
             {
               name: "--account",
@@ -4162,13 +4130,11 @@ const completionSpec: Fig.Spec = {
             name: "RECORDS_FILE",
             description:
               "File from which record-sets should be imported. For examples of YAML-formatted and BIND zone-formatted records files, refer to https://cloud.google.com/dns/records#importing_and_exporting_record_sets",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "View the list of record-sets in a managed-zone",
-
           options: [
             {
               name: "--account",
@@ -4382,7 +4348,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "abort",
               description: "Abort transaction",
-
               options: [
                 {
                   name: "--account",
@@ -4536,7 +4501,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "add",
               description: "Append a record-set addition to the transaction",
-
               options: [
                 {
                   name: "--account",
@@ -4726,7 +4690,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "describe",
               description: "Describe the transaction",
-
               options: [
                 {
                   name: "--account",
@@ -4880,7 +4843,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "execute",
               description: "Execute the transaction on Cloud DNS",
-
               options: [
                 {
                   name: "--account",
@@ -5079,7 +5041,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "remove",
               description: "Append a record-set deletion to the transaction",
-
               options: [
                 {
                   name: "--account",
@@ -5268,7 +5229,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "start",
               description: "Start a transaction",
-
               options: [
                 {
                   name: "--account",

@@ -1062,7 +1062,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--email-address",
-          description: "The contact's email addres",
+          description: "The contact's email address",
           args: {
             name: "string",
           },
@@ -1157,7 +1157,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ip",
           description:
-            "The IP address that you want to obtain more information about. The value you specify has to be a dedicated IP address that's assocaited with your AWS account",
+            "The IP address that you want to obtain more information about. The value you specify has to be a dedicated IP address that's associated with your AWS account",
           args: {
             name: "string",
           },
@@ -3160,7 +3160,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tag-keys",
           description:
-            "The tags (tag keys) that you want to remove from the resource. When you specify a tag key, the action removes both that key and its associated tag value. To remove more than one tag from the resource, append the TagKeys parameter and argument for each additional tag to remove, separated by an ampersand. For example: /v2/email/tags?ResourceArn=ResourceArn&amp;TagKeys=Key1&amp;TagKeys=Key2",
+            "The tags (tag keys) that you want to remove from the resource. When you specify a tag key, the action removes both that key and its associated tag value. To remove more than one tag from the resource, append the TagKeys parameter and argument for each additional tag to remove, separated by an ampersand. For example: /v2/email/tags?ResourceArn=ResourceArn&TagKeys=Key1&TagKeys=Key2",
           args: {
             name: "list",
           },
@@ -3245,7 +3245,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--email-address",
-          description: "The contact's email addres",
+          description: "The contact's email address",
           args: {
             name: "string",
           },

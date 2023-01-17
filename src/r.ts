@@ -1,85 +1,22 @@
-const compileFiles: Fig.Generator = {
-  template: "filepaths",
-  filterTemplateSuggestions: function (paths) {
-    const possibleSuffixes: string[] = [
-      ".c",
-      ".cc",
-      ".cpp",
-      ".m",
-      ".mm",
-      ".M",
-      ".f",
-      ".f90",
-      ".f95",
-    ];
-    return paths.filter((file) => {
-      for (let idx = 0; idx < possibleSuffixes.length; idx++) {
-        const element = possibleSuffixes[idx];
-        if (file.name.endsWith(element)) {
-          return true;
-        }
-      }
-      return false;
-    });
-  },
-};
+import { filepaths } from "@fig/autocomplete-generators";
 
-const folders: Fig.Generator = {
-  template: "folders",
-};
+const compileFiles = filepaths({
+  extensions: ["c", "cc", "cpp", "m", "mm", "M", "f", "f90", "f95"],
+});
 
-const filepaths: Fig.Generator = {
-  template: "filepaths",
-};
+const rPackages = filepaths({
+  extensions: ["tar", "tar.gz", "tzr.bz2", "tar.xz", "tgz"],
+});
 
-const rPackages: Fig.Generator = {
-  template: "filepaths",
-  filterTemplateSuggestions: function (paths) {
-    const possibleSuffixes: string[] = [
-      ".tar",
-      ".tar.gz",
-      ".tzr.bz2",
-      ".tar.xz",
-      ".tgz",
-      "/",
-    ];
-    return paths.filter((file) => {
-      for (let idx = 0; idx < possibleSuffixes.length; idx++) {
-        const element = possibleSuffixes[idx];
-        if (file.name.endsWith(element)) {
-          return true;
-        }
-      }
-      return false;
-    });
-  },
-};
+const RDocGenerator = filepaths({
+  extensions: ["Rd"],
+  editFileSuggestions: { priority: 76 },
+});
 
-const RDocGenerator: Fig.Generator = {
-  template: "filepaths",
-  filterTemplateSuggestions: function (paths) {
-    return paths.map((file) => {
-      const isRFile = file.name.endsWith(".Rd");
-      return {
-        ...file,
-        priority: isRFile && 76,
-      };
-    });
-  },
-};
-
-const RFileGenerator: Fig.Generator = {
-  template: "filepaths",
-  filterTemplateSuggestions: function (paths) {
-    return paths.map((file) => {
-      const isRFile = file.name.endsWith(".R");
-      return {
-        ...file,
-        priority: isRFile && 76,
-      };
-    });
-  },
-};
+const RFileGenerator = filepaths({
+  extensions: ["R"],
+  editFileSuggestions: { priority: 76 },
+});
 
 const RLibGenerator: Fig.Generator = {
   script: "Rscript -e '.libPaths()'",
@@ -150,7 +87,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "infile",
               description: "A file with R code to be executed",
-              isOptional: false,
               generators: RFileGenerator,
             },
             {
@@ -168,7 +104,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "files",
             description: "Source files to be compiled",
-            isOptional: false,
             isVariadic: true,
             generators: compileFiles,
           },
@@ -183,11 +118,10 @@ const completionSpec: Fig.Spec = {
               {
                 name: ["--output", "-o"],
                 description: "Name for the built library",
-                requiresEquals: true,
+                requiresSeparator: true,
                 args: {
                   name: "LIB",
                   description: "Full name for the built library",
-                  isOptional: false,
                 },
               },
               {
@@ -214,7 +148,6 @@ const completionSpec: Fig.Spec = {
             name: "files",
             description:
               "The object files to be included in the shared object/DLL",
-            isOptional: false,
             isVariadic: true,
             generators: compileFiles,
           },
@@ -233,11 +166,10 @@ const completionSpec: Fig.Spec = {
               {
                 name: ["--library", "-l"],
                 description: "Install packages to library tree LIB",
-                requiresEquals: true,
+                requiresSeparator: true,
                 args: {
                   name: "LIB",
                   description: "Path to the R library tree to install to",
-                  isOptional: false,
                   generators: RLibGenerator,
                 },
               },
@@ -336,7 +268,7 @@ const completionSpec: Fig.Spec = {
               {
                 name: "--data-compress",
                 description: "Compression to be used for lazy-loading of data",
-                requiresEquals: true,
+                requiresSeparator: true,
                 args: {
                   name: "compression",
                   description: "Compression method",
@@ -423,21 +355,19 @@ const completionSpec: Fig.Spec = {
               {
                 name: "--configure-args",
                 description: "Set arguments for the configure scripts",
-                requiresEquals: true,
+                requiresSeparator: true,
                 args: {
                   name: "ARGS",
                   description: "Arguments for the configure script",
-                  isOptional: false,
                 },
               },
               {
                 name: "--configure-vars",
                 description: "Set variables for the configure scripts",
-                requiresEquals: true,
+                requiresSeparator: true,
                 args: {
                   name: "ARGS",
                   description: "Variables for the configure scripts",
-                  isOptional: false,
                 },
               },
               {
@@ -457,11 +387,10 @@ const completionSpec: Fig.Spec = {
                 name: "--built-timestamp",
                 description:
                   "Set timestamp for 'Built' entry in DESCRIPTION (Unix only)",
-                requiresEquals: true,
+                requiresSeparator: true,
                 args: {
                   name: "STAMP",
                   description: "A timestamp for the build (Unix only)",
-                  isOptional: false,
                 },
               },
               {
@@ -478,25 +407,8 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "packages",
             description: "Directories with the package sources",
-            isOptional: false,
             generators: {
-              template: "filepaths",
-              filterTemplateSuggestions: function (paths) {
-                return paths
-                  .filter((file) => {
-                    return (
-                      file.name.endsWith(".tar.gz") || file.name.endsWith("/")
-                    );
-                  })
-                  .map((file) => {
-                    const isRFile = file.name.endsWith(".R");
-
-                    return {
-                      ...file,
-                      priority: isRFile && 76,
-                    };
-                  });
-              },
+              template: "folders",
             },
           },
         },
@@ -507,7 +419,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "packages",
             description: "Packages to remove",
-            isOptional: false,
             isDangerous: true,
             isVariadic: true,
           },
@@ -515,7 +426,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--library", "-l"],
               description: "The library tree to remove from",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "LIB",
                 description: "Library tree",
@@ -532,7 +443,9 @@ const completionSpec: Fig.Spec = {
             name: "pakgdirs",
             description: "Package directories",
             isVariadic: true,
-            generators: folders,
+            generators: {
+              template: "folders",
+            },
           },
           options: helpAndVersionOptions.concat([
             {
@@ -555,7 +468,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--resave-data",
               description: "Re-save data files as compactly as possible",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "Compression method",
                 isOptional: true,
@@ -572,7 +485,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--compact-vignettes",
               description: "Try to compact PDF files under 'inst/doc'",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "Compression method",
                 isOptional: true,
@@ -583,7 +496,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--compression",
               description: "Type of compression to be used on tarball",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "Compression method",
                 isOptional: true,
@@ -614,18 +527,22 @@ const completionSpec: Fig.Spec = {
                 name: "LIB",
                 description: "Library tree",
                 default: ".",
-                generators: folders,
+                generators: {
+                  template: "folders",
+                },
               },
             },
             {
               name: ["--output", "-o"],
               description: "Directory for output",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "directory",
                 description: "Directory for output",
                 default: ".",
-                generators: folders,
+                generators: {
+                  template: "folders",
+                },
               },
             },
             {
@@ -689,7 +606,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--install-args",
               description: "Command-line args to be passed to INSTALL",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "args",
                 description: "Command-line args to be passed to INSTALL",
@@ -698,12 +615,14 @@ const completionSpec: Fig.Spec = {
             {
               name: "--test-dir",
               description: "Look in this subdirectory for test scripts",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "directory",
                 description: "Directory with the tests directory",
                 default: "tests",
-                generators: folders,
+                generators: {
+                  template: "folders",
+                },
               },
             },
             {
@@ -713,7 +632,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--check-subdirs",
               description: "Run checks on the package subdirectories",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "yes-or-no",
                 description: "Run checks on subdirectories?",
@@ -778,7 +697,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--min%total",
               description: "Minimum % to print for 'by total'",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "min % total",
                 description: "Minimum % to print for 'by total'",
@@ -788,7 +707,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--min%self",
               description: "Minimum % to print for 'by self'",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "min % self",
                 description: "Minimum % to print for 'by self'",
@@ -811,7 +730,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--type", "-t"],
               description: "Output format type",
-              requiresEquals: true,
+              requiresSeparator: true,
               isRequired: true,
               args: {
                 name: "type",
@@ -822,7 +741,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--encoding",
               description: "Encoding of the output",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "enc",
                 description: "Output encoding",
@@ -832,7 +751,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--package",
               description: "Package name",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "package",
                 description: "Package name",
@@ -841,7 +760,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--output", "-o"],
               description: "The output file",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "output file",
                 description:
@@ -853,7 +772,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--os", "--OS"],
               description: "Set name of OS ('unix' or 'windows')",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "OS",
                 description: "Name of the OS",
@@ -863,7 +782,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--RdMacros",
               description: "Packages from which to get Rd macros",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "package list",
                 description: "List of packages",
@@ -892,7 +811,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--encoding",
               description: "Set the default input encoding",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "enc",
                 description: "Output encoding",
@@ -902,7 +821,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--outputEncoding",
               description: "Set the default output encoding",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "enc",
                 description: "Output encoding",
@@ -912,7 +831,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--os", "--OS"],
               description: "Set name of OS ('unix' or 'windows')",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "OS",
                 description: "Name of the OS",
@@ -922,7 +841,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--output", "-o"],
               description: "Write output to a file",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "file",
                 description: "Name of output file",
@@ -936,7 +855,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--title",
               description: "Set the title of the document",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "title",
                 description: "Title of the document",
@@ -957,17 +876,19 @@ const completionSpec: Fig.Spec = {
             {
               name: "--build_dir",
               description: "Set the working directory",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "working dir",
                 description: "Working directory for the build",
-                generators: folders,
+                generators: {
+                  template: "folders",
+                },
               },
             },
             {
               name: "--RdMacros",
               description: "Packages from which to get Rd macros",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "package list",
                 description: "List of packages",
@@ -978,7 +899,9 @@ const completionSpec: Fig.Spec = {
             name: "files or pkgs",
             description:
               "Rd files, or a directory with the sources of a pkg, or an installed pkg",
-            generators: folders,
+            generators: {
+              template: "folders",
+            },
           },
         },
         {
@@ -988,7 +911,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--type", "-t"],
               description: "Output format type",
-              requiresEquals: true,
+              requiresSeparator: true,
               isRequired: true,
               args: {
                 name: "type",
@@ -1000,7 +923,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--encoding",
               description: "Encoding of the output",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "enc",
                 description: "Output encoding",
@@ -1011,7 +934,7 @@ const completionSpec: Fig.Spec = {
               name: "--package",
               description: "Package name",
               icon: "📦",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "package",
                 description: "Package name",
@@ -1020,7 +943,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--output", "-o"],
               description: "The output file",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "output file",
                 description:
@@ -1032,7 +955,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--os", "--OS"],
               description: "Set name of OS ('unix' or 'windows')",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "OS",
                 description: "Name of the OS",
@@ -1042,7 +965,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--RdMacros",
               description: "Packages from which to get Rd macros",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "package list",
                 description: "List of packages",
@@ -1062,7 +985,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--engine",
               description: "Use named vignette engine",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "pkg::engine",
                 description: "Vignette engine",
@@ -1073,7 +996,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--encoding",
               description: "Set the encoding for file",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "enc",
                 description: "File encoding",
@@ -1083,7 +1006,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--options",
               description: "Comma-separated list of Stangle options",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "options",
                 description: "Options for Stangle",
@@ -1093,7 +1016,9 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "file",
             description: "File to process",
-            generators: folders,
+            generators: {
+              template: "folders",
+            },
           },
         },
         {
@@ -1103,7 +1028,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--driver",
               description: "Use named Sweave driver",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "driver",
                 description: "Sweave driver",
@@ -1112,7 +1037,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--engine",
               description: "Use named vignette engine",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "pkg::engine",
                 description: "Vignette engine",
@@ -1121,7 +1046,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--encoding=enc",
               description: "Default encoding 'enc' for file",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "enc",
                 description: "File encoding",
@@ -1132,7 +1057,7 @@ const completionSpec: Fig.Spec = {
               name: "--clean",
               description: "Remove some of the created files",
               icon: "🧹",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "method",
                 description: "How to clean the results",
@@ -1144,7 +1069,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--options",
               description: "Comma-separated list of Sweave/engine options",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "options",
                 description: "Options for Sweave/engine",
@@ -1154,7 +1079,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--compact",
               description: "Try to compact PDF document",
-              requiresEquals: true,
+              requiresSeparator: true,
               args: {
                 name: "Compacting method",
                 description: "How to compact the PDF doc",
@@ -1167,7 +1092,9 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "file",
             description: "Vignette to build",
-            generators: filepaths,
+            generators: {
+              template: "filepaths",
+            },
           },
         },
         {
@@ -1178,12 +1105,16 @@ const completionSpec: Fig.Spec = {
             {
               name: "from",
               description: "'From' R output file (or '-' for stdin)",
-              generators: filepaths,
+              generators: {
+                template: "filepaths",
+              },
             },
             {
               name: "to",
               description: "'To' R output file",
-              generators: filepaths,
+              generators: {
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -1364,7 +1295,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--encoding",
       description: "Specify encoding to be used for stdin",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "encoding",
         suggestions: ["UTF-8"],
@@ -1423,7 +1354,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--max-ppsize",
       description: "Set max size of protect stack",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "max size",
         description: "Max size of protect stack",
@@ -1432,16 +1363,16 @@ const completionSpec: Fig.Spec = {
     {
       name: "--min-nsize",
       description: "Set min number of fixed size obj's ('cons cells')",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "min size",
-        description: "Minimum nubmer of fixed size objects",
+        description: "Minimum number of fixed size objects",
       },
     },
     {
       name: "--min-vsize",
       description: "Set vector heap minimum (in bytes or '4M' = 4 MegaB)",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "min vsize",
         description: "Minimum vector heap size",
@@ -1470,7 +1401,7 @@ const completionSpec: Fig.Spec = {
       name: ["--debugger", "-d"],
       description: "Run R through a debugger",
       icon: "🪲",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "debugger",
         description: "Debugger to use",
@@ -1479,7 +1410,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--debugger-args",
       description: "Pass arguments to the debugger",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "args",
         description: "Arguments for the debugger",
@@ -1488,7 +1419,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--gui", "-g"],
       description: "Type of GUI to use",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "gui",
         description: "Type of GUI",
@@ -1499,7 +1430,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--arch",
       description: "Specify a sub-architecture",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "arch",
         description: "Sub-architecture",
@@ -1512,7 +1443,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--file", "-f"],
       description: "Take input from a file",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "file",
         description: "File to run",
@@ -1522,7 +1453,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-e",
       description: "Execute and R expression and exit",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "expr",
         description: "Expression to evaluate",

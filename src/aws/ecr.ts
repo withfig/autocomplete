@@ -1676,7 +1676,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--part-first-byte",
           description:
-            "The position of the first byte of the layer part witin the overall image layer",
+            "The position of the first byte of the layer part within the overall image layer",
           args: {
             name: "long",
           },

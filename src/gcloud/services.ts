@@ -5,7 +5,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "disable",
       description: "Disable a service for consumption for a project",
-
       options: [
         {
           name: "--account",
@@ -147,13 +146,11 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "SERVICE",
         description: "The name of the service(s) to disable",
-        isVariadic: false,
       },
     },
     {
       name: "enable",
       description: "Enables a service for consumption for a project",
-
       options: [
         {
           name: "--account",
@@ -290,13 +287,11 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "SERVICE",
         description: "The name of the service(s) to enable",
-        isVariadic: false,
       },
     },
     {
       name: "list",
       description: "List services for a project",
-
       options: [
         {
           name: "--account",
@@ -484,7 +479,6 @@ const completionSpec: Fig.Spec = {
           name: "describe",
           description:
             "Describes an operation resource for a given operation name",
-
           options: [
             {
               name: "--account",
@@ -626,14 +620,12 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "OPERATION",
             description: "The name of the operation to describe",
-            isVariadic: false,
           },
         },
         {
           name: "wait",
           description:
             "Waits for an operation to complete for a given operation name",
-
           options: [
             {
               name: "--account",
@@ -765,7 +757,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "OPERATION",
             description: "The name of the operation on which to wait",
-            isVariadic: false,
           },
         },
       ],
@@ -901,7 +892,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "peered-dns-domains",
       description: "Peered DNS domains for various private service connections",
-
       options: [
         {
           name: "--account",
@@ -1039,7 +1029,6 @@ const completionSpec: Fig.Spec = {
           name: "connect",
           description:
             "Connect to a service via VPC peering for a project network",
-
           options: [
             {
               name: "--account",
@@ -1208,7 +1197,6 @@ const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "List connections to a service via VPC peering for a project network",
-
           options: [
             {
               name: "--account",
@@ -1366,7 +1354,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Describes an operation resource for a given operation name",
-
               options: [
                 {
                   name: "--account",
@@ -1510,7 +1497,6 @@ const completionSpec: Fig.Spec = {
               name: "wait",
               description:
                 "Waits for an operation to complete  for a given operation name",
-
               options: [
                 {
                   name: "--account",
@@ -1784,7 +1770,6 @@ const completionSpec: Fig.Spec = {
           name: "update",
           description:
             "Update a private service connection to a service for a project network",
-
           options: [
             {
               name: "--account",

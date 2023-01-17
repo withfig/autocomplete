@@ -10,7 +10,7 @@ const completionSpec: Fig.Spec = {
       name: "-b",
       description: "Starts top in Batch mode",
       args: {
-        name: "operaion",
+        name: "operation",
       },
     },
     {

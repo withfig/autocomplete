@@ -1,16 +1,11 @@
+import { filepaths } from "@fig/autocomplete-generators";
+
 const POD_ICON =
   "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_ruby.svg";
-const getPodspecsAndFolders = (paths) => {
-  const podspecsAndFolders = paths.filter((file) => {
-    return file.name.endsWith(".podspec") || file.name.endsWith("/");
-  });
-  return podspecsAndFolders.map((file) => {
-    return {
-      ...file,
-      icon: file.type === "file" ? POD_ICON : file.icon,
-    };
-  });
-};
+const podSpecAndFoldersGenerator = filepaths({
+  extensions: ["podspec"],
+  editFileSuggestions: { icon: POD_ICON },
+});
 
 const completionSpec: Fig.Spec = {
   name: "pod",
@@ -310,8 +305,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "VERSION",
               },
-              icon:
-                "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_swift.svg",
+              icon: "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_swift.svg",
             },
             {
               name: "--skip-import-validation",
@@ -351,10 +345,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "NAME.podspec|DIRECTORY|http://PATH/NAME.podspec",
             isOptional: true,
-            generators: {
-              template: "filepaths",
-              filterTemplateSuggestions: getPodspecsAndFolders,
-            },
+            generators: podSpecAndFoldersGenerator,
           },
         },
       ],
@@ -758,8 +749,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "VERSION",
               },
-              icon:
-                "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_swift.svg",
+              icon: "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_swift.svg",
             },
             {
               name: "--include-podspecs",
@@ -767,10 +757,7 @@ const completionSpec: Fig.Spec = {
                 "Additional ancillary podspecs which are used for linting via :path",
               args: {
                 name: "podspec",
-                generators: {
-                  template: "filepaths",
-                  filterTemplateSuggestions: getPodspecsAndFolders,
-                },
+                generators: podSpecAndFoldersGenerator,
               },
             },
             {
@@ -779,10 +766,7 @@ const completionSpec: Fig.Spec = {
                 "Additional ancillary podspecs which are used for linting via :podspec. If there are --include-podspecs, then these are removed from them",
               args: {
                 name: "podspec",
-                generators: {
-                  template: "filepaths",
-                  filterTemplateSuggestions: getPodspecsAndFolders,
-                },
+                generators: podSpecAndFoldersGenerator,
               },
             },
             {
@@ -823,10 +807,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "PODSPEC_PATHS",
             isOptional: true,
-            generators: {
-              template: "filepaths",
-              filterTemplateSuggestions: getPodspecsAndFolders,
-            },
+            generators: podSpecAndFoldersGenerator,
           },
         },
       ],
@@ -967,8 +948,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "VERSION",
               },
-              icon:
-                "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_swift.svg",
+              icon: "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_swift.svg",
             },
             {
               name: "--no-overwrite",
@@ -988,10 +968,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "NAME.podspec",
               isOptional: true,
-              generators: {
-                template: "filepaths",
-                filterTemplateSuggestions: getPodspecsAndFolders,
-              },
+              generators: podSpecAndFoldersGenerator,
             },
           ],
         },
@@ -1127,8 +1104,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "VERSION",
               },
-              icon:
-                "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_swift.svg",
+              icon: "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_swift.svg",
             },
             {
               name: "--skip-import-validation",

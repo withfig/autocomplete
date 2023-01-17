@@ -20,7 +20,7 @@ const completionSpec: Fig.Spec = {
       name: ["-f", "--format"],
       description:
         "Output format. This can either be a specifier string (similar to strftime()'s FMT) or the name of a calendar",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "string",
       },
@@ -29,7 +29,7 @@ const completionSpec: Fig.Spec = {
       name: ["-i", "--input-format"],
       description:
         "Input format, can be used multiple times. Each date/time will be passed to the input format parsers in the order they are given, if a date/time can be read successfully with a given input format specifier string, that value will be used",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "input format",
       },
@@ -38,7 +38,7 @@ const completionSpec: Fig.Spec = {
       name: ["-b", "--base"],
       description:
         "For underspecified input use DT as a fallback to fill in missing fields. Also used for ambiguous format specifiers to position their range on the absolute time line. Must be a date/time in ISO8601 format. If omitted defaults to the current date/time",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "base",
       },

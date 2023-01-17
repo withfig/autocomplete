@@ -6,7 +6,6 @@ const completionSpec: Fig.Spec = {
       name: "get-mount-command",
       description:
         "Prints a command to mount the Cloud Shell home directory via sshfs",
-
       options: [
         {
           name: "--account",
@@ -149,13 +148,11 @@ const completionSpec: Fig.Spec = {
         name: "MOUNT_DIR",
         description:
           "Local directory onto which the Cloud Shell home directory should be\nmounted",
-        isVariadic: false,
       },
     },
     {
       name: "scp",
       description: "Copies files between Cloud Shell and the local machine",
-
       options: [
         {
           name: "--account",
@@ -322,7 +319,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "(cloudshell|localhost):DEST",
           description: "Specifies a destination for the source files",
-          isVariadic: false,
         },
       ],
     },
@@ -330,7 +326,6 @@ const completionSpec: Fig.Spec = {
       name: "ssh",
       description:
         "Allows you to establish an interactive SSH session with Cloud Shell",
-
       options: [
         {
           name: "--account",

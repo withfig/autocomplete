@@ -9,7 +9,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "cancel",
           description: "Cancel a running AI Platform job",
-
           options: [
             {
               name: "--account",
@@ -141,13 +140,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "JOB",
             description: "Name of the job",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "Describe an AI Platform job",
-
           options: [
             {
               name: "--account",
@@ -246,7 +243,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--summarize",
               description:
-                "Summarize job output in a set of human readable tables instead of\nrendering the entire resource as json or yaml. The tables currently rendered\nare:\n+\n* `Job Overview`: Overview of job including, jobId, status and create time.\n* `Training Input Summary`: Summary of input for a training job including\n   region, main training python module and scale tier.\n* `Training Output Summary`: Summary of output for a training job including\n   the amount of ML units consumed by the job.\n* `Training Output Trials`: Summary of hyperparameter trials run for a\n   hyperparameter tuning training job.\n* `Predict Input Summary`: Summary of input for a prediction job including\n   region, model verion and output path.\n* `Predict Output Summary`: Summary of output for a prediction job including\n   prediction count and output path.\n+\nThis flag overrides the `--format` flag. If\nboth are present on the command line, a warning is displayed",
+                "Summarize job output in a set of human readable tables instead of\nrendering the entire resource as json or yaml. The tables currently rendered\nare:\n+\n* `Job Overview`: Overview of job including, jobId, status and create time.\n* `Training Input Summary`: Summary of input for a training job including\n   region, main training python module and scale tier.\n* `Training Output Summary`: Summary of output for a training job including\n   the amount of ML units consumed by the job.\n* `Training Output Trials`: Summary of hyperparameter trials run for a\n   hyperparameter tuning training job.\n* `Predict Input Summary`: Summary of input for a prediction job including\n   region, model version and output path.\n* `Predict Output Summary`: Summary of output for a prediction job including\n   prediction count and output path.\n+\nThis flag overrides the `--format` flag. If\nboth are present on the command line, a warning is displayed",
             },
             {
               name: "--trace-token",
@@ -284,13 +281,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "JOB",
             description: "Name of the job",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List existing AI Platform jobs",
-
           options: [
             {
               name: "--account",
@@ -468,7 +463,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "stream-logs",
           description: "Show logs from a running AI Platform job",
-
           options: [
             {
               name: "--account",
@@ -624,7 +618,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "JOB",
             description: "Name of the job",
-            isVariadic: false,
           },
         },
         {
@@ -634,7 +627,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "prediction",
               description: "Start an AI Platform batch prediction job",
-
               options: [
                 {
                   name: "--account",
@@ -879,13 +871,11 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "JOB",
                 description: "Name of the batch prediction job",
-                isVariadic: false,
               },
             },
             {
               name: "training",
               description: "Submit an AI Platform training job",
-
               options: [
                 {
                   name: "--account",
@@ -1206,7 +1196,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--service-account",
                   description:
-                    "The email address of a service account to use when running the\ntraining appplication. You must have the `iam.serviceAccounts.actAs`\npermission for the specified service account. In addition, the AI Platform\nTraining Google-managed service account must have the\n`roles/iam.serviceAccountAdmin` role for the specified service account.\n[Learn more about configuring a service\naccount.](/ai-platform/training/docs/custom-service-account)\nIf not specified, the AI Platform Training Google-managed service account\nis used by default",
+                    "The email address of a service account to use when running the\ntraining application. You must have the `iam.serviceAccounts.actAs`\npermission for the specified service account. In addition, the AI Platform\nTraining Google-managed service account must have the\n`roles/iam.serviceAccountAdmin` role for the specified service account.\n[Learn more about configuring a service\naccount.](/ai-platform/training/docs/custom-service-account)\nIf not specified, the AI Platform Training Google-managed service account\nis used by default",
                   args: {
                     name: "SERVICE_ACCOUNT",
                     description: "Googlecloudsdk.calliope.arg_parsers:Parse",
@@ -1319,13 +1309,11 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "JOB",
                   description: "Name of the job",
-                  isVariadic: false,
                 },
                 {
                   name: "USER_ARGS",
                   description:
                     "Additional user arguments to be forwarded to user code\n+\nThe '--' argument must be specified between gcloud specific args on the left and USER_ARGS on the right",
-                  isVariadic: false,
                 },
               ],
             },
@@ -1462,7 +1450,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update an AI Platform job",
-
           options: [
             {
               name: "--account",
@@ -1619,7 +1606,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "JOB",
             description: "Name of the job",
-            isVariadic: false,
           },
         },
       ],
@@ -1759,7 +1745,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "predict",
           description: "Run prediction locally",
-
           options: [
             {
               name: "--account",
@@ -1952,7 +1937,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "train",
           description: "Run an AI Platform training job locally",
-
           options: [
             {
               name: "--account",
@@ -2160,7 +2144,6 @@ const completionSpec: Fig.Spec = {
             name: "USER_ARGS",
             description:
               "Additional user arguments to be forwarded to user code. Any relative paths will\nbe relative to the *parent* directory of `--package-path`.\n+\n+\nThe '--' argument must be specified between gcloud specific args on the left and USER_ARGS on the right",
-            isVariadic: false,
           },
         },
       ],
@@ -2300,7 +2283,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "add-iam-policy-binding",
           description: "Add IAM policy binding for a model",
-
           options: [
             {
               name: "--account",
@@ -2477,13 +2459,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "MODEL",
             description: "Name of the model",
-            isVariadic: false,
           },
         },
         {
           name: "create",
           description: "Create a new AI Platform model",
-
           options: [
             {
               name: "--account",
@@ -2659,13 +2639,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "MODEL",
             description: "Name of the model",
-            isVariadic: false,
           },
         },
         {
           name: "delete",
           description: "Delete an existing AI Platform model",
-
           options: [
             {
               name: "--account",
@@ -2821,13 +2799,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "MODEL",
             description: "Name of the model",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "Describe an existing AI Platform model",
-
           options: [
             {
               name: "--account",
@@ -2983,13 +2959,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "MODEL",
             description: "Name of the model",
-            isVariadic: false,
           },
         },
         {
           name: "get-iam-policy",
           description: "Get the IAM policy for a model",
-
           options: [
             {
               name: "--account",
@@ -3186,13 +3160,11 @@ const completionSpec: Fig.Spec = {
             name: "MODEL",
             description:
               "ID of the model or fully qualified identifier for the model",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List existing AI Platform models",
-
           options: [
             {
               name: "--account",
@@ -3394,7 +3366,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "remove-iam-policy-binding",
           description: "Remove IAM policy binding for a model",
-
           options: [
             {
               name: "--account",
@@ -3572,13 +3543,11 @@ const completionSpec: Fig.Spec = {
             name: "MODEL",
             description:
               "ID of the model or fully qualified identifier for the model",
-            isVariadic: false,
           },
         },
         {
           name: "set-iam-policy",
           description: "Set the IAM policy for a model",
-
           options: [
             {
               name: "--account",
@@ -3736,20 +3705,17 @@ const completionSpec: Fig.Spec = {
               name: "MODEL",
               description:
                 "ID of the model or fully qualified identifier for the model",
-              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy)",
-              isVariadic: false,
             },
           ],
         },
         {
           name: "update",
           description: "Update an existing AI Platform model",
-
           options: [
             {
               name: "--account",
@@ -3939,7 +3905,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "MODEL",
             description: "Name of the model",
-            isVariadic: false,
           },
         },
       ],
@@ -4079,7 +4044,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "cancel",
           description: "Cancel an AI Platform operation",
-
           options: [
             {
               name: "--account",
@@ -4235,13 +4199,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "OPERATION",
             description: "Name of the operation",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "Describe an AI Platform operation",
-
           options: [
             {
               name: "--account",
@@ -4397,13 +4359,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "OPERATION",
             description: "Name of the operation",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List existing AI Platform jobs",
-
           options: [
             {
               name: "--account",
@@ -4605,7 +4565,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "wait",
           description: "Wait for an AI Platform operation to complete",
-
           options: [
             {
               name: "--account",
@@ -4761,7 +4720,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "OPERATION",
             description: "Name of the operation",
-            isVariadic: false,
           },
         },
       ],
@@ -4897,7 +4855,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "predict",
       description: "Run AI Platform online prediction",
-
       options: [
         {
           name: "--account",
@@ -5108,7 +5065,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a new AI Platform version",
-
           options: [
             {
               name: "--accelerator",
@@ -5379,13 +5335,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "VERSION",
             description: "Name of the model version",
-            isVariadic: false,
           },
         },
         {
           name: "delete",
           description: "Delete an existing AI Platform version",
-
           options: [
             {
               name: "--account",
@@ -5551,13 +5505,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "VERSION",
             description: "Name of the model version",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "Describe an existing AI Platform version",
-
           options: [
             {
               name: "--account",
@@ -5723,13 +5675,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "VERSION",
             description: "Name of the model version",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List existing AI Platform versions",
-
           options: [
             {
               name: "--account",
@@ -5942,7 +5892,6 @@ const completionSpec: Fig.Spec = {
           name: "set-default",
           description:
             "Sets an existing AI Platform version as the default for its model",
-
           options: [
             {
               name: "--account",
@@ -6108,13 +6057,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "VERSION",
             description: "Name of the model version",
-            isVariadic: false,
           },
         },
         {
           name: "update",
           description: "Update an AI Platform version",
-
           options: [
             {
               name: "--account",
@@ -6324,7 +6271,6 @@ const completionSpec: Fig.Spec = {
             name: "VERSION",
             description:
               "ID of the version or fully qualified identifier for the version",
-            isVariadic: false,
           },
         },
       ],

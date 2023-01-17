@@ -734,12 +734,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-mac-sec",
           description:
-            "Indicates whether you want the connection to support MAC Security (MACsec). MAC Security (MACsec) is only available on dedicated connections. For information about MAC Security (MACsec) prerequisties, see MACsec prerequisties in the AWS Direct Connect User Guide",
+            "Indicates whether you want the connection to support MAC Security (MACsec). MAC Security (MACsec) is only available on dedicated connections. For information about MAC Security (MACsec) prerequisites, see MACsec prerequisites in the AWS Direct Connect User Guide",
         },
         {
           name: "--no-request-mac-sec",
           description:
-            "Indicates whether you want the connection to support MAC Security (MACsec). MAC Security (MACsec) is only available on dedicated connections. For information about MAC Security (MACsec) prerequisties, see MACsec prerequisties in the AWS Direct Connect User Guide",
+            "Indicates whether you want the connection to support MAC Security (MACsec). MAC Security (MACsec) is only available on dedicated connections. For information about MAC Security (MACsec) prerequisites, see MACsec prerequisites in the AWS Direct Connect User Guide",
         },
         {
           name: "--cli-input-json",
@@ -1037,7 +1037,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--child-connection-tags",
           description:
-            "The tags to associate with the automtically created LAGs",
+            "The tags to associate with the automatically created LAGs",
           args: {
             name: "list",
           },
@@ -1053,12 +1053,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-mac-sec",
           description:
-            "Indicates whether the connection will support MAC Security (MACsec).  All connections in the LAG must be capable of supporting MAC Security (MACsec). For information about MAC Security (MACsec) prerequisties, see MACsec prerequisties in the AWS Direct Connect User Guide",
+            "Indicates whether the connection will support MAC Security (MACsec).  All connections in the LAG must be capable of supporting MAC Security (MACsec). For information about MAC Security (MACsec) prerequisites, see MACsec prerequisites in the AWS Direct Connect User Guide",
         },
         {
           name: "--no-request-mac-sec",
           description:
-            "Indicates whether the connection will support MAC Security (MACsec).  All connections in the LAG must be capable of supporting MAC Security (MACsec). For information about MAC Security (MACsec) prerequisties, see MACsec prerequisties in the AWS Direct Connect User Guide",
+            "Indicates whether the connection will support MAC Security (MACsec).  All connections in the LAG must be capable of supporting MAC Security (MACsec). For information about MAC Security (MACsec) prerequisites, see MACsec prerequisites in the AWS Direct Connect User Guide",
         },
         {
           name: "--cli-input-json",

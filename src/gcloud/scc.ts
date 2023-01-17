@@ -9,7 +9,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe an asset given its resource name or asset id",
-
           options: [
             {
               name: "--account",
@@ -162,14 +161,12 @@ const completionSpec: Fig.Spec = {
             name: "ORGANIZATION",
             description:
               "ID of the organization or fully qualified identifier for the organization",
-            isVariadic: false,
           },
         },
         {
           name: "get-parent",
           description:
             "Get the Parent for an asset given its resource name or asset id",
-
           options: [
             {
               name: "--account",
@@ -322,14 +319,12 @@ const completionSpec: Fig.Spec = {
             name: "ORGANIZATION",
             description:
               "ID of the organization or fully qualified identifier for the organization",
-            isVariadic: false,
           },
         },
         {
           name: "get-project",
           description:
             "Get the Project for an asset given its resource name or asset id",
-
           options: [
             {
               name: "--account",
@@ -482,14 +477,12 @@ const completionSpec: Fig.Spec = {
             name: "ORGANIZATION",
             description:
               "ID of the organization or fully qualified identifier for the organization",
-            isVariadic: false,
           },
         },
         {
           name: "group",
           description:
             "Filter an organization's assets and groups them by their specified properties",
-
           options: [
             {
               name: "--account",
@@ -682,13 +675,11 @@ const completionSpec: Fig.Spec = {
             name: "ORGANIZATION",
             description:
               "ID of the organization or fully qualified identifier for the organization",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List Cloud Security Command Center assets",
-
           options: [
             {
               name: "--account",
@@ -911,13 +902,11 @@ const completionSpec: Fig.Spec = {
             name: "ORGANIZATION",
             description:
               "ID of the organization or fully qualified identifier for the organization",
-            isVariadic: false,
           },
         },
         {
           name: "list-marks",
           description: "List an assets's security marks",
-
           options: [
             {
               name: "--account",
@@ -1120,13 +1109,11 @@ const completionSpec: Fig.Spec = {
             name: "ASSET",
             description:
               "ID of the asset or fully qualified identifier for the asset",
-            isVariadic: false,
           },
         },
         {
           name: "run-discovery",
           description: "Scan an organization for new/modified/deleted assets",
-
           options: [
             {
               name: "--account",
@@ -1259,14 +1246,12 @@ const completionSpec: Fig.Spec = {
             name: "ORGANIZATION",
             description:
               "ID of the organization or fully qualified identifier for the organization",
-            isVariadic: false,
           },
         },
         {
           name: "update-marks",
           description:
             "Update Cloud Security Command Center asset's security marks",
-
           options: [
             {
               name: "--account",
@@ -1439,7 +1424,6 @@ const completionSpec: Fig.Spec = {
             name: "ASSET",
             description:
               "ID of the asset or fully qualified identifier for the asset",
-            isVariadic: false,
           },
         },
       ],
@@ -1579,7 +1563,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a Cloud Security Command Center finding",
-
           options: [
             {
               name: "--account",
@@ -1795,14 +1778,12 @@ const completionSpec: Fig.Spec = {
             name: "FINDING",
             description:
               "ID of the finding or fully qualified identifier for the finding",
-            isVariadic: false,
           },
         },
         {
           name: "group",
           description:
             "Filter an organization or source's findings and groups them by their specified properties",
-
           options: [
             {
               name: "--account",
@@ -2004,13 +1985,11 @@ const completionSpec: Fig.Spec = {
             name: "ORGANIZATION",
             description:
               "ID of the organization or fully qualified identifier for the organization",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List an organization or source's findings",
-
           options: [
             {
               name: "--account",
@@ -2242,13 +2221,11 @@ const completionSpec: Fig.Spec = {
             name: "ORGANIZATION",
             description:
               "ID of the organization or fully qualified identifier for the organization",
-            isVariadic: false,
           },
         },
         {
           name: "list-marks",
           description: "List a finding's security marks",
-
           options: [
             {
               name: "--account",
@@ -2461,13 +2438,11 @@ const completionSpec: Fig.Spec = {
             name: "FINDING",
             description:
               "ID of the finding or fully qualified identifier for the finding",
-            isVariadic: false,
           },
         },
         {
           name: "update",
           description: "Update a Cloud Security Command Center finding",
-
           options: [
             {
               name: "--account",
@@ -2671,14 +2646,12 @@ const completionSpec: Fig.Spec = {
             name: "FINDING",
             description:
               "ID of the finding or fully qualified identifier for the finding",
-            isVariadic: false,
           },
         },
         {
           name: "update-marks",
           description:
             "Update Cloud Security Command Center finding's security marks",
-
           options: [
             {
               name: "--account",
@@ -2861,7 +2834,6 @@ const completionSpec: Fig.Spec = {
             name: "FINDING",
             description:
               "ID of the finding or fully qualified identifier for the finding",
-            isVariadic: false,
           },
         },
       ],
@@ -3002,7 +2974,6 @@ const completionSpec: Fig.Spec = {
           name: "create",
           description:
             "Create a Cloud Security Command Center notification config",
-
           options: [
             {
               name: "--account",
@@ -3175,14 +3146,12 @@ const completionSpec: Fig.Spec = {
             name: "NOTIFICATION_CONFIG_ID",
             description:
               'The ID of the notification config. Formatted as "organizations/123/notificationConfigs/456" or just "456"',
-            isVariadic: false,
           },
         },
         {
           name: "delete",
           description:
             "Delete a Cloud Security Command Center notification config",
-
           options: [
             {
               name: "--account",
@@ -3325,14 +3294,12 @@ const completionSpec: Fig.Spec = {
             name: "NOTIFICATION_CONFIG_ID",
             description:
               'The ID of the notification config. Formatted as "organizations/123/notificationConfigs/456" or just "456"',
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description:
             "Describe a Cloud Security Command Center notification config",
-
           options: [
             {
               name: "--account",
@@ -3475,14 +3442,12 @@ const completionSpec: Fig.Spec = {
             name: "NOTIFICATION_CONFIG_ID",
             description:
               'The ID of the notification config. Formatted as "organizations/123/notificationConfigs/456" or just "456"',
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description:
             "List Cloud Security Command Center notification configs",
-
           options: [
             {
               name: "--account",
@@ -3655,14 +3620,12 @@ const completionSpec: Fig.Spec = {
             name: "ORGANIZATION",
             description:
               "ID of the organization or fully qualified identifier for the organization",
-            isVariadic: false,
           },
         },
         {
           name: "update",
           description:
             "Update a Cloud Security Command Center notification config",
-
           options: [
             {
               name: "--account",
@@ -3835,7 +3798,6 @@ const completionSpec: Fig.Spec = {
             name: "NOTIFICATION_CONFIG_ID",
             description:
               'The ID of the notification config. Formatted as "organizations/123/notificationConfigs/456" or just "456"',
-            isVariadic: false,
           },
         },
       ],
@@ -3975,7 +3937,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a Cloud SCC's long running scan operation",
-
           options: [
             {
               name: "--account",
@@ -4118,7 +4079,6 @@ const completionSpec: Fig.Spec = {
             name: "OPERATION",
             description:
               "ID of the operation or fully qualified identifier for the operation",
-            isVariadic: false,
           },
         },
       ],
@@ -4258,7 +4218,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a source given its display name or source id",
-
           options: [
             {
               name: "--account",
@@ -4411,7 +4370,6 @@ const completionSpec: Fig.Spec = {
             name: "ORGANIZATION",
             description:
               "ID of the organization or fully qualified identifier for the organization",
-            isVariadic: false,
           },
         },
       ],

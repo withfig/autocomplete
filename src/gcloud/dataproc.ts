@@ -10,7 +10,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete an autoscaling policy",
-
           options: [
             {
               name: "--account",
@@ -153,13 +152,11 @@ const completionSpec: Fig.Spec = {
             name: "AUTOSCALING_POLICY",
             description:
               "ID of the autoscaling policy or fully qualified identifier for the autoscaling policy",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "Describe an autoscaling policy",
-
           options: [
             {
               name: "--account",
@@ -302,13 +299,11 @@ const completionSpec: Fig.Spec = {
             name: "AUTOSCALING_POLICY",
             description:
               "ID of the autoscaling policy or fully qualified identifier for the autoscaling policy",
-            isVariadic: false,
           },
         },
         {
           name: "export",
           description: "Export an autoscaling policy",
-
           options: [
             {
               name: "--account",
@@ -461,13 +456,11 @@ const completionSpec: Fig.Spec = {
             name: "AUTOSCALING_POLICY",
             description:
               "ID of the autoscaling policy or fully qualified identifier for the autoscaling policy",
-            isVariadic: false,
           },
         },
         {
           name: "get-iam-policy",
           description: "Get IAM policy for an autoscaling policy",
-
           options: [
             {
               name: "--account",
@@ -610,13 +603,11 @@ const completionSpec: Fig.Spec = {
             name: "AUTOSCALING_POLICY",
             description:
               "ID of the autoscaling policy or fully qualified identifier for the autoscaling policy",
-            isVariadic: false,
           },
         },
         {
           name: "import",
           description: "Import an autoscaling policy",
-
           options: [
             {
               name: "--account",
@@ -769,13 +760,11 @@ const completionSpec: Fig.Spec = {
             name: "AUTOSCALING_POLICY",
             description:
               "ID of the autoscaling policy or fully qualified identifier for the autoscaling policy",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List autoscaling policies",
-
           options: [
             {
               name: "--account",
@@ -963,7 +952,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "set-iam-policy",
           description: "Set IAM policy for an autoscaling policy",
-
           options: [
             {
               name: "--account",
@@ -1107,13 +1095,11 @@ const completionSpec: Fig.Spec = {
               name: "AUTOSCALING_POLICY",
               description:
                 "ID of the autoscaling policy or fully qualified identifier for the autoscaling policy",
-              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy)",
-              isVariadic: false,
             },
           ],
         },
@@ -1254,7 +1240,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a cluster",
-
           options: [
             {
               name: "--account",
@@ -1968,13 +1953,11 @@ const completionSpec: Fig.Spec = {
             name: "CLUSTER",
             description:
               "ID of the cluster or fully qualified identifier for the cluster",
-            isVariadic: false,
           },
         },
         {
           name: "delete",
           description: "Delete a cluster",
-
           options: [
             {
               name: "--account",
@@ -2122,13 +2105,11 @@ const completionSpec: Fig.Spec = {
             name: "CLUSTER",
             description:
               "ID of the cluster or fully qualified identifier for the cluster",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "View the details of a cluster",
-
           options: [
             {
               name: "--account",
@@ -2271,13 +2252,11 @@ const completionSpec: Fig.Spec = {
             name: "CLUSTER",
             description:
               "ID of the cluster or fully qualified identifier for the cluster",
-            isVariadic: false,
           },
         },
         {
           name: "diagnose",
           description: "Run a detailed diagnostic on a cluster",
-
           options: [
             {
               name: "--account",
@@ -2420,13 +2399,11 @@ const completionSpec: Fig.Spec = {
             name: "CLUSTER",
             description:
               "ID of the cluster or fully qualified identifier for the cluster",
-            isVariadic: false,
           },
         },
         {
           name: "export",
           description: "Export a cluster",
-
           options: [
             {
               name: "--account",
@@ -2579,13 +2556,11 @@ const completionSpec: Fig.Spec = {
             name: "CLUSTER",
             description:
               "ID of the cluster or fully qualified identifier for the cluster",
-            isVariadic: false,
           },
         },
         {
           name: "get-iam-policy",
           description: "Get IAM policy for a cluster",
-
           options: [
             {
               name: "--account",
@@ -2768,13 +2743,11 @@ const completionSpec: Fig.Spec = {
             name: "CLUSTER",
             description:
               "ID of the cluster or fully qualified identifier for the cluster",
-            isVariadic: false,
           },
         },
         {
           name: "import",
           description: "Import a cluster",
-
           options: [
             {
               name: "--account",
@@ -2932,13 +2905,11 @@ const completionSpec: Fig.Spec = {
             name: "CLUSTER",
             description:
               "ID of the cluster or fully qualified identifier for the cluster",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "View a list of clusters in a project",
-
           options: [
             {
               name: "--account",
@@ -3121,7 +3092,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "set-iam-policy",
           description: "Set IAM policy for a cluster",
-
           options: [
             {
               name: "--account",
@@ -3265,13 +3235,11 @@ const completionSpec: Fig.Spec = {
               name: "CLUSTER",
               description:
                 "ID of the cluster or fully qualified identifier for the cluster",
-              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy",
-              isVariadic: false,
             },
           ],
         },
@@ -3279,7 +3247,6 @@ const completionSpec: Fig.Spec = {
           name: "update",
           description:
             "Update labels and/or the number of worker nodes in a cluster",
-
           options: [
             {
               name: "--account",
@@ -3540,7 +3507,6 @@ const completionSpec: Fig.Spec = {
             name: "CLUSTER",
             description:
               "ID of the cluster or fully qualified identifier for the cluster",
-            isVariadic: false,
           },
         },
       ],
@@ -3680,7 +3646,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete the record of an inactive job",
-
           options: [
             {
               name: "--account",
@@ -3823,13 +3788,11 @@ const completionSpec: Fig.Spec = {
             name: "JOB",
             description:
               "ID of the job or fully qualified identifier for the job",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "View the details of a job",
-
           options: [
             {
               name: "--account",
@@ -3972,13 +3935,11 @@ const completionSpec: Fig.Spec = {
             name: "JOB",
             description:
               "ID of the job or fully qualified identifier for the job",
-            isVariadic: false,
           },
         },
         {
           name: "get-iam-policy",
           description: "Get IAM policy for a job",
-
           options: [
             {
               name: "--account",
@@ -4161,13 +4122,11 @@ const completionSpec: Fig.Spec = {
             name: "JOB",
             description:
               "ID of the job or fully qualified identifier for the job",
-            isVariadic: false,
           },
         },
         {
           name: "kill",
           description: "Kill an active job",
-
           options: [
             {
               name: "--account",
@@ -4310,13 +4269,11 @@ const completionSpec: Fig.Spec = {
             name: "JOB",
             description:
               "ID of the job or fully qualified identifier for the job",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List jobs in a project",
-
           options: [
             {
               name: "--account",
@@ -4518,7 +4475,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "set-iam-policy",
           description: "Set IAM policy for a job",
-
           options: [
             {
               name: "--account",
@@ -4662,13 +4618,11 @@ const completionSpec: Fig.Spec = {
               name: "JOB",
               description:
                 "ID of the job or fully qualified identifier for the job",
-              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy)",
-              isVariadic: false,
             },
           ],
         },
@@ -4680,7 +4634,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "hadoop",
               description: "Submit a Hadoop job to a cluster",
-
               options: [
                 {
                   name: "--account",
@@ -4937,13 +4890,11 @@ const completionSpec: Fig.Spec = {
                 name: "JOB_ARGS",
                 description:
                   "The arguments to pass to the driver.\n+\nThe '--' argument must be specified between gcloud specific args on the left and JOB_ARGS on the right",
-                isVariadic: false,
               },
             },
             {
               name: "hive",
               description: "Submit a Hive job to a cluster",
-
               options: [
                 {
                   name: "--account",
@@ -5183,7 +5134,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "pig",
               description: "Submit a Pig job to a cluster",
-
               options: [
                 {
                   name: "--account",
@@ -5433,7 +5383,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "presto",
               description: "Submit a Presto job to a cluster",
-
               options: [
                 {
                   name: "--account",
@@ -5684,7 +5633,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "pyspark",
               description: "Submit a PySpark job to a cluster",
-
               options: [
                 {
                   name: "--account",
@@ -5932,20 +5880,17 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "PY_FILE",
                   description: "Main .py file to run as the driver",
-                  isVariadic: false,
                 },
                 {
                   name: "JOB_ARGS",
                   description:
                     "Arguments to pass to the driver.\n+\nThe '--' argument must be specified between gcloud specific args on the left and JOB_ARGS on the right",
-                  isVariadic: false,
                 },
               ],
             },
             {
               name: "spark",
               description: "Submit a Spark job to a cluster",
-
               options: [
                 {
                   name: "--account",
@@ -6203,13 +6148,11 @@ const completionSpec: Fig.Spec = {
                 name: "JOB_ARGS",
                 description:
                   "Arguments to pass to the driver.\n+\nThe '--' argument must be specified between gcloud specific args on the left and JOB_ARGS on the right",
-                isVariadic: false,
               },
             },
             {
               name: "spark-r",
               description: "Submit a SparkR job to a cluster",
-
               options: [
                 {
                   name: "--account",
@@ -6437,20 +6380,17 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "R_FILE",
                   description: "Main .R file to run as the driver",
-                  isVariadic: false,
                 },
                 {
                   name: "JOB_ARGS",
                   description:
                     "Arguments to pass to the driver.\n+\nThe '--' argument must be specified between gcloud specific args on the left and JOB_ARGS on the right",
-                  isVariadic: false,
                 },
               ],
             },
             {
               name: "spark-sql",
               description: "Submit a Spark SQL job to a cluster",
-
               options: [
                 {
                   name: "--account",
@@ -6852,7 +6792,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update the labels for a job",
-
           options: [
             {
               name: "--account",
@@ -7020,14 +6959,12 @@ const completionSpec: Fig.Spec = {
             name: "JOB",
             description:
               "ID of the job or fully qualified identifier for the job",
-            isVariadic: false,
           },
         },
         {
           name: "wait",
           description:
             "View the output of a job as it runs or after it completes",
-
           options: [
             {
               name: "--account",
@@ -7170,7 +7107,6 @@ const completionSpec: Fig.Spec = {
             name: "JOB",
             description:
               "ID of the job or fully qualified identifier for the job",
-            isVariadic: false,
           },
         },
       ],
@@ -7310,7 +7246,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "cancel",
           description: "Cancel an active operation",
-
           options: [
             {
               name: "--account",
@@ -7453,13 +7388,11 @@ const completionSpec: Fig.Spec = {
             name: "OPERATION",
             description:
               "ID of the operation or fully qualified identifier for the operation",
-            isVariadic: false,
           },
         },
         {
           name: "delete",
           description: "Delete the record of an inactive operation",
-
           options: [
             {
               name: "--account",
@@ -7602,13 +7535,11 @@ const completionSpec: Fig.Spec = {
             name: "OPERATION",
             description:
               "ID of the operation or fully qualified identifier for the operation",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "View the details of an operation",
-
           options: [
             {
               name: "--account",
@@ -7751,13 +7682,11 @@ const completionSpec: Fig.Spec = {
             name: "OPERATION",
             description:
               "ID of the operation or fully qualified identifier for the operation",
-            isVariadic: false,
           },
         },
         {
           name: "get-iam-policy",
           description: "Get IAM policy for an operation",
-
           options: [
             {
               name: "--account",
@@ -7940,13 +7869,11 @@ const completionSpec: Fig.Spec = {
             name: "OPERATION",
             description:
               "ID of the operation or fully qualified identifier for the operation",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "View the list of all operations",
-
           options: [
             {
               name: "--account",
@@ -8149,7 +8076,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "set-iam-policy",
           description: "Set IAM policy for an operation",
-
           options: [
             {
               name: "--account",
@@ -8293,13 +8219,11 @@ const completionSpec: Fig.Spec = {
               name: "OPERATION",
               description:
                 "ID of the operation or fully qualified identifier for the operation",
-              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy)",
-              isVariadic: false,
             },
           ],
         },
@@ -8444,7 +8368,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "hadoop",
               description: "Add a hadoop job to the workflow template",
-
               options: [
                 {
                   name: "--account",
@@ -8698,13 +8621,11 @@ const completionSpec: Fig.Spec = {
                 name: "JOB_ARGS",
                 description:
                   "The arguments to pass to the driver.\n+\nThe '--' argument must be specified between gcloud specific args on the left and JOB_ARGS on the right",
-                isVariadic: false,
               },
             },
             {
               name: "hive",
               description: "Add a Hive job to the workflow template",
-
               options: [
                 {
                   name: "--account",
@@ -8941,7 +8862,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "pig",
               description: "Add a Pig job to the workflow template",
-
               options: [
                 {
                   name: "--account",
@@ -9188,7 +9108,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "presto",
               description: "Add a Presto job to the workflow template",
-
               options: [
                 {
                   name: "--account",
@@ -9436,7 +9355,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "pyspark",
               description: "Add a PySpark job to the workflow template",
-
               options: [
                 {
                   name: "--account",
@@ -9681,20 +9599,17 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "PY_FILE",
                   description: "Main .py file to run as the driver",
-                  isVariadic: false,
                 },
                 {
                   name: "JOB_ARGS",
                   description:
                     "Arguments to pass to the driver.\n+\nThe '--' argument must be specified between gcloud specific args on the left and JOB_ARGS on the right",
-                  isVariadic: false,
                 },
               ],
             },
             {
               name: "spark",
               description: "Add a Spark job to the workflow template",
-
               options: [
                 {
                   name: "--account",
@@ -9949,13 +9864,11 @@ const completionSpec: Fig.Spec = {
                 name: "JOB_ARGS",
                 description:
                   "Arguments to pass to the driver.\n+\nThe '--' argument must be specified between gcloud specific args on the left and JOB_ARGS on the right",
-                isVariadic: false,
               },
             },
             {
               name: "spark-r",
               description: "Add a SparkR job to the workflow template",
-
               options: [
                 {
                   name: "--account",
@@ -10180,20 +10093,17 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "R_FILE",
                   description: "Main .R file to run as the driver",
-                  isVariadic: false,
                 },
                 {
                   name: "JOB_ARGS",
                   description:
                     "Arguments to pass to the driver.\n+\nThe '--' argument must be specified between gcloud specific args on the left and JOB_ARGS on the right",
-                  isVariadic: false,
                 },
               ],
             },
             {
               name: "spark-sql",
               description: "Add a SparkSql job to the workflow template",
-
               options: [
                 {
                   name: "--account",
@@ -10567,7 +10477,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a workflow template",
-
           options: [
             {
               name: "--account",
@@ -10720,13 +10629,11 @@ const completionSpec: Fig.Spec = {
             name: "TEMPLATE",
             description:
               "ID of the template or fully qualified identifier for the template",
-            isVariadic: false,
           },
         },
         {
           name: "delete",
           description: "Delete a workflow template",
-
           options: [
             {
               name: "--account",
@@ -10869,13 +10776,11 @@ const completionSpec: Fig.Spec = {
             name: "TEMPLATE",
             description:
               "ID of the template or fully qualified identifier for the template",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "Describe a workflow template",
-
           options: [
             {
               name: "--account",
@@ -11018,13 +10923,11 @@ const completionSpec: Fig.Spec = {
             name: "TEMPLATE",
             description:
               "ID of the template or fully qualified identifier for the template",
-            isVariadic: false,
           },
         },
         {
           name: "export",
           description: "Export a workflow template",
-
           options: [
             {
               name: "--account",
@@ -11177,13 +11080,11 @@ const completionSpec: Fig.Spec = {
             name: "TEMPLATE",
             description:
               "ID of the template or fully qualified identifier for the template",
-            isVariadic: false,
           },
         },
         {
           name: "get-iam-policy",
           description: "Get IAM policy for a workflow template",
-
           options: [
             {
               name: "--account",
@@ -11326,13 +11227,11 @@ const completionSpec: Fig.Spec = {
             name: "TEMPLATE",
             description:
               "ID of the template or fully qualified identifier for the template",
-            isVariadic: false,
           },
         },
         {
           name: "import",
           description: "Import a workflow template",
-
           options: [
             {
               name: "--account",
@@ -11485,13 +11384,11 @@ const completionSpec: Fig.Spec = {
             name: "TEMPLATE",
             description:
               "ID of the template or fully qualified identifier for the template",
-            isVariadic: false,
           },
         },
         {
           name: "instantiate",
           description: "Instantiate a workflow template",
-
           options: [
             {
               name: "--account",
@@ -11649,13 +11546,11 @@ const completionSpec: Fig.Spec = {
             name: "TEMPLATE",
             description:
               "ID of the template or fully qualified identifier for the template",
-            isVariadic: false,
           },
         },
         {
           name: "instantiate-from-file",
           description: "Instantiate a workflow template from a file",
-
           options: [
             {
               name: "--account",
@@ -11814,7 +11709,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List workflow templates",
-
           options: [
             {
               name: "--account",
@@ -11997,7 +11891,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "remove-job",
           description: "Remove a job from workflow template",
-
           options: [
             {
               name: "--account",
@@ -12150,13 +12043,11 @@ const completionSpec: Fig.Spec = {
             name: "TEMPLATE",
             description:
               "ID of the template or fully qualified identifier for the template",
-            isVariadic: false,
           },
         },
         {
           name: "set-cluster-selector",
           description: "Set cluster selector for the workflow template",
-
           options: [
             {
               name: "--account",
@@ -12308,13 +12199,11 @@ const completionSpec: Fig.Spec = {
             name: "TEMPLATE",
             description:
               "ID of the template or fully qualified identifier for the template",
-            isVariadic: false,
           },
         },
         {
           name: "set-iam-policy",
           description: "Set IAM policy for a template",
-
           options: [
             {
               name: "--account",
@@ -12458,20 +12347,17 @@ const completionSpec: Fig.Spec = {
               name: "TEMPLATE",
               description:
                 "ID of the template or fully qualified identifier for the template",
-              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy)",
-              isVariadic: false,
             },
           ],
         },
         {
           name: "set-managed-cluster",
           description: "Set a managed cluster for the workflow template",
-
           options: [
             {
               name: "--account",
@@ -13120,7 +13006,6 @@ const completionSpec: Fig.Spec = {
             name: "TEMPLATE",
             description:
               "ID of the template or fully qualified identifier for the template",
-            isVariadic: false,
           },
         },
       ],

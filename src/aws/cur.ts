@@ -100,7 +100,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "modify-report-definition",
       description:
-        "Allows you to programatically update your report preferences",
+        "Allows you to programmatically update your report preferences",
       options: [
         {
           name: "--report-name",

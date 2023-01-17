@@ -1086,7 +1086,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "-P",
-          description: "Print informations about the new session",
+          description: "Print information about the new session",
         },
         {
           name: "-X",
@@ -1507,7 +1507,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["respawnp", "respawn-pane"],
-      description: "Resue a pane in which a command has exited",
+      description: "Reactivate a pane in which a command has exited",
       args: {
         name: "shell-command",
         description: "A shell command to run when creating the pane",
@@ -1544,7 +1544,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["respawnw", "respawn-window"],
-      description: "Resue a window in which a command has exited",
+      description: "Reactivate a window in which a command has exited",
       args: {
         name: "shell-command",
         description: "A shell command to run when creating the window",

@@ -9,7 +9,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a Managed Microsoft AD domain",
-
           options: [
             {
               name: "--account",
@@ -199,13 +198,11 @@ const completionSpec: Fig.Spec = {
             name: "DOMAIN",
             description:
               "ID of the domain or fully qualified identifier for the domain",
-            isVariadic: false,
           },
         },
         {
           name: "delete",
           description: "Delete a managed Microsoft Active Directory domain",
-
           options: [
             {
               name: "--account",
@@ -343,13 +340,11 @@ const completionSpec: Fig.Spec = {
             name: "DOMAIN",
             description:
               "ID of the domain or fully qualified identifier for the domain",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "Describe a Managed Microsoft AD domain",
-
           options: [
             {
               name: "--account",
@@ -482,14 +477,12 @@ const completionSpec: Fig.Spec = {
             name: "DOMAIN",
             description:
               "ID of the domain or fully qualified identifier for the domain",
-            isVariadic: false,
           },
         },
         {
           name: "get-iam-policy",
           description:
             "Describe the IAM policy for a Managed Microsoft AD domain",
-
           options: [
             {
               name: "--account",
@@ -662,13 +655,11 @@ const completionSpec: Fig.Spec = {
             name: "DOMAIN",
             description:
               "ID of the domain or fully qualified identifier for the domain",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List Managed Microsoft AD domains",
-
           options: [
             {
               name: "--account",
@@ -842,7 +833,6 @@ const completionSpec: Fig.Spec = {
           name: "reset-admin-password",
           description:
             "Reset the admin password for a Managed Microsoft AD domain",
-
           options: [
             {
               name: "--account",
@@ -975,13 +965,11 @@ const completionSpec: Fig.Spec = {
             name: "DOMAIN",
             description:
               "ID of the domain or fully qualified identifier for the domain",
-            isVariadic: false,
           },
         },
         {
           name: "set-iam-policy",
           description: "Set the IAM policy for a Managed Microsoft AD domain",
-
           options: [
             {
               name: "--account",
@@ -1115,13 +1103,11 @@ const completionSpec: Fig.Spec = {
               name: "DOMAIN",
               description:
                 "ID of the domain or fully qualified identifier for the domain",
-              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy)",
-              isVariadic: false,
             },
           ],
         },
@@ -1133,7 +1119,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create a Microsoft Active Directory Trust between a Managed Microsoft AD domain and another domain",
-
               options: [
                 {
                   name: "--account",
@@ -1339,14 +1324,12 @@ const completionSpec: Fig.Spec = {
                 name: "DOMAIN",
                 description:
                   "ID of the domain or fully qualified identifier for the domain",
-                isVariadic: false,
               },
             },
             {
               name: "delete",
               description:
                 "Delete an Active Directory Trust between a Managed Microsoft AD domain and a target domain",
-
               options: [
                 {
                   name: "--account",
@@ -1495,14 +1478,12 @@ const completionSpec: Fig.Spec = {
                 name: "DOMAIN",
                 description:
                   "ID of the domain or fully qualified identifier for the domain",
-                isVariadic: false,
               },
             },
             {
               name: "update",
               description:
                 "Update target DNS IP addresses for a Managed Microsoft AD trust",
-
               options: [
                 {
                   name: "--account",
@@ -1662,13 +1643,11 @@ const completionSpec: Fig.Spec = {
                 name: "DOMAIN",
                 description:
                   "ID of the domain or fully qualified identifier for the domain",
-                isVariadic: false,
               },
             },
             {
               name: "validate-state",
               description: "Validate the state of a Managed Microsoft AD trust",
-
               options: [
                 {
                   name: "--account",
@@ -1817,7 +1796,6 @@ const completionSpec: Fig.Spec = {
                 name: "DOMAIN",
                 description:
                   "ID of the domain or fully qualified identifier for the domain",
-                isVariadic: false,
               },
             },
           ],
@@ -1953,7 +1931,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update a Managed Microsoft AD domain",
-
           options: [
             {
               name: "--account",
@@ -2156,7 +2133,6 @@ const completionSpec: Fig.Spec = {
             name: "DOMAIN",
             description:
               "ID of the domain or fully qualified identifier for the domain",
-            isVariadic: false,
           },
         },
       ],
@@ -2296,7 +2272,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "cancel",
           description: "Cancel a Managed Microsoft AD operation",
-
           options: [
             {
               name: "--account",
@@ -2429,13 +2404,11 @@ const completionSpec: Fig.Spec = {
             name: "NAME",
             description:
               "ID of the operation or fully qualified identifier for the operation",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "Describe a Managed Microsoft AD operation",
-
           options: [
             {
               name: "--account",
@@ -2568,13 +2541,11 @@ const completionSpec: Fig.Spec = {
             name: "OPERATION",
             description:
               "ID of the operation or fully qualified identifier for the operation",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List Managed Microsoft AD operations",
-
           options: [
             {
               name: "--account",

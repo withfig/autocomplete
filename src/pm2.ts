@@ -1,13 +1,7 @@
+import { filepaths } from "@fig/autocomplete-generators";
+
 const generators: Record<string, Fig.Generator> = {
-  jsonFileGenerator: {
-    template: "filepaths",
-    filterTemplateSuggestions: function (paths) {
-      const suffix = ".json";
-      return paths.filter((file) => {
-        return file.name.endsWith(suffix);
-      });
-    },
-  },
+  jsonFileGenerator: filepaths({ extensions: ["json"] }),
 };
 
 const appArg: Fig.Arg = {
@@ -338,7 +332,7 @@ const sharedOptions: Fig.Option[] = [
     description:
       "Enables all monitoring tools (equivalent to –v8 –event-loop-inspector –trace)",
   },
-  { name: "-h, –-help", description: "Outputs usage information" },
+  { name: ["-h", "–-help"], description: "Outputs usage information" },
 ];
 
 const completionSpec: Fig.Spec = {

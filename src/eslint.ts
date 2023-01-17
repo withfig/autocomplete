@@ -20,7 +20,7 @@ const completionSpec: Fig.Spec = {
       args: {
         generators: {
           /*
-           * Multiple envs can be set with a ',' seperator.
+           * Multiple envs can be set with a ',' separator.
            * We want to filter over this static list of suggestions
            * so we don't suggest envs that have already been entered.
            * */

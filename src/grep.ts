@@ -5,6 +5,7 @@ const completionSpec: Fig.Spec = {
   args: [
     {
       name: "search pattern",
+      suggestCurrentToken: true,
     },
     {
       name: "file",
@@ -257,6 +258,7 @@ const completionSpec: Fig.Spec = {
       name: "--exclude-dir",
       description:
         "If -R is specified, only directories matching the given filename pattern are searched.  Note that --exclude-dir patterns take priority over --include-dir patterns",
+      isRepeatable: true,
       args: {
         name: "dir",
         template: "folders",
@@ -305,7 +307,6 @@ const completionSpec: Fig.Spec = {
       description:
         "Decompress the bzip2(1) compressed file before looking for the text",
     },
-
     {
       name: ["-V", "--version"],
       description: "Print version number of grep to the standard output stream",

@@ -12,6 +12,7 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "script",
     description: "The script to run",
+    filterStrategy: "fuzzy",
     generators: npmScriptsGenerator,
   },
   additionalSuggestions: [

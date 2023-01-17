@@ -1,3 +1,5 @@
+import { filepaths } from "@fig/autocomplete-generators";
+
 const completionSpec: Fig.Spec = {
   name: "pdfunite",
   description: "Combine multiple pdfs",
@@ -6,12 +8,7 @@ const completionSpec: Fig.Spec = {
     { name: ["-h", "--help", "-?"], description: "Print usage information" },
   ],
   args: {
-    generators: {
-      template: "filepaths",
-      filterTemplateSuggestions: function (paths) {
-        return paths.filter((file) => file.name.endsWith(".pdf"));
-      },
-    },
+    generators: filepaths({ extensions: ["pdf"] }),
     isVariadic: true,
   },
 };

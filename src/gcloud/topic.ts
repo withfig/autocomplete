@@ -5,7 +5,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "accessibility",
       description: "Reference for `Accessibility` features",
-
       options: [
         {
           name: "--account",
@@ -139,7 +138,6 @@ const completionSpec: Fig.Spec = {
       name: "arg-files",
       description:
         "Supplementary help for arg-files to be used with *gcloud firebase test*",
-
       options: [
         {
           name: "--account",
@@ -272,7 +270,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "cli-trees",
       description: "CLI trees supplementary help",
-
       options: [
         {
           name: "--account",
@@ -405,7 +402,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "client-certificate",
       description: "Client certificate authorization supplementary help",
-
       options: [
         {
           name: "--account",
@@ -538,7 +534,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "command-conventions",
       description: "Gcloud command conventions supplementary help",
-
       options: [
         {
           name: "--account",
@@ -671,7 +666,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "configurations",
       description: "Supplementary help for named configurations",
-
       options: [
         {
           name: "--account",
@@ -804,7 +798,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "datetimes",
       description: "Date/time input format supplementary help",
-
       options: [
         {
           name: "--account",
@@ -937,7 +930,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "escaping",
       description: "List/dictionary-type argument escaping supplementary help",
-
       options: [
         {
           name: "--account",
@@ -1070,7 +1062,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "filters",
       description: "Resource filters supplementary help",
-
       options: [
         {
           name: "--account",
@@ -1203,7 +1194,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "flags-file",
       description: "--flags-file=YAML_FILE supplementary help",
-
       options: [
         {
           name: "--account",
@@ -1336,7 +1326,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "formats",
       description: "Resource formats supplementary help",
-
       options: [
         {
           name: "--account",
@@ -1469,7 +1458,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "gcloudignore",
       description: "Reference for `.gcloudignore` files",
-
       options: [
         {
           name: "--account",
@@ -1602,7 +1590,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "offline-help",
       description: "Setting up gcloud command offline help",
-
       options: [
         {
           name: "--account",
@@ -1735,7 +1722,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "projections",
       description: "Resource projections supplementary help",
-
       options: [
         {
           name: "--account",
@@ -1868,7 +1854,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "resource-keys",
       description: "Resource keys supplementary help",
-
       options: [
         {
           name: "--account",
@@ -2001,7 +1986,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "startup",
       description: "Supplementary help for gcloud startup options",
-
       options: [
         {
           name: "--account",
@@ -2134,7 +2118,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "uninstall",
       description: "Supplementary help for uninstalling Cloud SDK",
-
       options: [
         {
           name: "--account",

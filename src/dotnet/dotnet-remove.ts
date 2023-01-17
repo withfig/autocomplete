@@ -1,17 +1,6 @@
-const projectGenerator: Fig.Generator = {
-  template: "filepaths",
-  filterTemplateSuggestions(param) {
-    const suffix = ".csproj";
+import { filepaths } from "@fig/autocomplete-generators";
 
-    return param.filter((file) => {
-      if (typeof file.name === "string") {
-        return file.name.endsWith(suffix);
-      }
-
-      return false;
-    });
-  },
-};
+const projectGenerator = filepaths({ extensions: ["csproj"] });
 
 const completionSpec: Fig.Spec = {
   name: "remove",

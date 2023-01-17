@@ -8,19 +8,21 @@ interface NodejsVersion {
 
 // Generators
 const versionGenerator: Fig.Generator = {
-  script: "fnm ls",
+  script: "fnm list",
   postProcess: function (out) {
     return out
       .split("\n")
       .reverse()
       .map((line) => ({
-        name: line.slice(2),
+        name: line.slice(2).split(" ")[0],
+        displayName: line.slice(2),
         description: `Node.js ${line.slice(2)}`,
       }));
   },
 };
 
-const NODE_VERSION_REGEX = /v(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)(?: \((?<ltsName>\w+)\))?/iu;
+const NODE_VERSION_REGEX =
+  /v(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)(?: \((?<ltsName>\w+)\))?/iu;
 const parseNodejsVersion = (raw: string): NodejsVersion => {
   const { major, minor, patch, ltsName } =
     NODE_VERSION_REGEX.exec(raw)?.groups ?? {};
@@ -47,7 +49,7 @@ const uniqBy = <T = unknown>(arr: T[], callback: (a: T, b: T) => boolean) =>
  * - Every other version, sorted;
  */
 const remoteVersionGenerator: Fig.Generator = {
-  script: "fnm ls-remote",
+  script: "fnm list-remote",
   postProcess: function (out) {
     const parsed = out
       .split("\n")
@@ -56,8 +58,9 @@ const remoteVersionGenerator: Fig.Generator = {
       .map(parseNodejsVersion);
 
     // The last even major release, that's to say the last LTS.
-    const lastLtsMajor = parsed.find((version) => version.major % 2 === 0)
-      .major;
+    const lastLtsMajor = parsed.find(
+      (version) => version.major % 2 === 0
+    ).major;
     const latests = new Map<number, NodejsVersion>();
 
     const nodeVersion = parsed
@@ -183,15 +186,33 @@ const logLevel: Fig.Option = {
 
 const nodeDistMirror: Fig.Option = {
   name: "--node-dist-mirror",
-  description: "Https://nodejs.org/dist/ mirror",
+  description: "Mirror of https://nodejs.org/dist",
   args: {
     name: "nodeDistMirror",
     default: "https://nodejs.org/dist",
   },
 };
 
+const versionFileStrategy: Fig.Option = {
+  name: "--version-file-strategy",
+  description: "Strategy for how to resolve the Node version",
+  args: {
+    name: "strategy",
+    default: "local",
+    suggestions: ["local", "recursive"],
+  },
+};
+
 // Theses options are available in every single sub-command
-const baseOptions = [help, fnmVersion, arch, fnmDir, logLevel, nodeDistMirror];
+const baseOptions = [
+  help,
+  fnmVersion,
+  arch,
+  fnmDir,
+  logLevel,
+  nodeDistMirror,
+  versionFileStrategy,
+];
 
 const completionSpec: Fig.Spec = {
   name: "fnm",
@@ -227,7 +248,7 @@ const completionSpec: Fig.Spec = {
           name: "--using",
           description:
             "Either an explicit version, or a filename with the version written in it",
-          args: { ...version, isOptional: false },
+          args: { ...version },
         },
         lts,
         ...baseOptions,
@@ -305,20 +326,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "command",
         isOptional: true,
-        suggestions: [
-          "alias",
-          "completions",
-          "current",
-          "default",
-          "env",
-          "exec",
-          "help",
-          "install",
-          "list",
-          "list-remote",
-          "uninstall",
-          "use",
-        ],
+        template: "help",
       },
       options: baseOptions,
     },

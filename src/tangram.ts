@@ -31,27 +31,23 @@ const completionSpec: Fig.Spec = {
     {
       name: "predict",
       description: "Make predictions with a model",
-
       options: [
         {
           name: ["-f", "--file"],
           description: "The path to read examples from, defaults to stdin",
           args: { name: "FILE", template: "filepaths" },
         },
-
         {
           name: ["-m", "--model"],
           description: "The path to the model to make predictions with",
           args: { name: "MODEL", template: "filepaths" },
         },
-
         {
           name: ["-o", "--output"],
           description:
             "The path to write the predictions to, defaults to stdout",
           args: { name: "OUTPUT", template: "filepaths" },
         },
-
         {
           name: ["-p", "--probabilities"],
           description:

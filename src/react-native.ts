@@ -1,3 +1,5 @@
+import { filepaths } from "@fig/autocomplete-generators";
+
 const JS_ICON =
   "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_js.svg";
 const GRADLE_ICON =
@@ -5,17 +7,11 @@ const GRADLE_ICON =
 const APPLE_ICON =
   "https://developer.apple.com/library/archive/Resources/1282/Images/apple2.png";
 const ANDROID_ICON = "https://www.android.com/static/images/fav/favicon.ico";
-const getJsFilesAndFolders = (paths) => {
-  const jsAndFolders = paths.filter((file) => {
-    return file.name.endsWith(".js") || file.name.endsWith("/");
-  });
-  return jsAndFolders.map((file) => {
-    return {
-      ...file,
-      icon: file.type === "file" ? JS_ICON : file.icon,
-    };
-  });
-};
+
+const getJsFilesAndFolders = filepaths({
+  extensions: ["js"],
+  editFileSuggestions: { icon: JS_ICON },
+});
 
 const workerGenerator = {
   script: "sysctl -n hw.ncpu",
@@ -157,10 +153,7 @@ const completionSpec: Fig.Spec = {
             "Path to the root JS file, either absolute or relative to JS root",
           args: {
             name: "file",
-            generators: {
-              template: "filepaths",
-              filterTemplateSuggestions: getJsFilesAndFolders,
-            },
+            generators: getJsFilesAndFolders,
           },
         },
         {
@@ -347,8 +340,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--npm",
           description: "Forces using npm for initialization",
-          icon:
-            "https://img.pngio.com/publishing-to-npm-from-kentcdodds-on-eggheadio-npm-png-800_800.png",
+          icon: "https://img.pngio.com/publishing-to-npm-from-kentcdodds-on-eggheadio-npm-png-800_800.png",
         },
         {
           name: "--directory",
@@ -484,10 +476,7 @@ const completionSpec: Fig.Spec = {
             "Path to a JavaScript file that exports a log reporter as a replacement for TerminalReporter",
           args: {
             name: "logFile",
-            generators: {
-              template: "filepaths",
-              filterTemplateSuggestions: getJsFilesAndFolders,
-            },
+            generators: getJsFilesAndFolders,
           },
         },
         {
@@ -545,10 +534,7 @@ const completionSpec: Fig.Spec = {
             "Path to the root JS file, either absolute or relative to JS root",
           args: {
             name: "file",
-            generators: {
-              template: "filepaths",
-              filterTemplateSuggestions: getJsFilesAndFolders,
-            },
+            generators: getJsFilesAndFolders,
           },
         },
         {

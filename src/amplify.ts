@@ -58,13 +58,17 @@ const categoryCommands: Fig.Subcommand[] = [
       "Removes a resource for an Amplify category in your local backend",
   },
   {
+    name: "console",
+    description: "Opens the web console for the category",
+  },
+  {
     name: "push",
     description:
       "Provisions cloud resources with the latest local developments",
-    subcommands: [
+    options: [
       {
-        name: "--y",
-        description: "Respond 'y' to all options",
+        name: "-y",
+        description: "Answer all question as 'Yes'",
       },
     ],
   },
@@ -89,13 +93,13 @@ const completionSpec: Fig.Spec = {
       name: "push",
       description:
         "Provisions cloud resources with the latest local developments",
-      subcommands: [
+      options: [
         {
-          name: "--y",
-          description: "Respond 'y' to all options",
+          name: "-y",
+          description: "Answer all question as 'Yes'",
         },
-        ...amplifyCategories,
       ],
+      subcommands: [...amplifyCategories],
     },
     {
       name: "pull",
@@ -149,6 +153,15 @@ const completionSpec: Fig.Spec = {
       subcommands: amplifyCategories,
     },
     {
+      name: "upgrade",
+      description: "Download and install the latest version of the Amplify CLI",
+    },
+    {
+      name: "uninstall",
+      description:
+        "Remove all global Amplify configuration files and uninstall the Amplify CLI. This will not delete any Amplify projects",
+    },
+    {
       name: "notifications",
       subcommands: categoryCommands,
     },
@@ -158,7 +171,29 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "api",
-      subcommands: categoryCommands,
+      subcommands: [
+        {
+          name: "gql-compile",
+          description:
+            "Compiles your GraphQL schema and generates a corresponding cloudformation template",
+        },
+        {
+          name: "migrate",
+          description:
+            "Migrates GraphQL schemas to the latest GraphQL transformer version",
+        },
+        {
+          name: "override",
+          description:
+            "Generates overrides file to apply custom modifications to CloudFormation",
+        },
+        {
+          name: "rebuild",
+          description:
+            "Removes and recreates all DynamoDB tables backing a GraphQL API. Useful for resetting test data during the development phase of an app",
+        },
+        ...categoryCommands,
+      ],
     },
     {
       name: "auth",
@@ -166,7 +201,14 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "function",
-      subcommands: categoryCommands,
+      subcommands: [
+        {
+          name: "build",
+          description:
+            "Builds all the functions in the project (does an npm install on the functions src directory)",
+        },
+        ...categoryCommands,
+      ],
     },
     {
       name: "hosting",
@@ -206,7 +248,6 @@ const completionSpec: Fig.Spec = {
       description:
         "If using temporary cloud provider credentials, this logs out of the account",
     },
-
     {
       name: "env",
       description: "Display all commands available for new Amplify project",

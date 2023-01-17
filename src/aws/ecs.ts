@@ -236,7 +236,7 @@ const sortSuggestions = (arr: string[], isS3?: boolean): Fig.Suggestion[] => {
   return final_array;
 };
 
-const generators: Record<string, Fig.Generator> = {
+const generators = {
   listFiles: {
     script: (tokens) => {
       return appendFolderPath(tokens, _prefixFile);
@@ -518,7 +518,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--default-capacity-provider-strategy",
           description:
-            "The capacity provider strategy to set as the default for the cluster. When a default capacity provider strategy is set for a cluster, when calling the RunTask or CreateService APIs wtih no capacity provider strategy or launch type specified, the default capacity provider strategy for the cluster is used. If a default capacity provider strategy is not defined for a cluster during creation, it can be defined later with the PutClusterCapacityProviders API operation",
+            "The capacity provider strategy to set as the default for the cluster. When a default capacity provider strategy is set for a cluster, when calling the RunTask or CreateService APIs with no capacity provider strategy or launch type specified, the default capacity provider strategy for the cluster is used. If a default capacity provider strategy is not defined for a cluster during creation, it can be defined later with the PutClusterCapacityProviders API operation",
           args: {
             name: "list",
             isVariadic: true,
@@ -556,7 +556,7 @@ const completionSpec: Fig.Spec = {
             "The short name or full Amazon Resource Name (ARN) of the cluster on which to run your service. If you do not specify a cluster, the default cluster is assumed",
           args: {
             name: "string",
-            generators: generators.listlistClusters,
+            generators: generators.listClusters,
           },
         },
         {
@@ -2210,7 +2210,7 @@ const completionSpec: Fig.Spec = {
             name: "string",
             generators: [
               generators.listTasks,
-              generators.ListTaskDefinitions,
+              generators.listTaskDefinitions,
               generators.listClusters,
               generators.listServices,
               generators.listContainerInstances,
@@ -2875,7 +2875,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--network-mode",
           description:
-            "The Docker networking mode to use for the containers in the task. The valid values are none, bridge, awsvpc, and host. If no network mode is specified, the default is bridge. For Amazon ECS tasks on Fargate, the awsvpc network mode is required. For Amazon ECS tasks on Amazon EC2 instances, any network mode can be used. If the network mode is set to none, you cannot specify port mappings in your container definitions, and the tasks containers do not have external connectivity. The host and awsvpc network modes offer the highest networking performance for containers because they use the EC2 network stack instead of the virtualized network stack provided by the bridge mode. With the host and awsvpc network modes, exposed container ports are mapped directly to the corresponding host port (for the host network mode) or the attached elastic network interface port (for the awsvpc network mode), so you cannot take advantage of dynamic host port mappings.   When using the host network mode, you should not run containers using the root user (UID 0). It is considered best practice to use a non-root user.  If the network mode is awsvpc, the task is allocated an elastic network interface, and you must specify a NetworkConfiguration value when you create a service or run a task with the task definition. For more information, see Task Networking in the Amazon Elastic Container Service Developer Guide.  Currently, only Amazon ECS-optimized AMIs, other Amazon Linux variants with the ecs-init package, or AWS Fargate infrastructure support the awsvpc network mode.   If the network mode is host, you cannot run multiple instantiations of the same task on a single container instance when port mappings are used. Docker for Windows uses different network modes than Docker for Linux. When you register a task definition with Windows containers, you must not specify a network mode. If you use the console to register a task definition with Windows containers, you must choose the &lt;default&gt; network mode object.  For more information, see Network settings in the Docker run reference",
+            "The Docker networking mode to use for the containers in the task. The valid values are none, bridge, awsvpc, and host. If no network mode is specified, the default is bridge. For Amazon ECS tasks on Fargate, the awsvpc network mode is required. For Amazon ECS tasks on Amazon EC2 instances, any network mode can be used. If the network mode is set to none, you cannot specify port mappings in your container definitions, and the tasks containers do not have external connectivity. The host and awsvpc network modes offer the highest networking performance for containers because they use the EC2 network stack instead of the virtualized network stack provided by the bridge mode. With the host and awsvpc network modes, exposed container ports are mapped directly to the corresponding host port (for the host network mode) or the attached elastic network interface port (for the awsvpc network mode), so you cannot take advantage of dynamic host port mappings.   When using the host network mode, you should not run containers using the root user (UID 0). It is considered best practice to use a non-root user.  If the network mode is awsvpc, the task is allocated an elastic network interface, and you must specify a NetworkConfiguration value when you create a service or run a task with the task definition. For more information, see Task Networking in the Amazon Elastic Container Service Developer Guide.  Currently, only Amazon ECS-optimized AMIs, other Amazon Linux variants with the ecs-init package, or AWS Fargate infrastructure support the awsvpc network mode.   If the network mode is host, you cannot run multiple instantiations of the same task on a single container instance when port mappings are used. Docker for Windows uses different network modes than Docker for Linux. When you register a task definition with Windows containers, you must not specify a network mode. If you use the console to register a task definition with Windows containers, you must choose the <default> network mode object.  For more information, see Network settings in the Docker run reference",
           args: {
             name: "string",
             suggestions: ["bridge", "host", "awsvpc", "none"],
@@ -3034,10 +3034,9 @@ const completionSpec: Fig.Spec = {
             "The number of instantiations of the specified task to place on your cluster. You can specify up to 10 tasks per call",
           args: {
             name: "integer",
-            suggestions: Array.from(
-              { length: 10 },
-              (_, i) => i + 1
-            ).map((number) => number.toString()),
+            suggestions: Array.from({ length: 10 }, (_, i) => i + 1).map(
+              (number) => number.toString()
+            ),
           },
         },
         {
@@ -3149,7 +3148,7 @@ const completionSpec: Fig.Spec = {
             "An optional tag specified when a task is started. For example, if you automatically trigger a task to run a batch process job, you could apply a unique identifier for that job to your task with the startedBy parameter. You can then identify which tasks belong to that job by filtering the results of a ListTasks call with the startedBy value. Up to 36 letters (uppercase and lowercase), numbers, hyphens, and underscores are allowed. If a task is started by an Amazon ECS service, then the startedBy parameter contains the deployment ID of the service that starts it",
           args: {
             name: "string",
-            generators: generators.startedBy,
+            generators: generators.listStartedBy,
           },
         },
         {
@@ -3637,7 +3636,7 @@ const completionSpec: Fig.Spec = {
             name: "string",
             generators: [
               generators.listTasks,
-              generators.ListTaskDefinitions,
+              generators.listTaskDefinitions,
               generators.listClusters,
               generators.listServices,
               generators.listContainerInstances,
@@ -3686,7 +3685,7 @@ const completionSpec: Fig.Spec = {
             name: "string",
             generators: [
               generators.listTasks,
-              generators.ListTaskDefinitions,
+              generators.listTaskDefinitions,
               generators.listClusters,
               generators.listServices,
               generators.listContainerInstances,

@@ -1,17 +1,6 @@
-const slnGenerator: Fig.Generator = {
-  template: "filepaths",
-  filterTemplateSuggestions(param) {
-    const suffix = ".sln";
+import { filepaths } from "@fig/autocomplete-generators";
 
-    return param.filter((file) => {
-      if (typeof file.name === "string") {
-        return file.name.endsWith(suffix);
-      }
-
-      return false;
-    });
-  },
-};
+const slnGenerator = filepaths({ extensions: ["sln"] });
 
 const completionSpec: Fig.Spec = {
   name: "sln",

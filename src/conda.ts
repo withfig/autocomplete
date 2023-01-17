@@ -36,6 +36,11 @@ const getInstalledPackages: Fig.Generator = {
 
 const getCondaEnvironments: Fig.Generator = {
   script: "conda env list",
+  scriptTimeout: 10000,
+  cache: {
+    ttl: 10000,
+    strategy: "stale-while-revalidate",
+  },
   postProcess: function (out) {
     const lines = out.split("\n");
     const installedPackages: Fig.Suggestion[] = [];
@@ -1130,7 +1135,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "build",
       description: "",
-
       args: {},
     },
     {
@@ -1213,61 +1217,65 @@ const completionSpec: Fig.Spec = {
     {
       name: "debug",
       description: "",
-
       args: {},
     },
     {
       name: "develop",
       description: "",
-
       args: {},
     },
     {
       name: "env",
       description: "",
-
       args: {},
+      subcommands: [
+        { name: "list" },
+        {
+          name: "remove",
+          options: [
+            {
+              name: "-n",
+              args: {
+                name: "environment variable",
+              },
+            },
+          ],
+        },
+      ],
     },
     {
       name: "index",
       description: "",
-
       args: {},
     },
     {
       name: "inspect",
       description: "",
-
       args: {},
     },
     {
       name: "metapackage",
       description: "",
-
       args: {},
     },
     {
       name: "render",
       description: "",
-
       args: {},
     },
     {
       name: "server",
       description: "",
-
       args: {},
     },
     {
       name: "skeleton",
       description: "",
-
       args: {},
     },
     {
       name: "verify",
       description: "",
-
       args: {},
     },
   ],

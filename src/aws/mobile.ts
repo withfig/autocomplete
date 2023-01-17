@@ -59,7 +59,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-project",
-      description: "Delets a project in AWS Mobile Hub",
+      description: "Deletes a project in AWS Mobile Hub",
       options: [
         {
           name: "--project-id",

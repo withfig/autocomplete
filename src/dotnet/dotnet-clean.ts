@@ -1,3 +1,5 @@
+import { filepaths } from "@fig/autocomplete-generators";
+
 const completionSpec: Fig.Spec = {
   name: "clean",
   description:
@@ -7,22 +9,7 @@ const completionSpec: Fig.Spec = {
     description:
       "The MSBuild project or solution to clean. If a project or solution file is not specified, MSBuild searches the current working directory for a file that has a file extension that ends in proj or sln, and uses that file",
     isOptional: true,
-    generators: {
-      template: "filepaths",
-      filterTemplateSuggestions(param) {
-        const suffixes = [".csproj", ".sln"];
-
-        return param.filter((file) => {
-          if (typeof file.name === "string") {
-            const fileName = file.name;
-
-            return suffixes.some((suffix) => fileName.endsWith(suffix));
-          }
-
-          return false;
-        });
-      },
-    },
+    generators: filepaths({ extensions: ["csproj", "sln"] }),
   },
   options: [
     {

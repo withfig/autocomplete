@@ -175,10 +175,15 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "command",
         suggestions: [
-          { name: "POST" },
           { name: "GET" },
+          { name: "HEAD" },
+          { name: "POST" },
+          { name: "PUT" },
+          { name: "DELETE" },
+          { name: "CONNECT" },
+          { name: "OPTIONS" },
+          { name: "TRACE" },
           { name: "PATCH" },
-          { name: "UPDATE" },
         ],
       },
     },
@@ -365,6 +370,17 @@ const completionSpec: Fig.Spec = {
       args: { name: "name" },
     },
     {
+      name: "--etag-compare",
+      description:
+        "Make a conditional HTTP request for the ETag read from the given file",
+      args: { name: "file" },
+    },
+    {
+      name: "--etag-save",
+      description: "Save an HTTP ETag to the specified file",
+      args: { name: "file" },
+    },
+    {
       name: "--expect100-timeout",
       description: "How long to wait for 100-continue",
       args: { name: "seconds" },
@@ -372,6 +388,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "--fail-early",
       description: "Fail on first transfer error, do not continue",
+    },
+    {
+      name: "--fail-with-body",
+      description:
+        "On HTTP errors, return an error and also output any HTML response",
     },
     { name: "--false-start", description: "Enable TLS False Start" },
     {
@@ -695,7 +716,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--proxy-tls13-ciphers",
       description: "List> TLS 1.3 proxy cipher suites",
-      args: { name: "ciphersuit" },
+      args: { name: "ciphersuite" },
     },
     {
       name: "--proxy-tlsauthtype",
@@ -808,6 +829,10 @@ const completionSpec: Fig.Spec = {
       args: { name: "host[:port]" },
     },
     { name: "--ssl", description: "Try SSL/TLS" },
+    {
+      name: "--ssl-auto-client-cert",
+      description: "Obtain and use a client certificate automatically",
+    },
     {
       name: "--ssl-allow-beast",
       description: "Allow security flaw to improve interop",

@@ -2,21 +2,25 @@ const versionList: Fig.Generator = {
   script: "pyenv install -l",
   postProcess: function (out) {
     return out
+      .trim()
       .split("\n")
       .slice(1)
-      .map((name) => ({ name, icon: "🐍" }));
+      .map((name) => ({ name: name.trim(), icon: "🐍" }));
   },
 };
 
 const globalList: Fig.Generator = {
   script: "pyenv versions",
   postProcess: function (out) {
-    return out.split("\n").map((l) => {
-      const sel = l.match(/\s*\*/) != null;
-      const name = sel ? l.replace("*", "").trim() : l.trim();
-      const icon = sel ? "🌟" : "🐍";
-      return { name, icon };
-    });
+    return out
+      .trim()
+      .split("\n")
+      .map((l) => {
+        const sel = l.match(/\s*\*/) != null;
+        const name = sel ? l.replace("*", "").trim() : l.trim();
+        const icon = sel ? "🌟" : "🐍";
+        return { name, icon };
+      });
   },
 };
 
@@ -136,6 +140,16 @@ const completionSpec: Fig.Spec = {
       name: "versions",
       description:
         "Lists all Python versions known to pyenv, and shows an asterisk next to the currently active version",
+      options: [
+        {
+          name: "--bare",
+          description: "Print only the version names, one per line",
+        },
+        {
+          name: "--skip-aliases",
+          description: "Skip printing aliases",
+        },
+      ],
     },
     {
       name: "which",
