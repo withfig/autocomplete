@@ -13,7 +13,7 @@ const supportedElmVersions: Fig.Generator = {
 };
 
 /**
- * Based on the [elm-format](https://github.com/avh4/elm-format), version 0.8.5, cli tool for formatting Elm code.
+ * Based on [elm-format](https://github.com/avh4/elm-format), version 0.8.5. A cli tool for formatting Elm code.
  */
 const completionSpec: Fig.Spec = {
   name: "elm-format",
