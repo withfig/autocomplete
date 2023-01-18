@@ -162,6 +162,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "INPUT",
         description: "The elm.json file to upgrade [default: elm.json]",
+        generators: [filepaths({ extensions: ["json"] })]
       },
     },
   ],
