@@ -1,3 +1,5 @@
+import { filepaths } from "@fig/autocomplete-generators";
+
 const packageList: Fig.Generator = {
   script:
     "curl -sH 'accept-encoding: gzip' --compressed https://package.elm-lang.org/search.json",
