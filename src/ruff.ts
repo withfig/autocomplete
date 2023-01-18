@@ -4,10 +4,9 @@ const completion: Fig.Spec = {
   options: [
     {
       name: "--config",
-      description: "Path to the `pyproject.toml` or `ruff.toml` file to use for configuration",
-      exclusiveOn: [
-        "--isolated",
-      ],
+      description:
+        "Path to the `pyproject.toml` or `ruff.toml` file to use for configuration",
+      exclusiveOn: ["--isolated"],
       isRepeatable: true,
       args: {
         name: "config",
@@ -17,7 +16,8 @@ const completion: Fig.Spec = {
     },
     {
       name: "--select",
-      description: "Comma-separated list of rule codes to enable (or ALL, to enable all rules)",
+      description:
+        "Comma-separated list of rule codes to enable (or ALL, to enable all rules)",
       isRepeatable: true,
       args: {
         name: "select",
@@ -26,7 +26,8 @@ const completion: Fig.Spec = {
     },
     {
       name: "--extend-select",
-      description: "Like --select, but adds additional rule codes on top of the selected ones",
+      description:
+        "Like --select, but adds additional rule codes on top of the selected ones",
       isRepeatable: true,
       args: {
         name: "extend_select",
@@ -44,7 +45,8 @@ const completion: Fig.Spec = {
     },
     {
       name: "--extend-ignore",
-      description: "Like --ignore, but adds additional rule codes on top of the ignored ones",
+      description:
+        "Like --ignore, but adds additional rule codes on top of the ignored ones",
       isRepeatable: true,
       args: {
         name: "extend_ignore",
@@ -53,7 +55,8 @@ const completion: Fig.Spec = {
     },
     {
       name: "--exclude",
-      description: "List of paths, used to omit files and/or directories from analysis",
+      description:
+        "List of paths, used to omit files and/or directories from analysis",
       isRepeatable: true,
       args: {
         name: "exclude",
@@ -62,7 +65,8 @@ const completion: Fig.Spec = {
     },
     {
       name: "--extend-exclude",
-      description: "Like --exclude, but adds additional files and directories on top of those already excluded",
+      description:
+        "Like --exclude, but adds additional files and directories on top of those already excluded",
       isRepeatable: true,
       args: {
         name: "extend_exclude",
@@ -71,7 +75,8 @@ const completion: Fig.Spec = {
     },
     {
       name: "--fixable",
-      description: "List of rule codes to treat as eligible for autofix. Only applicable when autofix itself is enabled (e.g., via `--fix`)",
+      description:
+        "List of rule codes to treat as eligible for autofix. Only applicable when autofix itself is enabled (e.g., via `--fix`)",
       isRepeatable: true,
       args: {
         name: "fixable",
@@ -80,7 +85,8 @@ const completion: Fig.Spec = {
     },
     {
       name: "--unfixable",
-      description: "List of rule codes to treat as ineligible for autofix. Only applicable when autofix itself is enabled (e.g., via `--fix`)",
+      description:
+        "List of rule codes to treat as ineligible for autofix. Only applicable when autofix itself is enabled (e.g., via `--fix`)",
       isRepeatable: true,
       args: {
         name: "unfixable",
@@ -103,14 +109,7 @@ const completion: Fig.Spec = {
       args: {
         name: "format",
         isOptional: true,
-        suggestions: [
-          "text",
-          "json",
-          "junit",
-          "grouped",
-          "github",
-          "gitlab",
-        ],
+        suggestions: ["text", "json", "junit", "grouped", "github", "gitlab"],
       },
     },
     {
@@ -153,7 +152,8 @@ const completion: Fig.Spec = {
     },
     {
       name: "--line-length",
-      description: "Set the line-length for length-associated rules and automatic formatting",
+      description:
+        "Set the line-length for length-associated rules and automatic formatting",
       isRepeatable: true,
       args: {
         name: "line_length",
@@ -197,14 +197,7 @@ const completion: Fig.Spec = {
       args: {
         name: "generate_shell_completion",
         isOptional: true,
-        suggestions: [
-          "bash",
-          "elvish",
-          "fig",
-          "fish",
-          "powershell",
-          "zsh",
-        ],
+        suggestions: ["bash", "elvish", "fig", "fish", "powershell", "zsh"],
       },
     },
     {
@@ -217,11 +210,13 @@ const completion: Fig.Spec = {
     },
     {
       name: ["-s", "--silent"],
-      description: "Disable all logging (but still exit with status code \"1\" upon detecting lint violations)",
+      description:
+        'Disable all logging (but still exit with status code "1" upon detecting lint violations)',
     },
     {
       name: ["-e", "--exit-zero"],
-      description: "Exit with status code \"0\", even upon detecting lint violations",
+      description:
+        'Exit with status code "0", even upon detecting lint violations',
     },
     {
       name: ["-w", "--watch"],
@@ -236,14 +231,16 @@ const completion: Fig.Spec = {
     },
     {
       name: "--fix-only",
-      description: "Fix any fixable lint violations, but don't report on leftover violations. Implies `--fix`",
+      description:
+        "Fix any fixable lint violations, but don't report on leftover violations. Implies `--fix`",
     },
     {
       name: "--no-fix-only",
     },
     {
       name: "--diff",
-      description: "Avoid writing any fixed files back; instead, output a diff for each changed file to stdout",
+      description:
+        "Avoid writing any fixed files back; instead, output a diff for each changed file to stdout",
     },
     {
       name: ["-n", "--no-cache"],
@@ -252,9 +249,7 @@ const completion: Fig.Spec = {
     {
       name: "--isolated",
       description: "Ignore all configuration files",
-      exclusiveOn: [
-        "--config",
-      ],
+      exclusiveOn: ["--config"],
     },
     {
       name: "--show-source",
@@ -265,14 +260,16 @@ const completion: Fig.Spec = {
     },
     {
       name: "--respect-gitignore",
-      description: "Respect file exclusions via `.gitignore` and other standard ignore files",
+      description:
+        "Respect file exclusions via `.gitignore` and other standard ignore files",
     },
     {
       name: "--no-respect-gitignore",
     },
     {
       name: "--force-exclude",
-      description: "Enforce exclusions, even for paths passed to Ruff directly on the command-line",
+      description:
+        "Enforce exclusions, even for paths passed to Ruff directly on the command-line",
     },
     {
       name: "--no-force-exclude",
@@ -286,7 +283,8 @@ const completion: Fig.Spec = {
     },
     {
       name: "--add-noqa",
-      description: "Enable automatic additions of `noqa` directives to failing lines",
+      description:
+        "Enable automatic additions of `noqa` directives to failing lines",
       exclusiveOn: [
         "--clean",
         "--explain",
@@ -300,7 +298,8 @@ const completion: Fig.Spec = {
     },
     {
       name: "--clean",
-      description: "Clear any caches in the current directory or any subdirectories",
+      description:
+        "Clear any caches in the current directory or any subdirectories",
       exclusiveOn: [
         "--add-noqa",
         "--explain",
@@ -314,7 +313,8 @@ const completion: Fig.Spec = {
     },
     {
       name: "--show-files",
-      description: "See the files Ruff will be run against with the current settings",
+      description:
+        "See the files Ruff will be run against with the current settings",
       exclusiveOn: [
         "--add-noqa",
         "--clean",
