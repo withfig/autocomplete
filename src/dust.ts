@@ -15,7 +15,7 @@ const completionSpec: Fig.Spec = {
       description: "No percent bars or percentages will be displayed",
     },
     {
-      name: ["-no-colors", "-c"],
+      name: ["--no-colors", "-c"],
       description:
         "No colors will be printed (Useful for commands like: watch)",
     },
