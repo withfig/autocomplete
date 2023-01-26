@@ -199,6 +199,7 @@ option has no effect.  This option is not defined in IEEE Std 1003.1-2001 (“PO
     {
       name: "--color",
       description: `Output colored escape sequences based on when, which may be set to either always, auto, or never`,
+      requiresSeparator: true,
       args: {
         name: "when",
         suggestions: [

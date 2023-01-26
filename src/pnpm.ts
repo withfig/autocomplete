@@ -44,6 +44,50 @@ const searchBranches: Fig.Generator = {
   },
 };
 
+const generatorInstalledPackages: Fig.Generator = {
+  script: "pnpm ls",
+  postProcess: function (out) {
+    /**
+     * out
+     * @example
+     * ```
+     * Legend: production dependency, optional only, dev only
+     *
+     * /xxxx/xxxx/<package-name> (PRIVATE)
+     *
+     * dependencies:
+     * lodash 4.17.21
+     * foo link:packages/foo
+     *
+     * devDependencies:
+     * typescript 4.7.4
+     * ```
+     */
+    if (out.includes("ERR_PNPM")) {
+      return [];
+    }
+
+    const output = out
+      .split("\n")
+      .slice(3)
+      // remove empty lines, "*dependencies:" lines, local workspace packages (eg: "foo":"workspace:*")
+      .filter(
+        (item) =>
+          !!item &&
+          !item.toLowerCase().includes("dependencies") &&
+          !item.includes("link:")
+      )
+      .map((item) => item.replace(/\s/, "@")); // typescript 4.7.4 -> typescript@4.7.4
+
+    return output.map((pkg) => {
+      return {
+        name: pkg,
+        icon: "fig://icon?type=package",
+      };
+    });
+  },
+};
+
 const FILTER_OPTION: Fig.Option = {
   name: "--filter",
   args: {
@@ -396,6 +440,27 @@ This is similar to yarn unlink, except pnpm re-installs the dependency after rem
         description: `Only development packages will be fetched`,
       },
     ],
+  },
+  {
+    name: "patch",
+    description: `This command will cause a package to be extracted in a temporary directory intended to be editable at will`,
+    args: {
+      name: "package",
+      generators: generatorInstalledPackages,
+    },
+    options: [
+      {
+        name: "--edit-dir",
+        description: `The package that needs to be patched will be extracted to this directory`,
+      },
+    ],
+  },
+  {
+    name: "patch-commit",
+    args: {
+      name: "dir",
+    },
+    description: `Generate a patch out of a directory`,
   },
 ];
 
@@ -855,6 +920,38 @@ const recursiveSubcommands = subcommands.filter((subcommand) => {
 // RECURSIVE SUBCOMMAND INDEX
 SUBCOMMANDS_MISC[1].subcommands = recursiveSubcommands;
 
+// common options
+const COMMON_OPTIONS: Fig.Option[] = [
+  {
+    name: ["-C", "--dir"],
+    args: {
+      name: "path",
+      template: "folders",
+    },
+    isPersistent: true,
+    description:
+      "Run as if pnpm was started in <path> instead of the current working directory",
+  },
+  {
+    name: ["-w", "--workspace-root"],
+    args: {
+      name: "workspace",
+    },
+    isPersistent: true,
+    description:
+      "Run as if pnpm was started in the root of the <workspace> instead of the current working directory",
+  },
+  {
+    name: ["-h", "--help"],
+    isPersistent: true,
+    description: "Output usage information",
+  },
+  {
+    name: ["-v", "--version"],
+    description: "Show pnpm's version",
+  },
+];
+
 // SPEC
 const completionSpec: Fig.Spec = {
   name: "pnpm",
@@ -888,6 +985,7 @@ const completionSpec: Fig.Spec = {
     } as Fig.Spec;
   },
   subcommands,
+  options: COMMON_OPTIONS,
 };
 
 export default completionSpec;
