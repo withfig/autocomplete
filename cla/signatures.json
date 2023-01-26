@@ -319,6 +319,14 @@
       "created_at": "2023-01-24T00:55:05Z",
       "repoId": 299482335,
       "pullRequestNo": 1820
+    },
+    {
+      "name": "rubynguyen1510",
+      "id": 50710444,
+      "comment_id": 1404544464,
+      "created_at": "2023-01-26T04:09:05Z",
+      "repoId": 299482335,
+      "pullRequestNo": 1824
     }
   ]
 }
