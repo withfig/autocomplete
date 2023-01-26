@@ -2802,13 +2802,6 @@ const completion: Fig.Subcommand = {
     {
       name: ["run", "r"],
       description: "Fig Workflows",
-      options: [
-        {
-          name: ["-h", "--help"],
-          priority: 20,
-          description: "Print help information",
-        },
-      ],
       args: {
         name: "args",
         isVariadic: true,
@@ -4776,6 +4769,11 @@ versions["2.10.0"] = {
     {
       name: "cli",
       description: "Run a Fig CLI",
+      args: {
+        name: "args",
+        isVariadic: true,
+        isOptional: true,
+      },
       generateSpec: commandLineToolSpecGenerator,
     },
     {
@@ -5022,7 +5020,7 @@ versions["2.11.0"] = {
   ],
 };
 
-versions["2.13.1"] = {
+versions["2.13.0"] = {
   subcommands: [
     {
       name: "app",
@@ -6616,11 +6614,6 @@ versions["2.13.1"] = {
           description: "Print help",
         },
       ],
-      args: {
-        name: "args",
-        isVariadic: true,
-        isOptional: true,
-      },
     },
     {
       name: "app:running",
