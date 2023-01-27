@@ -445,7 +445,7 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["-stub-ru", "-stub"],
+          name: ["-stub-run", "-stub"],
           description:
             "Execute the workflow replacing process scripts with command stubs (Default: false)",
         },

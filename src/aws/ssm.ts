@@ -6637,7 +6637,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--targets",
           description:
-            "The targets (either instances or maintenance window targets).  One or more targets must be specified for maintenance window Run Command-type tasks. Depending on the task, targets are optional for other maintenance window task types (Automation, AWS Lambda, and AWS Step Functions). For more information about running tasks that do not specify targets, see Registering maintenance window tasks without targets in the AWS Systems Manager User Guide.  Specify instances using the following format:   Key=InstanceIds,Values=&lt;instance-id-1&gt;,&lt;instance-id-2&gt;  Specify maintenance window targets using the following format:  Key=WindowTargetIds,Values=&lt;window-target-id-1&gt;,&lt;window-target-id-2&gt;",
+            "The targets (either instances or maintenance window targets).  One or more targets must be specified for maintenance window Run Command-type tasks. Depending on the task, targets are optional for other maintenance window task types (Automation, AWS Lambda, and AWS Step Functions). For more information about running tasks that do not specify targets, see Registering maintenance window tasks without targets in the AWS Systems Manager User Guide.  Specify instances using the following format:   Key=InstanceIds,Values=<instance-id-1>,<instance-id-2>  Specify maintenance window targets using the following format:  Key=WindowTargetIds,Values=<window-target-id-1>,<window-target-id-2>",
           args: {
             name: "list",
           },
@@ -7486,7 +7486,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-association",
       description:
-        "Updates an association. You can update the association name and version, the document version, schedule, parameters, and Amazon S3 output.  In order to call this API action, your IAM user account, group, or role must be configured with permission to call the DescribeAssociation API action. If you don't have permission to call DescribeAssociation, then you receive the following error: An error occurred (AccessDeniedException) when calling the UpdateAssociation operation: User: &lt;user_arn&gt; is not authorized to perform: ssm:DescribeAssociation on resource: &lt;resource_arn&gt;   When you update an association, the association immediately runs against the specified targets",
+        "Updates an association. You can update the association name and version, the document version, schedule, parameters, and Amazon S3 output.  In order to call this API action, your IAM user account, group, or role must be configured with permission to call the DescribeAssociation API action. If you don't have permission to call DescribeAssociation, then you receive the following error: An error occurred (AccessDeniedException) when calling the UpdateAssociation operation: User: <user_arn> is not authorized to perform: ssm:DescribeAssociation on resource: <resource_arn>   When you update an association, the association immediately runs against the specified targets",
       options: [
         {
           name: "--association-id",

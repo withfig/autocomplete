@@ -3221,19 +3221,6 @@ const completionSpec: Fig.Spec = {
           name: "--dev-client",
           description:
             "Experimental: Starts the bundler for use with the expo-development-client",
-          args: {
-            name: "boolean",
-            suggestions: [
-              {
-                name: "true",
-                icon: "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
-              },
-              {
-                name: "false",
-                icon: "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
-              },
-            ],
-          },
           icon: "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/dev.png",
         },
         {
