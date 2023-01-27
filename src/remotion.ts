@@ -169,6 +169,10 @@ const lambdaRenderOptions: Fig.Option[] = [
     description: "Overwrite a video if it already exists in the S3 bucket",
   },
   {
+    name: "--function-name",
+    description: "Name of the function that should be invoked",
+  },
+  {
     name: "--renderer-function-name",
     description:
       "Use a different function to render the video. By default, use the same function as the one to start the render",
