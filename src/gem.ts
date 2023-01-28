@@ -275,6 +275,62 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "contents",
+      description: "Display the contents of the installed gems",
+      args: {
+        name: "GEMNAME",
+        description: "Name of gem to list contents for",
+        generators: gems,
+        debounce: true,
+      },
+      options: [
+        {
+          name: ["-v", "--version"],
+          description: "Specify version of gem to contents",
+          args: {
+            name: "VERSION",
+            description: "The version of the gem",
+          },
+        },
+        {
+          name: "--all",
+          description: "Contents for all gems",
+        },
+        {
+          name: ["-s", "--spec-dir"],
+          description: "Search for gems under specific paths",
+          args: {
+            name: "DIR",
+            template: "filepaths",
+          },
+        },
+        {
+          name: ["-l", "--lib-only"],
+          description: "Only return files in the Gem’s lib_dirs",
+        },
+        {
+          name: "--no-lib-only",
+          description: "Not only return files in the Gem’s lib_dirs",
+        },
+        {
+          name: "--prefix",
+          description: "Don’t include installed path prefix",
+        },
+        {
+          name: "--no-prefix",
+          description: "Include installed path prefix",
+        },
+        {
+          name: "--show-install-dir",
+          description: "Show only the gem install dir",
+        },
+        {
+          name: "--no-show-install-dir",
+          description: "Do not show only the gem install dir",
+        },
+      ],
+    },
+    {
       name: "uninstall",
       description: "Uninstall gems from the local repository",
       args: {
