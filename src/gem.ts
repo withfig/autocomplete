@@ -415,6 +415,42 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "environment",
+      description: "Display information about the RubyGems environment",
+      args: {
+        suggestions: [
+          {
+            name: "home",
+            description:
+              "Display the path where gems are installed. Aliases: gemhome, gemdir, GEM_HOME",
+          },
+          {
+            name: "path",
+            description:
+              "Display path used to search for gems. Aliases: gempath, GEM_PATH",
+          },
+          {
+            name: "user_gemhome",
+            description:
+              "Display the path where gems are installed when --user-install is given. Aliases: user_gemdir",
+          },
+          {
+            name: "version",
+            description: "Display the gem format version",
+          },
+          {
+            name: "remotesources",
+            description: "Display the remote gem servers",
+          },
+          {
+            name: "platform",
+            description: "Display the supported gem platforms",
+          },
+        ],
+        isOptional: true,
+      },
+    },
+    {
       name: "uninstall",
       description: "Uninstall gems from the local repository",
       args: {
