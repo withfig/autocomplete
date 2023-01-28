@@ -95,6 +95,97 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "cert",
+      description: "Manage RubyGems certificates and signing settings",
+      options: [
+        {
+          name: ["-a", "--add"],
+          description: "Add a trusted certificate",
+          args: {
+            name: "CERT",
+            description: "The trusted certificate",
+            template: "filepaths",
+          },
+        },
+        {
+          name: ["-l", "--list"],
+          description:
+            "List trusted certificates where the subject contains FILTER",
+          args: {
+            name: "FILTER",
+            description: "The filter",
+            isOptional: true,
+          },
+        },
+        {
+          name: ["-r", "--remove"],
+          description:
+            "Remove trusted certificates where the subject contains FILTER",
+          args: {
+            name: "FILTER",
+            description: "The filter",
+          },
+        },
+        {
+          name: ["-b", "--build"],
+          description:
+            "Build private key and self-signed certificate for EMAIL_ADDR",
+          args: {
+            name: "EMAIL_ADDR",
+            description: "The email address",
+          },
+        },
+        {
+          name: ["-C", "--certificate"],
+          description: "Signing certificate for --sign",
+          args: {
+            name: "CERT",
+            description: "The certificate",
+            template: "filepaths",
+          },
+        },
+        {
+          name: ["-K", "--private-key"],
+          description: "Key for --sign or --build",
+          args: {
+            name: "KEY",
+            description: "The key",
+            template: "filepaths",
+          },
+        },
+        {
+          name: ["-A", "--key-algorithm"],
+          description: "Select which key algorithm to use for --build",
+          args: {
+            name: "ALGORITHM",
+            description: "The algorithm",
+          },
+        },
+        {
+          name: ["-s", "--sign"],
+          description:
+            "Signs CERT with the key from -K and the certificate from -C",
+          args: {
+            name: "CERT",
+            description: "The certificate",
+            template: "filepaths",
+          },
+        },
+        {
+          name: ["-d", "--days"],
+          description: "Days before the certificate expires",
+          args: {
+            name: "NUMBER_OF_DAYS",
+            description: "The number of days",
+          },
+        },
+        {
+          name: ["-R", "--re-sign"],
+          description: "Re-signs the certificate from -C with the key from -K",
+        },
+      ],
+    },
+    {
       name: "uninstall",
       description: "Uninstall gems from the local repository",
       args: {
