@@ -451,6 +451,72 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: "fetch",
+      description: "Download a gem and place it in the current directory",
+      args: {
+        name: "GEMNAME",
+        description: "Name of gem to download",
+        generators: gems,
+        debounce: true,
+      },
+      options: [
+        {
+          name: ["-v", "--version"],
+          description: "Specify version of gem to fetch",
+          args: {
+            name: "VERSION",
+            description: "The version of the gem",
+          },
+        },
+        {
+          name: "platform",
+          description: "Specify the platform of gem to fetch",
+          args: {
+            name: "PLATFORM",
+            description: "The platform of gem",
+          },
+        },
+        {
+          name: "--prerelease",
+          description: "Allow prerelease versions of a gem",
+        },
+        {
+          name: "--no-prerelease",
+          description: "Do not allow prerelease versions of a gem",
+        },
+        {
+          name: "--suggestions",
+          description: "Suggest alternates when gems are not found",
+        },
+        {
+          name: "--no-suggestions",
+          description: "Do not suggest alternates when gems are not found",
+        },
+        {
+          name: ["-B", "--bulk-threshold"],
+          description:
+            "Threshold for switching to bulk synchronization (default 1000)",
+          args: {
+            name: "COUNT",
+            description: "The threshold",
+          },
+        },
+        {
+          name: ["-s", "--source"],
+          description: "Append URL to list of remote gem sources",
+          args: {
+            name: "URL",
+            description: "The URL",
+          },
+        },
+        {
+          name: "--clear-sources",
+          description: "Clear the gem sources",
+        },
+        ...httpProxyOptions,
+      ],
+    },
+    {
       name: "uninstall",
       description: "Uninstall gems from the local repository",
       args: {
