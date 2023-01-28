@@ -240,6 +240,41 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "cleanup",
+      description: "Clean up old versions of installed gems",
+      args: {
+        name: "GEMNAME",
+        description: "Name of gem to cleanup",
+        generators: gems,
+        debounce: true,
+        isOptional: true,
+      },
+      options: [
+        {
+          name: ["-n", "-d", "--dry-run"],
+          description: "Do not uninstall gems",
+        },
+        {
+          name: ["-D", "--check-development"],
+          description:
+            "Check development dependencies while uninstalling (default: true)",
+        },
+        {
+          name: "--no-check-development",
+          description:
+            "Do not check development dependencies while uninstalling",
+        },
+        {
+          name: "--user-install",
+          description: "Cleanup in user’s home directory instead of GEM_HOME",
+        },
+        {
+          name: "--no-user-install",
+          description: "Cleanup in GEM_HOME instead of user’s home directory",
+        },
+      ],
+    },
+    {
       name: "uninstall",
       description: "Uninstall gems from the local repository",
       args: {
