@@ -186,6 +186,60 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "check",
+      description: "Check a gem repository for added or missing files",
+      args: {
+        name: "GEMNAME",
+        generators: gems,
+        debounce: true,
+        isOptional: true,
+      },
+      options: [
+        {
+          name: ["-a", "--alien"],
+          description:
+            "Report 'unmanaged' or rogue files in the gem repository",
+        },
+        {
+          name: "--no-alien",
+          description: "Report 'managed' or rogue files in the gem repository",
+        },
+        {
+          name: "--doctor",
+          description: "Clean up uninstalled gems and broken specifications",
+        },
+        {
+          name: "--no-doctor",
+          description:
+            "Do not clean up uninstalled gems and broken specifications",
+        },
+        {
+          name: "--dry-run",
+          description: "Do not remove files, only report what would be removed",
+        },
+        {
+          name: "--no-dry-run",
+          description: "Remove files",
+        },
+        {
+          name: "--gems",
+          description: "Check installed gems for problems",
+        },
+        {
+          name: "--no-gems",
+          description: "Check not installed gems for problems",
+        },
+        {
+          name: ["-v", "--version"],
+          description: "Specify version of gem to check",
+          args: {
+            name: "VERSION",
+            description: "The version of the gem",
+          },
+        },
+      ],
+    },
+    {
       name: "uninstall",
       description: "Uninstall gems from the local repository",
       args: {
