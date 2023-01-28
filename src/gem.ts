@@ -37,6 +37,43 @@ const httpProxyOptions: Fig.Option[] = [
   },
 ];
 
+const localRemoteOptions: Fig.Option[] = [
+  {
+    name: ["-l", "--local"],
+    description: "Restrict operations to the LOCAL domain",
+  },
+  {
+    name: ["-r", "--remote"],
+    description: "Restrict operations to the REMOTE domain",
+  },
+  {
+    name: ["-b", "--both"],
+    description: "Allow LOCAL and REMOTE operations",
+  },
+  {
+    name: ["-B", "--bulk-threshold"],
+    description:
+      "Threshold for switching to bulk synchronization (default 1000)",
+    args: {
+      name: "COUNT",
+      description: "The threshold",
+    },
+  },
+  {
+    name: "--clear-sources",
+    description: "Clear the gem sources",
+  },
+  {
+    name: ["-s", "--source"],
+    description: "Append URL to list of remote gem sources",
+    args: {
+      name: "URL",
+      description: "The URL",
+    },
+  },
+  ...httpProxyOptions,
+];
+
 const AuthenticationOptions: Fig.Option[] = [
   {
     name: "--host",
@@ -482,40 +519,7 @@ const completionSpec: Fig.Spec = {
           name: "--no-update-sources",
           description: "[Deprecated] Do not update local source cache",
         },
-        {
-          name: ["-l", "--local"],
-          description: "Restrict operations to the LOCAL domain",
-        },
-        {
-          name: ["-r", "--remote"],
-          description: "Restrict operations to the REMOTE domain",
-        },
-        {
-          name: ["-b", "--both"],
-          description: "Allow LOCAL and REMOTE operations",
-        },
-        {
-          name: ["-B", "--bulk-threshold"],
-          description:
-            "Threshold for switching to bulk synchronization (default 1000)",
-          args: {
-            name: "COUNT",
-            description: "The threshold",
-          },
-        },
-        {
-          name: "--clear-sources",
-          description: "Clear the gem sources",
-        },
-        {
-          name: ["-s", "--source"],
-          description: "Append URL to list of remote gem sources",
-          args: {
-            name: "URL",
-            description: "The URL",
-          },
-        },
-        ...httpProxyOptions,
+        ...localRemoteOptions,
       ],
     },
     {
