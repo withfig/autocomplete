@@ -368,6 +368,53 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "dependency",
+      description: "Show the dependencies of an installed gem",
+      args: {
+        name: "REGEXP",
+        description: "Show dependencies for gems whose names start with REGEXP",
+      },
+      options: [
+        {
+          name: ["-v", "--version"],
+          description: "Specify version of gem to dependency",
+          args: {
+            name: "VERSION",
+            description: "The version of gem",
+          },
+        },
+        {
+          name: "platform",
+          description: "Specify the platform of gem to dependency",
+          args: {
+            name: "PLATFORM",
+            description: "The platform of gem",
+          },
+        },
+        {
+          name: "--prerelease",
+          description: "Allow prerelease versions of a gem",
+        },
+        {
+          name: "--no-prerelease",
+          description: "Do not allow prerelease versions of a gem",
+        },
+        {
+          name: ["-R", "--reverse-dependencies"],
+          description: "Include reverse dependencies in the output",
+        },
+        {
+          name: "--no-reverse-dependencies",
+          description: "Do not include reverse dependencies in the output",
+        },
+        {
+          name: "--pipe",
+          description: "Pipe Format (name --version ver)",
+        },
+        ...localRemoteOptions,
+      ],
+    },
+    {
       name: "uninstall",
       description: "Uninstall gems from the local repository",
       args: {
