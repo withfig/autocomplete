@@ -517,6 +517,34 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "generate_index",
+      description: "Generates the index files for a gem server directory",
+      options: [
+        {
+          name: ["-d", "--directory"],
+          description: "Repository base dir containing gems subdir",
+          args: {
+            name: "DIRNAME",
+            template: "folders",
+            filterStrategy: "fuzzy",
+          },
+        },
+        {
+          name: "--modern",
+          description: "Generate indexes for RubyGems (always true)",
+        },
+        {
+          name: "--no-modern",
+          description: "Do not generate indexes for RubyGems",
+        },
+        {
+          name: "--update",
+          description:
+            "Update modern indexes with gems added since the last update",
+        },
+      ],
+    },
+    {
       name: "uninstall",
       description: "Uninstall gems from the local repository",
       args: {
