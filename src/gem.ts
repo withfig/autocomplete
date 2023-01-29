@@ -631,6 +631,35 @@ const completionSpec: Fig.Spec = {
       description: "Mirror all gem files (requires rubygems-mirror)",
     },
     {
+      name: "open",
+      description: "Open gem sources in editor",
+      args: {
+        name: "GEMNAME",
+        description: "Name of the gem to print information about",
+        generators: gems,
+        debounce: true,
+      },
+      options: [
+        {
+          name: ["-e", "--editor"],
+          description:
+            "Prepends COMMAND to gem path. Could be used to specify editor",
+          args: {
+            name: "COMMAND",
+            description: "The prepends command to gem path",
+          },
+        },
+        {
+          name: ["-v", "--version"],
+          description: "Opens specific gem version",
+          args: {
+            name: "VERSION",
+            description: "The specify version of gem",
+          },
+        },
+      ],
+    },
+    {
       name: "uninstall",
       description: "Uninstall gems from the local repository",
       args: {
