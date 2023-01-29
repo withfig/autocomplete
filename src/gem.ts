@@ -74,6 +74,36 @@ const localRemoteOptions: Fig.Option[] = [
   ...httpProxyOptions,
 ];
 
+const installedOptions: Fig.Option[] = [
+  {
+    name: ["-i", "--installed"],
+    description: "Check for installed gem",
+  },
+  {
+    name: ["-I", "--no-installed"],
+    description: "Check for not installed gem",
+  },
+  {
+    name: ["-v", "--version"],
+    description: "Specify version of gem to list for use with --installed",
+    args: {
+      name: "VERSION",
+      description: "The version of gem",
+    },
+  },
+];
+
+const versionsOptions: Fig.Option[] = [
+  {
+    name: "--versions",
+    description: "Display only gem names",
+  },
+  {
+    name: "--no-versions",
+    description: "Display not only gem names",
+  },
+];
+
 const AuthenticationOptions: Fig.Option[] = [
   {
     name: "--host",
@@ -545,6 +575,40 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "info",
+      description: "Show information for the given gem",
+      args: {
+        name: "GEMNAME",
+        description: "Name of the gem to print information about",
+        generators: gems,
+        debounce: true,
+      },
+      options: [
+        {
+          name: "-I",
+          description: "Equivalent to --no-installed",
+        },
+        {
+          name: ["-a", "--all"],
+          description: "Display all gem versions",
+        },
+        {
+          name: ["-e", "--exact"],
+          description: "Name of gem(s) to query on matches the provided STRING",
+        },
+        {
+          name: "--prerelease",
+          description: "Allow prerelease versions of a gem",
+        },
+        {
+          name: "--no-prerelease",
+          description: "Do not allow prerelease versions of a gem",
+        },
+        ...installedOptions,
+        ...versionsOptions,
+      ],
+    },
+    {
       name: "uninstall",
       description: "Uninstall gems from the local repository",
       args: {
@@ -640,37 +704,12 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: ["-i", "--installed"],
-          description: "Check for installed gem",
-        },
-        {
-          name: ["-I", "--no-installed"],
-          description: "Check for not installed gem",
-        },
-        {
-          name: ["-v", "--version"],
-          description:
-            "Specify version of gem to list for use with --installed",
-          args: {
-            name: "VERSION",
-            description: "The version of gem",
-          },
-        },
-        {
           name: ["-d", "--details"],
           description: "Display detailed information of gem(s)",
         },
         {
           name: "--no-details",
           description: "Do not display detailed information of gem(s)",
-        },
-        {
-          name: "--versions",
-          description: "Display only gem names and versions",
-        },
-        {
-          name: "--no-versions",
-          description: "Display only gem names",
         },
         {
           name: ["-a", "--all"],
@@ -696,6 +735,8 @@ const completionSpec: Fig.Spec = {
           name: "--no-update-sources",
           description: "[Deprecated] Do not update local source cache",
         },
+        ...installedOptions,
+        ...versionsOptions,
         ...localRemoteOptions,
       ],
     },
