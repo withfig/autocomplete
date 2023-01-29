@@ -661,6 +661,90 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "pristine",
+      description:
+        "Restores installed gems to pristine condition from files located in the gem cache",
+      args: {
+        name: "GEMNAME",
+        description: "Name of the gem to print information about",
+        generators: gems,
+        debounce: true,
+        isOptional: true,
+      },
+      options: [
+        {
+          name: "--all",
+          description: "Restore all installed gems to pristine condition",
+        },
+        {
+          name: "--skip",
+          description: "Restore all installed gems to pristine condition",
+          args: {
+            name: "GEMNAME",
+            description: "Name of the gem to print information about",
+            generators: gems,
+            debounce: true,
+          },
+          requiresSeparator: true,
+          dependsOn: ["--all"],
+        },
+        {
+          name: "--extensions",
+          description:
+            "Restore gems with extensions in addition to regular gems",
+        },
+        {
+          name: "--no-extensions",
+          description:
+            "Do not restore gems with extensions in addition to regular gems",
+        },
+        {
+          name: "--only-executables",
+          description: "Only restore executables",
+        },
+        {
+          name: "--only-plugins",
+          description: "Only restore plugins",
+        },
+        {
+          name: ["-E", "--env-shebang"],
+          description: "Rewrite executables with a shebang of /usr/bin/env",
+        },
+        {
+          name: "--no-env-shebang",
+          description:
+            "Do not rewrite executables with a shebang of /usr/bin/env",
+        },
+        {
+          name: ["-i", "--install-dir"],
+          description: "Gem repository to get binstubs and plugins installed",
+          args: {
+            name: "DIR",
+            template: "folders",
+            filterStrategy: "fuzzy",
+          },
+        },
+        {
+          name: ["-n", "--bindir"],
+          description: "Directory where executables are located",
+          args: {
+            name: "DIR",
+            template: "folders",
+            filterStrategy: "fuzzy",
+          },
+        },
+        {
+          name: ["-v", "--version"],
+          description:
+            "Specify version of gem to restore to pristine condition",
+          args: {
+            name: "VERSION",
+            description: "The specify version of gem",
+          },
+        },
+      ],
+    },
+    {
       name: "uninstall",
       description: "Uninstall gems from the local repository",
       args: {
