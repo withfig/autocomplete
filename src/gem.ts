@@ -880,6 +880,10 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "signout",
+      description: "Sign out from all the current sessions",
+    },
+    {
       name: "uninstall",
       description: "Uninstall gems from the local repository",
       args: {
