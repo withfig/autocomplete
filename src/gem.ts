@@ -855,6 +855,31 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "signin",
+      description:
+        "Sign in to any gemcutter-compatible host. It defaults to https://rubygems.org",
+      options: [
+        {
+          name: "--host",
+          description:
+            "Use another gemcutter-compatible host (e.g. https://rubygems.org)",
+          args: {
+            name: "HOST",
+            description: "The host",
+          },
+        },
+        {
+          name: "--otp",
+          description:
+            "Digit code for multifactor authentication You can also use the environment variable GEM_HOST_OTP_CODE",
+          args: {
+            name: "CODE",
+            description: "The GEM host otp code",
+          },
+        },
+      ],
+    },
+    {
       name: "uninstall",
       description: "Uninstall gems from the local repository",
       args: {
