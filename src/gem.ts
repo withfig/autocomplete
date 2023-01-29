@@ -745,6 +745,51 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "query",
+      description: "Query gem information in local or remote repositories",
+      options: [
+        {
+          name: ["-n", "--name-matches"],
+          description: "Name of gem(s) to query on matches the provided REGEXP",
+          args: {
+            name: "REGEXP",
+            description: "The rule of the regexp",
+          },
+        },
+        {
+          name: "-I",
+          description: "Equivalent to --no-installed",
+        },
+        {
+          name: ["-d", "--details"],
+          description: "Display detailed information of gem(s)",
+        },
+        {
+          name: "--no-details",
+          description: "Do not display detailed information of gem(s)",
+        },
+        {
+          name: ["-a", "--all"],
+          description: "Display all gem versions",
+        },
+        {
+          name: ["-e", "--exact"],
+          description: "Name of gem(s) to query on matches the provided STRING",
+        },
+        {
+          name: "--prerelease",
+          description: "Display prerelease versions",
+        },
+        {
+          name: "--no-prerelease",
+          description: "Do not display prerelease versions",
+        },
+        ...installedOptions,
+        ...versionsOptions,
+        ...localRemoteOptions,
+      ],
+    },
+    {
       name: "uninstall",
       description: "Uninstall gems from the local repository",
       args: {
