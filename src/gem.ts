@@ -1026,6 +1026,35 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "yank",
+      description: "Remove a pushed gem from the index",
+      args: {
+        name: "GEM",
+        description: "Name of gem",
+        generators: gems,
+        debounce: true,
+      },
+      options: [
+        {
+          name: ["-v", "--version"],
+          description: "Specify version of gem to dependency",
+          args: {
+            name: "VERSION",
+            description: "The version of gem",
+          },
+        },
+        {
+          name: "--platform",
+          description: "Specify the platform of gem to dependency",
+          args: {
+            name: "PLATFORM",
+            description: "The platform of gem",
+          },
+        },
+        ...authenticationOptions,
+      ],
+    },
+    {
       name: "uninstall",
       description: "Uninstall gems from the local repository",
       args: {
