@@ -884,6 +884,52 @@ const completionSpec: Fig.Spec = {
       description: "Sign out from all the current sessions",
     },
     {
+      name: "sources",
+      description:
+        "Manage the sources and cache file RubyGems uses to search for gems",
+      options: [
+        {
+          name: ["-a", "--add"],
+          description: "Add source",
+          args: {
+            name: "SOURCE_URI",
+            description: "The source URI",
+          },
+        },
+        {
+          name: ["-l", "--list"],
+          description: "List sources",
+        },
+        {
+          name: ["-r", "--remove"],
+          description: "Remove source",
+          args: {
+            name: "SOURCE_URI",
+            description: "The source URI",
+          },
+        },
+        {
+          name: ["-c", "--clear-all"],
+          description: "Remove all sources (clear the cache)",
+        },
+        {
+          name: ["-u", "--update"],
+          description: "Update source cache",
+        },
+        {
+          name: ["-f", "--force"],
+          description:
+            "Do not show any confirmation prompts and behave as if 'yes' was always answered",
+        },
+        {
+          name: "--no-force",
+          description:
+            "Show any confirmation prompts and behave as if 'yes' was always answered",
+        },
+        ...httpProxyOptions,
+      ],
+    },
+    {
       name: "uninstall",
       description: "Uninstall gems from the local repository",
       args: {
