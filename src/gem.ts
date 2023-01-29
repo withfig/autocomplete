@@ -123,7 +123,7 @@ const versionsOptions: Fig.Option[] = [
   },
 ];
 
-const AuthenticationOptions: Fig.Option[] = [
+const authenticationOptions: Fig.Option[] = [
   {
     name: "--host",
     description:
@@ -1193,7 +1193,7 @@ const completionSpec: Fig.Spec = {
         name: "GEM",
         description: "Built gem to push up",
       },
-      options: [...AuthenticationOptions, ...httpProxyOptions],
+      options: [...authenticationOptions, ...httpProxyOptions],
     },
     {
       name: "server",
@@ -1225,7 +1225,7 @@ const completionSpec: Fig.Spec = {
             description: "The old owner",
           },
         },
-        ...AuthenticationOptions,
+        ...authenticationOptions,
       ],
     },
     {
