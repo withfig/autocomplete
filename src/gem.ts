@@ -433,7 +433,7 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "platform",
+          name: "--platform",
           description: "Specify the platform of gem to dependency",
           args: {
             name: "PLATFORM",
@@ -518,7 +518,7 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "platform",
+          name: "--platform",
           description: "Specify the platform of gem to fetch",
           args: {
             name: "PLATFORM",
@@ -954,7 +954,7 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "platform",
+          name: "--platform",
           description: "Specify the platform of gem to specification",
           args: {
             name: "PLATFORM",
