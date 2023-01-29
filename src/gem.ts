@@ -790,6 +790,55 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "rdoc",
+      description: "Generates RDoc for pre-installed gems",
+      args: {
+        name: "GEMNAME",
+        description: "Gem to generate documentation for (unless –all)",
+        generators: gems,
+        debounce: true,
+        isOptional: true,
+      },
+      options: [
+        {
+          name: "--all",
+          description: "Generate RDoc/RI documentation for all installed gems",
+        },
+        {
+          name: "--rdoc",
+          description: "Generate RDoc HTML",
+        },
+        {
+          name: "--no-rdoc",
+          description: "Do not generate RDoc HTML",
+        },
+        {
+          name: "--ri",
+          description: "Generate RI data",
+        },
+        {
+          name: "--no-ri",
+          description: "Do not generate RI data",
+        },
+        {
+          name: "--overwrite",
+          description: "Overwrite installed documents",
+        },
+        {
+          name: "--no-overwrite",
+          description: "Do not overwrite installed documents",
+        },
+        {
+          name: ["-v", "--version"],
+          description: "Specify version of gem to rdoc",
+          args: {
+            name: "VERSION",
+            description: "The specify version of gem",
+          },
+        },
+      ],
+    },
+    {
       name: "uninstall",
       description: "Uninstall gems from the local repository",
       args: {
