@@ -988,6 +988,10 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "stale",
+      description: "List gems along with access times",
+    },
+    {
       name: "uninstall",
       description: "Uninstall gems from the local repository",
       args: {
