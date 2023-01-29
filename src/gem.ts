@@ -992,6 +992,40 @@ const completionSpec: Fig.Spec = {
       description: "List gems along with access times",
     },
     {
+      name: "unpack",
+      description: "Unpack an installed gem to the current directory",
+      args: {
+        name: "GEMNAME",
+        description: "Name of gem to unpack",
+        generators: gems,
+        debounce: true,
+      },
+      options: [
+        {
+          name: "--target",
+          description: "Target directory for unpacking",
+          args: {
+            name: "DIR",
+            template: "folders",
+            filterStrategy: "fuzzy",
+          },
+          requiresSeparator: true,
+        },
+        {
+          name: "--spec",
+          description: "Unpack the gem specification",
+        },
+        {
+          name: ["-v", "--version"],
+          description: "Specify version of gem to unpack",
+          args: {
+            name: "VERSION",
+            description: "The specify version of gem",
+          },
+        },
+      ],
+    },
+    {
       name: "uninstall",
       description: "Uninstall gems from the local repository",
       args: {
