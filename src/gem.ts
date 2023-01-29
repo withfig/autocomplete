@@ -627,6 +627,10 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "mirror",
+      description: "Mirror all gem files (requires rubygems-mirror)",
+    },
+    {
       name: "uninstall",
       description: "Uninstall gems from the local repository",
       args: {
