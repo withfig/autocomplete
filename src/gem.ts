@@ -930,6 +930,64 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "specification",
+      description: "Display gem specification (in yaml)",
+      args: [
+        {
+          name: "GEMFILE",
+          description: "Name of gem to show the gemspec for",
+          generators: gems,
+          debounce: true,
+        },
+        {
+          name: "FIELD",
+          description: "Name of gemspec field to show",
+        },
+      ],
+      options: [
+        {
+          name: ["-v", "--version"],
+          description: "Specify version of gem to examine",
+          args: {
+            name: "VERSION",
+            description: "The version of gem",
+          },
+        },
+        {
+          name: "platform",
+          description: "Specify the platform of gem to specification",
+          args: {
+            name: "PLATFORM",
+            description: "The platform of gem",
+          },
+        },
+        {
+          name: "--prerelease",
+          description: "Allow prerelease versions of a gem",
+        },
+        {
+          name: "--no-prerelease",
+          description: "Do not allow prerelease versions of a gem",
+        },
+        {
+          name: "--all",
+          description: "Output specifications for all versions of the gem",
+        },
+        {
+          name: "--ruby",
+          description: "Output ruby format",
+        },
+        {
+          name: "--yaml",
+          description: "Output YAML format",
+        },
+        {
+          name: "--marshal",
+          description: "Output Marshal format",
+        },
+      ],
+    },
+    {
       name: "uninstall",
       description: "Uninstall gems from the local repository",
       args: {
