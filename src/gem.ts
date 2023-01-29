@@ -609,6 +609,24 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "lock",
+      description: "Generate a lockdown list of gems",
+      args: {
+        name: "GEMNAME-VERSION",
+        description: "Name and the version of gem to lock, ex: rails-1.0.0",
+      },
+      options: [
+        {
+          name: ["-s", "--strict"],
+          description: "Fail if unable to satisfy a dependency",
+        },
+        {
+          name: "--no-strict",
+          description: "Do not fail if unable to satisfy a dependency",
+        },
+      ],
+    },
+    {
       name: "uninstall",
       description: "Uninstall gems from the local repository",
       args: {
