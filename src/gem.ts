@@ -558,6 +558,7 @@ const completionSpec: Fig.Spec = {
             template: "folders",
             filterStrategy: "fuzzy",
           },
+          requiresSeparator: true,
         },
         {
           name: "--modern",
