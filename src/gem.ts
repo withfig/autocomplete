@@ -93,6 +93,25 @@ const installedOptions: Fig.Option[] = [
   },
 ];
 
+const displayOptions: Fig.Option[] = [
+  {
+    name: ["-a", "--all"],
+    description: "Display all gem versions",
+  },
+  {
+    name: ["-e", "--exact"],
+    description: "Name of gem(s) to query on matches the provided STRING",
+  },
+  {
+    name: "--prerelease",
+    description: "Allow prerelease versions of a gem",
+  },
+  {
+    name: "--no-prerelease",
+    description: "Do not allow prerelease versions of a gem",
+  },
+];
+
 const versionsOptions: Fig.Option[] = [
   {
     name: "--versions",
@@ -589,22 +608,7 @@ const completionSpec: Fig.Spec = {
           name: "-I",
           description: "Equivalent to --no-installed",
         },
-        {
-          name: ["-a", "--all"],
-          description: "Display all gem versions",
-        },
-        {
-          name: ["-e", "--exact"],
-          description: "Name of gem(s) to query on matches the provided STRING",
-        },
-        {
-          name: "--prerelease",
-          description: "Allow prerelease versions of a gem",
-        },
-        {
-          name: "--no-prerelease",
-          description: "Do not allow prerelease versions of a gem",
-        },
+        ...displayOptions,
         ...installedOptions,
         ...versionsOptions,
       ],
@@ -768,22 +772,7 @@ const completionSpec: Fig.Spec = {
           name: "--no-details",
           description: "Do not display detailed information of gem(s)",
         },
-        {
-          name: ["-a", "--all"],
-          description: "Display all gem versions",
-        },
-        {
-          name: ["-e", "--exact"],
-          description: "Name of gem(s) to query on matches the provided STRING",
-        },
-        {
-          name: "--prerelease",
-          description: "Display prerelease versions",
-        },
-        {
-          name: "--no-prerelease",
-          description: "Do not display prerelease versions",
-        },
+        ...displayOptions,
         ...installedOptions,
         ...versionsOptions,
         ...localRemoteOptions,
@@ -836,6 +825,33 @@ const completionSpec: Fig.Spec = {
             description: "The specify version of gem",
           },
         },
+      ],
+    },
+    {
+      name: "search",
+      description: "Display remote gems whose name matches REGEXP",
+      args: {
+        name: "REGEXP",
+        description: "Regexp to look for in gem name",
+        isOptional: true,
+      },
+      options: [
+        {
+          name: "-I",
+          description: "Equivalent to --no-installed",
+        },
+        {
+          name: ["-d", "--details"],
+          description: "Display detailed information of gem(s)",
+        },
+        {
+          name: "--no-details",
+          description: "Do not display detailed information of gem(s)",
+        },
+        ...displayOptions,
+        ...installedOptions,
+        ...versionsOptions,
+        ...localRemoteOptions,
       ],
     },
     {
@@ -942,22 +958,6 @@ const completionSpec: Fig.Spec = {
           description: "Do not display detailed information of gem(s)",
         },
         {
-          name: ["-a", "--all"],
-          description: "Display all gem versions",
-        },
-        {
-          name: ["-e", "--exact"],
-          description: "Name of gem(s) to query on matches the provided STRING",
-        },
-        {
-          name: "--prerelease",
-          description: "Display prerelease versions",
-        },
-        {
-          name: "--no-prerelease",
-          description: "Do not display prerelease versions",
-        },
-        {
           name: ["-u", "--update-sources"],
           description: "[Deprecated] Update local source cache",
         },
@@ -965,6 +965,7 @@ const completionSpec: Fig.Spec = {
           name: "--no-update-sources",
           description: "[Deprecated] Do not update local source cache",
         },
+        ...displayOptions,
         ...installedOptions,
         ...versionsOptions,
         ...localRemoteOptions,
