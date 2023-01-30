@@ -134,7 +134,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--platform",
       description: "Select platform",
-      insertValue: "--platform={cursor}",
+      requiresSeparator: true,
       args: {
         name: "platform",
         suggestions: ["linux", "osx", "sunos", "windows", "common"],
