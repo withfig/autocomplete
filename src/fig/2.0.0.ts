@@ -2808,6 +2808,7 @@ const completion: Fig.Subcommand = {
         isOptional: true,
       },
       generateSpec: scriptsSpecGenerator,
+      cache: false,
       filterStrategy: "fuzzy",
     },
     {
