@@ -1949,6 +1949,29 @@ By default, this renames the current repository; otherwise renames the specified
           ],
         },
         {
+          name: "set-default",
+          description:
+            "Sets the default remote repository to use when querying the GitHub API for the locally cloned repository",
+          args: {
+            name: "repository",
+            isOptional: true,
+            generators: [
+              ghGenerators.listRepositories,
+              ghGenerators.listCustomRepositories,
+            ],
+          },
+          options: [
+            {
+              name: ["-u", "--unset"],
+              description: "Unset the current default repository",
+            },
+            {
+              name: ["-v", "--view"],
+              description: "View the current default repository",
+            },
+          ],
+        },
+        {
           name: "sync",
           description: `Sync destination repository from source repository. Syncing uses the main branch
 of the source repository to update the matching branch on the destination
