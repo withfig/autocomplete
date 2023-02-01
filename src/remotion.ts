@@ -153,6 +153,7 @@ const lambdaRenderAndStillOptions: Fig.Option[] = [
       name: "framesPerLambda",
     },
   },
+  propsOption,
   ...chromeOptions,
 ];
 
