@@ -7,6 +7,10 @@ const completionSpec: Fig.Spec = {
       description: "Builds the current project",
       options: [
         {
+          name: "--clean",
+          description: "Remove the dist folder before building",
+        },
+        {
           name: ["--config", "-f"],
           description: "Load configuration from file",
           args: { name: "config", template: "filepaths" },
@@ -37,6 +41,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--rm-dist",
           description: "Remove the dist folder before building",
+          hidden: true,
         },
         {
           name: "--single-target",
@@ -155,6 +160,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Automatically sets --snapshot if the repository is dirty",
         },
+        { name: "--clean", description: "Removes the dist folder" },
         {
           name: ["--config", "-f"],
           description: "Load configuration from file",
@@ -205,7 +211,11 @@ const completionSpec: Fig.Spec = {
             "Load custom release notes from a templated markdown file (overrides --release-notes)",
           args: { name: "release-notes-tmpl", template: "filepaths" },
         },
-        { name: "--rm-dist", description: "Removes the dist folder" },
+        {
+          name: "--rm-dist",
+          description: "Removes the dist folder",
+          hidden: true,
+        },
         {
           name: "--skip-announce",
           description: "Skips announcing releases (implies --skip-validate)",
@@ -215,6 +225,7 @@ const completionSpec: Fig.Spec = {
           name: "--skip-docker",
           description: "Skips Docker Images/Manifests builds",
         },
+        { name: "--skip-ko", description: "Skips Ko builds" },
         {
           name: "--skip-publish",
           description: "Skips publishing artifacts (implies --skip-announce)",
