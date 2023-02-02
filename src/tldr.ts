@@ -80,6 +80,8 @@ const sunosTldrPages: Fig.Generator = {
   },
 };
 
+const platformSuggestions = ["linux", "osx", "sunos", "windows", "common"];
+
 const completionSpec: Fig.Spec = {
   name: "tldr",
   description: "A simpler man page than the existing man page",
@@ -128,7 +130,7 @@ const completionSpec: Fig.Spec = {
       description: "Select platform",
       args: {
         name: "platform",
-        suggestions: ["linux", "osx", "sunos", "windows", "common"],
+        suggestions: platformSuggestions,
       },
     },
     {
@@ -137,7 +139,7 @@ const completionSpec: Fig.Spec = {
       requiresSeparator: true,
       args: {
         name: "platform",
-        suggestions: ["linux", "osx", "sunos", "windows", "common"],
+        suggestions: platformSuggestions,
       },
     },
   ],
