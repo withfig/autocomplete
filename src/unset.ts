@@ -1,5 +1,6 @@
 const envVarGenerator: Fig.Generator = {
-  script: "amplify env list --json",
+  //script: "amplify env list --json",
+  script: "env",
   postProcess: function (output) {
     //const output = JSON.parse(out);
     return output.split("\n").map((env) => {
