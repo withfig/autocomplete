@@ -4,6 +4,7 @@ const envVarGenerator: Fig.Generator = {
   // testingggggggggggggg
   //test 2
   // test 3
+  // test4
   postProcess: function (output) {
     //const output = JSON.parse(out);
     return output.split("\n").map((env) => {
