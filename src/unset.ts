@@ -11,6 +11,7 @@ const environmentVariableGenerator: Fig.Generator = {
             type: "arg",
             description: "Environment Variable",
           })),
+
 };
 
 const completionSpec: Fig.Spec = {
