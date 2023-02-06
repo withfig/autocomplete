@@ -278,7 +278,6 @@ const completionSpec: Fig.Spec = {
             {
               name: '--sort',
               description: 'Specify the sorting',
-              dependsOn: ['--namespace'],
               args: {
                 suggestions: ['builds', 'projects', 'orgs'],
               },
@@ -337,7 +336,6 @@ const completionSpec: Fig.Spec = {
               name: 'category name',
               description:
                 'The name of the category to add the orb to, in quotes',
-              dependsOn: ['namespace/orb'],
             },
           ],
         },
@@ -573,10 +571,8 @@ const completionSpec: Fig.Spec = {
           name: 'push',
           description: 'Push policy bundle (or a single policy)',
           args: {
-            {
-              name: 'policy_dir_path',
-              description: 'Policy file or directory path',
-            },
+            name: 'policy_dir_path',
+            description: 'Policy file or directory path',
           },
           options: [
             {
