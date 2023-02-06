@@ -2787,7 +2787,7 @@ const completionSpec: Fig.Spec = {
           description: "Amount of disk space to keep for cache",
           options: [
             {
-              name: "-a, --all",
+              name: ["-a", "--all"],
               description:
                 "Remove all unused build cache, not just dangling ones",
             },
@@ -2799,7 +2799,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: "-f, --force",
+              name: ["-f", "--force"],
               description: "Do not prompt for confirmation",
             },
             {
@@ -3035,7 +3035,7 @@ const completionSpec: Fig.Spec = {
                     "Use AWS environment variables for profile, or credentials and region",
                 },
                 {
-                  name: "-h, --help",
+                  name: ["-h", "--help"],
                   description: "Help for ecs",
                 },
                 {
@@ -4075,9 +4075,12 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: "--credential-spec credential-spec",
+              name: "--credential-spec",
               description:
                 "Credential spec for managed service account (Windows only)",
+              args: {
+                name: "credential-spec",
+              },
             },
             {
               name: ["-d", "--detach"],
@@ -4798,9 +4801,12 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: "--credential-spec credential-spec",
+              name: "--credential-spec",
               description:
                 "Credential spec for managed service account (Windows only)",
+              args: {
+                name: "credential-spec",
+              },
             },
             {
               name: ["-d", "--detach"],
