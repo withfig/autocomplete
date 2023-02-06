@@ -674,7 +674,7 @@ const completionSpec: Fig.Spec = {
             "Get/set policy decision settings (To read settings: run command without any settings flags)",
           options: [
             {
-              name: "--context string",
+              name: "--context",
               description: "Policy context for decision, default is 'config'",
             },
             {
