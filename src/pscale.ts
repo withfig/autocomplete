@@ -267,7 +267,7 @@ const completionSpec: Fig.Spec = {
               name: "--parent-branch",
               description:
                 'Parent branch to inherit from if a new branch is being created (default "main")',
-              args: { name: "string " },
+              args: { name: "string" },
             },
           ],
         },

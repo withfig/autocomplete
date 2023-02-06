@@ -105,7 +105,7 @@ const completionSpec: Fig.Spec = {
             "Preprocess and validate the environment manifest and configuration files in the source bundle",
         },
         {
-          name: "--source codecommit/",
+          name: "--source",
           description: "CodeCommit repository and branch",
           args: {
             name: "repository-name/repository-branch",

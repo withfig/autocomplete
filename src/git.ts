@@ -7950,7 +7950,7 @@ const completionSpec: Fig.Spec = {
           description: "Submodules working trees will not be updated",
         },
         {
-          name: "--overlay ",
+          name: "--overlay",
           description:
             "In the default overlay mode, git checkout never removes files from the index or the working tree",
         },
@@ -8687,7 +8687,7 @@ const completionSpec: Fig.Spec = {
             "This option bypasses the pre-merge and commit-msg hooks. See also githooks[5]",
         },
         {
-          name: ["-s ", "--strategy"],
+          name: ["-s", "--strategy"],
           description:
             "Use the given merge strategy; can be supplied more than once to specify them in the order they should be tried. If there is no -s option, a built-in list of strategies is used instead (git merge-recursive when merging a single head, git merge-octopus otherwise)",
           args: {

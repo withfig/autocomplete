@@ -519,7 +519,7 @@ const completionSpec: Fig.Spec = {
       description: "Immediately break when running each test",
     },
     {
-      name: " --trace-config",
+      name: "--trace-config",
       description: "Trace considerations of conftest.py files",
     },
     {
@@ -541,7 +541,7 @@ const completionSpec: Fig.Spec = {
         "Display pytest version and information about plugins. When given twice, also display information about plugins",
     },
     {
-      name: "--pythonwarnings, -W",
+      name: ["--pythonwarnings", "-W"],
       description:
         "Set which warnings to report, see -W option of python itself",
       args: {

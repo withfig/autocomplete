@@ -118,10 +118,13 @@ const completionSpec: Fig.Spec = {
       isPersistent: true,
     },
     {
-      name: ["--chart string", "-c"],
+      name: ["--chart", "-c"],
       description:
         "Set chart. Uses the chart set in release by default, and is available in template as {{ .Chart }}",
       isPersistent: true,
+      args: {
+        name: "string",
+      },
     },
     {
       name: "--color",

@@ -2092,12 +2092,20 @@ export const gccBase: Fig.Spec = {
       args: { name: "value", description: "Value" },
     },
     {
-      name: "'function' includes both 'function-entry' and 'function-exit'.",
+      name: "-fxray-instrumentation-bundle",
       description:
-        "Select which XRay instrumentation points to emit. Options: all, none, function-entry, function-exit, function, custom. Default is 'all'",
+        "Select which XRay instrumentation points to emit. 'function' includes both 'function-entry' and 'function-exit'",
       args: {
-        name: "fxray-instrumentation-bundl",
-        description: "Fxray-instrumentation-bundl",
+        name: "fxray-instrumentation-bundle",
+        suggestions: [
+          "all",
+          "none",
+          "function-entry",
+          "function-exit",
+          "function",
+          "custom",
+        ],
+        default: "all",
       },
     },
     {
