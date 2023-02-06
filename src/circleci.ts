@@ -679,16 +679,14 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--enabled",
+              requiresSeparator: true,
               description:
                 "Enable/disable policy decision evaluation in build pipeline",
-              args: [
-                {
-                  name: "=true",
-                },
-                {
-                  name: "=false",
-                },
-              ],
+              args: {
+              	name: "boolean",
+              	isOptional: true,
+              	suggestions: ["true", "false"],
+              },
             },
             {
               name: "--owner-id string",
