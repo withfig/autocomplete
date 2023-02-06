@@ -126,17 +126,8 @@ const completionSpec: Fig.Spec = {
       description: "Delete the entire local cache",
     },
     {
-      name: "-p",
+      name: ["--platform", "-p"],
       description: "Select platform",
-      args: {
-        name: "platform",
-        suggestions: platformSuggestions,
-      },
-    },
-    {
-      name: "--platform",
-      description: "Select platform",
-      requiresSeparator: true,
       args: {
         name: "platform",
         suggestions: platformSuggestions,
