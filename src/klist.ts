@@ -13,7 +13,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--cache",
       description: "Credential cache to list",
-      insertValue: "--cache={cursor}",
+      requiresSeparator: true,
       args: {
         name: "cache",
       },
