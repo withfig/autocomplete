@@ -98,7 +98,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--info",
       description: "Display file information. No conversion is done",
-      insertValue: "--info={cursor}",
+      requiresSeparator: true,
       exclusiveOn: ["-i"],
       args: {
         name: "value",
@@ -132,6 +132,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "OUTFILE",
+          template: "filepaths",
+          suggestCurrentToken: true,
         },
       ],
     },
