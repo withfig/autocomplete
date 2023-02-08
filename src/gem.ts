@@ -20,6 +20,7 @@ const httpProxyOptions: Fig.Option[] = [
   {
     name: ["-p", "--http-proxy"],
     description: "Use HTTP proxy for remote operations",
+    exclusiveOn: ["--no-http-proxy"],
     args: {
       name: "URL",
       description: "The URL",
@@ -29,11 +30,7 @@ const httpProxyOptions: Fig.Option[] = [
   {
     name: "--no-http-proxy",
     description: "Do not use HTTP proxy for remote operations",
-    args: {
-      name: "URL",
-      description: "The URL",
-      isOptional: true,
-    },
+    exclusiveOn: ["--http-proxy"],
   },
 ];
 
@@ -41,14 +38,17 @@ const localRemoteOptions: Fig.Option[] = [
   {
     name: ["-l", "--local"],
     description: "Restrict operations to the LOCAL domain",
+    exclusiveOn: ["--remote", "--both"],
   },
   {
     name: ["-r", "--remote"],
     description: "Restrict operations to the REMOTE domain",
+    exclusiveOn: ["--local", "--both"],
   },
   {
     name: ["-b", "--both"],
     description: "Allow LOCAL and REMOTE operations",
+    exclusiveOn: ["--remote", "--local"],
   },
   {
     name: ["-B", "--bulk-threshold"],
@@ -78,10 +78,12 @@ const installedOptions: Fig.Option[] = [
   {
     name: ["-i", "--installed"],
     description: "Check for installed gem",
+    exclusiveOn: ["--no-installed"],
   },
   {
     name: ["-I", "--no-installed"],
     description: "Check for not installed gem",
+    exclusiveOn: ["--installed"],
   },
   {
     name: ["-v", "--version"],
@@ -105,10 +107,12 @@ const displayOptions: Fig.Option[] = [
   {
     name: "--prerelease",
     description: "Allow prerelease versions of a gem",
+    exclusiveOn: ["--no-prerelease"],
   },
   {
     name: "--no-prerelease",
     description: "Do not allow prerelease versions of a gem",
+    exclusiveOn: ["--prerelease"],
   },
 ];
 
@@ -116,10 +120,12 @@ const versionsOptions: Fig.Option[] = [
   {
     name: "--versions",
     description: "Display only gem names",
+    exclusiveOn: ["--no-versions"],
   },
   {
     name: "--no-versions",
     description: "Display not only gem names",
+    exclusiveOn: ["--versions"],
   },
 ];
 
@@ -285,35 +291,43 @@ const completionSpec: Fig.Spec = {
           name: ["-a", "--alien"],
           description:
             "Report 'unmanaged' or rogue files in the gem repository",
+          exclusiveOn: ["--no-alien"],
         },
         {
           name: "--no-alien",
           description: "Report 'managed' or rogue files in the gem repository",
+          exclusiveOn: ["--alien"],
         },
         {
           name: "--doctor",
           description: "Clean up uninstalled gems and broken specifications",
+          exclusiveOn: ["--no-doctor"],
         },
         {
           name: "--no-doctor",
           description:
             "Do not clean up uninstalled gems and broken specifications",
+          exclusiveOn: ["--doctor"],
         },
         {
           name: "--dry-run",
           description: "Do not remove files, only report what would be removed",
+          exclusiveOn: ["--no-dry-run"],
         },
         {
           name: "--no-dry-run",
           description: "Remove files",
+          exclusiveOn: ["--dry-run"],
         },
         {
           name: "--gems",
           description: "Check installed gems for problems",
+          exclusiveOn: ["--no-gems"],
         },
         {
           name: "--no-gems",
           description: "Check not installed gems for problems",
+          exclusiveOn: ["--gems"],
         },
         {
           name: ["-v", "--version"],
@@ -344,19 +358,23 @@ const completionSpec: Fig.Spec = {
           name: ["-D", "--check-development"],
           description:
             "Check development dependencies while uninstalling (default: true)",
+          exclusiveOn: ["--no-check-development"],
         },
         {
           name: "--no-check-development",
           description:
             "Do not check development dependencies while uninstalling",
+          exclusiveOn: ["--check-development"],
         },
         {
           name: "--user-install",
           description: "Cleanup in user’s home directory instead of GEM_HOME",
+          exclusiveOn: ["--no-user-install"],
         },
         {
           name: "--no-user-install",
           description: "Cleanup in GEM_HOME instead of user’s home directory",
+          exclusiveOn: ["--user-install"],
         },
       ],
     },
@@ -393,26 +411,32 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-l", "--lib-only"],
           description: "Only return files in the Gem’s lib_dirs",
+          exclusiveOn: ["--no-lib-only"],
         },
         {
           name: "--no-lib-only",
           description: "Not only return files in the Gem’s lib_dirs",
+          exclusiveOn: ["--lib-only"],
         },
         {
           name: "--prefix",
           description: "Don’t include installed path prefix",
+          exclusiveOn: ["--no-prefix"],
         },
         {
           name: "--no-prefix",
           description: "Include installed path prefix",
+          exclusiveOn: ["--prefix"],
         },
         {
           name: "--show-install-dir",
           description: "Show only the gem install dir",
+          exclusiveOn: ["--no-show-install-dir"],
         },
         {
           name: "--no-show-install-dir",
           description: "Do not show only the gem install dir",
+          exclusiveOn: ["--show-install-dir"],
         },
       ],
     },
@@ -443,18 +467,22 @@ const completionSpec: Fig.Spec = {
         {
           name: "--prerelease",
           description: "Allow prerelease versions of a gem",
+          exclusiveOn: ["--no-prerelease"],
         },
         {
           name: "--no-prerelease",
           description: "Do not allow prerelease versions of a gem",
+          exclusiveOn: ["--prerelease"],
         },
         {
           name: ["-R", "--reverse-dependencies"],
           description: "Include reverse dependencies in the output",
+          exclusiveOn: ["--no-reverse-dependencies"],
         },
         {
           name: "--no-reverse-dependencies",
           description: "Do not include reverse dependencies in the output",
+          exclusiveOn: ["--reverse-dependencies"],
         },
         {
           name: "--pipe",
@@ -528,18 +556,22 @@ const completionSpec: Fig.Spec = {
         {
           name: "--prerelease",
           description: "Allow prerelease versions of a gem",
+          exclusiveOn: ["--no-prerelease"],
         },
         {
           name: "--no-prerelease",
           description: "Do not allow prerelease versions of a gem",
+          exclusiveOn: ["--prerelease"],
         },
         {
           name: "--suggestions",
           description: "Suggest alternates when gems are not found",
+          exclusiveOn: ["--no-suggestions"],
         },
         {
           name: "--no-suggestions",
           description: "Do not suggest alternates when gems are not found",
+          exclusiveOn: ["--suggestions"],
         },
         {
           name: ["-B", "--bulk-threshold"],
@@ -582,10 +614,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--modern",
           description: "Generate indexes for RubyGems (always true)",
+          exclusiveOn: ["--no-modern"],
         },
         {
           name: "--no-modern",
           description: "Do not generate indexes for RubyGems",
+          exclusiveOn: ["--modern"],
         },
         {
           name: "--update",
@@ -607,6 +641,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "-I",
           description: "Equivalent to --no-installed",
+          exclusiveOn: ["--installed"],
         },
         ...displayOptions,
         ...installedOptions,
@@ -624,10 +659,12 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-s", "--strict"],
           description: "Fail if unable to satisfy a dependency",
+          exclusiveOn: ["--no-strict"],
         },
         {
           name: "--no-strict",
           description: "Do not fail if unable to satisfy a dependency",
+          exclusiveOn: ["--strict"],
         },
       ],
     },
@@ -696,11 +733,13 @@ const completionSpec: Fig.Spec = {
           name: "--extensions",
           description:
             "Restore gems with extensions in addition to regular gems",
+          exclusiveOn: ["--no-extensions"],
         },
         {
           name: "--no-extensions",
           description:
             "Do not restore gems with extensions in addition to regular gems",
+          exclusiveOn: ["--extensions"],
         },
         {
           name: "--only-executables",
@@ -713,11 +752,13 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-E", "--env-shebang"],
           description: "Rewrite executables with a shebang of /usr/bin/env",
+          exclusiveOn: ["--no-env-shebang"],
         },
         {
           name: "--no-env-shebang",
           description:
             "Do not rewrite executables with a shebang of /usr/bin/env",
+          exclusiveOn: ["--env-shebang"],
         },
         {
           name: ["-i", "--install-dir"],
@@ -763,14 +804,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "-I",
           description: "Equivalent to --no-installed",
+          exclusiveOn: ["--installed"],
         },
         {
           name: ["-d", "--details"],
           description: "Display detailed information of gem(s)",
+          exclusiveOn: ["--no-details"],
         },
         {
           name: "--no-details",
           description: "Do not display detailed information of gem(s)",
+          exclusiveOn: ["--details"],
         },
         ...displayOptions,
         ...installedOptions,
@@ -796,26 +840,32 @@ const completionSpec: Fig.Spec = {
         {
           name: "--rdoc",
           description: "Generate RDoc HTML",
+          exclusiveOn: ["--no-rdoc"],
         },
         {
           name: "--no-rdoc",
           description: "Do not generate RDoc HTML",
+          exclusiveOn: ["--rdoc"],
         },
         {
           name: "--ri",
           description: "Generate RI data",
+          exclusiveOn: ["--no-ri"],
         },
         {
           name: "--no-ri",
           description: "Do not generate RI data",
+          exclusiveOn: ["--ri"],
         },
         {
           name: "--overwrite",
           description: "Overwrite installed documents",
+          exclusiveOn: ["--no-overwrite"],
         },
         {
           name: "--no-overwrite",
           description: "Do not overwrite installed documents",
+          exclusiveOn: ["--overwrite"],
         },
         {
           name: ["-v", "--version"],
@@ -839,14 +889,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "-I",
           description: "Equivalent to --no-installed",
+          exclusiveOn: ["--installed"],
         },
         {
           name: ["-d", "--details"],
           description: "Display detailed information of gem(s)",
+          exclusiveOn: ["--no-details"],
         },
         {
           name: "--no-details",
           description: "Do not display detailed information of gem(s)",
+          exclusiveOn: ["--details"],
         },
         ...displayOptions,
         ...installedOptions,
@@ -920,11 +973,13 @@ const completionSpec: Fig.Spec = {
           name: ["-f", "--force"],
           description:
             "Do not show any confirmation prompts and behave as if 'yes' was always answered",
+          exclusiveOn: ["--no-force"],
         },
         {
           name: "--no-force",
           description:
             "Show any confirmation prompts and behave as if 'yes' was always answered",
+          exclusiveOn: ["--force"],
         },
         ...httpProxyOptions,
       ],
@@ -964,10 +1019,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--prerelease",
           description: "Allow prerelease versions of a gem",
+          exclusiveOn: ["--no-prerelease"],
         },
         {
           name: "--no-prerelease",
           description: "Do not allow prerelease versions of a gem",
+          exclusiveOn: ["--prerelease"],
         },
         {
           name: "--all",
@@ -1152,18 +1209,24 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-d", "--details"],
           description: "Display detailed information of gem(s)",
+          exclusiveOn: ["--no-details"],
         },
         {
           name: "--no-details",
           description: "Do not display detailed information of gem(s)",
+          exclusiveOn: ["--details"],
         },
         {
           name: ["-u", "--update-sources"],
           description: "[Deprecated] Update local source cache",
+          deprecated: true,
+          exclusiveOn: ["--no-update-sources"],
         },
         {
           name: "--no-update-sources",
           description: "[Deprecated] Do not update local source cache",
+          deprecated: true,
+          exclusiveOn: ["--update-sources"],
         },
         ...displayOptions,
         ...installedOptions,
@@ -1451,6 +1514,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--suggestions",
           description: "Suggest alternates when gems are not found",
+          exclusiveOn: ["--no-suggestions"],
         },
       ],
     },
@@ -1464,11 +1528,13 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-V", "--verbose"],
       description: "Set the verbose level of output",
+      exclusiveOn: ["--no-verbose"],
       isPersistent: true,
     },
     {
       name: "--no-verbose",
       description: "Do not set the verbose level of output",
+      exclusiveOn: ["--verbose"],
       isPersistent: true,
     },
     {
