@@ -246,7 +246,7 @@ const renderOptions: Fig.Option[] = [
   },
   {
     name: "--codec",
-    description: "Video of audio codec",
+    description: "Video or audio codec",
     args: {
       default: "h264",
       suggestions: [
@@ -260,6 +260,18 @@ const renderOptions: Fig.Option[] = [
         { name: "wav" },
         { name: "prores" },
         { name: "h264-mkv" },
+      ],
+    },
+  },
+  {
+    name: "--audio-codec",
+    description: "Codec to be used for the audio",
+    args: {
+      suggestions: [
+        { name: "aac" },
+        { name: "mp3" },
+        { name: "opus" },
+        { name: "pcm-16" },
       ],
     },
   },
