@@ -18,180 +18,180 @@ const packageList: Fig.Generator = {
  * Based on [elm-json](https://github.com/zwilias/elm-json), version 0.2.13. Cli tool for working with your elm.json file.
  */
 const completionSpec: Fig.Spec = {
-  name: 'elm-json',
-  description: 'Deal with your elm.json',
+  name: "elm-json",
+  description: "Deal with your elm.json",
   subcommands: [
     {
-      name: 'help',
+      name: "help",
       description:
-        'Prints help information or the help of the given subcommand(s)',
+        "Prints help information or the help of the given subcommand(s)",
       args: {
-        name: 'subcommand',
-        template: "help"
+        name: "subcommand",
+        template: "help",
       },
     },
     {
-      name: 'install',
-      description: 'Install a package',
+      name: "install",
+      description: "Install a package",
       options: [
         {
-          name: ['--help', '-h'],
-          description: 'Prints help information',
+          name: ["--help", "-h"],
+          description: "Prints help information",
         },
         {
-          name: '--test',
-          description: 'Install as a test-dependency',
+          name: "--test",
+          description: "Install as a test-dependency",
         },
         {
-          name: ['--version', '-V'],
-          description: 'Prints version information',
+          name: ["--version", "-V"],
+          description: "Prints version information",
         },
         {
-          name: '--yes',
+          name: "--yes",
           description: 'Answer "yes" to all questions',
         },
       ],
       args: [
         {
-          name: 'PACKAGE',
+          name: "PACKAGE",
           description:
-            'Package to install, e.g. elm/core or elm/core@1.0.2 or elm/core@1',
+            "Package to install, e.g. elm/core or elm/core@1.0.2 or elm/core@1",
           debounce: true,
           generators: packageList,
         },
         {
-          name: '-- INPUT',
+          name: "-- INPUT",
           isOptional: true,
-          description: 'The elm.json file to upgrade [default: elm.json]',
-          generators: filepaths({ extensions: ['json'] }),
+          description: "The elm.json file to upgrade [default: elm.json]",
+          generators: filepaths({ extensions: ["json"] }),
         },
       ],
     },
     {
-      name: 'new',
-      description: 'Create a new elm.json file',
+      name: "new",
+      description: "Create a new elm.json file",
       options: [
         {
-          name: ['--help', '-h'],
-          description: 'Prints help information',
+          name: ["--help", "-h"],
+          description: "Prints help information",
         },
         {
-          name: ['--version', '-V'],
-          description: 'Prints version information',
+          name: ["--version", "-V"],
+          description: "Prints version information",
         },
       ],
     },
     {
-      name: 'tree',
-      description: 'List entire dependency graph as a tree',
+      name: "tree",
+      description: "List entire dependency graph as a tree",
       options: [
         {
-          name: ['--help', '-h'],
-          description: 'Prints help information',
+          name: ["--help", "-h"],
+          description: "Prints help information",
         },
         {
-          name: '--test',
-          description: 'Promote test-dependencies to top-level dependencies',
+          name: "--test",
+          description: "Promote test-dependencies to top-level dependencies",
         },
         {
-          name: ['--version', '-V'],
-          description: 'Prints version information',
+          name: ["--version", "-V"],
+          description: "Prints version information",
         },
       ],
       args: [
         {
-          name: 'PACKAGE',
+          name: "PACKAGE",
           description:
-            'Limit output to show path to some (indirect) dependency',
+            "Limit output to show path to some (indirect) dependency",
           debounce: true,
           generators: packageList,
         },
         {
-          name: '-- INPUT',
+          name: "-- INPUT",
           isOptional: true,
-          description: 'The elm.json file to solve [default: elm.json]',
-          generators: filepaths({ extensions: ['json'] }),
+          description: "The elm.json file to solve [default: elm.json]",
+          generators: filepaths({ extensions: ["json"] }),
         },
       ],
     },
     {
-      name: 'uninstall',
-      description: 'Uninstall a package',
+      name: "uninstall",
+      description: "Uninstall a package",
       options: [
         {
-          name: ['--help', '-h'],
-          description: 'Prints help information',
+          name: ["--help", "-h"],
+          description: "Prints help information",
         },
         {
-          name: ['--version', '-V'],
-          description: 'Prints version information',
+          name: ["--version", "-V"],
+          description: "Prints version information",
         },
         {
-          name: '--yes',
+          name: "--yes",
           description: 'Answer "yes" to all questions',
         },
       ],
       args: [
         {
-          name: 'PACKAGE',
-          description: 'Package to uninstall, e.g. elm/html',
+          name: "PACKAGE",
+          description: "Package to uninstall, e.g. elm/html",
           debounce: true,
           generators: packageList,
         },
         {
-          name: '-- INPUT',
+          name: "-- INPUT",
           isOptional: true,
-          description: 'The elm.json file to upgrade [default: elm.json]',
-          generators: filepaths({ extensions: ['json'] }),
+          description: "The elm.json file to upgrade [default: elm.json]",
+          generators: filepaths({ extensions: ["json"] }),
         },
       ],
     },
     {
-      name: 'upgrade',
-      description: 'Bring your dependencies up to date',
+      name: "upgrade",
+      description: "Bring your dependencies up to date",
       options: [
         {
-          name: ['--help', '-h'],
-          description: 'Prints help information',
+          name: ["--help", "-h"],
+          description: "Prints help information",
         },
         {
-          name: '--unsafe',
-          description: 'Allow major versions bumps',
+          name: "--unsafe",
+          description: "Allow major versions bumps",
         },
         {
-          name: ['--version', '-V'],
-          description: 'Prints version information',
+          name: ["--version", "-V"],
+          description: "Prints version information",
         },
         {
-          name: '--yes',
+          name: "--yes",
           description: 'Answer "yes" to all questions',
         },
       ],
       args: {
-        name: 'INPUT',
-        description: 'The elm.json file to upgrade [default: elm.json]',
+        name: "INPUT",
+        description: "The elm.json file to upgrade [default: elm.json]",
         isOptional: true,
-        generators: filepaths({ extensions: ['json'] }),
+        generators: filepaths({ extensions: ["json"] }),
       },
     },
   ],
   options: [
     {
-      name: ['--help', '-h'],
-      description: 'Prints help information',
+      name: ["--help", "-h"],
+      description: "Prints help information",
     },
     {
-      name: '--offline',
+      name: "--offline",
       description:
-        'Enable offline mode, which means no HTTP traffic will happen',
+        "Enable offline mode, which means no HTTP traffic will happen",
     },
     {
-      name: ['--version', '-V'],
-      description: 'Prints version information',
+      name: ["--version", "-V"],
+      description: "Prints version information",
     },
     {
-      name: ['--verbose', '-v'],
-      description: 'Sets the level of verbosity',
+      name: ["--verbose", "-v"],
+      description: "Sets the level of verbosity",
     },
   ],
 };
