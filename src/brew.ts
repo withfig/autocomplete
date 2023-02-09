@@ -1621,6 +1621,16 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
       },
     },
+    {
+      name: "developer",
+      description: "Display the current state of Homebrew's developer mode",
+      args: {
+        name: "state",
+        description: "Turn Homebrew's developer mode on or off respectively",
+        suggestions: ["on", "off"],
+        isOptional: true,
+      },
+    },
   ],
   options: [
     {
