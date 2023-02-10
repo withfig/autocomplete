@@ -3819,13 +3819,6 @@ const completionSpec: Fig.Spec = {
                 name: "string",
               },
             },
-            {
-              name: "--builder",
-              description: "Override the configured builder instance",
-              args: {
-                name: "string",
-              },
-            },
           ],
         },
         {
@@ -4143,13 +4136,6 @@ const completionSpec: Fig.Spec = {
                 name: "string",
               },
             },
-            {
-              name: "--builder",
-              description: "Override the configured builder instance",
-              args: {
-                name: "string",
-              },
-            },
           ],
         },
         {
@@ -4237,13 +4223,6 @@ const completionSpec: Fig.Spec = {
                 name: "string",
               },
             },
-            {
-              name: "--builder",
-              description: "Override the configured builder instance",
-              args: {
-                name: "string",
-              },
-            },
           ],
         },
         {
@@ -4257,10 +4236,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "--verbose",
               description: "Provide a more verbose output",
-            },
-            {
-              name: "--builder",
-              description: "Override the configured builder instance",
             },
           ],
         },
@@ -4317,13 +4292,6 @@ const completionSpec: Fig.Spec = {
                     name: "string",
                   },
                 },
-                {
-                  name: "--builder",
-                  description: "Override the configured builder instance",
-                  args: {
-                    name: "string",
-                  },
-                },
               ],
             },
             {
@@ -4345,10 +4313,6 @@ const completionSpec: Fig.Spec = {
                   name: "--raw",
                   description: "Show original, unformatted JSON manifest",
                 },
-                {
-                  name: "--builder",
-                  description: "Override the configured builder instance",
-                },
               ],
             },
           ],
@@ -4363,13 +4327,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "--bootstrap",
               description: "Ensure builder has booted before inspecting",
-              args: {
-                name: "string",
-              },
-            },
-            {
-              name: "--builder",
-              description: "Override the configured builder instance",
               args: {
                 name: "string",
               },
@@ -4426,13 +4383,6 @@ const completionSpec: Fig.Spec = {
                 name: "string",
               },
             },
-            {
-              name: "--builder",
-              description: "Override the configured builder instance",
-              args: {
-                name: "string",
-              },
-            },
           ],
         },
         {
@@ -4466,13 +4416,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "--keep-state",
               description: "Keep BuildKit state",
-              args: {
-                name: "string",
-              },
-            },
-            {
-              name: "--builder",
-              description: "Override the configured builder instance",
               args: {
                 name: "string",
               },
@@ -4511,19 +4454,20 @@ const completionSpec: Fig.Spec = {
                 name: "string",
               },
             },
-            {
-              name: "--builder",
-              description: "Override the configured builder instance",
-              args: {
-                name: "string",
-              },
-            },
           ],
         },
         {
           name: "version",
           description: "Show buildx version information",
         },
+        options: [{
+          name: "--builder",
+          description: "Override the configured builder instance",
+          isPersistent: true,
+          args: {
+            name: "string",
+          },
+        }]
       ],
     },
     {
