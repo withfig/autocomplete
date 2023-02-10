@@ -1212,6 +1212,28 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      // NOTE: this is actually a command even if it has the double dash in the front
+      name: "--prefix",
+      description: "Prefix of <formula>",
+      type: "option",
+      args: {
+        isVariadic: true,
+        name: "formula",
+        generators: formulaeGenerator,
+        },
+      options: [
+        {
+          name: "--unbrewed",
+          description: "List files in Homebrew's prefix not installed by Homebrew",
+        },
+        {
+          name: "--installed",
+          description:
+            "Outputs nothing and returns a failing status code if formula is not installed",
+        },
+      ],
+    },
+    {
       name: "cask",
       description:
         "Homebrew Cask provides a friendly CLI workflow for the administration of macOS applications distributed as binaries",
