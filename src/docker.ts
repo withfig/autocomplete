@@ -4460,15 +4460,15 @@ const completionSpec: Fig.Spec = {
           name: "version",
           description: "Show buildx version information",
         },
-        options: [{
-          name: "--builder",
-          description: "Override the configured builder instance",
-          isPersistent: true,
-          args: {
-            name: "string",
-          },
-        }]
       ],
+      options: [{
+        name: "--builder",
+        description: "Override the configured builder instance",
+        isPersistent: true,
+        args: {
+          name: "string",
+        },
+      }]
     },
     {
       name: "plugin",
