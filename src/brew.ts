@@ -1220,11 +1220,12 @@ const completionSpec: Fig.Spec = {
         isVariadic: true,
         name: "formula",
         generators: formulaeGenerator,
-        },
+      },
       options: [
         {
           name: "--unbrewed",
-          description: "List files in Homebrew's prefix not installed by Homebrew",
+          description:
+            "List files in Homebrew's prefix not installed by Homebrew",
         },
         {
           name: "--installed",
