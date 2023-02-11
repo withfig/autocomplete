@@ -6655,5 +6655,107 @@ versions["2.13.0"] = {
   ],
 };
 
+versions["2.14.2"] = {
+  subcommands: [
+    {
+      name: "login",
+      options: [
+        {
+          name: ["-e", "--email"],
+          description: "Email to login to",
+          isRepeatable: true,
+          args: {
+            name: "email",
+            isOptional: true,
+          },
+        },
+        {
+          name: ["-t", "--token"],
+          description: "Login with a fig user token",
+          isRepeatable: true,
+          args: {
+            name: "token",
+            isOptional: true,
+          },
+        },
+        {
+          name: "--switchable",
+          description: "Allow switching between accounts",
+        },
+      ],
+    },
+    {
+      name: "user",
+      subcommands: [
+        {
+          name: "login",
+          options: [
+            {
+              name: ["-e", "--email"],
+              description: "Email to login to",
+              isRepeatable: true,
+              args: {
+                name: "email",
+                isOptional: true,
+              },
+            },
+            {
+              name: ["-t", "--token"],
+              description: "Login with a fig user token",
+              isRepeatable: true,
+              args: {
+                name: "token",
+                isOptional: true,
+              },
+            },
+            {
+              name: "--switchable",
+              description: "Allow switching between accounts",
+            },
+          ],
+        },
+        {
+          name: "tokens",
+          subcommands: [
+            {
+              name: "new",
+              options: [
+                {
+                  name: ["-t", "--team"],
+                  args: {
+                    isOptional: true,
+                  },
+                },
+              ],
+            },
+            {
+              name: "list",
+              options: [
+                {
+                  name: ["-t", "--team"],
+                  args: {
+                    isOptional: true,
+                  },
+                },
+              ],
+            },
+            {
+              name: "revoke",
+              options: [
+                {
+                  name: ["-t", "--team"],
+                  args: {
+                    isOptional: true,
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
 export { versions };
 export default completion;
