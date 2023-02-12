@@ -11,14 +11,12 @@ const environmentVariableGenerator: Fig.Generator = {
             type: "arg",
             description: "Environment Variable",
           })),
-
 };
 
 const completionSpec: Fig.Spec = {
   name: "unset",
   description: "Named variable/function shall be undefined",
   args: {
-    //what info does the variable to unset need to be defined by?
     name: "string",
     generators: environmentVariableGenerator,
   },
@@ -34,4 +32,3 @@ const completionSpec: Fig.Spec = {
   ],
 };
 export default completionSpec;
-//export to be compiled properly
