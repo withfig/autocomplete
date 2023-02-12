@@ -36,7 +36,8 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: "--coverage-text=",
+      name: "--coverage-text",
+      requiresSeparator: true,
       description: "Generate code coverage report in text format [default: standard output]",
       args: {
         name: "file",
