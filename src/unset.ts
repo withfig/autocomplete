@@ -12,7 +12,7 @@ const environmentVariableGenerator: Fig.Generator = {
             description: "Environment Variable",
           })),
 };
-
+//Unset spec for autocomplete
 const completionSpec: Fig.Spec = {
   name: "unset",
   description: "Named variable/function shall be undefined",
