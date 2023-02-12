@@ -1,24 +1,24 @@
-const envVarGenerator: Fig.Generator = {
-  //script: "amplify env list --json",
+const environmentVariableGenerator: Fig.Generator = {
   script: "env",
-  // testingggggggggggggg
-  //test 2
-  // test 3
-  postProcess: function (output) {
-    //const output = JSON.parse(out);
-    return output.split("\n").map((env) => {
-      return { name: env, description: "Environment Variable" };
-    });
-  },
+  postProcess: (out) =>
+    out.length === 0
+      ? []
+      : out
+          .split("\n")
+          .map((env) => env.split("=")[0])
+          .map((suggestion) => ({
+            name: `${suggestion}`,
+            type: "arg",
+            description: "Environment Variable",
+          })),
 };
-
+//Unset spec for autocomplete
 const completionSpec: Fig.Spec = {
   name: "unset",
   description: "Named variable/function shall be undefined",
   args: {
-    //what info does the variable to unset need to be defined by?
     name: "string",
-    generators: envVarGenerator,
+    generators: environmentVariableGenerator,
   },
   options: [
     {
@@ -32,4 +32,3 @@ const completionSpec: Fig.Spec = {
   ],
 };
 export default completionSpec;
-//export to be compiled properly
