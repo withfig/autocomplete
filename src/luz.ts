@@ -27,6 +27,21 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--type", "-t"],
           description: "The type of project to generate",
+          args: {
+            name: "type",
+            suggestions: [
+              {
+                name: "tool",
+                description: "A command-line tool",
+                icon: "💻",
+              },
+              {
+                name: "tweak",
+                description: "A tweak",
+                icon: "🛠",
+              },
+            ],
+          },
         },
       ],
     },
