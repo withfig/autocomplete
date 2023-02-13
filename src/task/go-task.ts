@@ -1,6 +1,7 @@
 const TASKS_PRIORITY = 80;
 const TASKFILE_FLAGS = ["-t", "--taskfile"];
 const DIRECTORY_FLAGS = ["-d", "--dir"];
+const taskDirectoryFlags = new Set([...TASKFILE_FLAGS, ...DIRECTORY_FLAGS]);
 
 const tasksGenerator: Fig.Generator = {
   custom: async (tokens, exec) => {
@@ -16,7 +17,7 @@ const tasksGenerator: Fig.Generator = {
         .slice()
         .reverse()
         .findIndex((token) =>
-          [...TASKFILE_FLAGS, ...DIRECTORY_FLAGS].includes(token)
+          taskDirectoryFlags.has(token)
         );
 
     // Add the last context flag if mentioned in tokens
@@ -30,7 +31,7 @@ const tasksGenerator: Fig.Generator = {
 
     return tasksListText
       .split("\n* ")
-      .filter((_, i) => i > 0) // The first line is not a task
+      .slice(1) // The first line is not a task
       .map((taskText) => {
         const [name, description] = taskText.split(": ");
         return {
@@ -152,7 +153,6 @@ const completionSpec: Fig.Spec = {
       description: "Pass variables to the task",
       args: {
         name: "variables",
-        isOptional: false,
         isVariadic: true,
         optionsCanBreakVariadicArg: false,
       },
