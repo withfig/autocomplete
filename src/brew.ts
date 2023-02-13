@@ -1215,7 +1215,6 @@ const completionSpec: Fig.Spec = {
       // NOTE: this is actually a command even if it has the double dash in the front
       name: "--prefix",
       description: "Prefix of <formula>",
-      type: "option",
       args: {
         isVariadic: true,
         name: "formula",
