@@ -15,7 +15,7 @@ const completionSpec: Fig.Spec = {
       out = await executeShellCommand("cat maskfile.md 2> /dev/null");
     } else {
       out = await executeShellCommand(
-        `\cat ${tokens[maskfileLocationIdx + 1]} 2> /dev/null`
+        `\\cat ${tokens[maskfileLocationIdx + 1]} 2> /dev/null`
       );
     }
 

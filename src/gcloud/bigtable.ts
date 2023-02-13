@@ -9,7 +9,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a new Bigtable app profile",
-
           options: [
             {
               name: "--account",
@@ -184,13 +183,11 @@ const completionSpec: Fig.Spec = {
             name: "APP_PROFILE",
             description:
               "ID of the app profile or fully qualified identifier for the app profile",
-            isVariadic: false,
           },
         },
         {
           name: "delete",
           description: "Delete a Bigtable app profile",
-
           options: [
             {
               name: "--account",
@@ -336,13 +333,11 @@ const completionSpec: Fig.Spec = {
             name: "APP_PROFILE",
             description:
               "ID of the app profile or fully qualified identifier for the app profile",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "Describe an existing Bigtable app profile",
-
           options: [
             {
               name: "--account",
@@ -484,13 +479,11 @@ const completionSpec: Fig.Spec = {
             name: "APP_PROFILE",
             description:
               "ID of the app profile or fully qualified identifier for the app profile",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List Bigtable app profiles",
-
           options: [
             {
               name: "--account",
@@ -679,7 +672,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update a Bigtable app profile",
-
           options: [
             {
               name: "--account",
@@ -859,7 +851,6 @@ const completionSpec: Fig.Spec = {
             name: "APP_PROFILE",
             description:
               "ID of the app profile or fully qualified identifier for the app profile",
-            isVariadic: false,
           },
         },
       ],
@@ -999,7 +990,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "add-iam-policy-binding",
           description: "Add an IAM policy binding to a Cloud Bigtable Backup",
-
           options: [
             {
               name: "--account",
@@ -1191,13 +1181,11 @@ const completionSpec: Fig.Spec = {
             name: "BACKUP",
             description:
               "ID of the backup or fully qualified identifier for the backup",
-            isVariadic: false,
           },
         },
         {
           name: "create",
           description: "Creates a backup of a Cloud Bigtable table",
-
           options: [
             {
               name: "--account",
@@ -1384,13 +1372,11 @@ const completionSpec: Fig.Spec = {
             name: "BACKUP",
             description:
               "ID of the backup or fully qualified identifier for the backup",
-            isVariadic: false,
           },
         },
         {
           name: "delete",
           description: "Delete an existing backup",
-
           options: [
             {
               name: "--account",
@@ -1541,13 +1527,11 @@ const completionSpec: Fig.Spec = {
             name: "BACKUP",
             description:
               "ID of the backup or fully qualified identifier for the backup",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "Retrieves information about a backup",
-
           options: [
             {
               name: "--account",
@@ -1698,13 +1682,11 @@ const completionSpec: Fig.Spec = {
             name: "BACKUP",
             description:
               "ID of the backup or fully qualified identifier for the backup",
-            isVariadic: false,
           },
         },
         {
           name: "get-iam-policy",
           description: "Get an IAM policy on a Cloud Bigtable Backup",
-
           options: [
             {
               name: "--account",
@@ -1895,13 +1877,11 @@ const completionSpec: Fig.Spec = {
             name: "BACKUP",
             description:
               "ID of the backup or fully qualified identifier for the backup",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List existing Bigtable backups",
-
           options: [
             {
               name: "--account",
@@ -2102,7 +2082,6 @@ const completionSpec: Fig.Spec = {
           name: "remove-iam-policy-binding",
           description:
             "Remove an IAM policy binding from a Cloud Bigtable Backup",
-
           options: [
             {
               name: "--account",
@@ -2299,13 +2278,11 @@ const completionSpec: Fig.Spec = {
             name: "BACKUP",
             description:
               "ID of the backup or fully qualified identifier for the backup",
-            isVariadic: false,
           },
         },
         {
           name: "set-iam-policy",
           description: "Set an IAM policy on a Cloud Bigtable Backup",
-
           options: [
             {
               name: "--account",
@@ -2457,13 +2434,11 @@ const completionSpec: Fig.Spec = {
               name: "BACKUP",
               description:
                 "ID of the backup or fully qualified identifier for the backup",
-              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy)",
-              isVariadic: false,
             },
           ],
         },
@@ -2471,7 +2446,6 @@ const completionSpec: Fig.Spec = {
           name: "update",
           description:
             "Update a backup, only supported for the following fields: --expiration-date and --retention-period",
-
           options: [
             {
               name: "--account",
@@ -2642,7 +2616,6 @@ const completionSpec: Fig.Spec = {
             name: "BACKUP",
             description:
               "ID of the backup or fully qualified identifier for the backup",
-            isVariadic: false,
           },
         },
       ],
@@ -2782,7 +2755,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a bigtable cluster",
-
           options: [
             {
               name: "--account",
@@ -2949,13 +2921,11 @@ const completionSpec: Fig.Spec = {
             name: "CLUSTER",
             description:
               "ID of the cluster or fully qualified identifier for the cluster",
-            isVariadic: false,
           },
         },
         {
           name: "delete",
           description: "Delete a bigtable cluster",
-
           options: [
             {
               name: "--account",
@@ -3097,13 +3067,11 @@ const completionSpec: Fig.Spec = {
             name: "CLUSTER",
             description:
               "ID of the cluster or fully qualified identifier for the cluster",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "Describe an existing Bigtable cluster",
-
           options: [
             {
               name: "--account",
@@ -3245,13 +3213,11 @@ const completionSpec: Fig.Spec = {
             name: "CLUSTER",
             description:
               "ID of the cluster or fully qualified identifier for the cluster",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List existing Bigtable clusters",
-
           options: [
             {
               name: "--account",
@@ -3440,7 +3406,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update a Bigtable cluster's number of nodes",
-
           options: [
             {
               name: "--account",
@@ -3597,7 +3562,6 @@ const completionSpec: Fig.Spec = {
             name: "CLUSTER",
             description:
               "ID of the cluster or fully qualified identifier for the cluster",
-            isVariadic: false,
           },
         },
       ],
@@ -3737,7 +3701,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "add-iam-policy-binding",
           description: "Add an IAM policy binding to a Cloud Bigtable instance",
-
           options: [
             {
               name: "--account",
@@ -3891,13 +3854,11 @@ const completionSpec: Fig.Spec = {
             name: "INSTANCE",
             description:
               "ID of the instance or fully qualified identifier for the instance",
-            isVariadic: false,
           },
         },
         {
           name: "create",
           description: "Create a new Bigtable instance",
-
           options: [
             {
               name: "--account",
@@ -4096,13 +4057,11 @@ const completionSpec: Fig.Spec = {
             name: "INSTANCE",
             description:
               "ID of the instance or fully qualified identifier for the instance",
-            isVariadic: false,
           },
         },
         {
           name: "delete",
           description: "Delete an existing Bigtable instance",
-
           options: [
             {
               name: "--account",
@@ -4241,7 +4200,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe an existing Bigtable instance",
-
           options: [
             {
               name: "--account",
@@ -4374,13 +4332,11 @@ const completionSpec: Fig.Spec = {
             name: "INSTANCE",
             description:
               "ID of the instance or fully qualified identifier for the instance",
-            isVariadic: false,
           },
         },
         {
           name: "get-iam-policy",
           description: "Get the IAM policy for a Cloud Bigtable instance",
-
           options: [
             {
               name: "--account",
@@ -4553,13 +4509,11 @@ const completionSpec: Fig.Spec = {
             name: "INSTANCE",
             description:
               "ID of the instance or fully qualified identifier for the instance",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List existing Bigtable instances",
-
           options: [
             {
               name: "--account",
@@ -4738,7 +4692,6 @@ const completionSpec: Fig.Spec = {
           name: "remove-iam-policy-binding",
           description:
             "Remove an IAM policy binding from a Cloud Bigtable instance",
-
           options: [
             {
               name: "--account",
@@ -4892,13 +4845,11 @@ const completionSpec: Fig.Spec = {
             name: "INSTANCE",
             description:
               "ID of the instance or fully qualified identifier for the instance",
-            isVariadic: false,
           },
         },
         {
           name: "set-iam-policy",
           description: "Set IAM policy for an instance",
-
           options: [
             {
               name: "--account",
@@ -5032,13 +4983,11 @@ const completionSpec: Fig.Spec = {
               name: "INSTANCE",
               description:
                 "ID of the instance or fully qualified identifier for the instance",
-              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy)",
-              isVariadic: false,
             },
           ],
         },
@@ -5050,7 +4999,6 @@ const completionSpec: Fig.Spec = {
               name: "add-iam-policy-binding",
               description:
                 "Add an IAM policy binding to a Cloud Bigtable table",
-
               options: [
                 {
                   name: "--account",
@@ -5234,13 +5182,11 @@ const completionSpec: Fig.Spec = {
                 name: "TABLE",
                 description:
                   "ID of the table or fully qualified identifier for the table",
-                isVariadic: false,
               },
             },
             {
               name: "get-iam-policy",
               description: "Get an IAM policy on a Cloud Bigtable table",
-
               options: [
                 {
                   name: "--account",
@@ -5422,13 +5368,11 @@ const completionSpec: Fig.Spec = {
                 name: "TABLE",
                 description:
                   "ID of the table or fully qualified identifier for the table",
-                isVariadic: false,
               },
             },
             {
               name: "list",
               description: "List existing Bigtable instance tables",
-
               options: [
                 {
                   name: "--account",
@@ -5617,7 +5561,6 @@ const completionSpec: Fig.Spec = {
               name: "remove-iam-policy-binding",
               description:
                 "Remove an IAM policy binding from a Cloud Bigtable table",
-
               options: [
                 {
                   name: "--account",
@@ -5806,13 +5749,11 @@ const completionSpec: Fig.Spec = {
                 name: "TABLE",
                 description:
                   "ID of the table or fully qualified identifier for the table",
-                isVariadic: false,
               },
             },
             {
               name: "restore",
               description: "Restore a Cloud Bigtable backup to a new table",
-
               options: [
                 {
                   name: "--account",
@@ -5999,7 +5940,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "set-iam-policy",
               description: "Set an IAM policy on a Cloud Bigtable table",
-
               options: [
                 {
                   name: "--account",
@@ -6142,13 +6082,11 @@ const completionSpec: Fig.Spec = {
                   name: "TABLE",
                   description:
                     "ID of the table or fully qualified identifier for the table",
-                  isVariadic: false,
                 },
                 {
                   name: "POLICY_FILE",
                   description:
                     "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy)",
-                  isVariadic: false,
                 },
               ],
             },
@@ -6285,7 +6223,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Modify an existing Bigtable instance",
-
           options: [
             {
               name: "--account",
@@ -6427,14 +6364,12 @@ const completionSpec: Fig.Spec = {
             name: "INSTANCE",
             description:
               "ID of the instance or fully qualified identifier for the instance",
-            isVariadic: false,
           },
         },
         {
           name: "upgrade",
           description:
             "Upgrade an existing instance's type from development to production",
-
           options: [
             {
               name: "--account",
@@ -6572,7 +6507,6 @@ const completionSpec: Fig.Spec = {
             name: "INSTANCE",
             description:
               "ID of the instance or fully qualified identifier for the instance",
-            isVariadic: false,
           },
         },
       ],
@@ -6712,7 +6646,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a Cloud Bigtable operation",
-
           options: [
             {
               name: "--account",
@@ -6845,13 +6778,11 @@ const completionSpec: Fig.Spec = {
             name: "OPERATION",
             description:
               "ID of the operation or fully qualified identifier for the operation",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List Cloud Bigtable operations",
-
           options: [
             {
               name: "--account",

@@ -213,7 +213,6 @@ const completionSpec: Fig.Spec = {
   ],
   args: {
     name: "component's name",
-    isOptional: false,
   },
 };
 export default completionSpec;

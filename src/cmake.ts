@@ -651,7 +651,7 @@ const completion: Fig.Spec = {
     {
       name: "-Werror",
       description: "Enable the type of warnings",
-      insertValue: "-Werror={cursor}",
+      requiresSeparator: true,
       args: {
         name: "type",
         suggestions: [
@@ -669,7 +669,7 @@ const completion: Fig.Spec = {
     {
       name: "-Wno-error",
       description: "Disable the type of warnings",
-      insertValue: "-Wno-error={cursor}",
+      requiresSeparator: true,
       args: {
         name: "type",
         suggestions: [

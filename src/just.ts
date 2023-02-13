@@ -111,6 +111,7 @@ function getRecipeSuggestions(
 
     suggestions.push({
       name,
+      insertValue: recipe.parameters.length === 0 ? name : name + " ",
       displayName: showRecipeParameters ? getRecipeUsage(recipe) : name,
       description: recipe.doc ?? "Recipe",
       icon: "fig://icon?type=command",
@@ -139,11 +140,10 @@ function getRecipeSuggestions(
 function getRecipeUsage(recipe: Recipe): string {
   const parts = [recipe.name];
   for (const parameter of recipe.parameters) {
-    // Fig sanitizes things like "<NAME>", so this has to be encoded
     if (parameter.kind === "singular") {
-      parts.push(`&lt;${parameter.name}&gt;`);
+      parts.push(`<${parameter.name}>`);
     } else if (parameter.kind === "plus") {
-      parts.push(`&lt;${parameter.name}...&gt;`);
+      parts.push(`<${parameter.name}...>`);
     } else if (parameter.kind === "star") {
       parts.push(`[${parameter.name}...]`);
     } else {
@@ -492,6 +492,9 @@ const completionSpec: Fig.Spec = {
     isOptional: true,
     optionsCanBreakVariadicArg: false,
     generators: {
+      trigger: (newToken, oldToken) => {
+        return newToken.length === 0 && oldToken.length > 0;
+      },
       script: dumpJustfile,
       postProcess: (out, tokens) => {
         const justfile = processJustfileDump(out);

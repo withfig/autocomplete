@@ -190,11 +190,9 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "name",
-              isOptional: false,
             },
             {
               name: "type",
-              isOptional: false,
             },
           ],
         },
@@ -337,7 +335,6 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "hash",
-          isOptional: false,
           suggestions: hashes,
         },
         remotePath,
@@ -421,7 +418,6 @@ const completionSpec: Fig.Spec = {
         "List directories and objects in remote:path formatted for parsing",
       args: {
         ...remotePath,
-        isOptional: false,
       },
       options: [
         ...listOptions,
@@ -467,13 +463,11 @@ const completionSpec: Fig.Spec = {
             suggestions: hashes,
           },
         },
-
         {
           name: ["--separator", "-s"],
           description: 'Separator for the items in the format. (default ";")',
           args: {
             name: "separator",
-            isOptional: false,
           },
         },
       ],
@@ -497,7 +491,6 @@ const completionSpec: Fig.Spec = {
           description: "Show only this hash type (may be repeated)",
           args: {
             name: "hashes",
-            isOptional: false,
             suggestions: hashes,
           },
         },
@@ -540,7 +533,6 @@ const completionSpec: Fig.Spec = {
           description: "Output hashsums to a file rather than the terminal",
           args: {
             name: "file",
-            isOptional: false,
             template: "filepaths",
           },
         },

@@ -13,7 +13,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "delete",
               description: "Delete an Artifact Registry container image",
-
               options: [
                 {
                   name: "--account",
@@ -156,13 +155,11 @@ const completionSpec: Fig.Spec = {
                 name: "IMAGE",
                 description:
                   "A container image.\n+\nA valid container image has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE\n+\nA valid container image that can be referenced by tag or digest, has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE:tag\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE@sha256:digest",
-                isVariadic: false,
               },
             },
             {
               name: "describe",
               description: "Describe an Artifact Registry container image",
-
               options: [
                 {
                   name: "--account",
@@ -325,13 +322,11 @@ const completionSpec: Fig.Spec = {
                 name: "IMAGE",
                 description:
                   "A container image.\n+\nA valid container image has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE\n+\nA valid container image that can be referenced by tag or digest, has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE:tag\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE@sha256:digest",
-                isVariadic: false,
               },
             },
             {
               name: "list",
               description: "List Artifact Registry container images",
-
               options: [
                 {
                   name: "--account",
@@ -533,7 +528,6 @@ const completionSpec: Fig.Spec = {
                 name: "IMAGE_PATH",
                 description:
                   "An Artifact Registry repository or a container image.\nIf not specified, default config values are used.\n+\nA valid docker repository has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID\n+\nA valid image has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE_PATH",
-                isVariadic: false,
               },
             },
           ],
@@ -674,7 +668,6 @@ const completionSpec: Fig.Spec = {
               name: "add",
               description:
                 "Add a tag to a container image in Artifact Registry",
-
               options: [
                 {
                   name: "--account",
@@ -808,13 +801,11 @@ const completionSpec: Fig.Spec = {
                   name: "DOCKER_IMAGE",
                   description:
                     "Docker image - The container image that you want to tag.\n+\nA valid container image can be referenced by tag or digest, has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE:tag\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE@sha256:digest",
-                  isVariadic: false,
                 },
                 {
                   name: "DOCKER_TAG",
                   description:
                     "Image tag - The container image tag.\n+\nA valid Docker tag has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE:tag",
-                  isVariadic: false,
                 },
               ],
             },
@@ -822,7 +813,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete a tag from a container image in Artifact Registry",
-
               options: [
                 {
                   name: "--account",
@@ -955,14 +945,12 @@ const completionSpec: Fig.Spec = {
                 name: "DOCKER_TAG",
                 description:
                   "Image tag - The container image tag.\n+\nA valid Docker tag has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE:tag",
-                isVariadic: false,
               },
             },
             {
               name: "list",
               description:
                 "List all tags associated with a container image in Artifact Registry",
-
               options: [
                 {
                   name: "--account",
@@ -1135,7 +1123,6 @@ const completionSpec: Fig.Spec = {
                 name: "IMAGE_PATH",
                 description:
                   "An Artifact Registry repository or a container image.\nIf not specified, default config values are used.\n+\nA valid docker repository has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID\n+\nA valid image has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE_PATH",
-                isVariadic: false,
               },
             },
           ],
@@ -1405,7 +1392,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List all Artifact Registry supported locations",
-
           options: [
             {
               name: "--account",
@@ -1712,7 +1698,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe an Artifact Registry operation",
-
           options: [
             {
               name: "--account",
@@ -1855,7 +1840,6 @@ const completionSpec: Fig.Spec = {
             name: "OPERATION",
             description:
               "ID of the operation or fully qualified identifier for the operation",
-            isVariadic: false,
           },
         },
       ],
@@ -1995,7 +1979,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete an Artifact Registry package",
-
           options: [
             {
               name: "--account",
@@ -2153,13 +2136,11 @@ const completionSpec: Fig.Spec = {
             name: "PACKAGE",
             description:
               "ID of the package or fully qualified identifier for the package",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List Artifact Registry packages",
-
           options: [
             {
               name: "--account",
@@ -2487,7 +2468,6 @@ const completionSpec: Fig.Spec = {
           name: "gradle",
           description:
             "Print a snippet to add a repository to the Gradle build.gradle file",
-
           options: [
             {
               name: "--account",
@@ -2651,7 +2631,6 @@ const completionSpec: Fig.Spec = {
           name: "mvn",
           description:
             "Print a snippet to add a Maven repository to the pom.xml file",
-
           options: [
             {
               name: "--account",
@@ -2814,7 +2793,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "npm",
           description: "Print credential settings to add to the .npmrc file",
-
           options: [
             {
               name: "--account",
@@ -3122,7 +3100,6 @@ const completionSpec: Fig.Spec = {
           name: "add-iam-policy-binding",
           description:
             "Add an IAM policy binding to the IAM policy of an Artifact Registry repository",
-
           options: [
             {
               name: "--account",
@@ -3306,13 +3283,11 @@ const completionSpec: Fig.Spec = {
             name: "REPOSITORY",
             description:
               "ID of the repository or fully qualified identifier for the repository",
-            isVariadic: false,
           },
         },
         {
           name: "create",
           description: "Create an Artifact Registry repository",
-
           options: [
             {
               name: "--account",
@@ -3501,13 +3476,11 @@ const completionSpec: Fig.Spec = {
             name: "REPOSITORY",
             description:
               "ID of the repository or fully qualified identifier for the repository",
-            isVariadic: false,
           },
         },
         {
           name: "delete",
           description: "Delete an Artifact Registry repository",
-
           options: [
             {
               name: "--account",
@@ -3655,13 +3628,11 @@ const completionSpec: Fig.Spec = {
             name: "REPOSITORY",
             description:
               "ID of the repository or fully qualified identifier for the repository",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "Describe an Artifact Registry repository",
-
           options: [
             {
               name: "--account",
@@ -3804,13 +3775,11 @@ const completionSpec: Fig.Spec = {
             name: "REPOSITORY",
             description:
               "ID of the repository or fully qualified identifier for the repository",
-            isVariadic: false,
           },
         },
         {
           name: "get-iam-policy",
           description: "Get IAM policy for an Artifact Registry repository",
-
           options: [
             {
               name: "--account",
@@ -3993,13 +3962,11 @@ const completionSpec: Fig.Spec = {
             name: "REPOSITORY",
             description:
               "ID of the repository or fully qualified identifier for the repository",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List repositories in the specified project",
-
           options: [
             {
               name: "--account",
@@ -4184,7 +4151,6 @@ const completionSpec: Fig.Spec = {
           name: "remove-iam-policy-binding",
           description:
             "Remove an IAM policy binding from the IAM policy of an Artifact Registry repository",
-
           options: [
             {
               name: "--account",
@@ -4373,13 +4339,11 @@ const completionSpec: Fig.Spec = {
             name: "REPOSITORY",
             description:
               "ID of the repository or fully qualified identifier for the repository",
-            isVariadic: false,
           },
         },
         {
           name: "set-iam-policy",
           description: "Set the IAM policy for an Artifact Registry repository",
-
           options: [
             {
               name: "--account",
@@ -4523,20 +4487,17 @@ const completionSpec: Fig.Spec = {
               name: "REPOSITORY",
               description:
                 "ID of the repository or fully qualified identifier for the repository",
-              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy)",
-              isVariadic: false,
             },
           ],
         },
         {
           name: "update",
           description: "Update an Artifact Registry repository",
-
           options: [
             {
               name: "--account",
@@ -4713,7 +4674,6 @@ const completionSpec: Fig.Spec = {
             name: "REPOSITORY",
             description:
               "ID of the repository or fully qualified identifier for the repository",
-            isVariadic: false,
           },
         },
       ],
@@ -4853,7 +4813,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create an Artifact Registry tag",
-
           options: [
             {
               name: "--account",
@@ -5015,13 +4974,11 @@ const completionSpec: Fig.Spec = {
             name: "TAG",
             description:
               "ID of the tag or fully qualified identifier for the tag",
-            isVariadic: false,
           },
         },
         {
           name: "delete",
           description: "Delete an Artifact Registry tag",
-
           options: [
             {
               name: "--account",
@@ -5183,13 +5140,11 @@ const completionSpec: Fig.Spec = {
             name: "TAG",
             description:
               "ID of the tag or fully qualified identifier for the tag",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List Artifact Registry tags",
-
           options: [
             {
               name: "--account",
@@ -5393,7 +5348,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update an Artifact Registry tag",
-
           options: [
             {
               name: "--account",
@@ -5555,7 +5509,6 @@ const completionSpec: Fig.Spec = {
             name: "TAG",
             description:
               "ID of the tag or fully qualified identifier for the tag",
-            isVariadic: false,
           },
         },
       ],
@@ -5695,7 +5648,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete an Artifact Registry package version",
-
           options: [
             {
               name: "--account",
@@ -5867,13 +5819,11 @@ const completionSpec: Fig.Spec = {
             name: "VERSION",
             description:
               "ID of the version or fully qualified identifier for the version",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List Artifact Registry package versions",
-
           options: [
             {
               name: "--account",

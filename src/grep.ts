@@ -5,6 +5,7 @@ const completionSpec: Fig.Spec = {
   args: [
     {
       name: "search pattern",
+      suggestCurrentToken: true,
     },
     {
       name: "file",
@@ -306,7 +307,6 @@ const completionSpec: Fig.Spec = {
       description:
         "Decompress the bzip2(1) compressed file before looking for the text",
     },
-
     {
       name: ["-V", "--version"],
       description: "Print version number of grep to the standard output stream",

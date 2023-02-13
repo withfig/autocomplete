@@ -1,7 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "survey",
   description: "Invoke a customer satisfaction survey for Cloud SDK",
-
   options: [
     {
       name: "--account",

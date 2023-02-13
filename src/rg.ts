@@ -510,7 +510,7 @@ const completionSpec: Fig.Spec = {
       description: "Search in compressed files",
     },
     {
-      name: "-S, --smart-case",
+      name: ["-S", "--smart-case"],
       description:
         "Searches case insensitively if the pattern is all lowercase",
     },
@@ -596,7 +596,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-w", "--word-regexp"],
-      description: "Only shows th ematches surrounded by word boundaries",
+      description: "Only shows the matches surrounded by word boundaries",
     },
   ],
   args: [

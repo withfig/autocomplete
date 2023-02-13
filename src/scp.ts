@@ -1,24 +1,37 @@
+import { knownHosts, configHosts } from "./ssh";
+
 const completionSpec: Fig.Spec = {
   name: "scp",
   description: "Copies files or directories between hosts on a network",
   args: [
     {
-      name: "source",
+      name: "sources",
       description: "File or directory, local or remote ([user@]host:[path])",
+      isVariadic: true,
+      generators: [
+        knownHosts,
+        configHosts,
+        { template: ["history", "filepaths", "folders"] },
+      ],
     },
     {
       name: "target",
       description: "File or directory, local or remote ([user@]host:[path])",
+      generators: [
+        knownHosts,
+        configHosts,
+        { template: ["history", "filepaths", "folders"] },
+      ],
     },
   ],
   options: [
     {
       name: "-3",
       description: `Copies between two remote hosts are transferred through the local
-      host.  Without this option the data is copied directly between the
-      two remote hosts.  Note that this option disables the progress
-      meter and selects batch mode for the second host, since scp cannot
-      ask for passwords or passphrases for both hosts.`,
+host.  Without this option the data is copied directly between the
+two remote hosts.  Note that this option disables the progress
+meter and selects batch mode for the second host, since scp cannot
+ask for passwords or passphrases for both hosts`,
     },
     {
       name: "-4",
@@ -73,11 +86,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "-J",
       description: `Connect to the target host by first making an scp connection to the
-      jump host described by destination and then establishing a TCP
-      forwarding to the ultimate destination from there.  Multiple jump
-      hops may be specified separated by comma characters.  This is a
-      shortcut to specify a ProxyJump configuration directive.  This
-      option is directly passed to ssh(1).`,
+jump host described by destination and then establishing a TCP
+forwarding to the ultimate destination from there.  Multiple jump
+hops may be specified separated by comma characters.  This is a
+shortcut to specify a ProxyJump configuration directive.  This
+option is directly passed to ssh(1)`,
       args: {
         name: "destination",
         description: "Scp destination",
@@ -94,10 +107,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "-o",
       description: `Can be used to pass options to ssh in the format used in
-      ssh_config(5).  This is useful for specifying options for which
-      there is no separate scp command-line flag.  For full details of
-      the options listed below, and their possible values, see
-      ssh_config(5).`,
+ssh_config(5).  This is useful for specifying options for which
+there is no separate scp command-line flag.  For full details of
+the options listed below, and their possible values, see
+ssh_config(5)`,
       args: {
         name: "option",
         suggestions: [
@@ -176,8 +189,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "-P",
       description: `Specifies the port to connect to on the remote host.  Note that
-      this option is written with a capital ‘P’, because -p is already
-      reserved for preserving the times and modes of the file.`,
+this option is written with a capital ‘P’, because -p is already
+reserved for preserving the times and modes of the file`,
       args: {
         name: "port",
       },
@@ -208,14 +221,14 @@ const completionSpec: Fig.Spec = {
     {
       name: "-T",
       description: `Disable strict filename checking.  By default when copying files
-      from a remote host to a local directory scp checks that the
-      received filenames match those requested on the command-line to
-      prevent the remote end from sending unexpected or unwanted files.
-      Because of differences in how various operating systems and shells
-      interpret filename wildcards, these checks may cause wanted files
-      to be rejected.  This option disables these checks at the expense
-      of fully trusting that the server will not send unexpected
-      filenames.`,
+from a remote host to a local directory scp checks that the
+received filenames match those requested on the command-line to
+prevent the remote end from sending unexpected or unwanted files.
+Because of differences in how various operating systems and shells
+interpret filename wildcards, these checks may cause wanted files
+to be rejected.  This option disables these checks at the expense
+of fully trusting that the server will not send unexpected
+filenames`,
     },
     {
       name: "-v",

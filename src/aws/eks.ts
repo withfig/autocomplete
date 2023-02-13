@@ -1,11 +1,4 @@
-const kubernetesVersions = [
-  "1.21.2",
-  "1.20.4",
-  "1.19.8",
-  "1.18.16",
-  "1.17.17",
-  "1.16.15",
-];
+const kubernetesVersions = ["1.22.6", "1.21.5", "1.20.7", "1.19.15", "1.18.16"];
 
 const postPrecessGenerator = (
   out: string,

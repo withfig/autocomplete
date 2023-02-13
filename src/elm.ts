@@ -1,8 +1,8 @@
 const packageList: Fig.Generator = {
   script:
-    "curl -sH 'accept-encoding: gzip' https://package.elm-lang.org/search.json | gunzip",
+    "curl -sH 'accept-encoding: gzip' --compressed https://package.elm-lang.org/search.json",
   cache: {
-    ttl: 100 * 24 * 60 * 60 * 3, // 3 days
+    ttl: 1000 * 24 * 60 * 60 * 3, // 3 days
   },
   postProcess: (output) => {
     return JSON.parse(output).map((package_) => ({
@@ -18,8 +18,7 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "init",
-      icon:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Elm_logo.svg/1200px-Elm_logo.svg.png",
+      icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Elm_logo.svg/1200px-Elm_logo.svg.png",
       description: "Initialize a new Elm project",
       options: [
         {
@@ -30,8 +29,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "repl",
-      icon:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Elm_logo.svg/1200px-Elm_logo.svg.png",
+      icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Elm_logo.svg/1200px-Elm_logo.svg.png",
       description: "Start an Elm repl",
       options: [
         {
@@ -72,14 +70,13 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "install",
-      icon:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Elm_logo.svg/1200px-Elm_logo.svg.png",
+      icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Elm_logo.svg/1200px-Elm_logo.svg.png",
       description: "Install an Elm dependency",
       args: {
         name: "package",
         description: "The name of the package to install",
         debounce: true,
-        isVariadic: false,
+
         generators: packageList,
       },
       options: [
@@ -151,7 +148,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "package",
           isOptional: true,
-          isVariadic: false,
         },
         {
           name: "version",
@@ -162,8 +158,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "publish",
-      icon:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Elm_logo.svg/1200px-Elm_logo.svg.png",
+      icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Elm_logo.svg/1200px-Elm_logo.svg.png",
       description: "Publish your package",
       options: [
         {

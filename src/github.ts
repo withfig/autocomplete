@@ -21,7 +21,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "clone",
       description: "Clone a repository",
-
       args: {
         name: "url|slug",
         suggestions: [
@@ -35,8 +34,7 @@ const completionSpec: Fig.Spec = {
           },
           {
             name: "https://bitbucket.com/",
-            icon:
-              "https://wac-cdn.atlassian.com/assets/img/favicons/bitbucket/favicon-32x32.png",
+            icon: "https://wac-cdn.atlassian.com/assets/img/favicons/bitbucket/favicon-32x32.png",
           },
         ],
       },
@@ -50,7 +48,6 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "open",
-
       description: "Open a git repository in GitHub Desktop",
       args: {
         name: "path",

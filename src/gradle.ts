@@ -217,7 +217,6 @@ const sharedOptions: Fig.Option[] = [
     description: "Specifies which type of console output to generate",
     args: consoleModeArg,
   },
-
   {
     name: "-Dorg.gradle.warning.mode",
     description: "Specify warning mode via Gradle properties",

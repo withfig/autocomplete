@@ -537,7 +537,6 @@ const functionsInvoke: Fig.Subcommand = {
       description: "Simulate Netlify Identity authentication JWT",
       exclusiveOn: ["--no-identity"],
     },
-
     {
       name: "--no-identity",
       description: "Affirm unauthenticated request",

@@ -52,7 +52,6 @@ const styleFileArg: Fig.Arg = {
 const completionSpec: Fig.Spec = {
   name: "pandoc",
   description: "A universal document converter",
-
   options: [
     {
       name: ["-f", "-r", "--from", "--read"],
@@ -281,7 +280,6 @@ const completionSpec: Fig.Spec = {
       description:
         "Produce output with an appropriate header and footer (e.g. a standalone HTML, LaTeX, TEI, or RTF file, not a fragment). This option is set automatically for pdf, epub, epub3, fb2, docx, and odt output",
     },
-
     {
       name: "--template",
       description:

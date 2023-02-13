@@ -40,6 +40,7 @@ const namespaces: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "okteto",
+  icon: "fig://icon?type=okteto",
   description: "Okteto - Remote Development Environments powered by Kubernetes",
   subcommands: [
     {

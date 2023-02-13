@@ -40,7 +40,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-S",
       description:
-        "Makes Ruby use the PATH environment variable to search for script, unless if its name begins with a slash. This is used to emulate #! on machines that don't support it, in the following manner: #! /usr/local/bin/ruby # This line makes the next one a comment in Ruby \\ exec /usr/local/bin/ruby -S $0 $*",
+        "Makes Ruby use the PATH environment variable to search for script, unless its name begins with a slash. This is used to emulate #! on machines that don't support it, in the following manner: #! /usr/local/bin/ruby # This line makes the next one a comment in Ruby \\ exec /usr/local/bin/ruby -S $0 $*",
     },
     {
       name: "-T",
@@ -88,7 +88,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-p",
-      description: `Acts mostly same as -n switch, but print the value of variable $_ at the each end of the loop.`,
+      description: `Acts mostly same as -n switch, but print the value of variable $_ at the each end of the loop`,
     },
     {
       name: "-r",

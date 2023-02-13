@@ -9,7 +9,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a Cloud Filestore instance",
-
           options: [
             {
               name: "--account",
@@ -217,13 +216,11 @@ const completionSpec: Fig.Spec = {
             name: "INSTANCE",
             description:
               "ID of the instance or fully qualified identifier for the instance",
-            isVariadic: false,
           },
         },
         {
           name: "delete",
           description: "Delete a Cloud Filestore instance",
-
           options: [
             {
               name: "--account",
@@ -380,13 +377,11 @@ const completionSpec: Fig.Spec = {
             name: "INSTANCE",
             description:
               "ID of the instance or fully qualified identifier for the instance",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "Show metadata for a Cloud Filestore instance",
-
           options: [
             {
               name: "--account",
@@ -538,13 +533,11 @@ const completionSpec: Fig.Spec = {
             name: "INSTANCE",
             description:
               "ID of the instance or fully qualified identifier for the instance",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List Cloud Filestore instances",
-
           options: [
             {
               name: "--account",
@@ -742,7 +735,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update a Cloud Filestore instance",
-
           options: [
             {
               name: "--account",
@@ -943,7 +935,6 @@ const completionSpec: Fig.Spec = {
             name: "INSTANCE",
             description:
               "ID of the instance or fully qualified identifier for the instance",
-            isVariadic: false,
           },
         },
       ],
@@ -1084,7 +1075,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "*(DEPRECATED)*  Describe a Cloud Filestore location",
-
           options: [
             {
               name: "--account",
@@ -1217,13 +1207,11 @@ const completionSpec: Fig.Spec = {
             name: "ZONE",
             description:
               "ID of the zone or fully qualified identifier for the zone",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "*(DEPRECATED)*  List all Cloud Filestore locations",
-
           options: [
             {
               name: "--account",
@@ -1535,7 +1523,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a Cloud Filestore operation",
-
           options: [
             {
               name: "--account",
@@ -1687,13 +1674,11 @@ const completionSpec: Fig.Spec = {
             name: "OPERATION",
             description:
               "ID of the operation or fully qualified identifier for the operation",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List all Cloud Filestore operations",
-
           options: [
             {
               name: "--account",
@@ -2025,7 +2010,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List Filestore regions",
-
           options: [
             {
               name: "--account",
@@ -2332,7 +2316,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List Filestore zones",
-
           options: [
             {
               name: "--account",

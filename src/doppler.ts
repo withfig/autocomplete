@@ -46,7 +46,7 @@ const formatOption: Fig.Option = {
 };
 
 const noCacheOption: Fig.Option = {
-  name: "--no-cache ",
+  name: "--no-cache",
   description:
     "Disable using the fallback file to speed up fetches. the fallback file is only used when the API indicates that it's still current",
 };

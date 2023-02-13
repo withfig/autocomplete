@@ -50,6 +50,19 @@ const dockerGenerators: Record<string, Fig.Generator> = {
         }));
     },
   },
+  allLocalImagesWithRepository: {
+    script: `docker image ls --format '{{ json . }}'`,
+    postProcess: function (out) {
+      return out
+        .split("\n")
+        .map((line) => JSON.parse(line))
+        .map((i) => ({
+          name: i.Repository,
+          displayName: `${i.Repository} - ${i.ID}`,
+          icon: "fig://icon?type=docker",
+        }));
+    },
+  },
   dockerHubSearch: {
     script: function (context) {
       if (context[context.length - 1] === "") return "";
@@ -336,7 +349,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
                 dockerfilePath = "$PWD/Dockerfile";
               }
 
-              return `\grep -iE 'FROM.*AS' "${dockerfilePath}"`;
+              return `\\grep -iE 'FROM.*AS' "${dockerfilePath}"`;
             },
             postProcess: function (out) {
               // This just searches the Dockerfile for the alias name after AS,
@@ -1985,6 +1998,81 @@ default-cgroupns-mode option on the daemon (default)`,
       },
     ],
   },
+  sbom: {
+    name: "sbom",
+    description:
+      "View the packaged-based Software Bill Of Materials (SBOM) for an image",
+    args: {
+      name: "image",
+      generators: dockerGenerators.allLocalImagesWithRepository,
+    },
+    options: [
+      {
+        description: "Show debug logging",
+        name: ["-D", "--debug"],
+      },
+      {
+        description: "Exclude paths from being scanned using a glob expression",
+        name: "--exclude",
+        args: {
+          name: "paths",
+        },
+      },
+      {
+        description: "Report output format",
+        name: "--format",
+        args: {
+          name: "fromat",
+          suggestions: [
+            "syft-json",
+            "cyclonedx-xml",
+            "cyclonedx-json",
+            "github-0-json",
+            "spdx-tag-value",
+            "spdx-json",
+            "table",
+            "text",
+          ],
+          default: "table",
+        },
+      },
+      {
+        description: "[experimental] selection of layers to catalog",
+        name: "--layers",
+        args: {
+          name: "layers",
+          suggestions: ["squashed", "all"],
+          default: "squashed",
+        },
+      },
+      {
+        name: ["-o", "--output"],
+        description:
+          "File to write the default report output to (default is STDOUT)",
+        args: {
+          name: "file",
+          template: ["filepaths"],
+          suggestCurrentToken: true,
+        },
+      },
+      {
+        name: "--platform",
+        description:
+          "An optional platform specifier for container image sources (e.g. 'linux/arm64', 'linux/arm64/v8', 'arm64', 'linux')",
+        args: {
+          name: "platform",
+        },
+      },
+      {
+        name: "--quiet",
+        description: "Suppress all non-report output",
+      },
+      {
+        name: ["-v", "--version"],
+        description: "Version for sbom",
+      },
+    ],
+  },
   start: {
     name: "start",
     description: "Start one or more stopped containers",
@@ -2658,6 +2746,7 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    sharedCommands.sbom,
     sharedCommands.start,
     sharedCommands.stats,
     sharedCommands.stop,
@@ -2698,7 +2787,7 @@ const completionSpec: Fig.Spec = {
           description: "Amount of disk space to keep for cache",
           options: [
             {
-              name: "-a, --all",
+              name: ["-a", "--all"],
               description:
                 "Remove all unused build cache, not just dangling ones",
             },
@@ -2710,7 +2799,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: "-f, --force",
+              name: ["-f", "--force"],
               description: "Do not prompt for confirmation",
             },
             {
@@ -2946,7 +3035,7 @@ const completionSpec: Fig.Spec = {
                     "Use AWS environment variables for profile, or credentials and region",
                 },
                 {
-                  name: "-h, --help",
+                  name: ["-h", "--help"],
                   description: "Help for ecs",
                 },
                 {
@@ -3986,9 +4075,12 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: "--credential-spec credential-spec",
+              name: "--credential-spec",
               description:
                 "Credential spec for managed service account (Windows only)",
+              args: {
+                name: "credential-spec",
+              },
             },
             {
               name: ["-d", "--detach"],
@@ -4709,9 +4801,12 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: "--credential-spec credential-spec",
+              name: "--credential-spec",
               description:
                 "Credential spec for managed service account (Windows only)",
+              args: {
+                name: "credential-spec",
+              },
             },
             {
               name: ["-d", "--detach"],

@@ -1,7 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "version",
   description: "Print version information for Cloud SDK components",
-
   options: [
     {
       name: "--account",

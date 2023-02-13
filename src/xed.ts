@@ -22,7 +22,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "number",
         description: "The line number to select",
-        isOptional: false,
       },
     },
     {

@@ -5,17 +5,16 @@ const groupFormatOptions = (names: string[]) =>
     description: `Similar, but format ${name} input groups with GFTM`,
     args: {
       name: "GFTM",
-      description: `
-%<  lines from FILE1
+      description: `%<  lines from FILE1
 %>  lines from FILE2
 %=  lines common to FILE1 and FILE2
 %[-][WIDTH][.[PREC]]{doxX}LETTER  printf-style spec for LETTER
-  LETTERs are as follows for new group, lower case for old group:
-    F  first line number
-    L  last line number
-    N  number of lines = L-F+1
-    E  F-1
-    M  L+1
+LETTERs are as follows for new group, lower case for old group:
+F  first line number
+L  last line number
+N  number of lines = L-F+1
+E  F-1
+M  L+1
 %%  %
 %c'C'  the single character C
 %c'\OOO'  the character with octal code OOO`,
@@ -28,8 +27,7 @@ const lineFormatOptions = (names: string[]) =>
     description: `Format ${name} input lines with LFTM`,
     args: {
       name: "LFTM",
-      description: `
-%L  contents of line
+      description: `%L  contents of line
 %l  contents of line, excluding any trailing newline
 %[-][WIDTH][.[PREC]]{doxX}n  printf-style spec for input line number
 %%  %
@@ -139,7 +137,6 @@ const completionSpec: Fig.Spec = {
       description: "Output merged file to show `#ifdef NAME' diffs",
       args: { name: "NAME" },
     },
-
     {
       name: ["-l", "--paginate"],
       description: "Pass the output through `pr' to paginate it",

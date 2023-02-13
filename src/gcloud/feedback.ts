@@ -1,7 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "feedback",
   description: "Provide feedback to the Google Cloud SDK team",
-
   options: [
     {
       name: "--account",

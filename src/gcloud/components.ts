@@ -5,7 +5,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "copy-bundled-python",
       description: "Make a temporary copy of bundled Python installation",
-
       options: [
         {
           name: "--account",
@@ -138,7 +137,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "install",
       description: "Install one or more Cloud SDK components",
-
       options: [
         {
           name: "--account",
@@ -276,7 +274,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "list",
       description: "List the status of all Cloud SDK components",
-
       options: [
         {
           name: "--account",
@@ -448,7 +445,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "post-process",
       description: "Performs any necessary post installation steps",
-
       options: [
         {
           name: "--account",
@@ -582,7 +578,6 @@ const completionSpec: Fig.Spec = {
       name: "reinstall",
       description:
         "Reinstall the Cloud SDK with the same components you have now",
-
       options: [
         {
           name: "--account",
@@ -715,7 +710,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "remove",
       description: "Remove one or more installed components",
-
       options: [
         {
           name: "--account",
@@ -858,7 +852,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "add",
           description: "Add a new Trusted Tester component repository",
-
           options: [
             {
               name: "--account",
@@ -998,7 +991,6 @@ const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "List any Trusted Tester component repositories you have registered",
-
           options: [
             {
               name: "--account",
@@ -1161,7 +1153,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "remove",
           description: "Remove a registered Trusted Test component repository",
-
           options: [
             {
               name: "--account",
@@ -1298,7 +1289,6 @@ const completionSpec: Fig.Spec = {
             name: "URL",
             description:
               "Zero or more URLs for the component repositories you want to remove.  If none are given, you will be prompted to choose which existing repository you want to remove",
-            isVariadic: false,
           },
         },
       ],
@@ -1434,7 +1424,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "restore",
       description: "Restore the Cloud SDK installation to its previous state",
-
       options: [
         {
           name: "--account",
@@ -1568,7 +1557,6 @@ const completionSpec: Fig.Spec = {
       name: "update",
       description:
         "Update all of your installed components to the latest version",
-
       options: [
         {
           name: "--account",
@@ -1700,7 +1688,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "COMPONENT-IDS",
         description: "THIS ARGUMENT NEEDS HELP TEXT",
-        isVariadic: false,
       },
     },
   ],

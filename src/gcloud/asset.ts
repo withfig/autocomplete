@@ -5,7 +5,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "analyze-iam-policy",
       description: "Analyzes IAM policies that match a request",
-
       options: [
         {
           name: "--account",
@@ -230,7 +229,6 @@ const completionSpec: Fig.Spec = {
       name: "analyze-iam-policy-longrunning",
       description:
         "Analyzes IAM policies that match a request asynchronously and writes the analysis results to Google Cloud Storage or BigQuery destination",
-
       options: [
         {
           name: "--account",
@@ -490,7 +488,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "export",
       description: "Export the cloud assets to Google Cloud Storage",
-
       options: [
         {
           name: "--account",
@@ -731,7 +728,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a Cloud Asset Inventory Feed",
-
           options: [
             {
               name: "--account",
@@ -948,13 +944,11 @@ const completionSpec: Fig.Spec = {
             name: "FEED_ID",
             description:
               "Asset feed identifier being created, it must be unique under the specified parent resource project/folder/organization",
-            isVariadic: false,
           },
         },
         {
           name: "delete",
           description: "Delete a Cloud Asset Inventory Feed",
-
           options: [
             {
               name: "--account",
@@ -1094,13 +1088,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "FEED_ID",
             description: "Asset feed identifier to delete",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "Describe a Cloud Asset Inventory Feed",
-
           options: [
             {
               name: "--account",
@@ -1240,13 +1232,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "FEED_ID",
             description: "Asset feed identifier to describe",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List Cloud Asset Inventory Feeds",
-
           options: [
             {
               name: "--account",
@@ -1387,7 +1377,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update an existing Cloud Asset Inventory Feed",
-
           options: [
             {
               name: "--account",
@@ -1649,7 +1638,6 @@ const completionSpec: Fig.Spec = {
             name: "FEED_ID",
             description:
               "Identifier of the asset feed to update, which must be unique in its parent resource. Parent resource can be a project, folder, or an organization",
-            isVariadic: false,
           },
         },
       ],
@@ -1786,7 +1774,6 @@ const completionSpec: Fig.Spec = {
       name: "get-history",
       description:
         "Get the update history of assets that overlaps a time window",
-
       options: [
         {
           name: "--account",
@@ -1971,7 +1958,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a Cloud Asset Inventory operation",
-
           options: [
             {
               name: "--account",
@@ -2103,7 +2089,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "OPERATION_NAME",
             description: "Name of the operation to describe",
-            isVariadic: false,
           },
         },
       ],
@@ -2240,7 +2225,6 @@ const completionSpec: Fig.Spec = {
       name: "search-all-iam-policies",
       description:
         "Searches all IAM policies within the specified accessible scope, such as a project, folder or organization",
-
       options: [
         {
           name: "--account",
@@ -2434,7 +2418,6 @@ const completionSpec: Fig.Spec = {
       name: "search-all-resources",
       description:
         "Searches all Cloud resources within the specified accessible scope, such as a project, folder or organization",
-
       options: [
         {
           name: "--account",

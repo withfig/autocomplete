@@ -113,7 +113,7 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: ["migration:create", "migrations:create"],
+      name: "migration:create",
       description: "Creates a new migration file",
       options: [
         cliOptions.help,
@@ -139,7 +139,7 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: ["migration:generate", "migrations:generate"],
+      name: "migration:generate",
       description:
         "Generates a new migration file with sql needs to be executed to update schema",
       options: [
@@ -180,7 +180,7 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: ["migration:run", "migrations:run"],
+      name: "migration:run",
       description: "Runs all pending migrations",
       options: [
         cliOptions.help,
@@ -205,7 +205,7 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: ["migration:revert", "migrations:revert"],
+      name: "migration:revert",
       description: "Reverts last executed migration",
       options: [
         cliOptions.help,

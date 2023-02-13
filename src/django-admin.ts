@@ -982,7 +982,6 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
       {
         name: "name",
         description: "Name of the application or project",
-        isOptional: false,
       },
       {
         name: "directory",

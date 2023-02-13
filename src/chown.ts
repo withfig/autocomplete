@@ -1,4 +1,4 @@
-const existingUsersandGroups: Fig.Generator = {
+export const existingUsersandGroups: Fig.Generator = {
   custom: async function (tokens, executeShellCommand) {
     const colonAdded = tokens.find((token) => token.includes(":"));
     const nFlagUsed = tokens.find((token) => /^-.*n.*/.test(token));

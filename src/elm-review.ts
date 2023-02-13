@@ -18,7 +18,7 @@ const reportType: Fig.Generator = {
 };
 
 /**
- * Based on the [elm-review](https://github.com/jfmengels/node-elm-review), version 2.7.0, cli tool for reviewing Elm code.
+ * Based on [elm-review](https://github.com/jfmengels/node-elm-review), version 2.9.1. Cli tool for reviewing Elm code.
  */
 const completionSpec: Fig.Spec = {
   name: "elm-review",
@@ -46,8 +46,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Copy the review configuration from a GitHub repository, at the root or in a folder",
           args: {
-            name:
-              "<author>/<repo>[/path-to-the-config-folder][#branch-or-commit]",
+            name: "<author>/<repo>[/path-to-the-config-folder][#branch-or-commit]",
           },
         },
         {
@@ -243,6 +242,28 @@ const completionSpec: Fig.Spec = {
         name: "<path-to-elm-format>",
         template: "filepaths",
       },
+    },
+    {
+      name: "--fix-limit",
+      description: "Limit the number of fixes applied in a single batch to N",
+      args: {
+        name: "N",
+        description: "The number of fixes to apply before prompting the user",
+      },
+    },
+    {
+      name: "--extract",
+      description:
+        'Enable extracting data from the project for the rules that have a data extractor. Requires running with --report=json. Learn more by reading the section about "Extracting information" at https://bit.ly/3UmNr0V',
+    },
+    {
+      name: "--benchmark-info",
+      description:
+        "Print out how much time it took for rules and phases of the process to run. This is meant for benchmarking purposes",
+    },
+    {
+      name: "--no-color",
+      description: "Disable colors in the output",
     },
   ],
   args: {

@@ -66,7 +66,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--default-packages",
       description: "Comma separated list of default packages",
-      requiresEquals: true,
+      requiresSeparator: true,
       icon: "📦",
       args: {
         name: "packages",

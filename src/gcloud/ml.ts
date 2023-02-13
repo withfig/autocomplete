@@ -10,7 +10,6 @@ const completionSpec: Fig.Spec = {
           name: "analyze-entities",
           description:
             "Use Google Cloud Natural Language API to identify entities in text",
-
           options: [
             {
               name: "--account",
@@ -196,7 +195,6 @@ const completionSpec: Fig.Spec = {
           name: "analyze-entity-sentiment",
           description:
             "Use Google Cloud Natural Language API to identify entity-level sentiment",
-
           options: [
             {
               name: "--account",
@@ -382,7 +380,6 @@ const completionSpec: Fig.Spec = {
           name: "analyze-sentiment",
           description:
             "Use Google Cloud Natural Language API to identify sentiments in a text",
-
           options: [
             {
               name: "--account",
@@ -568,7 +565,6 @@ const completionSpec: Fig.Spec = {
           name: "analyze-syntax",
           description:
             "Use Google Cloud Natural Language API to identify linguistic information",
-
           options: [
             {
               name: "--account",
@@ -753,7 +749,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "classify-text",
           description: "Classifies input document into categories",
-
           options: [
             {
               name: "--account",
@@ -1066,7 +1061,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Get description of a long-running speech recognition operation",
-
               options: [
                 {
                   name: "--account",
@@ -1199,14 +1193,12 @@ const completionSpec: Fig.Spec = {
                 name: "OPERATION",
                 description:
                   "ID of the operation or fully qualified identifier for the operation",
-                isVariadic: false,
               },
             },
             {
               name: "wait",
               description:
                 "Poll long-running speech recognition operation until it completes",
-
               options: [
                 {
                   name: "--account",
@@ -1339,7 +1331,6 @@ const completionSpec: Fig.Spec = {
                 name: "OPERATION",
                 description:
                   "ID of the operation or fully qualified identifier for the operation",
-                isVariadic: false,
               },
             },
           ],
@@ -1476,7 +1467,6 @@ const completionSpec: Fig.Spec = {
           name: "recognize",
           description:
             "Get transcripts of short (less than 60 seconds) audio from an audio file",
-
           options: [
             {
               name: "--account",
@@ -1679,13 +1669,11 @@ const completionSpec: Fig.Spec = {
             name: "AUDIO",
             description:
               "The location of the audio file to transcribe. Must be a local path or a\nGoogle Cloud Storage URL (in the format gs://bucket/object)",
-            isVariadic: false,
           },
         },
         {
           name: "recognize-long-running",
           description: "Get transcripts of longer audio from an audio file",
-
           options: [
             {
               name: "--account",
@@ -1893,7 +1881,6 @@ const completionSpec: Fig.Spec = {
             name: "AUDIO",
             description:
               "The location of the audio file to transcribe. Must be a local path or a\nGoogle Cloud Storage URL (in the format gs://bucket/object)",
-            isVariadic: false,
           },
         },
       ],
@@ -2033,7 +2020,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "detect-explicit-content",
           description: "Detect explicit content in videos",
-
           options: [
             {
               name: "--account",
@@ -2206,13 +2192,11 @@ const completionSpec: Fig.Spec = {
             name: "INPUT_PATH",
             description:
               "Path to the video to be analyzed. Must be a local path or a Google\nCloud Storage URI",
-            isVariadic: false,
           },
         },
         {
           name: "detect-labels",
           description: "Detect general labels for videos",
-
           options: [
             {
               name: "--account",
@@ -2396,13 +2380,11 @@ const completionSpec: Fig.Spec = {
             name: "INPUT_PATH",
             description:
               "Path to the video to be analyzed. Must be a local path or a Google\nCloud Storage URI",
-            isVariadic: false,
           },
         },
         {
           name: "detect-shot-changes",
           description: "Detect shot changes in videos",
-
           options: [
             {
               name: "--account",
@@ -2575,7 +2557,6 @@ const completionSpec: Fig.Spec = {
             name: "INPUT_PATH",
             description:
               "Path to the video to be analyzed. Must be a local path or a Google\nCloud Storage URI",
-            isVariadic: false,
           },
         },
         {
@@ -2587,7 +2568,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Get description of a long-running video analysis operation",
-
               options: [
                 {
                   name: "--account",
@@ -2729,14 +2709,12 @@ const completionSpec: Fig.Spec = {
                 name: "OPERATION",
                 description:
                   "ID of the operation or fully qualified identifier for the operation",
-                isVariadic: false,
               },
             },
             {
               name: "wait",
               description:
                 "Poll long-running video analysis operation until it completes",
-
               options: [
                 {
                   name: "--account",
@@ -2878,7 +2856,6 @@ const completionSpec: Fig.Spec = {
                 name: "OPERATION",
                 description:
                   "ID of the operation or fully qualified identifier for the operation",
-                isVariadic: false,
               },
             },
           ],
@@ -3148,7 +3125,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "detect-document",
           description: "Detect dense text in an image",
-
           options: [
             {
               name: "--account",
@@ -3290,13 +3266,11 @@ const completionSpec: Fig.Spec = {
             name: "IMAGE_PATH",
             description:
               "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
-            isVariadic: false,
           },
         },
         {
           name: "detect-faces",
           description: "Detect faces within an image",
-
           options: [
             {
               name: "--account",
@@ -3438,13 +3412,11 @@ const completionSpec: Fig.Spec = {
             name: "IMAGE_PATH",
             description:
               "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
-            isVariadic: false,
           },
         },
         {
           name: "detect-image-properties",
           description: "Detect general attributes of an image",
-
           options: [
             {
               name: "--account",
@@ -3577,13 +3549,11 @@ const completionSpec: Fig.Spec = {
             name: "IMAGE_PATH",
             description:
               "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
-            isVariadic: false,
           },
         },
         {
           name: "detect-labels",
           description: "Detect broad sets of categories within an image",
-
           options: [
             {
               name: "--account",
@@ -3725,14 +3695,12 @@ const completionSpec: Fig.Spec = {
             name: "IMAGE_PATH",
             description:
               "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
-            isVariadic: false,
           },
         },
         {
           name: "detect-landmarks",
           description:
             "Detect popular natural and man-made structures within an image",
-
           options: [
             {
               name: "--account",
@@ -3874,13 +3842,11 @@ const completionSpec: Fig.Spec = {
             name: "IMAGE_PATH",
             description:
               "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
-            isVariadic: false,
           },
         },
         {
           name: "detect-logos",
           description: "Detect popular product logos within an image",
-
           options: [
             {
               name: "--account",
@@ -4022,14 +3988,12 @@ const completionSpec: Fig.Spec = {
             name: "IMAGE_PATH",
             description:
               "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
-            isVariadic: false,
           },
         },
         {
           name: "detect-objects",
           description:
             "Detect and extract multiple objects in an image with object localization",
-
           options: [
             {
               name: "--account",
@@ -4162,13 +4126,11 @@ const completionSpec: Fig.Spec = {
             name: "IMAGE_PATH",
             description:
               "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
-            isVariadic: false,
           },
         },
         {
           name: "detect-safe-search",
           description: "Detect explicit content in an image",
-
           options: [
             {
               name: "--account",
@@ -4301,13 +4263,11 @@ const completionSpec: Fig.Spec = {
             name: "IMAGE_PATH",
             description:
               "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
-            isVariadic: false,
           },
         },
         {
           name: "detect-text",
           description: "Detect and extract text within an image",
-
           options: [
             {
               name: "--account",
@@ -4449,14 +4409,12 @@ const completionSpec: Fig.Spec = {
             name: "IMAGE_PATH",
             description:
               "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
-            isVariadic: false,
           },
         },
         {
           name: "detect-text-pdf",
           description:
             "Detect and transcribe text from PDF files stored in Google Cloud Storage",
-
           options: [
             {
               name: "--account",
@@ -4600,13 +4558,11 @@ const completionSpec: Fig.Spec = {
               name: "INPUT_FILE",
               description:
                 "Google Cloud Storage location to read the input from. It must be in\nGoogle Cloud Storage format (gs://bucket/object)",
-              isVariadic: false,
             },
             {
               name: "OUTPUT_PATH",
               description:
                 "Google Cloud Storage location to store the output file. It must be in\nGoogle Cloud Storage format (gs://bucket/object)",
-              isVariadic: false,
             },
           ],
         },
@@ -4614,7 +4570,6 @@ const completionSpec: Fig.Spec = {
           name: "detect-text-tiff",
           description:
             "Detect and transcribe text from TIFF files stored in Google Cloud Storage",
-
           options: [
             {
               name: "--account",
@@ -4758,13 +4713,11 @@ const completionSpec: Fig.Spec = {
               name: "INPUT_FILE",
               description:
                 "Google Cloud Storage location to read the input from. It must be in\nGoogle Cloud Storage format (gs://bucket/object)",
-              isVariadic: false,
             },
             {
               name: "OUTPUT_PATH",
               description:
                 "Google Cloud Storage location to store the output file. It must be in\nGoogle Cloud Storage format (gs://bucket/object)",
-              isVariadic: false,
             },
           ],
         },
@@ -4772,7 +4725,6 @@ const completionSpec: Fig.Spec = {
           name: "detect-web",
           description:
             "Detect entities in an image from similar images on the web",
-
           options: [
             {
               name: "--account",
@@ -4914,13 +4866,11 @@ const completionSpec: Fig.Spec = {
             name: "IMAGE_PATH",
             description:
               "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
-            isVariadic: false,
           },
         },
         {
           name: "suggest-crop",
           description: "Suggest a bounding box in an image",
-
           options: [
             {
               name: "--account",
@@ -5063,7 +5013,6 @@ const completionSpec: Fig.Spec = {
             name: "IMAGE_PATH",
             description:
               "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
-            isVariadic: false,
           },
         },
       ],
