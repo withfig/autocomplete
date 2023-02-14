@@ -1129,19 +1129,12 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--subnet-ids",
+          name: "--subnet-id",
           description:
-            "The IDs of the subnets to associate with the transit gateway multicast domain",
-          args: [
-            {
-              generators: awsGenerators.subnet_ids,
-            },
-            {
-              generators: awsGenerators.subnet_ids,
-              isVariadic: true,
-              isOptional: true,
-            },
-          ],
+            "The ID of the subnet to associate with the route table",
+          args: {
+            name: "string",
+          },
         },
         {
           name: "--gateway-id",
