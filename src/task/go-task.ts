@@ -16,9 +16,7 @@ const tasksGenerator: Fig.Generator = {
       tokens
         .slice()
         .reverse()
-        .findIndex((token) =>
-          taskDirectoryFlags.has(token)
-        );
+        .findIndex((token) => taskDirectoryFlags.has(token));
 
     // Add the last context flag if mentioned in tokens
     if (contextValueIndex <= tokens.length) {
