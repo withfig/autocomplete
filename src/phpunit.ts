@@ -3,12 +3,12 @@ const completionSpec: Fig.Spec = {
   description:
     "The PHPUnit is a command-line test runner that can be invoked through the phpunit command",
   options: [
-    { 
+    {
       name: "--coverage-clover",
       description: "Generate code coverage report in Clover XML format,",
       args: {
         name: "file",
-        template: "filepaths"
+        template: "filepaths",
       },
     },
     {
@@ -16,7 +16,7 @@ const completionSpec: Fig.Spec = {
       description: "Generate code coverage report in Crap4J XML format",
       args: {
         name: "file",
-        template: "filepaths"
+        template: "filepaths",
       },
     },
     {
@@ -24,24 +24,25 @@ const completionSpec: Fig.Spec = {
       description: "Generate code coverage report in HTML format",
       args: {
         name: "dir",
-        template: "filepaths"
-      }
+        template: "filepaths",
+      },
     },
     {
       name: "--coverage-php",
       description: "Export PHP_CodeCoverage object to file",
       args: {
         name: "file",
-        template: "filepaths"
+        template: "filepaths",
       },
     },
     {
       name: "--coverage-text",
       requiresSeparator: true,
-      description: "Generate code coverage report in text format [default: standard output]",
+      description:
+        "Generate code coverage report in text format [default: standard output]",
       args: {
         name: "file",
-        template: "filepaths"
+        template: "filepaths",
       },
     },
     {
@@ -49,16 +50,16 @@ const completionSpec: Fig.Spec = {
       description: "Generate code coverage report in PHPUnit XML format",
       args: {
         name: "dir",
-        template: "filepaths"
-      }
+        template: "filepaths",
+      },
     },
     {
       name: "--coverage-cache",
       description: "Cache static analysis results",
       args: {
         name: "dir",
-        template: "filepaths"
-      }
+        template: "filepaths",
+      },
     },
     {
       name: "--warm-coverage-cache",
@@ -69,10 +70,10 @@ const completionSpec: Fig.Spec = {
       description: "Include <dir> in code coverage analysis",
       args: {
         name: "dir",
-        template: "filepaths"
-      }
+        template: "filepaths",
+      },
     },
-    
+
     {
       name: "--path-coverage",
       description: "Perform path coverage analysis",
@@ -90,8 +91,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "--dont-report-useless-tests",
       description: "Do not report tests that do not test anything",
-    }, 
-    
+    },
+
     {
       name: "--strict-coverage",
       description: "Be strict about @covers annotation usage",
@@ -114,10 +115,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--default-time-limit",
-      description: "Timeout in seconds for tests without @small, @medium or @large",
+      description:
+        "Timeout in seconds for tests without @small, @medium or @large",
       args: {
-        name: "seconds"
-      }
+        name: "seconds",
+      },
     },
     {
       name: "--disallow-todo-tests",
@@ -140,107 +142,107 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-    name: "--testdox-html",
-    description: "Write agile documentation in HTML format to file",
-    args: {
+      name: "--testdox-html",
+      description: "Write agile documentation in HTML format to file",
+      args: {
         name: "file",
         template: "filepaths",
       },
     },
     {
-    name: "--testdox-text",
-    description: "Write agile documentation in Text format to file",
-    args: {
+      name: "--testdox-text",
+      description: "Write agile documentation in Text format to file",
+      args: {
         name: "file",
         template: "filepaths",
       },
     },
     {
-    name: "--testdox-xml",
-    description: "Write agile documentation in HTML format to file",
-    args: {
+      name: "--testdox-xml",
+      description: "Write agile documentation in HTML format to file",
+      args: {
         name: "file",
         template: "filepaths",
       },
     },
     {
-    name: "--reverse-list",
-    description: "Print defects in reverse order",
+      name: "--reverse-list",
+      description: "Print defects in reverse order",
     },
     {
-    name: "--no-logging",
-    description: "Ignore logging configuration",
+      name: "--no-logging",
+      description: "Ignore logging configuration",
     },
     {
-    name: "--prepend",
-    description: "A PHP script that is included as early as possible",
-    args: {
+      name: "--prepend",
+      description: "A PHP script that is included as early as possible",
+      args: {
         name: "file",
         template: "filepaths",
       },
     },
     {
-    name: "--bootstrap",
-    description: "A PHP script that is included before the tests run",
-    args: {
+      name: "--bootstrap",
+      description: "A PHP script that is included before the tests run",
+      args: {
         name: "file",
         template: "filepaths",
       },
     },
     {
-    name: ["-c", "--configuration"],
-    description: "Read configuration from XML file",
-    args: {
+      name: ["-c", "--configuration"],
+      description: "Read configuration from XML file",
+      args: {
         name: "file",
         template: "filepaths",
       },
     },
     {
-    name: "--no-configuration",
-    description: "Ignore default configuration file (phpunit.xml)",
+      name: "--no-configuration",
+      description: "Ignore default configuration file (phpunit.xml)",
     },
     {
-    name: "--extensions",
-    description: "A comma separated list of PHPUnit extensions to load",
-    args: {
+      name: "--extensions",
+      description: "A comma separated list of PHPUnit extensions to load",
+      args: {
         name: "extensions",
       },
     },
     {
-    name: "--no-extensions",
-    description: "Do not load PHPUnit extensions",
+      name: "--no-extensions",
+      description: "Do not load PHPUnit extensions",
     },
     {
-    name: "--include-path",
-    description: "Prepend PHP's include_path with given path(s)",
-    args: {
+      name: "--include-path",
+      description: "Prepend PHP's include_path with given path(s)",
+      args: {
         name: "path(s)",
       },
     },
     {
-    name: "-d",
-    description: "Sets a php.ini value",
-    args: {
+      name: "-d",
+      description: "Sets a php.ini value",
+      args: {
         name: "key[=value]",
       },
     },
     {
-    name: "--cache-result-file",
-    description: "Specify result cache path and filename",
-    args: {
+      name: "--cache-result-file",
+      description: "Specify result cache path and filename",
+      args: {
         name: "file",
         template: "filepaths",
       },
     },
     {
-    name: "--generate-configuration",
-    description: "Generate configuration file with suggested settings",
+      name: "--generate-configuration",
+      description: "Generate configuration file with suggested settings",
     },
     {
-    name: "--migrate-configuration",
-    description: "Migrate configuration file to current format",
+      name: "--migrate-configuration",
+      description: "Migrate configuration file to current format",
     },
-  ], 
+  ],
 };
 
 export default completionSpec;
