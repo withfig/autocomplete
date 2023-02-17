@@ -1136,6 +1136,11 @@ const completionSpec: Fig.Spec = {
             {
               generators: awsGenerators.subnet_ids,
             },
+            {
+              generators: awsGenerators.subnet_ids,
+              isVariadic: true,
+              isOptional: true,
+            },
           ],
         },
         {
