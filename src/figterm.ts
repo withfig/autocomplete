@@ -7,7 +7,7 @@ const completionSpec: Fig.Spec = {
       description: "Print help information",
     },
     {
-      name: ["--version", "-v"],
+      name: ["--version", "-V"],
       description: "Print version information",
     },
   ],

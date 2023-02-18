@@ -152,7 +152,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--auto-snapshot",
-          description: "Automatically sets --snapshot if the repo is dirty",
+          description:
+            "Automatically sets --snapshot if the repository is dirty",
         },
         {
           name: ["--config", "-f"],

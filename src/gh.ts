@@ -1,3 +1,5 @@
+import { filepaths, keyValue } from "@fig/autocomplete-generators";
+
 const filterMessages = (out: string): string => {
   return out.startsWith("warning:") || out.startsWith("error:")
     ? out.split("\n").slice(1).join("\n")
@@ -180,8 +182,15 @@ const ghGenerators: Record<string, Fig.Generator> = {
   },
 };
 
+const codespaceOption: Fig.Option = {
+  name: ["-c", "--codespace"],
+  description: "Name of the codespace",
+  args: {
+    name: "string",
+  },
+};
+
 const ghOptions: Record<string, Fig.Option> = {
-  help: { name: "--help", description: "Show help for command" },
   clone: { name: "--clone", description: "Clone the fork {true|false}" },
   cloneGitFlags: {
     name: "--",
@@ -247,7 +256,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "alias",
       description: "Create command shortcuts",
-      options: [ghOptions.help],
+
       subcommands: [
         {
           name: "delete",
@@ -256,12 +265,10 @@ const completionSpec: Fig.Spec = {
             name: "alias",
             generators: ghGenerators.listAlias,
           },
-          options: [ghOptions.help],
         },
         {
           name: "list",
           description: "List available aliases",
-          options: [ghOptions.help],
         },
         {
           name: "set",
@@ -278,7 +285,6 @@ const completionSpec: Fig.Spec = {
             },
           ],
           options: [
-            ghOptions.help,
             {
               name: ["-s", "--shell"],
               description:
@@ -292,13 +298,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "auth",
       description: "Login, logout, and refresh your authentication",
-      options: [ghOptions.help],
+
       subcommands: [
         {
           name: "login",
           description: "Authenticate with a GitHub host",
           options: [
-            ghOptions.help,
             {
               name: ["-h", "--hostname"],
               description:
@@ -325,7 +330,6 @@ const completionSpec: Fig.Spec = {
           name: "logout",
           description: "Log out of a GitHub host",
           options: [
-            ghOptions.help,
             {
               name: ["-h", "--hostname"],
               description:
@@ -338,7 +342,6 @@ const completionSpec: Fig.Spec = {
           name: "refresh",
           description: "Refresh stored authentication credentials",
           options: [
-            ghOptions.help,
             {
               name: ["-h", "--hostname"],
               description:
@@ -356,7 +359,6 @@ const completionSpec: Fig.Spec = {
           name: "setup-git",
           description: "Configure git to use GitHub CLI as a credential helper",
           options: [
-            ghOptions.help,
             {
               name: ["-h", "--hostname"],
               description:
@@ -369,7 +371,6 @@ const completionSpec: Fig.Spec = {
           name: "status",
           description: "View authentication status",
           options: [
-            ghOptions.help,
             {
               name: ["-h", "--hostname"],
               description:
@@ -388,17 +389,15 @@ const completionSpec: Fig.Spec = {
     {
       name: "gpg-key",
       description: "Manage GPG keys registered with your GitHub account",
-      options: [ghOptions.help],
+
       subcommands: [
         {
           name: "add",
           description: "Add a GPG key to your GitHub account",
-          options: [ghOptions.help],
         },
         {
           name: "list",
           description: "Lists GPG keys in your GitHub account",
-          options: [ghOptions.help],
         },
       ],
     },
@@ -411,7 +410,6 @@ const completionSpec: Fig.Spec = {
         suggestCurrentToken: true,
       },
       options: [
-        ghOptions.help,
         {
           name: ["-b", "--branch"],
           description: "Select another branch by passing in the branch name",
@@ -454,7 +452,6 @@ const completionSpec: Fig.Spec = {
       name: "completion",
       description: "Generate shell completion scripts",
       options: [
-        ghOptions.help,
         {
           name: ["-s", "--shell"],
           args: {
@@ -467,7 +464,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "config",
       description: "Manage configuration for gh",
-      options: [ghOptions.help],
+
       subcommands: [
         {
           name: "get",
@@ -483,7 +480,6 @@ const completionSpec: Fig.Spec = {
             ],
           },
           options: [
-            ghOptions.help,
             {
               name: ["-h", "--host"],
               args: { name: "host" },
@@ -532,7 +528,6 @@ const completionSpec: Fig.Spec = {
             },
           ],
           options: [
-            ghOptions.help,
             {
               name: ["-h", "--host"],
               args: { name: "host" },
@@ -545,12 +540,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "extensions",
       description: "Manage gh extensions",
-      options: [ghOptions.help],
+
       subcommands: [
         {
           name: "create",
           description: "Create a new extension",
-          options: [ghOptions.help],
+
           args: {
             name: "name",
           },
@@ -558,7 +553,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "install",
           description: "Install a gh extension from a repository",
-          options: [ghOptions.help],
+
           args: {
             name: "repo",
           },
@@ -566,12 +561,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List installed extension commands",
-          options: [ghOptions.help],
         },
         {
           name: "remove",
           description: "Remove an installed extension",
-          options: [ghOptions.help],
+
           args: {
             name: "name",
           },
@@ -580,7 +574,6 @@ const completionSpec: Fig.Spec = {
           name: "upgrade",
           description: "Upgrade installed extensions",
           options: [
-            ghOptions.help,
             { name: "--all", description: "Upgrade all extensions" },
             { name: "--force", description: "Force upgrade extensions" },
           ],
@@ -593,12 +586,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "gist",
       description: "Manage gists",
-      options: [ghOptions.help],
+
       subcommands: [
         {
           name: "clone",
           description: "Clone a gist locally",
-          options: [ghOptions.help],
+
           args: [
             { name: "gist", description: "Gist ID or URL" },
             { name: "directory", isOptional: true, template: "folders" },
@@ -612,7 +605,6 @@ const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           options: [
-            ghOptions.help,
             {
               name: ["-d", "--desc"],
               description: "A description for this gist",
@@ -638,7 +630,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a gist",
-          options: [ghOptions.help],
+
           args: { name: "gist", description: "Gist ID or URL" },
         },
         {
@@ -646,7 +638,6 @@ const completionSpec: Fig.Spec = {
           description: "Edit one of your gists",
           args: { name: "gist", description: "Gist ID or URL" },
           options: [
-            ghOptions.help,
             {
               name: ["-a", "--add"],
               description: "Add a new file to the gist",
@@ -662,7 +653,6 @@ const completionSpec: Fig.Spec = {
           name: "list",
           description: "List your gists",
           options: [
-            ghOptions.help,
             {
               name: ["-L", "--limit"],
               displayName: "-L, --limit",
@@ -684,7 +674,6 @@ const completionSpec: Fig.Spec = {
           description: "View a gist",
           args: { name: "gist", description: "Gist ID or URL" },
           options: [
-            ghOptions.help,
             {
               name: ["-f", "--filename"],
               description: "Display a single file from the gist",
@@ -708,14 +697,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "issue",
       description: "Manage issues",
-      options: [ghOptions.help],
+
       subcommands: [
         {
           name: "close",
           description: "Close issue",
           args: { name: "issue", description: "Number or URL" },
           options: [
-            ghOptions.help,
             {
               name: ["-R", "--repo"],
               insertValue: "-R '{cursor}'",
@@ -730,7 +718,6 @@ const completionSpec: Fig.Spec = {
           description: "Create a new issue comment",
           args: { name: "issue", description: "Number or URL" },
           options: [
-            ghOptions.help,
             {
               name: ["-R", "--repo"],
               insertValue: "-R '{cursor}'",
@@ -764,7 +751,6 @@ const completionSpec: Fig.Spec = {
           name: "create",
           description: "Create a new issue",
           options: [
-            ghOptions.help,
             {
               name: ["-R", "--repo"],
               insertValue: "-R '{cursor}'",
@@ -828,7 +814,6 @@ const completionSpec: Fig.Spec = {
           name: "delete",
           description: "Delete issue",
           options: [
-            ghOptions.help,
             {
               name: ["-R", "--repo"],
               insertValue: "-R '{cursor}'",
@@ -843,7 +828,6 @@ const completionSpec: Fig.Spec = {
           description: "Edit an issue",
           args: { name: "issue", description: "Number or URL" },
           options: [
-            ghOptions.help,
             {
               name: ["-R", "--repo"],
               insertValue: "-R '{cursor}'",
@@ -906,7 +890,6 @@ const completionSpec: Fig.Spec = {
           name: "list",
           description: "List and filter issues in this repository",
           options: [
-            ghOptions.help,
             {
               name: ["-R", "--repo"],
               insertValue: "-R '{cursor}'",
@@ -987,7 +970,6 @@ const completionSpec: Fig.Spec = {
           name: "reopen",
           description: "Reopen issue",
           options: [
-            ghOptions.help,
             {
               name: ["-R", "--repo"],
               insertValue: "-R '{cursor}'",
@@ -1001,7 +983,6 @@ const completionSpec: Fig.Spec = {
           name: "status",
           description: "Show status of relevant issues",
           options: [
-            ghOptions.help,
             {
               name: ["-R", "--repo"],
               insertValue: "-R '{cursor}'",
@@ -1034,7 +1015,6 @@ const completionSpec: Fig.Spec = {
             { name: "destination-repo" },
           ],
           options: [
-            ghOptions.help,
             {
               name: ["-R", "--repo"],
               insertValue: "-R '{cursor}'",
@@ -1049,7 +1029,6 @@ const completionSpec: Fig.Spec = {
           description: "View an issue",
           args: { name: "issue", description: "Number or URL" },
           options: [
-            ghOptions.help,
             {
               name: ["-R", "--repo"],
               insertValue: "-R '{cursor}'",
@@ -1234,7 +1213,7 @@ const completionSpec: Fig.Spec = {
                 name: "string",
               },
             },
-            ghOptions.help,
+
             ghOptions.all,
           ],
         },
@@ -1530,7 +1509,7 @@ const completionSpec: Fig.Spec = {
             generators: ghGenerators.listRepositories,
             isOptional: true,
           },
-          options: [ghOptions.help, ghOptions.confirm],
+          options: [ghOptions.confirm],
         },
         {
           name: "clone",
@@ -1552,7 +1531,6 @@ Pass additional 'git clone' flags by listing them after '--'`,
             },
           ],
           options: [
-            ghOptions.help,
             ghOptions.cloneGitFlags,
             {
               name: ["-u", "--upstream-remote-name"],
@@ -1577,7 +1555,6 @@ Pass '--push' to push any local commits to the new repository`,
             name: "name",
           },
           options: [
-            ghOptions.help,
             ghOptions.confirm,
             {
               name: ["-d", "--description"],
@@ -1682,7 +1659,6 @@ Pass '--push' to push any local commits to the new repository`,
                 template: "filepaths",
               },
               options: [
-                ghOptions.help,
                 {
                   name: ["-w", "--allow-write"],
                   description: "Allow write access for the key",
@@ -1703,16 +1679,13 @@ Pass '--push' to push any local commits to the new repository`,
                 name: "key-id",
                 description: "ID of the key to delete",
               },
-              options: [ghOptions.help],
             },
             {
               name: "list",
               description: "List deploy keys in a GitHub repository",
-              options: [ghOptions.help],
             },
           ],
           options: [
-            ghOptions.help,
             {
               name: ["-R", "--repo"],
               description:
@@ -1735,7 +1708,7 @@ To authorize, run "gh auth refresh -s delete_repo"`,
             generators: ghGenerators.listRepositories,
             isOptional: true,
           },
-          options: [ghOptions.help, ghOptions.confirm],
+          options: [ghOptions.confirm],
         },
         {
           name: "edit",
@@ -1746,7 +1719,6 @@ To authorize, run "gh auth refresh -s delete_repo"`,
             isOptional: true,
           },
           options: [
-            ghOptions.help,
             ghOptions.clone,
             {
               name: "--add-topic",
@@ -1852,7 +1824,6 @@ Additional 'git clone' flags can be passed in by listing them after '--'`,
             ],
           },
           options: [
-            ghOptions.help,
             ghOptions.cloneGitFlags,
             {
               name: "--clone",
@@ -1895,7 +1866,6 @@ For more information about output formatting flags, see 'gh help formatting'`,
             isOptional: true,
           },
           options: [
-            ghOptions.help,
             {
               name: "--visibility",
               description: "Filter repositories by visibility",
@@ -1966,7 +1936,6 @@ By default, this renames the current repository; otherwise renames the specified
             isOptional: true,
           },
           options: [
-            ghOptions.help,
             ghOptions.confirm,
             ghOptions.all,
             {
@@ -1994,7 +1963,6 @@ This can be overridden with the '--source' flag`,
             isOptional: true,
           },
           options: [
-            ghOptions.help,
             {
               name: ["-b", "--branch"],
               description: "Branch to sync",
@@ -2033,7 +2001,6 @@ For more information about output formatting flags, see 'gh help formatting'`,
             ],
           },
           options: [
-            ghOptions.help,
             {
               name: ["-b", "--branch"],
               description: "View a specific branch of the repository",
@@ -2073,7 +2040,7 @@ For more information about output formatting flags, see 'gh help formatting'`,
     {
       name: "run",
       description: "View details about workflow runs",
-      options: [ghOptions.help, ghOptions.all],
+      options: [ghOptions.all],
       subcommands: [
         {
           name: "download",
@@ -2086,7 +2053,6 @@ For more information about output formatting flags, see 'gh help formatting'`,
           name: "list",
           description: "List recent workflow runs",
           options: [
-            ghOptions.help,
             ghOptions.all,
             {
               name: ["-L", "--limit"],
@@ -2107,7 +2073,7 @@ For more information about output formatting flags, see 'gh help formatting'`,
         {
           name: "rerun",
           description: "Rerun a failed run",
-          options: [ghOptions.help, ghOptions.all],
+          options: [ghOptions.all],
           args: {
             name: "run-id",
           },
@@ -2116,7 +2082,6 @@ For more information about output formatting flags, see 'gh help formatting'`,
           name: "view",
           description: "View a summary of a workflow run",
           options: [
-            ghOptions.help,
             ghOptions.all,
             {
               name: "--exit-status",
@@ -2155,7 +2120,6 @@ For more information about output formatting flags, see 'gh help formatting'`,
           name: "watch",
           description: "Watch a run until it completes, showing its progress",
           options: [
-            ghOptions.help,
             ghOptions.all,
             {
               name: "--exit-status",
@@ -2175,14 +2139,13 @@ For more information about output formatting flags, see 'gh help formatting'`,
     {
       name: "secret",
       description: "Manage GitHub secrets",
-      options: [ghOptions.help, ghOptions.all],
+      options: [ghOptions.all],
       subcommands: [
         {
           name: "list",
           description:
             "List secrets for a repository, environment, or organization",
           options: [
-            ghOptions.help,
             ghOptions.all,
             {
               name: ["-e", "--env"],
@@ -2203,18 +2166,12 @@ For more information about output formatting flags, see 'gh help formatting'`,
         {
           name: "remove",
           description: "Remove secrets",
-          options: [
-            ghOptions.help,
-            ghOptions.all,
-            ghOptions.env,
-            ghOptions.org,
-          ],
+          options: [ghOptions.all, ghOptions.env, ghOptions.org],
         },
         {
           name: "set",
           description: "Create or update secrets",
           options: [
-            ghOptions.help,
             ghOptions.all,
             ghOptions.env,
             ghOptions.org,
@@ -2250,13 +2207,12 @@ For more information about output formatting flags, see 'gh help formatting'`,
     {
       name: "ssh-key",
       description: "Manage SSH keys",
-      options: [ghOptions.help],
+
       subcommands: [
         {
           name: "add",
           description: "Add an SSH key to your GitHub account",
           options: [
-            ghOptions.help,
             ghOptions.all,
             {
               name: ["-t", "--title"],
@@ -2271,19 +2227,19 @@ For more information about output formatting flags, see 'gh help formatting'`,
         {
           name: "list",
           description: "Lists SSH keys in your GitHub account",
-          options: [ghOptions.help, ghOptions.all],
+          options: [ghOptions.all],
         },
       ],
     },
     {
       name: "workflow",
       description: "View details about GitHub Actions workflows",
-      options: [ghOptions.help, ghOptions.all],
+      options: [ghOptions.all],
       subcommands: [
         {
           name: "disable",
           description: "Disable a workflow",
-          options: [ghOptions.help, ghOptions.all],
+          options: [ghOptions.all],
           args: {
             name: "[<workflow-id> | <workflow-name>]",
           },
@@ -2291,7 +2247,7 @@ For more information about output formatting flags, see 'gh help formatting'`,
         {
           name: "enable",
           description: "Enable a workflow",
-          options: [ghOptions.help, ghOptions.all],
+          options: [ghOptions.all],
           args: {
             name: "[<workflow-id> | <workflow-name>]",
           },
@@ -2300,7 +2256,6 @@ For more information about output formatting flags, see 'gh help formatting'`,
           name: "list",
           description: "List workflows",
           options: [
-            ghOptions.help,
             ghOptions.all,
             {
               name: ["-a", "--all"],
@@ -2324,7 +2279,6 @@ For more information about output formatting flags, see 'gh help formatting'`,
           name: "run",
           description: "Run a workflow by creating a workflow_dispatch event",
           options: [
-            ghOptions.help,
             ghOptions.all,
             {
               name: ["-F", "--field"],
@@ -2362,7 +2316,6 @@ For more information about output formatting flags, see 'gh help formatting'`,
           name: "view",
           description: "View the summary of a workflow",
           options: [
-            ghOptions.help,
             ghOptions.all,
             {
               name: ["-r", "--ref"],
@@ -2395,6 +2348,408 @@ For more information about output formatting flags, see 'gh help formatting'`,
           ],
         },
       ],
+    },
+    {
+      name: ["codespace", "cs"],
+      description: "Connect to and manage codespaces",
+      subcommands: [
+        {
+          name: "code",
+          description: "Open a codespace in Visual Studio Code",
+          options: [
+            codespaceOption,
+            {
+              name: "--insiders",
+              description: "Use the insiders version of Visual Studio Code",
+            },
+            {
+              name: ["-w", "--web"],
+              description: "Use the web version of Visual Studio Code",
+            },
+          ],
+        },
+        {
+          name: "cp",
+          description:
+            "The cp command copies files between the local and remote file systems",
+          options: [
+            codespaceOption,
+            {
+              name: ["-e", "--expand"],
+              description: "Expand remote file names on remote shell",
+            },
+            {
+              name: ["-p", "--profile"],
+              description: "Name of the SSH profile to use",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-r", "--recursive"],
+              description: "Recursively copy directories",
+            },
+          ],
+          args: [
+            {
+              name: "sources",
+              isVariadic: true,
+            },
+            {
+              name: "dest",
+            },
+          ],
+        },
+        {
+          name: "create",
+          description: "Create a codespace",
+          options: [
+            {
+              name: ["-b", "--branch"],
+              description: "Repository branch",
+            },
+            {
+              name: "--default-permissions",
+              description:
+                "Do not prompt to accept additional permissions requested by the codespace",
+            },
+            {
+              name: "--devcontainer-path",
+              description:
+                "Path to the devcontainer.json file to use when creating codespace",
+              args: {
+                generators: filepaths({ extensions: ["json"] }),
+              },
+            },
+            {
+              name: ["-d", "--display-name"],
+              description: "Display name for the codespace",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--idle-timeout",
+              description: "Allowed inactivity before codespace is stopped",
+              args: {
+                name: "duration",
+                description: "Example: '10m', '1h'",
+              },
+            },
+            {
+              name: ["-l", "--location"],
+              description: "Determined automatically if not provided",
+              args: {
+                name: "location",
+                suggestions: [
+                  "EastUs",
+                  "SouthEastAsia",
+                  "WestEurope",
+                  "WestUs2",
+                ],
+              },
+            },
+            {
+              name: ["-m", "--machine"],
+              description: "Hardware specifications for the VM",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-R", "--repo"],
+              description: "Repository name with owner: user/repo",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--retention-period",
+              description:
+                "Allowed time after shutting down before the codespace is automatically deleted (maximum 30 days)",
+              args: {
+                name: "duration",
+                description: "Example: '10m', '1h'",
+              },
+            },
+            {
+              name: ["-s", "--status"],
+              description: "Show status of post-create command and dotfiles",
+            },
+          ],
+        },
+        {
+          name: "delete",
+          description:
+            "Delete codespaces based on selection criteria. All codespaces for the authenticated user can be deleted, as well as codespaces for a specific repository. Alternatively, only codespaces older than N days can be deleted. Organization administrators may delete any codespace billed to the organization",
+          options: [
+            codespaceOption,
+            {
+              name: "--all",
+              description: "Delete all codespaces",
+            },
+            {
+              name: "--days",
+              description: "Delete codespaces older than N days",
+              args: {
+                name: "N days",
+              },
+            },
+            {
+              name: ["-f", "--force"],
+              description:
+                "Skip confirmation for codespaces that contain unsaved changes",
+              isDangerous: true,
+            },
+            {
+              name: ["-o", "--org"],
+              description: "The login handle of the organization (admin-only)",
+              args: {
+                name: "login",
+              },
+            },
+            {
+              name: ["-r", "--repo"],
+              description: "Delete codespaces for a repository",
+              args: {
+                name: "repository",
+              },
+            },
+            {
+              name: ["-u", "--user"],
+              description: "The username to delete codespaces for",
+              args: {
+                name: "username",
+              },
+            },
+          ],
+        },
+        {
+          name: "edit",
+          description: "Edit a codespace",
+          options: [
+            codespaceOption,
+            {
+              name: ["-d", "--display-name"],
+              description: "Set the display name",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-m", "--machine"],
+              description: "Set hardware specifications for the VM",
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
+        {
+          name: "jupyter",
+          description: "Open a codespace in JupyterLab",
+          options: [codespaceOption],
+        },
+        {
+          name: "list",
+          description:
+            "List codespaces of the authenticated user. Alternatively, organization administrators may list all codespaces billed to the organization",
+          options: [
+            {
+              name: ["-q", "--jq"],
+              description: "Filter JSON output using a jq expression",
+              args: {
+                name: "expression",
+              },
+            },
+            {
+              name: "--json",
+              description: "Output JSON with the specified fields",
+              args: {
+                name: "fields",
+              },
+            },
+            {
+              name: ["-L", "--limit"],
+              description: "Maximum number of codespaces to list",
+              args: {
+                name: "int",
+                default: "30",
+              },
+            },
+            {
+              name: ["-o", "--org"],
+              description:
+                "The login handle of the organization to list codespaces for (admin-only)",
+              args: {
+                name: "login",
+              },
+            },
+            {
+              name: ["-R", "--repo"],
+              description: "Repository name with owner: user/repo",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-t", "--template"],
+              description:
+                "Format JSON output using a Go template; see 'gh help formatting'",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-u", "--user"],
+              description: "The username to list codespaces for",
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
+        {
+          name: "logs",
+          description: "Access codespace logs",
+          options: [
+            codespaceOption,
+            {
+              name: ["-f", "--follow"],
+              description: "Tail and follow the logs",
+            },
+          ],
+        },
+        {
+          name: "ports",
+          description: "List ports in a codespace",
+          subcommands: [
+            {
+              name: "forward",
+              description: "Forward ports",
+              options: [codespaceOption],
+              args: {
+                generators: keyValue({ separator: ":", cache: true }),
+                isVariadic: true,
+              },
+            },
+            {
+              name: "visibility",
+              description: "Change the visibility of the forwarded port",
+              options: [codespaceOption],
+              args: {
+                generators: keyValue({
+                  separator: ":",
+                  values: ["public", "private", "org"],
+                  cache: true,
+                }),
+                isVariadic: true,
+              },
+            },
+          ],
+          options: [
+            codespaceOption,
+            {
+              name: ["-q", "--jq"],
+              description: "Filter JSON output using a jq expression",
+              args: {
+                name: "expression",
+              },
+            },
+            {
+              name: "--json",
+              description: "Output JSON with the specified fields",
+              args: {
+                name: "fields",
+              },
+            },
+            {
+              name: ["-t", "--template"],
+              description:
+                "Format JSON output using a Go template; see 'gh help formatting'",
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
+        {
+          name: "rebuild",
+          description: "Rebuild a codespace",
+          options: [codespaceOption],
+        },
+        {
+          name: "ssh",
+          description: "SSH into a codespace",
+          options: [
+            codespaceOption,
+            {
+              name: "--config",
+              description: "Write OpenSSH configuration to stdout",
+            },
+            {
+              name: ["-d", "--debug"],
+              description: "Log debug data to a file",
+            },
+            {
+              name: "--debug-file",
+              description: "Path of the file log to",
+              args: {
+                name: "file",
+                template: "filepaths",
+                suggestCurrentToken: true,
+              },
+            },
+            {
+              name: "--profile",
+              description: "Name of the SSH profile to use",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--server-port",
+              description: "SSH server port number (0 => pick unused)",
+              args: {
+                name: "int",
+              },
+            },
+          ],
+          args: {
+            name: "command",
+            isCommand: true,
+            isOptional: true,
+          },
+        },
+        {
+          name: "stop",
+          description: "Stop running a codespace",
+          options: [
+            codespaceOption,
+            {
+              name: ["-o", "--org"],
+              description: "The login handle of the organization (admin-only)",
+              args: {
+                name: "login",
+              },
+            },
+            {
+              name: ["-u", "--user"],
+              description: "The username to delete codespaces for",
+              args: {
+                name: "username",
+              },
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  options: [
+    {
+      name: "--help",
+      description: "Show help for command",
+      isPersistent: true,
     },
   ],
 };

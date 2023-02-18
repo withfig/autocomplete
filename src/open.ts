@@ -7,7 +7,7 @@ export const generateApps = (unquotedPath: string): Fig.Generator => ({
       return {
         name: basename,
         description: path,
-        icon: `fig://${path}`,
+        icon: `fig://path/${path}`,
         priority: path.endsWith(`/Applications/${basename}`)
           ? 80
           : path.startsWith("/Applications")

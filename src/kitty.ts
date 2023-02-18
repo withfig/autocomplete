@@ -120,7 +120,10 @@ const kittenCommands: Fig.Subcommand[] = [
     name: "hyperlinked_grep",
     loadSpec: "rg",
   },
-  { name: "ssh" },
+  {
+    name: "ssh",
+    loadSpec: "ssh",
+  },
   { name: "choose" },
   { name: "ask" },
   {
