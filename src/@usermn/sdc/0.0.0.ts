@@ -39,5 +39,18 @@ const versions: Fig.VersionDiffMap = {};
 
 versions["0.0.4"] = {};
 
+versions["v0.0.7"] = {
+  options: [
+    {
+      name: "--debug-options",
+      description: "Print options to console for debugging",
+    },
+    {
+      name: ["-c", "--confirm-commands"],
+      description: "Confirm commands before running them",
+    },
+  ],
+};
+
 export { versions };
 export default completion;
