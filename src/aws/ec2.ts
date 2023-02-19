@@ -1130,8 +1130,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--subnet-id",
-          description:
-            "The ID of the subnet to associate with the route table",
+          description: "The ID of the subnet to associate with the route table",
           args: [
             {
               generators: awsGenerators.subnet_ids,
