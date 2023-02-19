@@ -42,6 +42,34 @@ const DockerImageGenerator: Fig.Generator = {
   },
 };
 
+// Node Generator
+const NodeGenerator: Fig.Generator = {
+  script: "k3d node list --no-headers",
+  postProcess: (out) => {
+    return out.split("\n").map((line) => {
+      const [name, role, cluster] = line.split(/\s+/);
+      return {
+        name,
+        description: `${role} node of cluster ${cluster}`,
+      };
+    });
+  },
+};
+
+// Registry Generator
+const RegistryGenerator: Fig.Generator = {
+  script: "k3d registry list --no-headers",
+  postProcess: (out) => {
+    return out.split("\n").map((line) => {
+      const [name, cluster] = line.split(/\s+/);
+      return {
+        name,
+        description: `Registry ${name} of cluster ${cluster}`,
+      };
+    });
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "k3d",
   description: "K3d is a lightweight wrapper to run k3s in Docker",
@@ -56,7 +84,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "cluster name",
             description: "Name of the cluster to create",
-            isOptional: true,
           },
           options: [
             {
@@ -65,7 +92,6 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "number of agents",
                 description: "Number of agents to create",
-                isOptional: true,
               },
             },
             {
@@ -74,7 +100,6 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "memory limit",
                 description: "Memory limit imposed on the agents nodes",
-                isOptional: true,
               },
             },
             {
@@ -85,7 +110,6 @@ const completionSpec: Fig.Spec = {
                 name: "port",
                 description:
                   "Specify the Kubernetes API server port exposed on the LoadBalancer",
-                isOptional: true,
               },
             },
             {
@@ -94,7 +118,6 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "path",
                 description: "Path of a config file to use",
-                isOptional: true,
               },
             },
             {
@@ -103,7 +126,6 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "environment variables",
                 description: "Add environment variables to nodes",
-                isOptional: true,
               },
             },
             {
@@ -113,7 +135,6 @@ const completionSpec: Fig.Spec = {
                 name: "devices",
                 description:
                   "GPU devices to add to the cluster node containers",
-                isOptional: true,
               },
             },
             {
@@ -126,7 +147,6 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "ip:host[,host,...]",
                 description: "Add ip:host[,host,...] mappings",
-                isOptional: true,
               },
             },
             {
@@ -141,7 +161,6 @@ const completionSpec: Fig.Spec = {
                 name: "image",
                 description:
                   "Specify k3s image that you want to use for the nodes",
-                isOptional: true,
               },
             },
             {
@@ -150,7 +169,6 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "ARG@NODEFILTER[;@NODEFILTER]",
                 description: "Additional args passed to k3s command",
-                isOptional: true,
               },
             },
             {
@@ -159,7 +177,6 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "KEY[=VALUE][@NODEFILTER[;NODEFILTER...]]",
                 description: "Add label to k3s node",
-                isOptional: true,
               },
             },
             {
@@ -186,7 +203,6 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "network",
                 description: "Specify the docker network to use",
-                isOptional: true,
               },
             },
             {
@@ -210,7 +226,6 @@ const completionSpec: Fig.Spec = {
                 name: "port",
                 description:
                   "Map ports from the node containers (via the serverlb) to the host",
-                isOptional: true,
               },
             },
             {
@@ -219,7 +234,6 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "path",
                 description: "Specify path to an extra registries.yaml file",
-                isOptional: true,
               },
             },
             {
@@ -230,7 +244,6 @@ const completionSpec: Fig.Spec = {
                 name: "NAME[:HOST][:HOSTPORT]",
                 description:
                   "Create a k3d-managed registry and connect it to the cluster (Format: NAME[:HOST][:HOSTPORT] - Example: `k3d cluster create --registry-create mycluster-registry",
-                isOptional: true,
               },
             },
             {
@@ -252,7 +265,6 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "int",
                 description: "Specify how many servers you want to create",
-                isOptional: true,
               },
             },
             {
@@ -263,7 +275,6 @@ const completionSpec: Fig.Spec = {
                 name: "string",
                 description:
                   "Memory limit imposed on the server nodes [From docker]",
-                isOptional: true,
               },
             },
             {
@@ -282,7 +293,6 @@ const completionSpec: Fig.Spec = {
                 name: "duration",
                 description:
                   "Rollback changes if cluster couldn't be created in specified duration",
-                isOptional: true,
               },
             },
             {
@@ -293,7 +303,6 @@ const completionSpec: Fig.Spec = {
                 name: "string",
                 description:
                   "Specify a cluster token. By default, we generate one",
-                isOptional: true,
               },
             },
             {
@@ -302,7 +311,6 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "[SOURCE:]DEST[@NODEFILTER[;NODEFILTER...]]",
                 description: "Mount volumes into the nodes",
-                isOptional: true,
               },
             },
             {
@@ -567,7 +575,332 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-    // TODO: Start From k3d node
+    {
+      name: "node",
+      description: "Manage k3d nodes",
+      subcommands: [
+        {
+          name: "create",
+          description: "Create a new node",
+          args: {
+            name: "Node Name",
+            description: "Name of the node",
+          },
+          options: [
+            {
+              name: ["-c", "--cluster"],
+              description:
+                'Cluster URL or k3d cluster name to connect to. (default "k3s-default")',
+              args: {
+                name: "cluster",
+                description: "Cluster to connect to",
+                generators: ClusterGenerator,
+              },
+            },
+            {
+              name: ["-i", "--image"],
+              description: "Node image to use",
+              args: {
+                name: "image",
+                description: "Node image to use",
+              },
+            },
+            {
+              name: "--k3s-arg",
+              description: "Additional k3s arguments",
+              args: {
+                name: "k3s-arg",
+                description: "Additional k3s arguments",
+              },
+            },
+            {
+              name: "--k3s-node-label",
+              description: "Specify k3s node labels in format",
+              args: {
+                name: "k3s-node-label",
+                description: 'Specify k3s node labels in format "foo=bar"',
+              },
+            },
+            {
+              name: "--memory",
+              description: "Memory limit for the node container",
+              args: {
+                name: "memory",
+                description: "Memory limit for the node container",
+              },
+            },
+            {
+              name: ["-n", "--network"],
+              description: "Add node to (another) runtime network",
+              args: {
+                name: "network",
+              },
+            },
+            {
+              name: "--replicas",
+              description: "Number of replicas to create",
+              args: {
+                name: "replicas",
+                description: "Number of replicas to create",
+                suggestions: ["1", "2", "3", "4", "5"],
+              },
+            },
+            {
+              name: "--role",
+              description: "Node role",
+              args: {
+                name: "role",
+                description: "Node role",
+                suggestions: ["agent", "server"],
+              },
+            },
+            {
+              name: "--runtime-label",
+              description: "Specify runtime labels in format",
+              args: {
+                name: "runtime-label",
+                description: 'Specify runtime labels in format "foo=bar"',
+              },
+            },
+            {
+              name: "--timeout",
+              description:
+                "Maximum waiting time for '--wait' before canceling/returning",
+              args: {
+                name: "timeout",
+                description:
+                  "Maximum waiting time for '--wait' before canceling/returning",
+              },
+            },
+            {
+              name: ["-t", "--token"],
+              description: "Override cluster token",
+              args: {
+                name: "token",
+              },
+            },
+            {
+              name: "--wait",
+              description: "Wait for the node(s) to be ready before returning",
+            },
+          ],
+        },
+        {
+          name: "delete",
+          description: "Delete a node",
+          args: {
+            name: "Node Name",
+            description: "Name of the node",
+            generators: NodeGenerator,
+          },
+          options: [
+            {
+              name: ["-a", "--all"],
+              description: "Delete all existing nodes",
+            },
+            {
+              name: ["-r", "--registry"],
+              description: "Also delete registries",
+            },
+          ],
+        },
+        {
+          name: ["edit", "update"],
+          description: "[EXPERIMENTAL] Edit node(s)",
+          args: {
+            name: "Node Name",
+            description: "Name of the node",
+            generators: NodeGenerator,
+          },
+          options: [
+            {
+              name: "--port-add",
+              description: "Map ports from the node container to the host",
+              args: {
+                name: "port-add",
+                description: "Map ports from the node container to the host",
+              },
+            },
+          ],
+        },
+        {
+          name: ["list", "ls", "get"],
+          description: "List nodes",
+          options: [
+            {
+              name: "--no-headers",
+              description: "Don't print headers (default print headers)",
+            },
+            {
+              name: ["-o", "--output"],
+              description: "Output format",
+              args: {
+                name: "output",
+                description: "Output format",
+                suggestions: ["json", "yaml"],
+              },
+            },
+          ],
+        },
+        {
+          name: "start",
+          description: "Start a node",
+          args: {
+            name: "Node Name",
+            description: "Name of the node",
+            generators: NodeGenerator,
+          },
+        },
+        {
+          name: "stop",
+          description: "Stop a node",
+          args: {
+            name: "Node Name",
+            description: "Name of the node",
+            generators: NodeGenerator,
+          },
+        },
+      ],
+    },
+    {
+      name: ["registry", "registries", "reg"],
+      description: "Manage registry/registries",
+      subcommands: [
+        {
+          name: "create",
+          description: "Create a new registry",
+          args: {
+            name: "Registry Name",
+            description: "Name of the registry",
+          },
+          options: [
+            {
+              name: "--default-network",
+              description: `Specify the network connected to the registry (default "bridge")`,
+            },
+            {
+              name: ["-i", "--image"],
+              description: `Specify image used for the registry (default "docker.io/library/registry:2")`,
+              args: {
+                name: "image",
+              },
+            },
+            {
+              name: "--no-help",
+              description: "Disable the help text (How-To use the registry)",
+            },
+            {
+              name: ["-p", "--port"],
+              description:
+                "Select which port the registry should be listening on on your machine (localhost) (Format: [HOST:]HOSTPORT)",
+              args: {
+                name: "port",
+              },
+            },
+            {
+              name: "--proxy-password",
+              description:
+                "Specify the password of the proxied remote registry",
+              args: {
+                name: "proxy-password",
+              },
+            },
+            {
+              name: "--proxy-remote-url",
+              description: "Specify the url of the proxied remote registry",
+              args: {
+                name: "proxy-remote-url",
+              },
+            },
+            {
+              name: "--proxy-username",
+              description:
+                "Specify the username of the proxied remote registry",
+              args: {
+                name: "proxy-username",
+              },
+            },
+            {
+              name: ["-v", "--volume"],
+              description:
+                "Mount volumes into the registry node (Format: [SOURCE:]DEST",
+              args: {
+                name: "volume",
+              },
+            },
+          ],
+        },
+        {
+          name: ["delete", "del", "rm"],
+          description: "Delete registry/registries",
+          args: {
+            name: "Registry Name",
+            description: "Name of the registry",
+            generators: RegistryGenerator,
+          },
+          options: [
+            {
+              name: ["-a", "--all"],
+            },
+          ],
+        },
+        {
+          name: ["list", "ls", "get"],
+          description: "List registries",
+          args: {
+            name: "Registry Name",
+            description: "Name of the registry",
+            generators: RegistryGenerator,
+            isOptional: true,
+          },
+          options: [
+            {
+              name: "--no-headers",
+              description: "Don't print headers (default print headers)",
+            },
+            {
+              name: ["-o", "--output"],
+              description: "Output format",
+              args: {
+                name: "output",
+                description: "Output format",
+                suggestions: ["json", "yaml"],
+              },
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "version",
+      description: "Show k3d and default k3s version",
+    },
+  ],
+  options: [
+    {
+      name: ["-h", "--help"],
+      description: "Help for k3d",
+      isPersistent: true,
+    },
+    {
+      name: "--verbose",
+      description: "Verbose output",
+      isPersistent: true,
+    },
+    {
+      name: "--trace",
+      description: "Trace output",
+      isPersistent: true,
+    },
+    {
+      name: "--version",
+      description: "Print version information",
+    },
+    {
+      name: "--timestamps",
+      description: "Print timestamp in log output",
+      isPersistent: true,
+    },
   ],
 };
 
