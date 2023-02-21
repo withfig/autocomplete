@@ -39,7 +39,7 @@ const versions: Fig.VersionDiffMap = {};
 
 versions["0.0.4"] = {};
 
-versions["v0.0.7"] = {
+versions["0.0.7"] = {
   options: [
     {
       name: "--debug-options",
