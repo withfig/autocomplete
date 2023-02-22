@@ -1,0 +1,15 @@
+# Replace `YOUR_GITHUB_USERNAME` with your own github username
+git clone https://github.com/YOUR_GITHUB_USERNAME/autocomplete.git fig-autocomplete
+cd fig-autocomplete
+
+# Add withfig/autocomplete as a remote
+git remote add upstream https://github.com/withfig/autocomplete.git
+
+# Install packages
+npm install
+
+# Create an example spec (call it "abc")
+npm run create-spec abc
+
+# Turn on "dev mode"
+npm run dev
