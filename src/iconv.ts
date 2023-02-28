@@ -30,7 +30,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["-t", "---to-code"],
+      name: ["-t", "--to-code"],
       description: "Specifies the encoding of the output",
       exclusiveOn: ["-l", "--list"],
       args: {
@@ -50,7 +50,7 @@ const completionSpec: Fig.Spec = {
         "-f",
         "--from-code",
         "-t",
-        "---to-code",
+        "--to-code",
         "--unicode-subst",
         "--byte-subst",
         "--widechar-subst",
