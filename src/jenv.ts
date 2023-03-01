@@ -133,18 +133,12 @@ const completionSpec: Fig.Spec = {
       name: "exec",
       description:
         "Runs an executable by first preparing PATH so that the selected Java version's `bin' directory is at the front",
-      args: [
-        {
-          name: "command",
-          generators: programGenerator,
-          filterStrategy: "fuzzy",
-        },
-        {
-          name: "args",
-          isVariadic: true,
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "command",
+        generators: programGenerator,
+        filterStrategy: "fuzzy",
+        isCommand: true,
+      },
     },
     {
       name: "global",
