@@ -1,7 +1,7 @@
 import { filepaths } from "@fig/autocomplete-generators";
 
 const DOTNET_ICON =
-  "https://upload.wikimedia.org/wikipedia/commons/a/a3/.NET_Logo.svg";
+  "https://upload.wikimedia.org/wikipedia/commons/0/0e/Microsoft_.NET_logo.png";
 
 const commands: Fig.Subcommand[] = [
   {
