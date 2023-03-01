@@ -82,6 +82,7 @@ const testGenerator: Fig.Generator = {
 type Metadata = {
   packages: Package[];
   resolve: Resolve;
+  workspace_root: string;
 };
 
 type Package = {
@@ -91,6 +92,7 @@ type Package = {
   description?: string;
   source?: string;
   targets: Target[];
+  dependencies: Dependency[];
 };
 
 type Target = {
@@ -99,10 +101,28 @@ type Target = {
   kind: TargetKind[];
 };
 
+type Dependency = {
+  name: string;
+  req: string;
+  kind: "dev" | "build" | null;
+  target: string | null;
+};
+
 type TargetKind = "lib" | "bin" | "example" | "test" | "bench" | "custom-build";
 
 type Resolve = {
   root?: string;
+};
+
+const rootPackageOrLocal = (manifest: Metadata) => {
+  const rootManifestPath = `${manifest.workspace_root}/Cargo.toml`;
+  console.log(rootManifestPath);
+  const rootPackage = manifest.packages.find(
+    (pkg) => pkg.source === rootManifestPath
+  );
+  return rootPackage
+    ? [rootPackage]
+    : manifest.packages.filter((pkg) => !pkg.source);
 };
 
 const packageGenerator: Fig.Generator = {
@@ -121,17 +141,32 @@ const packageGenerator: Fig.Generator = {
   },
 };
 
+const directDependencyGenerator: Fig.Generator = {
+  script: "cargo metadata --format-version 1",
+  postProcess: (data: string) => {
+    const manifest: Metadata = JSON.parse(data);
+    const packages = rootPackageOrLocal(manifest);
+    const deps = packages
+      .flatMap((pkg) => pkg.dependencies)
+      .map((dep) => ({
+        name: dep.name,
+        description: dep.req,
+      }));
+    return [...new Map(deps.map((dep) => [dep.name, dep])).values()];
+  },
+};
+
 const targetGenerator: ({ kind }: { kind?: TargetKind }) => Fig.Generator = ({
   kind,
 }) => ({
   custom: async (_, executeShellCommand, context) => {
-    const out = await executeShellCommand("cargo metadata --format-version 1");
+    const out = await executeShellCommand(
+      "cargo metadata --format-version 1 --no-deps"
+    );
     const manifest: Metadata = JSON.parse(out);
-    const packages = manifest.resolve.root
-      ? [manifest.packages.find((pkg) => pkg.id === manifest.resolve.root)]
-      : manifest.packages.filter((pkg) => !pkg.source);
+    const packages = rootPackageOrLocal(manifest);
 
-    let targets = packages.map((pkg) => pkg.targets).flat();
+    let targets = packages.flatMap((pkg) => pkg.targets);
 
     if (kind) {
       targets = targets.filter((target) => target.kind.includes(kind));
@@ -5598,6 +5633,84 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         debounce: true,
         isVariadic: true,
         suggestCurrentToken: true,
+      },
+    },
+    {
+      name: ["remove", "rm"],
+      icon: "📦",
+      description: "Remove dependencies from a Cargo.toml manifest file",
+      options: [
+        {
+          name: "--dev",
+          description: "Remove as development dependency",
+        },
+        {
+          name: "--build",
+          description: "Remove as build dependency",
+        },
+        {
+          name: "--target",
+          description: "Remove as dependency to the given target platform",
+          args: {
+            name: "TARGET",
+            filterStrategy: "fuzzy",
+            generators: tripleGenerator,
+          },
+        },
+        {
+          name: ["-p", "--package"],
+          description: "Package to remove from",
+          args: {
+            name: "SPEC",
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
+          },
+        },
+        {
+          name: "--manifest-path",
+          description: "Path to Cargo.toml",
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Do not print cargo log messages",
+        },
+        {
+          name: "--dry-run",
+          description: "Don't actually write the manifest",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "Use verbose output",
+        },
+        {
+          name: "--color",
+          args: {
+            name: "WHEN",
+            suggestions: ["auto", "always", "never"],
+          },
+        },
+        {
+          name: "--frozen",
+          description: "Require Cargo.lock and cache are up to date",
+        },
+        {
+          name: "--locked",
+          description: "Require Cargo.lock is up to date",
+        },
+        {
+          name: "--offline",
+          description: "Run without accessing the network",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+      args: {
+        name: "DEP_ID",
+        generators: directDependencyGenerator,
+        filterStrategy: "fuzzy",
+        isVariadic: true,
       },
     },
   ],
