@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "v",
-  description: "",
+  description: "Vbuilder cli spec",
   subcommands: [
     {
       name: "deploy",
@@ -34,7 +34,7 @@ const completionSpec: Fig.Spec = {
   options: [
     {
       name: ["--help", "-h"],
-      description: "Vbuilder cli",
+      description: "Vbuilder cli help",
     },
   ],
 };
