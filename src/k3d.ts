@@ -5,6 +5,7 @@ const ClusterGenerator: Fig.Generator = {
       const [name, servers, agents] = line.split(/\s+/);
       return {
         name,
+        icon: "fig://icon?type=kubernetes",
         description: `Cluster with ${servers} server(s), ${agents} agent(s)`,
       };
     });
@@ -37,6 +38,7 @@ const DockerImageGenerator: Fig.Generator = {
   postProcess: (out) => {
     return out.split("\n").map((image) => ({
       name: image,
+      icon: "fig://icon?type=docker",
       description: "Docker Image",
     }));
   },
@@ -50,6 +52,7 @@ const NodeGenerator: Fig.Generator = {
       const [name, role, cluster] = line.split(/\s+/);
       return {
         name,
+        icon: "fig://icon?type=kubernetes",
         description: `${role} node of cluster ${cluster}`,
       };
     });
