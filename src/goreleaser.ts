@@ -136,7 +136,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--config", "-f"],
           description: "Configuration file",
-          args: { name: "config" },
+          args: { name: "config", template: "filepaths" },
         },
         { name: ["--quiet", "-q"], description: "Quiet mode: no output" },
       ],
