@@ -56,6 +56,9 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-len", "-l"],
       description: "Stop after writing <len> octets",
+      args: {
+        name: "len",
+      },
     },
     {
       name: ["-name", "-n"],
