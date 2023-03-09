@@ -36,7 +36,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--filename", "-f"],
               description: "File to read paste from (default stdin)",
-              args: { name: "filename" },
+              args: { name: "filename", template: "filepaths" },
             },
             {
               name: ["--listed", "-l"],
@@ -82,7 +82,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--filename", "-f"],
               description: "File to read entry from (default stdin)",
-              args: { name: "filename" },
+              args: { name: "filename", template: "filepaths" },
             },
           ],
         },
@@ -212,7 +212,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--filename", "-f"],
               description: "File to write Now page to (default stdout)",
-              args: { name: "filename" },
+              args: { name: "filename", template: "filepaths" },
             },
           ],
         },
@@ -230,7 +230,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--filename", "-f"],
               description: "File to write paste to (default stdout)",
-              args: { name: "filename" },
+              args: { name: "filename", template: "filepaths" },
             },
           ],
         },
@@ -287,7 +287,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--filename", "-f"],
                   description: "File to write preview to (default stdout)",
-                  args: { name: "filename" },
+                  args: { name: "filename", template: "filepaths" },
                 },
               ],
             },
@@ -300,7 +300,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--filename", "-f"],
               description: "File to write webpage to (default stdout)",
-              args: { name: "filename" },
+              args: { name: "filename", template: "filepaths" },
             },
           ],
         },
@@ -318,7 +318,7 @@ const completionSpec: Fig.Spec = {
                   name: ["--filename", "-f"],
                   description:
                     "File to write configuration to (default stdout)",
-                  args: { name: "filename" },
+                  args: { name: "filename", template: "filepaths" },
                 },
               ],
             },
@@ -330,7 +330,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--filename", "-f"],
                   description: "File to write template to (default stdout)",
-                  args: { name: "filename" },
+                  args: { name: "filename", template: "filepaths" },
                 },
               ],
             },
@@ -473,7 +473,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--filename", "-f"],
               description: "File to read Now page from (default stdin)",
-              args: { name: "filename" },
+              args: { name: "filename", template: "filepaths" },
             },
             {
               name: ["--listed", "-l"],
@@ -503,7 +503,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--filename", "-f"],
               description: "File to read webpage from (default stdin)",
-              args: { name: "filename" },
+              args: { name: "filename", template: "filepaths" },
             },
             {
               name: ["--publish", "-p"],
@@ -522,7 +522,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--filename", "-f"],
                   description: "File to read config from (default stdin)",
-                  args: { name: "filename" },
+                  args: { name: "filename", template: "filepaths" },
                 },
               ],
             },
@@ -533,7 +533,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--filename", "-f"],
                   description: "File to read template from (default stdin)",
-                  args: { name: "filename" },
+                  args: { name: "filename", template: "filepaths" },
                 },
               ],
             },
@@ -739,7 +739,7 @@ const completionSpec: Fig.Spec = {
                   name: "pfp",
                   description: "Set your profile picture",
                   args: {
-                    name: "filename",
+                    name: "filename", template: "filepaths",
                     description: "The filename of the image to set",
                   },
                 },
