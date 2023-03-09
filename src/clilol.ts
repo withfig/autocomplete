@@ -739,7 +739,8 @@ const completionSpec: Fig.Spec = {
                   name: "pfp",
                   description: "Set your profile picture",
                   args: {
-                    name: "filename", template: "filepaths",
+                    name: "filename",
+                    template: "filepaths",
                     description: "The filename of the image to set",
                   },
                 },
