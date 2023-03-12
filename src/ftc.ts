@@ -1,5 +1,5 @@
 const completionSpec: Fig.Spec = {
-  name: "freetranscli",
+  name: "ftc",
   description: "",
   subcommands: [
     {
