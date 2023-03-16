@@ -1,3 +1,5 @@
+//https://github.com/el2zay/freetranscli
+
 const completionSpec: Fig.Spec = {
   name: "ftc",
   description: "FreeTransCLI is a CLI for uploading and downloading files through https://transfert.free.fr",
