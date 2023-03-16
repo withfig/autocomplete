@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "ftc",
-  description: "",
+  description: "FreeTransCLI is a CLI for uploading and downloading files through https://transfert.free.fr",
   subcommands: [
     {
       name: ["download", "d", "dld", "down"],
