@@ -378,8 +378,8 @@ const completionSpec: Fig.Spec = {
               args: { name: "hostname" },
             },
             {
-              name: "--with-token",
-              description: "Read token from standard input",
+              name: ["-t", "--show-token"],
+              description: "Display the auth token",
               args: { name: "token" },
             },
           ],
