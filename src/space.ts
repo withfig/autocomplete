@@ -58,7 +58,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--dir", "-d"],
           description: "Src of project to link",
-          args: { name: "dir", default: "./" },
+          args: { name: "dir", default: "./", template: "folders" },
         },
         {
           name: ["--id", "-i"],
@@ -76,12 +76,28 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--dir", "-d"],
           description: "Src of project to release",
-          args: { name: "dir", default: "./" },
+          args: { name: "dir", default: "./", template: "folders" },
         },
         {
           name: ["--name", "-n"],
           description: "Project name",
           args: { name: "name" },
+        },
+      ],
+    },
+    {
+      name: "open",
+      description: "Open current project in browser",
+      options: [
+        {
+          name: ["--dir", "-d"],
+          description: "Src of project to open",
+          args: { name: "dir", default: "./", template: "folders" },
+        },
+        {
+          name: ["--id", "-i"],
+          description: "Project id of project to open",
+          args: { name: "id" },
         },
       ],
     },
@@ -92,13 +108,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--dir", "-d"],
           description: "Src of project to push",
-          args: { name: "dir", default: "./" },
+          args: { name: "dir", default: "./", template: "folders" },
         },
         {
           name: ["--id", "-i"],
           description: "Project id of project to push",
           args: { name: "id" },
         },
+        {
+          name: ["--open", "-o"],
+          description: "Open builder instance/project in browser after push",
+        },
+        { name: "--skip-logs", description: "Skip following logs after push" },
         {
           name: ["--tag", "-t"],
           description: "Tag to identify this push",
@@ -114,7 +135,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--dir", "-d"],
           description: "Src of project to release",
-          args: { name: "dir", default: "./" },
+          args: { name: "dir", default: "./", template: "folders" },
         },
         {
           name: ["--id", "-i"],
@@ -146,7 +167,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--dir", "-d"],
           description: "Src of project to validate",
-          args: { name: "dir", default: "./" },
+          args: { name: "dir", default: "./", template: "folders" },
         },
       ],
     },
@@ -197,6 +218,7 @@ const completionSpec: Fig.Spec = {
         { name: "link", description: "Link code to project" },
         { name: "login", description: "Login to space" },
         { name: "new", description: "Create new project" },
+        { name: "open", description: "Open current project in browser" },
         { name: "push", description: "Push code for project" },
         { name: "release", description: "Create release for a project" },
         { name: "validate", description: "Validate spacefile in dir" },
