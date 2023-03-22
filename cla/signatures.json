@@ -495,6 +495,14 @@
       "created_at": "2023-03-20T17:21:53Z",
       "repoId": 299482335,
       "pullRequestNo": 1888
+    },
+    {
+      "name": "fernandoxu",
+      "id": 20871468,
+      "comment_id": 1479786147,
+      "created_at": "2023-03-22T15:31:51Z",
+      "repoId": 299482335,
+      "pullRequestNo": 1890
     }
   ]
 }
