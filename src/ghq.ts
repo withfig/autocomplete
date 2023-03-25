@@ -32,6 +32,16 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
       },
     },
+    {
+      name: "root",
+      description: "Show repositories' root",
+      options: [
+        {
+          name: "--all",
+          description: "Show all roots (default: false)",
+        },
+      ],
+    },
   ],
   options: [
     {
