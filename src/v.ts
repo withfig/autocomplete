@@ -99,21 +99,16 @@ const completionSpec: Fig.Spec = {
         generators: {
           script: "v help topics",
           postProcess: (out) => {
-            return out.split(", ").map((topic, index, { length }) => {
-              if (index === 0)
-                // remove first sentence before list
-                topic = topic.replace("Known help topics: ", "");
-              else if (index === length - 1)
-                // remove the ending dot
-                topic = topic.replace(".", "");
-              // remove other which is on "subcommands"
-              else if (topic === "other") return;
-              return {
+            return out
+              .trim()
+              .slice(19, -1) // remove starting phrase "Known help topics: " and trailing dot
+              .split(", ")
+              .filter(topic => topic != "other")
+              .map(topic => ({
                 priority: 0,
                 name: topic,
-                description: 'Display help for "' + topic + '"',
-              };
-            });
+                description: `Display help for: "${topic}"`,
+              });
           },
         },
       },
