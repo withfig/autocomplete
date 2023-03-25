@@ -42,6 +42,20 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "create",
+      description: "Create a new repository",
+      options: [
+        {
+          name: "--vcs",
+          description: "Specify vcs backend explicitly",
+          args: { name: "vcs" },
+        },
+      ],
+      args: {
+        name: "<project>|<user>/<project>|<host>/<user>/<project>",
+      },
+    },
   ],
   options: [
     {
