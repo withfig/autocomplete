@@ -19,7 +19,7 @@ const subcommands: Fig.Subcommand[] = [
     description: "Remove credentials from the secure keystore",
     args: {
       name: "profile",
-      generators: profilesGeneratro,
+      generators: profilesGenerator,
     },
     options: [
       {
@@ -51,7 +51,7 @@ const subcommands: Fig.Subcommand[] = [
     description: "Rotate credentials",
     args: {
       name: "profile",
-      generators: profilesGeneratro,
+      generators: profilesGenerator,
     },
     options: [
       {
@@ -66,7 +66,7 @@ const subcommands: Fig.Subcommand[] = [
     args: [
       {
         name: "profile",
-        generators: profilesGeneratro,
+        generators: profilesGenerator,
       },
       {
         name: "command",
@@ -107,7 +107,7 @@ const subcommands: Fig.Subcommand[] = [
     description: "Export AWS credentials",
     args: {
       name: "profile",
-      generators: profilesGeneratro,
+      generators: profilesGenerator,
     },
   },
   {
@@ -115,7 +115,7 @@ const subcommands: Fig.Subcommand[] = [
     description: "Clear temporary credentials from the secure keystore",
     args: {
       name: "profile",
-      generators: profilesGeneratro,
+      generators: profilesGenerator,
     },
   },
   {
@@ -123,31 +123,24 @@ const subcommands: Fig.Subcommand[] = [
     description: "Generate a login link for the AWS Console",
     args: {
       name: "profile",
-      generators: profilesGeneratro,
+      generators: profilesGenerator,
+    },
+  },
+  {
+    name: "help",
+    description: "Show help about the command",
+    args: {
+      name: "command",
+      template: "help",
     },
   },
 ];
-
-const helpSuggestions: Fig.Suggestion[] = subcommands.map(({ name }) => ({
-  name,
-  type: "subcommand",
-}));
 
 const completionSpec: Fig.Spec = {
   name: "aws-vault",
   description:
     "A vault for securely storing and accessing AWS credentials in development environments",
-  subcommands: [
-    {
-      name: "help",
-      description: "Show help about the command",
-      args: {
-        name: "command",
-        suggestions: helpSuggestions,
-      },
-    },
-    ...subcommands,
-  ],
+  subcommands,
   options: [
     {
       name: "--help",
