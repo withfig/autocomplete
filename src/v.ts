@@ -7,6 +7,9 @@ const FILE_OR_FOLDER: Fig.Arg = {
 const completionSpec: Fig.Spec = {
   name: "v",
   description: "The V Programming Language",
+  parserDirectives: {
+    flagsArePosixNoncompliant: true,
+  },
   subcommands: [
     {
       name: "run",
