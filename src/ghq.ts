@@ -4,6 +4,59 @@ const completionSpec: Fig.Spec = {
     "'ghq' provides a way to organize remote repository clones, like go get does. When you clone a remote repository by ghq get, ghq makes a directory under a specific root directory (by default ~/ghq) using the remote repository URL’s host and path",
   subcommands: [
     {
+      name: "get",
+      description: "Clone/sync with a remote repository",
+      options: [
+        {
+          name: ["-u", "--update"],
+          description:
+            "Update local repository if cloned already (default: false)",
+        },
+        {
+          name: "-p",
+          description: "Clone with SSH (default: false)",
+        },
+        {
+          name: "--shallow",
+          description: "Do a shallow clone (default: false)",
+        },
+        {
+          name: ["-l", "--look"],
+          description: "Look after get (default: false)",
+        },
+        {
+          name: "--vcs",
+          description: "Specify vcs backend for cloning",
+          args: { name: "vcs" },
+        },
+        {
+          name: ["-s", "--silent"],
+          description: "Clone or update silently (default: false)",
+        },
+        {
+          name: "--no-recursive",
+          description: "Prevent recursive fetching (default: false)",
+        },
+        {
+          name: ["-b", "--branch"],
+          description:
+            "Specify branch name. This flag implies --single-branch on Git",
+          args: { name: "branch" },
+        },
+        {
+          name: ["-P", "--parallel"],
+          description: "Import parallelly (default: false)",
+        },
+        {
+          name: "--bare",
+          description: "Do a bare clone (default: false)",
+        },
+      ],
+      args: {
+        name: "<repository URL>|<project>|<user>/<project>|<host>/<user>/<project>",
+      },
+    },
+    {
       name: "list",
       description: "List local repositories",
       options: [
