@@ -1,5 +1,6 @@
+import serverless from "./serverless";
 const completionSpec: Fig.Spec = {
+  ...serverless,
   name: "sls",
-  loadSpec: "serverless",
 };
 export default completionSpec;
