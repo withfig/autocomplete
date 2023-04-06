@@ -371,8 +371,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--support",
-      description:
-        "Enable debug logs and upload the logs to the server",
+      description: "Enable debug logs and upload the logs to the server",
       isRepeatable: false,
       dependsOn: ["--bc-api-key"],
       args: {
@@ -391,8 +390,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--skip-resources-without-violations",
-      description:
-        "Exclude extra resources (resources without violations)",
+      description: "Exclude extra resources (resources without violations)",
       isRepeatable: false,
       args: {
         name: "SKIP_RESOURCES_WITHOUT_VIOLATIONS",
@@ -400,8 +398,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--skip-download",
-      description:
-        "Do not download any data from Prisma Cloud",
+      description: "Do not download any data from Prisma Cloud",
       isRepeatable: false,
       args: {
         name: "SKIP_DOWNLOAD",
@@ -409,8 +406,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--secrets-history-timeout",
-      description:
-        "Maximum time to run the history scan",
+      description: "Maximum time to run the history scan",
       isRepeatable: false,
       args: {
         name: "SECRETS_HISTORY_TIMEOUT",
@@ -418,8 +414,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--scan-secrets-history",
-      description:
-        "Will scan the history of commits for secrets",
+      description: "Will scan the history of commits for secrets",
       isRepeatable: false,
       args: {
         name: "SCAN_SECRETS_HISTORY",
@@ -427,8 +422,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--prisma-api-url",
-      description:
-        "The Prisma Cloud API URL",
+      description: "The Prisma Cloud API URL",
       isRepeatable: false,
       args: {
         name: "PRISMA_API_URL",
@@ -472,8 +466,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--no-fail-on-crash",
-      description:
-        "Return exit code 0 instead of 2",
+      description: "Return exit code 0 instead of 2",
       isRepeatable: false,
       args: {
         name: "NO_FAIL_ON_CRASH",
@@ -499,8 +492,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--external-checks-git",
-      description:
-        "GitHub URL of external checks to be added",
+      description: "GitHub URL of external checks to be added",
       isRepeatable: false,
       args: {
         name: "EXTERNAL_CHECKS_GIT",
@@ -508,8 +500,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--enable-secret-scan-all-files",
-      description:
-        "Enable secret scan for all files",
+      description: "Enable secret scan for all files",
       isRepeatable: false,
       args: {
         name: "ENABLE_SECRET_SCAN_ALL_FILES",
@@ -517,8 +508,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--deep-analysis",
-      description:
-        "Enable combine TF graph and TF Plan graph",
+      description: "Enable combine TF graph and TF Plan graph",
       isRepeatable: false,
       args: {
         name: "DEEP_ANALYSIS",
@@ -526,8 +516,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--block-list-secret-scan",
-      description:
-        "List of files to filter out from the secret scanner",
+      description: "List of files to filter out from the secret scanner",
       isRepeatable: false,
       dependsOn: ["--repo-root-for-plan-enrichment"],
       args: {
