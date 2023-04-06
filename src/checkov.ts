@@ -363,7 +363,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--use-enforcement-rules",
       description:
-        "Use the Enforcement rules configured in the platform for hard / soft fail logic.",
+        "Use the Enforcement rules configured in the platform for hard / soft fail logic",
       isRepeatable: false,
       args: {
         name: "USE_ENFORCEMENT_RULES",
@@ -372,7 +372,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--support",
       description:
-        "Enable debug logs and upload the logs to the server.",
+        "Enable debug logs and upload the logs to the server",
       isRepeatable: false,
       dependsOn: ["--bc-api-key"],
       args: {
@@ -392,7 +392,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--skip-resources-without-violations",
       description:
-        "Exclude extra resources (resources without violations).",
+        "Exclude extra resources (resources without violations)",
       isRepeatable: false,
       args: {
         name: "SKIP_RESOURCES_WITHOUT_VIOLATIONS",
@@ -411,7 +411,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--skip-resources-without-violations",
       description:
-        "Exclude extra resources (resources without violations).",
+        "Exclude extra resources (resources without violations)",
       isRepeatable: false,
       args: {
         name: "SKIP_RESOURCES_WITHOUT_VIOLATIONS",
@@ -420,7 +420,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--skip-download",
       description:
-        "Do not download any data from Prisma Cloud.",
+        "Do not download any data from Prisma Cloud",
       isRepeatable: false,
       args: {
         name: "SKIP_DOWNLOAD",
@@ -429,7 +429,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--secrets-history-timeout",
       description:
-        "Maximum time to run the history scan.",
+        "Maximum time to run the history scan",
       isRepeatable: false,
       args: {
         name: "SECRETS_HISTORY_TIMEOUT",
@@ -438,7 +438,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--scan-secrets-history",
       description:
-        "Will scan the history of commits for secrets.",
+        "Will scan the history of commits for secrets",
       isRepeatable: false,
       args: {
         name: "SCAN_SECRETS_HISTORY",
@@ -456,7 +456,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--policy-metadata-filter",
       description:
-        "Comma separated key:value string to filter policies based on Prisma Cloud policy metadata.",
+        "Comma separated key:value string to filter policies based on Prisma Cloud policy metadata",
       isRepeatable: false,
       args: {
         name: "POLICY_METADATA_FILTER",
@@ -465,7 +465,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--output-file-path",
       description:
-        "Name of the output folder to save the chosen output formats.",
+        "Name of the output folder to save the chosen output formats",
       isRepeatable: false,
       args: {
         name: "OUTPUT_FILE_PATH",
@@ -483,7 +483,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--openai-api-key",
       description:
-        "Add an OpenAI API key to enhance finding guidelines. This will send Code to OpenAI.",
+        "Add an OpenAI API key to enhance finding guidelines. This will send Code to OpenAI",
       isRepeatable: false,
       args: {
         name: "OPENAI_API_KEY",
@@ -492,7 +492,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--no-fail-on-crash",
       description:
-        "Return exit code 0 instead of 2.",
+        "Return exit code 0 instead of 2",
       isRepeatable: false,
       args: {
         name: "NO_FAIL_ON_CRASH",
@@ -501,7 +501,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--mask",
       description:
-        "Each entry in the list will be used for masking the desired attribute.",
+        "Each entry in the list will be used for masking the desired attribute",
       isRepeatable: false,
       args: {
         name: "MASK",
@@ -510,7 +510,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--include-all-checkov-policies",
       description:
-        "When running with an API key, Checkov will omit any policies that do not exist in the Bridgecrew or Prisma Cloud platform.",
+        "When running with an API key, Checkov will omit any policies that do not exist in the Bridgecrew or Prisma Cloud platform",
       isRepeatable: false,
       args: {
         name: "INCLUDE_ALL_CHECKOV_POLICIES",
@@ -519,7 +519,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--external-checks-git",
       description:
-        "GitHub URL of external checks to be added.",
+        "GitHub URL of external checks to be added",
       isRepeatable: false,
       args: {
         name: "EXTERNAL_CHECKS_GIT",
@@ -528,7 +528,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--enable-secret-scan-all-files",
       description:
-        "Enable secret scan for all files.",
+        "Enable secret scan for all files",
       isRepeatable: false,
       args: {
         name: "ENABLE_SECRET_SCAN_ALL_FILES",
@@ -537,7 +537,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--deep-analysis",
       description:
-        "Enable combine TF graph and TF Plan graph.",
+        "Enable combine TF graph and TF Plan graph",
       isRepeatable: false,
       args: {
         name: "DEEP_ANALYSIS",
@@ -546,7 +546,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--block-list-secret-scan",
       description:
-        "List of files to filter out from the secret scanner.",
+        "List of files to filter out from the secret scanner",
       isRepeatable: false,
       dependsOn: ["--repo-root-for-plan-enrichment"],
       args: {
