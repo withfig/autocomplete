@@ -399,25 +399,6 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: "--summary-position",
-      description:
-        "Chose whether the summary will be appended on top or on bottom",
-      isRepeatable: false,
-      args: {
-        name: "SUMMARY_POSITION",
-        suggestions: ["top","bottom"],
-      },
-    },
-    {
-      name: "--skip-resources-without-violations",
-      description:
-        "Exclude extra resources (resources without violations)",
-      isRepeatable: false,
-      args: {
-        name: "SKIP_RESOURCES_WITHOUT_VIOLATIONS",
-      },
-    },
-    {
       name: "--skip-download",
       description:
         "Do not download any data from Prisma Cloud",
