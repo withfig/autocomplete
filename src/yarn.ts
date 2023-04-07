@@ -11,7 +11,7 @@ export const yarnScriptParserDirectives: Fig.Arg["parserDirectives"] = {
   },
 };
 
-export const nodeClis = [
+export const nodeClis = new Set([
   "vue",
   "vite",
   "nuxt",
@@ -28,21 +28,14 @@ export const nodeClis = [
   "typeorm",
   "babel",
   "remotion",
-  "@withfig/autocomplete-tools",
-  "@redwoodjs/core",
+  "autocomplete-tools",
+  "redwood",
+  "rw",
   "create-completion-spec",
-  "@fig/publish-spec-to-team",
+  "publish-spec-to-team",
   "capacitor",
   "cap",
-];
-
-type SearchResult = {
-  package: {
-    name: string;
-    description: string;
-  };
-  searchScore: number;
-};
+]);
 
 // generate global package list from global package.json file
 const getGlobalPackagesGenerator: Fig.Generator = {
@@ -359,18 +352,17 @@ const completionSpec: Fig.Spec = {
   name: "yarn",
   description: "Manage packages and run scripts",
   generateSpec: async (tokens, executeShellCommand) => {
-    const { script, postProcess } = dependenciesGenerator;
+    const binaries = (
+      await executeShellCommand(
+        `until [[ -d node_modules/ ]] || [[ $PWD = '/' ]]; do cd ..; done; ls -1 node_modules/.bin/`
+      )
+    ).split("\n");
 
-    const packages = postProcess(
-      await executeShellCommand(script as string),
-      tokens
-    ).map(({ name }) => name as string);
-
-    const subcommands = packages
-      .filter((name) => nodeClis.includes(name))
+    const subcommands = binaries
+      .filter((name) => nodeClis.has(name))
       .map((name) => ({
-        name: name === "@redwoodjs/core" ? ["redwood", "rw"] : name,
-        loadSpec: name === "@redwoodjs/core" ? "redwood" : name,
+        name: name,
+        loadSpec: name === "rw" ? "redwood" : name,
         icon: "fig://icon?type=package",
       }));
 
@@ -1148,6 +1140,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "policies",
       description: "Defines project-wide policies for your project",
+      subcommands: [
+        {
+          name: "set-version",
+          description: "Will download the latest stable release",
+          options: [
+            {
+              name: "--rc",
+              description: "Download the latest rc release",
+            },
+          ],
+        },
+      ],
     },
     {
       name: "publish",
@@ -1254,6 +1258,49 @@ const completionSpec: Fig.Spec = {
     {
       name: "team",
       description: "Maintain team memberships",
+      subcommands: [
+        {
+          name: "create",
+          description: "Create a new team",
+          args: {
+            name: "<scope:team>",
+          },
+        },
+        {
+          name: "destroy",
+          description: "Destroys an existing team",
+          args: {
+            name: "<scope:team>",
+          },
+        },
+        {
+          name: "add",
+          description: "Add a user to an existing team",
+          args: [
+            {
+              name: "<scope:team>",
+            },
+            {
+              name: "<user>",
+            },
+          ],
+        },
+        {
+          name: "remove",
+          description: "Remove a user from a team they belong to",
+          args: {
+            name: "<scope:team> <user>",
+          },
+        },
+        {
+          name: "list",
+          description:
+            "If performed on an organization name, will return a list of existing teams under that organization. If performed on a team, it will instead return a list of all users belonging to that particular team",
+          args: {
+            name: "<scope>|<scope:team>",
+          },
+        },
+      ],
     },
     {
       name: "unlink",
@@ -1328,6 +1375,13 @@ const completionSpec: Fig.Spec = {
       name: "version",
       description: "Update version of your package",
       options: [
+        ...commonOptions,
+        { name: ["-h", "--help"], description: "Output usage information" },
+        {
+          name: "--new-version",
+          description: "New version",
+          args: { name: "version" },
+        },
         {
           name: "--major",
           description: "Auto-increment major version number",
@@ -1340,6 +1394,39 @@ const completionSpec: Fig.Spec = {
           name: "--patch",
           description: "Auto-increment patch version number",
         },
+        {
+          name: "--premajor",
+          description: "Auto-increment premajor version number",
+        },
+        {
+          name: "--preminor",
+          description: "Auto-increment preminor version number",
+        },
+        {
+          name: "--prepatch",
+          description: "Auto-increment prepatch version number",
+        },
+        {
+          name: "--prerelease",
+          description: "Auto-increment prerelease version number",
+        },
+        {
+          name: "--preid",
+          description: "Add a custom identifier to the prerelease",
+          args: { name: "preid" },
+        },
+        {
+          name: "--message",
+          description: "Message",
+          args: { name: "message" },
+        },
+        { name: "--no-git-tag-version", description: "No git tag version" },
+        {
+          name: "--no-commit-hooks",
+          description: "Bypass git hooks when committing new version",
+        },
+        { name: "--access", description: "Access", args: { name: "access" } },
+        { name: "--tag", description: "Tag", args: { name: "tag" } },
       ],
     },
     {
@@ -1360,6 +1447,16 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-h", "--help"],
           description: "Output usage information",
+        },
+        {
+          name: "--peers",
+          description:
+            "Print the peer dependencies that match the specified name",
+        },
+        {
+          name: ["-R", "--recursive"],
+          description:
+            "List, for each workspace, what are all the paths that lead to the dependency",
         },
       ],
     },

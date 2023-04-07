@@ -3841,6 +3841,15 @@ const completionSpec: Fig.Spec = {
       ],
     },
   ],
+  options: [
+    {
+      name: ["-n", "--namespace"],
+      args: {
+        name: "namespace",
+      },
+      description: "If present, the namespace scope for this CLI request",
+    },
+  ],
 };
 
 export default completionSpec;

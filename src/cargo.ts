@@ -1,106 +1,4 @@
-import { filepaths } from "@fig/autocomplete-generators";
-
-const testList: Fig.Generator = {
-  script: function (context) {
-    const base = context[context.length - 1];
-    // allow split by single colon so that it triggers on a::b:
-    const indexIntoModPath = Math.max(base.split(/::?/).length, 1);
-    // split by :: so that tokens with a single colon are allowed
-    const moduleTokens = base.split("::");
-    const lastModule = moduleTokens.pop();
-    // check if the token has a : on the end
-    const hasColon = lastModule[lastModule.length - 1] == ":" ? ":" : "";
-    return `cargo t -- --list | awk '/: test$/ { print substr($1, 1, length($1) - 1) }' | awk -F "::" '{ print "${hasColon}"$${indexIntoModPath},int( NF / ${indexIntoModPath} ) }'`;
-  },
-  postProcess: function (out) {
-    return [...new Set(out.split("\n"))].map((line) => {
-      const [display, last] = line.split(" ");
-      const lastModule = parseInt(last);
-      const displayName = display.replaceAll(":", "");
-      const name = displayName.length
-        ? `${display}${lastModule ? "" : "::"}`
-        : "";
-      return { name, displayName };
-    });
-  },
-  trigger: ":",
-  getQueryTerm: ":",
-};
-
-const binList: Fig.Generator = {
-  script: "cargo read-manifest",
-  postProcess: function (data: string) {
-    const manifest = JSON.parse(data);
-    return manifest.targets
-      ? manifest.targets
-          .filter(({ kind }) => kind.includes("bin"))
-          .map(({ name }) => ({ name }))
-      : [];
-  },
-};
-
-export interface CrateSearchResults {
-  crates: Crate[];
-}
-
-export interface Crate {
-  description: null | string;
-  name: string;
-  newest_version: string;
-}
-
-const searchGenerator: Fig.Generator = {
-  script: function (context) {
-    const query = encodeURIComponent(context[context.length - 1]);
-    return `curl -sfL 'https://crates.io/api/v1/crates?q=${query}&per_page=60'`;
-  },
-  postProcess: function (out) {
-    const json = JSON.parse(out) as CrateSearchResults;
-    return json.crates.map((crate) => ({
-      name: crate.name,
-      description: crate.description || "v" + crate.newest_version,
-      icon: "📦",
-    }));
-  },
-};
-
-const featuresGenerator: Fig.Generator = {
-  script: "cargo read-manifest",
-  postProcess: function (data: string) {
-    const manifest = JSON.parse(data);
-    return Object.keys(manifest.features || {}).map((name) => ({
-      name,
-      description: `Features: [${manifest.features[name].join(", ")}]`,
-    }));
-  },
-};
-
-const targetGenerator: Fig.Generator = {
-  script: "rustc --print target-list",
-  postProcess: function (data: string) {
-    return data
-      .split("\n")
-      .filter((line) => line.trim() !== "")
-      .map((name) => ({
-        name,
-      }));
-  },
-};
-
-const dependencyGenerator: Fig.Generator = {
-  script: "cargo metadata --format-version 1 --no-deps",
-  postProcess: function (data: string) {
-    const metadata = JSON.parse(data);
-    const seen = new Set<string>();
-    return metadata.packages
-      .map(({ name, description }) => ({ name, description }))
-      .filter((item: { name: string; description: string }) => {
-        if (seen.has(item.name)) return false;
-        seen.add(item.name);
-        return true;
-      });
-  },
-};
+import { filepaths, keyValue } from "@fig/autocomplete-generators";
 
 const rustEditions: Fig.Suggestion[] = [
   {
@@ -117,7 +15,11 @@ const rustEditions: Fig.Suggestion[] = [
   },
 ];
 
-const vcsOptions: Fig.Suggestion[] = [
+const vcsOptions: {
+  name: string;
+  icon: string;
+  description: string;
+}[] = [
   {
     name: "git",
     icon: "fig://icon?type=git",
@@ -145,26 +47,427 @@ const vcsOptions: Fig.Suggestion[] = [
   },
 ];
 
+const testGenerator: Fig.Generator = {
+  cache: {
+    cacheByDirectory: true,
+    strategy: "stale-while-revalidate",
+    ttl: 1000 * 60 * 5,
+  },
+  script: (context) => {
+    const base = context[context.length - 1];
+    // allow split by single colon so that it triggers on a::b:
+    const indexIntoModPath = Math.max(base.split(/::?/).length, 1);
+    // split by :: so that tokens with a single colon are allowed
+    const moduleTokens = base.split("::");
+    const lastModule = moduleTokens.pop();
+    // check if the token has a : on the end
+    const hasColon = lastModule[lastModule.length - 1] == ":" ? ":" : "";
+    return `cargo t -- --list | awk '/: test$/ { print substr($1, 1, length($1) - 1) }' | awk -F "::" '{ print "${hasColon}"$${indexIntoModPath},int( NF / ${indexIntoModPath} ) }'`;
+  },
+  postProcess: (out) => {
+    return [...new Set(out.split("\n"))].map((line) => {
+      const [display, last] = line.split(" ");
+      const lastModule = parseInt(last);
+      const displayName = display.replaceAll(":", "");
+      const name = displayName.length
+        ? `${display}${lastModule ? "" : "::"}`
+        : "";
+      return { name, displayName };
+    });
+  },
+  trigger: ":",
+  getQueryTerm: ":",
+};
+
+type Metadata = {
+  packages: Package[];
+  resolve: Resolve;
+  workspace_root: string;
+};
+
+type Package = {
+  name: string;
+  version: string;
+  id: string;
+  description?: string;
+  source?: string;
+  targets: Target[];
+  dependencies: Dependency[];
+};
+
+type Target = {
+  name: string;
+  src_path: string;
+  kind: TargetKind[];
+};
+
+type Dependency = {
+  name: string;
+  req: string;
+  kind: "dev" | "build" | null;
+  target: string | null;
+};
+
+type TargetKind = "lib" | "bin" | "example" | "test" | "bench" | "custom-build";
+
+type Resolve = {
+  root?: string;
+};
+
+const rootPackageOrLocal = (manifest: Metadata) => {
+  const rootManifestPath = `${manifest.workspace_root}/Cargo.toml`;
+  console.log(rootManifestPath);
+  const rootPackage = manifest.packages.find(
+    (pkg) => pkg.source === rootManifestPath
+  );
+  return rootPackage
+    ? [rootPackage]
+    : manifest.packages.filter((pkg) => !pkg.source);
+};
+
+const packageGenerator: Fig.Generator = {
+  script: "cargo metadata --format-version 1 --no-deps",
+  postProcess: (data) => {
+    const manifest: Metadata = JSON.parse(data);
+    return manifest.packages.map((pkg) => {
+      return {
+        icon: "📦",
+        name: pkg.name,
+        description: `${pkg.version}${
+          pkg.description ? ` - ${pkg.description}` : ""
+        }`,
+      };
+    });
+  },
+};
+
+const directDependencyGenerator: Fig.Generator = {
+  script: "cargo metadata --format-version 1",
+  postProcess: (data: string) => {
+    const manifest: Metadata = JSON.parse(data);
+    const packages = rootPackageOrLocal(manifest);
+    const deps = packages
+      .flatMap((pkg) => pkg.dependencies)
+      .map((dep) => ({
+        name: dep.name,
+        description: dep.req,
+      }));
+    return [...new Map(deps.map((dep) => [dep.name, dep])).values()];
+  },
+};
+
+const targetGenerator: ({ kind }: { kind?: TargetKind }) => Fig.Generator = ({
+  kind,
+}) => ({
+  custom: async (_, executeShellCommand, context) => {
+    const out = await executeShellCommand(
+      "cargo metadata --format-version 1 --no-deps"
+    );
+    const manifest: Metadata = JSON.parse(out);
+    const packages = rootPackageOrLocal(manifest);
+
+    let targets = packages.flatMap((pkg) => pkg.targets);
+
+    if (kind) {
+      targets = targets.filter((target) => target.kind.includes(kind));
+    }
+
+    return targets.map((pkg) => {
+      const path = pkg.src_path.replace(context.currentWorkingDirectory, "");
+      return {
+        icon: "🎯",
+        name: pkg.name,
+        description: path,
+      };
+    });
+  },
+});
+
+const dependencyGenerator: Fig.Generator = {
+  script: "cargo metadata --format-version 1",
+  postProcess: (data: string) => {
+    const metadata: Metadata = JSON.parse(data);
+    return metadata.packages.map((pkg) => ({
+      name: pkg.name,
+      description: pkg.description,
+    }));
+  },
+};
+
+const featuresGenerator: Fig.Generator = {
+  script: "cargo read-manifest",
+  postProcess: (data: string) => {
+    const manifest = JSON.parse(data);
+    return Object.keys(manifest.features || {}).map((name) => ({
+      icon: "🎚",
+      name,
+      description: `Features: [${manifest.features[name].join(", ")}]`,
+    }));
+  },
+};
+
+type CrateSearchResults = {
+  crates: Crate[];
+};
+
+type Crate = {
+  description?: string;
+  name: string;
+  newest_version: string;
+  recent_downloads: number;
+};
+
+type VersionSearchResults = {
+  versions: Version[];
+};
+
+type Version = {
+  num: string;
+  downloads: number;
+  created_at: string;
+  yanked: boolean;
+};
+
+// Search for crates
+// If context is empty, return the most downloaded crates for the search term,
+// if there is an `@` in the context, return the versions for the crate
+const searchGenerator: Fig.Generator = {
+  custom: async (context, executeShellCommand) => {
+    const numberFormatter = new Intl.NumberFormat(undefined, {
+      notation: "compact",
+      compactDisplay: "short",
+      maximumSignificantDigits: 3,
+    });
+
+    const lastToken = context[context.length - 1];
+    if (lastToken.includes("@") && !lastToken.startsWith("@")) {
+      const [crate, _version] = lastToken.split("@");
+      const query = encodeURIComponent(crate);
+      const out = await executeShellCommand(
+        `curl -sfL 'https://crates.io/api/v1/crates/${query}/versions'`
+      );
+      const json: VersionSearchResults = JSON.parse(out);
+
+      return json.versions.map((version) => ({
+        name: `${crate}@${version.num}`,
+        insertValue: `${version.num}`,
+        description: `${numberFormatter.format(
+          version.downloads
+        )} downloads - ${new Date(version.created_at).toLocaleDateString()}`,
+        hidden: version.yanked,
+      }));
+    } else if (lastToken.length > 0) {
+      const query = encodeURIComponent(lastToken);
+      const [remoteOut, localOut] = await Promise.all([
+        executeShellCommand(
+          `curl -sfL 'https://crates.io/api/v1/crates?q=${query}&per_page=60'`
+        ),
+        executeShellCommand(`cargo metadata --format-version 1 --no-deps`),
+      ]);
+
+      const remoteJson: CrateSearchResults = JSON.parse(remoteOut);
+      const remoteSuggustions: Fig.Suggestion[] = remoteJson.crates
+        .sort((a, b) => b.recent_downloads - a.recent_downloads)
+        .map((crate) => ({
+          icon: "📦",
+          displayName: `${crate.name}@${crate.newest_version}`,
+          name: crate.name,
+          description: `${numberFormatter.format(crate.recent_downloads)}${
+            crate.description ? ` - ${crate.description}` : ""
+          }`,
+        }));
+
+      let localSuggestions: Fig.Suggestion[] = [];
+      if (localOut.trim().length > 0) {
+        const localJson: Metadata = JSON.parse(localOut);
+        localSuggestions = localJson.packages
+          .filter((pkg) => !pkg.source)
+          .map((pkg) => ({
+            icon: "📦",
+            displayName: `${pkg.name}@${pkg.version}`,
+            name: pkg.name,
+            description: `Local Crate ${pkg.version}${
+              pkg.description ? ` - ${pkg.description}` : ""
+            }`,
+          }));
+      }
+
+      return remoteSuggustions.concat(localSuggestions);
+    } else {
+      return [];
+    }
+  },
+  trigger: (oldTokens, newTokens) => {
+    const atIndexOld = oldTokens.indexOf("@");
+    const atIndexNew = newTokens.indexOf("@");
+    return (
+      (atIndexOld === -1 && atIndexNew === -1) || atIndexOld !== atIndexNew
+    );
+  },
+  getQueryTerm: "@",
+};
+
+const tripleGenerator: Fig.Generator = {
+  script: "rustc --print target-list",
+  postProcess: (data: string) => {
+    return data
+      .split("\n")
+      .filter((line) => line.trim() !== "")
+      .map((name) => ({
+        name,
+      }));
+  },
+};
+
+const tomlBool: Fig.Suggestion[] = [
+  {
+    name: "true",
+  },
+  {
+    name: "false",
+  },
+];
+
+const configPairs: Record<
+  string,
+  Omit<Fig.Suggestion, "name"> & {
+    tomlSuggestions?: Fig.Suggestion[];
+  }
+> = {
+  "build.jobs": {
+    description:
+      "Sets the maximum number of compiler processes to run in parallel",
+  },
+  "build.rustc": {
+    description: "Path to the rustc compiler",
+  },
+  "build.rustc-wrapper": {
+    description: "Sets a wrapper to execute instead of rustc",
+  },
+  "build.target": {
+    description: "The default target platform triples to compile to",
+  },
+  "build.target-dir": {
+    description: "The path to where all compiler output is placed",
+  },
+  "build.rustflags": {
+    description: "Extra command-line flags to pass to rustc",
+  },
+  "build.rustdocflags": {
+    description: "Extra command-line flags to pass to rustdoc",
+  },
+  "build.incremental": {
+    description: "Whether or not to perform incremental compilation",
+    tomlSuggestions: tomlBool,
+  },
+  "build.dep-info-basedir": {
+    description: "Strips the given path prefix from dep info file paths",
+  },
+  "doc.browser": {
+    description:
+      "This option sets the browser to be used by cargo doc, overriding the BROWSER environment variable when opening documentation with the --open option",
+  },
+  "cargo-new.vcs": {
+    description:
+      "Specifies the source control system to use for initializing a new repository",
+    tomlSuggestions: vcsOptions.map((vcs) => ({
+      ...vcs,
+      name: `\\"${vcs.name}\\"`,
+      insertValue: `\\"${vcs.name}\\"`,
+    })),
+  },
+  "future-incompat-report.frequency": {
+    description:
+      "Controls how often we display a notification to the terminal when a future incompat report is available",
+    tomlSuggestions: [
+      {
+        name: '\\"always\\"',
+        // eslint-disable-next-line @withfig/fig-linter/no-useless-insertvalue
+        insertValue: '\\"always\\"',
+        description:
+          "Always display a notification when a command (e.g. cargo build) produces a future incompat report",
+      },
+      {
+        name: '\\"never\\"',
+        // eslint-disable-next-line @withfig/fig-linter/no-useless-insertvalue
+        insertValue: '\\"never\\"',
+        description: "Never display a notification",
+      },
+    ],
+  },
+  "http.debug": {
+    description: "If true, enables debugging of HTTP requests",
+    tomlSuggestions: tomlBool,
+  },
+  "http.proxy": {
+    description: "Sets an HTTP and HTTPS proxy to use",
+  },
+  "http.timeout": {
+    description: "Sets the timeout for each HTTP request, in seconds",
+  },
+  "http.cainfo": {
+    description: "Sets the path to a CA certificate bundle",
+  },
+  "http.check-revoke": {
+    description:
+      "This determines whether or not TLS certificate revocation checks should be performed. This only works on Windows",
+    tomlSuggestions: tomlBool,
+  },
+  "http.ssl-version": {
+    description: "This sets the minimum TLS version to use",
+  },
+  "http.low-speed-limit": {
+    description: "This setting controls timeout behavior for slow connections",
+  },
+  "http.multiplexing": {
+    description:
+      "When `true`, Cargo will attempt to use the HTTP2 protocol with multiplexing",
+    tomlSuggestions: tomlBool,
+  },
+  "http.user-agent": {
+    description: "Specifies a custom user-agent header to use",
+  },
+  "install.root": {
+    description:
+      "Sets the path to the root directory for installing executables for `cargo install`",
+  },
+  "net.retry": {
+    description: "Number of times to retry possibly spurious network errors",
+  },
+  "net.git-fetch-with-cli": {
+    description:
+      "If this is `true`, then Cargo will use the git executable to fetch registry indexes and git dependencies. If `false`, then it uses a built-in git library",
+    tomlSuggestions: tomlBool,
+  },
+  "net.offline": {
+    description:
+      "If this is true, then Cargo will avoid accessing the network, and attempt to proceed with locally cached data",
+    tomlSuggestions: tomlBool,
+  },
+};
+
+// Configs are in the format `key=value` where value is a toml value
+const configGenerator: Fig.Generator = keyValue({
+  keys: Object.entries(configPairs).map(([key, other]) => ({
+    name: key,
+    ...other,
+  })),
+  values: async (tokens, execute) => {
+    const key = tokens[tokens.length - 1].split("=")?.[0];
+    const pair = configPairs[key];
+    if (pair?.tomlSuggestions) {
+      return pair.tomlSuggestions;
+    }
+  },
+  separator: "=",
+});
+
 const completionSpec: (toolchain?: boolean) => Fig.Spec = (
   toolchain = true
 ) => ({
   name: "cargo",
   icon: "📦",
   description: "CLI Interface for Cargo",
-  args: toolchain
-    ? {
-        name: "toolchain",
-        generators: {
-          script: `rustup toolchain list | awk -F- '{ print "+"$1 }'`,
-          splitOn: "\n",
-          cache: {
-            strategy: "stale-while-revalidate",
-            ttl: 1000 * 60 * 4,
-          },
-        },
-        loadSpec: completionSpec(false),
-      }
-    : undefined,
   subcommands: [
     {
       name: "bench",
@@ -177,7 +480,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "bin",
-            generators: binList,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "bin" }),
             isVariadic: true,
           },
         },
@@ -188,6 +492,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "example",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "example" }),
           },
         },
         {
@@ -196,8 +502,9 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "test",
-            generators: testList,
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "test" }),
           },
         },
         {
@@ -207,6 +514,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "bench",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "bench" }),
           },
         },
         {
@@ -216,6 +525,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "package",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
           },
         },
         {
@@ -224,6 +535,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "exclude",
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
           },
         },
         {
@@ -256,7 +569,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "target",
-            generators: targetGenerator,
+            filterStrategy: "fuzzy",
+            generators: tripleGenerator,
           },
         },
         {
@@ -296,6 +610,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -416,6 +731,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "package",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
           },
         },
         {
@@ -424,6 +741,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "exclude",
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
           },
         },
         {
@@ -439,7 +758,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "bin",
-            generators: binList,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "bin" }),
             isVariadic: true,
           },
         },
@@ -450,6 +770,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "example",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "example" }),
           },
         },
         {
@@ -458,8 +780,9 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "test",
-            generators: testList,
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "test" }),
           },
         },
         {
@@ -469,6 +792,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "bench",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "bench" }),
           },
         },
         {
@@ -494,7 +819,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "target",
-            generators: targetGenerator,
+            filterStrategy: "fuzzy",
+            generators: tripleGenerator,
           },
         },
         {
@@ -541,6 +867,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -658,6 +985,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "package",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
           },
         },
         {
@@ -666,6 +995,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "exclude",
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
           },
         },
         {
@@ -681,7 +1012,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "bin",
-            generators: binList,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "bin" }),
             isVariadic: true,
           },
         },
@@ -692,6 +1024,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "example",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "example" }),
           },
         },
         {
@@ -700,8 +1034,9 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "test",
-            generators: testList,
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "test" }),
           },
         },
         {
@@ -711,6 +1046,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "bench",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "bench" }),
           },
         },
         {
@@ -736,7 +1073,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "target",
-            generators: targetGenerator,
+            filterStrategy: "fuzzy",
+            generators: tripleGenerator,
           },
         },
         {
@@ -776,6 +1114,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -888,6 +1227,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "package",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
           },
         },
         {
@@ -904,7 +1245,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "target",
-            generators: targetGenerator,
+            filterStrategy: "fuzzy",
+            generators: tripleGenerator,
           },
         },
         {
@@ -935,6 +1277,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -1020,6 +1363,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
               isRepeatable: true,
               args: {
                 name: "config",
+                generators: configGenerator,
               },
             },
             {
@@ -1082,6 +1426,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
               isRepeatable: true,
               args: {
                 name: "config",
+                generators: configGenerator,
               },
             },
             {
@@ -1140,6 +1485,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -1186,6 +1532,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "package",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
           },
         },
         {
@@ -1194,6 +1542,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "exclude",
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
           },
         },
         {
@@ -1209,7 +1559,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "bin",
-            generators: binList,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "bin" }),
             isVariadic: true,
           },
         },
@@ -1220,6 +1571,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "example",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "example" }),
           },
         },
         {
@@ -1246,7 +1599,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "target",
-            generators: targetGenerator,
+            filterStrategy: "fuzzy",
+            generators: tripleGenerator,
           },
         },
         {
@@ -1285,6 +1639,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -1399,7 +1754,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "target",
-            generators: targetGenerator,
+            filterStrategy: "fuzzy",
+            generators: tripleGenerator,
           },
         },
         {
@@ -1416,6 +1772,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -1466,6 +1823,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "package",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
           },
         },
         {
@@ -1474,6 +1833,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "exclude",
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
           },
         },
         {
@@ -1489,7 +1850,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "bin",
-            generators: binList,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "bin" }),
             isVariadic: true,
           },
         },
@@ -1500,6 +1862,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "example",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "example" }),
           },
         },
         {
@@ -1508,8 +1872,9 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "test",
-            generators: testList,
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "test" }),
           },
         },
         {
@@ -1519,6 +1884,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "bench",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "bench" }),
           },
         },
         {
@@ -1544,7 +1911,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "target",
-            generators: targetGenerator,
+            filterStrategy: "fuzzy",
+            generators: tripleGenerator,
           },
         },
         {
@@ -1584,6 +1952,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -1727,6 +2096,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -1785,6 +2155,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -1870,6 +2241,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -1967,6 +2339,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           exclusiveOn: ["--git", "--index", "--registry"],
           args: {
             name: "path",
+            template: "folders",
           },
         },
         {
@@ -1999,8 +2372,9 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "bin",
-            generators: binList,
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "bin" }),
           },
         },
         {
@@ -2010,6 +2384,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "example",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "example" }),
           },
         },
         {
@@ -2018,7 +2394,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "target",
-            generators: targetGenerator,
+            filterStrategy: "fuzzy",
+            generators: tripleGenerator,
           },
         },
         {
@@ -2073,6 +2450,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -2149,8 +2527,10 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
       args: {
         name: "crate",
         generators: searchGenerator,
+        filterStrategy: "fuzzy",
         debounce: true,
         isVariadic: true,
+        suggestCurrentToken: true,
       },
     },
     {
@@ -2188,6 +2568,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -2257,6 +2638,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -2324,6 +2706,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -2417,6 +2800,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -2519,6 +2903,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -2625,6 +3010,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -2681,7 +3067,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "target",
-            generators: targetGenerator,
+            filterStrategy: "fuzzy",
+            generators: tripleGenerator,
           },
         },
         {
@@ -2708,6 +3095,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "package",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
           },
         },
         {
@@ -2716,6 +3105,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "exclude",
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
           },
         },
         {
@@ -2747,6 +3138,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -2824,6 +3216,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "package",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
           },
         },
         {
@@ -2848,6 +3242,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -2886,7 +3281,9 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
       ],
       args: {
-        name: "spec",
+        name: "SPEC",
+        filterStrategy: "fuzzy",
+        generators: packageGenerator,
       },
     },
     {
@@ -2914,7 +3311,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "target",
-            generators: targetGenerator,
+            filterStrategy: "fuzzy",
+            generators: tripleGenerator,
           },
         },
         {
@@ -2930,6 +3328,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "package",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
           },
         },
         {
@@ -2979,6 +3379,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -3066,6 +3467,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -3128,6 +3530,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
               args: {
                 name: "package",
                 isVariadic: true,
+                filterStrategy: "fuzzy",
+                generators: packageGenerator,
               },
             },
             {
@@ -3144,6 +3548,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
               isRepeatable: true,
               args: {
                 name: "config",
+                generators: configGenerator,
               },
             },
             {
@@ -3202,6 +3607,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
               isRepeatable: true,
               args: {
                 name: "config",
+                generators: configGenerator,
               },
             },
             {
@@ -3260,6 +3666,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -3305,8 +3712,9 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "bin",
-            generators: binList,
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "bin" }),
           },
         },
         {
@@ -3316,6 +3724,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "example",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "example" }),
           },
         },
         {
@@ -3324,6 +3734,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "package",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
           },
         },
         {
@@ -3357,7 +3769,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "target",
-            generators: targetGenerator,
+            filterStrategy: "fuzzy",
+            generators: tripleGenerator,
           },
         },
         {
@@ -3397,6 +3810,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -3474,6 +3888,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "package",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
           },
         },
         {
@@ -3489,7 +3905,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "bin",
-            generators: binList,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "bin" }),
             isVariadic: true,
           },
         },
@@ -3500,6 +3917,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "example",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "example" }),
           },
         },
         {
@@ -3508,8 +3927,9 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "test",
-            generators: testList,
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "test" }),
           },
         },
         {
@@ -3519,6 +3939,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "bench",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "bench" }),
           },
         },
         {
@@ -3545,7 +3967,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "target",
-            generators: targetGenerator,
+            filterStrategy: "fuzzy",
+            generators: tripleGenerator,
           },
         },
         {
@@ -3558,7 +3981,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         {
           name: "--crate-type",
           description:
-            "Comma separated list of types of crates for the compiler to emit (unstable)",
+            "Comma separated list of types of crates for the compiler to emit",
           isRepeatable: true,
           args: {
             name: "crate-type",
@@ -3601,6 +4024,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -3708,6 +4132,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "package",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
           },
         },
         {
@@ -3723,7 +4149,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "bin",
-            generators: binList,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "bin" }),
             isVariadic: true,
           },
         },
@@ -3734,6 +4161,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "example",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "example" }),
           },
         },
         {
@@ -3742,8 +4171,9 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "test",
-            generators: testList,
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "test" }),
           },
         },
         {
@@ -3753,6 +4183,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "bench",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "bench" }),
           },
         },
         {
@@ -3778,7 +4210,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "target",
-            generators: targetGenerator,
+            filterStrategy: "fuzzy",
+            generators: tripleGenerator,
           },
         },
         {
@@ -3818,6 +4251,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -3951,6 +4385,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -3991,6 +4426,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
       args: {
         name: "query",
         generators: searchGenerator,
+        filterStrategy: "fuzzy",
         debounce: true,
         isVariadic: true,
         suggestCurrentToken: true,
@@ -4008,7 +4444,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "bin",
-            generators: binList,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "bin" }),
             isVariadic: true,
           },
         },
@@ -4019,6 +4456,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "example",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "example" }),
           },
         },
         {
@@ -4027,8 +4466,9 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "test",
-            generators: testList,
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "test" }),
           },
         },
         {
@@ -4038,6 +4478,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "bench",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: targetGenerator({ kind: "bench" }),
           },
         },
         {
@@ -4047,6 +4489,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "package",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
           },
         },
         {
@@ -4055,6 +4499,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "exclude",
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
           },
         },
         {
@@ -4088,7 +4534,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "target",
-            generators: targetGenerator,
+            filterStrategy: "fuzzy",
+            generators: tripleGenerator,
           },
         },
         {
@@ -4128,6 +4575,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -4242,10 +4690,13 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
       args: [
         {
           name: "TESTNAME",
+          isOptional: true,
         },
         {
           name: "args",
+          isOptional: true,
           isVariadic: true,
+          generators: testGenerator,
         },
       ],
     },
@@ -4269,6 +4720,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "package",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
           },
         },
         {
@@ -4277,6 +4730,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "exclude",
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
           },
         },
         {
@@ -4296,7 +4751,9 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "target",
-            generators: targetGenerator,
+            suggestions: ["all"],
+            filterStrategy: "fuzzy",
+            generators: tripleGenerator,
           },
         },
         {
@@ -4327,6 +4784,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "invert",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: dependencyGenerator,
           },
         },
         {
@@ -4336,6 +4795,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "prune",
+            filterStrategy: "fuzzy",
+            generators: dependencyGenerator,
           },
         },
         {
@@ -4383,6 +4844,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -4503,6 +4965,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -4541,7 +5004,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
       ],
       args: {
-        name: "spec",
+        name: "SPEC",
         generators: {
           script: `cargo install --list | \\grep -E "^[a-zA-Z\\-]+\\sv" | cut -d ' ' -f 1`,
           splitOn: "\n",
@@ -4561,12 +5024,15 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           args: {
             name: "package",
             isVariadic: true,
+            filterStrategy: "fuzzy",
+            generators: dependencyGenerator,
           },
         },
         {
           name: "--precise",
           description:
             "Update a single dependency to exactly PRECISE when used with -p",
+          dependsOn: ["--package", "-p"],
           args: {
             name: "precise",
           },
@@ -4593,6 +5059,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -4680,6 +5147,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -4773,6 +5241,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -4830,6 +5299,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -4915,6 +5385,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -4979,6 +5450,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           isRepeatable: true,
           args: {
             name: "config",
+            generators: configGenerator,
           },
         },
         {
@@ -5072,6 +5544,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           description: "Package to modify",
           args: {
             name: "SPEC",
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
           },
         },
         {
@@ -5149,14 +5623,95 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           description: "Add as dependency to the given target platform",
           args: {
             name: "TARGET",
-            generators: targetGenerator,
+            filterStrategy: "fuzzy",
+            generators: tripleGenerator,
           },
         },
       ],
       args: {
         name: "DEP_ID",
         generators: searchGenerator,
+        filterStrategy: "fuzzy",
         debounce: true,
+        isVariadic: true,
+        suggestCurrentToken: true,
+      },
+    },
+    {
+      name: ["remove", "rm"],
+      icon: "📦",
+      description: "Remove dependencies from a Cargo.toml manifest file",
+      options: [
+        {
+          name: "--dev",
+          description: "Remove as development dependency",
+        },
+        {
+          name: "--build",
+          description: "Remove as build dependency",
+        },
+        {
+          name: "--target",
+          description: "Remove as dependency to the given target platform",
+          args: {
+            name: "TARGET",
+            filterStrategy: "fuzzy",
+            generators: tripleGenerator,
+          },
+        },
+        {
+          name: ["-p", "--package"],
+          description: "Package to remove from",
+          args: {
+            name: "SPEC",
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
+          },
+        },
+        {
+          name: "--manifest-path",
+          description: "Path to Cargo.toml",
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Do not print cargo log messages",
+        },
+        {
+          name: "--dry-run",
+          description: "Don't actually write the manifest",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "Use verbose output",
+        },
+        {
+          name: "--color",
+          args: {
+            name: "WHEN",
+            suggestions: ["auto", "always", "never"],
+          },
+        },
+        {
+          name: "--frozen",
+          description: "Require Cargo.lock and cache are up to date",
+        },
+        {
+          name: "--locked",
+          description: "Require Cargo.lock is up to date",
+        },
+        {
+          name: "--offline",
+          description: "Run without accessing the network",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+      args: {
+        name: "DEP_ID",
+        generators: directDependencyGenerator,
+        filterStrategy: "fuzzy",
         isVariadic: true,
       },
     },
@@ -5183,6 +5738,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
       isRepeatable: true,
       args: {
         name: "config",
+        generators: configGenerator,
       },
     },
     {
@@ -5229,9 +5785,23 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
     },
   ],
   generateSpec: async (_tokens, executeShellCommand) => {
-    const subcommands: Fig.Subcommand[] = [];
+    const [toolchainOutput, listOutput] = await Promise.all([
+      executeShellCommand("rustup toolchain list"),
+      executeShellCommand("cargo --list"),
+    ]);
 
-    const commands = (await executeShellCommand("cargo --list"))
+    const toolchains: Fig.Option[] = toolchainOutput
+      .split("\n")
+      .map((toolchain) => {
+        return {
+          icon: "🧰",
+          name: `+${toolchain.split("-")[0]}`,
+          description: toolchain,
+        };
+      });
+
+    const subcommands: Fig.Subcommand[] = [];
+    const commands = listOutput
       .split("\n")
       .filter((_, i) => i != 0)
       .map((line) => line.trim().split(/\s+/, 1)[0]);
@@ -5355,6 +5925,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
             description: "Specify package to format",
             args: {
               name: "package",
+              filterStrategy: "fuzzy",
+              generators: packageGenerator,
             },
           },
         ],
@@ -5575,6 +6147,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
             isRequired: true,
             args: {
               name: "DEPENDENCY",
+              filterStrategy: "fuzzy",
               generators: dependencyGenerator,
             },
           },
@@ -5614,6 +6187,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
             description: "Dependencies to not print in the output",
             args: {
               name: "DEPENDENCY",
+              filterStrategy: "fuzzy",
               generators: dependencyGenerator,
             },
           },
@@ -5641,7 +6215,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
             description: "Packages to inspect for updates",
             args: {
               name: "PACKAGES",
-              generators: dependencyGenerator,
+              filterStrategy: "fuzzy",
+              generators: packageGenerator,
             },
           },
           {
@@ -5653,7 +6228,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
             description: "Package to treat as the root package",
             args: {
               name: "PACKAGE",
-              generators: dependencyGenerator,
+              filterStrategy: "fuzzy",
+              generators: packageGenerator,
             },
           },
           {
@@ -5694,6 +6270,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
             description: "Package(s) to check",
             args: {
               name: "SPEC",
+              filterStrategy: "fuzzy",
+              generators: packageGenerator,
             },
           },
           {
@@ -5711,6 +6289,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
             description: "Exclude packages from the check",
             args: {
               name: "SPEC",
+              filterStrategy: "fuzzy",
+              generators: packageGenerator,
             },
           },
           {
@@ -5729,6 +6309,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
             description: "Check only the specified binary",
             args: {
               name: "NAME",
+              filterStrategy: "fuzzy",
+              generators: targetGenerator({ kind: "bin" }),
             },
           },
           {
@@ -5740,6 +6322,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
             description: "Check only the specified example",
             args: {
               name: "NAME",
+              filterStrategy: "fuzzy",
+              generators: targetGenerator({ kind: "example" }),
             },
           },
           {
@@ -5751,6 +6335,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
             description: "Check only the specified test target",
             args: {
               name: "NAME",
+              filterStrategy: "fuzzy",
+              generators: targetGenerator({ kind: "test" }),
             },
           },
           {
@@ -5762,6 +6348,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
             description: "Check only the specified bench target",
             args: {
               name: "NAME",
+              filterStrategy: "fuzzy",
+              generators: targetGenerator({ kind: "bench" }),
             },
           },
           {
@@ -6117,6 +6705,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
               "One or more crates to exclude from the crate graph that is used",
             args: {
               name: "EXCLUDE",
+              filterStrategy: "fuzzy",
+              generators: packageGenerator,
             },
           },
           {
@@ -6240,6 +6830,8 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
             description: "Package to build",
             args: {
               name: "SPEC",
+              filterStrategy: "fuzzy",
+              generators: packageGenerator,
             },
           },
           {
@@ -6479,9 +7071,277 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
       subcommands.push(fuzz);
     }
 
+    if (commands.includes("insta")) {
+      const commonOptions: Fig.Option[] = [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: ["-V", "--version"],
+          description: "Print version information",
+        },
+        {
+          name: "--color",
+          description: "Coloring: auto, always, never",
+          args: {
+            name: "WHEN",
+            default: "auto",
+            suggestions: ["auto", "always", "never"],
+          },
+        },
+        {
+          name: "--manifest-path",
+          description: "Path to Cargo.toml",
+          args: {
+            name: "PATH",
+            generators: filepaths({ equals: "Cargo.toml" }),
+          },
+        },
+        {
+          name: "--workspace-root",
+          description: "Explicit path to the workspace root",
+          args: {
+            name: "PATH",
+            template: "folders",
+          },
+        },
+        {
+          name: ["-e", "--extensions"],
+          description: "Sets the extensions to consider.  Defaults to `.snap`",
+          args: {
+            name: "EXTENSIONS",
+            isVariadic: true,
+          },
+        },
+        {
+          name: "--all",
+          description: "Work on all packages in the workspace",
+        },
+        {
+          name: "--no-ignore",
+          description: "Also walk into ignored paths",
+        },
+      ];
+
+      const insta: Fig.Subcommand = {
+        name: "insta",
+        icon: "🛠",
+        description: "A `cargo` subcommand for snapshot testing",
+        subcommands: [
+          {
+            name: "review",
+            description: "Interactively review snapshots",
+            options: [
+              ...commonOptions,
+              {
+                name: "--snapshot",
+                description: "Limits the operation to one or more snapshots",
+                args: {
+                  name: "snapshot-filter",
+                  isVariadic: true,
+                },
+              },
+              {
+                name: ["-q", "--quiet"],
+                description: "Do not print to stdout",
+              },
+            ],
+          },
+          {
+            name: "reject",
+            description: "Rejects all snapshots",
+            options: [
+              ...commonOptions,
+              {
+                name: "--snapshot",
+                description: "Limits the operation to one or more snapshots",
+                args: {
+                  name: "snapshot-filter",
+                  isVariadic: true,
+                },
+              },
+              {
+                name: ["-q", "--quiet"],
+                description: "Do not print to stdout",
+              },
+            ],
+          },
+          {
+            name: "accept",
+            description: "Accepts all snapshots",
+            options: [
+              ...commonOptions,
+              {
+                name: "--snapshot",
+                description: "Limits the operation to one or more snapshots",
+                args: {
+                  name: "snapshot-filter",
+                  isVariadic: true,
+                },
+              },
+              {
+                name: ["-q", "--quiet"],
+                description: "Do not print to stdout",
+              },
+            ],
+          },
+          {
+            name: "test",
+            description: "Run tests and then reviews",
+            options: [
+              ...commonOptions,
+              {
+                name: "--snapshot",
+                description: "Limits the operation to one or more snapshots",
+                args: {
+                  name: "snapshot-filter",
+                  isVariadic: true,
+                },
+              },
+              {
+                name: ["-q", "--quiet"],
+                description: "Do not print to stdout",
+              },
+              {
+                name: ["-p", "--package"],
+                description: "Package to run tests for",
+                args: {
+                  name: "SPEC",
+                  filterStrategy: "fuzzy",
+                  generators: packageGenerator,
+                },
+              },
+              {
+                name: "--no-force-pass",
+                description: "Disable force-passing of snapshot tests",
+              },
+              {
+                name: "--fail-fast",
+                description: "Prevent running all tests regardless of failure",
+              },
+              {
+                name: "--features",
+                description: "Space-separated list of features to activate",
+                args: {
+                  name: "features",
+                },
+              },
+              {
+                name: ["-j", "--jobs"],
+                description: "Number of parallel jobs, defaults to # of CPUs",
+                args: {
+                  name: "jobs",
+                },
+              },
+              {
+                name: "--release",
+                description:
+                  "Build artifacts in release mode, with optimizations",
+              },
+              {
+                name: "--all-features",
+                description: "Activate all available features",
+              },
+              {
+                name: "--no-default-features",
+                description: "Do not activate the `default` feature",
+              },
+              {
+                name: "--review",
+                description: "Follow up with review",
+              },
+              {
+                name: "--accept",
+                description: "Accept all snapshots after test",
+              },
+              {
+                name: "--accept-unseen",
+                description: "Accept all new (previously unseen)",
+              },
+              {
+                name: "--keep-pending",
+                description: "Do not reject pending snapshots before run",
+              },
+              {
+                name: "--force-update-snapshots",
+                description:
+                  "Update all snapshots even if they are still matching",
+              },
+              {
+                name: "--delete-unreferenced-snapshots",
+                description: "Delete unreferenced snapshots after the test run",
+              },
+              {
+                name: "--glob-filter",
+                description: "Filters to apply to the insta glob feature",
+                args: {
+                  name: "glob-filter",
+                  isVariadic: true,
+                },
+              },
+              {
+                name: ["-Q", "--no-quiet"],
+                description: "Do not pass the quiet flag (`-q`) to tests",
+              },
+              {
+                name: "--test-runner",
+                description: "Picks the test runner",
+                args: {
+                  name: "test-runner",
+                },
+              },
+            ],
+          },
+          {
+            name: "pending",
+            description: "Print a summary of all pending snapshots",
+            options: [
+              ...commonOptions,
+              {
+                name: "--as-json",
+                description: "Changes the output from human readable to JSON",
+              },
+            ],
+          },
+          {
+            name: "show",
+            description: "Shows a specific snapshot",
+            options: commonOptions,
+            args: {
+              name: "path",
+              description: "The path to the snapshot file",
+              generators: filepaths({ extensions: ["snap"] }),
+            },
+          },
+        ],
+        options: [
+          {
+            name: ["-h", "--help"],
+            description: "Print help information",
+          },
+          {
+            name: ["-V", "--version"],
+            description: "Print version information",
+          },
+          {
+            name: "--color",
+            description: "Coloring: auto, always, never",
+            args: {
+              name: "WHEN",
+              default: "auto",
+              suggestions: ["auto", "always", "never"],
+            },
+          },
+        ],
+      };
+      subcommands.push(insta);
+    }
+
     return {
       name: "cargo",
       subcommands,
+      options: toolchains,
     };
   },
 });

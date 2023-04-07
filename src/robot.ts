@@ -64,7 +64,7 @@ const testCasesGenerator: Fig.Generator = {
     for (const [_, block] of iter) {
       // get every test case name
       // regex: word/s at the start of a line until '#'
-      const lines = block.matchAll(/^(\w+ *)+(?!.\#.*)(?!.\#.*)/gm);
+      const lines = block.matchAll(/^(\w+( |-)*)+(?!.\#.*)(?!.\#.*)/gm);
       // go through all the test cases names found
       for (let [testCase] of lines) {
         testCase = testCase.trim();
@@ -458,12 +458,12 @@ const completionSpec: Fig.Spec = {
         name: "pattern",
         suggestions: [
           {
-            name: "name:&lt;pattern&gt;",
+            name: "name:<pattern>",
             insertValue: "name:{cursor}",
             type: "option",
           },
           {
-            name: "tag:&lt;pattern&gt;",
+            name: "tag:<pattern>",
             insertValue: "tag:{cursor}",
             type: "option",
           },
@@ -504,12 +504,12 @@ const completionSpec: Fig.Spec = {
             type: "option",
           },
           {
-            name: "name:&lt;pattern&gt;",
+            name: "name:<pattern>",
             insertValue: "name:{cursor}",
             type: "option",
           },
           {
-            name: "tag:&lt;pattern&gt;",
+            name: "tag:<pattern>",
             insertValue: "tag:{cursor}",
             type: "option",
           },
@@ -538,12 +538,12 @@ const completionSpec: Fig.Spec = {
             type: "option",
           },
           {
-            name: "name:&lt;pattern&gt;",
+            name: "name:<pattern>",
             insertValue: "name:{cursor}",
             type: "option",
           },
           {
-            name: "tag:&lt;pattern&gt;",
+            name: "tag:<pattern>",
             insertValue: "tag:{cursor}",
             type: "option",
           },
@@ -736,7 +736,6 @@ const completionSpec: Fig.Spec = {
         name: "path",
         generators: filepaths({
           extensions: ["zip"],
-          suggestFolders: "always",
         }),
       },
     },

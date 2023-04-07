@@ -149,7 +149,26 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
-        { name: "restart", description: "Restart an application" },
+        {
+          name: "restart",
+          description: "Restart an application",
+          options: [
+            {
+              name: ["-f", "--force"],
+              description:
+                "Will issue a restart against each Machine even if there are errors. ( Machines only )",
+            },
+            {
+              name: "--skip-health-checks",
+              description:
+                "Restarts app without waiting for health checks. ( Machines only )",
+            },
+          ],
+          args: {
+            name: "app",
+            generators: flyAppsGenerator,
+          },
+        },
       ],
     },
     {
@@ -2077,7 +2096,14 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-    { name: "restart", description: "Restart an application" },
+    {
+      name: "restart",
+      description: "Restart an application",
+      deprecated: {
+        description: "Please use `fly apps restart` instead",
+      },
+      hidden: true,
+    },
     { name: "resume", description: "Resume an application" },
     {
       name: "scale",
