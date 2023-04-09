@@ -51,7 +51,6 @@ const completionSpec: Fig.Spec = {
       subcommands,
     };
   },
-  requiresSubcommand: false,
   options: [
     {
       name: ["-s", "-short"],
