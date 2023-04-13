@@ -20,11 +20,6 @@ interface NxGenerators {
   generate: Fig.Generator;
   list: Fig.Generator;
   project: Fig.Generator;
-  projectWithTargetBuild: Fig.Generator;
-  projectWithTargetE2e: Fig.Generator;
-  projectWithTargetLint: Fig.Generator;
-  projectWithTargetServe: Fig.Generator;
-  projectWithTargetTest: Fig.Generator;
   projects: Fig.Generator;
   run: Fig.Generator;
   targets: Fig.Generator;
@@ -199,32 +194,6 @@ const preProcessProjects = async (
   }
 };
 
-const projectWithTargetGenerator = (target: string): Fig.Generator => {
-  return {
-    // set cache to one day
-    cache: oneDayCache,
-    // the custom generator
-    custom: async (
-      tokens: string[],
-      executeShellCommand: Fig.ExecuteShellCommandFunction,
-      generatorContext: Fig.GeneratorContext
-    ) => {
-      // suggestions to be returned
-      const suggestions: Fig.Suggestion[] = [];
-
-      // pre process projects
-      await preProcessProjects(executeShellCommand);
-
-      // push all project names to the suggestions
-      for (const name of nxTargetWithProjectsCache.get(target) || []) {
-        suggestions.push({ name });
-      }
-
-      return suggestions;
-    },
-  };
-};
-
 const listMapKeysGenerator = (map: Map<string, unknown>): Fig.Generator => {
   return {
     // set cache to one day
@@ -371,11 +340,6 @@ const nxGenerators: NxGenerators = {
       return suggestions;
     },
   },
-  projectWithTargetBuild: projectWithTargetGenerator("build"),
-  projectWithTargetE2e: projectWithTargetGenerator("e2e"),
-  projectWithTargetLint: projectWithTargetGenerator("lint"),
-  projectWithTargetServe: projectWithTargetGenerator("serve"),
-  projectWithTargetTest: projectWithTargetGenerator("test"),
   projects: listMapKeysGenerator(nxProjectWithTargetsCache),
   run: {
     // set cache to one day
@@ -722,71 +686,49 @@ const optionsDict: NxOptions = {
   },
 };
 
+const RUN_DERIVED_BASE_TARGETS = ["build", "e2e", "lint", "serve", "test"];
+const RUN_DERIVED_BASE_TARGETS_WITH_CONFIGURATION = ["build", "serve"];
 /**
  * These subcommands are derived from run - https://nx.dev/packages/nx/documents/run
  * e.g. `nx run project:target:configuration` === `nx target project -c configuration`
- * `nx run app:build:staging` === `nx build app -c staging`
- * `nx run app:test` === `nx test app`
- * `nx run app:lint` === `nx lint app`
- *
- * There can be much more targets derived from the project json but these are the basic ones.
  */
-const runDerivedSubcommands: Fig.Subcommand[] = [
-  // build
-  {
-    name: "build",
-    description: "Build target",
-    args: {
-      name: "project",
-      generators: nxGenerators.projectWithTargetBuild,
-    },
-    options: [optionsDict.configuration, optionsDict.help, optionsDict.version],
-  },
-  // serve
-  {
-    name: "serve",
-    description: "Serve target",
-    args: {
-      name: "project",
-      generators: nxGenerators.projectWithTargetServe,
-    },
-    options: [optionsDict.configuration, optionsDict.help, optionsDict.version],
-  },
-  // test
-  {
-    name: "test",
-    description: "Test target",
-    args: {
-      name: "project",
-      generators: nxGenerators.projectWithTargetTest,
-    },
-    options: [optionsDict.help, optionsDict.version],
-  },
-  // e2e
-  {
-    name: "e2e",
-    description: "E2e target",
-    args: {
-      name: "project",
-      generators: nxGenerators.projectWithTargetE2e,
-    },
-    options: [optionsDict.help, optionsDict.version],
-  },
-  // lint
-  {
-    name: "lint",
-    description: "Lint target",
-    args: {
-      name: "project",
-      generators: nxGenerators.projectWithTargetLint,
-    },
-    options: [optionsDict.help, optionsDict.version],
-  },
-];
+const runDerivedSubcommands = async (
+  tokens: string[],
+  executeShellCommand: Fig.ExecuteShellCommandFunction
+): Promise<Fig.Spec> => {
+  const subcommands: Fig.Subcommand[] = [];
+
+  // pre process projects
+  await preProcessProjects(executeShellCommand);
+
+  // iterate all targets
+  for (const [target, projects] of nxTargetWithProjectsCache) {
+    subcommands.push({
+      name: target,
+      description: `${target} target`,
+      icon: RUN_DERIVED_BASE_TARGETS.includes(target)
+        ? "fig://icon?type=command"
+        : "fig://icon?type=asterisk",
+      args: {
+        name: "project",
+        suggestions: projects.map((project) => ({ name: project })),
+      },
+      options: RUN_DERIVED_BASE_TARGETS_WITH_CONFIGURATION.includes(target)
+        ? [optionsDict.configuration, optionsDict.help, optionsDict.version]
+        : [optionsDict.help, optionsDict.version],
+    });
+  }
+
+  return {
+    name: "nx",
+    subcommands,
+  };
+};
 
 const completionSpec: Fig.Spec = {
   name: "nx",
   description: "Fig completions for Nx by Nrwl",
+  generateSpec: runDerivedSubcommands,
   subcommands: [
     // init - https://nx.dev/packages/nx/documents/init
     {
@@ -827,7 +769,6 @@ const completionSpec: Fig.Spec = {
         optionsDict.version,
       ],
     },
-    ...runDerivedSubcommands,
     // daemon - https://nx.dev/packages/nx/documents/daemon
     {
       name: "daemon",
