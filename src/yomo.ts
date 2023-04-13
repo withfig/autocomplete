@@ -44,7 +44,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "run",
-      description: "Build a StreamFunction to WebAssembly",
+      description: "Run a wasm stream function",
       args: {
         name: ".wasm file",
         description: "The .wasm file to run",
