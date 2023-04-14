@@ -7,7 +7,7 @@
   "types": "./build/index.d.ts",
   "type": "module",
   "browserslist": [
-    "safari >=11",
+    "safari >=12",
     "edge >=79"
   ],
   "scripts": {
