@@ -6757,5 +6757,19 @@ versions["2.14.2"] = {
   ],
 };
 
+versions["2.15.0"] = {
+  subcommands: [
+    {
+      name: "restart",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+  ],
+};
+
 export { versions };
 export default completion;

@@ -130,6 +130,18 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: ["hc", "healthcheck"],
+      description: "Checks if needed tools are installed",
+      options: [
+        {
+          name: ["--config", "-f"],
+          description: "Configuration file",
+          args: { name: "config", template: "filepaths" },
+        },
+        { name: ["--quiet", "-q"], description: "Quiet mode: no output" },
+      ],
+    },
+    {
       name: ["i", "init"],
       description: "Generates a .goreleaser.yaml file",
       options: [
@@ -276,6 +288,10 @@ const completionSpec: Fig.Spec = {
               description: "Generate the autocompletion script for zsh",
             },
           ],
+        },
+        {
+          name: ["hc", "healthcheck"],
+          description: "Checks if needed tools are installed",
         },
         {
           name: ["i", "init"],

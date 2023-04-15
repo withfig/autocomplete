@@ -4690,9 +4690,11 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
       args: [
         {
           name: "TESTNAME",
+          isOptional: true,
         },
         {
           name: "args",
+          isOptional: true,
           isVariadic: true,
           generators: testGenerator,
         },
