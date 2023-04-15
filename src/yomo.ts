@@ -48,6 +48,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: ".wasm file",
         description: "The .wasm file to run",
+        generators: filepaths({ extensions: ["wasm"] }),
       },
       options: [
         {
