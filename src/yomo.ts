@@ -39,6 +39,10 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-m", "--modfile"],
           description: "Custom go.mod filepath",
+          args: {
+            name: "module",
+            generators: filepaths({ extensions: ["mod"] }),
+          },
         },
       ],
     },
