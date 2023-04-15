@@ -116,19 +116,20 @@ const databaseGenerator: Fig.Generator = {
   },
 };
 
-const commonCommandsOptions = [
+const persistentOptions = [
   {
     name: ["--help", "-h"],
     description: "Show help for snaplet",
+    isPersistent: true,
   },
   {
     name: ["--version", "-v"],
     description: "Show version number",
+    isPersistent: true,
   },
 ];
 
 const authCommand: Fig.Subcommand = {
-  options: [...commonCommandsOptions],
   name: "auth",
   description: "Manage auth state",
   subcommands: [
@@ -136,7 +137,6 @@ const authCommand: Fig.Subcommand = {
       name: ["login", "setup"],
       description: "Login with an access token",
       args: { name: "access-token", isOptional: true },
-      options: [...commonCommandsOptions],
     },
   ],
 };
@@ -152,7 +152,6 @@ const yesOption: Fig.Option = {
   description: "Automatically accept any prompt, useful for scripts",
 };
 const configCommand: Fig.Subcommand = {
-  options: [...commonCommandsOptions],
   name: "config",
   description: "Manage configuration",
   subcommands: [
@@ -163,26 +162,24 @@ const configCommand: Fig.Subcommand = {
           name: "--dry-run",
         },
         configTypeOption,
-        ...commonCommandsOptions,
       ],
 
       description: "Generate transform files",
     },
     {
       name: ["list", "ls"],
-      options: [...commonCommandsOptions],
 
       description: "List config variables",
     },
     {
       name: "pull",
-      options: [configTypeOption, ...commonCommandsOptions],
+      options: [configTypeOption],
 
       description: "Pull cloud project config to local",
     },
     {
       name: "push",
-      options: [configTypeOption, ...commonCommandsOptions],
+      options: [configTypeOption],
 
       description: "Push local project config to cloud",
     },
@@ -194,7 +191,6 @@ const configCommand: Fig.Subcommand = {
         },
         { name: "--no-generate" },
         yesOption,
-        ...commonCommandsOptions,
       ],
 
       description: "Setup local project configuration",
@@ -217,7 +213,6 @@ const databaseGitOption: Fig.Option = {
   description: "Infer the database name from the current git branch",
 };
 const databaseCommand: Fig.Subcommand = {
-  options: [...commonCommandsOptions],
   name: ["database", "db"],
   description: "Manage preview database",
   subcommands: [
@@ -241,7 +236,6 @@ const databaseCommand: Fig.Subcommand = {
           description:
             "Remove the snapshot from the preview database server cache",
         },
-        ...commonCommandsOptions,
       ],
     },
     {
@@ -268,7 +262,6 @@ const databaseCommand: Fig.Subcommand = {
           description:
             "Force the database creation, it will drop and recreate the existing database if present",
         },
-        ...commonCommandsOptions,
       ],
     },
     {
@@ -279,7 +272,7 @@ const databaseCommand: Fig.Subcommand = {
         isOptional: true,
         generators: databaseGenerator,
       },
-      options: [databaseGitOption, ...commonCommandsOptions],
+      options: [databaseGitOption],
     },
     {
       name: ["url", "u"],
@@ -289,12 +282,12 @@ const databaseCommand: Fig.Subcommand = {
         isOptional: true,
         generators: databaseGenerator,
       },
-      options: [databaseGitOption, ...commonCommandsOptions],
+      options: [databaseGitOption],
     },
     {
       name: ["destroy", "ds"],
       description: "Destroy the database server",
-      options: [yesOption, ...commonCommandsOptions],
+      options: [yesOption],
     },
     {
       name: ["setup", "s"],
@@ -335,25 +328,21 @@ const databaseCommand: Fig.Subcommand = {
             ],
           },
         },
-        ...commonCommandsOptions,
       ],
     },
     {
       name: ["list", "ls"],
       description: "List preview databases",
-      options: [...commonCommandsOptions],
     },
   ],
 };
 
 const discordCommand: Fig.Subcommand = {
-  options: [...commonCommandsOptions],
   name: ["discord", "chat"],
   description: "Open the Snaplet Discord chat window in your browser",
 };
 
 const documentationCommand: Fig.Subcommand = {
-  options: [...commonCommandsOptions],
   name: ["documentation", "docs"],
   description: "Opens the Snaplet Documentation in your browser",
 };
@@ -365,7 +354,6 @@ const projectTeamOption: Fig.Option = {
   },
 };
 const projectCommand: Fig.Subcommand = {
-  options: [...commonCommandsOptions],
   name: "project",
   description: "Manage project configuration",
   subcommands: [
@@ -375,12 +363,11 @@ const projectCommand: Fig.Subcommand = {
       args: {
         name: "name",
       },
-      options: [projectTeamOption, ...commonCommandsOptions],
+      options: [projectTeamOption],
     },
     {
       name: "invite",
       description: "Create an invite URL for this project",
-      options: [...commonCommandsOptions],
     },
     {
       name: "setup",
@@ -389,13 +376,11 @@ const projectCommand: Fig.Subcommand = {
         name: "project-id",
         isOptional: true,
       },
-      options: [...commonCommandsOptions],
     },
   ],
 };
 
 const proxyCommand: Fig.Subcommand = {
-  options: [...commonCommandsOptions],
   name: ["proxy", "dev"],
   description: "Start a database proxy",
 };
@@ -413,14 +398,12 @@ const seedCommand: Fig.Subcommand = {
         default: "100",
       },
     },
-    ...commonCommandsOptions,
   ],
   name: ["seed", "gen", "generate"],
   description: "Populates an empty database with generated data",
 };
 
 const snapshotCommand: Fig.Subcommand = {
-  options: [...commonCommandsOptions],
   name: ["snapshot", "ss"],
   description: "Manage snapshots",
   subcommands: [
@@ -469,18 +452,17 @@ const snapshotCommand: Fig.Subcommand = {
             suggestions: ["strict", "unsafe", "auto"],
           },
         },
-        ...commonCommandsOptions,
       ],
     },
     {
       name: "create",
       description: "Create a snapshot in cloud",
-      options: [{ name: "--json" }, ...commonCommandsOptions],
+      options: [{ name: "--json" }],
     },
     {
       name: ["list", "ls"],
       description: "List all snapshots",
-      options: [snapshotTagsOption, ...commonCommandsOptions],
+      options: [snapshotTagsOption],
     },
     {
       name: ["restore", "r"],
@@ -521,7 +503,6 @@ const snapshotCommand: Fig.Subcommand = {
             "Restore data only (keep the current schema and indexes)",
           deprecated: { description: "Use --no-schema" },
         },
-        ...commonCommandsOptions,
       ],
     },
     {
@@ -539,26 +520,55 @@ const snapshotCommand: Fig.Subcommand = {
           ...snapshotLatestOption,
           description: "Share the latest snapshot",
         },
-        ...commonCommandsOptions,
+      ],
+    },
+    {
+      name: ["sample", "s"],
+      description: "Create a sample of a database",
+      args: {
+        name: "destination-path",
+        isOptional: true,
+        template: "folders",
+      },
+      options: [
+        {
+          name: ["--env", "--environment"],
+          description: "Environment to use when slicing the snapshot",
+          args: {
+            name: "environment-name",
+            suggestions: ["cloud", "local"],
+            default: "local",
+          },
+        },
+        {
+          name: ["--sample-config-path", "--subset-path"],
+          description: "Path to a sample config file",
+          args: {
+            template: "filepaths",
+          },
+        },
+        {
+          name: ["-f", "--force"],
+          description: "Force overwrite existing sample file",
+          isDangerous: true,
+          isRequired: false,
+        },
       ],
     },
   ],
 };
 
 const subsetCommand: Fig.Subcommand = {
-  options: [...commonCommandsOptions],
   name: ["subset", "subsetting"],
   description: "Manage subsetting",
   subcommands: [
     {
       name: ["setup", "configure", "config"],
       description: "Configure subsetting",
-      options: [...commonCommandsOptions],
     },
   ],
 };
 const teamCommand: Fig.Subcommand = {
-  options: [...commonCommandsOptions],
   name: "team",
   description: "Manage team configuration",
   subcommands: [
@@ -568,24 +578,22 @@ const teamCommand: Fig.Subcommand = {
       args: {
         name: "team-name",
       },
-      options: [...commonCommandsOptions],
     },
   ],
 };
 const upgradeCommand: Fig.Subcommand = {
-  options: [...commonCommandsOptions],
   name: "upgrade",
   description: "Upgrade this binary",
 };
 const completionCommand: Fig.Subcommand = {
-  options: [...commonCommandsOptions],
   name: "completion",
   description: "Generate completion script",
 };
 
 const completionSpec: Fig.Spec = {
   name: "snaplet",
-  description: "",
+  description:
+    "Create and share PostgreSQL snapshots with schema, data transformation, and preview databases for collaborative development (see: https://docs.snaplet.dev)",
   subcommands: [
     authCommand,
     configCommand,
@@ -601,7 +609,7 @@ const completionSpec: Fig.Spec = {
     upgradeCommand,
     completionCommand,
   ],
-  options: commonCommandsOptions,
+  options: persistentOptions,
   // Only uncomment if snaplet takes an argument
   // args: {}
 };
