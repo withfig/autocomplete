@@ -24,6 +24,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: ".go file",
         description: "The .go file to build",
+        generators: filepaths({ extensions: ["go"] }),
       },
       options: [
         {
