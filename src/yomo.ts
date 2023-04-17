@@ -1,4 +1,4 @@
-import { filepaths } from "@fig/autocomplete-generators"
+import { filepaths } from "@fig/autocomplete-generators";
 
 const completionSpec: Fig.Spec = {
   name: "yomo",
