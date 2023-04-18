@@ -207,7 +207,7 @@ const completionSpec: Fig.Spec = {
           description: "Bypass the cache",
         },
         {
-          name: ["-m", "--models"],
+          name: ["-s", "--select"],
           description: "Subset of models",
           args: {
             name: "Model inclusions subset",
@@ -338,7 +338,7 @@ const completionSpec: Fig.Spec = {
       description: "Executes tests defined in a project",
       options: [
         {
-          name: ["-m", "--models"],
+          name: ["-s", "--select"],
           description: "Subset of models to include",
           args: {
             name: "Model inclusions subset",
@@ -753,7 +753,7 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["-m", "--models"],
+          name: ["-s", "--select"],
           description:
             "Like the --select flag, this flag is used to select nodes. It implies --resource-type=model, and will only return models in the results of the dbt ls command",
           args: {
