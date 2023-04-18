@@ -753,22 +753,6 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["-s", "--select"],
-          description:
-            "Like the --select flag, this flag is used to select nodes. It implies --resource-type=model, and will only return models in the results of the dbt ls command",
-          args: {
-            name: "SELECTOR",
-            isVariadic: true,
-            suggestions: [
-              "path:",
-              "tag:",
-              "config:",
-              "test_type:",
-              "test_name:",
-            ],
-          },
-        },
-        {
           name: "--exclude",
           description:
             "Specify selectors that should be excluded from the list of returned nodes",
