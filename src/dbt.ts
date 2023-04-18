@@ -92,7 +92,7 @@ const completionSpec: Fig.Spec = {
           description: "Bypass the cache",
         },
         {
-          name: ["-m", "--models"],
+          name: ["-s", "--select"],
           description: "Subset of models",
           args: {
             name: "Model inclusions subset",
