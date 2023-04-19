@@ -141,6 +141,10 @@ const suggestions: Fig.Suggestion[] = [
     name: "sta",
     icon: "https://static1.smartbear.co/swagger/media/assets/swagger_fav.png",
   },
+  {
+    name: "@wordpress/create-block",
+    icon: "https://s1.wp.com/i/webclip.png",
+  },
 ];
 
 const completionSpec: Fig.Spec = {
