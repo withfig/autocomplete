@@ -551,7 +551,6 @@ const snapshotCommand: Fig.Subcommand = {
           name: ["-f", "--force"],
           description: "Force overwrite existing sample file",
           isDangerous: true,
-          isRequired: false,
         },
       ],
     },
