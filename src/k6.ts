@@ -1,3 +1,5 @@
+import { describe } from "node:test";
+
 const completionSpec: Fig.Spec = {
   name: "k6",
   description:
@@ -456,6 +458,78 @@ const completionSpec: Fig.Spec = {
             name: "no-usage-report",
             description: "Don't send anonymous stats to the developers",
           },
+        },
+      ],
+    },
+    {
+      name: "scale",
+      description: "Scale a running test",
+      args: {
+        name: "scale",
+        description: "Scale a running test",
+      },
+      subcommands: [
+        {
+          name: "-h, --help",
+          description: "Help for scale",
+        },
+        {
+          name: "-m --max",
+          description: "Max avalible virtual users",
+          args: {
+            name: "max",
+            description: "Max avalible virtual users",
+          },
+        },
+        {
+          name: "-u --vus",
+          description: "Number of virtual users (default 1)",
+          args: {
+            name: "vus",
+            description: "Number of virtual users (default 1)",
+          },
+        },
+      ],
+    },
+    {
+      name: "stats",
+      description: "Show test metrics",
+      args: {
+        name: "stats",
+        description: "Show test metrics",
+      },
+      subcommands: [
+        {
+          name: "-h, --help",
+          description: "Help for stats",
+        },
+      ],
+    },
+    {
+      name: "status",
+      description: "Show test status",
+      args: {
+        name: "status",
+        description: "Show test status",
+      },
+      subcommands: [
+        {
+          name: "-h, --help",
+          description: "Help for status",
+        },
+      ],
+    },
+    {
+      name: "version",
+      description: "Show the application version and exit",
+      args: {
+        name: "version",
+        description: "Show the application version and exit",
+      },
+      subcommands: [
+        {
+          name: "-h, --help",
+          description: "Help for version",
         },
       ],
     },
