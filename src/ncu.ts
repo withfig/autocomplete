@@ -76,6 +76,7 @@ const optionsDict: NcuOptions = {
   },
   cacheFile: {
     name: "--cacheFile",
+    dependsOn: ["--cache"],
     description:
       'Filepath for the cache file. Only works with --cache. (default: "~/.ncu-cache.json")',
     args: {
