@@ -55,6 +55,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.FIG_BOT_TOKEN }}
         with:
           skip-tag: "true"
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
       - name: Publish to npm
         uses: JS-DevTools/npm-publish@v2
         with:
