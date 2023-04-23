@@ -415,7 +415,7 @@ const optionsDict: NcuOptions = {
 
 const completionSpec: Fig.Spec = {
   name: "ncu",
-  description: "Fig completions for Nx by Nrwl",
+  description: "Upgrade your npm package.json dependencies to the latest versions, ignoring specified versions",
   args: {
     name: "filter",
     description:
