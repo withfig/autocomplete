@@ -417,7 +417,8 @@ const optionsDict: NcuOptions = {
 
 const completionSpec: Fig.Spec = {
   name: "ncu",
-  description: "Upgrade your npm package.json dependencies to the latest versions, ignoring specified versions",
+  description:
+    "Upgrade your npm package.json dependencies to the latest versions, ignoring specified versions",
   parserDirectives: {
     flagsArePosixNoncompliant: true,
   },
