@@ -66,6 +66,7 @@ const optionsDict: NcuOptions = {
   },
   cacheExpiration: {
     name: "--cacheExpiration",
+    dependsOn: ["--cache"],
     description:
       "Cache expiration in minutes. Only works with --cache. (default: 10)",
     args: {
