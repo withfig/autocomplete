@@ -419,7 +419,9 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "filter",
     description:
-      "[filter] is a list or regex of package names to check (all others will be ignored)",
+      "A list or regex of package names to check (all others will be ignored)",
+    isOptional: true,
+    isVariadic: true,
   },
   options: [
     optionsDict.cache,
