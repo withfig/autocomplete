@@ -462,7 +462,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "scale",
       description: "Scale a running test",
-      subcommands: [
+      options: [
         {
           name: "-h, --help",
           description: "Help for scale",
