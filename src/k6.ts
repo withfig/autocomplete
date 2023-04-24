@@ -508,7 +508,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "version",
       description: "Show the application version and exit",
-      subcommands: [
+      options: [
         {
           name: "-h, --help",
           description: "Help for version",
