@@ -488,7 +488,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "stats",
       description: "Show test metrics",
-      subcommands: [
+      options: [
         {
           name: "-h, --help",
           description: "Help for stats",
