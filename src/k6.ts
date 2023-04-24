@@ -498,7 +498,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "status",
       description: "Show test status",
-      subcommands: [
+      options: [
         {
           name: "-h, --help",
           description: "Help for status",
