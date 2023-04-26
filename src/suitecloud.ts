@@ -37,6 +37,9 @@ const completionSpec: Fig.Spec = {
           name: "--rename",
           description:
             "Renames an authentication ID (authID). You must specify it together with the renameto option. Usage: account:manageauth --rename {authID} --renameto {newauthID}",
+          args: {
+            name: "authID"
+          },
         },
         {
           name: "--renameto",
