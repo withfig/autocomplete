@@ -128,6 +128,9 @@ const completionSpec: Fig.Spec = {
           name: "--module",
           description:
             'Specifies the SuiteScript modules you want to add to the SuiteScript file. For example, "N/record"',
+          args: {
+            name: "module",
+          },
         },
         {
           name: "--path",
