@@ -16,6 +16,9 @@ const completionSpec: Fig.Spec = {
           name: "--info",
           description:
             "Prints the following information for the specified authentication ID (authID): account ID, role ID, and url. Usage: account:manageauth --info {authID}",
+          args: {
+            name: "authID"
+          },
         },
         {
           name: "--list",
