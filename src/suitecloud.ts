@@ -64,6 +64,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "--account",
           description: "Specifies the ID of the account to log in to",
+          args: {
+            name: "id",
+          },
         },
         {
           name: "--authid",
