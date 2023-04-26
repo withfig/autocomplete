@@ -76,6 +76,9 @@ const completionSpec: Fig.Spec = {
           name: "--authid",
           description:
             "References the custom name you gave to a specific account-role combination",
+          args: {
+            name: "auth id",
+          },
         },
         {
           name: "--tokenid",
