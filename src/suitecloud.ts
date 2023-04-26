@@ -26,6 +26,9 @@ const completionSpec: Fig.Spec = {
           name: "--remove",
           description:
             "Removes an authentication ID (authID). Usage: account:manageauth --remove {authID}",
+          args: {
+            name: "authID"
+          },
         },
         {
           name: "--rename",
