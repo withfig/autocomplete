@@ -1,6 +1,10 @@
+// Node version of the CLI, there is also a Java version, Ref https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/chapter_155931263126.html
 const completionSpec: Fig.Spec = {
   name: "suitecloud",
   description: "SuiteCloud CLI",
+  parserDirectives: {
+    flagsArePosixNoncompliant: true,
+  },
   subcommands: [
     {
       icon: "🧩",
@@ -77,16 +81,25 @@ const completionSpec: Fig.Spec = {
           name: "--tokenid",
           description:
             "Specifies the token ID of a TBA token you issued previously in NetSuite",
+          args: {
+            name: "token id",
+          },
         },
         {
           name: "--tokensecret",
           description:
             "Specifies the token secret of a TBA token you issued previously in NetSuite",
+          args: {
+            name: "secret",
+          },
         },
         {
           name: "--url",
           description:
             "Specifies the NetSuite domain of the account you want to use. You only need to specify the NetSuite domain if you are not using a production account",
+          args: {
+            name: "domain",
+          },
         },
         {
           name: ["-h", "--help"],
@@ -136,11 +149,17 @@ const completionSpec: Fig.Spec = {
           name: "--path",
           description:
             'Specifies the File Cabinet path of the SuiteScript file to create. For example, "/SuiteScripts/ClientScipt.js"',
+          args: {
+            name: "path",
+          },
         },
         {
           name: "--type",
           description:
             'Specifies the type of the SuiteScript file that you want to create. For example, "ClientScript"',
+          args: {
+            name: "type",
+          },
         },
         {
           name: ["-h", "--help"],
@@ -162,6 +181,9 @@ const completionSpec: Fig.Spec = {
           name: "--path",
           description:
             'Specifies the File Cabinet paths of the files to import. For example, "/SuiteScripts/file.js"',
+          args: {
+            name: "path",
+          },
         },
         {
           name: "--calledfromcomparefiles",
@@ -192,6 +214,10 @@ const completionSpec: Fig.Spec = {
           name: "--folder",
           description:
             'Specifies the File Cabinet path, for example, "/SuiteScripts". All files within subfolders are included',
+          args: {
+            name: "cabinet",
+            template: "folders",
+          },
         },
         {
           name: ["-h", "--help"],
@@ -212,6 +238,11 @@ const completionSpec: Fig.Spec = {
           name: "--paths",
           description:
             'Specifies the file cabinet paths of the files to upload. To specify multiple paths, enter a space between paths and enclose the entire argument in double quotes. For example, "/SuiteScripts/file.js" for account customization projects, and "/SuiteApps/com.project.example/script.js" for SuiteApp projects',
+          args: {
+            name: "files",
+            template: "filepaths",
+            isVariadic: true,
+          },
         },
         {
           name: ["-h", "--help"],
@@ -233,6 +264,9 @@ const completionSpec: Fig.Spec = {
           name: "--appid",
           description:
             "Specifies your application ID. If specified, only custom objects with that application ID are imported. Otherwise, only custom objects with no application ID are imported",
+          args: {
+            name: "app id",
+          },
         },
         {
           name: "--destinationfolder",
@@ -273,16 +307,26 @@ const completionSpec: Fig.Spec = {
           name: "--appid",
           description:
             "Specifies your application ID. If specified, only custom objects with that application ID are listed. Otherwise, only custom objects with no application ID are listed",
+          args: {
+            name: "app id",
+          },
         },
         {
           name: "--scriptid",
           description:
             "Specifies the script ID. If you specify it, only objects containing that script ID will be listed. Otherwise, all objects are listed",
+          args: {
+            name: "script id",
+          },
         },
         {
           name: "--type",
           description:
             "Specifies the type of custom objects to list. To specify multiple types, enter the types separated by spaces. Otherwise, all types are listed. To see what custom objects are supported by SDF, see https://system.netsuite.com/app/help/helpcenter.nl?fid=sdfxml.html",
+          args: {
+            name: "types",
+            isVariadic: true,
+          },
         },
         {
           name: ["-h", "--help"],
@@ -309,6 +353,9 @@ const completionSpec: Fig.Spec = {
           name: "--scriptid",
           description:
             "Specifies the script ID of the objects you want to overwrite",
+          args: {
+            name: "script id",
+          },
         },
         {
           name: ["-h", "--help"],
@@ -339,25 +386,40 @@ const completionSpec: Fig.Spec = {
           name: "--projectid",
           description:
             "Specifies the project ID. It is mandatory for SuiteApps",
+          args: {
+            name: "project id",
+          },
         },
         {
           name: "--projectname",
           description: "Specifies the project name",
+          args: {
+            name: "name",
+          },
         },
         {
           name: "--projectversion",
           description:
             "Specifies the project version. It is mandatory for SuiteApps",
+          args: {
+            name: "project version",
+          },
         },
         {
           name: "--publisherid",
           description:
             "Specifies the publisher ID. It is mandatory for SuiteApps",
+          args: {
+            name: "publisher id",
+          },
         },
         {
           name: "--type",
           description:
             "Specifies the project type. Enter one of the following options: ACCOUNTCUSTOMIZATION or SUITEAPP",
+          args: {
+            suggestions: ["ACCOUNTCUSTOMIZATION", "SUITEAPP"],
+          },
         },
         {
           name: ["-h", "--help"],
@@ -384,6 +446,10 @@ const completionSpec: Fig.Spec = {
           name: "--log",
           description:
             "Sets the deployment log file location, as either a directory or a file name. If it is a directory, a default log file is generated in the specified location. If a log file already exists in the specified location, deployment log details are appended to that existing file",
+          args: {
+            name: "location",
+            template: ["folders", "filepaths"],
+          },
         },
         {
           name: "--validate",
@@ -394,6 +460,10 @@ const completionSpec: Fig.Spec = {
           name: "--accountspecificvalues",
           description:
             "Indicates how to handle the presence of account-specific values in an account customization project. If there are account-specific values in the project, enter WARNING to continue with the deployment process, or ERROR to stop it. If the option is not specified, the default value is ERROR. It only applies to account customization projects",
+          args: {
+            suggestions: ["ERROR", "WARNING"],
+            default: "ERROR",
+          },
         },
         {
           name: ["-a", "--applyinstallprefs"],
@@ -435,6 +505,10 @@ const completionSpec: Fig.Spec = {
           name: "--log",
           description:
             "Sets the validation log file location, as either a directory or a file name. If it is a directory, a default log file is generated in the specified location. If a log file already exists in the specified location, validation log details are appended to that existing file",
+          args: {
+            name: "location",
+            template: ["folders", "filepaths"],
+          },
         },
         {
           name: "--server",
@@ -444,6 +518,10 @@ const completionSpec: Fig.Spec = {
           name: "--accountspecificvalues",
           description:
             "Indicates how to handle the presence of account-specific values in an account customization project. If there are account-specific values in the project, enter WARNING to continue with the deployment process, or ERROR to stop it. If the option is not specified, the default value is ERROR. It only applies to account customization projects",
+          args: {
+            suggestions: ["ERROR", "WARNING"],
+            default: "ERROR",
+          },
         },
         {
           name: ["-a", "--applyinstallprefs"],
