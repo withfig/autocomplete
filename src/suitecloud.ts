@@ -21,7 +21,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Prints the following information for the specified authentication ID (authID): account ID, role ID, and url. Usage: account:manageauth --info {authID}",
           args: {
-            name: "authID"
+            name: "authID",
           },
         },
         {
@@ -34,7 +34,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Removes an authentication ID (authID). Usage: account:manageauth --remove {authID}",
           args: {
-            name: "authID"
+            name: "authID",
           },
         },
         {
@@ -42,7 +42,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Renames an authentication ID (authID). You must specify it together with the renameto option. Usage: account:manageauth --rename {authID} --renameto {newauthID}",
           args: {
-            name: "authID"
+            name: "authID",
           },
         },
         {
@@ -51,7 +51,7 @@ const completionSpec: Fig.Spec = {
             "Specifies the new ID for an authentication ID (authID). You must specify it together with the rename option. Usage: account:manageauth --rename {authID} --renameto {newauthID}",
           dependsOn: ["--rename"],
           args: {
-            name: "authID"
+            name: "authID",
           },
         },
         {
