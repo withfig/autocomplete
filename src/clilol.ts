@@ -44,6 +44,18 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
+          name: "picture",
+          description: "Upload a picture to some.pics",
+          args: { name: "filename", description: "Filename of the image file" },
+          options: [
+            {
+              name: ["--description", "-d"],
+              description:
+                "Description of the picture (default empty/unlisted)",
+            },
+          ],
+        },
+        {
           name: "purl",
           description: "Create a PURL",
           args: [
@@ -120,6 +132,15 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "id",
             description: "ID of the paste to delete",
+            isDangerous: true,
+          },
+        },
+        {
+          name: "picture",
+          description: "Delete a picture from some.pics",
+          args: {
+            name: "id",
+            description: "ID of the picture to delete",
             isDangerous: true,
           },
         },
@@ -356,6 +377,7 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        { name: "picture", description: "List pictures" },
         {
           name: "purl",
           description: "List all PURLs",
