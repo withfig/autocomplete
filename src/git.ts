@@ -4345,6 +4345,47 @@ const completionSpec: Fig.Spec = {
           description: "Use the given message as the commit message",
           args: {
             name: "message",
+            generators: {
+              custom: async (_, executeShellCommand) => {
+                const diff = await executeShellCommand("git diff --staged");
+
+                if (diff.length === 0) {
+                  return [];
+                }
+
+                const body = {
+                  model: "gpt-3.5-turbo",
+                  messages: [
+                    {
+                      role: "system",
+                      content:
+                        'Generate a git commit message summary based on this git diff, the "summary" must be no more than 70-75 characters, and it must describe both what the patch changes, as well as why the patch might be necessary.  It is challenging to be both succinct and descriptive, but that is what a well-written summary should do.',
+                    },
+                    {
+                      role: "user",
+                      content: diff,
+                    },
+                  ],
+                };
+
+                const bodyJson = JSON.stringify(body);
+                const escapedBodyJson = bodyJson.replace(/'/g, "'\"'\"'");
+
+                const res = await executeShellCommand(
+                  `fig _ request --route /ai/chat --method POST --body '${escapedBodyJson}'`
+                );
+
+                const json = JSON.parse(res);
+
+                return json.choices
+                  .map((c) => c?.message?.content)
+                  .filter(Boolean)
+                  .map((c) => ({
+                    icon: "🪄",
+                    name: c,
+                  }));
+              },
+            },
           },
         },
         {
