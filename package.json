@@ -83,7 +83,7 @@
     "typescript": "^4.5.5"
   },
   "dependencies": {
-    "@fig/autocomplete-generators": "^2.0.0",
+    "@fig/autocomplete-generators": "^2.2.2",
     "@fig/autocomplete-helpers": "^1.0.4",
     "@types/glob": "^8.0.0",
     "fs": "^0.0.1-security",
