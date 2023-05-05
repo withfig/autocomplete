@@ -72,7 +72,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["--config", "-f"],
-          description: "Configuration file to check",
+          description: "Configuration file(s) to check",
+          hidden: true,
           args: { name: "config" },
         },
         {
