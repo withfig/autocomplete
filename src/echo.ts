@@ -10,7 +10,6 @@ const environmentVariableGenerator: Fig.Generator = {
       return [];
     }
   },
-  getQueryTerm: "$",
   trigger: "$",
 };
 
