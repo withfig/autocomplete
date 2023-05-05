@@ -4350,16 +4350,14 @@ const completionSpec: Fig.Spec = {
             generators: ai({
               prompt: ({ executeShellCommand }) => {
                 const gitLogShortMessages = executeShellCommand(
-                  "git log --pretty=format:%s --abbrev-commit --max-count=10"
+                  "git log --pretty=format:%s --abbrev-commit --max-count=20"
                 );
 
                 return (
                   'Generate a git commit message summary based on this git diff, the "summary" must be no more ' +
                   "than 70-75 characters, and it must describe both what the patch changes, as well as why the " +
                   "patch might be necessary. It is challenging to be both succinct and descriptive, but that is " +
-                  "what a well-written summary should do.\n\n" +
-                  "EXAMPLE:\n" +
-                  gitLogShortMessages
+                  `what a well-written summary should do.\n\nAlso try to mimic these examples:\n${gitLogShortMessages}`
                 );
               },
               message: ({ executeShellCommand }) =>
