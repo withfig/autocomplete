@@ -68,7 +68,7 @@
     "@typescript-eslint/eslint-plugin": "^5.46.0",
     "@typescript-eslint/parser": "^5.46.0",
     "@withfig/autocomplete-tools": "^2.7.10",
-    "@withfig/autocomplete-types": "^1.26.0",
+    "@withfig/autocomplete-types": "^1.27.0",
     "chalk": "^5.1.2",
     "chokidar": "^3.5.1",
     "danger": "^10.6.4",
