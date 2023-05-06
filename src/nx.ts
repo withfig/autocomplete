@@ -1,3 +1,5 @@
+// Docs - https://nx.dev/packages/nx/documents
+
 interface NxWorkspace {
   projects: {
     [key: string]: NxProject;
@@ -90,36 +92,26 @@ const nxProjectTargetWithConfigurationsCache = new Map<string, string[]>();
 const nxTargetWithProjectsCache = new Map<string, string[]>();
 
 const fillProjectCaches = (projectJson: NxProject) => {
-  // check if cache muss be filled
-  if (!nxProjectWithTargetsCache.get(projectJson.name)) {
-    // clear project targets
+  if (!nxProjectWithTargetsCache.has(projectJson.name)) {
     const projectTargets: string[] = [];
 
-    // iterate project targets
     for (const target in projectJson.targets) {
-      // add project target
       projectTargets.push(target);
 
-      // clear project target configurations
       const projectTargetConfigurations: string[] = [];
 
-      // iterate project target configurations
       for (const configuration in projectJson.targets[target].configurations) {
-        // add project target configuration
         projectTargetConfigurations.push(configuration);
       }
 
-      // set project target configurations cache
       nxProjectTargetWithConfigurationsCache.set(
         `${projectJson.name}:${target}`,
         projectTargetConfigurations
       );
     }
 
-    // set project targets cache
     nxProjectWithTargetsCache.set(projectJson.name, projectTargets);
 
-    // set target projects cache
     for (const target of projectTargets) {
       const projects = nxTargetWithProjectsCache.get(target) || [];
       projects.push(projectJson.name);
@@ -131,44 +123,41 @@ const fillProjectCaches = (projectJson: NxProject) => {
 const preProcessProjects = async (
   executeShellCommand: Fig.ExecuteShellCommandFunction
 ) => {
-  // check if project json paths must be cached
   if (!nxProjectPathCache.length) {
     // get project json paths
     try {
-      nxProjectPathCache = [
-        ...(await executeShellCommand(`find apps -name "project.json"`)).split(
-          "\n"
-        ),
-        ...(await executeShellCommand(`find libs -name "project.json"`)).split(
-          "\n"
-        ),
-      ].filter((path) => !!path);
+      const { appDir, libsDir }: { appDir: string; libsDir: string } = {
+        appDir: "apps",
+        libsDir: "libs",
+        ...JSON.parse(await executeShellCommand("cat nx.json")).workspaceLayout,
+      };
+      const searchFolders =
+        appDir === libsDir ? appDir : `${appDir} ${libsDir}`;
+      nxProjectPathCache = (
+        await executeShellCommand(`find ${searchFolders} -name "project.json"`)
+      )
+        .split("\n")
+        .filter((path) => !!path);
     } catch (error) {
       console.log(error);
     }
   }
 
-  // iterate all project json paths
   for (const projectJsonPath of nxProjectPathCache) {
-    // get project json from cache
     let projectJson = nxProjectPathWithJsonCache.get(projectJsonPath);
 
-    // check if project json must be cached
     if (!projectJson) {
       try {
-        // get project json
         projectJson = JSON.parse(
           await executeShellCommand(`cat "${projectJsonPath}"`)
         );
 
-        // set project json to cache
         nxProjectPathWithJsonCache.set(projectJsonPath, projectJson);
       } catch (error) {
         console.log(error);
       }
     }
 
-    // fill project caches
     if (projectJson) {
       fillProjectCaches(projectJson);
     }
@@ -196,29 +185,19 @@ const preProcessProjects = async (
 
 const listMapKeysGenerator = (map: Map<string, unknown>): Fig.Generator => {
   return {
-    // set cache to one day
     cache: oneDayCache,
-    // trigger when new seperator is entered
     trigger: (newToken, oldToken) =>
       newToken.split(",").length !== oldToken.split(",").length,
-    // query just the last segment
     getQueryTerm: (token) => token.split(",").pop(),
-    // the custom generator
     custom: async (
       tokens: string[],
       executeShellCommand: Fig.ExecuteShellCommandFunction,
       generatorContext: Fig.GeneratorContext
     ) => {
-      // suggestions to be returned
       const suggestions: Fig.Suggestion[] = [];
-
-      // get the selected
       const selected = tokens[tokens.length - 1].split(",");
-
-      // pre process projects
       await preProcessProjects(executeShellCommand);
 
-      // push all names to the suggestions
       for (const name of map.keys()) {
         if (!selected.includes(name)) {
           suggestions.push({ name, insertValue: `${name},` });
@@ -232,18 +211,13 @@ const listMapKeysGenerator = (map: Map<string, unknown>): Fig.Generator => {
 
 const nxGenerators: NxGenerators = {
   configuration: {
-    // set cache to one day
     cache: oneDayCache,
-    // the custom generator
     custom: async (
       tokens: string[],
-      executeShellCommand: Fig.ExecuteShellCommandFunction,
-      generatorContext: Fig.GeneratorContext
+      executeShellCommand: Fig.ExecuteShellCommandFunction
     ) => {
-      // suggestions to be returned
       const suggestions: Fig.Suggestion[] = [];
 
-      // get the final token and split it
       const finalToken = [];
       const token = tokens.join(" ");
       if (token.startsWith("nx run")) {
@@ -252,9 +226,7 @@ const nxGenerators: NxGenerators = {
         finalToken.push(tokens[2], tokens[1]);
       }
 
-      // get project and target if complete
-      const project = finalToken[0];
-      const target = finalToken[1];
+      const [project, target] = finalToken;
 
       // pre process projects
       await preProcessProjects(executeShellCommand);
@@ -282,22 +254,22 @@ const nxGenerators: NxGenerators = {
       newToken.split(":").length !== oldToken.split(":").length,
     getQueryTerm: (token) => token.split(":").pop(),
     cache: oneDayCache,
-    postProcess: (out, context) => {
+    postProcess: (out) => {
       if (out.indexOf("Installed plugins") > -1) {
         const fullList = out.split(">");
         const localPlugins = fullList[1].split("\n").filter(Boolean);
         localPlugins.shift();
         const plugins = fullList[2].split("\n").filter(Boolean);
         plugins.shift();
-        return [...localPlugins, ...plugins]
-          .map((pluginEntry) => pluginEntry.trim().split(" ")[0])
-          .map((name) => ({ name, insertValue: `${name}:` }));
+        return [...localPlugins, ...plugins].map((pluginEntry) => {
+          const name = pluginEntry.trim().split(" ")[0];
+          return { name, insertValue: `${name}:` };
+        });
       } else if (out.indexOf("Capabilities") > -1) {
         const lines = out.split("\n");
         return lines
           .filter((line) => line.trim().indexOf(" : ") > -1)
-          .map((line) => line.trim().split(" : ")[0])
-          .map((name) => ({ name }));
+          .map((line) => ({ name: line.trim().split(" : ")[0] }));
       }
     },
   },
@@ -311,9 +283,9 @@ const nxGenerators: NxGenerators = {
         localPlugins.shift();
         const plugins = fullList[2].split("\n").filter(Boolean);
         plugins.shift();
-        return [...localPlugins, ...plugins]
-          .map((pluginEntry) => pluginEntry.trim().split(" ")[0])
-          .map((name) => ({ name }));
+        return [...localPlugins, ...plugins].map((pluginEntry) => ({
+          name: pluginEntry.trim().split(" ")[0],
+        }));
       }
     },
   },
@@ -322,9 +294,8 @@ const nxGenerators: NxGenerators = {
     cache: oneDayCache,
     // the custom generator
     custom: async (
-      tokens: string[],
-      executeShellCommand: Fig.ExecuteShellCommandFunction,
-      generatorContext: Fig.GeneratorContext
+      _: string[],
+      executeShellCommand: Fig.ExecuteShellCommandFunction
     ) => {
       // suggestions to be returned
       const suggestions: Fig.Suggestion[] = [];
@@ -693,7 +664,7 @@ const RUN_DERIVED_BASE_TARGETS_WITH_CONFIGURATION = ["build", "serve"];
  * e.g. `nx run project:target:configuration` === `nx target project -c configuration`
  */
 const runDerivedSubcommands = async (
-  tokens: string[],
+  _: string[],
   executeShellCommand: Fig.ExecuteShellCommandFunction
 ): Promise<Fig.Spec> => {
   const subcommands: Fig.Subcommand[] = [];
@@ -730,13 +701,11 @@ const completionSpec: Fig.Spec = {
   description: "Fig completions for Nx by Nrwl",
   generateSpec: runDerivedSubcommands,
   subcommands: [
-    // init - https://nx.dev/packages/nx/documents/init
     {
       name: "init",
       description: "Adds nx.json file and installs nx if not installed already",
       options: [optionsDict.help, optionsDict.version],
     },
-    // generate - https://nx.dev/packages/nx/documents/generate
     {
       name: "generate",
       description:
@@ -754,7 +723,6 @@ const completionSpec: Fig.Spec = {
         optionsDict.version,
       ],
     },
-    // run - https://nx.dev/packages/nx/documents/run
     {
       name: "run",
       description:
@@ -769,7 +737,6 @@ const completionSpec: Fig.Spec = {
         optionsDict.version,
       ],
     },
-    // daemon - https://nx.dev/packages/nx/documents/daemon
     {
       name: "daemon",
       description:
@@ -781,7 +748,6 @@ const completionSpec: Fig.Spec = {
         optionsDict.version,
       ],
     },
-    // graph - https://nx.dev/packages/nx/documents/dep-graph
     {
       name: "graph",
       description: "Graph dependencies within workspace",
@@ -800,7 +766,6 @@ const completionSpec: Fig.Spec = {
         optionsDict.watch,
       ],
     },
-    // run-many - https://nx.dev/packages/nx/documents/run-many
     {
       name: "run-many",
       description: "Run target for multiple listed projects",
@@ -822,7 +787,6 @@ const completionSpec: Fig.Spec = {
         optionsDict.version,
       ],
     },
-    // affected - https://nx.dev/packages/nx/documents/affected
     {
       name: "affected",
       description: "Run target for affected projects",
@@ -848,7 +812,6 @@ const completionSpec: Fig.Spec = {
         optionsDict.version,
       ],
     },
-    // affected:graph - https://nx.dev/packages/nx/documents/affected-dep-graph
     {
       name: "affected:graph",
       description: "Graph dependencies affected by changes",
@@ -873,7 +836,6 @@ const completionSpec: Fig.Spec = {
         optionsDict.watch,
       ],
     },
-    // print-affected - https://nx.dev/packages/nx/documents/print-affected
     {
       name: "print-affected",
       description:
@@ -894,7 +856,6 @@ const completionSpec: Fig.Spec = {
         optionsDict.version,
       ],
     },
-    // format:check - https://nx.dev/packages/nx/documents/format-check
     {
       name: "format:check",
       description: "Check for un-formatted files",
@@ -912,7 +873,6 @@ const completionSpec: Fig.Spec = {
         optionsDict.version,
       ],
     },
-    // format:write - https://nx.dev/packages/nx/documents/format-write
     {
       name: "format:write",
       description: "Overwrite un-formatted files",
@@ -930,7 +890,6 @@ const completionSpec: Fig.Spec = {
         optionsDict.version,
       ],
     },
-    // migrate - https://nx.dev/packages/nx/documents/migrate
     {
       name: "migrate",
       description:
@@ -955,14 +914,12 @@ const completionSpec: Fig.Spec = {
         optionsDict.version,
       ],
     },
-    // report - https://nx.dev/packages/nx/documents/report
     {
       name: "report",
       description:
         "Reports useful version numbers to copy into the Nx issue template",
       options: [optionsDict.help, optionsDict.version],
     },
-    // list - https://nx.dev/packages/nx/documents/list
     {
       name: "list",
       args: {
@@ -972,7 +929,6 @@ const completionSpec: Fig.Spec = {
       },
       options: [optionsDict.help, optionsDict.version],
     },
-    // workspace-generator - https://nx.dev/packages/nx/documents/workspace-generator
     {
       name: "workspace-generator",
       description:
@@ -988,26 +944,22 @@ const completionSpec: Fig.Spec = {
         optionsDict.version,
       ],
     },
-    // connect - https://nx.dev/packages/nx/documents/connect-to-nx-cloud
     {
       name: "connect",
       description: "Connect workspace to Nx Cloud",
       options: [optionsDict.help, optionsDict.version],
     },
-    // reset - https://nx.dev/packages/nx/documents/reset
     {
       name: "reset",
       description:
         "Clears all the cached Nx artifacts and metadata about the workspace and shuts down the Nx Daemon",
       options: [optionsDict.help, optionsDict.version],
     },
-    // repair - https://nx.dev/packages/nx/documents/repair
     {
       name: "repair",
       description: "Repair any configuration that is no longer supported by Nx",
       options: [optionsDict.help, optionsDict.verbose, optionsDict.version],
     },
-    // exec - https://nx.dev/packages/nx/documents/exec
     {
       name: "exec",
       description: "Executes any command as if it was a target on the project",
@@ -1027,7 +979,6 @@ const completionSpec: Fig.Spec = {
         optionsDict.version,
       ],
     },
-    // watch - https://nx.dev/packages/nx/documents/watch
     {
       name: "watch",
       description: "Watch for changes within projects, and execute commands",
@@ -1040,7 +991,6 @@ const completionSpec: Fig.Spec = {
         optionsDict.version,
       ],
     },
-    // show - https://nx.dev/packages/nx/documents/show
     {
       name: "show",
       description:
@@ -1053,7 +1003,6 @@ const completionSpec: Fig.Spec = {
       },
       options: [optionsDict.help, optionsDict.version],
     },
-    // view-logs - https://nx.dev/packages/nx/documents/view-logs
     {
       name: "view-logs",
       description:
