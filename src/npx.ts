@@ -145,6 +145,10 @@ const suggestions: Fig.Suggestion[] = [
     name: "@wordpress/create-block",
     icon: "https://s1.wp.com/i/webclip.png",
   },
+  {
+    name: "astro",
+    icon: "https://astro.build/favicon.svg",
+  },
 ];
 
 const completionSpec: Fig.Spec = {
