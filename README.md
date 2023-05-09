@@ -86,24 +86,31 @@ Use the steps below or follow our getting started guide: [fig.io/docs](https://f
 
 <br>
 
-## 🏠 Make completions for local scripts
+## 🪄 Add AI to completions
 
 You can use Fig's autocomplete for your own tools too. Here's how to create private completions:
+```ts
+import { ai } from "@fig/autocomplete-generators"
 
-```bash
-# Make sure you're in your home directory
-cd ~
+...
 
-# Create your .fig/autocomplete folder
-npx @withfig/autocomplete-tools init
-cd ~/.fig/autocomplete
-
-# Create your completions!
-npm run create-spec xyz
-npm run publish-spec -p src/xyz.ts
+generators: [
+  ai({
+    // the prompt
+    prompt: "Generate a git commit message",
+    
+    // Send any relevant local context.
+    message: async ({ executeShellCommand }) => {
+      return executeShellCommand("git diff")
+    },
+    
+    // turn each newline into a suggestion (can specify instead a `postProcess1 function if more flexibility is required)
+    splitOn: "\n",
+  })
+]
+ 
 ```
 
-You can also create completions for project scripts, or even add custom suggestions to official specs. Read more at [fig.io/docs/guides/private-autocomplete](https://fig.io/docs/guides/private-autocomplete)
 
 <br/>
 
