@@ -6771,5 +6771,29 @@ versions["2.15.0"] = {
   ],
 };
 
+versions["2.16.0"] = {
+  subcommands: [
+    {
+      name: "export",
+      description: "Export your fig configs to a folder",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "help",
+      subcommands: [
+        {
+          name: "export",
+          description: "Export your fig configs to a folder",
+        },
+      ],
+    },
+  ],
+};
+
 export { versions };
 export default completion;
