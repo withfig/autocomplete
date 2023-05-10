@@ -7,7 +7,7 @@ const completionSpec: Fig.Spec = {
     generators: filepaths({
       showFolders: "only",
       editFolderSuggestions: {
-        previewComponent: "ls/folderPreview",
+        previewComponent: "cd/folderPreview",
       },
     }),
     filterStrategy: "fuzzy",
