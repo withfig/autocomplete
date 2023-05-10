@@ -56,7 +56,8 @@
     ]
   },
   "files": [
-    "build/**/*.js"
+    "build/**/*.js",
+    "build/**/*.css"
   ],
   "author": "",
   "license": "ISC",
