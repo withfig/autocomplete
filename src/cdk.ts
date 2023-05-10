@@ -25,7 +25,7 @@ const completionSpec: Fig.Spec = {
       description: "Deploys the CDK toolkit stack into an AWS environment",
     },
     {
-      name: "synth",
+      name: ["synth", "synthesize"],
       description:
         "Synthesizes and prints the CloudFormation template for this stack",
     },
