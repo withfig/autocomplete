@@ -244,7 +244,8 @@ const completionSpec: Fig.Spec = {
       name: ["--help", "-h"],
       description: "Show help for railway",
     },
-    { name: ["--version", "-v"], description: "Show railway version" },
+    { name: ["--version", "-V"], description: "Show railway version" },
+    { name: ["--verbose", "-v"], description: "Enable verbose output" },
   ],
 };
 export default completionSpec;

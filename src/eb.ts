@@ -1,3 +1,16 @@
+const generateNames: Fig.Generator = {
+  script: "eb list",
+  postProcess: (str) => {
+    const lines: string[] = str
+      .trim()
+      .split("\n")
+      .map((line) => line.trim());
+    return lines.map((line) => ({
+      name: line.startsWith("*") ? line.slice(1).trim() : line,
+    }));
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "eb",
   description: "AWS Elastic Beanstalk",
@@ -46,6 +59,10 @@ const completionSpec: Fig.Spec = {
       name: "deploy",
       description:
         "Deploys the application source bundle from the initialized project directory to the running application",
+      args: {
+        name: "environment-name",
+        generators: generateNames,
+      },
       options: [
         {
           name: ["-l", "--label"],
@@ -88,7 +105,7 @@ const completionSpec: Fig.Spec = {
             "Preprocess and validate the environment manifest and configuration files in the source bundle",
         },
         {
-          name: "--source codecommit/",
+          name: "--source",
           description: "CodeCommit repository and branch",
           args: {
             name: "repository-name/repository-branch",
@@ -129,6 +146,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "environment-name",
         description: "The name of the environment to clone",
+        generators: generateNames,
       },
       options: [
         {
@@ -188,6 +206,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "environment-name",
         description: "The name of the environment to open",
+        generators: generateNames,
       },
     },
     {
@@ -212,6 +231,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "environment-name",
         description: "The name of the environment to print",
+        generators: generateNames,
       },
     },
     {
@@ -221,6 +241,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "environment-name",
         description: "The name of the environment to connect to",
+        generators: generateNames,
       },
       options: [
         {
@@ -272,6 +293,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "environment-name",
         description: "The name of the environment to use",
+        generators: generateNames,
       },
       options: [
         {

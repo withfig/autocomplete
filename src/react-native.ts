@@ -1073,7 +1073,7 @@ const completionSpec: Fig.Spec = {
   ],
   options: [
     {
-      name: "--version ",
+      name: "--version",
       description: "Print CLI version",
     },
     {

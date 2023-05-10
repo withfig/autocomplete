@@ -3,6 +3,14 @@ import {
   subsystemsGenerator,
   themesGenerator,
   pluginsGenerator,
+  tokensGenerators,
+  invitationsGenerators,
+  membersGenerators,
+  teamsGenerators,
+  scriptsSpecGenerator,
+  sshHostsGenerator,
+  sshIdentityGenerator,
+  userGenerator,
 } from "./shared";
 
 const completion: Fig.Subcommand = {
@@ -617,6 +625,7 @@ const completion: Fig.Subcommand = {
     {
       name: "settings",
       description: "Customize appearance & behavior",
+      filterStrategy: "fuzzy",
       subcommands: [
         {
           name: "init",
@@ -2104,7 +2113,7 @@ versions["1.4.0"] = {
                   description: "The team namespace to create the token for",
                   args: {
                     name: "team",
-                    isOptional: true,
+                    generators: teamsGenerators,
                   },
                 },
                 {
@@ -2129,7 +2138,7 @@ versions["1.4.0"] = {
                   exclusiveOn: ["-p", "--personal"],
                   args: {
                     name: "team",
-                    isOptional: true,
+                    generators: teamsGenerators,
                   },
                 },
                 {
@@ -2176,7 +2185,7 @@ versions["1.4.0"] = {
                   description: "The team namespace to revoke the token for",
                   args: {
                     name: "team",
-                    isOptional: true,
+                    generators: teamsGenerators,
                   },
                 },
                 {
@@ -2190,6 +2199,7 @@ versions["1.4.0"] = {
               ],
               args: {
                 name: "name",
+                generators: tokensGenerators,
               },
             },
           ],
@@ -2227,114 +2237,124 @@ versions["1.4.0"] = {
     },
     {
       name: "team",
-      subcommands: [
-        {
-          name: "members",
-          description: "List all members on a team",
-          options: [
+      args: {
+        name: "team",
+        generators: teamsGenerators,
+        isOptional: true,
+        loadSpec: {
+          name: "team",
+          subcommands: [
             {
-              name: "--version",
-              description: "Print version information",
+              name: "members",
+              description: "List all members on a team",
+              options: [
+                {
+                  name: "--version",
+                  description: "Print version information",
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
             },
             {
-              name: ["-h", "--help"],
-              description: "Print help information",
-            },
-          ],
-        },
-        {
-          name: "remove",
-          description: "Remove a member from a team",
-          options: [
-            {
-              name: "--version",
-              description: "Print version information",
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Print help information",
-            },
-          ],
-          args: {
-            name: "email",
-          },
-        },
-        {
-          name: "add",
-          description: "Invite a member to a team",
-          options: [
-            {
-              name: "--role",
+              name: "remove",
+              description: "Remove a member from a team",
+              options: [
+                {
+                  name: "--version",
+                  description: "Print version information",
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
               args: {
-                name: "role",
-                isOptional: true,
-                suggestions: ["owner", "admin", "member"],
+                name: "email",
+                generators: membersGenerators,
               },
             },
             {
-              name: "--version",
-              description: "Print version information",
+              name: "add",
+              description: "Invite a member to a team",
+              options: [
+                {
+                  name: "--role",
+                  args: {
+                    name: "role",
+                    isOptional: true,
+                    suggestions: ["owner", "admin", "member"],
+                  },
+                },
+                {
+                  name: "--version",
+                  description: "Print version information",
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+              args: {
+                name: "email",
+              },
             },
             {
-              name: ["-h", "--help"],
-              description: "Print help information",
+              name: "invitations",
+              description: "List pending invitations to a team",
+              options: [
+                {
+                  name: "--version",
+                  description: "Print version information",
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+            },
+            {
+              name: "revoke",
+              description: "Revoke an invitation to a team",
+              options: [
+                {
+                  name: "--version",
+                  description: "Print version information",
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+              args: {
+                name: "email",
+                generators: invitationsGenerators,
+              },
+            },
+            {
+              name: "help",
+              description:
+                "Print this message or the help of the given subcommand(s)",
+              options: [
+                {
+                  name: "--version",
+                  description: "Print version information",
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+              args: {
+                name: "subcommand",
+                isOptional: true,
+              },
             },
           ],
-          args: {
-            name: "email",
-          },
         },
-        {
-          name: "invitations",
-          description: "List pending invitations to a team",
-          options: [
-            {
-              name: "--version",
-              description: "Print version information",
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Print help information",
-            },
-          ],
-        },
-        {
-          name: "revoke",
-          description: "Revoke an invitation to a team",
-          options: [
-            {
-              name: "--version",
-              description: "Print version information",
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Print help information",
-            },
-          ],
-          args: {
-            name: "email",
-          },
-        },
-        {
-          name: "help",
-          description:
-            "Print this message or the help of the given subcommand(s)",
-          options: [
-            {
-              name: "--version",
-              description: "Print version information",
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Print help information",
-            },
-          ],
-          args: {
-            name: "subcommand",
-            isOptional: true,
-          },
-        },
-      ],
+      },
       options: [
         {
           name: ["-f", "--format"],
@@ -2374,10 +2394,6 @@ versions["1.4.0"] = {
           description: "Print help information",
         },
       ],
-      args: {
-        name: "team",
-        isOptional: true,
-      },
     },
     {
       name: ["internal", "_"],
@@ -3521,8 +3537,9 @@ versions["1.4.1"] = {
       },
     },
     {
-      name: "run",
+      name: ["run", "r", "workflow", "workflows", "flow", "flows"],
       description: "Search for and execute workflows",
+      filterStrategy: "fuzzy",
       options: [
         {
           name: ["-h", "--help"],
@@ -3530,64 +3547,7 @@ versions["1.4.1"] = {
           description: "Print help information",
         },
       ],
-      generateSpec: async (tokens, exec) => {
-        const response = await exec(
-          "fig _ request --route '/workflows' --method GET"
-        );
-        const workflows = JSON.parse(response);
-        const subcommands = workflows.map((workflow) => {
-          const displayName =
-            workflow.displayName.length == 0 ? null : workflow.displayName;
-
-          const options = workflow.parameters.map((param) => {
-            const option: Fig.Option = {
-              name: `--${param.name}`,
-              description: param.description,
-            };
-            switch (param.type) {
-              case "text":
-                option.args = {
-                  name: param.name, //param.displayName ? param.displayName : param.name,
-                };
-              case "selector":
-                let generators: Fig.Generator[] = [];
-                if (param.typeData.generators) {
-                  generators = param.typeData.generators
-                    .filter((generator) => generator.type === "script")
-                    .map((generator) => ({
-                      script: generator.script,
-                      splitOn: "\n",
-                    }));
-                }
-                option.args = {
-                  name: param.name, //param.displayName ? param.displayName : param.name,
-                  suggestions: param.typeData.suggestions,
-                  generators,
-                };
-            }
-            return option;
-          });
-
-          // Add @namespace/name and name (if this workflow is associated with user's namespace)
-          const name = [`@${workflow.namespace}/${workflow.name}`];
-          if (workflow.isOwnedByUser) {
-            name.push(workflow.name);
-          }
-
-          return {
-            displayName,
-            icon: "⚡️",
-            name,
-            insertValue: `${workflow.isOwnedByUser ? workflow.name : name[0]} `,
-            description: workflow.description,
-            options,
-          };
-        });
-        return {
-          name: "run",
-          subcommands,
-        };
-      },
+      generateSpec: scriptsSpecGenerator,
     },
     {
       name: "bg:tmux",
@@ -3604,6 +3564,695 @@ versions["1.4.1"] = {
         isVariadic: true,
         isOptional: true,
       },
+    },
+  ],
+};
+
+versions["1.4.3"] = {
+  subcommands: [
+    {
+      name: "ssh",
+      subcommands: [
+        { name: "enable", remove: true },
+        { name: "disable", remove: true },
+        { name: "help", remove: true },
+      ],
+      options: [
+        {
+          name: ["-a", "--auth"],
+          description: "Identity to connect with",
+          args: {
+            name: "auth",
+            generators: sshIdentityGenerator,
+          },
+        },
+      ],
+      args: {
+        name: "host",
+        filterStrategy: "fuzzy",
+        generators: sshHostsGenerator,
+      },
+    },
+    {
+      name: "login",
+      options: [
+        {
+          name: ["-r", "--refresh"],
+          description: "Refresh the auth token if expired",
+        },
+        {
+          name: "--hard-refresh",
+          description: "Force a refresh of the auth token",
+        },
+      ],
+    },
+    {
+      name: "user",
+      subcommands: [
+        {
+          name: "login",
+          options: [
+            {
+              name: ["-r", "--refresh"],
+              description: "Refresh the auth token if expired",
+            },
+            {
+              name: "--hard-refresh",
+              description: "Force a refresh of the auth token",
+            },
+          ],
+        },
+        {
+          name: "tokens",
+          subcommands: [
+            {
+              name: "list",
+              options: [
+                {
+                  name: ["-p", "--personal"],
+                  remove: true,
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "team",
+      subcommands: [
+        {
+          name: "members",
+          description: "List all members on a team",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "remove",
+          description: "Remove a member from a team",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+          args: {
+            name: "email",
+          },
+        },
+        {
+          name: "add",
+          description: "Invite a member to a team",
+          options: [
+            {
+              name: "--role",
+              args: {
+                name: "role",
+                isOptional: true,
+                suggestions: ["owner", "admin", "member"],
+              },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+          args: {
+            name: "email",
+          },
+        },
+        {
+          name: "invitations",
+          description: "List pending invitations to a team",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "revoke",
+          description: "Revoke an invitation to a team",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+          args: {
+            name: "email",
+          },
+        },
+        {
+          name: "help",
+          description:
+            "Print this message or the help of the given subcommand(s)",
+          args: {
+            name: "subcommand",
+            isOptional: true,
+          },
+        },
+      ],
+    },
+    {
+      name: ["internal", "_"],
+      subcommands: [
+        {
+          name: "request",
+          options: [
+            {
+              name: "--method",
+              args: {
+                isOptional: true,
+                suggestions: [
+                  "GET",
+                  "POST",
+                  "PUT",
+                  "DELETE",
+                  "HEAD",
+                  "OPTIONS",
+                  "CONNECT",
+                  "PATCH",
+                  "TRACE",
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "ipc",
+          options: [
+            {
+              name: "--figterm",
+              isRepeatable: true,
+              args: {
+                name: "figterm",
+                isOptional: true,
+              },
+            },
+            {
+              name: "--json",
+              isRepeatable: true,
+              args: {
+                name: "json",
+              },
+            },
+            {
+              name: "--app",
+            },
+            {
+              name: "--daemon",
+            },
+            {
+              name: "--recv",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "onboarding",
+      hidden: true,
+    },
+    {
+      name: "plugins",
+      subcommands: [
+        {
+          name: "list",
+          options: [
+            {
+              name: "--fields",
+              description: "Fields to include in the output",
+              isRepeatable: true,
+              args: {
+                name: "fields",
+                isOptional: true,
+              },
+            },
+          ],
+        },
+        {
+          name: "info",
+          description: "Info about a specific plugin",
+          options: [
+            {
+              name: "--fields",
+              description: "Fields to include in the output",
+              isRepeatable: true,
+              args: {
+                name: "fields",
+                isOptional: true,
+              },
+            },
+            {
+              name: ["-f", "--format"],
+              description: "The output format",
+              isRepeatable: true,
+              args: {
+                name: "format",
+                isOptional: true,
+                suggestions: [
+                  {
+                    name: "plain",
+                    description: "Outputs the results as markdown",
+                  },
+                  {
+                    name: "json",
+                    description: "Outputs the results as JSON",
+                  },
+                  {
+                    name: "json-pretty",
+                    description: "Outputs the results as pretty print JSON",
+                  },
+                ],
+              },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "plugin",
+          },
+        },
+        {
+          name: "configure",
+          description: "Configure a specific plugin",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: [
+            {
+              name: "plugin",
+              isOptional: true,
+            },
+            {
+              name: "config",
+              isOptional: true,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: [
+        "workflow",
+        "run",
+        "r",
+        "workflows",
+        "snippet",
+        "snippets",
+        "flow",
+        "flows",
+      ],
+      args: {
+        name: "args",
+        isVariadic: true,
+        isOptional: true,
+      },
+    },
+    {
+      name: "integrations",
+      description: "Managed system integrations",
+      subcommands: [
+        {
+          name: "install",
+          subcommands: [
+            {
+              name: "dotfiles",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+            },
+            {
+              name: "daemon",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+            },
+            {
+              name: "ssh",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+            },
+            {
+              name: "help",
+              description:
+                "Print this message or the help of the given subcommand(s)",
+              args: {
+                name: "subcommand",
+                isOptional: true,
+              },
+            },
+          ],
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "uninstall",
+          subcommands: [
+            {
+              name: "dotfiles",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+            },
+            {
+              name: "daemon",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+            },
+            {
+              name: "ssh",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+            },
+            {
+              name: "help",
+              description:
+                "Print this message or the help of the given subcommand(s)",
+              args: {
+                name: "subcommand",
+                isOptional: true,
+              },
+            },
+          ],
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "help",
+          description:
+            "Print this message or the help of the given subcommand(s)",
+          args: {
+            name: "subcommand",
+            isOptional: true,
+          },
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+    },
+    {
+      name: "alpha",
+      remove: true,
+    },
+  ],
+};
+
+versions["1.4.7"] = {
+  subcommands: [
+    {
+      name: "ssh",
+      options: [
+        {
+          name: "--get-identities",
+        },
+      ],
+    },
+    {
+      name: ["internal", "_"],
+      subcommands: [
+        {
+          name: "request",
+          options: [
+            {
+              name: "--namespace",
+              isRepeatable: true,
+              args: {
+                name: "namespace",
+                isOptional: true,
+              },
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "integrations",
+      description: "Manage system integrations",
+    },
+  ],
+};
+
+versions["1.4.10"] = {
+  subcommands: [
+    {
+      name: "ssh",
+      options: [
+        {
+          name: ["-a", "--auth"],
+          args: {
+            isOptional: true,
+          },
+        },
+      ],
+    },
+    {
+      name: "login",
+      options: [
+        {
+          name: "--switchable",
+          hidden: true,
+        },
+      ],
+      args: {
+        name: "email",
+        isOptional: true,
+      },
+    },
+    {
+      name: "user",
+      subcommands: [
+        {
+          name: "login",
+          options: [
+            {
+              name: "--switchable",
+              hidden: true,
+            },
+          ],
+          args: {
+            name: "email",
+            isOptional: true,
+          },
+        },
+        {
+          name: "tokens",
+          description: "Subcommand for dealing with tokens",
+        },
+        {
+          name: "whoami",
+          description: "Prints details about the current user",
+        },
+        {
+          name: "plan",
+          description: "Prints details about the user's plan",
+          hidden: true,
+          options: [
+            {
+              name: ["-f", "--format"],
+              description: "Output format to use",
+              args: {
+                name: "format",
+                isOptional: true,
+                suggestions: [
+                  {
+                    name: "plain",
+                    description: "Outputs the results as markdown",
+                  },
+                  {
+                    name: "json",
+                    description: "Outputs the results as JSON",
+                  },
+                  {
+                    name: "json-pretty",
+                    description: "Outputs the results as pretty print JSON",
+                  },
+                ],
+              },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "list-accounts",
+          description: "List all accounts that can be switch to",
+          hidden: true,
+          options: [
+            {
+              name: ["-f", "--format"],
+              description: "Output format to use",
+              args: {
+                name: "format",
+                isOptional: true,
+                suggestions: [
+                  {
+                    name: "plain",
+                    description: "Outputs the results as markdown",
+                  },
+                  {
+                    name: "json",
+                    description: "Outputs the results as JSON",
+                  },
+                  {
+                    name: "json-pretty",
+                    description: "Outputs the results as pretty print JSON",
+                  },
+                ],
+              },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "switch",
+          description: "Switch to a switchable account",
+          hidden: true,
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "email",
+            generators: userGenerator,
+          },
+        },
+      ],
+    },
+    {
+      name: ["internal", "_"],
+      subcommands: [
+        {
+          name: "fig-socket-path",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "figterm-socket-path",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "session-id",
+          },
+        },
+      ],
+    },
+    {
+      name: "ai",
+      description: "English -> Bash translation",
+      options: [
+        {
+          name: ["-n", "--n"],
+          description: "Number of completions to generate (must be <=5)",
+          hidden: true,
+          args: {
+            name: "n",
+            isOptional: true,
+          },
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+      args: {
+        name: "input",
+        isVariadic: true,
+        isOptional: true,
+      },
+    },
+    {
+      name: "pro",
+      description: "Fig Pro",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
     },
   ],
 };

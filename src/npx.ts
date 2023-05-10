@@ -17,7 +17,7 @@ const suggestions: Fig.Suggestion[] = [
   },
   {
     name: "tailwindcss",
-    icon: "https://tailwindcss.com/favicon-32x32.png",
+    icon: "https://tailwindcss.com/favicons/favicon-32x32.png",
   },
   {
     name: "next",
@@ -25,7 +25,7 @@ const suggestions: Fig.Suggestion[] = [
   },
   {
     name: "nuxi",
-    icon: "https://raw.githubusercontent.com/nuxt/framework/main/docs/static/icon.png",
+    icon: "https://raw.githubusercontent.com/nuxt/framework/main/docs/public/icon.png",
   },
   {
     name: "gltfjsx",
@@ -37,7 +37,7 @@ const suggestions: Fig.Suggestion[] = [
   },
   {
     name: "eslint",
-    icon: "https://eslint.org/assets/img/favicon.512x512.png",
+    icon: "https://raw.githubusercontent.com/eslint/eslint.org/main/src/static/icon-512.png",
   },
   {
     name: "prettier",
@@ -96,6 +96,10 @@ const suggestions: Fig.Suggestion[] = [
     icon: "https://remix.run/favicon-light.1.png",
   },
   {
+    name: "playwright",
+    icon: "https://playwright.dev/img/playwright-logo.svg",
+  },
+  {
     name: "ignite-cli",
     icon: "🔥",
   },
@@ -116,6 +120,38 @@ const suggestions: Fig.Suggestion[] = [
   },
   {
     name: "pod-install",
+  },
+  {
+    name: "capacitor",
+    icon: "https://capacitorjs.com/docs/img/meta/favicon.png",
+  },
+  {
+    name: "cap",
+    icon: "https://capacitorjs.com/docs/img/meta/favicon.png",
+  },
+  {
+    name: "@magnolia/cli",
+    icon: "https://avatars.githubusercontent.com/u/25686615?s=200&v=4",
+  },
+  {
+    name: "stencil",
+    icon: "https://stenciljs.com/assets/icon/favicon.ico",
+  },
+  {
+    name: "swagger-typescript-api",
+    icon: "https://static1.smartbear.co/swagger/media/assets/swagger_fav.png",
+  },
+  {
+    name: "sta",
+    icon: "https://static1.smartbear.co/swagger/media/assets/swagger_fav.png",
+  },
+  {
+    name: "@wordpress/create-block",
+    icon: "https://s1.wp.com/i/webclip.png",
+  },
+  {
+    name: "astro",
+    icon: "https://astro.build/favicon.svg",
   },
 ];
 

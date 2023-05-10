@@ -37,7 +37,14 @@ const completionSpec: Fig.Spec = {
           description: "Define the datasource provider to use",
           args: {
             description: "Choose provider",
-            suggestions: ["PostgreSQL", "MySQL", "SQLServer", "SQLite"],
+            suggestions: [
+              "PostgreSQL",
+              "MySQL",
+              "SQLite",
+              "SQLServer",
+              "MongoDB",
+              "CockroachDB",
+            ],
             default: "PostgreSQL",
           },
         },
@@ -52,28 +59,15 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "introspect",
-      description: "Get the datamodel of your database",
-      options: [
-        commonOptions,
-        {
-          name: "--force",
-          description: "Ignore current Prisma schema file",
-          isDangerous: true,
-        },
-        {
-          name: "--print",
-          description: "Print the introspected Prisma schema to stdout",
-        },
-        schemaOptions,
-      ],
-    },
-    {
       name: "generate",
-      description: "Generate artifacts",
+      description: "Generate artifacts (e.g. Prisma Client)",
       options: [
         commonOptions,
         schemaOptions,
+        {
+          name: "--data-proxy",
+          description: "Enable the Data Proxy in the Prisma Client",
+        },
         {
           name: "--watch",
           description: "Watch the Prisma schema and rerun after a change",
@@ -113,7 +107,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "format",
       description: "Format your schema",
-      isDangerous: true,
       options: [commonOptions, schemaOptions],
     },
     {
@@ -124,7 +117,7 @@ const completionSpec: Fig.Spec = {
           name: "dev",
           icon: "💻",
           description:
-            "The migrate dev command updates your database using migrations during development",
+            "The migrate dev command updates your database using migrations files during development",
           options: [
             commonOptions,
             schemaOptions,
@@ -149,7 +142,7 @@ const completionSpec: Fig.Spec = {
           name: "reset",
           icon: "🔃",
           description:
-            "The migrate dev command updates your database using migrations during development",
+            "Reset your database and apply all migrations, all data will be lost",
           options: [
             commonOptions,
             schemaOptions,
@@ -198,6 +191,113 @@ const completionSpec: Fig.Spec = {
           description: "Check the status of your database migrations",
           options: [commonOptions, schemaOptions],
         },
+        {
+          name: "diff",
+          description:
+            "Compares the database schema from two arbitrary sources, and outputs the differences either as a human-readable summary (by default) or an executable script",
+          options: [
+            commonOptions,
+            {
+              name: "--from-url",
+              description: "A datasource url",
+              args: {
+                name: "full url",
+                template: "filepaths",
+              },
+            },
+            {
+              name: "--to-url",
+              description: "A datasource url",
+              args: {
+                name: "full url",
+                template: "filepaths",
+              },
+            },
+            {
+              name: "--from-empty",
+              description: "Flag to assume from is an empty datamodel",
+            },
+            {
+              name: "--to-empty",
+              description: "Flag to assume to is an empty datamodel",
+            },
+            {
+              name: "--from-schema-datamodel",
+              description:
+                "Path to a Prisma schema file, uses the 'datamodel' for the diff",
+              args: {
+                name: "filepath",
+                template: "filepaths",
+              },
+            },
+            {
+              name: "--to-schema-datamodel",
+              description:
+                "Path to a Prisma schema file, uses the 'datamodel' for the diff",
+              args: {
+                name: "filepath",
+                template: "filepaths",
+              },
+            },
+            {
+              name: "--from-schema-datasource",
+              description:
+                "Path to a Prisma schema file, uses the 'datasource url' for the diff",
+              args: {
+                name: "filepath",
+                template: "filepaths",
+              },
+            },
+            {
+              name: "--to-schema-datasource",
+              description:
+                "Path to a Prisma schema file, uses the 'datasource url' for the diff",
+              args: {
+                name: "filepath",
+                template: "filepaths",
+              },
+            },
+            {
+              name: "--from-migrations",
+              description: "Path to the Prisma Migrate migrations directory",
+              args: {
+                name: "folder",
+                template: "folders",
+              },
+            },
+            {
+              name: "--to-migrations",
+              description: "Path to the Prisma Migrate migrations directory",
+              args: {
+                name: "folder",
+                template: "folders",
+              },
+            },
+            {
+              name: "--shadow-database-url",
+              description:
+                "URL for the shadow database. Only required if using --from-migrations or --to-migrations",
+              args: {
+                name: "full url",
+                template: "filepaths",
+              },
+            },
+            {
+              name: "--script",
+              description:
+                "Render a SQL script to stdout instead of the default human readable summary (not supported on MongoDB)",
+              args: {
+                name: "filepath",
+                template: "filepaths",
+              },
+            },
+            {
+              name: "--exit-code",
+              description:
+                "Change the exit code behavior to signal if the diff is empty or not (Empty: 0, Error: 1, Not empty: 2). Default behavior is Success: 0, Error: 1.`",
+            },
+          ],
+        },
       ],
     },
     {
@@ -218,12 +318,28 @@ const completionSpec: Fig.Spec = {
               name: "--print",
               description: "Print the introspected Prisma schema to stdout",
             },
+            {
+              name: "--url",
+              description: "The datasource url",
+              args: {
+                name: "full url",
+                template: "filepaths",
+              },
+            },
+            {
+              name: "--composite-type-depth",
+              description:
+                "Specify the depth for introspecting composite types (e.g. Embedded Documents in MongoDB). Number, default is -1 for infinite depth, 0 = off",
+              args: {
+                name: "number",
+              },
+            },
           ],
         },
         {
           name: "push",
           description:
-            "This command pushes the state of your Prisma schema file to the database without using migrations",
+            "This command pushes the state of your Prisma schema file to the database without using migrations files",
           options: [
             commonOptions,
             schemaOptions,
@@ -250,6 +366,37 @@ const completionSpec: Fig.Spec = {
           isDangerous: true,
           description: "Seed your database",
           options: [commonOptions, schemaOptions],
+        },
+        {
+          name: "execute",
+          isDangerous: true,
+          description: "Execute native commands to your database",
+          options: [
+            commonOptions,
+            schemaOptions,
+            {
+              name: "--url",
+              description: "The datasource url",
+              args: {
+                name: "full url",
+                template: "filepaths",
+              },
+            },
+            {
+              name: "--file",
+              description:
+                "Path to a file. The content will be sent as the script to be executed",
+              args: {
+                name: "filepath",
+                template: "filepaths",
+              },
+            },
+            {
+              name: "--stdin",
+              description:
+                "Use the terminal standard input as the script to be executed",
+            },
+          ],
         },
       ],
     },

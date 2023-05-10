@@ -1,11 +1,75 @@
-const localRenderAndStillOptions: Fig.Option[] = [
+const alwaysOptions: Fig.Option[] = [
   {
-    name: "--env-file",
-    description: "Specify a location for a dotenv file",
+    name: ["--quiet", "-q"],
+    description: "Print less output",
+  },
+  {
+    name: "--log",
+    description: 'Log level, "error", "warning", "verbose", "info" (default)',
     args: {
-      template: "filepaths",
+      default: "info",
+      suggestions: [
+        { name: "error" },
+        { name: "warning" },
+        { name: "verbose" },
+        { name: "info" },
+      ],
     },
   },
+];
+
+const propsOption: Fig.Option = {
+  name: "--props",
+  description: "Pass input props as filename or as JSON",
+  args: {
+    template: ["filepaths"],
+    suggestions: [
+      {
+        type: "arg",
+        displayName: "[json string]",
+        insertValue: "'{cursor}'",
+      },
+    ],
+  },
+};
+
+const envOption: Fig.Option = {
+  name: "--env-file",
+  description: "Specify a location for a dotenv file",
+  args: {
+    template: "filepaths",
+  },
+};
+
+const chromeOptions: Fig.Option[] = [
+  {
+    name: "--disable-headless",
+    description: "Run Chrome in normal mode rather than headless",
+  },
+  {
+    name: "--gl",
+    description: "Which OpenGL renderer to use",
+    args: {
+      suggestions: ["angle", "egl", "swiftshader", "swangle"],
+    },
+  },
+  {
+    name: "--ignore-certificate-errors",
+    description: "Ignore SSL errors",
+  },
+  {
+    name: "--disable-web-security",
+    description: "Disable CORS and other web security features",
+  },
+];
+const compositionsOptions: Fig.Option[] = [
+  propsOption,
+  envOption,
+  ...chromeOptions,
+];
+
+const localRenderAndStillOptions: Fig.Option[] = [
+  envOption,
   {
     name: "--overwrite",
     description: "Overwrite if file exists, default true",
@@ -18,8 +82,19 @@ const localRenderAndStillOptions: Fig.Option[] = [
     },
   },
   {
+    name: "--enable-extensions",
+    description: "Enable Chrome browser extensions while rendering",
+  },
+  {
     name: "--ffmpeg-executable",
     description: "Custom path for FFMPEG executable",
+    args: {
+      template: "filepaths",
+    },
+  },
+  {
+    name: "--ffprobe-executable",
+    description: "Custom path for FFProbe executable",
     args: {
       template: "filepaths",
     },
@@ -37,16 +112,21 @@ const localRenderAndStillOptions: Fig.Option[] = [
     },
   },
   {
-    name: "--disable-headless",
-    description: "Run Chrome in normal mode rather than headless",
-  },
-  {
     name: "--config",
     description: "Custom location for a Remotion config file",
     args: {
       template: "filepaths",
     },
   },
+  {
+    name: "--public-dir",
+    description: "Location of the public/ directory",
+    args: {
+      template: "folders",
+    },
+  },
+  propsOption,
+  ...chromeOptions,
 ];
 
 const lambdaRenderAndStillOptions: Fig.Option[] = [
@@ -73,6 +153,21 @@ const lambdaRenderAndStillOptions: Fig.Option[] = [
       name: "framesPerLambda",
     },
   },
+  ...chromeOptions,
+];
+
+const lambdaRenderOptions: Fig.Option[] = [
+  {
+    name: "--concurrency-per-lambda",
+    description: "Concurrency with which each Lambda function should render",
+    args: {
+      name: "concurrencyPerLambda",
+    },
+  },
+  {
+    name: "--overwrite",
+    description: "Overwrite a video if it already exists in the S3 bucket",
+  },
 ];
 
 const localRenderOptions: Fig.Option[] = [
@@ -84,6 +179,14 @@ const localRenderOptions: Fig.Option[] = [
     name: "--concurrency",
     description: "How many frames to render in parallel",
   },
+  {
+    name: "--enforce-audio-track",
+    description: "Include an audio track even if it's silent",
+  },
+  {
+    name: "--muted",
+    description: "Mute the output video",
+  },
 ];
 
 const stillOptions: Fig.Option[] = [
@@ -92,42 +195,24 @@ const stillOptions: Fig.Option[] = [
     description: "Which frame to render (default 0)",
     args: { name: "frame", default: "0" },
   },
+  {
+    name: "--height",
+    description: "Override the composition height",
+    args: { name: "height" },
+  },
+  {
+    name: "--width",
+    description: "Override the composition width",
+    args: { name: "height" },
+  },
 ];
 
 const renderOptions: Fig.Option[] = [
-  {
-    name: "--gl",
-    description: "Which OpenGL renderer to use",
-    args: {
-      suggestions: ["angle", "egl", "swiftshader", "swangle"],
-    },
-  },
+  ...chromeOptions,
   {
     name: "--timeout",
     description:
       "The time in milisecond that a delayRender() may take before it times out",
-  },
-  {
-    name: "--ignore-certificate-errors",
-    description: "Ignore SSL errors",
-  },
-  {
-    name: "--disable-web-security",
-    description: "Disable CORS and other web security features",
-  },
-  {
-    name: "--props",
-    description: "Pass input props as filename or as JSON",
-    args: {
-      template: ["filepaths"],
-      suggestions: [
-        {
-          type: "arg",
-          displayName: "[json string]",
-          insertValue: "'{cursor}'",
-        },
-      ],
-    },
   },
   {
     name: "--quality",
@@ -157,7 +242,7 @@ const renderOptions: Fig.Option[] = [
       suggestions: [
         { name: "h264" },
         { name: "h265" },
-        { name: "png" },
+        { name: "gif" },
         { name: "vp8" },
         { name: "vp9" },
         { name: "mp3" },
@@ -169,27 +254,41 @@ const renderOptions: Fig.Option[] = [
     },
   },
   {
+    name: "--every-nth-frame",
+    description: "Render only every nth frame (only for GIFs)",
+    args: {
+      default: "1",
+      suggestions: [{ name: "2" }, { name: "3" }, { name: "4" }, { name: "5" }],
+    },
+  },
+  {
+    name: "--number-of-gif-loops",
+    description: "How many times a GIF should loop. 0 = No loop",
+    args: {
+      default: "1",
+      suggestions: [{ name: "0" }, { name: "1" }, { name: "2" }, { name: "3" }],
+    },
+  },
+  {
+    name: "--audio-bitrate",
+    description: "Customize the output audio bitrate",
+  },
+  {
+    name: "--video-bitrate",
+    description:
+      "Customize the output video bitrate. Mutually exclusive with --crf",
+    exclusiveOn: ["--crf"],
+  },
+  {
     name: "--crf",
     description: "FFMPEG CRF value, controls quality, see docs for info",
+    exclusiveOn: ["--video-bitrate"],
   },
   {
     name: "--frames",
     description: "Render a portion or a still of a video, 0-9, 50",
     args: {
       name: "frames",
-    },
-  },
-  {
-    name: "--log",
-    description: 'Log level, "error", "warning", "verbose", "info" (default)',
-    args: {
-      default: "info",
-      suggestions: [
-        { name: "error" },
-        { name: "warning" },
-        { name: "verbose" },
-        { name: "info" },
-      ],
     },
   },
   {
@@ -228,18 +327,24 @@ const renderOptions: Fig.Option[] = [
       ],
     },
   },
+  {
+    name: "--muted",
+    description: "Outputs no audio",
+  },
+  {
+    name: "--height",
+    description: "Override the composition height",
+    args: { name: "height" },
+  },
+  {
+    name: "--width",
+    description: "Override the composition width",
+    args: { name: "height" },
+  },
 ];
 
 const globalLambdaOptions: Fig.Option[] = [
-  {
-    name: "--quiet",
-    description: "Print less output",
-  },
-  {
-    name: "-q",
-    hidden: true,
-    description: "Print less output",
-  },
+  ...alwaysOptions,
   {
     name: "--yes",
     description: "Skip confirmation",
@@ -312,9 +417,28 @@ const globalLambdaOptions: Fig.Option[] = [
   },
 ];
 
+const benchmarkOptions: Fig.Option[] = [
+  ...renderOptions,
+  ...localRenderOptions,
+  ...localRenderAndStillOptions,
+  ...alwaysOptions,
+  {
+    name: "--concurrencies",
+    description:
+      "Comma-separated list of concurrency values to include in benchmark",
+  },
+].filter((b) => {
+  if (b.name === "--overwrite") {
+    return false;
+  }
+  if (b.name === "--concurrency") {
+    return false;
+  }
+  return true;
+});
+
 const completionSpec: Fig.Spec = {
   name: "remotion",
-
   description: "Create videos programmatically in React",
   subcommands: [
     {
@@ -329,6 +453,7 @@ const completionSpec: Fig.Spec = {
         description: "The entry point of your Remotion app",
         template: ["filepaths"],
       },
+      options: compositionsOptions,
     },
     {
       name: "lambda",
@@ -368,6 +493,13 @@ const completionSpec: Fig.Spec = {
         {
           name: "regions",
           description: "Prints list of supported regions",
+          options: [
+            {
+              name: "--default-only",
+              description:
+                "Only print the regions enabled by default in a new AWS account",
+            },
+          ],
         },
         {
           name: "render",
@@ -403,15 +535,31 @@ const completionSpec: Fig.Spec = {
                   displayName: "[out-name]",
                 },
               ],
-
               isOptional: true,
             },
           ],
           options: [
             ...lambdaRenderAndStillOptions,
+            ...lambdaRenderOptions,
             ...renderOptions,
             ...globalLambdaOptions,
+            ...alwaysOptions,
           ],
+        },
+        {
+          name: "compositions",
+          description: "Get the list of available compositions on Lambda",
+          args: {
+            name: "serve-url",
+            description: "URL or name of the site",
+            suggestions: [
+              {
+                type: "arg",
+                displayName: "[serve-url]",
+              },
+            ],
+          },
+          options: [...globalLambdaOptions, ...compositionsOptions],
         },
         {
           name: "still",
@@ -454,6 +602,7 @@ const completionSpec: Fig.Spec = {
             ...lambdaRenderAndStillOptions,
             ...stillOptions,
             ...globalLambdaOptions,
+            ...alwaysOptions,
           ],
         },
         {
@@ -499,8 +648,15 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--disable-cloudwatch",
                   description: "Disable CloudWatch logging",
-
                   exclusiveOn: ["--retention-period"],
+                },
+                {
+                  name: "--custom-role-arn",
+                  description:
+                    "Set a custom role ARN to be used instead of the default",
+                  args: {
+                    name: "Role ARN",
+                  },
                 },
                 {
                   name: "--retention-period",
@@ -586,11 +742,10 @@ const completionSpec: Fig.Spec = {
           ],
         },
       ],
-      options: [...globalLambdaOptions],
+      options: globalLambdaOptions,
     },
     {
       name: "render",
-
       priority: 60,
       description:
         "Render a video based on the entry point, the composition ID and save it to the output location",
@@ -612,15 +767,16 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "output",
-
           template: ["filepaths"],
           suggestions: ["out.mp4"],
+          isOptional: true,
         },
       ],
       options: [
         ...renderOptions,
         ...localRenderOptions,
         ...localRenderAndStillOptions,
+        ...alwaysOptions,
       ],
     },
     {
@@ -646,10 +802,15 @@ const completionSpec: Fig.Spec = {
         {
           name: "output",
           template: ["filepaths"],
-          suggestions: ["out.mp4"],
+          suggestions: ["out.png"],
+          isOptional: true,
         },
       ],
-      options: [...stillOptions, ...localRenderAndStillOptions],
+      options: [
+        ...stillOptions,
+        ...localRenderAndStillOptions,
+        ...alwaysOptions,
+      ],
     },
     {
       name: "preview",
@@ -661,18 +822,25 @@ const completionSpec: Fig.Spec = {
         template: ["filepaths"],
       },
       options: [
+        propsOption,
         {
-          name: "--props",
-          description: "Pass input props as filename or as JSON",
+          name: "--disable-keyboard-shortcuts",
+          description: "Disable all keyboard shortcuts",
+        },
+        {
+          name: "--webpack-poll",
+          description: "Enable webpack polling instead of file system watchers",
           args: {
-            template: ["filepaths"],
-            suggestions: [
-              {
-                type: "arg",
-                displayName: "[json string]",
-                insertValue: "'{cursor}'",
-              },
-            ],
+            name: "polling-interval",
+            description: "Polling interval in milliseconds",
+          },
+        },
+        {
+          name: "--number-of-shared-audio-tags",
+          description:
+            "Set the number of shared audio tags to prevent autoplay issues",
+          args: {
+            name: "numberOfSharedAudioTags",
           },
         },
       ],
@@ -681,6 +849,29 @@ const completionSpec: Fig.Spec = {
       name: "upgrade",
       description:
         "Upgrade all Remotion-related dependencies to the newest version",
+      options: [
+        {
+          name: "--package-manager",
+          description: "Force a specific package manager to be used",
+          args: {
+            name: "package-manager",
+            suggestions: [{ name: "npm" }, { name: "yarn" }, { name: "pnpm" }],
+          },
+        },
+      ],
+    },
+    {
+      name: "benchmark",
+      description: "Try different render configurations and compare them",
+      options: benchmarkOptions,
+    },
+    {
+      name: "install",
+      description: "Ensure Remotion dependencies",
+      args: {
+        name: "dependency",
+        suggestions: [{ name: "ffmpeg" }, { name: "ffprobe" }],
+      },
     },
   ],
   options: [

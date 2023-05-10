@@ -1,4 +1,16 @@
-const completionSpec: Fig.Spec = {
+import { stdCSuggestions, stdCPPSuggestions } from "./clang";
+
+export const stdOption: Fig.Option = {
+  name: "-std",
+  description: "Language standard to compile for",
+  args: {
+    name: "value",
+    suggestions: [...stdCSuggestions, ...stdCPPSuggestions],
+  },
+  requiresSeparator: true,
+};
+
+export const gccBase: Fig.Spec = {
   name: "gcc",
   description: "The default compiler for most linux distributions",
   options: [
@@ -2080,12 +2092,20 @@ const completionSpec: Fig.Spec = {
       args: { name: "value", description: "Value" },
     },
     {
-      name: "'function' includes both 'function-entry' and 'function-exit'.",
+      name: "-fxray-instrumentation-bundle",
       description:
-        "Select which XRay instrumentation points to emit. Options: all, none, function-entry, function-exit, function, custom. Default is 'all'",
+        "Select which XRay instrumentation points to emit. 'function' includes both 'function-entry' and 'function-exit'",
       args: {
-        name: "fxray-instrumentation-bundl",
-        description: "Fxray-instrumentation-bundl",
+        name: "fxray-instrumentation-bundle",
+        suggestions: [
+          "all",
+          "none",
+          "function-entry",
+          "function-exit",
+          "function",
+          "custom",
+        ],
+        default: "all",
       },
     },
     {
@@ -3159,11 +3179,6 @@ const completionSpec: Fig.Spec = {
       description: "Use the static host OpenMP runtime while linking",
     },
     {
-      name: "-std",
-      description: "Language standard to compile for",
-      args: { name: "value", description: "Value" },
-    },
-    {
       name: "-stdlib++-isystem",
       description: "Use directory as the C++ standard library include path",
       args: {
@@ -3323,4 +3338,8 @@ const completionSpec: Fig.Spec = {
   ],
 };
 
+const completionSpec: Fig.Spec = {
+  ...gccBase,
+  options: [...gccBase.options, stdOption],
+};
 export default completionSpec;
