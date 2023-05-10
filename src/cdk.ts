@@ -29,7 +29,7 @@ const completionSpec: Fig.Spec = {
       description:
         "Synthesizes and prints the CloudFormation template for this stack",
     },
-    { name: "ls", description: "List all stacks in the app" },
+    { name: ["ls", "list"], description: "List all stacks in the app" },
   ],
   options: [
     {
