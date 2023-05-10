@@ -6,6 +6,7 @@
   "main": "./build/index",
   "types": "./build/index.d.ts",
   "type": "module",
+  "packageManager": "yarn@3.5.1",
   "browserslist": [
     "safari >=12",
     "edge >=79"
