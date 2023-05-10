@@ -16,3 +16,9 @@ specs
 package-lock.json
 yarn.lock
 pnpm-lock.yaml
+
+# non-zero-install git ignored files for yarn
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+.pnp.*
