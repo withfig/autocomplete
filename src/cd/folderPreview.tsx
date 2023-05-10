@@ -4,9 +4,11 @@ import "../../index.css";
 const Preview = ({
   suggestion,
   shellContext,
+  maxHeight,
 }: {
   suggestion: Fig.Suggestion;
   shellContext: Fig.ShellContext;
+  maxHeight: number;
 }) => {
   const res = useExecuteCommand({
     args: [
@@ -34,8 +36,13 @@ const Preview = ({
       : [];
 
   return (
-    <div>
-      <h1 className="text-lg font-bold">Preview</h1>
+    <div
+      className="bg-main-bg text-main-text p-2 rounded overflow-y-scroll shadow-[0px_0px_3px_0px_rgb(85,_85,_85)]"
+      style={{
+        maxHeight,
+      }}
+    >
+      <h1 className="font-semibold">Preview</h1>
       {items.length === 0 ? (
         <span className="opacity-70">No items</span>
       ) : (
