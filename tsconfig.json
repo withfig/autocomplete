@@ -7,6 +7,8 @@
     }
   },
   "compilerOptions": {
+    "jsx": "react-jsx",
+    "allowImportingTsExtensions": true,
     "moduleResolution": "node",
     "outDir": "./build",
     "target": "ES6",
