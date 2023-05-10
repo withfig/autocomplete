@@ -26,6 +26,11 @@ const completionSpec: Fig.Spec = {
                 "Don't use context default values, explicitly use options or ask",
             },
             {
+              name: "--skipHostnames",
+              description:
+                "Only expose on IP address, not on hostnames. With this option, no root permissions are required",
+            },
+            {
               name: ["-h", "--help"],
               description: "Display help for command",
               priority: 49,
@@ -54,6 +59,11 @@ const completionSpec: Fig.Spec = {
                 "Don't use context default values, explicitly use options or ask",
             },
             {
+              name: "--skipHostnames",
+              description:
+                "Only expose on IP address, not on hostnames. With this option, no root permissions are required",
+            },
+            {
               name: ["-h", "--help"],
               description: "Display help for command",
               priority: 49,
@@ -77,9 +87,9 @@ const completionSpec: Fig.Spec = {
               args: { name: "NAME", isOptional: true },
             },
             {
-              name: "--noDefaults",
+              name: "--skipHostnames",
               description:
-                "Don't use context default values, explicitly use options or ask",
+                "Only expose on IP address, not on hostnames. With this option, no root permissions are required",
             },
             {
               name: ["-h", "--help"],
@@ -92,7 +102,7 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description: "Display help for command",
           priority: 49,
-          args: { name: "command", isOptional: true },
+          args: { name: "command", isOptional: true, template: "help" },
         },
       ],
       options: [
@@ -223,7 +233,7 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description: "Display help for command",
           priority: 49,
-          args: { name: "command", isOptional: true },
+          args: { name: "command", isOptional: true, template: "help" },
         },
       ],
       options: [
@@ -238,7 +248,10 @@ const completionSpec: Fig.Spec = {
       name: "login",
       description: "Connect the CLI to your Northflank account",
       options: [
-        { name: ["-b", "--browser"], description: "Use browser login" },
+        {
+          name: "--token-login",
+          description: "Use manual login with API token",
+        },
         {
           name: "--do-not-open-browser",
           description:
@@ -251,11 +264,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-t", "--token"],
-          description: "Token for this context",
+          description:
+            "Token for this context. When set, browser login is not used",
           args: { name: "TOKEN", isOptional: true },
         },
         {
-          name: ["-h", "--host"],
+          name: "--host",
           description: "Host url for this context",
           args: {
             name: "HOST",
@@ -267,6 +281,11 @@ const completionSpec: Fig.Spec = {
           name: "--override",
           description:
             "Override existing contexts (this will remove project and service context)",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Display help for command",
+          priority: 49,
         },
       ],
     },
@@ -351,7 +370,7 @@ const completionSpec: Fig.Spec = {
               name: "help",
               description: "Display help for command",
               priority: 49,
-              args: { name: "command", isOptional: true },
+              args: { name: "command", isOptional: true, template: "help" },
             },
           ],
           options: [
@@ -404,7 +423,7 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description: "Display help for command",
           priority: 49,
-          args: { name: "command", isOptional: true },
+          args: { name: "command", isOptional: true, template: "help" },
         },
       ],
       options: [
@@ -598,6 +617,30 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
+          name: "log-sinks",
+          description: "Gets a list of log sinks added to this account",
+          options: [
+            { name: "--verbose", description: "Verbose output" },
+            { name: "--quiet", description: "No console output" },
+            {
+              name: "--noDefaults",
+              description:
+                "OPTIONAL: Don't use context default values, explicitly use options or ask",
+            },
+            {
+              name: ["-o", "--output"],
+              description:
+                "OPTIONAL: Output formatting, options: '--output json|yaml|custom-columns=<column1>,<column2>,...'",
+              args: { name: "OUTPUT" },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Display help for command",
+              priority: 49,
+            },
+          ],
+        },
+        {
           name: "registries",
           description:
             "Lists the container registry credentials saved to this account. Does not display secrets",
@@ -719,6 +762,74 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
+          name: "pipelines",
+          description: "Lists all pipelines for a project",
+          options: [
+            { name: "--verbose", description: "Verbose output" },
+            { name: "--quiet", description: "No console output" },
+            {
+              name: ["--project", "--projectId"],
+              description: "ID of the project, example: default-project",
+              args: { name: "PROJECTID" },
+            },
+            {
+              name: "--noDefaults",
+              description:
+                "OPTIONAL: Don't use context default values, explicitly use options or ask",
+            },
+            {
+              name: ["-o", "--output"],
+              description:
+                "OPTIONAL: Output formatting, options: '--output json|yaml|custom-columns=<column1>,<column2>,...'",
+              args: { name: "OUTPUT" },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Display help for command",
+              priority: 49,
+            },
+          ],
+        },
+        {
+          name: "release-flow-runs",
+          description: "Lists runs of a release flow",
+          options: [
+            { name: "--verbose", description: "Verbose output" },
+            { name: "--quiet", description: "No console output" },
+            {
+              name: "--stage",
+              description: "Stage of the pipeline, example: development",
+              args: { name: "STAGE" },
+            },
+            {
+              name: ["--pipeline", "--pipelineId"],
+              description: "ID of the pipeline, example: example-pipeline",
+              args: { name: "PIPELINEID" },
+            },
+            {
+              name: ["--project", "--projectId"],
+              description: "ID of the project, example: default-project",
+              args: { name: "PROJECTID" },
+            },
+            {
+              name: "--noDefaults",
+              description:
+                "OPTIONAL: Don't use context default values, explicitly use options or ask",
+            },
+            {
+              name: ["-o", "--output"],
+              description:
+                "OPTIONAL: Output formatting, options: '--output json|yaml|custom-columns=<column1>,<column2>,...'",
+              args: { name: "OUTPUT" },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Display help for command",
+              priority: 49,
+            },
+          ],
+        },
+        {
           name: ["secrets", "secret", "scrt"],
           description: "Gets a list of secrets belonging to the project",
           options: [
@@ -777,7 +888,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: "templates",
+          name: ["templates", "template", "tpl"],
           description: "Get a list of templates",
           options: [
             { name: "--verbose", description: "Verbose output" },
@@ -852,6 +963,12 @@ const completionSpec: Fig.Spec = {
               description:
                 "OPTIONAL: If provided, only returns repositories that can be accessed by the linked version control account with this name., example: example-user",
               args: { name: "ACCOUNT_LOGIN" },
+            },
+            {
+              name: "--vcs_link_id",
+              description:
+                "OPTIONAL: If provided, only returns repositories belong to that VCS link",
+              args: { name: "VCS_LINK_ID" },
             },
             {
               name: "--noDefaults",
@@ -945,7 +1062,7 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description: "Display help for command",
           priority: 49,
-          args: { name: "command", isOptional: true },
+          args: { name: "command", isOptional: true, template: "help" },
         },
       ],
       options: [
@@ -1048,7 +1165,7 @@ const completionSpec: Fig.Spec = {
               name: "help",
               description: "Display help for command",
               priority: 49,
-              args: { name: "command", isOptional: true },
+              args: { name: "command", isOptional: true, template: "help" },
             },
           ],
           options: [
@@ -1247,10 +1364,45 @@ const completionSpec: Fig.Spec = {
               name: "help",
               description: "Display help for command",
               priority: 49,
-              args: { name: "command", isOptional: true },
+              args: { name: "command", isOptional: true, template: "help" },
             },
           ],
           options: [
+            {
+              name: ["-h", "--help"],
+              description: "Display help for command",
+              priority: 49,
+            },
+          ],
+        },
+        {
+          name: "log-sink",
+          description: "Creates a new log sink",
+          options: [
+            { name: "--verbose", description: "Verbose output" },
+            { name: "--quiet", description: "No console output" },
+            {
+              name: ["-f", "--file"],
+              description: "File to load resource json from",
+              args: { name: "file-path" },
+            },
+            {
+              name: ["-i", "--input"],
+              description:
+                'JSON-formatted resource definition, takes precedence over "--file"',
+              args: { name: "resource-def" },
+            },
+            {
+              name: "--noDefaults",
+              description:
+                "OPTIONAL: Don't use context default values, explicitly use options or ask",
+            },
+            {
+              name: ["-o", "--output"],
+              description:
+                "OPTIONAL: Output formatting, options: '--output json|yaml'",
+              args: { name: "OUTPUT" },
+            },
             {
               name: ["-h", "--help"],
               description: "Display help for command",
@@ -1461,7 +1613,7 @@ const completionSpec: Fig.Spec = {
               name: "help",
               description: "Display help for command",
               priority: 49,
-              args: { name: "command", isOptional: true },
+              args: { name: "command", isOptional: true, template: "help" },
             },
           ],
           options: [
@@ -1473,33 +1625,53 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: "template",
-          description: "Create a template",
+          name: "custom-vcs",
+          description: "CustomVcs Northflank resources",
+          subcommands: [
+            {
+              name: "token",
+              description: "Generate a token for a specific VCS link",
+              options: [
+                { name: "--verbose", description: "Verbose output" },
+                { name: "--quiet", description: "No console output" },
+                {
+                  name: ["--vcsLink", "--vcsLinkId"],
+                  description:
+                    "ID of the version control link, example: 63ebb6ce2ccc6c7affdbf253",
+                  args: { name: "VCSLINKID" },
+                },
+                {
+                  name: ["--customVCS", "--customVCSId"],
+                  description:
+                    "ID of the custom VCS, example: cdb3d41f-0dd8-49ad-92d5-7544c98c490b",
+                  args: { name: "CUSTOMVCSID" },
+                },
+                {
+                  name: "--noDefaults",
+                  description:
+                    "OPTIONAL: Don't use context default values, explicitly use options or ask",
+                },
+                {
+                  name: ["-o", "--output"],
+                  description:
+                    "OPTIONAL: Output formatting, options: '--output json|yaml'",
+                  args: { name: "OUTPUT" },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Display help for command",
+                  priority: 49,
+                },
+              ],
+            },
+            {
+              name: "help",
+              description: "Display help for command",
+              priority: 49,
+              args: { name: "command", isOptional: true, template: "help" },
+            },
+          ],
           options: [
-            { name: "--verbose", description: "Verbose output" },
-            { name: "--quiet", description: "No console output" },
-            {
-              name: ["-f", "--file"],
-              description: "File to load resource json from",
-              args: { name: "file-path" },
-            },
-            {
-              name: ["-i", "--input"],
-              description:
-                'JSON-formatted resource definition, takes precedence over "--file"',
-              args: { name: "resource-def" },
-            },
-            {
-              name: "--noDefaults",
-              description:
-                "OPTIONAL: Don't use context default values, explicitly use options or ask",
-            },
-            {
-              name: ["-o", "--output"],
-              description:
-                "OPTIONAL: Output formatting, options: '--output json|yaml'",
-              args: { name: "OUTPUT" },
-            },
             {
               name: ["-h", "--help"],
               description: "Display help for command",
@@ -1551,7 +1723,7 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description: "Display help for command",
           priority: 49,
-          args: { name: "command", isOptional: true },
+          args: { name: "command", isOptional: true, template: "help" },
         },
       ],
       options: [
@@ -1626,6 +1798,192 @@ const completionSpec: Fig.Spec = {
                   description:
                     "OPTIONAL: Output formatting, options: '--output json|yaml'",
                   args: { name: "OUTPUT" },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Display help for command",
+                  priority: 49,
+                },
+              ],
+            },
+            {
+              name: ["logs", "log"],
+              description: "Get log for the specified addon",
+              options: [
+                { name: "--verbose", description: "Verbose output" },
+                { name: "--quiet", description: "No console output" },
+                {
+                  name: ["--project", "--projectId"],
+                  description: "Project for logs",
+                  args: { name: "projectId", isOptional: true },
+                },
+                {
+                  name: ["--addon", "--addonId"],
+                  description: "Addon to get logs from",
+                  args: { name: "addonId", isOptional: true },
+                },
+                {
+                  name: ["--container", "--containerId"],
+                  description:
+                    "Container to exec into (logs from all containers will be shown if not specified)",
+                  args: { name: "containerId", isOptional: true },
+                },
+                {
+                  name: ["-f", "--tail"],
+                  description:
+                    "Tail will stream logs in real-time. Session will be kept open",
+                },
+                {
+                  name: ["-l", "--lineLimit"],
+                  description: "Number of lines to return",
+                  args: { name: "limit", isOptional: true },
+                },
+                {
+                  name: "--startTime",
+                  description:
+                    "Get logs generated after this time, example: 2020-02-02T02:02:02Z (date string) or 1580608922 (unix ts)",
+                  args: { name: "timestamp" },
+                },
+                {
+                  name: "--endTime",
+                  description:
+                    "Get logs generated before this time, example: 2020-02-02T02:02:02Z (date string) or 1580608922 (unix ts)",
+                  args: { name: "timestamp" },
+                },
+                {
+                  name: "--duration",
+                  description:
+                    "Length of timespan in seconds. Only valid if not both, startTime and endTime are set",
+                  args: { name: "duration", isOptional: true },
+                },
+                {
+                  name: ["-d", "--direction"],
+                  description: "Direction of logs. Ignored when tailing",
+                  args: { name: "order", suggestions: ["backward", "forward"] },
+                },
+                {
+                  name: "--textIncludes",
+                  description: "Filter log lines to include this text",
+                  args: { name: "text" },
+                },
+                {
+                  name: "--textNotIncludes",
+                  description: "Filter log lines to not include this text",
+                  args: { name: "text" },
+                },
+                {
+                  name: "--regexIncludes",
+                  description:
+                    "Filter log lines to match this regular expression",
+                  args: { name: "regex" },
+                },
+                {
+                  name: "--regexNotIncludes",
+                  description:
+                    "Filter log lines to not match this regular expression",
+                  args: { name: "regex" },
+                },
+                {
+                  name: "--noDefaults",
+                  description:
+                    "Don't use context default values, explicitly use options or ask",
+                },
+                {
+                  name: ["-o", "--output"],
+                  description:
+                    "Output formatting. Will use advanced formatting by default",
+                  args: {
+                    name: "output",
+                    isOptional: true,
+                    suggestions: ["format", "json", "yaml"],
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Display help for command",
+                  priority: 49,
+                },
+              ],
+            },
+            {
+              name: ["metrics", "metric"],
+              description: "Get metrics for the specified addon",
+              options: [
+                { name: "--verbose", description: "Verbose output" },
+                { name: "--quiet", description: "No console output" },
+                {
+                  name: ["--project", "--projectId"],
+                  description: "Project for logs",
+                  args: { name: "NAME", isOptional: true },
+                },
+                {
+                  name: ["--addon", "--addonId"],
+                  description: "Addon to get logs from",
+                  args: { name: "NAME", isOptional: true },
+                },
+                {
+                  name: ["--container", "--containerId"],
+                  description:
+                    "Container to exec into (logs from all containers will be shown if not specified)",
+                  args: { name: "NAME", isOptional: true },
+                },
+                {
+                  name: "--startTime",
+                  description:
+                    "Get metrics after this timestamp, example: 2020-02-02T02:02:02Z (date string) or 1580608922 (unix ts)",
+                  args: { name: "timestamp" },
+                },
+                {
+                  name: "--endTime",
+                  description:
+                    "Get metrics before this timestamp, example: 2020-02-02T02:02:02Z (date string) or 1580608922 (unix ts)",
+                  args: { name: "timestamp" },
+                },
+                {
+                  name: "--duration",
+                  description:
+                    "Length of timespan in seconds. Only valid if not both, startTime and endTime are set",
+                  args: { name: "duration", isOptional: true },
+                },
+                {
+                  name: ["-t", "--metricTypes"],
+                  description: "Which metric type to fetch",
+                  args: {
+                    name: "metricTypes",
+                    isVariadic: true,
+                    suggestions: [
+                      "cpu",
+                      "memory",
+                      "networkIngress",
+                      "networkEgress",
+                      "tcpConnectionsOpen",
+                      "diskUsage",
+                      "requests",
+                      "http4xxResponses",
+                      "http5xxResponses",
+                    ],
+                  },
+                },
+                {
+                  name: "--timestamp",
+                  description:
+                    "Get metrics at this exact timestamp, if no timestamp set most recent time is used. example: 2020-02-02T02:02:02Z (date string) or 1580608922 (unix ts)",
+                  args: { name: "timestamp", isOptional: true },
+                },
+                {
+                  name: "--noDefaults",
+                  description:
+                    "Don't use context default values, explicitly use options or ask",
+                },
+                {
+                  name: ["-o", "--output"],
+                  description:
+                    "Output formatting. Will use advanced formatting by default",
+                  args: {
+                    name: "output",
+                    isOptional: true,
+                    suggestions: ["format", "json", "yaml"],
+                  },
                 },
                 {
                   name: ["-h", "--help"],
@@ -1729,8 +2087,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "backup",
-              description:
-                "Gets details about a given backup including restore history",
+              description: "Gets details about a given backup",
               subcommands: [
                 {
                   name: "download",
@@ -1777,9 +2134,48 @@ const completionSpec: Fig.Spec = {
                   name: "help",
                   description: "Display help for command",
                   priority: 49,
-                  args: { name: "command", isOptional: true },
+                  args: { name: "command", isOptional: true, template: "help" },
                 },
               ],
+              options: [
+                { name: "--verbose", description: "Verbose output" },
+                { name: "--quiet", description: "No console output" },
+                {
+                  name: ["--backup", "--backupId"],
+                  description: "ID of the backup, example: example-backup",
+                  args: { name: "BACKUPID" },
+                },
+                {
+                  name: ["--addon", "--addonId"],
+                  description: "ID of the addon, example: example-addon",
+                  args: { name: "ADDONID" },
+                },
+                {
+                  name: ["--project", "--projectId"],
+                  description: "ID of the project, example: default-project",
+                  args: { name: "PROJECTID" },
+                },
+                {
+                  name: "--noDefaults",
+                  description:
+                    "OPTIONAL: Don't use context default values, explicitly use options or ask",
+                },
+                {
+                  name: ["-o", "--output"],
+                  description:
+                    "OPTIONAL: Output formatting, options: '--output json|yaml'",
+                  args: { name: "OUTPUT" },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Display help for command",
+                  priority: 49,
+                },
+              ],
+            },
+            {
+              name: "restores",
+              description: "Gets a list of restores for the given backup",
               options: [
                 { name: "--verbose", description: "Verbose output" },
                 { name: "--quiet", description: "No console output" },
@@ -1885,10 +2281,45 @@ const completionSpec: Fig.Spec = {
               ],
             },
             {
+              name: "pitr-window",
+              description:
+                "Gets the valid window for performing a point-in-time restore (PITR) on this addon",
+              options: [
+                { name: "--verbose", description: "Verbose output" },
+                { name: "--quiet", description: "No console output" },
+                {
+                  name: ["--addon", "--addonId"],
+                  description: "ID of the addon, example: example-addon",
+                  args: { name: "ADDONID" },
+                },
+                {
+                  name: ["--project", "--projectId"],
+                  description: "ID of the project, example: default-project",
+                  args: { name: "PROJECTID" },
+                },
+                {
+                  name: "--noDefaults",
+                  description:
+                    "OPTIONAL: Don't use context default values, explicitly use options or ask",
+                },
+                {
+                  name: ["-o", "--output"],
+                  description:
+                    "OPTIONAL: Output formatting, options: '--output json|yaml'",
+                  args: { name: "OUTPUT" },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Display help for command",
+                  priority: 49,
+                },
+              ],
+            },
+            {
               name: "help",
               description: "Display help for command",
               priority: 49,
-              args: { name: "command", isOptional: true },
+              args: { name: "command", isOptional: true, template: "help" },
             },
           ],
           options: [
@@ -1985,7 +2416,7 @@ const completionSpec: Fig.Spec = {
               name: "help",
               description: "Display help for command",
               priority: 49,
-              args: { name: "command", isOptional: true },
+              args: { name: "command", isOptional: true, template: "help" },
             },
           ],
           options: [
@@ -2085,6 +2516,412 @@ const completionSpec: Fig.Spec = {
                   description:
                     "OPTIONAL: Output formatting, options: '--output json|yaml'",
                   args: { name: "OUTPUT" },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Display help for command",
+                  priority: 49,
+                },
+              ],
+            },
+            {
+              name: ["logs", "log"],
+              description: "Get log for the specified job",
+              options: [
+                { name: "--verbose", description: "Verbose output" },
+                { name: "--quiet", description: "No console output" },
+                {
+                  name: ["--project", "--projectId"],
+                  description: "Project for logs",
+                  args: { name: "projectId", isOptional: true },
+                },
+                {
+                  name: ["--job", "--jobId"],
+                  description: "Job to get logs from",
+                  args: { name: "jobId", isOptional: true },
+                },
+                {
+                  name: ["--container", "--containerId"],
+                  description:
+                    "Container to exec into (logs from all containers will be shown if not specified)",
+                  args: { name: "containerId", isOptional: true },
+                },
+                {
+                  name: ["-f", "--tail"],
+                  description:
+                    "Tail will stream logs in real-time. Session will be kept open",
+                },
+                {
+                  name: ["-l", "--lineLimit"],
+                  description: "Number of lines to return",
+                  args: { name: "limit", isOptional: true },
+                },
+                {
+                  name: "--startTime",
+                  description:
+                    "Get logs generated after this time, example: 2020-02-02T02:02:02Z (date string) or 1580608922 (unix ts)",
+                  args: { name: "timestamp" },
+                },
+                {
+                  name: "--endTime",
+                  description:
+                    "Get logs generated before this time, example: 2020-02-02T02:02:02Z (date string) or 1580608922 (unix ts)",
+                  args: { name: "timestamp" },
+                },
+                {
+                  name: "--duration",
+                  description:
+                    "Length of timespan in seconds. Only valid if not both, startTime and endTime are set",
+                  args: { name: "duration", isOptional: true },
+                },
+                {
+                  name: ["-d", "--direction"],
+                  description: "Direction of logs. Ignored when tailing",
+                  args: { name: "order", suggestions: ["backward", "forward"] },
+                },
+                {
+                  name: "--textIncludes",
+                  description: "Filter log lines to include this text",
+                  args: { name: "text" },
+                },
+                {
+                  name: "--textNotIncludes",
+                  description: "Filter log lines to not include this text",
+                  args: { name: "text" },
+                },
+                {
+                  name: "--regexIncludes",
+                  description:
+                    "Filter log lines to match this regular expression",
+                  args: { name: "regex" },
+                },
+                {
+                  name: "--regexNotIncludes",
+                  description:
+                    "Filter log lines to not match this regular expression",
+                  args: { name: "regex" },
+                },
+                {
+                  name: "--noDefaults",
+                  description:
+                    "Don't use context default values, explicitly use options or ask",
+                },
+                {
+                  name: ["-o", "--output"],
+                  description:
+                    "Output formatting. Will use advanced formatting by default",
+                  args: {
+                    name: "output",
+                    isOptional: true,
+                    suggestions: ["format", "json", "yaml"],
+                  },
+                },
+                {
+                  name: ["--run", "--runId"],
+                  description:
+                    "Job run id, example: 162b1977-6636-4000-929b-cc265b862ff0",
+                  args: { name: "runId", isOptional: true },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Display help for command",
+                  priority: 49,
+                },
+              ],
+            },
+            {
+              name: ["metrics", "metric"],
+              description: "Get metrics for the specified job",
+              options: [
+                { name: "--verbose", description: "Verbose output" },
+                { name: "--quiet", description: "No console output" },
+                {
+                  name: ["--project", "--projectId"],
+                  description: "Project for logs",
+                  args: { name: "NAME", isOptional: true },
+                },
+                {
+                  name: ["--job", "--jobId"],
+                  description: "Job to get logs from",
+                  args: { name: "NAME", isOptional: true },
+                },
+                {
+                  name: ["--container", "--containerId"],
+                  description:
+                    "Container to exec into (logs from all containers will be shown if not specified)",
+                  args: { name: "NAME", isOptional: true },
+                },
+                {
+                  name: "--startTime",
+                  description:
+                    "Get metrics after this timestamp, example: 2020-02-02T02:02:02Z (date string) or 1580608922 (unix ts)",
+                  args: { name: "timestamp" },
+                },
+                {
+                  name: "--endTime",
+                  description:
+                    "Get metrics before this timestamp, example: 2020-02-02T02:02:02Z (date string) or 1580608922 (unix ts)",
+                  args: { name: "timestamp" },
+                },
+                {
+                  name: "--duration",
+                  description:
+                    "Length of timespan in seconds. Only valid if not both, startTime and endTime are set",
+                  args: { name: "duration", isOptional: true },
+                },
+                {
+                  name: ["-t", "--metricTypes"],
+                  description: "Which metric type to fetch",
+                  args: {
+                    name: "metricTypes",
+                    isVariadic: true,
+                    suggestions: [
+                      "cpu",
+                      "memory",
+                      "networkIngress",
+                      "networkEgress",
+                      "tcpConnectionsOpen",
+                      "diskUsage",
+                      "requests",
+                      "http4xxResponses",
+                      "http5xxResponses",
+                    ],
+                  },
+                },
+                {
+                  name: "--timestamp",
+                  description:
+                    "Get metrics at this exact timestamp, if no timestamp set most recent time is used. example: 2020-02-02T02:02:02Z (date string) or 1580608922 (unix ts)",
+                  args: { name: "timestamp", isOptional: true },
+                },
+                {
+                  name: "--noDefaults",
+                  description:
+                    "Don't use context default values, explicitly use options or ask",
+                },
+                {
+                  name: ["-o", "--output"],
+                  description:
+                    "Output formatting. Will use advanced formatting by default",
+                  args: {
+                    name: "output",
+                    isOptional: true,
+                    suggestions: ["format", "json", "yaml"],
+                  },
+                },
+                {
+                  name: ["--run", "--runId"],
+                  description:
+                    "Job run id, example: 162b1977-6636-4000-929b-cc265b862ff0",
+                  args: { name: "runId", isOptional: true },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Display help for command",
+                  priority: 49,
+                },
+              ],
+            },
+            {
+              name: ["build-logs", "build-log"],
+              description: "Get log for the specified job",
+              options: [
+                { name: "--verbose", description: "Verbose output" },
+                { name: "--quiet", description: "No console output" },
+                {
+                  name: ["--project", "--projectId"],
+                  description: "Project for logs",
+                  args: { name: "projectId", isOptional: true },
+                },
+                {
+                  name: ["--job", "--jobId"],
+                  description: "Job to get logs from",
+                  args: { name: "jobId", isOptional: true },
+                },
+                {
+                  name: ["--container", "--containerId"],
+                  description:
+                    "Container to exec into (logs from all containers will be shown if not specified)",
+                  args: { name: "containerId", isOptional: true },
+                },
+                {
+                  name: ["-f", "--tail"],
+                  description:
+                    "Tail will stream logs in real-time. Session will be kept open",
+                },
+                {
+                  name: ["-l", "--lineLimit"],
+                  description: "Number of lines to return",
+                  args: { name: "limit", isOptional: true },
+                },
+                {
+                  name: "--startTime",
+                  description:
+                    "Get logs generated after this time, example: 2020-02-02T02:02:02Z (date string) or 1580608922 (unix ts)",
+                  args: { name: "timestamp" },
+                },
+                {
+                  name: "--endTime",
+                  description:
+                    "Get logs generated before this time, example: 2020-02-02T02:02:02Z (date string) or 1580608922 (unix ts)",
+                  args: { name: "timestamp" },
+                },
+                {
+                  name: "--duration",
+                  description:
+                    "Length of timespan in seconds. Only valid if not both, startTime and endTime are set",
+                  args: { name: "duration", isOptional: true },
+                },
+                {
+                  name: ["-d", "--direction"],
+                  description: "Direction of logs. Ignored when tailing",
+                  args: { name: "order", suggestions: ["backward", "forward"] },
+                },
+                {
+                  name: "--textIncludes",
+                  description: "Filter log lines to include this text",
+                  args: { name: "text" },
+                },
+                {
+                  name: "--textNotIncludes",
+                  description: "Filter log lines to not include this text",
+                  args: { name: "text" },
+                },
+                {
+                  name: "--regexIncludes",
+                  description:
+                    "Filter log lines to match this regular expression",
+                  args: { name: "regex" },
+                },
+                {
+                  name: "--regexNotIncludes",
+                  description:
+                    "Filter log lines to not match this regular expression",
+                  args: { name: "regex" },
+                },
+                {
+                  name: "--noDefaults",
+                  description:
+                    "Don't use context default values, explicitly use options or ask",
+                },
+                {
+                  name: ["-o", "--output"],
+                  description:
+                    "Output formatting. Will use advanced formatting by default",
+                  args: {
+                    name: "output",
+                    isOptional: true,
+                    suggestions: ["format", "json", "yaml"],
+                  },
+                },
+                {
+                  name: ["--build", "--buildId"],
+                  description: "Build to get logs from",
+                  args: { name: "buildId", isOptional: true },
+                },
+                {
+                  name: ["--run", "--runId"],
+                  description:
+                    "Job run id, example: 162b1977-6636-4000-929b-cc265b862ff0",
+                  args: { name: "runId", isOptional: true },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Display help for command",
+                  priority: 49,
+                },
+              ],
+            },
+            {
+              name: ["build-metrics", "build-metric"],
+              description: "Get metrics for the specified job",
+              options: [
+                { name: "--verbose", description: "Verbose output" },
+                { name: "--quiet", description: "No console output" },
+                {
+                  name: ["--project", "--projectId"],
+                  description: "Project for logs",
+                  args: { name: "NAME", isOptional: true },
+                },
+                {
+                  name: ["--job", "--jobId"],
+                  description: "Job to get logs from",
+                  args: { name: "NAME", isOptional: true },
+                },
+                {
+                  name: ["--container", "--containerId"],
+                  description:
+                    "Container to exec into (logs from all containers will be shown if not specified)",
+                  args: { name: "NAME", isOptional: true },
+                },
+                {
+                  name: "--startTime",
+                  description:
+                    "Get metrics after this timestamp, example: 2020-02-02T02:02:02Z (date string) or 1580608922 (unix ts)",
+                  args: { name: "timestamp" },
+                },
+                {
+                  name: "--endTime",
+                  description:
+                    "Get metrics before this timestamp, example: 2020-02-02T02:02:02Z (date string) or 1580608922 (unix ts)",
+                  args: { name: "timestamp" },
+                },
+                {
+                  name: "--duration",
+                  description:
+                    "Length of timespan in seconds. Only valid if not both, startTime and endTime are set",
+                  args: { name: "duration", isOptional: true },
+                },
+                {
+                  name: ["-t", "--metricTypes"],
+                  description: "Which metric type to fetch",
+                  args: {
+                    name: "metricTypes",
+                    isVariadic: true,
+                    suggestions: [
+                      "cpu",
+                      "memory",
+                      "networkIngress",
+                      "networkEgress",
+                      "tcpConnectionsOpen",
+                      "diskUsage",
+                      "requests",
+                      "http4xxResponses",
+                      "http5xxResponses",
+                    ],
+                  },
+                },
+                {
+                  name: "--timestamp",
+                  description:
+                    "Get metrics at this exact timestamp, if no timestamp set most recent time is used. example: 2020-02-02T02:02:02Z (date string) or 1580608922 (unix ts)",
+                  args: { name: "timestamp", isOptional: true },
+                },
+                {
+                  name: "--noDefaults",
+                  description:
+                    "Don't use context default values, explicitly use options or ask",
+                },
+                {
+                  name: ["-o", "--output"],
+                  description:
+                    "Output formatting. Will use advanced formatting by default",
+                  args: {
+                    name: "output",
+                    isOptional: true,
+                    suggestions: ["format", "json", "yaml"],
+                  },
+                },
+                {
+                  name: ["--build", "--buildId"],
+                  description: "Build to get logs from",
+                  args: { name: "buildId", isOptional: true },
+                },
+                {
+                  name: ["--run", "--runId"],
+                  description:
+                    "Job run id, example: 162b1977-6636-4000-929b-cc265b862ff0",
+                  args: { name: "runId", isOptional: true },
                 },
                 {
                   name: ["-h", "--help"],
@@ -2535,7 +3372,7 @@ const completionSpec: Fig.Spec = {
               name: "help",
               description: "Display help for command",
               priority: 49,
-              args: { name: "command", isOptional: true },
+              args: { name: "command", isOptional: true, template: "help" },
             },
           ],
           options: [
@@ -2550,6 +3387,35 @@ const completionSpec: Fig.Spec = {
               name: ["--project", "--projectId"],
               description: "ID of the project, example: default-project",
               args: { name: "PROJECTID" },
+            },
+            {
+              name: "--noDefaults",
+              description:
+                "OPTIONAL: Don't use context default values, explicitly use options or ask",
+            },
+            {
+              name: ["-o", "--output"],
+              description:
+                "OPTIONAL: Output formatting, options: '--output json|yaml'",
+              args: { name: "OUTPUT" },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Display help for command",
+              priority: 49,
+            },
+          ],
+        },
+        {
+          name: "log-sink",
+          description: "Gets details about a given log sink",
+          options: [
+            { name: "--verbose", description: "Verbose output" },
+            { name: "--quiet", description: "No console output" },
+            {
+              name: ["--logSink", "--logSinkId"],
+              description: "ID of the log sink, example: example-log-sink",
+              args: { name: "LOGSINKID" },
             },
             {
               name: "--noDefaults",
@@ -2669,6 +3535,123 @@ const completionSpec: Fig.Spec = {
           options: [
             { name: "--verbose", description: "Verbose output" },
             { name: "--quiet", description: "No console output" },
+            {
+              name: "--noDefaults",
+              description:
+                "OPTIONAL: Don't use context default values, explicitly use options or ask",
+            },
+            {
+              name: ["-o", "--output"],
+              description:
+                "OPTIONAL: Output formatting, options: '--output json|yaml'",
+              args: { name: "OUTPUT" },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Display help for command",
+              priority: 49,
+            },
+          ],
+        },
+        {
+          name: "pipeline",
+          description: "Get details about a pipeline",
+          options: [
+            { name: "--verbose", description: "Verbose output" },
+            { name: "--quiet", description: "No console output" },
+            {
+              name: ["--pipeline", "--pipelineId"],
+              description: "ID of the pipeline, example: example-pipeline",
+              args: { name: "PIPELINEID" },
+            },
+            {
+              name: ["--project", "--projectId"],
+              description: "ID of the project, example: default-project",
+              args: { name: "PROJECTID" },
+            },
+            {
+              name: "--noDefaults",
+              description:
+                "OPTIONAL: Don't use context default values, explicitly use options or ask",
+            },
+            {
+              name: ["-o", "--output"],
+              description:
+                "OPTIONAL: Output formatting, options: '--output json|yaml'",
+              args: { name: "OUTPUT" },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Display help for command",
+              priority: 49,
+            },
+          ],
+        },
+        {
+          name: "release-flow",
+          description: "Gets details about a release flow",
+          options: [
+            { name: "--verbose", description: "Verbose output" },
+            { name: "--quiet", description: "No console output" },
+            {
+              name: "--stage",
+              description: "Stage of the pipeline, example: development",
+              args: { name: "STAGE" },
+            },
+            {
+              name: ["--pipeline", "--pipelineId"],
+              description: "ID of the pipeline, example: example-pipeline",
+              args: { name: "PIPELINEID" },
+            },
+            {
+              name: ["--project", "--projectId"],
+              description: "ID of the project, example: default-project",
+              args: { name: "PROJECTID" },
+            },
+            {
+              name: "--noDefaults",
+              description:
+                "OPTIONAL: Don't use context default values, explicitly use options or ask",
+            },
+            {
+              name: ["-o", "--output"],
+              description:
+                "OPTIONAL: Output formatting, options: '--output json|yaml'",
+              args: { name: "OUTPUT" },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Display help for command",
+              priority: 49,
+            },
+          ],
+        },
+        {
+          name: "release-flow-run",
+          description: "Get information about the given release flow run",
+          options: [
+            { name: "--verbose", description: "Verbose output" },
+            { name: "--quiet", description: "No console output" },
+            {
+              name: ["--run", "--runId"],
+              description: "ID of the release flow run, example: development",
+              args: { name: "RUNID" },
+            },
+            {
+              name: "--stage",
+              description: "Stage of the pipeline, example: development",
+              args: { name: "STAGE" },
+            },
+            {
+              name: ["--pipeline", "--pipelineId"],
+              description: "ID of the pipeline, example: example-pipeline",
+              args: { name: "PIPELINEID" },
+            },
+            {
+              name: ["--project", "--projectId"],
+              description: "ID of the project, example: default-project",
+              args: { name: "PROJECTID" },
+            },
             {
               name: "--noDefaults",
               description:
@@ -2831,6 +3814,388 @@ const completionSpec: Fig.Spec = {
                   description:
                     "OPTIONAL: Output formatting, options: '--output json|yaml'",
                   args: { name: "OUTPUT" },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Display help for command",
+                  priority: 49,
+                },
+              ],
+            },
+            {
+              name: ["logs", "log"],
+              description: "Get log for the specified service",
+              options: [
+                { name: "--verbose", description: "Verbose output" },
+                { name: "--quiet", description: "No console output" },
+                {
+                  name: ["--project", "--projectId"],
+                  description: "Project for logs",
+                  args: { name: "projectId", isOptional: true },
+                },
+                {
+                  name: ["--service", "--serviceId"],
+                  description: "Service to get logs from",
+                  args: { name: "serviceId", isOptional: true },
+                },
+                {
+                  name: ["--container", "--containerId"],
+                  description:
+                    "Container to exec into (logs from all containers will be shown if not specified)",
+                  args: { name: "containerId", isOptional: true },
+                },
+                {
+                  name: ["-f", "--tail"],
+                  description:
+                    "Tail will stream logs in real-time. Session will be kept open",
+                },
+                {
+                  name: ["-l", "--lineLimit"],
+                  description: "Number of lines to return",
+                  args: { name: "limit", isOptional: true },
+                },
+                {
+                  name: "--startTime",
+                  description:
+                    "Get logs generated after this time, example: 2020-02-02T02:02:02Z (date string) or 1580608922 (unix ts)",
+                  args: { name: "timestamp" },
+                },
+                {
+                  name: "--endTime",
+                  description:
+                    "Get logs generated before this time, example: 2020-02-02T02:02:02Z (date string) or 1580608922 (unix ts)",
+                  args: { name: "timestamp" },
+                },
+                {
+                  name: "--duration",
+                  description:
+                    "Length of timespan in seconds. Only valid if not both, startTime and endTime are set",
+                  args: { name: "duration", isOptional: true },
+                },
+                {
+                  name: ["-d", "--direction"],
+                  description: "Direction of logs. Ignored when tailing",
+                  args: { name: "order", suggestions: ["backward", "forward"] },
+                },
+                {
+                  name: "--textIncludes",
+                  description: "Filter log lines to include this text",
+                  args: { name: "text" },
+                },
+                {
+                  name: "--textNotIncludes",
+                  description: "Filter log lines to not include this text",
+                  args: { name: "text" },
+                },
+                {
+                  name: "--regexIncludes",
+                  description:
+                    "Filter log lines to match this regular expression",
+                  args: { name: "regex" },
+                },
+                {
+                  name: "--regexNotIncludes",
+                  description:
+                    "Filter log lines to not match this regular expression",
+                  args: { name: "regex" },
+                },
+                {
+                  name: "--noDefaults",
+                  description:
+                    "Don't use context default values, explicitly use options or ask",
+                },
+                {
+                  name: ["-o", "--output"],
+                  description:
+                    "Output formatting. Will use advanced formatting by default",
+                  args: {
+                    name: "output",
+                    isOptional: true,
+                    suggestions: ["format", "json", "yaml"],
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Display help for command",
+                  priority: 49,
+                },
+              ],
+            },
+            {
+              name: ["metrics", "metric"],
+              description: "Get metrics for the specified service",
+              options: [
+                { name: "--verbose", description: "Verbose output" },
+                { name: "--quiet", description: "No console output" },
+                {
+                  name: ["--project", "--projectId"],
+                  description: "Project for logs",
+                  args: { name: "NAME", isOptional: true },
+                },
+                {
+                  name: ["--service", "--serviceId"],
+                  description: "Service to get logs from",
+                  args: { name: "NAME", isOptional: true },
+                },
+                {
+                  name: ["--container", "--containerId"],
+                  description:
+                    "Container to exec into (logs from all containers will be shown if not specified)",
+                  args: { name: "NAME", isOptional: true },
+                },
+                {
+                  name: "--startTime",
+                  description:
+                    "Get metrics after this timestamp, example: 2020-02-02T02:02:02Z (date string) or 1580608922 (unix ts)",
+                  args: { name: "timestamp" },
+                },
+                {
+                  name: "--endTime",
+                  description:
+                    "Get metrics before this timestamp, example: 2020-02-02T02:02:02Z (date string) or 1580608922 (unix ts)",
+                  args: { name: "timestamp" },
+                },
+                {
+                  name: "--duration",
+                  description:
+                    "Length of timespan in seconds. Only valid if not both, startTime and endTime are set",
+                  args: { name: "duration", isOptional: true },
+                },
+                {
+                  name: ["-t", "--metricTypes"],
+                  description: "Which metric type to fetch",
+                  args: {
+                    name: "metricTypes",
+                    isVariadic: true,
+                    suggestions: [
+                      "cpu",
+                      "memory",
+                      "networkIngress",
+                      "networkEgress",
+                      "tcpConnectionsOpen",
+                      "diskUsage",
+                      "requests",
+                      "http4xxResponses",
+                      "http5xxResponses",
+                    ],
+                  },
+                },
+                {
+                  name: "--timestamp",
+                  description:
+                    "Get metrics at this exact timestamp, if no timestamp set most recent time is used. example: 2020-02-02T02:02:02Z (date string) or 1580608922 (unix ts)",
+                  args: { name: "timestamp", isOptional: true },
+                },
+                {
+                  name: "--noDefaults",
+                  description:
+                    "Don't use context default values, explicitly use options or ask",
+                },
+                {
+                  name: ["-o", "--output"],
+                  description:
+                    "Output formatting. Will use advanced formatting by default",
+                  args: {
+                    name: "output",
+                    isOptional: true,
+                    suggestions: ["format", "json", "yaml"],
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Display help for command",
+                  priority: 49,
+                },
+              ],
+            },
+            {
+              name: ["build-logs", "build-log"],
+              description: "Get log for the specified service",
+              options: [
+                { name: "--verbose", description: "Verbose output" },
+                { name: "--quiet", description: "No console output" },
+                {
+                  name: ["--project", "--projectId"],
+                  description: "Project for logs",
+                  args: { name: "projectId", isOptional: true },
+                },
+                {
+                  name: ["--service", "--serviceId"],
+                  description: "Service to get logs from",
+                  args: { name: "serviceId", isOptional: true },
+                },
+                {
+                  name: ["--container", "--containerId"],
+                  description:
+                    "Container to exec into (logs from all containers will be shown if not specified)",
+                  args: { name: "containerId", isOptional: true },
+                },
+                {
+                  name: ["-f", "--tail"],
+                  description:
+                    "Tail will stream logs in real-time. Session will be kept open",
+                },
+                {
+                  name: ["-l", "--lineLimit"],
+                  description: "Number of lines to return",
+                  args: { name: "limit", isOptional: true },
+                },
+                {
+                  name: "--startTime",
+                  description:
+                    "Get logs generated after this time, example: 2020-02-02T02:02:02Z (date string) or 1580608922 (unix ts)",
+                  args: { name: "timestamp" },
+                },
+                {
+                  name: "--endTime",
+                  description:
+                    "Get logs generated before this time, example: 2020-02-02T02:02:02Z (date string) or 1580608922 (unix ts)",
+                  args: { name: "timestamp" },
+                },
+                {
+                  name: "--duration",
+                  description:
+                    "Length of timespan in seconds. Only valid if not both, startTime and endTime are set",
+                  args: { name: "duration", isOptional: true },
+                },
+                {
+                  name: ["-d", "--direction"],
+                  description: "Direction of logs. Ignored when tailing",
+                  args: { name: "order", suggestions: ["backward", "forward"] },
+                },
+                {
+                  name: "--textIncludes",
+                  description: "Filter log lines to include this text",
+                  args: { name: "text" },
+                },
+                {
+                  name: "--textNotIncludes",
+                  description: "Filter log lines to not include this text",
+                  args: { name: "text" },
+                },
+                {
+                  name: "--regexIncludes",
+                  description:
+                    "Filter log lines to match this regular expression",
+                  args: { name: "regex" },
+                },
+                {
+                  name: "--regexNotIncludes",
+                  description:
+                    "Filter log lines to not match this regular expression",
+                  args: { name: "regex" },
+                },
+                {
+                  name: "--noDefaults",
+                  description:
+                    "Don't use context default values, explicitly use options or ask",
+                },
+                {
+                  name: ["-o", "--output"],
+                  description:
+                    "Output formatting. Will use advanced formatting by default",
+                  args: {
+                    name: "output",
+                    isOptional: true,
+                    suggestions: ["format", "json", "yaml"],
+                  },
+                },
+                {
+                  name: ["--build", "--buildId"],
+                  description: "Build to get logs from",
+                  args: { name: "buildId", isOptional: true },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Display help for command",
+                  priority: 49,
+                },
+              ],
+            },
+            {
+              name: ["build-metrics", "build-metric"],
+              description: "Get metrics for the specified service",
+              options: [
+                { name: "--verbose", description: "Verbose output" },
+                { name: "--quiet", description: "No console output" },
+                {
+                  name: ["--project", "--projectId"],
+                  description: "Project for logs",
+                  args: { name: "NAME", isOptional: true },
+                },
+                {
+                  name: ["--service", "--serviceId"],
+                  description: "Service to get logs from",
+                  args: { name: "NAME", isOptional: true },
+                },
+                {
+                  name: ["--container", "--containerId"],
+                  description:
+                    "Container to exec into (logs from all containers will be shown if not specified)",
+                  args: { name: "NAME", isOptional: true },
+                },
+                {
+                  name: "--startTime",
+                  description:
+                    "Get metrics after this timestamp, example: 2020-02-02T02:02:02Z (date string) or 1580608922 (unix ts)",
+                  args: { name: "timestamp" },
+                },
+                {
+                  name: "--endTime",
+                  description:
+                    "Get metrics before this timestamp, example: 2020-02-02T02:02:02Z (date string) or 1580608922 (unix ts)",
+                  args: { name: "timestamp" },
+                },
+                {
+                  name: "--duration",
+                  description:
+                    "Length of timespan in seconds. Only valid if not both, startTime and endTime are set",
+                  args: { name: "duration", isOptional: true },
+                },
+                {
+                  name: ["-t", "--metricTypes"],
+                  description: "Which metric type to fetch",
+                  args: {
+                    name: "metricTypes",
+                    isVariadic: true,
+                    suggestions: [
+                      "cpu",
+                      "memory",
+                      "networkIngress",
+                      "networkEgress",
+                      "tcpConnectionsOpen",
+                      "diskUsage",
+                      "requests",
+                      "http4xxResponses",
+                      "http5xxResponses",
+                    ],
+                  },
+                },
+                {
+                  name: "--timestamp",
+                  description:
+                    "Get metrics at this exact timestamp, if no timestamp set most recent time is used. example: 2020-02-02T02:02:02Z (date string) or 1580608922 (unix ts)",
+                  args: { name: "timestamp", isOptional: true },
+                },
+                {
+                  name: "--noDefaults",
+                  description:
+                    "Don't use context default values, explicitly use options or ask",
+                },
+                {
+                  name: ["-o", "--output"],
+                  description:
+                    "Output formatting. Will use advanced formatting by default",
+                  args: {
+                    name: "output",
+                    isOptional: true,
+                    suggestions: ["format", "json", "yaml"],
+                  },
+                },
+                {
+                  name: ["--build", "--buildId"],
+                  description: "Build to get logs from",
+                  args: { name: "buildId", isOptional: true },
                 },
                 {
                   name: ["-h", "--help"],
@@ -3241,7 +4606,7 @@ const completionSpec: Fig.Spec = {
               name: "help",
               description: "Display help for command",
               priority: 49,
-              args: { name: "command", isOptional: true },
+              args: { name: "command", isOptional: true, template: "help" },
             },
           ],
           options: [
@@ -3276,7 +4641,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: "template",
+          name: ["template", "templates", "tpl"],
           description: "Get information about the given template",
           options: [
             { name: "--verbose", description: "Verbose output" },
@@ -3377,7 +4742,7 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description: "Display help for command",
           priority: 49,
-          args: { name: "command", isOptional: true },
+          args: { name: "command", isOptional: true, template: "help" },
         },
       ],
       options: [
@@ -3478,7 +4843,7 @@ const completionSpec: Fig.Spec = {
               name: "help",
               description: "Display help for command",
               priority: 49,
-              args: { name: "command", isOptional: true },
+              args: { name: "command", isOptional: true, template: "help" },
             },
           ],
           options: [
@@ -3643,6 +5008,39 @@ const completionSpec: Fig.Spec = {
               name: ["--project", "--projectId"],
               description: "ID of the project, example: default-project",
               args: { name: "PROJECTID" },
+            },
+            {
+              name: "--noDefaults",
+              description:
+                "OPTIONAL: Don't use context default values, explicitly use options or ask",
+            },
+            {
+              name: "--force",
+              description: "OPTIONAL: Don't ask for confirmation",
+            },
+            {
+              name: ["-o", "--output"],
+              description:
+                "OPTIONAL: Output formatting, options: '--output json|yaml'",
+              args: { name: "OUTPUT" },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Display help for command",
+              priority: 49,
+            },
+          ],
+        },
+        {
+          name: "log-sink",
+          description: "Deletes a log sink",
+          options: [
+            { name: "--verbose", description: "Verbose output" },
+            { name: "--quiet", description: "No console output" },
+            {
+              name: ["--logSink", "--logSinkId"],
+              description: "ID of the log sink, example: example-log-sink",
+              args: { name: "LOGSINKID" },
             },
             {
               name: "--noDefaults",
@@ -3891,7 +5289,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: "template",
+          name: ["template", "templates", "tpl"],
           description: "Delete a template",
           options: [
             { name: "--verbose", description: "Verbose output" },
@@ -3965,7 +5363,7 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description: "Display help for command",
           priority: 49,
-          args: { name: "command", isOptional: true },
+          args: { name: "command", isOptional: true, template: "help" },
         },
       ],
       options: [
@@ -4119,7 +5517,7 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description: "Display help for command",
           priority: 49,
-          args: { name: "command", isOptional: true },
+          args: { name: "command", isOptional: true, template: "help" },
         },
       ],
       options: [
@@ -4277,7 +5675,7 @@ const completionSpec: Fig.Spec = {
               name: "help",
               description: "Display help for command",
               priority: 49,
-              args: { name: "command", isOptional: true },
+              args: { name: "command", isOptional: true, template: "help" },
             },
           ],
           options: [
@@ -4554,97 +5952,6 @@ const completionSpec: Fig.Spec = {
               ],
             },
             {
-              name: "cmd-override",
-              description: "Sets the Docker CMD override for the given job",
-              options: [
-                { name: "--verbose", description: "Verbose output" },
-                { name: "--quiet", description: "No console output" },
-                {
-                  name: ["-f", "--file"],
-                  description: "File to load resource json from",
-                  args: { name: "file-path" },
-                },
-                {
-                  name: ["-i", "--input"],
-                  description:
-                    'JSON-formatted resource definition, takes precedence over "--file"',
-                  args: { name: "resource-def" },
-                },
-                {
-                  name: ["--job", "--jobId"],
-                  description: "ID of the job, example: example-job",
-                  args: { name: "JOBID" },
-                },
-                {
-                  name: ["--project", "--projectId"],
-                  description: "ID of the project, example: default-project",
-                  args: { name: "PROJECTID" },
-                },
-                {
-                  name: "--noDefaults",
-                  description:
-                    "OPTIONAL: Don't use context default values, explicitly use options or ask",
-                },
-                {
-                  name: ["-o", "--output"],
-                  description:
-                    "OPTIONAL: Output formatting, options: '--output json|yaml'",
-                  args: { name: "OUTPUT" },
-                },
-                {
-                  name: ["-h", "--help"],
-                  description: "Display help for command",
-                  priority: 49,
-                },
-              ],
-            },
-            {
-              name: "entrypoint-override",
-              description:
-                "Sets the Docker entrypoint override for the given job",
-              options: [
-                { name: "--verbose", description: "Verbose output" },
-                { name: "--quiet", description: "No console output" },
-                {
-                  name: ["-f", "--file"],
-                  description: "File to load resource json from",
-                  args: { name: "file-path" },
-                },
-                {
-                  name: ["-i", "--input"],
-                  description:
-                    'JSON-formatted resource definition, takes precedence over "--file"',
-                  args: { name: "resource-def" },
-                },
-                {
-                  name: ["--job", "--jobId"],
-                  description: "ID of the job, example: example-job",
-                  args: { name: "JOBID" },
-                },
-                {
-                  name: ["--project", "--projectId"],
-                  description: "ID of the project, example: default-project",
-                  args: { name: "PROJECTID" },
-                },
-                {
-                  name: "--noDefaults",
-                  description:
-                    "OPTIONAL: Don't use context default values, explicitly use options or ask",
-                },
-                {
-                  name: ["-o", "--output"],
-                  description:
-                    "OPTIONAL: Output formatting, options: '--output json|yaml'",
-                  args: { name: "OUTPUT" },
-                },
-                {
-                  name: ["-h", "--help"],
-                  description: "Display help for command",
-                  priority: 49,
-                },
-              ],
-            },
-            {
               name: "build-arguments",
               description: "Sets build arguments for the given job",
               options: [
@@ -4783,10 +6090,50 @@ const completionSpec: Fig.Spec = {
               name: "help",
               description: "Display help for command",
               priority: 49,
-              args: { name: "command", isOptional: true },
+              args: { name: "command", isOptional: true, template: "help" },
             },
           ],
           options: [
+            {
+              name: ["-h", "--help"],
+              description: "Display help for command",
+              priority: 49,
+            },
+          ],
+        },
+        {
+          name: "log-sink",
+          description: "Updates the settings for a log sink",
+          options: [
+            { name: "--verbose", description: "Verbose output" },
+            { name: "--quiet", description: "No console output" },
+            {
+              name: ["-f", "--file"],
+              description: "File to load resource json from",
+              args: { name: "file-path" },
+            },
+            {
+              name: ["-i", "--input"],
+              description:
+                'JSON-formatted resource definition, takes precedence over "--file"',
+              args: { name: "resource-def" },
+            },
+            {
+              name: ["--logSink", "--logSinkId"],
+              description: "ID of the log sink, example: example-log-sink",
+              args: { name: "LOGSINKID" },
+            },
+            {
+              name: "--noDefaults",
+              description:
+                "OPTIONAL: Don't use context default values, explicitly use options or ask",
+            },
+            {
+              name: ["-o", "--output"],
+              description:
+                "OPTIONAL: Output formatting, options: '--output json|yaml'",
+              args: { name: "OUTPUT" },
+            },
             {
               name: ["-h", "--help"],
               description: "Display help for command",
@@ -4816,6 +6163,56 @@ const completionSpec: Fig.Spec = {
               description:
                 "ID of the registry credential, example: example-credentials",
               args: { name: "CREDENTIALID" },
+            },
+            {
+              name: "--noDefaults",
+              description:
+                "OPTIONAL: Don't use context default values, explicitly use options or ask",
+            },
+            {
+              name: ["-o", "--output"],
+              description:
+                "OPTIONAL: Output formatting, options: '--output json|yaml'",
+              args: { name: "OUTPUT" },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Display help for command",
+              priority: 49,
+            },
+          ],
+        },
+        {
+          name: "release-flow",
+          description: "Updates a release flow",
+          options: [
+            { name: "--verbose", description: "Verbose output" },
+            { name: "--quiet", description: "No console output" },
+            {
+              name: ["-f", "--file"],
+              description: "File to load resource json from",
+              args: { name: "file-path" },
+            },
+            {
+              name: ["-i", "--input"],
+              description:
+                'JSON-formatted resource definition, takes precedence over "--file"',
+              args: { name: "resource-def" },
+            },
+            {
+              name: "--stage",
+              description: "Stage of the pipeline, example: development",
+              args: { name: "STAGE" },
+            },
+            {
+              name: ["--pipeline", "--pipelineId"],
+              description: "ID of the pipeline, example: example-pipeline",
+              args: { name: "PIPELINEID" },
+            },
+            {
+              name: ["--project", "--projectId"],
+              description: "ID of the project, example: default-project",
+              args: { name: "PROJECTID" },
             },
             {
               name: "--noDefaults",
@@ -5118,97 +6515,6 @@ const completionSpec: Fig.Spec = {
               ],
             },
             {
-              name: "cmd-override",
-              description: "Sets the Docker CMD override for the given service",
-              options: [
-                { name: "--verbose", description: "Verbose output" },
-                { name: "--quiet", description: "No console output" },
-                {
-                  name: ["-f", "--file"],
-                  description: "File to load resource json from",
-                  args: { name: "file-path" },
-                },
-                {
-                  name: ["-i", "--input"],
-                  description:
-                    'JSON-formatted resource definition, takes precedence over "--file"',
-                  args: { name: "resource-def" },
-                },
-                {
-                  name: ["--service", "--serviceId"],
-                  description: "ID of the service, example: example-service",
-                  args: { name: "SERVICEID" },
-                },
-                {
-                  name: ["--project", "--projectId"],
-                  description: "ID of the project, example: default-project",
-                  args: { name: "PROJECTID" },
-                },
-                {
-                  name: "--noDefaults",
-                  description:
-                    "OPTIONAL: Don't use context default values, explicitly use options or ask",
-                },
-                {
-                  name: ["-o", "--output"],
-                  description:
-                    "OPTIONAL: Output formatting, options: '--output json|yaml'",
-                  args: { name: "OUTPUT" },
-                },
-                {
-                  name: ["-h", "--help"],
-                  description: "Display help for command",
-                  priority: 49,
-                },
-              ],
-            },
-            {
-              name: "entrypoint-override",
-              description:
-                "Sets the Docker entrypoint override for the given service",
-              options: [
-                { name: "--verbose", description: "Verbose output" },
-                { name: "--quiet", description: "No console output" },
-                {
-                  name: ["-f", "--file"],
-                  description: "File to load resource json from",
-                  args: { name: "file-path" },
-                },
-                {
-                  name: ["-i", "--input"],
-                  description:
-                    'JSON-formatted resource definition, takes precedence over "--file"',
-                  args: { name: "resource-def" },
-                },
-                {
-                  name: ["--service", "--serviceId"],
-                  description: "ID of the service, example: example-service",
-                  args: { name: "SERVICEID" },
-                },
-                {
-                  name: ["--project", "--projectId"],
-                  description: "ID of the project, example: default-project",
-                  args: { name: "PROJECTID" },
-                },
-                {
-                  name: "--noDefaults",
-                  description:
-                    "OPTIONAL: Don't use context default values, explicitly use options or ask",
-                },
-                {
-                  name: ["-o", "--output"],
-                  description:
-                    "OPTIONAL: Output formatting, options: '--output json|yaml'",
-                  args: { name: "OUTPUT" },
-                },
-                {
-                  name: ["-h", "--help"],
-                  description: "Display help for command",
-                  priority: 49,
-                },
-              ],
-            },
-            {
               name: "health-checks",
               description: "Updates health checks for the given service",
               options: [
@@ -5347,50 +6653,10 @@ const completionSpec: Fig.Spec = {
               name: "help",
               description: "Display help for command",
               priority: 49,
-              args: { name: "command", isOptional: true },
+              args: { name: "command", isOptional: true, template: "help" },
             },
           ],
           options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
-        },
-        {
-          name: "template",
-          description: "Update a template",
-          options: [
-            { name: "--verbose", description: "Verbose output" },
-            { name: "--quiet", description: "No console output" },
-            {
-              name: ["-f", "--file"],
-              description: "File to load resource json from",
-              args: { name: "file-path" },
-            },
-            {
-              name: ["-i", "--input"],
-              description:
-                'JSON-formatted resource definition, takes precedence over "--file"',
-              args: { name: "resource-def" },
-            },
-            {
-              name: ["--template", "--templateId"],
-              description: "ID of the template, example: example-template",
-              args: { name: "TEMPLATEID" },
-            },
-            {
-              name: "--noDefaults",
-              description:
-                "OPTIONAL: Don't use context default values, explicitly use options or ask",
-            },
-            {
-              name: ["-o", "--output"],
-              description:
-                "OPTIONAL: Output formatting, options: '--output json|yaml'",
-              args: { name: "OUTPUT" },
-            },
             {
               name: ["-h", "--help"],
               description: "Display help for command",
@@ -5447,7 +6713,7 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description: "Display help for command",
           priority: 49,
-          args: { name: "command", isOptional: true },
+          args: { name: "command", isOptional: true, template: "help" },
         },
       ],
       options: [
@@ -5511,7 +6777,7 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description: "Display help for command",
           priority: 49,
-          args: { name: "command", isOptional: true },
+          args: { name: "command", isOptional: true, template: "help" },
         },
       ],
       options: [
@@ -5573,7 +6839,7 @@ const completionSpec: Fig.Spec = {
               name: "help",
               description: "Display help for command",
               priority: 49,
-              args: { name: "command", isOptional: true },
+              args: { name: "command", isOptional: true, template: "help" },
             },
           ],
           options: [
@@ -5588,7 +6854,7 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description: "Display help for command",
           priority: 49,
-          args: { name: "command", isOptional: true },
+          args: { name: "command", isOptional: true, template: "help" },
         },
       ],
       options: [
@@ -5657,7 +6923,7 @@ const completionSpec: Fig.Spec = {
               name: "help",
               description: "Display help for command",
               priority: 49,
-              args: { name: "command", isOptional: true },
+              args: { name: "command", isOptional: true, template: "help" },
             },
           ],
           options: [
@@ -5672,7 +6938,7 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description: "Display help for command",
           priority: 49,
-          args: { name: "command", isOptional: true },
+          args: { name: "command", isOptional: true, template: "help" },
         },
       ],
       options: [
@@ -5756,6 +7022,35 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
+          name: "log-sink",
+          description: "Pauses a given log sink",
+          options: [
+            { name: "--verbose", description: "Verbose output" },
+            { name: "--quiet", description: "No console output" },
+            {
+              name: ["--logSink", "--logSinkId"],
+              description: "ID of the log sink, example: example-log-sink",
+              args: { name: "LOGSINKID" },
+            },
+            {
+              name: "--noDefaults",
+              description:
+                "OPTIONAL: Don't use context default values, explicitly use options or ask",
+            },
+            {
+              name: ["-o", "--output"],
+              description:
+                "OPTIONAL: Output formatting, options: '--output json|yaml'",
+              args: { name: "OUTPUT" },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Display help for command",
+              priority: 49,
+            },
+          ],
+        },
+        {
           name: ["service", "services", "svc"],
           description: "Pause the given service",
           options: [
@@ -5793,7 +7088,7 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description: "Display help for command",
           priority: 49,
-          args: { name: "command", isOptional: true },
+          args: { name: "command", isOptional: true, template: "help" },
         },
       ],
       options: [
@@ -5889,6 +7184,35 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
+          name: "log-sink",
+          description: "Resumes a paused log sink",
+          options: [
+            { name: "--verbose", description: "Verbose output" },
+            { name: "--quiet", description: "No console output" },
+            {
+              name: ["--logSink", "--logSinkId"],
+              description: "ID of the log sink, example: example-log-sink",
+              args: { name: "LOGSINKID" },
+            },
+            {
+              name: "--noDefaults",
+              description:
+                "OPTIONAL: Don't use context default values, explicitly use options or ask",
+            },
+            {
+              name: ["-o", "--output"],
+              description:
+                "OPTIONAL: Output formatting, options: '--output json|yaml'",
+              args: { name: "OUTPUT" },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Display help for command",
+              priority: 49,
+            },
+          ],
+        },
+        {
           name: ["service", "services", "svc"],
           description:
             "Resumes the given service. Optionally takes several arguments to override resumed settings",
@@ -5938,7 +7262,7 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description: "Display help for command",
           priority: 49,
-          args: { name: "command", isOptional: true },
+          args: { name: "command", isOptional: true, template: "help" },
         },
       ],
       options: [
@@ -6025,7 +7349,7 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description: "Display help for command",
           priority: 49,
-          args: { name: "command", isOptional: true },
+          args: { name: "command", isOptional: true, template: "help" },
         },
       ],
       options: [
@@ -6137,7 +7461,7 @@ const completionSpec: Fig.Spec = {
               name: "help",
               description: "Display help for command",
               priority: 49,
-              args: { name: "command", isOptional: true },
+              args: { name: "command", isOptional: true, template: "help" },
             },
           ],
           options: [
@@ -6235,10 +7559,54 @@ const completionSpec: Fig.Spec = {
               name: "help",
               description: "Display help for command",
               priority: 49,
-              args: { name: "command", isOptional: true },
+              args: { name: "command", isOptional: true, template: "help" },
             },
           ],
           options: [
+            {
+              name: ["-h", "--help"],
+              description: "Display help for command",
+              priority: 49,
+            },
+          ],
+        },
+        {
+          name: "release-flow-run",
+          description: "Abort the given release flow run",
+          options: [
+            { name: "--verbose", description: "Verbose output" },
+            { name: "--quiet", description: "No console output" },
+            {
+              name: ["--run", "--runId"],
+              description: "ID of the release flow run, example: development",
+              args: { name: "RUNID" },
+            },
+            {
+              name: "--stage",
+              description: "Stage of the pipeline, example: development",
+              args: { name: "STAGE" },
+            },
+            {
+              name: ["--pipeline", "--pipelineId"],
+              description: "ID of the pipeline, example: example-pipeline",
+              args: { name: "PIPELINEID" },
+            },
+            {
+              name: ["--project", "--projectId"],
+              description: "ID of the project, example: default-project",
+              args: { name: "PROJECTID" },
+            },
+            {
+              name: "--noDefaults",
+              description:
+                "OPTIONAL: Don't use context default values, explicitly use options or ask",
+            },
+            {
+              name: ["-o", "--output"],
+              description:
+                "OPTIONAL: Output formatting, options: '--output json|yaml'",
+              args: { name: "OUTPUT" },
+            },
             {
               name: ["-h", "--help"],
               description: "Display help for command",
@@ -6294,7 +7662,7 @@ const completionSpec: Fig.Spec = {
               name: "help",
               description: "Display help for command",
               priority: 49,
-              args: { name: "command", isOptional: true },
+              args: { name: "command", isOptional: true, template: "help" },
             },
           ],
           options: [
@@ -6306,10 +7674,45 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
+          name: "template-run",
+          description: "Abort the given template run",
+          options: [
+            { name: "--verbose", description: "Verbose output" },
+            { name: "--quiet", description: "No console output" },
+            {
+              name: ["--templateRun", "--templateRunId"],
+              description:
+                "ID of the template run, example: 16cf800b-ab28-421a-8ff9-a935b5ee89ad",
+              args: { name: "TEMPLATERUNID" },
+            },
+            {
+              name: ["--template", "--templateId"],
+              description: "ID of the template, example: example-template",
+              args: { name: "TEMPLATEID" },
+            },
+            {
+              name: "--noDefaults",
+              description:
+                "OPTIONAL: Don't use context default values, explicitly use options or ask",
+            },
+            {
+              name: ["-o", "--output"],
+              description:
+                "OPTIONAL: Output formatting, options: '--output json|yaml'",
+              args: { name: "OUTPUT" },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Display help for command",
+              priority: 49,
+            },
+          ],
+        },
+        {
           name: "help",
           description: "Display help for command",
           priority: 49,
-          args: { name: "command", isOptional: true },
+          args: { name: "command", isOptional: true, template: "help" },
         },
       ],
       options: [
@@ -6372,7 +7775,7 @@ const completionSpec: Fig.Spec = {
               name: "help",
               description: "Display help for command",
               priority: 49,
-              args: { name: "command", isOptional: true },
+              args: { name: "command", isOptional: true, template: "help" },
             },
           ],
           options: [
@@ -6387,71 +7790,7 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description: "Display help for command",
           priority: 49,
-          args: { name: "command", isOptional: true },
-        },
-      ],
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Display help for command",
-          priority: 49,
-        },
-      ],
-    },
-    {
-      name: "suspend",
-      description: "Suspend Northflank resources",
-      subcommands: [
-        {
-          name: ["job", "jobs"],
-          description: "Modify cron job to toggle suspending of its schedule",
-          options: [
-            { name: "--verbose", description: "Verbose output" },
-            { name: "--quiet", description: "No console output" },
-            {
-              name: ["-f", "--file"],
-              description: "File to load resource json from",
-              args: { name: "file-path" },
-            },
-            {
-              name: ["-i", "--input"],
-              description:
-                'JSON-formatted resource definition, takes precedence over "--file"',
-              args: { name: "resource-def" },
-            },
-            {
-              name: ["--job", "--jobId"],
-              description: "ID of the job, example: example-job",
-              args: { name: "JOBID" },
-            },
-            {
-              name: ["--project", "--projectId"],
-              description: "ID of the project, example: default-project",
-              args: { name: "PROJECTID" },
-            },
-            {
-              name: "--noDefaults",
-              description:
-                "OPTIONAL: Don't use context default values, explicitly use options or ask",
-            },
-            {
-              name: ["-o", "--output"],
-              description:
-                "OPTIONAL: Output formatting, options: '--output json|yaml'",
-              args: { name: "OUTPUT" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
-        },
-        {
-          name: "help",
-          description: "Display help for command",
-          priority: 49,
-          args: { name: "command", isOptional: true },
+          args: { name: "command", isOptional: true, template: "help" },
         },
       ],
       options: [
@@ -6466,6 +7805,70 @@ const completionSpec: Fig.Spec = {
       name: "start",
       description: "Start Northflank resources",
       subcommands: [
+        {
+          name: ["addon", "addons", "adn"],
+          description: "Addon Northflank resources",
+          subcommands: [
+            {
+              name: "pitr",
+              description: "Restores an addon to a specific point in time",
+              options: [
+                { name: "--verbose", description: "Verbose output" },
+                { name: "--quiet", description: "No console output" },
+                {
+                  name: ["-f", "--file"],
+                  description: "File to load resource json from",
+                  args: { name: "file-path" },
+                },
+                {
+                  name: ["-i", "--input"],
+                  description:
+                    'JSON-formatted resource definition, takes precedence over "--file"',
+                  args: { name: "resource-def" },
+                },
+                {
+                  name: ["--addon", "--addonId"],
+                  description: "ID of the addon, example: example-addon",
+                  args: { name: "ADDONID" },
+                },
+                {
+                  name: ["--project", "--projectId"],
+                  description: "ID of the project, example: default-project",
+                  args: { name: "PROJECTID" },
+                },
+                {
+                  name: "--noDefaults",
+                  description:
+                    "OPTIONAL: Don't use context default values, explicitly use options or ask",
+                },
+                {
+                  name: ["-o", "--output"],
+                  description:
+                    "OPTIONAL: Output formatting, options: '--output json|yaml'",
+                  args: { name: "OUTPUT" },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Display help for command",
+                  priority: 49,
+                },
+              ],
+            },
+            {
+              name: "help",
+              description: "Display help for command",
+              priority: 49,
+              args: { name: "command", isOptional: true, template: "help" },
+            },
+          ],
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Display help for command",
+              priority: 49,
+            },
+          ],
+        },
         {
           name: ["job", "jobs"],
           description: "Job Northflank resources",
@@ -6565,7 +7968,7 @@ const completionSpec: Fig.Spec = {
               name: "help",
               description: "Display help for command",
               priority: 49,
-              args: { name: "command", isOptional: true },
+              args: { name: "command", isOptional: true, template: "help" },
             },
           ],
           options: [
@@ -6630,7 +8033,7 @@ const completionSpec: Fig.Spec = {
               name: "help",
               description: "Display help for command",
               priority: 49,
-              args: { name: "command", isOptional: true },
+              args: { name: "command", isOptional: true, template: "help" },
             },
           ],
           options: [
@@ -6645,7 +8048,71 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description: "Display help for command",
           priority: 49,
-          args: { name: "command", isOptional: true },
+          args: { name: "command", isOptional: true, template: "help" },
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Display help for command",
+          priority: 49,
+        },
+      ],
+    },
+    {
+      name: "suspend",
+      description: "Suspend Northflank resources",
+      subcommands: [
+        {
+          name: ["job", "jobs"],
+          description: "Modify cron job to toggle suspending of its schedule",
+          options: [
+            { name: "--verbose", description: "Verbose output" },
+            { name: "--quiet", description: "No console output" },
+            {
+              name: ["-f", "--file"],
+              description: "File to load resource json from",
+              args: { name: "file-path" },
+            },
+            {
+              name: ["-i", "--input"],
+              description:
+                'JSON-formatted resource definition, takes precedence over "--file"',
+              args: { name: "resource-def" },
+            },
+            {
+              name: ["--job", "--jobId"],
+              description: "ID of the job, example: example-job",
+              args: { name: "JOBID" },
+            },
+            {
+              name: ["--project", "--projectId"],
+              description: "ID of the project, example: default-project",
+              args: { name: "PROJECTID" },
+            },
+            {
+              name: "--noDefaults",
+              description:
+                "OPTIONAL: Don't use context default values, explicitly use options or ask",
+            },
+            {
+              name: ["-o", "--output"],
+              description:
+                "OPTIONAL: Output formatting, options: '--output json|yaml'",
+              args: { name: "OUTPUT" },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Display help for command",
+              priority: 49,
+            },
+          ],
+        },
+        {
+          name: "help",
+          description: "Display help for command",
+          priority: 49,
+          args: { name: "command", isOptional: true, template: "help" },
         },
       ],
       options: [
@@ -6744,7 +8211,7 @@ const completionSpec: Fig.Spec = {
               name: "help",
               description: "Display help for command",
               priority: 49,
-              args: { name: "command", isOptional: true },
+              args: { name: "command", isOptional: true, template: "help" },
             },
           ],
           options: [
@@ -6759,7 +8226,7 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description: "Display help for command",
           priority: 49,
-          args: { name: "command", isOptional: true },
+          args: { name: "command", isOptional: true, template: "help" },
         },
       ],
       options: [
@@ -6841,7 +8308,7 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description: "Display help for command",
           priority: 49,
-          args: { name: "command", isOptional: true },
+          args: { name: "command", isOptional: true, template: "help" },
         },
       ],
       options: [
@@ -6909,7 +8376,7 @@ const completionSpec: Fig.Spec = {
               name: "help",
               description: "Display help for command",
               priority: 49,
-              args: { name: "command", isOptional: true },
+              args: { name: "command", isOptional: true, template: "help" },
             },
           ],
           options: [
@@ -6924,7 +8391,7 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description: "Display help for command",
           priority: 49,
-          args: { name: "command", isOptional: true },
+          args: { name: "command", isOptional: true, template: "help" },
         },
       ],
       options: [
@@ -6977,7 +8444,7 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description: "Display help for command",
           priority: 49,
-          args: { name: "command", isOptional: true },
+          args: { name: "command", isOptional: true, template: "help" },
         },
       ],
       options: [
@@ -6993,11 +8460,73 @@ const completionSpec: Fig.Spec = {
       description: "Run Northflank resources",
       subcommands: [
         {
-          name: "template",
+          name: "release-flow",
+          description:
+            "Runs a given release flow with given arguments. This endpoint can be used as part of a CI pipeline to automatically trigger a release process",
+          options: [
+            { name: "--verbose", description: "Verbose output" },
+            { name: "--quiet", description: "No console output" },
+            {
+              name: ["-f", "--file"],
+              description: "File to load resource json from",
+              args: { name: "file-path" },
+            },
+            {
+              name: ["-i", "--input"],
+              description:
+                'JSON-formatted resource definition, takes precedence over "--file"',
+              args: { name: "resource-def" },
+            },
+            {
+              name: "--stage",
+              description: "Stage of the pipeline, example: development",
+              args: { name: "STAGE" },
+            },
+            {
+              name: ["--pipeline", "--pipelineId"],
+              description: "ID of the pipeline, example: example-pipeline",
+              args: { name: "PIPELINEID" },
+            },
+            {
+              name: ["--project", "--projectId"],
+              description: "ID of the project, example: default-project",
+              args: { name: "PROJECTID" },
+            },
+            {
+              name: "--noDefaults",
+              description:
+                "OPTIONAL: Don't use context default values, explicitly use options or ask",
+            },
+            {
+              name: ["-o", "--output"],
+              description:
+                "OPTIONAL: Output formatting, options: '--output json|yaml'",
+              args: { name: "OUTPUT" },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Display help for command",
+              priority: 49,
+            },
+          ],
+        },
+        {
+          name: ["template", "templates", "tpl"],
           description: "Run a template",
           options: [
             { name: "--verbose", description: "Verbose output" },
             { name: "--quiet", description: "No console output" },
+            {
+              name: ["-f", "--file"],
+              description: "File to load resource json from",
+              args: { name: "file-path" },
+            },
+            {
+              name: ["-i", "--input"],
+              description:
+                'JSON-formatted resource definition, takes precedence over "--file"',
+              args: { name: "resource-def" },
+            },
             {
               name: ["--template", "--templateId"],
               description: "ID of the template, example: example-template",
@@ -7025,7 +8554,7 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description: "Display help for command",
           priority: 49,
-          args: { name: "command", isOptional: true },
+          args: { name: "command", isOptional: true, template: "help" },
         },
       ],
       options: [
@@ -7089,7 +8618,7 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description: "Display help for command",
           priority: 49,
-          args: { name: "command", isOptional: true },
+          args: { name: "command", isOptional: true, template: "help" },
         },
       ],
       options: [
@@ -7153,7 +8682,7 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description: "Display help for command",
           priority: 49,
-          args: { name: "command", isOptional: true },
+          args: { name: "command", isOptional: true, template: "help" },
         },
       ],
       options: [
@@ -7180,7 +8709,7 @@ const completionSpec: Fig.Spec = {
       name: "help",
       description: "Display help for command",
       priority: 49,
-      args: { name: "command", isOptional: true },
+      args: { name: "command", isOptional: true, template: "help" },
     },
   ],
   options: [
