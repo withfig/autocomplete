@@ -17,8 +17,11 @@ package-lock.json
 yarn.lock
 pnpm-lock.yaml
 
-# non-zero-install git ignored files for yarn
-.yarn/*
-!.yarn/releases
-!.yarn/plugins
+# https://next.yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
 .pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
