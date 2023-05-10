@@ -1,4 +1,4 @@
-import { useExecuteCommand } from "../../lib/hooks";
+import { useExecuteCommand } from "@fig/autocomplete-hooks";
 import "../../index.css";
 
 const Preview = ({
