@@ -4885,10 +4885,6 @@ const completionSpec: Fig.Spec = {
       description: "Reapply commits on top of another base tip",
       options: [
         {
-          name: "-",
-          description: "Rebase on the last checked out branch",
-        },
-        {
           name: "--onto",
           description:
             "Starting point at which to create the new commits. If the --onto option is not specified, the starting point is <upstream>. May be any valid commit, and not just an existing branch name. As a special case, you may use 'A...B' as a shortcut for the merge base of A and B if there is exactly one merge base. You can leave out at most one of A and B, in which case it defaults to HEAD",
@@ -5179,6 +5175,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "base",
           generators: gitGenerators.localBranches,
+          suggestions: [
+            {
+              name: "-",
+              description: "Use the last ref as the base",
+            },
+          ],
           filterStrategy: "fuzzy",
           isOptional: true,
         },
