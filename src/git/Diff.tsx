@@ -1,5 +1,5 @@
 import { useExecuteCommand } from "@fig/autocomplete-hooks";
-import GitDiff, { File } from 'gitdiff-parser';
+import parseDiff, { File } from 'parse-diff';
 import React from 'react';
 
 type CommitType = {
@@ -73,7 +73,7 @@ const DiffComponent = ({
     let files: File[] | undefined = undefined;
 
     if (res.status === "success") {
-        files = GitDiff.parse(res.stdout);
+        files = parseDiff(res.stdout);
     }
 
     if (!files || files.length !== 1) {
@@ -86,11 +86,11 @@ const DiffComponent = ({
     let addedLines = 0;
     let removedLines = 0;
     let unchangedLines = 0;
-    diff.hunks.forEach((hunk) => {
+    diff.chunks.forEach((hunk) => {
         hunk.changes.forEach((change) => {
-            if (change.type === "insert") {
+            if (change.type === "add") {
                 addedLines += 1;
-            } else if (change.type === "delete") {
+            } else if (change.type === "del") {
                 removedLines += 1;
             } else if (change.type === "normal") {
                 unchangedLines += 1;

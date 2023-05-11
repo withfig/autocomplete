@@ -1499,10 +1499,10 @@ __metadata:
     esbuild: ^0.16.4
     eslint: ^8.12.0
     express: ^4.18.2
-    gitdiff-parser: ^0.3.1
     glob: ^10.2.2
     husky: ^8.0.1
     lint-staged: ^13.2.2
+    parse-git-diff: 0.0.9
     postcss: ^8.4.23
     prettier: ^2.6.2
     pretty-quick: ^3.1.3
@@ -3789,13 +3789,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gitdiff-parser@npm:^0.3.1":
-  version: 0.3.1
-  resolution: "gitdiff-parser@npm:0.3.1"
-  checksum: 579c009055f9dac93c6e416aa5bbd85aa096c48787b7678f9daa0d3d6c04e04c59b7722197cd3697097446c3eca002321d19a557f12ea6808abf17cd5fafc560
-  languageName: node
-  linkType: hard
-
 "gitlab@npm:^10.0.1":
   version: 10.2.1
   resolution: "gitlab@npm:10.2.1"
@@ -5381,6 +5374,13 @@ __metadata:
     git-config-path: ^1.0.1
     ini: ^1.3.5
   checksum: 360ca1f52ebc5dbbc31276a175919e97f06a16c07dd5bbe5e58eb79ed38d4f8e6468b320b255e184e29306ef7796f69a4a5e010a90705723cd265487ce4a4fe7
+  languageName: node
+  linkType: hard
+
+"parse-git-diff@npm:0.0.9":
+  version: 0.0.9
+  resolution: "parse-git-diff@npm:0.0.9"
+  checksum: f4a5673e59f542777dae0f2eb0e6c5e91f601840e3b1a0df995c6657d863d88e22e715bdca3dda4fe92ee4b285d081e4f6714924f596a8f1ff06d377f5afe974
   languageName: node
   linkType: hard
 
