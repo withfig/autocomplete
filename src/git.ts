@@ -403,6 +403,7 @@ export const gitGenerators: Record<string, Fig.Generator> = {
             icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
             description: "Changed file",
             priority,
+            previewComponent: ext !== "folder" ? "git/Diff" : undefined,
           };
         }),
       ];

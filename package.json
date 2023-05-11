@@ -100,6 +100,7 @@
     "@fig/autocomplete-helpers": "^1.0.4",
     "@fig/autocomplete-hooks": "^1.0.2",
     "@withfig/api-bindings": "^0.29.2",
+    "gitdiff-parser": "^0.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "semver": "^7.3.7",
