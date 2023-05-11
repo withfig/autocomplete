@@ -5175,6 +5175,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "base",
           generators: gitGenerators.localBranches,
+          suggestions: [
+            {
+              name: "-",
+              description: "Use the last ref as the base",
+            },
+          ],
           filterStrategy: "fuzzy",
           isOptional: true,
         },
