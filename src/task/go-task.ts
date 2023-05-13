@@ -1,44 +1,31 @@
 const TASKS_PRIORITY = 80;
 const TASKFILE_FLAGS = ["-t", "--taskfile"];
 const DIRECTORY_FLAGS = ["-d", "--dir"];
-const taskDirectoryFlags = new Set([...TASKFILE_FLAGS, ...DIRECTORY_FLAGS]);
 
 const tasksGenerator: Fig.Generator = {
-  custom: async (tokens, exec) => {
-    // No additional tasks after "-- "
-    if (tokens.join(" ").includes("-- ")) {
+  script: "task -a",
+  postProcess: (output) => {
+    if (output.includes("task: No Taskfile found")) {
       return [];
     }
 
-    let context = "";
-    const contextValueIndex =
-      tokens.length -
-      tokens
-        .slice()
-        .reverse()
-        .findIndex((token) => taskDirectoryFlags.has(token));
+    const result: Fig.Suggestion[] = output
+      .split("\n")
+      .filter((task) => task.startsWith("*"))
+      .map((task) => {
+        const taskInfo = task.slice(2).trim();
+        const [name, ...description] = taskInfo.split(" ");
 
-    // Add the last context flag if mentioned in tokens
-    if (contextValueIndex <= tokens.length) {
-      context = ` ${tokens[contextValueIndex - 1]} ${
-        tokens[contextValueIndex]
-      }`;
-    }
-
-    const tasksListText = await exec(`task${context} --list`);
-
-    return tasksListText
-      .split("\n* ")
-      .slice(1) // The first line is not a task
-      .map((taskText) => {
-        const [name, description] = taskText.split(": ");
         return {
-          name,
-          description,
-          type: "subcommand",
+          name: name.replace(/:$/, ""),
+
+          description: description.join(" ") || "Task",
+          icon: "🎯",
           priority: TASKS_PRIORITY,
         };
       });
+
+    return result;
   },
 };
 
