@@ -48,15 +48,17 @@ Use the steps below or follow our getting started guide: [fig.io/docs](https://f
 **Prerequisites:**
 
 - Download Fig for macOS
-- Node and NPM (or Yarn)
+- Node and Yarn v3
 
 <br/>
 
 **Steps**
 
-1. Click [here](https://GitHub.com/withfig/autocomplete/fork/) to fork this repo.
+1. Make sure you have `yarn` v3 [installed](https://yarnpkg.com/getting-started/install), as that's the package manager used in this repo. 
 
-2. Clone your forked repo and create an example spec
+2. Click [here](https://GitHub.com/withfig/autocomplete/fork/) to fork this repo.
+
+3. Clone your forked repo and create an example spec
 
    ```bash
    # Replace `YOUR_GITHUB_USERNAME` with your own github username
@@ -67,16 +69,16 @@ Use the steps below or follow our getting started guide: [fig.io/docs](https://f
    git remote add upstream https://github.com/withfig/autocomplete.git
 
    # Install packages
-   npm install
+   yarn install
 
    # Create an example spec (call it "abc")
-   npm run create-spec abc
+   yarn create-spec abc
 
    # Turn on "dev mode"
-   npm run dev
+   yarn dev
    ```
 
-3. Now go to your terminal and type `abc[space]`. Your example spec will appear. 😊
+4. Now go to your terminal and type `abc[space]`. Your example spec will appear. 😊
 
 #### Other things to know
 
@@ -118,13 +120,13 @@ generators: [
 
 ```bash
 # Typecheck all specs in the src/ folder
-npm test
+yarn test
 
 # Compile typescripts specs from src/ folder to build/ folder
-npm run build
+yarn build
 
 # Lint and fix issues
-npm run lint:fix
+yarn lint:fix
 ```
 
 ## 🔥 Contributions
