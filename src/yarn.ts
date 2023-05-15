@@ -950,6 +950,12 @@ const completionSpec: Fig.Spec = {
           name: "upgrade-interactive",
           description:
             "Display the outdated packages before performing any upgrade",
+          options: [
+            {
+              name: "--latest",
+              description: "Use the version tagged latest in the registry",
+            },
+          ],
         },
       ],
       options: [
