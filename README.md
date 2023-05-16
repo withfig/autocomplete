@@ -54,7 +54,7 @@ Use the steps below or follow our getting started guide: [fig.io/docs](https://f
 
 **Steps**
 
-1. Make sure you have `yarn` v3 [installed](https://yarnpkg.com/getting-started/install), as that's the package manager used in this repo. 
+1. Make sure you have `yarn` [installed](https://classic.yarnpkg.com/lang/en/docs/install), as that's the package manager used in this repo. 
 
 2. Click [here](https://GitHub.com/withfig/autocomplete/fork/) to fork this repo.
 
