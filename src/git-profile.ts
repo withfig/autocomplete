@@ -25,7 +25,7 @@ const completionSpec: Fig.Spec = {
   options: [
     {
       name: ["--help", "-h"],
-      description: "Help for git-profile",
+      description: "Help for git-profile script",
     },
     {
       name: ["--config", "-c"],
