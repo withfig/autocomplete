@@ -647,6 +647,14 @@
       "created_at": "2023-05-15T17:45:27Z",
       "repoId": 299482335,
       "pullRequestNo": 1970
+    },
+    {
+      "name": "VityaSchel",
+      "id": 59040542,
+      "comment_id": 1549675064,
+      "created_at": "2023-05-16T13:26:20Z",
+      "repoId": 299482335,
+      "pullRequestNo": 1974
     }
   ]
 }
