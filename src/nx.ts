@@ -126,13 +126,13 @@ const preProcessProjects = async (
   if (!nxProjectPathCache.length) {
     // get project json paths
     try {
-      const { appDir, libsDir }: { appDir: string; libsDir: string } = {
-        appDir: "apps",
+      const { appsDir, libsDir }: { appsDir: string; libsDir: string } = {
+        appsDir: "apps",
         libsDir: "libs",
         ...JSON.parse(await executeShellCommand("cat nx.json")).workspaceLayout,
       };
       const searchFolders =
-        appDir === libsDir ? appDir : `${appDir} ${libsDir}`;
+        appsDir === libsDir ? appsDir : `${appsDir} ${libsDir}`;
       nxProjectPathCache = (
         await executeShellCommand(`find ${searchFolders} -name "project.json"`)
       )
