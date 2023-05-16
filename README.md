@@ -48,7 +48,7 @@ Use the steps below or follow our getting started guide: [fig.io/docs](https://f
 **Prerequisites:**
 
 - Download Fig for macOS
-- Node and Yarn v3
+- Node and Yarn
 
 <br/>
 
