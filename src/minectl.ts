@@ -90,7 +90,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--provider", "-p"],
           description:
-            "The cloud provider - civo|scaleway|do|hetzner|linode|ovh|equinix|gce|vultr|azure|oci|ionos|aws|vexxhost|multipass|exoscale",
+            "The cloud provider - civo|scaleway|do|hetzner|akamai|ovh|equinix|gce|vultr|azure|oci|ionos|aws|vexxhost|multipass|exoscale",
           args: {
             name: "provider",
             suggestions: [

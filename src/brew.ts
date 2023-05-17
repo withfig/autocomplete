@@ -1212,6 +1212,28 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      // NOTE: this is actually a command even if it has the double dash in the front
+      name: "--prefix",
+      description: "Prefix of <formula>",
+      args: {
+        isVariadic: true,
+        name: "formula",
+        generators: formulaeGenerator,
+      },
+      options: [
+        {
+          name: "--unbrewed",
+          description:
+            "List files in Homebrew's prefix not installed by Homebrew",
+        },
+        {
+          name: "--installed",
+          description:
+            "Outputs nothing and returns a failing status code if formula is not installed",
+        },
+      ],
+    },
+    {
       name: "cask",
       description:
         "Homebrew Cask provides a friendly CLI workflow for the administration of macOS applications distributed as binaries",
@@ -1618,6 +1640,16 @@ const completionSpec: Fig.Spec = {
         name: "alias",
         generators: generateAliases,
         description: "Display the alias command",
+        isOptional: true,
+      },
+    },
+    {
+      name: "developer",
+      description: "Display the current state of Homebrew's developer mode",
+      args: {
+        name: "state",
+        description: "Turn Homebrew's developer mode on or off respectively",
+        suggestions: ["on", "off"],
         isOptional: true,
       },
     },

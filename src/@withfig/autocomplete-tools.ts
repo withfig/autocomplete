@@ -194,7 +194,7 @@ const completionSpec: Fig.Spec = {
           name: "help",
           description: "Display help for command",
           priority: 49,
-          args: { name: "command", isOptional: true },
+          args: { name: "command", isOptional: true, template: "help" },
         },
       ],
       options: [
@@ -209,7 +209,7 @@ const completionSpec: Fig.Spec = {
       name: "help",
       description: "Display help for command",
       priority: 49,
-      args: { name: "command", isOptional: true },
+      args: { name: "command", isOptional: true, template: "help" },
     },
   ],
   options: [

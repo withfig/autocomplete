@@ -96,6 +96,10 @@ const suggestions: Fig.Suggestion[] = [
     icon: "https://remix.run/favicon-light.1.png",
   },
   {
+    name: "playwright",
+    icon: "https://playwright.dev/img/playwright-logo.svg",
+  },
+  {
     name: "ignite-cli",
     icon: "🔥",
   },
@@ -140,6 +144,14 @@ const suggestions: Fig.Suggestion[] = [
   {
     name: "sta",
     icon: "https://static1.smartbear.co/swagger/media/assets/swagger_fav.png",
+  },
+  {
+    name: "@wordpress/create-block",
+    icon: "https://s1.wp.com/i/webclip.png",
+  },
+  {
+    name: "astro",
+    icon: "https://astro.build/favicon.svg",
   },
 ];
 

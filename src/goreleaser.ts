@@ -72,7 +72,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["--config", "-f"],
-          description: "Configuration file to check",
+          description: "Configuration file(s) to check",
+          hidden: true,
           args: { name: "config" },
         },
         {
@@ -127,6 +128,18 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+      ],
+    },
+    {
+      name: ["hc", "healthcheck"],
+      description: "Checks if needed tools are installed",
+      options: [
+        {
+          name: ["--config", "-f"],
+          description: "Configuration file",
+          args: { name: "config", template: "filepaths" },
+        },
+        { name: ["--quiet", "-q"], description: "Quiet mode: no output" },
       ],
     },
     {
@@ -276,6 +289,10 @@ const completionSpec: Fig.Spec = {
               description: "Generate the autocompletion script for zsh",
             },
           ],
+        },
+        {
+          name: ["hc", "healthcheck"],
+          description: "Checks if needed tools are installed",
         },
         {
           name: ["i", "init"],

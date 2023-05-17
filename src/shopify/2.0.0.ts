@@ -1,133 +1,14 @@
-const i = (name: string) => `fig://icon?type=${name}`;
-
-const helpOption: Fig.Option = {
-  name: ["--help", "-h"],
-  icon: i("option"),
-  description: "Show help for this command",
-  priority: 1,
-  isPersistent: true,
-};
-
-const categoryArg: Fig.Arg = {
-  name: "CATEGORY",
-  suggestions: ["html", "json", "liquid", "performance", "translation"],
-};
-
-const configOptions: Fig.Option[] = [
-  {
-    name: "--status",
-  },
-  {
-    name: "--enable",
-  },
-  {
-    name: "--disable",
-  },
-];
-
-const checkOptions: Fig.Option[] = [
-  {
-    name: "--config",
-    description:
-      "The path to your custom Theme Check config. This config overrides .theme-check.yml, if it is present in the directory being analyzed",
-    args: { name: "PATH", template: "filepaths" },
-  },
-  {
-    name: "--category",
-    description:
-      "Run only the specified category of checks. You can specify multiple categories using multiple instances of this flag",
-    args: categoryArg,
-  },
-  {
-    name: "--exclude-category",
-    description:
-      "Run all checks other than those in the specified category. You can specify multiple categories using multiple instances of this flag",
-    args: categoryArg,
-  },
-  {
-    name: "--fail-level",
-    description:
-      "Configure the severity level that causes a run of theme check to fail (exit code 1). Options include error, suggestion, and style",
-    args: {
-      name: "LEVEL",
-      suggestions: ["error", "suggestion", "style"],
-    },
-  },
-  {
-    name: "--auto-correct",
-    description: "Automatically fix correctable offenses",
-  },
-  {
-    name: "--init",
-    description: "Generate a new Theme Check config file",
-  },
-  {
-    name: "--output",
-    description:
-      "Output the results of the check to a file. Options include json and text (default)",
-    args: {
-      name: "type",
-      suggestions: ["json", "text"],
-    },
-  },
-  {
-    name: "--print",
-    description: "Output the active config to STDOUT",
-  },
-  {
-    name: "--list",
-    description: "List the active checks",
-  },
-  {
-    name: "--version",
-    description: "Print the version of Theme Check being used",
-  },
-];
-
-const appCreationBaseOptions: Fig.Option[] = [
-  {
-    name: "--name",
-    description: "App name. Any string",
-    args: {
-      name: "NAME",
-    },
-  },
-  {
-    name: "--organization-id",
-    description: "Partner organization ID. Must be an existing organization",
-    args: {
-      name: "ID",
-    },
-    isRequired: false,
-  },
-  {
-    name: "--store-domain",
-    description: "Development store URL. Must be an existing development store",
-    args: {
-      name: "MYSHOPIFYDOMAIN",
-    },
-    isRequired: false,
-  },
-  {
-    name: "--type",
-    description: "Whether this app is public or custom",
-    args: {
-      name: "APPTYPE",
-      suggestions: ["public", "custom"],
-    },
-
-    isRequired: false,
-  },
-  {
-    name: "--verbose",
-    description: "Output verbose information when installing dependencies",
-    isRequired: false,
-  },
-];
-
-const completionSpec: Fig.Spec = {
+const completion: Fig.Subcommand = {
   name: "shopify",
-  options: [helpOption],
+  options: [
+    {
+      name: ["--help", "-h"],
+      icon: "fig://icon?type=option",
+      description: "Show help for this command",
+      priority: 1,
+      isPersistent: true,
+    },
+  ],
   description:
     "Shopify CLI helps you build Shopify apps. It quickly generates Node.js, Ruby on Rails, and PHP apps, app extensions, Shopify Scripts (beta), and Shopify themes. You can also use it for Shopify themes and when automating many common development tasks. Visit https://shopify.dev/apps/tools/cli to know more",
   icon: "https://avatars.githubusercontent.com/u/8085?s=16&v=4",
@@ -150,10 +31,12 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--clone-url",
-              icon: i("github"),
+              icon: "fig://icon?type=github",
               description:
                 "The URL of the Git repository that you want to clone. If no URL is specified, then https://github.com/Shopify/dawn.git is used",
-              args: { name: "URL" },
+              args: {
+                name: "URL",
+              },
             },
           ],
         },
@@ -179,7 +62,10 @@ const completionSpec: Fig.Spec = {
                     description:
                       "Refreshes the entire page when a file is modified",
                   },
-                  { name: "off", description: "Deactivate live reload" },
+                  {
+                    name: "off",
+                    description: "Deactivate live reload",
+                  },
                 ],
               },
             },
@@ -210,10 +96,88 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "check",
-          icon: i("alert"),
+          icon: "fig://icon?type=alert",
           description:
             "Calls and runs Theme Check to analyze your theme code for errors and to ensure that it follows theme and Liquid best practices. Learn more about the checks that Theme Check runs",
-          options: checkOptions,
+          options: [
+            {
+              name: "--config",
+              description:
+                "The path to your custom Theme Check config. This config overrides .theme-check.yml, if it is present in the directory being analyzed",
+              args: {
+                name: "PATH",
+                template: "filepaths",
+              },
+            },
+            {
+              name: "--category",
+              description:
+                "Run only the specified category of checks. You can specify multiple categories using multiple instances of this flag",
+              args: {
+                name: "CATEGORY",
+                suggestions: [
+                  "html",
+                  "json",
+                  "liquid",
+                  "performance",
+                  "translation",
+                ],
+              },
+            },
+            {
+              name: "--exclude-category",
+              description:
+                "Run all checks other than those in the specified category. You can specify multiple categories using multiple instances of this flag",
+              args: {
+                name: "CATEGORY",
+                suggestions: [
+                  "html",
+                  "json",
+                  "liquid",
+                  "performance",
+                  "translation",
+                ],
+              },
+            },
+            {
+              name: "--fail-level",
+              description:
+                "Configure the severity level that causes a run of theme check to fail (exit code 1). Options include error, suggestion, and style",
+              args: {
+                name: "LEVEL",
+                suggestions: ["error", "suggestion", "style"],
+              },
+            },
+            {
+              name: "--auto-correct",
+              description: "Automatically fix correctable offenses",
+            },
+            {
+              name: "--init",
+              description: "Generate a new Theme Check config file",
+            },
+            {
+              name: "--output",
+              description:
+                "Output the results of the check to a file. Options include json and text (default)",
+              args: {
+                name: "type",
+                suggestions: ["json", "text"],
+              },
+            },
+            {
+              name: "--print",
+              description: "Output the active config to STDOUT",
+            },
+            {
+              name: "--list",
+              description: "List the active checks",
+            },
+            {
+              name: "--version",
+              description: "Print the version of Theme Check being used",
+            },
+          ],
         },
         {
           name: "open",
@@ -223,7 +187,9 @@ const completionSpec: Fig.Spec = {
               name: "--theme",
               description:
                 "The name or ID of the theme that you want to overwrite",
-              args: { name: "NAME_OR_ID" },
+              args: {
+                name: "NAME_OR_ID",
+              },
             },
             {
               name: "--live",
@@ -258,10 +224,14 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "package",
-          icon: i("box"),
+          icon: "fig://icon?type=box",
           description:
             "Packages your local theme files into a ZIP file that can be uploaded to Shopify",
-          args: { name: "ROOT", isOptional: true, template: "folders" },
+          args: {
+            name: "ROOT",
+            isOptional: true,
+            template: "folders",
+          },
         },
         {
           name: "publish",
@@ -286,7 +256,9 @@ const completionSpec: Fig.Spec = {
               name: "--theme",
               description:
                 "The name or ID of the theme that you want to overwrite",
-              args: { name: "NAME_OR_ID" },
+              args: {
+                name: "NAME_OR_ID",
+              },
             },
             {
               name: "--live",
@@ -323,7 +295,9 @@ const completionSpec: Fig.Spec = {
               name: "--theme",
               description:
                 "The name or ID of the theme that you want to overwrite",
-              args: { name: "NAME_OR_ID" },
+              args: {
+                name: "NAME_OR_ID",
+              },
             },
             {
               name: "--development",
@@ -394,24 +368,85 @@ const completionSpec: Fig.Spec = {
               description:
                 "Connects an existing app to Shopify CLI. Creates a config file",
               options: [
-                ...appCreationBaseOptions,
+                {
+                  name: "--name",
+                  description: "App name. Any string",
+                  args: {
+                    name: "NAME",
+                  },
+                },
+                {
+                  name: "--organization-id",
+                  description:
+                    "Partner organization ID. Must be an existing organization",
+                  args: {
+                    name: "ID",
+                  },
+                  isRequired: false,
+                },
+                {
+                  name: "--store-domain",
+                  description:
+                    "Development store URL. Must be an existing development store",
+                  args: {
+                    name: "MYSHOPIFYDOMAIN",
+                  },
+                  isRequired: false,
+                },
+                {
+                  name: "--type",
+                  description: "Whether this app is public or custom",
+                  args: {
+                    name: "APPTYPE",
+                    suggestions: ["public", "custom"],
+                  },
+                  isRequired: false,
+                },
+                {
+                  name: "--verbose",
+                  description:
+                    "Output verbose information when installing dependencies",
+                  isRequired: false,
+                },
                 {
                   name: "--db",
                   description: "Database type",
                   args: {
                     name: "DB",
                     suggestions: [
-                      { name: "mysql" },
-                      { name: "postgresql" },
-                      { name: "sqlite3" },
-                      { name: "oracle" },
-                      { name: "frontbase" },
-                      { name: "ibm_db" },
-                      { name: "sqlserver" },
-                      { name: "jdbcmysql" },
-                      { name: "jdbcsqlite3" },
-                      { name: "jdbcpostgresql" },
-                      { name: "jdbc" },
+                      {
+                        name: "mysql",
+                      },
+                      {
+                        name: "postgresql",
+                      },
+                      {
+                        name: "sqlite3",
+                      },
+                      {
+                        name: "oracle",
+                      },
+                      {
+                        name: "frontbase",
+                      },
+                      {
+                        name: "ibm_db",
+                      },
+                      {
+                        name: "sqlserver",
+                      },
+                      {
+                        name: "jdbcmysql",
+                      },
+                      {
+                        name: "jdbcsqlite3",
+                      },
+                      {
+                        name: "jdbcpostgresql",
+                      },
+                      {
+                        name: "jdbc",
+                      },
                     ],
                   },
                 },
@@ -428,13 +463,95 @@ const completionSpec: Fig.Spec = {
             {
               name: "node",
               description: "Creates an embedded nodejs app",
-              options: appCreationBaseOptions,
+              options: [
+                {
+                  name: "--name",
+                  description: "App name. Any string",
+                  args: {
+                    name: "NAME",
+                  },
+                },
+                {
+                  name: "--organization-id",
+                  description:
+                    "Partner organization ID. Must be an existing organization",
+                  args: {
+                    name: "ID",
+                  },
+                  isRequired: false,
+                },
+                {
+                  name: "--store-domain",
+                  description:
+                    "Development store URL. Must be an existing development store",
+                  args: {
+                    name: "MYSHOPIFYDOMAIN",
+                  },
+                  isRequired: false,
+                },
+                {
+                  name: "--type",
+                  description: "Whether this app is public or custom",
+                  args: {
+                    name: "APPTYPE",
+                    suggestions: ["public", "custom"],
+                  },
+                  isRequired: false,
+                },
+                {
+                  name: "--verbose",
+                  description:
+                    "Output verbose information when installing dependencies",
+                  isRequired: false,
+                },
+              ],
             },
             {
               name: "php",
               description:
                 "Connects an existing app to Shopify CLI. Creates a config file",
-              options: appCreationBaseOptions,
+              options: [
+                {
+                  name: "--name",
+                  description: "App name. Any string",
+                  args: {
+                    name: "NAME",
+                  },
+                },
+                {
+                  name: "--organization-id",
+                  description:
+                    "Partner organization ID. Must be an existing organization",
+                  args: {
+                    name: "ID",
+                  },
+                  isRequired: false,
+                },
+                {
+                  name: "--store-domain",
+                  description:
+                    "Development store URL. Must be an existing development store",
+                  args: {
+                    name: "MYSHOPIFYDOMAIN",
+                  },
+                  isRequired: false,
+                },
+                {
+                  name: "--type",
+                  description: "Whether this app is public or custom",
+                  args: {
+                    name: "APPTYPE",
+                    suggestions: ["public", "custom"],
+                  },
+                  isRequired: false,
+                },
+                {
+                  name: "--verbose",
+                  description:
+                    "Output verbose information when installing dependencies",
+                  isRequired: false,
+                },
+              ],
             },
           ],
         },
@@ -451,7 +568,7 @@ const completionSpec: Fig.Spec = {
             "Deploy the current app to a hosting service. Heroku (https://www.heroku.com) is currently the only option, but more will be added in the future",
           subcommands: [
             {
-              icon: i("heroku"),
+              icon: "fig://icon?type=heroku",
               name: "heroku",
               description: "Deploys the current app to Heroku",
             },
@@ -495,7 +612,9 @@ const completionSpec: Fig.Spec = {
                   name: "--token",
                   description: "Ngrok auth token",
                   isRequired: true,
-                  args: { name: "token" },
+                  args: {
+                    name: "token",
+                  },
                 },
               ],
             },
@@ -517,15 +636,24 @@ const completionSpec: Fig.Spec = {
             {
               name: "--type",
               description: "The type of extension that you want to create",
-              args: { name: "TYPE" },
+              args: {
+                name: "TYPE",
+              },
             },
             {
               name: "--name",
               description:
                 "The name of the extension. Shopify CLI transforms the input into snake case to name your directory. Extension names have a 50 character limit",
-              args: { name: "NAME" },
+              args: {
+                name: "NAME",
+              },
             },
-            { name: "--api-key", args: { name: "KEY" } },
+            {
+              name: "--api-key",
+              args: {
+                name: "KEY",
+              },
+            },
           ],
         },
         {
@@ -562,7 +690,9 @@ const completionSpec: Fig.Spec = {
               name: "--api-key",
               description:
                 "The API key of the app that you want to register your extension to",
-              args: { name: "KEY" },
+              args: {
+                name: "KEY",
+              },
             },
           ],
         },
@@ -582,23 +712,108 @@ const completionSpec: Fig.Spec = {
               name: "--api-key",
               description:
                 "Connect your extension and app by inserting your app's API key (which you can get from your app setup page on shopify.dev)",
-              args: { name: "KEY" },
+              args: {
+                name: "KEY",
+              },
             },
             {
               name: "--registration-id",
               description: "The id of the extension's registration",
-              args: { name: "REGISTRATION_ID" },
+              args: {
+                name: "REGISTRATION_ID",
+              },
             },
           ],
         },
         {
           name: "check",
           priority: 50,
-          icon: i("alert"),
+          icon: "fig://icon?type=alert",
           description:
             "Runs Theme Check to analyze your code for errors and to ensure that it follows theme and Liquid best practices. Learn more about the checks that Theme Check runs. This command is only valid for theme app extensions",
-          options: checkOptions,
-          args: { name: "extension path", template: "folders" },
+          options: [
+            {
+              name: "--config",
+              description:
+                "The path to your custom Theme Check config. This config overrides .theme-check.yml, if it is present in the directory being analyzed",
+              args: {
+                name: "PATH",
+                template: "filepaths",
+              },
+            },
+            {
+              name: "--category",
+              description:
+                "Run only the specified category of checks. You can specify multiple categories using multiple instances of this flag",
+              args: {
+                name: "CATEGORY",
+                suggestions: [
+                  "html",
+                  "json",
+                  "liquid",
+                  "performance",
+                  "translation",
+                ],
+              },
+            },
+            {
+              name: "--exclude-category",
+              description:
+                "Run all checks other than those in the specified category. You can specify multiple categories using multiple instances of this flag",
+              args: {
+                name: "CATEGORY",
+                suggestions: [
+                  "html",
+                  "json",
+                  "liquid",
+                  "performance",
+                  "translation",
+                ],
+              },
+            },
+            {
+              name: "--fail-level",
+              description:
+                "Configure the severity level that causes a run of theme check to fail (exit code 1). Options include error, suggestion, and style",
+              args: {
+                name: "LEVEL",
+                suggestions: ["error", "suggestion", "style"],
+              },
+            },
+            {
+              name: "--auto-correct",
+              description: "Automatically fix correctable offenses",
+            },
+            {
+              name: "--init",
+              description: "Generate a new Theme Check config file",
+            },
+            {
+              name: "--output",
+              description:
+                "Output the results of the check to a file. Options include json and text (default)",
+              args: {
+                name: "type",
+                suggestions: ["json", "text"],
+              },
+            },
+            {
+              name: "--print",
+              description: "Output the active config to STDOUT",
+            },
+            {
+              name: "--list",
+              description: "List the active checks",
+            },
+            {
+              name: "--version",
+              description: "Print the version of Theme Check being used",
+            },
+          ],
+          args: {
+            name: "extension path",
+            template: "folders",
+          },
         },
       ],
     },
@@ -612,7 +827,9 @@ const completionSpec: Fig.Spec = {
           name: "--store",
           description:
             "The store prefix, myshopify.com URL, admin URL, custom domain or custom domain admin",
-          args: { name: "STORE" },
+          args: {
+            name: "STORE",
+          },
         },
       ],
     },
@@ -663,13 +880,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "store",
       priority: 40,
-      icon: i("option"),
+      icon: "fig://icon?type=option",
       description: "Displays the store that you're currently connected to",
     },
     {
       name: "version",
       priority: 30,
-      icon: i("option"),
+      icon: "fig://icon?type=option",
       description: "Displays the version of Shopify CLI that you're running",
     },
     {
@@ -682,21 +899,43 @@ const completionSpec: Fig.Spec = {
           name: "analytics",
           description:
             "Configures anonymous usage reporting by enabling or disabling analytics",
-          options: configOptions,
+          options: [
+            {
+              name: "--status",
+            },
+            {
+              name: "--enable",
+            },
+            {
+              name: "--disable",
+            },
+          ],
         },
         {
           name: "feature",
           description:
             "Configures active feature sets in the CLI. This command is used for development and debugging work on the CLI tool itself. Unless you're developing the tool, don't alter this command. Review the Shopify CLI development guide for more information",
-          options: configOptions,
-          args: { name: "feature_name" },
+          options: [
+            {
+              name: "--status",
+            },
+            {
+              name: "--enable",
+            },
+            {
+              name: "--disable",
+            },
+          ],
+          args: {
+            name: "feature_name",
+          },
         },
       ],
     },
     {
       name: "whoami",
       priority: 1,
-      icon: i("option"),
+      icon: "fig://icon?type=option",
       description:
         "Determines which Partner organization you're logged in to, or which store you're logged in to as a staff member",
     },
@@ -710,7 +949,9 @@ const completionSpec: Fig.Spec = {
           name: "--store",
           description:
             "The store prefix, myshopify.com URL, admin URL, custom domain or custom domain admin",
-          args: { name: "STORE" },
+          args: {
+            name: "STORE",
+          },
         },
       ],
     },
@@ -771,4 +1012,10 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-export default completionSpec;
+
+const versions: Fig.VersionDiffMap = {};
+
+versions["2.0.0"] = {};
+
+export { versions };
+export default completion;
