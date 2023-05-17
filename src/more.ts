@@ -3,12 +3,12 @@ const completionSpec: Fig.Spec = {
   description: "Opposite of less",
   options: [
     {
-      name: "-d, --silent",
+      name: ["-d", "--silent"],
       description:
         "Prompt with '[Press space to continue, 'q' to quit.]', and display '[Press 'h' for instructions.]' instead of ringing the bell when an illegal key is pressed",
     },
     {
-      name: "-l, --logical",
+      name: ["-l", "--logical"],
       description: "Do not pause after any line containing a ^L (form feed)",
     },
     {

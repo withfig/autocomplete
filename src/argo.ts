@@ -1189,9 +1189,12 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--since duration",
+          name: "--since",
           description:
             "Only return logs newer than a relative duration like 5s 2m or 3h. Defaults to all logs. Only one of since-time / since may be used",
+          args: {
+            name: "duration",
+          },
         },
         {
           name: "--since-time",
@@ -1602,7 +1605,7 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["-l", "--selector "],
+          name: ["-l", "--selector"],
           description:
             "Selector (label query) to filter on not including uninitialized ones supports '=' '==' and '!='.(e.g. -l key1=value1, key2=value2)",
           args: {
