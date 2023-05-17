@@ -3,7 +3,7 @@ on:
   issue_comment:
     types: [created]
   pull_request_target:
-    types: [opened, closed, synchronize]
+    types: [opened,closed,synchronize]
 
 jobs:
   CLAAssistant:
@@ -16,8 +16,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
           PERSONAL_ACCESS_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
         with:
-          path-to-signatures: "cla/signatures.json"
-          path-to-document: "https://github.com/withfig/autocomplete/blob/master/cla/cla.md"
-          branch: "master"
+          path-to-signatures: 'cla/signatures.json'
+          path-to-document: 'https://github.com/withfig/autocomplete/blob/master/cla/cla.md'
+          branch: 'master'
           allowlist: mschrage,brendanfalk,bot*
-          create-file-commit-message: "chore: create `cla/signatures.json`"
+          create-file-commit-message: 'chore: create `cla/signatures.json`'
