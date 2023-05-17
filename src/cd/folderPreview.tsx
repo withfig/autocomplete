@@ -37,7 +37,7 @@ const Preview = ({
 
   return (
     <div
-      className="bg-shade0 text-shade6 p-2 rounded overflow-y-scroll shadow-[0px_0px_3px_0px_rgb(85,_85,_85)]"
+      className="bg-shade0 text-shade6 p-2 rounded overflow-y-auto overflow-x-hidden shadow-[0px_0px_3px_0px_rgb(85,_85,_85)]"
       style={{
         maxHeight,
       }}
@@ -46,7 +46,7 @@ const Preview = ({
       {items.length === 0 ? (
         <span className="opacity-70">No items</span>
       ) : (
-        <ul>{items}</ul>
+        <ul className="whitespace-pre">{items}</ul>
       )}
     </div>
   );
