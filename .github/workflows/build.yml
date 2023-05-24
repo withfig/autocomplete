@@ -22,10 +22,10 @@ jobs:
           token: ${{ secrets.FIG_BOT_TOKEN }}
         # Install all dependencies
       - name: install
-        run: npm install
+        run: yarn install
         # Transpile all specs from ts to js
       - name: build
-        run: npm run build
+        run: yarn build
         # Zip the transpiled files into the specs.zip file
       - name: bundle files
         run: |

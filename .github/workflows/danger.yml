@@ -9,8 +9,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18.x
-      - run: npm install -g yarn
-      - run: yarn install  --immutable
+      - run: yarn install
       - run: yarn danger ci
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
