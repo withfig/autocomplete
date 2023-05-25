@@ -31,6 +31,11 @@ const verbose = {
   description:
     "Noisy logging, including all shell commands executed. If used with --help, shows hidden options",
 };
+const forceVerbose = {
+  name: "-vv",
+  description:
+    "Very noisy logging, Can be used for verbose logging the doctor command. If we use this with any other command, it will act as verbose logging",
+};
 
 const deviceId = {
   name: ["-d", "--device-id"],
@@ -53,7 +58,19 @@ const suppressAnalytics = {
   description: "Suppress analytics reporting when this command runs",
 };
 
-const globalOpts = [help, verbose, deviceId, suppressAnalytics];
+const disableTelemetry = {
+  name: "--disable-telemetry",
+  description: "Disable telemetry reporting when this command runs",
+};
+
+const globalOpts = [
+  help,
+  verbose,
+  deviceId,
+  suppressAnalytics,
+  version,
+  disableTelemetry,
+];
 
 // yes no options
 const pub = [
@@ -339,6 +356,52 @@ const overwrite = [
   },
 ];
 
+const customDeviceArguments = [
+  {
+    name: "check",
+    description:
+      "Make sure the config actually works. This will execute some of the commands in the config (if necessary with dummy arguments). This flag is enabled by default when `--json` is not specified. If `--json` is given, it is disabled by default",
+  },
+  {
+    name: "--no-check",
+    description:
+      "Make sure the config actually works. This will execute some of the commands in the config (if necessary with dummy arguments). This flag is enabled by default when `--json` is not specified. If `--json` is given, it is disabled by default",
+  },
+  {
+    name: "--json",
+    description:
+      "Add the custom device described by this JSON-encoded string to the list of custom-devices instead of using the normal, interactive way of configuring. Useful if you want to use the `flutter custom-devices add` command from a script, or use it non-interactively for some other reason",
+  },
+  {
+    name: "--ssh",
+    description:
+      "Add a ssh-device. This will automatically fill out some of the config options for you with good defaults, and in other cases save you some typing. So you'll only need to enter some things like hostname and username of the remote device instead of entering each individual command (defaults to on)",
+  },
+];
+
+const customDeviceSubCommands = [
+  {
+    name: "add",
+    description: "Add a new device the custom devices config file",
+    options: [...customDeviceArguments],
+  },
+  {
+    name: "delete",
+    description: "Delete a device from the config file",
+  },
+  {
+    name: "list",
+    description:
+      "List the currently configured custom devices, both enabled and disabled, reachable or not",
+    options: [...customDeviceArguments],
+  },
+  {
+    name: "reset",
+    description: "Reset the config file to the default",
+    options: [...customDeviceArguments],
+  },
+];
+
 const analytics = [
   {
     name: "--analytics",
@@ -453,6 +516,19 @@ const enabledFuchsia = [
     name: "--no-enable-fuchsia",
     description:
       "Disable Flutter for Fuchsia. This setting will take effect on the master channel",
+  },
+];
+
+const enableCustomDevices = [
+  {
+    name: "--enable-custom-devices",
+    description:
+      "Enable Early support for custom device types. This setting will take effect on the master, beta, and stable channels",
+  },
+  {
+    name: "--no-enable-custom-devices",
+    description:
+      "Disable Early support for custom device types. This setting will take effect on the master, beta, and stable channels",
   },
 ];
 
@@ -779,6 +855,11 @@ const completionSpec = {
       ],
     },
     {
+      name: "custom-devices",
+      description: "List, reset, add and delete custom devices",
+      options: [...globalOpts, ...customDeviceSubCommands],
+    },
+    {
       name: "bash-completion",
       description: "Output command line shell completion setup scripts",
       options: [...globalOpts, ...overwrite],
@@ -923,6 +1004,7 @@ const completionSpec = {
         ...enableAndroid,
         ...enableIos,
         ...enabledFuchsia,
+        ...enableCustomDevices,
         ...experimentalInvalidationStrategy,
         {
           name: "--clear-features",
@@ -1108,6 +1190,7 @@ const completionSpec = {
       description: "Show information about the installed tooling",
       options: [
         ...globalOpts,
+        forceVerbose,
         {
           name: "--android-licenses",
           description:
