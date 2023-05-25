@@ -1,11 +1,11 @@
-// Flutter version 2.0.1
+// Flutter version 3.10.2
 
 import { filepaths } from "@fig/autocomplete-generators";
 
 const flutterGenerators: Record<string, Fig.Generator> = {
   emulators: {
     script: "flutter emulators",
-    postProcess: function (out) {
+    postProcess: function (out: string) {
       return out
         .match(/.*•.*/gi)
         .map((info) => info.split("•"))
@@ -945,15 +945,15 @@ const completionSpec = {
           "Switch to <channel name>. Leave this blank to see available channels",
         generators: {
           script: "flutter channel",
-          postProcess: function (out) {
+          postProcess: function (out: string) {
             return out
               .split("\n")
-              .filter((channel) => channel.match(/\w+$/))
-              .map((channel) => ({
+              .filter((channel: string) => channel.match(/\w+$/))
+              .map((channel: string) => ({
                 name: channel.trim().match(/\w+/)[0],
                 active: channel.match(/\*/) != null,
               }))
-              .map((channel) => ({
+              .map((channel: FlutterChannel) => ({
                 name: `${channel.name}${channel.active ? " ✅" : ""}`,
                 icon: "🐦",
                 description: "Available channels",
@@ -1744,4 +1744,8 @@ const completionSpec = {
   options: globalOpts,
 };
 
+interface FlutterChannel {
+  name: string;
+  active: boolean;
+}
 export default completionSpec;
