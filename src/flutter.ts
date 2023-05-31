@@ -358,7 +358,7 @@ const overwrite = [
 
 const customDeviceArguments = [
   {
-    name: "check",
+    name: "--check",
     description:
       "Make sure the config actually works. This will execute some of the commands in the config (if necessary with dummy arguments). This flag is enabled by default when `--json` is not specified. If `--json` is given, it is disabled by default",
   },
