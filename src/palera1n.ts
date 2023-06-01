@@ -3,11 +3,11 @@ const completionSpec: Fig.Spec = {
   description: "Jailbreaking tool for iOS/iPadOS 15.x-16.x arm64",
   options: [
     {
-      name: ["--version", ""],
+      name: "--version",
       description: "Print version",
     },
     {
-      name: ["--force-revert", ""],
+      name: "--force-revert",
       description: "Remove jailbreak",
     },
     {
@@ -46,17 +46,17 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--override-checkra1n", "-i"],
       description: "Override checkra1n",
-      args: { name: "FILE" },
+      args: { name: "FILE", suggestions: "filepaths" },
     },
     {
       name: ["--override-pongo", "-k"],
       description: "Override Pongo image",
-      args: { name: "FILE" },
+      args: { name: "FILE", suggestions: "filepaths" },
     },
     {
       name: ["--override-kpf", "-K"],
       description: "Override kernel patchfinder",
-      args: { name: "FILE" },
+      args: { name: "FILE", suggestions: "filepaths" },
     },
     {
       name: ["--rootless", "-l"],
@@ -78,7 +78,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--override-overlay", "-o"],
       description: "Override overlay",
-      args: { name: "FILE" },
+      args: { name: "FILE", suggestions: "filepaths" },
     },
     {
       name: ["--pongo-shell", "-p"],
@@ -92,7 +92,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--override-ramdisk", "-r"],
       description: "Override ramdisk",
-      args: { name: "FILE" },
+      args: { name: "FILE", suggestions: "filepaths" },
     },
     {
       name: ["--reboot-device", "-R"],
