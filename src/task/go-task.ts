@@ -14,13 +14,12 @@ const tasksGenerator: Fig.Generator = {
       .filter((task) => task.startsWith("*"))
       .map((task) => {
         const taskInfo = task.slice(2).trim();
-        const [name, ...description] = taskInfo.split(" ");
+        const [name, description] = taskInfo.split(": ");
 
         return {
           name: name.replace(/:$/, ""),
-
-          description: description.join(" ") || "Task",
-          icon: "🎯",
+          description: description?.trim(),
+          icon: "fig://icon?type=command",
           priority: TASKS_PRIORITY,
         };
       });
@@ -39,6 +38,10 @@ const completionSpec: Fig.Spec = {
     isOptional: true,
   },
   options: [
+    {
+      name: ["-a", "--list-all"],
+      description: "Lists tasks with or without a description",
+    },
     {
       name: ["-c", "--color"],
       description:
