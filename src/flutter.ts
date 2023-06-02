@@ -35,6 +35,7 @@ const forceVerbose = {
   name: "-vv",
   description:
     "Very noisy logging, Can be used for verbose logging the doctor command. If we use this with any other command, it will act as verbose logging",
+  parserDirectives: { flagsArePosixNoncompliant: true },
 };
 
 const deviceId = {
