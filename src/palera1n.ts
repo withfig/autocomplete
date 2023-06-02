@@ -46,17 +46,17 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--override-checkra1n", "-i"],
       description: "Override checkra1n",
-      args: { name: "FILE", suggestions: "filepaths" },
+      args: { name: "FILE", template: "filepaths" },
     },
     {
       name: ["--override-pongo", "-k"],
       description: "Override Pongo image",
-      args: { name: "FILE", suggestions: "filepaths" },
+      args: { name: "FILE", template: "filepaths" },
     },
     {
       name: ["--override-kpf", "-K"],
       description: "Override kernel patchfinder",
-      args: { name: "FILE", suggestions: "filepaths" },
+      args: { name: "FILE", template: "filepaths" },
     },
     {
       name: ["--rootless", "-l"],
@@ -78,7 +78,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--override-overlay", "-o"],
       description: "Override overlay",
-      args: { name: "FILE", suggestions: "filepaths" },
+      args: { name: "FILE", template: "filepaths" },
     },
     {
       name: ["--pongo-shell", "-p"],
@@ -92,7 +92,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--override-ramdisk", "-r"],
       description: "Override ramdisk",
-      args: { name: "FILE", suggestions: "filepaths" },
+      args: { name: "FILE", template: "filepaths" },
     },
     {
       name: ["--reboot-device", "-R"],
