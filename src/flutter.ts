@@ -31,12 +31,6 @@ const verbose = {
   description:
     "Noisy logging, including all shell commands executed. If used with --help, shows hidden options",
 };
-const forceVerbose = {
-  name: "-vv",
-  description:
-    "Very noisy logging, Can be used for verbose logging the doctor command. If we use this with any other command, it will act as verbose logging",
-  parserDirectives: { flagsArePosixNoncompliant: true },
-};
 
 const deviceId = {
   name: ["-d", "--device-id"],
@@ -1189,9 +1183,14 @@ const completionSpec = {
     {
       name: "doctor",
       description: "Show information about the installed tooling",
+      parserDirectives: { flagsArePosixNoncompliant: true },
       options: [
         ...globalOpts,
-        forceVerbose,
+        {
+          name: "-vv",
+          description:
+            "Very noisy logging, Can be used for verbose logging the doctor command. If we use this with any other command, it will act as verbose logging",
+        },
         {
           name: "--android-licenses",
           description:
