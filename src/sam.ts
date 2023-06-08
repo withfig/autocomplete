@@ -1,3 +1,5 @@
+import { awsProfileGenerator } from "./aws";
+
 const configEnvOption: Fig.Option = {
   name: "--config-env",
   description:
@@ -187,8 +189,8 @@ const profileOption: Fig.Option = {
   description:
     "Select a specific profile from your credential file to get AWS credentials",
   args: {
-    name: "profile name",
-    description: "The name of the AWS profile",
+    generators: awsProfileGenerator,
+    filterStrategy: "fuzzy",
   },
 };
 
