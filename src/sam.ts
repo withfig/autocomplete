@@ -192,6 +192,12 @@ const profileOption: Fig.Option = {
   },
 };
 
+const guidedOption: Fig.Option = {
+  name: ["-g", "--guided"],
+  description:
+    "Specify this flag to allow SAM CLI to guide you through the deployment using guided prompts",
+};
+
 const regionOption: Fig.Option = {
   name: "--region",
   description: "Set the AWS Region of the service",
@@ -664,7 +670,7 @@ const completionSpec: Fig.Spec = {
       options: [
         configEnvOption,
         configFileOption,
-        // guidedOption,
+        guidedOption,
         templateFileOption,
         // noExecuteChangesetOption,
         // failOnEmptyChangesetOption,
