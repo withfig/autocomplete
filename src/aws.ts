@@ -698,6 +698,11 @@ const completionSpec: Fig.Spec = {
       loadSpec: "aws/healthlake",
     },
     {
+      name: "help",
+      description: "Displays aws usage information",
+      isPersistent: true,
+    },
+    {
       name: "honeycode",
       description:
         "Amazon Honeycode is a fully managed service that allows you to quickly build mobile and web apps for teams\u2014without programming. Build Honeycode apps for managing almost anything, like projects, customers, operations, approvals, resources, and even your team",
