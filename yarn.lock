@@ -1176,10 +1176,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:>= 8, @types/node@npm:>=13.7.0, @types/node@npm:^18.11.0":
+"@types/node@npm:*, @types/node@npm:>= 8, @types/node@npm:>=13.7.0":
   version: 18.16.14
   resolution: "@types/node@npm:18.16.14"
   checksum: c11cb3c787236414efe58240ae71854971592554d82ff9d201876ce7cafd51c37aaa001c63602d002e8238614d7331bd6d48ac4c1c0caa826799980b6846fb08
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^20.3.0":
+  version: 20.3.0
+  resolution: "@types/node@npm:20.3.0"
+  checksum: 613e878174febc0104dae210088645cbb5096a19ae5fdf57fbc06fa6ef71755b839858c2b313fb8c1df8b7c6660e1b5f7a64db2126af9d47d1d9238e2bc0a86d
   languageName: node
   linkType: hard
 
@@ -1417,7 +1424,7 @@ __metadata:
     "@fig/autocomplete-helpers": ^1.0.4
     "@fig/autocomplete-hooks": ^1.0.2
     "@fig/eslint-config-autocomplete": ^1.1.0
-    "@types/node": ^18.11.0
+    "@types/node": ^20.3.0
     "@types/progress": ^2.0.3
     "@types/react": ^18.2.6
     "@types/react-dom": ^18.2.4
