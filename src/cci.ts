@@ -131,6 +131,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "TEXT",
                 description: "Page to navigate to",
+                template: "filepaths",
               },
             },
             {
@@ -688,6 +689,7 @@ const completionSpec: Fig.Spec = {
           description: "Path to a script to run",
           args: {
             name: "PATH",
+            template: "filepaths",
           },
         },
         {
