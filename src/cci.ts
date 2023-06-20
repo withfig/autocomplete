@@ -705,7 +705,121 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "task",
+      description: "Commands for finding and running tasks for a project",
+      subcommands: [
+        {
+          name: "doc",
+          description: "Exports RST format documentation for all tasks",
+        },
+        {
+          name: "info",
+          description: "Displays information for a task",
+          args: {
+            name: "TASK_NAME",
+          },
+        },
+        {
+          name: "list",
+          description: "List available tasks for the current context",
+        },
+        {
+          name: "run",
+          description: "Runs a task",
+          args: {
+            name: "TASK_NAME",
+          },
+        },
+      ],
+      options: [
+        {
+          name: "--help",
+          description: "Show this message and exit",
+        },
+      ],
+    },
+    {
+      name: "version",
+      description: "Print the current version of CumulusCI",
+      options: [
+        {
+          name: "--help",
+          description: "Show this message and exit",
+        },
+      ],
+    },
+    {
+      name: "error",
+      description: "Get or share information about an error",
+      subcommands: [
+        {
+          name: "gist",
+          description: "Creates a GitHub gist from the latest logfile",
+        },
+        {
+          name: "info",
+          description:
+            "Outputs the most recent traceback (if one exists in the most recent logfile)",
+        },
+      ],
+      options: [
+        {
+          name: "--help",
+          description: "Show this message and exit",
+        },
+      ],
+    },
+    {
+      name: "project",
+      description:
+        "Commands for interacting with project repository configurations",
+      subcommands: [
+        {
+          name: "dependencies",
+          description:
+            "Displays the current dependencies for the project. If the dependencies section has references to other github repositories, the repositories are inspected and a static list of dependencies is created",
+          options: [
+            {
+              name: "--resolution-strategy",
+              description:
+                "The resolution strategy to use. Defaults to production",
+              args: {
+                name: "TEXT",
+              },
+            },
+            {
+              name: "--help",
+              description: "Show this message and exit",
+            },
+          ],
+        },
+        {
+          name: "info",
+          description:
+            "Display information about the current project's configuration",
+          options: [
+            {
+              name: "--help",
+              description: "Show this message and exit",
+            },
+          ],
+        },
+        {
+          name: "init",
+          description:
+            "Initialize a new project for use with the cumulusci toolbelt",
+          options: [
+            {
+              name: "--help",
+              description: "Show this message and exit",
+            },
+          ],
+        },
+      ],
+    },
   ],
+
   options: [
     {
       name: "--help",
