@@ -144,6 +144,309 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "connect",
+          description: "Connects a new org's credentials using OAuth Web Flow",
+          args: {
+            name: "ORGNAME",
+            isOptional: true,
+          },
+          options: [
+            {
+              name: "--org",
+              description:
+                "Alternate way to specify the target org. One of ORGNAME (see above) or --org is required",
+              args: {
+                name: "TEXT",
+              },
+            },
+            {
+              name: "--connected-app",
+              description: "Name of the connected_app service to use",
+              args: {
+                name: "TEXT",
+              },
+            },
+            {
+              name: "--sandbox",
+              description: "If set, connects to a Salesforce sandbox org",
+            },
+            {
+              name: "--login-url",
+              description: "If set, login to this hostname",
+              args: {
+                name: "TEXT",
+              },
+            },
+            {
+              name: "--default",
+              description:
+                "If set, sets the connected org as the new default org",
+            },
+            {
+              name: "--global-org",
+              description:
+                "If set, the connected org is available to all CumulusCI projects",
+            },
+            {
+              name: "--help",
+              description: "Show this message and exit",
+            },
+          ],
+        },
+        {
+          name: "default",
+          description: "Sets an org as the default org for tasks and flows",
+          args: {
+            name: "ORGNAME",
+            isOptional: true,
+          },
+          options: [
+            {
+              name: "--org",
+              description:
+                "Alternate way to specify the target org. By default, runs against the current default org",
+              args: {
+                name: "TEXT",
+              },
+            },
+            {
+              name: "--unset",
+              description:
+                "Unset the org as the default org leaving no default org selected",
+            },
+            {
+              name: "--help",
+              description: "Show this message and exit",
+            },
+          ],
+        },
+        {
+          name: "import",
+          description: "Import an org from Salesforce DX",
+          args: [
+            {
+              name: "USERNAME_OR_ALIAS",
+            },
+            {
+              name: "ORGNAME",
+              isOptional: true,
+            },
+          ],
+          options: [
+            {
+              name: "--org",
+              description:
+                "Alternate way to specify the target org. One of ORGNAME (see above) or --org is required",
+              args: {
+                name: "TEXT",
+              },
+            },
+            {
+              name: "--help",
+              description: "Show this message and exit",
+            },
+          ],
+        },
+        {
+          name: "info",
+          description: "Display information for a connected org",
+          args: {
+            name: "ORGNAME",
+            isOptional: true,
+          },
+          options: [
+            {
+              name: "--org",
+              description:
+                "Alternate way to specify the target org. By default, runs against the current default org",
+              args: {
+                name: "TEXT",
+              },
+            },
+            {
+              name: "--json",
+              description: "Print as JSON. Includes access token",
+            },
+            {
+              name: "--help",
+              description: "Show this message and exit",
+            },
+          ],
+        },
+        {
+          name: "list",
+          description: "Lists all orgs in scope for the current project",
+          options: [
+            {
+              name: "--plain",
+              description: "Print the table using plain ascii",
+            },
+            {
+              name: "--json",
+              description: "Output results in JSON format",
+            },
+            {
+              name: "--help",
+              description: "Show this message and exit",
+            },
+          ],
+        },
+        {
+          name: "prune",
+          description:
+            "Removes all expired scratch orgs from the current project",
+          options: [
+            {
+              name: "--include-active",
+              description: "Remove all scratch orgs, regardless of expiry",
+            },
+            {
+              name: "--help",
+              description: "Show this message and exit",
+            },
+          ],
+        },
+        {
+          name: "remove",
+          description: "Removes an org from the keychain",
+          args: {
+            name: "ORGNAME",
+            isOptional: true,
+          },
+          options: [
+            {
+              name: "--org",
+              description:
+                "Alternate way to specify the target org. One of ORGNAME (see above) or --org is required",
+              args: {
+                name: "TEXT",
+              },
+            },
+            {
+              name: "--global-org",
+              description:
+                "Set this option to force remove a global org. Default behavior is to error if you attempt to delete a global org",
+            },
+            {
+              name: "--help",
+              description: "Show this message and exit",
+            },
+          ],
+        },
+        {
+          name: "scratch",
+          description: "Connects a Salesforce DX Scratch Org to the keychain",
+          args: [
+            {
+              name: "CONFIG_NAME",
+            },
+            {
+              name: "ORGNAME",
+              isOptional: true,
+            },
+          ],
+          options: [
+            {
+              name: "--org",
+              description:
+                "Alternate way to specify the target org. One of ORGNAME (see above) or --org is required",
+              args: {
+                name: "TEXT",
+              },
+            },
+            {
+              name: "--default",
+              description:
+                "If set, sets the connected org as the new default org",
+            },
+            {
+              name: "--devhub",
+              description:
+                "If provided, overrides the devhub used to create the scratch org",
+              args: {
+                name: "TEXT",
+              },
+            },
+            {
+              name: "--days",
+              description:
+                "If provided, overrides the scratch config default days value for how many days the scratch org should persist",
+              args: {
+                name: "TEXT",
+              },
+            },
+            {
+              name: "--no-password",
+              description: "If set, don't set a password for the org",
+            },
+            {
+              name: "--help",
+              description: "Show this message and exit",
+            },
+          ],
+        },
+        {
+          name: "scratch_delete",
+          description:
+            "Deletes a Salesforce DX Scratch Org leaving the config in the keychain for regeneration",
+          args: {
+            name: "ORGNAME",
+            isOptional: true,
+          },
+          options: [
+            {
+              name: "--org",
+              description:
+                "Alternate way to specify the target org. One of ORGNAME (see above) or --org is required",
+              args: {
+                name: "TEXT",
+              },
+            },
+            {
+              name: "--help",
+              description: "Show this message and exit",
+            },
+          ],
+        },
+        {
+          name: "shell",
+          description:
+            "Drop into a Python shell with a simple_salesforce connection in `sf`, as well as the `org_config` and `project_config`",
+          args: {
+            name: "ORGNAME",
+            isOptional: true,
+          },
+          options: [
+            {
+              name: "--org",
+              description:
+                "Alternate way to specify the target org. By default, runs against the current default org",
+              args: {
+                name: "TEXT",
+              },
+            },
+            {
+              name: "--script",
+              description: "Path to a script to run",
+              args: {
+                name: "PATH",
+              },
+            },
+            {
+              name: "--python",
+              description: "Python code to run directly",
+              args: {
+                name: "TEXT",
+              },
+            },
+            {
+              name: "--help",
+              description: "Show this message and exit",
+            },
+          ],
+        },
+
         // Add other org subcommands here
       ],
     },
