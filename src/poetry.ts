@@ -73,6 +73,7 @@ const globalOptions: Fig.Option[] = [
   noPlugins,
   noCache,
   directory,
+  quiet,
 ];
 
 const completionSpec: Fig.Spec = {
