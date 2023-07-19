@@ -4342,13 +4342,13 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: ["-m", "--message"],
+          name: ["-m ''", "--message"],
           // insertValue: "-m '{cursor}'",
           description: "Use the given message as the commit message",
           args: {
             name: "message",
             generators: ai({
-              name: "git commit -m",
+              name: "git commit -m ''",
               prompt: ({ executeShellCommand }) => {
                 const gitLogShortMessages = executeShellCommand(
                   "git log --pretty=format:%s --abbrev-commit --max-count=20"
@@ -6802,7 +6802,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["-m", "--message"],
-              insertValue: "-m {cursor}",
+              insertValue: "-m '{cursor}'",
               description: "Use the given <msg> as the stash message",
               args: {
                 name: "message",
