@@ -13,7 +13,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--config", "-f"],
           description: "Load configuration from file",
-          args: { name: "config", template: "filepaths" },
+          args: { name: "config", template: ["filepaths"] },
         },
         {
           name: "--deprecated",
@@ -74,7 +74,7 @@ const completionSpec: Fig.Spec = {
           name: ["--config", "-f"],
           description: "Configuration file(s) to check",
           hidden: true,
-          args: { name: "config" },
+          args: { name: "config", template: ["filepaths"] },
         },
         {
           name: "--deprecated",
@@ -137,7 +137,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--config", "-f"],
           description: "Configuration file",
-          args: { name: "config", template: "filepaths" },
+          args: { name: "config", template: ["filepaths"] },
         },
         { name: ["--quiet", "-q"], description: "Quiet mode: no output" },
       ],
@@ -149,7 +149,11 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--config", "-f"],
           description: "Load configuration from file",
-          args: { name: "config", default: ".goreleaser.yaml" },
+          args: {
+            name: "config",
+            default: ".goreleaser.yaml",
+            template: ["filepaths"],
+          },
         },
       ],
     },
@@ -185,6 +189,11 @@ const completionSpec: Fig.Spec = {
           hidden: true,
         },
         {
+          name: "--fail-fast",
+          description:
+            "Whether to abort the release publishing on the first error",
+        },
+        {
           name: ["--parallelism", "-p"],
           description:
             "Amount tasks to run concurrently (default: number of CPUs)",
@@ -193,36 +202,36 @@ const completionSpec: Fig.Spec = {
         {
           name: "--release-footer",
           description: "Load custom release notes footer from a markdown file",
-          args: { name: "release-footer", template: "filepaths" },
+          args: { name: "release-footer", template: ["filepaths"] },
         },
         {
           name: "--release-footer-tmpl",
           description:
             "Load custom release notes footer from a templated markdown file (overrides --release-footer)",
-          args: { name: "release-footer-tmpl", template: "filepaths" },
+          args: { name: "release-footer-tmpl", template: ["filepaths"] },
         },
         {
           name: "--release-header",
           description: "Load custom release notes header from a markdown file",
-          args: { name: "release-header", template: "filepaths" },
+          args: { name: "release-header", template: ["filepaths"] },
         },
         {
           name: "--release-header-tmpl",
           description:
             "Load custom release notes header from a templated markdown file (overrides --release-header)",
-          args: { name: "release-header-tmpl", template: "filepaths" },
+          args: { name: "release-header-tmpl", template: ["filepaths"] },
         },
         {
           name: "--release-notes",
           description:
             "Load custom release notes from a markdown file (will skip GoReleaser changelog generation)",
-          args: { name: "release-notes", template: "filepaths" },
+          args: { name: "release-notes", template: ["filepaths"] },
         },
         {
           name: "--release-notes-tmpl",
           description:
             "Load custom release notes from a templated markdown file (overrides --release-notes)",
-          args: { name: "release-notes-tmpl", template: "filepaths" },
+          args: { name: "release-notes-tmpl", template: ["filepaths"] },
         },
         {
           name: "--rm-dist",
@@ -307,7 +316,12 @@ const completionSpec: Fig.Spec = {
     },
   ],
   options: [
-    { name: "--debug", description: "Enable debug mode", isPersistent: true },
+    { name: "--debug", description: "Enable verbose mode", isPersistent: true },
+    {
+      name: "--verbose",
+      description: "Enable verbose mode",
+      isPersistent: true,
+    },
     { name: ["--help", "-h"], description: "Display help", isPersistent: true },
   ],
 };
