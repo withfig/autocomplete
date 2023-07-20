@@ -15,6 +15,23 @@ const servicesGenerator: Fig.Generator = {
   splitOn: "\n",
 };
 
+const profilesGenerator: Fig.Generator = {
+  script: (tokens) => {
+    const compose =
+      tokens[0] === "docker" ? "docker compose" : "docker-compose";
+    const files: string[] = [];
+    for (let i = 0; i < tokens.length - 1; i++) {
+      if (tokens[i] === "-f") {
+        files.push(tokens[i + 1]);
+        i += 1;
+      }
+    }
+    const fileArgs = files.map((f) => `-f ${f}`).join(" ");
+    return `${compose} ${fileArgs} config --profiles`;
+  },
+  splitOn: "\n",
+};
+
 const completionSpec: Fig.Spec = {
   name: "docker-compose",
   description: "Define and run multi-container applications with Docker",
@@ -998,6 +1015,7 @@ const completionSpec: Fig.Spec = {
       isRepeatable: true,
       args: {
         name: "profile",
+        generators: profilesGenerator,
       },
     },
     {
