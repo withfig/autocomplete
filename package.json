@@ -1,6 +1,6 @@
 {
   "name": "@withfig/autocomplete",
-  "version": "2.617.0",
+  "version": "2.620.0",
   "description": "Fig Autocomplete Specs",
   "schemaVersion": "v7",
   "main": "./build/index",
@@ -65,7 +65,7 @@
   "repository": "https://github.com/withfig/autocomplete",
   "devDependencies": {
     "@fig/eslint-config-autocomplete": "^1.1.0",
-    "@types/node": "^18.11.0",
+    "@types/node": "^20.4.2",
     "@types/progress": "^2.0.3",
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
@@ -79,7 +79,7 @@
     "chokidar": "^3.5.1",
     "cors": "^2.8.5",
     "danger": "^10.6.4",
-    "esbuild": "^0.16.4",
+    "esbuild": "^0.18.15",
     "eslint": "^8.12.0",
     "express": "^4.18.2",
     "glob": "^10.2.2",
