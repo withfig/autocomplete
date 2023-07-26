@@ -375,7 +375,7 @@ const completionSpec: Fig.Spec = {
               description: "Stage all changes before committing",
             },
             {
-              name: ["--message ''", "-m ''"],
+              name: ["--message", "-m"],
               description: "The updated message for the commit",
               args: {
                 name: "message",
