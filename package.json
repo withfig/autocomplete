@@ -105,5 +105,8 @@
     "semver": "^7.5.4",
     "strip-json-comments": "^5.0.1",
     "yaml": "^2.3.1"
+  },
+  "resolutions": {
+    "word-wrap": "1.2.4"
   }
 }
