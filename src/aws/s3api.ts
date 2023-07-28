@@ -1,3 +1,23 @@
+const bucketGenerator: Fig.Generator = {
+  script: "aws s3api list-buckets",
+  postProcess: function (out) {
+    const json = JSON.parse(out);
+    return json.Buckets.map((bucket) => {
+      let date;
+      try {
+        date = new Date(bucket.CreationDate).toLocaleDateString();
+      } catch (e) {
+        date = bucket.CreationDate;
+      }
+
+      return {
+        name: bucket.Name,
+        description: `Created: ${date}`,
+      };
+    });
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "s3api",
   description: "",
@@ -13,6 +33,7 @@ const completionSpec: Fig.Spec = {
             "The bucket name to which the upload was taking place.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -76,6 +97,7 @@ const completionSpec: Fig.Spec = {
             "Name of the bucket to which the multipart upload was initiated",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -155,6 +177,7 @@ const completionSpec: Fig.Spec = {
             "The name of the destination bucket. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -590,6 +613,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket to which to initiate the upload When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -836,6 +860,7 @@ const completionSpec: Fig.Spec = {
           description: "Specifies the bucket being deleted",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -876,6 +901,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket from which an analytics configuration is deleted",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -923,6 +949,7 @@ const completionSpec: Fig.Spec = {
             "Specifies the bucket whose cors configuration is being deleted",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -963,6 +990,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket containing the server-side encryption configuration to delete",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -1003,6 +1031,7 @@ const completionSpec: Fig.Spec = {
             "The name of the Amazon S3 bucket whose configuration you want to modify or retrieve",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -1043,6 +1072,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket containing the inventory configuration to delete",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -1089,6 +1119,7 @@ const completionSpec: Fig.Spec = {
           description: "The bucket name of the lifecycle to delete",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -1129,6 +1160,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket containing the metrics configuration to delete",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -1176,6 +1208,7 @@ const completionSpec: Fig.Spec = {
             "The Amazon S3 bucket whose OwnershipControls you want to delete",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -1215,6 +1248,7 @@ const completionSpec: Fig.Spec = {
           description: "The bucket name",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -1254,6 +1288,7 @@ const completionSpec: Fig.Spec = {
           description: "The bucket name",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -1293,6 +1328,7 @@ const completionSpec: Fig.Spec = {
           description: "The bucket that has the tag set to be removed",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -1333,6 +1369,7 @@ const completionSpec: Fig.Spec = {
             "The bucket name for which you want to remove the website configuration",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -1373,6 +1410,7 @@ const completionSpec: Fig.Spec = {
             "The bucket name of the bucket containing the object.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -1454,6 +1492,7 @@ const completionSpec: Fig.Spec = {
             "The bucket name containing the objects from which to remove the tags.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -1510,6 +1549,7 @@ const completionSpec: Fig.Spec = {
             "The bucket name containing the objects to delete.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -1583,6 +1623,7 @@ const completionSpec: Fig.Spec = {
             "The Amazon S3 bucket whose PublicAccessBlock configuration you want to delete",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -1623,6 +1664,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket for which the accelerate configuration is retrieved",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -1662,6 +1704,7 @@ const completionSpec: Fig.Spec = {
           description: "Specifies the S3 bucket whose ACL is being requested",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -1702,6 +1745,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket from which an analytics configuration is retrieved",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -1749,6 +1793,7 @@ const completionSpec: Fig.Spec = {
             "The bucket name for which to get the cors configuration",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -1789,6 +1834,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket from which the server-side encryption configuration is retrieved",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -1829,6 +1875,7 @@ const completionSpec: Fig.Spec = {
             "The name of the Amazon S3 bucket whose configuration you want to modify or retrieve",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -1869,6 +1916,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket containing the inventory configuration to retrieve",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -1916,6 +1964,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket for which to get the lifecycle information",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -1956,6 +2005,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket for which to get the lifecycle information",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -1995,6 +2045,7 @@ const completionSpec: Fig.Spec = {
           description: "The name of the bucket for which to get the location",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -2035,6 +2086,7 @@ const completionSpec: Fig.Spec = {
             "The bucket name for which to get the logging information",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -2075,6 +2127,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket containing the metrics configuration to retrieve",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -2121,6 +2174,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket for which to get the notification configuration",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -2161,6 +2215,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket for which to get the notification configuration",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -2201,6 +2256,7 @@ const completionSpec: Fig.Spec = {
             "The name of the Amazon S3 bucket whose OwnershipControls you want to retrieve",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -2240,6 +2296,7 @@ const completionSpec: Fig.Spec = {
           description: "The bucket name for which to get the bucket policy",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -2280,6 +2337,7 @@ const completionSpec: Fig.Spec = {
             "The name of the Amazon S3 bucket whose policy status you want to retrieve",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -2320,6 +2378,7 @@ const completionSpec: Fig.Spec = {
             "The bucket name for which to get the replication information",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -2360,6 +2419,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket for which to get the payment request configuration",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -2400,6 +2460,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket for which to get the tagging information",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -2440,6 +2501,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket for which to get the versioning information",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -2480,6 +2542,7 @@ const completionSpec: Fig.Spec = {
             "The bucket name for which to get the website configuration",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -2520,6 +2583,7 @@ const completionSpec: Fig.Spec = {
             "The bucket name containing the object.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -2687,6 +2751,7 @@ const completionSpec: Fig.Spec = {
             "The bucket name that contains the object for which to get the ACL information.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -2751,6 +2816,7 @@ const completionSpec: Fig.Spec = {
             "The bucket name containing the object whose Legal Hold status you want to retrieve.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -2815,6 +2881,7 @@ const completionSpec: Fig.Spec = {
             "The bucket whose Object Lock configuration you want to retrieve. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -2855,6 +2922,7 @@ const completionSpec: Fig.Spec = {
             "The bucket name containing the object whose retention settings you want to retrieve.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -2919,6 +2987,7 @@ const completionSpec: Fig.Spec = {
             "The bucket name containing the object for which to get the tagging information.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -2982,6 +3051,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket containing the object for which to get the torrent files",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -3027,6 +3097,7 @@ const completionSpec: Fig.Spec = {
             "The name of the Amazon S3 bucket whose PublicAccessBlock configuration you want to retrieve",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -3067,6 +3138,7 @@ const completionSpec: Fig.Spec = {
             "The bucket name. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -3107,6 +3179,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket containing the object. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -3242,6 +3315,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket from which analytics configurations are retrieved",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -3290,6 +3364,7 @@ const completionSpec: Fig.Spec = {
             "The name of the Amazon S3 bucket whose configuration you want to modify or retrieve",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -3330,6 +3405,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket containing the inventory configurations to retrieve",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -3378,6 +3454,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket containing the metrics configurations to retrieve",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -3450,6 +3527,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket to which the multipart upload was initiated.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -3561,6 +3639,7 @@ const completionSpec: Fig.Spec = {
           description: "The bucket name that contains the objects",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -3673,6 +3752,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket containing the objects. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -3784,6 +3864,7 @@ const completionSpec: Fig.Spec = {
             "Bucket name to list.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -3913,6 +3994,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket to which the parts are being uploaded.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -4016,6 +4098,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket for which the accelerate configuration is set",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -4077,6 +4160,7 @@ const completionSpec: Fig.Spec = {
           description: "The bucket to which to apply the ACL",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -4163,6 +4247,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket to which an analytics configuration is stored",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -4217,6 +4302,7 @@ const completionSpec: Fig.Spec = {
           description: "Specifies the bucket impacted by the corsconfiguration",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -4273,6 +4359,7 @@ const completionSpec: Fig.Spec = {
             "Specifies default encryption for a bucket using server-side encryption with Amazon S3-managed keys (SSE-S3) or customer master keys stored in AWS KMS (SSE-KMS). For information about the Amazon S3 default encryption feature, see Amazon S3 Default Bucket Encryption in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -4329,6 +4416,7 @@ const completionSpec: Fig.Spec = {
             "The name of the Amazon S3 bucket whose configuration you want to modify or retrieve",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -4376,6 +4464,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket where the inventory configuration will be stored",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -4428,6 +4517,7 @@ const completionSpec: Fig.Spec = {
           name: "--bucket",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -4482,6 +4572,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket for which to set the configuration",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -4530,6 +4621,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket for which to set the logging parameters",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -4585,6 +4677,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket for which the metrics configuration is set",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -4638,6 +4731,7 @@ const completionSpec: Fig.Spec = {
           description: "The name of the bucket",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -4692,6 +4786,7 @@ const completionSpec: Fig.Spec = {
           description: "The name of the bucket",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -4740,6 +4835,7 @@ const completionSpec: Fig.Spec = {
             "The name of the Amazon S3 bucket whose OwnershipControls you want to set",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -4795,6 +4891,7 @@ const completionSpec: Fig.Spec = {
           description: "The name of the bucket",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -4859,6 +4956,7 @@ const completionSpec: Fig.Spec = {
           description: "The name of the bucket",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -4922,6 +5020,7 @@ const completionSpec: Fig.Spec = {
           description: "The bucket name",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -4976,6 +5075,7 @@ const completionSpec: Fig.Spec = {
           description: "The bucket name",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -5030,6 +5130,7 @@ const completionSpec: Fig.Spec = {
           description: "The bucket name",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -5092,6 +5193,7 @@ const completionSpec: Fig.Spec = {
           description: "The bucket name",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -5162,6 +5264,7 @@ const completionSpec: Fig.Spec = {
             "The bucket name to which the PUT action was initiated.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -5441,6 +5544,7 @@ const completionSpec: Fig.Spec = {
             "The bucket name that contains the object to which you want to attach the ACL.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -5553,6 +5657,7 @@ const completionSpec: Fig.Spec = {
             "The bucket name containing the object that you want to place a Legal Hold on.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -5633,6 +5738,7 @@ const completionSpec: Fig.Spec = {
             "The bucket whose Object Lock configuration you want to create or replace",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -5705,6 +5811,7 @@ const completionSpec: Fig.Spec = {
             "The bucket name that contains the object you want to apply this Object Retention configuration to.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -5795,6 +5902,7 @@ const completionSpec: Fig.Spec = {
             "The bucket name containing the object.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -5873,6 +5981,7 @@ const completionSpec: Fig.Spec = {
             "The name of the Amazon S3 bucket whose PublicAccessBlock configuration you want to set",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -5929,6 +6038,7 @@ const completionSpec: Fig.Spec = {
             "The bucket name containing the object to restore.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -5998,6 +6108,7 @@ const completionSpec: Fig.Spec = {
           description: "The S3 bucket",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -6109,6 +6220,7 @@ const completionSpec: Fig.Spec = {
             "The name of the bucket to which the multipart upload was initiated. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -6221,6 +6333,7 @@ const completionSpec: Fig.Spec = {
             "The bucket name. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
+            generators: bucketGenerator,
           },
         },
         {
@@ -6706,6 +6819,7 @@ const completionSpec: Fig.Spec = {
                 "The bucket name. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
               args: {
                 name: "string",
+                generators: bucketGenerator,
               },
             },
             {
@@ -6746,6 +6860,7 @@ const completionSpec: Fig.Spec = {
                 "The bucket name. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
               args: {
                 name: "string",
+                generators: bucketGenerator,
               },
             },
             {
@@ -6786,6 +6901,7 @@ const completionSpec: Fig.Spec = {
                 "The name of the bucket containing the object. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
               args: {
                 name: "string",
+                generators: bucketGenerator,
               },
             },
             {
@@ -6921,6 +7037,7 @@ const completionSpec: Fig.Spec = {
                 "The name of the bucket containing the object. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
               args: {
                 name: "string",
+                generators: bucketGenerator,
               },
             },
             {
