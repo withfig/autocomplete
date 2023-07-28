@@ -1,27 +1,3 @@
-/* Interactive Ruby
-Usage: pry [OPTIONS]
-Start a Pry session.
-See http://pry.github.io/ for more information.
-Copyright (c) 2016 John Mair (banisterfiend)
-    -e, --exec                A line of code to execute in context before the session starts
-        --no-pager            Disable pager for long output
-        --no-history          Disable history loading
-        --no-color            Disable syntax highlighting for session
-    -f,                       Suppress loading of pryrc
-    -s, --select-plugin       Only load specified plugin (and no others).
-    -d, --disable-plugin      Disable a specific plugin.
-        --no-plugins          Suppress loading of plugins.
-        --plugins             List installed plugins.
-        --simple-prompt       Enable simple prompt mode
-        --noprompt            No prompt mode
-    -r, --require             `require` a Ruby script at startup
-    -I,                       Add a path to the $LOAD_PATH
-        --gem                 Shorthand for -I./lib -rgemname
-    -v, --version             Display the Pry version
-    -c, --context             Start the session in the specified context. Equivalent to `context.pry` in a session.
-    -h, --help                Display this help message.
-*/
-
 const completionSpec: Fig.Spec = {
   name: "pry",
 
