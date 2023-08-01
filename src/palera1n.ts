@@ -19,6 +19,10 @@ const completionSpec: Fig.Spec = {
       description: "Setup fakefs",
     },
     {
+      name: ["--clean-fakefs", "-C"],
+      description: "Revert orig-fs snapshot of fakefs",
+    },
+    {
       name: ["--demote", "-d"],
       description: "Demote",
     },
