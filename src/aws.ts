@@ -700,7 +700,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "help",
       description: "Displays aws usage information",
-      isPersistent: true,
     },
     {
       name: "honeycode",
