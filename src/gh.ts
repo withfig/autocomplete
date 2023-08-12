@@ -2825,6 +2825,36 @@ For more information about output formatting flags, see 'gh help formatting'`,
             },
           ],
         },
+        {
+          name: "list",
+          description: "List projects",
+          options: [
+            {
+              name: ["--closed"],
+              description: "Include closed projects",
+              args: { name: "closed" },
+            },
+            {
+              name: ["--owner"],
+              description: "Login of the owner.",
+              args: { name: "owner" },
+            },
+            {
+              name: ["-L", "--limit"],
+              description: "Maximum number of projects to fetch",
+              args: { name: "limit" },
+            },
+            {
+              name: ["--format"],
+              description: "Output format: {json}",
+              args: { name: "format" },
+            },
+            {
+              name: ["--web"],
+              description: "Open projects list in the browser",
+            },
+          ],
+        },
       ],
     },
   ],
