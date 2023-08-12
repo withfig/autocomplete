@@ -2767,6 +2767,66 @@ For more information about output formatting flags, see 'gh help formatting'`,
         },
       ],
     },
+    {
+      name: "project",
+      description: "Manage projects",
+      subcommands: [
+        {
+          name: "create",
+          description: "Create a project",
+          options: [
+            {
+              name: ["--title"],
+              description: "Title for the project",
+              args: { name: "title" },
+            },
+            {
+              name: ["--owner"],
+              description:
+                'Login of the owner. Use "@me" for the current user.',
+              args: { name: "owner" },
+            },
+            {
+              name: ["--format"],
+              description: "Output format: {json}",
+              args: { name: "body" },
+            },
+          ],
+        },
+        {
+          name: "edit",
+          description: "Edit a project",
+          options: [
+            {
+              name: ["--title"],
+              description: "New title of the project",
+              args: { name: "title" },
+            },
+            {
+              name: ["-d", "--description"],
+              description: "New description of the project",
+              args: { name: "description" },
+            },
+            {
+              name: ["--owner"],
+              description:
+                'Login of the owner. Use "@me" for the current user.',
+              args: { name: "owner" },
+            },
+            {
+              name: ["--readme"],
+              description: "New readme for the project",
+              args: { name: "readme" },
+            },
+            {
+              name: ["--visibility"],
+              description: "Change project visibility: {PUBLIC|PRIVATE}",
+              args: { name: "visibility", suggestions: ["PUBLIC", "PRIVATE"] },
+            },
+          ],
+        },
+      ],
+    },
   ],
   options: [
     {
