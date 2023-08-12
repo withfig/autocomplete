@@ -2943,6 +2943,76 @@ For more information about output formatting flags, see 'gh help formatting'`,
             },
           ],
         },
+        {
+          name: "field-create",
+          description: "Create a project field",
+          options: [
+            {
+              name: "--name",
+              description: "Name of the field",
+              args: { name: "name" },
+            },
+            {
+              name: "--data-type",
+              description:
+                "DataType of the new field.: {TEXT|SINGLE_SELECT|DATE|NUMBER}",
+              args: {
+                name: "data-type",
+                suggestions: ["TEXT", "SINGLE_SELECT", "DATE", "NUMBER"],
+              },
+            },
+            {
+              name: "--owner",
+              description: "Login of the owner. Use @me for the current user.",
+              args: { name: "owner" },
+            },
+            {
+              name: "--format",
+              description: "Output format: {json}",
+              args: { name: "format" },
+            },
+            {
+              name: "--single-select-options",
+              description: "Options for SINGLE_SELECT data type",
+              args: { name: "single-select-options" },
+            },
+          ],
+        },
+        {
+          name: "field-delete",
+          description: "Delete a project field",
+          options: [
+            {
+              name: "--id",
+              description: "ID of the field to delete",
+              args: { name: "id" },
+            },
+            {
+              name: "--format",
+              description: "Output format: {json}",
+            },
+          ],
+        },
+        {
+          name: "field-list",
+          description: "List project fields",
+          options: [
+            {
+              name: "--owner",
+              description: "Login of the owner. Use @me for the current user.",
+              args: { name: "owner" },
+            },
+            {
+              name: "--format",
+              description: "Output format: {json}",
+            },
+            {
+              name: ["-L", "--limit"],
+              description: "Maximum number of fields to fetch",
+              args: { name: "limit" },
+            },
+          ],
+        },
       ],
     },
   ],
