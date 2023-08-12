@@ -2855,6 +2855,94 @@ For more information about output formatting flags, see 'gh help formatting'`,
             },
           ],
         },
+        {
+          name: "delete",
+          description: "Delete a project",
+          options: [
+            {
+              name: ["--owner"],
+              description: "Login of the owner. Use @me for the current user.",
+              args: { name: "owner" },
+            },
+            {
+              name: ["--format"],
+              description: "Output format: {json}",
+              args: { name: "format" },
+            },
+          ],
+        },
+        {
+          name: "close",
+          description: "Close a project",
+          options: [
+            {
+              name: ["--owner"],
+              description: "Login of the owner. Use @me for the current user.",
+              args: { name: "owner" },
+            },
+            {
+              name: ["--format"],
+              description: "Output format: {json}",
+              args: { name: "format" },
+            },
+            {
+              name: ["--undo"],
+              description: "Reopen a closed project",
+            },
+          ],
+        },
+        {
+          name: "view",
+          description: "View a project",
+          options: [
+            {
+              name: ["--owner"],
+              description: "Login of the owner. Use @me for the current user.",
+              args: { name: "owner" },
+            },
+            {
+              name: ["--format"],
+              description: "Output format: {json}",
+              args: { name: "format" },
+            },
+            {
+              name: ["-w", "--web"],
+              description: "Open project in the browser",
+            },
+          ],
+        },
+        {
+          name: "copy",
+          description: "Copy a project",
+          options: [
+            {
+              name: "--title",
+              description: "Title for the new project",
+              args: { name: "title" },
+            },
+            {
+              name: "--target-owner",
+              description:
+                "Login of the target owner. Use @me for the current user.",
+              args: { name: "target-owner" },
+            },
+            {
+              name: "--source-owner",
+              description:
+                "Login of the source owner. Use @me for the current user.",
+              args: { name: "source-owner" },
+            },
+            {
+              name: "--format",
+              description: "Output format: {json}",
+              args: { name: "format" },
+            },
+            {
+              name: "--drafts",
+              description: "Include draft issues when copying",
+            },
+          ],
+        },
       ],
     },
   ],
