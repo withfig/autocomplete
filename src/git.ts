@@ -7390,6 +7390,10 @@ const completionSpec: Fig.Spec = {
           name: ["-f", "--force"],
           description: "Override the up-to-date check",
         },
+        {
+          name: ["-n", "--dry-run"],
+          description: "Don’t actually remove any file(s). Instead, just show if they exist in the index and would otherwise be removed by the command.",
+        },
         { name: "-r", description: "Allow recursive removal" },
       ],
     },
