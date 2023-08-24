@@ -1,9 +1,24 @@
+const stacksGenerator: Fig.Generator = {
+  cache: {
+    cacheByDirectory: true,
+  },
+  script: "pulumi stack ls --json",
+  postProcess: out => {
+    try {
+      return JSON.parse(out).map((stack) => ({ name: stack.name, description: stack.description }));
+    } catch (e) {
+      return [];
+    }
+  },
+};
+
 const stackOption: Fig.Option = {
   name: ["-s", "--stack"],
   description:
     "The name of the stack to operate on. Defaults to the current stack",
   args: {
     name: "stack-name",
+    generators: stacksGenerator,
   },
 };
 
@@ -97,7 +112,7 @@ const suppressPermalinkOption: Fig.Option = {
 const secretsProviderOption: Fig.Option = {
   name: "--secrets-provider",
   description:
-    'The type of the provider that should be used to encrypt and decrypt secrets (possible choices: default, passphrase, awskms, azurekeyvault, gcpkms, hashivault) (default "default")',
+    "The type of the provider that should be used to encrypt and decrypt secrets (possible choices: default, passphrase, awskms, azurekeyvault, gcpkms, hashivault) (default \"default\")",
   args: {
     name: "providerType",
     default: "default",
@@ -116,7 +131,7 @@ const inheritedOptions: Fig.Option[] = [
   {
     name: "--color",
     description:
-      'Colorize output. Choices are: always, never, raw, auto (default "auto")',
+      "Colorize output. Choices are: always, never, raw, auto (default \"auto\")",
     args: {
       name: "mode",
       default: "auto",
@@ -266,6 +281,7 @@ const completionSpec: Fig.Spec = {
               description: "The name of the new stack to copy the config to",
               args: {
                 name: "stack-name",
+                generators: stacksGenerator,
               },
             },
           ],
@@ -796,7 +812,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--policy-pack-config",
           description:
-            'Path to JSON file containing the config for the policy pack of the corresponding"--policy-pack" flag',
+            "Path to JSON file containing the config for the policy pack of the corresponding\"--policy-pack\" flag",
           args: { name: "strings" },
         },
         {
@@ -936,7 +952,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--dependency-edge-color",
               description:
-                'Sets the color of dependency edges in the graph (default "#246C60")',
+                "Sets the color of dependency edges in the graph (default \"#246C60\")",
               args: { name: "color", default: "#246C60" },
             },
             {
@@ -952,7 +968,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--parent-edge-color",
               description:
-                'Sets the color of parent edges in the graph (default #AA6639")',
+                "Sets the color of parent edges in the graph (default #AA6639\")",
               args: { name: "color", default: "#246C60" },
             },
           ],
@@ -1016,7 +1032,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--copy-config-from",
               description: "The name of the stack to copy existing config from",
-              args: { name: "stackName" },
+              args: { name: "stackName", generators: stacksGenerator },
             },
           ],
         },
@@ -1074,7 +1090,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "rm",
           description: "Remove a stack and its configuration",
-          args: { name: "stack-name" },
+          args: { name: "stack-name", generators: stacksGenerator },
           options: [
             ...inheritedOptions,
             yesOption,
@@ -1094,13 +1110,13 @@ const completionSpec: Fig.Spec = {
         {
           name: "select",
           description: "Switch the current workspace to the given stack",
-          args: { name: "stack" },
+          args: { name: "stack", generators: stacksGenerator },
           options: [
             ...inheritedOptions,
             {
               name: "--secrets-provider",
               description:
-                'Use with --create flag, The type of the provider that should be used to encrypt and decrypt secrets (possible choices: default, passphrase, awskms, azurekeyvault, gcpkms, hashivault) (default "default")',
+                "Use with --create flag, The type of the provider that should be used to encrypt and decrypt secrets (possible choices: default, passphrase, awskms, azurekeyvault, gcpkms, hashivault) (default \"default\")",
               args: {
                 name: "providerType",
                 default: "default",
@@ -1166,6 +1182,7 @@ const completionSpec: Fig.Spec = {
               description: "Force deletion of protected resources",
               args: {
                 name: "stack-name",
+                generators: stacksGenerator,
               },
             },
           ],
@@ -1183,6 +1200,7 @@ const completionSpec: Fig.Spec = {
               description: "Unprotect all resources in the checkpoint",
               args: {
                 name: "stack-name",
+                generators: stacksGenerator,
               },
             },
           ],
@@ -1222,7 +1240,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--policy-pack-config",
           description:
-            'Path to JSON file containing the config for the policy pack of the corresponding "--policy-pack" flag',
+            "Path to JSON file containing the config for the policy pack of the corresponding \"--policy-pack\" flag",
           args: { name: "strings" },
         },
         {
@@ -1285,7 +1303,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--policy-pack-config",
           description:
-            'Path to JSON file containing the config for the policy pack of the corresponding "--policy-pack" flag',
+            "Path to JSON file containing the config for the policy pack of the corresponding \"--policy-pack\" flag",
           args: { name: "strings" },
         },
         {
