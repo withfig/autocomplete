@@ -515,6 +515,14 @@ const completionSpec: Fig.Spec = {
           description: "Run for all packages in the workspace",
         },
         {
+          name: ["--filter", "-f"],
+          description: "Runs the test with a specific filter",
+          args: {
+            name: "FILTER",
+            description: "The filter applied for names of test",
+          },
+        },
+        {
           name: ["--verbose", "-v"],
           description: "More output per occurrence",
         },
