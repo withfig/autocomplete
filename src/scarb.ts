@@ -523,6 +523,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--include-ignored",
+          description: "Run ignored and not ignored tests",
+        },
+        {
+          name: "--ignored",
+          description: "Run only ignored tests",
+        },
+        {
           name: ["--verbose", "-v"],
           description: "More output per occurrence",
         },
