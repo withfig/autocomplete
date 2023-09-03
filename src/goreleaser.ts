@@ -7,9 +7,13 @@ const completionSpec: Fig.Spec = {
       description: "Builds the current project",
       options: [
         {
+          name: "--clean",
+          description: "Remove the dist folder before building",
+        },
+        {
           name: ["--config", "-f"],
           description: "Load configuration from file",
-          args: { name: "config", template: "filepaths" },
+          args: { name: "config", template: ["filepaths"] },
         },
         {
           name: "--deprecated",
@@ -37,6 +41,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--rm-dist",
           description: "Remove the dist folder before building",
+          hidden: true,
         },
         {
           name: "--single-target",
@@ -67,8 +72,9 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["--config", "-f"],
-          description: "Configuration file to check",
-          args: { name: "config" },
+          description: "Configuration file(s) to check",
+          hidden: true,
+          args: { name: "config", template: ["filepaths"] },
         },
         {
           name: "--deprecated",
@@ -125,13 +131,29 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: ["hc", "healthcheck"],
+      description: "Checks if needed tools are installed",
+      options: [
+        {
+          name: ["--config", "-f"],
+          description: "Configuration file",
+          args: { name: "config", template: ["filepaths"] },
+        },
+        { name: ["--quiet", "-q"], description: "Quiet mode: no output" },
+      ],
+    },
+    {
       name: ["i", "init"],
       description: "Generates a .goreleaser.yaml file",
       options: [
         {
           name: ["--config", "-f"],
           description: "Load configuration from file",
-          args: { name: "config", default: ".goreleaser.yaml" },
+          args: {
+            name: "config",
+            default: ".goreleaser.yaml",
+            template: ["filepaths"],
+          },
         },
       ],
     },
@@ -152,8 +174,10 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--auto-snapshot",
-          description: "Automatically sets --snapshot if the repo is dirty",
+          description:
+            "Automatically sets --snapshot if the repository is dirty",
         },
+        { name: "--clean", description: "Removes the dist folder" },
         {
           name: ["--config", "-f"],
           description: "Load configuration from file",
@@ -165,6 +189,11 @@ const completionSpec: Fig.Spec = {
           hidden: true,
         },
         {
+          name: "--fail-fast",
+          description:
+            "Whether to abort the release publishing on the first error",
+        },
+        {
           name: ["--parallelism", "-p"],
           description:
             "Amount tasks to run concurrently (default: number of CPUs)",
@@ -173,38 +202,42 @@ const completionSpec: Fig.Spec = {
         {
           name: "--release-footer",
           description: "Load custom release notes footer from a markdown file",
-          args: { name: "release-footer", template: "filepaths" },
+          args: { name: "release-footer", template: ["filepaths"] },
         },
         {
           name: "--release-footer-tmpl",
           description:
             "Load custom release notes footer from a templated markdown file (overrides --release-footer)",
-          args: { name: "release-footer-tmpl", template: "filepaths" },
+          args: { name: "release-footer-tmpl", template: ["filepaths"] },
         },
         {
           name: "--release-header",
           description: "Load custom release notes header from a markdown file",
-          args: { name: "release-header", template: "filepaths" },
+          args: { name: "release-header", template: ["filepaths"] },
         },
         {
           name: "--release-header-tmpl",
           description:
             "Load custom release notes header from a templated markdown file (overrides --release-header)",
-          args: { name: "release-header-tmpl", template: "filepaths" },
+          args: { name: "release-header-tmpl", template: ["filepaths"] },
         },
         {
           name: "--release-notes",
           description:
             "Load custom release notes from a markdown file (will skip GoReleaser changelog generation)",
-          args: { name: "release-notes", template: "filepaths" },
+          args: { name: "release-notes", template: ["filepaths"] },
         },
         {
           name: "--release-notes-tmpl",
           description:
             "Load custom release notes from a templated markdown file (overrides --release-notes)",
-          args: { name: "release-notes-tmpl", template: "filepaths" },
+          args: { name: "release-notes-tmpl", template: ["filepaths"] },
         },
-        { name: "--rm-dist", description: "Removes the dist folder" },
+        {
+          name: "--rm-dist",
+          description: "Removes the dist folder",
+          hidden: true,
+        },
         {
           name: "--skip-announce",
           description: "Skips announcing releases (implies --skip-validate)",
@@ -214,6 +247,7 @@ const completionSpec: Fig.Spec = {
           name: "--skip-docker",
           description: "Skips Docker Images/Manifests builds",
         },
+        { name: "--skip-ko", description: "Skips Ko builds" },
         {
           name: "--skip-publish",
           description: "Skips publishing artifacts (implies --skip-announce)",
@@ -266,6 +300,10 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
+          name: ["hc", "healthcheck"],
+          description: "Checks if needed tools are installed",
+        },
+        {
           name: ["i", "init"],
           description: "Generates a .goreleaser.yaml file",
         },
@@ -278,7 +316,12 @@ const completionSpec: Fig.Spec = {
     },
   ],
   options: [
-    { name: "--debug", description: "Enable debug mode", isPersistent: true },
+    { name: "--debug", description: "Enable verbose mode", isPersistent: true },
+    {
+      name: "--verbose",
+      description: "Enable verbose mode",
+      isPersistent: true,
+    },
     { name: ["--help", "-h"], description: "Display help", isPersistent: true },
   ],
 };

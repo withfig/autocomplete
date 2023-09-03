@@ -53,14 +53,21 @@ const completionSpec: Fig.Spec = {
         "When creating an archive, embed the parent directory name src in dst_archive",
     },
     {
-      name: "--arch arch",
+      name: "--arch",
       description:
         "Thin Universal binaries to the specified architecture.  If multiple --arch options are specified then the resulting destination file will contain each of the specified architectures (if they are present in the source file).  arch should be specified as 'i386', 'x86_64', etc",
+      isRepeatable: true,
+      args: {
+        name: "arch",
+      },
     },
     {
-      name: "--bom bom",
+      name: "--bom",
       description:
         "Copy only files, links, devices, and directories that are present in the specified BOM",
+      args: {
+        name: "bom",
+      },
     },
     {
       name: "-rsrc",
@@ -130,9 +137,12 @@ const completionSpec: Fig.Spec = {
         "When creating a PKZip archive, preserve resource forks and HFS meta-data in the subdirectory __MACOSX.  PKZip extraction will automatically find these resources",
     },
     {
-      name: "--zlibCompressionLevel num",
+      name: "--zlibCompressionLevel",
       description:
         "Sets the compression level to use when creating a PKZip archive. The compression level can be set from 0 to 9, where 0 represents no compression, and 9 represents optimal (slowest) compression. By default, ditto will use the default compression level as defined by zlib",
+      args: {
+        name: "compression level",
+      },
     },
     {
       name: "--password",

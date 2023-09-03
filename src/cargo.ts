@@ -82,6 +82,7 @@ const testGenerator: Fig.Generator = {
 type Metadata = {
   packages: Package[];
   resolve: Resolve;
+  workspace_root: string;
 };
 
 type Package = {
@@ -91,6 +92,7 @@ type Package = {
   description?: string;
   source?: string;
   targets: Target[];
+  dependencies: Dependency[];
 };
 
 type Target = {
@@ -99,10 +101,28 @@ type Target = {
   kind: TargetKind[];
 };
 
+type Dependency = {
+  name: string;
+  req: string;
+  kind: "dev" | "build" | null;
+  target: string | null;
+};
+
 type TargetKind = "lib" | "bin" | "example" | "test" | "bench" | "custom-build";
 
 type Resolve = {
   root?: string;
+};
+
+const rootPackageOrLocal = (manifest: Metadata) => {
+  const rootManifestPath = `${manifest.workspace_root}/Cargo.toml`;
+  console.log(rootManifestPath);
+  const rootPackage = manifest.packages.find(
+    (pkg) => pkg.source === rootManifestPath
+  );
+  return rootPackage
+    ? [rootPackage]
+    : manifest.packages.filter((pkg) => !pkg.source);
 };
 
 const packageGenerator: Fig.Generator = {
@@ -121,17 +141,32 @@ const packageGenerator: Fig.Generator = {
   },
 };
 
+const directDependencyGenerator: Fig.Generator = {
+  script: "cargo metadata --format-version 1",
+  postProcess: (data: string) => {
+    const manifest: Metadata = JSON.parse(data);
+    const packages = rootPackageOrLocal(manifest);
+    const deps = packages
+      .flatMap((pkg) => pkg.dependencies)
+      .map((dep) => ({
+        name: dep.name,
+        description: dep.req,
+      }));
+    return [...new Map(deps.map((dep) => [dep.name, dep])).values()];
+  },
+};
+
 const targetGenerator: ({ kind }: { kind?: TargetKind }) => Fig.Generator = ({
   kind,
 }) => ({
   custom: async (_, executeShellCommand, context) => {
-    const out = await executeShellCommand("cargo metadata --format-version 1");
+    const out = await executeShellCommand(
+      "cargo metadata --format-version 1 --no-deps"
+    );
     const manifest: Metadata = JSON.parse(out);
-    const packages = manifest.resolve.root
-      ? [manifest.packages.find((pkg) => pkg.id === manifest.resolve.root)]
-      : manifest.packages.filter((pkg) => !pkg.source);
+    const packages = rootPackageOrLocal(manifest);
 
-    let targets = packages.map((pkg) => pkg.targets).flat();
+    let targets = packages.flatMap((pkg) => pkg.targets);
 
     if (kind) {
       targets = targets.filter((target) => target.kind.includes(kind));
@@ -4655,9 +4690,11 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
       args: [
         {
           name: "TESTNAME",
+          isOptional: true,
         },
         {
           name: "args",
+          isOptional: true,
           isVariadic: true,
           generators: testGenerator,
         },
@@ -5598,6 +5635,84 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         debounce: true,
         isVariadic: true,
         suggestCurrentToken: true,
+      },
+    },
+    {
+      name: ["remove", "rm"],
+      icon: "📦",
+      description: "Remove dependencies from a Cargo.toml manifest file",
+      options: [
+        {
+          name: "--dev",
+          description: "Remove as development dependency",
+        },
+        {
+          name: "--build",
+          description: "Remove as build dependency",
+        },
+        {
+          name: "--target",
+          description: "Remove as dependency to the given target platform",
+          args: {
+            name: "TARGET",
+            filterStrategy: "fuzzy",
+            generators: tripleGenerator,
+          },
+        },
+        {
+          name: ["-p", "--package"],
+          description: "Package to remove from",
+          args: {
+            name: "SPEC",
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
+          },
+        },
+        {
+          name: "--manifest-path",
+          description: "Path to Cargo.toml",
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Do not print cargo log messages",
+        },
+        {
+          name: "--dry-run",
+          description: "Don't actually write the manifest",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "Use verbose output",
+        },
+        {
+          name: "--color",
+          args: {
+            name: "WHEN",
+            suggestions: ["auto", "always", "never"],
+          },
+        },
+        {
+          name: "--frozen",
+          description: "Require Cargo.lock and cache are up to date",
+        },
+        {
+          name: "--locked",
+          description: "Require Cargo.lock is up to date",
+        },
+        {
+          name: "--offline",
+          description: "Run without accessing the network",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+      args: {
+        name: "DEP_ID",
+        generators: directDependencyGenerator,
+        filterStrategy: "fuzzy",
+        isVariadic: true,
       },
     },
   ],
@@ -6954,6 +7069,273 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         ],
       };
       subcommands.push(fuzz);
+    }
+
+    if (commands.includes("insta")) {
+      const commonOptions: Fig.Option[] = [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: ["-V", "--version"],
+          description: "Print version information",
+        },
+        {
+          name: "--color",
+          description: "Coloring: auto, always, never",
+          args: {
+            name: "WHEN",
+            default: "auto",
+            suggestions: ["auto", "always", "never"],
+          },
+        },
+        {
+          name: "--manifest-path",
+          description: "Path to Cargo.toml",
+          args: {
+            name: "PATH",
+            generators: filepaths({ equals: "Cargo.toml" }),
+          },
+        },
+        {
+          name: "--workspace-root",
+          description: "Explicit path to the workspace root",
+          args: {
+            name: "PATH",
+            template: "folders",
+          },
+        },
+        {
+          name: ["-e", "--extensions"],
+          description: "Sets the extensions to consider.  Defaults to `.snap`",
+          args: {
+            name: "EXTENSIONS",
+            isVariadic: true,
+          },
+        },
+        {
+          name: "--all",
+          description: "Work on all packages in the workspace",
+        },
+        {
+          name: "--no-ignore",
+          description: "Also walk into ignored paths",
+        },
+      ];
+
+      const insta: Fig.Subcommand = {
+        name: "insta",
+        icon: "🛠",
+        description: "A `cargo` subcommand for snapshot testing",
+        subcommands: [
+          {
+            name: "review",
+            description: "Interactively review snapshots",
+            options: [
+              ...commonOptions,
+              {
+                name: "--snapshot",
+                description: "Limits the operation to one or more snapshots",
+                args: {
+                  name: "snapshot-filter",
+                  isVariadic: true,
+                },
+              },
+              {
+                name: ["-q", "--quiet"],
+                description: "Do not print to stdout",
+              },
+            ],
+          },
+          {
+            name: "reject",
+            description: "Rejects all snapshots",
+            options: [
+              ...commonOptions,
+              {
+                name: "--snapshot",
+                description: "Limits the operation to one or more snapshots",
+                args: {
+                  name: "snapshot-filter",
+                  isVariadic: true,
+                },
+              },
+              {
+                name: ["-q", "--quiet"],
+                description: "Do not print to stdout",
+              },
+            ],
+          },
+          {
+            name: "accept",
+            description: "Accepts all snapshots",
+            options: [
+              ...commonOptions,
+              {
+                name: "--snapshot",
+                description: "Limits the operation to one or more snapshots",
+                args: {
+                  name: "snapshot-filter",
+                  isVariadic: true,
+                },
+              },
+              {
+                name: ["-q", "--quiet"],
+                description: "Do not print to stdout",
+              },
+            ],
+          },
+          {
+            name: "test",
+            description: "Run tests and then reviews",
+            options: [
+              ...commonOptions,
+              {
+                name: "--snapshot",
+                description: "Limits the operation to one or more snapshots",
+                args: {
+                  name: "snapshot-filter",
+                  isVariadic: true,
+                },
+              },
+              {
+                name: ["-q", "--quiet"],
+                description: "Do not print to stdout",
+              },
+              {
+                name: ["-p", "--package"],
+                description: "Package to run tests for",
+                args: {
+                  name: "SPEC",
+                  filterStrategy: "fuzzy",
+                  generators: packageGenerator,
+                },
+              },
+              {
+                name: "--no-force-pass",
+                description: "Disable force-passing of snapshot tests",
+              },
+              {
+                name: "--fail-fast",
+                description: "Prevent running all tests regardless of failure",
+              },
+              {
+                name: "--features",
+                description: "Space-separated list of features to activate",
+                args: {
+                  name: "features",
+                },
+              },
+              {
+                name: ["-j", "--jobs"],
+                description: "Number of parallel jobs, defaults to # of CPUs",
+                args: {
+                  name: "jobs",
+                },
+              },
+              {
+                name: "--release",
+                description:
+                  "Build artifacts in release mode, with optimizations",
+              },
+              {
+                name: "--all-features",
+                description: "Activate all available features",
+              },
+              {
+                name: "--no-default-features",
+                description: "Do not activate the `default` feature",
+              },
+              {
+                name: "--review",
+                description: "Follow up with review",
+              },
+              {
+                name: "--accept",
+                description: "Accept all snapshots after test",
+              },
+              {
+                name: "--accept-unseen",
+                description: "Accept all new (previously unseen)",
+              },
+              {
+                name: "--keep-pending",
+                description: "Do not reject pending snapshots before run",
+              },
+              {
+                name: "--force-update-snapshots",
+                description:
+                  "Update all snapshots even if they are still matching",
+              },
+              {
+                name: "--delete-unreferenced-snapshots",
+                description: "Delete unreferenced snapshots after the test run",
+              },
+              {
+                name: "--glob-filter",
+                description: "Filters to apply to the insta glob feature",
+                args: {
+                  name: "glob-filter",
+                  isVariadic: true,
+                },
+              },
+              {
+                name: ["-Q", "--no-quiet"],
+                description: "Do not pass the quiet flag (`-q`) to tests",
+              },
+              {
+                name: "--test-runner",
+                description: "Picks the test runner",
+                args: {
+                  name: "test-runner",
+                },
+              },
+            ],
+          },
+          {
+            name: "pending",
+            description: "Print a summary of all pending snapshots",
+            options: [
+              ...commonOptions,
+              {
+                name: "--as-json",
+                description: "Changes the output from human readable to JSON",
+              },
+            ],
+          },
+          {
+            name: "show",
+            description: "Shows a specific snapshot",
+            options: commonOptions,
+            args: {
+              name: "path",
+              description: "The path to the snapshot file",
+              generators: filepaths({ extensions: ["snap"] }),
+            },
+          },
+        ],
+        options: [
+          {
+            name: ["-h", "--help"],
+            description: "Print help information",
+          },
+          {
+            name: ["-V", "--version"],
+            description: "Print version information",
+          },
+          {
+            name: "--color",
+            description: "Coloring: auto, always, never",
+            args: {
+              name: "WHEN",
+              default: "auto",
+              suggestions: ["auto", "always", "never"],
+            },
+          },
+        ],
+      };
+      subcommands.push(insta);
     }
 
     return {

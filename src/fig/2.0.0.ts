@@ -1,17 +1,18 @@
 import {
-  settingsSpecGenerator,
-  subsystemsGenerator,
-  themesGenerator,
-  pluginsGenerator,
-  tokensGenerators,
+  commandLineToolSpecGenerator,
   invitationsGenerators,
   membersGenerators,
-  teamsGenerators,
-  workflowsSpecGenerator,
+  pluginsGenerator,
+  scriptsSpecGenerator,
+  settingsSpecGenerator,
   sshHostsGenerator,
   sshIdentityGenerator,
-  userGenerator,
   stateGenerator,
+  subsystemsGenerator,
+  teamsGenerators,
+  themesGenerator,
+  tokensGenerators,
+  userGenerator,
 } from "./shared";
 
 const completion: Fig.Subcommand = {
@@ -2801,19 +2802,12 @@ const completion: Fig.Subcommand = {
     {
       name: ["run", "r"],
       description: "Fig Workflows",
-      options: [
-        {
-          name: ["-h", "--help"],
-          priority: 20,
-          description: "Print help information",
-        },
-      ],
       args: {
         name: "args",
         isVariadic: true,
         isOptional: true,
       },
-      generateSpec: workflowsSpecGenerator,
+      generateSpec: scriptsSpecGenerator,
       filterStrategy: "fuzzy",
     },
     {
@@ -4131,7 +4125,2675 @@ const completion: Fig.Subcommand = {
 
 const versions: Fig.VersionDiffMap = {};
 
-versions["2.7.5"] = {};
+versions["2.9.0"] = {
+  subcommands: [
+    {
+      name: "debug",
+      subcommands: [
+        {
+          name: "build",
+          description: "Switch to another branch of a Fig.js app",
+          args: [
+            {
+              name: "app",
+              suggestions: ["dashboard", "autocomplete"],
+            },
+            {
+              name: "build",
+              isOptional: true,
+              suggestions: ["production", "staging", "develop"],
+            },
+          ],
+        },
+        {
+          name: "devtools",
+          args: {
+            name: "app",
+            suggestions: ["dashboard", "autocomplete"],
+          },
+        },
+        {
+          name: "get-index",
+          description: "Displays remote index",
+          options: [
+            {
+              name: ["-d", "--debug"],
+              description: "Display using debug formatting",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "channel",
+          },
+        },
+        {
+          name: "list-intelli-j-variants",
+          description: "Lists installed IntelliJ variants",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "help",
+          subcommands: [
+            {
+              name: "build",
+              description: "Switch to another branch of a Fig.js app",
+            },
+            {
+              name: "get-index",
+              description: "Displays remote index",
+            },
+            {
+              name: "list-intelli-j-variants",
+              description: "Lists installed IntelliJ variants",
+            },
+            {
+              name: "unix-socket",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "unix-socket",
+          remove: true,
+        },
+      ],
+    },
+    {
+      name: "ssh",
+      options: [
+        {
+          name: "--ignore-default-identity",
+          description: "Ignore saved identities",
+        },
+        {
+          name: "--remove-default-identity",
+        },
+        {
+          name: "--ignore-saved",
+          remove: true,
+        },
+      ],
+    },
+    {
+      name: "team",
+      subcommands: [
+        {
+          name: "members",
+          description: "List all members on a team",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "remove",
+          description: "Remove a member from a team",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "email",
+          },
+        },
+        {
+          name: "add",
+          description: "Invite a member to a team",
+          options: [
+            {
+              name: "--role",
+              isRepeatable: true,
+              args: {
+                name: "role",
+                isOptional: true,
+                suggestions: ["owner", "admin", "member"],
+              },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "email",
+          },
+        },
+        {
+          name: "invitations",
+          description: "List pending invitations to a team",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "revoke",
+          description: "Revoke an invitation to a team",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "email",
+          },
+        },
+        {
+          name: "help",
+          description:
+            "Print this message or the help of the given subcommand(s)",
+          subcommands: [
+            {
+              name: "members",
+              description: "List all members on a team",
+            },
+            {
+              name: "remove",
+              description: "Remove a member from a team",
+            },
+            {
+              name: "add",
+              description: "Invite a member to a team",
+            },
+            {
+              name: "invitations",
+              description: "List pending invitations to a team",
+            },
+            {
+              name: "revoke",
+              description: "Revoke an invitation to a team",
+            },
+            {
+              name: "help",
+              description:
+                "Print this message or the help of the given subcommand(s)",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: ["internal", "_"],
+      subcommands: [
+        {
+          name: "check-ssh",
+          hidden: true,
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "generate-ssh",
+          description: "Generates an SSH configuration file",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description:
+                "Print help information (use `--help` for more detail)",
+            },
+          ],
+          args: {
+            name: "remote_username",
+          },
+        },
+        {
+          name: "help",
+          subcommands: [
+            {
+              name: "check-ssh",
+              hidden: true,
+            },
+            {
+              name: "generate-ssh",
+              description: "Generates an SSH configuration file",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: ["run", "r"],
+      description: "Execute a Fig Script",
+    },
+    {
+      name: ["scripts", "script"],
+      description: "Manage your Fig Scripts",
+      subcommands: [
+        {
+          name: "refresh",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "help",
+          description:
+            "Print this message or the help of the given subcommand(s)",
+          subcommands: [
+            {
+              name: "refresh",
+            },
+            {
+              name: "help",
+              description:
+                "Print this message or the help of the given subcommand(s)",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+    },
+    {
+      name: ["integrations", "integration"],
+      subcommands: [
+        {
+          name: "reinstall",
+          subcommands: [
+            {
+              name: "dotfiles",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description:
+                    "Print help information (use `--help` for more detail)",
+                },
+              ],
+              args: {
+                name: "shell",
+                isOptional: true,
+                suggestions: [
+                  {
+                    name: "bash",
+                    description: "Bash shell",
+                  },
+                  {
+                    name: "zsh",
+                    description: "Zsh shell",
+                  },
+                  {
+                    name: "fish",
+                    description: "Fish shell",
+                  },
+                ],
+              },
+            },
+            {
+              name: "daemon",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+            },
+            {
+              name: "ssh",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+            },
+            {
+              name: "input-method",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+            },
+            {
+              name: "vscode",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+            },
+            {
+              name: ["intellij", "jetbrains"],
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+            },
+            {
+              name: "all",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+            },
+            {
+              name: "help",
+              description:
+                "Print this message or the help of the given subcommand(s)",
+              subcommands: [
+                {
+                  name: "dotfiles",
+                },
+                {
+                  name: "daemon",
+                },
+                {
+                  name: "ssh",
+                },
+                {
+                  name: "input-method",
+                },
+                {
+                  name: "vscode",
+                },
+                {
+                  name: "intellij",
+                },
+                {
+                  name: "all",
+                },
+                {
+                  name: "help",
+                  description:
+                    "Print this message or the help of the given subcommand(s)",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: ["-s", "--silent"],
+              description: "Suppress status messages",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "help",
+          subcommands: [
+            {
+              name: "reinstall",
+              subcommands: [
+                {
+                  name: "dotfiles",
+                },
+                {
+                  name: "daemon",
+                },
+                {
+                  name: "ssh",
+                },
+                {
+                  name: "input-method",
+                },
+                {
+                  name: "vscode",
+                },
+                {
+                  name: "intellij",
+                },
+                {
+                  name: "all",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "help",
+      subcommands: [
+        {
+          name: "debug",
+          subcommands: [
+            {
+              name: "build",
+              description: "Switch to another branch of a Fig.js app",
+            },
+            {
+              name: "get-index",
+              description: "Displays remote index",
+            },
+            {
+              name: "list-intelli-j-variants",
+              description: "Lists installed IntelliJ variants",
+            },
+            {
+              name: "unix-socket",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "internal",
+          subcommands: [
+            {
+              name: "check-ssh",
+              hidden: true,
+            },
+            {
+              name: "generate-ssh",
+              description: "Generates an SSH configuration file",
+            },
+          ],
+        },
+        {
+          name: "run",
+          description: "Execute a Fig Script",
+        },
+        {
+          name: "scripts",
+          description: "Manage your Fig Scripts",
+          subcommands: [
+            {
+              name: "refresh",
+            },
+          ],
+        },
+        {
+          name: "integrations",
+          subcommands: [
+            {
+              name: "reinstall",
+              subcommands: [
+                {
+                  name: "dotfiles",
+                },
+                {
+                  name: "daemon",
+                },
+                {
+                  name: "ssh",
+                },
+                {
+                  name: "input-method",
+                },
+                {
+                  name: "vscode",
+                },
+                {
+                  name: "intellij",
+                },
+                {
+                  name: "all",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "workflow",
+          remove: true,
+        },
+      ],
+    },
+  ],
+};
+
+versions["2.10.0"] = {
+  subcommands: [
+    {
+      name: ["internal", "_"],
+      subcommands: [
+        {
+          name: "ssh-local-command",
+          description: "Displays prompt to install remote shell integrations",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: [
+            {
+              name: "remote_dest",
+            },
+            {
+              name: "uuid",
+            },
+          ],
+        },
+        {
+          name: "prompt-ssh",
+          description:
+            "[Deprecated] Displays prompt to install remote shell integrations",
+        },
+        {
+          name: "codex",
+          options: [
+            {
+              name: "--buffer",
+              isRepeatable: true,
+              args: {
+                name: "buffer",
+              },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "codex-accept",
+          options: [
+            {
+              name: "--buffer",
+              isRepeatable: true,
+              args: {
+                name: "buffer",
+              },
+            },
+            {
+              name: "--suggestion",
+              isRepeatable: true,
+              args: {
+                name: "suggestion",
+              },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "help",
+          subcommands: [
+            {
+              name: "ssh-local-command",
+              description:
+                "Displays prompt to install remote shell integrations",
+            },
+            {
+              name: "prompt-ssh",
+              description:
+                "[Deprecated] Displays prompt to install remote shell integrations",
+            },
+            {
+              name: "codex",
+            },
+            {
+              name: "codex-accept",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "wrapped",
+      description: "Show fig wrapped",
+      icon: "🎁",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+    },
+    {
+      name: "cli",
+      description: "Run a Fig CLI",
+      args: {
+        name: "args",
+        isVariadic: true,
+        isOptional: true,
+      },
+      generateSpec: commandLineToolSpecGenerator,
+    },
+    {
+      name: "help",
+      subcommands: [
+        {
+          name: "internal",
+          subcommands: [
+            {
+              name: "ssh-local-command",
+              description:
+                "Displays prompt to install remote shell integrations",
+            },
+            {
+              name: "prompt-ssh",
+              description:
+                "[Deprecated] Displays prompt to install remote shell integrations",
+            },
+            {
+              name: "codex",
+            },
+            {
+              name: "codex-accept",
+            },
+          ],
+        },
+        {
+          name: "wrapped",
+          description: "Show fig wrapped",
+        },
+        {
+          name: "cli",
+          description: "Run a Fig CLI",
+        },
+      ],
+    },
+  ],
+};
+
+versions["2.11.0"] = {
+  subcommands: [
+    {
+      name: "debug",
+      subcommands: [
+        {
+          name: "build",
+          args: [
+            {},
+            {
+              suggestions: ["production", "beta", "develop"],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "init",
+      args: [
+        {
+          suggestions: [
+            {
+              name: "bash",
+              description: "Bash shell",
+            },
+            {
+              name: "zsh",
+              description: "Zsh shell",
+            },
+            {
+              name: "fish",
+              description: "Fish shell",
+            },
+            {
+              name: "nu",
+              description: "Nu shell",
+            },
+          ],
+        },
+        {},
+      ],
+    },
+    {
+      name: ["internal", "_"],
+      subcommands: [
+        {
+          name: "should-figterm-launch",
+          description: "Detects if Figterm should be launched",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description:
+                "Print help information (use `--help` for more detail)",
+            },
+          ],
+        },
+        {
+          name: "dump-state",
+          args: {
+            suggestions: ["figterm", "web-notifications"],
+          },
+        },
+        {
+          name: "help",
+          subcommands: [
+            {
+              name: "should-figterm-launch",
+              description: "Detects if Figterm should be launched",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: ["integrations", "integration"],
+      subcommands: [
+        {
+          name: "install",
+          subcommands: [
+            {
+              name: "dotfiles",
+              args: {
+                suggestions: [
+                  {
+                    name: "bash",
+                    description: "Bash shell",
+                  },
+                  {
+                    name: "zsh",
+                    description: "Zsh shell",
+                  },
+                  {
+                    name: "fish",
+                    description: "Fish shell",
+                  },
+                  {
+                    name: "nu",
+                    description: "Nu shell",
+                  },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "uninstall",
+          subcommands: [
+            {
+              name: "dotfiles",
+              args: {
+                suggestions: [
+                  {
+                    name: "bash",
+                    description: "Bash shell",
+                  },
+                  {
+                    name: "zsh",
+                    description: "Zsh shell",
+                  },
+                  {
+                    name: "fish",
+                    description: "Fish shell",
+                  },
+                  {
+                    name: "nu",
+                    description: "Nu shell",
+                  },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "reinstall",
+          subcommands: [
+            {
+              name: "dotfiles",
+              args: {
+                suggestions: [
+                  {
+                    name: "bash",
+                    description: "Bash shell",
+                  },
+                  {
+                    name: "zsh",
+                    description: "Zsh shell",
+                  },
+                  {
+                    name: "fish",
+                    description: "Fish shell",
+                  },
+                  {
+                    name: "nu",
+                    description: "Nu shell",
+                  },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "status",
+          subcommands: [
+            {
+              name: "dotfiles",
+              args: {
+                suggestions: [
+                  {
+                    name: "bash",
+                    description: "Bash shell",
+                  },
+                  {
+                    name: "zsh",
+                    description: "Zsh shell",
+                  },
+                  {
+                    name: "fish",
+                    description: "Fish shell",
+                  },
+                  {
+                    name: "nu",
+                    description: "Nu shell",
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "help",
+      subcommands: [
+        {
+          name: "internal",
+          subcommands: [
+            {
+              name: "should-figterm-launch",
+              description: "Detects if Figterm should be launched",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+versions["2.13.0"] = {
+  subcommands: [
+    {
+      name: "app",
+      subcommands: [
+        {
+          name: "install",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "onboarding",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "running",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "launch",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "restart",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "quit",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "set-path",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "uninstall",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "prompts",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "hook",
+      subcommands: [
+        {
+          name: "editbuffer",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "hide",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "init",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "integration-ready",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "keyboard-focus-changed",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "pre-exec",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "prompt",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "ssh",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "debug",
+      subcommands: [
+        {
+          name: "app",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "dotfiles",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "build",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "autocomplete-window",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "logs",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "prompt-accessibility",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "sample",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "verify-codesign",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "accessibility",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "key-tester",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "diagnostics",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "query-index",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "devtools",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "get-index",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "list-intelli-j-variants",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "settings",
+      subcommands: [
+        {
+          name: "init",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "docs",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "open",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "sync",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "all",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help (see more with '--help')",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help (see more with '--help')",
+        },
+      ],
+    },
+    {
+      name: "tips",
+      subcommands: [
+        {
+          name: "enable",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "disable",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "reset",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "prompt",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "install",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "ssh",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "uninstall",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "update",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "daemon",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: ["diagnostic", "diagnostics"],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help (see more with '--help')",
+        },
+      ],
+    },
+    {
+      name: "init",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help (see more with '--help')",
+        },
+      ],
+    },
+    {
+      name: "source",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "theme",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "invite",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "tweet",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "issue",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "login",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "logout",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "user",
+      subcommands: [
+        {
+          name: "login",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "logout",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "tokens",
+          subcommands: [
+            {
+              name: "new",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+            {
+              name: "list",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help (see more with '--help')",
+                },
+              ],
+            },
+            {
+              name: "revoke",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+            {
+              name: "validate",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "whoami",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help (see more with '--help')",
+            },
+          ],
+        },
+        {
+          name: "plan",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help (see more with '--help')",
+            },
+          ],
+        },
+        {
+          name: "list-accounts",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help (see more with '--help')",
+            },
+          ],
+        },
+        {
+          name: "switch",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "team",
+      subcommands: [
+        {
+          name: "members",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "remove",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "add",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "invitations",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "revoke",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help (see more with '--help')",
+        },
+      ],
+    },
+    {
+      name: "doctor",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "completion",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help (see more with '--help')",
+        },
+      ],
+    },
+    {
+      name: ["internal", "_"],
+      subcommands: [
+        {
+          name: "prompt-dotfiles-changed",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "pre-cmd",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "local-state",
+          subcommands: [
+            {
+              name: "init",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+            {
+              name: "open",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+            {
+              name: "all",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help (see more with '--help')",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help (see more with '--help')",
+            },
+          ],
+        },
+        {
+          name: "callback",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "install",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "uninstall",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "get-shell",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "hostname",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "should-figterm-launch",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help (see more with '--help')",
+            },
+          ],
+        },
+        {
+          name: "event",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "auth-token",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "request",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "sockets-dir",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "stream-from-socket",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "figterm-socket-path",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "ipc",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "uninstall-for-all-users",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "uuidgen",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "ibus-bootstrap",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "detect-sandbox",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "open-uninstall-page",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "ssh-local-command",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "prompt-ssh",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "dump-state",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "finish-update",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "check-ssh",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "generate-ssh",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help (see more with '--help')",
+            },
+          ],
+        },
+        {
+          name: "codex",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "codex-accept",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "launch",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "quit",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "restart",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help (see more with '--help')",
+        },
+      ],
+    },
+    {
+      name: "onboarding",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "plugins",
+      subcommands: [
+        {
+          name: "sync",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "update",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "add",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "remove",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "list",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help (see more with '--help')",
+            },
+          ],
+        },
+        {
+          name: "info",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help (see more with '--help')",
+            },
+          ],
+        },
+        {
+          name: "configure",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "man",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: ["run", "r"],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "scripts",
+      subcommands: [
+        {
+          name: "refresh",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: ["integrations", "integration"],
+      subcommands: [
+        {
+          name: "install",
+          subcommands: [
+            {
+              name: "dotfiles",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help (see more with '--help')",
+                },
+              ],
+            },
+            {
+              name: "daemon",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+            {
+              name: "ssh",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+            {
+              name: "input-method",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+            {
+              name: "vscode",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+            {
+              name: ["intellij", "jetbrains"],
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+            {
+              name: "all",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "uninstall",
+          subcommands: [
+            {
+              name: "dotfiles",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help (see more with '--help')",
+                },
+              ],
+            },
+            {
+              name: "daemon",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+            {
+              name: "ssh",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+            {
+              name: "input-method",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+            {
+              name: "vscode",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+            {
+              name: ["intellij", "jetbrains"],
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+            {
+              name: "all",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "reinstall",
+          subcommands: [
+            {
+              name: "dotfiles",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help (see more with '--help')",
+                },
+              ],
+            },
+            {
+              name: "daemon",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+            {
+              name: "ssh",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+            {
+              name: "input-method",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+            {
+              name: "vscode",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+            {
+              name: ["intellij", "jetbrains"],
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+            {
+              name: "all",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "status",
+          subcommands: [
+            {
+              name: "dotfiles",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help (see more with '--help')",
+                },
+              ],
+            },
+            {
+              name: "daemon",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+            {
+              name: "ssh",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+            {
+              name: "input-method",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+            {
+              name: "vscode",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+            {
+              name: ["intellij", "jetbrains"],
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+            {
+              name: "all",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "ai",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "telemetry",
+      subcommands: [
+        {
+          name: "enable",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "disable",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "status",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "pro",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "version",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "help-all",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "dashboard",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "wrapped",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "cli",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "app:running",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "bg:ssh",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "bg:tmux",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+  ],
+  options: [
+    {
+      name: ["-h", "--help"],
+      description: "Print help",
+    },
+    {
+      name: ["-V", "--version"],
+      description: "Print version",
+    },
+  ],
+};
+
+versions["2.14.2"] = {
+  subcommands: [
+    {
+      name: "login",
+      options: [
+        {
+          name: ["-e", "--email"],
+          description: "Email to login to",
+          isRepeatable: true,
+          args: {
+            name: "email",
+            isOptional: true,
+          },
+        },
+        {
+          name: ["-t", "--token"],
+          description: "Login with a fig user token",
+          isRepeatable: true,
+          args: {
+            name: "token",
+            isOptional: true,
+          },
+        },
+        {
+          name: "--switchable",
+          description: "Allow switching between accounts",
+        },
+      ],
+    },
+    {
+      name: "user",
+      subcommands: [
+        {
+          name: "login",
+          options: [
+            {
+              name: ["-e", "--email"],
+              description: "Email to login to",
+              isRepeatable: true,
+              args: {
+                name: "email",
+                isOptional: true,
+              },
+            },
+            {
+              name: ["-t", "--token"],
+              description: "Login with a fig user token",
+              isRepeatable: true,
+              args: {
+                name: "token",
+                isOptional: true,
+              },
+            },
+            {
+              name: "--switchable",
+              description: "Allow switching between accounts",
+            },
+          ],
+        },
+        {
+          name: "tokens",
+          subcommands: [
+            {
+              name: "new",
+              options: [
+                {
+                  name: ["-t", "--team"],
+                  args: {
+                    isOptional: true,
+                  },
+                },
+              ],
+            },
+            {
+              name: "list",
+              options: [
+                {
+                  name: ["-t", "--team"],
+                  args: {
+                    isOptional: true,
+                  },
+                },
+              ],
+            },
+            {
+              name: "revoke",
+              options: [
+                {
+                  name: ["-t", "--team"],
+                  args: {
+                    isOptional: true,
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+versions["2.15.0"] = {
+  subcommands: [
+    {
+      name: "restart",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+  ],
+};
+
+versions["2.16.0"] = {
+  subcommands: [
+    {
+      name: "export",
+      description: "Export your fig configs to a folder",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "help",
+      subcommands: [
+        {
+          name: "export",
+          description: "Export your fig configs to a folder",
+        },
+      ],
+    },
+  ],
+};
 
 export { versions };
 export default completion;

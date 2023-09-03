@@ -77,6 +77,10 @@ const completionSpec: Fig.Spec = {
           description: "Contains the server id",
           args: { name: "id" },
         },
+        {
+          name: ["--yes", "-y"],
+          description: "Automatically delete the server",
+        },
       ],
     },
     {
@@ -86,7 +90,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--provider", "-p"],
           description:
-            "The cloud provider - civo|scaleway|do|hetzner|linode|ovh|equinix|gce|vultr|azure|oci|ionos|aws|vexxhost|multipass|exoscale",
+            "The cloud provider - civo|scaleway|do|hetzner|akamai|ovh|equinix|gce|vultr|azure|oci|ionos|aws|vexxhost|multipass|exoscale",
           args: {
             name: "provider",
             suggestions: [
@@ -141,6 +145,11 @@ const completionSpec: Fig.Spec = {
           description: "Location of the plugin",
           args: { name: "plugin", template: ["filepaths"] },
         },
+        {
+          name: ["--ssh-key", "-k"],
+          description: "Specify a specific path for the SSH key",
+          args: { name: "ssh-key" },
+        },
       ],
     },
     {
@@ -172,6 +181,11 @@ const completionSpec: Fig.Spec = {
           name: "--id",
           description: "Contains the server id",
           args: { name: "id" },
+        },
+        {
+          name: ["--ssh-key", "-k"],
+          description: "Specify a specific path for the SSH key",
+          args: { name: "ssh-key" },
         },
       ],
     },

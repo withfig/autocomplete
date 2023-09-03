@@ -127,7 +127,7 @@ schedule(async () => {
 
   if (updatedFiles.length > 0) {
     const promises = updatedFiles.map(async (fileName) => {
-      const res = await danger.github.api.repos.getContents({
+      const res = await danger.github.api.repos.getContent({
         owner: danger.github.pr.user.login,
         repo: danger.github.pr.head.repo.name,
         path: fileName,
@@ -145,7 +145,8 @@ schedule(async () => {
 ### Info:
 ${fileContent.pairs
   .map(
-    ([scriptName, [key, value]]) => `**Script:**
+    ([scriptName, [key, value]]) =>
+      `**Script:**
 \`${scriptName}\`
 **${key}(function):**
 \`\`\`typescript
@@ -165,7 +166,8 @@ ${
     ? `### Single Functions:
 ${fileContent.functions
   .map(
-    ([key, value]) => `**${key}:**
+    ([key, value]) =>
+      `**${key}:**
 \`\`\`typescript
 ${value}
 \`\`\`

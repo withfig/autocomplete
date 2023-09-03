@@ -12,5 +12,5 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 14.x
-      - run: npm install
-      - run: npm test
+      - run: yarn install --no-immutable
+      - run: yarn test

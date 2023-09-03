@@ -102,7 +102,7 @@ const globalOptions: Fig.Option[] = [
     },
   },
   {
-    name: "-v, --verbose",
+    name: ["-v", "--verbose"],
     description: "Verbose output (default false)",
     priority: 50,
     args: {

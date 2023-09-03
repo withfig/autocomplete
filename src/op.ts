@@ -1181,6 +1181,10 @@ const spec: Fig.Spec = {
             name: "stringArray",
           },
         },
+        {
+          name: "--no-masking",
+          description: "Disable masking of secrets on stdout and stderr",
+        },
       ],
     },
     {

@@ -10,9 +10,15 @@ npm-debug.log
 .vscode
 specs
 
-# we don't have any dependencies which are bundled with
-# the specs so we can safely ignore lockfiles
-# to make everyones life easier
+# we use yarn.lock for dependency management
 package-lock.json
-yarn.lock
 pnpm-lock.yaml
+
+# https://next.yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

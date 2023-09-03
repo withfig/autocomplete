@@ -910,7 +910,7 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "install ",
+      name: "install",
       description: "Installs KubeVela into a Kubernetes cluster",
       options: [
         {

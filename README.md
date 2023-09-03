@@ -48,15 +48,17 @@ Use the steps below or follow our getting started guide: [fig.io/docs](https://f
 **Prerequisites:**
 
 - Download Fig for macOS
-- Node and NPM (or Yarn)
+- Node and Yarn
 
 <br/>
 
 **Steps**
 
-1. Click [here](https://GitHub.com/withfig/autocomplete/fork/) to fork this repo.
+1. Make sure you have `yarn` [installed](https://classic.yarnpkg.com/lang/en/docs/install), as that's the package manager used in this repo. 
 
-2. Clone your forked repo and create an example spec
+2. Click [here](https://GitHub.com/withfig/autocomplete/fork/) to fork this repo.
+
+3. Clone your forked repo and create an example spec
 
    ```bash
    # Replace `YOUR_GITHUB_USERNAME` with your own github username
@@ -67,16 +69,16 @@ Use the steps below or follow our getting started guide: [fig.io/docs](https://f
    git remote add upstream https://github.com/withfig/autocomplete.git
 
    # Install packages
-   npm install
+   yarn install
 
    # Create an example spec (call it "abc")
-   npm run create-spec abc
+   yarn create-spec abc
 
    # Turn on "dev mode"
-   npm run dev
+   yarn dev
    ```
 
-3. Now go to your terminal and type `abc[space]`. Your example spec will appear. 😊
+4. Now go to your terminal and type `abc[space]`. Your example spec will appear. 😊
 
 #### Other things to know
 
@@ -86,24 +88,31 @@ Use the steps below or follow our getting started guide: [fig.io/docs](https://f
 
 <br>
 
-## 🏠 Make completions for local scripts
+## 🪄 Add AI to completions
 
 You can use Fig's autocomplete for your own tools too. Here's how to create private completions:
+```ts
+import { ai } from "@fig/autocomplete-generators"
 
-```bash
-# Make sure you're in your home directory
-cd ~
+...
 
-# Create your .fig/autocomplete folder
-npx @withfig/autocomplete-tools init
-cd ~/.fig/autocomplete
-
-# Create your completions!
-npm run create-spec xyz
-npm run publish-spec -p src/xyz.ts
+generators: [
+  ai({
+    // the prompt
+    prompt: "Generate a git commit message",
+    
+    // Send any relevant local context.
+    message: async ({ executeShellCommand }) => {
+      return executeShellCommand("git diff")
+    },
+    
+    // turn each newline into a suggestion (can specify instead a `postProcess1 function if more flexibility is required)
+    splitOn: "\n",
+  })
+]
+ 
 ```
 
-You can also create completions for project scripts, or even add custom suggestions to official specs. Read more at [fig.io/docs/guides/private-autocomplete](https://fig.io/docs/guides/private-autocomplete)
 
 <br/>
 
@@ -111,13 +120,13 @@ You can also create completions for project scripts, or even add custom suggesti
 
 ```bash
 # Typecheck all specs in the src/ folder
-npm test
+yarn test
 
 # Compile typescripts specs from src/ folder to build/ folder
-npm run build
+yarn build
 
 # Lint and fix issues
-npm run lint:fix
+yarn lint:fix
 ```
 
 ## 🔥 Contributions

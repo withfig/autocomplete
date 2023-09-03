@@ -45,15 +45,6 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: "-p",
-      description: "Protocol. Default: HTTPS",
-      args: {
-        name: "Protocol",
-        default: "HTTPS",
-        suggestions: [{ name: "HTTP" }, { name: "HTTPS" }],
-      },
-    },
-    {
       name: "-m",
       description: "HTTP Methods. Default: GET",
       args: {
@@ -135,6 +126,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "--version",
       description: "Prints version, git commit, built date (utc)",
+    },
+    {
+      name: "--debug",
+      description:
+        "Iterates the scenario once and prints curl-like verbose result",
     },
     {
       name: "--help",
