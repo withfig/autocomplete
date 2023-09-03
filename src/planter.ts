@@ -14,7 +14,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "display help for command",
+          description: "Display help for command",
           priority: 49,
         },
       ],
@@ -41,7 +41,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "display help for command",
+          description: "Display help for command",
           priority: 49,
         },
       ],
@@ -57,16 +57,16 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "display help for command",
+          description: "Display help for command",
           priority: 49,
         },
       ],
       args: [
         {
           name: "name",
-          description: "name of the planter to use as a reference",
+          description: "Name of the planter to use as a reference",
         },
-        { name: "location", description: "the repo URL or name" },
+        { name: "location", description: "The repo URL or name" },
       ],
     },
     {
@@ -102,11 +102,11 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "display help for command",
+          description: "Display help for command",
           priority: 49,
         },
       ],
-      args: [{ name: "name", description: "Name of the planter to edit" }],
+      args: { name: "name", description: "Name of the planter to edit" },
     },
     {
       name: "pin",
@@ -118,7 +118,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "display help for command",
+          description: "Display help for command",
           priority: 49,
         },
       ],
@@ -138,26 +138,27 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-h", "--help"],
-          description: "display help for command",
+          description: "Display help for command",
           priority: 49,
         },
       ],
-      args: [
-        { name: "name", description: "Name of the planter to show info for" },
-      ],
+      args: {
+        name: "name",
+        description: "Name of the planter to show info for",
+      },
     },
     {
       name: "help",
-      description: "display help for command",
+      description: "Display help for command",
       priority: 49,
       args: { name: "command", isOptional: true, template: "help" },
     },
   ],
   options: [
-    { name: ["-V", "--version"], description: "output the version number" },
+    { name: ["-V", "--version"], description: "Output the version number" },
     {
       name: ["-h", "--help"],
-      description: "display help for command",
+      description: "Display help for command",
       priority: 49,
     },
   ],
