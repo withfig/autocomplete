@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "futurerestore",
-  description: "idevicerestore wrapper, allows manually specifying SEP and Baseband for restoring unsigned & signed firmwares.",
+  description: "IDR (idevicerestore) wrapper, allows manually specifying SEP and Baseband for restoring unsigned & signed firmwares",
   options: [
     {
       name: ["--apticket", "-t"],
@@ -9,7 +9,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["--update", "-u"],
-      description: "Update instead of erase install (requires appropriate APTicket). This parameter is recommended to not be used for downgrading. If you are jailbroken, make sure to have your orig-fs snapshot restored (Restore RootFS).",
+      description: "Update instead of erase install (requires appropriate APTicket). This parameter is recommended to not be used for downgrading. If you are jailbroken, make sure to have your orig-fs snapshot restored (Restore RootFS)",
     },
     {
       name: ["--wait", "-w"],
