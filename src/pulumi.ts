@@ -3,9 +3,12 @@ const stacksGenerator: Fig.Generator = {
     cacheByDirectory: true,
   },
   script: "pulumi stack ls --json",
-  postProcess: out => {
+  postProcess: (out) => {
     try {
-      return JSON.parse(out).map((stack) => ({ name: stack.name, description: stack.description }));
+      return JSON.parse(out).map((stack) => ({
+        name: stack.name,
+        description: stack.description,
+      }));
     } catch (e) {
       return [];
     }
@@ -112,7 +115,7 @@ const suppressPermalinkOption: Fig.Option = {
 const secretsProviderOption: Fig.Option = {
   name: "--secrets-provider",
   description:
-    "The type of the provider that should be used to encrypt and decrypt secrets (possible choices: default, passphrase, awskms, azurekeyvault, gcpkms, hashivault) (default \"default\")",
+    'The type of the provider that should be used to encrypt and decrypt secrets (possible choices: default, passphrase, awskms, azurekeyvault, gcpkms, hashivault) (default "default")',
   args: {
     name: "providerType",
     default: "default",
@@ -131,7 +134,7 @@ const inheritedOptions: Fig.Option[] = [
   {
     name: "--color",
     description:
-      "Colorize output. Choices are: always, never, raw, auto (default \"auto\")",
+      'Colorize output. Choices are: always, never, raw, auto (default "auto")',
     args: {
       name: "mode",
       default: "auto",
@@ -812,7 +815,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--policy-pack-config",
           description:
-            "Path to JSON file containing the config for the policy pack of the corresponding\"--policy-pack\" flag",
+            'Path to JSON file containing the config for the policy pack of the corresponding"--policy-pack" flag',
           args: { name: "strings" },
         },
         {
@@ -952,7 +955,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--dependency-edge-color",
               description:
-                "Sets the color of dependency edges in the graph (default \"#246C60\")",
+                'Sets the color of dependency edges in the graph (default "#246C60")',
               args: { name: "color", default: "#246C60" },
             },
             {
@@ -968,7 +971,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--parent-edge-color",
               description:
-                "Sets the color of parent edges in the graph (default #AA6639\")",
+                'Sets the color of parent edges in the graph (default #AA6639")',
               args: { name: "color", default: "#246C60" },
             },
           ],
@@ -1116,7 +1119,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--secrets-provider",
               description:
-                "Use with --create flag, The type of the provider that should be used to encrypt and decrypt secrets (possible choices: default, passphrase, awskms, azurekeyvault, gcpkms, hashivault) (default \"default\")",
+                'Use with --create flag, The type of the provider that should be used to encrypt and decrypt secrets (possible choices: default, passphrase, awskms, azurekeyvault, gcpkms, hashivault) (default "default")',
               args: {
                 name: "providerType",
                 default: "default",
@@ -1240,7 +1243,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--policy-pack-config",
           description:
-            "Path to JSON file containing the config for the policy pack of the corresponding \"--policy-pack\" flag",
+            'Path to JSON file containing the config for the policy pack of the corresponding "--policy-pack" flag',
           args: { name: "strings" },
         },
         {
@@ -1303,7 +1306,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--policy-pack-config",
           description:
-            "Path to JSON file containing the config for the policy pack of the corresponding \"--policy-pack\" flag",
+            'Path to JSON file containing the config for the policy pack of the corresponding "--policy-pack" flag',
           args: { name: "strings" },
         },
         {
