@@ -883,6 +883,15 @@ Please note that this is prohibited when a store server is running`,
       },
     ],
   },
+  {
+    name: "init",
+    description:
+      "Creates a basic package.json file in the current directory, if it doesn't exist already",
+  },
+  {
+    name: "doctor",
+    description: "Checks for known common issues with pnpm configuration",
+  },
 ];
 
 const subcommands = [
