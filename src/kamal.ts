@@ -1,3 +1,17 @@
+const destinationGenerator: Fig.Generator = {
+  script: "bin/kamal destinations --json",
+  postProcess: function (out) {
+    try {
+      return JSON.parse(out).map((destination: string) => ({
+        name: destination,
+      }));
+    } catch (e) {
+      console.error(e);
+      return [];
+    }
+  },
+};
+
 const baseOptions: Fig.Option[] = [
   {
     name: ["-d", "--destination"],
@@ -5,19 +19,7 @@ const baseOptions: Fig.Option[] = [
     args: {
       name: "destination",
       description: "Destination to use",
-      generators: {
-        script: "bin/kamal destinations --json",
-        postProcess: function (out) {
-          try {
-            return JSON.parse(out).map((destination: string) => ({
-              name: destination,
-            }));
-          } catch (e) {
-            console.error(e);
-            return [];
-          }
-        },
-      },
+      generators: destinationGenerator,
     },
   },
 ];
@@ -40,9 +42,9 @@ const completionSpec: Fig.Spec = {
       name: "deploy",
       description: "Deploy your app to a destination",
       icon: "🚀",
-      options: [...baseOptions],
     },
   ],
+  options: [...baseOptions],
 };
 
 export default completionSpec;
