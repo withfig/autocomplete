@@ -49,6 +49,11 @@ const completionSpec: Fig.Spec = {
           args: { name: "target", default: "latest" },
         },
         {
+          name: ["-m", "--mute"],
+          description:
+            "Daemon check for update notification. When specified is true",
+        },
+        {
           name: ["-h", "--help"],
           description: "Display help for command",
           priority: 49,
