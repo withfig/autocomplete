@@ -80,6 +80,10 @@ const suggestions: Fig.Suggestion[] = [
     icon: "https://create.t3.gg/favicon.svg",
   },
   {
+    name: "create-discord-bot",
+    icon: "https://discordjs.dev/favicon-32x32.png",
+  },
+  {
     name: "create-video",
     icon: "https://raw.githubusercontent.com/remotion-dev/remotion/main/packages/docs/static/img/logo-small.png",
   },
