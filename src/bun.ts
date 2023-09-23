@@ -117,6 +117,20 @@ const spec: Fig.Spec = {
       description: `Use a .bun file (default: node_modules.bun)`,
     },
     {
+      name: "--inspect",
+      description: "Activate Bun's Debugger",
+    },
+    {
+      name: "--inspect-wait",
+      description:
+        "Activate Bun's Debugger, wait for a connection before executing",
+    },
+    {
+      name: "--inspect-brk",
+      description:
+        "Activate Bun's Debugger, set breakpoint on first line of code and wait",
+    },
+    {
       name: "--server-bunfile",
       args: { name: "path", template: "filepaths" },
       description: `Use a .server.bun file (default: node_modules.server.bun)`,
