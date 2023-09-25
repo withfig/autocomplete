@@ -69,7 +69,7 @@
     "@types/progress": "^2.0.5",
     "@types/react": "^18.2.18",
     "@types/react-dom": "^18.2.7",
-    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.2",
     "@typescript-eslint/parser": "^5.62.0",
     "@vitejs/plugin-react": "^4.0.4",
     "@withfig/autocomplete-tools": "^2.7.10",
