@@ -92,6 +92,8 @@ const completionSpec: Fig.Spec = {
       description: "Specify when to use color in output",
       args: {
         name: "WHEN",
+        suggestions: ["always", "never", "auto"],
+        default: "never",
         description:
           "WHEN is 'always', 'never', or 'auto'. On Windows versions before Windows 10, for terminals that do not support color codes, the default is 'never'; color may work on terminals that support color codes",
       },
