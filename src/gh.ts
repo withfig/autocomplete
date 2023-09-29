@@ -3152,7 +3152,7 @@ For more information about output formatting flags, see 'gh help formatting'`,
             },
             {
               name: "--owner",
-              description: "Login of the owner. Use @me for the current user.",
+              description: "Login of the owner. Use @me for the current user",
               args: { name: "owner" },
             },
             {
@@ -3178,7 +3178,7 @@ For more information about output formatting flags, see 'gh help formatting'`,
             },
             {
               name: "--owner",
-              description: "Login of the owner. Use @me for the current user.",
+              description: "Login of the owner. Use @me for the current user",
               args: { name: "owner" },
             },
             {

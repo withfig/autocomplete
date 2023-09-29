@@ -2852,7 +2852,7 @@ const configSuggestions: Fig.Suggestion[] = [
   {
     name: "pack.compression",
     description:
-      'An integer -1..9, indicating the compression level for objects in a pack file. -1 is the zlib default. 0 means no compression, and 1..9 are various speed/size tradeoffs, 9 being slowest. If not set, defaults to core.compression. If that is not set, defaults to -1, the zlib default, which is "a default compromise between speed and compression (currently equivalent to level 6)."',
+      'An integer -1..9, indicating the compression level for objects in a pack file. -1 is the zlib default. 0 means no compression, and 1..9 are various speed/size tradeoffs, 9 being slowest. If not set, defaults to core.compression. If that is not set, defaults to -1, the zlib default, which is "a default compromise between speed and compression (currently equivalent to level 6)"',
   },
   {
     name: "pack.deltaCacheLimit",
@@ -7392,7 +7392,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-n", "--dry-run"],
-          description: "Don’t actually remove any file(s). Instead, just show if they exist in the index and would otherwise be removed by the command.",
+          description:
+            "Don’t actually remove any file(s). Instead, just show if they exist in the index and would otherwise be removed by the command",
         },
         { name: "-r", description: "Allow recursive removal" },
       ],
