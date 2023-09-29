@@ -104,7 +104,7 @@ export const themesGenerator: Fig.Generator = {
           ({
             name: theme.replace(".json", ""),
             icon: "🎨",
-          } as Fig.Suggestion)
+          }) as Fig.Suggestion
       )
       .concat(builtinThemes);
   },

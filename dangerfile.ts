@@ -10,7 +10,6 @@ import {
   Node,
   PropertyAssignment,
   ScriptTarget,
-  SourceFile,
   TransformerFactory,
   visitEachChild,
   visitNode,
@@ -19,7 +18,7 @@ import {
 const URL_REGEXP =
   /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
 
-export const specTransformer: TransformerFactory<SourceFile> = (context) => {
+export const specTransformer: TransformerFactory<Node> = (context) => {
   return (sourceFile) => {
     const visitor = (node: Node) => {
       if (isPropertyAssignment(node)) {
