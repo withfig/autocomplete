@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "stack",
   description: "The Haskell Tool Stack",
-  subcommands: [
+  options: [
     {
       name: ["--help", "-h"],
       description: "Show help for stack",
@@ -60,7 +60,7 @@ const completionSpec: Fig.Spec = {
       name: "--no-install-ghc",
       description:
         "Disable downloading and installing GHC if necessary (can be done manually with stack setup). Enabled by default",
-        exclusiveOn: ["--install-ghc"],
+      exclusiveOn: ["--install-ghc"],
     },
     {
       name: "--ghc-variant",
@@ -152,6 +152,8 @@ const completionSpec: Fig.Spec = {
           "Default: read/write. If resolver is overridden: read-only",
       },
     },
+  ],
+  subcommands: [
     {
       name: "build",
       description:
