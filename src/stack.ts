@@ -49,6 +49,7 @@ const completionSpec: Fig.Spec = {
       name: "--no-system-ghc",
       description:
         "Disable using the system installed GHC (on the PATH) if it is available and its version matches. Disabled by default",
+      exclusiveOn: ["--system-ghc"],
     },
     {
       name: "--install-ghc",
@@ -59,6 +60,7 @@ const completionSpec: Fig.Spec = {
       name: "--no-install-ghc",
       description:
         "Disable downloading and installing GHC if necessary (can be done manually with stack setup). Enabled by default",
+        exclusiveOn: ["--install-ghc"],
     },
     {
       name: "--ghc-variant",
@@ -114,6 +116,7 @@ const completionSpec: Fig.Spec = {
       name: "--no-terminal",
       description:
         "Disable overriding terminal detection in the case of running in a false terminal",
+      exclusiveOn: ["--teminal"],
     },
     {
       name: ["--stack-colors", "--stack-colours"],
@@ -178,6 +181,7 @@ const completionSpec: Fig.Spec = {
           name: "--no-copy-bins",
           description:
             "Disable copying any generated executables to the local bin path (default: disabled)",
+          exclusiveOn: ["--no-copy-bins"],
         },
         {
           name: "--haddock",
@@ -188,6 +192,7 @@ const completionSpec: Fig.Spec = {
           name: "--no-haddock",
           description:
             "Disable generating Haddocks the package(s) in this directory/configuration (default: disabled)",
+          exclusiveOn: ["--no-haddock"],
         },
         { name: "--open", description: "Enable opening the local Haddock" },
         { name: "--no-open", description: "Disable opening the local Haddock" },
@@ -200,6 +205,7 @@ const completionSpec: Fig.Spec = {
           name: "--no-haddock-deps",
           description:
             "Disable building Haddocks for dependencies (default: true if building Haddocks, false otherwise)",
+          exclusiveOn: ["--haddock-deps"],
         },
         {
           name: "--pedantic",
@@ -268,6 +274,7 @@ const completionSpec: Fig.Spec = {
           name: "--no-executable-profiling",
           description:
             "Disable executable profiling for TARGETs and all its dependencies (default: disabled)",
+          exclusiveOn: ["--executable-profiling"],
         },
         {
           name: "--library-stripping",
@@ -278,6 +285,7 @@ const completionSpec: Fig.Spec = {
           name: "--no-library-stripping",
           description:
             "Disable library stripping for TARGETs and all its dependencies (default: enabled",
+          exclusiveOn: ["--library-stripping"],
         },
         {
           name: "--executable-stripping",
@@ -288,6 +296,7 @@ const completionSpec: Fig.Spec = {
           name: "--no-executable-stripping",
           description:
             "Disable executable stripping for TARGETs and all its dependencies (default: enabled)",
+          exclusiveOn: ["--executable-stripping"],
         },
         {
           name: "--ghc-options",
