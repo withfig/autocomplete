@@ -1,7 +1,79 @@
+// Print plans list if there is .rugby/plans.yml file
+const planList: Fig.Generator = {
+  script: "rugby plan list",
+  postProcess: (output) => {
+    if (output === "") {
+      return [];
+    }
+    return output.split("\n").map((plan) => {
+      return {
+        name: plan,
+        description: `Run plan \"${plan}\"`,
+        icon: "✈️",
+        priority: 77,
+      };
+    });
+  },
+};
+
 const completionSpec: Fig.Spec = {
   description:
     "Cache Cocoa 🌱 pods for faster rebuild and indexing Xcode project. https://github.com/swiftyfinch/Rugby",
   name: "rugby",
+  generateSpec: async (tokens, executeShellCommand) => {
+    const output = await executeShellCommand("rugby plan list");
+    if (output === "") {
+      return null;
+    }
+    // Handle `rugby umbrella` command
+    return {
+      name: "plan",
+      subcommands: output.split("\n").map((plan) => {
+        return {
+          name: plan,
+          description: `Run plan \"${plan}\"`,
+          icon: "✈️",
+          priority: 77,
+          options: [
+            {
+              args: {
+                default: ".rugby/plans.yml",
+                name: "path",
+              },
+              description: "Path to plans yaml",
+              name: ["--path", "-p"],
+            },
+            {
+              description: "Restore projects state before the last Rugby usage",
+              name: ["--rollback", "-r"],
+            },
+            {
+              args: {
+                default: "fold",
+                name: "output",
+              },
+              description: "Output mode: fold, multiline, quiet",
+              name: ["--output", "-o"],
+            },
+            {
+              description: "Log level",
+              isRepeatable: true,
+              name: ["--verbose", "-v"],
+            },
+            {
+              description: "Show help information",
+              name: ["--help", "-h"],
+            },
+          ],
+        };
+      }),
+    };
+  },
+  args: {
+    description: "Name of plan to run",
+    isOptional: true,
+    name: "name",
+  },
   options: [
     {
       description: "Show the version",
@@ -13,6 +85,110 @@ const completionSpec: Fig.Spec = {
     },
   ],
   subcommands: [
+    {
+      description: "Run the build and use commands",
+      name: "cache",
+      priority: 76,
+      icon: "🏈",
+      options: [
+        {
+          description: "Ignore shared cache",
+          name: "--ignore-cache",
+        },
+        {
+          description: "Delete target groups from project",
+          name: "--delete-sources",
+        },
+        {
+          description: "Restore projects state before the last Rugby usage",
+          name: ["--rollback", "-r"],
+        },
+        {
+          args: {
+            default: "sim",
+            name: "sdk",
+          },
+          description: "Build SDK: sim or ios",
+          name: ["--sdk", "-s"],
+        },
+        {
+          args: {
+            default: "auto",
+            name: "arch",
+          },
+          description: "Build architecture: auto, x86_64 or arm64",
+          name: ["--arch", "-a"],
+        },
+        {
+          args: {
+            default: "Debug",
+            name: "config",
+          },
+          description: "Build configuration",
+          name: ["--config", "-c"],
+        },
+        {
+          description: "Build without debug symbols",
+          name: "--strip",
+        },
+        {
+          args: {
+            name: "targets",
+          },
+          description: "Targets for building. Empty means all targets",
+          isRepeatable: true,
+          name: ["--targets", "-t"],
+        },
+        {
+          args: {
+            name: "targets-as-regex",
+          },
+          description: "Targets for building as a RegEx pattern",
+          isRepeatable: true,
+          name: ["--targets-as-regex", "-g"],
+        },
+        {
+          args: {
+            name: "except",
+          },
+          description: "Exclude targets from building",
+          isRepeatable: true,
+          name: ["--except", "-e"],
+        },
+        {
+          args: {
+            name: "except-as-regex",
+          },
+          description: "Exclude targets from building as a RegEx pattern",
+          isRepeatable: true,
+          name: ["--except-as-regex", "-x"],
+        },
+        {
+          args: {
+            default: "fold",
+            name: "output",
+          },
+          description: "Output mode: fold, multiline, quiet",
+          name: ["--output", "-o"],
+        },
+        {
+          description: "Log level",
+          isRepeatable: true,
+          name: ["--verbose", "-v"],
+        },
+        {
+          args: {
+            name: "warmup",
+          },
+          description: "Warmup cache with this endpoint",
+          name: "--warmup",
+        },
+        {
+          description: "Show help information",
+          name: ["--help", "-h"],
+        },
+      ],
+    },
     {
       description: "Set of base commands combinations",
       name: "shortcuts",
@@ -511,6 +687,7 @@ const completionSpec: Fig.Spec = {
         description: "Name of plan to run",
         isOptional: true,
         name: "name",
+        generators: planList,
       },
       description: "Run sequence of Rugby commands",
       name: "plan",
