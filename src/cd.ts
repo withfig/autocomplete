@@ -21,6 +21,7 @@ const completionSpec: Fig.Spec = {
       {
         name: "~",
         description: "Switch to the home directory",
+        hidden: true,
       },
     ],
   },
