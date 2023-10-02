@@ -379,6 +379,12 @@ const spec: Fig.Spec = {
       name: "help",
       description: "Print the help menu",
     },
+    {
+      name: "x",
+      icon: "🛠️",
+      description: "Run an npx command",
+      loadSpec: "bunx",
+    },
   ],
 };
 
