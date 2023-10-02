@@ -354,6 +354,20 @@ const dbOptions = [
   },
 ];
 
+const environmentOption: Fig.Option = {
+  name: ["-e", "--environment"],
+  description:
+    "Specifies the environment to run this console under (test/development/production)",
+  args: {
+    name: "environment",
+    generators: {
+      script: "ls config/environments",
+      postProcess: (out) =>
+        out.split("\n").map((env) => ({ name: env.replace(".rb", "") })),
+    },
+  },
+};
+
 const defaultCommands: Fig.Subcommand[] = [
   {
     name: ["c", "console"],
@@ -363,26 +377,15 @@ const defaultCommands: Fig.Subcommand[] = [
         name: ["-s", "--sandbox"],
         description: "Rollback database modifications on exit",
       },
-      {
-        name: ["-e", "--environment"],
-        description: "Specifies the environment to run this console under",
-        args: {
-          name: "environment",
-        },
-      },
+      environmentOption,
     ],
   },
   {
-    name: "server",
+    name: ["s", "server"],
     description:
       "Launch a web server to access your application through a browser",
     options: [
-      {
-        name: ["-e", "--environment"],
-        description:
-          "Specifies the environment to run this server under (e.g. test/development/production)",
-        args: { name: "environment" },
-      },
+      environmentOption,
       {
         name: ["-p", "--port"],
         description: "Runs Rails on the specified port - defaults to 3000",
@@ -441,16 +444,41 @@ const defaultCommands: Fig.Subcommand[] = [
     options: dbOptions,
   },
   {
-    name: "dbconsole",
+    name: "db:migrate:redo",
+    description: "Rollback the last database migration",
+    args: {
+      name: "STEP",
+      isOptional: true,
+      suggestions: ["STEP="],
+    },
+    options: dbOptions,
+  },
+  {
+    name: "db:rollback",
+    description: "Rollback the last database migration",
+    args: {
+      name: "STEP",
+      isOptional: true,
+      suggestions: ["STEP="],
+    },
+    options: dbOptions,
+  },
+  {
+    name: "db:drop",
+    description: "Drop your database",
+    options: dbOptions,
+  },
+  {
+    name: "db:version",
+    description: "Print the current schema version number",
+    options: dbOptions,
+  },
+  {
+    name: ["dbconsole", "db"],
     description:
       "Opens a console to your database (supports MySQL, PostgreSQL, and SQLite3)",
     options: [
-      {
-        name: "-e",
-        description:
-          "Specifies the environment to run this dbconsole under (e.g. test/development/production)",
-        args: {},
-      },
+      environmentOption,
       {
         name: "--mode",
         description:
@@ -477,7 +505,16 @@ const defaultCommands: Fig.Subcommand[] = [
     ],
   },
   {
-    name: "generate",
+    name: "runner",
+    description: "Run a piece of code in the application environment",
+    args: {
+      name: "code",
+      template: "filepaths",
+    },
+    options: [environmentOption],
+  },
+  {
+    name: ["g", "generate"],
     description: "Use templates to generate Rails resources",
     args: [
       {
