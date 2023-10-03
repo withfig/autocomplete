@@ -4,12 +4,24 @@ const completionSpec: Fig.Spec = {
     "Tool that helps to set up the environment for Kotlin Multiplatform Mobile app development",
   options: [
     {
-      name: ["--help", "-h"],
-      description: "Usage info",
+      name: "--version",
+      description: "Report a version of KDoctor",
     },
     {
-      name: ["--version", "-v"],
-      description: "KDoctor version",
+      name: ["--verbose", "-v"],
+      description: "Report an extended information",
+    },
+    {
+      name: ["--all", "-a"],
+      description: "Run extra diagnostics",
+    },
+    {
+      name: "--team-ids",
+      description: "Report all available Apple dev team ids",
+    },
+    {
+      name: ["--help", "-h"],
+      description: "Usage info",
     },
   ],
 };
