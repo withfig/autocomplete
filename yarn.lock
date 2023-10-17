@@ -725,10 +725,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:8.50.0":
-  version: 8.50.0
-  resolution: "@eslint/js@npm:8.50.0"
-  checksum: 302478f2acaaa7228729ec6a04f56641590185e1d8cd1c836a6db8a6b8009f80a57349341be9fbb9aa1721a7a569d1be3ffc598a33300d22816f11832095386c
+"@eslint/js@npm:8.51.0":
+  version: 8.51.0
+  resolution: "@eslint/js@npm:8.51.0"
+  checksum: 0228bf1e1e0414843e56d9ff362a2a72d579c078f93174666f29315690e9e30a8633ad72c923297f7fd7182381b5a476805ff04dac8debe638953eb1ded3ac73
   languageName: node
   linkType: hard
 
@@ -1408,17 +1408,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:>= 8, @types/node@npm:>=13.7.0":
-  version: 18.16.14
-  resolution: "@types/node@npm:18.16.14"
-  checksum: c11cb3c787236414efe58240ae71854971592554d82ff9d201876ce7cafd51c37aaa001c63602d002e8238614d7331bd6d48ac4c1c0caa826799980b6846fb08
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^20.7.1":
-  version: 20.7.1
-  resolution: "@types/node@npm:20.7.1"
-  checksum: 3140bd6c9130f1ed73a78ce7a1765ee43e155c1eea50eea45e18faeb31d11d97a84fffdc5e3a97582101d2f57d2652a50f510ede6c702780267bad74c822d56c
+"@types/node@npm:*, @types/node@npm:>= 8, @types/node@npm:>=13.7.0, @types/node@npm:^20.7.1":
+  version: 20.8.3
+  resolution: "@types/node@npm:20.8.3"
+  checksum: bfb88b341faeb19f8fd37306a3bf433721b876c6491d10fcb0b13fd26601fa36ee45113dd82b1e1c23e3c957dff5b99f81a16493cefa03abe797e41a2487a4f7
   languageName: node
   linkType: hard
 
@@ -1439,33 +1432,22 @@ __metadata:
   linkType: hard
 
 "@types/react-dom@npm:^18.2.8":
-  version: 18.2.8
-  resolution: "@types/react-dom@npm:18.2.8"
+  version: 18.2.11
+  resolution: "@types/react-dom@npm:18.2.11"
   dependencies:
     "@types/react": "*"
-  checksum: d36264631028d021b73cd9e015f10b95c4959ae1ce8f7a7419f318d1f05b1d063e6afffcd2a349a6bccd64ccc9ee9d2d976e1f0437643f0e7db621fa035bca65
+  checksum: 70dbdd2f8836a797ab8a3771c773f51023aab187d4d88ed3733bb3f2cbc2146057788a0095a03637101aeab9a48fce0ea369f96a35fc07e785ef53b8ab870885
   languageName: node
   linkType: hard
 
-"@types/react@npm:*":
-  version: 18.2.7
-  resolution: "@types/react@npm:18.2.7"
+"@types/react@npm:*, @types/react@npm:^18.2.23":
+  version: 18.2.28
+  resolution: "@types/react@npm:18.2.28"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: caa5da4cf929766738ec789301dc6fb6624bd48dd317d851c4c9b84b1f47cd8ebe17fe01398cadaa0bc938cd4d502d67f4b9de9ff771dc132096bdc86228efba
-  languageName: node
-  linkType: hard
-
-"@types/react@npm:^18.2.23":
-  version: 18.2.23
-  resolution: "@types/react@npm:18.2.23"
-  dependencies:
-    "@types/prop-types": "*"
-    "@types/scheduler": "*"
-    csstype: ^3.0.2
-  checksum: efb9d1ed1940c0e7ba08a21ffba5e266d8dbbb8fe618cfb97bc902dfc96385fdd8189e3f7f64b4aa13134f8e61947d60560deb23be151253c3a97b0d070897ca
+  checksum: 81381bedeba83278f4c9febb0b83e0bd3f42a25897a50b9cb36ef53651d34b3d50f87ebf11211ea57ea575131f85d31e93e496ce46478a00b0f9bf7b26b5917a
   languageName: node
   linkType: hard
 
@@ -3650,13 +3632,13 @@ __metadata:
   linkType: hard
 
 "eslint@npm:^8.50.0":
-  version: 8.50.0
-  resolution: "eslint@npm:8.50.0"
+  version: 8.51.0
+  resolution: "eslint@npm:8.51.0"
   dependencies:
     "@eslint-community/eslint-utils": ^4.2.0
     "@eslint-community/regexpp": ^4.6.1
     "@eslint/eslintrc": ^2.1.2
-    "@eslint/js": 8.50.0
+    "@eslint/js": 8.51.0
     "@humanwhocodes/config-array": ^0.11.11
     "@humanwhocodes/module-importer": ^1.0.1
     "@nodelib/fs.walk": ^1.2.8
@@ -3692,7 +3674,7 @@ __metadata:
     text-table: ^0.2.0
   bin:
     eslint: bin/eslint.js
-  checksum: 9ebfe5615dc84700000d218e32ddfdcfc227ca600f65f18e5541ec34f8902a00356a9a8804d9468fd6c8637a5ef6a3897291dad91ba6579d5b32ffeae5e31768
+  checksum: 214fa5d1fcb67af1b8992ce9584ccd85e1aa7a482f8b8ea5b96edc28fa838a18a3b69456db45fc1ed3ef95f1e9efa9714f737292dc681e572d471d02fda9649c
   languageName: node
   linkType: hard
 
