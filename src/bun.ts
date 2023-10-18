@@ -410,11 +410,42 @@ const bunLinksGenerator: Fig.Generator = {
       name: ["rm", "remove"],
       icon: "📦",
       description: "Remove a dependency from package.json",
-      icon,
-      icon,
+      options: dependencyOptions,
       args: {
         name: "package",
         filterStrategy: "fuzzy",
+        generators: dependenciesGenerator,
+        isVariadic: true,
+      },
+    },
+    {
+      name: ["build", "bun"],
+      icon,
+      description: "Bundle files using Bun's native bundler",
+      args: [
+        {
+          name: "entrypoints",
+          isVariadic: true,
+          generators: [
+            filepaths({
+              extensions: ["ts", "tsx", "js", "jsx", "mjs", "cjs"],
+            }),
+          ],
+          description:
+            "entrypoint to bundle. If multiple entrypoints provided, must specify --outdir.",
+        },
+      ],
+      options: buildParams,
+    },
+    {
+      name: "update",
+      icon,
+      description: "Update outdated dependencies",
+      options: dependencyOptions,
+      args: {
+        name: "package",
+        filterStrategy: "fuzzy",
+        isOptional: true,
         generators: dependenciesGenerator,
         isVariadic: true,
       },
