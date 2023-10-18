@@ -266,6 +266,26 @@ const spec: Fig.Spec = {
       },
     },
     {
+
+/** Generate the globally linked packages stored in $BUN_INSTALL directory */
+const bunLinksGenerator: Fig.Generator = {
+  script:
+    "command find $BUN_INSTALL/install/global/node_modules -type l | awk -F 'node_modules/' '{print $2}'",
+  postProcess(out) {
+    return out.split("\n").map((dep) => {
+      return {
+        name: dep,
+        description: "link to this package",
+        icon: "📦",
+      };
+    });
+  },
+  cache: {
+    strategy: "stale-while-revalidate",
+    ttl: 60 * 60 * 24 * 7, // 1 week
+  },
+};
+
       name: "bun",
       icon: "📦",
       description: "Bundle dependencies of input files into a '.bun' file",
@@ -400,6 +420,31 @@ const spec: Fig.Spec = {
       },
     },
     {
+      name: "link",
+      icon: "📦",
+      description:
+        "Run without an argument to register this package to the global package registry. Uses the name field from package.json.",
+      args: {
+        name: "package",
+        filterStrategy: "fuzzy",
+        isOptional: true,
+        generators: bunLinksGenerator,
+        description: "install a package from the global package registry",
+      },
+      options: [
+        {
+          name: "--save",
+          description: "Save to package.json",
+          dependsOn: ["package"],
+        },
+      ],
+    },
+    {
+      name: "unlink",
+      icon: "📦",
+      description: "Unlink this package from the global package registry",
+      // Unliking a package by name is not yet implemented. Use bunLinksGenerator once it is implemented.
+    },
     {
       name: "upgrade",
       icon,
