@@ -6075,8 +6075,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--name-only",
-          description:
-            "Show only names of changed files",
+          description: "Show only names of changed files",
         },
         {
           name: "--shortstat",
