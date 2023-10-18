@@ -259,9 +259,99 @@ const completionSpec: Fig.Spec = {
               description: "Password to your remote Postgres database",
               args: { name: "password" },
             },
+            {
+              name: "--local",
+              description: "Lists migrations applied to the local database",
+            },
+            {
+              name: "--linked",
+              description:
+                "Lists migrations applied to the linked project (default true)",
+            },
+            {
+              name: "--db-url",
+              description: "Database URL to connect to",
+              args: { name: "string" },
+            },
           ],
         },
-        { name: "new", description: "Create an empty migration script" },
+        {
+          name: "new",
+          description: "Create an empty migration script",
+          args: { name: "migration name" },
+        },
+        {
+          name: "repair",
+          description: "Repair the migration history table",
+          args: { name: "version" },
+          options: [
+            {
+              name: "--status",
+              description: "Version status to update",
+              priority: 100,
+              args: {
+                name: "status",
+                suggestions: [{ name: "applied" }, { name: "reverted" }],
+              },
+            },
+            {
+              name: ["--password", "-p"],
+              description: "Password to your remote Postgres database",
+              args: { name: "password" },
+            },
+            {
+              name: "--local",
+              description:
+                "Repairs the migration history of the local database",
+            },
+            {
+              name: "--linked",
+              description:
+                "Repairs the migration history of the linked project (default true)",
+            },
+            {
+              name: "--db-url",
+              description: "Database URL to connect to",
+              args: { name: "string" },
+            },
+          ],
+        },
+        {
+          name: "squash",
+          description: "Squash migrations to a single file",
+
+          options: [
+            {
+              name: ["--password", "-p"],
+              description: "Password to your remote Postgres database",
+              args: { name: "password" },
+            },
+            {
+              name: "--local",
+              description:
+                "Squashes the migration history of the local database",
+            },
+            {
+              name: "--version",
+              description: "Squash up to the specified version",
+              args: { name: "string" },
+            },
+            {
+              name: "--linked",
+              description:
+                "Squashes the migration history of the linked project (default true)",
+            },
+            {
+              name: "--db-url",
+              description: "Database URL to connect to",
+              args: { name: "string" },
+            },
+          ],
+        },
+        {
+          name: "up",
+          description: "Apply pending migrations to local database",
+        },
       ],
     },
     {
