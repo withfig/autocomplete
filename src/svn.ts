@@ -252,7 +252,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "repository",
         description: "The repository you want to checkout",
-        isOptional: false,
       },
     },
     {
