@@ -340,7 +340,7 @@ export const createCLIsGenerator: Fig.Generator = {
           ({
             name: item.package.name.substring(7),
             description: item.package.description,
-          } as Fig.Suggestion)
+          }) as Fig.Suggestion
       ) as Fig.Suggestion[];
     } catch (e) {
       return [];

@@ -42,7 +42,7 @@ const yeomanGeneratorList: Fig.Generator = {
                   description: `Help of "${toTitleCase(item)}" generator`,
                 },
               ],
-            } as Fig.Suggestion)
+            }) as Fig.Suggestion
         ) as Fig.Suggestion[];
     } catch (e) {
       console.error(e);
