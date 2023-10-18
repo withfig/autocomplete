@@ -400,11 +400,82 @@ const spec: Fig.Spec = {
       },
     },
     {
+    {
       name: "upgrade",
       icon,
       description: "Get the latest version of bun",
+      options: [
+        {
+          name: "--canary",
+          description: "Install the latest canary release",
+        },
+      ],
+    },
+    {
+      name: "test",
       icon,
+      description: "Run unit tests with Bun",
+      args: {
+        name: "files",
+        generators: [
+          {
+            // Suggest test files -> https://bun.sh/docs/cli/test. (not in node_modules or .git)
+            script:
+              'command find $(npm prefix) | grep -E ".*.(test|_test|spec|_spec).(ts|tsx|js|jsx)$" | grep -vE ".*/node_modules/.*" | sed "s|$(npm prefix)/||"',
+            postProcess(out) {
+              return out.split("\n").map((file) => {
+                return {
+                  name: file.split("/").pop(),
+                  priority: 76,
+                  description: `run ${file}`,
+                  insertValue: file,
+                };
+              });
+            },
+            cache: {
+              strategy: "stale-while-revalidate",
+              ttl: 60 * 60 * 24, // 24 hours
+            },
+          },
+        ],
+        isVariadic: true,
+        filterStrategy: "fuzzy",
+        isOptional: true,
+        description: "test files to run",
+      },
+      options: testParams,
+    },
+    {
+      name: "pm",
       icon,
+      description: "Set of utilities for working with Bun's package manager.",
+      options: [
+        {
+          name: "bin",
+          description: "Print the path to bin folder",
+        },
+        {
+          name: "cache",
+          description: "Print the path to the cache folder",
+        },
+        {
+          name: "hash",
+          description: "Generate & print the hash of the current lockfile",
+        },
+        {
+          name: "hash-print",
+          description: "Print the hash stored in the current lockfile",
+        },
+        {
+          name: "hash-string",
+          description: "Print the string used to hash the lockfile",
+        },
+        {
+          name: "ls",
+          description:
+            "List the dependency tree according to the current lockfile",
+        },
+      ],
     },
     {
       name: "completions",
@@ -426,6 +497,23 @@ const spec: Fig.Spec = {
       icon,
       description: "Run an npx command",
       loadSpec: "bunx",
+    },
+    {
+      name: "repl",
+      icon,
+      description:
+        "Run a REPL (read eval print loop) with the Bun runtime.(experimental)",
+    },
+    {
+      name: "init",
+      icon,
+      description: "Initialize a new bun project",
+      options: [
+        {
+          name: ["-y", "--yes"],
+          description: "Answer yes to all prompts",
+        },
+      ],
     },
   ],
 };
