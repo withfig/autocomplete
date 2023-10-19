@@ -1,4 +1,4 @@
-const gems: Fig.Generator = {
+export const gemsGenerator: Fig.Generator = {
   trigger: () => true,
   custom: async (tokens, executeShellCommand) => {
     const searchTerm = tokens[tokens.length - 1];
@@ -172,7 +172,7 @@ const completionSpec: Fig.Spec = {
       description: "Install a gem into the local repository",
       args: {
         name: "GEMNAME",
-        generators: gems,
+        generators: gemsGenerator,
         debounce: true,
       },
       options: [
@@ -282,7 +282,7 @@ const completionSpec: Fig.Spec = {
       description: "Check a gem repository for added or missing files",
       args: {
         name: "GEMNAME",
-        generators: gems,
+        generators: gemsGenerator,
         debounce: true,
         isOptional: true,
       },
@@ -345,7 +345,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "GEMNAME",
         description: "Name of gem to cleanup",
-        generators: gems,
+        generators: gemsGenerator,
         debounce: true,
         isOptional: true,
       },
@@ -384,7 +384,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "GEMNAME",
         description: "Name of gem to list contents for",
-        generators: gems,
+        generators: gemsGenerator,
         debounce: true,
       },
       options: [
@@ -533,7 +533,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "GEMNAME",
         description: "Name of gem to download",
-        generators: gems,
+        generators: gemsGenerator,
         debounce: true,
       },
       options: [
@@ -634,7 +634,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "GEMNAME",
         description: "Name of the gem to print information about",
-        generators: gems,
+        generators: gemsGenerator,
         debounce: true,
       },
       options: [
@@ -678,7 +678,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "GEMNAME",
         description: "Name of the gem to print information about",
-        generators: gems,
+        generators: gemsGenerator,
         debounce: true,
       },
       options: [
@@ -708,7 +708,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "GEMNAME",
         description: "Name of the gem to print information about",
-        generators: gems,
+        generators: gemsGenerator,
         debounce: true,
         isOptional: true,
       },
@@ -723,7 +723,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "GEMNAME",
             description: "Name of the gem to print information about",
-            generators: gems,
+            generators: gemsGenerator,
             debounce: true,
           },
           requiresSeparator: true,
@@ -828,7 +828,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "GEMNAME",
         description: "Gem to generate documentation for (unless –all)",
-        generators: gems,
+        generators: gemsGenerator,
         debounce: true,
         isOptional: true,
       },
@@ -991,7 +991,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "GEMFILE",
           description: "Name of gem to show the gemspec for",
-          generators: gems,
+          generators: gemsGenerator,
           debounce: true,
         },
         {
@@ -1054,7 +1054,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "GEMNAME",
         description: "Name of gem to unpack",
-        generators: gems,
+        generators: gemsGenerator,
         debounce: true,
       },
       options: [
@@ -1088,7 +1088,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "GEM",
         description: "Name of gem",
-        generators: gems,
+        generators: gemsGenerator,
         debounce: true,
       },
       options: [
@@ -1116,7 +1116,7 @@ const completionSpec: Fig.Spec = {
       description: "Uninstall gems from the local repository",
       args: {
         name: "GEMNAME",
-        generators: gems,
+        generators: gemsGenerator,
         debounce: true,
       },
       options: [
@@ -1297,7 +1297,7 @@ const completionSpec: Fig.Spec = {
       description: "Manage gem owners of a gem on the push server",
       args: {
         name: "GEMNAME",
-        generators: gems,
+        generators: gemsGenerator,
         debounce: true,
       },
       options: [
