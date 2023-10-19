@@ -517,6 +517,47 @@ const defaultCommands: Fig.Subcommand[] = [
       {
         name: "args",
         isVariadic: true,
+        generators: {
+          splitOn: "g",
+          custom: async (tokens, executeShellCommand) => {
+            const [generator, ...args] = tokens.slice(2);
+            if (["model", "resource", "scaffold"].includes(generator)) {
+              if (args.length === 1) {
+                return [];
+              }
+
+              const lastArg = args.at(-1);
+
+              if (lastArg.match(/\w+:\w+/)) {
+                return [
+                  { name: lastArg },
+                  { name: `${lastArg}:uniq` },
+                  { name: `${lastArg}:index` },
+                ];
+              }
+
+              return ["int", "text"].map((type) => ({
+                name: `${lastArg}:${type}`,
+              }));
+            }
+
+            if (generator === "controller") {
+              return [
+                "index",
+                "show",
+                "new",
+                "create",
+                "edit",
+                "update",
+                "destroy",
+              ]
+                .filter((action) => !args.includes(action))
+                .map((action) => ({ name: action }));
+            }
+
+            return [];
+          },
+        },
       },
     ],
     options: [
@@ -628,6 +669,7 @@ export const railsCommandsGenerator: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "rails",
+  icon: "https://avatars.githubusercontent.com/u/4223?s=48&v=4",
   description: "Ruby on Rails CLI",
   generateSpec: async (_, executeShellCommand) => {
     const isRailsDirectory = !!(await executeShellCommand(
