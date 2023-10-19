@@ -1,7 +1,41 @@
 const testsGenerator: Fig.Generator = {
-  custom: async (tokens, executeShellCommand) => {
-    // TODO: load the list of test files specified in testDir on playwright.config file
-    return [] as Fig.Suggestion[];
+  custom: async (token, executeShellCommand) => {
+    console.log(token);
+    const basePathSearch = await executeShellCommand(
+      "cat playwright.config.ts | grep testDir"
+    );
+
+    const dir = basePathSearch.match(/(['"])([./\w]+)(['"])/);
+    const baseDir = dir ? dir[2] : "tests";
+
+    const tests = await executeShellCommand("npx playwright test --list");
+    const lines = tests
+      .split("\n")
+      .slice(1, -1)
+      .map((line) => line.split(" › ").slice(1))
+      .reduce<Record<string, Fig.Suggestion>>((acc, curr) => {
+        const [testPath, testLabel] = curr;
+        const withoutSpecifier = testPath.split(":", 1)[0];
+        if (!acc[withoutSpecifier]) {
+          acc[withoutSpecifier] = {
+            priority: 80,
+            name: `${baseDir}/${withoutSpecifier}`,
+            displayName: withoutSpecifier,
+            description: `Run all tests in ${withoutSpecifier}`,
+          };
+        }
+
+        acc[testPath] = {
+          priority: 80,
+          name: `${baseDir}/${testPath}`,
+          displayName: `${testPath} - ${testLabel}`,
+          description: `Run ${testLabel}`,
+        };
+
+        return acc;
+      }, {});
+
+    return Object.values(lines);
   },
 };
 
@@ -58,7 +92,7 @@ const completionSpec: Fig.Spec = {
         description: "Test files to run",
         isOptional: true,
         isVariadic: true,
-        template: ["filepaths", "folders"],
+        generators: [{ template: ["filepaths", "folders"] }, testsGenerator],
       },
       options: [
         {
