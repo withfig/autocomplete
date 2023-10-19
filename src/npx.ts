@@ -1,4 +1,4 @@
-const suggestions: Fig.Suggestion[] = [
+export const npxSuggestions: Fig.Suggestion[] = [
   {
     name: "vite",
     icon: "https://vitejs.dev/logo.svg",
@@ -168,7 +168,7 @@ const completionSpec: Fig.Spec = {
     generators: {
       script: `until [[ -d node_modules/ ]] || [[ $PWD = '/' ]]; do cd ..; done; ls -1 node_modules/.bin/`,
       postProcess: function (out) {
-        const cli = [...suggestions].reduce(
+        const cli = [...npxSuggestions].reduce(
           (acc, { name }) => [...acc, name],
           []
         );
@@ -182,7 +182,7 @@ const completionSpec: Fig.Spec = {
           }));
       },
     },
-    suggestions: [...suggestions],
+    suggestions: [...npxSuggestions],
     isOptional: true,
   },
 
