@@ -4,6 +4,8 @@ import {
   npmSearchGenerator,
   dependenciesGenerator,
 } from "./npm";
+import { npxSuggestions } from "./npx";
+import { createCLIsGenerator } from "./yarn";
 
 const dependencyOptions: Fig.Option[] = [
   {
@@ -115,6 +117,20 @@ const spec: Fig.Spec = {
       name: "--bunfile",
       args: { name: "path", template: "filepaths" },
       description: `Use a .bun file (default: node_modules.bun)`,
+    },
+    {
+      name: "--inspect",
+      description: "Activate Bun's Debugger",
+    },
+    {
+      name: "--inspect-wait",
+      description:
+        "Activate Bun's Debugger, wait for a connection before executing",
+    },
+    {
+      name: "--inspect-brk",
+      description:
+        "Activate Bun's Debugger, set breakpoint on first line of code and wait",
     },
     {
       name: "--server-bunfile",
@@ -271,11 +287,31 @@ const spec: Fig.Spec = {
             "discord-interactions",
             "blank",
             "bun-bakery",
+            ...npxSuggestions
+              .filter((bin) =>
+                typeof bin.name === "string"
+                  ? bin.name.startsWith("create-")
+                  : bin.name.some((name) => name.startsWith("create-"))
+              )
+              .map((bin) => {
+                let name = bin.name;
+                if (typeof name !== "string") name = name[0];
+                name = name.replace(/^create-/, "");
+
+                return { ...bin, name, priority: 76 };
+              }),
           ],
           generators: [
             { template: "folders" },
             { script: "command ls -1 ~/.bun-create", splitOn: "\n" },
+            { script: "command ls -1 .bun-create", splitOn: "\n" },
+            createCLIsGenerator,
           ],
+          loadSpec: async (token) => ({
+            name: "create-" + token,
+            type: "global",
+          }),
+          isCommand: true,
         },
         {
           name: "name",
@@ -364,6 +400,12 @@ const spec: Fig.Spec = {
     {
       name: "help",
       description: "Print the help menu",
+    },
+    {
+      name: "x",
+      icon: "🛠️",
+      description: "Run an npx command",
+      loadSpec: "bunx",
     },
   ],
 };

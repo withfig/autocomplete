@@ -52,7 +52,7 @@ const searchGenerator: Fig.Generator = {
             name: item.name,
             description: item.description,
             icon: "📦",
-          } as Fig.Suggestion)
+          }) as Fig.Suggestion
       ) as Fig.Suggestion[];
     } catch (e) {
       return [];
