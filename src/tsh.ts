@@ -93,12 +93,33 @@ const completionSpec: Fig.Spec = {
         name: "user@hostname",
         description: "Address of remote machine to log into",
         generators: {
-          script: "tsh ls --format=json",
-          postProcess: (out) => {
+          trigger: (curr, prev) => {
+            return curr.lastIndexOf("@") !== prev.lastIndexOf("@");
+          },
+          custom: async (tokens, execShellCommand) => {
+            // The default username is the current user
+            let username = await execShellCommand("whoami");
+
+            // Suggests servers if a username has been provided, instead of displaying nothing
+            for (let i = 0; i < tokens.length; i++) {
+              if (tokens[i].includes("@")) {
+                username = tokens[i].split("@")[0];
+                break;
+              }
+            }
+
+            // Get all servers this user has access to
+            const out = await execShellCommand("tsh ls --format=json");
+
             return JSON.parse(out).map((elm) => {
+              const connection_string =
+                username.length > 0
+                  ? `${username}@${elm.spec.hostname}`
+                  : `${elm.spec.hostname}`;
+
               return {
-                name: elm.spec.hostname,
-                description: `Access expires: ${elm.metadata.expires}`,
+                name: connection_string,
+                description: `Connect to ${elm.spec.hostname} as ${username}`,
               };
             }); //[{ name: "hello" }];
           },
