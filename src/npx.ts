@@ -1,8 +1,12 @@
+// TODO: When #2138 is merged
+// import createRedwoodApp from "./create-redwood-app";
+import { specToSuggestions } from "./_utils/spec";
+import vite from "./vite";
+
+// TODO: this for all the suggestions that have specs
 export const npxSuggestions: Fig.Suggestion[] = [
-  {
-    name: "vite",
-    icon: "https://vitejs.dev/logo.svg",
-  },
+  // specToSuggestions(createRedwoodApp),
+  specToSuggestions(vite),
   {
     name: "babel",
     icon: "https://raw.githubusercontent.com/babel/logo/master/babel.png",
@@ -10,6 +14,10 @@ export const npxSuggestions: Fig.Suggestion[] = [
   {
     name: "create-react-native-app",
     icon: "https://reactnative.dev/img/pwa/manifest-icon-512.png",
+  },
+  {
+    name: "create-vite",
+    icon: "https://vitejs.dev/logo.svg",
   },
   {
     name: "react-native",
@@ -159,29 +167,35 @@ export const npxSuggestions: Fig.Suggestion[] = [
   },
 ];
 
+const binToSpecOverrides = {
+  rw: "redwood",
+};
+
+export const npxLocalBinsGenerator = (
+  filterOutGlobal = false
+): Fig.Generator => ({
+  script: `until [[ -d node_modules/ ]] || [[ $PWD = '/' ]]; do cd ..; done; ls -1 node_modules/.bin/`,
+  postProcess: function (out) {
+    const globalCLIs = npxSuggestions.map((suggestion) => suggestion.name);
+
+    return out
+      .split("\n")
+      .filter((name) => (filterOutGlobal ? !globalCLIs.includes(name) : true))
+      .map((name) => ({
+        name,
+        icon: "fig://icon?type=command",
+        loadSpec: binToSpecOverrides[name] || name,
+      }));
+  },
+});
+
 const completionSpec: Fig.Spec = {
   name: "npx",
   description: "Execute binaries from npm packages",
   args: {
     name: "command",
     isCommand: true,
-    generators: {
-      script: `until [[ -d node_modules/ ]] || [[ $PWD = '/' ]]; do cd ..; done; ls -1 node_modules/.bin/`,
-      postProcess: function (out) {
-        const cli = [...npxSuggestions].reduce(
-          (acc, { name }) => [...acc, name],
-          []
-        );
-        return out
-          .split("\n")
-          .filter((name) => !cli.includes(name))
-          .map((name) => ({
-            name,
-            icon: "fig://icon?type=command",
-            loadSpec: name,
-          }));
-      },
-    },
+    generators: npxLocalBinsGenerator(true),
     suggestions: [...npxSuggestions],
     isOptional: true,
   },

@@ -2,6 +2,7 @@
 
 import { npmScriptsGenerator, npmSearchGenerator } from "./npm";
 import { dependenciesGenerator, nodeClis } from "./yarn";
+import { npxLocalBinsGenerator } from "./npx";
 
 const filterMessages = (out: string): string => {
   return out.startsWith("warning:") || out.startsWith("error:")
@@ -504,8 +505,8 @@ node_modules/.bin is added to the PATH, so pnpm exec allows executing commands o
     args: {
       name: "Scripts",
       filterStrategy: "fuzzy",
-      generators: dependenciesGenerator,
-      isVariadic: true,
+      // TODO: fix loading + fix loading of rw
+      generators: npxLocalBinsGenerator(),
     },
     options: [
       {
@@ -882,6 +883,15 @@ Please note that this is prohibited when a store server is running`,
         description: `Returns the path to the active store directory`,
       },
     ],
+  },
+  {
+    name: "init",
+    description:
+      "Creates a basic package.json file in the current directory, if it doesn't exist already",
+  },
+  {
+    name: "doctor",
+    description: "Checks for known common issues with pnpm configuration",
   },
 ];
 

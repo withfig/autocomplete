@@ -324,6 +324,7 @@ const commonOptions: Fig.Option[] = [
   },
 ];
 
+// TODO: Extract this to be used with bun|pnpm|npm create
 export const createCLIsGenerator: Fig.Generator = {
   script: function (context) {
     if (context[context.length - 1] === "") return "";

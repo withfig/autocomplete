@@ -1,38 +1,13 @@
+import { npxSuggestions } from "./npx";
+
 const completionSpec: Fig.Spec = {
   name: "pnpx",
   description: "Execute binaries from npm packages",
-  subcommands: [
-    {
-      name: "create-react-native-app",
-      icon: "https://reactnative.dev/img/pwa/manifest-icon-512.png",
-      loadSpec: "create-react-native-app",
-    },
-    {
-      name: "react-native",
-      icon: "https://reactnative.dev/img/pwa/manifest-icon-512.png",
-      loadSpec: "react-native",
-    },
-    {
-      name: "tailwindcss",
-      icon: "https://tailwindcss.com/favicon-32x32.png",
-      loadSpec: "tailwindcss",
-    },
-    {
-      name: "next",
-      icon: "https://nextjs.org/static/favicon/favicon-16x16.png",
-      loadSpec: "next",
-    },
-    {
-      name: "gltfjsx",
-      icon: "https://raw.githubusercontent.com/pmndrs/branding/master/logo.svg",
-      loadSpec: "gltfjsx",
-    },
-    {
-      name: "prisma",
-      icon: "https://raw.githubusercontent.com/prisma/docs/main/src/images/favicon-16x16.png",
-      loadSpec: "prisma",
-    },
-  ],
+  args: {
+    name: "name",
+    isCommand: true,
+    suggestions: [...npxSuggestions],
+  },
   options: [
     {
       name: ["--package", "-p"],
