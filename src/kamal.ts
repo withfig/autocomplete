@@ -1,5 +1,10 @@
 const destinationGenerator: Fig.Generator = {
   script: "bin/kamal destinations --json",
+  cache: {
+    cacheByDirectory: true,
+    strategy: "stale-while-revalidate",
+    ttl: 30,
+  },
   postProcess: function (out) {
     try {
       return JSON.parse(out).map((destination: string) => ({
