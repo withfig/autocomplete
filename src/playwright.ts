@@ -82,7 +82,9 @@ const helpOption: Fig.Option = {
 
 const completionSpec: Fig.Spec = {
   name: "playwright",
-  description: "",
+  icon: "https://playwright.dev/img/playwright-logo.svg",
+  description:
+    "Playwright enables reliable end-to-end testing for modern web apps",
   subcommands: [
     {
       name: "test",
