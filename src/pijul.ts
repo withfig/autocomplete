@@ -109,6 +109,26 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "change",
+      description: "Shows information about a particular change",
+      args: {
+        name: "<HASH>",
+        description:
+          "The hash of the change to show, or an unambiguous prefix thereof",
+      },
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "--repository <PATH>",
+          description:
+            "Use the repository at PATH instead of the current directory",
+        },
+      ],
+    },
   ],
   // Only uncomment if pijul takes an argument
   // args: {}
