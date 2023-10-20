@@ -192,6 +192,51 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "clone",
+      description: "Clones an existing pijul repository",
+      args: [
+        {
+          name: "<REMOTE>",
+          description: "Clone this remote",
+        },
+        {
+          name: "<PATH>",
+          description:
+            "Path where to clone the repository. If missing, the inferred name of the remote repository is used",
+        },
+        {
+          name: "<SALT>",
+        },
+      ],
+      options: [
+        {
+          name: "--change <CHANGE>",
+          description: "Clone this change and its dependencies",
+        },
+        {
+          name: "--channel <CHANNEL>",
+          description: "Set the remote channel [default: main]",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "-k",
+          description:
+            "Do not check certificates (HTTPS remotes only, this option might be dangerous)",
+        },
+        {
+          name: "--path <PARTIAL_PATHS>",
+          description: "Clone this path only",
+        },
+        {
+          name: "--state <STATE>",
+          description: "Clone this state",
+        },
+      ],
+    },
   ],
   // Only uncomment if pijul takes an argument
   // args: {}
