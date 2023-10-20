@@ -12,7 +12,11 @@ const completionSpec: Fig.Spec = {
       // }],
       name: "add",
       description:
-        "Adds a path to the tree. Pijul has an internal tree to represent the files currently tracked. This command adds files and directories to that tree.",
+        "Adds a path to the tree. Pijul has an internal tree to represent the files currently tracked. This command adds files and directories to that tree",
+      args: {
+        name: "<PATHS>...",
+        description: "Paths to add to the internal tree",
+      },
       options: [
         {
           name: ["-f", "--force"],
@@ -23,6 +27,213 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-r", "--recursive"],
+        },
+      ],
+    },
+    {
+      name: "apply",
+      description: "Applies changes to a channel",
+      args: {
+        name: "<CHANGE>...",
+        description:
+          "The change that need to be applied. If this value is missing, read the change in text format on the standard input",
+      },
+      options: [
+        {
+          name: "--channel <CHANNEL>",
+          description: "--deps-only",
+        },
+        {
+          name: "--deps-only",
+          description:
+            "Only apply the dependencies of the change, not the change itself. Only applicable for a single change",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "--repository <REPO_PATH>",
+          description:
+            "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+        },
+      ],
+    },
+    {
+      name: "archive",
+      description: "Creates an archive of the repository",
+      options: [
+        {
+          name: "--change <CHANGE>",
+          description: "Apply these changes after switching to the channel",
+        },
+        {
+          name: "--channel <CHANNEL>",
+          description: "Use this channel, instead of the current channel",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "-k",
+          description:
+            "Do not check certificates (HTTPS remotes only, this option might be dangerous)",
+        },
+        {
+          name: "-o <NAME>",
+          description: "Name of the output file",
+        },
+        {
+          name: "--prefix <PREFIX>",
+          description:
+            "Append this path in front of each path inside the archive",
+        },
+        {
+          name: "--remote <REMOTE>",
+          description: "Ask the remote to send an archive",
+        },
+        {
+          name: "--repository <REPO_PATH>",
+          description:
+            "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+        },
+        {
+          name: "--state <STATE>",
+          description: "Archive in this state",
+        },
+        {
+          name: "--umask <UMASK>",
+          description:
+            "Append this path in front of each path inside the archive",
+        },
+      ],
+    },
+    {
+      name: "change",
+      description: "Shows information about a particular change",
+      args: {
+        name: "<HASH>",
+        description:
+          "The hash of the change to show, or an unambiguous prefix thereof",
+      },
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "--repository <PATH>",
+          description:
+            "Use the repository at PATH instead of the current directory",
+        },
+      ],
+    },
+    {
+      name: "channel",
+      description: "Manages different channels",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "--repository <REPO_PATH>",
+          description:
+            "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+        },
+      ],
+      subcommands: [
+        {
+          name: "delete",
+          description:
+            "Delete a channel. The channel must not be the current channel",
+          args: {
+            name: "<DELETE>",
+          },
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "help",
+          description:
+            "Print this message or the help of the given subcommand(s)",
+        },
+        {
+          name: "new",
+          description: "Create a new, empty channel",
+        },
+        {
+          name: "rename",
+          description: "Rename a channel",
+          args: [
+            {
+              name: "<FROM>",
+            },
+            {
+              name: "<TO>",
+            },
+          ],
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "switch",
+          description:
+            "Switch to a channel. There must not be unrecorded changes in the working copy",
+        },
+      ],
+    },
+    {
+      name: "clone",
+      description: "Clones an existing pijul repository",
+      args: [
+        {
+          name: "<REMOTE>",
+          description: "Clone this remote",
+        },
+        {
+          name: "<PATH>",
+          description:
+            "Path where to clone the repository. If missing, the inferred name of the remote repository is used",
+        },
+        {
+          name: "<SALT>",
+        },
+      ],
+      options: [
+        {
+          name: "--change <CHANGE>",
+          description: "Clone this change and its dependencies",
+        },
+        {
+          name: "--channel <CHANNEL>",
+          description: "Set the remote channel [default: main]",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "-k",
+          description:
+            "Do not check certificates (HTTPS remotes only, this option might be dangerous)",
+        },
+        {
+          name: "--path <PARTIAL_PATHS>",
+          description: "Clone this path only",
+        },
+        {
+          name: "--state <STATE>",
+          description: "Clone this state",
         },
       ],
     },
