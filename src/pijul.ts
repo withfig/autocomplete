@@ -129,6 +129,69 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "channel",
+      description: "Manages different channels",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "--repository <REPO_PATH>",
+          description:
+            "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+        },
+      ],
+      subcommands: [
+        {
+          name: "delete",
+          description:
+            "Delete a channel. The channel must not be the current channel",
+          args: {
+            name: "<DELETE>",
+          },
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "help",
+          description:
+            "Print this message or the help of the given subcommand(s)",
+        },
+        {
+          name: "new",
+          description: "Create a new, empty channel",
+        },
+        {
+          name: "rename",
+          description: "Rename a channel",
+          args: [
+            {
+              name: "<FROM>",
+            },
+            {
+              name: "<TO>",
+            },
+          ],
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "switch",
+          description:
+            "Switch to a channel. There must not be unrecorded changes in the working copy",
+        },
+      ],
+    },
   ],
   // Only uncomment if pijul takes an argument
   // args: {}
