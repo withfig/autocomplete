@@ -76,26 +76,6 @@ const completionSpec: Fig.Spec = {
             "Do not check certificates (HTTPS remotes only, this option might be dangerous)",
         },
         {
-          name: "--path",
-          description: "Only pull to these paths",
-          args: {
-            name: "PATH",
-          },
-        },
-        {
-          name: "--repository",
-          description:
-            "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
-          args: {
-            name: "REPO_PATH",
-          },
-        },
-        {
-          name: "--to-channel",
-          description: "Pull into this channel instead of the current channel",
-          args: {
-            name: "TO_CHANNEL",
-          },
           name: "-o <NAME>",
           description: "Name of the output file",
         },
@@ -253,13 +233,9 @@ const completionSpec: Fig.Spec = {
       ],
     },
     // --------------------------------------- NICK ---------------------------------------
-    
-    
-    
-    
-    
+
     // --------------------------------------- ANDY ---------------------------------------
-    { 
+    {
       name: "pull",
       description: "Pulls changes from a remote upstream",
       args: [
@@ -295,7 +271,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--full",
           description: "Download full changes, even when not necessary",
-                  },
+        },
         {
           name: ["-h", "--help"],
           description: "Print help information",
@@ -327,7 +303,7 @@ const completionSpec: Fig.Spec = {
             name: "TO_CHANNEL",
           },
         },
-      ]
+      ],
     },
   ],
 };
