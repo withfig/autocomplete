@@ -59,6 +59,56 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "archive",
+      description: "Creates an archive of the repository",
+      options: [
+        {
+          name: "--change <CHANGE>",
+          description: "Apply these changes after switching to the channel",
+        },
+        {
+          name: "--channel <CHANNEL>",
+          description: "Use this channel, instead of the current channel",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "-k",
+          description:
+            "Do not check certificates (HTTPS remotes only, this option might be dangerous)",
+        },
+        {
+          name: "-o <NAME>",
+          description: "Name of the output file",
+        },
+        {
+          name: "--prefix <PREFIX>",
+          description:
+            "Append this path in front of each path inside the archive",
+        },
+        {
+          name: "--remote <REMOTE>",
+          description: "Ask the remote to send an archive",
+        },
+        {
+          name: "--repository <REPO_PATH>",
+          description:
+            "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+        },
+        {
+          name: "--state <STATE>",
+          description: "Archive in this state",
+        },
+        {
+          name: "--umask <UMASK>",
+          description:
+            "Append this path in front of each path inside the archive",
+        },
+      ],
+    },
   ],
   // Only uncomment if pijul takes an argument
   // args: {}
