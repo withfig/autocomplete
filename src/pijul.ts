@@ -233,6 +233,32 @@ const completionSpec: Fig.Spec = {
       ],
     },
     // --------------------------------------- NICK ---------------------------------------
+    {
+      name: "credit",
+      description: "Shows which change last affected each line of the given file(s)",
+      
+      args: [
+        {
+          name: "<FILE>",
+          description: "The file to annotate",
+        },
+      ],
+      options: [
+        {
+          name: "--channel <CHANNEL>",
+          description: "Use this channel instead of the current channel",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "--repository <REPO_PATH>",
+          description: 
+            "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+        },
+      ],
+    },
 
     // --------------------------------------- ANDY ---------------------------------------
     {
