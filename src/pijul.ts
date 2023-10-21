@@ -232,6 +232,7 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+
     // --------------------------------------- NICK ---------------------------------------
     {
       name: "credit",
@@ -256,6 +257,45 @@ const completionSpec: Fig.Spec = {
           name: "--repository <REPO_PATH>",
           description: 
             "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+        },
+      ],
+    },
+    {
+      name: "diff",
+      description: "Shows difference between two channels/changes",
+      args: [ 
+        {
+          name: "<PREFIXES>...",
+        },
+      ],
+      options: [
+        {
+          name: "--channel <CHANNEL>",
+          description: "Compare with this channel",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "--json",
+          description: "Output the diff in JSON format instead of the default change text format",
+        },
+        {
+          name: "--repository <REPO_PATH>"
+          description: 
+            "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory"
+        },        {
+          name: "-s, --short"
+          description: "Show a short version of the diff",
+        },        
+        {
+          name: "--tag"
+          description: "Add all the changes of this channel as dependencies (except changes implied transitively), instead of the minimal dependencies",
+        },
+        {
+          name: ["-u", "--untracked"],
+          description: "Include the untracked files",
         },
       ],
     },
