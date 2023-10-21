@@ -532,6 +532,49 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "unrecord",
+      description: "Unrecords a list of changes",
+      args: {
+        name: "CHANGE_ID",
+        description: "The hash of a change (unambiguous prefixes are accepted)",
+      },
+      options: [
+        {
+          name: "--channel",
+          description:
+            "Unrecord changes from this channel instead of the current channel",
+          args: {
+            name: "CHANNEL",
+          },
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "--repository",
+          description:
+            "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+          args: {
+            name: "REPO_PATH",
+          },
+        },
+        {
+          name: "--reset",
+          description:
+            "Also undo the changes in the working copy (preserving unrecorded changes if there are any)",
+        },
+        {
+          name: "--show-changes",
+          description:
+            "Show N changes in a text editor if no s were given. Defaults to the value of unrecord_changes in your global configuration",
+          args: {
+            name: "N",
+          },
+        },
+      ],
+    },
   ],
 };
 export default completionSpec;
