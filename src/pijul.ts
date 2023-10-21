@@ -367,6 +367,78 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "record",
+      description: "Creates a new change",
+      args: {
+        name: "PREFIXES",
+        description: "Paths in which to record the changes",
+      },
+      options: [
+        {
+          name: ["-a", "--all"],
+          description: "Record all paths that have changed",
+        },
+        {
+          name: "--amend",
+          description: "Amend this change instead of creating a new change",
+          args: {
+            name: "AMEND",
+          },
+        },
+        {
+          name: "--author",
+          description: "Set the author field",
+          args: {
+            name: "AUTHOR",
+          },
+        },
+        {
+          name: "--channel",
+          description:
+            "Record the change in this channel instead of the current channel",
+          args: {
+            name: "CHANNEL",
+          },
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "--ignore-missing",
+          description: "Ignore missing (deleted) files",
+        },
+        {
+          name: ["-m", "--message"],
+          description: "Set the change message",
+          args: {
+            name: "MESSAGE",
+          },
+        },
+        {
+          name: "--repository",
+          description:
+            "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+          args: {
+            name: "REPO_PATH",
+          },
+        },
+        {
+          name: "--timestamp",
+          description: "Set the timestamp field",
+          args: {
+            name: "TIMESTAMP",
+          },
+        },
+        {
+          name: "--working-copy",
+          args: {
+            name: "WORKING_COPY",
+          },
+        },
+      ],
+    },
   ],
 };
 export default completionSpec;
