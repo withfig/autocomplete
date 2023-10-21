@@ -492,6 +492,46 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "reset",
+      description:
+        "Resets the working copy to the last recorded change.\nIn other words, discards all unrecorded changes.",
+      args: {
+        name: "FILES",
+        description: "Only reset these files",
+      },
+      options: [
+        {
+          name: "--channel",
+          description:
+            "Reset the working copy to this channel, and change the current channel to this channel",
+          args: {
+            name: "CHANNEL",
+          },
+        },
+        {
+          name: "--dry-run",
+          description:
+            "Print this file to the standard output, without modifying the repository (works for a single file only)",
+        },
+        {
+          name: ["-f", "--force"],
+          description: "Reset even if there are unrecorded changes",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "--repository",
+          description:
+            "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+          args: {
+            name: "REPO_PATH",
+          },
+        },
+      ],
+    },
   ],
 };
 export default completionSpec;
