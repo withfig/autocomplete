@@ -477,6 +477,21 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "remove",
+      description:
+        "Removes a file from the tree of tracked files (pijul record will then record this as a deletion)",
+      args: {
+        name: "PATHS",
+        description: "The paths need to be removed",
+      },
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+    },
   ],
 };
 export default completionSpec;
