@@ -439,6 +439,44 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "remote",
+      description: "Manages remote repositories",
+      subcommands: [
+        {
+          name: "delete",
+          description: "Deletes the remote",
+          args: {
+            name: "REMOTE",
+          },
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Pirnt help information",
+            },
+          ],
+        },
+        {
+          name: "help",
+          description:
+            "Print this message or the help of the given subcommand(s)",
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "--repository",
+          description:
+            "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+          args: {
+            name: "REPO_PATH",
+          },
+        },
+      ],
+    },
   ],
 };
 export default completionSpec;
