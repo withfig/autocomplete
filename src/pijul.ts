@@ -242,13 +242,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "FROM",
           description: "Pulls from this remote",
-          isOptional: true,
         },
         {
           name: "CHANGES",
           description:
             "Pull changes from the local repository, not necessarily from a channel",
-          isOptional: true,
         },
       ],
       options: [
@@ -299,6 +297,70 @@ const completionSpec: Fig.Spec = {
         {
           name: "--to-channel",
           description: "Pull into this channel instead of the current channel",
+          args: {
+            name: "TO_CHANNEL",
+          },
+        },
+      ],
+    },
+    {
+      name: "push",
+      description: "Pushes changes to a remote upstream",
+      args: [
+        {
+          name: "TO",
+          description: "Push to this remote",
+        },
+        {
+          name: "CHANGES",
+          description: "Push only these changes",
+        },
+      ],
+      options: [
+        {
+          name: ["-a", "--all"],
+          description: "Push all changes",
+        },
+        {
+          name: ["-f", "--force-cache"],
+          description:
+            "Force an update of the local remote cache. May effect some reporting of unrecords/concurrent changes in the remote",
+        },
+        {
+          name: "--from-channel",
+          description: "Push from this channel instead of the default channel",
+          args: {
+            name: "FROM_CHANNEL",
+          },
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "-k",
+          description:
+            "Do not check certificates (HTTPS remotes only, this option might be dangerous)",
+        },
+        {
+          name: "--path",
+          description: "Push changes only relating to these paths",
+          args: {
+            name: "PATH",
+          },
+        },
+        {
+          name: "--repository",
+          description:
+            "Path to the repository. Uses the current repository if the argument is omitted",
+          args: {
+            name: "REPO_PATH",
+          },
+        },
+        {
+          name: "--to-channel",
+          description:
+            "Push to this remote channel instead of the remote’s default channel",
           args: {
             name: "TO_CHANNEL",
           },
