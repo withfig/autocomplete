@@ -242,13 +242,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "FROM",
           description: "Pulls from this remote",
-          isOptional: true,
         },
         {
           name: "CHANGES",
           description:
             "Pull changes from the local repository, not necessarily from a channel",
-          isOptional: true,
         },
       ],
       options: [
@@ -301,6 +299,278 @@ const completionSpec: Fig.Spec = {
           description: "Pull into this channel instead of the current channel",
           args: {
             name: "TO_CHANNEL",
+          },
+        },
+      ],
+    },
+    {
+      name: "push",
+      description: "Pushes changes to a remote upstream",
+      args: [
+        {
+          name: "TO",
+          description: "Push to this remote",
+        },
+        {
+          name: "CHANGES",
+          description: "Push only these changes",
+        },
+      ],
+      options: [
+        {
+          name: ["-a", "--all"],
+          description: "Push all changes",
+        },
+        {
+          name: ["-f", "--force-cache"],
+          description:
+            "Force an update of the local remote cache. May effect some reporting of unrecords/concurrent changes in the remote",
+        },
+        {
+          name: "--from-channel",
+          description: "Push from this channel instead of the default channel",
+          args: {
+            name: "FROM_CHANNEL",
+          },
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "-k",
+          description:
+            "Do not check certificates (HTTPS remotes only, this option might be dangerous)",
+        },
+        {
+          name: "--path",
+          description: "Push changes only relating to these paths",
+          args: {
+            name: "PATH",
+          },
+        },
+        {
+          name: "--repository",
+          description:
+            "Path to the repository. Uses the current repository if the argument is omitted",
+          args: {
+            name: "REPO_PATH",
+          },
+        },
+        {
+          name: "--to-channel",
+          description:
+            "Push to this remote channel instead of the remote’s default channel",
+          args: {
+            name: "TO_CHANNEL",
+          },
+        },
+      ],
+    },
+    {
+      name: "record",
+      description: "Creates a new change",
+      args: {
+        name: "PREFIXES",
+        description: "Paths in which to record the changes",
+      },
+      options: [
+        {
+          name: ["-a", "--all"],
+          description: "Record all paths that have changed",
+        },
+        {
+          name: "--amend",
+          description: "Amend this change instead of creating a new change",
+          args: {
+            name: "AMEND",
+          },
+        },
+        {
+          name: "--author",
+          description: "Set the author field",
+          args: {
+            name: "AUTHOR",
+          },
+        },
+        {
+          name: "--channel",
+          description:
+            "Record the change in this channel instead of the current channel",
+          args: {
+            name: "CHANNEL",
+          },
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "--ignore-missing",
+          description: "Ignore missing (deleted) files",
+        },
+        {
+          name: ["-m", "--message"],
+          description: "Set the change message",
+          args: {
+            name: "MESSAGE",
+          },
+        },
+        {
+          name: "--repository",
+          description:
+            "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+          args: {
+            name: "REPO_PATH",
+          },
+        },
+        {
+          name: "--timestamp",
+          description: "Set the timestamp field",
+          args: {
+            name: "TIMESTAMP",
+          },
+        },
+        {
+          name: "--working-copy",
+          args: {
+            name: "WORKING_COPY",
+          },
+        },
+      ],
+    },
+    {
+      name: "remote",
+      description: "Manages remote repositories",
+      subcommands: [
+        {
+          name: "delete",
+          description: "Deletes the remote",
+          args: {
+            name: "REMOTE",
+          },
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Pirnt help information",
+            },
+          ],
+        },
+        {
+          name: "help",
+          description:
+            "Print this message or the help of the given subcommand(s)",
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "--repository",
+          description:
+            "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+          args: {
+            name: "REPO_PATH",
+          },
+        },
+      ],
+    },
+    {
+      name: "remove",
+      description:
+        "Removes a file from the tree of tracked files (pijul record will then record this as a deletion)",
+      args: {
+        name: "PATHS",
+        description: "The paths need to be removed",
+      },
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+    },
+    {
+      name: "reset",
+      description:
+        "Resets the working copy to the last recorded change.\nIn other words, discards all unrecorded changes.",
+      args: {
+        name: "FILES",
+        description: "Only reset these files",
+      },
+      options: [
+        {
+          name: "--channel",
+          description:
+            "Reset the working copy to this channel, and change the current channel to this channel",
+          args: {
+            name: "CHANNEL",
+          },
+        },
+        {
+          name: "--dry-run",
+          description:
+            "Print this file to the standard output, without modifying the repository (works for a single file only)",
+        },
+        {
+          name: ["-f", "--force"],
+          description: "Reset even if there are unrecorded changes",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "--repository",
+          description:
+            "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+          args: {
+            name: "REPO_PATH",
+          },
+        },
+      ],
+    },
+    {
+      name: "unrecord",
+      description: "Unrecords a list of changes",
+      args: {
+        name: "CHANGE_ID",
+        description: "The hash of a change (unambiguous prefixes are accepted)",
+      },
+      options: [
+        {
+          name: "--channel",
+          description:
+            "Unrecord changes from this channel instead of the current channel",
+          args: {
+            name: "CHANNEL",
+          },
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "--repository",
+          description:
+            "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+          args: {
+            name: "REPO_PATH",
+          },
+        },
+        {
+          name: "--reset",
+          description:
+            "Also undo the changes in the working copy (preserving unrecorded changes if there are any)",
+        },
+        {
+          name: "--show-changes",
+          description:
+            "Show N changes in a text editor if no s were given. Defaults to the value of unrecord_changes in your global configuration",
+          args: {
+            name: "N",
           },
         },
       ],
