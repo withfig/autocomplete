@@ -1,9 +1,8 @@
 const completionSpec: Fig.Spec = {
   name: "pijul",
   description:
-    "Welcome to the Pijul book, an introduction to Pijul, a distributed version control system that is at the same time theoretically sound, fast and easy to learn and use",
+    "A distributed version control system that is at the same time theoretically sound, fast and easy to learn and use",
   subcommands: [
-    // --------------------------------------- DUAN ---------------------------------------
     {
       name: "add",
       description:
@@ -35,8 +34,11 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: "--channel <CHANNEL>",
+          name: "--channel",
           description: "--deps-only",
+          args: {
+            name: "<CHANNEL>",
+          },
         },
         {
           name: "--deps-only",
@@ -48,9 +50,12 @@ const completionSpec: Fig.Spec = {
           description: "Print help information",
         },
         {
-          name: "--repository <REPO_PATH>",
+          name: "--repository",
           description:
             "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+          args: {
+            name: "<REPO_PATH>",
+          },
         },
       ],
     },
@@ -59,12 +64,18 @@ const completionSpec: Fig.Spec = {
       description: "Creates an archive of the repository",
       options: [
         {
-          name: "--change <CHANGE>",
+          name: "--change",
           description: "Apply these changes after switching to the channel",
+          args: {
+            name: "<CHANGE>",
+          },
         },
         {
-          name: "--channel <CHANNEL>",
+          name: "--channel",
           description: "Use this channel, instead of the current channel",
+          args: {
+            name: "<CHANNEL>",
+          },
         },
         {
           name: ["-h", "--help"],
@@ -76,31 +87,49 @@ const completionSpec: Fig.Spec = {
             "Do not check certificates (HTTPS remotes only, this option might be dangerous)",
         },
         {
-          name: "-o <NAME>",
+          name: "-o",
           description: "Name of the output file",
+          args: {
+            name: "<NAME>",
+          },
         },
         {
-          name: "--prefix <PREFIX>",
+          name: "--prefix",
           description:
             "Append this path in front of each path inside the archive",
+          args: {
+            name: "<PREFIX>",
+          },
         },
         {
-          name: "--remote <REMOTE>",
+          name: "--remote",
           description: "Ask the remote to send an archive",
+          args: {
+            name: "<REMOTE>",
+          },
         },
         {
-          name: "--repository <REPO_PATH>",
+          name: "--repository",
           description:
             "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+          args: {
+            name: "<REPO_PATH>",
+          },
         },
         {
-          name: "--state <STATE>",
+          name: "--state",
           description: "Archive in this state",
+          args: {
+            name: "<STATE>",
+          },
         },
         {
-          name: "--umask <UMASK>",
+          name: "--umask",
           description:
             "Append this path in front of each path inside the archive",
+          args: {
+            name: "<UMASK>",
+          },
         },
       ],
     },
@@ -118,9 +147,12 @@ const completionSpec: Fig.Spec = {
           description: "Print help information",
         },
         {
-          name: "--repository <PATH>",
+          name: "--repository",
           description:
             "Use the repository at PATH instead of the current directory",
+          args: {
+            name: "<PATH>",
+          },
         },
       ],
     },
@@ -133,9 +165,12 @@ const completionSpec: Fig.Spec = {
           description: "Print help information",
         },
         {
-          name: "--repository <REPO_PATH>",
+          name: "--repository",
           description:
             "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+          args: {
+            name: "<REPO_PATH>",
+          },
         },
       ],
       subcommands: [
@@ -206,12 +241,18 @@ const completionSpec: Fig.Spec = {
       ],
       options: [
         {
-          name: "--change <CHANGE>",
+          name: "--change",
           description: "Clone this change and its dependencies",
+          args: {
+            name: "<CHANGE>",
+          },
         },
         {
-          name: "--channel <CHANNEL>",
+          name: "--channel",
           description: "Set the remote channel [default: main]",
+          args: {
+            name: "<CHANNEL>",
+          },
         },
         {
           name: ["-h", "--help"],
@@ -223,54 +264,64 @@ const completionSpec: Fig.Spec = {
             "Do not check certificates (HTTPS remotes only, this option might be dangerous)",
         },
         {
-          name: "--path <PARTIAL_PATHS>",
+          name: "--path",
           description: "Clone this path only",
+          args: {
+            name: "<PARTIAL_PATHS>",
+          },
         },
         {
-          name: "--state <STATE>",
+          name: "--state",
           description: "Clone this state",
+          args: {
+            name: "<STATE>",
+          },
         },
       ],
     },
-
-    // --------------------------------------- NICK ---------------------------------------
     {
       name: "credit",
-      description: "Shows which change last affected each line of the given file(s)",
-      args: [
-        {
-          name: "<FILE>",
-          description: "The file to annotate",
-        },
-      ],
+      description:
+        "Shows which change last affected each line of the given file(s)",
+      args: {
+        name: "<FILE>",
+        description: "The file to annotate",
+      },
       options: [
         {
-          name: "--channel <CHANNEL>",
+          name: "--channel",
           description: "Use this channel instead of the current channel",
+          args: {
+            name: "<CHANNEL>",
+          },
         },
         {
           name: ["-h", "--help"],
           description: "Print help information",
         },
         {
-          name: "--repository <REPO_PATH>",
-          description: 
+          name: "--repository",
+          description:
             "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+          args: {
+            name: "<REPO_PATH>",
+          },
         },
       ],
     },
     {
       name: "diff",
       description: "Shows difference between two channels/changes",
-      args: [ 
-        {
-          name: "<PREFIXES>...",
-        },
-      ],
+      args: {
+        name: "<PREFIXES>...",
+      },
       options: [
         {
-          name: "--channel <CHANNEL>",
+          name: "--channel",
           description: "Compare with this channel",
+          args: {
+            name: "<CHANNEL>",
+          },
         },
         {
           name: ["-h", "--help"],
@@ -278,20 +329,25 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--json",
-          description: "Output the diff in JSON format instead of the default change text format",
+          description:
+            "Output the diff in JSON format instead of the default change text format",
         },
         {
-          name: "--repository <REPO_PATH>",
-          description: 
+          name: "--repository",
+          description:
             "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
-        },        
+          args: {
+            name: "<REPO_PATH>",
+          },
+        },
         {
-          name: "-s, --short",
+          name: ["-s", "--short"],
           description: "Show a short version of the diff",
-        },        
+        },
         {
           name: "--tag",
-          description: "Add all the changes of this channel as dependencies (except changes implied transitively), instead of the minimal dependencies",
+          description:
+            "Add all the changes of this channel as dependencies (except changes implied transitively), instead of the minimal dependencies",
         },
         {
           name: ["-u", "--untracked"],
@@ -302,71 +358,83 @@ const completionSpec: Fig.Spec = {
     {
       name: "fork",
       description: "Create a new channel",
-      args: [
-        {
-          name: "<TO>",
-          description: "The name of the new channel",
-        },
-      ],
+      args: {
+        name: "<TO>",
+        description: "The name of the new channel",
+      },
       options: [
         {
-          name: "--change <CHANGE>",
+          name: "--change",
           description: "Apply this change after creating the channel",
+          args: {
+            name: "<CHANGE>",
+          },
         },
         {
-          name: "--channel <CHANNEL>",
-          description: "Make the new channel from this channel instead of the current channel",
+          name: "--channel",
+          description:
+            "Make the new channel from this channel instead of the current channel",
+          args: {
+            name: "<CHANNEL>",
+          },
         },
         {
           name: ["-h", "--help"],
           description: "Print help information",
         },
         {
-          name: "--repository <REPO_PATH>",
-          description: 
+          name: "--repository",
+          description:
             "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+          args: {
+            name: "<REPO_PATH>",
+          },
         },
       ],
     },
     {
       name: "init",
       description: "Initializes an empty pijul repository",
-      args: [
-        {
-          name: "<PATH>",
-          description: "Path where the repository should be initalized",
-        },
-      ],
+      args: {
+        name: "<PATH>",
+        description: "Path where the repository should be initalized",
+      },
       options: [
         {
-          name: "--channel <CHANNEL>",
-          description: "Set the name of the current channel (defaults to “main”)",
+          name: "--channel",
+          description:
+            "Set the name of the current channel (defaults to “main”)",
+          args: {
+            name: "<CHANNEL>",
+          },
         },
         {
           name: ["-h", "--help"],
           description: "Print help information",
         },
         {
-          name: ["-k", "--kind <KIND>"],
+          name: ["-k", "--kind"],
           description:
             "Project kind; if Pijul knows about your project kind, the .ignore file will be populated with a conservative list of commonly ignored entries. Example: pijul init --kind=rust",
+          args: {
+            name: "<KIND>",
+          },
         },
       ],
     },
     {
       name: "log",
       description: "Show the entire log of changes",
-      args: [
-        {
-          name: "<FILTERS>...",
-          description: 
-            "Filter log output, showing only log entries that touched the specified files. Accepted as a list of paths relative to your current directory. Currently, filters can only be applied when logging the channel that’s in use",
-        },
-      ],
+      args: {
+        name: "<FILTERS>...",
+        description:
+          "Filter log output, showing only log entries that touched the specified files. Accepted as a list of paths relative to your current directory. Currently, filters can only be applied when logging the channel that’s in use",
+      },
       options: [
         {
           name: "--channel",
-          description: "Show logs for this channel instead of the current channel",
+          description:
+            "Show logs for this channel instead of the current channel",
           args: {
             name: "CHANNEL",
           },
@@ -401,15 +469,15 @@ const completionSpec: Fig.Spec = {
           name: "--output-format",
           args: {
             name: "OUTPUT_FORMAT",
-          }, 
+          },
         },
         {
           name: "--repository",
-          description: 
+          description:
             "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
           args: {
             name: "REPO_PATH",
-          }, 
+          },
         },
         {
           name: "--state",
@@ -423,8 +491,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "mv",
     },
-
-    // --------------------------------------- ANDY ---------------------------------------
     {
       name: "pull",
       description: "Pulls changes from a remote upstream",
@@ -685,7 +751,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "reset",
       description:
-        "Resets the working copy to the last recorded change.\nIn other words, discards all unrecorded changes.",
+        "Resets the working copy to the last recorded change.\nIn other words, discards all unrecorded changes",
       args: {
         name: "FILES",
         description: "Only reset these files",
