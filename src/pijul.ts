@@ -299,6 +299,35 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "fork",
+      description: "Create a new channel",
+      args: [
+        {
+          name: "<TO>",
+          description: "The name of the new channel",
+        },
+      ],
+      options: [
+        {
+          name: "--change <CHANGE>",
+          description: "Apply this change after creating the channel",
+        },
+        {
+          name: "--channel <CHANNEL>",
+          description: "Make the new channel from this channel instead of the current channel",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "--repository <REPO_PATH>",
+          description: 
+            "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+        },
+      ],
+    },
 
     // --------------------------------------- ANDY ---------------------------------------
     {
