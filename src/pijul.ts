@@ -232,7 +232,197 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+
     // --------------------------------------- NICK ---------------------------------------
+    {
+      name: "credit",
+      description: "Shows which change last affected each line of the given file(s)",
+      args: [
+        {
+          name: "<FILE>",
+          description: "The file to annotate",
+        },
+      ],
+      options: [
+        {
+          name: "--channel <CHANNEL>",
+          description: "Use this channel instead of the current channel",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "--repository <REPO_PATH>",
+          description: 
+            "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+        },
+      ],
+    },
+    {
+      name: "diff",
+      description: "Shows difference between two channels/changes",
+      args: [ 
+        {
+          name: "<PREFIXES>...",
+        },
+      ],
+      options: [
+        {
+          name: "--channel <CHANNEL>",
+          description: "Compare with this channel",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "--json",
+          description: "Output the diff in JSON format instead of the default change text format",
+        },
+        {
+          name: "--repository <REPO_PATH>",
+          description: 
+            "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+        },        
+        {
+          name: "-s, --short",
+          description: "Show a short version of the diff",
+        },        
+        {
+          name: "--tag",
+          description: "Add all the changes of this channel as dependencies (except changes implied transitively), instead of the minimal dependencies",
+        },
+        {
+          name: ["-u", "--untracked"],
+          description: "Include the untracked files",
+        },
+      ],
+    },
+    {
+      name: "fork",
+      description: "Create a new channel",
+      args: [
+        {
+          name: "<TO>",
+          description: "The name of the new channel",
+        },
+      ],
+      options: [
+        {
+          name: "--change <CHANGE>",
+          description: "Apply this change after creating the channel",
+        },
+        {
+          name: "--channel <CHANNEL>",
+          description: "Make the new channel from this channel instead of the current channel",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "--repository <REPO_PATH>",
+          description: 
+            "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+        },
+      ],
+    },
+    {
+      name: "init",
+      description: "Initializes an empty pijul repository",
+      args: [
+        {
+          name: "<PATH>",
+          description: "Path where the repository should be initalized",
+        },
+      ],
+      options: [
+        {
+          name: "--channel <CHANNEL>",
+          description: "Set the name of the current channel (defaults to “main”)",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: ["-k", "--kind <KIND>"],
+          description:
+            "Project kind; if Pijul knows about your project kind, the .ignore file will be populated with a conservative list of commonly ignored entries. Example: pijul init --kind=rust",
+        },
+      ],
+    },
+    {
+      name: "log",
+      description: "Show the entire log of changes",
+      args: [
+        {
+          name: "<FILTERS>...",
+          description: 
+            "Filter log output, showing only log entries that touched the specified files. Accepted as a list of paths relative to your current directory. Currently, filters can only be applied when logging the channel that’s in use",
+        },
+      ],
+      options: [
+        {
+          name: "--channel",
+          description: "Show logs for this channel instead of the current channel",
+          args: {
+            name: "CHANNEL",
+          },
+        },
+        {
+          name: "--description",
+          description: "Include full change description in the output",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "--hash-only",
+          description: "Only show the change hashes",
+        },
+        {
+          name: "--limit",
+          description: "Output at most this many changes",
+          args: {
+            name: "LIMIT",
+          },
+        },
+        {
+          name: "--offset",
+          description: "Start after this many changes",
+          args: {
+            name: "OFFSET",
+          },
+        },
+        {
+          name: "--output-format",
+          args: {
+            name: "OUTPUT_FORMAT",
+          }, 
+        },
+        {
+          name: "--repository",
+          description: 
+            "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+          args: {
+            name: "REPO_PATH",
+          }, 
+        },
+        {
+          name: "--state",
+          description: "Include state identifiers in the output",
+        },
+      ],
+    },
+    {
+      name: "ls",
+    },
+    {
+      name: "mv",
+    },
 
     // --------------------------------------- ANDY ---------------------------------------
     {
