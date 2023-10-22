@@ -5,8 +5,7 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "add",
-      description:
-        "Adds a path to the tree",
+      description: "Adds a path to the tree",
       args: {
         name: "PATHS",
         description: "Paths to add to the internal tree",
@@ -35,7 +34,6 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--channel",
-          description: "--deps-only",
           args: {
             name: "CHANNEL",
           },
