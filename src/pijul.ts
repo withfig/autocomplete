@@ -353,8 +353,71 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "log",
+      description: "Show the entire log of changes",
+      args: [
+        {
+          name: "<FILTERS>...",
+          description: 
+            "Filter log output, showing only log entries that touched the specified files. Accepted as a list of paths relative to your current directory. Currently, filters can only be applied when logging the channel that’s in use",
+        },
+      ],
+      options: [
+        {
+          name: "--channel",
+          description: "Show logs for this channel instead of the current channel",
+          args: {
+            name: "CHANNEL",
+          },
+        },
+        {
+          name: "--description",
+          description: "Include full change description in the output",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "--hash-only",
+          description: "Only show the change hashes",
+        },
+        {
+          name: "--limit",
+          description: "Output at most this many changes",
+          args: {
+            name: "LIMIT",
+          },
+        },
+        {
+          name: "--offset",
+          description: "Start after this many changes",
+          args: {
+            name: "OFFSET",
+          },
+        },
+        {
+          name: "--output-format",
+          args: {
+            name: "OUTPUT_FORMAT",
+          }, 
+        },
+        {
+          name: "--repository",
+          description: 
+            "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+          args: {
+            name: "REPO_PATH",
+          }, 
+        },
+        {
+          name: "--state",
+          description: "Include state identifiers in the output",
+        },
+      ],
+    },
 
-    
     // --------------------------------------- ANDY ---------------------------------------
     {
       name: "pull",
