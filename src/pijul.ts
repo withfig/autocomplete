@@ -237,7 +237,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "credit",
       description: "Shows which change last affected each line of the given file(s)",
-      
       args: [
         {
           name: "<FILE>",
@@ -282,15 +281,16 @@ const completionSpec: Fig.Spec = {
           description: "Output the diff in JSON format instead of the default change text format",
         },
         {
-          name: "--repository <REPO_PATH>"
+          name: "--repository <REPO_PATH>",
           description: 
-            "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory"
-        },        {
-          name: "-s, --short"
+            "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+        },        
+        {
+          name: "-s, --short",
           description: "Show a short version of the diff",
         },        
         {
-          name: "--tag"
+          name: "--tag",
           description: "Add all the changes of this channel as dependencies (except changes implied transitively), instead of the minimal dependencies",
         },
         {
@@ -328,7 +328,33 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "init",
+      description: "Initializes an empty pijul repository",
+      args: [
+        {
+          name: "<PATH>",
+          description: "Path where the repository should be initalized",
+        },
+      ],
+      options: [
+        {
+          name: "--channel <CHANNEL>",
+          description: "Set the name of the current channel (defaults to “main”)",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: ["-k", "--kind <KIND>"],
+          description:
+            "Project kind; if Pijul knows about your project kind, the .ignore file will be populated with a conservative list of commonly ignored entries. Example: pijul init --kind=rust",
+        },
+      ],
+    },
 
+    
     // --------------------------------------- ANDY ---------------------------------------
     {
       name: "pull",
