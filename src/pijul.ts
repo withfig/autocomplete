@@ -6,9 +6,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "add",
       description:
-        "Adds a path to the tree. Pijul has an internal tree to represent the files currently tracked. This command adds files and directories to that tree",
+        "Adds a path to the tree",
       args: {
-        name: "<PATHS>...",
+        name: "PATHS",
         description: "Paths to add to the internal tree",
       },
       options: [
@@ -28,7 +28,7 @@ const completionSpec: Fig.Spec = {
       name: "apply",
       description: "Applies changes to a channel",
       args: {
-        name: "<CHANGE>...",
+        name: "CHANGE",
         description:
           "The change that need to be applied. If this value is missing, read the change in text format on the standard input",
       },
@@ -37,7 +37,7 @@ const completionSpec: Fig.Spec = {
           name: "--channel",
           description: "--deps-only",
           args: {
-            name: "<CHANNEL>",
+            name: "CHANNEL",
           },
         },
         {
@@ -54,7 +54,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
           args: {
-            name: "<REPO_PATH>",
+            name: "REPO_PATH",
           },
         },
       ],
@@ -67,14 +67,14 @@ const completionSpec: Fig.Spec = {
           name: "--change",
           description: "Apply these changes after switching to the channel",
           args: {
-            name: "<CHANGE>",
+            name: "CHANGE",
           },
         },
         {
           name: "--channel",
           description: "Use this channel, instead of the current channel",
           args: {
-            name: "<CHANNEL>",
+            name: "CHANNEL",
           },
         },
         {
@@ -90,7 +90,7 @@ const completionSpec: Fig.Spec = {
           name: "-o",
           description: "Name of the output file",
           args: {
-            name: "<NAME>",
+            name: "NAME",
           },
         },
         {
@@ -98,14 +98,14 @@ const completionSpec: Fig.Spec = {
           description:
             "Append this path in front of each path inside the archive",
           args: {
-            name: "<PREFIX>",
+            name: "PREFIX",
           },
         },
         {
           name: "--remote",
           description: "Ask the remote to send an archive",
           args: {
-            name: "<REMOTE>",
+            name: "REMOTE",
           },
         },
         {
@@ -113,14 +113,14 @@ const completionSpec: Fig.Spec = {
           description:
             "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
           args: {
-            name: "<REPO_PATH>",
+            name: "REPO_PATH",
           },
         },
         {
           name: "--state",
           description: "Archive in this state",
           args: {
-            name: "<STATE>",
+            name: "STATE",
           },
         },
         {
@@ -128,7 +128,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Append this path in front of each path inside the archive",
           args: {
-            name: "<UMASK>",
+            name: "UMASK",
           },
         },
       ],
@@ -137,7 +137,7 @@ const completionSpec: Fig.Spec = {
       name: "change",
       description: "Shows information about a particular change",
       args: {
-        name: "<HASH>",
+        name: "HASH",
         description:
           "The hash of the change to show, or an unambiguous prefix thereof",
       },
@@ -151,7 +151,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Use the repository at PATH instead of the current directory",
           args: {
-            name: "<PATH>",
+            name: "PATH",
           },
         },
       ],
@@ -169,7 +169,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
           args: {
-            name: "<REPO_PATH>",
+            name: "REPO_PATH",
           },
         },
       ],
@@ -179,7 +179,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Delete a channel. The channel must not be the current channel",
           args: {
-            name: "<DELETE>",
+            name: "DELETE",
           },
           options: [
             {
@@ -202,10 +202,10 @@ const completionSpec: Fig.Spec = {
           description: "Rename a channel",
           args: [
             {
-              name: "<FROM>",
+              name: "FROM",
             },
             {
-              name: "<TO>",
+              name: "TO",
             },
           ],
           options: [
@@ -227,16 +227,16 @@ const completionSpec: Fig.Spec = {
       description: "Clones an existing pijul repository",
       args: [
         {
-          name: "<REMOTE>",
+          name: "REMOTE",
           description: "Clone this remote",
         },
         {
-          name: "<PATH>",
+          name: "PATH",
           description:
             "Path where to clone the repository. If missing, the inferred name of the remote repository is used",
         },
         {
-          name: "<SALT>",
+          name: "SALT",
         },
       ],
       options: [
@@ -244,14 +244,14 @@ const completionSpec: Fig.Spec = {
           name: "--change",
           description: "Clone this change and its dependencies",
           args: {
-            name: "<CHANGE>",
+            name: "CHANGE",
           },
         },
         {
           name: "--channel",
           description: "Set the remote channel [default: main]",
           args: {
-            name: "<CHANNEL>",
+            name: "CHANNEL",
           },
         },
         {
@@ -267,14 +267,14 @@ const completionSpec: Fig.Spec = {
           name: "--path",
           description: "Clone this path only",
           args: {
-            name: "<PARTIAL_PATHS>",
+            name: "PARTIAL_PATHS",
           },
         },
         {
           name: "--state",
           description: "Clone this state",
           args: {
-            name: "<STATE>",
+            name: "STATE",
           },
         },
       ],
@@ -284,7 +284,7 @@ const completionSpec: Fig.Spec = {
       description:
         "Shows which change last affected each line of the given file(s)",
       args: {
-        name: "<FILE>",
+        name: "FILE",
         description: "The file to annotate",
       },
       options: [
@@ -292,7 +292,7 @@ const completionSpec: Fig.Spec = {
           name: "--channel",
           description: "Use this channel instead of the current channel",
           args: {
-            name: "<CHANNEL>",
+            name: "CHANNEL",
           },
         },
         {
@@ -304,7 +304,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
           args: {
-            name: "<REPO_PATH>",
+            name: "REPO_PATH",
           },
         },
       ],
@@ -313,14 +313,14 @@ const completionSpec: Fig.Spec = {
       name: "diff",
       description: "Shows difference between two channels/changes",
       args: {
-        name: "<PREFIXES>...",
+        name: "PREFIXES",
       },
       options: [
         {
           name: "--channel",
           description: "Compare with this channel",
           args: {
-            name: "<CHANNEL>",
+            name: "CHANNEL",
           },
         },
         {
@@ -337,7 +337,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
           args: {
-            name: "<REPO_PATH>",
+            name: "REPO_PATH",
           },
         },
         {
@@ -359,7 +359,7 @@ const completionSpec: Fig.Spec = {
       name: "fork",
       description: "Create a new channel",
       args: {
-        name: "<TO>",
+        name: "TO",
         description: "The name of the new channel",
       },
       options: [
@@ -367,7 +367,7 @@ const completionSpec: Fig.Spec = {
           name: "--change",
           description: "Apply this change after creating the channel",
           args: {
-            name: "<CHANGE>",
+            name: "CHANGE",
           },
         },
         {
@@ -375,7 +375,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Make the new channel from this channel instead of the current channel",
           args: {
-            name: "<CHANNEL>",
+            name: "CHANNEL",
           },
         },
         {
@@ -387,7 +387,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
           args: {
-            name: "<REPO_PATH>",
+            name: "REPO_PATH",
           },
         },
       ],
@@ -396,7 +396,7 @@ const completionSpec: Fig.Spec = {
       name: "init",
       description: "Initializes an empty pijul repository",
       args: {
-        name: "<PATH>",
+        name: "PATH",
         description: "Path where the repository should be initalized",
       },
       options: [
@@ -405,7 +405,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Set the name of the current channel (defaults to “main”)",
           args: {
-            name: "<CHANNEL>",
+            name: "CHANNEL",
           },
         },
         {
@@ -417,7 +417,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Project kind; if Pijul knows about your project kind, the .ignore file will be populated with a conservative list of commonly ignored entries. Example: pijul init --kind=rust",
           args: {
-            name: "<KIND>",
+            name: "KIND",
           },
         },
       ],
@@ -426,7 +426,7 @@ const completionSpec: Fig.Spec = {
       name: "log",
       description: "Show the entire log of changes",
       args: {
-        name: "<FILTERS>...",
+        name: "FILTERS",
         description:
           "Filter log output, showing only log entries that touched the specified files. Accepted as a list of paths relative to your current directory. Currently, filters can only be applied when logging the channel that’s in use",
       },
