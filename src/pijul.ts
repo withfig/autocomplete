@@ -34,6 +34,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--channel",
+          description: "Apply change to this channel",
           args: {
             name: "CHANNEL",
           },
@@ -157,20 +158,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "channel",
       description: "Manages different channels",
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Print help information",
-        },
-        {
-          name: "--repository",
-          description:
-            "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
-          args: {
-            name: "REPO_PATH",
-          },
-        },
-      ],
       subcommands: [
         {
           name: "delete",
@@ -217,6 +204,20 @@ const completionSpec: Fig.Spec = {
           name: "switch",
           description:
             "Switch to a channel. There must not be unrecorded changes in the working copy",
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "--repository",
+          description:
+            "Set the repository where this command should run. Defaults to the first ancestor of the current directory that contains a .pijul directory",
+          args: {
+            name: "REPO_PATH",
+          },
         },
       ],
     },
@@ -312,6 +313,8 @@ const completionSpec: Fig.Spec = {
       description: "Shows difference between two channels/changes",
       args: {
         name: "PREFIXES",
+        description:
+          "Only diff those paths (files or directories). If missing, diff the entire repository",
       },
       options: [
         {
