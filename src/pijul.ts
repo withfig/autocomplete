@@ -398,7 +398,7 @@ const completionSpec: Fig.Spec = {
       description: "Initializes an empty pijul repository",
       args: {
         name: "PATH",
-        description: "Path where the repository should be initalized",
+        description: "Path where the repository should be initialized",
       },
       options: [
         {
@@ -709,7 +709,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["-h", "--help"],
-              description: "Pirnt help information",
+              description: "Print help information",
             },
           ],
         },
