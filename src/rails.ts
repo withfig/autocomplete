@@ -629,6 +629,7 @@ export const railsCommandsGenerator: Fig.Generator = {
 const completionSpec: Fig.Spec = {
   name: "rails",
   description: "Ruby on Rails CLI",
+  icon: "https://avatars.githubusercontent.com/u/4223?s=48&v=4",
   generateSpec: async (_, executeShellCommand) => {
     const isRailsDirectory = !!(await executeShellCommand(
       `until [[ -f Gemfile ]] || [[ $PWD = '/' ]]; do cd ..; done; if [ -f Gemfile ]; then cat Gemfile | \\grep "gem ['\\"]rails['\\"]"; fi`
