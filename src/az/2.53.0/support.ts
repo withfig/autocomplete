@@ -10,7 +10,6 @@ const completion: Fig.Spec = {
           name: "list",
           description:
             "Lists all the Azure services available for support ticket creation. Always use the service and it's corresponding problem classification(s) obtained programmatically for support ticket creation. This practice ensures that you always have the most recent set of service and problem classification Ids",
-          
         },
         {
           name: "show",

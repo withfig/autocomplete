@@ -169,7 +169,6 @@ const completion: Fig.Spec = {
         {
           name: "list-available",
           description: "List available Kubernetes addons",
-          
         },
         {
           name: "show",

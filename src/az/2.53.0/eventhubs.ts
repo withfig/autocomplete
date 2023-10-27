@@ -10,7 +10,6 @@ const completion: Fig.Spec = {
           name: "available-region",
           description:
             "List the quantity of available pre-provisioned Event Hubs Clusters, indexed by Azure region",
-          
         },
         {
           name: "create",

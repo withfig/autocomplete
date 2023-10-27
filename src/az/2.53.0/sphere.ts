@@ -566,7 +566,6 @@ const completion: Fig.Spec = {
         {
           name: "list-attached",
           description: "List all the attached devices",
-          
         },
         {
           name: "recover",
@@ -596,7 +595,6 @@ const completion: Fig.Spec = {
         {
           name: "rescan-attached",
           description: "Show the number of attached devices",
-          
         },
         {
           name: "restart",
@@ -1455,7 +1453,6 @@ const completion: Fig.Spec = {
             {
               name: "show-deployment-timeout",
               description: "Show deployment timeout in seconds",
-              
             },
           ],
         },

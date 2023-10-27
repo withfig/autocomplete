@@ -11917,7 +11917,6 @@ const completion: Fig.Spec = {
       name: "list-marketplace-plan",
       description:
         "(Enterprise Tier Only) List Marketplace plan to be purchased",
-      
     },
     {
       name: "list-support-server-versions",

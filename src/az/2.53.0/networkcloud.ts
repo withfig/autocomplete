@@ -4448,7 +4448,6 @@ const completion: Fig.Spec = {
         {
           name: "list",
           description: "List rack SKUs in the provided subscription",
-          
         },
         {
           name: "show",

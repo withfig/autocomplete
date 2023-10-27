@@ -183,7 +183,6 @@ const completion: Fig.Spec = {
           name: "list",
           description:
             "List all the registration definitions under the default scope or under the subscription provided",
-          
         },
         {
           name: "show",

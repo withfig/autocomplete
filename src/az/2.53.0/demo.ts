@@ -42,12 +42,11 @@ const completion: Fig.Spec = {
         {
           name: "load",
           description: "Load custom data from secret store",
-          
         },
         {
           name: "save",
           description: "Save custom data to secret store",
-          
+
           args: {
             name: "<KEY_VALUE>",
             description: "Space-separated data: = [= ...]",

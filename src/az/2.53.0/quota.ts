@@ -167,7 +167,6 @@ const completion: Fig.Spec = {
           name: "list",
           description:
             "List all the operations supported by the Microsoft.Quota resource provider",
-          
         },
       ],
     },

@@ -61,7 +61,6 @@ const completion: Fig.Spec = {
           name: "list",
           description:
             "Lists all of the peer ASNs under the given subscription",
-          
         },
         {
           name: "show",
@@ -766,7 +765,6 @@ const completion: Fig.Spec = {
               name: "list",
               description:
                 "Lists all of the available countries for peering service",
-              
             },
           ],
         },
@@ -957,7 +955,6 @@ const completion: Fig.Spec = {
               name: "list",
               description:
                 "Lists all of the available peering service locations for the specified kind of peering",
-              
             },
           ],
         },

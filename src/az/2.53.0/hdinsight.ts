@@ -377,7 +377,6 @@ const completion: Fig.Spec = {
           name: "list-timezones",
           description:
             "List the available timezone name when enabling Schedule-based Autoscale",
-          
         },
         {
           name: "show",

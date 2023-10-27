@@ -254,7 +254,6 @@ const completion: Fig.Spec = {
     {
       name: "list-versions",
       description: "List out all available versions of Bicep CLI",
-      
     },
     {
       name: "publish",
@@ -304,7 +303,7 @@ const completion: Fig.Spec = {
         },
       ],
     },
-    { name: "uninstall", description: "Uninstall Bicep CLI", },
+    { name: "uninstall", description: "Uninstall Bicep CLI" },
     {
       name: "upgrade",
       description: "Upgrade Bicep CLI to the latest version",
@@ -330,7 +329,6 @@ const completion: Fig.Spec = {
     {
       name: "version",
       description: "Show the installed version of Bicep CLI",
-      
     },
   ],
 };

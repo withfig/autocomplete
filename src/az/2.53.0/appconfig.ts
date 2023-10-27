@@ -114,7 +114,6 @@ const completion: Fig.Spec = {
     {
       name: "list-deleted",
       description: "List all deleted, but not yet purged App Configurations",
-      
     },
     {
       name: "purge",

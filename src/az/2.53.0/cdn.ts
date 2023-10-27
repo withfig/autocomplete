@@ -272,7 +272,6 @@ const completion: Fig.Spec = {
           name: "list",
           description:
             "Edgenodes are the global Point of Presence (POP) locations used to deliver CDN content to end users",
-          
         },
       ],
     },
@@ -1806,7 +1805,6 @@ const completion: Fig.Spec = {
       name: "usage",
       description:
         "Check the quota and actual usage of the CDN profiles under the given subscription",
-      
     },
     {
       name: "origin",
@@ -2958,7 +2956,6 @@ const completion: Fig.Spec = {
                 {
                   name: "list-available",
                   description: "List available CDN WAF managed rule sets",
-                  
                 },
                 {
                   name: "remove",

@@ -2104,7 +2104,6 @@ const completion: Fig.Spec = {
           name: "get-policy-template",
           description:
             "Return policy template as JSON encoded policy definition",
-          
         },
         {
           name: "import",

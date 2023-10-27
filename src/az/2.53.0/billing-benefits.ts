@@ -261,7 +261,6 @@ const completion: Fig.Spec = {
         {
           name: "list",
           description: "List all Savings plan orders",
-          
         },
         {
           name: "show",

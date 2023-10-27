@@ -3370,7 +3370,6 @@ const completion: Fig.Spec = {
           name: "list",
           description:
             "Retrieves the list of cosmosdb locations and their properties",
-          
         },
         {
           name: "show",

@@ -4529,7 +4529,6 @@ const completion: Fig.Spec = {
           name: "list",
           description:
             "Lists available operations for the Kusto sub-resources inside Microsoft.Synapse provider",
-          
         },
       ],
     },

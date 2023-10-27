@@ -586,7 +586,6 @@ const completion: Fig.Spec = {
         {
           name: "list",
           description: "List all deployment stacks in subscription",
-          
         },
         {
           name: "show",

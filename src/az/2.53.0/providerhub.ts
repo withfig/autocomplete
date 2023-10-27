@@ -731,7 +731,6 @@ const completion: Fig.Spec = {
           name: "list",
           description:
             "Gets the list of the provider registrations in the subscription",
-          
         },
         {
           name: "show",

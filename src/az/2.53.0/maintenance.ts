@@ -89,7 +89,6 @@ const completion: Fig.Spec = {
         {
           name: "list",
           description: "Get Configuration records within a subscription",
-          
         },
         {
           name: "show",
@@ -799,7 +798,6 @@ const completion: Fig.Spec = {
         {
           name: "list-subscription",
           description: "List configuration assignment within a subscription",
-          
         },
         {
           name: "show",
@@ -1703,7 +1701,6 @@ const completion: Fig.Spec = {
         {
           name: "list",
           description: "List Public Maintenance Configuration records",
-          
         },
         {
           name: "show",

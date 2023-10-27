@@ -75,7 +75,6 @@ const completion: Fig.Spec = {
         {
           name: "list",
           description: "Get operations from all providers",
-          
         },
         {
           name: "show",

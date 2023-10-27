@@ -270,7 +270,6 @@ const completion: Fig.Spec = {
         {
           name: "list",
           description: "Lists the enrollment accounts the caller has access to",
-          
         },
         {
           name: "show",
@@ -1282,7 +1281,6 @@ const completion: Fig.Spec = {
           name: "show",
           description:
             "Get the billing properties for a subscription. This operation is not supported for billing accounts with agreement type Enterprise Agreement",
-          
         },
         {
           name: "update",

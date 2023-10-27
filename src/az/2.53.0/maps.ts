@@ -479,7 +479,6 @@ const completion: Fig.Spec = {
           name: "list-operation",
           description:
             "List operations available for the Maps Resource Provider",
-          
         },
       ],
     },

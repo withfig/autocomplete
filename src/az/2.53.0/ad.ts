@@ -1491,7 +1491,6 @@ const completion: Fig.Spec = {
         {
           name: "show",
           description: "Get the details for the currently logged-in user",
-          
         },
       ],
     },

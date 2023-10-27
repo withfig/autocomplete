@@ -49,7 +49,7 @@ const completion: Fig.Spec = {
         },
       ],
     },
-    { name: "list", description: "List the registered aliases", },
+    { name: "list", description: "List the registered aliases" },
     {
       name: "remove",
       description:

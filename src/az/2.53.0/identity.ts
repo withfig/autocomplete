@@ -78,7 +78,6 @@ const completion: Fig.Spec = {
       name: "list-operations",
       description:
         "List available operations for the Managed Identity provider",
-      
     },
     {
       name: "list-resources",

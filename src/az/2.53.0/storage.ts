@@ -3241,7 +3241,7 @@ const completion: Fig.Spec = {
           name: "run-command",
           description:
             "Run a command directly using the AzCopy CLI. Please use SAS tokens for authentication",
-          
+
           args: {
             name: "<COMMAND_ARGS>",
             description:

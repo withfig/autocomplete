@@ -1510,7 +1510,6 @@ const completion: Fig.Spec = {
       name: "show-custom-domain-verification-id",
       description:
         "Show the verification id for binding app or environment custom domains",
-      
     },
     {
       name: "up",

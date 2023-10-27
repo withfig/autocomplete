@@ -2129,7 +2129,6 @@ const completion: Fig.Spec = {
           name: "list",
           description:
             "List all soft-deleted Api Management services instances available for undelete for the given subscription",
-          
         },
         {
           name: "purge",

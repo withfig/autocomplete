@@ -5,7 +5,6 @@ const completion: Fig.Spec = {
     {
       name: "check-connection",
       description: "Check if the client can connect to the AI example service",
-      
     },
   ],
 };
