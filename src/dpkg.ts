@@ -52,35 +52,36 @@ const completionSpec: Fig.Spec = {
           description: "Uninstall packages that depend on the target package",
         },
         {
-          name: ["--skip-same-version"],
+          name: "--skip-same-version",
           description: "Don't upgrade if the same version is already installed",
         },
         {
-          name: ["--force-depends"],
+          name: "--force-depends",
           description: "Ignore dependency problems",
         },
         {
-          name: ["--force-confnew"],
+          name: "--force-confnew",
           description: "Always install the new version of configuration files",
         },
         {
-          name: ["--force-confold"],
+          name: "--force-confold",
           description: "Always install the old version of configuration files",
         },
         {
-          name: ["--force-confdef"],
-          description: "Always install the default version of configuration files",
+          name: "--force-confdef",
+          description:
+            "Always install the default version of configuration files",
         },
         {
-          name: ["--force-confmiss"],
+          name: "--force-confmiss",
           description: "Always install missing configuration files",
         },
         {
-          name: ["--no-triggers"],
+          name: "--no-triggers",
           description: "Skip processing triggers",
         },
         {
-          name: ["--no-act"],
+          name: "--no-act",
           description: "Simulate the action, but don't execute",
         },
       ],
@@ -99,7 +100,7 @@ const completionSpec: Fig.Spec = {
           description: "Uninstall packages that depend on the target package",
         },
         {
-          name: ["--no-act"],
+          name: "--no-act",
           description: "Simulate the action, but don't execute",
         },
       ],
@@ -114,7 +115,7 @@ const completionSpec: Fig.Spec = {
           description: "Recursively remove packages",
         },
         {
-          name: ["--no-act"],
+          name: "--no-act",
           description: "Simulate the action, but don't execute",
         },
       ],
@@ -125,15 +126,15 @@ const completionSpec: Fig.Spec = {
       args: { name: "package" },
       options: [
         {
-          name: ["--pending"],
+          name: "--pending",
           description: "Configure all unconfigured packages",
         },
         {
-          name: ["--no-triggers"],
+          name: "--no-triggers",
           description: "Skip processing triggers",
         },
         {
-          name: ["--no-act"],
+          name: "--no-act",
           description: "Simulate the action, but don't execute",
         },
       ],
@@ -144,11 +145,11 @@ const completionSpec: Fig.Spec = {
       args: { name: "package" },
       options: [
         {
-          name: ["--no-triggers"],
+          name: "--no-triggers",
           description: "Skip processing triggers",
         },
         {
-          name: ["--no-act"],
+          name: "--no-act",
           description: "Simulate the action, but don't execute",
         },
       ],
@@ -188,19 +189,19 @@ const completionSpec: Fig.Spec = {
           args: { name: "package" },
         },
         {
-          name: ["--installed"],
+          name: "--installed",
           description: "List installed packages",
         },
         {
-          name: ["--avail"],
+          name: "--avail",
           description: "List available packages",
         },
         {
-          name: ["--hold"],
+          name: "--hold",
           description: "List packages on hold",
         },
         {
-          name: ["--deferred"],
+          name: "--deferred",
           description: "List deferred packages",
         },
       ],
@@ -223,7 +224,7 @@ const completionSpec: Fig.Spec = {
           description: "Build source package",
         },
         {
-          name: ["-rfakeroot"],
+          name: "-rfakeroot",
           description: "Use fakeroot when building the package",
         },
         {
@@ -231,7 +232,7 @@ const completionSpec: Fig.Spec = {
           description: "Build binary package from source",
         },
         {
-          name: ["--force-sign"],
+          name: "--force-sign",
           description: "Force signing of changes file",
         },
         {
@@ -250,7 +251,7 @@ const completionSpec: Fig.Spec = {
           args: { name: "version" },
         },
         {
-          name: ["--increment"],
+          name: "--increment",
           description: "Increment the version number in the changelog",
         },
       ],
@@ -294,7 +295,11 @@ const completionSpec: Fig.Spec = {
       description: "Compare package versions",
       args: [
         { name: "version1" },
-        { name: "relation", isOptional: true, suggestions: ["lt", "le", "eq", "ne", "gt", "ge"] },
+        {
+          name: "relation",
+          isOptional: true,
+          suggestions: ["lt", "le", "eq", "ne", "gt", "ge"],
+        },
         { name: "version2" },
       ],
     },
@@ -308,4 +313,3 @@ const completionSpec: Fig.Spec = {
 };
 
 export default completionSpec;
-
