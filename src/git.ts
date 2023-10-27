@@ -6074,6 +6074,10 @@ const completionSpec: Fig.Spec = {
             "Shows number of added and deleted lines in decimal notation",
         },
         {
+          name: "--name-only",
+          description: "Show only names of changed files",
+        },
+        {
           name: "--shortstat",
           description:
             "Output only the last line of the --stat format containing total number of modified files",
