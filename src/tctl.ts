@@ -1,36 +1,68 @@
-import { type } from "node:os";
-
 // Barebones Teleport resource definitions, ensuring type safety and autocomplete
 type GenericResource = {
+  kind?: string;
   metadata: {
     name: string;
     description: string;
   };
 };
 
-type User = object & GenericResource;
+type Node = {
+  spec: {
+    hostname: string;
+  };
+} & GenericResource;
+
+enum AccessRequestState {
+  "NONE",
+  "PENDING",
+  "DENIED",
+  "APPROVED",
+}
+
+type AccessRequest = {
+  spec: {
+    user: string;
+    roles: string[];
+    request_reason: string;
+    state: number;
+  };
+} & GenericResource;
+
+type User = {
+  spec: {
+    created_by: {
+      time: string;
+      user: {
+        name: string;
+      };
+    };
+    status: {
+      is_locked: boolean;
+      lock_expires: string;
+    };
+  };
+} & GenericResource;
+
+type Lock = {
+  spec: {
+    target: {
+      user: string;
+    };
+    created_by: string;
+    expires: string;
+  };
+} & GenericResource;
 
 type Role = object & GenericResource;
-
-type App = object & GenericResource;
-
-type Db = object & GenericResource;
-
-type AccessRequest = object & GenericResource;
 
 type Token = object & GenericResource;
 
 type Bot = object & GenericResource;
 
-type WindowsDesktop = object & GenericResource;
-
 type ACL = object & GenericResource;
 
 type Alert = object & GenericResource;
-
-type Device = object & GenericResource;
-
-type Connector = object & GenericResource;
 
 type Namespace = object & GenericResource;
 
@@ -38,40 +70,202 @@ type Cluster = {
   kube_cluster_name: string;
 };
 
-const teleportAccountsGenerator: Fig.Generator = {
-  script: "tctl get users --format json",
-  postProcess: function (out) {
-    const users = JSON.parse(out);
-
-    return users.map((user: User) => {
-      return {
-        name: user.metadata.name,
-        description: user.metadata.description,
-      };
-    });
-  },
-};
-
-const teleportKubernetesClustersGenerator: Fig.Generator = {
-  script: "tsh kube ls --format json",
-  postProcess: function (out) {
-    const clusters = JSON.parse(out);
-
-    return clusters.map((cluster: Cluster) => {
-      return {
-        name: cluster.kube_cluster_name,
-        description: "Kubernetes cluster connected to Teleport",
-      };
-    });
-  },
-};
-
 const commaQueryTerm = (curr) => {
-  if (curr.includes(",")) {
-    return curr.slice(curr.lastIndexOf(",") + 1);
-  } else {
-    return curr;
-  }
+  return curr.split(",").pop();
+};
+
+// Prefix is used as sometimes Teleport wants the "type" with the request, e.g. tctl get user/USERNAME (user is the prefix here)
+const resourcePostProcesserBuilder = (prefix: string = "") => {
+  return (out: string, tokens: string[]): Fig.Suggestion[] => {
+    const resources = JSON.parse(out);
+
+    const postProcesser = resources
+      .map((resource: GenericResource): Fig.Suggestion => {
+        if (resource.kind === "node") {
+          const node = resource as Node;
+
+          return {
+            name: `${prefix}${node.spec.hostname}`,
+
+            // If there is a resource prefix, we do not need to use the UID (name) because its already unique
+            insertValue: prefix
+              ? `${prefix}${node.spec.hostname}`
+              : node.metadata.name,
+
+            description: "Inserts UUID: " + node.metadata.name,
+            priority: 65,
+          };
+        }
+
+        if (resource.kind === "lock") {
+          const lock = resource as Lock;
+
+          return {
+            name: `${resource.kind}/${lock.metadata.name}`,
+            description: "Created by: " + lock.spec.created_by,
+            priority: 65,
+          };
+        }
+
+        if (resource.kind === "access_request") {
+          const request = resource as AccessRequest;
+
+          return {
+            name: `${prefix}${AccessRequestState[request.spec.state]} ${
+              request.spec.user
+            }`,
+            insertValue: request.metadata.name,
+            description: `Requests: ${request.spec.roles.join(", ")}`,
+            priority: 76,
+          };
+        }
+
+        if (resource.kind === "user") {
+          const user = resource as User;
+          const locked = user.spec.status.is_locked;
+          const lockedExpires = user.spec.status.lock_expires;
+
+          let description = locked
+            ? `User locked until ${lockedExpires}`
+            : user.metadata.description;
+
+          if (!description) {
+            const created = new Date(
+              user.spec.created_by.time
+            ).toLocaleDateString();
+            const creator = user.spec.created_by.user.name;
+
+            description = `${creator} created this user on ${created}`;
+          }
+
+          return {
+            name: `${prefix}${user.metadata.name}`,
+            icon: locked
+              ? "fig://icon?type=box&=FF0000&badge=🚫"
+              : "fig://icon?type=box",
+            description,
+            priority: 65,
+          };
+        }
+
+        return {
+          name: `${prefix}${resource.metadata.name}`,
+          description: resource.metadata.description,
+          priority: 65,
+        };
+      })
+      .filter((suggestion: Fig.Suggestion) => {
+        // The last token always contains the resources
+        const lastToken = tokens[tokens.length - 1];
+
+        // We remove the resources that we are already listing, this wont impact single resource selection options
+        return !lastToken.includes(suggestion.name.toString());
+      });
+
+    return postProcesser;
+  };
+};
+
+const tctlGetGenerator = (
+  resource: string,
+  canBeMultiple: boolean = false
+): Fig.Generator => {
+  return {
+    script: `tctl get ${resource} --format json`,
+    getQueryTerm: canBeMultiple ? commaQueryTerm : undefined,
+    postProcess: resourcePostProcesserBuilder(),
+  };
+};
+
+const tshListGenerator = (resource: string): Fig.Generator => {
+  return {
+    script: `tsh ${resource} ls --format json`,
+    postProcess: resourcePostProcesserBuilder(),
+  };
+};
+
+const teleportGenerators: Record<string, Fig.Generator> = {
+  yamlFiles: {
+    template: "filepaths",
+    // Only show YAML files and directories
+    filterTemplateSuggestions: function (paths) {
+      return paths.filter(
+        (file) =>
+          file.name.endsWith("/") ||
+          file.name.endsWith(".yaml") ||
+          file.name.endsWith(".yml")
+      );
+    },
+  },
+
+  // Shorthand suggestion generators
+  role: tctlGetGenerator("roles"),
+  roles: tctlGetGenerator("roles", true),
+  user: tctlGetGenerator("user"),
+  windows_desktop: tctlGetGenerator("windows_desktop"),
+  node: tctlGetGenerator("node"),
+  device: tctlGetGenerator("device"),
+  connector: tctlGetGenerator("connector"),
+  kube: tshListGenerator("kube"),
+  apps: tshListGenerator("apps"),
+  db: tshListGenerator("db"),
+  request: tshListGenerator("request"),
+  tokens: tshListGenerator("tokens"),
+};
+
+const teleportOptions: Record<string, Fig.Option> = {
+  ttl: {
+    name: "--ttl",
+    description: "Set the time to live, default is 1h0m0s, maximum is 48h0m0s",
+    args: {
+      name: "10h10m10s",
+      description: "Relative duration like 5s, can be chained like 1h10m10s",
+    },
+  },
+
+  format: {
+    name: "--format",
+    description: "Output format. One of: [text, json, yaml]",
+    args: {
+      name: "format",
+      suggestions: ["text", "json", "yaml"],
+      default: "yaml",
+    },
+  },
+
+  labels: {
+    name: "--labels",
+    description: "Which labels to add to the resource",
+    args: {
+      name: "label1=value1,label2=value2",
+    },
+  },
+
+  reason: {
+    name: "--reason",
+    description: "Optional reason message",
+    insertValue: "--reason '{cursor}'",
+    args: {
+      name: "reason",
+    },
+  },
+
+  roles: {
+    name: "--roles",
+    description: "Comma seperated list of roles",
+    args: {
+      name: "role1,role2",
+      generators: teleportGenerators.roles,
+    },
+  },
+
+  logins: {
+    name: "--logins",
+    description: "List of allowed SSH logins",
+    args: {
+      name: "login1,login2",
+    },
+  },
 };
 
 const filterRoles = (currentRoles: string, allRoles: Role[]) => {
@@ -86,98 +280,6 @@ const filterRoles = (currentRoles: string, allRoles: Role[]) => {
   return allRoles.filter((role: Role) => {
     return !filterable.includes(role.metadata.name);
   });
-};
-
-const teleportRolesGenerator: Fig.Generator = {
-  script: "tctl get roles --format json",
-  getQueryTerm: commaQueryTerm,
-  postProcess: function (out, tokens) {
-    const roles = JSON.parse(out);
-
-    const filteredRoles = filterRoles(tokens[tokens.length - 1], roles);
-
-    return filteredRoles.map((role: Role) => {
-      return {
-        name: role.metadata.name,
-        description: role.metadata.description,
-      };
-    });
-  },
-};
-
-const teleportAppGenerator: Fig.Generator = {
-  script: "tsh apps ls --format json",
-  postProcess: function (out) {
-    const apps = JSON.parse(out);
-    return apps.map((app: App) => {
-      return {
-        name: app.metadata.name,
-        description: app.metadata.description,
-      };
-    });
-  },
-};
-
-const teleportDatabaseGenerator: Fig.Generator = {
-  script: "tsh db ls --format json",
-  postProcess: function (out) {
-    const dbs = JSON.parse(out);
-    return dbs.map((db: Db) => {
-      return {
-        name: db.metadata.name,
-        description: db.metadata.description,
-      };
-    });
-  },
-};
-
-const teleportRequestGenerator: Fig.Generator = {
-  script: "tctl request ls --format json",
-  postProcess: function (out) {
-    const requests = JSON.parse(out);
-    return requests.map((request: AccessRequest) => {
-      return {
-        name: request.metadata.name,
-        description: request.metadata.description,
-      };
-    });
-  },
-};
-
-const teleportTokenGenerator: Fig.Generator = {
-  script: "tctl tokens ls --format json",
-  postProcess: function (out) {
-    const tokens = JSON.parse(out);
-    return tokens.map((token: Token) => {
-      return {
-        name: token.metadata.name,
-        description: token.metadata.description,
-      };
-    });
-  },
-};
-
-const teleportWindowsDesktopGenerator: Fig.Generator = {
-  script: "tctl get windows_desktop --format json",
-  postProcess: function (out) {
-    const desktops = JSON.parse(out);
-    return desktops.map((desktop: WindowsDesktop) => {
-      return {
-        name: desktop.metadata.name,
-        description: desktop.metadata.description,
-      };
-    });
-  },
-};
-
-const teleportFormatOption: Fig.Option = {
-  name: "--format",
-  description: "Output format. One of: [text, json, yaml]",
-  args: {
-    name: "format",
-    suggestions: ["text", "json", "yaml"],
-    default: "text",
-  },
 };
 
 const teleportBotsGenerator: Fig.Generator = {
@@ -219,37 +321,11 @@ const teleportAlertGenerator: Fig.Generator = {
   },
 };
 
-const teleportDeviceGenerator: Fig.Generator = {
-  script: "tctl get device --format json",
-  postProcess: function (out) {
-    const devices = JSON.parse(out);
-    return devices.map((device: Device) => {
-      return {
-        name: device.metadata.name,
-        description: device.metadata.description,
-      };
-    });
-  },
-};
-
-const teleportSAMLConnectorGenerator: Fig.Generator = {
-  script: "tctl get connector --format json",
-  postProcess: function (out) {
-    const connectors = JSON.parse(out);
-    return connectors.map((connector: Connector) => {
-      return {
-        name: connector.metadata.name,
-        description: connector.metadata.description,
-      };
-    });
-  },
-};
-
 const teleportGetResourcesGenerator: Fig.Generator = {
   trigger: (current, old) => {
-    return true;
+    return current.lastIndexOf("/") > old.lastIndexOf("/");
   },
-  custom: async (tokens, executeShellCommand) => {
+  custom: async (tokens, executeShellCommand): Promise<Fig.Suggestion[]> => {
     const standardSuggestions = [
       "user",
       "role",
@@ -264,10 +340,12 @@ const teleportGetResourcesGenerator: Fig.Generator = {
       "lock",
       "all",
     ];
+
     const respondSuggestions = standardSuggestions.map((suggestion) => {
       return {
         name: suggestion,
         description: "Get a " + suggestion,
+        priority: 100,
       };
     });
 
@@ -281,52 +359,68 @@ const teleportGetResourcesGenerator: Fig.Generator = {
         .find((token) => standardSuggestions.includes(token.split("/")[0]))
         .split("/")[0];
 
+      // Only show suggestions for resources that are supported by tctl
       if (standardSuggestions.find((sug) => sug === resource) == undefined)
         return respondSuggestions;
+
       if (["cluster_auth_preference", "all"].includes(resource)) return []; // This is what tctl expects
 
       const resources = await executeShellCommand(
         `tctl get ${resource} --format json`
       );
+
       const parsedResources = JSON.parse(resources);
 
-      return parsedResources.map((parsedResource: GenericResource) => {
-        return {
-          name: `${resource}/${parsedResource.metadata.name}`,
-        };
-      });
+      let parsedLocks: Lock[] = [];
+
+      if (["lock", "user"].includes(resource)) {
+        const locks = await executeShellCommand(`tctl get locks --format json`);
+        parsedLocks = JSON.parse(locks);
+      }
+
+      const postProcessResource = resourcePostProcesserBuilder(`${resource}/`);
+
+      if (resource === "user") {
+        const users = parsedResources as User[];
+
+        users.forEach((user) => {
+          parsedLocks.find((lock) => {
+            if (lock.spec.target.user === user.metadata.name) {
+              user.spec.status.is_locked = true;
+              user.spec.status.lock_expires = lock.spec.expires;
+            }
+          });
+        });
+
+        return postProcessResource(JSON.stringify(users), tokens);
+      }
+
+      return postProcessResource(JSON.stringify(parsedResources), tokens);
     }
 
     return respondSuggestions;
   },
 };
 
-/* tctl lock --help
-      --user             Name of a Teleport user to disable.
-      --role             Name of a Teleport role to disable.
-      --login            Name of a local UNIX user to disable.
-      --mfa-device       UUID of a user MFA device to disable.
-      --windows-desktop  Name of a Windows desktop to disable.
-      --access-request   UUID of an access request to disable.
-      --device           UUID of a trusted device to disable.
-      --message          Message to display to locked-out users.
-      --expires          Time point (RFC3339) when the lock expires.
-      --ttl              Time duration after which the lock expires.
-      --server-id        UUID of a Teleport server to disable.
-*/
-
 const completionSpec: Fig.Spec = {
   name: "tctl",
   description: "Admin tool for the Teleport Access Platform",
+  args: {},
+  requiresSubcommand: true,
   subcommands: [
     /* tctl help */
     {
       name: "help",
       description: "Show help",
+      priority: 100,
     },
     /* tctl users */
     {
       name: "users",
+      description: "Manage user accounts",
+      requiresSubcommand: true,
+      args: {},
+      priority: 100,
       subcommands: [
         {
           name: "add",
@@ -336,69 +430,86 @@ const completionSpec: Fig.Spec = {
             description: "Teleport user account name",
           },
           options: [
-            {
-              name: "--logins",
-              description: "List of allowed SSH logins for the new user",
-            },
+            teleportOptions.ttl,
+            teleportOptions.roles,
+            teleportOptions.logins,
             {
               name: "--windows-logins",
               description: "List of allowed Windows logins for the new user",
+              args: {
+                name: "login1,login2",
+              },
             },
             {
               name: "--kubernetes-users",
               description: "List of allowed Kubernetes users for the new user",
+              args: {
+                name: "value1,value2",
+              },
             },
             {
               name: "--kubernetes-groups",
               description: "List of allowed Kubernetes groups for the new user",
+              args: {
+                name: "group1,group2",
+              },
             },
             {
               name: "--db-users",
               description: "List of allowed database users for the new user",
+              args: {
+                name: "user1,user2",
+              },
             },
             {
               name: "--db-names",
               description: "List of allowed database names for the new user",
+              args: {
+                name: "value1,value2",
+              },
             },
             {
               name: "--db-roles",
               description:
                 "List of database roles for automatic database user provisioning",
+              args: {
+                name: "name1,name2",
+              },
             },
             {
               name: "--aws-role-arns",
               description: "List of allowed AWS role ARNs for the new user",
+              args: {
+                name: "value1,value2",
+              },
             },
             {
               name: "--azure-identities",
               description: "List of allowed Azure identities for the new user",
+              args: {
+                name: "identity1,identity2",
+              },
             },
             {
               name: "--gcp-service-accounts",
               description:
                 "List of allowed GCP service accounts for the new user",
+              args: {
+                name: "account1,account2",
+              },
             },
             {
               name: "--host-user-uid",
               description: "UID for auto provisioned host users to use",
+              args: {
+                name: "user-id",
+              },
             },
             {
               name: "--host-user-gid",
               description: "GID for auto provisioned host users to use",
-            },
-            {
-              name: "--ttl",
-              description:
-                "Set expiration time for token, default is 1h0m0s, maximum is 48h0m0s",
-            },
-            {
-              name: "--roles",
-              description:
-                "List of roles for the new user to assume. Comma seperated",
-              isRequired: true,
-              isRepeatable: true,
               args: {
-                generators: teleportRolesGenerator,
+                name: "group-id",
               },
             },
           ],
@@ -410,81 +521,119 @@ const completionSpec: Fig.Spec = {
             {
               name: "--set-roles",
               description:
-                "List of roles for the user to assume, replaces current roles. Comma seperated",
+                "List of roles for the user to assume, replaces current roles",
               args: {
-                generators: teleportRolesGenerator,
+                name: "role1,role2",
+                generators: teleportGenerators.roles,
               },
             },
             {
               name: "--set-logins",
               description:
                 "List of allowed SSH logins for the user, replaces current logins",
+              args: {
+                name: "value1,value2",
+              },
             },
             {
               name: "--set-windows-logins",
               description:
                 "List of allowed Windows logins for the user, replaces current Windows logins",
+              args: {
+                name: "value1,value2",
+              },
             },
             {
               name: "--set-kubernetes-users",
               description:
                 "List of allowed Kubernetes users for the user, replaces current Kubernetes users",
+              args: {
+                name: "value1,value2",
+              },
             },
             {
               name: "--set-kubernetes-groups",
               description:
                 "List of allowed Kubernetes groups for the user, replaces current Kubernetes groups",
+              args: {
+                name: "value1,value2",
+              },
             },
             {
               name: "--set-db-users",
               description:
                 "List of allowed database users for the user, replaces current database users",
+              args: {
+                name: "value1,value2",
+              },
             },
             {
               name: "--set-db-names",
               description:
                 "List of allowed database names for the user, replaces current database names",
+              args: {
+                name: "value1,value2",
+              },
             },
             {
               name: "--set-db-roles",
               description:
                 "List of allowed database roles for automatic database user provisioning, replaces current database roles",
+              args: {
+                name: "value1,value2",
+              },
             },
             {
               name: "--set-aws-role-arns",
               description:
                 "List of allowed AWS role ARNs for the user, replaces current AWS role ARNs",
+              args: {
+                name: "value1,value2",
+              },
             },
             {
               name: "--set-azure-identities",
               description:
                 "List of allowed Azure identities for the user, replaces current Azure identities",
+              args: {
+                name: "value1,value2",
+              },
             },
             {
               name: "--set-gcp-service-accounts",
               description:
                 "List of allowed GCP service accounts for the user, replaces current service accounts",
+              args: {
+                name: "value1,value2",
+              },
             },
             {
               name: "--set-host-user-uid",
               description:
                 "UID for auto provisioned host users to use. Value can be reset by providing an empty string",
+              args: {
+                name: "user-id",
+              },
             },
             {
               name: "--set-host-user-gid",
               description:
                 "GID for auto provisioned host users to use. Value can be reset by providing an empty string",
+              args: {
+                name: "group-id",
+              },
             },
           ],
           args: {
             name: "account",
             description: "Teleport user account name",
-            generators: teleportAccountsGenerator,
+            generators: teleportGenerators.user,
           },
         },
         {
           name: "ls",
           description: "Lists all user accounts",
+          options: [teleportOptions.format],
         },
         {
           name: "rm",
@@ -493,7 +642,7 @@ const completionSpec: Fig.Spec = {
             name: "account",
             description: "Teleport user account name",
             isVariadic: true,
-            generators: teleportAccountsGenerator,
+            generators: teleportGenerators.user,
           },
         },
         {
@@ -503,7 +652,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "account",
             description: "Teleport user account name",
-            generators: teleportAccountsGenerator,
+            generators: teleportGenerators.user,
           },
         },
       ],
@@ -511,17 +660,22 @@ const completionSpec: Fig.Spec = {
     /* tctl nodes */
     {
       name: "nodes",
+      priority: 100,
       description: "Issue invites for other nodes to join the cluster",
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "add",
           description: "Generate a node invitation token",
+          args: {},
           options: [
+            teleportOptions.ttl,
             {
               name: "--roles",
               description:
                 "Comma-separated list of roles for the new node to assume",
               args: {
+                name: "role1,role2",
                 generators: {
                   getQueryTerm: commaQueryTerm,
                   trigger: (current, old) => {
@@ -552,17 +706,13 @@ const completionSpec: Fig.Spec = {
                 },
               },
             },
-            {
-              name: "--ttl",
-              description:
-                "Time to live for a generated token, default is 0h30m0s, maximum is 48h0m0s",
-            },
           ],
         },
         {
           name: "ls",
           description: "List all active SSH nodes within the cluster",
           options: [
+            teleportOptions.format,
             {
               name: "--namespace",
               description: "Namespace of the nodes",
@@ -592,14 +742,18 @@ const completionSpec: Fig.Spec = {
     /* tctl tokens */
     {
       name: "tokens",
+      priority: 100,
       description: "Manage invitation tokens",
+      requiresSubcommand: true,
+      args: {},
       subcommands: [
         {
           name: "add",
           description: "Create a invitation token",
           args: {},
           options: [
-            teleportFormatOption,
+            teleportOptions.format,
+            teleportOptions.ttl,
             {
               name: "--type",
               description: "Type(s) of token to add",
@@ -700,14 +854,6 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: "--ttl",
-              description:
-                "Set expiration time for token, default is 30 minutes",
-              args: {
-                name: "30m",
-              },
-            },
-            {
               name: "--app-name",
               description: "Name of the application to add",
               args: {
@@ -779,7 +925,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "ls",
           description: "List node and user invitation tokens",
-          options: [teleportFormatOption],
+          options: [teleportOptions.format],
         },
       ],
     },
@@ -788,6 +934,7 @@ const completionSpec: Fig.Spec = {
       name: "auth",
       description:
         "Operations with user and host certificate authorities (CAs)",
+      priority: 100,
       args: {},
       subcommands: [
         {
@@ -801,6 +948,9 @@ const completionSpec: Fig.Spec = {
             {
               name: "--fingerprint",
               description: "Filter authority by fingerprint",
+              args: {
+                name: "fingerprint",
+              },
             },
             {
               name: "--compat",
@@ -841,10 +991,11 @@ const completionSpec: Fig.Spec = {
             {
               name: "--user",
               description: "Teleport user name",
+              priority: 100,
               isRequired: true,
               args: {
                 name: "user",
-                generators: teleportAccountsGenerator,
+                generators: teleportGenerators.user,
               },
             },
             {
@@ -857,6 +1008,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--out", "-o"],
               description: "Identity output",
+              priority: 99,
               isRequired: true,
               args: {
                 name: "out",
@@ -873,11 +1025,8 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: "--ttl",
+              ...teleportOptions.ttl,
               description: "TTL (time to live) for the generated certificate",
-              args: {
-                name: "ttl",
-              },
             },
             {
               name: "--compat",
@@ -920,66 +1069,95 @@ const completionSpec: Fig.Spec = {
                 'Kubernetes cluster to generate identity file for when --format is set to "kubernetes"',
               args: {
                 name: "name",
-                generators: teleportKubernetesClustersGenerator,
+                generators: {
+                  ...teleportGenerators.kube,
+                  postProcess: function (out) {
+                    const clusters = JSON.parse(out);
+
+                    return clusters.map((cluster: Cluster) => {
+                      return {
+                        name: cluster.kube_cluster_name,
+                        description: "Kubernetes cluster connected to Teleport",
+                      };
+                    });
+                  },
+                },
               },
             },
             {
               name: "--app-name",
               description:
                 'Application to generate identity file for. Mutually exclusive with "--db-service"',
+              exclusiveOn: ["--db-service"],
               args: {
                 name: "name",
-                generators: teleportAppGenerator,
+                generators: teleportGenerators.apps,
               },
             },
             {
               name: "--db-service",
               description:
                 'Database to generate identity file for. Mutually exclusive with "--app-name"',
+              exclusiveOn: ["--app-name"],
               args: {
                 name: "service",
-                generators: teleportDatabaseGenerator,
+                generators: teleportGenerators.db,
               },
             },
             {
               name: "--db-user",
               description:
                 'Database user placed on the identity file. Only used when "--db-service" is set',
+              dependsOn: ["--db-service"],
+              args: {
+                name: "user",
+              },
             },
             {
               name: "--db-name",
               description:
                 'Database name placed on the identity file. Only used when "--db-service" is set',
+              dependsOn: ["--db-service"],
+              args: {
+                name: "name",
+              },
             },
             {
               name: "--windows-user",
               description:
                 'Window user placed on the identity file. Only used when --format is set to "windows"',
+              args: {
+                name: "user",
+              },
             },
             {
               name: "--windows-domain",
               description:
                 'Active Directory domain for which this cert is valid. Only used when --format is set to "windows"',
+              args: {
+                name: "domain",
+              },
             },
             {
               name: "--windows-sid",
               description:
                 'Optional Security Identifier to embed in the certificate. Only used when --format is set to "windows"',
+              args: {
+                name: "security-id",
+              },
             },
           ],
         },
         {
           name: "rotate",
           description: "Rotate certificate authorities in the cluster",
+          args: {},
+          isDangerous: true,
           options: [
             {
+              ...teleportOptions.ttl,
               name: "--grace-period",
-              description:
-                "Grace period keeps previous certificate authorities signatures valid, if set to 0 will force users to re-login and nodes to re-register",
-              args: {
-                name: "duration",
-                description: "Relative duration like 5s, 2m, or 3h",
-              },
+              description: "Grace period keeps previous CA valid",
             },
             {
               name: "--manual",
@@ -1025,12 +1203,13 @@ const completionSpec: Fig.Spec = {
         {
           name: "ls",
           description: "List connected auth servers",
-          options: [teleportFormatOption],
+          options: [teleportOptions.format],
         },
         {
           name: "crl",
           description:
             "Export empty certificate revocation list (CRL) for certificate authorities",
+          args: {},
           options: [
             {
               name: "--type",
@@ -1050,13 +1229,14 @@ const completionSpec: Fig.Spec = {
     {
       name: "get",
       description: "Get a resource",
+      priority: 100,
       args: {
-        name: "resource",
-        description: "Resource to get",
+        name: "type/name",
+        description: "Resource to get (e.g. user/bob)",
         generators: teleportGetResourcesGenerator,
       },
       options: [
-        teleportFormatOption,
+        teleportOptions.format,
         {
           name: "--with-secrets",
           description:
@@ -1072,11 +1252,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "status",
       description: "Report cluster status",
+      priority: 100,
     },
     /* tctl top */
     {
       name: "top",
       description: "Report cluster status",
+      priority: 100,
       args: [
         {
           name: "diag-address",
@@ -1093,10 +1275,12 @@ const completionSpec: Fig.Spec = {
       name: ["requests", "request"],
       description: "Manage access requests",
       args: {},
+      priority: 100,
       subcommands: [
         {
           name: "ls",
           description: "Show active access requests",
+          options: [teleportOptions.format],
         },
         {
           name: "get",
@@ -1104,8 +1288,9 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "request",
             description: "Access request ID",
-            generators: teleportRequestGenerator,
+            generators: teleportGenerators.request,
           },
+          options: [teleportOptions.format],
         },
         {
           name: "approve",
@@ -1113,7 +1298,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "request",
             description: "Access request ID",
-            generators: teleportRequestGenerator,
+            generators: teleportGenerators.request,
           },
         },
         {
@@ -1122,7 +1307,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "request",
             description: "Access request ID",
-            generators: teleportRequestGenerator,
+            generators: teleportGenerators.request,
           },
         },
         {
@@ -1131,21 +1316,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "username",
             description: "Name of target user",
-            generators: teleportAccountsGenerator,
+            generators: teleportGenerators.user,
           },
           options: [
-            {
-              name: "--roles",
-              description: "Roles to be requested",
-              args: {
-                name: "roles",
-                generators: teleportRolesGenerator,
-              },
-            },
-            {
-              name: "--reason",
-              description: "Optional reason message",
-            },
+            teleportOptions.reason,
+            teleportOptions.roles,
             {
               name: "--resource",
               description: "Resource ID to be requested",
@@ -1172,7 +1347,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "request-id",
             description: "Access request ID",
-            generators: teleportRequestGenerator,
+            generators: teleportGenerators.request,
           },
         },
         {
@@ -1185,7 +1360,7 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: {
                 name: "author",
-                generators: teleportAccountsGenerator,
+                generators: teleportGenerators.user,
               },
             },
             {
@@ -1200,7 +1375,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "request-id",
             description: "Access request ID",
-            generators: teleportRequestGenerator,
+            generators: teleportGenerators.request,
           },
         },
       ],
@@ -1209,12 +1384,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "apps",
       description: "Operate on applications registered with the cluster",
-      args: {},
       requiresSubcommand: true,
+      priority: 100,
       subcommands: [
         {
           name: "ls",
           description: "List all applications registered with the cluster",
+          options: [teleportOptions.format],
         },
       ],
     },
@@ -1222,12 +1398,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "db",
       description: "Operate on databases registered with the cluster",
-      args: {},
       requiresSubcommand: true,
+      priority: 100,
       subcommands: [
         {
           name: "ls",
           description: "List all databases registered with the cluster",
+          options: [teleportOptions.format],
         },
       ],
     },
@@ -1235,13 +1412,14 @@ const completionSpec: Fig.Spec = {
     {
       name: "kube",
       description: "Operate on registered Kubernetes clusters",
-      args: {},
       requiresSubcommand: true,
+      priority: 100,
       subcommands: [
         {
           name: "ls",
           description:
             "List all Kubernetes clusters registered with the cluster",
+          options: [teleportOptions.format],
         },
       ],
     },
@@ -1249,12 +1427,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "windows_desktops",
       description: "Operate on registered Windows desktops",
-      args: {},
       requiresSubcommand: true,
+      priority: 100,
       subcommands: [
         {
           name: "ls",
           description: "List all Windows desktops registered with the cluster",
+          options: [teleportOptions.format],
         },
       ],
     },
@@ -1262,13 +1441,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "proxy",
       description: "Operations with information for cluster proxies",
-      args: {},
       requiresSubcommand: true,
+      priority: 100,
       subcommands: [
         {
           name: "ls",
           description: "Lists proxies connected to the cluster",
-          options: [teleportFormatOption],
+          options: [teleportOptions.format],
         },
       ],
     },
@@ -1287,13 +1466,14 @@ const completionSpec: Fig.Spec = {
       name: "lock",
       description: "Create a new lock",
       args: {},
+      priority: 100,
       options: [
         {
           name: "--user",
           description: "Name of a Teleport user to disable",
           args: {
             name: "user",
-            generators: teleportAccountsGenerator,
+            generators: teleportGenerators.user,
           },
         },
         {
@@ -1301,23 +1481,29 @@ const completionSpec: Fig.Spec = {
           description: "Name of a Teleport role to disable",
           args: {
             name: "role",
-            generators: teleportRolesGenerator,
+            generators: teleportGenerators.role,
           },
         },
         {
           name: "--login",
           description: "Name of a local UNIX user to disable",
+          args: {
+            name: "login",
+          },
         },
         {
           name: "--mfa-device",
           description: "UUID of a user MFA device to disable",
+          args: {
+            name: "device",
+          },
         },
         {
           name: "--windows-desktop",
           description: "Name of a Windows desktop to disable",
           args: {
             name: "desktop",
-            generators: teleportWindowsDesktopGenerator,
+            generators: teleportGenerators.windows_desktop,
           },
         },
         {
@@ -1325,7 +1511,7 @@ const completionSpec: Fig.Spec = {
           description: "UUID of an access request to disable",
           args: {
             name: "request",
-            generators: teleportRequestGenerator,
+            generators: teleportGenerators.request,
           },
         },
         {
@@ -1345,16 +1531,16 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--ttl",
+          ...teleportOptions.ttl,
           description: "Time duration after which the lock expires",
-          args: {
-            name: "duration",
-            description: "Time duration after which the lock expires",
-          },
         },
         {
           name: "--server-id",
           description: "UUID of a Teleport server to disable",
+          args: {
+            name: "server-uuid",
+            generators: teleportGenerators.node,
+          },
         },
       ],
     },
@@ -1364,11 +1550,14 @@ const completionSpec: Fig.Spec = {
       description:
         "Operate on certificate renewal bots registered with the cluster",
       requiresSubcommand: true,
+      args: {},
+      priority: 100,
       subcommands: [
         {
           name: "ls",
           description:
             "List all certificate renewal bots registered with the cluster",
+          options: [teleportOptions.format],
         },
         {
           name: "add",
@@ -1376,32 +1565,30 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
             description: "A name to uniquely identify this bot in the cluster",
-          },
-          options: [
-            {
-              name: "--roles",
-              description: "Roles the bot is able to assume",
-              isRequired: true,
-              args: {
-                name: "roles",
-                generators: teleportRolesGenerator,
+            generators: {
+              ...teleportBotsGenerator,
+              postProcess: function (out) {
+                const bots = JSON.parse(out);
+                return bots.map((bot: Bot) => {
+                  return {
+                    name: bot.metadata.name.slice(4),
+                    description: "A bot with this name already exists",
+                  };
+                });
               },
             },
-            {
-              name: "--ttl",
-              description: "TTL for the bot join token",
-            },
+          },
+          options: [
+            teleportOptions.ttl,
+            teleportOptions.roles,
+            teleportOptions.logins,
             {
               name: "--token",
               description: "Name of an existing token to use",
               args: {
                 name: "token",
-                generators: teleportTokenGenerator,
+                generators: teleportGenerators.tokens,
               },
-            },
-            {
-              name: "--logins",
-              description: "List of allowed SSH logins for the bot user",
             },
           ],
         },
@@ -1422,6 +1609,7 @@ const completionSpec: Fig.Spec = {
       name: "inventory",
       description: "Manage Teleport instance inventory",
       requiresSubcommand: true,
+      priority: 100,
       subcommands: [
         {
           name: "status",
@@ -1496,6 +1684,7 @@ const completionSpec: Fig.Spec = {
       name: "recordings",
       description: "View and control session recordings",
       requiresSubcommand: true,
+      priority: 100,
       subcommands: [
         {
           name: "ls",
@@ -1508,15 +1697,17 @@ const completionSpec: Fig.Spec = {
       name: "alerts",
       description: "Manage cluster alerts",
       requiresSubcommand: true,
+      args: {},
+      priority: 100,
       subcommands: [
         {
           name: "list",
           description: "List cluster alerts",
           options: [
-            teleportFormatOption,
+            teleportOptions.format,
             {
               name: "--labels",
-              description: "List of comma separated labels to filter by labels",
+              description: "Filter by labels",
               args: {
                 name: "label1=value1,label2=value2",
               },
@@ -1534,7 +1725,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--labels",
-              description: "List of comma separated labels to filter by labels",
+              description: "Which labels should this alert have",
               args: {
                 name: "label1=value1,label2=value2",
               },
@@ -1548,7 +1739,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: "--ttl",
+              ...teleportOptions.ttl,
               description:
                 "Time duration after which the alert expires (default 24h)",
             },
@@ -1573,12 +1764,9 @@ const completionSpec: Fig.Spec = {
             generators: teleportAlertGenerator,
           },
           options: [
+            ...[teleportOptions.reason],
             {
-              name: "--reason",
-              description: "The reason for acknowledging the cluster alert",
-            },
-            {
-              name: "--ttl",
+              ...teleportOptions.ttl,
               description:
                 "Time duration after which the alert expires (default 24h)",
             },
@@ -1594,9 +1782,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "create",
       description: "Create or update a Teleport resource from a YAML file",
+      priority: 100,
       args: {
         name: "filename",
-        template: "filepaths",
+        generators: teleportGenerators.yamlFiles,
       },
       options: [
         {
@@ -1609,6 +1798,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update",
       description: "Update resource fields",
+      priority: 100,
       args: {
         name: "resource type/resource name",
         description: "Resource to update",
@@ -1617,11 +1807,15 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--set-labels",
-          description: "Set labels",
+          description: "Replace labels",
+          args: {
+            name: "label1=value1,label2=value2",
+          },
         },
         {
+          ...teleportOptions.ttl,
           name: "--set-ttl",
-          description: "Set TTL",
+          description: "Replace TTL",
         },
       ],
     },
@@ -1629,6 +1823,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "edit",
       description: "Edit a Teleport resource",
+      priority: 100,
       args: {
         name: "resource type/resource name",
         description: "Resource to edit",
@@ -1639,7 +1834,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "devices",
       description: "Register and manage trusted devices",
+      priority: 100,
       requiresSubcommand: true,
+      args: {},
       subcommands: [
         {
           name: "add",
@@ -1683,7 +1880,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "device",
             description: "Device ID",
-            generators: teleportDeviceGenerator,
+            generators: teleportGenerators.device,
           },
         },
         {
@@ -1710,7 +1907,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "device",
             description: "Device ID",
-            generators: teleportDeviceGenerator,
+            generators: teleportGenerators.device,
           },
         },
       ],
@@ -1720,14 +1917,17 @@ const completionSpec: Fig.Spec = {
       name: "saml",
       description: "Operations on SAML auth connectors",
       requiresSubcommand: true,
+      priority: 100,
+      args: {},
       subcommands: [
         {
           name: "export",
           description: "Export a SAML signing key in .crt format",
           args: {
             name: "connector_name",
+            isOptional: true,
             description: "Name of the SAML connector to export the key from",
-            generators: teleportSAMLConnectorGenerator,
+            generators: teleportGenerators.connector,
           },
         },
       ],
@@ -1737,6 +1937,8 @@ const completionSpec: Fig.Spec = {
       name: ["acl", "access-lists"],
       description: "Manage access lists",
       requiresSubcommand: true,
+      priority: 100,
+      args: {},
       subcommands: [
         {
           name: "ls",
@@ -1768,7 +1970,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "user",
                   description: "The user name",
-                  generators: teleportAccountsGenerator,
+                  generators: teleportGenerators.user,
                 },
                 {
                   name: "expires",
@@ -1796,7 +1998,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "user",
                   description: "The user name",
-                  generators: teleportAccountsGenerator,
+                  generators: teleportGenerators.user,
                 },
               ],
             },
@@ -1818,6 +2020,7 @@ const completionSpec: Fig.Spec = {
       name: "login_rule",
       description: "Test login rules",
       requiresSubcommand: true,
+      priority: 100,
       subcommands: [
         {
           name: "test",
@@ -1831,6 +2034,8 @@ const completionSpec: Fig.Spec = {
       description:
         "A family of commands for configuring and testing auth connectors (SSO)",
       requiresSubcommand: true,
+      priority: 100,
+      args: {},
       subcommands: [
         {
           name: "configure",
@@ -1844,6 +2049,9 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--name",
                   description: "Connector name",
+                  args: {
+                    name: "name",
+                  },
                 },
                 {
                   name: "--teams-to-roles",
@@ -1856,26 +2064,44 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--display",
                   description: "Sets the connector display name",
+                  args: {
+                    name: "display-name",
+                  },
                 },
                 {
                   name: "--id",
                   description: "GitHub app client ID",
+                  args: {
+                    name: "id",
+                  },
                 },
                 {
                   name: "--secret",
                   description: "GitHub app client secret",
+                  args: {
+                    name: "secret",
+                  },
                 },
                 {
                   name: "--endpoint-url",
                   description: "Endpoint URL for GitHub instance",
+                  args: {
+                    name: "endpoint-url",
+                  },
                 },
                 {
                   name: "--api-endpoint-url",
                   description: "API endpoint URL for GitHub instance",
+                  args: {
+                    name: "api-endpoint-url",
+                  },
                 },
                 {
                   name: "--redirect-url",
                   description: "Authorization callback URL",
+                  args: {
+                    name: "redirect-url",
+                  },
                 },
                 {
                   name: "--ignore-missing-roles",
@@ -1895,8 +2121,7 @@ const completionSpec: Fig.Spec = {
             name: "filename",
             description:
               "Connector resource definition filename. Empty for stdin",
-            isOptional: true,
-            template: "filepaths",
+            generators: teleportGenerators.yamlFiles,
           },
         },
       ],
@@ -1904,6 +2129,7 @@ const completionSpec: Fig.Spec = {
     /* tctl version */
     {
       name: "version",
+      priority: 100,
       description: "Print the version of your tctl binary",
     },
   ],
@@ -1924,7 +2150,7 @@ const completionSpec: Fig.Spec = {
       isPersistent: true,
       args: {
         name: "config",
-        template: "filepaths",
+        generators: teleportGenerators.yamlFiles,
       },
     },
     {
