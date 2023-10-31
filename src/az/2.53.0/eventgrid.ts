@@ -5225,7 +5225,6 @@ const completion: Fig.Spec = {
         {
           name: "list",
           description: "List registered topic types",
-          
         },
         {
           name: "list-event-types",

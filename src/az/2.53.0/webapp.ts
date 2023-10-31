@@ -10727,7 +10727,6 @@ const completion: Fig.Spec = {
             {
               name: "show",
               description: "Get deployment publishing user",
-              
             },
           ],
         },

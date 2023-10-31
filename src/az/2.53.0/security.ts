@@ -10,7 +10,6 @@ const completion: Fig.Spec = {
         {
           name: "list",
           description: "Adaptive Application Controls - List",
-          
         },
         {
           name: "show",
@@ -223,7 +222,6 @@ const completion: Fig.Spec = {
           name: "list",
           description:
             "List all alerts suppression rule on a subscription scope",
-          
         },
         {
           name: "show",
@@ -319,7 +317,6 @@ const completion: Fig.Spec = {
           name: "list",
           description:
             "List of all possible traffic between resources for the subscription",
-          
         },
         {
           name: "show",
@@ -409,7 +406,6 @@ const completion: Fig.Spec = {
         {
           name: "list",
           description: "List all security assessment results",
-          
         },
         {
           name: "show",
@@ -488,7 +484,6 @@ const completion: Fig.Spec = {
         {
           name: "list",
           description: "List all security assessment results",
-          
         },
         {
           name: "show",
@@ -625,7 +620,6 @@ const completion: Fig.Spec = {
         {
           name: "list",
           description: "List the auto provisioning settings",
-          
         },
         {
           name: "show",
@@ -1087,7 +1081,7 @@ const completion: Fig.Spec = {
             },
           ],
         },
-        { name: "list", description: "List security contact", },
+        { name: "list", description: "List security contact" },
         {
           name: "show",
           description: "Shows a security contact",
@@ -1109,7 +1103,6 @@ const completion: Fig.Spec = {
         {
           name: "list",
           description: "List the discovered security solutions",
-          
         },
         {
           name: "show",
@@ -1139,7 +1132,6 @@ const completion: Fig.Spec = {
         {
           name: "list",
           description: "List the external security solutions",
-          
         },
         {
           name: "show",
@@ -1513,7 +1505,6 @@ const completion: Fig.Spec = {
           name: "list",
           description:
             "Shows the Microsoft Defender for Cloud Home region location",
-          
         },
         {
           name: "show",
@@ -1556,7 +1547,6 @@ const completion: Fig.Spec = {
         {
           name: "list",
           description: "Shows the Azure Defender plans for the subscription",
-          
         },
         {
           name: "show",
@@ -1668,7 +1658,6 @@ const completion: Fig.Spec = {
           name: "list",
           description:
             "List supported regulatory compliance standards details and state results",
-          
         },
         {
           name: "show",
@@ -1692,7 +1681,6 @@ const completion: Fig.Spec = {
         {
           name: "list",
           description: "Get details of secure score control definitions",
-          
         },
       ],
     },
@@ -1704,7 +1692,6 @@ const completion: Fig.Spec = {
           name: "list",
           description:
             "List supported of secure score controls details and state for scope",
-          
         },
         {
           name: "list_by_score",
@@ -1728,7 +1715,6 @@ const completion: Fig.Spec = {
         {
           name: "list",
           description: "List of secure-scores details and state results",
-          
         },
         {
           name: "show",
@@ -1752,7 +1738,6 @@ const completion: Fig.Spec = {
           name: "list",
           description:
             "Display all security solutions at the subscription level",
-          
         },
       ],
     },
@@ -1765,7 +1750,6 @@ const completion: Fig.Spec = {
           name: "list",
           description:
             "Display all security solutions reference data at the subscription level",
-          
         },
       ],
     },
@@ -1773,7 +1757,7 @@ const completion: Fig.Spec = {
       name: "setting",
       description: "View your security settings",
       subcommands: [
-        { name: "list", description: "List security settings", },
+        { name: "list", description: "List security settings" },
         {
           name: "show",
           description: "Shows a security setting",
@@ -1912,7 +1896,6 @@ const completion: Fig.Spec = {
         {
           name: "list",
           description: "Shows the network topology in your subscription",
-          
         },
         {
           name: "show",
@@ -2535,7 +2518,6 @@ const completion: Fig.Spec = {
           name: "list",
           description:
             "Shows the workspace settings in your subscription - these settings let you control which workspace will hold your security data",
-          
         },
         {
           name: "show",

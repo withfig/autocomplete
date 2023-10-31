@@ -121,13 +121,11 @@ const completion: Fig.Spec = {
         {
           name: "list-deleted",
           description: "List soft-deleted Azure Cognitive Services accounts",
-          
         },
         {
           name: "list-kinds",
           description:
             "List all valid kinds for Azure Cognitive Services account",
-          
         },
         {
           name: "list-models",

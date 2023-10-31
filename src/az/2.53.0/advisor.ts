@@ -10,7 +10,6 @@ const completion: Fig.Spec = {
           name: "list",
           description:
             "List Azure Advisor configuration for the entire subscription",
-          
         },
         {
           name: "show",

@@ -467,7 +467,6 @@ const completion: Fig.Spec = {
           name: "list",
           description:
             "Get the list of StorageCache.Cache SKUs available to this subscription",
-          
         },
       ],
     },
@@ -556,7 +555,6 @@ const completion: Fig.Spec = {
           name: "list",
           description:
             "Get the list of Cache Usage Models available to this subscription",
-          
         },
       ],
     },

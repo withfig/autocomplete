@@ -6229,12 +6229,10 @@ const completion: Fig.Spec = {
             {
               name: "list-request-headers",
               description: "List all available request headers",
-              
             },
             {
               name: "list-response-headers",
               description: "List all available response headers",
-              
             },
             {
               name: "show",
@@ -6670,7 +6668,6 @@ const completion: Fig.Spec = {
                 {
                   name: "list-server-variables",
                   description: "List all available server variables",
-                  
                 },
                 {
                   name: "show",
@@ -8963,7 +8960,6 @@ const completion: Fig.Spec = {
               name: "list-options",
               description:
                 "List available SSL options for configuring SSL policy",
-              
             },
             {
               name: "set",
@@ -9135,7 +9131,6 @@ const completion: Fig.Spec = {
                   name: "list",
                   description:
                     "List all SSL predefined policies for configuring SSL policy",
-                  
                 },
                 {
                   name: "show",
@@ -20608,7 +20603,6 @@ const completion: Fig.Spec = {
         {
           name: "list-service-providers",
           description: "List available ExpressRoute service providers",
-          
         },
         {
           name: "show",
@@ -23752,7 +23746,6 @@ const completion: Fig.Spec = {
                   name: "list",
                   description:
                     "Get the details of an ExpressRoute port location",
-                  
                 },
                 {
                   name: "show",
@@ -31379,7 +31372,6 @@ const completion: Fig.Spec = {
                   name: "list",
                   description:
                     "Show a detailed list of available managed rule sets",
-                  
                 },
               ],
             },
@@ -51766,7 +51758,6 @@ const completion: Fig.Spec = {
             {
               name: "list-service-communities",
               description: "Gets all the available BGP service communities",
-              
             },
             {
               name: "show",
@@ -54719,7 +54710,6 @@ const completion: Fig.Spec = {
               name: "show-geographic-hierarchy",
               description:
                 "Get the default geographic hierarchy used by the geographic traffic routing method",
-              
             },
             {
               name: "update",
@@ -58874,7 +58864,6 @@ const completion: Fig.Spec = {
             {
               name: "list",
               description: "List all Azure network virtual appliance sku",
-              
             },
             {
               name: "show",
@@ -66954,7 +66943,7 @@ const completion: Fig.Spec = {
             },
           ],
         },
-        { name: "list", description: "List Network Watchers", },
+        { name: "list", description: "List Network Watchers" },
         {
           name: "run-configuration-diagnostic",
           description: "Run a configuration diagnostic on a target resource",

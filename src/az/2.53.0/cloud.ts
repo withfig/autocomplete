@@ -2,7 +2,7 @@ const completion: Fig.Spec = {
   name: "cloud",
   description: "Manage registered Azure clouds",
   subcommands: [
-    { name: "list", description: "List registered clouds", },
+    { name: "list", description: "List registered clouds" },
     {
       name: "list-profiles",
       description: "List the supported profiles for a cloud",

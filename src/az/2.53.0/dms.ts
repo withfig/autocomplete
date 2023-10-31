@@ -143,7 +143,6 @@ const completion: Fig.Spec = {
       name: "list-skus",
       description:
         "List the SKUs that are supported by the Azure Database Migration Service (classic)",
-      
     },
     {
       name: "show",

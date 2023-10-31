@@ -1606,7 +1606,6 @@ const completion: Fig.Spec = {
               name: "list",
               description:
                 "List all supported packet core control planes versions",
-              
             },
             {
               name: "show",

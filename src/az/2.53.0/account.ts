@@ -17,7 +17,6 @@ const completion: Fig.Spec = {
     {
       name: "clear",
       description: "Clear all subscriptions from the CLI's local cache",
-      
     },
     {
       name: "create",
@@ -243,7 +242,7 @@ const completion: Fig.Spec = {
             },
           ],
         },
-        { name: "list", description: "List Alias Subscriptions", },
+        { name: "list", description: "List Alias Subscriptions" },
         {
           name: "show",
           description: "Get Alias Subscription",
@@ -562,7 +561,6 @@ const completion: Fig.Spec = {
             {
               name: "list",
               description: "List all entities for the authenticated user",
-              
             },
           ],
         },
@@ -758,12 +756,10 @@ const completion: Fig.Spec = {
             {
               name: "get",
               description: "Get the backfill status for a tenant",
-              
             },
             {
               name: "start",
               description: "Start backfilling subscriptions for a tenant",
-              
             },
           ],
         },
@@ -804,7 +800,6 @@ const completion: Fig.Spec = {
         {
           name: "list",
           description: "Get all subscriptions for a tenant",
-          
         },
         {
           name: "list-location",
@@ -857,7 +852,6 @@ const completion: Fig.Spec = {
         {
           name: "list",
           description: "Get the tenants for your account",
-          
         },
       ],
     },

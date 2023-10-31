@@ -6585,7 +6585,6 @@ const completion: Fig.Spec = {
     {
       name: "list-consumption-locations",
       description: "List available locations for running function apps",
-      
     },
     {
       name: "list-runtimes",
@@ -7670,7 +7669,7 @@ const completion: Fig.Spec = {
                 },
               ],
             },
-            { name: "show", description: "Gets publishing user", },
+            { name: "show", description: "Gets publishing user" },
           ],
         },
       ],

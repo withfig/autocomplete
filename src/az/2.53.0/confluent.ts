@@ -276,7 +276,6 @@ const completion: Fig.Spec = {
           name: "list",
           description:
             "List Confluent marketplace agreements in the subscription. This command will be deprecated, please use 'az term show' instead",
-          
         },
       ],
     },

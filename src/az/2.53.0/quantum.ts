@@ -574,7 +574,6 @@ const completion: Fig.Spec = {
         {
           name: "clear",
           description: "Clear the default target-id",
-          
         },
         {
           name: "list",
@@ -640,7 +639,6 @@ const completion: Fig.Spec = {
         {
           name: "clear",
           description: "Clear the default Azure Quantum workspace",
-          
         },
         {
           name: "create",

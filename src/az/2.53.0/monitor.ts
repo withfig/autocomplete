@@ -730,7 +730,6 @@ const completion: Fig.Spec = {
         {
           name: "list-categories",
           description: "List the event categories of activity logs",
-          
         },
         {
           name: "alert",
@@ -6029,7 +6028,6 @@ const completion: Fig.Spec = {
               name: "list",
               description:
                 "Gets the active subscription diagnostic settings list for the specified subscriptionId. :keyword callable cls: A custom type or function that will be passed the direct response:return: SubscriptionDiagnosticSettingsResourceCollection or the result of cls(response):rtype:  ~$(python-base-namespace).v2017_05_01_preview.models.SubscriptionDiagnosticSettingsResourceCollection:raises ~azure.core.exceptions.HttpResponseError:",
-              
             },
             {
               name: "show",
@@ -9751,7 +9749,7 @@ const completion: Fig.Spec = {
             },
           ],
         },
-        { name: "list", description: "List the log profiles", },
+        { name: "list", description: "List the log profiles" },
         {
           name: "show",
           description: "Get the log profile",

@@ -118,7 +118,6 @@ const completion: Fig.Spec = {
           name: "list-all",
           description:
             "Get the list of restore point collections in the subscription. Use nextLink property in the response to get the next page of restore point collections. Do this till nextLink is not null to fetch all the restore point collections",
-          
         },
         {
           name: "show",

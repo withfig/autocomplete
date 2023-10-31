@@ -81,7 +81,6 @@ const completion: Fig.Spec = {
             {
               name: "list",
               description: "List marketplace offers",
-              
             },
             {
               name: "publish",

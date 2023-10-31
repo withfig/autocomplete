@@ -94,7 +94,6 @@ const completion: Fig.Spec = {
     {
       name: "list-default",
       description: "Get the default provider",
-      
     },
     {
       name: "show",

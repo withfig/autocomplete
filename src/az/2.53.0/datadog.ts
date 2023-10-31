@@ -865,7 +865,6 @@ const completion: Fig.Spec = {
         {
           name: "list",
           description: "List datadog marketplace agreements",
-          
         },
         {
           name: "update",

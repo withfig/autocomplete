@@ -31,12 +31,10 @@ const completion: Fig.Spec = {
     {
       name: "list",
       description: "List the contents of the object cache",
-      
     },
     {
       name: "purge",
       description: "Clear the entire CLI object cache",
-      
     },
     {
       name: "show",

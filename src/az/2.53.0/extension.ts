@@ -50,7 +50,7 @@ const completion: Fig.Spec = {
         },
       ],
     },
-    { name: "list", description: "List the installed extensions", },
+    { name: "list", description: "List the installed extensions" },
     {
       name: "list-available",
       description: "List publicly available extensions",

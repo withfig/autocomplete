@@ -1893,7 +1893,6 @@ const completion: Fig.Spec = {
           name: "create",
           description:
             'Please use "netapp-volume create" or "disk-pool-volume create" instead',
-          
         },
         {
           name: "delete",
@@ -4028,7 +4027,6 @@ const completion: Fig.Spec = {
         {
           name: "rotate-nsxt-password",
           description: "Rotate the NSX-T Manager password",
-          
         },
         {
           name: "rotate-vcenter-password",

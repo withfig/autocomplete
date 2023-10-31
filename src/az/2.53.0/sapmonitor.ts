@@ -69,7 +69,7 @@ const completion: Fig.Spec = {
         },
       ],
     },
-    { name: "list", description: "List SAP Monitors", },
+    { name: "list", description: "List SAP Monitors" },
     {
       name: "show",
       description: "Get the details of a SAP Monitor",

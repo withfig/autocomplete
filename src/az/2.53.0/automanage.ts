@@ -9,7 +9,6 @@ const completion: Fig.Spec = {
         {
           name: "list",
           description: "List Automanage best practices",
-          
         },
         {
           name: "show",
@@ -1391,13 +1390,11 @@ const completion: Fig.Spec = {
           name: "list",
           description:
             "List the Automanage AAD first party Application Service Principal details for the subscription id",
-          
         },
         {
           name: "show-default",
           description:
             "Get the Automanage AAD first party Application Service Principal details for the subscription id",
-          
         },
       ],
     },

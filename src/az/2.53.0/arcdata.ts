@@ -1176,7 +1176,6 @@ const completion: Fig.Spec = {
           name: "list",
           description:
             "List the available custom resource kinds for Arc that can be defined and created",
-          
         },
       ],
     },

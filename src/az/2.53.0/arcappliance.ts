@@ -951,7 +951,6 @@ const completion: Fig.Spec = {
       name: "notice",
       description:
         "Command to display the EULA & Notice File link for Arc resource bridge",
-      
     },
     {
       name: "show",

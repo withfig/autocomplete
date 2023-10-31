@@ -193,7 +193,6 @@ const completion: Fig.Spec = {
       name: "list-all",
       description:
         "Get a list of all cloud services in the subscription, regardless of the associated resource group",
-      
     },
     {
       name: "power-off",

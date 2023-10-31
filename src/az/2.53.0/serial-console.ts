@@ -33,13 +33,11 @@ const completion: Fig.Spec = {
       name: "disable",
       description:
         "Disable the serial console service for an entire subscription",
-      
     },
     {
       name: "enable",
       description:
         "Enable the serial console service for an entire subscription",
-      
     },
     {
       name: "send",

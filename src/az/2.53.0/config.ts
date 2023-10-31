@@ -90,17 +90,15 @@ const completion: Fig.Spec = {
         {
           name: "off",
           description: "Turn off parameter persistence",
-          
         },
         {
           name: "on",
           description: "Turn on parameter persistence",
-          
         },
         {
           name: "show",
           description: "Show parameter persistence data",
-          
+
           args: {
             name: "<NAME>",
             description: "Space-separated list of parameter persistence names",
