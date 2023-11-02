@@ -51,8 +51,7 @@
   },
   "lint-staged": {
     "*.ts": [
-      "eslint --fix",
-      "pretty-quick --staged"
+      "eslint --fix"
     ]
   },
   "files": [
