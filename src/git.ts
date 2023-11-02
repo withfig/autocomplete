@@ -9738,7 +9738,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "commit -m 'msg'",
       description: "Git commit shortcut",
-      insertValue: "commit -m {cursor}",
+      insertValue: "commit -m '{cursor}'",
       icon: "fig://template?color=2ecc71&badge=🔥",
       // type: "shortcut",
     },
