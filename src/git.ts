@@ -50,6 +50,7 @@ const postProcessTrackedFiles: Fig.Generator["postProcess"] = (
 interface PostProcessBranchesOptions {
   insertWithoutRemotes?: true;
 }
+
 const postProcessBranches =
   (options: PostProcessBranchesOptions = {}): Fig.Generator["postProcess"] =>
   (out) => {
@@ -269,7 +270,6 @@ export const gitGenerators: Record<string, Fig.Generator> = {
       const remoteURLs = out.split("\n").reduce((dict, line) => {
         const pair = line.split("\t");
         const remote = pair[0];
-        console.log(remote, pair);
         const url = pair[1].split(" ")[0];
 
         dict[remote] = url;
@@ -6074,6 +6074,10 @@ const completionSpec: Fig.Spec = {
             "Shows number of added and deleted lines in decimal notation",
         },
         {
+          name: "--name-only",
+          description: "Show only names of changed files",
+        },
+        {
           name: "--shortstat",
           description:
             "Output only the last line of the --stat format containing total number of modified files",
@@ -6312,6 +6316,8 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "name",
+              generators: gitGenerators.remotes,
+              filterStrategy: "fuzzy",
             },
             {
               name: "branch",
@@ -6345,6 +6351,8 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "name",
+              generators: gitGenerators.remotes,
+              filterStrategy: "fuzzy",
             },
             {
               name: "branch",
@@ -6390,6 +6398,8 @@ const completionSpec: Fig.Spec = {
           ],
           args: {
             name: "name",
+            generators: gitGenerators.remotes,
+            filterStrategy: "fuzzy",
           },
         },
         {
@@ -6398,6 +6408,8 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "name",
+              generators: gitGenerators.remotes,
+              filterStrategy: "fuzzy",
             },
             {
               name: "newurl",
@@ -6430,6 +6442,8 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
             isVariadic: true,
+            generators: gitGenerators.remotes,
+            filterStrategy: "fuzzy",
           },
           options: [
             {
@@ -6446,6 +6460,8 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
             isVariadic: true,
+            generators: gitGenerators.remotes,
+            filterStrategy: "fuzzy",
           },
           options: [
             {
@@ -9722,7 +9738,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "commit -m 'msg'",
       description: "Git commit shortcut",
-      insertValue: "commit -m {cursor}",
+      insertValue: "commit -m '{cursor}'",
       icon: "fig://template?color=2ecc71&badge=🔥",
       // type: "shortcut",
     },
