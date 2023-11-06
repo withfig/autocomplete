@@ -666,7 +666,11 @@ export const generateTasks: Fig.Generator = {
 // --- Generate installed deno scripts
 
 export const generateInstalledDenoScripts: Fig.Generator = {
-  script: ["bash", "-c", "command find ~/.deno/bin -maxdepth 1 -perm -111 -type f"],
+  script: [
+    "bash",
+    "-c",
+    "command find ~/.deno/bin -maxdepth 1 -perm -111 -type f",
+  ],
   postProcess: (out) =>
     out
       .split("\n")
@@ -701,7 +705,7 @@ export const generateUrlScript: Fig.Generator = {
   // There's no simple solution for pasting on Linux, it depends on
   // whether you use X11 or Wayland. For Wayland on some (most?) distros,
   // you would have to manually install wl-paste.
-  script: `pbpaste`,
+  script: ["pbpaste"],
   postProcess: (clipboard) => {
     clipboard = clipboard.trim();
     if (!clipboard) {
