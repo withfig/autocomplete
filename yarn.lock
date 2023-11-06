@@ -1881,9 +1881,9 @@ __metadata:
   linkType: hard
 
 "@withfig/autocomplete-types@npm:^1.28.0":
-  version: 1.28.0
-  resolution: "@withfig/autocomplete-types@npm:1.28.0"
-  checksum: ca69f69c4299356b5ef5c1c5c88ac8244773b4a600e616227b7c63c8dc4fe6e5ddb6a6c72d6d70e9296bc870462930b53c28efacb1b6d78e14876a5720527226
+  version: 1.29.0
+  resolution: "@withfig/autocomplete-types@npm:1.29.0"
+  checksum: 714b960c1e4a464e652fa72722d5927cb677f27a0528f5545bb4ebceab885c7035bc89f261450677356708b9455ad802a395d262909475983b64c59229f991e5
   languageName: node
   linkType: hard
 
