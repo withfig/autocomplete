@@ -6136,6 +6136,10 @@ const completionSpec: Fig.Spec = {
             "Shows number of added and deleted lines in decimal notation",
         },
         {
+          name: "--name-only",
+          description: "Show only names of changed files",
+        },
+        {
           name: "--shortstat",
           description:
             "Output only the last line of the --stat format containing total number of modified files",
@@ -9796,7 +9800,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "commit -m 'msg'",
       description: "Git commit shortcut",
-      insertValue: "commit -m {cursor}",
+      insertValue: "commit -m '{cursor}'",
       icon: "fig://template?color=2ecc71&badge=🔥",
       // type: "shortcut",
     },
