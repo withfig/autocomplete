@@ -126,7 +126,7 @@ const rootPackageOrLocal = (manifest: Metadata) => {
 };
 
 const packageGenerator: Fig.Generator = {
-  script: "cargo metadata --format-version 1 --no-deps",
+  script: ["cargo", "metadata", "--format-version", "1", "--no-deps"],
   postProcess: (data) => {
     const manifest: Metadata = JSON.parse(data);
     return manifest.packages.map((pkg) => {
@@ -142,7 +142,7 @@ const packageGenerator: Fig.Generator = {
 };
 
 const directDependencyGenerator: Fig.Generator = {
-  script: "cargo metadata --format-version 1",
+  script: ["cargo", "metadata", "--format-version", "1"],
   postProcess: (data: string) => {
     const manifest: Metadata = JSON.parse(data);
     const packages = rootPackageOrLocal(manifest);
@@ -160,9 +160,10 @@ const targetGenerator: ({ kind }: { kind?: TargetKind }) => Fig.Generator = ({
   kind,
 }) => ({
   custom: async (_, executeShellCommand, context) => {
-    const out = await executeShellCommand(
-      "cargo metadata --format-version 1 --no-deps"
-    );
+    const out = await executeShellCommand({
+      command: "cargo",
+      args: ["metadata", "--format-version", "1", "--no-deps"],
+    });
     const manifest: Metadata = JSON.parse(out);
     const packages = rootPackageOrLocal(manifest);
 
@@ -184,7 +185,7 @@ const targetGenerator: ({ kind }: { kind?: TargetKind }) => Fig.Generator = ({
 });
 
 const dependencyGenerator: Fig.Generator = {
-  script: "cargo metadata --format-version 1",
+  script: ["cargo", "metadata", "--format-version", "1"],
   postProcess: (data: string) => {
     const metadata: Metadata = JSON.parse(data);
     return metadata.packages.map((pkg) => ({
@@ -195,7 +196,7 @@ const dependencyGenerator: Fig.Generator = {
 };
 
 const featuresGenerator: Fig.Generator = {
-  script: "cargo read-manifest",
+  script: ["cargo", "read-manifest"],
   postProcess: (data: string) => {
     const manifest = JSON.parse(data);
     return Object.keys(manifest.features || {}).map((name) => ({
@@ -243,10 +244,11 @@ const searchGenerator: Fig.Generator = {
     if (lastToken.includes("@") && !lastToken.startsWith("@")) {
       const [crate, _version] = lastToken.split("@");
       const query = encodeURIComponent(crate);
-      const out = await executeShellCommand(
-        `curl -sfL 'https://crates.io/api/v1/crates/${query}/versions'`
-      );
-      const json: VersionSearchResults = JSON.parse(out);
+      const { stdout } = await executeShellCommand({
+        command: "curl",
+        args: ["-sfL", `https://crates.io/api/v1/crates/${query}/versions`],
+      });
+      const json: VersionSearchResults = JSON.parse(stdout);
 
       return json.versions.map((version) => ({
         name: `${crate}@${version.num}`,
@@ -258,14 +260,22 @@ const searchGenerator: Fig.Generator = {
       }));
     } else if (lastToken.length > 0) {
       const query = encodeURIComponent(lastToken);
-      const [remoteOut, localOut] = await Promise.all([
-        executeShellCommand(
-          `curl -sfL 'https://crates.io/api/v1/crates?q=${query}&per_page=60'`
-        ),
-        executeShellCommand(`cargo metadata --format-version 1 --no-deps`),
-      ]);
+      const [{ stdout: remoteStdout }, { stdout: localStdout }] =
+        await Promise.all([
+          executeShellCommand({
+            command: "curl",
+            args: [
+              "-sfL",
+              `https://crates.io/api/v1/crates?q=${query}&per_page=60`,
+            ],
+          }),
+          executeShellCommand({
+            command: "cargo",
+            args: ["metadata", "--format-version", "1", "--no-deps"],
+          }),
+        ]);
 
-      const remoteJson: CrateSearchResults = JSON.parse(remoteOut);
+      const remoteJson: CrateSearchResults = JSON.parse(remoteStdout);
       const remoteSuggustions: Fig.Suggestion[] = remoteJson.crates
         .sort((a, b) => b.recent_downloads - a.recent_downloads)
         .map((crate) => ({
@@ -278,8 +288,8 @@ const searchGenerator: Fig.Generator = {
         }));
 
       let localSuggestions: Fig.Suggestion[] = [];
-      if (localOut.trim().length > 0) {
-        const localJson: Metadata = JSON.parse(localOut);
+      if (localStdout.trim().length > 0) {
+        const localJson: Metadata = JSON.parse(localStdout);
         localSuggestions = localJson.packages
           .filter((pkg) => !pkg.source)
           .map((pkg) => ({
@@ -308,7 +318,7 @@ const searchGenerator: Fig.Generator = {
 };
 
 const tripleGenerator: Fig.Generator = {
-  script: "rustc --print target-list",
+  script: ["rustc","--print","target-list"],
   postProcess: (data: string) => {
     return data
       .split("\n")
@@ -5785,12 +5795,17 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
     },
   ],
   generateSpec: async (_tokens, executeShellCommand) => {
-    const [toolchainOutput, listOutput] = await Promise.all([
-      executeShellCommand("rustup toolchain list"),
-      executeShellCommand("cargo --list"),
-    ]);
+    const [{ stdout: toolchainStdout }, { stdout: listOutput }] =
+      await Promise.all([
+        executeShellCommand({
+          command: "rustup",
+          args: ["toolchain", "list"],
+        }),
+        // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+        executeShellCommand({ command: "cargo", args: ["--list"] }),
+      ]);
 
-    const toolchains: Fig.Option[] = toolchainOutput
+    const toolchains: Fig.Option[] = toolchainStdout
       .split("\n")
       .map((toolchain) => {
         return {

@@ -274,7 +274,7 @@ const nxGenerators: NxGenerators = {
     },
   },
   list: {
-    script: "nx list",
+    script: ["nx", "list"],
     cache: oneDayCache,
     postProcess: (out) => {
       if (out.indexOf("Installed plugins") > -1) {

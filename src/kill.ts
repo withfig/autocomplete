@@ -38,7 +38,7 @@ const completionSpec: Fig.Spec = {
         name: "signal_name",
         generators: {
           // Bash's `kill` builtin has different output to /bin/kill
-          script: "env kill -l",
+          script: ["env", "kill", "-l"],
           postProcess: (out) =>
             out.match(/\w+/g).map((name) => ({
               name,

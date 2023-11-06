@@ -14,7 +14,7 @@ const getJsFilesAndFolders = filepaths({
 });
 
 const workerGenerator = {
-  script: "sysctl -n hw.ncpu",
+  script: ["sysctl","-n","hw.ncpu"],
   postProcess: (scriptOutput: string) => {
     return Array.from({ length: Number(scriptOutput) }, (_x, i) => ({
       name: `${i}`,
@@ -40,7 +40,7 @@ const xcodeSchemeGenerator = {
 };
 
 const androidGetDevicesGenerator = {
-  script: "adb devices",
+  script: ["adb", "devices"],
   postProcess: (scriptOutput: string) => {
     const devices = scriptOutput
       .split("\n")
@@ -58,7 +58,7 @@ const androidGetDevicesGenerator = {
 type IosRecordType = { name: string };
 
 const iosGetDevicesSimulatorGenerator = {
-  script: "xcrun simctl list --json devices available",
+  script: ["xcrun", "simctl", "list", "--json", "devices", "available"],
   postProcess: (scriptOutput: string) => {
     const devices = JSON.parse(scriptOutput).devices;
 
@@ -76,7 +76,7 @@ const iosGetDevicesSimulatorGenerator = {
 };
 
 const iosGetDevicesGenerator = {
-  script: "xcrun xctrace list devices",
+  script: ["xcrun", "xctrace", "list", "devices"],
   postProcess: (scriptOutput: string) => {
     const devices = scriptOutput
       .split("\n")

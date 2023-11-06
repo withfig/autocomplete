@@ -1,5 +1,5 @@
 const databases: Fig.Generator = {
-  script: "fin db list",
+  script: ["fin", "db", "list"],
   postProcess: (output) => {
     return output.split("\n").map((db) => {
       return { name: db.trim(), description: "Database" };
@@ -8,7 +8,7 @@ const databases: Fig.Generator = {
 };
 
 const hosts: Fig.Generator = {
-  script: "fin hosts",
+  script: ["fin", "hosts"],
   postProcess: (output) => {
     return output.split("\n").map((host) => {
       if (host.startsWith("#")) {
@@ -20,7 +20,7 @@ const hosts: Fig.Generator = {
 };
 
 const aliasGenerator: Fig.Generator = {
-  script: "fin alias list",
+  script: ["fin", "alias", "list"],
   postProcess: (output) => {
     return output
       .split("\n")
@@ -32,7 +32,7 @@ const aliasGenerator: Fig.Generator = {
 };
 
 const serviceGenerator: Fig.Generator = {
-  script: "\\command fin docker ps --format '{{.Names}}'",
+  script: ["fin", "docker", "ps", "--format", "{{.Names}}"],
   splitOn: "\n",
 };
 

@@ -303,12 +303,12 @@ const getResultList = async (
 
 const _prefixFile = "file://";
 
-const appendFolderPath = (tokens: string[], prefix: string): string => {
-  const baseLSCommand = "\\ls -1ApL ";
+const appendFolderPath = (tokens: string[], prefix: string): string[] => {
+  const baseLsCommand = ["ls", "-1ApL"];
   let whatHasUserTyped = tokens[tokens.length - 1];
 
   if (!whatHasUserTyped.startsWith(prefix)) {
-    return `echo '${prefix}'`;
+    return ["echo", prefix];
   }
   whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
 
@@ -323,7 +323,7 @@ const appendFolderPath = (tokens: string[], prefix: string): string => {
     }
   }
 
-  return baseLSCommand + folderPath;
+  return [...baseLsCommand, folderPath];
 };
 
 const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
@@ -415,28 +415,28 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listAlarms: {
-    script: "aws cloudwatch describe-alarms",
+    script: ["aws", "cloudwatch", "describe-alarms"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "MetricAlarms", "AlarmName");
     },
   },
 
   listAlarmArns: {
-    script: "aws cloudwatch describe-alarms",
+    script: ["aws", "cloudwatch", "describe-alarms"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "MetricAlarms", "AlarmArn");
     },
   },
 
   listAdNamespaces: {
-    script: "aws cloudwatch describe-anomaly-detectors",
+    script: ["aws", "cloudwatch", "describe-anomaly-detectors"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "AnomalyDetectors", "Namespace");
     },
   },
 
   listMetricNamespaces: {
-    script: "aws cloudwatch list-metrics",
+    script: ["aws", "cloudwatch", "list-metrics"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "Metrics", "Namespace");
     },
@@ -495,35 +495,35 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listDashboards: {
-    script: "aws cloudwatch list-dashboards",
+    script: ["aws", "cloudwatch", "list-dashboards"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "DashboardEntries", "DashboardName");
     },
   },
 
   listInsightRules: {
-    script: "aws cloudwatch describe-insight-rules",
+    script: ["aws", "cloudwatch", "describe-insight-rules"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "InsightRules", "Name");
     },
   },
 
   listMetricStreams: {
-    script: "aws cloudwatch list-metric-streams",
+    script: ["aws", "cloudwatch", "list-metric-streams"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "Entries", "Name");
     },
   },
 
   listMetrics: {
-    script: "aws cloudwatch list-metrics",
+    script: ["aws", "cloudwatch", "list-metrics"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "Metrics", "MetricName");
     },
   },
 
   listSNSTopics: {
-    script: "aws sns list-topics",
+    script: ["aws", "sns", "list-topics"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "Topics", "TopicArn");
     },
@@ -561,7 +561,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listRoles: {
-    script: "aws iam list-roles",
+    script: ["aws", "iam", "list-roles"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "Roles", "Arn");
     },

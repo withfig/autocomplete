@@ -18,16 +18,25 @@ const graphql = async ({
   exec,
   query,
 }: {
-  exec: Fig.ExecuteShellCommandFunction;
+  exec: Fig.ExecuteCommandFunction;
   query: string;
 }) => {
-  const response = await exec(
-    `fig _ request --route '/graphql' --method POST --body '{ "query": "${query
-      .split(/\s+/)
-      .join(" ")}" }'`
-  );
+  const { stdout } = await exec({
+    command: "fig",
+    args: [
+      "_",
+      "request",
+      "--route",
+      "/graphql",
+      "--method",
+      "--body",
+      JSON.stringify({
+        query,
+      }),
+    ],
+  });
 
-  return JSON.parse(response).data;
+  return JSON.parse(stdout).data;
 };
 
 const devCompletionsFolderGenerator: Fig.Generator = {
@@ -46,7 +55,7 @@ const devCompletionsFolderGenerator: Fig.Generator = {
 };
 
 const disableForCommandsGenerator: Fig.Generator = {
-  script: "fig settings autocomplete.disableForCommands",
+  script: ["fig", "settings", "autocomplete.disableForCommands"],
   postProcess: (out) => {
     const existing = out.split("\n").filter((item) => item.length > 0);
 
@@ -78,7 +87,7 @@ const disableForCommandsGenerator: Fig.Generator = {
 };
 
 export const themesGenerator: Fig.Generator = {
-  script: "fig theme --list",
+  script: ["fig", "theme", "--list"],
   postProcess: (output) => {
     const builtinThemes: Fig.Suggestion[] = [
       {
@@ -137,10 +146,11 @@ export const settingsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
   _,
   executeShellCommand
 ) => {
-  const text = await executeShellCommand(
-    "fig _ request --method GET --route '/settings/all'"
-  );
-  const { settings, actions } = JSON.parse(text) as {
+  const { stdout } = await executeShellCommand({
+    command: "fig",
+    args: ["_", "request", "--method", "GET", "--route", "/settings/all"],
+  });
+  const { settings, actions } = JSON.parse(stdout) as {
     settings: Setting[];
     actions: Action[];
   };
@@ -195,7 +205,7 @@ export const settingsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
 };
 
 export const stateGenerator: Fig.Generator = {
-  script: "fig internal local-state all --format json",
+  script: ["fig", "internal", "local-state", "all", "--format", "json"],
   postProcess: (out) => {
     const state = JSON.parse(out);
     return Object.keys(state).map((key) => ({
@@ -218,11 +228,14 @@ export const pluginsGenerator = (init: {
     strategy: "stale-while-revalidate",
   },
   custom: async (_tokens, executeShellCommand) => {
-    const script = init.installed
-      ? "fig plugins list --format json --installed"
-      : "fig plugins list --format json";
-    const out = await executeShellCommand(script);
-    const json = JSON.parse(out) as Plugin[];
+    const args = init.installed
+      ? ["plugins", "list", "--format", "json", "--installed"]
+      : ["plugins", "list", "--format", "json"];
+    const { stdout } = await executeShellCommand({
+      command: "fig",
+      args,
+    });
+    const json = JSON.parse(stdout) as Plugin[];
     return json.map((plugin) => ({
       name: plugin.name,
       icon: !plugin.icon?.startsWith("https://") ? plugin.icon : "📦",
@@ -252,9 +265,20 @@ export const tokensGenerators: Fig.Generator = {
       teamName = tokens[teamOptionIndex + 1];
     }
     const out = JSON.parse(
-      await executeShellCommand(
-        `fig user tokens list --team ${teamName} --format json`
-      )
+      (
+        await executeShellCommand({
+          command: "fig",
+          args: [
+            "user",
+            "tokens",
+            "list",
+            "--team",
+            teamName,
+            "--format",
+            "json",
+          ],
+        })
+      ).stdout
     ) as {
       createdAt: string;
       description?: string;
@@ -278,7 +302,7 @@ export const teamsGenerators: Fig.Generator = {
   cache: {
     strategy: "stale-while-revalidate",
   },
-  script: "fig team --list --format json",
+  script: ["fig", "team", "--list", "--format", "json"],
   postProcess: (out) => {
     return (
       JSON.parse(out) as { id: number; name: string; specs: string[] }[]
@@ -295,7 +319,12 @@ export const membersGenerators: Fig.Generator = {
   custom: async (tokens, executeShellCommand) => {
     const teamName = tokens.at(-3);
     const out = JSON.parse(
-      await executeShellCommand(`fig team --format json ${teamName} members`)
+      (
+        await executeShellCommand({
+          command: "fig",
+          args: ["team", "--format", "json", teamName, "members"],
+        })
+      ).stdout
     ) as { email: string; role: string }[];
     return out.map((member) => {
       return {
@@ -315,9 +344,12 @@ export const invitationsGenerators: Fig.Generator = {
   custom: async (tokens, executeShellCommand) => {
     const teamName = tokens.at(-3);
     const out = JSON.parse(
-      await executeShellCommand(
-        `fig team --format json ${teamName} invitations`
-      )
+      (
+        await executeShellCommand({
+          command: "fig",
+          args: ["team", "--format", "json", teamName, "invitations"],
+        })
+      ).stdout
     ) as { email: string; role: string }[];
     return out.map((invitation) => {
       return {
@@ -451,7 +483,7 @@ const scriptOptions = (script: ScriptFields) => {
           generators = param?.selector?.generators
             .filter((generator) => generator.type === "ShellScript")
             .map((generator) => ({
-              script: generator?.shellScript?.script,
+              script: ["bash", "-c", generator?.shellScript?.script],
               splitOn: "\n",
             }));
         }
@@ -732,7 +764,15 @@ export const commandLineToolSpecGenerator: Fig.Subcommand["generateSpec"] =
   };
 
 export const sshHostsGenerator: Fig.Generator = {
-  script: "fig _ request --method GET --route /access/hosts/all",
+  script: [
+    "fig",
+    "_",
+    "request",
+    "--method",
+    "GET",
+    "--route",
+    "/access/hosts/all",
+  ],
   cache: {
     strategy: "stale-while-revalidate",
   },
@@ -759,7 +799,12 @@ export const sshIdentityGenerator: Fig.Generator = {
       return [];
     }
     const hosts = JSON.parse(
-      await executeShellCommand(`fig ssh ${host} --get-identities`)
+      (
+        await executeShellCommand({
+          command: "fig",
+          args: ["ssh", host, "--get-identities"],
+        })
+      ).stdout
     ) as { displayName: string; username: string }[];
 
     return hosts.map((host) => ({
@@ -769,7 +814,7 @@ export const sshIdentityGenerator: Fig.Generator = {
 };
 
 export const userGenerator: Fig.Generator = {
-  script: "fig user list-accounts",
+  script: ["fig", "user", "list-accounts"],
   postProcess: (out) => {
     if (out.startsWith("error: ")) {
       return [];

@@ -1,6 +1,6 @@
 // Print plans list if there is .rugby/plans.yml file
 const planList: Fig.Generator = {
-  script: "rugby plan list",
+  script: ["rugby", "plan", "list"],
   postProcess: (output) => {
     if (output === "") {
       return [];

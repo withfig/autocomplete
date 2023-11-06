@@ -33,7 +33,7 @@ const completionSpec: Fig.Spec = {
         name: "context",
         isVariadic: true,
         generators: {
-          script: `kubectx`,
+          script: ["kubectx"],
           postProcess: (out) => {
             const contexts = out.split("\n").map((item) => ({
               name: item,
@@ -68,7 +68,7 @@ const completionSpec: Fig.Spec = {
           })) as Fig.Suggestion[],
       },
       {
-        script: `kubectx -c`,
+        script: ["kubectx", "-c"],
         postProcess: (out) => {
           return !out
             ? []

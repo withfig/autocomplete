@@ -12,12 +12,12 @@ const generateAppNames: Fig.Generator = {
 };
 
 const generateOrgs: Fig.Generator = {
-  script: `cf orgs`,
+  script: ["cf", "orgs"],
   postProcess: postProcessCfList("Org", 3),
 };
 
 const generateSpaces: Fig.Generator = {
-  script: `cf spaces`,
+  script: ["cf", "spaces"],
   postProcess: postProcessCfList("Space", 3),
 };
 

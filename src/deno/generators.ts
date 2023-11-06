@@ -244,7 +244,7 @@ type DenoLintRulesJSON = {
 }[];
 
 export const generateLintRules: Fig.Generator = {
-  script: "deno lint --rules --json",
+  script: ["deno", "lint", "--rules", "--json"],
   getQueryTerm: ",",
   cache: { ttl: 1000 * 60 * 60 * 24 },
   postProcess: (out) => {

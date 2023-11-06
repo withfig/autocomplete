@@ -38,28 +38,30 @@ const postPrecessGenerator = (
 
 const customGenerator = async (
   tokens: string[],
-  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  executeShellCommand: Fig.ExecuteCommandFunction,
   command: string,
   options: string[],
   parentKey: string,
   childKey = ""
 ): Promise<Fig.Suggestion[]> => {
   try {
-    let cmd = `aws amplify ${command}`;
+    let args = ["amplify", command];
 
-    for (let i = 0; i < options.length; i++) {
-      const option = options[i];
+    for (const option of options) {
       const idx = tokens.indexOf(option);
       if (idx < 0) {
         continue;
       }
       const param = tokens[idx + 1];
-      cmd += ` ${option} ${param}`;
+      args = [...args, option, param];
     }
 
-    const out = await executeShellCommand(cmd);
+    const { stdout } = await executeShellCommand({
+      command: "aws",
+      args,
+    });
 
-    const list = JSON.parse(out)[parentKey];
+    const list = JSON.parse(stdout)[parentKey];
 
     if (!Array.isArray(list)) {
       return [
@@ -70,8 +72,8 @@ const customGenerator = async (
       ];
     }
 
-    return list.map((elm) => {
-      const name = (childKey ? elm[childKey] : elm) as string;
+    return list.map((resource) => {
+      const name = (childKey ? resource[childKey] : resource) as string;
       return {
         name,
         icon: "fig://icon?type=aws",
@@ -85,12 +87,12 @@ const customGenerator = async (
 
 const _prefixFile = "file://";
 
-const appendFolderPath = (tokens: string[], prefix: string): string => {
-  const baseLSCommand = "\\ls -1ApL ";
+const appendFolderPath = (tokens: string[], prefix: string): string[] => {
+  const baseLsCommand = ["ls", "-1ApL"];
   let whatHasUserTyped = tokens[tokens.length - 1];
 
   if (!whatHasUserTyped.startsWith(prefix)) {
-    return `echo '${prefix}'`;
+    return ["echo", prefix];
   }
   whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
 
@@ -105,7 +107,7 @@ const appendFolderPath = (tokens: string[], prefix: string): string => {
     }
   }
 
-  return baseLSCommand + folderPath;
+  return [...baseLsCommand, folderPath];
 };
 
 const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
@@ -194,7 +196,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listAmplifyServiceRoles: {
-    script: "aws iam list-roles",
+    script: ["aws", "iam", "list-roles"],
     postProcess: (out) => {
       try {
         const list = JSON.parse(out)["Roles"];
@@ -223,21 +225,21 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listAmplifyAppIds: {
-    script: "aws amplify list-apps",
+    script: ["aws", "amplify", "list-apps"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "apps", "appId");
     },
   },
 
   listAmplifyAppArns: {
-    script: "aws amplify list-apps",
+    script: ["aws", "amplify", "list-apps"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "apps", "appArn");
     },
   },
 
   listCfnStackNames: {
-    script: "aws cloudformation list-stacks",
+    script: ["aws", "cloudformation", "list-stacks"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "StackSummaries", "StackName");
     },
@@ -309,7 +311,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listIamRoleArns: {
-    script: "aws iam list-roles",
+    script: ["aws", "iam", "list-roles"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "Roles", "Arn");
     },
@@ -342,14 +344,14 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listWebhookIds: {
-    script: "aws amplify list-webhooks",
+    script: ["aws", "amplify", "list-webhooks"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "webhooks", "webhookId");
     },
   },
 
   listAllBranches: {
-    script: "aws amplify list-apps",
+    script: ["aws", "amplify", "list-apps"],
     postProcess: (out) => {
       try {
         const list = JSON.parse(out)["Roles"];

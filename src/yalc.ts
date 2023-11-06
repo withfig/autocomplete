@@ -21,7 +21,7 @@ const generatePackages: Fig.Generator = {
 };
 
 const getRemovablePackages: Fig.Generator = {
-  script: "command ls .yalc",
+  script: ["ls", ".yalc"],
   postProcess: (out) =>
     out.split("\n").map((path) => ({
       name: path,

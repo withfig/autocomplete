@@ -12,7 +12,7 @@ const programGenerator: Fig.Generator = {
       })),
 };
 const generateAllShims: Fig.Generator = {
-  script: "jenv shims --short",
+  script: ["jenv", "shims", "--short"],
   postProcess: function (out) {
     return out
       .split("\n")
@@ -25,7 +25,7 @@ const generateAllShims: Fig.Generator = {
   },
 };
 const generateAllCommands: Fig.Generator = {
-  script: "jenv commands",
+  script: ["jenv", "commands"],
   postProcess: function (out) {
     return out
       .split("\n")
@@ -40,7 +40,7 @@ const generateAllCommands: Fig.Generator = {
   },
 };
 const generateAllPlugins: Fig.Generator = {
-  script: "jenv plugins",
+  script: ["jenv", "plugins"],
   postProcess: function (out) {
     return out
       .split("\n")
@@ -54,7 +54,7 @@ const generateAllPlugins: Fig.Generator = {
   },
 };
 const generateJEnvVersions: Fig.Generator = {
-  script: "jenv versions --bare",
+  script: ["jenv","versions","--bare"],
   postProcess: function (out) {
     return out
       .split("\n")

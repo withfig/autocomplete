@@ -16,7 +16,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "<language>",
         generators: {
-          script: "bat --list-languages",
+          script: ["bat", "--list-languages"],
           postProcess: function (out) {
             // unpack 2-dimension array
             return out
@@ -86,7 +86,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "<mode>",
         generators: {
-          script: "bat --wrap unknow  2>&1 >/dev/null | grep possible",
+          script: "bat --wrap unknow 2>&1 >/dev/null | grep possible",
           postProcess: function (out) {
             return out
               .trim()
@@ -251,7 +251,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "<theme>",
         generators: {
-          script: "bat --list-themes",
+          script: ["bat", "--list-themes"],
           postProcess: function (out) {
             return out.split("\n").map((theme) => {
               return { name: theme, description: "theme: " + theme };

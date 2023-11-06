@@ -31,12 +31,12 @@ const postPrecessGenerator = (
 const _prefixFile = "file://";
 const _prefixBlob = "fileb://";
 
-const appendFolderPath = (tokens: string[], prefix: string): string => {
-  const baseLSCommand = "\\ls -1ApL ";
+const appendFolderPath = (tokens: string[], prefix: string): string[] => {
+  const baseLsCommand = ["ls", "-1ApL"];
   let whatHasUserTyped = tokens[tokens.length - 1];
 
   if (!whatHasUserTyped.startsWith(prefix)) {
-    return `echo '${prefix}'`;
+    return ["echo", prefix];
   }
   whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
 
@@ -51,7 +51,7 @@ const appendFolderPath = (tokens: string[], prefix: string): string => {
     }
   }
 
-  return baseLSCommand + folderPath;
+  return [...baseLsCommand, folderPath];
 };
 
 const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
@@ -157,7 +157,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listCertificates: {
-    script: "aws acm list-certificates",
+    script: ["aws", "acm", "list-certificates"],
     postProcess: (out) => {
       return postPrecessGenerator(
         out,
@@ -168,7 +168,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listCertificateAuthorities: {
-    script: "aws acm-pca list-certificate-authorities",
+    script: ["aws", "acm-pca", "list-certificate-authorities"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "CertificateAuthorities", "Arn");
     },

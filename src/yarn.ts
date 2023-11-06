@@ -2,8 +2,20 @@ import { npmScriptsGenerator, npmSearchGenerator } from "./npm";
 
 export const yarnScriptParserDirectives: Fig.Arg["parserDirectives"] = {
   alias: async (token, executeShellCommand) => {
-    const out = await executeShellCommand("cat $(npm prefix)/package.json");
-    const script: string = JSON.parse(out).scripts?.[token];
+    const npmPrefix = await executeShellCommand({
+      command: "npm",
+      // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+      args: ["prefix"],
+    });
+    if (npmPrefix.status !== 0) {
+      throw new Error("npm prefix command failed");
+    }
+    const packageJson = await executeShellCommand({
+      command: "cat",
+      // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+      args: [`${npmPrefix.stdout.trim()}/package.json`],
+    });
+    const script: string = JSON.parse(packageJson.stdout).scripts?.[token];
     if (!script) {
       throw new Error(`Script not found: '${token}'`);
     }
@@ -68,7 +80,7 @@ const getGlobalPackagesGenerator: Fig.Generator = {
 
 // generate package list of direct and indirect dependencies
 const allDependenciesGenerator: Fig.Generator = {
-  script: "yarn list --depth=0 --json",
+  script: ["yarn", "list", "--depth=0", "--json"],
   postProcess: (out) => {
     if (out.trim() == "") return [];
 
@@ -85,7 +97,7 @@ const allDependenciesGenerator: Fig.Generator = {
 };
 
 const configList: Fig.Generator = {
-  script: "yarn config list",
+  script: ["yarn", "config", "list"],
   postProcess: function (out) {
     if (out.trim() == "") {
       return [];
@@ -112,8 +124,11 @@ const configList: Fig.Generator = {
 };
 
 export const dependenciesGenerator: Fig.Generator = {
-  script:
+  script: [
+    "bash",
+    "-c",
     "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json",
+  ],
   postProcess: function (out, context = []) {
     if (out.trim() === "") {
       return [];

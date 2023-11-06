@@ -30,7 +30,7 @@ const packages: Fig.Generator = {
 };
 
 const installedPackages: Fig.Generator = {
-  script: "apt list --installed",
+  script: ["apt", "list", "--installed"],
   postProcess: function (a) {
     return a
       .trim()
@@ -46,7 +46,7 @@ const installedPackages: Fig.Generator = {
 };
 
 const upgradablePackages: Fig.Generator = {
-  script: "apt list --upgradable",
+  script: ["apt", "list", "--upgradable"],
   postProcess: function (a) {
     return a
       .trim()

@@ -10,7 +10,7 @@ const filterMessages = (out: string): string => {
 };
 
 const searchBranches: Fig.Generator = {
-  script: "git branch --no-color",
+  script: ["git", "branch", "--no-color"],
   postProcess: function (out) {
     const output = filterMessages(out);
 
@@ -45,7 +45,7 @@ const searchBranches: Fig.Generator = {
 };
 
 const generatorInstalledPackages: Fig.Generator = {
-  script: "pnpm ls",
+  script: ["pnpm", "ls"],
   postProcess: function (out) {
     /**
      * out

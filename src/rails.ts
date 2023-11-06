@@ -483,7 +483,7 @@ const defaultCommands: Fig.Subcommand[] = [
       {
         name: "generator",
         generators: {
-          script: "rails g --help",
+          script: ["rails", "g", "--help"],
           postProcess(out) {
             const lines = out.split("Rails:")[1].trim().split("\n");
 

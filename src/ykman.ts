@@ -2456,7 +2456,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "NAME",
         generators: {
-          script: "ykman list --readers",
+          script: ["ykman", "list", "--readers"],
           postProcess: function (out) {
             return out.split("\n").map((readerName) => {
               return { name: readerName, description: "Yubikey name" };

@@ -303,8 +303,21 @@ const spec: Fig.Spec = {
           ],
           generators: [
             { template: "folders" },
-            { script: "command ls -1 ~/.bun-create", splitOn: "\n" },
-            { script: "command ls -1 .bun-create", splitOn: "\n" },
+            {
+              custom: async (_, executeCommand, context) => {
+                const { stdout } = await executeCommand({
+                  command: "ls",
+                  args: [
+                    "-1",
+                    `${context.environmentVariables["HOME"]}/.bun-create`,
+                  ],
+                });
+                return stdout.split("\n").map((name) => ({
+                  name,
+                }));
+              },
+            },
+            { script: ["command", "ls", "-1", ".bun-create"], splitOn: "\n" },
             createCLIsGenerator,
           ],
           loadSpec: async (token) => ({

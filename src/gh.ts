@@ -89,15 +89,24 @@ const ghGenerators: Record<string, Fig.Generator> = {
       if (!userOrOrg) return [];
 
       //run `gh repo list` cmd
-      const res = await execute(
-        `gh repo list ${userOrOrg} --limit 9999 --json "nameWithOwner,description,isPrivate" `
-      );
+      const { stdout, status } = await execute({
+        command: "gh",
+        args: [
+          "repo",
+          "list",
+          userOrOrg,
+          "--limit",
+          "9999",
+          "--json",
+          "nameWithOwner,description,isPrivate",
+        ],
+      });
 
       // make sure it has some existence.
-      if (!res) return [];
+      if (status !== 0) return [];
 
       //parse the JSON string output of the command
-      const repoArr: RepoDataType[] = JSON.parse(res);
+      const repoArr: RepoDataType[] = JSON.parse(stdout);
 
       return repoArr.map(listRepoMapFunction);
     },
@@ -109,8 +118,16 @@ const ghGenerators: Record<string, Fig.Generator> = {
      *
      * --jq https://cli.github.com/manual/gh_help_formatting https://www.baeldung.com/linux/jq-command-json
      */
-    script:
-      "gh api graphql --paginate -f query='query($endCursor: String) { viewer { repositories(first: 100, after: $endCursor) { nodes { isPrivate, nameWithOwner, description } pageInfo { hasNextPage endCursor }}}}' --jq '.data.viewer.repositories.nodes[]'",
+    script: [
+      "gh",
+      "api",
+      "graphql",
+      "--paginate",
+      "-f",
+      "query='query($endCursor: String) { viewer { repositories(first: 100, after: $endCursor) { nodes { isPrivate, nameWithOwner, description } pageInfo { hasNextPage endCursor }}}}'",
+      "--jq",
+      ".data.viewer.repositories.nodes[]",
+    ],
     postProcess: (out) => {
       if (out) {
         /**
@@ -139,7 +156,7 @@ const ghGenerators: Record<string, Fig.Generator> = {
   },
   listPR: {
     cache: { strategy: "stale-while-revalidate" },
-    script: "gh pr list --json=number,title,headRefName,state",
+    script: ["gh", "pr", "list", "--json=number,title,headRefName,state"],
     postProcess: (out) => {
       interface PR {
         headRefName: string;
@@ -160,7 +177,7 @@ const ghGenerators: Record<string, Fig.Generator> = {
     },
   },
   listAlias: {
-    script: "gh alias list",
+    script: ["gh", "alias", "list"],
     postProcess: (out) => {
       const aliases = out.split("\n").map((line) => {
         const [name, content] = line.split(":");
@@ -176,8 +193,14 @@ const ghGenerators: Record<string, Fig.Generator> = {
     },
   },
   remoteBranches: {
-    script:
-      "git --no-optional-locks branch -r --no-color --sort=-committerdate",
+    script: [
+      "git",
+      "--no-optional-locks",
+      "branch",
+      "-r",
+      "--no-color",
+      "--sort=-committerdate",
+    ],
     postProcess: postProcessRemoteBranches,
   },
 };
@@ -239,8 +262,11 @@ const completionSpec: Fig.Spec = {
     generators: ghGenerators.listAlias,
     parserDirectives: {
       alias: async (token, executeShellCommand) => {
-        const out = await executeShellCommand(`gh alias list`);
-        const alias = out
+        const { stdout } = await executeShellCommand({
+          command: "gh",
+          args: ["alias", "list"],
+        });
+        const alias = stdout
           .split("\n")
           .find((line) => line.startsWith(`${token}:\t`));
 

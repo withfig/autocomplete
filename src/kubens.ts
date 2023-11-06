@@ -35,7 +35,7 @@ const completionSpec: Fig.Spec = {
           })) as Fig.Suggestion[],
       },
       {
-        script: "kubens -c",
+        script: ["kubens", "-c"],
         postProcess: (out) => {
           return !out
             ? []

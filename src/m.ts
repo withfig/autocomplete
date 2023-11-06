@@ -1,10 +1,10 @@
 const generateDisks: Fig.Generator = {
-  // ? is a bash/fish/zsh glob pattern for "any character, exactly once"
-  script: "command ls /dev/disk?",
+  script: ["ls", "/dev"],
   postProcess: (out) =>
     out
       .trim()
       .split("\n")
+      .filter((disk) => disk.match(/\/dev\/disk\w/))
       .map((disk) => ({
         name: disk,
         icon: "💽",
@@ -13,14 +13,14 @@ const generateDisks: Fig.Generator = {
 };
 
 const generateVolumes: Fig.Generator = {
-  script: "command ls -d /Volumes/*",
+  script: ["ls", "/Volumes"],
   postProcess: (out) =>
     out
       .trim()
       .split("\n")
       .filter((volume) => volume !== "Macintosh HD")
       .map((volume) => ({
-        name: volume,
+        name: `/Volumes/${volume}`,
         type: "file",
         priority: 100,
       })),

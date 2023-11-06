@@ -1,5 +1,5 @@
 const ClusterGenerator: Fig.Generator = {
-  script: "kind get clusters",
+  script: ["kind", "get", "clusters"],
   postProcess: (out) => {
     return out.split("\n").map((cluster) => ({
       name: cluster,
@@ -9,7 +9,7 @@ const ClusterGenerator: Fig.Generator = {
 };
 
 const NodeGenerator: Fig.Generator = {
-  script: "kind get nodes -A",
+  script: ["kind", "get", "nodes", "-A"],
   postProcess: (out) => {
     return out.split("\n").map((node) => ({
       name: node,

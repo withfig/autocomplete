@@ -65,7 +65,7 @@ function parsePreviewDatabaseList(output: string): PreviewDatabase[] {
 }
 
 const snapshotsGenerator: Fig.Generator = {
-  script: "snaplet snapshot ls",
+  script: ["snaplet", "snapshot", "ls"],
   postProcess: (output) => {
     const result: Fig.Suggestion[] = [];
     const snapshotList = parseSnapshotList(output);
@@ -83,7 +83,7 @@ const snapshotsGenerator: Fig.Generator = {
 
 // Only suggest successful snapshots on the cloud
 const snapshotsSuccessCloudGenerator: Fig.Generator = {
-  script: "snaplet snapshot ls",
+  script: ["snaplet", "snapshot", "ls"],
   postProcess: (output) => {
     const result: Fig.Suggestion[] = [];
     const snapshotList = parseSnapshotList(output).filter(
@@ -102,7 +102,7 @@ const snapshotsSuccessCloudGenerator: Fig.Generator = {
 };
 
 const databaseGenerator: Fig.Generator = {
-  script: "snaplet database ls",
+  script: ["snaplet", "database", "ls"],
   postProcess: (output) => {
     const result: Fig.Suggestion[] = [];
     const databases = parsePreviewDatabaseList(output);

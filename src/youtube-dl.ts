@@ -1,9 +1,11 @@
 const youtubeDlGenerators: Record<string, Fig.Generator> = {
   listVideos: {
-    script: (context) =>
-      `youtube-dl --flat-playlist -J ${context.filter((token) =>
-        token.includes("youtube.")
-      )}`,
+    script: (context) => [
+      "youtube-dl",
+      "--flat-playlist",
+      "-J",
+      ...context.filter((token) => token.includes("youtube.")),
+    ],
 
     postProcess: function (out) {
       try {
@@ -23,7 +25,7 @@ const youtubeDlGenerators: Record<string, Fig.Generator> = {
   },
 
   listClipboard: {
-    script: "pbpaste",
+    script: ["pbpaste"],
     postProcess: function (out) {
       const regex = new RegExp(
         "^(https?://)?(www.)?(youtube.com|youtu.?be)/.+$"
