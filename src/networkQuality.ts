@@ -31,7 +31,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "interface",
         generators: {
-          script: "networksetup -listallhardwareports",
+          script: ["networksetup", "-listallhardwareports"],
           postProcess: (out) => {
             const suggestions: Fig.Suggestion[] = [];
             const re = /^Hardware Port: (.*?)\n.*?Device: (.*?)$/gms;

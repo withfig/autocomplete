@@ -1,6 +1,6 @@
 // https://tailordev.github.io/Watson/
 const listProjects: Fig.Generator = {
-  script: `watson projects`,
+  script: ["watson", "projects"],
   postProcess: (output) => {
     return output.split("\n").map((project) => ({
       name: project,
@@ -10,7 +10,7 @@ const listProjects: Fig.Generator = {
 };
 
 const listTags: Fig.Generator = {
-  script: `watson tags`,
+  script: ["watson", "tags"],
   postProcess: (output) => {
     return output.split("\n").map((tag) => ({
       name: tag,
@@ -20,7 +20,7 @@ const listTags: Fig.Generator = {
 };
 
 const listFrames: Fig.Generator = {
-  script: `watson log --json --reverse`,
+  script: ["watson", "log", "--json", "--reverse"],
   postProcess: (output) => {
     return JSON.parse(output).map((frame) => ({
       name: frame.id.substring(0, 7),

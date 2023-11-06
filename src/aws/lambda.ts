@@ -264,14 +264,14 @@ const postPrecessGenerator = (
 
 const listCustomGenerator = async (
   tokens: string[],
-  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  executeShellCommand: Fig.ExecuteCommandFunction,
   command: string,
   options: string[],
   parentKey: string,
   childKey = ""
 ): Promise<Fig.Suggestion[]> => {
   try {
-    let cmd = `aws lambda ${command}`;
+    let args = ["lambda", command];
 
     for (let i = 0; i < options.length; i++) {
       const option = options[i];
@@ -280,12 +280,15 @@ const listCustomGenerator = async (
         continue;
       }
       const param = tokens[idx + 1];
-      cmd += ` ${option} ${param}`;
+      args = [...args, option, param];
     }
 
-    const out = await executeShellCommand(cmd);
+    const { stdout } = await executeShellCommand({
+      command: "aws",
+      args,
+    });
 
-    const list = JSON.parse(out)[parentKey];
+    const list = JSON.parse(stdout)[parentKey];
 
     if (!Array.isArray(list)) {
       return [
@@ -309,24 +312,14 @@ const listCustomGenerator = async (
   return [];
 };
 
-const getResultList = async (
-  tokens: string[],
-  executeShellCommand: Fig.ExecuteShellCommandFunction,
-  command: string,
-  key: string
-): Promise<Fig.Suggestion[]> => {
-  const out = await executeShellCommand(command);
-  return JSON.parse(out)[key];
-};
-
 const listCustomSIDGenerator = async (
   tokens: string[],
-  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  executeShellCommand: Fig.ExecuteCommandFunction,
   command: string,
   options: string[]
 ): Promise<Fig.Suggestion[]> => {
   try {
-    let cmd = `aws lambda ${command}`;
+    let args = ["lambda", command];
 
     for (let i = 0; i < options.length; i++) {
       const option = options[i];
@@ -335,12 +328,15 @@ const listCustomSIDGenerator = async (
         continue;
       }
       const param = tokens[idx + 1];
-      cmd += ` ${option} ${param}`;
+      args = [...args, option, param];
     }
 
-    const out = await executeShellCommand(cmd);
+    const { stdout } = await executeShellCommand({
+      command: "aws",
+      args,
+    });
 
-    const policies = JSON.parse(out)["Policy"];
+    const policies = JSON.parse(stdout)["Policy"];
     const statement = JSON.parse(policies)["Statement"];
     return statement.map((elm) => {
       return {
@@ -356,22 +352,29 @@ const listCustomSIDGenerator = async (
 
 const MultiSuggestionsGenerator = async (
   tokens: string[],
-  executeShellCommand: Fig.ExecuteShellCommandFunction,
-  enabled: Record<string, string>[]
+  executeShellCommand: Fig.ExecuteCommandFunction,
+  enabled: {
+    command: string[];
+    parentKey: string;
+    childKey: string;
+  }[]
 ) => {
   try {
     const list: Fig.Suggestion[][] = [];
     const promises: Promise<string>[] = [];
     for (let i = 0; i < enabled.length; i++) {
-      promises[i] = executeShellCommand(enabled[i]["command"]);
+      promises[i] = executeShellCommand({
+        command: "aws",
+        args: enabled[i].command,
+      }).then(({ stdout }) => stdout);
     }
     const result = await Promise.all(promises);
 
     for (let i = 0; i < enabled.length; i++) {
       list[i] = postPrecessGenerator(
         result[i],
-        enabled[i]["parentKey"],
-        enabled[i]["childKey"]
+        enabled[i].parentKey,
+        enabled[i].childKey
       );
     }
 
@@ -386,12 +389,12 @@ const _prefixFile = "file://";
 const _prefixBlob = "fileb://";
 const _prefixS3 = "s3://";
 
-const appendFolderPath = (tokens: string[], prefix: string): string => {
-  const baseLSCommand = "\\ls -1ApL ";
+const appendFolderPath = (tokens: string[], prefix: string): string[] => {
+  const baseLsCommand = ["ls", "-1ApL"];
   let whatHasUserTyped = tokens[tokens.length - 1];
 
   if (!whatHasUserTyped.startsWith(prefix)) {
-    return `echo '${prefix}'`;
+    return ["echo", prefix];
   }
   whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
 
@@ -406,7 +409,7 @@ const appendFolderPath = (tokens: string[], prefix: string): string => {
     }
   }
 
-  return baseLSCommand + folderPath;
+  return [...baseLsCommand, folderPath];
 };
 
 const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
@@ -515,7 +518,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listLayerArns: {
-    script: "aws lambda list-layers",
+    script: ["aws", "lambda", "list-layers"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "Layers", "LayerArn");
     },
@@ -541,7 +544,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   getPrincipal: {
-    script: "aws sts get-caller-identity",
+    script: ["aws", "sts", "get-caller-identity"],
     postProcess: function (out, tokens) {
       try {
         const accountId = JSON.parse(out)["Account"];
@@ -603,7 +606,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listLambdaFunctions: {
-    script: "aws lambda list-functions",
+    script: ["aws", "lambda", "list-functions"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "Functions", "FunctionArn");
     },
@@ -638,13 +641,19 @@ const generators: Record<string, Fig.Generator> = {
     custom: async function (tokens, executeShellCommand) {
       try {
         const idx = tokens.indexOf("--function-name");
-        const cmd = `aws lambda list-versions-by-function --function-name ${
-          tokens[idx + 1]
-        }`;
+        const args = [
+          "lambda",
+          "list-versions-by-function",
+          "--function-name",
+          tokens[idx + 1],
+        ];
 
-        const out = await executeShellCommand(cmd);
+        const { stdout } = await executeShellCommand({
+          command: "aws",
+          args,
+        });
 
-        const list = JSON.parse(out)["Versions"];
+        const list = JSON.parse(stdout)["Versions"];
         return list
           .filter((elm) => elm.Version !== "$LATEST")
           .map((elm) => {
@@ -720,12 +729,12 @@ const generators: Record<string, Fig.Generator> = {
 
       return MultiSuggestionsGenerator(tokens, executeShellCommand, [
         {
-          command: "aws dynamodbstreams list-streams",
+          command: ["dynamodbstreams", "list-streams"],
           parentKey: "Streams",
           childKey: "StreamArn",
         },
         {
-          command: "aws kafka list-clusters",
+          command: ["kafka", "list-clusters"],
           parentKey: "ClusterInfoList",
           childKey: "ClusterArn",
         },
@@ -753,17 +762,17 @@ const generators: Record<string, Fig.Generator> = {
 
       return MultiSuggestionsGenerator(tokens, executeShellCommand, [
         {
-          command: "aws sns list-topics",
+          command: ["sns", "list-topics"],
           parentKey: "Topics",
           childKey: "TopicArn",
         },
         {
-          command: "aws events list-event-buses",
+          command: ["events", "list-event-buses"],
           parentKey: "EventBuses",
           childKey: "Arn",
         },
         {
-          command: "aws lambda list-functions",
+          command: ["lambda", "list-functions"],
           parentKey: "Functions",
           childKey: "FunctionArn",
         },
@@ -776,7 +785,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listRoles: {
-    script: "aws iam list-roles --page-size 100",
+    script: ["aws", "iam", "list-roles", "--page-size", "100"],
     postProcess: function (out) {
       return postPrecessGenerator(out, "Roles", "RoleName");
     },
@@ -786,7 +795,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listKmsKeys: {
-    script: "aws kms list-keys --page-size 100",
+    script: ["aws", "kms", "list-keys", "--page-size", "100"],
     postProcess: function (out) {
       return postPrecessGenerator(out, "Keys", "KeyArn");
     },
@@ -796,7 +805,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listLayers: {
-    script: "aws lambda list-layers",
+    script: ["aws", "lambda", "list-layers"],
     postProcess: function (out) {
       return postPrecessGenerator(out, "Layers", "LayerArn");
     },
@@ -806,7 +815,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listLayerArnsWithVersion: {
-    script: "aws lambda list-layers",
+    script: ["aws", "lambda", "list-layers"],
     postProcess: function (out) {
       try {
         const list = JSON.parse(out)["Layers"];
@@ -827,7 +836,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listFilesystemConfigs: {
-    script: "aws efs describe-file-systems",
+    script: ["aws", "efs", "describe-file-systems"],
     postProcess: function (out) {
       try {
         const list = JSON.parse(out)["FileSystems"];
@@ -849,7 +858,13 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listCodeSigningConfigs: {
-    script: "aws lambda list-code-signing-configs --page-size 100",
+    script: [
+      "aws",
+      "lambda",
+      "list-code-signing-configs",
+      "--page-size",
+      "100",
+    ],
     postProcess: function (out) {
       return postPrecessGenerator(
         out,
@@ -863,7 +878,13 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listEventSourceMappingUUIDs: {
-    script: "aws lambda list-event-source-mappings --page-size 100",
+    script: [
+      "aws",
+      "lambda",
+      "list-event-source-mappings",
+      "--page-size",
+      "100",
+    ],
     postProcess: function (out) {
       return postPrecessGenerator(out, "EventSourceMappings", "UUID");
     },
@@ -873,7 +894,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listCodeSHA: {
-    script: "aws lambda list-functions",
+    script: ["aws", "lambda", "list-functions"],
     postProcess: function (out) {
       return postPrecessGenerator(out, "Functions", "CodeSha256");
     },
@@ -883,7 +904,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listBuckets: {
-    script: "aws s3 ls --page-size 1000",
+    script: ["aws", "s3", "ls", "--page-size", "1000"],
     postProcess: function (out, tokens) {
       try {
         return out.split("\n").map((line) => {
@@ -910,17 +931,25 @@ const generators: Record<string, Fig.Generator> = {
     custom: async function (tokens, executeShellCommand) {
       try {
         const idx = tokens.indexOf("--s3-bucket");
-        const cmd = `aws s3 ls ${_prefixS3}${
-          tokens[idx + 1]
-        } --recursive --page-size 1000`;
+        const args = [
+          "s3",
+          "ls",
+          `${_prefixS3}${tokens[idx + 1]}`,
+          "--recursive",
+          "--page-size",
+          "1000",
+        ];
 
-        const out = await executeShellCommand(cmd);
+        const { stdout } = await executeShellCommand({
+          command: "aws",
+          args,
+        });
 
-        if (out == "") {
+        if (stdout == "") {
           return [];
         }
 
-        if (out.trim() === _prefixS3) {
+        if (stdout.trim() === _prefixS3) {
           return [
             {
               name: _prefixS3,
@@ -929,7 +958,7 @@ const generators: Record<string, Fig.Generator> = {
           ];
         }
 
-        return out.split("\n").map((line) => {
+        return stdout.split("\n").map((line) => {
           const parts = line.split(/\s+/);
           // sub prefix
           if (!parts.length) {
@@ -954,17 +983,25 @@ const generators: Record<string, Fig.Generator> = {
       try {
         const bucketIdx = tokens.indexOf("--s3-bucket");
         const objectIdx = tokens.indexOf("--s3-key");
-        const cmd = `aws s3api list-object-versions --bucket ${
-          tokens[bucketIdx + 1]
-        } --prefix ${tokens[objectIdx + 1]}`;
+        const args = [
+          "s3api",
+          "list-object-versions",
+          "--bucket",
+          tokens[bucketIdx + 1],
+          "--prefix",
+          tokens[objectIdx + 1],
+        ];
 
-        const out = await executeShellCommand(cmd);
+        const { stdout } = await executeShellCommand({
+          command: "aws",
+          args,
+        });
 
-        if (out == "") {
+        if (stdout == "") {
           return [];
         }
 
-        if (out.trim() === _prefixS3) {
+        if (stdout.trim() === _prefixS3) {
           return [
             {
               name: _prefixS3,
@@ -973,7 +1010,7 @@ const generators: Record<string, Fig.Generator> = {
           ];
         }
 
-        const list = JSON.parse(out)["Versions"];
+        const list = JSON.parse(stdout)["Versions"];
         return list
           .filter((elm) => elm["VersionId"] !== "null")
           .map((elm) => {

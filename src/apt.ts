@@ -11,13 +11,18 @@ const packages: Fig.Generator = {
     if (finalToken.length === 0) {
       return [];
     }
+    const { stdout } = await executeShellCommand({
+      command: "apt",
+      // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+      args: ["list"],
+    });
+
     // Only lines matching the first character, delete characters after '/'
-    const out = await executeShellCommand(
-      `apt list | grep '^${finalToken[0]}' | sed 's#/.*##g'`
-    );
-    return out
+    return stdout
       .trim()
       .split("\n")
+      .filter((name) => name.startsWith(finalToken))
+      .map((name) => name.replace(/\/.*/, ""))
       .map((name) => ({
         name,
         description: "Package",
@@ -30,7 +35,7 @@ const packages: Fig.Generator = {
 };
 
 const installedPackages: Fig.Generator = {
-  script: "apt list --installed",
+  script: ["apt", "list", "--installed"],
   postProcess: function (a) {
     return a
       .trim()
@@ -46,7 +51,7 @@ const installedPackages: Fig.Generator = {
 };
 
 const upgradablePackages: Fig.Generator = {
-  script: "apt list --upgradable",
+  script: ["apt", "list", "--upgradable"],
   postProcess: function (a) {
     return a
       .trim()

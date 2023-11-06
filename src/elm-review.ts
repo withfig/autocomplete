@@ -1,21 +1,16 @@
 /**
  * The report type is either `json` or `ndjson`
  */
-const reportType: Fig.Generator = {
-  script: "echo",
-  postProcess: () => {
-    return [
-      {
-        name: "json",
-        description: "Prints a single JSON object",
-      },
-      {
-        name: "ndjson",
-        description: "Print one JSON object per error each on a new line",
-      },
-    ];
+const reportType = [
+  {
+    name: "json",
+    description: "Prints a single JSON object",
   },
-};
+  {
+    name: "ndjson",
+    description: "Print one JSON object per error each on a new line",
+  },
+];
 
 /**
  * Based on [elm-review](https://github.com/jfmengels/node-elm-review), version 2.9.1. Cli tool for reviewing Elm code.
@@ -198,7 +193,7 @@ const completionSpec: Fig.Spec = {
       description: "Error reports will be in JSON format",
       args: {
         name: "json or ndjson",
-        generators: reportType,
+        suggestions: reportType,
       },
     },
     {

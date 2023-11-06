@@ -15,7 +15,7 @@ type FlyApp = {
 // Autocompletion generator for Fly apps using flyctl list apps
 // https://fly.io/docs/flyctl/apps-list/
 const flyAppsGenerator: Fig.Generator = {
-  script: "flyctl apps list --json",
+  script: ["flyctl", "apps", "list", "--json"],
   postProcess: (output) => {
     const json: FlyApp[] = JSON.parse(output);
 
@@ -38,7 +38,7 @@ const flyAppsGenerator: Fig.Generator = {
 // Autocompletion generator for Fly apps using flyctl list orgs
 // https://fly.io/docs/flyctl/orgs-list/
 const flyOrgsGenerator: Fig.Generator = {
-  script: "fly orgs list --json",
+  script: ["fly", "orgs", "list", "--json"],
   postProcess: (output) => {
     const json: Record<string, string> = JSON.parse(output);
 

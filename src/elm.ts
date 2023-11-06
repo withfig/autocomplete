@@ -1,6 +1,11 @@
 const packageList: Fig.Generator = {
-  script:
-    "curl -sH 'accept-encoding: gzip' --compressed https://package.elm-lang.org/search.json",
+  script: [
+    "curl",
+    "-sH",
+    "accept-encoding: gzip",
+    "--compressed",
+    "https://package.elm-lang.org/search.json",
+  ],
   cache: {
     ttl: 1000 * 24 * 60 * 60 * 3, // 3 days
   },

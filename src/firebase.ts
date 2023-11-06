@@ -1,5 +1,5 @@
 const projectAliasesGenerator: Fig.Generator = {
-  script: "firebase projects:list", // this calls to a firebase server and is therefore slow
+  script: ["firebase", "projects:list"], // this calls to a firebase server and is therefore slow
   postProcess: (out) => {
     const getAliasRegex = /^│ (\w.*?)│/gm;
     const aliasesRaw = Array.from(out.matchAll(getAliasRegex));

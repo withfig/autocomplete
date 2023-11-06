@@ -1,5 +1,5 @@
 const languageGenerator: Fig.Generator = {
-  script: "tokei --languages",
+  script: ["tokei", "--languages"],
   splitOn: "\n",
 };
 

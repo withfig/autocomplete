@@ -73,7 +73,7 @@
     "@typescript-eslint/parser": "^6.7.3",
     "@vitejs/plugin-react": "^4.1.0",
     "@withfig/autocomplete-tools": "^2.7.10",
-    "@withfig/autocomplete-types": "^1.28.0",
+    "@withfig/autocomplete-types": "^1.29.0",
     "autoprefixer": "^10.4.16",
     "chalk": "^5.3.0",
     "chokidar": "^3.5.3",
@@ -96,7 +96,7 @@
     "vite-plugin-externals": "^0.6.2"
   },
   "dependencies": {
-    "@fig/autocomplete-generators": "^2.2.5",
+    "@fig/autocomplete-generators": "^2.3.0",
     "@fig/autocomplete-helpers": "^1.0.7",
     "@fig/autocomplete-hooks": "^1.0.2",
     "@withfig/api-bindings": "^0.30.3",

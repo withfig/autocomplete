@@ -1,6 +1,6 @@
 // Print plans list if there is .rugby/plans.yml file
 const planList: Fig.Generator = {
-  script: "rugby plan list",
+  script: ["rugby", "plan", "list"],
   postProcess: (output) => {
     if (output === "") {
       return [];
@@ -21,14 +21,17 @@ const completionSpec: Fig.Spec = {
     "Cache Cocoa 🌱 pods for faster rebuild and indexing Xcode project. https://github.com/swiftyfinch/Rugby",
   name: "rugby",
   generateSpec: async (tokens, executeShellCommand) => {
-    const output = await executeShellCommand("rugby plan list");
-    if (output === "") {
+    const { stdout } = await executeShellCommand({
+      command: "rugby",
+      args: ["plan", "list"],
+    });
+    if (stdout === "") {
       return null;
     }
     // Handle `rugby umbrella` command
     return {
       name: "plan",
-      subcommands: output.split("\n").map((plan) => {
+      subcommands: stdout.split("\n").map((plan) => {
         return {
           name: plan,
           description: `Run plan \"${plan}\"`,

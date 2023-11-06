@@ -7,7 +7,7 @@ const completionSpec: Fig.Spec = {
     isVariadic: true,
     isOptional: true,
     generators: {
-      script: "rake --tasks --silent",
+      script: ["rake", "--tasks", "--silent"],
       cache: {
         strategy: "stale-while-revalidate",
         cacheByDirectory: true,

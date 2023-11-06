@@ -1,5 +1,5 @@
 const getAppGenerator: Fig.Generator = {
-  script: "heroku apps --all --json",
+  script: ["heroku", "apps", "--all", "--json"],
   cache: {
     strategy: "stale-while-revalidate",
   },
