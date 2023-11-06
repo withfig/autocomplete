@@ -30,10 +30,13 @@ async function getZHistory(
 
 async function getCurrentDirectoryFolders(
   currentWorkingDirectory: string,
-  execute: Fig.ExecuteShellCommandFunction
+  execute: Fig.ExecuteCommandFunction
 ): Promise<ZSuggestion[]> {
-  const out = await execute("ls -d */");
-  return out.split("\n").map((line) => {
+  const { stdout } = await execute({
+    command: "bash",
+    args: ["-c", "ls -d */"],
+  });
+  return stdout.split("\n").map((line) => {
     const name = line.replace("/", "");
     return {
       name,
@@ -143,7 +146,7 @@ const zoxideCompletionSpec: Fig.Spec = {
           args,
         });
 
-        return out.split("\n").map((line) => {
+        return stdout.split("\n").map((line) => {
           const trimmedLine = line.trim();
           const spaceIndex = trimmedLine.indexOf(" ");
           const score = Number(trimmedLine.slice(0, spaceIndex));

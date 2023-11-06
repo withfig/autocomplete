@@ -51,12 +51,22 @@ export const nodeClis = new Set([
 
 // generate global package list from global package.json file
 const getGlobalPackagesGenerator: Fig.Generator = {
-  script: 'cat "$(yarn global dir)/package.json"',
-  postProcess: (out, tokens) => {
-    if (out.trim() == "") return [];
+  custom: async (tokens, executeCommand, generatorContext) => {
+    const { stdout: yarnGlobalDir } = await executeCommand({
+      command: "yarn",
+      args: ["global", "dir"],
+    });
+
+    const { stdout } = await executeCommand({
+      command: "cat",
+      // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+      args: [`${yarnGlobalDir.trim()}/package.json`],
+    });
+
+    if (stdout.trim() == "") return [];
 
     try {
-      const packageContent = JSON.parse(out);
+      const packageContent = JSON.parse(stdout);
       const dependencyScripts = packageContent["dependencies"] || {};
       const devDependencyScripts = packageContent["devDependencies"] || {};
       const dependencies = [
@@ -341,9 +351,15 @@ const commonOptions: Fig.Option[] = [
 
 export const createCLIsGenerator: Fig.Generator = {
   script: function (context) {
-    if (context[context.length - 1] === "") return "";
+    if (context[context.length - 1] === "") return undefined;
     const searchTerm = "create-" + context[context.length - 1];
-    return `curl -s -H "Accept: application/json" "https://api.npms.io/v2/search?q=${searchTerm}&size=20"`;
+    return [
+      "curl",
+      "-s",
+      "-H",
+      "Accept: application/json",
+      `https://api.npms.io/v2/search?q=${searchTerm}&size=20`,
+    ];
   },
   cache: {
     ttl: 100 * 24 * 60 * 60 * 3, // 3 days
@@ -368,10 +384,14 @@ const completionSpec: Fig.Spec = {
   description: "Manage packages and run scripts",
   generateSpec: async (tokens, executeShellCommand) => {
     const binaries = (
-      await executeShellCommand(
-        `until [[ -d node_modules/ ]] || [[ $PWD = '/' ]]; do cd ..; done; ls -1 node_modules/.bin/`
-      )
-    ).split("\n");
+      await executeShellCommand({
+        command: "bash",
+        args: [
+          "-c",
+          `until [[ -d node_modules/ ]] || [[ $PWD = '/' ]]; do cd ..; done; ls -1 node_modules/.bin/`,
+        ],
+      })
+    ).stdout.split("\n");
 
     const subcommands = binaries
       .filter((name) => nodeClis.has(name))
@@ -1486,17 +1506,26 @@ const completionSpec: Fig.Spec = {
       description: "Manage workspace",
       filterStrategy: "fuzzy",
       generateSpec: async (_tokens, executeShellCommand) => {
-        const version = await executeShellCommand("yarn --version");
+        const version = (
+          await executeShellCommand({
+            command: "yarn",
+            // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+            args: ["--version"],
+          })
+        ).stdout;
         const isYarnV1 = version.startsWith("1.");
 
         const getWorkspacesDefinitionsV1 = async () => {
-          const out = await executeShellCommand(`yarn workspaces info`);
+          const { stdout } = await executeShellCommand({
+            command: "yarn",
+            args: ["workspaces", "info"],
+          });
 
-          const startJson = out.indexOf("{");
-          const endJson = out.lastIndexOf("}");
+          const startJson = stdout.indexOf("{");
+          const endJson = stdout.lastIndexOf("}");
 
           return Object.entries(
-            JSON.parse(out.slice(startJson, endJson + 1)) as Record<
+            JSON.parse(stdout.slice(startJson, endJson + 1)) as Record<
               string,
               { location: string }
             >
@@ -1508,7 +1537,13 @@ const completionSpec: Fig.Spec = {
 
         // For yarn >= 2.0.0
         const getWorkspacesDefinitionsVOther = async () => {
-          const out = await executeShellCommand(`yarn workspaces list --json`);
+          // yarn workspaces list --json
+          const out = (
+            await executeShellCommand({
+              command: "yarn",
+              args: ["workspaces", "list", "--json"],
+            })
+          ).stdout;
           return out.split("\n").map((line) => JSON.parse(line.trim()));
         };
 
@@ -1530,7 +1565,7 @@ const completionSpec: Fig.Spec = {
                     strategy: "stale-while-revalidate",
                     ttl: 60_000, // 60s
                   },
-                  script: `\\cat ${location}/package.json`,
+                  script: ["cat", `${location}/package.json`],
                   postProcess: function (out: string) {
                     if (out.trim() == "") {
                       return [];

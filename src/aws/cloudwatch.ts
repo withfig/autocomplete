@@ -177,14 +177,14 @@ const postPrecessGenerator = (
 
 const listCustomGenerator = async (
   tokens: string[],
-  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  executeShellCommand: Fig.ExecuteCommandFunction,
   command: string,
   options: string[],
   parentKey: string,
   childKey = ""
 ): Promise<Fig.Suggestion[]> => {
   try {
-    let cmd = `aws cloudwatch ${command}`;
+    let args = ["cloudwatch", command];
 
     for (let i = 0; i < options.length; i++) {
       const option = options[i];
@@ -193,12 +193,15 @@ const listCustomGenerator = async (
         continue;
       }
       const param = tokens[idx + 1];
-      cmd += ` ${option} ${param}`;
+      args = [...args, option, param];
     }
 
-    const out = await executeShellCommand(cmd);
+    const { stdout } = await executeShellCommand({
+      command: "aws",
+      args,
+    });
 
-    const list = JSON.parse(out)[parentKey];
+    const list = JSON.parse(stdout)[parentKey];
 
     if (!Array.isArray(list)) {
       return [
@@ -209,15 +212,13 @@ const listCustomGenerator = async (
       ];
     }
 
-    return list
-      .map((elm) => {
-        const name = (childKey ? elm[childKey] : elm) as string;
-        return {
-          name,
-          icon: "fig://icon?type=aws",
-        };
-      })
-      .filter(uniqueNames);
+    return list.map((elm) => {
+      const name = (childKey ? elm[childKey] : elm) as string;
+      return {
+        name,
+        icon: "fig://icon?type=aws",
+      };
+    });
   } catch (e) {
     console.log(e);
   }
@@ -226,7 +227,7 @@ const listCustomGenerator = async (
 
 const listDimensionTypes = async (
   tokens: string[],
-  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  executeShellCommand: Fig.ExecuteCommandFunction,
   command: string,
   option: string,
   parentKey: string,
@@ -237,11 +238,13 @@ const listDimensionTypes = async (
     if (idx < 0) {
       return [];
     }
-    const cmd = `aws cloudwatch ${command} ${option} ${tokens[idx + 1]}`;
 
-    const out = await executeShellCommand(cmd);
+    const { stdout } = await executeShellCommand({
+      command: "aws",
+      args: ["cloudwatch", command, option, tokens[idx + 1]],
+    });
 
-    const metrics = JSON.parse(out)[parentKey];
+    const metrics = JSON.parse(stdout)[parentKey];
 
     // traverse JSON & compose key-value style suggestion
     return metrics
@@ -265,22 +268,29 @@ const listDimensionTypes = async (
 
 const MultiSuggestionsGenerator = async (
   tokens: string[],
-  executeShellCommand: Fig.ExecuteShellCommandFunction,
-  enabled: Record<string, string>[]
+  executeShellCommand: Fig.ExecuteCommandFunction,
+  enabled: {
+    command: string[];
+    parentKey: string;
+    childKey: string;
+  }[]
 ) => {
   try {
     const list: Fig.Suggestion[][] = [];
     const promises: Promise<string>[] = [];
     for (let i = 0; i < enabled.length; i++) {
-      promises[i] = executeShellCommand(enabled[i]["command"]);
+      promises[i] = executeShellCommand({
+        command: "aws",
+        args: enabled[i].command,
+      }).then(({ stdout }) => stdout);
     }
     const result = await Promise.all(promises);
 
     for (let i = 0; i < enabled.length; i++) {
       list[i] = postPrecessGenerator(
         result[i],
-        enabled[i]["parentKey"],
-        enabled[i]["childKey"]
+        enabled[i].parentKey,
+        enabled[i].childKey
       );
     }
 
@@ -293,12 +303,15 @@ const MultiSuggestionsGenerator = async (
 
 const getResultList = async (
   tokens: string[],
-  executeShellCommand: Fig.ExecuteShellCommandFunction,
-  command: string,
+  executeShellCommand: Fig.ExecuteCommandFunction,
+  args: string[],
   key: string
 ): Promise<Fig.Suggestion[]> => {
-  const out = await executeShellCommand(command);
-  return JSON.parse(out)[key];
+  const { stdout } = await executeShellCommand({
+    command: "aws",
+    args,
+  });
+  return JSON.parse(stdout)[key];
 };
 
 const _prefixFile = "file://";
@@ -535,19 +548,22 @@ const generators: Record<string, Fig.Generator> = {
     // individually, to get an ARN
     custom: async function (tokens, executeShellCommand) {
       // get list of stream names
-      const result = await Promise.all([
-        getResultList(
-          tokens,
-          executeShellCommand,
-          "aws firehose list-delivery-streams",
-          "DeliveryStreamNames"
-        ),
-      ]);
+      const result = await getResultList(
+        tokens,
+        executeShellCommand,
+        ["firehose", "list-delivery-streams"],
+        "DeliveryStreamNames"
+      );
 
       // construct "query"
       const objects = result.flat().map((stream) => {
         return {
-          command: `aws firehose describe-delivery-stream --delivery-stream-name ${stream}`,
+          command: [
+            "firehose",
+            "describe-delivery-stream",
+            "--delivery-stream-name",
+            Array.isArray(stream.name) ? stream.name[0] : stream.name,
+          ],
           parentKey: "DeliveryStreamDescription",
           childKey: "DeliveryStreamARN",
         };

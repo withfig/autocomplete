@@ -1,5 +1,5 @@
 const draftGenerator: Fig.Generator = {
-  script: "hexo list post | grep -E ^Draft",
+  script: ["bash", "-c", "hexo list post | grep -E ^Draft"],
   postProcess: (out) => {
     return out.split("\n").map(function (file) {
       const title = file

@@ -182,15 +182,15 @@ const awsPrincipals = [
 ];
 
 interface Identity {
-  command: string;
+  command: string[];
   parentKey: string;
   childKey: string;
 }
 
 const identityStruct: Identity[] = [
-  { command: "aws iam list-users", parentKey: "Users", childKey: "Arn" },
-  { command: "aws iam list-groups", parentKey: "Groups", childKey: "Arn" },
-  { command: "aws iam list-roles", parentKey: "Roles", childKey: "Arn" },
+  { command: ["iam", "list-users"], parentKey: "Users", childKey: "Arn" },
+  { command: ["iam", "list-groups"], parentKey: "Groups", childKey: "Arn" },
+  { command: ["iam", "list-roles"], parentKey: "Roles", childKey: "Arn" },
 ];
 
 const _prefixFile = "file://";
@@ -288,7 +288,7 @@ const filterWithPrefix = (token: string, prefix: string): string => {
 
 const listCustomGenerator = async (
   tokens: string[],
-  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  executeShellCommand: Fig.ExecuteCommandFunction,
   command: string,
   option: string,
   parentKey: string,
@@ -300,11 +300,12 @@ const listCustomGenerator = async (
       return [];
     }
     const param = tokens[idx + 1];
-    const out = await executeShellCommand(
-      `aws iam ${command} ${option} ${param}`
-    );
+    const { stdout } = await executeShellCommand({
+      command: "aws",
+      args: ["iam", command, option, param],
+    });
 
-    const policies = JSON.parse(out)[parentKey];
+    const policies = JSON.parse(stdout)[parentKey];
     return policies.map((elm) => (childKey ? elm[childKey] : elm));
   } catch (e) {
     console.log(e);
@@ -328,14 +329,17 @@ const postPrecessGenerator = (
 
 const MultiSuggestionsGenerator = async (
   tokens: string[],
-  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  executeShellCommand: Fig.ExecuteCommandFunction,
   enabled: Identity[]
 ) => {
   try {
     const list: Fig.Suggestion[][] = [];
     const promises: Promise<string>[] = [];
     for (let i = 0; i < enabled.length; i++) {
-      promises[i] = executeShellCommand(enabled[i]["command"]);
+      promises[i] = executeShellCommand({
+        command: "aws",
+        args: enabled[i].command,
+      }).then(({ stdout }) => stdout);
     }
 
     const result = await Promise.all(promises);
@@ -434,11 +438,17 @@ const generators: Record<string, Fig.Generator> = {
           return [];
         }
         const param = tokens[idx + 1];
-        const out = await executeShellCommand(
-          `aws iam get-instance-profile --instance-profile-name ${param}`
-        );
+        const { stdout } = await executeShellCommand({
+          command: "aws",
+          args: [
+            "iam",
+            "get-instance-profile",
+            "--instance-profile-name",
+            param,
+          ],
+        });
 
-        const policies = JSON.parse(out as string)["InstanceProfile"];
+        const policies = JSON.parse(stdout)["InstanceProfile"];
         return policies["Roles"].map((elm) => {
           return {
             name: elm["RoleName"],
@@ -800,7 +810,7 @@ const generators: Record<string, Fig.Generator> = {
       return MultiSuggestionsGenerator(tokens, executeShellCommand, [
         ...identityStruct,
         {
-          command: "aws iam list-policies --scope Local",
+          command: ["iam", "list-policies", "--scope", "Local"],
           parentKey: "Policies",
           childKey: "Arn",
         },

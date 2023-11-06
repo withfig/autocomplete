@@ -15,7 +15,7 @@ const completionSpec: Fig.Spec = {
     name: "pid",
     isVariadic: true,
     generators: {
-      script: "ps axo pid,comm | sed 1d",
+      script: ["bash", "-c", "ps axo pid,comm | sed 1d"],
       postProcess: (result: string) => {
         return result.split("\n").map((line) => {
           const [pid, path] = line.trim().split(/\s+/);

@@ -86,7 +86,11 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "<mode>",
         generators: {
-          script: "bat --wrap unknow 2>&1 >/dev/null | grep possible",
+          script: [
+            "bash",
+            "-c",
+            "bat --wrap unknow 2>&1 >/dev/null | grep possible",
+          ],
           postProcess: function (out) {
             return out
               .trim()
@@ -123,7 +127,11 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "<when>",
         generators: {
-          script: "bat --color unknow  2>&1 >/dev/null | grep possible",
+          script: [
+            "bash",
+            "-c",
+            "bat --color unknow  2>&1 >/dev/null | grep possible",
+          ],
           postProcess: function (out) {
             return out
               .trim()
@@ -148,7 +156,11 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "<when>",
         generators: {
-          script: "bat --italic-text unknow  2>&1 >/dev/null | grep possible",
+          script: [
+            "bash",
+            "-c",
+            "bat --italic-text unknow 2>&1 >/dev/null | grep possible",
+          ],
           postProcess: function (out) {
             return out
               .trim()
@@ -174,7 +186,11 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "<when>",
         generators: {
-          script: "bat --decorations unknow  2>&1 >/dev/null | grep possible",
+          script: [
+            "bash",
+            "-c",
+            "bat --decorations unknow 2>&1 >/dev/null | grep possible",
+          ],
           postProcess: function (out) {
             return out
               .trim()
@@ -203,7 +219,11 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "<when>",
         generators: {
-          script: "bat --paging unknow  2>&1 >/dev/null | grep possible",
+          script: [
+            "bash",
+            "-c",
+            "bat --paging unknow  2>&1 >/dev/null | grep possible",
+          ],
           postProcess: function (out) {
             return out
               .trim()

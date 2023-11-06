@@ -93,7 +93,7 @@ const completionSpec: Fig.Spec = {
         name: "user@hostname",
         description: "Address of remote machine to log into",
         generators: {
-          script: ["tsh","ls","--format=json"],
+          script: ["tsh", "ls", "--format=json"],
           postProcess: (out) => {
             return JSON.parse(out).map((elm) => {
               return {

@@ -26,7 +26,7 @@ const completionSpec: Fig.Spec = {
     name: "namespace",
     generators: [
       {
-        script: "kubens | grep -v $(kubens -c)",
+        script: ["bash", "-c", "kubens | grep -v $(kubens -c)"],
         postProcess: (out) =>
           out.split("\n").map((item) => ({
             name: item,

@@ -64,10 +64,10 @@ const toolListGenerator: Fig.Generator = {
     const globalFlags = ["-g", "--global"];
 
     if (context.some((ctx) => globalFlags.includes(ctx))) {
-      return "dotnet tool list --global";
+      return ["dotnet", "tool", "list", "--global"];
     }
 
-    return "dotnet tool list";
+    return ["dotnet", "tool", "list"];
   },
   postProcess(out) {
     const lines = out.split("\n").slice(2);

@@ -1,6 +1,10 @@
 const generatePackages: Fig.Generator = {
   // TODO: use the same as for npm and yarn package.json reverse lookup
-  script: "command find ~/.yalc/packages -maxdepth 4 -iname 'package.json'",
+  script: [
+    "bash",
+    "-c",
+    "command find ~/.yalc/packages -maxdepth 4 -iname 'package.json'",
+  ],
   postProcess: (out) =>
     out
       .split("\n")

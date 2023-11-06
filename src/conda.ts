@@ -56,7 +56,7 @@ const getCondaEnvironments: Fig.Generator = {
 };
 
 const getCondaConfigs: Fig.Generator = {
-  script: ["conda","config","--show"],
+  script: ["conda", "config", "--show"],
   postProcess: function (out) {
     const lines = out.split("\n");
     const configs: Fig.Suggestion[] = [];

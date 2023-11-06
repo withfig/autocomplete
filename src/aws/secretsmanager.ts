@@ -252,10 +252,11 @@ const generators: Record<string, Fig.Generator> = {
           return [];
         }
         const secretId = tokens[idx + 1];
-        const out = await executeShellCommand(
-          `aws secretsmanager describe-secret --secret-id ${secretId}`
-        );
-        const versions = JSON.parse(out as string)["VersionIdsToStages"];
+        const { stdout } = await executeShellCommand({
+          command: "aws",
+          args: ["secretsmanager", "describe-secret", "--secret-id", secretId],
+        });
+        const versions = JSON.parse(stdout)["VersionIdsToStages"];
         return Object.keys(versions).map((elm) => ({ name: elm }));
       } catch (e) {
         console.log(e);
@@ -275,10 +276,11 @@ const generators: Record<string, Fig.Generator> = {
           return [];
         }
         const secretId = tokens[idx + 1];
-        const out = await executeShellCommand(
-          `aws secretsmanager describe-secret --secret-id ${secretId}`
-        );
-        const versions = JSON.parse(out as string)["VersionIdsToStages"];
+        const { stdout } = await executeShellCommand({
+          command: "aws",
+          args: ["secretsmanager", "describe-secret", "--secret-id", secretId],
+        });
+        const versions = JSON.parse(stdout)["VersionIdsToStages"];
         return Object.keys(versions).map((elm) => ({ name: versions[elm][0] }));
       } catch (e) {
         console.log(e);
@@ -299,10 +301,11 @@ const generators: Record<string, Fig.Generator> = {
           return [];
         }
         const secretId = tokens[idx + 1];
-        const out = await executeShellCommand(
-          `aws secretsmanager describe-secret --secret-id ${secretId}`
-        );
-        const versions = JSON.parse(out as string)["Tags"];
+        const { stdout } = await executeShellCommand({
+          command: "aws",
+          args: ["secretsmanager", "describe-secret", "--secret-id", secretId],
+        });
+        const versions = JSON.parse(stdout)["Tags"];
         return versions.map((elm) => ({ name: elm["Key"] }));
       } catch (e) {
         console.log(e);

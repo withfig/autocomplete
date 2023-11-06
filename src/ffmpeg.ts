@@ -413,7 +413,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "codec",
         generators: {
-          script: ["ffmpeg","-codecs"],
+          script: ["ffmpeg", "-codecs"],
           postProcess: (out) => {
             return out
               .split("\n")
@@ -924,7 +924,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "codec",
         generators: {
-          script: ["ffmpeg","-codecs"],
+          script: ["ffmpeg", "-codecs"],
           postProcess: (out) => {
             return out
               .split("\n")

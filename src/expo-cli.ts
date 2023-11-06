@@ -34,12 +34,12 @@ const _gen: Record<string, Fig.Generator> = {
     },
   },
   "xcode-configuration": {
-    script: "xcodebuild -project ios/*.xcodeproj -list -json",
+    script: ["bash", "-c", "xcodebuild -project ios/*.xcodeproj -list -json"],
     postProcess: (script: string) =>
       JSON.parse(script).project.configurations.map((name) => ({ name })),
   },
   "xcode-scheme": {
-    script: "xcodebuild -project ios/*.xcodeproj -list -json",
+    script: ["bash", "-c", "xcodebuild -project ios/*.xcodeproj -list -json"],
     postProcess: (script: string) =>
       JSON.parse(script).project.schemes.map((name) => ({ name })),
   },
