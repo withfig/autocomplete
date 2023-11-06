@@ -90,7 +90,7 @@ const iosGetDevicesGenerator = {
 };
 
 const iosGetDevicesUdidGenerator = {
-  script: ["bash", "-c", "xcrun xctrace list devices"],
+  script: ["xcrun", "xctrace", "list", "devices"],
   postProcess: (scriptOutput: string) => {
     const devices = scriptOutput
       .split("\n")

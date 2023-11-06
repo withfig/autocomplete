@@ -6,7 +6,8 @@ export const getVersionCommand: Fig.GetVersionCommand = async (
   const versionRegex = /\d+\.\d+\.\d+/;
   const { stdout } = await executeShellCommand({
     command: "shopify",
-    args: "version",
+    // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+    args: ["version"],
   });
   return stdout.match(versionRegex)?.[0] ?? "";
 };
