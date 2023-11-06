@@ -19,7 +19,10 @@ const endpointsGenerator: Fig.Generator = {
 };
 
 const importSchemasGenerator: Fig.Generator = {
-  script: ["curl","https://api.github.com/repos/steprz/stepzen-schemas/contents"],
+  script: [
+    "curl",
+    "https://api.github.com/repos/steprz/stepzen-schemas/contents",
+  ],
   postProcess: (output) => {
     try {
       return JSON.parse(output)

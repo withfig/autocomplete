@@ -444,8 +444,11 @@ export const gitGenerators: Record<string, Fig.Generator> = {
   },
 
   getStagedFiles: {
-    script:
+    script: [
+      "bash",
+      "-c",
       "git --no-optional-locks status --short | sed -ne '/^M /p' -e '/A /p'",
+    ],
     postProcess: postProcessTrackedFiles,
   },
 
@@ -457,9 +460,17 @@ export const gitGenerators: Record<string, Fig.Generator> = {
   getChangedTrackedFiles: {
     script: function (context) {
       if (context.includes("--staged") || context.includes("--cached")) {
-        return `git --no-optional-locks status --short | sed -ne '/^M /p' -e '/A /p'`;
+        return [
+          "bash",
+          "-c",
+          `git --no-optional-locks status --short | sed -ne '/^M /p' -e '/A /p'`,
+        ];
       } else {
-        return `git --no-optional-locks status --short | sed -ne '/M /p' -e '/A /p'`;
+        return [
+          "bash",
+          "-c",
+          `git --no-optional-locks status --short | sed -ne '/M /p' -e '/A /p'`,
+        ];
       }
     },
     postProcess: postProcessTrackedFiles,

@@ -373,8 +373,11 @@ const completionSpec: Fig.Spec = {
             name: "key-name",
             isOptional: true,
             generators: {
-              script:
+              script: [
+                "bash",
+                "-c",
                 "\\command ls $HOME/.ssh | \\command grep --color=never -v 'pub'",
+              ],
               splitOn: "\n",
             },
           },
@@ -943,9 +946,10 @@ const completionSpec: Fig.Spec = {
   // Adding dynamic subcommands
   generateSpec: async (tokens, executeShellCommand) => {
     var new_subcommands = [];
-    const available_commands = await executeShellCommand(
-      "ls -1 ~/.docksal/commands/"
-    );
+    const { stdout: available_commands } = await executeShellCommand({
+      command: "bash",
+      args: ["-c", "ls -1 ~/.docksal/commands/"],
+    });
     for (const command of available_commands.split("\n")) {
       if (command) {
         new_subcommands.push({

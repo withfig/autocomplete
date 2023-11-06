@@ -59,7 +59,7 @@ const completionSpec: Fig.Spec = {
     name: "user",
     isOptional: true,
     generators: {
-      script: "dscl . -list /Users | grep -v '^_'",
+      script: ["bash", "-c", "dscl . -list /Users | grep -v '^_'"],
       postProcess: (out) =>
         out
           .trim()

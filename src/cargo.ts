@@ -47,37 +47,38 @@ const vcsOptions: {
   },
 ];
 
-const testGenerator: Fig.Generator = {
-  cache: {
-    cacheByDirectory: true,
-    strategy: "stale-while-revalidate",
-    ttl: 1000 * 60 * 5,
-  },
-  script: (context) => {
-    const base = context[context.length - 1];
-    // allow split by single colon so that it triggers on a::b:
-    const indexIntoModPath = Math.max(base.split(/::?/).length, 1);
-    // split by :: so that tokens with a single colon are allowed
-    const moduleTokens = base.split("::");
-    const lastModule = moduleTokens.pop();
-    // check if the token has a : on the end
-    const hasColon = lastModule[lastModule.length - 1] == ":" ? ":" : "";
-    return `cargo t -- --list | awk '/: test$/ { print substr($1, 1, length($1) - 1) }' | awk -F "::" '{ print "${hasColon}"$${indexIntoModPath},int( NF / ${indexIntoModPath} ) }'`;
-  },
-  postProcess: (out) => {
-    return [...new Set(out.split("\n"))].map((line) => {
-      const [display, last] = line.split(" ");
-      const lastModule = parseInt(last);
-      const displayName = display.replaceAll(":", "");
-      const name = displayName.length
-        ? `${display}${lastModule ? "" : "::"}`
-        : "";
-      return { name, displayName };
-    });
-  },
-  trigger: ":",
-  getQueryTerm: ":",
-};
+// TODO(grant): add this back but better with no awk
+// const testGenerator: Fig.Generator = {
+//   cache: {
+//     cacheByDirectory: true,
+//     strategy: "stale-while-revalidate",
+//     ttl: 1000 * 60 * 5,
+//   },
+//   script: (context) => {
+//     const base = context[context.length - 1];
+//     // allow split by single colon so that it triggers on a::b:
+//     const indexIntoModPath = Math.max(base.split(/::?/).length, 1);
+//     // split by :: so that tokens with a single colon are allowed
+//     const moduleTokens = base.split("::");
+//     const lastModule = moduleTokens.pop();
+//     // check if the token has a : on the end
+//     const hasColon = lastModule[lastModule.length - 1] == ":" ? ":" : "";
+//     return `cargo t -- --list | awk '/: test$/ { print substr($1, 1, length($1) - 1) }' | awk -F "::" '{ print "${hasColon}"$${indexIntoModPath},int( NF / ${indexIntoModPath} ) }'`;
+//   },
+//   postProcess: (out) => {
+//     return [...new Set(out.split("\n"))].map((line) => {
+//       const [display, last] = line.split(" ");
+//       const lastModule = parseInt(last);
+//       const displayName = display.replaceAll(":", "");
+//       const name = displayName.length
+//         ? `${display}${lastModule ? "" : "::"}`
+//         : "";
+//       return { name, displayName };
+//     });
+//   },
+//   trigger: ":",
+//   getQueryTerm: ":",
+// };
 
 type Metadata = {
   packages: Package[];
@@ -160,11 +161,11 @@ const targetGenerator: ({ kind }: { kind?: TargetKind }) => Fig.Generator = ({
   kind,
 }) => ({
   custom: async (_, executeShellCommand, context) => {
-    const out = await executeShellCommand({
+    const { stdout } = await executeShellCommand({
       command: "cargo",
       args: ["metadata", "--format-version", "1", "--no-deps"],
     });
-    const manifest: Metadata = JSON.parse(out);
+    const manifest: Metadata = JSON.parse(stdout);
     const packages = rootPackageOrLocal(manifest);
 
     let targets = packages.flatMap((pkg) => pkg.targets);
@@ -318,7 +319,7 @@ const searchGenerator: Fig.Generator = {
 };
 
 const tripleGenerator: Fig.Generator = {
-  script: ["rustc","--print","target-list"],
+  script: ["rustc", "--print", "target-list"],
   postProcess: (data: string) => {
     return data
       .split("\n")
@@ -4706,7 +4707,6 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
           name: "args",
           isOptional: true,
           isVariadic: true,
-          generators: testGenerator,
         },
       ],
     },
@@ -5016,7 +5016,11 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
       args: {
         name: "SPEC",
         generators: {
-          script: `cargo install --list | \\grep -E "^[a-zA-Z\\-]+\\sv" | cut -d ' ' -f 1`,
+          script: [
+            "bash",
+            "-c",
+            `cargo install --list | \\grep -E "^[a-zA-Z\\-]+\\sv" | cut -d ' ' -f 1`,
+          ],
           splitOn: "\n",
         },
         isVariadic: true,

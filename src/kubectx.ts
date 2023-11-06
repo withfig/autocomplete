@@ -59,7 +59,7 @@ const completionSpec: Fig.Spec = {
     name: "context",
     generators: [
       {
-        script: `kubectx | grep -v $(kubectx -c)`,
+        script: ["bash", "-c", "kubectx | grep -v $(kubectx -c)"],
         postProcess: (out) =>
           out.split("\n").map((item) => ({
             name: item,

@@ -32,14 +32,14 @@ const postPrecessGenerator = (
 
 const listCustomGenerator = async (
   tokens: string[],
-  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  executeShellCommand: Fig.ExecuteCommandFunction,
   command: string,
   options: string[],
   parentKey: string,
   childKey = ""
 ): Promise<Fig.Suggestion[]> => {
   try {
-    let cmd = `aws eks ${command}`;
+    let args = ["eks", command];
 
     for (let i = 0; i < options.length; i++) {
       const option = options[i];
@@ -48,12 +48,15 @@ const listCustomGenerator = async (
         continue;
       }
       const param = tokens[idx + 1];
-      cmd += ` ${option} ${param}`;
+      args = [...args, option, param];
     }
 
-    const out = await executeShellCommand(cmd);
+    const { stdout } = await executeShellCommand({
+      command: "aws",
+      args,
+    });
 
-    const list = JSON.parse(out)[parentKey];
+    const list = JSON.parse(stdout)[parentKey];
 
     if (!Array.isArray(list)) {
       return [
@@ -313,10 +316,11 @@ const generators: Record<string, Fig.Generator> = {
         }
         const param = tokens[idx + 1];
 
-        const out = await executeShellCommand(
-          `aws eks describe-cluster --name ${param}`
-        );
-        const cluster = JSON.parse(out)["cluster"];
+        const { stdout } = await executeShellCommand({
+          command: "aws",
+          args: ["eks", "describe-cluster", "--name", param],
+        });
+        const cluster = JSON.parse(stdout)["cluster"];
         const subnets = cluster["resourcesVpcConfig"]["subnetIds"];
         return subnets.map((subnet) => {
           return {

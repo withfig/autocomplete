@@ -85,8 +85,10 @@ const generateDsclPath: Fig.Generator = {
     }
     const lastSlashIndex = lastToken.lastIndexOf("/");
     const path = lastToken.slice(0, lastSlashIndex < 0 ? 0 : lastSlashIndex);
-    const command = `dscl ${datasource} -list ${path || "/"}`;
-    const lines = await executeShellCommand(command);
+    const { stdout: lines } = await executeShellCommand({
+      command: "dscl",
+      args: [datasource, "-list", path ?? "/"],
+    });
     return lines
       .trim()
       .split("\n")

@@ -64,7 +64,7 @@ const projectsGenerator: Fig.Generator = {
     cacheKey: "projects",
     cacheByDirectory: true,
   },
-  script: ["doppler","projects","--json"],
+  script: ["doppler", "projects", "--json"],
   postProcess: (out) => {
     try {
       const obj = JSON.parse(out);

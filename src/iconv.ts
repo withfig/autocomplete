@@ -1,5 +1,5 @@
 const encodingGenerator: Fig.Generator = {
-  script: "iconv -l | command tr ' ' '\\n' | sort",
+  script: ["bash", "-c", "iconv -l | command tr ' ' '\\n' | sort"],
   postProcess: (out) =>
     out.split("\n").map((encoding) => ({
       name: encoding,

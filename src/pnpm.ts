@@ -964,10 +964,17 @@ const completionSpec: Fig.Spec = {
   },
   filterStrategy: "fuzzy",
   generateSpec: async (tokens, executeShellCommand) => {
-    const { script, postProcess } = dependenciesGenerator;
+    const { script, postProcess } = dependenciesGenerator as Fig.Generator & {
+      script: string[];
+    };
 
     const packages = postProcess(
-      await executeShellCommand(script as string),
+      (
+        await executeShellCommand({
+          command: script[0],
+          args: script.slice(1),
+        })
+      ).stdout,
       tokens
     ).map(({ name }) => name as string);
 

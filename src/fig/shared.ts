@@ -39,21 +39,6 @@ const graphql = async ({
   return JSON.parse(stdout).data;
 };
 
-const devCompletionsFolderGenerator: Fig.Generator = {
-  script: '\\ls -d -1 "$PWD/"**/',
-  postProcess: (out) =>
-    out.split("\n").map((folder) => {
-      const paths = folder.split("/");
-      paths.pop();
-
-      return {
-        name: paths.pop(),
-        insertValue: folder,
-        icon: `fig://path/${folder}`,
-      };
-    }),
-};
-
 const disableForCommandsGenerator: Fig.Generator = {
   script: ["fig", "settings", "autocomplete.disableForCommands"],
   postProcess: (out) => {
@@ -120,25 +105,29 @@ export const themesGenerator: Fig.Generator = {
 };
 
 export const SETTINGS_GENERATOR: Record<string, Fig.Generator> = {
-  "autocomplete.devCompletionsFolder": devCompletionsFolderGenerator,
   "autocomplete.disableForCommands": disableForCommandsGenerator,
   "autocomplete.theme": themesGenerator,
 };
 
 export const subsystemsGenerator: Fig.Generator = {
-  script: "\\ls ~/.fig/logs",
-  trigger: (curr, prev) => {
-    // trigger on new token
-    return curr.length === 0 && prev.length > 0;
-  },
-  postProcess: (out, tokens) => {
-    const insertedLogFiles = new Set(tokens.slice(0, -1));
-    return out
-      .split("\n")
-      .map((name) => name.replace(".log", ""))
-      .concat("figterm")
-      .map((name) => ({ name, icon: "🪵" }))
-      .filter((suggestion) => !insertedLogFiles.has(suggestion.name));
+  // script: "\\ls ~/.fig/logs",
+  // trigger: (curr, prev) => {
+  //   // trigger on new token
+  //   return curr.length === 0 && prev.length > 0;
+  // },
+  // postProcess: (out, tokens) => {
+  //   const insertedLogFiles = new Set(tokens.slice(0, -1));
+  //   return out
+  //     .split("\n")
+  //     .map((name) => name.replace(".log", ""))
+  //     .concat("figterm")
+  //     .map((name) => ({ name, icon: "🪵" }))
+  //     .filter((suggestion) => !insertedLogFiles.has(suggestion.name));
+  // },
+  custom: async () => {
+    return ["figterm", "fig_cli", "fig_desktop", "daemon"].map((name) => ({
+      name,
+    }));
   },
 };
 

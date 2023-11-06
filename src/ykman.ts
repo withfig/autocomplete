@@ -2439,7 +2439,11 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "SERIAL",
         generators: {
-          script: "ykman list | sed -rn 's/.*Serial: (.*)/\\1/p'",
+          script: [
+            "bash",
+            "-c",
+            "ykman list | sed -rn 's/.*Serial: (.*)/\\1/p'",
+          ],
           postProcess: function (out) {
             return out.split("\n").map((serial) => {
               return { name: serial, description: "Yubikey serial" };

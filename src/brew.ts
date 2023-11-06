@@ -1,5 +1,5 @@
 const servicesGenerator = (action: string): Fig.Generator => ({
-  script: "brew services list | sed -e 's/ .*//' | tail -n +2",
+  script: ["bash", "-c", "brew services list | sed -e 's/ .*//' | tail -n +2"],
   postProcess: function (out) {
     return out
       .split("\n")
@@ -34,7 +34,7 @@ const formulaeGenerator: Fig.Generator = {
 };
 
 const outdatedformulaeGenerator: Fig.Generator = {
-  script: "brew outdated -q",
+  script: ["brew", "outdated", "-q"],
   postProcess: function (out) {
     return out.split("\n").map((formula) => ({
       name: formula,
@@ -68,7 +68,11 @@ const generateAllCasks: Fig.Generator = {
   },
 };
 const generateAliases: Fig.Generator = {
-  script: 'find ~/.brew-aliases/ -type f ! -name "*.*" -d 1 | sed "s/.*\\///"',
+  script: [
+    "bash",
+    "-c",
+    'find ~/.brew-aliases/ -type f ! -name "*.*" -d 1 | sed "s/.*\\///"',
+  ],
   postProcess: function (out) {
     return out
       .split("\n")
@@ -1274,7 +1278,7 @@ const completionSpec: Fig.Spec = {
             isVariadic: true,
 
             generators: {
-              script: ["brew","list","-1","--cask"],
+              script: ["brew", "list", "-1", "--cask"],
               postProcess: function (out) {
                 return out.split("\n").map((formula) => {
                   return {

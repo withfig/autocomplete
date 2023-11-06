@@ -943,20 +943,27 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "MSO",
         generators: {
-          script: (context) =>
-            `youtube-dl ${context.filter((token) =>
-              token.includes("youtube.")
-            )} --simulate --ap-list-mso | tail -n +3 | tr -s " "`,
+          custom: async (tokens, executeCommand, context) => {
+            const { stdout } = await executeCommand({
+              command: "youtube-dl",
+              args: [
+                ...tokens.filter((token) => token.includes("youtube.")),
+                "--simulate",
+                "--ap-list-mso",
+              ],
+            });
 
-          postProcess: (out) =>
-            out.split("\n").map((line) => {
-              const [name, ...description] = line.split(" ");
-
-              return {
-                name,
-                description: description.join(" "),
-              };
-            }),
+            return stdout
+              .split("\n")
+              .slice(3)
+              .map((line) => {
+                const [name, ...description] = line.split(" ");
+                return {
+                  name,
+                  description: description.join(" "),
+                };
+              });
+          },
         },
       },
     },

@@ -887,10 +887,10 @@ const completionSpec: Fig.Spec = {
     isOptional: true,
   },
   generateSpec: async (_tokens, executeShellCommand) => {
-    const [toolchainOutput] = await Promise.all([
-      executeShellCommand("rustup toolchain list"),
-    ]);
-
+    const { stdout: toolchainOutput } = await executeShellCommand({
+      command: "rustup",
+      args: ["toolchain", "list"],
+    });
     const toolchains: Fig.Option[] = toolchainOutput
       .split("\n")
       .map((toolchain) => {
