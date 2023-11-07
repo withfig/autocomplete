@@ -93,7 +93,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "preset",
         generators: {
-          script: "ls /etc/mkinitcpio.d",
+          script: ["ls", "/etc/mkinitcpio.d"],
           postProcess: (out) =>
             out
               .trim()

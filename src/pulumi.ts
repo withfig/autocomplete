@@ -1,9 +1,27 @@
+const stacksGenerator: Fig.Generator = {
+  cache: {
+    cacheByDirectory: true,
+  },
+  script: ["pulumi", "stack", "ls", "--json"],
+  postProcess: (out) => {
+    try {
+      return JSON.parse(out).map((stack) => ({
+        name: stack.name,
+        description: stack.description,
+      }));
+    } catch (e) {
+      return [];
+    }
+  },
+};
+
 const stackOption: Fig.Option = {
   name: ["-s", "--stack"],
   description:
     "The name of the stack to operate on. Defaults to the current stack",
   args: {
     name: "stack-name",
+    generators: stacksGenerator,
   },
 };
 
@@ -266,6 +284,7 @@ const completionSpec: Fig.Spec = {
               description: "The name of the new stack to copy the config to",
               args: {
                 name: "stack-name",
+                generators: stacksGenerator,
               },
             },
           ],
@@ -1016,7 +1035,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--copy-config-from",
               description: "The name of the stack to copy existing config from",
-              args: { name: "stackName" },
+              args: { name: "stackName", generators: stacksGenerator },
             },
           ],
         },
@@ -1074,7 +1093,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "rm",
           description: "Remove a stack and its configuration",
-          args: { name: "stack-name" },
+          args: { name: "stack-name", generators: stacksGenerator },
           options: [
             ...inheritedOptions,
             yesOption,
@@ -1094,7 +1113,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "select",
           description: "Switch the current workspace to the given stack",
-          args: { name: "stack" },
+          args: { name: "stack", generators: stacksGenerator },
           options: [
             ...inheritedOptions,
             {
@@ -1166,6 +1185,7 @@ const completionSpec: Fig.Spec = {
               description: "Force deletion of protected resources",
               args: {
                 name: "stack-name",
+                generators: stacksGenerator,
               },
             },
           ],
@@ -1183,6 +1203,7 @@ const completionSpec: Fig.Spec = {
               description: "Unprotect all resources in the checkpoint",
               args: {
                 name: "stack-name",
+                generators: stacksGenerator,
               },
             },
           ],

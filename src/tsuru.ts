@@ -8,7 +8,7 @@ const formatTsuruOutput = (output: string) => {
 
 const tsuruGenerators: Record<string, Fig.Generator> = {
   plans: {
-    script: "tsuru plan list",
+    script: ["tsuru", "plan", "list"],
     postProcess: function (out) {
       const plans = formatTsuruOutput(out);
       return plans.map((plan) => {
@@ -18,7 +18,7 @@ const tsuruGenerators: Record<string, Fig.Generator> = {
   },
 
   teams: {
-    script: "tsuru team list",
+    script: ["tsuru", "team", "list"],
     postProcess: function (out) {
       const teams = formatTsuruOutput(out);
       return teams.map((team) => {
@@ -28,7 +28,7 @@ const tsuruGenerators: Record<string, Fig.Generator> = {
   },
 
   apps: {
-    script: "tsuru app list",
+    script: ["tsuru", "app", "list"],
     postProcess: function (out) {
       const apps = formatTsuruOutput(out);
       return apps.map((app) => {
@@ -38,7 +38,7 @@ const tsuruGenerators: Record<string, Fig.Generator> = {
   },
 
   platforms: {
-    script: "tsuru platform list",
+    script: ["tsuru", "platform", "list"],
     postProcess: function (out) {
       return out
         .split("\n")
@@ -50,7 +50,7 @@ const tsuruGenerators: Record<string, Fig.Generator> = {
   },
 
   pools: {
-    script: "tsuru pool list",
+    script: ["tsuru", "pool", "list"],
     postProcess: function (out) {
       const pools = formatTsuruOutput(out);
       return pools.map((pool) => {

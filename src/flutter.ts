@@ -4,7 +4,7 @@ import { filepaths } from "@fig/autocomplete-generators";
 
 const flutterGenerators: Record<string, Fig.Generator> = {
   emulators: {
-    script: "flutter emulators",
+    script: ["flutter", "emulators"],
     postProcess: function (out) {
       return out
         .match(/.*•.*/gi)
@@ -863,7 +863,7 @@ const completionSpec = {
         description:
           "Switch to <channel name>. Leave this blank to see available channels",
         generators: {
-          script: "flutter channel",
+          script: ["flutter", "channel"],
           postProcess: function (out) {
             return out
               .split("\n")

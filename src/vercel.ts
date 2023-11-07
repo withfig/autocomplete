@@ -1,5 +1,5 @@
 const envVarList: Fig.Generator = {
-  script: "vercel env ls",
+  script: ["vercel", "env", "ls"],
   postProcess: function (out) {
     const lines = out.split("\n");
     const envList = [];
@@ -13,26 +13,8 @@ const envVarList: Fig.Generator = {
   },
 };
 
-//Unfinished
-const deploymentList: Fig.Generator = {
-  //Grabs all the deployments for
-  script: "vercel list [project name]",
-  postProcess: function (out) {
-    const lines = out.split("\n");
-    const deploymentUrlList = [];
-    for (let i = 4; i < lines.length; i++) {
-      const deploymentUrl = lines[i].match(/\S+/g)[1];
-      deploymentUrlList.push({
-        name: deploymentUrl,
-        icon: "🔗",
-      });
-    }
-    return deploymentUrlList;
-  },
-};
-
 const domainList = {
-  script: "vercel domains",
+  script: ["vercel", "domains"],
   postProcess: function (out) {
     const lines = out.split("\n");
     const domainList = [];
@@ -47,7 +29,7 @@ const domainList = {
 };
 
 const teamList: Fig.Generator = {
-  script: "vercel teams list",
+  script: ["vercel", "teams", "list"],
   postProcess: function (out) {
     const lines = out.split("\n");
     const teamList = [];

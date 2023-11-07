@@ -15,12 +15,12 @@ const processXcodeList = (out: string, tokens: string[]) =>
     }));
 
 const allXcodes: Fig.Generator = {
-  script: "xcodes list",
+  script: ["xcodes", "list"],
   postProcess: processXcodeList,
 };
 
 const installedXcodes: Fig.Generator = {
-  script: "xcodes installed",
+  script: ["xcodes", "installed"],
   postProcess: processXcodeList,
 };
 

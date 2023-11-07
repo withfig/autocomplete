@@ -6,10 +6,14 @@ const icon =
 const ignoreExtensions = new Set(["", "sample", "env"]);
 
 const extensions: Fig.Generator["custom"] = async (_, executeShellCommand) => {
-  const out = await executeShellCommand(
-    "find . -depth 3 -type f -name '*.*' -not -path '*/node_modules/*' | sed 's/.*\\.//' | sort -u"
-  );
-  const lines = out.trim().split("\n");
+  const { stdout } = await executeShellCommand({
+    command: "bash",
+    args: [
+      "-c",
+      "find . -depth 3 -type f -name '*.*' -not -path '*/node_modules/*' | sed 's/.*\\.//' | sort -u",
+    ],
+  });
+  const lines = stdout.trim().split("\n");
   return lines
     .filter((line) => !ignoreExtensions.has(line))
     .map((line) => ({ name: "." + line }));

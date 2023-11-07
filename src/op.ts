@@ -9,7 +9,7 @@ interface Account {
 }
 
 const suggestAccounts: Fig.Generator = {
-  script: "op account list --format json",
+  script: ["op", "account", "list", "--format", "json"],
   postProcess: (out) => {
     const json = JSON.parse(out) as Account[];
     return json.map((account) => ({

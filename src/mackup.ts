@@ -1,5 +1,5 @@
 const applicationGenerator: Fig.Generator = {
-  script: "mackup list",
+  script: ["mackup", "list"],
   postProcess: (output) => {
     return output
       .split("\n")

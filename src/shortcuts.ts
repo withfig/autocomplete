@@ -2,7 +2,7 @@ import { filepaths } from "@fig/autocomplete-generators";
 
 const shortcut: Fig.Arg = {
   generators: {
-    script: "shortcuts list",
+    script: ["shortcuts", "list"],
     postProcess: (list) =>
       list.split("\n").map((shortcut) => ({
         name: shortcut,
@@ -85,7 +85,7 @@ const subcommands: Fig.Subcommand[] = [
         args: {
           name: "folder-name",
           generators: {
-            script: "shortcuts list --folders",
+            script: ["shortcuts", "list", "--folders"],
             postProcess: (list) =>
               list.split("\n").map((folder) => ({
                 name: folder,

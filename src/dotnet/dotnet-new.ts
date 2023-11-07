@@ -7,7 +7,13 @@ type SearchResultData = {
 const searchGenerator: Fig.Generator = {
   script(context) {
     const searchTerm = context[context.length - 1];
-    return `curl -s -H "Accept: application/json" "https://azuresearch-usnc.nuget.org/query?packageType=Template&q=${searchTerm}"`;
+    return [
+      "curl",
+      "-sfL",
+      "-H",
+      "Accept: application/json",
+      `https://azuresearch-usnc.nuget.org/query?packageType=Template&q=${searchTerm}`,
+    ];
   },
   postProcess(out) {
     const searchResults: SearchResultData[] = JSON.parse(out).data;
@@ -182,7 +188,7 @@ const completionSpec: Fig.Spec = {
     description:
       "The template to instantiate when the command is invoked. Each template might have specific options you can pass",
     generators: {
-      script: "dotnet new --list",
+      script: ["dotnet", "new", "--list"],
       postProcess(out) {
         const lines = out.split("\n").slice(4);
 

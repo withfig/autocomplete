@@ -4,6 +4,8 @@ import {
   npmSearchGenerator,
   dependenciesGenerator,
 } from "./npm";
+import { npxSuggestions } from "./npx";
+import { createCLIsGenerator } from "./yarn";
 
 const dependencyOptions: Fig.Option[] = [
   {
@@ -285,11 +287,44 @@ const spec: Fig.Spec = {
             "discord-interactions",
             "blank",
             "bun-bakery",
+            ...npxSuggestions
+              .filter((bin) =>
+                typeof bin.name === "string"
+                  ? bin.name.startsWith("create-")
+                  : bin.name.some((name) => name.startsWith("create-"))
+              )
+              .map((bin) => {
+                let name = bin.name;
+                if (typeof name !== "string") name = name[0];
+                name = name.replace(/^create-/, "");
+
+                return { ...bin, name, priority: 76 };
+              }),
           ],
           generators: [
             { template: "folders" },
-            { script: "command ls -1 ~/.bun-create", splitOn: "\n" },
+            {
+              custom: async (_, executeCommand, context) => {
+                const { stdout } = await executeCommand({
+                  command: "ls",
+                  args: [
+                    "-1",
+                    `${context.environmentVariables["HOME"]}/.bun-create`,
+                  ],
+                });
+                return stdout.split("\n").map((name) => ({
+                  name,
+                }));
+              },
+            },
+            { script: ["command", "ls", "-1", ".bun-create"], splitOn: "\n" },
+            createCLIsGenerator,
           ],
+          loadSpec: async (token) => ({
+            name: "create-" + token,
+            type: "global",
+          }),
+          isCommand: true,
         },
         {
           name: "name",
@@ -378,6 +413,12 @@ const spec: Fig.Spec = {
     {
       name: "help",
       description: "Print the help menu",
+    },
+    {
+      name: "x",
+      icon: "🛠️",
+      description: "Run an npx command",
+      loadSpec: "bunx",
     },
   ],
 };

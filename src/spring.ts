@@ -29,16 +29,23 @@ type Dependency = Option & {
 const memoizedFetchData = () => {
   let data: Data | undefined;
   return async (
-    executeShellCommand: Fig.ExecuteShellCommandFunction
+    executeShellCommand: Fig.ExecuteCommandFunction
   ): Promise<Data | undefined> => {
     if (data) {
       return data;
     }
 
     try {
-      const query = `curl -sfL -H "Accept: application/json" "https://start.spring.io/metadata/client"`;
-      const response = await executeShellCommand(query);
-      data = JSON.parse(response);
+      const { stdout } = await executeShellCommand({
+        command: "curl",
+        args: [
+          "-sfL",
+          "-H",
+          "Accept: application/json",
+          "https://start.spring.io/metadata/client",
+        ],
+      });
+      data = JSON.parse(stdout);
       return data;
     } catch (error) {
       return undefined;

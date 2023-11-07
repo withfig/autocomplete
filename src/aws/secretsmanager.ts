@@ -24,15 +24,14 @@ const awsRegions = [
 
 const ttl = 30000;
 
-const appendFolderPath = (tokens: string[], prefix: string): string => {
-  const baseLSCommand = "\\ls -1ApL ";
+const appendFolderPath = (tokens: string[], prefix: string): string[] => {
+  const baseLsCommand = ["ls", "-1ApL"];
   let whatHasUserTyped = tokens[tokens.length - 1];
 
-  if (whatHasUserTyped.startsWith(prefix)) {
-    whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
-  } else {
-    return `echo '${prefix}'`;
+  if (!whatHasUserTyped.startsWith(prefix)) {
+    return ["echo", prefix];
   }
+  whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
 
   let folderPath = "";
   const lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
@@ -45,7 +44,7 @@ const appendFolderPath = (tokens: string[], prefix: string): string => {
     }
   }
 
-  return baseLSCommand + folderPath;
+  return [...baseLsCommand, folderPath];
 };
 
 const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
@@ -123,7 +122,15 @@ const generators: Record<string, Fig.Generator> = {
   secretIdsGenerator: {
     // --page-size does not affect the number of items returned,
     // just chunks request so it won't timeout
-    script: "aws secretsmanager list-secrets --sort-order asc --page-size 100",
+    script: [
+      "aws",
+      "secretsmanager",
+      "list-secrets",
+      "--sort-order",
+      "asc",
+      "--page-size",
+      "100",
+    ],
     postProcess: function (out) {
       try {
         const list = JSON.parse(out)["SecretList"];
@@ -142,7 +149,7 @@ const generators: Record<string, Fig.Generator> = {
   kmsKeyIdGenerator: {
     // --page-size does not affect the number of items returned,
     // just chunks request so it won't timeout
-    script: "aws kms list-keys --page-size 100",
+    script: ["aws", "kms", "list-keys", "--page-size", "100"],
     postProcess: function (out) {
       try {
         const list = JSON.parse(out)["Keys"];
@@ -199,7 +206,7 @@ const generators: Record<string, Fig.Generator> = {
     },
   },
   getReplicaRegionsGenerator: {
-    script: "aws kms list-keys --page-size 100",
+    script: ["aws", "kms", "list-keys", "--page-size", "100"],
     postProcess: function (out, tokens) {
       try {
         const list = JSON.parse(out)["Keys"];
@@ -220,7 +227,7 @@ const generators: Record<string, Fig.Generator> = {
     },
   },
   getLambdasGenerator: {
-    script: "aws lambda list-functions --page-size 100",
+    script: ["aws", "lambda", "list-functions", "--page-size", "100"],
     postProcess: function (out, tokens) {
       try {
         const list = JSON.parse(out)["Functions"];
@@ -245,10 +252,11 @@ const generators: Record<string, Fig.Generator> = {
           return [];
         }
         const secretId = tokens[idx + 1];
-        const out = await executeShellCommand(
-          `aws secretsmanager describe-secret --secret-id ${secretId}`
-        );
-        const versions = JSON.parse(out as string)["VersionIdsToStages"];
+        const { stdout } = await executeShellCommand({
+          command: "aws",
+          args: ["secretsmanager", "describe-secret", "--secret-id", secretId],
+        });
+        const versions = JSON.parse(stdout)["VersionIdsToStages"];
         return Object.keys(versions).map((elm) => ({ name: elm }));
       } catch (e) {
         console.log(e);
@@ -268,10 +276,11 @@ const generators: Record<string, Fig.Generator> = {
           return [];
         }
         const secretId = tokens[idx + 1];
-        const out = await executeShellCommand(
-          `aws secretsmanager describe-secret --secret-id ${secretId}`
-        );
-        const versions = JSON.parse(out as string)["VersionIdsToStages"];
+        const { stdout } = await executeShellCommand({
+          command: "aws",
+          args: ["secretsmanager", "describe-secret", "--secret-id", secretId],
+        });
+        const versions = JSON.parse(stdout)["VersionIdsToStages"];
         return Object.keys(versions).map((elm) => ({ name: versions[elm][0] }));
       } catch (e) {
         console.log(e);
@@ -292,10 +301,11 @@ const generators: Record<string, Fig.Generator> = {
           return [];
         }
         const secretId = tokens[idx + 1];
-        const out = await executeShellCommand(
-          `aws secretsmanager describe-secret --secret-id ${secretId}`
-        );
-        const versions = JSON.parse(out as string)["Tags"];
+        const { stdout } = await executeShellCommand({
+          command: "aws",
+          args: ["secretsmanager", "describe-secret", "--secret-id", secretId],
+        });
+        const versions = JSON.parse(stdout)["Tags"];
         return versions.map((elm) => ({ name: elm["Key"] }));
       } catch (e) {
         console.log(e);

@@ -79,7 +79,7 @@ export interface SpdisplaysDisplayportDevice {
 
 const screenNumbers: Fig.Generator = {
   // one thing to note is that this is MacOS specific
-  script: "system_profiler SPDisplaysDataType -json",
+  script: ["system_profiler", "SPDisplaysDataType", "-json"],
   postProcess: (output) => {
     if (output.includes("command not found")) {
       return [];
