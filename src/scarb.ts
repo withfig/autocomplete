@@ -29,7 +29,13 @@ const completionSpec: Fig.Spec = {
             description:
               "Packages to run this command on, can be a concrete package name (`foobar`) or a prefix glob (`foo*`) [default: *]",
             generators: {
-              script: "scarb metadata --format-version 1 --no-deps",
+              script: [
+                "scarb",
+                "metadata",
+                "--format-version",
+                "1",
+                "--no-deps",
+              ],
               postProcess: function (out) {
                 const jsonOut = JSON.parse(out);
                 const members = jsonOut.workspace.members;
@@ -105,7 +111,13 @@ const completionSpec: Fig.Spec = {
             description:
               "Packages to run this command on, can be a concrete package name (`foobar`) or a prefix glob (`foo*`) [default: *]",
             generators: {
-              script: "scarb metadata --format-version 1 --no-deps",
+              script: [
+                "scarb",
+                "metadata",
+                "--format-version",
+                "1",
+                "--no-deps",
+              ],
               postProcess: function (out) {
                 const jsonOut = JSON.parse(out);
                 const members = jsonOut.workspace.members;
@@ -145,7 +157,13 @@ const completionSpec: Fig.Spec = {
             description:
               "Packages to run this command on, can be a concrete package name (`foobar`) or a prefix glob (`foo*`) [default: *]",
             generators: {
-              script: "scarb metadata --format-version 1 --no-deps",
+              script: [
+                "scarb",
+                "metadata",
+                "--format-version",
+                "1",
+                "--no-deps",
+              ],
               postProcess: function (out) {
                 const jsonOut = JSON.parse(out);
                 const members = jsonOut.workspace.members;
@@ -313,7 +331,13 @@ const completionSpec: Fig.Spec = {
             description:
               "Packages to run this command on, can be a concrete package name (`foobar`) or a prefix glob (`foo*`) [default: *]",
             generators: {
-              script: "scarb metadata --format-version 1 --no-deps",
+              script: [
+                "scarb",
+                "metadata",
+                "--format-version",
+                "1",
+                "--no-deps",
+              ],
               postProcess: function (out) {
                 const jsonOut = JSON.parse(out);
                 const members = jsonOut.workspace.members;
@@ -477,7 +501,13 @@ const completionSpec: Fig.Spec = {
             description:
               "Packages to run this command on, can be a concrete package name (`foobar`) or a prefix glob (`foo*`) [default: *]",
             generators: {
-              script: "scarb metadata --format-version 1 --no-deps",
+              script: [
+                "scarb",
+                "metadata",
+                "--format-version",
+                "1",
+                "--no-deps",
+              ],
               postProcess: function (out) {
                 const jsonOut = JSON.parse(out);
                 const members = jsonOut.workspace.members;
@@ -550,7 +580,13 @@ const completionSpec: Fig.Spec = {
             description:
               "Packages to run this command on, can be a concrete package name (`foobar`) or a prefix glob (`foo*`) [default: *]",
             generators: {
-              script: "scarb metadata --format-version 1 --no-deps",
+              script: [
+                "scarb",
+                "metadata",
+                "--format-version",
+                "1",
+                "--no-deps",
+              ],
               postProcess: function (out) {
                 const jsonOut = JSON.parse(out);
                 const members = jsonOut.workspace.members;

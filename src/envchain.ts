@@ -1,5 +1,5 @@
 const namespaces: Fig.Generator = {
-  script: "envchain --list",
+  script: ["envchain", "--list"],
   postProcess: (output) => {
     return Array.from(new Set(output.split("\n"))).map((namespace) => {
       return {

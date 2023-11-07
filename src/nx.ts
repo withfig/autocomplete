@@ -121,7 +121,7 @@ const fillProjectCaches = (projectJson: NxProject) => {
 };
 
 const preProcessProjects = async (
-  executeShellCommand: Fig.ExecuteShellCommandFunction
+  executeShellCommand: Fig.ExecuteCommandFunction
 ) => {
   if (!nxProjectPathCache.length) {
     // get project json paths
@@ -129,13 +129,24 @@ const preProcessProjects = async (
       const { appsDir, libsDir }: { appsDir: string; libsDir: string } = {
         appsDir: "apps",
         libsDir: "libs",
-        ...JSON.parse(await executeShellCommand("cat nx.json")).workspaceLayout,
+        ...JSON.parse(
+          (
+            await executeShellCommand({
+              command: "cat",
+              // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+              args: ["nx.json"],
+            })
+          ).stdout
+        ).workspaceLayout,
       };
       const searchFolders =
         appsDir === libsDir ? appsDir : `${appsDir} ${libsDir}`;
       nxProjectPathCache = (
-        await executeShellCommand(`find ${searchFolders} -name "project.json"`)
-      )
+        await executeShellCommand({
+          command: "find",
+          args: [searchFolders, "-name", "project.json"],
+        })
+      ).stdout
         .split("\n")
         .filter((path) => !!path);
     } catch (error) {
@@ -149,7 +160,13 @@ const preProcessProjects = async (
     if (!projectJson) {
       try {
         projectJson = JSON.parse(
-          await executeShellCommand(`cat "${projectJsonPath}"`)
+          (
+            await executeShellCommand({
+              command: "cat",
+              // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+              args: [projectJsonPath],
+            })
+          ).stdout
         );
 
         nxProjectPathWithJsonCache.set(projectJsonPath, projectJson);
@@ -167,7 +184,13 @@ const preProcessProjects = async (
   if (!nxProjectPathCache.length) {
     try {
       nxWorkspaceJsonCache = JSON.parse(
-        await executeShellCommand(`cat "workspace.json"`)
+        (
+          await executeShellCommand({
+            command: "cat",
+            // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+            args: ["workspace.json"],
+          })
+        ).stdout
       );
 
       // fill project caches
@@ -191,7 +214,7 @@ const listMapKeysGenerator = (map: Map<string, unknown>): Fig.Generator => {
     getQueryTerm: (token) => token.split(",").pop(),
     custom: async (
       tokens: string[],
-      executeShellCommand: Fig.ExecuteShellCommandFunction,
+      executeShellCommand: Fig.ExecuteCommandFunction,
       generatorContext: Fig.GeneratorContext
     ) => {
       const suggestions: Fig.Suggestion[] = [];
@@ -214,7 +237,7 @@ const nxGenerators: NxGenerators = {
     cache: oneDayCache,
     custom: async (
       tokens: string[],
-      executeShellCommand: Fig.ExecuteShellCommandFunction
+      executeShellCommand: Fig.ExecuteCommandFunction
     ) => {
       const suggestions: Fig.Suggestion[] = [];
 
@@ -245,9 +268,9 @@ const nxGenerators: NxGenerators = {
     script: (context) => {
       const argument = context.slice(-1)[0];
       if (argument.indexOf(":") > -1) {
-        return `nx list ${argument.split(":")[0]}`;
+        return ["nx", "list", argument.split(":")[0]];
       } else {
-        return "nx list";
+        return ["nx", "list"];
       }
     },
     trigger: (newToken, oldToken) =>
@@ -274,7 +297,7 @@ const nxGenerators: NxGenerators = {
     },
   },
   list: {
-    script: "nx list",
+    script: ["nx", "list"],
     cache: oneDayCache,
     postProcess: (out) => {
       if (out.indexOf("Installed plugins") > -1) {
@@ -295,7 +318,7 @@ const nxGenerators: NxGenerators = {
     // the custom generator
     custom: async (
       _: string[],
-      executeShellCommand: Fig.ExecuteShellCommandFunction
+      executeShellCommand: Fig.ExecuteCommandFunction
     ) => {
       // suggestions to be returned
       const suggestions: Fig.Suggestion[] = [];
@@ -323,7 +346,7 @@ const nxGenerators: NxGenerators = {
     // the custom generator
     custom: async (
       tokens: string[],
-      executeShellCommand: Fig.ExecuteShellCommandFunction,
+      executeShellCommand: Fig.ExecuteCommandFunction,
       generatorContext: Fig.GeneratorContext
     ) => {
       // suggestions to be returned
@@ -370,7 +393,7 @@ const nxGenerators: NxGenerators = {
   },
   targets: listMapKeysGenerator(nxTargetWithProjectsCache),
   workspaceGenerator: {
-    script: "ls -d tools/generators/*/",
+    script: ["bash", "-c", "ls -d tools/generators/*/"],
     cache: oneDayCache,
     postProcess: (out) =>
       out
@@ -665,7 +688,7 @@ const RUN_DERIVED_BASE_TARGETS_WITH_CONFIGURATION = ["build", "serve"];
  */
 const runDerivedSubcommands = async (
   _: string[],
-  executeShellCommand: Fig.ExecuteShellCommandFunction
+  executeShellCommand: Fig.ExecuteCommandFunction
 ): Promise<Fig.Spec> => {
   const subcommands: Fig.Subcommand[] = [];
 

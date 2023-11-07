@@ -1,5 +1,9 @@
 const programGenerator: Fig.Generator = {
-  script: `for i in $(echo $PATH | tr ":" "\n"); do find $i -maxdepth 1 -perm -111 -type f; done`,
+  script: [
+    "bash",
+    "-c",
+    `for i in $(echo $PATH | tr ":" "\n"); do find $i -maxdepth 1 -perm -111 -type f; done`,
+  ],
   postProcess: (out) =>
     out
       .split("\n")

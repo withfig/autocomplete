@@ -7,7 +7,7 @@ const completionSpec: Fig.Spec = {
       args: {
         isOptional: true,
         generators: {
-          script: "ibus list-engine",
+          script: ["ibus", "list-engine"],
           postProcess: (out) =>
             out
               .split("\n")

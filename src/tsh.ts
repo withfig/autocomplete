@@ -8,7 +8,7 @@ const globalOptions: Fig.Option[] = [
     args: {
       name: "Teleport proxy address",
       generators: {
-        script: "tsh clusters --format=json",
+        script: ["tsh", "clusters", "--format=json"],
         postProcess: (out) => JSON.parse(out).map((elm) => elm.cluster_name),
       },
     },
@@ -19,7 +19,7 @@ const globalOptions: Fig.Option[] = [
     args: {
       name: "user",
       generators: {
-        script: "tsh status --format json",
+        script: ["tsh", "status", "--format", "json"],
         postProcess: (out) => [JSON.parse(out).active.username],
       },
     },
@@ -93,7 +93,7 @@ const completionSpec: Fig.Spec = {
         name: "user@hostname",
         description: "Address of remote machine to log into",
         generators: {
-          script: "tsh ls --format=json",
+          script: ["tsh", "ls", "--format=json"],
           postProcess: (out) => {
             return JSON.parse(out).map((elm) => {
               return {

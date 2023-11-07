@@ -1,5 +1,5 @@
 const bucketGenerator: Fig.Generator = {
-  script: "aws s3api list-buckets",
+  script: ["aws", "s3api", "list-buckets"],
   postProcess: function (out) {
     const json = JSON.parse(out);
     return json.Buckets.map((bucket) => {

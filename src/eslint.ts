@@ -115,8 +115,11 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "Plugin",
         generators: {
-          script:
+          script: [
+            "bash",
+            "-c",
             "{ ls node_modules ; ls $(npm root -g) ; ls $(yarn global dir)/node_modules/ ; } | cat",
+          ],
           postProcess: (out) =>
             out
               .split("\n")

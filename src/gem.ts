@@ -2,13 +2,19 @@ const gems: Fig.Generator = {
   trigger: () => true,
   custom: async (tokens, executeShellCommand) => {
     const searchTerm = tokens[tokens.length - 1];
-    const out = await executeShellCommand(
-      `gem search --both --no-versions --no-details --quiet --norc '${searchTerm.replace(
-        "'",
-        `'"'"'`
-      )}'`
-    );
-    return out
+    const { stdout } = await executeShellCommand({
+      command: "gem",
+      args: [
+        "search",
+        "--both",
+        "--no-versions",
+        "--no-details",
+        "--quiet",
+        "--norc",
+        searchTerm,
+      ],
+    });
+    return stdout
       .trim()
       .split("\n")
       .filter((line) => line && !line.startsWith("*"))

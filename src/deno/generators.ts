@@ -165,7 +165,7 @@ export const generateDocs: Fig.Generator = {
           !token.startsWith("(")
       );
     command.push("--json");
-    return command.join(" ");
+    return command;
   },
   postProcess: (out, tokens) => {
     const docNodes = JSON.parse(out) as DocNode[];
@@ -191,7 +191,7 @@ type VersionsJSON = {
 };
 
 export const generateVersions: Fig.Generator = {
-  script: `curl -sL 'https://cdn.deno.land/deno/meta/versions.json'`,
+  script: ["curl", "-sL", "https://cdn.deno.land/deno/meta/versions.json"],
   cache: { ttl: 1000 * 60 * 60 * 24 }, // 24 hours, in milliseconds
   postProcess: (out) => {
     const data = JSON.parse(out) as VersionsJSON;
@@ -611,17 +611,26 @@ function getConfigPath(tokens: string[]): string | null {
 
 async function getDenoConfig(
   tokens: string[],
-  executeShellCommand: Fig.ExecuteShellCommandFunction
+  executeShellCommand: Fig.ExecuteCommandFunction
 ): Promise<DenoConfigurationFile | null> {
   const configPath = getConfigPath(tokens);
   let jsonString: string;
   if (configPath) {
-    jsonString = await executeShellCommand(`\\cat '${configPath}'`);
+    const { stdout } = await executeShellCommand({
+      command: "cat",
+      // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+      args: [configPath],
+    });
+    jsonString = stdout;
   } else {
     // Move backwards through the directory heirarchy until we find a config file (or hit the root)
-    jsonString = await executeShellCommand(
-      "until [[ ( -f deno.json || -f deno.jsonc || $PWD = '/' ) ]]; do cd ..; done; \\cat deno.json 2>/dev/null || \\cat deno.jsonc 2>/dev/null"
-    );
+    const { stdout } = await executeShellCommand({
+      command: "bash",
+      args: [
+        "-c",
+        "until [[ ( -f deno.json || -f deno.jsonc || $PWD = '/' ) ]]; do cd ..; done; \\cat deno.json 2>/dev/null || \\cat deno.jsonc 2>/dev/null",
+      ],
+    });
   }
   try {
     return JSON.parse(stripJsonComments(jsonString));
@@ -657,7 +666,11 @@ export const generateTasks: Fig.Generator = {
 // --- Generate installed deno scripts
 
 export const generateInstalledDenoScripts: Fig.Generator = {
-  script: "command find ~/.deno/bin -maxdepth 1 -perm -111 -type f",
+  script: [
+    "bash",
+    "-c",
+    "command find ~/.deno/bin -maxdepth 1 -perm -111 -type f",
+  ],
   postProcess: (out) =>
     out
       .split("\n")
@@ -692,7 +705,7 @@ export const generateUrlScript: Fig.Generator = {
   // There's no simple solution for pasting on Linux, it depends on
   // whether you use X11 or Wayland. For Wayland on some (most?) distros,
   // you would have to manually install wl-paste.
-  script: `pbpaste`,
+  script: ["pbpaste"],
   postProcess: (clipboard) => {
     clipboard = clipboard.trim();
     if (!clipboard) {

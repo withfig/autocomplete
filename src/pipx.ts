@@ -1,5 +1,5 @@
 const packagesGenerator: Fig.Generator = {
-  script: "pipx list --short",
+  script: ["pipx", "list", "--short"],
   postProcess: (out) => {
     return out.split("\n").map((line) => {
       return {

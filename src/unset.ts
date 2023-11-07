@@ -1,5 +1,5 @@
 const environmentVariableGenerator: Fig.Generator = {
-  script: "env",
+  script: ["env"],
   postProcess: (out) =>
     out.length === 0
       ? []

@@ -1,11 +1,12 @@
 const enviromentVariables: Fig.Generator = {
-  script: "env | cut -d '=' -f 1",
-  postProcess: (out) => {
-    return out.split("\n").map((envVar) => ({
-      name: envVar,
-      description: "Environment variable",
-      icon: "🌎",
-    }));
+  custom: async (_tokens, _executeCommand, generatorContext) => {
+    return Object.values(generatorContext.environmentVariables).map(
+      (envVar) => ({
+        name: envVar,
+        description: "Environment variable",
+        icon: "🌎",
+      })
+    );
   },
 };
 

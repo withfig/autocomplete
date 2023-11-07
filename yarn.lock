@@ -732,10 +732,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fig/autocomplete-generators@npm:^2.2.5":
-  version: 2.2.5
-  resolution: "@fig/autocomplete-generators@npm:2.2.5"
-  checksum: 6744eef510dd4c11ce20fcf8285eb173ae2a5f185c4c04a002e24bb0766e036af30938d07df2f52d3756973e86c5bbc1e363c9a71f91c5b507349f2ed7e3c9a7
+"@fig/autocomplete-generators@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "@fig/autocomplete-generators@npm:2.3.0"
+  checksum: d2b6be2972c59fc9ea9828c84882650bea4b457dc8abe96b9a127458d923c04411f8a242a8b5e75f53ca2011503610fc8141b1b7ad8bea016f31290aa4685f67
   languageName: node
   linkType: hard
 
@@ -1880,10 +1880,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@withfig/autocomplete-types@npm:^1.28.0":
-  version: 1.28.0
-  resolution: "@withfig/autocomplete-types@npm:1.28.0"
-  checksum: ca69f69c4299356b5ef5c1c5c88ac8244773b4a600e616227b7c63c8dc4fe6e5ddb6a6c72d6d70e9296bc870462930b53c28efacb1b6d78e14876a5720527226
+"@withfig/autocomplete-types@npm:^1.29.0":
+  version: 1.29.0
+  resolution: "@withfig/autocomplete-types@npm:1.29.0"
+  checksum: 714b960c1e4a464e652fa72722d5927cb677f27a0528f5545bb4ebceab885c7035bc89f261450677356708b9455ad802a395d262909475983b64c59229f991e5
   languageName: node
   linkType: hard
 
@@ -1891,7 +1891,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@withfig/autocomplete@workspace:."
   dependencies:
-    "@fig/autocomplete-generators": ^2.2.5
+    "@fig/autocomplete-generators": ^2.3.0
     "@fig/autocomplete-helpers": ^1.0.7
     "@fig/autocomplete-hooks": ^1.0.2
     "@fig/eslint-config-autocomplete": ^1.2.1
@@ -1904,7 +1904,7 @@ __metadata:
     "@vitejs/plugin-react": ^4.1.0
     "@withfig/api-bindings": ^0.30.3
     "@withfig/autocomplete-tools": ^2.7.10
-    "@withfig/autocomplete-types": ^1.28.0
+    "@withfig/autocomplete-types": ^1.29.0
     autoprefixer: ^10.4.16
     chalk: ^5.3.0
     chokidar: ^3.5.3

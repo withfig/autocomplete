@@ -1,5 +1,9 @@
 const programGenerator: Fig.Generator = {
-  script: `for i in $(echo $PATH | tr ":" "\\n"); do [[ -d "$i" ]] && find "$i" -maxdepth 1 -type f -perm -111 && find "$i" -maxdepth 1 -type l -perm -111; done`,
+  script: [
+    "bash",
+    "-c",
+    `for i in $(echo $PATH | tr ":" "\\n"); do [[ -d "$i" ]] && find "$i" -maxdepth 1 -type f -perm -111 && find "$i" -maxdepth 1 -type l -perm -111; done`,
+  ],
   postProcess: (out) =>
     out
       .split("\n")
@@ -12,7 +16,7 @@ const programGenerator: Fig.Generator = {
       })),
 };
 const generateAllShims: Fig.Generator = {
-  script: "jenv shims --short",
+  script: ["jenv", "shims", "--short"],
   postProcess: function (out) {
     return out
       .split("\n")
@@ -25,7 +29,7 @@ const generateAllShims: Fig.Generator = {
   },
 };
 const generateAllCommands: Fig.Generator = {
-  script: "jenv commands",
+  script: ["jenv", "commands"],
   postProcess: function (out) {
     return out
       .split("\n")
@@ -40,7 +44,7 @@ const generateAllCommands: Fig.Generator = {
   },
 };
 const generateAllPlugins: Fig.Generator = {
-  script: "jenv plugins",
+  script: ["jenv", "plugins"],
   postProcess: function (out) {
     return out
       .split("\n")
@@ -54,7 +58,7 @@ const generateAllPlugins: Fig.Generator = {
   },
 };
 const generateJEnvVersions: Fig.Generator = {
-  script: "jenv versions --bare",
+  script: ["jenv", "versions", "--bare"],
   postProcess: function (out) {
     return out
       .split("\n")
