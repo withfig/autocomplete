@@ -61,7 +61,7 @@ Use the steps below or follow our getting started guide: [fig.io/docs](https://f
 3. Clone your forked repo and create an example spec
 
    ```bash
-   # Replace `YOUR_GITHUB_USERNAME` with your own github username
+   # Replace `YOUR_GITHUB_USERNAME` with your own GitHub username
    git clone https://github.com/YOUR_GITHUB_USERNAME/autocomplete.git fig-autocomplete
    cd fig-autocomplete
 
