@@ -96,7 +96,7 @@
     "vite-plugin-externals": "^0.6.2"
   },
   "dependencies": {
-    "@fig/autocomplete-generators": "^2.3.0",
+    "@fig/autocomplete-generators": "^2.4.0",
     "@fig/autocomplete-helpers": "^1.0.7",
     "@fig/autocomplete-hooks": "^1.0.2",
     "@withfig/api-bindings": "^0.30.3",
