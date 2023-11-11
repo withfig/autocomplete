@@ -4,6 +4,11 @@ const backupRetentionPeriodDays: Fig.Suggestion[] = [
   { name: "21", description: "21" },
   { name: "28", description: "28" },
 ];
+const solutionTypes: Fig.Suggestion[] = [
+  { name: "Unmanaged", description: "Unmanaged" },
+  { name: "Managed", description: "Managed" },
+  { name: "Both", description: "Both" },
+];
 const envCopyTypes: Fig.Suggestion[] = [
   { name: "MinimalCopy", description: "MinimalCopy" },
   { name: "FullCopy", description: "FullCopy" },
@@ -3278,6 +3283,7 @@ const completionSpec: Fig.Spec = {
                 "Specifies the extraction type for the solution. Can be: 'Unmanaged', 'Managed' or 'Both'. The default value is: 'Both'.",
               args: {
                 name: "string",
+                suggestions: solutionTypes,
               },
             },
             {
@@ -3487,6 +3493,7 @@ const completionSpec: Fig.Spec = {
                 "When unpacking or extracting, use to specify dual Managed and Unmanaged operation. When packing, use to specify Managed or Unmanaged from a previous unpack 'Both'. Can be: 'Unmanaged', 'Managed' or 'Both'. The default value is 'Unmanaged'.",
               args: {
                 name: "string",
+                suggestions: solutionTypes,
               },
             },
             {
@@ -3597,6 +3604,7 @@ const completionSpec: Fig.Spec = {
                 "When unpacking or extracting, use to specify dual Managed and Unmanaged operation. When packing, use to specify Managed or Unmanaged from a previous unpack 'Both'. Can be: 'Unmanaged', 'Managed' or 'Both'. The default value is 'Unmanaged'.",
               args: {
                 name: "string",
+                suggestions: solutionTypes,
               },
             },
             {
@@ -3769,6 +3777,7 @@ const completionSpec: Fig.Spec = {
                 "When unpacking or extracting, use to specify dual Managed and Unmanaged operation. When packing, use to specify Managed or Unmanaged from a previous unpack 'Both'. Can be: 'Unmanaged', 'Managed' or 'Both'. The default value is: 'Both'.",
               args: {
                 name: "string",
+                suggestions: solutionTypes,
               },
             },
             {
