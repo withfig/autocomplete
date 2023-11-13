@@ -1416,11 +1416,11 @@ __metadata:
   linkType: hard
 
 "@types/progress@npm:^2.0.5":
-  version: 2.0.5
-  resolution: "@types/progress@npm:2.0.5"
+  version: 2.0.7
+  resolution: "@types/progress@npm:2.0.7"
   dependencies:
     "@types/node": "*"
-  checksum: 633427b875f782176456ceaf78bcdf47abf27bcf52385fa1acb545d0e6450f5638aa313ca600f25fb12bf094a003257b19b000d1072981d7be8a375c87e37a92
+  checksum: 50904eabb81ea98f5c3762a56e6f289a8501da8dc328f3c626efc17c6ab431288881d15f98e74e09a56e376d4dc9e91ad942937d7e2c7b67c3a19c7494978a0d
   languageName: node
   linkType: hard
 
