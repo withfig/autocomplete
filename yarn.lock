@@ -732,10 +732,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fig/autocomplete-generators@npm:^2.3.0":
-  version: 2.3.0
-  resolution: "@fig/autocomplete-generators@npm:2.3.0"
-  checksum: d2b6be2972c59fc9ea9828c84882650bea4b457dc8abe96b9a127458d923c04411f8a242a8b5e75f53ca2011503610fc8141b1b7ad8bea016f31290aa4685f67
+"@fig/autocomplete-generators@npm:^2.4.0":
+  version: 2.4.0
+  resolution: "@fig/autocomplete-generators@npm:2.4.0"
+  checksum: 336ed2aaa537e2f6aca15cb0c1d412c2b919b5f0f15ccddcf849206ec82358013f02873dec72770f86b246410a9baa70994e71f6b132f30a6df9a2d186defd9f
   languageName: node
   linkType: hard
 
@@ -1891,7 +1891,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@withfig/autocomplete@workspace:."
   dependencies:
-    "@fig/autocomplete-generators": ^2.3.0
+    "@fig/autocomplete-generators": ^2.4.0
     "@fig/autocomplete-helpers": ^1.0.7
     "@fig/autocomplete-hooks": ^1.0.2
     "@fig/eslint-config-autocomplete": ^1.2.1
