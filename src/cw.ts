@@ -1,5 +1,5 @@
 export const themesGenerator: Fig.Generator = {
-  script: ["fig", "theme", "--list"],
+  script: ["cw", "theme", "--list"],
   postProcess: (output) => {
     const builtinThemes: Fig.Suggestion[] = [
       {
@@ -21,9 +21,9 @@ export const themesGenerator: Fig.Generator = {
     return output
       .split("\n")
       .map(
-        (theme) =>
+        (name) =>
           ({
-            name: theme.replace(".json", ""),
+            name,
             icon: "🎨",
           }) as Fig.Suggestion
       )
@@ -992,11 +992,11 @@ const completion: Fig.Spec = {
     },
     {
       name: "tips",
-      description: "Enable/disable fig tips",
+      description: "Enable/disable CodeWhisperer tips",
       subcommands: [
         {
           name: "enable",
-          description: "Enable fig tips",
+          description: "Enable CodeWhisperer tips",
           options: [
             {
               name: ["-h", "--help"],
@@ -1006,7 +1006,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "disable",
-          description: "Disable fig tips",
+          description: "Disable CodeWhisperer tips",
           options: [
             {
               name: ["-h", "--help"],
@@ -1043,11 +1043,11 @@ const completion: Fig.Spec = {
           subcommands: [
             {
               name: "enable",
-              description: "Enable fig tips",
+              description: "Enable CodeWhisperer tips",
             },
             {
               name: "disable",
-              description: "Disable fig tips",
+              description: "Disable CodeWhisperer tips",
             },
             {
               name: "reset",
@@ -1076,7 +1076,7 @@ const completion: Fig.Spec = {
     },
     {
       name: "install",
-      description: "Install fig cli components",
+      description: "Install CodeWhisperer cli components",
       options: [
         {
           name: "--daemon",
@@ -1096,7 +1096,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "--force",
-          description: "Force installation of fig",
+          description: "Force installation of CodeWhisperer",
         },
         {
           name: "--ssh",
@@ -1110,7 +1110,7 @@ const completion: Fig.Spec = {
     },
     {
       name: "uninstall",
-      description: "Uninstall fig",
+      description: "Uninstall CodeWhisperer",
       hidden: true,
       options: [
         {
@@ -1328,7 +1328,7 @@ const completion: Fig.Spec = {
     },
     {
       name: "user",
-      description: "Manage your fig user",
+      description: "Manage your CodeWhisperer user",
       subcommands: [
         {
           name: "login",
@@ -1474,7 +1474,7 @@ const completion: Fig.Spec = {
         {
           name: "pre-cmd",
           description:
-            "Command that is run during the PreCmd section of the fig integrations",
+            "Command that is run during the PreCmd section of the CodeWhisperer integrations",
           options: [
             {
               name: "--alias",
