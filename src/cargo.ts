@@ -208,6 +208,34 @@ const featuresGenerator: Fig.Generator = {
   },
 };
 
+const makeTasksGenerator: Fig.Generator = {
+  custom: async function (tokens, executeCommand) {
+    let makefileLocation = "Makefile.toml";
+
+    const makefileFlagIdx = tokens.findIndex((param) => param === "--makefile");
+    if (makefileFlagIdx !== -1 && tokens.length > makefileFlagIdx + 1)
+      makefileLocation = tokens[makefileFlagIdx + 1];
+
+    const args = [makefileLocation];
+    const { stdout } = await executeCommand({
+      command: "cat",
+      args,
+    });
+
+    const taskRegex = /\[tasks\.([^\]]+)\]/g;
+    let match;
+    const tasks = [];
+
+    while ((match = taskRegex.exec(stdout)) !== null) {
+      tasks.push({
+        name: match[1],
+      });
+    }
+
+    return tasks;
+  },
+};
+
 type CrateSearchResults = {
   crates: Crate[];
 };
@@ -7355,6 +7383,171 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         ],
       };
       subcommands.push(insta);
+    }
+
+    if (commands.includes("make")) {
+      const make: Fig.Subcommand = {
+        name: "make",
+        icon: "🛠",
+        description: "Rust cargo-make task runner and build tool",
+        args: {
+          name: "TASK",
+          filterStrategy: "fuzzy",
+          isVariadic: true,
+          isOptional: true,
+          generators: makeTasksGenerator,
+        },
+        options: [
+          {
+            name: ["--help", "-h"],
+            description: "Print help information",
+          },
+          {
+            name: ["--version", "-V"],
+            description: "Print version information",
+          },
+          {
+            name: "--makefile",
+            description:
+              "The optional toml file containing the tasks definitions",
+            args: { name: "FILE", template: "filepaths" },
+          },
+          {
+            name: ["--task", "-t"],
+            description: "The task name to execute",
+            args: {
+              name: "TASK",
+              filterStrategy: "fuzzy",
+              isVariadic: true,
+              isOptional: true,
+              generators: makeTasksGenerator,
+            },
+          },
+          {
+            name: ["--profile", "-p"],
+            description: "The profile name",
+            args: { name: "PROFILE", default: "development" },
+          },
+          {
+            name: "--cwd",
+            description: "Set the current working directory",
+            args: { name: "DIRECTORY", template: "folders" },
+          },
+          {
+            name: "--no-workspace",
+            description: "Disable workspace support",
+          },
+          {
+            name: "--no-on-error",
+            description:
+              "Disable on error flow even if defined in config sections",
+          },
+          {
+            name: "--allow-private",
+            description: "Allow invocation of private tasks",
+          },
+          {
+            name: "--skip-init-end-tasks",
+            description: "If set, init and end tasks are skipped",
+          },
+          {
+            name: "--skip-tasks",
+            description: "Skip all tasks that match the provided regex",
+            args: { name: "SKIP_TASK_PATTERNS" },
+          },
+          {
+            name: "--env-file",
+            description: "Set environment variables from provided file",
+            args: { name: "FILE", template: "filepaths" },
+          },
+          {
+            name: ["--env", "-e"],
+            description: "Set environment variables",
+            args: { name: "ENV" },
+          },
+          {
+            name: ["--loglevel", "-l"],
+            description: "The log level",
+            args: {
+              name: "LOG LEVEL",
+              suggestions: ["verbose", "info", "error", "off"],
+            },
+          },
+          {
+            name: ["--verbose", "-v"],
+            description: "Sets the log level to verbose",
+          },
+          {
+            name: "--quiet",
+            description: "Sets the log level to error",
+          },
+          {
+            name: "--silent",
+            description: "Sets the log level to off",
+          },
+          {
+            name: "--no-color",
+            description: "Disables colorful output",
+          },
+          {
+            name: "--time-summary",
+            description: "Print task level time summary at end of flow",
+          },
+          {
+            name: "--experimental",
+            description:
+              "Allows access to unsupported experimental predefined tasks",
+          },
+          {
+            name: "--disable-check-for-updates",
+            description: "Disables the update check during startup",
+          },
+          {
+            name: "--output-format",
+            description: "The print/list steps format",
+            args: {
+              name: "OUTPUT FORMAT",
+              suggestions: [
+                "default",
+                "short-description",
+                "markdown",
+                "markdown-single-page",
+                "markdown-sub-section",
+                "autocomplete",
+              ],
+            },
+          },
+          {
+            name: "--output-file",
+            description: "The list steps output file name",
+            args: { name: "OUTPUT_FILE", template: "filepaths" },
+          },
+          {
+            name: "--hide-uninteresting",
+            description: "Hide any minor tasks such as pre/post hooks",
+          },
+          {
+            name: "--print-steps",
+            description:
+              "Only prints the steps of the build in the order they will be invoked but without invoking them",
+          },
+          {
+            name: "--list-all-steps",
+            description: "Lists all known steps",
+          },
+          {
+            name: "--list-category-steps",
+            description: "List steps for a given category",
+            args: { name: "CATEGORY" },
+          },
+          {
+            name: "--diff-steps",
+            description:
+              "Runs diff between custom flow and prebuilt flow (requires git)",
+          },
+        ],
+      };
+      subcommands.push(make);
     }
 
     return {
