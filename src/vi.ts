@@ -9,7 +9,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-h", "--help"],
       description: "Print help message for vi and exit",
-    }
+    },
   ],
 };
 
