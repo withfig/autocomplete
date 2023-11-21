@@ -1,6 +1,6 @@
 {
   "name": "@withfig/autocomplete",
-  "version": "2.640.3",
+  "version": "2.642.0",
   "description": "Fig Autocomplete Specs",
   "schemaVersion": "v7",
   "main": "./build/index",
@@ -96,7 +96,7 @@
     "vite-plugin-externals": "^0.6.2"
   },
   "dependencies": {
-    "@fig/autocomplete-generators": "^2.3.0",
+    "@fig/autocomplete-generators": "^2.4.0",
     "@fig/autocomplete-helpers": "^1.0.7",
     "@fig/autocomplete-hooks": "^1.0.2",
     "@withfig/api-bindings": "^0.30.3",
