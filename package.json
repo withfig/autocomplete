@@ -1,6 +1,6 @@
 {
   "name": "@withfig/autocomplete",
-  "version": "2.641.1",
+  "version": "2.642.0",
   "description": "Fig Autocomplete Specs",
   "schemaVersion": "v7",
   "main": "./build/index",
