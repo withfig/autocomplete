@@ -577,8 +577,12 @@ const dependencyOptions: Fig.Option[] = [
 
 /** Generate the globally linked packages stored in $BUN_INSTALL directory */
 const bunLinksGenerator: Fig.Generator = {
-  script:
-    "command find $BUN_INSTALL/install/global/node_modules -type l | awk -F 'node_modules/' '{print $2}'",
+  script: [
+    "command",
+    "sh",
+    "-c",
+    "find $BUN_INSTALL/install/global/node_modules -type l -o -type d -maxdepth 2 | awk -F 'node_modules/' '{print $2}'",
+  ],
   postProcess(out) {
     return out.split("\n").map((dep) => {
       return {
@@ -590,7 +594,7 @@ const bunLinksGenerator: Fig.Generator = {
   },
   cache: {
     strategy: "stale-while-revalidate",
-    ttl: 60 * 60 * 24 * 7, // 1 week
+    ttl: 60 * 60 * 24, // 24 hours
   },
 };
 
@@ -814,8 +818,12 @@ const spec: Fig.Spec = {
         name: "files",
         generators: {
           // Suggest test files -> https://bun.sh/docs/cli/test. (not in node_modules or .git)
-          script:
-            'command find $(npm prefix) | grep -E ".*.(test|_test|spec|_spec).(ts|tsx|js|jsx)$" | grep -vE ".*/node_modules/.*" | sed "s|$(npm prefix)/||"',
+          script: [
+            "command",
+            "sh",
+            "-c",
+            'find $(npm prefix) | grep -E ".*.(test|_test|spec|_spec).(ts|tsx|js|jsx)$" | grep -vE ".*/node_modules/.*" | sed "s|$(npm prefix)/||"',
+          ],
           postProcess(out) {
             return out.split("\n").map((file) => {
               return {
