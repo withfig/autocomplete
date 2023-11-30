@@ -16,8 +16,8 @@ export const generateApps = (unquotedPath: string): Fig.Generator => ({
         priority: path.endsWith(`/Applications/${basename}`)
           ? 80
           : path.startsWith("/Applications")
-          ? 76
-          : 50,
+            ? 76
+            : 50,
       };
     });
   },

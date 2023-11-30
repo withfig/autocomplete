@@ -145,8 +145,8 @@ const completionSpec: Fig.Spec = {
                 command.name === "require"
                   ? searchGenerator
                   : packagesGeneratorTriggersCommands.includes(command.name)
-                  ? packagesGenerator
-                  : [],
+                    ? packagesGenerator
+                    : [],
             };
           }),
 
