@@ -871,7 +871,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "tool",
         generators: {
-          script: "go tool",
+          script: ["go", "tool"],
           splitOn: "\n",
         },
       },

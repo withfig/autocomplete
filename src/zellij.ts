@@ -1,5 +1,5 @@
 const generateSessions: Fig.Generator = {
-  script: "zellij list-sessions",
+  script: ["zellij", "list-sessions"],
   splitOn: "\n",
 };
 

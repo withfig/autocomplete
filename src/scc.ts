@@ -36,8 +36,12 @@ const generateLanguages: KeyValueSuggestions = async (
   _,
   executeShellCommand
 ) => {
-  const out = await executeShellCommand("scc --language");
-  const { languages } = processSccLanguages(out);
+  const { stdout } = await executeShellCommand({
+    command: "scc",
+    // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+    args: ["--language"],
+  });
+  const { languages } = processSccLanguages(stdout);
   return languages.map((language) => ({ name: language }));
 };
 
@@ -125,8 +129,12 @@ const completionSpec: Fig.Spec = {
           cache: true,
           separator: ":",
           keys: async (_, executeShellCommand) => {
-            const out = await executeShellCommand("scc --languages");
-            const { extensions } = processSccLanguages(out);
+            const { stdout } = await executeShellCommand({
+              command: "scc",
+              // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+              args: ["--language"],
+            });
+            const { extensions } = processSccLanguages(stdout);
             return Object.entries(extensions).map(([extension, language]) => ({
               name: extension,
               description: language,
@@ -178,8 +186,12 @@ const completionSpec: Fig.Spec = {
           separator: ":",
           keys: suggestOutputFormats,
           values: async (_, executeShellCommand) => {
-            const out = await executeShellCommand("ls -lAF1");
-            const suggestions: Fig.Suggestion[] = out
+            const { stdout } = await executeShellCommand({
+              command: "ls",
+              // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+              args: ["-lAF1"],
+            });
+            const suggestions: Fig.Suggestion[] = stdout
               .split("\n")
               .map((path) => ({
                 name: path.slice(path.lastIndexOf("/") + 1),
@@ -217,8 +229,12 @@ const completionSpec: Fig.Spec = {
         generators: valueList({
           cache: true,
           values: async (_, executeShellCommand) => {
-            const out = await executeShellCommand("scc --languages");
-            const { extensions } = processSccLanguages(out);
+            const { stdout } = await executeShellCommand({
+              command: "scc",
+              // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+              args: ["--language"],
+            });
+            const { extensions } = processSccLanguages(stdout);
             return Object.entries(extensions).map(([extension, language]) => ({
               name: extension,
               description: language,

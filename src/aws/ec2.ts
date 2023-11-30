@@ -12,127 +12,261 @@ const postProcessAWS: Fig.Generator["postProcess"] = (out) => {
 };
 const awsGenerators: Record<string, Fig.Generator> = {
   instances: {
-    script:
-      "aws ec2 describe-instances  --query 'Reservations[*].Instances[].InstanceId'",
+    script: [
+      "aws",
+      "ec2",
+      "describe-instances",
+      "--query",
+      "Reservations[*].Instances[].InstanceId",
+    ],
     postProcess: postProcessAWS,
   },
   rtb: {
-    script:
-      "aws ec2 describe-route-tables --query 'RouteTables[*].RouteTableId'",
+    script: [
+      "aws",
+      "ec2",
+      "describe-route-tables",
+      "--query",
+      "RouteTables[*].RouteTableId",
+    ],
     postProcess: postProcessAWS,
   },
   start: {
-    script:
-      "aws ec2 describe-instances --filters 'Name=instance-state-name,Values=stopped' --query 'Reservations[*].Instances[].InstanceId'",
+    script: [
+      "aws",
+      "ec2",
+      "describe-instances",
+      "--filters",
+      "Name=instance-state-name,Values=stopped",
+      "--query",
+      "Reservations[*].Instances[].InstanceId",
+    ],
     postProcess: postProcessAWS,
   },
   stop: {
-    script:
-      "aws ec2 describe-instances --filters 'Name=instance-state-name,Values=running' --query 'Reservations[*].Instances[].InstanceId'",
+    script: [
+      "aws",
+      "ec2",
+      "describe-instances",
+      "--filters",
+      "Name=instance-state-name,Values=running",
+      "--query",
+      "Reservations[*].Instances[].InstanceId",
+    ],
     postProcess: postProcessAWS,
   },
   volume_id: {
-    script: "aws ec2 describe-volumes --query 'Volumes[*].VolumeId'",
+    script: [
+      "aws",
+      "ec2",
+      "describe-volumes",
+      "--query",
+      "Volumes[*].VolumeId",
+    ],
     postProcess: postProcessAWS,
   },
   reserved_instance_id: {
-    script:
-      "aws ec2 describe-reserved-instances --query 'ReservedInstances[*].ReservedInstancesId'",
+    script: [
+      "aws",
+      "ec2",
+      "describe-reserved-instances",
+      "--query",
+      "ReservedInstances[*].ReservedInstancesId",
+    ],
     postProcess: postProcessAWS,
   },
   transit_gateway_multicast_domain_id: {
-    script:
-      "aws ec2 describe-transit-gateway-multicast-domains --query 'TransitGatewayMulticastDomains[*].TransitGatewayMulticastDomainId'",
+    script: [
+      "aws",
+      "ec2",
+      "describe-transit-gateway-multicast-domains",
+      "--query",
+      "TransitGatewayMulticastDomains[*].TransitGatewayMulticastDomainId",
+    ],
     postProcess: postProcessAWS,
   },
   transit_gateway_attachment_id: {
-    script:
-      "aws ec2 describe-transit-gateway-attachments --query 'TransitGatewayAttachments[*].TransitGatewayAttachmentId'",
+    script: [
+      "aws",
+      "ec2",
+      "describe-transit-gateway-attachments",
+      "--query",
+      "TransitGatewayAttachments[*].TransitGatewayAttachmentId",
+    ],
     postProcess: postProcessAWS,
   },
   vpc_id: {
-    script: "aws ec2 describe-vpc-endpoints --query 'VpcEndpoints[*].VpcId'",
+    script: [
+      "aws",
+      "ec2",
+      "describe-vpc-endpoints",
+      "--query",
+      "VpcEndpoints[*].VpcId",
+    ],
     postProcess: postProcessAWS,
   },
   vpc_endpoint_id: {
-    script:
-      "aws ec2 describe-vpc-endpoints --query 'VpcEndpoints[*].VpcEndpointId'",
+    script: [
+      "aws",
+      "ec2",
+      "describe-vpc-endpoints",
+      "--query",
+      "VpcEndpoints[*].VpcEndpointId",
+    ],
     postProcess: postProcessAWS,
   },
   subnet_ids: {
-    script:
-      "aws ec2 describe-vpc-endpoints --query 'VpcEndpoints[*].SubnetIds'",
+    script: [
+      "aws",
+      "ec2",
+      "describe-vpc-endpoints",
+      "--query",
+      "VpcEndpoints[*].SubnetIds",
+    ],
     postProcess: postProcessAWS,
   },
   route_table_ids: {
-    script:
-      "aws ec2 describe-vpc-endpoints --query 'VpcEndpoints[*].RouteTableIds'",
+    script: [
+      "aws",
+      "ec2",
+      "describe-vpc-endpoints",
+      "--query",
+      "VpcEndpoints[*].RouteTableIds",
+    ],
     postProcess: postProcessAWS,
   },
   network_interface_ids: {
-    script:
-      "aws ec2 describe-vpc-endpoints --query 'VpcEndpoints[*].NetworkInterfaceIds'",
+    script: [
+      "aws",
+      "ec2",
+      "describe-vpc-endpoints",
+      "--query",
+      "VpcEndpoints[*].NetworkInterfaceIds",
+    ],
     postProcess: postProcessAWS,
   },
   instance_type: {
-    script:
-      "aws ec2 describe-instance-types --query 'InstanceTypes[*].InstanceType'",
+    script: [
+      "aws",
+      "ec2",
+      "describe-instance-types",
+      "--query",
+      "InstanceTypes[*].InstanceType",
+    ],
     postProcess: postProcessAWS,
   },
   snapshot_ids: {
-    script: "aws ec2 describe-snapshots --query 'Snapshots[*].SnapshotId'",
+    script: [
+      "aws",
+      "ec2",
+      "describe-snapshots",
+      "--query",
+      "Snapshots[*].SnapshotId",
+    ],
     postProcess: postProcessAWS,
   },
   vpc_peering_connection_id: {
-    script:
-      "aws ec2 describe-vpc-peering-connections --query 'VpcPeeringConnections[*].VpcPeeringConnectionId'",
+    script: [
+      "aws",
+      "ec2",
+      "describe-vpc-peering-connections",
+      "--query",
+      "VpcPeeringConnections[*].VpcPeeringConnectionId",
+    ],
     postProcess: postProcessAWS,
   },
   service_id: {
-    script:
-      "aws ec2 describe-vpc-endpoint-services --query 'ServiceDetails[*].ServiceId'",
+    script: [
+      "aws",
+      "ec2",
+      "describe-vpc-endpoint-services",
+      "--query",
+      "ServiceDetails[*].ServiceId",
+    ],
     postProcess: postProcessAWS,
   },
   cidr_block: {
-    script: "aws ec2 describe-subnets --query 'Subnets[*].CidrBlock'",
+    script: [
+      "aws",
+      "ec2",
+      "describe-subnets",
+      "--query",
+      "Subnets[*].CidrBlock",
+    ],
     postProcess: postProcessAWS,
   },
   image_id: {
-    script: "aws ec2 describe-images --query 'Images[*].ImageId'",
+    script: ["aws", "ec2", "describe-images", "--query", "Images[*].ImageId"],
     postProcess: postProcessAWS,
   },
   key_pair: {
-    script: "aws ec2 describe-key-pairs --query 'KeyPairs[*].KeyName'",
+    script: [
+      "aws",
+      "ec2",
+      "describe-key-pairs",
+      "--query",
+      "KeyPairs[*].KeyName",
+    ],
     postProcess: postProcessAWS,
   },
   internet_gateway_id: {
-    script:
-      "aws ec2 describe-internet-gateways --query 'InternetGateways[*].InternetGatewayId'",
+    script: [
+      "aws",
+      "ec2",
+      "describe-internet-gateways",
+      "--query",
+      "InternetGateways[*].InternetGatewayId",
+    ],
     postProcess: postProcessAWS,
   },
   region_name: {
-    script:
-      "aws ec2 describe-availability-zones --query 'AvailabilityZones[*].RegionName'",
+    script: [
+      "aws",
+      "ec2",
+      "describe-availability-zones",
+      "--query",
+      "AvailabilityZones[*].RegionName",
+    ],
     postProcess: postProcessAWS,
   },
   zone_name: {
-    script:
-      "aws ec2 describe-availability-zones --query 'AvailabilityZones[*].ZoneName'",
+    script: [
+      "aws",
+      "ec2",
+      "describe-availability-zones",
+      "--query",
+      "AvailabilityZones[*].ZoneName",
+    ],
     postProcess: postProcessAWS,
   },
   zone_id: {
-    script:
-      "aws ec2 describe-availability-zones --query 'AvailabilityZones[*].ZoneId'",
+    script: [
+      "aws",
+      "ec2",
+      "describe-availability-zones",
+      "--query",
+      "AvailabilityZones[*].ZoneId",
+    ],
     postProcess: postProcessAWS,
   },
   group_name: {
-    script:
-      "aws ec2 describe-availability-zones --query 'AvailabilityZones[*].GroupName'",
+    script: [
+      "aws",
+      "ec2",
+      "describe-availability-zones",
+      "--query",
+      "AvailabilityZones[*].GroupName",
+    ],
     postProcess: postProcessAWS,
   },
   network_border_group: {
-    script:
-      "aws ec2 describe-availability-zones --query 'AvailabilityZones[*].NetworkBorderGroup'",
+    script: [
+      "aws",
+      "ec2",
+      "describe-availability-zones",
+      "--query",
+      "AvailabilityZones[*].NetworkBorderGroup",
+    ],
     postProcess: postProcessAWS,
   },
 };

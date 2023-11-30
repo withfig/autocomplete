@@ -17,7 +17,7 @@ const targetSuggestions: string[] = [
 // NOTE: Running `vsce ls-publishers` requires access to keychain of `vscode-vsce`
 // which distracts the completion and needs to "Allow always" the access of it to work well.
 // const publishersGenerator: Fig.Generator = {
-//   script: "vsce ls-publishers",
+//   script: ["vsce", "ls-publishers"],
 //   postProcess: (out) => {
 //     if (out.trim() === "") return [];
 //     return out.split("\n").map((publisher) => ({

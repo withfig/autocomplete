@@ -70,7 +70,7 @@ const pluginList = [
 ];
 
 const installedPlugins: Fig.Generator = {
-  script: "fish -c 'fisher list'",
+  script: ["fish", "-c", "fisher list"],
   postProcess: (output: string) => {
     if (!output) {
       return [];

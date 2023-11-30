@@ -404,10 +404,12 @@ const completionSpec: Fig.Spec = {
     },
   ],
   generateSpec: async (tokens, executeShellCommand) => {
-    const serverlessCompose = await executeShellCommand(
-      "cat serverless-compose.yml"
-    );
-    const servicesObject = YAML.parse(serverlessCompose).services;
+    const { stdout } = await executeShellCommand({
+      command: "cat",
+      // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+      args: ["serverless-compose.yml"],
+    });
+    const servicesObject = YAML.parse(stdout).services;
     const services: string[] = Object.keys(servicesObject);
     // Avoid infinite recursion of generated subcommands
     if (services.includes(tokens[0])) {

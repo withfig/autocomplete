@@ -16,9 +16,17 @@ type App = {
 const bundleIdentifierGenerator: Fig.Generator = {
   script: (context) => {
     const identifier = context[context.length - 1];
-    if (!identifier) return "";
+    if (!identifier) return undefined;
 
-    return `ipatool search ${identifier} --limit 10 --format json`;
+    return [
+      "ipatool",
+      "search",
+      identifier,
+      "--limit",
+      "10",
+      "--format",
+      "json",
+    ];
   },
   postProcess: (output) => {
     if (!output) return [];

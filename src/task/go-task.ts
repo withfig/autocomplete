@@ -3,7 +3,7 @@ const TASKFILE_FLAGS = ["-t", "--taskfile"];
 const DIRECTORY_FLAGS = ["-d", "--dir"];
 
 const tasksGenerator: Fig.Generator = {
-  script: "task -a",
+  script: ["task", "-a"],
   postProcess: (output) => {
     if (output.includes("task: No Taskfile found")) {
       return [];

@@ -154,7 +154,7 @@ const completionSpec: Fig.Spec = {
     generators: {
       trigger: "..",
       getQueryTerm: ".",
-      script: "git rev-list --all --oneline --abbrev-commit",
+      script: ["git", "rev-list", "--all", "--oneline", "--abbrev-commit"],
       postProcess: (out, tokens) => {
         if (out.startsWith("fatal:")) {
           return [];

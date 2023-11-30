@@ -211,9 +211,12 @@ const completionSpec: Fig.Spec = {
     const argRegex = /(([a-zA-Z \.\[\]#,/][^ ]{1,})+)/g;
 
     const subcommands: Fig.Subcommand[] = [];
-    const toolList = await executeShellCommand("dotnet tool list --global");
+    const { stdout } = await executeShellCommand({
+      command: "dotnet",
+      args: ["tool", "list", "--global"],
+    });
 
-    const lines = toolList.split("\n").slice(2);
+    const lines = stdout.split("\n").slice(2);
 
     for (const line of lines) {
       const [_, __, command] = line

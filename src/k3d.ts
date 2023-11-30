@@ -1,5 +1,5 @@
 const ClusterGenerator: Fig.Generator = {
-  script: "k3d cluster list --no-headers",
+  script: ["k3d", "cluster", "list", "--no-headers"],
   postProcess: (out) => {
     return out.split("\n").map((line) => {
       const [name, servers, agents] = line.split(/\s+/);
@@ -34,7 +34,7 @@ const ShellCompletions: Fig.Suggestion[] = [
 
 // Docker Image Generator
 const DockerImageGenerator: Fig.Generator = {
-  script: "docker image ls --format '{{.Repository}}:{{.Tag}}'",
+  script: ["docker", "image", "ls", "--format", "{{.Repository}}:{{.Tag}}"],
   postProcess: (out) => {
     return out.split("\n").map((image) => ({
       name: image,
@@ -46,7 +46,7 @@ const DockerImageGenerator: Fig.Generator = {
 
 // Node Generator
 const NodeGenerator: Fig.Generator = {
-  script: "k3d node list --no-headers",
+  script: ["k3d", "node", "list", "--no-headers"],
   postProcess: (out) => {
     return out.split("\n").map((line) => {
       const [name, role, cluster] = line.split(/\s+/);
@@ -61,7 +61,7 @@ const NodeGenerator: Fig.Generator = {
 
 // Registry Generator
 const RegistryGenerator: Fig.Generator = {
-  script: "k3d registry list --no-headers",
+  script: ["k3d", "registry", "list", "--no-headers"],
   postProcess: (out) => {
     return out.split("\n").map((line) => {
       const [name, cluster] = line.split(/\s+/);

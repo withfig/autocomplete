@@ -21,7 +21,7 @@ const commonOptions: Fig.Option[] = [
 ];
 
 const importExtGenerator: Fig.Generator = {
-  script: "assimp listext",
+  script: ["assimp", "listext"],
   postProcess: function (out) {
     return out.split(";").map((ext) => {
       return {
@@ -33,7 +33,7 @@ const importExtGenerator: Fig.Generator = {
 };
 
 const exportExtGenerator: Fig.Generator = {
-  script: "assimp listexport",
+  script: ["assimp", "listexport"],
   postProcess: function (out) {
     return out.split("\n").map((ext) => {
       return {

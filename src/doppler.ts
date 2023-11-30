@@ -4,7 +4,7 @@ const enviornmentsGenerator: Fig.Generator = {
     cacheKey: "enviornments",
     cacheByDirectory: true,
   },
-  script: "doppler environments --json",
+  script: ["doppler", "environments", "--json"],
   postProcess: (out) => {
     try {
       const obj = JSON.parse(out);
@@ -24,7 +24,7 @@ const configGenerators: Fig.Generator = {
     cacheKey: "configs",
     cacheByDirectory: true,
   },
-  script: "doppler configs --json",
+  script: ["doppler", "configs", "--json"],
   postProcess: (out) => {
     try {
       const obj = JSON.parse(out);
@@ -44,7 +44,7 @@ const secretsGenerator: Fig.Generator = {
     cacheKey: "secrets",
     cacheByDirectory: true,
   },
-  script: "doppler secrets --only-names --json",
+  script: ["doppler", "secrets", "--only-names", "--json"],
   postProcess: (out) => {
     try {
       const obj = JSON.parse(out);
@@ -64,7 +64,7 @@ const projectsGenerator: Fig.Generator = {
     cacheKey: "projects",
     cacheByDirectory: true,
   },
-  script: "doppler projects --json",
+  script: ["doppler", "projects", "--json"],
   postProcess: (out) => {
     try {
       const obj = JSON.parse(out);

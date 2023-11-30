@@ -1,6 +1,6 @@
 // TODO: this does not work on macos
 const shells: Fig.Generator = {
-  script: "chsh -l",
+  script: ["chsh", "-l"],
   postProcess: (output) => {
     if (output.startsWith("fatal:")) {
       return [];

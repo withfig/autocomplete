@@ -1,5 +1,5 @@
 const getScripts: Fig.Generator = {
-  script: "kool run --help",
+  script: ["kool", "run", "--help"],
   postProcess: (output) => {
     const lines = output.split("\n");
     const scriptsIndex = lines.findIndex(
@@ -14,7 +14,7 @@ const getScripts: Fig.Generator = {
 };
 
 const getServices: Fig.Generator = {
-  script: "docker-compose config --services",
+  script: ["docker-compose", "config", "--services"],
   splitOn: "\n",
 };
 
