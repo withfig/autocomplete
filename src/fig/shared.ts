@@ -166,11 +166,11 @@ export const settingsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
           type === "boolean"
             ? ["true", "false"]
             : name.startsWith("autocomplete.keybindings.")
-            ? actionSuggestions
-            : options?.map((option) => ({
-                name: option["name"] || option,
-                description: option["description"] || "",
-              }));
+              ? actionSuggestions
+              : options?.map((option) => ({
+                  name: option["name"] || option,
+                  description: option["description"] || "",
+                }));
         // const insertValue =
         // type === "multiselect" ? `${name} '{cursor}'` : undefined;
 

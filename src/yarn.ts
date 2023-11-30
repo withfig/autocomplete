@@ -162,8 +162,8 @@ export const dependenciesGenerator: Fig.Generator = {
           description: dependencies[pkgName]
             ? "dependency"
             : optionalDependencies[pkgName]
-            ? "optionalDependency"
-            : "devDependency",
+              ? "optionalDependency"
+              : "devDependency",
         }));
     } catch (e) {
       console.error(e);

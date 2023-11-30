@@ -28,8 +28,8 @@ const flyAppsGenerator: Fig.Generator = {
           status == "running" || status == "deployed"
             ? "🟢"
             : status == "pending"
-            ? "🟡"
-            : "🔴",
+              ? "🟡"
+              : "🔴",
       };
     });
   },

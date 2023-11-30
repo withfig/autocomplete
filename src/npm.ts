@@ -184,8 +184,8 @@ export const dependenciesGenerator: Fig.Generator = {
           description: dependencies[pkgName]
             ? "dependency"
             : optionalDependencies[pkgName]
-            ? "optionalDependency"
-            : "devDependency",
+              ? "optionalDependency"
+              : "devDependency",
         }));
     } else {
       const { stdout } = await executeShellCommand({

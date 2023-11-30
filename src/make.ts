@@ -57,8 +57,8 @@ const listTargets: Fig.Generator = {
       const description = inlineComment
         ? inlineComment.trim()
         : leadingComment
-        ? leadingComment.replace(/^#+\s*/gm, "").trim()
-        : "Make target";
+          ? leadingComment.replace(/^#+\s*/gm, "").trim()
+          : "Make target";
 
       targetSuggestions.set(name, {
         name,
