@@ -1,7 +1,5 @@
-const SPLIT_CHAR = "END";
-
 const getPackages: Fig.Generator = {
-  script: "lerna ls",
+  script: ["lerna", "ls"],
   postProcess: (output) =>
     output.split("\n").map((packageName) => ({
       name: packageName,
@@ -10,7 +8,7 @@ const getPackages: Fig.Generator = {
 };
 
 const getBranches: Fig.Generator = {
-  script: "git branch --no-color",
+  script: ["git", "branch", "--no-color"],
   postProcess: function (out) {
     if (out.startsWith("fatal:")) {
       return [];
@@ -27,10 +25,14 @@ const getBranches: Fig.Generator = {
 
 const getAllScriptsFromPackages: Fig.Generator = {
   // Get all lerna packages, loop over them and get content of package.json
-  script: `lerna list -p | while read p; do\n \\cat $p/package.json && echo ${SPLIT_CHAR}\ndone`,
+  script: [
+    "bash",
+    "-c",
+    "lerna list -p | while read p; do\n \\cat $p/package.json && echo END\ndone",
+  ],
   postProcess: (output) => {
     // Split output by the divider and remove empty entry
-    const packages = output.split(SPLIT_CHAR).filter((e) => e.trim() !== "");
+    const packages = output.split("END").filter((e) => e.trim() !== "");
 
     let scripts: string[] = [];
     packages.forEach((packageContent) => {
@@ -536,7 +538,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "remote",
             generators: {
-              script: "git remote",
+              script: ["git", "remote"],
               postProcess: (output) => {
                 return output.split("\n").map((remoteName) => ({
                   name: remoteName,

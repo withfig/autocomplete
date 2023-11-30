@@ -3,7 +3,7 @@
 // Coded on stepzen/0.9.33 CLI version
 
 const endpointsGenerator: Fig.Generator = {
-  script: "stepzen list schemas",
+  script: ["stepzen", "list", "schemas"],
   postProcess: (output) => {
     try {
       return JSON.parse(output).map((endpoint: string) => {
@@ -19,7 +19,10 @@ const endpointsGenerator: Fig.Generator = {
 };
 
 const importSchemasGenerator: Fig.Generator = {
-  script: "curl https://api.github.com/repos/steprz/stepzen-schemas/contents",
+  script: [
+    "curl",
+    "https://api.github.com/repos/steprz/stepzen-schemas/contents",
+  ],
   postProcess: (output) => {
     try {
       return JSON.parse(output)

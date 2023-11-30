@@ -9,17 +9,25 @@ const completionSpec: Fig.Spec = {
 
     var maskfileLocationIdx = tokens.indexOf("--maskfile");
 
-    var out;
+    var out: string;
     // mask --maskfile path/tp/thing build
     if (maskfileLocationIdx < 0 || maskfileLocationIdx + 3 > tokens.length) {
-      out = await executeShellCommand("cat maskfile.md 2> /dev/null");
+      const { stdout } = await executeShellCommand({
+        command: "cat",
+        // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+        args: ["maskfile.md"],
+      });
+      out = stdout;
     } else {
-      out = await executeShellCommand(
-        `\\cat ${tokens[maskfileLocationIdx + 1]} 2> /dev/null`
-      );
+      const { stdout } = await executeShellCommand({
+        command: "cat",
+        // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+        args: [tokens[maskfileLocationIdx + 1]],
+      });
+      out = stdout;
     }
 
-    if (!out) return { name: "null" };
+    if (out === "") return { name: "null" };
 
     return {
       name: "mask",

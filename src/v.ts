@@ -100,7 +100,7 @@ const completionSpec: Fig.Spec = {
       description: "Display help for V",
       args: {
         generators: {
-          script: "v help topics",
+          script: ["v", "help", "topics"],
           postProcess: (out) => {
             return out
               .trim()

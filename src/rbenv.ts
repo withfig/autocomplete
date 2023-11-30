@@ -1,12 +1,12 @@
 const installVersionsGenerator: Fig.Generator = {
-  script: "rbenv install -L",
+  script: ["rbenv", "install", "-L"],
   postProcess: function (out) {
     return out.split("\n").map((name) => ({ name }));
   },
 };
 
 const installedVersionsGenerator: Fig.Generator = {
-  script: "rbenv versions --bare",
+  script: ["rbenv", "versions", "--bare"],
   postProcess: function (out) {
     return out.split("\n").map((name) => ({ name }));
   },

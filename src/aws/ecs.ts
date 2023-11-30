@@ -57,14 +57,14 @@ const postPrecessGenerator = (
 
 const customGenerator = async (
   tokens: string[],
-  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  executeShellCommand: Fig.ExecuteCommandFunction,
   command: string,
   options: string[],
   parentKey: string,
   childKey = ""
 ): Promise<Fig.Suggestion[]> => {
   try {
-    let cmd = `aws ecs ${command}`;
+    let args = ["ecs", command];
 
     for (const option of options) {
       const idx = tokens.indexOf(option);
@@ -72,12 +72,15 @@ const customGenerator = async (
         continue;
       }
       const param = tokens[idx + 1];
-      cmd += ` ${option} ${param}`;
+      args = [...args, option, param];
     }
 
-    const out = await executeShellCommand(cmd);
+    const { stdout } = await executeShellCommand({
+      command: "aws",
+      args,
+    });
 
-    const list = JSON.parse(out)[parentKey];
+    const list = JSON.parse(stdout)[parentKey];
 
     if (!Array.isArray(list)) {
       return [
@@ -103,22 +106,29 @@ const customGenerator = async (
 
 const MultiSuggestionsGenerator = async (
   tokens: string[],
-  executeShellCommand: Fig.ExecuteShellCommandFunction,
-  enabled: Record<string, string>[]
+  executeShellCommand: Fig.ExecuteCommandFunction,
+  enabled: {
+    command: string[];
+    parentKey: string;
+    childKey: string;
+  }[]
 ) => {
   try {
     const list: Fig.Suggestion[][] = [];
     const promises: Promise<string>[] = [];
     for (let i = 0; i < enabled.length; i++) {
-      promises[i] = executeShellCommand(enabled[i]["command"]);
+      promises[i] = executeShellCommand({
+        command: "aws",
+        args: enabled[i].command,
+      }).then(({ stdout }) => stdout);
     }
     const result = await Promise.all(promises);
 
     for (let i = 0; i < enabled.length; i++) {
       list[i] = postPrecessGenerator(
         result[i],
-        enabled[i]["parentKey"],
-        enabled[i]["childKey"]
+        enabled[i].parentKey,
+        enabled[i].childKey
       );
     }
 
@@ -131,12 +141,12 @@ const MultiSuggestionsGenerator = async (
 
 const _prefixFile = "file://";
 
-const appendFolderPath = (tokens: string[], prefix: string): string => {
-  const baseLSCommand = "\\ls -1ApL ";
+const appendFolderPath = (tokens: string[], prefix: string): string[] => {
+  const baseLsCommand = ["ls", "-1ApL"];
   let whatHasUserTyped = tokens[tokens.length - 1];
 
   if (!whatHasUserTyped.startsWith(prefix)) {
-    return `echo '${prefix}'`;
+    return ["echo", prefix];
   }
   whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
 
@@ -151,7 +161,7 @@ const appendFolderPath = (tokens: string[], prefix: string): string => {
     }
   }
 
-  return baseLSCommand + folderPath;
+  return [...baseLsCommand, folderPath];
 };
 
 const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
@@ -255,18 +265,18 @@ const generators = {
   },
 
   listCapacityProviders: {
-    script: "aws ecs describe-capacity-providers",
+    script: ["aws", "ecs", "describe-capacity-providers"],
     postProcess: (out) =>
       postPrecessGenerator(out, "capacityProviders", "name"),
   },
 
   listClusters: {
-    script: "aws ecs list-clusters",
+    script: ["aws", "ecs", "list-clusters"],
     postProcess: (out) => postPrecessGenerator(out, "clusterArns"),
   },
 
   listTaskDefinitions: {
-    script: "aws ecs list-task-definitions",
+    script: ["aws", "ecs", "list-task-definitions"],
     postProcess: (out) => postPrecessGenerator(out, "taskDefinitionArns"),
   },
 
@@ -283,32 +293,38 @@ const generators = {
   },
 
   listRoles: {
-    script: "aws iam list-roles",
+    script: ["aws", "iam", "list-roles"],
     postProcess: (out) => postPrecessGenerator(out, "Roles", "RoleName"),
   },
 
   listServices: {
-    script: "aws ecs list-services",
+    script: ["aws", "ecs", "list-services"],
     postProcess: (out) => postPrecessGenerator(out, "serviceArns"),
   },
 
   listUsers: {
-    script: "aws iam list-users",
+    script: ["aws", "iam", "list-users"],
     postProcess: (out) => postPrecessGenerator(out, "Users", "Arn"),
   },
 
   listContainerInstances: {
-    script: "aws ecs list-container-instances",
+    script: ["aws", "ecs", "list-container-instances"],
     postProcess: (out) => postPrecessGenerator(out, "containerInstanceArns"),
   },
 
   listTasks: {
-    script: "aws ecs list-tasks",
+    script: ["aws", "ecs", "list-tasks"],
     postProcess: (out) => postPrecessGenerator(out, "taskArns"),
   },
 
   listAttributeNames: {
-    script: "aws ecs list-attributes --target-type container-instance",
+    script: [
+      "aws",
+      "ecs",
+      "list-attributes",
+      "--target-type",
+      "container-instance",
+    ],
     postProcess: (out) => postPrecessGenerator(out, "attributes", "name"),
   },
 
@@ -325,7 +341,7 @@ const generators = {
   },
 
   listTaskDefinitionFamilies: {
-    script: "aws ecs list-task-definition-families",
+    script: ["aws", "ecs", "list-task-definition-families"],
     postProcess: (out) => postPrecessGenerator(out, "families"),
   },
 
@@ -334,7 +350,7 @@ const generators = {
       const out = await executeShellCommand("aws ecs list-tasks");
       const list = JSON.parse(out)["taskArns"];
       const tasks = list.map((arn) => ({
-        command: `aws ecs describe-tasks --tasks ${arn}`,
+        command: ["ecs", "describe-tasks", "--tasks", arn],
         parentKey: "tasks",
         childKey: "startedBy",
       }));
@@ -355,7 +371,7 @@ const generators = {
       );
       const list = JSON.parse(out)["taskArns"];
       const tasks = list.map((arn) => ({
-        command: `aws ecs describe-tasks --tasks ${arn}`,
+        command: ["ecs", "describe-tasks", "--tasks", arn],
         parentKey: "tasks",
         childKey: "group",
       }));
@@ -368,7 +384,7 @@ const generators = {
       customGenerator(
         out,
         executeShellCommand,
-        "aws ecs list-tags-for-resource",
+        "list-tags-for-resource",
         ["--resource-arn"],
         "tags",
         "key"
@@ -376,7 +392,7 @@ const generators = {
   },
 
   listCodedeployApplications: {
-    script: "aws deploy list-applications",
+    script: ["aws", "deploy", "list-applications"],
     postProcess: (out) => postPrecessGenerator(out, "applications"),
   },
 

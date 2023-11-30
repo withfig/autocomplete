@@ -1,5 +1,5 @@
 const boilerplates: Fig.Generator = {
-  script: "gibo list",
+  script: ["gibo", "list"],
   splitOn: "\n",
 };
 

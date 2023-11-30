@@ -1,5 +1,5 @@
 const profilesGenerator: Fig.Generator = {
-  script: "aws-vault list --profiles",
+  script: ["aws-vault", "list", "--profiles"],
   postProcess(out) {
     return out.split("\n").map((name) => ({ name }));
   },

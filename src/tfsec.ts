@@ -1,5 +1,5 @@
 const workspaceGenerator: Fig.Generator = {
-  script: "terraform workspace list",
+  script: ["terraform", "workspace", "list"],
   postProcess: function (out) {
     return out.split("\n").map((workspace) => ({
       name: workspace.replace("*", "").trim(),

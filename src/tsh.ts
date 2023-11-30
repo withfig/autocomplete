@@ -8,7 +8,7 @@ const globalOptions: Fig.Option[] = [
     args: {
       name: "Teleport proxy address",
       generators: {
-        script: "tsh clusters --format=json",
+        script: ["tsh", "clusters", "--format=json"],
         postProcess: (out) => JSON.parse(out).map((elm) => elm.cluster_name),
       },
     },
@@ -19,7 +19,7 @@ const globalOptions: Fig.Option[] = [
     args: {
       name: "user",
       generators: {
-        script: "tsh status --format json",
+        script: ["tsh", "status", "--format", "json"],
         postProcess: (out) => [JSON.parse(out).active.username],
       },
     },
@@ -93,24 +93,8 @@ const completionSpec: Fig.Spec = {
         name: "user@hostname",
         description: "Address of remote machine to log into",
         generators: {
-          trigger: (curr, prev) => {
-            return curr.lastIndexOf("@") !== prev.lastIndexOf("@");
-          },
-          custom: async (tokens, execShellCommand) => {
-            // The default username is the current user
-            let username = await execShellCommand("whoami");
-
-            // Suggests servers if a username has been provided, instead of displaying nothing
-            for (let i = 0; i < tokens.length; i++) {
-              if (tokens[i].includes("@")) {
-                username = tokens[i].split("@")[0];
-                break;
-              }
-            }
-
-            // Get all servers this user has access to
-            const out = await execShellCommand("tsh ls --format=json");
-
+          script: ["tsh", "ls", "--format=json"],
+          postProcess: (out) => {
             return JSON.parse(out).map((elm) => {
               const connection_string =
                 username.length > 0

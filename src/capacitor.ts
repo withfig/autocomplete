@@ -17,11 +17,12 @@ const targetGenerator: Fig.Generator = {
       return [];
     }
 
-    const out = await executeShellCommand(
-      `npx capacitor run ${platform} --list`
-    );
+    const { stdout } = await executeShellCommand({
+      command: "npx",
+      args: ["capacitor", "run", platform, "--list"],
+    });
 
-    return out
+    return stdout
       .trim()
       .split("\n")
       .slice(2) // Ignore output header lines
