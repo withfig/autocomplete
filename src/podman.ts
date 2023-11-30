@@ -26,19 +26,26 @@ const sharedPostProcess: Fig.Generator["postProcess"] = (out) => {
 
 const dockerGenerators: Record<string, Fig.Generator> = {
   runningDockerContainers: {
-    script: `podman ps --format '{{ json . }}'`,
+    script: ["podman", "ps", "--format", "{{ json . }}"],
     postProcess: postProcessDockerPs,
   },
   allDockerContainers: {
-    script: `podman ps -a --format '{{ json . }}'`,
+    script: ["podman", "ps", "-a", "--format", "{{ json . }}"],
     postProcess: postProcessDockerPs,
   },
   pausedDockerContainers: {
-    script: `podman ps --filter status=paused --format '{{ json . }}'`,
+    script: [
+      "podman",
+      "ps",
+      "--filter",
+      "status=paused",
+      "--format",
+      "{{ json . }}",
+    ],
     postProcess: postProcessDockerPs,
   },
   allLocalImages: {
-    script: `podman image ls --format '{{ json . }}'`,
+		script: ["podman", "image", "ls", "--format", "{{ json . }}"],
     postProcess: function (out) {
       return out
         .split("\n")
@@ -51,7 +58,7 @@ const dockerGenerators: Record<string, Fig.Generator> = {
     },
   },
   allLocalImagesWithRepository: {
-    script: `podman image ls --format '{{ json . }}'`,
+    script: ["podman", "image", "ls", "--format", "{{ json . }}"],
     postProcess: function (out) {
       return out
         .split("\n")
@@ -67,7 +74,7 @@ const dockerGenerators: Record<string, Fig.Generator> = {
     script: function (context) {
       if (context[context.length - 1] === "") return "";
       const searchTerm = context[context.length - 1];
-      return `podman search ${searchTerm} --format '{{ json . }}'`;
+			return ["podman", "search", searchTerm, "--format", "{{ json . }}"];
     },
     postProcess: function (out) {
       return out
@@ -83,15 +90,15 @@ const dockerGenerators: Record<string, Fig.Generator> = {
     },
   },
   listDockerNetworks: {
-    script: `podman network ls --format '{{ json . }}'`,
+		script: ["podman", "network", "list", "--format", "{{ json . }}"],
     postProcess: sharedPostProcess,
   },
   listDockerSecrets: {
-    script: `podman secret list --format '{{ json . }}'`,
+		script: ["podman", "secret", "list", "--format", "{{ json . }}"],
     postProcess: sharedPostProcess,
   },
   listDockerVolumes: {
-    script: `podman volume list --format '{{ json . }}'`,
+    script: ["podman", "volume", "list", "--format", "{{ json . }}"],
     postProcess: function (out) {
       return out
         .split("\n")
@@ -1900,10 +1907,14 @@ default-cgroupns-mode option on the daemon (default)`,
     args: [
       {
         name: "image",
-        description: "The Docker image to use",
+        description: "The Podman image to use",
         generators: {
-          script:
-            "podman images --format '{{.Repository}} {{.Size}} {{.Tag}} {{.ID}}'",
+          script: [
+            "podman",
+            "images",
+            "--format",
+            "{{.Repository}} {{.Size}} {{.Tag}} {{.ID}}",
+          ],
           postProcess: function (out) {
             return out.split("\n").map((image) => {
               const [repo, size, tag, id] = image.split(" ");
@@ -2444,7 +2455,7 @@ const completionSpec: Fig.Spec = {
         name: "Name or ID",
         generators: [
           {
-            script: `podman ps -a --format '{{ json . }}'`,
+            script: ["podman", "ps", "-a", "--format", "{{ json . }}"],
             postProcess: function (out) {
               const allLines = out.split("\n").map((line) => JSON.parse(line));
               return allLines.map((i) => ({
@@ -2454,7 +2465,7 @@ const completionSpec: Fig.Spec = {
             },
           },
           {
-            script: `podman images -a --format '{{ json . }}'`,
+            script: ["podman", "images", "-a", "--format", "{{ json . }}"],
             postProcess: function (out) {
               const allLines = out.split("\n").map((line) => JSON.parse(line));
               return allLines.map((i) => {
@@ -2476,7 +2487,7 @@ const completionSpec: Fig.Spec = {
             },
           },
           {
-            script: `podman volume ls --format '{{ json . }}'`,
+            script: ["docker", "volume", "ls", "--format", "{{ json . }}"],
             postProcess: function (out) {
               const allLines = out.split("\n").map((line) => JSON.parse(line));
               return allLines.map((i) => ({
