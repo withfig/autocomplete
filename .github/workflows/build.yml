@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.FIG_BOT_TOKEN }}
         # Install all dependencies
@@ -56,7 +56,7 @@ jobs:
         with:
           skip-tag: 'true'
       - name: Publish to npm
-        uses: JS-DevTools/npm-publish@v2
+        uses: JS-DevTools/npm-publish@v3
         with:
           access: public
           token: ${{ secrets.NPM_PUBLISH_TOKEN }}

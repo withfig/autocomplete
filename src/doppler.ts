@@ -1,12 +1,93 @@
+const enviornmentsGenerator: Fig.Generator = {
+  cache: {
+    strategy: "stale-while-revalidate",
+    cacheKey: "enviornments",
+    cacheByDirectory: true,
+  },
+  script: ["doppler", "environments", "--json"],
+  postProcess: (out) => {
+    try {
+      const obj = JSON.parse(out);
+      return obj.map((o) => ({
+        name: o.id,
+        desciption: o.name,
+        priority: 100,
+      }));
+    } catch {
+      return [];
+    }
+  },
+};
+const configGenerators: Fig.Generator = {
+  cache: {
+    strategy: "stale-while-revalidate",
+    cacheKey: "configs",
+    cacheByDirectory: true,
+  },
+  script: ["doppler", "configs", "--json"],
+  postProcess: (out) => {
+    try {
+      const obj = JSON.parse(out);
+      return obj.map((o) => ({
+        name: o.name,
+        desciption: o.environment,
+        priority: 100,
+      }));
+    } catch {
+      return [];
+    }
+  },
+};
+const secretsGenerator: Fig.Generator = {
+  cache: {
+    strategy: "stale-while-revalidate",
+    cacheKey: "secrets",
+    cacheByDirectory: true,
+  },
+  script: ["doppler", "secrets", "--only-names", "--json"],
+  postProcess: (out) => {
+    try {
+      const obj = JSON.parse(out);
+      const names = Object.keys(obj);
+      return names.map((name) => ({
+        name,
+        priority: 100,
+      }));
+    } catch {
+      return [];
+    }
+  },
+};
+const projectsGenerator: Fig.Generator = {
+  cache: {
+    strategy: "stale-while-revalidate",
+    cacheKey: "projects",
+    cacheByDirectory: true,
+  },
+  script: ["doppler", "projects", "--json"],
+  postProcess: (out) => {
+    try {
+      const obj = JSON.parse(out);
+      return obj.map((o) => ({
+        name: o.id,
+        desciption: o.name,
+        priority: 100,
+      }));
+    } catch {
+      return [];
+    }
+  },
+};
+
 const helpCommand: (name?: string) => Fig.Option = (name = "doppler") => ({
   name: ["-h", "--help"],
   description: `Help for ${name}`,
 });
 
 const configOption: Fig.Option = {
-  name: "--config",
+  name: ["-c", "--config"],
   description: "Config (e.g. dev)",
-  args: { name: "string" },
+  args: { name: "string", generators: configGenerators },
 };
 
 const fallbackOption: Fig.Option = {
@@ -82,7 +163,7 @@ const passphraseOption: Fig.Option = {
 const projectOption: Fig.Option = {
   name: ["-p", "--project"],
   description: "Project (e.g. backend)",
-  args: { name: "string" },
+  args: { name: "string", generators: projectsGenerator },
 };
 
 const rawOption: Fig.Option = {
@@ -278,6 +359,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a config",
+          args: { name: "config", generators: configGenerators },
           options: [
             ...globalOptions,
             configOption,
@@ -289,6 +371,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "get",
           description: "Get info for a config",
+          args: { name: "config", generators: configGenerators },
           options: [
             ...globalOptions,
             configOption,
@@ -299,6 +382,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "lock",
           description: "Lock a config",
+          args: { name: "config", generators: configGenerators },
           options: [
             ...globalOptions,
             configOption,
@@ -310,6 +394,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "logs",
           description: "List config audit logs",
+          args: { name: "config", generators: configGenerators },
           options: [
             ...globalOptions,
             configOption,
@@ -320,6 +405,75 @@ const completionSpec: Fig.Spec = {
         {
           name: "tokens",
           description: "List a config's service tokens",
+          subcommands: [
+            {
+              name: "get",
+              description: "Get a config's service token",
+              args: { name: "slug" },
+              priority: 100,
+              options: [
+                ...globalOptions,
+                {
+                  name: "--slug",
+                  description: "Service token slug",
+                  args: { name: "string" },
+                },
+                configOption,
+                helpCommand("tokens"),
+                projectOption,
+              ],
+            },
+            {
+              name: "create",
+              description: "Create a service token for a config",
+              priority: 99,
+              options: [
+                ...globalOptions,
+                {
+                  name: "--access",
+                  description: "Print only the token without formatting",
+                  args: {
+                    name: "Access level",
+                    suggestions: ["read", "read/write"],
+                    default: "read",
+                  },
+                },
+                configOption,
+                {
+                  name: "--copy",
+                  description: "Copy the token to your clipboard",
+                },
+                {
+                  name: "--max-age",
+                  args: { name: "duration" },
+                  description: "Max age of the token (e.g. '3h', '15m')",
+                },
+                {
+                  name: "--name",
+                  description: "Service token name",
+                  args: { name: "string" },
+                },
+                {
+                  name: "--plain",
+                  description: "Print only the token without formatting",
+                },
+                helpCommand("tokens"),
+                projectOption,
+              ],
+            },
+            {
+              name: "revoke",
+              description: "Revoke a service token from a config",
+              priority: 98,
+              isDangerous: true,
+              options: [
+                ...globalOptions,
+                configOption,
+                helpCommand("tokens"),
+                projectOption,
+              ],
+            },
+          ],
           options: [
             ...globalOptions,
             configOption,
@@ -429,17 +583,21 @@ const completionSpec: Fig.Spec = {
             projectOption,
             yesOption,
           ],
-          args: { name: "slug" },
+          args: { name: "slug", generators: enviornmentsGenerator },
         },
         {
           name: "get",
           description: "Get info for an environment",
           options: [...globalOptions, helpCommand("get"), projectOption],
-          args: { name: "environment_id" },
+          args: {
+            name: "environment_id",
+            generators: enviornmentsGenerator,
+          },
         },
         {
           name: "rename",
           description: "Rename an environment",
+          args: { name: "slug", generators: enviornmentsGenerator },
           options: [
             ...globalOptions,
             helpCommand("rename"),
@@ -456,7 +614,6 @@ const completionSpec: Fig.Spec = {
               args: { name: "string" },
             },
           ],
-          args: { name: "slug" },
         },
       ],
     },
@@ -592,17 +749,18 @@ const completionSpec: Fig.Spec = {
             projectOption,
             yesOption,
           ],
-          args: { name: "project_id" },
+          args: { name: "project_id", generators: projectsGenerator },
         },
         {
           name: "get",
           description: "Get info for a project",
           options: [...globalOptions, helpCommand("get"), projectOption],
-          args: { name: "project_id" },
+          args: { name: "project_id", generators: projectsGenerator },
         },
         {
           name: "update",
           description: "Update a project",
+          args: { name: "project_id", generators: projectsGenerator },
           options: [
             ...globalOptions,
             helpCommand("projects"),
@@ -698,7 +856,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete the value of one or more secrets",
-          args: { name: "secrets" },
+          args: { name: "secrets", generators: secretsGenerator },
           options: [
             ...globalOptions,
             configOption,
@@ -736,7 +894,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "get",
           description: "Get the value of one or more secrets",
-          args: { name: "secrets" },
+          args: {
+            name: "secrets",
+            generators: secretsGenerator,
+          },
+
           options: [
             ...globalOptions,
             configOption,
@@ -761,7 +923,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "set",
           description: "Set the value of one or more secrets",
-          args: { name: "secrets" },
+          args: { name: "secrets", generators: secretsGenerator },
           options: [
             ...globalOptions,
             configOption,
@@ -778,7 +940,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "substitute",
           description: "Substitute secrets into a template file",
-          args: { name: "secrets" },
+          args: { name: "secrets", generators: secretsGenerator },
           options: [
             ...globalOptions,
             configOption,
@@ -788,14 +950,14 @@ const completionSpec: Fig.Spec = {
               name: "--output",
               description:
                 "Path to the output file. by default the rendered text will be written to stdout",
-              args: { name: "string", template: "filepaths" },
+              args: { name: "download path", template: "filepaths" },
             },
           ],
         },
         {
           name: "upload",
           description: "Upload a secrets file",
-          args: { name: "secrets" },
+          args: { name: "secrets file", template: "filepaths" },
           options: [
             ...globalOptions,
             configOption,

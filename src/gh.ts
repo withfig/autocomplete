@@ -89,15 +89,24 @@ const ghGenerators: Record<string, Fig.Generator> = {
       if (!userOrOrg) return [];
 
       //run `gh repo list` cmd
-      const res = await execute(
-        `gh repo list ${userOrOrg} --limit 9999 --json "nameWithOwner,description,isPrivate" `
-      );
+      const { stdout, status } = await execute({
+        command: "gh",
+        args: [
+          "repo",
+          "list",
+          userOrOrg,
+          "--limit",
+          "9999",
+          "--json",
+          "nameWithOwner,description,isPrivate",
+        ],
+      });
 
       // make sure it has some existence.
-      if (!res) return [];
+      if (status !== 0) return [];
 
       //parse the JSON string output of the command
-      const repoArr: RepoDataType[] = JSON.parse(res);
+      const repoArr: RepoDataType[] = JSON.parse(stdout);
 
       return repoArr.map(listRepoMapFunction);
     },
@@ -109,8 +118,16 @@ const ghGenerators: Record<string, Fig.Generator> = {
      *
      * --jq https://cli.github.com/manual/gh_help_formatting https://www.baeldung.com/linux/jq-command-json
      */
-    script:
-      "gh api graphql --paginate -f query='query($endCursor: String) { viewer { repositories(first: 100, after: $endCursor) { nodes { isPrivate, nameWithOwner, description } pageInfo { hasNextPage endCursor }}}}' --jq '.data.viewer.repositories.nodes[]'",
+    script: [
+      "gh",
+      "api",
+      "graphql",
+      "--paginate",
+      "-f",
+      "query='query($endCursor: String) { viewer { repositories(first: 100, after: $endCursor) { nodes { isPrivate, nameWithOwner, description } pageInfo { hasNextPage endCursor }}}}'",
+      "--jq",
+      ".data.viewer.repositories.nodes[]",
+    ],
     postProcess: (out) => {
       if (out) {
         /**
@@ -139,7 +156,7 @@ const ghGenerators: Record<string, Fig.Generator> = {
   },
   listPR: {
     cache: { strategy: "stale-while-revalidate" },
-    script: "gh pr list --json=number,title,headRefName,state",
+    script: ["gh", "pr", "list", "--json=number,title,headRefName,state"],
     postProcess: (out) => {
       interface PR {
         headRefName: string;
@@ -160,7 +177,7 @@ const ghGenerators: Record<string, Fig.Generator> = {
     },
   },
   listAlias: {
-    script: "gh alias list",
+    script: ["gh", "alias", "list"],
     postProcess: (out) => {
       const aliases = out.split("\n").map((line) => {
         const [name, content] = line.split(":");
@@ -176,8 +193,14 @@ const ghGenerators: Record<string, Fig.Generator> = {
     },
   },
   remoteBranches: {
-    script:
-      "git --no-optional-locks branch -r --no-color --sort=-committerdate",
+    script: [
+      "git",
+      "--no-optional-locks",
+      "branch",
+      "-r",
+      "--no-color",
+      "--sort=-committerdate",
+    ],
     postProcess: postProcessRemoteBranches,
   },
 };
@@ -239,8 +262,11 @@ const completionSpec: Fig.Spec = {
     generators: ghGenerators.listAlias,
     parserDirectives: {
       alias: async (token, executeShellCommand) => {
-        const out = await executeShellCommand(`gh alias list`);
-        const alias = out
+        const { stdout } = await executeShellCommand({
+          command: "gh",
+          args: ["alias", "list"],
+        });
+        const alias = stdout
           .split("\n")
           .find((line) => line.startsWith(`${token}:\t`));
 
@@ -2762,6 +2788,428 @@ For more information about output formatting flags, see 'gh help formatting'`,
               args: {
                 name: "username",
               },
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "project",
+      description: "Manage projects",
+      subcommands: [
+        {
+          name: "create",
+          description: "Create a project",
+          options: [
+            {
+              name: "--title",
+              description: "Title for the project",
+              args: { name: "title" },
+            },
+            {
+              name: "--owner",
+              description: 'Login of the owner. Use "@me" for the current user',
+              args: { name: "owner" },
+            },
+            {
+              name: "--format",
+              description: "Output format: {json}",
+              args: { name: "body" },
+            },
+          ],
+        },
+        {
+          name: "edit",
+          description: "Edit a project",
+          options: [
+            {
+              name: "--title",
+              description: "New title of the project",
+              args: { name: "title" },
+            },
+            {
+              name: ["-d", "--description"],
+              description: "New description of the project",
+              args: { name: "description" },
+            },
+            {
+              name: "--owner",
+              description: 'Login of the owner. Use "@me" for the current user',
+              args: { name: "owner" },
+            },
+            {
+              name: "--readme",
+              description: "New readme for the project",
+              args: { name: "readme" },
+            },
+            {
+              name: "--visibility",
+              description: "Change project visibility",
+              args: { name: "visibility", suggestions: ["PUBLIC", "PRIVATE"] },
+            },
+          ],
+        },
+        {
+          name: "list",
+          description: "List projects",
+          options: [
+            {
+              name: "--closed",
+              description: "Include closed projects",
+              args: { name: "closed" },
+            },
+            {
+              name: "--owner",
+              description: "Login of the owner",
+              args: { name: "owner" },
+            },
+            {
+              name: ["-L", "--limit"],
+              description: "Maximum number of projects to fetch",
+              args: { name: "int", default: "30" },
+            },
+            {
+              name: "--format",
+              description: "Output format: {json}",
+              args: { name: "format" },
+            },
+            {
+              name: "--web",
+              description: "Open projects list in the browser",
+            },
+          ],
+        },
+        {
+          name: "delete",
+          description: "Delete a project",
+          options: [
+            {
+              name: "--owner",
+              description: "Login of the owner. Use @me for the current user",
+              args: { name: "owner" },
+            },
+            {
+              name: "--format",
+              description: "Output format: {json}",
+              args: { name: "format" },
+            },
+          ],
+        },
+        {
+          name: "close",
+          description: "Close a project",
+          options: [
+            {
+              name: "--owner",
+              description: "Login of the owner. Use @me for the current user",
+              args: { name: "owner" },
+            },
+            {
+              name: "--format",
+              description: "Output format: {json}",
+              args: { name: "format" },
+            },
+            {
+              name: "--undo",
+              description: "Reopen a closed project",
+            },
+          ],
+        },
+        {
+          name: "view",
+          description: "View a project",
+          options: [
+            {
+              name: "--owner",
+              description: "Login of the owner. Use @me for the current user",
+              args: { name: "owner" },
+            },
+            {
+              name: "--format",
+              description: "Output format: {json}",
+              args: { name: "format" },
+            },
+            {
+              name: ["-w", "--web"],
+              description: "Open project in the browser",
+            },
+          ],
+        },
+        {
+          name: "copy",
+          description: "Copy a project",
+          options: [
+            {
+              name: "--title",
+              description: "Title for the new project",
+              args: { name: "title" },
+            },
+            {
+              name: "--target-owner",
+              description:
+                "Login of the target owner. Use @me for the current user",
+              args: { name: "target-owner" },
+            },
+            {
+              name: "--source-owner",
+              description:
+                "Login of the source owner. Use @me for the current user",
+              args: { name: "source-owner" },
+            },
+            {
+              name: "--format",
+              description: "Output format: {json}",
+              args: { name: "format" },
+            },
+            {
+              name: "--drafts",
+              description: "Include draft issues when copying",
+            },
+          ],
+        },
+        {
+          name: "field-create",
+          description: "Create a project field",
+          options: [
+            {
+              name: "--name",
+              description: "Name of the field",
+              args: { name: "name" },
+            },
+            {
+              name: "--data-type",
+              description: "DataType of the new field",
+              args: {
+                name: "data-type",
+                suggestions: ["TEXT", "SINGLE_SELECT", "DATE", "NUMBER"],
+              },
+            },
+            {
+              name: "--owner",
+              description: "Login of the owner. Use @me for the current user",
+              args: { name: "owner" },
+            },
+            {
+              name: "--format",
+              description: "Output format: {json}",
+              args: { name: "format" },
+            },
+            {
+              name: "--single-select-options",
+              description: "Options for SINGLE_SELECT data type",
+              args: { name: "single-select-options" },
+            },
+          ],
+        },
+        {
+          name: "field-delete",
+          description: "Delete a project field",
+          options: [
+            {
+              name: "--id",
+              description: "ID of the field to delete",
+              args: { name: "id" },
+            },
+            {
+              name: "--format",
+              description: "Output format: {json}",
+            },
+          ],
+        },
+        {
+          name: "field-list",
+          description: "List project fields",
+          options: [
+            {
+              name: "--owner",
+              description: "Login of the owner. Use @me for the current user",
+              args: { name: "owner" },
+            },
+            {
+              name: "--format",
+              description: "Output format: {json}",
+            },
+            {
+              name: ["-L", "--limit"],
+              description: "Maximum number of fields to fetch",
+              args: { name: "int", default: "30" },
+            },
+          ],
+        },
+        {
+          name: "item-create",
+          description: "Create a draft issue item in a project",
+          options: [
+            {
+              name: "--title",
+              description: "Title for the draft issue",
+              args: { name: "title" },
+            },
+            {
+              name: "--body",
+              description: "Body for the draft issue",
+              args: { name: "body" },
+            },
+            {
+              name: "--format",
+              description: "Output format: {json}",
+              args: { name: "format" },
+            },
+            {
+              name: "--owner",
+              description: "Login of the owner. Use @me for the current user",
+              args: { name: "owner" },
+            },
+          ],
+        },
+        {
+          name: "item-edit",
+          description: "Edit a project item",
+          options: [
+            {
+              name: "--id",
+              description: "ID of the item to edit",
+              args: { name: "id" },
+            },
+            {
+              name: "--project-id",
+              description: "ID of the project to which the field belongs to",
+              args: { name: "project-id" },
+            },
+            {
+              name: "--title",
+              description: "Title of the draft issue item",
+              args: { name: "title" },
+            },
+            {
+              name: "--body",
+              description: "Body of the draft issue item",
+              args: { name: "body" },
+            },
+            {
+              name: "--format",
+              description: "Output format: {json}",
+              args: { name: "format" },
+            },
+            {
+              name: "--field-id",
+              description: "ID of the field to update",
+              args: { name: "field-id" },
+            },
+            {
+              name: "--iteration-id",
+              description: "ID of the iteration value to set on the field",
+              args: { name: "iteration-id" },
+            },
+            {
+              name: "--text",
+              description: "Text value for the field",
+              args: { name: "text" },
+            },
+            {
+              name: "--number",
+              description: "Number value for the field",
+              args: { name: "number" },
+            },
+            {
+              name: "--single-select-option-id",
+              description:
+                "ID of the single select option value to set on the field",
+              args: { name: "single-select-option-id" },
+            },
+            {
+              name: "--date",
+              description: "Date value for the field (YYYY-MM-DD)",
+              args: { name: "date" },
+            },
+          ],
+        },
+        {
+          name: "item-delete",
+          description: "Delete a project item",
+          options: [
+            {
+              name: "--id",
+              description: "ID of the item to delete",
+              args: { name: "id" },
+            },
+            {
+              name: "--format",
+              description: "Output format: {json}",
+              args: { name: "format" },
+            },
+            {
+              name: "--owner",
+              description: "Login of the owner. Use @me for the current user",
+              args: { name: "owner" },
+            },
+          ],
+        },
+        {
+          name: "item-list",
+          description: "List project items",
+          options: [
+            {
+              name: "--format",
+              description: "Output format: {json}",
+              args: { name: "format" },
+            },
+            {
+              name: ["-L", "--limit"],
+              description: "Maximum number of items to fetch",
+              args: { name: "int", default: "30" },
+            },
+            {
+              name: "--owner",
+              description: "Login of the owner. Use @me for the current user",
+              args: { name: "owner" },
+            },
+          ],
+        },
+        {
+          name: "item-add",
+          description: "Add a pull request or an issue to a project",
+          options: [
+            {
+              name: "--url",
+              description:
+                "URL of the issue or pull request to add to the project",
+              args: { name: "url" },
+            },
+            {
+              name: "--owner",
+              description: "Login of the owner. Use @me for the current user",
+              args: { name: "owner" },
+            },
+            {
+              name: "--format",
+              description: "Output format: {json}",
+              args: { name: "format" },
+            },
+          ],
+        },
+        {
+          name: "item-archive",
+          description: "Archive a project item",
+          options: [
+            {
+              name: "--id",
+              description: "ID of the item to archive",
+              args: { name: "id" },
+            },
+            {
+              name: "--format",
+              description: "Output format: {json}",
+              args: { name: "format" },
+            },
+            {
+              name: "--owner",
+              description: "Login of the owner. Use @me for the current user",
+              args: { name: "owner" },
+            },
+            {
+              name: "--undo",
+              description: "Unarchive a project item",
             },
           ],
         },

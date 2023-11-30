@@ -3,7 +3,7 @@ export const awsProfileGenerator: Fig.Generator = {
     strategy: "stale-while-revalidate",
     cacheByDirectory: true,
   },
-  script: "aws configure list-profiles",
+  script: ["aws", "configure", "list-profiles"],
   postProcess: function (out) {
     if (out.trim() == "") {
       return [];
@@ -19,10 +19,11 @@ export const awsProfileGenerator: Fig.Generator = {
 const completionSpec: Fig.Spec = {
   name: "aws",
   async generateSpec(_, executeShellCommand) {
-    const check = await executeShellCommand(
-      "ls ~/.aws/credentials && ls ~/.aws/config"
-    );
-    const prioritize = check.includes("No such file or directory");
+    const { stdout } = await executeShellCommand({
+      command: "bash",
+      args: ["-c", "ls ~/.aws/credentials && ls ~/.aws/config"],
+    });
+    const prioritize = stdout.includes("No such file or directory");
     return {
       name: "aws",
       subcommands: [
@@ -696,6 +697,10 @@ const completionSpec: Fig.Spec = {
       description:
         "Amazon HealthLake is a HIPAA eligibile service that allows customers to store, transform, query, and analyze their FHIR-formatted data in a consistent fashion in the cloud",
       loadSpec: "aws/healthlake",
+    },
+    {
+      name: "help",
+      description: "Displays aws usage information",
     },
     {
       name: "honeycode",

@@ -1,7 +1,7 @@
 import { filepaths } from "@fig/autocomplete-generators";
 
 const serverList: Fig.Generator = {
-  script: "rancher server ls",
+  script: ["rancher", "server", "ls"],
   postProcess: function (out) {
     const lines = out.split("\n");
     const serversList = [];

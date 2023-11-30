@@ -4,7 +4,14 @@ const scriptGenerator: Fig.Generator = {
   cache: {
     strategy: "stale-while-revalidate",
   },
-  script: "NO_COLOR=1 vr",
+  script: {
+    command: "vr",
+    // eslint-disable-next-line @withfig/fig-linter/no-empty-array-values
+    args: [],
+    env: {
+      NO_COLOR: "1",
+    },
+  },
   postProcess: (out) => {
     const suggestions: Fig.Suggestion[] = [];
 

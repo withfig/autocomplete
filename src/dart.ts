@@ -236,24 +236,20 @@ const completionSpec: Fig.Spec = {
             default: "console-simple",
             suggestions: [
               {
-                name: "console-simple",
+                name: "console",
                 description: "A simple command-line application",
               },
               {
-                name: "console-full",
-                description: "A command-line application sample",
-              },
-              {
-                name: "package-simple",
+                name: "package",
                 description:
                   "A starting point for Dart libraries or applications",
               },
               {
-                name: "server-simple",
+                name: "server-shelf",
                 description: "A web server built using package:shelf",
               },
               {
-                name: "web-simple",
+                name: "web",
                 description: "A web app that uses only core Dart libraries",
               },
             ],
@@ -272,7 +268,7 @@ const completionSpec: Fig.Spec = {
           exclusiveOn: ["--pub"],
         },
         {
-          name: "--foce",
+          name: "--force",
           description:
             "Force project generation, even if the target directory already exists",
         },

@@ -8,9 +8,15 @@ const completionSpec: Fig.Spec = {
     description: "Directory to jump to",
     isVariadic: true,
     generators: {
-      script: 'cat "$HOME"/Library/autojump/autojump.txt',
-      postProcess: (out, ctx) => {
-        const lines = out.split("\n").map((line) => {
+      custom: async (tokens, executeCommand, context) => {
+        const { stdout } = await executeCommand({
+          command: "cat",
+          // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+          args: [
+            `${context.environmentVariables["HOME"]}/Library/autojump/autojump.txt`,
+          ],
+        });
+        const lines = stdout.split("\n").map((line) => {
           const [weight, dir] = line.split("\t");
 
           return {
@@ -19,7 +25,7 @@ const completionSpec: Fig.Spec = {
           };
         });
 
-        const args = ctx.slice(1, ctx.length - 1);
+        const args = tokens.slice(1, tokens.length - 1);
 
         // directory arg is variadic with each subsequent arg being an
         // additional filter. filtered will filter directories by all args.

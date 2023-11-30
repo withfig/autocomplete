@@ -1,3 +1,16 @@
+const gemfileGemsGenerator: Fig.Generator = {
+  script: ["bundle", "list", "--name-only"],
+  postProcess: (out) => {
+    return out.split("\n").map((gem) => {
+      return {
+        name: gem,
+        icon: "📦",
+        description: "Gem",
+      };
+    });
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "bundle",
   description: "Ruby Dependency Management",
@@ -71,6 +84,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "update",
       description: "Update dependencies to their latest versions",
+      args: {
+        name: "gem",
+        generators: gemfileGemsGenerator,
+        isOptional: true,
+      },
       options: [
         {
           name: "--all",
@@ -241,6 +259,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "show",
       description: "Show the source location of a particular gem in the bundle",
+      args: {
+        name: "gem",
+        generators: gemfileGemsGenerator,
+        isOptional: true,
+      },
       options: [
         {
           name: "--paths",
@@ -314,7 +337,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "open",
       description: "Open an installed gem in the editor",
-      args: {},
+      args: {
+        name: "gem",
+        generators: gemfileGemsGenerator,
+      },
     },
     {
       name: "lock",

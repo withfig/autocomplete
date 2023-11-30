@@ -25,7 +25,7 @@ const postProcessPkgFilenames =
 export const pkgutilGenerators: Record<string, Fig.Generator> = {
   // BOM files
   bom: {
-    script: "find . -type f -name '*.bom' -maxdepth 1",
+    script: ["find", ".", "-type", "f", "-name", "*.bom", "-maxdepth", "1"],
     postProcess: function (out) {
       return out.split("\n").map((filepath) => ({
         name: filepath.replace("./", ""),
@@ -34,12 +34,12 @@ export const pkgutilGenerators: Record<string, Fig.Generator> = {
   },
   // Installed package ids
   packageIds: {
-    script: "pkgutil --pkgs",
+    script: ["pkgutil", "--pkgs"],
     splitOn: "\n",
   },
   // .pkg files
   pkgs: {
-    script: "find . -type f -name '*.pkg' -maxdepth 1",
+    script: ["find", ".", "-type", "f", "-name", "*.pkg", "-maxdepth", "1"],
     postProcess: function (out) {
       return out.split("\n").map((filepath) => ({
         name: filepath.replace("./", ""),
@@ -48,7 +48,7 @@ export const pkgutilGenerators: Record<string, Fig.Generator> = {
   },
   // group ids
   groupIds: {
-    script: "pkgutil --groups",
+    script: ["pkgutil", "--groups"],
     splitOn: "\n",
   },
   // filenames within a package
@@ -63,7 +63,15 @@ export const pkgutilGenerators: Record<string, Fig.Generator> = {
       const pkgId = tokens[pkgIdIndex];
       const pathPrefix = tokens[tokens.length - 1];
       const pp = postProcessPkgFilenames({ pathPrefix });
-      return pp(await executeShellCommand(`pkgutil --files ${pkgId}`), tokens);
+      return pp(
+        (
+          await executeShellCommand({
+            command: "pkgutil",
+            args: ["--files", pkgId],
+          })
+        ).stdout,
+        tokens
+      );
     },
     trigger: "/",
   },

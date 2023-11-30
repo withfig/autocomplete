@@ -9,7 +9,7 @@ const backupIdArg: Fig.Arg = {
 const instance: Fig.Arg = {
   name: "instanceID",
   generators: {
-    script: "vultr-cli instance list",
+    script: ["vultr-cli", "instance", "list"],
     postProcess: (lines) =>
       lines
         .split("\n")

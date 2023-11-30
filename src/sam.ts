@@ -1,3 +1,5 @@
+import { awsProfileGenerator } from "./aws";
+
 const configEnvOption: Fig.Option = {
   name: "--config-env",
   description:
@@ -189,7 +191,15 @@ const profileOption: Fig.Option = {
   args: {
     name: "profile name",
     description: "The name of the AWS profile",
+    generators: awsProfileGenerator,
+    filterStrategy: "fuzzy",
   },
+};
+
+const guidedOption: Fig.Option = {
+  name: ["-g", "--guided"],
+  description:
+    "Specify this flag to allow SAM CLI to guide you through the deployment using guided prompts",
 };
 
 const regionOption: Fig.Option = {
@@ -664,7 +674,7 @@ const completionSpec: Fig.Spec = {
       options: [
         configEnvOption,
         configFileOption,
-        // guidedOption,
+        guidedOption,
         templateFileOption,
         // noExecuteChangesetOption,
         // failOnEmptyChangesetOption,

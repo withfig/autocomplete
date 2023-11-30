@@ -20,11 +20,14 @@ const completionSpec: Fig.Spec = {
   name: "please",
   description: "Statamic Please command",
   generateSpec: async (tokens, executeShellCommand) => {
-    const out = await executeShellCommand("php please list --format=json");
+    const { stdout } = await executeShellCommand({
+      command: "php",
+      args: ["please", "list", "--format=json"],
+    });
     const subcommands = [];
 
     try {
-      const commandDefinition = JSON.parse(out);
+      const commandDefinition = JSON.parse(stdout);
 
       commandDefinition.commands.map((command) => {
         subcommands.push({

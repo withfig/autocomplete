@@ -9,7 +9,7 @@ interface Account {
 }
 
 const suggestAccounts: Fig.Generator = {
-  script: "op account list --format json",
+  script: ["op", "account", "list", "--format", "json"],
   postProcess: (out) => {
     const json = JSON.parse(out) as Account[];
     return json.map((account) => ({
@@ -1180,6 +1180,10 @@ const spec: Fig.Spec = {
           args: {
             name: "stringArray",
           },
+        },
+        {
+          name: "--no-masking",
+          description: "Disable masking of secrets on stdout and stderr",
         },
       ],
     },

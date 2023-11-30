@@ -1,6 +1,6 @@
 // https://github.com/dotzero/git-profile
 const profiles: Fig.Generator = {
-  script: "git-profile list",
+  script: ["git-profile", "list"],
   postProcess: (output) => {
     return Array.from(output.matchAll(/^\[(.+?)\]$/gm)).map((result) => ({
       name: result[1],

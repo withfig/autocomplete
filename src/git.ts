@@ -50,6 +50,7 @@ const postProcessTrackedFiles: Fig.Generator["postProcess"] = (
 interface PostProcessBranchesOptions {
   insertWithoutRemotes?: true;
 }
+
 const postProcessBranches =
   (options: PostProcessBranchesOptions = {}): Fig.Generator["postProcess"] =>
   (out) => {
@@ -116,7 +117,7 @@ const postProcessBranches =
 export const gitGenerators: Record<string, Fig.Generator> = {
   // Commit history
   commits: {
-    script: "git --no-optional-locks log --oneline",
+    script: ["git", "--no-optional-locks", "log", "--oneline"],
     postProcess: function (out) {
       const output = filterMessages(out);
 
@@ -136,7 +137,7 @@ export const gitGenerators: Record<string, Fig.Generator> = {
 
   // user aliases
   aliases: {
-    script: "git --no-optional-locks config --get-regexp '^alias.'",
+    script: ["git", "--no-optional-locks", "config", "--get-regexp", "^alias."],
     cache: {
       strategy: "stale-while-revalidate",
     },
@@ -162,7 +163,7 @@ export const gitGenerators: Record<string, Fig.Generator> = {
   },
 
   revs: {
-    script: "git rev-list --all --oneline",
+    script: ["git", "rev-list", "--all", "--oneline"],
     postProcess: function (out) {
       const output = filterMessages(out);
 
@@ -183,7 +184,7 @@ export const gitGenerators: Record<string, Fig.Generator> = {
   // Saved stashes
   // TODO: maybe only print names of stashes
   stashes: {
-    script: "git --no-optional-locks stash list",
+    script: ["git", "--no-optional-locks", "stash", "list"],
     postProcess: function (out) {
       const output = filterMessages(out);
 
@@ -209,7 +210,7 @@ export const gitGenerators: Record<string, Fig.Generator> = {
   // https://mirrors.edge.kernel.org/pub/software/scm/git/docs/#_identifier_terminology
 
   treeish: {
-    script: "git --no-optional-locks diff --cached --name-only",
+    script: ["git", "--no-optional-locks", "diff", "--cached", "--name-only"],
     postProcess: function (out, tokens) {
       const output = filterMessages(out);
 
@@ -230,13 +231,25 @@ export const gitGenerators: Record<string, Fig.Generator> = {
 
   // All branches
   remoteLocalBranches: {
-    script:
-      "git --no-optional-locks branch -a --no-color --sort=-committerdate",
+    script: [
+      "git",
+      "--no-optional-locks",
+      "branch",
+      "-a",
+      "--no-color",
+      "--sort=-committerdate",
+    ],
     postProcess: postProcessBranches({ insertWithoutRemotes: true }),
   },
 
   localBranches: {
-    script: "git --no-optional-locks branch --no-color --sort=-committerdate",
+    script: [
+      "git",
+      "--no-optional-locks",
+      "branch",
+      "--no-color",
+      "--sort=-committerdate",
+    ],
     postProcess: postProcessBranches({ insertWithoutRemotes: true }),
   },
 
@@ -247,16 +260,32 @@ export const gitGenerators: Record<string, Fig.Generator> = {
       const pp = postProcessBranches({ insertWithoutRemotes: true });
       if (tokens.includes("-r")) {
         return pp(
-          await executeShellCommand(
-            "git --no-optional-locks branch -r --no-color --sort=-committerdate"
-          ),
+          (
+            await executeShellCommand({
+              command: "git",
+              args: [
+                "--no-optional-locks",
+                "-r",
+                "--no-color",
+                "--sort=-committerdate",
+              ],
+            })
+          ).stdout,
           tokens
         );
       } else {
         return pp(
-          await executeShellCommand(
-            "git --no-optional-locks branch --no-color --sort=-committerdate"
-          ),
+          (
+            await executeShellCommand({
+              command: "git",
+              args: [
+                "--no-optional-locks",
+                "branch",
+                "--no-color",
+                "--sort=-committerdate",
+              ],
+            })
+          ).stdout,
           tokens
         );
       }
@@ -264,12 +293,11 @@ export const gitGenerators: Record<string, Fig.Generator> = {
   },
 
   remotes: {
-    script: "git --no-optional-locks remote -v",
+    script: ["git", "--no-optional-locks", "remote", "-v"],
     postProcess: function (out) {
       const remoteURLs = out.split("\n").reduce((dict, line) => {
         const pair = line.split("\t");
         const remote = pair[0];
-        console.log(remote, pair);
         const url = pair[1].split(" ")[0];
 
         dict[remote] = url;
@@ -300,7 +328,13 @@ export const gitGenerators: Record<string, Fig.Generator> = {
   },
 
   tags: {
-    script: "git --no-optional-locks tag --list --sort=-committerdate",
+    script: [
+      "git",
+      "--no-optional-locks",
+      "tag",
+      "--list",
+      "--sort=-committerdate",
+    ],
     postProcess: function (output) {
       return output.split("\n").map((tag) => ({
         name: tag,
@@ -311,7 +345,7 @@ export const gitGenerators: Record<string, Fig.Generator> = {
 
   // Files for staging
   files_for_staging: {
-    script: "git --no-optional-locks status --short",
+    script: ["git", "--no-optional-locks", "status", "--short"],
     postProcess: (out, context) => {
       // This whole function is a mess
 
@@ -410,22 +444,33 @@ export const gitGenerators: Record<string, Fig.Generator> = {
   },
 
   getStagedFiles: {
-    script:
+    script: [
+      "bash",
+      "-c",
       "git --no-optional-locks status --short | sed -ne '/^M /p' -e '/A /p'",
+    ],
     postProcess: postProcessTrackedFiles,
   },
 
   getUnstagedFiles: {
-    script: "git --no-optional-locks diff --name-only",
+    script: ["git", "--no-optional-locks", "diff", "--name-only"],
     splitOn: "\n",
   },
 
   getChangedTrackedFiles: {
     script: function (context) {
       if (context.includes("--staged") || context.includes("--cached")) {
-        return `git --no-optional-locks status --short | sed -ne '/^M /p' -e '/A /p'`;
+        return [
+          "bash",
+          "-c",
+          `git --no-optional-locks status --short | sed -ne '/^M /p' -e '/A /p'`,
+        ];
       } else {
-        return `git --no-optional-locks status --short | sed -ne '/M /p' -e '/A /p'`;
+        return [
+          "bash",
+          "-c",
+          `git --no-optional-locks status --short | sed -ne '/M /p' -e '/A /p'`,
+        ];
       }
     },
     postProcess: postProcessTrackedFiles,
@@ -2852,7 +2897,7 @@ const configSuggestions: Fig.Suggestion[] = [
   {
     name: "pack.compression",
     description:
-      'An integer -1..9, indicating the compression level for objects in a pack file. -1 is the zlib default. 0 means no compression, and 1..9 are various speed/size tradeoffs, 9 being slowest. If not set, defaults to core.compression. If that is not set, defaults to -1, the zlib default, which is "a default compromise between speed and compression (currently equivalent to level 6)."',
+      'An integer -1..9, indicating the compression level for objects in a pack file. -1 is the zlib default. 0 means no compression, and 1..9 are various speed/size tradeoffs, 9 being slowest. If not set, defaults to core.compression. If that is not set, defaults to -1, the zlib default, which is "a default compromise between speed and compression (currently equivalent to level 6)"',
   },
   {
     name: "pack.deltaCacheLimit",
@@ -3980,8 +4025,11 @@ const completionSpec: Fig.Spec = {
   name: "git",
   description: "The stupid content tracker",
   generateSpec: async (_, executeShellCommand) => {
-    const out = await executeShellCommand("git help -a");
-    const lines = out.trim().split("\n");
+    const { stdout } = await executeShellCommand({
+      command: "git",
+      args: ["help", "-a"],
+    });
+    const lines = stdout.trim().split("\n");
     const start = lines.findIndex((val) => val.match(/external commands/i));
     const commands: string[] = [];
     for (let i = start + 1; i < lines.length; i += 1) {
@@ -4005,11 +4053,14 @@ const completionSpec: Fig.Spec = {
     description: "Custom user defined git alias",
     parserDirectives: {
       alias: async (token, exec) => {
-        const result = await exec(`git config --get alias.${token}`);
-        if (!result) {
+        const { stdout, status } = await exec({
+          command: "git",
+          args: ["config", "--get", `alias.${token}`],
+        });
+        if (status !== 0) {
           throw new Error("Failed parsing alias");
         }
-        return result;
+        return stdout;
       },
     },
     isOptional: true,
@@ -4349,19 +4400,30 @@ const completionSpec: Fig.Spec = {
             name: "message",
             generators: ai({
               name: "git commit -m",
-              prompt: ({ executeShellCommand }) => {
-                const gitLogShortMessages = executeShellCommand(
-                  "git log --pretty=format:%s --abbrev-commit --max-count=20"
-                );
+              prompt: async ({ executeCommand }) => {
+                const { stdout } = await executeCommand({
+                  command: "git",
+                  args: [
+                    "log",
+                    "--pretty=format:%s",
+                    "--abbrev-commit",
+                    "--max-count=20",
+                  ],
+                });
 
                 return (
                   'Generate a git commit message summary based on this git diff, the "summary" must be no more ' +
                   "than 70-75 characters, and it must describe both what the patch changes, as well as why the " +
-                  `patch might be necessary.\n\nHere are some examples from the repo:\n${gitLogShortMessages}`
+                  `patch might be necessary.\n\nHere are some examples from the repo:\n${stdout}`
                 );
               },
-              message: ({ executeShellCommand }) =>
-                executeShellCommand("git diff --staged"),
+              message: async ({ executeCommand }) =>
+                (
+                  await executeCommand({
+                    command: "git",
+                    args: ["diff", "--staged"],
+                  })
+                ).stdout,
               splitOn: "\n",
             }),
           },
@@ -4856,7 +4918,7 @@ const completionSpec: Fig.Spec = {
             icon: "⚙️",
           })),
           generators: {
-            script: "git config --get-regexp '.*'",
+            script: ["git", "config", "--get-regexp", ".*"],
             // This is inefficient but it doesn't need to be faster - most
             // of the time, you don't need to run `git config` commands,
             // and when you do it's typically one or two at most.
@@ -6074,6 +6136,10 @@ const completionSpec: Fig.Spec = {
             "Shows number of added and deleted lines in decimal notation",
         },
         {
+          name: "--name-only",
+          description: "Show only names of changed files",
+        },
+        {
           name: "--shortstat",
           description:
             "Output only the last line of the --stat format containing total number of modified files",
@@ -6312,6 +6378,8 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "name",
+              generators: gitGenerators.remotes,
+              filterStrategy: "fuzzy",
             },
             {
               name: "branch",
@@ -6345,6 +6413,8 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "name",
+              generators: gitGenerators.remotes,
+              filterStrategy: "fuzzy",
             },
             {
               name: "branch",
@@ -6390,6 +6460,8 @@ const completionSpec: Fig.Spec = {
           ],
           args: {
             name: "name",
+            generators: gitGenerators.remotes,
+            filterStrategy: "fuzzy",
           },
         },
         {
@@ -6398,6 +6470,8 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "name",
+              generators: gitGenerators.remotes,
+              filterStrategy: "fuzzy",
             },
             {
               name: "newurl",
@@ -6430,6 +6504,8 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
             isVariadic: true,
+            generators: gitGenerators.remotes,
+            filterStrategy: "fuzzy",
           },
           options: [
             {
@@ -6446,6 +6522,8 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
             isVariadic: true,
+            generators: gitGenerators.remotes,
+            filterStrategy: "fuzzy",
           },
           options: [
             {
@@ -7389,6 +7467,11 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-f", "--force"],
           description: "Override the up-to-date check",
+        },
+        {
+          name: ["-n", "--dry-run"],
+          description:
+            "Don’t actually remove any file(s). Instead, just show if they exist in the index and would otherwise be removed by the command",
         },
         { name: "-r", description: "Allow recursive removal" },
       ],
@@ -9717,7 +9800,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "commit -m 'msg'",
       description: "Git commit shortcut",
-      insertValue: "commit -m {cursor}",
+      insertValue: "commit -m '{cursor}'",
       icon: "fig://template?color=2ecc71&badge=🔥",
       // type: "shortcut",
     },
