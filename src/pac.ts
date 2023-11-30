@@ -47,24 +47,24 @@ const connectionTemplates: Fig.Suggestion[] = [
   { name: "OAuthAAD", description: "OAuthAAD" },
 ];
 const trueFalse: Fig.Suggestion[] = [
-  { name: "true", description: "true" },
-  { name: "false", description: "false" },
+  { name: "true", description: "True" },
+  { name: "false", description: "False" },
 ];
 const syncAsync: Fig.Suggestion[] = [
-  { name: "sync", description: "sync" },
-  { name: "async", description: "async" },
+  { name: "sync", description: "Sync" },
+  { name: "async", description: "Async" },
 ];
 const skipFault: Fig.Suggestion[] = [
-  { name: "skip", description: "skip" },
-  { name: "fault", description: "fault" },
+  { name: "skip", description: "Skip" },
+  { name: "fault", description: "Fault" },
 ];
 const pcfComponentTypes: Fig.Suggestion[] = [
-  { name: "field", description: "field" },
-  { name: "dataset", description: "dataset" },
+  { name: "field", description: "Field" },
+  { name: "dataset", description: "Dataset" },
 ];
 const pcfFrameworkTypes: Fig.Suggestion[] = [
-  { name: "none", description: "none" },
-  { name: "react", description: "react" },
+  { name: "none", description: "None" },
+  { name: "react", description: "React" },
 ];
 const pcfPatchStrategies: Fig.Suggestion[] = [
   { name: "None", description: "None" },
@@ -73,14 +73,14 @@ const pcfPatchStrategies: Fig.Suggestion[] = [
   { name: "Manifest", description: "Manifest" },
 ];
 const msBuildVerbosityLevels: Fig.Suggestion[] = [
-  { name: "minimal", description: "minimal" },
-  { name: "normal", description: "normal" },
-  { name: "detailed", description: "detailed" },
-  { name: "diagnostic", description: "diagnostic" },
+  { name: "minimal", description: "Minimal" },
+  { name: "normal", description: "Normal" },
+  { name: "detailed", description: "Detailed" },
+  { name: "diagnostic", description: "Diagnostic" },
 ];
 const pcfPatchTargets: Fig.Suggestion[] = [
-  { name: "build", description: "build" },
-  { name: "project", description: "project" },
+  { name: "build", description: "Build" },
+  { name: "project", description: "Project" },
 ];
 const importPluginType: Fig.Suggestion[] = [
   { name: "Nuget", description: "Nuget" },
@@ -159,22 +159,22 @@ const environmentTypes: Fig.Suggestion[] = [
 ];
 
 const azureLocations: Fig.Suggestion[] = [
-  { name: "unitedstates", description: "unitedstates" },
-  { name: "unitedstatesfirstrelease", description: "unitedstatesfirstrelease" },
-  { name: "europe", description: "europe" },
-  { name: "asia", description: "asia" },
-  { name: "australia", description: "australia" },
-  { name: "india", description: "india" },
-  { name: "japan", description: "japan" },
-  { name: "canada", description: "canada" },
-  { name: "unitedkingdom", description: "unitedkingdom" },
-  { name: "southamerica", description: "southamerica" },
-  { name: "france", description: "france" },
-  { name: "unitedarabemirates", description: "unitedarabemirates" },
-  { name: "germany", description: "germany" },
-  { name: "switzerland", description: "switzerland" },
-  { name: "norway", description: "norway" },
-  { name: "korea", description: "korea" },
+  { name: "unitedstates", description: "Unitedstates" },
+  { name: "unitedstatesfirstrelease", description: "Unitedstatesfirstrelease" },
+  { name: "europe", description: "Europe" },
+  { name: "asia", description: "Asia" },
+  { name: "australia", description: "Australia" },
+  { name: "india", description: "India" },
+  { name: "japan", description: "Japan" },
+  { name: "canada", description: "Canada" },
+  { name: "unitedkingdom", description: "Unitedkingdom" },
+  { name: "southamerica", description: "Southamerica" },
+  { name: "france", description: "France" },
+  { name: "unitedarabemirates", description: "Unitedarabemirates" },
+  { name: "germany", description: "Germany" },
+  { name: "switzerland", description: "Switzerland" },
+  { name: "norway", description: "Norway" },
+  { name: "korea", description: "Korea" },
 ];
 
 const completionSpec: Fig.Spec = {
@@ -187,19 +187,19 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "list",
-          description: "List all environments from your tenant.",
+          description: "List all environments from your tenant",
           options: [
             {
               name: ["--environment", "-env"],
               description:
-                "List all environments that contain given string in their name or ID.",
+                "List all environments that contain given string in their name or ID",
               args: {
                 name: "string",
               },
             },
             {
               name: ["--type", "-t"],
-              description: "List all environments with the given type.",
+              description: "List all environments with the given type",
               args: {
                 name: "environmentTypes",
                 suggestions: environmentTypes,
@@ -208,7 +208,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--name", "-n"],
               description:
-                "List all environments that contain given string in their name.",
+                "List all environments that contain given string in their name",
               args: {
                 name: "string",
               },
@@ -216,7 +216,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--organization-id", "-oi"],
               description:
-                "List all environments that contain given string in their organization ID.",
+                "List all environments that contain given string in their organization ID",
               args: {
                 name: "string",
               },
@@ -224,7 +224,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--application", "-a"],
               description:
-                "List all environments that have specified application installed. To specify application, use unique name or ID.",
+                "List all environments that have specified application installed. To specify application, use unique name or ID",
               args: {
                 name: "string",
               },
@@ -233,11 +233,11 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "create",
-          description: "Creates a Dataverse instance in your tenant.",
+          description: "Creates a Dataverse instance in your tenant",
           options: [
             {
               name: ["--name", "-n"],
-              description: "Sets the name of the environment.",
+              description: "Sets the name of the environment",
               args: {
                 name: "string",
               },
@@ -253,7 +253,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--type", "-t"],
-              description: "Sets the environment Type.",
+              description: "Sets the environment Type",
               isRequired: true,
               args: {
                 name: "environmentTypes",
@@ -287,7 +287,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--domain", "-d"],
               description:
-                "The domain name is part of the environment URL. If domain name is already in use, a numeric value is appended to the domain name. For example: If 'contoso' is already in use, then the environment URL is updated to https://{contoso}0.crm.dynamics.com.",
+                "The domain name is part of the environment URL. If domain name is already in use, a numeric value is appended to the domain name. For example: If 'contoso' is already in use, then the environment URL is updated to https://{contoso}0.crm.dynamics.com",
               args: {
                 name: "string",
               },
@@ -295,7 +295,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--input-file", "-if"],
               description:
-                "The verb arguments to be passed in a .json input file. For example: {'name' : 'contoso'}. The arguments passed through command-line will take precedence over arguments from the .json input file.",
+                "The verb arguments to be passed in a .json input file. For example: {'name' : 'contoso'}. The arguments passed through command-line will take precedence over arguments from the .json input file",
               args: {
                 name: "string",
               },
@@ -303,7 +303,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--async", "-a"],
               description:
-                "Optional boolean argument to run pac verbs asynchronously, defaults to false.",
+                "Optional boolean argument to run pac verbs asynchronously, defaults to false",
             },
             {
               name: ["--team-id", "-tid"],
@@ -315,7 +315,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--max-async-wait-time", "-wt"],
               description:
-                "Max asynchronous wait time in minutes. The default value is 60 minutes.",
+                "Max asynchronous wait time in minutes. The default value is 60 minutes",
               args: {
                 name: "string",
               },
@@ -323,7 +323,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--user", "-u"],
               description:
-                "Object ID or user principal name (UPN) of Microsoft Entra ID user to be assigned to the environment.",
+                "Object ID or user principal name (UPN) of Microsoft Entra ID user to be assigned to the environment",
               args: {
                 name: "string",
               },
@@ -332,19 +332,19 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "backup",
-          description: "Takes a manual backup of your environment.",
+          description: "Takes a manual backup of your environment",
           options: [
             {
               name: ["--environment", "-env"],
               description:
-                "Environment URL or ID of the Environment that requires backup.",
+                "Environment URL or ID of the Environment that requires backup",
               args: {
                 name: "string",
               },
             },
             {
               name: ["--label", "-l"],
-              description: "Sets the backup label as provided.",
+              description: "Sets the backup label as provided",
               isRequired: true,
               args: {
                 name: "string",
@@ -352,7 +352,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--notes", "-n"],
-              description: "**ignored**: Additional notes for this backup.",
+              description: "**ignored**: Additional notes for this backup",
               args: {
                 name: "string",
               },
@@ -361,12 +361,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "set-backup-retention-period",
-          description: "Takes a manual backup of your environment.",
+          description: "Takes a manual backup of your environment",
           options: [
             {
               name: ["--environment", "-env"],
               description:
-                "Environment URL or ID of the Environment that requires backup.",
+                "Environment URL or ID of the Environment that requires backup",
               args: {
                 name: "string",
               },
@@ -374,7 +374,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--backup-retention-period", "-br"],
               description:
-                "Sets the backup retention period in days as provided. Valid values are: 7, 14, 21, 28.",
+                "Sets the backup retention period in days as provided. Valid values are: 7, 14, 21, 28",
               isRequired: true,
               args: {
                 name: "string",
@@ -384,12 +384,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--async", "-a"],
               description:
-                "Optional boolean argument to run pac verbs asynchronously, defaults to false.",
+                "Optional boolean argument to run pac verbs asynchronously, defaults to false",
             },
             {
               name: ["--max-async-wait-time", "-wt"],
               description:
-                "Max asynchronous wait time in minutes. The default value is 60 minutes.",
+                "Max asynchronous wait time in minutes. The default value is 60 minutes",
               args: {
                 name: "string",
               },
@@ -398,12 +398,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "delete",
-          description: "Deletes the environment from your tenant.",
+          description: "Deletes the environment from your tenant",
           options: [
             {
               name: ["--environment", "-env"],
               description:
-                "Environment URL or ID of the Environment that needs to be deleted from your tenant.",
+                "Environment URL or ID of the Environment that needs to be deleted from your tenant",
               args: {
                 name: "string",
               },
@@ -411,12 +411,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--async", "-a"],
               description:
-                "Optional boolean argument to run pac verbs asynchronously, defaults to false.",
+                "Optional boolean argument to run pac verbs asynchronously, defaults to false",
             },
             {
               name: ["--max-async-wait-time", "-wt"],
               description:
-                "Max asynchronous wait time in minutes. The default value is 60 minutes.",
+                "Max asynchronous wait time in minutes. The default value is 60 minutes",
               args: {
                 name: "string",
               },
@@ -425,12 +425,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "reset",
-          description: "Reset the environment from your tenant.",
+          description: "Reset the environment from your tenant",
           options: [
             {
               name: ["--environment", "-env"],
               description:
-                "URL or ID of the Environment that needs to be reset.",
+                "URL or ID of the Environment that needs to be reset",
               args: {
                 name: "string",
               },
@@ -446,14 +446,14 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--domain", "-d"],
               description:
-                "The domain name is part of the environment URL. If domain name is already in use, a numeric value is appended to the domain name. For example: If 'contoso' is already in use, then the environment URL is updated to https://{contoso}0.crm.dynamics.com.",
+                "The domain name is part of the environment URL. If domain name is already in use, a numeric value is appended to the domain name. For example: If 'contoso' is already in use, then the environment URL is updated to https://{contoso}0.crm.dynamics.com",
               args: {
                 name: "string",
               },
             },
             {
               name: ["--name", "-n"],
-              description: "Sets the name of the environment.",
+              description: "Sets the name of the environment",
               args: {
                 name: "string",
               },
@@ -469,7 +469,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--purpose", "-p"],
               description:
-                "Sets the description used to associate the environment with a specific intent.",
+                "Sets the description used to associate the environment with a specific intent",
               args: {
                 name: "string",
               },
@@ -485,7 +485,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--input-file", "-if"],
               description:
-                "The verb arguments to be passed in a .json input file. For example: {'name' : 'contoso'}. The arguments passed through command-line will take precedence over arguments from the .json input file.",
+                "The verb arguments to be passed in a .json input file. For example: {'name' : 'contoso'}. The arguments passed through command-line will take precedence over arguments from the .json input file",
               args: {
                 name: "string",
               },
@@ -493,12 +493,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--async", "-a"],
               description:
-                "Optional boolean argument to run pac verbs asynchronously, defaults to false.",
+                "Optional boolean argument to run pac verbs asynchronously, defaults to false",
             },
             {
               name: ["--max-async-wait-time", "-wt"],
               description:
-                "Max asynchronous wait time in minutes. The default value is 60 minutes.",
+                "Max asynchronous wait time in minutes. The default value is 60 minutes",
               args: {
                 name: "string",
               },
@@ -507,12 +507,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "list-backups",
-          description: "Lists all backups of your environment.",
+          description: "Lists all backups of your environment",
           options: [
             {
               name: ["--environment", "-env"],
               description:
-                "List all environments that contain a given string in their Environment ID or URL.",
+                "List all environments that contain a given string in their Environment ID or URL",
               args: {
                 name: "string",
               },
@@ -521,12 +521,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "restore",
-          description: "Restores an environment to a given backup.",
+          description: "Restores an environment to a given backup",
           options: [
             {
               name: ["--source-env", "-se"],
               description:
-                "Environment URL or ID of the source environment required for restore.",
+                "Environment URL or ID of the source environment required for restore",
               args: {
                 name: "string",
               },
@@ -534,7 +534,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--target-env", "-te"],
               description:
-                "Environment URL or ID of the target environment required for restore. This would default to source URL/ID if not provided.",
+                "Environment URL or ID of the target environment required for restore. This would default to source URL/ID if not provided",
               args: {
                 name: "string",
               },
@@ -542,7 +542,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--selected-backup", "-sb"],
               description:
-                "DateTime of the backup in 'mm/dd/yyyy hh:mm' format OR string 'latest'.",
+                "DateTime of the backup in 'mm/dd/yyyy hh:mm' format OR string 'latest'",
               isRequired: true,
               args: {
                 name: "string",
@@ -550,7 +550,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--name", "-n"],
-              description: "Optional name of the restored environment.",
+              description: "Optional name of the restored environment",
               args: {
                 name: "string",
               },
@@ -563,12 +563,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--async", "-a"],
               description:
-                "Optional boolean argument to run pac verbs asynchronously, defaults to false.",
+                "Optional boolean argument to run pac verbs asynchronously, defaults to false",
             },
             {
               name: ["--max-async-wait-time", "-wt"],
               description:
-                "Max asynchronous wait time in minutes. The default value is 60 minutes.",
+                "Max asynchronous wait time in minutes. The default value is 60 minutes",
               args: {
                 name: "string",
               },
@@ -577,7 +577,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "copy",
-          description: "Copy Source Environment to Destination Environment.",
+          description: "Copy Source Environment to Destination Environment",
           options: [
             {
               name: ["--source-env", "-se"],
@@ -589,14 +589,14 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--target-env", "-te"],
-              description: "Environment URL or ID of the target environment.",
+              description: "Environment URL or ID of the target environment",
               args: {
                 name: "string",
               },
             },
             {
               name: ["--name", "-n"],
-              description: "Name of the target environment.",
+              description: "Name of the target environment",
               args: {
                 name: "string",
               },
@@ -617,12 +617,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--async", "-a"],
               description:
-                "Optional boolean argument to run pac verbs asynchronously, defaults to false.",
+                "Optional boolean argument to run pac verbs asynchronously, defaults to false",
             },
             {
               name: ["--max-async-wait-time", "-wt"],
               description:
-                "Max asynchronous wait time in minutes. The default value is 60 minutes.",
+                "Max asynchronous wait time in minutes. The default value is 60 minutes",
               args: {
                 name: "string",
               },
@@ -632,16 +632,16 @@ const completionSpec: Fig.Spec = {
         {
           name: "status",
           description:
-            "This command lists the status of all the operations in progress.",
+            "This command lists the status of all the operations in progress",
         },
         {
           name: "assign-user",
           description:
-            "Assign a user to a target Dataverse environment with specified security role.",
+            "Assign a user to a target Dataverse environment with specified security role",
           options: [
             {
               name: ["--environment", "-env"],
-              description: "ID or URL of the environment to assign a user to.",
+              description: "ID or URL of the environment to assign a user to",
               isRequired: true,
               args: {
                 name: "string",
@@ -650,7 +650,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--user", "-u"],
               description:
-                "Object ID or user principal name (UPN) of Microsoft Entra ID user to be assigned to the environment or Application ID if assigning an Application User.",
+                "Object ID or user principal name (UPN) of Microsoft Entra ID user to be assigned to the environment or Application ID if assigning an Application User",
               isRequired: true,
               args: {
                 name: "string",
@@ -667,12 +667,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--application-user", "-au"],
               description:
-                "Specifies whether the input user is an application user. If a business unit isn't specified, the application user is added to the authenticated users business unit.",
+                "Specifies whether the input user is an application user. If a business unit isn't specified, the application user is added to the authenticated users business unit",
             },
             {
               name: ["--business-unit", "-bu"],
               description:
-                "ID of business unit to associate application user with.",
+                "ID of business unit to associate application user with",
               args: {
                 name: "string",
               },
@@ -680,18 +680,18 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--async", "-a"],
               description:
-                "Optional boolean argument to run pac verbs asynchronously, defaults to false.",
+                "Optional boolean argument to run pac verbs asynchronously, defaults to false",
             },
           ],
         },
         {
           name: "assign-group",
           description:
-            "Assign group to target Dataverse environment with specified security role.",
+            "Assign group to target Dataverse environment with specified security role",
           options: [
             {
               name: ["--environment", "-env"],
-              description: "ID or URL of the environment to assign a user to.",
+              description: "ID or URL of the environment to assign a user to",
               isRequired: true,
               args: {
                 name: "string",
@@ -700,7 +700,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--group", "-g"],
               description:
-                "Microsoft Entra ID object ID of group to assign to target Dataverse environment.",
+                "Microsoft Entra ID object ID of group to assign to target Dataverse environment",
               isRequired: true,
               args: {
                 name: "string",
@@ -708,7 +708,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--group-name", "-gn"],
-              description: "Name of the group or team to create in Dataverse.",
+              description: "Name of the group or team to create in Dataverse",
               isRequired: true,
               args: {
                 name: "string",
@@ -724,7 +724,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--team-type", "-tt"],
-              description: "Type of team.",
+              description: "Type of team",
               isRequired: true,
               args: {
                 name: "string",
@@ -733,7 +733,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--membership-type", "-mt"],
-              description: "Team membership type.",
+              description: "Team membership type",
               isRequired: true,
               args: {
                 name: "string",
@@ -743,7 +743,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--business-unit", "-bu"],
               description:
-                "ID of business unit to associate application user with.",
+                "ID of business unit to associate application user with",
               args: {
                 name: "string",
               },
@@ -753,7 +753,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "list-app-templates",
           description:
-            "Lists all supported Dataverse templates of model-driven apps in Dynamics 365.",
+            "Lists all supported Dataverse templates of model-driven apps in Dynamics 365",
           options: [
             {
               name: ["--region", "-r"],
@@ -769,19 +769,19 @@ const completionSpec: Fig.Spec = {
         {
           name: "create-service-principal",
           description:
-            "Add Microsoft Entra ID application and associated application user to the Dataverse environment.",
+            "Add Microsoft Entra ID application and associated application user to the Dataverse environment",
           options: [
             {
               name: ["--environment", "-env"],
               description:
-                "Environment (ID, org ID, url, unique name, or partial name).",
+                "Environment (ID, org ID, url, unique name, or partial name)",
               args: {
                 name: "string",
               },
             },
             {
               name: ["--name", "-n"],
-              description: "Application name to create in Entra ID.",
+              description: "Application name to create in Entra ID",
               args: {
                 name: "string",
               },
@@ -789,7 +789,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--role", "-r"],
               description:
-                "Name or ID of security role to be applied to application user. The default value is: 'System Administrator'.",
+                "Name or ID of security role to be applied to application user. The default value is: 'System Administrator'",
               args: {
                 name: "string",
               },
@@ -799,11 +799,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "list-service-principal",
           description:
-            "List Microsoft Entra ID applications which have access to Dataverse.",
+            "List Microsoft Entra ID applications which have access to Dataverse",
           options: [
             {
               name: ["--filter", "-f"],
-              description: "Application name 'starts with' filter.",
+              description: "Application name 'starts with' filter",
               args: {
                 name: "string",
               },
@@ -819,12 +819,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "set-governance-config",
-          description: "Enable, disable, and edit managed environments.",
+          description: "Enable, disable, and edit managed environments",
           options: [
             {
               name: ["--environment", "-env"],
               description:
-                "URL or ID of the environment for which managed environments need to be enabled, disabled or edited.",
+                "URL or ID of the environment for which managed environments need to be enabled, disabled or edited",
               isRequired: true,
               args: {
                 name: "string",
@@ -833,7 +833,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--protection-level", "-pl"],
               description:
-                "Set protection level : 'Standard' to enable managed environments, 'Basic' to disable managed environments.",
+                "Set protection level : 'Standard' to enable managed environments, 'Basic' to disable managed environments",
               isRequired: true,
               args: {
                 name: "string",
@@ -841,21 +841,21 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--disable-group-sharing", "-dgs"],
-              description: "Disable group sharing.",
+              description: "Disable group sharing",
             },
             {
               name: ["--exclude-analysis", "-ea"],
               description:
-                "Exclude usage insights for the environment from the weekly digest email.",
+                "Exclude usage insights for the environment from the weekly digest email",
             },
             {
               name: ["--include-insights", "-ii"],
               description:
-                "Include insights in the Power Platform Admin Center homepage cards.",
+                "Include insights in the Power Platform Admin Center homepage cards",
             },
             {
               name: ["--limit-sharing-mode", "-lsm"],
-              description: "Limit sharing mode.",
+              description: "Limit sharing mode",
               args: {
                 name: "string",
               },
@@ -863,14 +863,14 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--max-limit-user-sharing", "-ml"],
               description:
-                "If group sharing is disabled, specify the number of people that makers can share canvas apps with.",
+                "If group sharing is disabled, specify the number of people that makers can share canvas apps with",
               args: {
                 name: "string",
               },
             },
             {
               name: ["--solution-checker-mode", "-scm"],
-              description: "Solution checker validation mode.",
+              description: "Solution checker validation mode",
               args: {
                 name: "string",
                 suggestions: solutionCheckerMode,
@@ -880,11 +880,11 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "list-tenant-settings",
-          description: "List tenant settings.",
+          description: "List tenant settings",
           options: [
             {
               name: ["--settings-file", "-s"],
-              description: "The .json file to output tenant settings.",
+              description: "The .json file to output tenant settings",
               args: {
                 name: "string",
               },
@@ -893,15 +893,56 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "update-tenant-settings",
-          description: "Update tenant settings.",
+          description: "Update tenant settings",
           options: [
             {
               name: ["--settings-file", "-s"],
-              description: "The .json file with tenant settings.",
+              description: "The .json file with tenant settings",
               isRequired: true,
               args: {
                 name: "string",
               },
+            },
+          ],
+        },
+        {
+          name: "application",
+          description: "Work with Microsoft Entra ID applications",
+          subcommands: [
+            {
+              name: "list",
+              description:
+                "List Microsoft Entra ID applications registered under your tenant",
+            },
+            {
+              name: "register",
+              description:
+                "Register Microsoft Entra ID application with your tenant",
+              options: [
+                {
+                  name: ["--application-id", "-a"],
+                  description: "Application Id",
+                  isRequired: true,
+                  args: {
+                    name: "string",
+                  },
+                },
+              ],
+            },
+            {
+              name: "unregister",
+              description:
+                "Unregister Microsoft Entra ID application from your tenant",
+              options: [
+                {
+                  name: ["--application-id", "-a"],
+                  description: "Application Id",
+                  isRequired: true,
+                  args: {
+                    name: "string",
+                  },
+                },
+              ],
             },
           ],
         },
@@ -944,7 +985,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "install",
-          description: "Installs Dataverse application to given environment.",
+          description: "Installs Dataverse application to given environment",
           options: [
             {
               name: ["--environment", "-env"],
@@ -957,7 +998,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--application-name", "-an"],
               description:
-                "Unique name of the application to install to the target environment.",
+                "Unique name of the application to install to the target environment",
               args: {
                 name: "string",
               },
@@ -986,15 +1027,14 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--name", "-n"],
               description:
-                "The name you want to give to this authentication profile (maximum 30 characters).",
+                "The name you want to give to this authentication profile (maximum 30 characters)",
               args: {
                 name: "string",
               },
             },
             {
               name: ["--kind", "-k"],
-              description:
-                "The kind of authentication profile you're creating.",
+              description: "The kind of authentication profile you're creating",
               args: {
                 name: "string",
               },
@@ -1009,7 +1049,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--username", "-un"],
               description:
-                "Optional: The username to authenticate with; shows Microsoft Entra ID dialog if not specified.",
+                "Optional: The username to authenticate with; shows Microsoft Entra ID dialog if not specified",
               args: {
                 name: "string",
               },
@@ -1023,7 +1063,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--applicationId", "-id"],
-              description: "Optional: The application ID to authenticate with.",
+              description: "Optional: The application ID to authenticate with",
               args: {
                 name: "string",
               },
@@ -1054,7 +1094,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--tenant", "-t"],
               description:
-                "Tenant ID if using application ID/client secret or application ID/client certificate.",
+                "Tenant ID if using application ID/client secret or application ID/client certificate",
               args: {
                 name: "string",
               },
@@ -1070,16 +1110,16 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--deviceCode", "-dc"],
               description:
-                "Use the Microsoft Entra ID Device Code flow for interactive sign-in.",
+                "Use the Microsoft Entra ID Device Code flow for interactive sign-in",
             },
             {
               name: ["--managedIdentity", "-mi"],
-              description: "Use Azure Managed Identity.",
+              description: "Use Azure Managed Identity",
             },
             {
               name: ["--environment", "-env"],
               description:
-                "Default environment (ID, url, unique name, or partial name).",
+                "Default environment (ID, url, unique name, or partial name)",
               args: {
                 name: "string",
               },
@@ -1097,7 +1137,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["--index", "-i"],
-              description: "The index of the profile to be active.",
+              description: "The index of the profile to be active",
               args: {
                 name: "string",
               },
@@ -1147,7 +1187,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--name", "-n"],
               description:
-                "The name you want to give to this authentication profile (maximum 30 characters).",
+                "The name you want to give to this authentication profile (maximum 30 characters)",
               args: {
                 name: "string",
               },
@@ -1155,7 +1195,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--environment", "-env"],
               description:
-                "Default environment (ID, url, unique name, or partial name).",
+                "Default environment (ID, url, unique name, or partial name)",
               args: {
                 name: "string",
               },
@@ -1177,7 +1217,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--name", "-n"],
               description:
-                "The name you want to give to this authentication profile (maximum 30 characters).",
+                "The name you want to give to this authentication profile (maximum 30 characters)",
               isRequired: true,
               args: {
                 name: "string",
@@ -1223,7 +1263,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--environment", "-env"],
               description:
-                "Environment (ID, org ID, url, unique name, or partial name).",
+                "Environment (ID, org ID, url, unique name, or partial name)",
               args: {
                 name: "string",
               },
@@ -1237,7 +1277,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--environment", "-env"],
               description:
-                "Environment (ID, org ID, url, unique name, or partial name).",
+                "Environment (ID, org ID, url, unique name, or partial name)",
               args: {
                 name: "string",
               },
@@ -1249,7 +1289,7 @@ const completionSpec: Fig.Spec = {
           description: "(Preview) Pack sources into an msapp file",
           options: [
             {
-              name: ["--sources"],
+              name: "--sources",
               description: "Directory to sources to be packed",
               isRequired: true,
               args: {
@@ -1257,7 +1297,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--msapp"],
+              name: "--msapp",
               description: "Path to .msapp file",
               isRequired: true,
               args: {
@@ -1271,14 +1311,14 @@ const completionSpec: Fig.Spec = {
           description: "(Preview) Extract an msapp file into sources",
           options: [
             {
-              name: ["--sources"],
+              name: "--sources",
               description: "Directory to sources to be unpacked",
               args: {
                 name: "string",
               },
             },
             {
-              name: ["--msapp"],
+              name: "--msapp",
               description: "Path to .msapp file",
               isRequired: true,
               args: {
@@ -1292,7 +1332,7 @@ const completionSpec: Fig.Spec = {
           description: "Generate a canvas app from a custom connector",
           options: [
             {
-              name: ["--msapp"],
+              name: "--msapp",
               description: "Path to .msapp file to be generated",
               isRequired: true,
               args: {
@@ -1300,25 +1340,25 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--connector-id"],
+              name: "--connector-id",
               description:
-                "The ID of the Connector to generate the Power App from.",
+                "The ID of the Connector to generate the Power App from",
               args: {
                 name: "string",
               },
             },
             {
-              name: ["--connector-display-name"],
+              name: "--connector-display-name",
               description:
-                "The display name of the Connector to generate the Power App from.",
+                "The display name of the Connector to generate the Power App from",
               args: {
                 name: "string",
               },
             },
             {
-              name: ["--environment"],
+              name: "--environment",
               description:
-                "The target Environment ID or URL. The default value is the environment of your currently active Dataverse Auth Profile.",
+                "The target Environment ID or URL. The default value is the environment of your currently active Dataverse Auth Profile",
               args: {
                 name: "string",
               },
@@ -1334,11 +1374,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description:
-            "List all published catalog items from the current Dataverse organization.",
+            "List all published catalog items from the current Dataverse organization",
           options: [
             {
               name: ["--catalog-item-name", "-n"],
-              description: "Catalog item name to search for.",
+              description: "Catalog item name to search for",
               args: {
                 name: "string",
               },
@@ -1346,20 +1386,20 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--catalog-item-id", "-cid"],
               description:
-                "Catalog item ID to search for. When catalog item ID is used, catalog item name is ignored.",
+                "Catalog item ID to search for. When catalog item ID is used, catalog item name is ignored",
               args: {
                 name: "string",
               },
             },
             {
               name: ["--include-active", "-ia"],
-              description: "Include active items.",
+              description: "Include active items",
             },
           ],
         },
         {
           name: "submit",
-          description: "Submit catalog approval request.",
+          description: "Submit catalog approval request",
           options: [
             {
               name: ["--path", "-p"],
@@ -1371,14 +1411,14 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--package-zip", "-pz"],
-              description: "Path to package zip file.",
+              description: "Path to package zip file",
               args: {
                 name: "string",
               },
             },
             {
               name: ["--solution-zip", "-sz"],
-              description: "Path to solution zip file.",
+              description: "Path to solution zip file",
               args: {
                 name: "string",
               },
@@ -1391,12 +1431,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "install",
-          description: "Install a catalog item to the target environment.",
+          description: "Install a catalog item to the target environment",
           options: [
             {
               name: ["--catalog-item-id", "-cid"],
               description:
-                "Catalog item to be installed on the target environment.",
+                "Catalog item to be installed on the target environment",
               isRequired: true,
               args: {
                 name: "string",
@@ -1414,7 +1454,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--settings", "-s"],
               description:
-                "Runtime Package Settings for the installation framework to execute. The format of the string must be 'key=value|key=value'.",
+                "Runtime Package Settings for the installation framework to execute. The format of the string must be 'key=value|key=value'",
               args: {
                 name: "string",
               },
@@ -1422,7 +1462,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--target-version", "-tv"],
               description:
-                "Target version to install. If left empty, the published version is selected.",
+                "Target version to install. If left empty, the published version is selected",
               args: {
                 name: "string",
               },
@@ -1435,11 +1475,11 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "status",
-          description: "Get status of the catalog install/submit request.",
+          description: "Get status of the catalog install/submit request",
           options: [
             {
               name: ["--tracking-id", "-id"],
-              description: "Request tracking ID.",
+              description: "Request tracking ID",
               isRequired: true,
               args: {
                 name: "string",
@@ -1457,7 +1497,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "update",
-          description: "Update settings for the catalog.",
+          description: "Update settings for the catalog",
           options: [
             {
               name: ["--path", "-p"],
@@ -1472,7 +1512,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "create-submission",
           description:
-            "Create catalog submission document. Note: This command will be removed in a future release.",
+            "Create catalog submission document. Note: This command will be removed in a future release",
           options: [
             {
               name: ["--path", "-p"],
@@ -1487,11 +1527,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "connection",
-      description: "Commands for working with Dataverse connection.",
+      description: "Commands for working with Dataverse connection",
       subcommands: [
         {
           name: "create",
-          description: "Create new Dataverse connection.",
+          description: "Create new Dataverse connection",
           options: [
             {
               name: ["--tenant-id", "-t"],
@@ -1503,7 +1543,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--name", "-n"],
-              description: "Connection name.",
+              description: "Connection name",
               isRequired: true,
               args: {
                 name: "string",
@@ -1528,7 +1568,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--environment", "-env"],
               description:
-                "Environment (ID, org ID, url, unique name, or partial name).",
+                "Environment (ID, org ID, url, unique name, or partial name)",
               args: {
                 name: "string",
               },
@@ -1537,11 +1577,11 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "delete",
-          description: "Delete Dataverse connection.",
+          description: "Delete Dataverse connection",
           options: [
             {
               name: ["--connection-id", "-id"],
-              description: "Connection Id.",
+              description: "Connection Id",
               isRequired: true,
               args: {
                 name: "string",
@@ -1550,7 +1590,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--environment", "-env"],
               description:
-                "Environment (ID, org ID, url, unique name, or partial name).",
+                "Environment (ID, org ID, url, unique name, or partial name)",
               args: {
                 name: "string",
               },
@@ -1559,12 +1599,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "list",
-          description: "List all Connections.",
+          description: "List all Connections",
           options: [
             {
               name: ["--environment", "-env"],
               description:
-                "Environment (ID, org ID, url, unique name, or partial name).",
+                "Environment (ID, org ID, url, unique name, or partial name)",
               args: {
                 name: "string",
               },
@@ -1573,7 +1613,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "update",
-          description: "Update Dataverse connection.",
+          description: "Update Dataverse connection",
           options: [
             {
               name: ["--tenant-id", "-t"],
@@ -1585,7 +1625,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--connection-id", "-id"],
-              description: "Connection Id.",
+              description: "Connection Id",
               isRequired: true,
               args: {
                 name: "string",
@@ -1610,7 +1650,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--environment", "-env"],
               description:
-                "Environment (ID, org ID, url, unique name, or partial name).",
+                "Environment (ID, org ID, url, unique name, or partial name)",
               args: {
                 name: "string",
               },
@@ -1625,12 +1665,12 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "list",
-          description: "List the Connectors registered in Dataverse.",
+          description: "List the Connectors registered in Dataverse",
           options: [
             {
               name: ["--environment", "-env"],
               description:
-                "The target Environment ID or URL. The default value is the environment of your currently active Dataverse Auth Profile.",
+                "The target Environment ID or URL. The default value is the environment of your currently active Dataverse Auth Profile",
               args: {
                 name: "string",
               },
@@ -1639,23 +1679,23 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "init",
-          description: "Initializes a new API Properties file for a Connector.",
+          description: "Initializes a new API Properties file for a Connector",
           options: [
             {
               name: ["--connection-template", "-ct"],
               description:
-                "Generate an initial Connection Parameters set with the specified template.",
+                "Generate an initial Connection Parameters set with the specified template",
               args: {
                 name: "string",
                 suggestions: connectionTemplates,
               },
             },
             {
-              name: ["--generate-script-file"],
+              name: "--generate-script-file",
               description: "Generate an initial Connector Script file",
             },
             {
-              name: ["--generate-settings-file"],
+              name: "--generate-settings-file",
               description: "Generate an initial Connector Settings file",
             },
             {
@@ -1669,12 +1709,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "create",
-          description: "Creates a new row in the Connector table in Dataverse.",
+          description: "Creates a new row in the Connector table in Dataverse",
           options: [
             {
               name: ["--api-definition-file", "-df"],
               description:
-                "The filename and path to read the Connector's OpenApiDefinition.",
+                "The filename and path to read the Connector's OpenApiDefinition",
               args: {
                 name: "string",
               },
@@ -1682,21 +1722,21 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--api-properties-file", "-pf"],
               description:
-                "The filename and path to read the Connector's API Properties file.",
+                "The filename and path to read the Connector's API Properties file",
               args: {
                 name: "string",
               },
             },
             {
               name: ["--icon-file", "-if"],
-              description: "The filename and path to and Icon .png file.",
+              description: "The filename and path to and Icon .png file",
               args: {
                 name: "string",
               },
             },
             {
               name: ["--script-file", "-sf"],
-              description: "The filename and path to a Script .csx file.",
+              description: "The filename and path to a Script .csx file",
               args: {
                 name: "string",
               },
@@ -1712,14 +1752,14 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--environment", "-env"],
               description:
-                "The target Environment ID or URL. The default value is the environment of your currently active Dataverse Auth Profile.",
+                "The target Environment ID or URL. The default value is the environment of your currently active Dataverse Auth Profile",
               args: {
                 name: "string",
               },
             },
             {
-              name: ["--settings-file"],
-              description: "The filename and path Connector Settings file.",
+              name: "--settings-file",
+              description: "The filename and path Connector Settings file",
               args: {
                 name: "string",
               },
@@ -1749,7 +1789,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--environment", "-env"],
               description:
-                "The target Environment ID or URL. The default value is the environment of your currently active Dataverse Auth Profile.",
+                "The target Environment ID or URL. The default value is the environment of your currently active Dataverse Auth Profile",
               args: {
                 name: "string",
               },
@@ -1758,7 +1798,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "update",
-          description: "Updates a Connector Entity in Dataverse.",
+          description: "Updates a Connector Entity in Dataverse",
           options: [
             {
               name: ["--connector-id", "-id"],
@@ -1770,7 +1810,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--api-definition-file", "-df"],
               description:
-                "The filename and path to read the Connector's OpenApiDefinition.",
+                "The filename and path to read the Connector's OpenApiDefinition",
               args: {
                 name: "string",
               },
@@ -1778,21 +1818,21 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--api-properties-file", "-pf"],
               description:
-                "The filename and path to read the Connector's API Properties file.",
+                "The filename and path to read the Connector's API Properties file",
               args: {
                 name: "string",
               },
             },
             {
               name: ["--icon-file", "-if"],
-              description: "The filename and path to and Icon .png file.",
+              description: "The filename and path to and Icon .png file",
               args: {
                 name: "string",
               },
             },
             {
               name: ["--script-file", "-sf"],
-              description: "The filename and path to a Script .csx file.",
+              description: "The filename and path to a Script .csx file",
               args: {
                 name: "string",
               },
@@ -1808,14 +1848,14 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--environment", "-env"],
               description:
-                "The target Environment ID or URL. The default value is the environment of your currently active Dataverse Auth Profile.",
+                "The target Environment ID or URL. The default value is the environment of your currently active Dataverse Auth Profile",
               args: {
                 name: "string",
               },
             },
             {
-              name: ["--settings-file"],
-              description: "The filename and path Connector Settings file.",
+              name: "--settings-file",
+              description: "The filename and path Connector Settings file",
               args: {
                 name: "string",
               },
@@ -1830,7 +1870,7 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "list",
-          description: "AI Builder models in the current environment.",
+          description: "AI Builder models in the current environment",
         },
         {
           name: "predict",
@@ -1869,12 +1909,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "prepare-fetch",
           description:
-            "Takes the FetchXML file from the AI Large Language Model (LLM) and prepares it for execution against the current environment.",
+            "Takes the FetchXML file from the AI Large Language Model (LLM) and prepares it for execution against the current environment",
           options: [
             {
               name: ["--inputFile", "-i"],
-              description:
-                "Input FetchXML file that usually comes from AI LLM.",
+              description: "Input FetchXML file that usually comes from AI LLM",
               isRequired: true,
               args: {
                 name: "string",
@@ -1883,7 +1922,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--outputFile", "-o"],
               description:
-                "Output FetchXML file that is ready to execute against the current environment.",
+                "Output FetchXML file that is ready to execute against the current environment",
               isRequired: true,
               args: {
                 name: "string",
@@ -1895,7 +1934,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "data",
-      description: "Import and export data from Dataverse.",
+      description: "Import and export data from Dataverse",
       subcommands: [
         {
           name: "export",
@@ -1904,7 +1943,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--schemaFile", "-sf"],
               description:
-                "Schema file name. It can be created using the Configuration Migration Tool.",
+                "Schema file name. It can be created using the Configuration Migration Tool",
               isRequired: true,
               args: {
                 name: "string",
@@ -1920,7 +1959,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--overwrite", "-o"],
               description:
-                "Allow overwrite of the output data file if it already exists.",
+                "Allow overwrite of the output data file if it already exists",
             },
             {
               name: ["--verbose", "-v"],
@@ -1930,7 +1969,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--environment", "-env"],
               description:
-                "Environment (ID, org ID, url, unique name, or partial name).",
+                "Environment (ID, org ID, url, unique name, or partial name)",
               args: {
                 name: "string",
               },
@@ -1943,14 +1982,14 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["--dataDirectory", "-dd"],
-              description: "Directory name with data for import.",
+              description: "Directory name with data for import",
               args: {
                 name: "string",
               },
             },
             {
               name: ["--data", "-d"],
-              description: "Zip file or directory name with data for import.",
+              description: "Zip file or directory name with data for import",
               isRequired: true,
               args: {
                 name: "string",
@@ -1972,7 +2011,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--environment", "-env"],
               description:
-                "Environment (ID, org ID, url, unique name, or partial name).",
+                "Environment (ID, org ID, url, unique name, or partial name)",
               args: {
                 name: "string",
               },
@@ -1983,7 +2022,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "help",
-      description: "Show help for the Microsoft Power Platform CLI.",
+      description: "Show help for the Microsoft Power Platform CLI",
     },
     {
       name: "modelbuilder",
@@ -2001,7 +2040,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--language", "-l"],
               description:
-                "The language to use for the generated proxy code. This value can be either 'CS' or 'VB'. The default language is 'CS'.",
+                "The language to use for the generated proxy code. This value can be either 'CS' or 'VB'. The default language is 'CS'",
               args: {
                 name: "string",
               },
@@ -2009,7 +2048,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--namespace", "-n"],
               description:
-                "The namespace for the generated code. The default namespace is the global namespace.",
+                "The namespace for the generated code. The default namespace is the global namespace",
               args: {
                 name: "string",
               },
@@ -2017,7 +2056,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--serviceContextName", "-sctx"],
               description:
-                "The name for the generated service context. If a value is passed in, it's used for the Service Context. If not, no Service Context is generated.",
+                "The name for the generated service context. If a value is passed in, it's used for the Service Context. If not, no Service Context is generated",
               args: {
                 name: "string",
               },
@@ -2025,22 +2064,22 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--generatesdkmessages", "-a"],
               description:
-                "When set, emits Sdk message classes as part of code generation.",
+                "When set, emits Sdk message classes as part of code generation",
             },
             {
               name: ["--emitentityetc", "-etc"],
               description:
-                "When set, includes the entity ETC ( entity type code ) in the generated code.",
+                "When set, includes the entity ETC ( entity type code ) in the generated code",
             },
             {
               name: ["--emitvirtualattributes", "-eva"],
               description:
-                "When set, includes the Virtual Attributes of entities in the generated code.",
+                "When set, includes the Virtual Attributes of entities in the generated code",
             },
             {
               name: ["--emitfieldsclasses", "-efc"],
               description:
-                "Generate a constants structure that contains all of the field names by entity at the time of code generation.",
+                "Generate a constants structure that contains all of the field names by entity at the time of code generation",
             },
             {
               name: ["--entitynamesfilter", "-enf"],
@@ -2053,7 +2092,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--messagenamesfilter", "-mnf"],
               description:
-                "Filters the list of messages that are retrieved when reading data from Dataverse. Passed in as a semicolon separated list, required messages (Create, Update, Delete, Retrieve, RetrieveMultiple, Associate and Disassociate) are always included. Use a trailing or leading asterisk (*) with the names of the messages to allow for all messages starting with or ending with a string. Using the form <messagename>;<messagename>.",
+                "Filters the list of messages that are retrieved when reading data from Dataverse. Passed in as a semicolon separated list, required messages (Create, Update, Delete, Retrieve, RetrieveMultiple, Associate and Disassociate) are always included. Use a trailing or leading asterisk (*) with the names of the messages to allow for all messages starting with or ending with a string. Using the form <messagename>;<messagename>",
               args: {
                 name: "string",
               },
@@ -2061,7 +2100,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--outdirectory", "-o"],
               description:
-                "Write directory for entity, message, and optionset files.",
+                "Write directory for entity, message, and optionset files",
               isRequired: true,
               args: {
                 name: "string",
@@ -2070,7 +2109,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--entitytypesfolder", "-etf"],
               description:
-                "Folder name that contains entities. The default name is 'Entities'.",
+                "Folder name that contains entities. The default name is 'Entities'",
               args: {
                 name: "string",
               },
@@ -2078,7 +2117,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--messagestypesfolder", "-mtf"],
               description:
-                "Folder name that contains messages. The default name is 'Messages'.",
+                "Folder name that contains messages. The default name is 'Messages'",
               args: {
                 name: "string",
               },
@@ -2086,7 +2125,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--optionsetstypesfolder", "-otf"],
               description:
-                "Folder name that contains option sets. The default name is 'OptionSets'.",
+                "Folder name that contains option sets. The default name is 'OptionSets'",
               args: {
                 name: "string",
               },
@@ -2094,7 +2133,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--generateGlobalOptionSets", "-go"],
               description:
-                "Emit all Global OptionSets. Note: If an entity contains a reference to a global optionset, it is emitted even if this switch is not present.",
+                "Emit all Global OptionSets. Note: If an entity contains a reference to a global optionset, it is emitted even if this switch is not present",
               args: {
                 name: "string",
               },
@@ -2102,7 +2141,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--writesettingsTemplateFile", "-wstf"],
               description:
-                "When set, writes a settings file out to the output directory with the current passed settings or default settings.",
+                "When set, writes a settings file out to the output directory with the current passed settings or default settings",
               args: {
                 name: "string",
               },
@@ -2110,22 +2149,22 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--settingsTemplateFile", "-stf"],
               description:
-                "Contains Settings to be used for this run of the Dataverse Model Builder, overrides any duplicate parameters on command line. Can't be set when --writesettingstemplate is used.",
+                "Contains Settings to be used for this run of the Dataverse Model Builder, overrides any duplicate parameters on command line. Can't be set when --writesettingstemplate is used",
               args: {
                 name: "string",
               },
             },
             {
-              name: ["--suppressINotifyPattern"],
+              name: "--suppressINotifyPattern",
               description:
-                "When enabled, doesn't write the INotify wrappers for properties and classes.",
+                "When enabled, doesn't write the INotify wrappers for properties and classes",
               args: {
                 name: "string",
               },
             },
             {
               name: ["--logLevel", "-ll"],
-              description: "Log level. The default value is 'Off'.",
+              description: "Log level. The default value is 'Off'",
               args: {
                 name: "string",
                 suggestions: logLevels,
@@ -2137,12 +2176,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "org",
-      description: "Work with your Dataverse organization.",
+      description: "Work with your Dataverse organization",
       subcommands: [
         {
           name: "who",
           description:
-            "Displays information about the current Dataverse organization.",
+            "Displays information about the current Dataverse organization",
         },
         {
           name: "list",
@@ -2151,7 +2190,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["--filter", "-f"],
-              description: "Show only environments containing filter criteria.",
+              description: "Show only environments containing filter criteria",
               args: {
                 name: "string",
               },
@@ -2215,12 +2254,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "select",
           description:
-            "Select default organization for current authentication profile.",
+            "Select default organization for current authentication profile",
           options: [
             {
               name: ["--environment", "-env"],
               description:
-                "Default environment (ID, url, unique name, or partial name).",
+                "Default environment (ID, url, unique name, or partial name)",
               isRequired: true,
               args: {
                 name: "string",
@@ -2247,9 +2286,9 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--package-name"],
+              name: "--package-name",
               description:
-                "Sets the default name of the package. Applies to the generation of ImportExtension.GetNameOfImport.",
+                "Sets the default name of the package. Applies to the generation of ImportExtension.GetNameOfImport",
               args: {
                 name: "string",
               },
@@ -2259,7 +2298,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "add-external-package",
           description:
-            "Adds a package that is external to the Dataverse solution system to a Package Deployer Package project.",
+            "Adds a package that is external to the Dataverse solution system to a Package Deployer Package project",
           options: [
             {
               name: ["--path", "-p"],
@@ -2272,16 +2311,16 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--package-type", "-t"],
               description:
-                "The type of the package being added. For example: 'xpp' for FnO packages.",
+                "The type of the package being added. For example: 'xpp' for FnO packages",
               isRequired: true,
               args: {
                 name: "string",
               },
             },
             {
-              name: ["--import-order"],
+              name: "--import-order",
               description:
-                "A whole number that indicates the order to insert this item into the final ImportConfig.xml file at build time. Negative numbers are inserted before existing elements. Positive numbers are added after existing elements.",
+                "A whole number that indicates the order to insert this item into the final ImportConfig.xml file at build time. Negative numbers are inserted before existing elements. Positive numbers are added after existing elements",
               args: {
                 name: "string",
               },
@@ -2289,28 +2328,28 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--skip-validation", "-sv"],
               description:
-                "Adds the item to the project file even if the file doesn't exist or appears to be invalid. Note: Using this doesn't affect any validation performed by MSBuild.",
+                "Adds the item to the project file even if the file doesn't exist or appears to be invalid. Note: Using this doesn't affect any validation performed by MSBuild",
             },
           ],
         },
         {
           name: "add-solution",
           description:
-            "Adds a prebuilt Dataverse solution file to a Package Deployer Package project.",
+            "Adds a prebuilt Dataverse solution file to a Package Deployer Package project",
           options: [
             {
               name: ["--path", "-p"],
               description:
-                "Path to the Dataverse solution file. The file must be a compressed ZIP file.",
+                "Path to the Dataverse solution file. The file must be a compressed ZIP file",
               isRequired: true,
               args: {
                 name: "string",
               },
             },
             {
-              name: ["--import-order"],
+              name: "--import-order",
               description:
-                "A whole number that indicates the order to insert this item into the final ImportConfig.xml file at build time. Negative numbers are inserted before existing elements. Positive numbers are added after existing elements.",
+                "A whole number that indicates the order to insert this item into the final ImportConfig.xml file at build time. Negative numbers are inserted before existing elements. Positive numbers are added after existing elements",
               args: {
                 name: "string",
               },
@@ -2318,48 +2357,48 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--skip-validation", "-sv"],
               description:
-                "Adds the item to the project file even if the file doesn't exist or appears to be invalid. Note: Using this doesn't affect any validation performed by MSBuild.",
+                "Adds the item to the project file even if the file doesn't exist or appears to be invalid. Note: Using this doesn't affect any validation performed by MSBuild",
             },
             {
-              name: ["--publish-workflows-activate-plugins"],
+              name: "--publish-workflows-activate-plugins",
               description:
-                "Explicitly indicates whether to publish the workflows and activate plug-ins when this solution is imported.",
+                "Explicitly indicates whether to publish the workflows and activate plug-ins when this solution is imported",
               args: {
                 name: "string",
                 suggestions: trueFalse,
               },
             },
             {
-              name: ["--overwrite-unmanaged-customizations"],
+              name: "--overwrite-unmanaged-customizations",
               description:
-                "Explicitly indicates whether to overwrite unmanaged customizations when this solution is imported.",
+                "Explicitly indicates whether to overwrite unmanaged customizations when this solution is imported",
               args: {
                 name: "string",
                 suggestions: trueFalse,
               },
             },
             {
-              name: ["--import-mode"],
+              name: "--import-mode",
               description:
-                "Explicitly specifies the required mode when importing this solution.",
+                "Explicitly specifies the required mode when importing this solution",
               args: {
                 name: "string",
                 suggestions: trueFalse,
               },
             },
             {
-              name: ["--missing-dependency-behavior"],
+              name: "--missing-dependency-behavior",
               description:
-                "Specifies the behavior on import when a dependency of this solution is missing from the target environment.",
+                "Specifies the behavior on import when a dependency of this solution is missing from the target environment",
               args: {
                 name: "string",
                 suggestions: skipFault,
               },
             },
             {
-              name: ["--dependency-overrides"],
+              name: "--dependency-overrides",
               description:
-                "A semicolon delimited list of overrides. This value overrides any dependency information encoded in the solution's metadata. Each override should be in the format: '<uniquename>:<minVersion>:<maxVersion>'. Where minVersion and maxVersion are optional but should be in .NET version format syntax.",
+                "A semicolon delimited list of overrides. This value overrides any dependency information encoded in the solution's metadata. Each override should be in the format: '<uniquename>:<minVersion>:<maxVersion>'. Where minVersion and maxVersion are optional but should be in .NET version format syntax",
               args: {
                 name: "string",
               },
@@ -2380,53 +2419,53 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--import-order"],
+              name: "--import-order",
               description:
-                "A whole number that indicates the order to insert this item into the final ImportConfig.xml file at build time. Negative numbers are inserted before existing elements. Positive numbers are added after existing elements.",
+                "A whole number that indicates the order to insert this item into the final ImportConfig.xml file at build time. Negative numbers are inserted before existing elements. Positive numbers are added after existing elements",
               args: {
                 name: "string",
               },
             },
             {
-              name: ["--publish-workflows-activate-plugins"],
+              name: "--publish-workflows-activate-plugins",
               description:
-                "Explicitly indicates whether to publish the workflows and activate plug-ins when this solution is imported.",
-              args: {
-                name: "string",
-                suggestions: trueFalse,
-              },
-            },
-            {
-              name: ["--overwrite-unmanaged-customizations"],
-              description:
-                "Explicitly indicates whether to overwrite unmanaged customizations when this solution is imported.",
+                "Explicitly indicates whether to publish the workflows and activate plug-ins when this solution is imported",
               args: {
                 name: "string",
                 suggestions: trueFalse,
               },
             },
             {
-              name: ["--import-mode"],
+              name: "--overwrite-unmanaged-customizations",
               description:
-                "Explicitly specifies the required mode when importing this solution.",
+                "Explicitly indicates whether to overwrite unmanaged customizations when this solution is imported",
+              args: {
+                name: "string",
+                suggestions: trueFalse,
+              },
+            },
+            {
+              name: "--import-mode",
+              description:
+                "Explicitly specifies the required mode when importing this solution",
               args: {
                 name: "string",
                 suggestions: syncAsync,
               },
             },
             {
-              name: ["--missing-dependency-behavior"],
+              name: "--missing-dependency-behavior",
               description:
-                "Specifies the behavior on import when a dependency of this solution is missing from the target environment.",
+                "Specifies the behavior on import when a dependency of this solution is missing from the target environment",
               args: {
                 name: "string",
                 suggestions: skipFault,
               },
             },
             {
-              name: ["--dependency-overrides"],
+              name: "--dependency-overrides",
               description:
-                "A semicolon delimited list of overrides. This value overrides any dependency information encoded in the solution's metadata. Each override should be in the format: '<uniquename>:<minVersion>:<maxVersion>'. Where minVersion and maxVersion are optional but should be in .NET version format syntax.",
+                "A semicolon delimited list of overrides. This value overrides any dependency information encoded in the solution's metadata. Each override should be in the format: '<uniquename>:<minVersion>:<maxVersion>'. Where minVersion and maxVersion are optional but should be in .NET version format syntax",
               args: {
                 name: "string",
               },
@@ -2450,7 +2489,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--package", "-p"],
-              description: "Path to a package dll or zip file with a package.",
+              description: "Path to a package dll or zip file with a package",
               isRequired: true,
               args: {
                 name: "string",
@@ -2459,14 +2498,14 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--settings", "-s"],
               description:
-                "Runtime Package Settings that are passed to the package that is being deployed. The format of the string must be 'key=value|key=value'.",
+                "Runtime Package Settings that are passed to the package that is being deployed. The format of the string must be 'key=value|key=value'",
               args: {
                 name: "string",
               },
             },
             {
               name: ["--verbose", "-vdbg"],
-              description: "Emit verbose logs to the log outputs.",
+              description: "Emit verbose logs to the log outputs",
             },
           ],
         },
@@ -2476,7 +2515,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["--package", "-p"],
-              description: "Path to a package dll or zip file with a package.",
+              description: "Path to a package dll or zip file with a package",
               isRequired: true,
               args: {
                 name: "string",
@@ -2491,7 +2530,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--verbose", "-vdbg"],
-              description: "Emit verbose logs to the log outputs.",
+              description: "Emit verbose logs to the log outputs",
             },
           ],
         },
@@ -2509,21 +2548,21 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["--namespace", "-ns"],
-              description: "The namespace for the component.",
+              description: "The namespace for the component",
               args: {
                 name: "string",
               },
             },
             {
               name: ["--name", "-n"],
-              description: "The name for the component.",
+              description: "The name for the component",
               args: {
                 name: "string",
               },
             },
             {
               name: ["--template", "-t"],
-              description: "Choose a template for the component.",
+              description: "Choose a template for the component",
               args: {
                 name: "string",
                 suggestions: pcfComponentTypes,
@@ -2532,7 +2571,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--framework", "-fw"],
               description:
-                "The rendering framework for control. The default value is 'none', which means HTML.",
+                "The rendering framework for control. The default value is 'none', which means HTML",
               args: {
                 name: "string",
                 suggestions: pcfFrameworkTypes,
@@ -2548,7 +2587,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--run-npm-install", "-npm"],
               description:
-                "Auto run 'npm install' after the control is created. The default value is 'false'.",
+                "Auto run 'npm install' after the control is created. The default value is 'false'",
             },
           ],
         },
@@ -2568,7 +2607,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--verbosity", "-v"],
               description:
-                "Verbosity level for MSBuild when building the temporary solution wrapper.",
+                "Verbosity level for MSBuild when building the temporary solution wrapper",
               args: {
                 name: "string",
                 suggestions: msBuildVerbosityLevels,
@@ -2582,12 +2621,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--interactive", "-i"],
               description:
-                "Indicates that actions in the build are allowed to interact with the user. Don't use this argument in an automated scenario where interactivity is not expected.",
+                "Indicates that actions in the build are allowed to interact with the user. Don't use this argument in an automated scenario where interactivity is not expected",
             },
             {
               name: ["--incremental", "-inc"],
               description:
-                "Pushes only files which are diifferent using entity updates.",
+                "Pushes only files which are diifferent using entity updates",
             },
           ],
         },
@@ -2614,7 +2653,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--path", "-p"],
               description:
-                "Absolute/Relative path of the 'ControlManifest.xml' for updating.",
+                "Absolute/Relative path of the 'ControlManifest.xml' for updating",
               args: {
                 name: "string",
               },
@@ -2626,7 +2665,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--updatetarget", "-ut"],
-              description: "Specify which target manifest needs to be updated.",
+              description: "Specify which target manifest needs to be updated",
               args: {
                 name: "string",
                 suggestions: pcfPatchTargets,
@@ -2635,7 +2674,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--filename", "-fn"],
               description:
-                "Tracker CSV file name to be used when using filetracking as a strategy. The default value is 'ControlsStateVersionInfo.csv'.",
+                "Tracker CSV file name to be used when using filetracking as a strategy. The default value is 'ControlsStateVersionInfo.csv'",
               args: {
                 name: "string",
               },
@@ -2664,7 +2703,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "deploy",
-          description: "Start pipeline deployment.",
+          description: "Start pipeline deployment",
           options: [
             {
               name: ["--solutionName", "-sn"],
@@ -2708,7 +2747,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--wait", "-w"],
-              description: "Wait until the deployment finishes.",
+              description: "Wait until the deployment finishes",
             },
           ],
         },
@@ -2721,12 +2760,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "init",
           description:
-            "Initializes a directory with a new Dataverse plug-in class library.",
+            "Initializes a directory with a new Dataverse plug-in class library",
           options: [
             {
               name: ["--signing-key-file-path", "-sk"],
               description:
-                "Relative path to the Dataverse plug-in assembly originator key file for signing.",
+                "Relative path to the Dataverse plug-in assembly originator key file for signing",
               args: {
                 name: "string",
               },
@@ -2741,7 +2780,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--author", "-a"],
               description:
-                "One or more authors of the Dataverse Plug-in Package.",
+                "One or more authors of the Dataverse Plug-in Package",
               args: {
                 name: "string",
               },
@@ -2749,13 +2788,13 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--skip-signing", "-ss"],
               description:
-                "Skip plug-in assembly signing that gives the plug-in assembly a strong name. The default value is 'false'.",
+                "Skip plug-in assembly signing that gives the plug-in assembly a strong name. The default value is 'false'",
             },
           ],
         },
         {
           name: "push",
-          description: "Import plug-in into Dataverse.",
+          description: "Import plug-in into Dataverse",
           options: [
             {
               name: ["--pluginId", "-id"],
@@ -2775,7 +2814,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--type", "-t"],
               description:
-                "Type of item if not specified explicitly through --pluginFile. The default value is: 'Nuget'.",
+                "Type of item if not specified explicitly through --pluginFile. The default value is: 'Nuget'",
               args: {
                 name: "string",
                 suggestions: importPluginType,
@@ -2783,8 +2822,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--configuration", "-c"],
-              description:
-                "Build configuration. The default value is: 'Debug'.",
+              description: "Build configuration. The default value is: 'Debug'",
               args: {
                 name: "string",
               },
@@ -2824,23 +2862,23 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "powerpages",
-      description: "Commands for working with Power Pages website.",
+      description: "Commands for working with Power Pages website",
       subcommands: [
         {
           name: "list",
           description:
-            "List all Power Pages websites from the current Dataverse environment.",
+            "List all Power Pages websites from the current Dataverse environment",
           options: [
             {
               name: ["--verbose", "-v"],
-              description: "Enables verbose mode to provide more details.",
+              description: "Enables verbose mode to provide more details",
             },
           ],
         },
         {
           name: "download",
           description:
-            "Download Power Pages website content from the current Dataverse environment.",
+            "Download Power Pages website content from the current Dataverse environment",
           options: [
             {
               name: ["--path", "-p"],
@@ -2862,7 +2900,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--includeEntities", "-ie"],
               description:
-                "Download only the entities specified for this argument using comma separated entity logical names.",
+                "Download only the entities specified for this argument using comma separated entity logical names",
               args: {
                 name: "string",
               },
@@ -2881,8 +2919,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--modelVersion", "-mv"],
-              description:
-                "Power Pages website data model version to download.",
+              description: "Power Pages website data model version to download",
               args: {
                 name: "string",
               },
@@ -2892,12 +2929,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "upload",
           description:
-            "Upload Power Pages website content to current Dataverse environment.",
+            "Upload Power Pages website content to current Dataverse environment",
           options: [
             {
               name: ["--path", "-p"],
               description:
-                "Path from where the Power Pages website content is uploaded.",
+                "Path from where the Power Pages website content is uploaded",
               isRequired: true,
               args: {
                 name: "string",
@@ -2914,11 +2951,11 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--forceUploadAll", "-f"],
               description:
-                "Upload all Power Pages website content to the current Dataverse environment.",
+                "Upload all Power Pages website content to the current Dataverse environment",
             },
             {
               name: ["--modelVersion", "-mv"],
-              description: "Power Pages website data model version to upload.",
+              description: "Power Pages website data model version to upload",
               args: {
                 name: "string",
               },
@@ -2927,11 +2964,11 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "bootstrap-migrate",
-          description: "Migrates HTML code from bootstrap V3 to V5.",
+          description: "Migrates HTML code from bootstrap V3 to V5",
           options: [
             {
               name: ["--path", "-p"],
-              description: "Path of website content.",
+              description: "Path of website content",
               isRequired: true,
               args: {
                 name: "string",
@@ -2999,7 +3036,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--environment", "-env"],
               description:
-                "The target Environment ID or URL. The default value is the environment of your currently active Dataverse Auth Profile.",
+                "The target Environment ID or URL. The default value is the environment of your currently active Dataverse Auth Profile",
               args: {
                 name: "string",
               },
@@ -3009,11 +3046,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description:
-            "Delete a solution from Dataverse in the current environment.",
+            "Delete a solution from Dataverse in the current environment",
           options: [
             {
               name: ["--solution-name", "-sn"],
-              description: "Name of the solution.",
+              description: "Name of the solution",
               isRequired: true,
               args: {
                 name: "string",
@@ -3023,11 +3060,11 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "online-version",
-          description: "Sets version for solution loaded in Dataverse.",
+          description: "Sets version for solution loaded in Dataverse",
           options: [
             {
               name: ["--solution-name", "-sn"],
-              description: "Name of the solution.",
+              description: "Name of the solution",
               isRequired: true,
               args: {
                 name: "string",
@@ -3035,7 +3072,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--solution-version", "-sv"],
-              description: "Specify the solution version number.",
+              description: "Specify the solution version number",
               isRequired: true,
               args: {
                 name: "string",
@@ -3045,7 +3082,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "version",
-          description: "Update build or revision version for the solution.",
+          description: "Update build or revision version for the solution",
           options: [
             {
               name: ["--strategy", "-s"],
@@ -3058,21 +3095,21 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--patchversion", "-pv"],
-              description: "Patch version for the solution.",
+              description: "Patch version for the solution",
               args: {
                 name: "string",
               },
             },
             {
               name: ["--buildversion", "-bv"],
-              description: "Build version for the solution.",
+              description: "Build version for the solution",
               args: {
                 name: "string",
               },
             },
             {
               name: ["--revisionversion", "-rv"],
-              description: "Revision version for the solution.",
+              description: "Revision version for the solution",
               args: {
                 name: "string",
               },
@@ -3080,7 +3117,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--filename", "-fn"],
               description:
-                "Tracker CSV file name to be used when using filetracking as a strategy. The default value is 'ControlsStateVersionInfo.csv'.",
+                "Tracker CSV file name to be used when using filetracking as a strategy. The default value is 'ControlsStateVersionInfo.csv'",
               args: {
                 name: "string",
               },
@@ -3088,7 +3125,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--solutionPath", "-sp"],
               description:
-                "Path to Dataverse solution directory or Solution.xml file.",
+                "Path to Dataverse solution directory or Solution.xml file",
               args: {
                 name: "string",
               },
@@ -3097,19 +3134,19 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "import",
-          description: "Import the solution into Dataverse.",
+          description: "Import the solution into Dataverse",
           options: [
             {
               name: ["--path", "-p"],
               description:
-                "Path to solution zip file. If not specified, assumes the current folder is a cdsproj project.",
+                "Path to solution zip file. If not specified, assumes the current folder is a cdsproj project",
               args: {
                 name: "string",
               },
             },
             {
               name: ["--activate-plugins", "-ap"],
-              description: "Activate plug-ins and workflows on the solution.",
+              description: "Activate plug-ins and workflows on the solution",
             },
             {
               name: ["--force-overwrite", "-f"],
@@ -3122,36 +3159,36 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--import-as-holding", "-h"],
-              description: "Import the solution as a holding solution.",
+              description: "Import the solution as a holding solution",
             },
             {
               name: ["--stage-and-upgrade", "-up"],
-              description: "Import and upgrade the solution.",
+              description: "Import and upgrade the solution",
             },
             {
               name: ["--publish-changes", "-pc"],
-              description: "Publish your changes upon a successful import.",
+              description: "Publish your changes upon a successful import",
             },
             {
               name: ["--convert-to-managed", "-cm"],
-              description: "Convert to a managed solution.",
+              description: "Convert to a managed solution",
             },
             {
               name: ["--async", "-a"],
-              description: "Imports the solution asynchronously.",
+              description: "Imports the solution asynchronously",
             },
             {
               name: ["--max-async-wait-time", "-wt"],
               description:
-                "Max asynchronous wait time in minutes. The default value is 60 minutes.",
+                "Max asynchronous wait time in minutes. The default value is 60 minutes",
               args: {
                 name: "string",
               },
             },
             {
-              name: ["--settings-file"],
+              name: "--settings-file",
               description:
-                "The .json file with the deployment settings for connection references and environment variables.",
+                "The .json file with the deployment settings for connection references and environment variables",
               args: {
                 name: "string",
                 template: "filepaths",
@@ -3160,17 +3197,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--skip-lower-version", "-slv"],
               description:
-                "Skip solution import if same or higher version is present in current environment.",
+                "Skip solution import if same or higher version is present in current environment",
             },
           ],
         },
         {
           name: "export",
-          description: "Export a solution from Dataverse.",
+          description: "Export a solution from Dataverse",
           options: [
             {
               name: ["--name", "-n"],
-              description: "The name of the solution to be exported.",
+              description: "The name of the solution to be exported",
               isRequired: true,
               args: {
                 name: "string",
@@ -3179,7 +3216,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--path", "-p"],
               description:
-                "Path where the exported solution zip file is written.",
+                "Path where the exported solution zip file is written",
               args: {
                 name: "string",
               },
@@ -3187,7 +3224,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--managed", "-m"],
               description:
-                "Whether the solution should be exported as a managed solution.",
+                "Whether the solution should be exported as a managed solution",
             },
             {
               name: ["--targetversion", "-v"],
@@ -3200,19 +3237,19 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--include", "-i"],
               description:
-                "Which settings should be included in the solution being exported.",
+                "Which settings should be included in the solution being exported",
               args: {
                 name: "string",
               },
             },
             {
               name: ["--async", "-a"],
-              description: "Exports the solution asynchronously.",
+              description: "Exports the solution asynchronously",
             },
             {
               name: ["--max-async-wait-time", "-wt"],
               description:
-                "Max asynchronous wait time in minutes. The default value is 60 minutes.",
+                "Max asynchronous wait time in minutes. The default value is 60 minutes",
               args: {
                 name: "string",
               },
@@ -3220,18 +3257,18 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--overwrite", "-ow"],
               description:
-                "The exported solution file can overwrite the solution zip file on the local file system.",
+                "The exported solution file can overwrite the solution zip file on the local file system",
             },
           ],
         },
         {
           name: "clone",
           description:
-            "Create a solution project based on an existing solution in your organization.",
+            "Create a solution project based on an existing solution in your organization",
           options: [
             {
               name: ["--name", "-n"],
-              description: "The name of the solution to be exported.",
+              description: "The name of the solution to be exported",
               isRequired: true,
               args: {
                 name: "string",
@@ -3248,7 +3285,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--include", "-i"],
               description:
-                "Which settings should be included in the solution being exported.",
+                "Which settings should be included in the solution being exported",
               args: {
                 name: "string",
               },
@@ -3262,12 +3299,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--async", "-a"],
-              description: "Exports the solution asynchronously.",
+              description: "Exports the solution asynchronously",
             },
             {
               name: ["--max-async-wait-time", "-wt"],
               description:
-                "Max asynchronous wait time in minutes. The default value is 60 minutes.",
+                "Max asynchronous wait time in minutes. The default value is 60 minutes",
               args: {
                 name: "string",
               },
@@ -3275,12 +3312,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--processCanvasApps", "-pca"],
               description:
-                "(Preview) Pack/unpack any Canvas apps (.msapp) while processing the solution. The default value is 'false'.",
+                "(Preview) Pack/unpack any Canvas apps (.msapp) while processing the solution. The default value is 'false'",
             },
             {
               name: ["--packagetype", "-p"],
               description:
-                "Specifies the extraction type for the solution. Can be: 'Unmanaged', 'Managed' or 'Both'. The default value is: 'Both'.",
+                "Specifies the extraction type for the solution. Can be: 'Unmanaged', 'Managed' or 'Both'. The default value is: 'Both'",
               args: {
                 name: "string",
                 suggestions: solutionTypes,
@@ -3289,7 +3326,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--localize", "-loc"],
               description:
-                "Extract or merge all string resources into .resx files.",
+                "Extract or merge all string resources into .resx files",
             },
           ],
         },
@@ -3304,7 +3341,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--max-async-wait-time", "-wt"],
               description:
-                "Max asynchronous wait time in minutes. The default value is 60 minutes.",
+                "Max asynchronous wait time in minutes. The default value is 60 minutes",
               args: {
                 name: "string",
               },
@@ -3317,7 +3354,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["--solution-name", "-sn"],
-              description: "Name of the solution.",
+              description: "Name of the solution",
               isRequired: true,
               args: {
                 name: "string",
@@ -3330,7 +3367,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--max-async-wait-time", "-wt"],
               description:
-                "Max asynchronous wait time in minutes. The default value is 60 minutes.",
+                "Max asynchronous wait time in minutes. The default value is 60 minutes",
               args: {
                 name: "string",
               },
@@ -3339,12 +3376,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "add-license",
-          description: "Add license and plan info to the solution.",
+          description: "Add license and plan info to the solution",
           options: [
             {
               name: ["--planDefinitionFile", "-pd"],
               description:
-                "License plan definition file in CSV format; expected columns: Service ID, Display name, More info URL.",
+                "License plan definition file in CSV format; expected columns: Service ID, Display name, More info URL",
               isRequired: true,
               args: {
                 name: "string",
@@ -3364,12 +3401,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "check",
           description:
-            "Upload a Dataverse solution project to run against the Power Apps Checker service.",
+            "Upload a Dataverse solution project to run against the Power Apps Checker service",
           options: [
             {
               name: ["--path", "-p"],
               description:
-                "Path where one or more solution files to be checked exist. The path can contain glob/wildcard characters.",
+                "Path where one or more solution files to be checked exist. The path can contain glob/wildcard characters",
               args: {
                 name: "string",
               },
@@ -3391,7 +3428,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--geo", "-g"],
               description:
-                "Which geographical instance of the Power Apps Checker service to use.",
+                "Which geographical instance of the Power Apps Checker service to use",
               args: {
                 name: "string",
                 suggestions: powerAppsCheckerRegions,
@@ -3400,7 +3437,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--customEndpoint", "-ce"],
               description:
-                "Specify a custom URL as the Power Apps Checker endpoint.",
+                "Specify a custom URL as the Power Apps Checker endpoint",
               args: {
                 name: "string",
               },
@@ -3416,7 +3453,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--ruleSet", "-rs"],
               description:
-                "Select a rule set that is executed as part of this build. Values: A valid Guid, 'AppSource Certification', 'Solution Checker' (default).",
+                "Select a rule set that is executed as part of this build. Values: A valid Guid, 'AppSource Certification', 'Solution Checker' (default)",
               args: {
                 name: "string",
               },
@@ -3432,18 +3469,18 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--saveResults", "-sav"],
               description:
-                "Uses current environment to store solution analysis results that can be seen in Solution Health Hub App. By default, this argument is set to false.",
+                "Uses current environment to store solution analysis results that can be seen in Solution Health Hub App. By default, this argument is set to false",
             },
           ],
         },
         {
           name: "create-settings",
           description:
-            "Create a settings file from solution zip or solution folder.",
+            "Create a settings file from solution zip or solution folder",
           options: [
             {
               name: ["--solution-zip", "-z"],
-              description: "Path to solution zip file.",
+              description: "Path to solution zip file",
               args: {
                 name: "string",
               },
@@ -3451,7 +3488,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--solution-folder", "-f"],
               description:
-                "Path to the local, unpacked solution folder: either the root of the 'Other/Solution.xml' file or a folder with a .cdsproj file.",
+                "Path to the local, unpacked solution folder: either the root of the 'Other/Solution.xml' file or a folder with a .cdsproj file",
               args: {
                 name: "string",
               },
@@ -3459,7 +3496,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--settings-file", "-s"],
               description:
-                "The .json file with the deployment settings for connection references and environment variables.",
+                "The .json file with the deployment settings for connection references and environment variables",
               args: {
                 name: "string",
               },
@@ -3469,7 +3506,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "pack",
           description:
-            "Package solution components on local filesystem into solution.zip (SolutionPackager).",
+            "Package solution components on local filesystem into solution.zip (SolutionPackager)",
           options: [
             {
               name: ["--zipfile", "-z"],
@@ -3482,7 +3519,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--folder", "-f"],
               description:
-                "The path to the root folder on the local filesystem. When unpacking or extracting, this is written to. When packing this is read from.",
+                "The path to the root folder on the local filesystem. When unpacking or extracting, this is written to. When packing this is read from",
               args: {
                 name: "string",
               },
@@ -3490,7 +3527,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--packagetype", "-p"],
               description:
-                "When unpacking or extracting, use to specify dual Managed and Unmanaged operation. When packing, use to specify Managed or Unmanaged from a previous unpack 'Both'. Can be: 'Unmanaged', 'Managed' or 'Both'. The default value is 'Unmanaged'.",
+                "When unpacking or extracting, use to specify dual Managed and Unmanaged operation. When packing, use to specify Managed or Unmanaged from a previous unpack 'Both'. Can be: 'Unmanaged', 'Managed' or 'Both'. The default value is 'Unmanaged'",
               args: {
                 name: "string",
                 suggestions: solutionTypes,
@@ -3498,7 +3535,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--log", "-l"],
-              description: "The path to the log file.",
+              description: "The path to the log file",
               args: {
                 name: "string",
               },
@@ -3506,7 +3543,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--errorlevel", "-e"],
               description:
-                "Minimum logging level for log output [Verbose|Info|Warning|Error|Off]. The default value is 'Info'.",
+                "Minimum logging level for log output [Verbose|Info|Warning|Error|Off]. The default value is 'Info'",
               args: {
                 name: "string",
               },
@@ -3514,7 +3551,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--singleComponent", "-sc"],
               description:
-                "Only perform action on a single component type [WebResource|Plugin|Workflow|None]. The default value is 'None'.",
+                "Only perform action on a single component type [WebResource|Plugin|Workflow|None]. The default value is 'None'",
               args: {
                 name: "string",
               },
@@ -3522,22 +3559,22 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--allowDelete", "-ad"],
               description:
-                "Dictates if delete operations may occur. The default value is 'false'.",
+                "Dictates if delete operations may occur. The default value is 'false'",
             },
             {
               name: ["--allowWrite", "-aw"],
               description:
-                "Dictates if write operations may occur. The default value is 'false'.",
+                "Dictates if write operations may occur. The default value is 'false'",
             },
             {
               name: ["--clobber", "-c"],
               description:
-                "Enables that files marked read-only can be deleted or overwritten. The default value is 'false'.",
+                "Enables that files marked read-only can be deleted or overwritten. The default value is 'false'",
             },
             {
               name: ["--map", "-m"],
               description:
-                "The full path to a mapping xml file from which to read component folders to pack.",
+                "The full path to a mapping xml file from which to read component folders to pack",
               args: {
                 name: "string",
               },
@@ -3545,7 +3582,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--sourceLoc", "-src"],
               description:
-                "Generates a template resource file. Valid only on extract. Possible values are 'auto', or language code of the language you wish to export. You can use Language Code Identifier (LCID), or International Organization for Standardization (ISO) language code formats. When present, this extracts the string resources from the given locale as a neutral .resx. If 'auto' or just the long or short form of the switch is specified, the base locale for the solution is used.",
+                "Generates a template resource file. Valid only on extract. Possible values are 'auto', or language code of the language you wish to export. You can use Language Code Identifier (LCID), or International Organization for Standardization (ISO) language code formats. When present, this extracts the string resources from the given locale as a neutral .resx. If 'auto' or just the long or short form of the switch is specified, the base locale for the solution is used",
               args: {
                 name: "string",
               },
@@ -3553,34 +3590,34 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--localize", "-loc"],
               description:
-                "Extract or merge all string resources into .resx files.",
+                "Extract or merge all string resources into .resx files",
             },
             {
               name: ["--useLcid", "-lcid"],
               description:
-                "Use Language Code Identifier (LCID) values (1033) rather than International Organization for Standardization (ISO) codes (en-US) for language files.",
+                "Use Language Code Identifier (LCID) values (1033) rather than International Organization for Standardization (ISO) codes (en-US) for language files",
             },
             {
               name: ["--useUnmanagedFileForMissingManaged", "-same"],
               description:
-                "Use the same XML source file when packaging for Managed and only Unmanaged XML file is found; applies to AppModuleSiteMap, AppModuleMap, FormXml files.",
+                "Use the same XML source file when packaging for Managed and only Unmanaged XML file is found; applies to AppModuleSiteMap, AppModuleMap, FormXml files",
             },
             {
               name: ["--disablePluginRemap", "-dpm"],
               description:
-                "Disabled plug-in fully qualified type name remapping. The default value is 'false'.",
+                "Disabled plug-in fully qualified type name remapping. The default value is 'false'",
             },
             {
               name: ["--processCanvasApps", "-pca"],
               description:
-                "(Preview) Pack/unpack any Canvas apps (.msapp) while processing the solution. The default value is 'false'.",
+                "(Preview) Pack/unpack any Canvas apps (.msapp) while processing the solution. The default value is 'false'",
             },
           ],
         },
         {
           name: "unpack",
           description:
-            "Extract solution components from solution.zip onto local filesystem (SolutionPackager).",
+            "Extract solution components from solution.zip onto local filesystem (SolutionPackager)",
           options: [
             {
               name: ["--zipfile", "-z"],
@@ -3593,7 +3630,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--folder", "-f"],
               description:
-                "The path to the root folder on the local filesystem. When unpacking or extracting, this is written to. When packing this is read from.",
+                "The path to the root folder on the local filesystem. When unpacking or extracting, this is written to. When packing this is read from",
               args: {
                 name: "string",
               },
@@ -3601,7 +3638,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--packagetype", "-p"],
               description:
-                "When unpacking or extracting, use to specify dual Managed and Unmanaged operation. When packing, use to specify Managed or Unmanaged from a previous unpack 'Both'. Can be: 'Unmanaged', 'Managed' or 'Both'. The default value is 'Unmanaged'.",
+                "When unpacking or extracting, use to specify dual Managed and Unmanaged operation. When packing, use to specify Managed or Unmanaged from a previous unpack 'Both'. Can be: 'Unmanaged', 'Managed' or 'Both'. The default value is 'Unmanaged'",
               args: {
                 name: "string",
                 suggestions: solutionTypes,
@@ -3609,7 +3646,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--log", "-l"],
-              description: "The path to the log file.",
+              description: "The path to the log file",
               args: {
                 name: "string",
               },
@@ -3617,7 +3654,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--errorlevel", "-e"],
               description:
-                "Minimum logging level for log output [Verbose|Info|Warning|Error|Off]. The default value is 'Info'.",
+                "Minimum logging level for log output [Verbose|Info|Warning|Error|Off]. The default value is 'Info'",
               args: {
                 name: "string",
               },
@@ -3625,7 +3662,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--singleComponent", "-sc"],
               description:
-                "Only perform action on a single component type [WebResource|Plugin|Workflow|None]. The default value is 'None'.",
+                "Only perform action on a single component type [WebResource|Plugin|Workflow|None]. The default value is 'None'",
               args: {
                 name: "string",
               },
@@ -3633,22 +3670,22 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--allowDelete", "-ad"],
               description:
-                "Dictates if delete operations may occur. The default value is 'false'.",
+                "Dictates if delete operations may occur. The default value is 'false'",
             },
             {
               name: ["--allowWrite", "-aw"],
               description:
-                "Dictates if write operations may occur. The default value is 'false'.",
+                "Dictates if write operations may occur. The default value is 'false'",
             },
             {
               name: ["--clobber", "-c"],
               description:
-                "Enables that files marked read-only can be deleted or overwritten. The default value is 'false'.",
+                "Enables that files marked read-only can be deleted or overwritten. The default value is 'false'",
             },
             {
               name: ["--map", "-m"],
               description:
-                "The full path to a mapping xml file from which to read component folders to pack.",
+                "The full path to a mapping xml file from which to read component folders to pack",
               args: {
                 name: "string",
               },
@@ -3656,7 +3693,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--sourceLoc", "-src"],
               description:
-                "Generates a template resource file. Valid only on extract. Possible values are 'auto', or language code of the language you wish to export. You can use Language Code Identifier (LCID), or International Organization for Standardization (ISO) language code formats. When present, this extracts the string resources from the given locale as a neutral .resx. If 'auto' or just the long or short form of the switch is specified, the base locale for the solution is used.",
+                "Generates a template resource file. Valid only on extract. Possible values are 'auto', or language code of the language you wish to export. You can use Language Code Identifier (LCID), or International Organization for Standardization (ISO) language code formats. When present, this extracts the string resources from the given locale as a neutral .resx. If 'auto' or just the long or short form of the switch is specified, the base locale for the solution is used",
               args: {
                 name: "string",
               },
@@ -3664,38 +3701,38 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--localize", "-loc"],
               description:
-                "Extract or merge all string resources into .resx files.",
+                "Extract or merge all string resources into .resx files",
             },
             {
               name: ["--useLcid", "-lcid"],
               description:
-                "Use Language Code Identifier (LCID) values (1033) rather than International Organization for Standardization (ISO) codes (en-US) for language files.",
+                "Use Language Code Identifier (LCID) values (1033) rather than International Organization for Standardization (ISO) codes (en-US) for language files",
             },
             {
               name: ["--useUnmanagedFileForMissingManaged", "-same"],
               description:
-                "Use the same XML source file when packaging for Managed and only Unmanaged XML file is found; applies to AppModuleSiteMap, AppModuleMap, FormXml files.",
+                "Use the same XML source file when packaging for Managed and only Unmanaged XML file is found; applies to AppModuleSiteMap, AppModuleMap, FormXml files",
             },
             {
               name: ["--disablePluginRemap", "-dpm"],
               description:
-                "Disabled plug-in fully qualified type name remapping. The default value is 'false'.",
+                "Disabled plug-in fully qualified type name remapping. The default value is 'false'",
             },
             {
               name: ["--processCanvasApps", "-pca"],
               description:
-                "(Preview) Pack/unpack any Canvas apps (.msapp) while processing the solution. The default value is 'false'.",
+                "(Preview) Pack/unpack any Canvas apps (.msapp) while processing the solution. The default value is 'false'",
             },
           ],
         },
         {
           name: "add-solution-component",
           description:
-            "Add one or more solution components to the target unmanaged solution in Dataverse.",
+            "Add one or more solution components to the target unmanaged solution in Dataverse",
           options: [
             {
               name: ["--solutionUniqueName", "-sn"],
-              description: "Name of the solution.",
+              description: "Name of the solution",
               isRequired: true,
               args: {
                 name: "string",
@@ -3704,7 +3741,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--component", "-c"],
               description:
-                "The schema name or ID of the component to add to the target solution.",
+                "The schema name or ID of the component to add to the target solution",
               isRequired: true,
               args: {
                 name: "string",
@@ -3713,7 +3750,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--componentType", "-ct"],
               description:
-                "The value that represents the solution component that you're adding.",
+                "The value that represents the solution component that you're adding",
               isRequired: true,
               args: {
                 name: "string",
@@ -3722,11 +3759,11 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--AddRequiredComponents", "-arc"],
               description:
-                "Indicates whether other solution components required by the solution component that you're adding should also be added to the unmanaged solution.",
+                "Indicates whether other solution components required by the solution component that you're adding should also be added to the unmanaged solution",
             },
             {
               name: ["--environment", "-env"],
-              description: "Environment URL or ID of the target environment.",
+              description: "Environment URL or ID of the target environment",
               args: {
                 name: "string",
               },
@@ -3736,12 +3773,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "sync",
           description:
-            "Sync the current Dataverse solution project to the current state of the solution in your organization.",
+            "Sync the current Dataverse solution project to the current state of the solution in your organization",
           options: [
             {
               name: ["--solution-folder", "-f"],
               description:
-                "Path to the local, unpacked solution folder: either the root of the 'Other/Solution.xml' file or a folder with a .cdsproj file.",
+                "Path to the local, unpacked solution folder: either the root of the 'Other/Solution.xml' file or a folder with a .cdsproj file",
               args: {
                 name: "string",
               },
@@ -3749,19 +3786,19 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--include", "-i"],
               description:
-                "Which settings should be included in the solution being exported.",
+                "Which settings should be included in the solution being exported",
               args: {
                 name: "string",
               },
             },
             {
               name: ["--async", "-a"],
-              description: "Exports the solution asynchronously.",
+              description: "Exports the solution asynchronously",
             },
             {
               name: ["--max-async-wait-time", "-wt"],
               description:
-                "Max asynchronous wait time in minutes. The default value is 60 minutes.",
+                "Max asynchronous wait time in minutes. The default value is 60 minutes",
               args: {
                 name: "string",
               },
@@ -3769,12 +3806,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--processCanvasApps", "-pca"],
               description:
-                "(Preview) Pack/unpack any Canvas apps (.msapp) while processing the solution. The default value is 'false'.",
+                "(Preview) Pack/unpack any Canvas apps (.msapp) while processing the solution. The default value is 'false'",
             },
             {
               name: ["--packagetype", "-p"],
               description:
-                "When unpacking or extracting, use to specify dual Managed and Unmanaged operation. When packing, use to specify Managed or Unmanaged from a previous unpack 'Both'. Can be: 'Unmanaged', 'Managed' or 'Both'. The default value is: 'Both'.",
+                "When unpacking or extracting, use to specify dual Managed and Unmanaged operation. When packing, use to specify Managed or Unmanaged from a previous unpack 'Both'. Can be: 'Unmanaged', 'Managed' or 'Both'. The default value is: 'Both'",
               args: {
                 name: "string",
                 suggestions: solutionTypes,
@@ -3783,7 +3820,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--localize", "-loc"],
               description:
-                "Extract or merge all string resources into .resx files.",
+                "Extract or merge all string resources into .resx files",
             },
           ],
         },
@@ -3791,7 +3828,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "telemetry",
-      description: "Manage telemetry settings.",
+      description: "Manage telemetry settings",
       subcommands: [
         {
           name: "enable",
@@ -3805,7 +3842,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "status",
-          description: "Show the current status of telemetry.",
+          description: "Show the current status of telemetry",
         },
       ],
     },
@@ -3827,7 +3864,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--environment-id", "-env"],
-              description: "Environment ID for the app to be tested.",
+              description: "Environment ID for the app to be tested",
               isRequired: true,
               args: {
                 name: "string",
@@ -3861,31 +3898,31 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "tool",
-      description: "Power Platform tools that can be installed and launched.",
+      description: "Power Platform tools that can be installed and launched",
       subcommands: [
         {
           name: "list",
           description:
-            "List the launchable tools and their local install state and version.",
+            "List the launchable tools and their local install state and version",
         },
         {
           name: "admin",
           description:
-            "Launch Power Platform Admin Center for the current environment.",
+            "Launch Power Platform Admin Center for the current environment",
         },
         {
           name: "maker",
           description:
-            "Launch Power Apps Maker Portal for the current environment.",
+            "Launch Power Apps Maker Portal for the current environment",
         },
         {
           name: "prt",
-          description: "Launch Plug-in Registration Tool (PRT).",
+          description: "Launch Plug-in Registration Tool (PRT)",
           options: [
             {
               name: ["--update", "-u"],
               description:
-                "Update tool to latest available version from nuget.org.",
+                "Update tool to latest available version from nuget.org",
             },
             {
               name: ["--clear", "-c"],
@@ -3895,12 +3932,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "cmt",
-          description: "Launch Configuration Migration Tool (CMT).",
+          description: "Launch Configuration Migration Tool (CMT)",
           options: [
             {
               name: ["--update", "-u"],
               description:
-                "Update tool to latest available version from nuget.org.",
+                "Update tool to latest available version from nuget.org",
             },
             {
               name: ["--clear", "-c"],
@@ -3910,12 +3947,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "pd",
-          description: "Launch Package Deployer (PD).",
+          description: "Launch Package Deployer (PD)",
           options: [
             {
               name: ["--update", "-u"],
               description:
-                "Update tool to latest available version from nuget.org.",
+                "Update tool to latest available version from nuget.org",
             },
             {
               name: ["--clear", "-c"],
@@ -3932,12 +3969,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description:
-            "List of Virtual Agents in the current or target Dataverse environment.",
+            "List of Virtual Agents in the current or target Dataverse environment",
           options: [
             {
               name: ["--environment", "-env"],
               description:
-                "The target Environment ID or URL. The default value is the environment of your currently active Dataverse Auth Profile.",
+                "The target Environment ID or URL. The default value is the environment of your currently active Dataverse Auth Profile",
               args: {
                 name: "string",
               },
@@ -3947,19 +3984,19 @@ const completionSpec: Fig.Spec = {
         {
           name: "status",
           description:
-            "Poll the deployment status of a specified Virtual Agent in the current or target Dataverse environment.",
+            "Poll the deployment status of a specified Virtual Agent in the current or target Dataverse environment",
           options: [
             {
               name: ["--environment", "-env"],
               description:
-                "The target Environment ID or URL. The default value is the environment of your currently active Dataverse Auth Profile.",
+                "The target Environment ID or URL. The default value is the environment of your currently active Dataverse Auth Profile",
               args: {
                 name: "string",
               },
             },
             {
               name: ["--bot-id", "-id"],
-              description: "The ID of a Virtual Agent (Chatbot).",
+              description: "The ID of a Virtual Agent (Chatbot)",
               isRequired: true,
               args: {
                 name: "string",
@@ -3970,12 +4007,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "extract-translation",
           description:
-            "Extracts file containing localized content for one or more bots.",
+            "Extracts file containing localized content for one or more bots",
           options: [
             {
               name: ["--environment", "-env"],
               description:
-                "The target Environment ID or URL. The default value is the environment of your currently active Dataverse Auth Profile.",
+                "The target Environment ID or URL. The default value is the environment of your currently active Dataverse Auth Profile",
               args: {
                 name: "string",
               },
@@ -3983,7 +4020,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--sourcedir", "-src"],
               description:
-                "Source solution directory. When specified, will ignore the connected environment when looking for bots and instead look for content in the solution folder.",
+                "Source solution directory. When specified, will ignore the connected environment when looking for bots and instead look for content in the solution folder",
               args: {
                 name: "string",
               },
@@ -3991,22 +4028,22 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--bot", "-id"],
               description:
-                "The Chatbot ID or schema name (unique name found in Bot Details or file name in solution explorer).",
+                "The Chatbot ID or schema name (unique name found in Bot Details or file name in solution explorer)",
               args: {
                 name: "string",
               },
             },
             {
-              name: ["--outdir"],
-              description: "The output directory to write to.",
+              name: "--outdir",
+              description: "The output directory to write to",
               args: {
                 name: "string",
               },
             },
             {
-              name: ["--format"],
+              name: "--format",
               description:
-                "The file format in which to write localized files, either 'resx' or 'json'. The default is 'resx'.",
+                "The file format in which to write localized files, either 'resx' or 'json'. The default is 'resx'",
               args: {
                 name: "string",
               },
@@ -4014,24 +4051,24 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--all", "-a"],
               description:
-                "Write localization files for all supported languages. By default, only the primary language is written.",
+                "Write localization files for all supported languages. By default, only the primary language is written",
             },
             {
               name: ["--overwrite", "-o"],
               description:
-                "Allow overwrite of the output data file if it already exists.",
+                "Allow overwrite of the output data file if it already exists",
             },
           ],
         },
         {
           name: "merge-translation",
           description:
-            "Merge files containing localized content for one or more bots.",
+            "Merge files containing localized content for one or more bots",
           options: [
             {
               name: ["--environment", "-env"],
               description:
-                "The target Environment ID or URL. The default value is the environment of your currently active Dataverse Auth Profile.",
+                "The target Environment ID or URL. The default value is the environment of your currently active Dataverse Auth Profile",
               args: {
                 name: "string",
               },
@@ -4039,7 +4076,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--sourcedir", "-src"],
               description:
-                "Source solution directory. When specified, will ignore the connected environment when looking for bots and instead look for content in the solution folder.",
+                "Source solution directory. When specified, will ignore the connected environment when looking for bots and instead look for content in the solution folder",
               args: {
                 name: "string",
               },
@@ -4047,24 +4084,24 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--file", "-f"],
               description:
-                "The list of files that contain translations. Glob patterns are supported.",
+                "The list of files that contain translations. Glob patterns are supported",
               args: {
                 name: "string",
               },
             },
             {
-              name: ["--whatif"],
+              name: "--whatif",
               description:
-                "Does not execute the command, but outputs the details of what would happen.",
+                "Does not execute the command, but outputs the details of what would happen",
             },
             {
-              name: ["--verbose"],
+              name: "--verbose",
               description:
                 "Output more diagnostic information during data import/export",
             },
             {
               name: ["--solution", "-s"],
-              description: "Name of the solution.",
+              description: "Name of the solution",
               args: {
                 name: "string",
               },
@@ -4074,12 +4111,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "extract-template",
           description:
-            "Extracts a template file from an existing bot in an environment.",
+            "Extracts a template file from an existing bot in an environment",
           options: [
             {
               name: ["--environment", "-env"],
               description:
-                "The target Environment ID or URL. The default value is the environment of your currently active Dataverse Auth Profile.",
+                "The target Environment ID or URL. The default value is the environment of your currently active Dataverse Auth Profile",
               args: {
                 name: "string",
               },
@@ -4087,16 +4124,16 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--bot", "-id"],
               description:
-                "The Chatbot ID or schema name (unique name found in Bot Details or file name in solution explorer).",
+                "The Chatbot ID or schema name (unique name found in Bot Details or file name in solution explorer)",
               isRequired: true,
               args: {
                 name: "string",
               },
             },
             {
-              name: ["--templateFileName"],
+              name: "--templateFileName",
               description:
-                "Location of the yaml file to write the bot template to.",
+                "Location of the yaml file to write the bot template to",
               isRequired: true,
               args: {
                 name: "string",
@@ -4105,42 +4142,42 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--overwrite", "-o"],
               description:
-                "Allow overwrite of the output data file if it already exists.",
+                "Allow overwrite of the output data file if it already exists",
             },
           ],
         },
         {
           name: "create",
           description:
-            "Creates a new bot using an existing template file as the reference.",
+            "Creates a new bot using an existing template file as the reference",
           options: [
             {
               name: ["--environment", "-env"],
               description:
-                "The target Environment ID or URL. The default value is the environment of your currently active Dataverse Auth Profile.",
+                "The target Environment ID or URL. The default value is the environment of your currently active Dataverse Auth Profile",
               args: {
                 name: "string",
               },
             },
             {
-              name: ["--schemaName"],
-              description: "The schema name (unique name) of the new bot.",
+              name: "--schemaName",
+              description: "The schema name (unique name) of the new bot",
               isRequired: true,
               args: {
                 name: "string",
               },
             },
             {
-              name: ["--templateFileName"],
+              name: "--templateFileName",
               description:
-                "Source yaml file containing the bot template that was extracted using the extract-template command.",
+                "Source yaml file containing the bot template that was extracted using the extract-template command",
               isRequired: true,
               args: {
                 name: "string",
               },
             },
             {
-              name: ["--displayName"],
+              name: "--displayName",
               description: "The display name of the new bot",
               isRequired: true,
               args: {
@@ -4149,7 +4186,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--solution", "-s"],
-              description: "Name of the solution.",
+              description: "Name of the solution",
               isRequired: true,
               args: {
                 name: "string",
@@ -4160,7 +4197,7 @@ const completionSpec: Fig.Spec = {
       ],
     },
   ],
-  options: [],
+
   // Only uncomment if pac takes an argument
   // args: {}
 };
