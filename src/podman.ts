@@ -72,7 +72,7 @@ const dockerGenerators: Record<string, Fig.Generator> = {
   },
   dockerHubSearch: {
     script: function (context) {
-      if (context[context.length - 1] === "") return "";
+      if (context[context.length - 1] === "") return undefined;
       const searchTerm = context[context.length - 1];
       return ["podman", "search", searchTerm, "--format", "{{ json . }}"];
     },
@@ -279,10 +279,10 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
                 fileFlagIndex = context.indexOf("--file");
                 dockerfilePath = context[fileFlagIndex + 1];
               } else {
-                dockerfilePath = "$PWD/Dockerfile";
+                dockerfilePath = "Dockerfile";
               }
 
-              return `\\grep -iE 'FROM.*AS' "${dockerfilePath}"`;
+              return ["grep", "-iE", "FROM.*AS", dockerfilePath];
             },
             postProcess: function (out) {
               // This just searches the Dockerfile for the alias name after AS,
