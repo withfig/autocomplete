@@ -45,7 +45,7 @@ const dockerGenerators: Record<string, Fig.Generator> = {
     postProcess: postProcessDockerPs,
   },
   allLocalImages: {
-		script: ["podman", "image", "ls", "--format", "{{ json . }}"],
+    script: ["podman", "image", "ls", "--format", "{{ json . }}"],
     postProcess: function (out) {
       return out
         .split("\n")
@@ -74,7 +74,7 @@ const dockerGenerators: Record<string, Fig.Generator> = {
     script: function (context) {
       if (context[context.length - 1] === "") return "";
       const searchTerm = context[context.length - 1];
-			return ["podman", "search", searchTerm, "--format", "{{ json . }}"];
+      return ["podman", "search", searchTerm, "--format", "{{ json . }}"];
     },
     postProcess: function (out) {
       return out
@@ -90,11 +90,11 @@ const dockerGenerators: Record<string, Fig.Generator> = {
     },
   },
   listDockerNetworks: {
-		script: ["podman", "network", "list", "--format", "{{ json . }}"],
+    script: ["podman", "network", "list", "--format", "{{ json . }}"],
     postProcess: sharedPostProcess,
   },
   listDockerSecrets: {
-		script: ["podman", "secret", "list", "--format", "{{ json . }}"],
+    script: ["podman", "secret", "list", "--format", "{{ json . }}"],
     postProcess: sharedPostProcess,
   },
   listDockerVolumes: {
