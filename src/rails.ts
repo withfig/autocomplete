@@ -423,8 +423,6 @@ const environmentOption: Fig.Option = {
           command: "ls",
         });
 
-        console.log(envs);
-
         return envs.stdout
           .split("\n")
           .map((env) => env.slice(0, env.indexOf(".rb")))
@@ -741,7 +739,6 @@ const completionSpec: Fig.Spec = {
   description: "Ruby on Rails CLI",
   icon: "https://avatars.githubusercontent.com/u/4223?s=48&v=4",
   generateSpec: async (_, executeShellCommand) => {
-    console.log("here");
     const [found, _path] = await getRailsRoot(executeShellCommand);
     if (!found) {
       return {
