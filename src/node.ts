@@ -19,6 +19,25 @@ const completionSpec: Fig.Subcommand = {
       args: {},
     },
     {
+      name: "--watch",
+      description: "Watch input files",
+    },
+    {
+      name: "--watch-path",
+      description: "Specify a watch directory or file",
+      args: {
+        name: "path",
+        template: "filepaths",
+      },
+      isRepeatable: true,
+    },
+    {
+      name: "--watch-preserve-output",
+      description:
+        "Disable the clearing of the console when watch mode restarts the process",
+      dependsOn: ["--watch", "--watch-path"],
+    },
+    {
       name: ["-p", "--print"],
       description: "Evaluate script and print result",
     },
