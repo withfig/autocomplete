@@ -194,7 +194,7 @@ const completionSpec: Fig.Spec = {
       args: {
         isCommand: true,
         generators: {
-          script: "bundle list --name-only",
+          script: ["bundle", "list", "--name-only"],
           cache: {
             cacheByDirectory: true,
             strategy: "stale-while-revalidate",
