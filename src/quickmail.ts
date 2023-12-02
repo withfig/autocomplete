@@ -1,5 +1,5 @@
 const bodyTempalates: Fig.Generator = {
-  script: "quickmail template listall",
+  script: ["quickmail", "template", "listall"],
   postProcess: (output) => {
     const items = output.split("\n");
     return items.map((item) => {

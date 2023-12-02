@@ -234,9 +234,7 @@ const buildPrioritiesSuggestions = () => {
 
 // build the filter list with tasks
 const filtersWithTasks: Fig.Generator = {
-  script: function () {
-    return `task export`;
-  },
+  script: ["task", "export"],
   postProcess: (output) => {
     const tasks = JSON.parse(output);
     const filters = [
@@ -253,9 +251,7 @@ const filtersWithTasks: Fig.Generator = {
 
 // build tasks list
 const listTasks: Fig.Generator = {
-  script: function (context) {
-    return `task export`;
-  },
+  script: ["task", "export"],
   postProcess: (output) => {
     const tasks = JSON.parse(output);
     return buildTaskSuggestions(tasks);
@@ -264,9 +260,7 @@ const listTasks: Fig.Generator = {
 
 // build filter suggestions
 const filters: Fig.Generator = {
-  script: function (context) {
-    return `task export`;
-  },
+  script: ["task", "export"],
   postProcess: (output) => {
     const tasks = JSON.parse(output);
     const filters = [
@@ -282,9 +276,7 @@ const filters: Fig.Generator = {
 
 // build modifications suggestions
 const modifications: Fig.Generator = {
-  script: function (context) {
-    return `task export`;
-  },
+  script: ["task", "export"],
   postProcess: (output) => {
     const tasks = JSON.parse(output);
     const filters = [

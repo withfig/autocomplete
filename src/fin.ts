@@ -1,5 +1,5 @@
 const databases: Fig.Generator = {
-  script: "fin db list",
+  script: ["fin", "db", "list"],
   postProcess: (output) => {
     return output.split("\n").map((db) => {
       return { name: db.trim(), description: "Database" };
@@ -8,7 +8,7 @@ const databases: Fig.Generator = {
 };
 
 const hosts: Fig.Generator = {
-  script: "fin hosts",
+  script: ["fin", "hosts"],
   postProcess: (output) => {
     return output.split("\n").map((host) => {
       if (host.startsWith("#")) {
@@ -20,7 +20,7 @@ const hosts: Fig.Generator = {
 };
 
 const aliasGenerator: Fig.Generator = {
-  script: "fin alias list",
+  script: ["fin", "alias", "list"],
   postProcess: (output) => {
     return output
       .split("\n")
@@ -32,7 +32,7 @@ const aliasGenerator: Fig.Generator = {
 };
 
 const serviceGenerator: Fig.Generator = {
-  script: "\\command fin docker ps --format '{{.Names}}'",
+  script: ["fin", "docker", "ps", "--format", "{{.Names}}"],
   splitOn: "\n",
 };
 
@@ -373,8 +373,11 @@ const completionSpec: Fig.Spec = {
             name: "key-name",
             isOptional: true,
             generators: {
-              script:
+              script: [
+                "bash",
+                "-c",
                 "\\command ls $HOME/.ssh | \\command grep --color=never -v 'pub'",
+              ],
               splitOn: "\n",
             },
           },
@@ -943,9 +946,10 @@ const completionSpec: Fig.Spec = {
   // Adding dynamic subcommands
   generateSpec: async (tokens, executeShellCommand) => {
     var new_subcommands = [];
-    const available_commands = await executeShellCommand(
-      "ls -1 ~/.docksal/commands/"
-    );
+    const { stdout: available_commands } = await executeShellCommand({
+      command: "bash",
+      args: ["-c", "ls -1 ~/.docksal/commands/"],
+    });
     for (const command of available_commands.split("\n")) {
       if (command) {
         new_subcommands.push({

@@ -1,6 +1,6 @@
 // https://github.com/psf/black
 const blackVersions: Fig.Generator = {
-  script: "gh release list --repo psf/black",
+  script: ["gh", "release", "list", "--repo", "psf/black"],
   cache: {
     ttl: 1000 * 60 * 60 * 24 * 2, // 2 days
   },

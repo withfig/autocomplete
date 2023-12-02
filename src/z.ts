@@ -6,10 +6,13 @@ interface ZSuggestion {
 }
 
 async function getZHistory(
-  execute: Fig.ExecuteShellCommandFunction
+  execute: Fig.ExecuteCommandFunction
 ): Promise<ZSuggestion[]> {
-  const out = await execute("cat ${${ZSHZ_DATA:-${_Z_DATA:-${HOME}/.z}}:A}");
-  return out.split("\n").map((line) => {
+  const { stdout } = await execute({
+    command: "zsh",
+    args: ["-c", "cat ${${ZSHZ_DATA:-${_Z_DATA:-${HOME}/.z}}:A}"],
+  });
+  return stdout.split("\n").map((line) => {
     const [path, weight, time] = line.split("|");
     const splitPath = path.split("/");
     const name = splitPath[splitPath.length - 1];
@@ -27,10 +30,13 @@ async function getZHistory(
 
 async function getCurrentDirectoryFolders(
   currentWorkingDirectory: string,
-  execute: Fig.ExecuteShellCommandFunction
+  execute: Fig.ExecuteCommandFunction
 ): Promise<ZSuggestion[]> {
-  const out = await execute("ls -d */");
-  return out.split("\n").map((line) => {
+  const { stdout } = await execute({
+    command: "bash",
+    args: ["-c", "ls -d */"],
+  });
+  return stdout.split("\n").map((line) => {
     const name = line.replace("/", "");
     return {
       name,
@@ -122,20 +128,25 @@ const zoxideCompletionSpec: Fig.Spec = {
     isVariadic: true,
     generators: {
       custom: async (tokens, executeShellCommand) => {
-        console.log(tokens);
-        let command;
+        let args;
         if (tokens.length < 2 || tokens[1] === "") {
-          command = "zoxide query --list --score";
+          args = ["query", "--list", "--score"];
         } else {
-          command = `zoxide query --list --score -- ${tokens
-            .slice(1)
-            .join(" ")}`;
+          args = [
+            "query",
+            "--list",
+            "--score",
+            "--",
+            tokens.slice(1).join(" "),
+          ];
         }
 
-        console.log(command);
-        const out = await executeShellCommand(command);
+        const { stdout } = await executeShellCommand({
+          command: "zoxide",
+          args,
+        });
 
-        return out.split("\n").map((line) => {
+        return stdout.split("\n").map((line) => {
           const trimmedLine = line.trim();
           const spaceIndex = trimmedLine.indexOf(" ");
           const score = Number(trimmedLine.slice(0, spaceIndex));
@@ -158,8 +169,11 @@ const zCompletionSpec: Fig.Spec = {
   generateSpec: async (_, executeShellCommand) => {
     // Assume if zoxide is installed, use that completion spec
     try {
-      const zoxideInstalled = await executeShellCommand("command -v zoxide");
-      if (zoxideInstalled.length > 0) {
+      const { status } = await executeShellCommand({
+        command: "bash",
+        args: ["-c", "command -v zoxide"],
+      });
+      if (status === 0) {
         return zoxideCompletionSpec;
       }
     } catch (_) {}

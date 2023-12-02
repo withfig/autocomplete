@@ -1,5 +1,5 @@
 const getCipherAlgorithms: Fig.Generator = {
-  script: "gpg --version",
+  script: ["gpg", "--version"],
   postProcess: (out, context) => {
     // Get the substring 2of cyphers, remove whitespace and split by commas
     let cyphers = out.substring(
@@ -15,7 +15,7 @@ const getCipherAlgorithms: Fig.Generator = {
 };
 
 const getDigestAlgorithms: Fig.Generator = {
-  script: "gpg --version",
+  script: ["gpg", "--version"],
   postProcess: (out, context) => {
     // Get the substring of digests, remove whitespace and split by commas
     let digests = out.substring(

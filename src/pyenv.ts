@@ -1,5 +1,5 @@
 const versionList: Fig.Generator = {
-  script: "pyenv install -l",
+  script: ["pyenv", "install", "-l"],
   postProcess: function (out) {
     return out
       .trim()
@@ -10,7 +10,7 @@ const versionList: Fig.Generator = {
 };
 
 const globalList: Fig.Generator = {
-  script: "pyenv versions",
+  script: ["pyenv", "versions"],
   postProcess: function (out) {
     return out
       .trim()

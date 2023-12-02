@@ -161,7 +161,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "command",
         generators: {
-          script: "valet list --raw",
+          script: ["valet", "list", "--raw"],
           postProcess: function (out) {
             return out.split("\n").map((command) => {
               const name = command.split(" ")[0];

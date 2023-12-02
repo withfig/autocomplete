@@ -8,8 +8,11 @@ interface IRushConfigurationJson {
   projects: IRushConfigurationProjectJson[];
 }
 const projectGenerator: Fig.Generator = {
-  script:
+  script: [
+    "bash",
+    "-c",
     "until [[ -f rush.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat rush.json",
+  ],
   postProcess: function (out: string) {
     const suggestions = [];
 

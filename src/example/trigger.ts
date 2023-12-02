@@ -7,13 +7,13 @@
 // NOTE: replace _prefix_string_for_file_and_folder_suggestions with whatever prefix you'd like e.g. "s3://"
 const _prefix_string_for_file_and_folder_suggestions = "file://";
 
-var customArgument = {
+var customArgument: Fig.Arg = {
   name: "FILE/FOLDER",
   description:
     "must start with " + _prefix_string_for_file_and_folder_suggestions,
   generators: {
     script: (tokens) => {
-      var baseLSCommand = "\\ls -1ApL ";
+      var baseLsCommand = ["ls", "-1ApL"];
       var whatHasUserTyped = tokens[tokens.length - 1];
 
       if (
@@ -23,7 +23,7 @@ var customArgument = {
       ) {
         whatHasUserTyped = whatHasUserTyped.slice(7);
       } else {
-        return "echo 'file://'";
+        return ["echo", "file://"];
       }
 
       // Get the folder path to run ls from based on what user has typed
@@ -45,7 +45,7 @@ var customArgument = {
         else folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
       }
 
-      return baseLSCommand + folderPath;
+      return [...baseLsCommand, folderPath];
     },
     postProcess: (out) => {
       if (out.trim() === _prefix_string_for_file_and_folder_suggestions) {

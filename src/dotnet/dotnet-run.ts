@@ -58,7 +58,7 @@ const completionSpec: Fig.Spec = {
         name: "name",
         suggestions: ["Development", "Staging", "Production"],
         generators: {
-          script: "cat Properties/launchSettings.json",
+          script: ["cat", "Properties/launchSettings.json"],
           postProcess(out) {
             const profiles: LaunchProfiles = JSON.parse(out).profiles;
 
