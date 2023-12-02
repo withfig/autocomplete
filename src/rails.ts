@@ -13,7 +13,7 @@ const RB_ICON =
  * @returns [false, "NOT_FOUND"] if file is not found
  */
 const checkDir = async (
-  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  executeShellCommand: Fig.ExecuteCommandFunction,
   file: string,
   contains?: string
 ) => {
@@ -21,8 +21,11 @@ const checkDir = async (
     return `cat ${file} | grep "${check}" > /dev/null && pwd || echo '_NOT_CONTAINS_'`;
   };
 
-  const output =
-    await executeShellCommand(`until [[ -f ${file} ]] || [[ $PWD = '/' ]]; do
+  const output = await executeShellCommand({
+    command: "bash",
+    args: [
+      "-c",
+      `until [[ -f ${file} ]] || [[ $PWD = '/' ]]; do
   cd ..;
 done;
 
@@ -30,19 +33,23 @@ if [ -f ${file} ]; then
   ${contains ? checkFileContains(contains) : "pwd"}
 else
   echo '_NOT_FOUND_'
-fi`);
+fi`,
+    ],
+  });
 
-  switch (output) {
+  if (output.status === 1) return [false, "ERROR"] as const;
+
+  switch (output.stdout) {
     case "_NOT_CONTAINS_":
       return [false, "NOT_CONTAINS"] as const;
     case "_NOT_FOUND_":
       return [false, "NOT_FOUND"] as const;
     default:
-      return [true, output];
+      return [true, output.stdout.trim()] as const;
   }
 };
 
-const getRailsRoot = (executeShellCommand: Fig.ExecuteShellCommandFunction) => {
+const getRailsRoot = (executeShellCommand: Fig.ExecuteCommandFunction) => {
   return checkDir(executeShellCommand, "Gemfile", `gem [\'\\"]rails[\'\\"]`);
 };
 
@@ -409,7 +416,16 @@ const environmentOption: Fig.Option = {
         const [found, path] = await getRailsRoot(executeShellCommand);
         if (!found) return [];
 
-        return (await executeShellCommand(`ls ${path}/config/environments`))
+        const envs = await executeShellCommand({
+          // TODO: fix this
+          // eslint-disable-next-line
+          args: [`${path}/config/environments`],
+          command: "ls",
+        });
+
+        console.log(envs);
+
+        return envs.stdout
           .split("\n")
           .map((env) => env.slice(0, env.indexOf(".rb")))
           .map((env) => ({ name: env }));
