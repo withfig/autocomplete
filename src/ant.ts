@@ -1,5 +1,5 @@
 const tasksGenerator: Fig.Generator = {
-  script: "command ant -p | grep -i '^\\s' | tr -d ' '",
+  script: ["bash", "-c", "command ant -p | grep -i '^\\s' | tr -d ' '"],
   postProcess: (out) =>
     out.split("\n").map((task) => ({
       name: task,

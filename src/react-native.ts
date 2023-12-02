@@ -14,7 +14,7 @@ const getJsFilesAndFolders = filepaths({
 });
 
 const workerGenerator = {
-  script: "sysctl -n hw.ncpu",
+  script: ["sysctl", "-n", "hw.ncpu"],
   postProcess: (scriptOutput: string) => {
     return Array.from({ length: Number(scriptOutput) }, (_x, i) => ({
       name: `${i}`,
@@ -22,7 +22,7 @@ const workerGenerator = {
   },
 };
 const xcodeConfigGenerator = {
-  script: "xcodebuild -project ios/*.xcodeproj  -list -json",
+  script: ["bash", "-c", "xcodebuild -project ios/*.xcodeproj  -list -json"],
   postProcess: (scriptOutput: string) => {
     const configurations = JSON.parse(scriptOutput).project.configurations;
 
@@ -31,7 +31,7 @@ const xcodeConfigGenerator = {
 };
 
 const xcodeSchemeGenerator = {
-  script: "xcodebuild -project ios/*.xcodeproj  -list -json",
+  script: ["bash", "-c", "xcodebuild -project ios/*.xcodeproj  -list -json"],
   postProcess: (scriptOutput: string) => {
     const configurations = JSON.parse(scriptOutput).project.schemes;
 
@@ -40,7 +40,7 @@ const xcodeSchemeGenerator = {
 };
 
 const androidGetDevicesGenerator = {
-  script: "adb devices",
+  script: ["adb", "devices"],
   postProcess: (scriptOutput: string) => {
     const devices = scriptOutput
       .split("\n")
@@ -58,7 +58,7 @@ const androidGetDevicesGenerator = {
 type IosRecordType = { name: string };
 
 const iosGetDevicesSimulatorGenerator = {
-  script: "xcrun simctl list --json devices available",
+  script: ["xcrun", "simctl", "list", "--json", "devices", "available"],
   postProcess: (scriptOutput: string) => {
     const devices = JSON.parse(scriptOutput).devices;
 
@@ -76,7 +76,7 @@ const iosGetDevicesSimulatorGenerator = {
 };
 
 const iosGetDevicesGenerator = {
-  script: "xcrun xctrace list devices",
+  script: ["xcrun", "xctrace", "list", "devices"],
   postProcess: (scriptOutput: string) => {
     const devices = scriptOutput
       .split("\n")
@@ -90,7 +90,7 @@ const iosGetDevicesGenerator = {
 };
 
 const iosGetDevicesUdidGenerator = {
-  script: "xcrun xctrace list devices",
+  script: ["xcrun", "xctrace", "list", "devices"],
   postProcess: (scriptOutput: string) => {
     const devices = scriptOutput
       .split("\n")
@@ -106,8 +106,8 @@ const iosGetDevicesUdidGenerator = {
   },
 };
 
-const gradleTasksGenerator = {
-  script: "cd android/ && ./gradlew tasks",
+const gradleTasksGenerator: Fig.Generator = {
+  script: ["bash", "-c", "cd android/ && ./gradlew tasks"],
   postProcess: (scriptOutput: string) => {
     const tasks = scriptOutput
       .split("\n")

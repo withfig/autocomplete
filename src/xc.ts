@@ -30,8 +30,12 @@ const completionSpec: Fig.Spec = {
         description: 'Specify the heading for xc tasks (default: "Tasks")',
       },
     ];
-    const out = await executeShellCommand("xc");
-    const subcommands: Fig.Subcommand[] = out
+    const { stdout } = await executeShellCommand({
+      command: "xc",
+      // eslint-disable-next-line @withfig/fig-linter/no-empty-array-values
+      args: [],
+    });
+    const subcommands: Fig.Subcommand[] = stdout
       .trim()
       .split("\n")
       .map((line) =>

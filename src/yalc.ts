@@ -1,6 +1,10 @@
 const generatePackages: Fig.Generator = {
   // TODO: use the same as for npm and yarn package.json reverse lookup
-  script: "command find ~/.yalc/packages -maxdepth 4 -iname 'package.json'",
+  script: [
+    "bash",
+    "-c",
+    "command find ~/.yalc/packages -maxdepth 4 -iname 'package.json'",
+  ],
   postProcess: (out) =>
     out
       .split("\n")
@@ -21,7 +25,7 @@ const generatePackages: Fig.Generator = {
 };
 
 const getRemovablePackages: Fig.Generator = {
-  script: "command ls .yalc",
+  script: ["ls", ".yalc"],
   postProcess: (out) =>
     out.split("\n").map((path) => ({
       name: path,

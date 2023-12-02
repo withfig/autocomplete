@@ -1,6 +1,6 @@
 /* eslint-disable @withfig/fig-linter/no-missing-default-export */
 
-import { filepaths } from "@fig/autocomplete-generators";
+import { filepaths, valueList } from "@fig/autocomplete-generators";
 import stripJsonComments from "strip-json-comments";
 
 import type { DenoConfigurationFileSchema } from "./config_schema";
@@ -165,7 +165,7 @@ export const generateDocs: Fig.Generator = {
           !token.startsWith("(")
       );
     command.push("--json");
-    return command.join(" ");
+    return command;
   },
   postProcess: (out, tokens) => {
     const docNodes = JSON.parse(out) as DocNode[];
@@ -191,7 +191,7 @@ type VersionsJSON = {
 };
 
 export const generateVersions: Fig.Generator = {
-  script: `curl -sL 'https://cdn.deno.land/deno/meta/versions.json'`,
+  script: ["curl", "-sL", "https://cdn.deno.land/deno/meta/versions.json"],
   cache: { ttl: 1000 * 60 * 60 * 24 }, // 24 hours, in milliseconds
   postProcess: (out) => {
     const data = JSON.parse(out) as VersionsJSON;
@@ -237,25 +237,331 @@ export const generateRunnableFiles = filepaths({
 
 // --- Generate lint rules
 
-type DenoLintRulesJSON = {
-  code: string;
-  tags: string[];
-  docs: string;
-}[];
-
-export const generateLintRules: Fig.Generator = {
-  script: "deno lint --rules --json",
-  getQueryTerm: ",",
-  cache: { ttl: 1000 * 60 * 60 * 24 },
-  postProcess: (out) => {
-    const json = JSON.parse(out) as DenoLintRulesJSON;
-    return json.map((rule) => ({
-      name: rule.code,
-      description: rule.docs.slice(0, rule.docs.indexOf("\n\n")),
-      icon: "fig://icon?type=string",
-    }));
-  },
-};
+export const generateLintRules = valueList({
+  insertDelimiter: true,
+  values: [
+    {
+      name: "adjacent-overload-signatures",
+      description: "Requires overload signatures to be adjacent to each other",
+    },
+    {
+      name: "ban-ts-comment",
+      description:
+        "Disallows the use of Typescript directives without a comment",
+    },
+    {
+      name: "ban-types",
+      description:
+        "Bans the use of primitive wrapper objects (e.g. `String` the object is a wrapper\nof `string` the primitive) in addition to the non-explicit `Function` type and\nthe misunderstood `Object` type",
+    },
+    {
+      name: "ban-unknown-rule-code",
+      description: "Warns the usage of unknown rule codes in ignore directives",
+    },
+    {
+      name: "ban-untagged-ignore",
+      description:
+        "Requires `deno-lint-ignore` to be annotated with one or more rule names",
+    },
+    {
+      name: "ban-unused-ignore",
+      description: "Warns unused ignore directives",
+    },
+    {
+      name: "constructor-super",
+      description:
+        "Verifies the correct usage of constructors and calls to `super()`",
+    },
+    {
+      name: "for-direction",
+      description:
+        "Requires `for` loop control variables to increment in the correct direction",
+    },
+    {
+      name: "getter-return",
+      description: "Requires all property getter functions to return a value",
+    },
+    {
+      name: "no-array-constructor",
+      description: "Enforce conventional usage of array construction",
+    },
+    {
+      name: "no-async-promise-executor",
+      description:
+        "Requires that async promise executor functions are not used",
+    },
+    {
+      name: "no-case-declarations",
+      description:
+        "Requires lexical declarations (`let`, `const`, `function` and `class`) in switch\n`case` or `default` clauses to be scoped with brackets",
+    },
+    {
+      name: "no-class-assign",
+      description: "Disallows modifying variables of class declarations",
+    },
+    {
+      name: "no-compare-neg-zero",
+      description: "Disallows comparing against negative zero (`-0`)",
+    },
+    {
+      name: "no-cond-assign",
+      description:
+        "Disallows the use of the assignment operator, `=`, in conditional statements",
+    },
+    {
+      name: "no-constant-condition",
+      description:
+        "Disallows the use of a constant expression in conditional test",
+    },
+    {
+      name: "no-control-regex",
+      description:
+        "Disallows the use ascii control characters in regular expressions",
+    },
+    {
+      name: "no-debugger",
+      description: "Disallows the use of the `debugger` statement",
+    },
+    {
+      name: "no-delete-var",
+      description: "Disallows the deletion of variables",
+    },
+    {
+      name: "no-deprecated-deno-api",
+      description: "Warns the usage of the deprecated Deno APIs",
+    },
+    {
+      name: "no-dupe-args",
+      description:
+        "Disallows using an argument name more than once in a function signature",
+    },
+    {
+      name: "no-dupe-class-members",
+      description:
+        "Disallows using a class member function name more than once",
+    },
+    {
+      name: "no-dupe-else-if",
+      description:
+        "Disallows using the same condition twice in an `if`/`else if` statement",
+    },
+    {
+      name: "no-dupe-keys",
+      description: "Disallows duplicate keys in object literals",
+    },
+    {
+      name: "no-duplicate-case",
+      description:
+        "Disallows using the same case clause in a switch statement more than once",
+    },
+    {
+      name: "no-empty",
+      description: "Disallows the use of empty block statements",
+    },
+    {
+      name: "no-empty-character-class",
+      description:
+        "Disallows using the empty character class in a regular expression",
+    },
+    {
+      name: "no-empty-enum",
+      description: "Disallows the declaration of an empty enum",
+    },
+    {
+      name: "no-empty-interface",
+      description: "Disallows the declaration of an empty interface",
+    },
+    {
+      name: "no-empty-pattern",
+      description: "Disallows the use of empty patterns in destructuring",
+    },
+    {
+      name: "no-ex-assign",
+      description: "Disallows the reassignment of exception parameters",
+    },
+    {
+      name: "no-explicit-any",
+      description: "Disallows use of the `any` type",
+    },
+    {
+      name: "no-extra-boolean-cast",
+      description: "Disallows unnecessary boolean casts",
+    },
+    {
+      name: "no-extra-non-null-assertion",
+      description: "Disallows unnecessary non-null assertions",
+    },
+    {
+      name: "no-extra-semi",
+      description: "<!-- deno-fmt-ignore-file -->",
+    },
+    {
+      name: "no-fallthrough",
+      description: "Disallows the implicit fallthrough of case statements",
+    },
+    {
+      name: "no-func-assign",
+      description:
+        "Disallows the overwriting/reassignment of an existing function",
+    },
+    {
+      name: "no-global-assign",
+      description: "Disallows assignment to native Javascript objects",
+    },
+    {
+      name: "no-import-assign",
+      description: "Disallows reassignment of imported module bindings",
+    },
+    {
+      name: "no-inferrable-types",
+      description: "Disallows easily inferrable types",
+    },
+    {
+      name: "no-inner-declarations",
+      description:
+        "Disallows variable or function definitions in nested blocks",
+    },
+    {
+      name: "no-invalid-regexp",
+      description:
+        "Disallows specifying invalid regular expressions in RegExp constructors",
+    },
+    {
+      name: "no-invalid-triple-slash-reference",
+      description: "Warns the wrong usage of triple-slash reference directives",
+    },
+    {
+      name: "no-irregular-whitespace",
+      description:
+        "Disallows the use of non-space or non-tab whitespace characters",
+    },
+    {
+      name: "no-misused-new",
+      description:
+        "Disallows defining `constructor`s for interfaces or `new` for classes",
+    },
+    {
+      name: "no-namespace",
+      description:
+        "Disallows the use of `namespace` and `module` keywords in TypeScript code",
+    },
+    {
+      name: "no-new-symbol",
+      description:
+        "Disallows the use of `new` operators with built-in `Symbol`s",
+    },
+    {
+      name: "no-obj-calls",
+      description: "Disallows calling built-in global objects like functions",
+    },
+    {
+      name: "no-octal",
+      description:
+        "Disallows expressing octal numbers via numeric literals beginning with `0`",
+    },
+    {
+      name: "no-prototype-builtins",
+      description: "Disallows the use of `Object.prototype` builtins directly",
+    },
+    {
+      name: "no-redeclare",
+      description:
+        "Disallows redeclaration of variables, functions, parameters with the same name",
+    },
+    {
+      name: "no-regex-spaces",
+      description: "Disallows multiple spaces in regular expression literals",
+    },
+    {
+      name: "no-self-assign",
+      description: "Disallows self assignments",
+    },
+    {
+      name: "no-setter-return",
+      description: "Disallows returning values from setters",
+    },
+    {
+      name: "no-shadow-restricted-names",
+      description: "Disallows shadowing of restricted names",
+    },
+    {
+      name: "no-this-alias",
+      description: "Disallows assigning variables to `this`",
+    },
+    {
+      name: "no-this-before-super",
+      description:
+        "Disallows use of `this` or `super` before calling `super()` in constructors",
+    },
+    {
+      name: "no-unreachable",
+      description:
+        "Disallows the unreachable code after the control flow statements",
+    },
+    {
+      name: "no-unsafe-finally",
+      description:
+        "Disallows the use of control flow statements within `finally` blocks",
+    },
+    {
+      name: "no-unsafe-negation",
+      description:
+        "Disallows the usage of negation operator `!` as the left operand of relational\noperators",
+    },
+    {
+      name: "no-unused-labels",
+      description: "Disallows unused labels",
+    },
+    {
+      name: "no-unused-vars",
+      description: "Enforces all variables used at least once",
+    },
+    {
+      name: "no-var",
+      description:
+        "Enforces the use of block scoped variables over more error prone function scoped\nvariables. Block scoped variables are defined using `const` and `let` keywords",
+    },
+    {
+      name: "no-window-prefix",
+      description: "Disallows the use of Web APIs via the `window` object",
+    },
+    {
+      name: "no-with",
+      description: "Disallows the usage of `with` statements",
+    },
+    {
+      name: "prefer-as-const",
+      description:
+        "Recommends using const assertion (`as const`) over explicitly specifying literal\ntypes or using type assertion",
+    },
+    {
+      name: "prefer-const",
+      description: "Recommends declaring variables with [`const`] over [`let`]",
+    },
+    {
+      name: "prefer-namespace-keyword",
+      description:
+        "Recommends the use of `namespace` keyword over `module` keyword when declaring\nTypeScript module",
+    },
+    {
+      name: "require-await",
+      description: "Disallows async functions that have no await expression",
+    },
+    {
+      name: "require-yield",
+      description: "Disallows generator functions that have no `yield`",
+    },
+    {
+      name: "use-isnan",
+      description: "Disallows comparisons to `NaN`",
+    },
+    {
+      name: "valid-typeof",
+      description:
+        "Restricts the use of the `typeof` operator to a specific set of string literals",
+    },
+  ].map((suggestion) => ({ ...suggestion, icon: "fig://icon?type=string" })),
+});
 
 // --- Generate tasks
 
@@ -305,17 +611,26 @@ function getConfigPath(tokens: string[]): string | null {
 
 async function getDenoConfig(
   tokens: string[],
-  executeShellCommand: Fig.ExecuteShellCommandFunction
+  executeShellCommand: Fig.ExecuteCommandFunction
 ): Promise<DenoConfigurationFile | null> {
   const configPath = getConfigPath(tokens);
   let jsonString: string;
   if (configPath) {
-    jsonString = await executeShellCommand(`\\cat '${configPath}'`);
+    const { stdout } = await executeShellCommand({
+      command: "cat",
+      // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+      args: [configPath],
+    });
+    jsonString = stdout;
   } else {
     // Move backwards through the directory heirarchy until we find a config file (or hit the root)
-    jsonString = await executeShellCommand(
-      "until [[ ( -f deno.json || -f deno.jsonc || $PWD = '/' ) ]]; do cd ..; done; \\cat deno.json 2>/dev/null || \\cat deno.jsonc 2>/dev/null"
-    );
+    const { stdout } = await executeShellCommand({
+      command: "bash",
+      args: [
+        "-c",
+        "until [[ ( -f deno.json || -f deno.jsonc || $PWD = '/' ) ]]; do cd ..; done; \\cat deno.json 2>/dev/null || \\cat deno.jsonc 2>/dev/null",
+      ],
+    });
   }
   try {
     return JSON.parse(stripJsonComments(jsonString));
@@ -351,7 +666,11 @@ export const generateTasks: Fig.Generator = {
 // --- Generate installed deno scripts
 
 export const generateInstalledDenoScripts: Fig.Generator = {
-  script: "\\find ~/.deno/bin -maxdepth 1 -perm -111 -type f",
+  script: [
+    "bash",
+    "-c",
+    "command find ~/.deno/bin -maxdepth 1 -perm -111 -type f",
+  ],
   postProcess: (out) =>
     out
       .split("\n")
@@ -361,4 +680,49 @@ export const generateInstalledDenoScripts: Fig.Generator = {
         icon: "📦",
         description: path,
       })),
+};
+
+// --- Suggest URLs from clipboard
+
+// Our transpilation causes this to become `new RegExp` which we don't want to
+// run on every invocation of the function
+const httpsRe = /^(https?:\/\/.*\.(?:m?[jt]sx?))(?:\?.*)?(?:\#.*)?$/;
+
+const clipboardTests: ((str: string) => string | boolean)[] = [
+  // HTTPS test
+  (str) => {
+    const match = str.match(httpsRe);
+    if (!match) {
+      return false;
+    }
+    return match[1];
+  },
+  // NPM test
+  (str) => str.startsWith("npm:"),
+];
+
+export const generateUrlScript: Fig.Generator = {
+  // There's no simple solution for pasting on Linux, it depends on
+  // whether you use X11 or Wayland. For Wayland on some (most?) distros,
+  // you would have to manually install wl-paste.
+  script: ["pbpaste"],
+  postProcess: (clipboard) => {
+    clipboard = clipboard.trim();
+    if (!clipboard) {
+      return [];
+    }
+    for (const test of clipboardTests) {
+      const match = test(clipboard);
+      if (!match) {
+        continue;
+      }
+      return [
+        {
+          name: match === true ? clipboard : match,
+          icon: "fig://template?badge=📋&color=000000",
+          priority: 100,
+        },
+      ];
+    }
+  },
 };

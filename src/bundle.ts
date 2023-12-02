@@ -15,7 +15,7 @@ const EXEC_SUGGESTIONS: Fig.Suggestion[] = [
 ];
 
 const gemfileGemsGenerator: Fig.Generator = {
-  script: "bundle list --name-only",
+  script: ["bundle", "list", "--name-only"],
   postProcess: (out) => {
     return out.split("\n").map((gem) => {
       return {

@@ -225,8 +225,11 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "recipe-name",
         generators: {
-          script:
+          script: [
+            "bash",
+            "-c",
             "browser-sync recipe ls | tail -n +3 | sed -e 's/^[[:space:]]*//'",
+          ],
           splitOn: "\n",
           cache: {
             strategy: "max-age",

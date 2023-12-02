@@ -1,5 +1,5 @@
 const getInstalledBrowsers: Fig.Generator = {
-  script: "defaultbrowser",
+  script: ["defaultbrowser"],
   postProcess: function (out) {
     return out.split("\n").map((line) => {
       /* We ignore the already set browser */

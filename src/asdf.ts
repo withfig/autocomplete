@@ -1,6 +1,4 @@
 const PRIORITY_TOP_THRESHOLD = 76;
-const LS_BIN = "/bin/ls";
-const ASDF_DATA_DIR = "~/.asdf";
 const HOUR_IN_MILLISECONDS = 3600000;
 
 /*
@@ -9,7 +7,7 @@ const HOUR_IN_MILLISECONDS = 3600000;
 const installedPluginNamesGenerator = (
   suggestOptions?: Partial<Fig.Suggestion>
 ): Fig.Generator => ({
-  script: "asdf plugin-list",
+  script: ["asdf", "plugin-list"],
   postProcess: (output) =>
     output.split("\n").map((pluginName) => ({
       name: `${pluginName}`,
@@ -24,15 +22,23 @@ const allPluginNamesGenerator = (
   suggestOptions?: Partial<Fig.Suggestion>
 ): Fig.Generator => ({
   // If use `asdf plugin-list-all`, it will time out, so use `ls`.
-  script: `${LS_BIN} -1 ${ASDF_DATA_DIR}/repository/plugins`,
-  postProcess: (output) =>
-    output.split("\n").map((pluginName) => ({
+  custom: async (_, executeCommand, generatorContext) => {
+    const { stdout } = await executeCommand({
+      command: "ls",
+      args: [
+        "-1",
+        `${generatorContext.environmentVariables["HOME"]}/.asdf/repository/plugins`,
+      ],
+    });
+
+    return stdout.split("\n").map((pluginName) => ({
       name: `${pluginName}`,
       description: "Plugin name",
       priority: PRIORITY_TOP_THRESHOLD,
       icon: "fig://icon?type=package",
       ...suggestOptions,
-    })),
+    }));
+  },
 });
 
 const installedPluginVersionsGenerator = (
@@ -41,7 +47,7 @@ const installedPluginVersionsGenerator = (
 ): Fig.Generator => ({
   script: (context) => {
     const pluginName = context[context.length - 2];
-    return `asdf list ${pluginName}`;
+    return ["asdf", "list", pluginName];
   },
   postProcess: (output) =>
     output
@@ -63,7 +69,7 @@ const allPluginVersionsGenerator = (
 ): Fig.Generator => ({
   script: (context) => {
     const pluginName = context[context.length - 2];
-    return `asdf list-all ${pluginName}`;
+    return ["asdf", "list-all", pluginName];
   },
   cache: {
     ttl: HOUR_IN_MILLISECONDS,
@@ -86,15 +92,22 @@ const shimNamesGenerator = (
   suggestOptions?: Partial<Fig.Suggestion>
 ): Fig.Generator => ({
   // Use `ls` because there is no command to get shims in `asdf`.
-  script: `${LS_BIN} -1 ${ASDF_DATA_DIR}/shims`,
-  postProcess: (output) =>
-    output.split("\n").map((shimName) => ({
+  custom: async (_, executeCommand, generatorContext) => {
+    const { stdout } = await executeCommand({
+      command: "ls",
+      args: [
+        "-1",
+        `${generatorContext.environmentVariables["HOME"]}/.asdf/shims`,
+      ],
+    });
+    return stdout.split("\n").map((shimName) => ({
       name: `${shimName}`,
       description: "Shim name",
       priority: PRIORITY_TOP_THRESHOLD,
       icon: "fig://icon?type=command",
       ...suggestOptions,
-    })),
+    }));
+  },
 });
 
 /*
