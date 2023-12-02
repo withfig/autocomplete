@@ -36,11 +36,14 @@ const completionSpec: Fig.Spec = {
   name: "bin-console",
   description: "Symfony bin/console command",
   generateSpec: async (_, executeShellCommand) => {
-    const out = await executeShellCommand("php bin/console list --format=json");
+    const { stdout } = await executeShellCommand({
+      command: "php",
+      args: ["bin/console", "list", "--format=json"],
+    });
     let subcommands = [];
 
     try {
-      const commandDefinitions = JSON.parse(out) as BinConsoleJSON;
+      const commandDefinitions = JSON.parse(stdout) as BinConsoleJSON;
 
       subcommands = commandDefinitions.commands.map((command) => ({
         name: command.name,

@@ -1,6 +1,6 @@
 const svtplayDlGenerators: Record<string, Fig.Generator> = {
   listClipboard: {
-    script: "pbpaste",
+    script: ["pbpaste"],
     postProcess: function (out) {
       const regex = new RegExp(
         "^(https?://)?(www.)?(aftonbladet.se|dbtv.no|di.se|dn.se|dr.dk|efn.se|expressen.se|filmarkivet.se|flowonline.tv|nickelodeon.nl|nickelodeon.no|nickelodeon.se|nrk.se|oppetarkiv.se|pokemon.com|ruv.is|riksdagen.se|svd.se|sverigesradio.se|svtplay.se|viafree.se|viafree.no|viafree.dk|tv3play.ee|tv3play.it|tv3play.lv|tv4.se|tv4play.se|twitch.tv|ur.se|urplay.se|vg.no|viagame.com|viasat4play.no|viasatsport.se)/.+$"

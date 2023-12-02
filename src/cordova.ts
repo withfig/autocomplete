@@ -24,7 +24,7 @@ const commonOptions: Fig.Option[] = [
 ];
 
 const platformGenerator: Fig.Generator = {
-  script: "cat package.json",
+  script: ["cat", "package.json"],
   postProcess: function (out: string) {
     const suggestions = [];
     try {
@@ -51,7 +51,7 @@ const platformGenerator: Fig.Generator = {
 };
 
 const pluginGenerator: Fig.Generator = {
-  script: "cordova plugin list",
+  script: ["cordova", "plugin", "list"],
   postProcess: (out: string) =>
     out.split("\n").map((pluginName) => ({
       name: pluginName,

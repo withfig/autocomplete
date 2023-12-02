@@ -1,5 +1,5 @@
 const generatorsGenerator: Fig.Generator = {
-  script: "ls ignite/templates",
+  script: ["ls", "ignite/templates"],
   postProcess: (out) => {
     if (out.trim() === "") return [];
     return out.split("\n").map((gen) => ({

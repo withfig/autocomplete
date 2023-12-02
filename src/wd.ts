@@ -1,8 +1,13 @@
 const warpPointsGenerator: Fig.Generator = {
-  script: "cat ~/.warprc",
-  postProcess: (out) => {
+  custom: async (_, executeCommand, context) => {
+    const { stdout } = await executeCommand({
+      command: "cat",
+      // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+      args: [`${context.environmentVariables["HOME"]}/.warprc`],
+    });
+
     // find all warp points names
-    const iter = out.matchAll(/^(\w+)/gm);
+    const iter = stdout.matchAll(/^(\w+)/gm);
 
     const suggestions: Fig.Suggestion[] = [];
 

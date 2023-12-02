@@ -17,7 +17,7 @@ const completionSpec: Fig.Spec = {
             name: "template",
             description: "Choose a template",
             generators: {
-              script: "expressots templates",
+              script: ["expressots", "templates"],
               postProcess: function (out) {
                 return [
                   {
@@ -40,7 +40,7 @@ const completionSpec: Fig.Spec = {
             name: "package-manager",
             description: "Choose a package manager",
             generators: {
-              script: "expressots package manager",
+              script: ["expressots", "package", "manager"],
               postProcess: function (out) {
                 return [
                   {

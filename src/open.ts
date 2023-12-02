@@ -1,6 +1,11 @@
 export const generateApps = (unquotedPath: string): Fig.Generator => ({
   cache: { strategy: "stale-while-revalidate" },
-  script: `mdfind kMDItemContentTypeTree=com.apple.application-bundle -onlyin ${unquotedPath}`,
+  script: [
+    "mdfind",
+    "kMDItemContentTypeTree=com.apple.application-bundle",
+    "-onlyin",
+    unquotedPath,
+  ],
   postProcess: (out) => {
     return out.split("\n").map((path) => {
       const basename = path.slice(path.lastIndexOf("/") + 1);
@@ -11,8 +16,8 @@ export const generateApps = (unquotedPath: string): Fig.Generator => ({
         priority: path.endsWith(`/Applications/${basename}`)
           ? 80
           : path.startsWith("/Applications")
-          ? 76
-          : 50,
+            ? 76
+            : 50,
       };
     });
   },
@@ -21,7 +26,11 @@ export const generateApps = (unquotedPath: string): Fig.Generator => ({
 export const generateBundleIds = (unquotedPath: string): Fig.Generator => ({
   scriptTimeout: 15000,
   cache: { strategy: "stale-while-revalidate" },
-  script: `bash -c 'mdfind kMDItemContentTypeTree=com.apple.application-bundle -onlyin ${unquotedPath} | while read line; do echo $(mdls -name kMDItemCFBundleIdentifier -r "$line") $line; done'`,
+  script: [
+    "bash",
+    "-c",
+    `mdfind kMDItemContentTypeTree=com.apple.application-bundle -onlyin ${unquotedPath} | while read line; do echo $(mdls -name kMDItemCFBundleIdentifier -r "$line") $line; done`,
+  ],
   postProcess: (out) => {
     const ids = new Map(
       out.split("\n").map((line) => {

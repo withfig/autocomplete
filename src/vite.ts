@@ -109,8 +109,14 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "mode",
         generators: {
-          script: "\\ls -l1A.env.*",
-          splitOn: "\n",
+          script: ["ls", "-l1A"],
+          postProcess: (out) =>
+            out
+              .split("\n")
+              .filter((line) => line.startsWith(".env."))
+              .map((name) => ({
+                name,
+              })),
         },
       },
     },

@@ -120,10 +120,11 @@ const completionSpec: Fig.Spec = {
           const lastToken = tokens[tokens.length - 1];
           if (lastToken.includes(":")) return [];
           const username = lastToken.slice(0, lastToken.indexOf("/"));
-          const json = await executeShellCommand(
-            `curl -sL 'https://api.github.com/users/${username}/repos'`
-          );
-          const repos = JSON.parse(json) as Repository[];
+          const { stdout } = await executeShellCommand({
+            command: "curl",
+            args: ["-sL", `https://api.github.com/users/${username}/repos`],
+          });
+          const repos = JSON.parse(stdout) as Repository[];
           return repos.map((repo) => ({
             name: repo.full_name,
             description: repo.description ?? "Repository",

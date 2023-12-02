@@ -9,11 +9,19 @@ const windows = `${tldrRc}/pages/windows/`;
 const isMarkDownRegex = new RegExp(/^.*\.md$/);
 
 const wholeTldrPages: Fig.Generator = {
-  script: () => {
-    return `command ls -Al ${android} ${common} ${linux} ${osx} ${sunos} ${windows} 2>/dev/null`;
-  },
-  postProcess: (out) => {
-    return out
+  custom: async (tokens, executeShellCommand, context) => {
+    const { stdout } = await executeShellCommand({
+      command: "ls",
+      // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+      args: [
+        "-Al",
+        ...[android, common, linux, osx, sunos, windows].map((path) =>
+          path.replace(/^~/, context.environmentVariables["HOME"])
+        ),
+      ],
+    });
+
+    return stdout
       .split("\n")
       .filter((line) => isMarkDownRegex.test(line))
       .map((line) => {
@@ -27,9 +35,7 @@ const wholeTldrPages: Fig.Generator = {
 };
 
 const linuxTldrPages: Fig.Generator = {
-  script: () => {
-    return `command ls -Al ${linux} 2>/dev/null`;
-  },
+  script: ["bash", "-c", `command ls -Al ${linux} 2>/dev/null`],
   postProcess: (out) => {
     return out
       .split("\n")
@@ -45,9 +51,7 @@ const linuxTldrPages: Fig.Generator = {
 };
 
 const osxTldrPages: Fig.Generator = {
-  script: () => {
-    return `command ls -l ${osx} 2>/dev/null`;
-  },
+  script: ["bash", "-c", `command ls -l ${osx} 2>/dev/null`],
   postProcess: (out) => {
     return out
       .split("\n")
@@ -63,9 +67,7 @@ const osxTldrPages: Fig.Generator = {
 };
 
 const sunosTldrPages: Fig.Generator = {
-  script: () => {
-    return `command ls -l ${sunos} 2>/dev/null`;
-  },
+  script: ["bash", "-c", `command ls -l ${sunos} 2>/dev/null`],
   postProcess: (out) => {
     return out
       .split("\n")

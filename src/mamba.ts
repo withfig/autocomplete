@@ -37,7 +37,7 @@ interface SearchItem {
 const getMambaEnvs: Fig.Generator = {
   // For some reason the json version of this command
   // does not give out the names, so here we are
-  script: "conda env list",
+  script: ["conda", "env", "list"],
   scriptTimeout: 10000,
   cache: {
     strategy: "stale-while-revalidate",
@@ -61,7 +61,7 @@ const getMambaEnvs: Fig.Generator = {
 };
 
 const getInstalledPackages: Fig.Generator = {
-  script: "conda list --json",
+  script: ["conda", "list", "--json"],
   scriptTimeout: 10000,
   cache: {
     strategy: "stale-while-revalidate",
@@ -87,7 +87,7 @@ const getInstalledPackages: Fig.Generator = {
 const condaSearchGenerator: Fig.Generator = {
   script: (context) => {
     const searchTerm = context[context.length - 1];
-    return `conda search ${searchTerm} --json`;
+    return ["conda", "search", searchTerm, "--json"];
   },
   scriptTimeout: 10000,
   postProcess(out) {
