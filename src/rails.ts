@@ -518,27 +518,48 @@ const defaultCommands: Fig.Subcommand[] = [
         name: "args",
         isVariadic: true,
         generators: {
-          splitOn: "g",
           custom: async (tokens, executeShellCommand) => {
             const [generator, ...args] = tokens.slice(2);
             if (["model", "resource", "scaffold"].includes(generator)) {
               if (args.length === 1) {
-                return [];
+                return [{ name: "__model_name__", priority: 80 }];
               }
+
+              const types = [
+                "integer",
+                "primary_key",
+                "decimal",
+                "float",
+                "boolean",
+                "binary",
+                "string",
+                "text",
+                "date",
+                "time",
+                "datetime",
+              ];
 
               const lastArg = args.at(-1);
-
-              if (lastArg.match(/\w+:\w+/)) {
-                return [
-                  { name: lastArg },
-                  { name: `${lastArg}:uniq` },
-                  { name: `${lastArg}:index` },
-                ];
+              if (lastArg.length === 0) {
+                return [{ name: "__column_name__", priority: 80 }];
               }
 
-              return ["int", "text"].map((type) => ({
-                name: `${lastArg}:${type}`,
-              }));
+              if (lastArg.match(/^\w+$/)) {
+                return types.map((type) => ({ name: `${lastArg}:${type}` }));
+              }
+
+              if (lastArg.match(/^\w+:\w*/)) {
+                const [name, startOfType] = lastArg.split(":");
+                return types
+                  .filter((type) => type.startsWith(startOfType))
+                  .flatMap((type) => [
+                    { name: `${name}:${type}` },
+                    { name: `${name}:${type}:uniq` },
+                    { name: `${name}:${type}:index` },
+                  ]);
+              }
+
+              return [];
             }
 
             if (generator === "controller") {
@@ -676,7 +697,6 @@ export const railsCommandsGenerator: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "rails",
-  icon: "https://avatars.githubusercontent.com/u/4223?s=48&v=4",
   description: "Ruby on Rails CLI",
   icon: "https://avatars.githubusercontent.com/u/4223?s=48&v=4",
   generateSpec: async (_, executeShellCommand) => {
