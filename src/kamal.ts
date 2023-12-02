@@ -1,5 +1,5 @@
 const destinationGenerator: Fig.Generator = {
-  script: "bin/kamal destinations --json",
+  script: ["bin/kamal", "destinations", "--json"],
   cache: {
     cacheByDirectory: true,
     strategy: "stale-while-revalidate",
@@ -385,9 +385,15 @@ const completionSpec: Fig.Spec = {
   description: "Deploy web apps anywhere",
   generateSpec: async (context, executeShellCommand) => {
     const hasBinKamal =
-      (await executeShellCommand(
-        `while [ ! -f "$PWD/bin/kamal" ] && [ "$PWD" != "/" ]; do cd ..; done; [ -f "$PWD/bin/kamal" ] && echo "true" || echo "false"`
-      )) == "true";
+      (
+        await executeShellCommand({
+          command: "bash",
+          args: [
+            "-c",
+            `while [ ! -f "$PWD/bin/kamal" ] && [ "$PWD" != "/" ]; do cd ..; done; [ -f "$PWD/bin/kamal" ] && echo "true" || echo "false"`,
+          ],
+        })
+      ).stdout == "true";
 
     return {
       name: "kamal",
