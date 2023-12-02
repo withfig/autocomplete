@@ -3,6 +3,49 @@ import { filepaths } from "@fig/autocomplete-generators";
 const RB_ICON =
   "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_ruby.svg";
 
+/**
+ * @param executeShellCommand
+ * @param file
+ * @param contains MAKE sure to escape all double quotes
+ *
+ * @returns [true, output] if file is found and contains the string
+ * @returns [false, "NOT_CONTAINS"] if file is found but does not contain the string
+ * @returns [false, "NOT_FOUND"] if file is not found
+ */
+const checkDir = async (
+  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  file: string,
+  contains?: string
+) => {
+  const checkFileContains = (check: string) => {
+    return `cat ${file} | grep "${check}" > /dev/null && pwd || echo '_NOT_CONTAINS_'`;
+  };
+
+  const output =
+    await executeShellCommand(`until [[ -f ${file} ]] || [[ $PWD = '/' ]]; do
+  cd ..;
+done;
+
+if [ -f ${file} ]; then
+  ${contains ? checkFileContains(contains) : "pwd"}
+else
+  echo '_NOT_FOUND_'
+fi`);
+
+  switch (output) {
+    case "_NOT_CONTAINS_":
+      return [false, "NOT_CONTAINS"] as const;
+    case "_NOT_FOUND_":
+      return [false, "NOT_FOUND"] as const;
+    default:
+      return [true, output];
+  }
+};
+
+const getRailsRoot = (executeShellCommand: Fig.ExecuteShellCommandFunction) => {
+  return checkDir(executeShellCommand, "Gemfile", `gem [\'\\"]rails[\'\\"]`);
+};
+
 const newCommand = {
   name: "new",
   description: "Create a new rails application",
@@ -357,13 +400,20 @@ const dbOptions = [
 const environmentOption: Fig.Option = {
   name: ["-e", "--environment"],
   description:
-    "Specifies the environment to run this console under (test/development/production)",
+    "Specifies the environment to run this console under (test/development/production/<custom>)",
   args: {
     name: "environment",
+    suggestions: ["test", "development", "production"],
     generators: {
-      script: "ls config/environments",
-      postProcess: (out) =>
-        out.split("\n").map((env) => ({ name: env.replace(".rb", "") })),
+      async custom(token, executeShellCommand) {
+        const [found, path] = await getRailsRoot(executeShellCommand);
+        if (!found) return [];
+
+        return (await executeShellCommand(`ls ${path}/config/environments`))
+          .split("\n")
+          .map((env) => env.slice(0, env.indexOf(".rb")))
+          .map((env) => ({ name: env }));
+      },
     },
   },
 };
@@ -667,11 +717,9 @@ const completionSpec: Fig.Spec = {
   name: "rails",
   description: "Ruby on Rails CLI",
   generateSpec: async (_, executeShellCommand) => {
-    const isRailsDirectory = !!(await executeShellCommand(
-      `until [[ -f Gemfile ]] || [[ $PWD = '/' ]]; do cd ..; done; if [ -f Gemfile ]; then cat Gemfile | \\grep "gem ['\\"]rails['\\"]"; fi`
-    ));
-
-    if (!isRailsDirectory) {
+    console.log("here");
+    const [found, _path] = await getRailsRoot(executeShellCommand);
+    if (!found) {
       return {
         name: "rails",
         subcommands: [newCommand],
