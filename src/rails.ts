@@ -477,7 +477,7 @@ const defaultCommands: Fig.Subcommand[] = [
     ],
   },
   {
-    name: ["g", "generator"],
+    name: ["g", "generate"],
     description: "Use templates to generate Rails resources",
     args: [
       {
