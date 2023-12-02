@@ -7,20 +7,20 @@ const processXcodeList = (out: string, tokens: string[]) =>
       icon: line.includes("Selected")
         ? "⭐️"
         : line.includes("Installed")
-        ? "🔨"
-        : tokens.includes("select") || tokens.includes("uninstall")
-        ? "🔨"
-        : "⬇️",
+          ? "🔨"
+          : tokens.includes("select") || tokens.includes("uninstall")
+            ? "🔨"
+            : "⬇️",
       description: line.slice(line.indexOf("(")).replaceAll(/[\(\)]/g, ""),
     }));
 
 const allXcodes: Fig.Generator = {
-  script: "xcodes list",
+  script: ["xcodes", "list"],
   postProcess: processXcodeList,
 };
 
 const installedXcodes: Fig.Generator = {
-  script: "xcodes installed",
+  script: ["xcodes", "installed"],
   postProcess: processXcodeList,
 };
 

@@ -6,7 +6,7 @@ type ToolchainLocalGeneratorOptions = {
 const toolchainLocalGenertor: (
   args?: ToolchainLocalGeneratorOptions
 ) => Fig.Generator = ({ excludeShort } = {}) => ({
-  script: "rustup toolchain list",
+  script: ["rustup", "toolchain", "list"],
   postProcess: (out) => {
     const toolchains = out
       .split("\n")
@@ -29,12 +29,15 @@ const toolchainLocalGenertor: (
 
 const toolchainAllGenerator: Fig.Generator = {
   // Grab the latest versions of rust from github, try the gh cli first as it has a higher rate limit
-  script:
+  script: [
+    "bash",
+    "-c",
     'if command -v gh > /dev/null; then \
       gh api -H "Accept: application/vnd.github+json" /repos/rust-lang/rust/releases; \
     else \
       curl -sfL -H "Accept: application/vnd.github+json" https://api.github.com/repos/rust-lang/rust/releases; \
     fi',
+  ],
   cache: {
     // 1 hour, the github api is rate limited per hour
     ttl: 60 * 60 * 1000,
@@ -75,7 +78,7 @@ type TripleGeneratorOptions = {
 const tripleGenerator: (args?: TripleGeneratorOptions) => Fig.Generator = ({
   installed,
 } = {}) => ({
-  script: "rustup target list",
+  script: ["rustup", "target", "list"],
   postProcess: (data: string) => {
     return data
       .split("\n")
@@ -690,7 +693,11 @@ const completionSpec: Fig.Spec = {
         description:
           "Topic such as 'core', 'fn', 'usize', 'eprintln!', 'core::arch', 'alloc::format!', 'std::fs', 'std::fs::read_dir', 'std::io::Bytes', 'std::iter::Sum', 'std::io::error::Result' etc",
         generators: {
-          script: `find $(rustup docs --path | sed -e "s|index\\.html|std|") $(rustup docs --path | sed -e "s|index\\.html|alloc|") $(rustup docs --path | sed -e "s|index\\.html|core|") | grep "\\.html" | sed -E -e "s|^(.*)/html/||" -e "s|\\.html||" -e "s|/|::|g" -e "s/constant\\.|trait\\.|struct\\.|macro\\.|fn\\.|keyword\\.|primitive\\.|type\\.|enum\\.|union\\.|traitalias\\.|::index$|^(.*)::all$//" -e "/^$/d"`,
+          script: [
+            "bash",
+            "-c",
+            `find $(rustup docs --path | sed -e "s|index\\.html|std|") $(rustup docs --path | sed -e "s|index\\.html|alloc|") $(rustup docs --path | sed -e "s|index\\.html|core|") | grep "\\.html" | sed -E -e "s|^(.*)/html/||" -e "s|\\.html||" -e "s|/|::|g" -e "s/constant\\.|trait\\.|struct\\.|macro\\.|fn\\.|keyword\\.|primitive\\.|type\\.|enum\\.|union\\.|traitalias\\.|::index$|^(.*)::all$//" -e "/^$/d"`,
+          ],
           splitOn: "\n",
         },
       },
@@ -880,10 +887,10 @@ const completionSpec: Fig.Spec = {
     isOptional: true,
   },
   generateSpec: async (_tokens, executeShellCommand) => {
-    const [toolchainOutput] = await Promise.all([
-      executeShellCommand("rustup toolchain list"),
-    ]);
-
+    const { stdout: toolchainOutput } = await executeShellCommand({
+      command: "rustup",
+      args: ["toolchain", "list"],
+    });
     const toolchains: Fig.Option[] = toolchainOutput
       .split("\n")
       .map((toolchain) => {

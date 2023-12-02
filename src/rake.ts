@@ -1,10 +1,28 @@
 const completionSpec: Fig.Spec = {
   name: "rake",
   description: "A ruby build program with capabilities similar to make",
+  icon: "https://avatars.githubusercontent.com/u/210414?s=48&v=4",
   args: {
     name: "targets",
     isVariadic: true,
     isOptional: true,
+    generators: {
+      script: ["rake", "--tasks", "--silent"],
+      cache: {
+        strategy: "stale-while-revalidate",
+        cacheByDirectory: true,
+      },
+      postProcess: function (out) {
+        return out.split("\n").map((line) => {
+          const [name, description] = line.split("#");
+
+          return {
+            name: name.trim().slice("rake ".length),
+            description: description.trim(),
+          };
+        });
+      },
+    },
   },
   options: [
     {

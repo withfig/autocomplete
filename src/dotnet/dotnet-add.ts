@@ -9,7 +9,13 @@ type PackageSearchResultData = {
 const packageSearchGenerator: Fig.Generator = {
   script(context) {
     const searchTerm = context[context.length - 1];
-    return `curl -s -H "Accept: application/json" "https://azuresearch-usnc.nuget.org/query?packageType=Dependency&q=${searchTerm}"`;
+    return [
+      "curl",
+      "-s",
+      "-H",
+      "Accept: application/json",
+      `https://azuresearch-usnc.nuget.org/query?packageType=Dependency&q=${searchTerm}`,
+    ];
   },
   postProcess(out) {
     const searchResults: PackageSearchResultData[] = JSON.parse(out).data;
@@ -30,7 +36,13 @@ const versionSearchGenerator: Fig.Generator = {
     const idx = command.findIndex((ctx) => ctx === "package");
     const searchTerm = command[idx + 1].toLowerCase();
 
-    return `curl -s -H "Accept: application/json" "https://api.nuget.org/v3-flatcontainer/${searchTerm}/index.json"`;
+    return [
+      "curl",
+      "-s",
+      "-H",
+      "Accept: application/json",
+      `https://api.nuget.org/v3-flatcontainer/${searchTerm}/index.json`,
+    ];
   },
   postProcess(out) {
     const searchResults: string[] = JSON.parse(out).versions;

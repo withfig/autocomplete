@@ -51,11 +51,14 @@ const generateManualPages: Fig.Generator = {
       isGeneratingSuggestions = true;
 
       // Same as `apropos .`, lists all manual pages with a brief description
-      const lines = await executeShellCommand("man -k . 2>/dev/null");
+      const { stdout } = await executeShellCommand({
+        command: "man",
+        args: ["-k", "."],
+      });
       const seenPageNameCache = new Set<string>();
 
       // Guaranteed to be one per line
-      for (const line of lines.split("\n")) {
+      for (const line of stdout.split("\n")) {
         const splitIndex = line.indexOf(" - ");
 
         const pageNames = line.slice(0, splitIndex);

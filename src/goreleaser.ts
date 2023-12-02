@@ -48,12 +48,28 @@ const completionSpec: Fig.Spec = {
           description:
             "Builds only for current GOOS and GOARCH, regardless of what's set in the configuration file",
         },
-        { name: "--skip-before", description: "Skips global before hooks" },
+        {
+          name: "--skip",
+          description:
+            "Skip the given options (valid options are before, post-hooks, pre-hooks, validate)",
+          isRepeatable: true,
+          args: { name: "skip" },
+        },
+        {
+          name: "--skip-before",
+          description: "Skips global before hooks",
+          hidden: true,
+        },
         {
           name: "--skip-post-hooks",
           description: "Skips all post-build hooks",
+          hidden: true,
         },
-        { name: "--skip-validate", description: "Skips several sanity checks" },
+        {
+          name: "--skip-validate",
+          description: "Skips several sanity checks",
+          hidden: true,
+        },
         {
           name: "--snapshot",
           description:
@@ -239,26 +255,52 @@ const completionSpec: Fig.Spec = {
           hidden: true,
         },
         {
-          name: "--skip-announce",
-          description: "Skips announcing releases (implies --skip-validate)",
+          name: "--skip",
+          description:
+            "Skip the given options (valid options are announce, aur, before, docker, homebrew, ko, nix, publish, sbom, scoop, sign, snapcraft, validate, winget)",
+          isRepeatable: true,
+          args: { name: "skip" },
         },
-        { name: "--skip-before", description: "Skips global before hooks" },
+        {
+          name: "--skip-announce",
+          description: "Skips announcing releases (implies --skip=validate)",
+          hidden: true,
+        },
+        {
+          name: "--skip-before",
+          description: "Skips global before hooks",
+          hidden: true,
+        },
         {
           name: "--skip-docker",
           description: "Skips Docker Images/Manifests builds",
+          hidden: true,
         },
-        { name: "--skip-ko", description: "Skips Ko builds" },
+        { name: "--skip-ko", description: "Skips Ko builds", hidden: true },
         {
           name: "--skip-publish",
-          description: "Skips publishing artifacts (implies --skip-announce)",
+          description: "Skips publishing artifacts (implies --skip=announce)",
+          hidden: true,
         },
-        { name: "--skip-sbom", description: "Skips cataloging artifacts" },
-        { name: "--skip-sign", description: "Skips signing artifacts" },
-        { name: "--skip-validate", description: "Skips git checks" },
+        {
+          name: "--skip-sbom",
+          description: "Skips cataloging artifacts",
+          hidden: true,
+        },
+        {
+          name: "--skip-sign",
+          description: "Skips signing artifacts",
+          hidden: true,
+        },
+        {
+          name: "--skip-validate",
+          description: "Skips git checks",
+          hidden: true,
+        },
         {
           name: "--snapshot",
           description:
-            "Generate an unversioned snapshot release, skipping all validations and without publishing any artifacts (implies --skip-publish, --skip-announce and --skip-validate)",
+            "Generate an unversioned snapshot release, skipping all validations and without publishing any artifacts (implies --skip=announce,publish,validate)",
         },
         {
           name: "--timeout",

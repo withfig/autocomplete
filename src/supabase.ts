@@ -88,6 +88,66 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
+          name: "dump",
+          description: "Dumps data or schemas from the remote database",
+          options: [
+            {
+              name: "--data-only",
+              description: "Dumps only data records",
+            },
+            {
+              name: "--db-url",
+              description:
+                "Dumps from the database specified by the connection string (must be percent-encoded)",
+              args: { name: "string" },
+            },
+            {
+              name: "--dry-run",
+              description: "Prints the pg_dump script that would be executed",
+            },
+            {
+              name: ["--file", "-f"],
+              description: "File path to save the dumped contents",
+              args: { name: "string", template: "filepaths" },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Help for dump",
+            },
+            {
+              name: "--keep-comments",
+              description: "Keeps commented lines from pg_dump output",
+            },
+            {
+              name: "--linked",
+              description: "Dumps from the linked project. (default true)",
+            },
+            {
+              name: "--local",
+              description: "Dumps from the local database",
+            },
+            {
+              name: ["--password", "-p"],
+              description: "Password to your remote Postgres database",
+              args: { name: "string" },
+            },
+            {
+              name: "--role-only",
+              description: "Dumps only cluster roles",
+            },
+            {
+              name: ["--schema", "-s"],
+              description:
+                "Comma separated list of schema to include. (default all)",
+              args: { name: "string" },
+            },
+            {
+              name: "--use-copy",
+              description: "Uses copy statements in place of inserts",
+            },
+          ],
+        },
+        {
           name: "lint",
           description: "Checks local database for typing error",
           options: [
@@ -104,6 +164,7 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        { name: "pull", description: "Pull schema from the remote database" },
         {
           name: "push",
           description: "Push new migrations to the remote database",
@@ -259,9 +320,99 @@ const completionSpec: Fig.Spec = {
               description: "Password to your remote Postgres database",
               args: { name: "password" },
             },
+            {
+              name: "--local",
+              description: "Lists migrations applied to the local database",
+            },
+            {
+              name: "--linked",
+              description:
+                "Lists migrations applied to the linked project (default true)",
+            },
+            {
+              name: "--db-url",
+              description: "Database URL to connect to",
+              args: { name: "string" },
+            },
           ],
         },
-        { name: "new", description: "Create an empty migration script" },
+        {
+          name: "new",
+          description: "Create an empty migration script",
+          args: { name: "migration name" },
+        },
+        {
+          name: "repair",
+          description: "Repair the migration history table",
+          args: { name: "version" },
+          options: [
+            {
+              name: "--status",
+              description: "Version status to update",
+              priority: 100,
+              args: {
+                name: "status",
+                suggestions: [{ name: "applied" }, { name: "reverted" }],
+              },
+            },
+            {
+              name: ["--password", "-p"],
+              description: "Password to your remote Postgres database",
+              args: { name: "password" },
+            },
+            {
+              name: "--local",
+              description:
+                "Repairs the migration history of the local database",
+            },
+            {
+              name: "--linked",
+              description:
+                "Repairs the migration history of the linked project (default true)",
+            },
+            {
+              name: "--db-url",
+              description: "Database URL to connect to",
+              args: { name: "string" },
+            },
+          ],
+        },
+        {
+          name: "squash",
+          description: "Squash migrations to a single file",
+
+          options: [
+            {
+              name: ["--password", "-p"],
+              description: "Password to your remote Postgres database",
+              args: { name: "password" },
+            },
+            {
+              name: "--local",
+              description:
+                "Squashes the migration history of the local database",
+            },
+            {
+              name: "--version",
+              description: "Squash up to the specified version",
+              args: { name: "string" },
+            },
+            {
+              name: "--linked",
+              description:
+                "Squashes the migration history of the linked project (default true)",
+            },
+            {
+              name: "--db-url",
+              description: "Database URL to connect to",
+              args: { name: "string" },
+            },
+          ],
+        },
+        {
+          name: "up",
+          description: "Apply pending migrations to local database",
+        },
       ],
     },
     {

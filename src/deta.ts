@@ -7,17 +7,15 @@
 
 // Fig generator for runtime options. Manually coded from
 // https://docs.deta.sh/docs/cli/commands#deta-new
-const runtimes: Fig.Generator = {
-  script: "echo node12, node14, python3.7, python3.9",
-  postProcess: (output) => {
-    return output.split(",").map((runtime) => {
-      return {
-        name: runtime,
-        description: "Runtime",
-      };
-    });
-  },
-};
+const runtimes: Fig.Suggestion[] = [
+  "node12",
+  "node14",
+  "python3.7",
+  "python3.9",
+].map((runtime) => ({
+  name: runtime,
+  description: "Runtime",
+}));
 
 const completionSpec: Fig.Spec = {
   name: "deta",
@@ -115,7 +113,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "runtime",
             description: "The selected runtime",
-            generators: runtimes,
+            suggestions: runtimes,
           },
         },
       ],
@@ -325,7 +323,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "runtime",
             description: "New runtime for the micro",
-            generators: runtimes,
+            suggestions: runtimes,
           },
         },
         {

@@ -85,10 +85,18 @@ function getJustfilePath(tokens: string[]): string | null {
  * Get the command to dump the justfile at the given path, or let `just` handle
  * searching for the file if the path is null.
  */
-function getJustfileDumpCommand(justfilePath: string | null): string {
+function getJustfileDumpCommand(justfilePath: string | null): string[] {
   return justfilePath
-    ? `just --unstable --dump --dump-format json --justfile '${justfilePath}'`
-    : `just --unstable --dump --dump-format json`;
+    ? [
+        "just",
+        "--unstable",
+        "--dump",
+        "--dump-format",
+        "json",
+        "--justfile",
+        justfilePath,
+      ]
+    : ["just", "--unstable", "--dump", "--dump-format", "json"];
 }
 
 /**
