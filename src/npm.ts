@@ -184,8 +184,8 @@ export const dependenciesGenerator: Fig.Generator = {
           description: dependencies[pkgName]
             ? "dependency"
             : optionalDependencies[pkgName]
-            ? "optionalDependency"
-            : "devDependency",
+              ? "optionalDependency"
+              : "devDependency",
         }));
     } else {
       const { stdout } = await executeShellCommand({
@@ -1536,6 +1536,11 @@ const completionSpec: Fig.Spec = {
           name: "--no-fund",
           description:
             "Hides the message at the end of each npm install acknowledging the number of dependencies looking for funding",
+        },
+        {
+          name: "--save",
+          description:
+            "Update the semver values of direct dependencies in your project package.json",
         },
         dryRunOption,
         ...workSpaceOptions,

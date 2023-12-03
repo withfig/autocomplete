@@ -140,11 +140,12 @@ const preProcessProjects = async (
         ).workspaceLayout,
       };
       const searchFolders =
-        appsDir === libsDir ? appsDir : `${appsDir} ${libsDir}`;
+        appsDir === libsDir ? [appsDir] : [appsDir, libsDir];
+
       nxProjectPathCache = (
         await executeShellCommand({
           command: "find",
-          args: [searchFolders, "-name", "project.json"],
+          args: [...searchFolders, "-name", "project.json"],
         })
       ).stdout
         .split("\n")
