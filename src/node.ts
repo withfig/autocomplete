@@ -19,6 +19,15 @@ const completionSpec: Fig.Subcommand = {
       args: {},
     },
     {
+      name: "--env-file",
+      description: "Specify a file containing environment variables",
+      args: {
+        name: "path",
+        template: "filepaths",
+      },
+      isRepeatable: true,
+    },
+    {
       name: ["-p", "--print"],
       description: "Evaluate script and print result",
     },
