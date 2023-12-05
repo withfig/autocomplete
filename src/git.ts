@@ -6272,6 +6272,10 @@ const completionSpec: Fig.Spec = {
           description: "Suppress diff output",
         },
         {
+          name: "--show-signature",
+          description: "Check the validity of a signed commit",
+        },
+        {
           name: "--source",
           description: "Show source",
         },
