@@ -66,9 +66,7 @@ for (const dirent of fs.readdirSync(resolvedSrc, { withFileTypes: true })) {
 
 fs.writeFileSync(
   "build/index.js",
-  `var e=[${JSON.stringify(
-    specNames
-  )},diffVersionedCompletions=${JSON.stringify(
+  `var e=${JSON.stringify(specNames)},diffVersionedCompletions=${JSON.stringify(
     diffVersionedSpecNames
   )};export{e as default,diffVersionedCompletions};`
 );
