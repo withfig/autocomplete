@@ -1,6 +1,6 @@
 {
   "name": "@withfig/autocomplete",
-  "version": "2.647.0",
+  "version": "2.648.0",
   "description": "Fig Autocomplete Specs",
   "schemaVersion": "v7",
   "main": "./build/index",
@@ -51,8 +51,7 @@
   },
   "lint-staged": {
     "*.ts": [
-      "eslint --fix",
-      "pretty-quick --staged"
+      "eslint --fix"
     ]
   },
   "files": [
@@ -72,7 +71,7 @@
     "@typescript-eslint/eslint-plugin": "^6.7.3",
     "@typescript-eslint/parser": "^6.7.3",
     "@vitejs/plugin-react": "^4.1.0",
-    "@withfig/autocomplete-tools": "^2.7.10",
+    "@withfig/autocomplete-tools": "^2.8.0",
     "@withfig/autocomplete-types": "^1.29.0",
     "autoprefixer": "^10.4.16",
     "chalk": "^5.3.0",
