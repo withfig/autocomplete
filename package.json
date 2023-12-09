@@ -1,12 +1,15 @@
 {
   "name": "@withfig/autocomplete",
-  "version": "2.648.0",
+  "version": "2.648.1",
   "description": "Fig Autocomplete Specs",
   "schemaVersion": "v7",
   "main": "./build/index",
   "types": "./build/index.d.ts",
   "type": "module",
   "packageManager": "yarn@3.5.1",
+  "engines": {
+    "node": ">=18"
+  },
   "browserslist": [
     "safari >=12",
     "edge >=79"
@@ -56,7 +59,8 @@
   },
   "files": [
     "build/**/*.js",
-    "build/**/*.css"
+    "build/**/*.css",
+    "build/**/*.json"
   ],
   "author": "",
   "license": "ISC",
