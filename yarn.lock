@@ -2921,8 +2921,8 @@ __metadata:
   linkType: hard
 
 "danger@npm:^11.3.0":
-  version: 11.3.0
-  resolution: "danger@npm:11.3.0"
+  version: 11.3.1
+  resolution: "danger@npm:11.3.1"
   dependencies:
     "@gitbeaker/core": ^35.8.1
     "@gitbeaker/node": ^35.8.1
@@ -2972,7 +2972,7 @@ __metadata:
     danger-process: distribution/commands/danger-process.js
     danger-reset-status: distribution/commands/danger-reset-status.js
     danger-runner: distribution/commands/danger-runner.js
-  checksum: d691edee1f677e48b173ba163314c385968d5967824467d6ee2a5ab3076a543981b85a3bd281c23dbd953d67f11fb1d0d9c07f8af1d29fc2438c3d3e12d9799e
+  checksum: a8d99e6b864bdd3b6bdd8ebd66c9cb06fa9e61eac6295798ce4f6cb4c6d9e33484b38699dff6cd980ff5ead3e18967a4761f347ddcd16cdfe851f2d8e0601425
   languageName: node
   linkType: hard
 
