@@ -8,6 +8,10 @@ export const npxSuggestions: Fig.Suggestion[] = [
   // specToSuggestions(createRedwoodApp),
   specToSuggestions(vite),
   {
+    // TODO: Import from autocannon when it's merged
+    name: "autocannon",
+  },
+  {
     name: "babel",
     icon: "https://raw.githubusercontent.com/babel/logo/master/babel.png",
   },
