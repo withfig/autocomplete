@@ -3914,6 +3914,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
       args: {
         name: "args",
         isVariadic: true,
+        isOptional: true,
       },
     },
     {
