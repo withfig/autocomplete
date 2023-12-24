@@ -292,6 +292,57 @@ const appSubcommand: Fig.Subcommand = {
   ],
 };
 
+const traefikCommand: Fig.Subcommand = {
+  name: "traefik",
+  description: "Manage Traefik",
+  icon: "🚦",
+
+  subcommands: [
+    { name: "boot", description: "Boot Traefik on servers" },
+    {
+      name: "details",
+      description: "Show details about Traefik container from servers",
+    },
+    {
+      name: "help",
+      description: "Describe subcommands or one specific subcommand",
+      args: {
+        name: "subcommand",
+        suggestions: [
+          { name: "boot" },
+          { name: "details" },
+          { name: "help" },
+          { name: "logs" },
+          { name: "reboot" },
+          { name: "remove" },
+          { name: "restart" },
+          { name: "start" },
+          { name: "stop" },
+        ],
+      },
+    },
+    { name: "logs", description: "Show log lines from Traefik on servers" },
+    {
+      name: "reboot",
+      description:
+        "Reboot Traefik on servers (stop container, remove container, start new container)",
+    },
+    {
+      name: "remove",
+      description: "Remove Traefik container and image from servers",
+    },
+    {
+      name: "restart",
+      description: "Restart existing Traefik container on servers",
+    },
+    {
+      name: "start",
+      description: "Start existing Traefik container on servers",
+    },
+    { name: "stop", description: "Stop existing Traefik container on servers" },
+  ],
+};
+
 const rootCommands: Fig.Subcommand[] = [
   {
     name: "setup",
@@ -370,6 +421,7 @@ const rootCommands: Fig.Subcommand[] = [
   },
   accessorySubcommand,
   appSubcommand,
+  traefikCommand,
   {
     name: "lock",
     subcommands: [
