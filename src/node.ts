@@ -32,6 +32,12 @@ const completionSpec: Fig.Subcommand = {
       isRepeatable: true,
     },
     {
+      name: "--watch-preserve-output",
+      description:
+        "Disable the clearing of the console when watch mode restarts the process",
+      dependsOn: ["--watch", "--watch-path"],
+    },
+    {
       name: "--env-file",
       description: "Specify a file containing environment variables",
       args: {
@@ -39,12 +45,6 @@ const completionSpec: Fig.Subcommand = {
         template: "filepaths",
       },
       isRepeatable: true,
-    },
-    {
-      name: "--watch-preserve-output",
-      description:
-        "Disable the clearing of the console when watch mode restarts the process",
-      dependsOn: ["--watch", "--watch-path"],
     },
     {
       name: ["-p", "--print"],
