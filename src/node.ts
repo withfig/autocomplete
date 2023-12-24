@@ -19,6 +19,15 @@ const completionSpec: Fig.Subcommand = {
       args: {},
     },
     {
+      name: "--env-file",
+      description: "Specify a file containing environment variables",
+      args: {
+        name: "path",
+        template: "filepaths",
+      },
+      isRepeatable: true,
+    },
+    {
       name: ["-p", "--print"],
       description: "Evaluate script and print result",
     },
@@ -55,8 +64,15 @@ const completionSpec: Fig.Subcommand = {
     },
   ],
   generateSpec: async (tokens, executeShellCommand) => {
-    const isAdonisJsonPresentCommand = "test -f .adonisrc.json && echo '1'";
-    if ((await executeShellCommand(isAdonisJsonPresentCommand)) === "1") {
+    const isAdonisJsonPresentCommand = "test -f .adonisrc.json";
+    if (
+      (
+        await executeShellCommand({
+          command: "bash",
+          args: ["-c", "isAdonisJsonPresentCommand"],
+        })
+      ).status === 0
+    ) {
       return {
         name: "node",
         subcommands: [

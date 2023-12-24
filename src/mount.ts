@@ -7,7 +7,7 @@ const completionSpec: Fig.Spec = {
       template: "filepaths",
       generators: [
         {
-          script: "cat /proc/partitions", // this way we don't depend on lsblk
+          script: ["cat", "/proc/partitions"], // this way we don't depend on lsblk
           postProcess: (out) => {
             return out
               .trim()
@@ -21,7 +21,7 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          script: "\\command ls -1 /dev/mapper", // usually LUKS encrypted partitions are here
+          script: ["ls", "-1", "/dev/mapper"], // usually LUKS encrypted partitions are here
           postProcess: (out) => {
             return out
               .trim()

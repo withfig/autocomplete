@@ -98,8 +98,11 @@ const completionSpec: Fig.Spec = {
         name: "tasks",
         isVariadic: true,
         generators: {
-          script:
+          script: [
+            "bash",
+            "-c",
             "until [[ ( -f turbo.json || $PWD = '/' ) ]]; do cd ..; done; cat turbo.json",
+          ],
           postProcess: (out) => {
             let turbo: TurboJSON;
             try {

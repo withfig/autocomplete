@@ -17,10 +17,18 @@ type Unit = {
 const unitGenerator: Fig.Generator = {
   custom: async (tokens, executeShellCommand) => {
     const user = tokens.includes("--user");
-    const out = await executeShellCommand(
-      `systemctl list-units -o json --all --full ${user ? " --user" : ""}`
-    );
-    const units: Unit[] = JSON.parse(out);
+    const { stdout } = await executeShellCommand({
+      command: "systemctl",
+      args: [
+        "list-units",
+        "-o",
+        "json",
+        "--all",
+        "--full",
+        ...(user ? ["--user"] : []),
+      ],
+    });
+    const units: Unit[] = JSON.parse(stdout);
 
     const suggustions = units.map((unit) => {
       let activeEmoji: string;
@@ -65,10 +73,18 @@ type UnitFile = {
 const unitFileGenerator: Fig.Generator = {
   custom: async (tokens, executeShellCommand) => {
     const user = tokens.includes("--user");
-    const out = await executeShellCommand(
-      `systemctl list-unit-files -o json --all --full ${user ? " --user" : ""}`
-    );
-    const units: UnitFile[] = JSON.parse(out);
+    const { stdout } = await executeShellCommand({
+      command: "systemctl",
+      args: [
+        "list-unit-files",
+        "-o",
+        "json",
+        "--all",
+        "--full",
+        ...(user ? ["--user"] : []),
+      ],
+    });
+    const units: UnitFile[] = JSON.parse(stdout);
     const suggustions = units.map((unit) => {
       let loadedEmoji: string;
       if (unit.state === "enabled") {

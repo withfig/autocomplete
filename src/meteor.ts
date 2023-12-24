@@ -1,7 +1,7 @@
 import { filepaths } from "@fig/autocomplete-generators";
 
 const examplesGenerator: Fig.Generator = {
-  script: "meteor create --list",
+  script: ["meteor", "create", "--list"],
   postProcess: (output) => {
     return output
       .split("\n")
@@ -13,7 +13,7 @@ const examplesGenerator: Fig.Generator = {
 };
 
 const packagesGenerator: Fig.Generator = {
-  script: "cat ./.meteor/packages",
+  script: ["cat", "./.meteor/packages"],
   postProcess: (output) => {
     if (output.includes("No such file or directory")) {
       return [];
@@ -32,7 +32,7 @@ const packagesGenerator: Fig.Generator = {
 };
 
 const platformGenerator: Fig.Generator = {
-  script: "meteor list-platforms",
+  script: ["meteor", "list-platforms"],
   postProcess: (output) => {
     return output.split("\n").map((platform) => {
       return { name: platform };

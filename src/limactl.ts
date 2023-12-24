@@ -16,7 +16,7 @@ const generateGlobalFlags = (subcommandName: string): Fig.Option[] => [
 const instanceNameGenerator = (
   suggestOptions?: Partial<Fig.Suggestion>
 ): Fig.Generator => ({
-  script: "limactl list --quiet",
+  script: ["limactl", "list", "--quiet"],
   postProcess: (output) =>
     output.split("\n").map((instanceName) => ({
       name: `${instanceName}`,

@@ -1,5 +1,5 @@
 const contexts: Fig.Generator = {
-  script: "okteto context list",
+  script: ["okteto", "context", "list"],
   cache: {
     ttl: 1000 * 60 * 30, // 30 minutes
   },
@@ -19,7 +19,7 @@ const contexts: Fig.Generator = {
 };
 
 const namespaces: Fig.Generator = {
-  script: "okteto namespace list",
+  script: ["okteto", "namespace", "list"],
   cache: {
     ttl: 1000 * 60 * 30, // 30 minutes
   },

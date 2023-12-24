@@ -1,10 +1,14 @@
 const listTargets: Fig.Generator = {
-  custom: async (tokens, executeShellCommand) => {
-    const targets = await executeShellCommand("command cat ~/.config/goto");
+  custom: async (tokens, executeShellCommand, context) => {
+    const { stdout } = await executeShellCommand({
+      command: "cat",
+      // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+      args: [`${context.environmentVariables["HOME"]}/.config/goto`],
+    });
 
     const targetSuggestions = new Map<string, Fig.Suggestion>();
 
-    for (const target of targets.split("\n")) {
+    for (const target of stdout.split("\n")) {
       const splits = target.split(" ");
       targetSuggestions.set(target, {
         name: splits[0],

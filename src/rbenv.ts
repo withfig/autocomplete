@@ -1,7 +1,22 @@
-const versionArg: Fig.Arg = {
-  name: "version",
-  isOptional: true,
+const installVersionsGenerator: Fig.Generator = {
+  script: ["rbenv", "install", "-L"],
+  postProcess: function (out) {
+    return out.split("\n").map((name) => ({ name }));
+  },
 };
+
+const installedVersionsGenerator: Fig.Generator = {
+  script: ["rbenv", "versions", "--bare"],
+  postProcess: function (out) {
+    return out.split("\n").map((name) => ({ name }));
+  },
+};
+
+const versionArg = (generator?: Fig.Generator, required = false): Fig.Arg => ({
+  name: "version",
+  isOptional: !required,
+  generators: generator,
+});
 
 const versionOptions: Fig.Option[] = [
   {
@@ -29,24 +44,25 @@ const completionSpec: Fig.Spec = {
     {
       name: "global",
       description: "Set or show the global Ruby version",
-      args: versionArg,
+      args: versionArg(installedVersionsGenerator),
       options: versionOptions,
     },
     {
       name: "install",
       description: "Install a Ruby version using ruby-build",
+      args: versionArg(installVersionsGenerator, true),
       options: [
         {
           name: "--version",
           description: "Show version of ruby-build",
-          args: versionArg,
+          args: versionArg(),
         },
       ],
     },
     {
       name: "local",
       description: "Set or show the local application-specific Ruby version",
-      args: versionArg,
+      args: versionArg(installedVersionsGenerator),
       options: versionOptions,
     },
     {
@@ -56,7 +72,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "shell",
       description: "Set or show the shell-specific Ruby version",
-      args: versionArg,
+      args: versionArg(installedVersionsGenerator),
     },
     {
       name: "uninstall",

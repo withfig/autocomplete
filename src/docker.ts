@@ -26,19 +26,26 @@ const sharedPostProcess: Fig.Generator["postProcess"] = (out) => {
 
 const dockerGenerators: Record<string, Fig.Generator> = {
   runningDockerContainers: {
-    script: `docker ps --format '{{ json . }}'`,
+    script: ["docker", "ps", "--format", "{{ json . }}"],
     postProcess: postProcessDockerPs,
   },
   allDockerContainers: {
-    script: `docker ps -a --format '{{ json . }}'`,
+    script: ["docker", "ps", "-a", "--format", "{{ json . }}"],
     postProcess: postProcessDockerPs,
   },
   pausedDockerContainers: {
-    script: `docker ps --filter status=paused --format '{{ json . }}'`,
+    script: [
+      "docker",
+      "ps",
+      "--filter",
+      "status=paused",
+      "--format",
+      "{{ json . }}",
+    ],
     postProcess: postProcessDockerPs,
   },
   allLocalImages: {
-    script: `docker image ls --format '{{ json . }}'`,
+    script: ["docker", "image", "ls", "--format", "{{ json . }}"],
     postProcess: function (out) {
       return out
         .split("\n")
@@ -51,7 +58,7 @@ const dockerGenerators: Record<string, Fig.Generator> = {
     },
   },
   allLocalImagesWithRepository: {
-    script: `docker image ls --format '{{ json . }}'`,
+    script: ["docker", "image", "ls", "--format", "{{ json . }}"],
     postProcess: function (out) {
       return out
         .split("\n")
@@ -65,9 +72,9 @@ const dockerGenerators: Record<string, Fig.Generator> = {
   },
   dockerHubSearch: {
     script: function (context) {
-      if (context[context.length - 1] === "") return "";
+      if (context[context.length - 1] === "") return undefined;
       const searchTerm = context[context.length - 1];
-      return `docker search ${searchTerm} --format '{{ json . }}'`;
+      return ["docker", "search", searchTerm, "--format", "{{ json . }}"];
     },
     postProcess: function (out) {
       return out
@@ -83,7 +90,7 @@ const dockerGenerators: Record<string, Fig.Generator> = {
     },
   },
   allDockerContexts: {
-    script: `docker context list --format '{{ json . }}'`,
+    script: ["docker", "context", "list", "--format", "{{ json . }}"],
     postProcess: function (out) {
       return out
         .split("\n")
@@ -96,11 +103,11 @@ const dockerGenerators: Record<string, Fig.Generator> = {
     },
   },
   listDockerNetworks: {
-    script: `docker network list --format '{{ json . }}'`,
+    script: ["docker", "network", "list", "--format", "{{ json . }}"],
     postProcess: sharedPostProcess,
   },
   listDockerSwarmNodes: {
-    script: `docker node list --format '{{ json . }}'`,
+    script: ["docker", "node", "list", "--format", "{{ json . }}"],
     postProcess: function (out) {
       return out
         .split("\n")
@@ -114,15 +121,15 @@ const dockerGenerators: Record<string, Fig.Generator> = {
     },
   },
   listDockerPlugins: {
-    script: `docker plugin list --format '{{ json . }}'`,
+    script: ["docker", "plugin", "list", "--format", "{{ json . }}"],
     postProcess: sharedPostProcess,
   },
   listDockerSecrets: {
-    script: `docker secret list --format '{{ json . }}'`,
+    script: ["docker", "secret", "list", "--format", "{{ json . }}"],
     postProcess: sharedPostProcess,
   },
   listDockerServices: {
-    script: `docker service list --format '{{ json . }}'`,
+    script: ["docker", "service", "list", "--format", "{{ json . }}"],
     postProcess: function (out) {
       return out
         .split("\n")
@@ -135,7 +142,7 @@ const dockerGenerators: Record<string, Fig.Generator> = {
     },
   },
   listDockerServicesReplicas: {
-    script: `docker service list --format '{{ json . }}'`,
+    script: ["docker", "service", "list", "--format", "{{ json . }}"],
     postProcess: function (out) {
       return out
         .split("\n")
@@ -148,7 +155,7 @@ const dockerGenerators: Record<string, Fig.Generator> = {
     },
   },
   listDockerStacks: {
-    script: `docker stack list --format '{{ json . }}'`,
+    script: ["docker", "stack", "list", "--format", "{{ json . }}"],
     postProcess: function (out) {
       return out
         .split("\n")
@@ -160,7 +167,7 @@ const dockerGenerators: Record<string, Fig.Generator> = {
     },
   },
   listDockerVolumes: {
-    script: `docker volume list --format '{{ json . }}'`,
+    script: ["docker", "volume", "list", "--format", "{{ json . }}"],
     postProcess: function (out) {
       return out
         .split("\n")
@@ -346,10 +353,10 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
                 fileFlagIndex = context.indexOf("--file");
                 dockerfilePath = context[fileFlagIndex + 1];
               } else {
-                dockerfilePath = "$PWD/Dockerfile";
+                dockerfilePath = "Dockerfile";
               }
 
-              return `\\grep -iE 'FROM.*AS' "${dockerfilePath}"`;
+              return ["grep", "-iE", "FROM.*AS", dockerfilePath];
             },
             postProcess: function (out) {
               // This just searches the Dockerfile for the alias name after AS,
@@ -1978,8 +1985,12 @@ default-cgroupns-mode option on the daemon (default)`,
         name: "image",
         description: "The Docker image to use",
         generators: {
-          script:
-            "docker images --format '{{.Repository}} {{.Size}} {{.Tag}} {{.ID}}'",
+          script: [
+            "docker",
+            "images",
+            "--format",
+            "{{.Repository}} {{.Size}} {{.Tag}} {{.ID}}",
+          ],
           postProcess: function (out) {
             return out.split("\n").map((image) => {
               const [repo, size, tag, id] = image.split(" ");
@@ -2599,7 +2610,7 @@ const completionSpec: Fig.Spec = {
         name: "Name or ID",
         generators: [
           {
-            script: `docker ps -a --format '{{ json . }}'`,
+            script: ["docker", "ps", "-a", "--format", "{{ json . }}"],
             postProcess: function (out) {
               const allLines = out.split("\n").map((line) => JSON.parse(line));
               return allLines.map((i) => ({
@@ -2609,7 +2620,7 @@ const completionSpec: Fig.Spec = {
             },
           },
           {
-            script: `docker images -a --format '{{ json . }}'`,
+            script: ["docker", "images", "-a", "--format", "{{ json . }}"],
             postProcess: function (out) {
               const allLines = out.split("\n").map((line) => JSON.parse(line));
               return allLines.map((i) => {
@@ -2631,7 +2642,7 @@ const completionSpec: Fig.Spec = {
             },
           },
           {
-            script: `docker volume ls --format '{{ json . }}'`,
+            script: ["docker", "volume", "ls", "--format", "{{ json . }}"],
             postProcess: function (out) {
               const allLines = out.split("\n").map((line) => JSON.parse(line));
               return allLines.map((i) => ({

@@ -27,7 +27,7 @@ const deviceOption: Fig.Option = {
     name: "device id",
     // TODO: create a generator of ns device <platform> --available-devices
     // generators: {
-    //   script: "ns devices --json",
+    //   script: ["ns", "devices", "--json"],
     //   postProcess: (output) => {
     //     return [{
     //       name: "test1",
@@ -545,8 +545,11 @@ const createCommand: Fig.Subcommand = {
       args: {
         name: "template",
         generators: {
-          script:
-            "curl https://api.github.com/repos/NativeScript/nativescript-app-templates/contents/packages",
+          script: [
+            "curl",
+            "-sfL",
+            "https://api.github.com/repos/NativeScript/nativescript-app-templates/contents/packages",
+          ],
           cache: {
             ttl: 100 * 24 * 60 * 60 * 1000, // 100days
           },
@@ -1178,7 +1181,7 @@ const deviceCommand: Fig.Subcommand = {
         name: "application id",
         description: "The application identifier", //TODO: generator $ tns device list-applications.
         // generators: {
-        //   script: "ns device list-applications",
+        //   script: ["ns", "device", "list-applications"],
         //   postProcess: (output) => {
         //     return JSON.parse(output).map((branch) => {
         //       const template = branch?.name;

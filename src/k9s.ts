@@ -1,5 +1,5 @@
 const namespaces: Fig.Generator = {
-  script: "kubectl get namespaces",
+  script: ["kubectl", "get", "namespaces"],
   postProcess: (out) => {
     return out
       .split("\n")

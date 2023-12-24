@@ -40,9 +40,15 @@ const PACKAGE_REGEXP = new RegExp("^.*/.*$");
 
 const searchGenerator: Fig.Generator = {
   script: function (context) {
-    if (context[context.length - 1] === "") return "";
+    if (context[context.length - 1] === "") return undefined;
     const searchTerm = context[context.length - 1];
-    return `curl -s -H "Accept: application/json" "https://packagist.org/search.json?q=${searchTerm}&per_page=20"`;
+    return [
+      "curl",
+      "-s",
+      "-H",
+      "Accept: application/json",
+      `https://packagist.org/search.json?q=${searchTerm}&per_page=20`,
+    ];
   },
   postProcess: function (out) {
     try {
@@ -52,7 +58,7 @@ const searchGenerator: Fig.Generator = {
             name: item.name,
             description: item.description,
             icon: "📦",
-          } as Fig.Suggestion)
+          }) as Fig.Suggestion
       ) as Fig.Suggestion[];
     } catch (e) {
       return [];
@@ -62,7 +68,7 @@ const searchGenerator: Fig.Generator = {
 
 // generate package list from composer.json file
 const packagesGenerator: Fig.Generator = {
-  script: "cat composer.json",
+  script: ["cat", "composer.json"],
   postProcess: function (out) {
     if (out.trim() == "") {
       return [];
@@ -97,13 +103,22 @@ const completionSpec: Fig.Spec = {
   name: "composer",
   description: "Composer Command",
   generateSpec: async (tokens, executeShellCommand) => {
-    const jsonList = await executeShellCommand("composer list --format=json");
-    const symfonyLock = await executeShellCommand(`file symfony.lock`);
+    const [jsonList, symfonyLock] = await Promise.all([
+      executeShellCommand({
+        command: "composer",
+        args: ["list", "--format=json"],
+      }),
+      executeShellCommand({
+        command: "ls",
+        // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+        args: ["symfony.lock"],
+      }),
+    ]);
 
     const subcommands: Fig.Subcommand[] = [];
 
     try {
-      const data: ComposerListOutput = JSON.parse(jsonList);
+      const data: ComposerListOutput = JSON.parse(jsonList.stdout);
       const packagesGeneratorTriggersCommands = ["update", "remove"];
 
       for (const command of data.commands) {
@@ -130,8 +145,8 @@ const completionSpec: Fig.Spec = {
                 command.name === "require"
                   ? searchGenerator
                   : packagesGeneratorTriggersCommands.includes(command.name)
-                  ? packagesGenerator
-                  : [],
+                    ? packagesGenerator
+                    : [],
             };
           }),
 
@@ -204,9 +219,7 @@ const completionSpec: Fig.Spec = {
         },
       ];
 
-      const symfonyLockExists = !symfonyLock.endsWith(
-        "(No such file or directory)"
-      );
+      const symfonyLockExists = symfonyLock.status === 0;
       if (symfonyLockExists) {
         subcommands.push({
           name: ["recipes", "symfony:recipes"],

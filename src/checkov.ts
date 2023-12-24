@@ -1,5 +1,5 @@
 const branches: Fig.Generator = {
-  script: "git branch --no-color",
+  script: ["git", "branch", "--no-color"],
   postProcess: (output) => {
     if (output.startsWith("fatal:")) {
       return [];

@@ -353,7 +353,7 @@ const paddingDisplayName = (
     top: MaybeString,
     right: MaybeString,
     bottom: MaybeString,
-    left: MaybeString
+    left: MaybeString,
   ]
 ) => {
   const [top, right, bottom, left] = args.map((string) => pad(string));

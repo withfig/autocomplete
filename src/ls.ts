@@ -4,6 +4,7 @@ const completionSpec: Fig.Spec = {
   args: {
     isVariadic: true,
     template: ["filepaths", "folders"],
+    filterStrategy: "fuzzy",
   },
   options: [
     {
