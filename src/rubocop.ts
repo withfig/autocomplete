@@ -1,3 +1,30 @@
+const copsGenerator: Fig.Generator = {
+  script: ["rubocop", "--show-cops"],
+  postProcess: function (out) {
+    const cops = out.split("\n\n").map((cop) => {
+      const lines = cop.split("\n");
+      const nameIndex = lines.findIndex((line) => !line.startsWith("#"));
+      const autocorrect = lines
+        .slice(0, nameIndex)
+        .find((line) => line === "# Supports --autocorrect");
+
+      const restOfLines = lines.slice(nameIndex);
+
+      return {
+        autocorrect,
+        name: restOfLines[0].slice(0, -1),
+        enabled:
+          restOfLines
+            .find((line) => line.includes("Enabled:"))
+            ?.split("Enabled:")?.[1]
+            ?.trim() === "true",
+      };
+    });
+
+    return cops.map((cop) => ({ name: cop.name }));
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "rubocop",
   description:
@@ -18,12 +45,12 @@ const completionSpec: Fig.Spec = {
     { name: "--safe", description: "Run only safe cops" },
     {
       name: "--except",
-      args: { name: "COP", isVariadic: true },
+      args: { name: "COP", isVariadic: true, generators: copsGenerator },
       description: "Exclude the given cop(s)",
     },
     {
       name: "--only",
-      args: { name: "COP", isVariadic: true },
+      args: { name: "COP", isVariadic: true, generators: copsGenerator },
       description: "Run only the given cop(s)",
     },
     {
@@ -268,13 +295,13 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--show-cops",
-      args: { name: "COP", isVariadic: true },
+      args: { name: "COP", isVariadic: true, generators: copsGenerator },
       description:
         "Shows the given cops, or all cops by default, and their configurations for the current directory",
     },
     {
       name: "--show-docs-url",
-      args: { name: "COP", isVariadic: true },
+      args: { name: "COP", isVariadic: true, generators: copsGenerator },
       description:
         "Display url to documentation for the given cops, or base url by default",
     },
