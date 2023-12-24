@@ -1,16 +1,11 @@
-const supportedElmVersions: Fig.Generator = {
-  script: "echo",
-  postProcess: () => {
-    return [
-      {
-        name: "0.19",
-      },
-      {
-        name: "0.18",
-      },
-    ];
+const supportedElmVersions = [
+  {
+    name: "0.19",
   },
-};
+  {
+    name: "0.18",
+  },
+];
 
 /**
  * Based on [elm-format](https://github.com/avh4/elm-format), version 0.8.5. A cli tool for formatting Elm code.
@@ -51,7 +46,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "VERSION",
         description: "Valid values: 0.18, 0.19. Default: auto",
-        generators: supportedElmVersions,
+        suggestions: supportedElmVersions,
         isOptional: true,
       },
     },

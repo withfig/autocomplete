@@ -1,5 +1,5 @@
 const allPluginsGenerator: Fig.Generator = {
-  script: "ansible-doc --list --json 2>/dev/null",
+  script: ["ansible-doc", "--list", "--json"],
   postProcess: function (output) {
     const plugins = JSON.parse(output);
     return Object.keys(plugins).map((key) => ({

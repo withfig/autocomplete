@@ -31,7 +31,7 @@ const helpCommand: Fig.Subcommand = {
 };
 
 const deviceGenerator: Fig.Generator = {
-  script: "dcli devices list --json",
+  script: ["dcli", "devices", "list", "--json"],
   postProcess: function (out) {
     try {
       const devices = JSON.parse(out) as Device[];
@@ -51,7 +51,7 @@ const deviceGenerator: Fig.Generator = {
 };
 
 const teamCredentialGenerator: Fig.Generator = {
-  script: "dcli team credentials list --json",
+  script: ["dcli", "team", "credentials", "list", "--json"],
   postProcess: function (out) {
     try {
       const credentials = JSON.parse(out) as TeamCredential[];

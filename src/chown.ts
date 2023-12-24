@@ -8,13 +8,20 @@ export const existingUsersandGroups: Fig.Generator = {
     // in the current command. If it is, get the system groups
     // else retrieve the list of system users
     if (colonAdded) {
-      shell = await executeShellCommand(
-        "dscl . -list /Groups PrimaryGroupID | tr -s ' '| sort -r"
-      );
+      const { stdout } = await executeShellCommand({
+        command: "bash",
+        args: [
+          "-c",
+          "dscl . -list /Groups PrimaryGroupID | tr -s ' '| sort -r",
+        ],
+      });
+      shell = stdout;
     } else {
-      shell = await executeShellCommand(
-        "dscl . -list /Users UniqueID | tr -s ' '| sort -r"
-      );
+      const { stdout } = await executeShellCommand({
+        command: "bash",
+        args: ["-c", "dscl . -list /Users UniqueID | tr -s ' '| sort -r"],
+      });
+      shell = stdout;
     }
 
     return (

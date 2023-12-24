@@ -874,7 +874,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "archetype|default",
               generators: {
-                script: "ls ./archetypes/",
+                script: ["ls", "./archetypes/"],
                 postProcess: (output) =>
                   output.split("\n").map((fileName) => ({
                     name: fileName.slice(0, fileName.lastIndexOf(".")),

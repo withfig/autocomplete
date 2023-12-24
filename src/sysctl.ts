@@ -1,5 +1,5 @@
 const generateSysctlNames: Fig.Generator = {
-  script: "sysctl -A -N",
+  script: ["sysctl", "-A", "-N"],
   postProcess: (out) => {
     return out.split("\n").map((line) => {
       return {

@@ -1,10 +1,10 @@
 const generateDisks: Fig.Generator = {
-  // ? is a bash/fish/zsh glob pattern for "any character, exactly once"
-  script: "command ls /dev/disk?",
+  script: ["ls", "/dev"],
   postProcess: (out) =>
     out
       .trim()
       .split("\n")
+      .filter((disk) => disk.match(/\/dev\/disk\w/))
       .map((disk) => ({
         name: disk,
         icon: "💽",
@@ -13,21 +13,21 @@ const generateDisks: Fig.Generator = {
 };
 
 const generateVolumes: Fig.Generator = {
-  script: "command ls -d /Volumes/*",
+  script: ["ls", "/Volumes"],
   postProcess: (out) =>
     out
       .trim()
       .split("\n")
       .filter((volume) => volume !== "Macintosh HD")
       .map((volume) => ({
-        name: volume,
+        name: `/Volumes/${volume}`,
         type: "file",
         priority: 100,
       })),
 };
 
 const generateUsers: Fig.Generator = {
-  script: "m user list | awk '{ print $1 }'",
+  script: ["bash", "-c", "m user list | awk '{ print $1 }'"],
   postProcess: (out) =>
     out
       .trim()
@@ -40,7 +40,7 @@ const generateUsers: Fig.Generator = {
 };
 
 const generateGroups: Fig.Generator = {
-  script: "m group list | awk '{ print $1 }'",
+  script: ["bash", "-c", "m group list | awk '{ print $1 }'"],
   postProcess: (out) =>
     out
       .trim()
@@ -53,12 +53,12 @@ const generateGroups: Fig.Generator = {
 };
 
 const generateNetworkLocations: Fig.Generator = {
-  script: "m network location list | tail -n +2",
+  script: ["bash", "-c", "m network location list | tail -n +2"],
   splitOn: "\n",
 };
 
 const generateServices: Fig.Generator = {
-  script: "launchctl list | awk '{ print $3 }'",
+  script: ["bash", "-c", "launchctl list | awk '{ print $3 }'"],
   splitOn: "\n",
 };
 
@@ -70,7 +70,7 @@ function getPidIcon(path: string): string {
   return "fig://" + path.slice(0, idx + 4);
 }
 const generatePids: Fig.Generator = {
-  script: "ps axo pid,comm | sed 1d",
+  script: ["bash", "-c", "ps axo pid,comm | sed 1d"],
   postProcess: (result) => {
     return result.split("\n").map((line) => {
       const [pid, path] = line.trim().split(/\s+/);
@@ -86,8 +86,11 @@ const generatePids: Fig.Generator = {
 };
 
 const generateWifiNetworks: Fig.Generator = {
-  script:
+  script: [
+    "bash",
+    "-c",
     "networksetup -listallhardwareports | awk '/Wi-Fi/{getline; print $2}' | xargs networksetup -listpreferredwirelessnetworks | tail -n +2",
+  ],
   postProcess: (out) =>
     out
       .trim()

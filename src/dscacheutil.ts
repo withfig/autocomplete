@@ -52,7 +52,12 @@ const dscacheutilGenerators: Record<string, Fig.Generator> = {
       const attributeKey = tokens[tokens.length - 2];
       const pp = postProcessQuery({ attributeKey });
       return pp(
-        await executeShellCommand(`dscacheutil -q ${category}`),
+        (
+          await executeShellCommand({
+            command: "dscacheutil",
+            args: ["-q", category],
+          })
+        ).stdout,
         tokens
       );
     },

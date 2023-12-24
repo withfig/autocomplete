@@ -67,7 +67,11 @@ const completionSpec: Fig.Spec = {
         name: "version",
         isOptional: true,
         generators: {
-          script: `curl -sL 'https://cdn.deno.land/deploy/meta/versions.json'`,
+          script: [
+            "curl",
+            "-sL",
+            "https://cdn.deno.land/deploy/meta/versions.json",
+          ],
           cache: { ttl: 1000 * 60 * 60 * 24 }, // 24 hours, in milliseconds
           postProcess: (out) => {
             const data = JSON.parse(out) as VersionsJSON;

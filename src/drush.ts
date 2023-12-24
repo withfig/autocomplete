@@ -38,7 +38,11 @@ const completionSpec: Fig.Spec = {
   description:
     "Drush is a command line shell and Unix scripting interface for Drupal",
   generateSpec: async (tokens, executeShellCommand) => {
-    const jsonList = await executeShellCommand("drush --format=json");
+    const { stdout: jsonList } = await executeShellCommand({
+      command: "drush",
+      // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+      args: ["--format=json"],
+    });
     const subcommands: Fig.Subcommand[] = [];
 
     try {
