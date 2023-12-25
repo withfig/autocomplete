@@ -1,5 +1,5 @@
 const generateNames: Fig.Generator = {
-  script: "eb list",
+  script: ["eb", "list"],
   postProcess: (str) => {
     const lines: string[] = str
       .trim()

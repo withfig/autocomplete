@@ -4,7 +4,7 @@ const genericPathArg: Fig.Arg = {
 };
 
 const deployments: Fig.Generator = {
-  script: "bosh --json deployments",
+  script: ["bosh", "--json", "deployments"],
   postProcess: function (out) {
     if (out.startsWith("fatal:")) {
       return [];

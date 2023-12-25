@@ -43,7 +43,7 @@ const completionSpec: Fig.Spec = {
     isVariadic: true,
     generators: {
       // All processes, only display the path
-      script: "ps -A -o comm | sort -u",
+      script: ["bash", "-c", "ps -A -o comm | sort -u"],
       postProcess: (out) =>
         out
           .trim()
@@ -113,7 +113,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "user",
         generators: {
-          script: "dscl . -list /Users | grep -v '^_'",
+          script: ["bash", "-c", "dscl . -list /Users | grep -v '^_'"],
           postProcess: (out) =>
             out
               .trim()

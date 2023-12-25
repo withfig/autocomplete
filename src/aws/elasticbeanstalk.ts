@@ -39,27 +39,31 @@ const postPrecessGenerator = (
 
 const customGenerator = async (
   tokens: string[],
-  executeShellCommand: Fig.ExecuteShellCommandFunction,
-  command: string,
+  executeShellCommand: Fig.ExecuteCommandFunction,
+  command: string[],
   options: string[],
   parentKey: string,
   childKey = ""
 ): Promise<Fig.Suggestion[]> => {
   try {
-    let cmd = `aws elasticbeanstalk ${command}`;
-    for (let i = 0; i < options.length; i++) {
-      const option = options[i];
+    let args = ["elasticbeanstalk", ...command];
+
+    for (const option of options) {
       const idx = tokens.indexOf(option);
       if (idx < 0) {
         continue;
       }
       const param = tokens[idx + 1];
-      cmd += ` ${option} ${param}`;
+      args = [...args, option, param];
     }
 
-    const out = await executeShellCommand(cmd);
+    const { stdout } = await executeShellCommand({
+      command: "aws",
+      args,
+    });
 
-    const list = JSON.parse(out)[parentKey];
+    const list = JSON.parse(stdout)[parentKey];
+
     if (!Array.isArray(list)) {
       return [
         {
@@ -84,7 +88,7 @@ const customGenerator = async (
 
 const filterManagedAction = async (
   tokens: string[],
-  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  executeShellCommand: Fig.ExecuteCommandFunction,
   command: string,
   options: string[],
   parentKey: string,
@@ -94,7 +98,7 @@ const filterManagedAction = async (
   return customGenerator(
     tokens,
     executeShellCommand,
-    `${command} --status ${filter}`,
+    [command, "--status", filter],
     options,
     parentKey,
     childKey
@@ -103,12 +107,12 @@ const filterManagedAction = async (
 
 const _prefixFile = "file://";
 
-const appendFolderPath = (tokens: string[], prefix: string): string => {
-  const baseLSCommand = "\\ls -1ApL ";
+const appendFolderPath = (tokens: string[], prefix: string): string[] => {
+  const baseLsCommand = ["ls", "-1ApL"];
   let whatHasUserTyped = tokens[tokens.length - 1];
 
   if (!whatHasUserTyped.startsWith(prefix)) {
-    return `echo '${prefix}'`;
+    return ["echo", prefix];
   }
   whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
 
@@ -123,7 +127,7 @@ const appendFolderPath = (tokens: string[], prefix: string): string => {
     }
   }
 
-  return baseLSCommand + folderPath;
+  return [...baseLsCommand, folderPath];
 };
 
 const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
@@ -212,14 +216,14 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listEnvironmentIds: {
-    script: "aws elasticbeanstalk describe-environments",
+    script: ["aws", "elasticbeanstalk", "describe-environments"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "Environments", "EnvironmentId");
     },
   },
 
   listEnvironmentNames: {
-    script: "aws elasticbeanstalk describe-environments",
+    script: ["aws", "elasticbeanstalk", "describe-environments"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "Environments", "EnvironmentName");
     },
@@ -240,14 +244,14 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listIamRoleArns: {
-    script: "aws iam list-roles",
+    script: ["aws", "iam", "list-roles"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "Roles", "Arn");
     },
   },
 
   listCnamePrefixes: {
-    script: "aws elasticbeanstalk describe-environments",
+    script: ["aws", "elasticbeanstalk", "describe-environments"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "Environments", "CNAME").map((cname) => {
         try {
@@ -267,7 +271,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listApplications: {
-    script: "aws elasticbeanstalk describe-applications",
+    script: ["aws", "elasticbeanstalk", "describe-applications"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "Applications", "ApplicationName");
     },
@@ -278,7 +282,7 @@ const generators: Record<string, Fig.Generator> = {
       return customGenerator(
         tokens,
         executeShellCommand,
-        "describe-application-versions",
+        ["describe-application-versions"],
         ["--application-name"],
         "ApplicationVersions",
         "VersionLabel"
@@ -287,7 +291,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listBuckets: {
-    script: "aws s3 ls --page-size 1000",
+    script: ["aws", "s3", "ls", "--page-size", "1000"],
     postProcess: (out) => {
       try {
         return out.split("\n").map((line) => {
@@ -310,28 +314,28 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listSolutionStacks: {
-    script: "aws elasticbeanstalk list-available-solution-stacks",
+    script: ["aws", "elasticbeanstalk", "list-available-solution-stacks"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "SolutionStacks");
     },
   },
 
   listPlatformArns: {
-    script: "aws elasticbeanstalk list-platform-versions",
+    script: ["aws", "elasticbeanstalk", "list-platform-versions"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "PlatformSummaryList", "PlatformArn");
     },
   },
 
   listApplicationArns: {
-    script: "aws elasticbeanstalk describe-applications",
+    script: ["aws", "elasticbeanstalk", "describe-applications"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "Applications", "ApplicationArn");
     },
   },
 
   listEnvironmentArns: {
-    script: "aws elasticbeanstalk describe-environments",
+    script: ["aws", "elasticbeanstalk", "describe-environments"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "Environments", "EnvironmentArn");
     },

@@ -25,7 +25,7 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "username",
     generators: {
-      script: "cat /etc/passwd",
+      script: ["cat", "/etc/passwd"],
       postProcess: (out) => {
         return out.split("\n").map((line) => {
           const [username] = line.split(":");

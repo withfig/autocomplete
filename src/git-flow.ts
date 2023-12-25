@@ -23,22 +23,30 @@ const postProcessBranches: Fig.Generator["postProcess"] = (out, tokens) => {
 
 async function getGitFlowPrefix(
   type: string,
-  executeShellCommand: Fig.ExecuteShellCommandFunction
+  executeShellCommand: Fig.ExecuteCommandFunction
 ): Promise<string> {
-  const prefix: string = await executeShellCommand(
-    `git config --get gitflow.prefix.${type}`
-  );
-  return prefix;
+  const { stdout } = await executeShellCommand({
+    command: "git",
+    args: ["config", "--get", `gitflow.prefix.${type}`],
+  });
+  return stdout;
 }
 
 export const gitFlowGenerators: Record<string, Fig.Generator> = {
   typeBranches: {
     custom: async (tokens, executeShellCommand) => {
       const prefix = await getGitFlowPrefix(tokens[1], executeShellCommand);
-      const out = await executeShellCommand(
-        "git --no-optional-locks branch -a --no-color --sort=-committerdate"
-      );
-      return postProcessBranches(out, [prefix]);
+      const { stdout } = await executeShellCommand({
+        command: "git",
+        args: [
+          "--no-optional-locks",
+          "branch",
+          "-a",
+          "--no-color",
+          "--sort=-committerdate",
+        ],
+      });
+      return postProcessBranches(stdout, [prefix]);
     },
   },
 };

@@ -8,7 +8,7 @@ interface NodejsVersion {
 
 // Generators
 const versionGenerator: Fig.Generator = {
-  script: "fnm list",
+  script: ["fnm", "list"],
   postProcess: function (out) {
     return out
       .split("\n")
@@ -49,7 +49,7 @@ const uniqBy = <T = unknown>(arr: T[], callback: (a: T, b: T) => boolean) =>
  * - Every other version, sorted;
  */
 const remoteVersionGenerator: Fig.Generator = {
-  script: "fnm list-remote",
+  script: ["fnm", "list-remote"],
   postProcess: function (out) {
     const parsed = out
       .split("\n")

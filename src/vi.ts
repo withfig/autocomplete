@@ -5,6 +5,12 @@ const completionSpec: Fig.Spec = {
   args: {
     template: "filepaths",
   },
+  options: [
+    {
+      name: ["-h", "--help"],
+      description: "Print help message for vi and exit",
+    },
+  ],
 };
 
 export default completionSpec;

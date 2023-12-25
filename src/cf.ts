@@ -7,22 +7,22 @@ const postProcessCfList =
       .map((name) => ({ name, description }));
 
 const generateAppNames: Fig.Generator = {
-  script: `cf apps | cut -d " " -f1`,
+  script: ["bash", "-c", `cf apps | cut -d " " -f1`],
   postProcess: postProcessCfList("App name", 4),
 };
 
 const generateOrgs: Fig.Generator = {
-  script: `cf orgs`,
+  script: ["cf", "orgs"],
   postProcess: postProcessCfList("Org", 3),
 };
 
 const generateSpaces: Fig.Generator = {
-  script: `cf spaces`,
+  script: ["cf", "spaces"],
   postProcess: postProcessCfList("Space", 3),
 };
 
 const generateServices: Fig.Generator = {
-  script: `cf services | cut -d " " -f1 `,
+  script: ["bash", "-c", `cf services | cut -d " " -f1 `],
   postProcess: postProcessCfList("Service", 4),
 };
 
