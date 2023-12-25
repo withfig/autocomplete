@@ -17,23 +17,84 @@ const destinationGenerator: Fig.Generator = {
   },
 };
 
-const destinationOption: Fig.Option = {
-  name: ["-d", "--destination"],
-  description: "Specify destination to use",
-  args: {
-    name: "destination",
-    description: "Destination to use",
-    generators: destinationGenerator,
-  },
-};
-
 const deployOptions: Fig.Option[] = [
-  destinationOption,
   {
     name: ["-P", "--skip_push"],
     description: "Skip image build and push",
   },
 ];
+
+const rolling = (name: string): Fig.Option => ({
+  name: "--rolling",
+  description: `Reboot ${name} on hosts in sequence, rather than in parallel`,
+});
+
+const logOptions: Fig.Option[] = [
+  {
+    name: ["--since", "-s"],
+    description:
+      'Show lines since timestamp\\" (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)',
+  },
+  {
+    name: ["--lines", "-n"],
+    description: "Number of lines to show from each server",
+  },
+  {
+    name: ["--grep", "-g"],
+    description:
+      "Show lines with grep match only (use this to fetch specific requests by id)",
+  },
+  {
+    name: ["--follow", "-f"],
+    description:
+      "Follow log on primary server (or specific host set by --hosts)",
+  },
+];
+
+const baseOptions: Fig.Option[] = [
+  { name: ["--verbose", "-v"], description: "Detailed logging" },
+  { name: ["--quiet", "-q"], description: "Minimal logging" },
+  {
+    name: "--version",
+    args: { name: "VERSION" },
+    description: "Run commands against a specific app version",
+  },
+
+  {
+    name: ["--primary", "-p"],
+    description: "Run commands only on primary host instead of all",
+  },
+  {
+    name: ["--hosts", "-h"],
+    args: { name: "hosts" },
+    description:
+      "Run commands on these hosts instead of all (separate by comma)",
+  },
+  {
+    name: ["--roles", "-r"],
+    args: { name: "roles" },
+    description:
+      "Run commands on these roles instead of all (separate by comma)",
+  },
+
+  {
+    name: ["--config_file", "-c"],
+    args: { name: "config", default: "config/deploy.yml" },
+    description: "Path to config file",
+  },
+  {
+    name: ["-d", "--destination"],
+    description: "Specify destination to use",
+    args: {
+      name: "destination",
+      description: "Destination to use",
+      generators: destinationGenerator,
+    },
+  },
+  { name: ["--skip_hooks", "-H"], description: "Don't run hooks" },
+];
+
+// ------------------------ COMMANDS ------------------------
 
 const accessorySubcommand: Fig.Subcommand = {
   name: "accessory",
@@ -45,6 +106,9 @@ const accessorySubcommand: Fig.Subcommand = {
         "Boot new accessory service on host (use NAME=all to boot all accessories)",
       args: {
         name: "name", // TODO: this can be autocompleted by parsing the config
+        suggestions: [
+          { name: "all", displayName: 'Use "all" to boot all accessories' },
+        ],
       },
     },
     {
@@ -84,7 +148,6 @@ const accessorySubcommand: Fig.Subcommand = {
         name: "name", // TODO: this can be autocompleted by parsing the config
       },
     },
-    //   desc "stop [NAME]", "Stop existing accessory container on host"
     {
       name: "restart",
       description: "Restart existing accessory container on host",
@@ -92,19 +155,28 @@ const accessorySubcommand: Fig.Subcommand = {
         name: "name", // TODO: this can be autocompleted by parsing the config
       },
     },
-    //   desc "restart [NAME]", "Restart existing accessory container on host"
     {
-      name: "status",
-      description: "Show status of accessory on host",
+      name: "details",
+      description:
+        "Show details about accessory on host (use NAME=all to show all accessories)",
       args: {
-        name: "name", // TODO: this can be autocompleted by parsing the config
+        name: "name",
+        suggestions: [
+          { name: "all", displayName: 'Use "all" to boot all accessories' },
+        ],
       },
     },
-    //   desc "details [NAME]", "Show details about accessory on host (use NAME=all to show all accessories)"
     {
       name: "exec",
-      description:
-        "Execute a custom command on servers (use --help to show options)",
+      description: "Execute a custom command on servers",
+      args: [
+        {
+          name: "name",
+        },
+        {
+          name: "CMD",
+        },
+      ],
       options: [
         {
           name: ["-i", "--interactive"],
@@ -120,39 +192,15 @@ const accessorySubcommand: Fig.Subcommand = {
     },
     {
       name: "logs",
-      description:
-        "Show log lines from accessory on host (use --help to show options)",
-      options: [
-        {
-          name: ["-s", "--since"],
-          description:
-            "Show logs since timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)",
-          args: {
-            name: "timestamp",
-          },
-        },
-        {
-          name: ["-n", "--lines"],
-          description: "Number of log lines to pull from each server",
-          args: {
-            name: "number",
-            default: "100",
-          },
-        },
-        {
-          name: ["-g", "--grep"],
-          description:
-            "Show lines with grep match only (use this to fetch specific requests by id)",
-          args: {
-            name: "pattern",
-          },
-        },
-        {
-          name: ["-f", "--follow"],
-          description:
-            "Follow logs on primary server (or specific host set by --hosts)",
-        },
-      ],
+      description: "Show log lines from accessory on host",
+      options: logOptions,
+    },
+    {
+      name: "status",
+      description: "Show status of accessory on host",
+      args: {
+        name: "name", // TODO: this can be autocompleted by parsing the config
+      },
     },
     {
       name: "remove",
@@ -166,7 +214,9 @@ const accessorySubcommand: Fig.Subcommand = {
       ],
       args: {
         name: "name", // TODO: this can be autocompleted by parsing the config
-        description: "Use NAME=all to remove all accessories",
+        suggestions: [
+          { name: "all", displayName: 'Use "all" to boot all accessories' },
+        ],
       },
     },
     {
@@ -200,7 +250,6 @@ const accessorySubcommand: Fig.Subcommand = {
 const appSubcommand: Fig.Subcommand = {
   name: "app",
   description: "Manage application",
-
   subcommands: [
     {
       name: "boot",
@@ -211,17 +260,16 @@ const appSubcommand: Fig.Subcommand = {
     { name: "details", description: "Show details about app containers" },
     {
       name: "exec",
-      description:
-        "Execute a custom command on servers (use --help to show options)",
+      description: "Execute a custom command on servers",
       args: { name: "CMD" },
       options: [
         {
-          name: ["interactive", "-i"],
+          name: ["--interactive", "-i"],
           description:
             "Execute command over ssh for an interactive shell (use for console/bash)",
         },
         {
-          name: "reuse",
+          name: "--reuse",
           description:
             "Reuse currently running container instead of starting a new one",
         },
@@ -233,7 +281,7 @@ const appSubcommand: Fig.Subcommand = {
       description: "Detect app stale containers",
       options: [
         {
-          name: ["stop", "-s"],
+          name: ["--stop", "-s"],
           description: "Stop the stale containers found",
         },
       ],
@@ -243,27 +291,7 @@ const appSubcommand: Fig.Subcommand = {
       name: "logs",
       description:
         "Show log lines from app on servers (use --help to show options)",
-      options: [
-        {
-          name: ["since", "-s"],
-          description:
-            'Show lines since timestamp\\" (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)',
-        },
-        {
-          name: ["lines", "-n"],
-          description: "Number of lines to show from each server",
-        },
-        {
-          name: ["grep", "-g"],
-          description:
-            "Show lines with grep match only (use this to fetch specific requests by id)",
-        },
-        {
-          name: ["follow", "-f"],
-          description:
-            "Follow log on primary server (or specific host set by --hosts)",
-        },
-      ],
+      options: logOptions,
     },
     {
       name: "remove",
@@ -294,14 +322,47 @@ const appSubcommand: Fig.Subcommand = {
 
 const traefikCommand: Fig.Subcommand = {
   name: "traefik",
-  description: "Manage Traefik",
+  description: "Manage Traefik load balancer",
   icon: "🚦",
-
   subcommands: [
     { name: "boot", description: "Boot Traefik on servers" },
     {
+      name: "reboot",
+      description:
+        "Reboot Traefik on servers (stop container, remove container, start new container)",
+      options: [rolling("traefik")],
+    },
+    {
+      name: "start",
+      description: "Start existing Traefik container on servers",
+    },
+    { name: "stop", description: "Stop existing Traefik container on servers" },
+    {
+      name: "restart",
+      description: "Restart existing Traefik container on servers",
+    },
+    {
       name: "details",
       description: "Show details about Traefik container from servers",
+    },
+    {
+      name: "logs",
+      description: "Show log lines from Traefik on servers",
+      options: logOptions,
+    },
+    {
+      name: "remove",
+      description: "Remove Traefik container and image from servers",
+    },
+    {
+      name: "remove_container",
+      description: "Remove Traefik container from servers",
+      hidden: true,
+    },
+    {
+      name: "remove_image",
+      description: "Remove Traefik image from servers",
+      hidden: true,
     },
     {
       name: "help",
@@ -321,31 +382,99 @@ const traefikCommand: Fig.Subcommand = {
         ],
       },
     },
-    { name: "logs", description: "Show log lines from Traefik on servers" },
+  ],
+};
+
+const lockSubcommands: Fig.Subcommand = {
+  name: "lock",
+  description: "Manage the deploy lock",
+  icon: "🔒",
+  subcommands: [
     {
-      name: "reboot",
+      name: "status",
+      description: "Report lock status",
+    },
+    {
+      name: "acquire",
+      description: "Acquire the deploy lock",
+      options: [
+        {
+          name: ["message", "m"],
+          args: {
+            name: "message",
+            description: "Message to set on the lock",
+          },
+        },
+      ],
+    },
+    {
+      name: "release",
+      description: "Release the deploy lock",
+    },
+  ],
+};
+
+const registrySubcommand: Fig.Subcommand = {
+  name: "registry",
+  description: "Login and -out of the image registry",
+  icon: "📦",
+  subcommands: [
+    { name: "login", description: "Login to registry locally and remotely" },
+    { name: "logout", description: "Log out of registry remotely" },
+  ],
+};
+
+const pruneSubcommand: Fig.Subcommand = {
+  name: "prune",
+  icon: "🧹",
+  description: "Prune old application images and containers",
+  subcommands: [
+    { name: "all", description: "Prune unused images and stopped containers" },
+    { name: "images", description: "Prune unused images" },
+    {
+      name: "containers",
+      description: "Prune stopped containers, except last 5",
+    },
+  ],
+};
+
+const buildSubcommand: Fig.Subcommand = {
+  name: "build",
+  description: "Build application image",
+  icon: "🏗️",
+  subcommands: [
+    {
+      name: "deliver",
       description:
-        "Reboot Traefik on servers (stop container, remove container, start new container)",
+        "Build app and push app image to registry then pull image on servers",
+    },
+    {
+      name: "push",
+      description: "Build and push app image to registry",
+    },
+    {
+      name: "pull",
+      description: "Pull app image from registry onto servers",
+    },
+    {
+      name: "create",
+      description: "Create a build setup",
     },
     {
       name: "remove",
-      description: "Remove Traefik container and image from servers",
+      description: "Remove build setup",
     },
     {
-      name: "restart",
-      description: "Restart existing Traefik container on servers",
+      name: "details",
+      description: "Show build setup",
     },
-    {
-      name: "start",
-      description: "Start existing Traefik container on servers",
-    },
-    { name: "stop", description: "Stop existing Traefik container on servers" },
   ],
 };
 
 const rootCommands: Fig.Subcommand[] = [
   {
     name: "setup",
+    icon: "🛠️",
     description: "Setup all accessories and deploy app to servers",
   },
   {
@@ -353,7 +482,7 @@ const rootCommands: Fig.Subcommand[] = [
     description: "List all destinations",
     options: [
       {
-        name: "--json",
+        name: ["--json", "-j"],
         description: "Output as JSON",
       },
     ],
@@ -378,14 +507,17 @@ const rootCommands: Fig.Subcommand[] = [
     icon: "↩️",
     args: {
       name: "version",
+      // TODO: This can be autocompleted by doing `bin/kamal app containers` and parsing output
     },
   },
   {
     name: "details",
+    icon: "🔍",
     description: "Show details about all containers",
   },
   {
     name: "audit",
+    icon: "🔍",
     description: "Show audit log from servers",
   },
   {
@@ -394,6 +526,7 @@ const rootCommands: Fig.Subcommand[] = [
   },
   {
     name: "init",
+    icon: "🆕",
     description: "Create config stub in config/deploy.yml and env stub in .env",
     options: [
       {
@@ -407,8 +540,10 @@ const rootCommands: Fig.Subcommand[] = [
     description:
       "Create .env by evaluating .env.erb (or .env.staging.erb -> .env.staging when using -d staging)",
     options: [
-      // FIXME: REQUIRES MY FORK
       {
+        // FIXME: REQUIRES MY FORK since it's not yet merged
+        hidden: true,
+
         name: "template",
         description: "Template to use",
         args: { name: "template", template: "filepaths" },
@@ -416,26 +551,52 @@ const rootCommands: Fig.Subcommand[] = [
     ],
   },
   {
-    name: "version",
-    description: "Show Kamal version",
-  },
-  accessorySubcommand,
-  appSubcommand,
-  traefikCommand,
-  {
-    name: "lock",
-    subcommands: [
+    name: "remove",
+    description:
+      "Remove Traefik, app, accessories, and registry session from servers",
+    icon: "🗑️",
+    options: [
       {
-        name: "release",
+        name: ["--confirmed", "-y"],
+        description: "Proceed without confirmation question",
       },
     ],
   },
+  {
+    name: "version",
+    description: "Show Kamal version",
+  },
+
+  // mounted subcommands
+
+  accessorySubcommand,
+  appSubcommand,
+  buildSubcommand,
+  {
+    name: "healthcheck",
+    description: "Healthcheck application",
+    subcommands: [
+      { name: "perform", description: "Health check current app version" },
+    ],
+  },
+  lockSubcommands,
+  pruneSubcommand,
+  registrySubcommand,
+  {
+    name: "server",
+    description: "Bootstrap servers with curl and Docker",
+    subcommands: [
+      { name: "bootstrap", description: "Set up Docker to run Kamal apps" },
+    ],
+  },
+  traefikCommand,
 ];
 
 const completionSpec: Fig.Spec = {
   name: "kamal",
   description: "Deploy web apps anywhere",
   generateSpec: async (context, executeShellCommand) => {
+    // TODO: use logic from this comment https://github.com/withfig/autocomplete/pull/2112#discussion_r1412879317
     const hasBinKamal =
       (
         await executeShellCommand({
@@ -450,7 +611,7 @@ const completionSpec: Fig.Spec = {
     return {
       name: "kamal",
       // if it has "bin/kamal" file show all commands
-      options: [destinationOption],
+      options: baseOptions,
       subcommands: hasBinKamal
         ? rootCommands
         : rootCommands.map((cmd) =>
