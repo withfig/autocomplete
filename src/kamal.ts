@@ -24,11 +24,6 @@ const deployOptions: Fig.Option[] = [
   },
 ];
 
-const rolling = (name: string): Fig.Option => ({
-  name: "--rolling",
-  description: `Reboot ${name} on hosts in sequence, rather than in parallel`,
-});
-
 const logOptions: Fig.Option[] = [
   {
     name: ["--since", "-s"],
@@ -330,7 +325,12 @@ const traefikCommand: Fig.Subcommand = {
       name: "reboot",
       description:
         "Reboot Traefik on servers (stop container, remove container, start new container)",
-      options: [rolling("traefik")],
+      options: [
+        {
+          name: "--rolling",
+          description: `Reboot traefik on hosts in sequence, rather than in parallel`,
+        },
+      ],
     },
     {
       name: "start",
