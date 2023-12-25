@@ -11,7 +11,7 @@ const filterMessages = (out: string): string => {
 };
 
 const searchBranches: Fig.Generator = {
-  script: "git branch --no-color",
+  script: ["git", "branch", "--no-color"],
   postProcess: function (out) {
     const output = filterMessages(out);
 
@@ -46,7 +46,7 @@ const searchBranches: Fig.Generator = {
 };
 
 const generatorInstalledPackages: Fig.Generator = {
-  script: "pnpm ls",
+  script: ["pnpm", "ls"],
   postProcess: function (out) {
     /**
      * out
@@ -974,10 +974,17 @@ const completionSpec: Fig.Spec = {
   },
   filterStrategy: "fuzzy",
   generateSpec: async (tokens, executeShellCommand) => {
-    const { script, postProcess } = dependenciesGenerator;
+    const { script, postProcess } = dependenciesGenerator as Fig.Generator & {
+      script: string[];
+    };
 
     const packages = postProcess(
-      await executeShellCommand(script as string),
+      (
+        await executeShellCommand({
+          command: script[0],
+          args: script.slice(1),
+        })
+      ).stdout,
       tokens
     ).map(({ name }) => name as string);
 

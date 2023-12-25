@@ -4,8 +4,11 @@ const completionSpec: Fig.Spec = {
     name: "SSID",
     description: "The name for a Wi-Fi network",
     generators: {
-      script:
+      script: [
+        "bash",
+        "-c",
         "networksetup -listallhardwareports | awk '/Wi-Fi/{getline; print $2}' | xargs networksetup -listpreferredwirelessnetworks",
+      ],
       postProcess: (out) =>
         out
           .split("\n")

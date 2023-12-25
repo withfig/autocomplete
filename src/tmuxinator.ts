@@ -1,5 +1,5 @@
 const projects: Fig.Generator = {
-  script: "tmuxinator list -n",
+  script: ["tmuxinator", "list", "-n"],
   postProcess: (output) => {
     if (output.startsWith("fatal:")) {
       return [];
@@ -17,7 +17,7 @@ const projects: Fig.Generator = {
 };
 
 const tmuxsessions: Fig.Generator = {
-  script: "tmux ls",
+  script: ["tmux", "ls"],
   postProcess: (output) => {
     if (output.startsWith("fatal:")) {
       return [];

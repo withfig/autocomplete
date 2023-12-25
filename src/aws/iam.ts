@@ -182,25 +182,25 @@ const awsPrincipals = [
 ];
 
 interface Identity {
-  command: string;
+  command: string[];
   parentKey: string;
   childKey: string;
 }
 
 const identityStruct: Identity[] = [
-  { command: "aws iam list-users", parentKey: "Users", childKey: "Arn" },
-  { command: "aws iam list-groups", parentKey: "Groups", childKey: "Arn" },
-  { command: "aws iam list-roles", parentKey: "Roles", childKey: "Arn" },
+  { command: ["iam", "list-users"], parentKey: "Users", childKey: "Arn" },
+  { command: ["iam", "list-groups"], parentKey: "Groups", childKey: "Arn" },
+  { command: ["iam", "list-roles"], parentKey: "Roles", childKey: "Arn" },
 ];
 
 const _prefixFile = "file://";
 
-const appendFolderPath = (tokens: string[], prefix: string): string => {
-  const baseLSCommand = "\\ls -1ApL ";
+const appendFolderPath = (tokens: string[], prefix: string): string[] => {
+  const baseLsCommand = ["ls", "-1ApL"];
   let whatHasUserTyped = tokens[tokens.length - 1];
 
   if (!whatHasUserTyped.startsWith(prefix)) {
-    return `echo '${prefix}'`;
+    return ["echo", prefix];
   }
   whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
 
@@ -215,7 +215,7 @@ const appendFolderPath = (tokens: string[], prefix: string): string => {
     }
   }
 
-  return baseLSCommand + folderPath;
+  return [...baseLsCommand, folderPath];
 };
 
 const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
@@ -288,7 +288,7 @@ const filterWithPrefix = (token: string, prefix: string): string => {
 
 const listCustomGenerator = async (
   tokens: string[],
-  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  executeShellCommand: Fig.ExecuteCommandFunction,
   command: string,
   option: string,
   parentKey: string,
@@ -300,11 +300,12 @@ const listCustomGenerator = async (
       return [];
     }
     const param = tokens[idx + 1];
-    const out = await executeShellCommand(
-      `aws iam ${command} ${option} ${param}`
-    );
+    const { stdout } = await executeShellCommand({
+      command: "aws",
+      args: ["iam", command, option, param],
+    });
 
-    const policies = JSON.parse(out)[parentKey];
+    const policies = JSON.parse(stdout)[parentKey];
     return policies.map((elm) => (childKey ? elm[childKey] : elm));
   } catch (e) {
     console.log(e);
@@ -328,14 +329,17 @@ const postPrecessGenerator = (
 
 const MultiSuggestionsGenerator = async (
   tokens: string[],
-  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  executeShellCommand: Fig.ExecuteCommandFunction,
   enabled: Identity[]
 ) => {
   try {
     const list: Fig.Suggestion[][] = [];
     const promises: Promise<string>[] = [];
     for (let i = 0; i < enabled.length; i++) {
-      promises[i] = executeShellCommand(enabled[i]["command"]);
+      promises[i] = executeShellCommand({
+        command: "aws",
+        args: enabled[i].command,
+      }).then(({ stdout }) => stdout);
     }
 
     const result = await Promise.all(promises);
@@ -357,7 +361,7 @@ const MultiSuggestionsGenerator = async (
 
 const generators: Record<string, Fig.Generator> = {
   getAccountArn: {
-    script: "aws sts get-caller-identity",
+    script: ["aws", "sts", "get-caller-identity"],
     postProcess: function (out, tokens) {
       try {
         const accountId = JSON.parse(out)["Account"];
@@ -373,7 +377,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listOpenIdProviders: {
-    script: "aws iam list-open-id-connect-providers",
+    script: ["aws", "iam", "list-open-id-connect-providers"],
     postProcess: function (out) {
       return postPrecessGenerator(out, "OpenIDConnectProviderList", "Arn");
     },
@@ -413,7 +417,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listInstanceProfiles: {
-    script: "aws iam list-instance-profiles --page-size 100",
+    script: ["aws", "iam", "list-instance-profiles", "--page-size", "100"],
     postProcess: function (out) {
       return postPrecessGenerator(
         out,
@@ -434,11 +438,17 @@ const generators: Record<string, Fig.Generator> = {
           return [];
         }
         const param = tokens[idx + 1];
-        const out = await executeShellCommand(
-          `aws iam get-instance-profile --instance-profile-name ${param}`
-        );
+        const { stdout } = await executeShellCommand({
+          command: "aws",
+          args: [
+            "iam",
+            "get-instance-profile",
+            "--instance-profile-name",
+            param,
+          ],
+        });
 
-        const policies = JSON.parse(out as string)["InstanceProfile"];
+        const policies = JSON.parse(stdout)["InstanceProfile"];
         return policies["Roles"].map((elm) => {
           return {
             name: elm["RoleName"],
@@ -455,7 +465,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listUsers: {
-    script: "aws iam list-users --page-size 100",
+    script: ["aws", "iam", "list-users", "--page-size", "100"],
     postProcess: function (out) {
       return postPrecessGenerator(out, "Users", "UserName");
     },
@@ -465,7 +475,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listUserArns: {
-    script: "aws iam list-users --page-size 100",
+    script: ["aws", "iam", "list-users", "--page-size", "100"],
     postProcess: function (out) {
       return postPrecessGenerator(out, "Users", "Arn");
     },
@@ -490,7 +500,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listGroups: {
-    script: "aws iam list-groups --page-size 100",
+    script: ["aws", "iam", "list-groups", "--page-size", "100"],
     postProcess: function (out) {
       return postPrecessGenerator(out, "Groups", "GroupName");
     },
@@ -516,7 +526,15 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listIamPoliciesArn: {
-    script: "aws iam list-policies --page-size 100 --scope Local",
+    script: [
+      "aws",
+      "iam",
+      "list-policies",
+      "--page-size",
+      "100",
+      "--scope",
+      "Local",
+    ],
     postProcess: function (out) {
       return postPrecessGenerator(out, "Policies", "Arn");
     },
@@ -621,7 +639,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listRoles: {
-    script: "aws iam list-roles --page-size 100",
+    script: ["aws", "iam", "list-roles", "--page-size", "100"],
     postProcess: function (out) {
       return postPrecessGenerator(out, "Roles", "RoleName");
     },
@@ -666,7 +684,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listMfaDevices: {
-    script: "aws iam list-mfa-devices --page-size 100",
+    script: ["aws", "iam", "list-mfa-devices", "--page-size", "100"],
     postProcess: function (out) {
       return postPrecessGenerator(out, "MFADevices", "SerialNumber");
     },
@@ -676,7 +694,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listVirtualMfaDevices: {
-    script: "aws iam list-virtual-mfa-devices --page-size 100",
+    script: ["aws", "iam", "list-virtual-mfa-devices", "--page-size", "100"],
     postProcess: function (out) {
       return postPrecessGenerator(out, "VirtualMFADevices", "SerialNumber");
     },
@@ -686,7 +704,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listAccessKeyIds: {
-    script: "aws iam list-access-keys --page-size 100",
+    script: ["aws", "iam", "list-access-keys", "--page-size", "100"],
     postProcess: function (out) {
       return postPrecessGenerator(out, "AccessKeyMetadata", "AccessKeyId");
     },
@@ -696,7 +714,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listAccountAliases: {
-    script: "aws iam list-account-aliases --page-size 100",
+    script: ["aws", "iam", "list-account-aliases", "--page-size", "100"],
     postProcess: function (out) {
       return postPrecessGenerator(out, "AccountAliases");
     },
@@ -706,7 +724,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listSamlProviders: {
-    script: "aws iam list-saml-providers",
+    script: ["aws", "iam", "list-saml-providers"],
     postProcess: function (out) {
       return postPrecessGenerator(out, "SAMLProviderList", "Arn");
     },
@@ -716,7 +734,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listSSHPublicKeys: {
-    script: "aws iam list-ssh-public-keys --page-size 1000",
+    script: ["aws", "iam", "list-ssh-public-keys", "--page-size", "1000"],
     postProcess: function (out) {
       return postPrecessGenerator(out, "SSHPublicKeys", "SSHPublicKeyId");
     },
@@ -742,7 +760,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listServerCerts: {
-    script: "aws iam list-server-certificates --page-size 1000",
+    script: ["aws", "iam", "list-server-certificates", "--page-size", "1000"],
     postProcess: function (out) {
       return postPrecessGenerator(
         out,
@@ -792,7 +810,7 @@ const generators: Record<string, Fig.Generator> = {
       return MultiSuggestionsGenerator(tokens, executeShellCommand, [
         ...identityStruct,
         {
-          command: "aws iam list-policies --scope Local",
+          command: ["iam", "list-policies", "--scope", "Local"],
           parentKey: "Policies",
           childKey: "Arn",
         },

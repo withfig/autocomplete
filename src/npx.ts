@@ -178,7 +178,7 @@ const binToSpecOverrides = {
 export const npxLocalBinsGenerator = (
   filterOutGlobal = false
 ): Fig.Generator => ({
-  script: `until [[ -d node_modules/ ]] || [[ $PWD = '/' ]]; do cd ..; done; ls -1 node_modules/.bin/`,
+  script: ['bash', '-c', `until [[ -d node_modules/ ]] || [[ $PWD = '/' ]]; do cd ..; done; ls -1 node_modules/.bin/`],
   postProcess: function (out) {
     const globalCLIs = npxSuggestions.map((suggestion) => suggestion.name);
 

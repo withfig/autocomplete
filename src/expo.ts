@@ -5,9 +5,15 @@
 const _gen: Record<string, Fig.Generator> = {
   npm: {
     script(context) {
-      if (context[context.length - 1] === "") return "";
+      if (context[context.length - 1] === "") return undefined;
       const searchTerm = context[context.length - 1];
-      return `curl -s -H "Accept: application/json" "https://api.npms.io/v2/search?q=${searchTerm}&size=20"`;
+      return [
+        "curl",
+        "-s",
+        "-H",
+        "Accept: application/json",
+        `https://api.npms.io/v2/search?q=${searchTerm}&size=20`,
+      ];
     },
     postProcess(script: string) {
       try {
@@ -28,17 +34,17 @@ const _gen: Record<string, Fig.Generator> = {
     },
   },
   "xcode-configuration": {
-    script: "xcodebuild -project ios/*.xcodeproj -list -json",
+    script: ["xcodebuild", "-project", "ios/*.xcodeproj", "-list", "-json"],
     postProcess: (script: string) =>
       JSON.parse(script).project.configurations.map((name) => ({ name })),
   },
   "xcode-scheme": {
-    script: "xcodebuild -project ios/*.xcodeproj -list -json",
+    script: ["xcodebuild", "-project", "ios/*.xcodeproj", "-list", "-json"],
     postProcess: (script: string) =>
       JSON.parse(script).project.schemes.map((name) => ({ name })),
   },
   "xcode-devices": {
-    script: "xcrun xctrace list devices",
+    script: ["xcrun", "xctrace", "list", "devices"],
     postProcess: (script: string) =>
       script
         .split("\n")
@@ -53,7 +59,7 @@ const _gen: Record<string, Fig.Generator> = {
         })),
   },
   "max-workers": {
-    script: "sysctl -n hw.ncpu",
+    script: ["sysctl", "-n", "hw.ncpu"],
     postProcess: (script: string) => {
       const count = Number(script);
       return Array.from({ length: count }, (_, i) => {

@@ -1,5 +1,5 @@
 const listPackages: Fig.Generator = {
-  script: "pip list",
+  script: ["pip", "list"],
   postProcess: function (out) {
     const lines = out.split("\n");
     const packages = [];
@@ -429,6 +429,10 @@ export const packageList: Array<Fig.Suggestion> = [
   },
   {
     name: "ipython-genutils",
+    icon: "📦",
+  },
+  {
+    name: "openai",
     icon: "📦",
   },
   {

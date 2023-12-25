@@ -1,13 +1,17 @@
 const listTargets: Fig.Generator = {
   custom: async (tokens, executeShellCommand) => {
     // Plain target suggestions. These will be overridden if we can find a description for them.
-    const targets = await executeShellCommand(
-      "make -qp | awk -F':' '/^[a-zA-Z0-9][^$#\\/\\t=]*:([^=]|$)/ {split($1,A,/ /);for(i in A)print A[i]}' | sort -u"
-    );
+    const { stdout } = await executeShellCommand({
+      command: "bash",
+      args: [
+        "-c",
+        "make -qp | awk -F':' '/^[a-zA-Z0-9][^$#\\/\\t=]*:([^=]|$)/ {split($1,A,/ /);for(i in A)print A[i]}' | sort -u",
+      ],
+    });
 
     const targetSuggestions = new Map<string, Fig.Suggestion>();
 
-    for (const target of targets.split("\n")) {
+    for (const target of stdout.split("\n")) {
       if (target === "Makefile") continue;
       targetSuggestions.set(target, {
         name: target.trim(),
@@ -17,9 +21,12 @@ const listTargets: Fig.Generator = {
       });
     }
 
-    const out = await executeShellCommand("cat [Mm]akefile");
+    const { stdout: makefile } = await executeShellCommand({
+      command: "cat",
+      args: ["Makefile", "makefile"],
+    });
 
-    const matches = out.matchAll(
+    const matches = makefile.matchAll(
       /((?:^#.*\n)*)(?:^\.[A-Z_]+:.*\n)*(^\S*?):.*?(?:\s#+[ \t]*(.+))?$/gm
     );
     const specialTargets = new Set([
@@ -50,8 +57,8 @@ const listTargets: Fig.Generator = {
       const description = inlineComment
         ? inlineComment.trim()
         : leadingComment
-        ? leadingComment.replace(/^#+\s*/gm, "").trim()
-        : "Make target";
+          ? leadingComment.replace(/^#+\s*/gm, "").trim()
+          : "Make target";
 
       targetSuggestions.set(name, {
         name,

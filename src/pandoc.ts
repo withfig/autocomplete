@@ -1,36 +1,52 @@
 import { filepaths } from "@fig/autocomplete-generators";
 
-const pandocGenerators: Record<string, Fig.Generator> = {
-  inputFormats: {
-    script: "pandoc --list-input-formats",
-    postProcess: function (out) {
-      return out.split("\n").map((format) => ({
-        name: format,
-        icon: `fig://icon?type=${format}`,
-      }));
+const pandocGenerators: Record<string, Fig.Generator[]> = {
+  inputFormats: [
+    {
+      script: ["pandoc", "--list-input-formats"],
+      postProcess: function (out) {
+        return out.split("\n").map((format) => ({
+          name: format,
+          icon: `fig://icon?type=${format}`,
+        }));
+      },
     },
-  },
-  outputFormats: {
-    script: "pandoc --list-output-formats",
-    postProcess: function (out) {
-      return out.split("\n").map((format) => ({
-        name: format,
-        icon: `fig://icon?type=${format}`,
-      }));
+  ],
+  outputFormats: [
+    {
+      script: ["pandoc", "--list-output-formats"],
+      postProcess: function (out) {
+        return out.split("\n").map((format) => ({
+          name: format,
+          icon: `fig://icon?type=${format}`,
+        }));
+      },
     },
-  },
-  formats: {
-    script: "pandoc --list-input-formats && pandoc --list-output-formats",
-    postProcess: function (out) {
-      const uniqueFormats = Array.from(new Set(out.split("\n")));
-      return uniqueFormats.map((format) => ({
-        name: format,
-        icon: `fig://icon?type=${format}`,
-      }));
+  ],
+  formats: [
+    {
+      script: ["pandoc", "--list-input-formats"],
+      postProcess: function (out) {
+        const uniqueFormats = Array.from(new Set(out.split("\n")));
+        return uniqueFormats.map((format) => ({
+          name: format,
+          icon: `fig://icon?type=${format}`,
+        }));
+      },
     },
-  },
-  yamlFiles: filepaths({ extensions: ["yaml"] }),
-  yamlJSONFiles: filepaths({ extensions: ["yaml", "json"] }),
+    {
+      script: ["pandoc", "--list-output-formats"],
+      postProcess: function (out) {
+        const uniqueFormats = Array.from(new Set(out.split("\n")));
+        return uniqueFormats.map((format) => ({
+          name: format,
+          icon: `fig://icon?type=${format}`,
+        }));
+      },
+    },
+  ],
+  yamlFiles: [filepaths({ extensions: ["yaml"] })],
+  yamlJSONFiles: [filepaths({ extensions: ["yaml", "json"] })],
 };
 
 const styleFileArg: Fig.Arg = {

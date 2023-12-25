@@ -44,7 +44,7 @@ const sharedOpts: Record<string, Fig.Option> = {
 
 const multipassGenerators: Record<string, Fig.Generator> = {
   allAvailableImages: {
-    script: "multipass find --format=json",
+    script: ["multipass", "find", "--format=json"],
     postProcess: (out) => {
       const images = JSON.parse(out).images;
       return Object.keys(images).map((key) => {
@@ -56,7 +56,7 @@ const multipassGenerators: Record<string, Fig.Generator> = {
     },
   },
   allAvailableInstances: {
-    script: "multipass list --format=json",
+    script: ["multipass", "list", "--format=json"],
     postProcess: (out) => {
       return JSON.parse(out).list.map((instance) => {
         if (instance.state !== "Deleted") {
@@ -69,7 +69,7 @@ const multipassGenerators: Record<string, Fig.Generator> = {
     },
   },
   allRunningInstances: {
-    script: "multipass list --format=json",
+    script: ["multipass", "list", "--format=json"],
     postProcess: (out) => {
       return JSON.parse(out).list.map((instance) => {
         if (instance.state === "Running") {
@@ -82,7 +82,7 @@ const multipassGenerators: Record<string, Fig.Generator> = {
     },
   },
   allStoppedInstances: {
-    script: "multipass list --format=json",
+    script: ["multipass", "list", "--format=json"],
     postProcess: (out) => {
       return JSON.parse(out).list.map((instance) => {
         if (instance.state === "Stopped") {
@@ -95,7 +95,7 @@ const multipassGenerators: Record<string, Fig.Generator> = {
     },
   },
   allDeletedInstances: {
-    script: "multipass list --format=json",
+    script: ["multipass", "list", "--format=json"],
     postProcess: (out) => {
       return JSON.parse(out).list.map((instance) => {
         if (instance.state === "Deleted") {

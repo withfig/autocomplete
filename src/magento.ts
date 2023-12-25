@@ -49,9 +49,11 @@ const completionSpec: Fig.Spec = {
   name: "magento",
   description: "Open-source E-commerce",
   generateSpec: async (tokens, executeShellCommand) => {
-    const command = "bin/magento list --format=json --raw";
-    const out = await executeShellCommand(command);
-    const magento = JSON.parse(out) as BinConsoleJSON;
+    const { stdout } = await executeShellCommand({
+      command: "bin/magento",
+      args: ["list", "--format=json", "--raw"],
+    });
+    const magento = JSON.parse(stdout) as BinConsoleJSON;
     const cacheTypes = await getCacheTypes(executeShellCommand);
 
     return {

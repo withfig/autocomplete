@@ -1,5 +1,5 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 
 const normalize = (name) => {
   let capitalizeNext = false;
@@ -27,7 +27,7 @@ const getSubfolderSpecNames = (dirPathRelativeToSrc) => {
   try {
     // if index.ts exists we are in a spec folder and we only return the current dir path e.g. fig/index.ts returns fig
     fs.readFileSync(path.join(resolvedDirPath, "index.ts"));
-    return Array(2).fill([`"${dirPathRelativeToSrc}"`]);
+    return Array(2).fill([dirPathRelativeToSrc]);
   } catch {
     // otherwise the folder is just used to organize specs e.g. aws/*.ts
     const specNames = [];
@@ -37,7 +37,7 @@ const getSubfolderSpecNames = (dirPathRelativeToSrc) => {
     })) {
       if (dirent.isFile() && dirent.name.endsWith(".ts")) {
         specNames.push(
-          `"${path.join(dirPathRelativeToSrc, dirent.name).slice(0, -3)}"`
+          path.join(dirPathRelativeToSrc, dirent.name).slice(0, -3)
         );
       } else if (dirent.isDirectory()) {
         const [s, dvs] = getSubfolderSpecNames(
@@ -56,7 +56,7 @@ const diffVersionedSpecNames = [];
 
 for (const dirent of fs.readdirSync(resolvedSrc, { withFileTypes: true })) {
   if (dirent.isFile() && dirent.name.endsWith(".ts")) {
-    specNames.push(`"${dirent.name.slice(0, -3)}"`);
+    specNames.push(dirent.name.slice(0, -3));
   } else if (dirent.isDirectory()) {
     const [s, dvs] = getSubfolderSpecNames(dirent.name);
     specNames.push(...s);
@@ -66,11 +66,17 @@ for (const dirent of fs.readdirSync(resolvedSrc, { withFileTypes: true })) {
 
 fs.writeFileSync(
   "build/index.js",
-  `var e=[${specNames.join(
-    ","
-  )}],diffVersionedCompletions=[${diffVersionedSpecNames.join(
-    ","
-  )}];export{e as default,diffVersionedCompletions};`
+  `var e=${JSON.stringify(specNames)},diffVersionedCompletions=${JSON.stringify(
+    diffVersionedSpecNames
+  )};export{e as default,diffVersionedCompletions};`
+);
+
+fs.writeFileSync(
+  "build/index.json",
+  JSON.stringify({
+    completions: specNames,
+    diffVersionedCompletions: diffVersionedSpecNames,
+  })
 );
 
 fs.writeFileSync(

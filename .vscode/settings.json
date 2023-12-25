@@ -4,6 +4,6 @@
     "source.fixAll.eslint": true
   },
   "editor.formatOnSave": true,
-  "deno.enablePaths": [".cicada"],
+  "deno.enablePaths": ["migrate.ts"],
   "deno.enable": true
 }

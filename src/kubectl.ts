@@ -1,8 +1,8 @@
 // Internal scripts for this spec, not to be confused with the script property
 const scripts = {
-  types: "kubectl api-resources -o name",
+  types: ["kubectl", "api-resources", "-o", "name"],
   typeWithoutName: function (type) {
-    return `kubectl get ${type} -o custom-columns=:.metadata.name`;
+    return ["kubectl", "get", type, "-o", "custom-columns=:.metadata.name"];
   },
 };
 
@@ -43,7 +43,14 @@ const sharedArgs: Record<string, Fig.Arg> = {
   runningPodsArg: {
     name: "Running Pods",
     generators: {
-      script: "kubectl get pods --field-selector=status.phase=Running -o name",
+      script: [
+        "kubectl",
+        "get",
+        "pods",
+        "--field-selector=status.phase=Running",
+        "-o",
+        "name",
+      ],
       postProcess: sharedPostProcess,
     },
   },
@@ -68,11 +75,16 @@ const sharedArgs: Record<string, Fig.Arg> = {
       script: function (context) {
         const index = context.indexOf("--kubeconfig");
         if (index !== -1) {
-          return `kubectl config --kubeconfig=${
-            context[index + 1]
-          } get-contexts -o name`;
+          return [
+            "kubectl",
+            "config",
+            `--kubeconfig=${context[index + 1]}`,
+            "get-contexts",
+            "-o",
+            "name",
+          ];
         }
-        return "kubectl config get-contexts -o name";
+        return ["kubectl", "config", "get-contexts", "-o", "name"];
       },
       postProcess: sharedPostProcess,
     },
@@ -94,11 +106,14 @@ const sharedArgs: Record<string, Fig.Arg> = {
       script: function (context) {
         const index = context.indexOf("--kubeconfig");
         if (index !== -1) {
-          return `kubectl config --kubeconfig=${
-            context[index + 1]
-          } get-clusters`;
+          return [
+            "kubectl",
+            "config",
+            `--kubeconfig=${context[index + 1]}`,
+            "get-clusters",
+          ];
         }
-        return "kubectl config get-clusters";
+        return ["kubectl", "config", "get-clusters"];
       },
       postProcess: function (out) {
         if (
@@ -174,7 +189,7 @@ const sharedArgs: Record<string, Fig.Arg> = {
         const podName = context[podIndex].includes("/")
           ? context[podIndex]
           : `${context[podIndex]} + ${context[podIndex + 1]}`;
-        return `kubectl get ${podName} -o json`;
+        return ["kubectl", "get", podName, "-o", "json"];
       },
       postProcess: function (out) {
         if (
