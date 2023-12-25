@@ -1,15 +1,24 @@
 const testsGenerator: Fig.Generator = {
   custom: async (token, executeShellCommand) => {
-    console.log(token);
-    const basePathSearch = await executeShellCommand(
-      "cat playwright.config.ts | grep testDir"
-    );
+    const basePathSearch = await executeShellCommand({
+      command: "bash",
+      args: ["-c", "cat playwright.config.ts | grep testDir"],
+    });
 
-    const dir = basePathSearch.match(/(['"])([./\w]+)(['"])/);
+    const dir = basePathSearch.stdout.match(/(['"])([./\w]+)(['"])/);
     const baseDir = dir ? dir[2] : "tests";
 
-    const tests = await executeShellCommand("npx playwright test --list");
-    const lines = tests
+    // TODO: ideally do something along the lines of "if bunx exists use that otherwise use npx"
+    const tests = await executeShellCommand({
+      command: "npx",
+      args: ["playwright", "test", "--list"],
+    });
+
+    if (tests.status !== 0) {
+      return [];
+    }
+
+    const lines = tests.stdout
       .split("\n")
       .slice(1, -1)
       .map((line) => line.split(" › ").slice(1))
@@ -108,7 +117,10 @@ const completionSpec: Fig.Spec = {
           name: "--headed",
           description: "Run tests in headed browsers",
         },
-        helpOption,
+        {
+          name: "--list",
+          description: "List all tests in the project",
+        },
       ],
     },
     {
@@ -126,7 +138,6 @@ const completionSpec: Fig.Spec = {
           name: "--with-deps",
           description: "Install system dependencies for browsers",
         },
-        helpOption,
       ],
     },
   ],
