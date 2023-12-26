@@ -51,7 +51,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--skip",
           description:
-            "Skip the given options (valid options are before, post-hooks, pre-hooks, validate)",
+            "Skip the given options (valid options are: before, post-hooks, pre-hooks, validate)",
           isRepeatable: true,
           args: { name: "skip" },
         },
