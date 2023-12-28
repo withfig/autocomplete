@@ -477,11 +477,18 @@ const defaultCommands: Fig.Subcommand[] = [
     ],
   },
   {
-    name: "generate",
+    name: ["g", "generate"],
     description: "Use templates to generate Rails resources",
     args: [
       {
-        name: "generator",
+        name: "generate",
+        suggestions: [
+          "model",
+          "resource",
+          "scaffold",
+          "controller",
+          "migration",
+        ],
         generators: {
           script: ["rails", "g", "--help"],
           postProcess(out) {
@@ -517,6 +524,94 @@ const defaultCommands: Fig.Subcommand[] = [
       {
         name: "args",
         isVariadic: true,
+        generators: {
+          custom: async (tokens, executeShellCommand) => {
+            const handleFieldAutocomplete = (arg: string) => {
+              const types = [
+                "integer",
+                "primary_key",
+                "decimal",
+                "float",
+                "boolean",
+                "binary",
+                "string",
+                "text",
+                "date",
+                "time",
+                "datetime",
+                "belongs_to",
+              ];
+
+              const cantIndex = ["belongs_to"];
+              if (arg.length === 0) {
+                return [{ name: "__column_name__", priority: 80 }];
+              }
+
+              if (arg.match(/^\w+$/)) {
+                return types.map((type) => ({ name: `${arg}:${type}` }));
+              }
+
+              if (arg.match(/^\w+:\w*/)) {
+                const [name, startOfType] = arg.split(":");
+
+                return types
+                  .filter((type) => type.startsWith(startOfType))
+                  .flatMap((type) => [
+                    { name: `${name}:${type}` },
+                    ...(cantIndex.includes(type)
+                      ? []
+                      : [
+                          { name: `${name}:${type}:uniq` },
+                          { name: `${name}:${type}:index` },
+                        ]),
+                  ]);
+              }
+
+              return undefined;
+            };
+
+            const [generator, ...args] = tokens.slice(2);
+            if (["model", "resource", "scaffold"].includes(generator)) {
+              if (args.length === 1) {
+                return [{ name: "__model_name__", priority: 80 }];
+              }
+
+              const completions = handleFieldAutocomplete(args.at(-1));
+              return completions || [];
+
+              return [];
+            }
+
+            if (generator === "migration") {
+              if (args.length === 1) {
+                return [{ name: "__migration__name", priority: 80 }];
+              }
+
+              const completions = handleFieldAutocomplete(args.at(-1));
+              return completions || [];
+            }
+
+            if (generator === "controller") {
+              if (args.length === 1) {
+                return [{ name: "__controller__name", priority: 80 }];
+              }
+
+              return [
+                "index",
+                "show",
+                "new",
+                "create",
+                "edit",
+                "update",
+                "destroy",
+              ]
+                .filter((action) => !args.includes(action))
+                .map((action) => ({ name: action }));
+            }
+
+            return [];
+          },
+        },
       },
     ],
     options: [
