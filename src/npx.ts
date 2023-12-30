@@ -2,10 +2,11 @@
 // import createRedwoodApp from "./create-redwood-app";
 import { specToSuggestions } from "./_utils/spec";
 import vite from "./vite";
+import createRedwoodApp from "./create-redwood-app";
 
 // TODO: this for all the suggestions that have specs
 export const npxSuggestions: Fig.Suggestion[] = [
-  // specToSuggestions(createRedwoodApp),
+  specToSuggestions(createRedwoodApp),
   specToSuggestions(vite),
   {
     // TODO: Import from autocannon when it's merged
@@ -178,7 +179,12 @@ const binToSpecOverrides = {
 export const npxLocalBinsGenerator = (
   filterOutGlobal = false
 ): Fig.Generator => ({
-  script: ['bash', '-c', `until [[ -d node_modules/ ]] || [[ $PWD = '/' ]]; do cd ..; done; ls -1 node_modules/.bin/`],
+  script: [
+    "bash",
+    "-c",
+    // TODO: use util to get the first node_modules
+    `until [[ -d node_modules/ ]] || [[ $PWD = '/' ]]; do cd ..; done; ls -1 node_modules/.bin/`,
+  ],
   postProcess: function (out) {
     const globalCLIs = npxSuggestions.map((suggestion) => suggestion.name);
 
