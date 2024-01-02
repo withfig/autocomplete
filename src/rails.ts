@@ -482,8 +482,20 @@ const defaultCommands: Fig.Subcommand[] = [
     args: [
       {
         name: "generator",
+        filterStrategy: "fuzzy",
+        suggestions: [
+          "model",
+          "resource",
+          "scaffold",
+          "controller",
+          "migration",
+        ],
         generators: {
           script: ["rails", "g", "--help"],
+          cache: {
+            cacheByDirectory: true,
+            strategy: "stale-while-revalidate",
+          },
           postProcess(out) {
             const lines = out.split("Rails:")[1].trim().split("\n");
 
