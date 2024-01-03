@@ -1,31 +1,11 @@
-import { npxSuggestions } from "./npx";
+import { npxLocalBinsGenerator, npxSuggestions } from "./npx";
 
 const bunx: Fig.Spec = {
   name: "bunx",
   args: {
     name: "command",
     isCommand: true,
-    generators: {
-      script: [
-        "bash",
-        "-c",
-        "until [[ -d node_modules/ ]] || [[ $PWD = '/' ]]; do cd ..; done; ls -1 node_modules/.bin/`",
-      ],
-      postProcess: function (out) {
-        const cli = [...npxSuggestions].reduce(
-          (acc, { name }) => [...acc, name],
-          []
-        );
-        return out
-          .split("\n")
-          .filter((name) => !cli.includes(name))
-          .map((name) => ({
-            name,
-            icon: "fig://icon?type=command",
-            loadSpec: name,
-          }));
-      },
-    },
+    generators: npxLocalBinsGenerator(true),
     description: "The command to run",
     suggestions: [...npxSuggestions],
   },
