@@ -1483,7 +1483,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/semver@npm:^7.5.5":
+"@types/semver@npm:^7.5.6":
   version: 7.5.6
   resolution: "@types/semver@npm:7.5.6"
   checksum: 563a0120ec0efcc326567db2ed920d5d98346f3638b6324ea6b50222b96f02a8add3c51a916b6897b51523aad8ac227d21d3dcf8913559f1bfc6c15b14d23037
@@ -1865,27 +1865,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@withfig/autocomplete-tools@npm:^2.8.0":
-  version: 2.8.0
-  resolution: "@withfig/autocomplete-tools@npm:2.8.0"
+"@withfig/autocomplete-tools@npm:^2.9.1":
+  version: 2.9.1
+  resolution: "@withfig/autocomplete-tools@npm:2.9.1"
   dependencies:
     "@esbuild-plugins/node-modules-polyfill": ^0.2.2
     "@fig/autocomplete-helpers": ^1.0.7
     "@fig/autocomplete-merge": ^1.3.0
-    "@types/semver": ^7.5.5
+    "@types/semver": ^7.5.6
     chalk: ^4.1.2
     chokidar: ^3.5.3
     commander: ^11.1.0
     create-completion-spec: ^1.1.9
-    esbuild: ^0.19.6
+    esbuild: ^0.19.11
     fast-glob: ^3.3.2
     module-from-string: ^3.3.0
-    prettier: ^3.1.0
+    prettier: ^3.1.1
     semver: ^7.5.4
-    typescript: ~5.2.0
+    typescript: ^5.3.3
   bin:
     autocomplete-tools: build/bin.js
-  checksum: 29498ca5fd77646cd47cd5963693b552bad9e44731c711395bd2d3cdcf8291c255a69acad1080d7180ae65240c72237db8b339d4d4a34a640fe998c71c97fe58
+  checksum: a83ed1845903b22bc533bc39f45b549b0895af6c19e047f1d3c2ccc6bd770e0ca084ca683bd79391e4a9deae78ff1dc30258f2c881152735150b957a13377d65
   languageName: node
   linkType: hard
 
@@ -1912,7 +1912,7 @@ __metadata:
     "@typescript-eslint/parser": ^6.7.3
     "@vitejs/plugin-react": ^4.1.0
     "@withfig/api-bindings": ^0.30.3
-    "@withfig/autocomplete-tools": ^2.8.0
+    "@withfig/autocomplete-tools": ^2.9.1
     "@withfig/autocomplete-types": ^1.29.0
     autoprefixer: ^10.4.16
     chalk: ^5.3.0
@@ -3366,7 +3366,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.19.4, esbuild@npm:^0.19.6":
+"esbuild@npm:^0.19.11, esbuild@npm:^0.19.4":
   version: 0.19.11
   resolution: "esbuild@npm:0.19.11"
   dependencies:
@@ -5915,12 +5915,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.0.3, prettier@npm:^3.1.0":
+"prettier@npm:^3.0.3":
   version: 3.1.0
   resolution: "prettier@npm:3.1.0"
   bin:
     prettier: bin/prettier.cjs
   checksum: 44b556bd56f74d7410974fbb2418bb4e53a894d3e7b42f6f87779f69f27a6c272fa7fc27cec0118cd11730ef3246478052e002cbd87e9a253f9cd04a56aa7d9b
+  languageName: node
+  linkType: hard
+
+"prettier@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "prettier@npm:3.1.1"
+  bin:
+    prettier: bin/prettier.cjs
+  checksum: e386855e3a1af86a748e16953f168be555ce66d6233f4ba54eb6449b88eb0c6b2ca79441b11eae6d28a7f9a5c96440ce50864b9d5f6356d331d39d6bb66c648e
   languageName: node
   linkType: hard
 
@@ -6962,13 +6971,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:~5.2.0":
-  version: 5.2.2
-  resolution: "typescript@npm:5.2.2"
+"typescript@npm:^5.3.3":
+  version: 5.3.3
+  resolution: "typescript@npm:5.3.3"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 7912821dac4d962d315c36800fe387cdc0a6298dba7ec171b350b4a6e988b51d7b8f051317786db1094bd7431d526b648aba7da8236607febb26cf5b871d2d3c
+  checksum: 2007ccb6e51bbbf6fde0a78099efe04dc1c3dfbdff04ca3b6a8bc717991862b39fd6126c0c3ebf2d2d98ac5e960bcaa873826bb2bb241f14277034148f41f6a2
   languageName: node
   linkType: hard
 
@@ -6992,13 +7001,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@~5.2.0#~builtin<compat/typescript>":
-  version: 5.2.2
-  resolution: "typescript@patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=77c9e2"
+"typescript@patch:typescript@^5.3.3#~builtin<compat/typescript>":
+  version: 5.3.3
+  resolution: "typescript@patch:typescript@npm%3A5.3.3#~builtin<compat/typescript>::version=5.3.3&hash=77c9e2"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 07106822b4305de3f22835cbba949a2b35451cad50888759b6818421290ff95d522b38ef7919e70fb381c5fe9c1c643d7dea22c8b31652a717ddbd57b7f4d554
+  checksum: f61375590b3162599f0f0d5b8737877ac0a7bc52761dbb585d67e7b8753a3a4c42d9a554c4cc929f591ffcf3a2b0602f65ae3ce74714fd5652623a816862b610
   languageName: node
   linkType: hard
 
