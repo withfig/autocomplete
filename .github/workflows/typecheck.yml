@@ -14,5 +14,5 @@ jobs:
           node-version-file: package.json
       - name: Install pnpm
         uses: pnpm/action-setup@v2.4.0
-      - run: pnpm install --no-immutable
+      - run: pnpm install --frozen-lockfile
       - run: pnpm test
