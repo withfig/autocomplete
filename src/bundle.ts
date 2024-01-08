@@ -1,3 +1,19 @@
+import rails from "./rails";
+import rubocop from "./rubocop";
+import rspec from "./rspec";
+import rake from "./rake";
+import { gemsGenerator } from "./gem";
+import pry from "./pry";
+import { specToSuggestions } from "./_utils/spec";
+
+const EXEC_SUGGESTIONS: Fig.Suggestion[] = [
+  specToSuggestions(rails),
+  specToSuggestions(rubocop),
+  specToSuggestions(rspec),
+  specToSuggestions(rake),
+  specToSuggestions(pry),
+];
+
 const gemfileGemsGenerator: Fig.Generator = {
   script: ["bundle", "list", "--name-only"],
   postProcess: (out) => {
@@ -175,7 +191,30 @@ const completionSpec: Fig.Spec = {
           description: "Pass all file descriptors to the new process",
         },
       ],
-      args: { isCommand: true },
+      args: {
+        isCommand: true,
+        generators: {
+          script: ["bundle", "list", "--name-only"],
+          cache: {
+            cacheByDirectory: true,
+            strategy: "stale-while-revalidate",
+            ttl: 60 * 60,
+          },
+          postProcess: (out) => {
+            const gems = out.split("\n");
+
+            return EXEC_SUGGESTIONS.filter((spec) => {
+              if (spec.name === "rspec") {
+                return gems.includes("rspec-core");
+              }
+
+              return gems.includes(
+                typeof spec.name === "string" ? spec.name : spec.name[0]
+              );
+            });
+          },
+        },
+      },
     },
     { name: "config", args: {} },
     { name: "help" },
@@ -184,7 +223,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "add",
       description: "Add gem to the Gemfile and run bundle install",
-      args: {},
+      args: {
+        name: "gem",
+        generators: gemsGenerator,
+      },
       options: [
         {
           name: ["--version", "-v"],
