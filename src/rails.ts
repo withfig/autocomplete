@@ -3,6 +3,56 @@ import { filepaths } from "@fig/autocomplete-generators";
 const RB_ICON =
   "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_ruby.svg";
 
+/**
+ * @param executeShellCommand
+ * @param file
+ * @param contains MAKE sure to escape all double quotes
+ *
+ * @returns [true, output] if file is found and contains the string
+ * @returns [false, "NOT_CONTAINS"] if file is found but does not contain the string
+ * @returns [false, "NOT_FOUND"] if file is not found
+ */
+const checkDir = async (
+  executeShellCommand: Fig.ExecuteCommandFunction,
+  file: string,
+  contains?: string
+) => {
+  const checkFileContains = (check: string) => {
+    return `cat ${file} | grep "${check}" > /dev/null && pwd || echo '_NOT_CONTAINS_'`;
+  };
+
+  const output = await executeShellCommand({
+    command: "bash",
+    args: [
+      "-c",
+      `until [[ -f ${file} ]] || [[ $PWD = '/' ]]; do
+  cd ..;
+done;
+
+if [ -f ${file} ]; then
+  ${contains ? checkFileContains(contains) : "pwd"}
+else
+  echo '_NOT_FOUND_'
+fi`,
+    ],
+  });
+
+  if (output.status === 1) return [false, "ERROR"] as const;
+
+  switch (output.stdout) {
+    case "_NOT_CONTAINS_":
+      return [false, "NOT_CONTAINS"] as const;
+    case "_NOT_FOUND_":
+      return [false, "NOT_FOUND"] as const;
+    default:
+      return [true, output.stdout.trim()] as const;
+  }
+};
+
+const getRailsRoot = (executeShellCommand: Fig.ExecuteCommandFunction) => {
+  return checkDir(executeShellCommand, "Gemfile", `gem [\'\\"]rails[\'\\"]`);
+};
+
 const newCommand = {
   name: "new",
   description: "Create a new rails application",
@@ -354,6 +404,34 @@ const dbOptions = [
   },
 ];
 
+const environmentOption: Fig.Option = {
+  name: ["-e", "--environment"],
+  description:
+    "Specifies the environment to run this console under (test/development/production/<custom>)",
+  args: {
+    name: "environment",
+    suggestions: ["test", "development", "production"],
+    generators: {
+      async custom(token, executeShellCommand) {
+        const [found, path] = await getRailsRoot(executeShellCommand);
+        if (!found) return [];
+
+        const envs = await executeShellCommand({
+          // TODO: fix this
+          // eslint-disable-next-line
+          args: [`${path}/config/environments`],
+          command: "ls",
+        });
+
+        return envs.stdout
+          .split("\n")
+          .map((env) => env.slice(0, env.indexOf(".rb")))
+          .map((env) => ({ name: env }));
+      },
+    },
+  },
+};
+
 const defaultCommands: Fig.Subcommand[] = [
   {
     name: ["c", "console"],
@@ -363,26 +441,15 @@ const defaultCommands: Fig.Subcommand[] = [
         name: ["-s", "--sandbox"],
         description: "Rollback database modifications on exit",
       },
-      {
-        name: ["-e", "--environment"],
-        description: "Specifies the environment to run this console under",
-        args: {
-          name: "environment",
-        },
-      },
+      environmentOption,
     ],
   },
   {
-    name: "server",
+    name: ["s", "server"],
     description:
       "Launch a web server to access your application through a browser",
     options: [
-      {
-        name: ["-e", "--environment"],
-        description:
-          "Specifies the environment to run this server under (e.g. test/development/production)",
-        args: { name: "environment" },
-      },
+      environmentOption,
       {
         name: ["-p", "--port"],
         description: "Runs Rails on the specified port - defaults to 3000",
@@ -441,16 +508,41 @@ const defaultCommands: Fig.Subcommand[] = [
     options: dbOptions,
   },
   {
-    name: "dbconsole",
+    name: "db:migrate:redo",
+    description: "Rollback the last database migration",
+    args: {
+      name: "STEP",
+      isOptional: true,
+      suggestions: ["STEP="],
+    },
+    options: dbOptions,
+  },
+  {
+    name: "db:rollback",
+    description: "Rollback the last database migration",
+    args: {
+      name: "STEP",
+      isOptional: true,
+      suggestions: ["STEP="],
+    },
+    options: dbOptions,
+  },
+  {
+    name: "db:drop",
+    description: "Drop your database",
+    options: dbOptions,
+  },
+  {
+    name: "db:version",
+    description: "Print the current schema version number",
+    options: dbOptions,
+  },
+  {
+    name: ["dbconsole", "db"],
     description:
       "Opens a console to your database (supports MySQL, PostgreSQL, and SQLite3)",
     options: [
-      {
-        name: "-e",
-        description:
-          "Specifies the environment to run this dbconsole under (e.g. test/development/production)",
-        args: {},
-      },
+      environmentOption,
       {
         name: "--mode",
         description:
@@ -477,7 +569,16 @@ const defaultCommands: Fig.Subcommand[] = [
     ],
   },
   {
-    name: "generate",
+    name: "runner",
+    description: "Run a piece of code in the application environment",
+    args: {
+      name: "code",
+      template: "filepaths",
+    },
+    options: [environmentOption],
+  },
+  {
+    name: ["g", "generate"],
     description: "Use templates to generate Rails resources",
     args: [
       {
@@ -650,18 +751,8 @@ const completionSpec: Fig.Spec = {
   description: "Ruby on Rails CLI",
   icon: "https://avatars.githubusercontent.com/u/4223?s=48&v=4",
   generateSpec: async (_, executeShellCommand) => {
-    const isRailsDirectory =
-      (
-        await executeShellCommand({
-          command: "bash",
-          args: [
-            "-c",
-            `until [[ -f Gemfile ]] || [[ $PWD = '/' ]]; do cd ..; done; if [ -f Gemfile ]; then cat Gemfile | \\grep "gem ['\\"]rails['\\"]"; fi`,
-          ],
-        })
-      ).status === 0;
-
-    if (!isRailsDirectory) {
+    const [found, _path] = await getRailsRoot(executeShellCommand);
+    if (!found) {
       return {
         name: "rails",
         subcommands: [newCommand],
