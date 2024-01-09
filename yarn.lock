@@ -1594,16 +1594,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/scope-manager@npm:6.18.0":
-  version: 6.18.0
-  resolution: "@typescript-eslint/scope-manager@npm:6.18.0"
-  dependencies:
-    "@typescript-eslint/types": 6.18.0
-    "@typescript-eslint/visitor-keys": 6.18.0
-  checksum: 9958dcd95605b9699e1fe823cc38869d542f2cb90cde443938c1352de4161703ed6619e772bc12b8b7df2a44623ebf1e6b2b8d1222e5df22880185d0652040ee
-  languageName: node
-  linkType: hard
-
 "@typescript-eslint/type-utils@npm:5.62.0":
   version: 5.62.0
   resolution: "@typescript-eslint/type-utils@npm:5.62.0"
@@ -1652,13 +1642,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/types@npm:6.18.0":
-  version: 6.18.0
-  resolution: "@typescript-eslint/types@npm:6.18.0"
-  checksum: 516ad2feb7e7c7b5aac805b287be794e6e42371bc6a5bdd7c9fc230d98bbbcc4877c96377ccce68aede68ec58a64ef9d1e4c5b15cfb55e9a050bafe7b36624c1
-  languageName: node
-  linkType: hard
-
 "@typescript-eslint/typescript-estree@npm:5.62.0":
   version: 5.62.0
   resolution: "@typescript-eslint/typescript-estree@npm:5.62.0"
@@ -1674,25 +1657,6 @@ __metadata:
     typescript:
       optional: true
   checksum: 3624520abb5807ed8f57b1197e61c7b1ed770c56dfcaca66372d584ff50175225798bccb701f7ef129d62c5989070e1ee3a0aa2d84e56d9524dcf011a2bb1a52
-  languageName: node
-  linkType: hard
-
-"@typescript-eslint/typescript-estree@npm:6.18.0":
-  version: 6.18.0
-  resolution: "@typescript-eslint/typescript-estree@npm:6.18.0"
-  dependencies:
-    "@typescript-eslint/types": 6.18.0
-    "@typescript-eslint/visitor-keys": 6.18.0
-    debug: ^4.3.4
-    globby: ^11.1.0
-    is-glob: ^4.0.3
-    minimatch: 9.0.3
-    semver: ^7.5.4
-    ts-api-utils: ^1.0.1
-  peerDependenciesMeta:
-    typescript:
-      optional: true
-  checksum: 64afa0a81af66dfcb1d3027872abc07451691dff956c8b3174da675307050404c720465be5322490859d633e76705fd5e0fd5f040aa4cc1078bd837281e52065
   languageName: node
   linkType: hard
 
@@ -1770,16 +1734,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/visitor-keys@npm:6.18.0":
-  version: 6.18.0
-  resolution: "@typescript-eslint/visitor-keys@npm:6.18.0"
-  dependencies:
-    "@typescript-eslint/types": 6.18.0
-    eslint-visitor-keys: ^3.4.1
-  checksum: d6b1958867f3287c4e2c4f80633346a676060181e27ef69a1aad68634c62311738a3aad49e61c1d30d8e31800de146424ca8b33483d033132d90bf0c2f31cac8
-  languageName: node
-  linkType: hard
-
 "@ungap/structured-clone@npm:^1.2.0":
   version: 1.2.0
   resolution: "@ungap/structured-clone@npm:1.2.0"
@@ -1822,9 +1776,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@withfig/autocomplete-tools@npm:^2.9.1":
-  version: 2.9.1
-  resolution: "@withfig/autocomplete-tools@npm:2.9.1"
+"@withfig/autocomplete-tools@npm:^2.9.2":
+  version: 2.9.2
+  resolution: "@withfig/autocomplete-tools@npm:2.9.2"
   dependencies:
     "@esbuild-plugins/node-modules-polyfill": ^0.2.2
     "@fig/autocomplete-helpers": ^1.0.7
@@ -1842,7 +1796,7 @@ __metadata:
     typescript: ^5.3.3
   bin:
     autocomplete-tools: build/bin.js
-  checksum: a83ed1845903b22bc533bc39f45b549b0895af6c19e047f1d3c2ccc6bd770e0ca084ca683bd79391e4a9deae78ff1dc30258f2c881152735150b957a13377d65
+  checksum: 9cb0b3f6c5402a7e4f91e5be6876ccca4f8f34d3c11e4a540fc92769d5ab6b4fc05e6005910f1ddd9e01a61ae4b6d3b8f3035abad7f8b056455895b9f2781a6a
   languageName: node
   linkType: hard
 
@@ -1869,7 +1823,7 @@ __metadata:
     "@typescript-eslint/parser": ^6.7.3
     "@vitejs/plugin-react": ^4.1.0
     "@withfig/api-bindings": ^0.30.3
-    "@withfig/autocomplete-tools": ^2.9.1
+    "@withfig/autocomplete-tools": ^2.9.2
     "@withfig/autocomplete-types": ^1.29.0
     autoprefixer: ^10.4.16
     chalk: ^5.3.0
