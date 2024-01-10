@@ -1,4 +1,10 @@
+import autocannon from "./autocannon";
+
 export const npxSuggestions: Fig.Suggestion[] = [
+  {
+    name: autocannon.name,
+    ...("icon" in autocannon && { icon: autocannon.icon }),
+  },
   {
     name: "vite",
     icon: "https://vitejs.dev/logo.svg",

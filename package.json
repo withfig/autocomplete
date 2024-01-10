@@ -1,6 +1,6 @@
 {
   "name": "@withfig/autocomplete",
-  "version": "2.648.3",
+  "version": "2.650.2",
   "description": "Fig Autocomplete Specs",
   "schemaVersion": "v7",
   "main": "./build/index",
@@ -17,7 +17,7 @@
   "scripts": {
     "dev": "npx @withfig/autocomplete-tools dev",
     "create-spec": "npx @withfig/autocomplete-tools create-spec",
-    "build": "npx @withfig/autocomplete-tools compile; node generate-index.js; vite build",
+    "build": "npx @withfig/autocomplete-tools compile; vite build",
     "lint": "eslint '**/*.ts' && npx prettier --check '**/*.ts' --parser typescript",
     "lint:fix": "eslint '**/*.ts' --fix && npx prettier --write '**/*.ts' --parser typescript",
     "test": "tsc --noEmit && echo 'All specs passed validation. You are ready to push!'",
@@ -75,7 +75,7 @@
     "@typescript-eslint/eslint-plugin": "^6.7.3",
     "@typescript-eslint/parser": "^6.7.3",
     "@vitejs/plugin-react": "^4.1.0",
-    "@withfig/autocomplete-tools": "^2.8.0",
+    "@withfig/autocomplete-tools": "^2.9.2",
     "@withfig/autocomplete-types": "^1.29.0",
     "autoprefixer": "^10.4.16",
     "chalk": "^5.3.0",
