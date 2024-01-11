@@ -1,6 +1,6 @@
 // If you edit commands or options, please copy our changes on to the terragrunt spec
 const workspaceList: Fig.Generator = {
-  script: "terraform workspace list",
+  script: ["terraform", "workspace", "list"],
   postProcess: function (out) {
     return out.split("\n").map((workspace) => {
       return {
@@ -13,7 +13,7 @@ const workspaceList: Fig.Generator = {
 };
 
 const addressList: Fig.Generator = {
-  script: "terraform state list",
+  script: ["terraform", "state", "list"],
   postProcess: function (out) {
     if (out.includes("No state file was found!") || out.includes("Error")) {
       return [];

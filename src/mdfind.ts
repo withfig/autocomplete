@@ -1,17 +1,28 @@
 const smartFolderGenerator: Fig.Generator = {
   // `mdfind -s` only accepts smart folders in ~/Library/Saved\ Searches/
-  script: `ls -1A ~/Library/Saved\\ Searches/*.savedSearch`,
-  postProcess: function (files) {
-    return files.split("\n").map((path) => {
-      const components = path.split("/");
-      const filename = components[components.length - 1];
-      return {
-        name: filename.substring(0, filename.indexOf(".")), // .savedSearch automatically added to the query, so remove it
-        displayName: filename,
-        icon: "fig://" + path,
-        description: "Smart folder",
-      };
+
+  custom: async (_, executeCommand, context) => {
+    const { stdout } = await executeCommand({
+      command: "ls",
+      args: [
+        "-1A",
+        `${context.environmentVariables["HOME"]}/Library/Saved Searches/`,
+      ],
     });
+
+    return stdout
+      .split("\n")
+      .filter((file) => file.endsWith("savedSearch"))
+      .map((path) => {
+        const components = path.split("/");
+        const filename = components[components.length - 1];
+        return {
+          name: filename.substring(0, filename.indexOf(".")), // .savedSearch automatically added to the query, so remove it
+          displayName: filename,
+          icon: "fig://" + path,
+          description: "Smart folder",
+        };
+      });
   },
   trigger: "/",
 };

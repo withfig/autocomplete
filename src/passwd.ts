@@ -1,5 +1,5 @@
 const generateUsers: Fig.Generator = {
-  script: "dscl . -list /Users | grep -E -v '^_'",
+  script: ["bash", "-c", "dscl . -list /Users | grep -E -v '^_'"],
   postProcess: (out) =>
     out
       .trim()

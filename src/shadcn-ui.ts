@@ -7,10 +7,14 @@ interface RegistryItem {
 
 const componentGenerator: Fig.Generator = {
   custom: async (_tokens, executeShellCommand) => {
-    const json = await executeShellCommand(
-      `curl -sL 'https://raw.githubusercontent.com/shadcn/ui/main/apps/www/public/registry/index.json'`
-    );
-    const components = JSON.parse(json) as RegistryItem[];
+    const { stdout } = await executeShellCommand({
+      command: "curl",
+      args: [
+        "-sL",
+        "https://raw.githubusercontent.com/shadcn/ui/main/apps/www/public/registry/index.json",
+      ],
+    });
+    const components = JSON.parse(stdout) as RegistryItem[];
     return components.map((component) => ({
       name: component.name,
       description: component.type,

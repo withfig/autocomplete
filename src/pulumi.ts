@@ -2,7 +2,7 @@ const stacksGenerator: Fig.Generator = {
   cache: {
     cacheByDirectory: true,
   },
-  script: "pulumi stack ls --json",
+  script: ["pulumi", "stack", "ls", "--json"],
   postProcess: (out) => {
     try {
       return JSON.parse(out).map((stack) => ({

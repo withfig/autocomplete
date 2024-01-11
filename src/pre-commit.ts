@@ -2,7 +2,7 @@ import YAML from "yaml";
 import { gitGenerators } from "./git";
 
 const hooksInConfig: Fig.Generator = {
-  script: "cat .pre-commit-config.yaml",
+  script: ["cat", ".pre-commit-config.yaml"],
   postProcess: (output) => {
     const suggestions: Fig.Suggestion[] = [];
 

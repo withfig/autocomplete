@@ -4,6 +4,7 @@ import {
   generateLintRules,
   generateTasks,
   generateVersions,
+  generateUrlScript,
 } from "./deno/generators";
 
 const completion: Fig.Spec = {
@@ -899,8 +900,8 @@ const completion: Fig.Spec = {
       args: {
         name: "script_arg",
         isVariadic: true,
-        template: "filepaths",
         isScript: true,
+        generators: [{ template: "filepaths" }, generateUrlScript],
       },
       parserDirectives: {
         optionsMustPrecedeArguments: true,
@@ -1076,7 +1077,7 @@ const completion: Fig.Spec = {
         {
           name: "source_file",
           isOptional: true,
-          template: "filepaths",
+          generators: [{ template: "filepaths" }, generateUrlScript],
           suggestions: [
             {
               name: "--builtin",
@@ -1821,8 +1822,8 @@ const completion: Fig.Spec = {
       args: {
         name: "cmd",
         isVariadic: true,
-        template: "filepaths",
         isScript: true,
+        generators: [{ template: "filepaths" }, generateUrlScript],
       },
       parserDirectives: {
         optionsMustPrecedeArguments: true,
@@ -2490,7 +2491,6 @@ const completion: Fig.Spec = {
       args: {
         name: "script_arg",
         isVariadic: true,
-        template: "filepaths",
         isScript: true,
         suggestions: [
           {
@@ -2499,6 +2499,7 @@ const completion: Fig.Spec = {
             hidden: true,
           },
         ],
+        generators: [{ template: "filepaths" }, generateUrlScript],
       },
       parserDirectives: {
         optionsMustPrecedeArguments: true,

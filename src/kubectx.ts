@@ -33,7 +33,7 @@ const completionSpec: Fig.Spec = {
         name: "context",
         isVariadic: true,
         generators: {
-          script: `kubectx`,
+          script: ["kubectx"],
           postProcess: (out) => {
             const contexts = out.split("\n").map((item) => ({
               name: item,
@@ -59,7 +59,7 @@ const completionSpec: Fig.Spec = {
     name: "context",
     generators: [
       {
-        script: `kubectx | grep -v $(kubectx -c)`,
+        script: ["bash", "-c", "kubectx | grep -v $(kubectx -c)"],
         postProcess: (out) =>
           out.split("\n").map((item) => ({
             name: item,
@@ -68,7 +68,7 @@ const completionSpec: Fig.Spec = {
           })) as Fig.Suggestion[],
       },
       {
-        script: `kubectx -c`,
+        script: ["kubectx", "-c"],
         postProcess: (out) => {
           return !out
             ? []

@@ -482,8 +482,20 @@ const defaultCommands: Fig.Subcommand[] = [
     args: [
       {
         name: "generator",
+        filterStrategy: "fuzzy",
+        suggestions: [
+          "model",
+          "resource",
+          "scaffold",
+          "controller",
+          "migration",
+        ],
         generators: {
-          script: "rails g --help",
+          script: ["rails", "g", "--help"],
+          cache: {
+            cacheByDirectory: true,
+            strategy: "stale-while-revalidate",
+          },
           postProcess(out) {
             const lines = out.split("Rails:")[1].trim().split("\n");
 
@@ -581,7 +593,10 @@ const defaultCommands: Fig.Subcommand[] = [
       isOptional: true,
     },
     async generateSpec(_, executeShellCommand) {
-      const helpText = await executeShellCommand("rails test --help");
+      const { stdout: helpText } = await executeShellCommand({
+        command: "rails",
+        args: ["test", "--help"],
+      });
       const argRegex =
         /(?:(-[a-zA-Z]), )?(--[^ ]+?)[ =]([A-Z_]+)?[ \r\n]+([^\n]+)/g;
 
@@ -606,7 +621,11 @@ export const railsCommandsGenerator: Fig.Generator = {
     // parse help text to find more commands
     let commands: Fig.Subcommand[] = [];
     try {
-      const helpText = await executeShellCommand("rails --tasks");
+      const { stdout: helpText } = await executeShellCommand({
+        command: "rails",
+        // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+        args: ["--tasks"],
+      });
 
       const defaultCommandNames = defaultCommands.map((c) => c.name);
       const matches = Array.from(helpText.matchAll(/rails ([^ ]+)/g));
@@ -629,10 +648,18 @@ export const railsCommandsGenerator: Fig.Generator = {
 const completionSpec: Fig.Spec = {
   name: "rails",
   description: "Ruby on Rails CLI",
+  icon: "https://avatars.githubusercontent.com/u/4223?s=48&v=4",
   generateSpec: async (_, executeShellCommand) => {
-    const isRailsDirectory = !!(await executeShellCommand(
-      `until [[ -f Gemfile ]] || [[ $PWD = '/' ]]; do cd ..; done; if [ -f Gemfile ]; then cat Gemfile | \\grep "gem ['\\"]rails['\\"]"; fi`
-    ));
+    const isRailsDirectory =
+      (
+        await executeShellCommand({
+          command: "bash",
+          args: [
+            "-c",
+            `until [[ -f Gemfile ]] || [[ $PWD = '/' ]]; do cd ..; done; if [ -f Gemfile ]; then cat Gemfile | \\grep "gem ['\\"]rails['\\"]"; fi`,
+          ],
+        })
+      ).status === 0;
 
     if (!isRailsDirectory) {
       return {

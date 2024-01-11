@@ -1,7 +1,7 @@
 const lsArg = (name: string, command: string): Fig.Arg => ({
   name,
   generators: {
-    script: `tmux ${command}`,
+    script: ["tmux", command],
     postProcess: (out) => {
       return out.split("\n").map((line) => {
         const content = line.split(":");

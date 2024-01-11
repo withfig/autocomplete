@@ -19,6 +19,34 @@ const completionSpec: Fig.Subcommand = {
       args: {},
     },
     {
+      name: "--watch",
+      description: "Watch input files",
+    },
+    {
+      name: "--watch-path",
+      description: "Specify a watch directory or file",
+      args: {
+        name: "path",
+        template: "filepaths",
+      },
+      isRepeatable: true,
+    },
+    {
+      name: "--watch-preserve-output",
+      description:
+        "Disable the clearing of the console when watch mode restarts the process",
+      dependsOn: ["--watch", "--watch-path"],
+    },
+    {
+      name: "--env-file",
+      description: "Specify a file containing environment variables",
+      args: {
+        name: "path",
+        template: "filepaths",
+      },
+      isRepeatable: true,
+    },
+    {
       name: ["-p", "--print"],
       description: "Evaluate script and print result",
     },
@@ -55,8 +83,15 @@ const completionSpec: Fig.Subcommand = {
     },
   ],
   generateSpec: async (tokens, executeShellCommand) => {
-    const isAdonisJsonPresentCommand = "test -f .adonisrc.json && echo '1'";
-    if ((await executeShellCommand(isAdonisJsonPresentCommand)) === "1") {
+    const isAdonisJsonPresentCommand = "test -f .adonisrc.json";
+    if (
+      (
+        await executeShellCommand({
+          command: "bash",
+          args: ["-c", "isAdonisJsonPresentCommand"],
+        })
+      ).status === 0
+    ) {
       return {
         name: "node",
         subcommands: [

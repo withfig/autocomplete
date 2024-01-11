@@ -1,7 +1,7 @@
 import YAML from "yaml";
 
 const applicationName: Fig.Generator = {
-  script: "cat copilot/.workspace",
+  script: ["cat", "copilot/.workspace"],
   // TODO: I feel like there's a better way to do this.
   // There's only ever expected to be one `application` key.
   postProcess: (output) => {

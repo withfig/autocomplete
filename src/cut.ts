@@ -50,6 +50,11 @@ const completionSpec: Fig.Spec = {
       description:
         "Suppress lines with no field delimiter characters.  unless specified, lines with no delimiters are passed through unmodified",
     },
+    {
+      name: "-w",
+      description:
+        "Use whitespace (spaces and tabs) as the delimiter.  Consecutive spaces and tabs count as one single field separator",
+    },
   ],
 };
 
