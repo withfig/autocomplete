@@ -477,6 +477,11 @@ const defaultCommands: Fig.Subcommand[] = [
     ],
   },
   {
+    name: "notes",
+    description:
+      "Enumerate all annotations (use notes:optimize, :fixme, :todo for focus)",
+  },
+  {
     name: "generate",
     description: "Use templates to generate Rails resources",
     args: [
