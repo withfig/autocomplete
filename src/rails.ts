@@ -478,8 +478,18 @@ const defaultCommands: Fig.Subcommand[] = [
   },
   {
     name: "notes",
-    description:
-      "Enumerate all annotations (use notes:optimize, :fixme, :todo for focus)",
+    description: "Enumerate all annotations",
+    options: [
+      {
+        name: ["-a", "--annotations"],
+        requiresSeparator: true,
+        args: {
+          name: "annotations",
+          isVariadic: true,
+          description: "Filter by specific annotations, e.g. Foobar TODO",
+        },
+      },
+    ],
   },
   {
     name: "generate",
