@@ -1409,11 +1409,11 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*, @types/node@npm:>= 8, @types/node@npm:>=13.7.0, @types/node@npm:^20.7.1":
-  version: 20.10.7
-  resolution: "@types/node@npm:20.10.7"
+  version: 20.11.1
+  resolution: "@types/node@npm:20.11.1"
   dependencies:
     undici-types: ~5.26.4
-  checksum: 86f4f96f5169538f47bbd652ab8e3712cd307701481ff3e9ce0c1ea7d8424a38b5ac4a1d33088cdd9ea1bfe68fd27bbae005a21969aa6d9a36295904da6f09f2
+  checksum: d50670a5357968b9ff5214c807f688cb639054eb3d602741e4a381febe3b39624750ee0ea5817e33e3a9f88479cce6d3baf084c0412c614d48e7074d17b8a0de
   languageName: node
   linkType: hard
 
