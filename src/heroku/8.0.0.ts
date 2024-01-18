@@ -8479,4 +8479,7 @@ const completionSpec: Fig.Spec = {
   ],
 };
 
+const versions: Fig.VersionDiffMap = {};
+
+export { versions };
 export default completionSpec;
