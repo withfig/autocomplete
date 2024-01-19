@@ -1,23 +1,4 @@
-const getAppGenerator: Fig.Generator = {
-  script: ["heroku", "apps", "--all", "--json"],
-  cache: {
-    strategy: "stale-while-revalidate",
-  },
-  scriptTimeout: 15000,
-  postProcess: function (out) {
-    try {
-      return JSON.parse(out).map((app) => {
-        return {
-          name: app.name,
-          description: app.name,
-          icon: "https://www.herokucdn.com/favicon.ico",
-        };
-      });
-    } catch (e) {
-      return [];
-    }
-  },
-};
+import { getAppGenerator } from "./shared";
 
 const completionSpec: Fig.Spec = {
   name: "heroku",
@@ -8479,4 +8460,7 @@ const completionSpec: Fig.Spec = {
   ],
 };
 
+const versions: Fig.VersionDiffMap = {};
+
+export { versions };
 export default completionSpec;
