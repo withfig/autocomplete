@@ -362,6 +362,12 @@ const registryOption: Fig.Option = {
   args: { name: "registry" },
 };
 
+const verboseOption: Fig.Option = {
+  name: "--verbose",
+  description: "Show extra information",
+  args: { name: "verbose" },
+};
+
 const otpOption: Fig.Option = {
   name: "--otp",
   description: "One-time password from a two-factor authenticator",
@@ -457,6 +463,8 @@ const completionSpec: Fig.Spec = {
           name: "--no-package-lock",
           description: "Ignores package-lock.json files when installing",
         },
+        registryOption,
+        verboseOption,
         omitOption,
         ignoreScriptsOption,
         {
@@ -670,6 +678,8 @@ const completionSpec: Fig.Spec = {
         },
         ignoreScriptsOption,
         scriptShellOption,
+        verboseOption,
+        registryOption,
       ],
     },
     {
