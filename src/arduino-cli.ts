@@ -40,12 +40,12 @@ const Ports: Fig.Generator = {
 const completionSpec: Fig.Spec = {
   name: "arduino-cli",
   description:
-    "Arduino Command Line Interface (arduino-cli), example: 'arduino-cli <command> [flags...]'",
+    "Arduino Command Line Interface",
   subcommands: [
     {
       name: "board",
       description:
-        "Arduino board commands, example: 'arduino-cli board <command> [flags]'",
+        "Arduino board commands",
       args: {
         name: "attach, list...",
         isOptional: true,
@@ -54,7 +54,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "attach",
           description:
-            "Sets the default values for port and FQBN. If no port or FQBN are specified, the current default port and FQBN are displayed, example: 'arduino-cli board attach [-p <port>] [-b <FQBN>] [sketchPath] [flags]'",
+            "Sets the default values for port and FQBN. If no port or FQBN are specified, the current default port and FQBN are displayed",
           options: [
             {
               name: "--board-options",
@@ -106,7 +106,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "details",
           description:
-            "Show information about a board, in particular if the board has options to be specified in the FQBN, example: 'arduino-cli board details -b <FQBN> [flags]'",
+            "Show information about a board, in particular if the board has options to be specified in the FQBN'",
           options: [
             {
               name: "--board-options",
