@@ -39,13 +39,11 @@ const Ports: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "arduino-cli",
-  description:
-    "Arduino Command Line Interface",
+  description: "Arduino Command Line Interface",
   subcommands: [
     {
       name: "board",
-      description:
-        "Arduino board commands",
+      description: "Arduino board commands",
       args: {
         name: "attach, list...",
         isOptional: true,
@@ -147,7 +145,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description:
-            "Detects and displays a list of boards connected to the current computer, example: 'arduino-cli board list --discovery-timeout 10s'",
+            "Detects and displays a list of boards connected to the current computer",
           options: [
             {
               name: "--board-options",
@@ -188,7 +186,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "listall",
           description:
-            "List all boards that have the support platform installed, You can search for a specific board if you specify the board name, example: 'arduino-cli board listall [boardname] [flags]'",
+            "List all boards that have the support platform installed, You can search for a specific board if you specify the board name",
           options: [
             {
               name: ["-h", "--help"],
@@ -204,7 +202,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "search",
           description:
-            "Search for a board in the Boards Manager using the specified keywords, example: 'arduino-cli board search [boardname] [flags]'",
+            "Search for a board in the Boards Manager using the specified keywords",
           options: [
             {
               name: ["-h", "--help"],
@@ -228,7 +226,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "burn-bootloader",
       description:
-        "Upload the bootloader on the board using an external programmer, example: 'arduino-cli burn-bootloader -b arduino:avr:uno -P atmel_ice'",
+        "Upload the bootloader on the board using an external programmer",
       options: [
         {
           name: "--board-options",
@@ -288,7 +286,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "cache",
-      description: "Arduino cache commands, example: 'arduino-cli cache clean'",
+      description: "Arduino cache commands",
       args: {
         name: "clean",
         isOptional: true,
@@ -297,7 +295,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "clean",
           description:
-            "Delete contents of the directories.downloads folder, where archive files are staged during installation of libraries and boards platforms, example: 'arduino-cli cache clean [flags]'",
+            "Delete contents of the directories.downloads folder, where archive files are staged during installation of libraries and boards platforms",
           options: [
             {
               name: ["-h", "--help"],
@@ -315,8 +313,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "compile",
-      description:
-        "Compiles Arduino sketches, example: 'arduino-cli compile -b arduino:avr:uno /home/user/Arduino/MySketch'",
+      description: "Compiles Arduino sketches",
       options: [
         {
           name: "--board-options",
@@ -522,8 +519,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "completion",
-      description:
-        "Generates completion scripts for various shells, example: 'arduino-cli completion [bash|zsh|fish|powershell] [--no-descriptions] [flags]'",
+      description: "Generates completion scripts for various shells",
       options: [
         {
           name: ["-h", "--help"],
@@ -538,8 +534,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "config",
-      description:
-        "Arduino configuration commands, example: 'arduino-cli config init'",
+      description: "Arduino configuration commands",
       args: {
         name: "init, dump...",
         isOptional: true,
@@ -547,8 +542,7 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "add",
-          description:
-            "Adds one or more values to a setting, example: 'arduino-cli config add [flags]'",
+          description: "Adds one or more values to a setting",
           options: [
             {
               name: ["-h", "--help"],
@@ -558,8 +552,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "delete",
-          description:
-            "Deletes a settings key and all its sub keys, example: 'arduino-cli config delete [flags]'",
+          description: "Deletes a settings key and all its sub keys",
           options: [
             {
               name: ["-h", "--help"],
@@ -569,8 +562,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "dump",
-          description:
-            "Prints the current configuration, example: 'arduino-cli config dump [flags]'",
+          description: "Prints the current configuration",
           options: [
             {
               name: ["-h", "--help"],
@@ -581,7 +573,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "init",
           description:
-            "Creates or updates the configuration file in the data directory or custom directory with the current configuration settings, example: 'arduino-cli config init [flags]'",
+            "Creates or updates the configuration file in the data directory or custom directory with the current configuration settings",
           options: [
             {
               name: "--dest-dir",
@@ -611,8 +603,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "remove",
-          description:
-            "Removes one or more values from a setting, example: 'arduino-cli config remove [flags]'",
+          description: "Removes one or more values from a setting",
           options: [
             {
               name: ["-h", "--help"],
@@ -622,8 +613,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "set",
-          description:
-            "Sets a setting value, example: 'arduino-cli config set [flags]'",
+          description: "Sets a setting value",
           options: [
             {
               name: ["-h", "--help"],
@@ -641,8 +631,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "core",
-      description:
-        "Arduino core operations, example: 'arduino-cli core update-index'",
+      description: "Arduino core operations",
       args: {
         name: "install, list...",
         isOptional: true,
@@ -651,7 +640,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "download",
           description:
-            "Downloads one or more cores and corresponding tool dependencies, example: 'arduino-cli core download [PACKAGER:ARCH[@VERSION]]... [flags]'",
+            "Downloads one or more cores and corresponding tool dependencies",
           options: [
             {
               name: ["-h", "--help"],
@@ -662,7 +651,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "install",
           description:
-            "Installs one or more cores and corresponding tool dependencies, example: 'arduino-cli core install PACKAGER:ARCH[@VERSION]... [flags]'",
+            "Installs one or more cores and corresponding tool dependencies",
           options: [
             {
               name: ["-h", "--help"],
@@ -696,8 +685,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "list",
-          description:
-            "Show the list of installed platforms, example: 'arduino-cli core list [flags]'",
+          description: "Show the list of installed platforms",
           options: [
             {
               name: "all",
@@ -717,7 +705,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "search",
           description:
-            "Search for a core in Boards Manager using the specified keywords, example: 'arduino-cli core search <keywords...> [flags]'",
+            "Search for a core in Boards Manager using the specified keywords",
           options: [
             {
               name: "all",
@@ -732,7 +720,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "uninstall",
           description:
-            "Uninstalls one or more cores and corresponding tool dependencies if no longer used, example: 'arduino-cli core uninstall PACKAGER:ARCH ... [flags]'",
+            "Uninstalls one or more cores and corresponding tool dependencies if no longer used",
           options: [
             {
               name: ["-h", "--help"],
@@ -762,8 +750,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "update-index",
-          description:
-            "Updates the index of cores to the latest version, example: 'arduino-cli core update-index [flags]'",
+          description: "Updates the index of cores to the latest version",
           options: [
             {
               name: ["-h", "--help"],
@@ -774,7 +761,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "upgrade",
           description:
-            "Upgrades one or all installed platforms to the latest version, example: 'arduino-cli core upgrade [PACKAGER:ARCH] ... [flags]'",
+            "Upgrades one or all installed platforms to the latest version",
           options: [
             {
               name: ["-h", "--help"],
@@ -813,7 +800,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "daemon",
       description:
-        "Run as a daemon on port: 50051, the initialization of cores and libraries is done only once, example: 'arduino-cli daemon [flags]'",
+        "Run as a daemon on port: 50051, the initialization of cores and libraries is done only once",
       options: [
         {
           name: "--daemonize",
@@ -855,7 +842,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "debug",
       description:
-        "Debug Arduino sketches. (this command opens an interactive gdb session), example: '  arduino-cli debug -b arduino:samd:mkr1000 -P atmel_ice /home/user/Arduino/MySketch'",
+        "Debug Arduino sketches. (this command opens an interactive gdb session)",
       args: {
         name: "check",
         isOptional: true,
@@ -864,7 +851,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "check",
           description:
-            "Check if the given board/programmer combination supports debugging, example: '  arduino-cli debug check -b arduino:samd:mkr1000 -P atmel_ice'",
+            "Check if the given board/programmer combination supports debugging",
           options: [
             {
               name: "--board-options",
@@ -1041,8 +1028,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "help",
-      description:
-        "Help provides help for any command in the application, example: 'arduino-cli help [path to command]' for full details",
+      description: "Help provides help for any command in the application",
       options: [
         {
           name: ["-h", "--help"],
@@ -1052,8 +1038,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "lib",
-      description:
-        "Arduino commands about libraries, example: 'arduino-cli lib install AudioZero'",
+      description: "Arduino commands about libraries",
       args: {
         name: "deps, update-index...",
         isOptional: true,
@@ -1061,8 +1046,7 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "deps",
-          description:
-            "Check dependencies status for the specified library, example: 'arduino-cli lib deps LIBRARY[@VERSION_NUMBER]... [flags]'",
+          description: "Check dependencies status for the specified library",
           options: [
             {
               name: ["-h", "--help"],
@@ -1073,7 +1057,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "download",
           description:
-            "Downloads one or more libraries without installing them, example: 'arduino-cli lib download [LIBRARY_NAME]... [flags]'",
+            "Downloads one or more libraries without installing them",
           options: [
             {
               name: ["-h", "--help"],
@@ -1084,7 +1068,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "examples",
           description:
-            "Shows the list of the examples for libraries. A name may be given as argument to search a specific library, example: 'arduino-cli lib examples [LIBRARY_NAME] [flags]'",
+            "Shows the list of the examples for libraries. A name may be given as argument to search a specific library",
           options: [
             {
               name: "--board-options",
@@ -1111,7 +1095,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "install",
           description:
-            "Installs one or more specified libraries into the system, example: 'arduino-cli lib install LIBRARY[@VERSION_NUMBER]... [flags]'",
+            "Installs one or more specified libraries into the system",
           options: [
             {
               name: "--git-url",
@@ -1142,7 +1126,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description:
-            "Shows a list of installed libraries. If the LIBNAME parameter is specified the listing is limited to that specific library. By default the libraries provided as built-in by platforms/core are not listed, they can be listed by adding the --all flag, example: 'arduino-cli lib list [LIBNAME] [flags]'",
+            "Shows a list of installed libraries. If the LIBNAME parameter is specified the listing is limited to that specific library. By default the libraries provided as built-in by platforms/core are not listed, they can be listed by adding the --all flag",
           options: [
             {
               name: "--all",
@@ -1178,7 +1162,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "search",
           description:
-            "Search for one or more libraries data (case insensitive search), examples: 'arduino-cli lib search [LIBRARY_NAME] [flags]'",
+            "Search for one or more libraries data (case insensitive search)",
           options: [
             {
               name: ["--h", "--help"],
@@ -1197,8 +1181,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "uninstall",
-          description:
-            "Uninstalls one or more libraries, example: 'arduino-cli lib uninstall LIBRARY_NAME... [flags]'",
+          description: "Uninstalls one or more libraries",
           options: [
             {
               name: ["--h", "--help"],
@@ -1208,8 +1191,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "update-index",
-          description:
-            "Updates the libraries index to the latest version, example: 'arduino-cli lib update-index [flags]'",
+          description: "Updates the libraries index to the latest version",
           options: [
             {
               name: ["--h", "--help"],
@@ -1220,7 +1202,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "upgrade",
           description:
-            "Upgrades installed libraries. This command upgrades an installed library to the latest available version. Multiple libraries can be passed separated by a space. If no arguments are provided, the command will upgrade all the installed libraries where an update is available, example: 'arduino-cli lib upgrade [flags]'",
+            "Upgrades installed libraries. This command upgrades an installed library to the latest available version. Multiple libraries can be passed separated by a space. If no arguments are provided, the command will upgrade all the installed libraries where an update is available",
           options: [
             {
               name: ["--h", "--help"],
@@ -1238,8 +1220,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "monitor",
-      description:
-        "Open a communication port with a board, example: 'arduino-cli monitor [flags]'",
+      description: "Open a communication port with a board",
       options: [
         {
           name: "--board-options",
@@ -1309,7 +1290,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "outdated",
       description:
-        "This commands shows a list of installed cores and/or libraries that can be upgraded. If nothing needs to be updated the output is empty, example: 'arduino-cli outdated [flags]'",
+        "This commands shows a list of installed cores and/or libraries that can be upgraded. If nothing needs to be updated the output is empty",
       options: [
         {
           name: ["-h", "--help"],
@@ -1319,8 +1300,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "sketch",
-      description:
-        "Arduino CLI sketch commands, example: 'arduino-cli sketch new MySketch'",
+      description: "Arduino CLI sketch commands",
       args: {
         name: "archive, new",
         isOptional: true,
@@ -1334,8 +1314,7 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "archive",
-          description:
-            "Creates a zip file containing all sketch files, example: 'arduino-cli sketch archive <sketchPath> <archivePath> [flags]'",
+          description: "Creates a zip file containing all sketch files",
           options: [
             {
               name: ["-h", "--help"],
@@ -1353,8 +1332,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "new",
-          description:
-            "Create a new Sketch, example: 'arduino-cli sketch new [flags]'",
+          description: "Create a new Sketch",
           options: [
             {
               name: ["-h", "--help"],
@@ -1371,7 +1349,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update",
       description:
-        "Updates the index of cores and libraries to the latest versions, example: 'arduino-cli update [flags]'",
+        "Updates the index of cores and libraries to the latest versions",
       options: [
         {
           name: ["-h", "--help"],
@@ -1385,8 +1363,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "upgrade",
-      description:
-        "Upgrades installed cores and libraries to latest version, example: 'arduino-cli upgrade [flags]'",
+      description: "Upgrades installed cores and libraries to latest version",
       options: [
         {
           name: ["-h", "--help"],
@@ -1417,7 +1394,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "upload",
       description:
-        "Upload Arduino sketches. This does NOT compile the sketch prior to upload, example: 'arduino-cli upload [flags]'",
+        "Upload Arduino sketches. This does NOT compile the sketch prior to upload",
       options: [
         {
           name: "--board-options",
@@ -1505,7 +1482,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "version",
       description:
-        "Shows the version number of Arduino CLI which is installed on your system, example: 'arduino-cli version [flags]'",
+        "Shows the version number of Arduino CLI which is installed on your system",
       options: [
         {
           name: ["-h", "--help"],
