@@ -8,7 +8,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["--output"],
-          description: "output file",
+          description: "Output file",
           args: { name: "filename", isOptional: true, default: "-" },
         },
         {
@@ -18,7 +18,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["--variable"],
-          description: "variable key value pairs",
+          description: "Variable key/value pairs",
           args: { name: "name=value", default: "[object Map]" },
         },
         {
@@ -27,7 +27,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-v", "--verbose"],
-          description: "enable diagnostic console output",
+          description: "Enable diagnostic console output",
         },
         { name: ["-q", "--quiet"], description: "Disable all logging" },
         {
@@ -60,7 +60,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--variable"],
-              description: "variable key value pairs",
+              description: "Variable key/value pairs",
               args: { name: "name=value", default: "[object Map]" },
             },
             {
@@ -69,7 +69,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["-v", "--verbose"],
-              description: "enable diagnostic console output",
+              description: "Enable diagnostic console output",
             },
             {
               name: ["-h", "--help"],
@@ -100,7 +100,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--variable"],
-              description: "variable key value pairs",
+              description: "Variable key/value pairs",
               args: { name: "name=value", default: "[object Map]" },
             },
             {
@@ -109,7 +109,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["-v", "--verbose"],
-              description: "enable diagnostic console output",
+              description: "Enable diagnostic console output",
             },
             {
               name: ["-h", "--help"],
@@ -136,7 +136,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--variable"],
-              description: "variable key value pairs",
+              description: "Variable key/value pairs",
               args: { name: "name=value", default: "[object Map]" },
             },
             {
@@ -145,7 +145,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["-v", "--verbose"],
-              description: "enable diagnostic console output",
+              description: "Enable diagnostic console output",
             },
             {
               name: ["-h", "--help"],
@@ -184,7 +184,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--variable"],
-              description: "variable key value pairs",
+              description: "Variable key/value pairs",
               args: { name: "name=value", default: "[object Map]" },
             },
             {
@@ -193,7 +193,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["-v", "--verbose"],
-              description: "enable diagnostic console output",
+              description: "Enable diagnostic console output",
             },
             {
               name: ["-h", "--help"],
@@ -245,7 +245,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--variable"],
-              description: "variable key value pairs",
+              description: "Variable key/value pairs",
               args: { name: "name=value", default: "[object Map]" },
             },
             {
@@ -254,7 +254,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["-v", "--verbose"],
-              description: "enable diagnostic console output",
+              description: "Enable diagnostic console output",
             },
             {
               name: ["-h", "--help"],
@@ -300,7 +300,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--variable"],
-              description: "variable key value pairs",
+              description: "Variable key/value pairs",
               args: { name: "name=value", default: "[object Map]" },
             },
             {
@@ -309,7 +309,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["-v", "--verbose"],
-              description: "enable diagnostic console output",
+              description: "Enable diagnostic console output",
             },
             {
               name: ["-h", "--help"],
@@ -344,7 +344,7 @@ const completionSpec: Fig.Spec = {
   options: [
     {
       name: ["--variable"],
-      description: "variable key value pairs",
+      description: "Variable key/value pairs",
       args: { name: "name=value", default: "[object Map]" },
     },
     {
@@ -353,7 +353,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-v", "--verbose"],
-      description: "enable diagnostic console output",
+      description: "Enable diagnostic console output",
     },
     { name: ["-q", "--quiet"], description: "Disable all logging" },
     {
