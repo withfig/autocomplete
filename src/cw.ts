@@ -2282,7 +2282,7 @@ const completion: Fig.Spec = {
               ],
             },
             {
-              name: ["intellij", "jetbrains"],
+              name: ["intellij-plugin"],
               options: [
                 {
                   name: ["-h", "--help"],
@@ -2415,7 +2415,7 @@ const completion: Fig.Spec = {
               ],
             },
             {
-              name: ["intellij", "jetbrains"],
+              name: ["intellij-plugin"],
               options: [
                 {
                   name: ["-h", "--help"],
@@ -2548,7 +2548,7 @@ const completion: Fig.Spec = {
               ],
             },
             {
-              name: ["intellij", "jetbrains"],
+              name: ["intellij-plugin"],
               options: [
                 {
                   name: ["-h", "--help"],
@@ -2681,7 +2681,7 @@ const completion: Fig.Spec = {
               ],
             },
             {
-              name: ["intellij", "jetbrains"],
+              name: ["intellij-plugin"],
               options: [
                 {
                   name: ["-h", "--help"],
