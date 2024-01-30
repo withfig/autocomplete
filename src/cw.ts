@@ -1252,6 +1252,10 @@ const completion: Fig.Spec = {
       args: {
         name: "theme",
         isOptional: true,
+        generators: {
+          script: ["cw", "theme", "--list"],
+          splitOn: "\n",
+        },
       },
     },
     {
@@ -2282,7 +2286,7 @@ const completion: Fig.Spec = {
               ],
             },
             {
-              name: ["intellij-plugin"],
+              name: "intellij-plugin",
               options: [
                 {
                   name: ["-h", "--help"],
@@ -2415,7 +2419,7 @@ const completion: Fig.Spec = {
               ],
             },
             {
-              name: ["intellij-plugin"],
+              name: "intellij-plugin",
               options: [
                 {
                   name: ["-h", "--help"],
@@ -2548,7 +2552,7 @@ const completion: Fig.Spec = {
               ],
             },
             {
-              name: ["intellij-plugin"],
+              name: "intellij-plugin",
               options: [
                 {
                   name: ["-h", "--help"],
@@ -2681,7 +2685,7 @@ const completion: Fig.Spec = {
               ],
             },
             {
-              name: ["intellij-plugin"],
+              name: "intellij-plugin",
               options: [
                 {
                   name: ["-h", "--help"],
