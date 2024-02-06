@@ -19,17 +19,10 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
       },
     ],
-    subcommands: [{
-      name: "my_nested_subcommand",
-      description: "Nested subcommand, example usage: 'bwdc my_subcommand my_nested_subcommand'"
-    }],
-
     options: [{
       name: "--help",
     }]
-
   },
-
   {
     name: "logout",
     icon: bwLogo32x32,
@@ -39,7 +32,6 @@ const completionSpec: Fig.Spec = {
       name: "--help",
     }]
   },
-
   {
     name: "test",
     icon: bwLogo32x32,
@@ -48,12 +40,10 @@ const completionSpec: Fig.Spec = {
     options: [{
       name: "--last",
       description: "Test only the changes since the last successful sync",
-
     },
     {
       name: "--help",
     }]
-
   },
   {
     name: "sync",
@@ -107,7 +97,6 @@ const completionSpec: Fig.Spec = {
 
         }
     },
-
     {
       name: "directory",
       description: "Type of directory to use",
@@ -135,10 +124,7 @@ OneLogin : 4`,
       args: {
           name: "password",
           description: "Specify the password",
-          
-
         }
-
     },
     {
       name: "azure.key",
@@ -146,8 +132,6 @@ OneLogin : 4`,
       args: {
           name: "key",
           description: "Specify the AD secret key",
-          
-
         }
     },
     {
@@ -156,18 +140,14 @@ OneLogin : 4`,
       args: {
           name: "key",
           description: "Specify the Google Workspace/GSuite private key",
-          
-
-        }
+      }
     },
     {
       name: "okta.token",
       description: "Okta token",
       args: {
           name: "token",
-          description: "Specify the Okta token",
-          
-
+          description: "Specify the Okta token",          
         }
     },
     {
@@ -175,17 +155,13 @@ OneLogin : 4`,
       description: "OneLogin client secret",
       args: {
           name: "secret",
-          description: "Specify the OneLogin client secret",
-          
-
+          description: "Specify the OneLogin client secret",          
         }
     }
     ],
-
     options: [{
       name: "--help",
     }]
-
   },
   {
     name: "data-file",
@@ -201,7 +177,6 @@ OneLogin : 4`,
     name: "clear-cache",
     icon: bwLogo32x32,
     description: "The clear-cache command allows you to clear cached data that the application stores while performing sync operations",
-
     options: [{
       name: "--help",
     }]
@@ -210,7 +185,6 @@ OneLogin : 4`,
     name: "update",
     icon: bwLogo32x32,
     description: "The update command allows you to check if your Directory Connector CLI is up-to-date",
-
   }
   ],
   options: [{
