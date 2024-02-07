@@ -7,7 +7,7 @@ const completionSpec: Fig.Subcommand = {
     name: "node script",
     isScript: true,
     generators: filepaths({
-      extensions: ["mjs", "js"],
+      extensions: ["mjs", "js", "cjs"],
       editFileSuggestions: { priority: 76 },
     }),
   },
