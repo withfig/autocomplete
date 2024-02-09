@@ -25,7 +25,7 @@ jobs:
           node-version-file: package.json
         # Install all dependencies
       - name: Install pnpm
-        uses: pnpm/action-setup@v2.4.0
+        uses: pnpm/action-setup@v3.0.0
       - name: install
         run: pnpm install --frozen-lockfile
         # Transpile all specs from ts to js
