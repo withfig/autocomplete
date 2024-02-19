@@ -28,7 +28,7 @@ dependencies:
     version: 18.2.0(react@18.2.0)
   semver:
     specifier: ^7.5.4
-    version: 7.5.4
+    version: 7.6.0
   strip-json-comments:
     specifier: ^5.0.1
     version: 5.0.1
@@ -848,7 +848,7 @@ packages:
   /@fig/autocomplete-helpers@1.0.7:
     resolution: {integrity: sha512-5jq01q2JtaLAjl8t3hOvE9GOp4a4Agj7YmxlBxRjuSwJY3qskfx/mdAgOX2qjgxZ74bHONAxQ1hzudwSICqZFg==}
     dependencies:
-      semver: 7.5.4
+      semver: 7.6.0
       typescript: 4.9.5
 
   /@fig/autocomplete-hooks@1.0.2:
@@ -1323,7 +1323,7 @@ packages:
       graphemer: 1.4.0
       ignore: 5.3.0
       natural-compare-lite: 1.4.0
-      semver: 7.5.4
+      semver: 7.6.0
       tsutils: 3.21.0(typescript@5.3.3)
       typescript: 5.3.3
     transitivePeerDependencies:
@@ -1352,7 +1352,7 @@ packages:
       graphemer: 1.4.0
       ignore: 5.3.0
       natural-compare: 1.4.0
-      semver: 7.5.4
+      semver: 7.6.0
       ts-api-utils: 1.0.3(typescript@5.3.3)
       typescript: 5.3.3
     transitivePeerDependencies:
@@ -1493,7 +1493,7 @@ packages:
       debug: 4.3.4
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.5.4
+      semver: 7.6.0
       tsutils: 3.21.0(typescript@5.3.3)
       typescript: 5.3.3
     transitivePeerDependencies:
@@ -1515,7 +1515,7 @@ packages:
       globby: 11.1.0
       is-glob: 4.0.3
       minimatch: 9.0.3
-      semver: 7.5.4
+      semver: 7.6.0
       ts-api-utils: 1.0.3(typescript@5.3.3)
       typescript: 5.3.3
     transitivePeerDependencies:
@@ -1537,7 +1537,7 @@ packages:
       globby: 11.1.0
       is-glob: 4.0.3
       minimatch: 9.0.3
-      semver: 7.5.4
+      semver: 7.6.0
       ts-api-utils: 1.0.3(typescript@5.3.3)
       typescript: 5.3.3
     transitivePeerDependencies:
@@ -1558,7 +1558,7 @@ packages:
       '@typescript-eslint/typescript-estree': 5.62.0(typescript@5.3.3)
       eslint: 8.56.0
       eslint-scope: 5.1.1
-      semver: 7.5.4
+      semver: 7.6.0
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -1577,7 +1577,7 @@ packages:
       '@typescript-eslint/types': 6.17.0
       '@typescript-eslint/typescript-estree': 6.17.0(typescript@5.3.3)
       eslint: 8.56.0
-      semver: 7.5.4
+      semver: 7.6.0
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -1659,7 +1659,7 @@ packages:
       fast-glob: 3.3.2
       module-from-string: 3.3.0
       prettier: 3.2.5
-      semver: 7.5.4
+      semver: 7.6.0
       typescript: 5.3.3
     dev: true
 
@@ -2625,7 +2625,7 @@ packages:
       eslint: 8.56.0
       find-up: 5.0.0
       lodash.memoize: 4.1.2
-      semver: 7.5.4
+      semver: 7.6.0
     dev: true
 
   /eslint-scope@5.1.1:
@@ -3426,7 +3426,7 @@ packages:
       lodash.isstring: 4.0.1
       lodash.once: 4.1.1
       ms: 2.1.3
-      semver: 7.5.4
+      semver: 7.6.0
     dev: true
 
   /jwa@1.4.1:
@@ -4402,8 +4402,8 @@ packages:
     hasBin: true
     dev: true
 
-  /semver@7.5.4:
-    resolution: {integrity: sha512-1bCSESV6Pv+i21Hvpxp3Dx+pSD8lIPt8uVjRrxAUt/nbswYc+tK6Y2btiULjd4+fnq15PX+nqQDC7Oft7WkwcA==}
+  /semver@7.6.0:
+    resolution: {integrity: sha512-EnwXhrlwXMk9gKu5/flx5sv/an57AkRplG3hTK68W7FRDN+k+OWBj65M7719OkA82XLBxrcX0KSHj+X5COhOVg==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
