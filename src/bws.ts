@@ -13,6 +13,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "name",
           description: "Value to set",
+          insertValue: "{cursor}",
           args: [
             {
               name: "server-base",
@@ -35,11 +36,11 @@ const completionSpec: Fig.Spec = {
               isOptional: true,
             },
           ],
-          exclusiveOn: ["delete", "edit", "get", "list"],
         },
         {
           name: "--profile",
           description: "Save specified value(s) to an alternate profile",
+          insertValue: "{cursor}",
           args: {
             name: "profile",
             description: "Profile name to save to",
@@ -50,25 +51,13 @@ const completionSpec: Fig.Spec = {
           description: "Save specified value(s) to an alternative config file",
           args: {
             name: "Config file path",
-            template: "filepaths"
-          }
+            template: "filepaths",
+          },
         },
         {
           name: ["-h", "--help"],
           description: "Display help for login command",
           priority: 49,
-        },
-      ],
-      args: [
-        {
-          name: "email",
-          description: "Email Address of Bitwarden Account",
-          isOptional: true,
-        },
-        {
-          name: "password",
-          description: "Master Password of Bitwarden Vault",
-          isOptional: true,
         },
       ],
     },
@@ -109,6 +98,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a new project",
+          insertValue: "{cursor}",
           args: {
             name: "NAME",
             description: "Project Name",
@@ -118,15 +108,18 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete one or more existing projects",
+          insertValue: "{cursor}",
           args: {
             name: "PROJECT_IDS",
             description: "ID(s) of project(s) to delete",
           },
           exclusiveOn: ["create", "edit", "get", "list"],
+          isDangerous: true,
         },
         {
           name: "edit",
           description: "Change the name of an existing project",
+          insertValue: "{cursor}",
           args: [
             {
               name: "--name",
@@ -143,6 +136,7 @@ const completionSpec: Fig.Spec = {
           name: "get",
           description:
             "Retrieve a specific project accessible to this service account",
+          insertValue: "{cursor}",
           args: {
             name: "PROJECT_ID",
             description: "Project to retrieve",
@@ -169,6 +163,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a new secret",
+          insertValue: "{cursor}",
           args: [
             {
               name: "KEY",
@@ -190,6 +185,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete an existing secret",
+          insertValue: "{cursor}",
           exclusiveOn: ["create", "edit", "get", "list"],
           args: {
             name: "SECRET_IDS",
@@ -200,6 +196,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "edit",
           description: "Edit an existing secret",
+          insertValue: "{cursor}",
           exclusiveOn: ["create", "delete", "get", "list"],
           args: [
             {
@@ -223,6 +220,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "get",
           description: "Retrieve an existing secret",
+          insertValue: "{cursor}",
           exclusiveOn: ["create", "delete", "edit", "list"],
           args: {
             name: "SECRET_ID",
@@ -246,33 +244,11 @@ const completionSpec: Fig.Spec = {
           priority: 49,
         },
       ],
-      args: {
-        name: "password",
-        description: "Master Password for the Vault to be unlocked",
-        isOptional: true,
-      },
     },
     {
       name: "help",
       description: "",
       icon: bwLogo32x32,
-      options: [
-        {
-          name: ["-f", "--force"],
-          description: "Force a full sync",
-          exclusiveOn: ["--last"],
-        },
-        {
-          name: "--last",
-          description: "Show details of the last sync",
-          exclusiveOn: ["--force", "-f"],
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Display help for sync command",
-          priority: 49,
-        },
-      ],
     },
   ],
   options: [
@@ -284,7 +260,7 @@ const completionSpec: Fig.Spec = {
         description: "Select output format",
         suggestions: [
           { name: "json", description: "Produce json output" },
-          { name: "yaml", description: "Produce yaml output"},
+          { name: "yaml", description: "Produce yaml output" },
           { name: "env", description: "Produce env output" },
           { name: "table", description: "Produce table output" },
           { name: "tsv", description: "Produce tsv output" },
