@@ -1,5 +1,20 @@
+const sessionid: Fig.Generator = {
+  script: ["bash", "-c", "cat .nextflow/history | awk '{ print $7 }'"],
+  postProcess: (output) => {
+    if (output == "") {
+      return [];
+    }
+    return output.split("\n").map((sessionid) => {
+      return {
+        name: sessionid.replace("*", "").trim(),
+        description: "Session ID",
+      };
+    });
+  },
+};
+
 const runname: Fig.Generator = {
-  script: "cat .nextflow/history | awk '{ print $4 }'",
+  script: ["bash", "-c", "cat .nextflow/history | awk '{ print $4 }'"],
   postProcess: (output) => {
     if (output == "") {
       return [];
@@ -11,7 +26,11 @@ const runname: Fig.Generator = {
 };
 
 const projectname: Fig.Generator = {
-  script: `/bin/sh -c "{ find * -maxdepth 0 -type f -name '*.nf' 2> /dev/null && find $HOME/.nextflow/assets/* -maxdepth 1 -type d | cut -d/ -f6,7 | grep / | grep -v assets; } 2> /dev/null"`,
+  script: [
+    "bash",
+    "-c",
+    `{ find * -maxdepth 0 -type f -name '*.nf' 2> /dev/null && find $HOME/.nextflow/assets/* -maxdepth 1 -type d | cut -d/ -f6,7 | grep / | grep -v assets; } 2> /dev/null`,
+  ],
   postProcess: (output) => {
     if (output == "") {
       return [];
@@ -26,7 +45,7 @@ const projectname: Fig.Generator = {
 };
 
 const dockerimage: Fig.Generator = {
-  script: `docker images | cut -w -f 1 | grep -v REPOSITORY`,
+  script: ["bash", "-c", "docker images | cut -w -f 1 | grep -v REPOSITORY"],
   postProcess: (output) => {
     if (output == "") {
       return [];
@@ -41,7 +60,11 @@ const dockerimage: Fig.Generator = {
 };
 
 const secretname: Fig.Generator = {
-  script: `grep -o '"name": *"[^"]*"' $HOME/.nextflow/secrets/store.json | grep -o '"[^"]*"$' | tr -d \\"`,
+  script: [
+    "bash",
+    "-c",
+    `grep -o '"name": *"[^"]*"' $HOME/.nextflow/secrets/store.json | grep -o '"[^"]*"$' | tr -d \\"`,
+  ],
   postProcess: (output) => {
     if (output == "") {
       return [];
@@ -836,6 +859,11 @@ const completionSpec: Fig.Spec = {
           name: "-resume",
           description:
             "Execute the script using the cached results, useful to continue executions that was stopped by an error",
+          args: {
+            name: "session ID",
+            isOptional: true,
+            generators: sessionid,
+          },
         },
         {
           name: ["-r", "-revision"],

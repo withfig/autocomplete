@@ -1,5 +1,5 @@
 const dependenciesGenerator: Fig.Generator = {
-  script: "cat import_map.json",
+  script: ["cat", "import_map.json"],
   postProcess: function (out) {
     if (out) {
       try {
@@ -24,7 +24,7 @@ const dependenciesGenerator: Fig.Generator = {
   },
 };
 const scriptsGenerator: Fig.Generator = {
-  script: "cat run.json",
+  script: ["cat", "run.json"],
   postProcess: function (out) {
     if (out) {
       try {

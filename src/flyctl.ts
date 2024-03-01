@@ -4,44 +4,60 @@
 // Specs generated using autocomplete-tools/packages/cobra v1.1.3
 // https://github.com/BogDAAAMN/flyctl/commit/c0f338a6f3c59acc8286a8c82836fc2e73124b6f
 
-// Autocompletion generator for Fly apps using flyctl list apps
-// https://fly.io/docs/flyctl/list-apps/#usage
-const flyAppsGenerator: Fig.Generator = {
-  script: "flyctl list apps",
-  postProcess: (output) => {
-    return output
-      .split("\n")
-      .slice(2)
-      .map((app) => {
-        const appSplitText = app.split("|").map((el) => el.trim());
-        const [name, status, org, deployed] = appSplitText;
+type FlyApp = {
+  ID: string;
+  Status: string;
+  Organization: {
+    Slug: string;
+  };
+};
 
-        return {
-          name: name,
-          description: `Organization: ${org}`,
-          icon: status == "running" ? "🟢" : status == "pending" ? "🟡" : "🔴",
-        };
-      });
+// Autocompletion generator for Fly apps using flyctl list apps
+// https://fly.io/docs/flyctl/apps-list/
+const flyAppsGenerator: Fig.Generator = {
+  script: ["flyctl", "apps", "list", "--json"],
+  postProcess: (output) => {
+    const json: FlyApp[] = JSON.parse(output);
+
+    return json.map((app) => {
+      const status = app.Status;
+      return {
+        name: app.ID,
+        description: `Organization: ${app.Organization.Slug}`,
+        icon:
+          status == "running" || status == "deployed"
+            ? "🟢"
+            : status == "pending"
+              ? "🟡"
+              : "🔴",
+      };
+    });
   },
 };
 
 // Autocompletion generator for Fly apps using flyctl list orgs
-// https://fly.io/docs/flyctl/list-orgs/#usage
+// https://fly.io/docs/flyctl/orgs-list/
 const flyOrgsGenerator: Fig.Generator = {
-  script: "flyctl list orgs",
+  script: ["fly", "orgs", "list", "--json"],
   postProcess: (output) => {
-    return output
-      .split("\n")
-      .slice(2)
-      .map((org) => {
-        const appSplitText = org.split("|").map((el) => el.trim());
-        const [name, slug, type] = appSplitText;
+    const json: Record<string, string> = JSON.parse(output);
 
-        return {
-          name: name,
-          description: `${slug}`,
-        };
-      });
+    // sort such that "personal" is always first, then alphabetically
+    return Object.entries(json)
+      .sort(([id1, name1], [id2, name2]) => {
+        if (id1 == "personal") {
+          return -1;
+        } else if (id2 == "personal") {
+          return 1;
+        } else {
+          return name1.localeCompare(name2);
+        }
+      })
+      .map(([id, name]) => ({
+        name: id,
+        description: name,
+        icon: id == "personal" ? "👤" : "🏢",
+      }));
   },
 };
 
@@ -149,7 +165,26 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
-        { name: "restart", description: "Restart an application" },
+        {
+          name: "restart",
+          description: "Restart an application",
+          options: [
+            {
+              name: ["-f", "--force"],
+              description:
+                "Will issue a restart against each Machine even if there are errors. ( Machines only )",
+            },
+            {
+              name: "--skip-health-checks",
+              description:
+                "Restarts app without waiting for health checks. ( Machines only )",
+            },
+          ],
+          args: {
+            name: "app",
+            generators: flyAppsGenerator,
+          },
+        },
       ],
     },
     {
@@ -1212,35 +1247,6 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: ["ls", "list"],
-      description: "Lists your Fly resources",
-      subcommands: [
-        {
-          name: "apps",
-          description: "Lists all your apps",
-          options: [
-            { name: ["--exact", "-e"], description: "Show exact times" },
-            {
-              name: ["--org", "-o"],
-              description: "Show only apps in this organisation",
-              args: { name: "org", generators: flyOrgsGenerator },
-            },
-            {
-              name: "--sort",
-              description: "Sort by name, created",
-              args: { name: "sort", default: "name" },
-            },
-            {
-              name: ["--status", "-s"],
-              description: "Show only apps with this status",
-              args: { name: "status" },
-            },
-          ],
-        },
-        { name: "orgs", description: "List all your organizations" },
-      ],
-    },
-    {
       name: "logs",
       description: "View app logs",
       options: [
@@ -2077,7 +2083,14 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-    { name: "restart", description: "Restart an application" },
+    {
+      name: "restart",
+      description: "Restart an application",
+      deprecated: {
+        description: "Please use `fly apps restart` instead",
+      },
+      hidden: true,
+    },
     { name: "resume", description: "Resume an application" },
     {
       name: "scale",

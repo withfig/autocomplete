@@ -1,3 +1,18 @@
+const namespaces: Fig.Generator = {
+  script: ["kubectl", "get", "namespaces"],
+  postProcess: (out) => {
+    return out
+      .split("\n")
+      .slice(1)
+      .map((line) => {
+        return {
+          name: line.split(" ").shift(),
+          description: "Kubernetes namespace",
+        };
+      });
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "k9s",
   description:
@@ -146,6 +161,8 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "string",
         description: "The namespace",
+        generators: namespaces,
+        debounce: true,
       },
     },
     {

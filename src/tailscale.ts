@@ -3,7 +3,7 @@ type HostsGeneratorOptions = {
 };
 
 const hostsGenerator = ({ append }: HostsGeneratorOptions = {}) => ({
-  script: "tailscale status --json",
+  script: ["tailscale", "status", "--json"],
   postProcess: (output: string) =>
     Object.values(JSON.parse(output)["Peer"]).map((peer) => ({
       name: `${peer["DNSName"].split(".")[0]}${append ?? ""}`,

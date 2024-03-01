@@ -2,14 +2,31 @@ const completionSpec: Fig.Spec = {
   name: "meroxa",
   description: "The Meroxa CLI",
   subcommands: [
+    {
+      name: ["accounts", "account"],
+      description: "Manage Meroxa Accounts",
+      subcommands: [
+        {
+          name: ["ls", "list"],
+          description: "List Meroxa Accounts",
+          options: [
+            {
+              name: "--no-headers",
+              description: "Display output without headers",
+            },
+          ],
+        },
+        { name: "set", description: "Set active account" },
+      ],
+    },
     { name: "api", description: "Invoke Meroxa API" },
     {
       name: ["app", "apps"],
-      description: "Manage Turbine Data Applications (Beta)",
+      description: "Manage Turbine Data Applications",
       subcommands: [
         {
           name: "deploy",
-          description: "Deploy a Turbine Data Application (Beta)",
+          description: "Deploy a Turbine Data Application",
           options: [
             {
               name: "--docker-hub-access-token",
@@ -26,10 +43,21 @@ const completionSpec: Fig.Spec = {
               args: { name: "docker-hub-username" },
             },
             {
+              name: "--env",
+              description:
+                "Environment (name or UUID) where application will be deployed to",
+              args: { name: "env" },
+            },
+            {
               name: "--path",
               description:
                 "Path to the app directory (default is local directory)",
               args: { name: "path", template: "folders" },
+            },
+            {
+              name: "--skip-collection-validation",
+              description:
+                "Skips unique destination collection and looping validations",
             },
             {
               name: "--spec",
@@ -38,15 +66,28 @@ const completionSpec: Fig.Spec = {
               hidden: true,
               args: { name: "spec" },
             },
+            {
+              name: "--verbose",
+              description: "Prints more logging messages",
+              hidden: true,
+            },
           ],
         },
         {
           name: "describe",
-          description: "Describe a Turbine Data Application (Beta)",
+          description: "Describe a Turbine Data Application",
+          options: [
+            {
+              name: "--path",
+              description:
+                "Path to the app directory (default is local directory)",
+              args: { name: "path", template: "folders" },
+            },
+          ],
         },
         {
           name: "init",
-          description: "Initialize a Turbine Data Application (Beta)",
+          description: "Initialize a Turbine Data Application",
           options: [
             {
               name: ["--lang", "-l"],
@@ -74,7 +115,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["ls", "list"],
-          description: "List Turbine Data Applications (Beta)",
+          description: "List Turbine Data Applications",
           options: [
             {
               name: "--no-headers",
@@ -85,19 +126,45 @@ const completionSpec: Fig.Spec = {
         {
           name: ["log", "logs"],
           description:
-            "View relevant logs to the state of the given Turbine Data Application (Beta)",
+            "View relevant logs to the state of the given Turbine Data Application",
+          options: [
+            {
+              name: "--path",
+              description:
+                "Path to the app directory (default is local directory)",
+              args: { name: "path", template: "folders" },
+            },
+          ],
+        },
+        {
+          name: "open",
+          description:
+            "Open the link to a Turbine Data Application in the Dashboard",
+          options: [
+            {
+              name: "--path",
+              description:
+                "Path to the app directory (default is local directory)",
+              args: { name: "path", template: "folders" },
+            },
+          ],
         },
         {
           name: ["rm", "delete", "remove"],
-          description: "Removes a Turbine Data Application (Beta)",
+          description: "Remove a Turbine Data Application",
           options: [
             { name: ["--force", "-f"], description: "Skip confirmation" },
-            { name: "--yolo", description: "Skip confirmation", hidden: true },
+            {
+              name: "--path",
+              description:
+                "Path to the app directory (default is local directory)",
+              args: { name: "path", template: "folders" },
+            },
           ],
         },
         {
           name: "run",
-          description: "Execute a Turbine Data Application locally (Beta)",
+          description: "Execute a Turbine Data Application locally",
           options: [
             {
               name: "--path",
@@ -108,7 +175,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "upgrade",
-          description: "Upgrade a Turbine Data Application (Beta)",
+          description: "Upgrade a Turbine Data Application",
           options: [
             {
               name: "--path",
@@ -138,15 +205,12 @@ const completionSpec: Fig.Spec = {
     { name: "billing", description: "Open your billing page in a web browser" },
     {
       name: ["build", "builds"],
-      description: "Inspect Process Builds on Meroxa (Beta)",
+      description: "Inspect Process Builds on Meroxa",
       subcommands: [
-        {
-          name: "describe",
-          description: "Describe a Meroxa Process Build (Beta)",
-        },
+        { name: "describe", description: "Describe a Meroxa Process Build" },
         {
           name: ["log", "logs"],
-          description: "List a Meroxa Process Build's Logs (Beta)",
+          description: "List a Meroxa Process Build's Logs",
         },
       ],
     },
@@ -163,49 +227,6 @@ const completionSpec: Fig.Spec = {
           name: "set",
           description:
             "Update your Meroxa CLI configuration file with a specific key=value",
-        },
-      ],
-    },
-    {
-      name: ["endpoint", "endpoints"],
-      description: "Manage endpoints on Meroxa",
-      subcommands: [
-        {
-          name: "create",
-          description: "Create an endpoint",
-          options: [
-            {
-              name: ["--protocol", "-p"],
-              description: "Protocol, value can be http or grpc (required)",
-              args: { name: "protocol", suggestions: ["http", "grpc"] },
-              isRequired: true,
-            },
-            {
-              name: ["--stream", "-s"],
-              description: "Stream name (required)",
-              args: { name: "stream" },
-              isRequired: true,
-            },
-          ],
-        },
-        { name: "describe", description: "Describe endpoint" },
-        {
-          name: ["ls", "list"],
-          description: "List endpoints",
-          options: [
-            {
-              name: "--no-headers",
-              description: "Display output without headers",
-            },
-          ],
-        },
-        {
-          name: ["rm", "delete", "remove"],
-          description: "Remove endpoint",
-          options: [
-            { name: ["--force", "-f"], description: "Skip confirmation" },
-            { name: "--yolo", description: "Skip confirmation", hidden: true },
-          ],
         },
       ],
     },
@@ -269,7 +290,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--config", "-c"],
               description:
-                "Updated environment configuration based on type and provider (e.g.: --config aws_access_key_id=my_access_key --config aws_access_secret=my_access_secret)",
+                "Updated environment configuration based on type and provider (e.g.: --config aws_access_key_id=my_access_key --config aws_secret_access_key=my_access_secret)",
               isRepeatable: true,
               args: { name: "config" },
             },
@@ -340,6 +361,11 @@ const completionSpec: Fig.Spec = {
               args: { name: "password" },
             },
             {
+              name: "--private-key-file",
+              description: "Path to private key file",
+              args: { name: "private-key-file" },
+            },
+            {
               name: "--ssh-private-key",
               description: "SSH tunneling private key",
               args: { name: "ssh-private-key" },
@@ -351,6 +377,11 @@ const completionSpec: Fig.Spec = {
             },
             { name: "--ssl", description: "Use SSL" },
             {
+              name: "--token",
+              description: "API Token",
+              args: { name: "token" },
+            },
+            {
               name: "--type",
               description: "Resource type (required)",
               args: { name: "type" },
@@ -358,9 +389,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--url", "-u"],
-              description: "Resource url (required)",
+              description: "Resource url",
               args: { name: "url" },
-              isRequired: true,
             },
             {
               name: "--username",
@@ -477,43 +507,56 @@ const completionSpec: Fig.Spec = {
       name: "help",
       description: "Help about any command",
       subcommands: [
+        {
+          name: ["accounts", "account"],
+          description: "Manage Meroxa Accounts",
+          subcommands: [
+            { name: ["ls", "list"], description: "List Meroxa Accounts" },
+            { name: "set", description: "Set active account" },
+          ],
+        },
         { name: "api", description: "Invoke Meroxa API" },
         {
           name: ["app", "apps"],
-          description: "Manage Turbine Data Applications (Beta)",
+          description: "Manage Turbine Data Applications",
           subcommands: [
             {
               name: "deploy",
-              description: "Deploy a Turbine Data Application (Beta)",
+              description: "Deploy a Turbine Data Application",
             },
             {
               name: "describe",
-              description: "Describe a Turbine Data Application (Beta)",
+              description: "Describe a Turbine Data Application",
             },
             {
               name: "init",
-              description: "Initialize a Turbine Data Application (Beta)",
+              description: "Initialize a Turbine Data Application",
             },
             {
               name: ["ls", "list"],
-              description: "List Turbine Data Applications (Beta)",
+              description: "List Turbine Data Applications",
             },
             {
               name: ["log", "logs"],
               description:
-                "View relevant logs to the state of the given Turbine Data Application (Beta)",
+                "View relevant logs to the state of the given Turbine Data Application",
+            },
+            {
+              name: "open",
+              description:
+                "Open the link to a Turbine Data Application in the Dashboard",
             },
             {
               name: ["rm", "delete", "remove"],
-              description: "Removes a Turbine Data Application (Beta)",
+              description: "Remove a Turbine Data Application",
             },
             {
               name: "run",
-              description: "Execute a Turbine Data Application locally (Beta)",
+              description: "Execute a Turbine Data Application locally",
             },
             {
               name: "upgrade",
-              description: "Upgrade a Turbine Data Application (Beta)",
+              description: "Upgrade a Turbine Data Application",
             },
           ],
         },
@@ -542,15 +585,15 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["build", "builds"],
-          description: "Inspect Process Builds on Meroxa (Beta)",
+          description: "Inspect Process Builds on Meroxa",
           subcommands: [
             {
               name: "describe",
-              description: "Describe a Meroxa Process Build (Beta)",
+              description: "Describe a Meroxa Process Build",
             },
             {
               name: ["log", "logs"],
-              description: "List a Meroxa Process Build's Logs (Beta)",
+              description: "List a Meroxa Process Build's Logs",
             },
           ],
         },
@@ -567,19 +610,6 @@ const completionSpec: Fig.Spec = {
               name: "set",
               description:
                 "Update your Meroxa CLI configuration file with a specific key=value",
-            },
-          ],
-        },
-        {
-          name: ["endpoint", "endpoints"],
-          description: "Manage endpoints on Meroxa",
-          subcommands: [
-            { name: "create", description: "Create an endpoint" },
-            { name: "describe", description: "Describe endpoint" },
-            { name: ["ls", "list"], description: "List endpoints" },
-            {
-              name: ["rm", "delete", "remove"],
-              description: "Remove endpoint",
             },
           ],
         },

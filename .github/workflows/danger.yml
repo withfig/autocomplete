@@ -5,18 +5,16 @@ jobs:
   danger:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 14.x
-      - run: npm install -g yarn
-      - run: yarn install  --frozen-lockfile
-      - run: yarn danger ci
+          node-version-file: package.json
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.4.0
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm danger ci
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
-      - run: yarn danger ci -d ./dangerfile-greeting.ts
+      - run: pnpm danger ci -d ./dangerfile-greeting.ts
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
-#       - run: yarn danger ci -d ./dangerfile-invite.ts
-#         env:
-#           DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}

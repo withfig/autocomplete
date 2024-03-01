@@ -18,7 +18,7 @@ export const createNpmSearchHandler =
   (keywords?: string[]) =>
   async (
     context: string[],
-    executeShellCommand: Fig.ExecuteShellCommandFunction,
+    executeShellCommand: Fig.ExecuteCommandFunction,
     shellContext: Fig.ShellContext
   ): Promise<Fig.Suggestion[]> => {
     const searchTerm = context[context.length - 1];
@@ -34,19 +34,26 @@ export const createNpmSearchHandler =
       : `https://api.npms.io/v2/search/suggestions?q=${searchTerm}&size=20`;
 
     // Query the API with the package name
-    const queryPackages = `curl -s -H "Accept: application/json" "${queryPackagesUrl}"`;
+    const queryPackages = [
+      "-s",
+      "-H",
+      "Accept: application/json",
+      queryPackagesUrl,
+    ];
     // We need to remove the '@' at the end of the searchTerm before querying versions
-    const queryVersions = `curl -s -H "Accept: application/vnd.npm.install-v1+json" https://registry.npmjs.org/${searchTerm.slice(
-      0,
-      -1
-    )}`;
+    const queryVersions = [
+      "-s",
+      "-H",
+      "Accept: application/vnd.npm.install-v1+json",
+      `https://registry.npmjs.org/${searchTerm.slice(0, -1)}`,
+    ];
     // If the end of our token is '@', then we want to generate version suggestions
     // Otherwise, we want packages
     const out = (query: string) =>
-      query[query.length - 1] === "@"
-        ? executeShellCommand(queryVersions)
-        : executeShellCommand(queryPackages);
-
+      executeShellCommand({
+        command: "curl",
+        args: query[query.length - 1] === "@" ? queryVersions : queryPackages,
+      });
     // If our token starts with '@', then a 2nd '@' tells us we want
     // versions.
     // Otherwise, '@' anywhere else in the string will indicate the same.
@@ -55,7 +62,7 @@ export const createNpmSearchHandler =
       : searchTerm.includes("@");
 
     try {
-      const data = JSON.parse(await out(searchTerm));
+      const data = JSON.parse((await out(searchTerm)).stdout);
       if (shouldGetVersion) {
         // create dist tags suggestions
         const versions = Object.entries(data["dist-tags"] || {}).map(
@@ -67,7 +74,7 @@ export const createNpmSearchHandler =
         // create versions
         versions.push(
           ...Object.keys(data.versions)
-            .map((version) => ({ name: version } as Fig.Suggestion))
+            .map((version) => ({ name: version }) as Fig.Suggestion)
             .reverse()
         );
         return versions;
@@ -107,10 +114,21 @@ export const npmSearchGenerator: Fig.Generator = {
 };
 
 const workspaceGenerator: Fig.Generator = {
-  script: "cat $(npm prefix)/package.json",
-  postProcess: function (out: string) {
-    const suggestions = [];
+  // script: "cat $(npm prefix)/package.json",
+  custom: async (tokens, executeShellCommand) => {
+    const { stdout: npmPrefix } = await executeShellCommand({
+      command: "npm",
+      // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+      args: ["prefix"],
+    });
 
+    const { stdout: out } = await executeShellCommand({
+      command: "cat",
+      // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+      args: [`${npmPrefix}/package.json`],
+    });
+
+    const suggestions = [];
     try {
       if (out.trim() == "") {
         return suggestions;
@@ -139,7 +157,16 @@ export const dependenciesGenerator: Fig.Generator = {
   trigger: (newToken) => newToken === "-g" || newToken === "--global",
   custom: async function (tokens, executeShellCommand) {
     if (!tokens.includes("-g") && !tokens.includes("--global")) {
-      const out = await executeShellCommand("cat $(npm prefix)/package.json");
+      const { stdout: npmPrefix } = await executeShellCommand({
+        command: "npm",
+        // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+        args: ["prefix"],
+      });
+      const { stdout: out } = await executeShellCommand({
+        command: "cat",
+        // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+        args: [`${npmPrefix}/package.json`],
+      });
       const packageContent = JSON.parse(out);
       const dependencies = packageContent["dependencies"] ?? {};
       const devDependencies = packageContent["devDependencies"];
@@ -157,12 +184,15 @@ export const dependenciesGenerator: Fig.Generator = {
           description: dependencies[pkgName]
             ? "dependency"
             : optionalDependencies[pkgName]
-            ? "optionalDependency"
-            : "devDependency",
+              ? "optionalDependency"
+              : "devDependency",
         }));
     } else {
-      const out = await executeShellCommand("ls -1 `npm root -g`");
-      return out.split("\n").map((name) => ({
+      const { stdout } = await executeShellCommand({
+        command: "bash",
+        args: ["-c", "ls -1 `npm root -g`"],
+      });
+      return stdout.split("\n").map((name) => ({
         name,
         icon: "📦",
         description: "Global dependency",
@@ -177,8 +207,11 @@ export const npmScriptsGenerator: Fig.Generator = {
     strategy: "stale-while-revalidate",
     cacheByDirectory: true,
   },
-  script:
+  script: [
+    "bash",
+    "-c",
     "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json",
+  ],
   postProcess: function (out, [npmClient]) {
     if (out.trim() == "") {
       return [];
@@ -329,6 +362,12 @@ const registryOption: Fig.Option = {
   args: { name: "registry" },
 };
 
+const verboseOption: Fig.Option = {
+  name: "--verbose",
+  description: "Show extra information",
+  args: { name: "verbose" },
+};
+
 const otpOption: Fig.Option = {
   name: "--otp",
   description: "One-time password from a two-factor authenticator",
@@ -424,6 +463,8 @@ const completionSpec: Fig.Spec = {
           name: "--no-package-lock",
           description: "Ignores package-lock.json files when installing",
         },
+        registryOption,
+        verboseOption,
         omitOption,
         ignoreScriptsOption,
         {
@@ -637,6 +678,8 @@ const completionSpec: Fig.Spec = {
         },
         ignoreScriptsOption,
         scriptShellOption,
+        verboseOption,
+        registryOption,
       ],
     },
     {
@@ -1503,6 +1546,11 @@ const completionSpec: Fig.Spec = {
           name: "--no-fund",
           description:
             "Hides the message at the end of each npm install acknowledging the number of dependencies looking for funding",
+        },
+        {
+          name: "--save",
+          description:
+            "Update the semver values of direct dependencies in your project package.json",
         },
         dryRunOption,
         ...workSpaceOptions,

@@ -47,41 +47,43 @@ const vcsOptions: {
   },
 ];
 
-const testGenerator: Fig.Generator = {
-  cache: {
-    cacheByDirectory: true,
-    strategy: "stale-while-revalidate",
-    ttl: 1000 * 60 * 5,
-  },
-  script: (context) => {
-    const base = context[context.length - 1];
-    // allow split by single colon so that it triggers on a::b:
-    const indexIntoModPath = Math.max(base.split(/::?/).length, 1);
-    // split by :: so that tokens with a single colon are allowed
-    const moduleTokens = base.split("::");
-    const lastModule = moduleTokens.pop();
-    // check if the token has a : on the end
-    const hasColon = lastModule[lastModule.length - 1] == ":" ? ":" : "";
-    return `cargo t -- --list | awk '/: test$/ { print substr($1, 1, length($1) - 1) }' | awk -F "::" '{ print "${hasColon}"$${indexIntoModPath},int( NF / ${indexIntoModPath} ) }'`;
-  },
-  postProcess: (out) => {
-    return [...new Set(out.split("\n"))].map((line) => {
-      const [display, last] = line.split(" ");
-      const lastModule = parseInt(last);
-      const displayName = display.replaceAll(":", "");
-      const name = displayName.length
-        ? `${display}${lastModule ? "" : "::"}`
-        : "";
-      return { name, displayName };
-    });
-  },
-  trigger: ":",
-  getQueryTerm: ":",
-};
+// TODO(grant): add this back but better with no awk
+// const testGenerator: Fig.Generator = {
+//   cache: {
+//     cacheByDirectory: true,
+//     strategy: "stale-while-revalidate",
+//     ttl: 1000 * 60 * 5,
+//   },
+//   script: (context) => {
+//     const base = context[context.length - 1];
+//     // allow split by single colon so that it triggers on a::b:
+//     const indexIntoModPath = Math.max(base.split(/::?/).length, 1);
+//     // split by :: so that tokens with a single colon are allowed
+//     const moduleTokens = base.split("::");
+//     const lastModule = moduleTokens.pop();
+//     // check if the token has a : on the end
+//     const hasColon = lastModule[lastModule.length - 1] == ":" ? ":" : "";
+//     return `cargo t -- --list | awk '/: test$/ { print substr($1, 1, length($1) - 1) }' | awk -F "::" '{ print "${hasColon}"$${indexIntoModPath},int( NF / ${indexIntoModPath} ) }'`;
+//   },
+//   postProcess: (out) => {
+//     return [...new Set(out.split("\n"))].map((line) => {
+//       const [display, last] = line.split(" ");
+//       const lastModule = parseInt(last);
+//       const displayName = display.replaceAll(":", "");
+//       const name = displayName.length
+//         ? `${display}${lastModule ? "" : "::"}`
+//         : "";
+//       return { name, displayName };
+//     });
+//   },
+//   trigger: ":",
+//   getQueryTerm: ":",
+// };
 
 type Metadata = {
   packages: Package[];
   resolve: Resolve;
+  workspace_root: string;
 };
 
 type Package = {
@@ -91,6 +93,7 @@ type Package = {
   description?: string;
   source?: string;
   targets: Target[];
+  dependencies: Dependency[];
 };
 
 type Target = {
@@ -99,14 +102,32 @@ type Target = {
   kind: TargetKind[];
 };
 
+type Dependency = {
+  name: string;
+  req: string;
+  kind: "dev" | "build" | null;
+  target: string | null;
+};
+
 type TargetKind = "lib" | "bin" | "example" | "test" | "bench" | "custom-build";
 
 type Resolve = {
   root?: string;
 };
 
+const rootPackageOrLocal = (manifest: Metadata) => {
+  const rootManifestPath = `${manifest.workspace_root}/Cargo.toml`;
+  console.log(rootManifestPath);
+  const rootPackage = manifest.packages.find(
+    (pkg) => pkg.source === rootManifestPath
+  );
+  return rootPackage
+    ? [rootPackage]
+    : manifest.packages.filter((pkg) => !pkg.source);
+};
+
 const packageGenerator: Fig.Generator = {
-  script: "cargo metadata --format-version 1 --no-deps",
+  script: ["cargo", "metadata", "--format-version", "1", "--no-deps"],
   postProcess: (data) => {
     const manifest: Metadata = JSON.parse(data);
     return manifest.packages.map((pkg) => {
@@ -121,17 +142,33 @@ const packageGenerator: Fig.Generator = {
   },
 };
 
+const directDependencyGenerator: Fig.Generator = {
+  script: ["cargo", "metadata", "--format-version", "1"],
+  postProcess: (data: string) => {
+    const manifest: Metadata = JSON.parse(data);
+    const packages = rootPackageOrLocal(manifest);
+    const deps = packages
+      .flatMap((pkg) => pkg.dependencies)
+      .map((dep) => ({
+        name: dep.name,
+        description: dep.req,
+      }));
+    return [...new Map(deps.map((dep) => [dep.name, dep])).values()];
+  },
+};
+
 const targetGenerator: ({ kind }: { kind?: TargetKind }) => Fig.Generator = ({
   kind,
 }) => ({
   custom: async (_, executeShellCommand, context) => {
-    const out = await executeShellCommand("cargo metadata --format-version 1");
-    const manifest: Metadata = JSON.parse(out);
-    const packages = manifest.resolve.root
-      ? [manifest.packages.find((pkg) => pkg.id === manifest.resolve.root)]
-      : manifest.packages.filter((pkg) => !pkg.source);
+    const { stdout } = await executeShellCommand({
+      command: "cargo",
+      args: ["metadata", "--format-version", "1", "--no-deps"],
+    });
+    const manifest: Metadata = JSON.parse(stdout);
+    const packages = rootPackageOrLocal(manifest);
 
-    let targets = packages.map((pkg) => pkg.targets).flat();
+    let targets = packages.flatMap((pkg) => pkg.targets);
 
     if (kind) {
       targets = targets.filter((target) => target.kind.includes(kind));
@@ -149,7 +186,7 @@ const targetGenerator: ({ kind }: { kind?: TargetKind }) => Fig.Generator = ({
 });
 
 const dependencyGenerator: Fig.Generator = {
-  script: "cargo metadata --format-version 1",
+  script: ["cargo", "metadata", "--format-version", "1"],
   postProcess: (data: string) => {
     const metadata: Metadata = JSON.parse(data);
     return metadata.packages.map((pkg) => ({
@@ -160,7 +197,7 @@ const dependencyGenerator: Fig.Generator = {
 };
 
 const featuresGenerator: Fig.Generator = {
-  script: "cargo read-manifest",
+  script: ["cargo", "read-manifest"],
   postProcess: (data: string) => {
     const manifest = JSON.parse(data);
     return Object.keys(manifest.features || {}).map((name) => ({
@@ -168,6 +205,34 @@ const featuresGenerator: Fig.Generator = {
       name,
       description: `Features: [${manifest.features[name].join(", ")}]`,
     }));
+  },
+};
+
+const makeTasksGenerator: Fig.Generator = {
+  custom: async function (tokens, executeCommand) {
+    let makefileLocation = "Makefile.toml";
+
+    const makefileFlagIdx = tokens.findIndex((param) => param === "--makefile");
+    if (makefileFlagIdx !== -1 && tokens.length > makefileFlagIdx + 1)
+      makefileLocation = tokens[makefileFlagIdx + 1];
+
+    const args = [makefileLocation];
+    const { stdout } = await executeCommand({
+      command: "cat",
+      args,
+    });
+
+    const taskRegex = /\[tasks\.([^\]]+)\]/g;
+    let match;
+    const tasks = [];
+
+    while ((match = taskRegex.exec(stdout)) !== null) {
+      tasks.push({
+        name: match[1],
+      });
+    }
+
+    return tasks;
   },
 };
 
@@ -208,10 +273,11 @@ const searchGenerator: Fig.Generator = {
     if (lastToken.includes("@") && !lastToken.startsWith("@")) {
       const [crate, _version] = lastToken.split("@");
       const query = encodeURIComponent(crate);
-      const out = await executeShellCommand(
-        `curl -sfL 'https://crates.io/api/v1/crates/${query}/versions'`
-      );
-      const json: VersionSearchResults = JSON.parse(out);
+      const { stdout } = await executeShellCommand({
+        command: "curl",
+        args: ["-sfL", `https://crates.io/api/v1/crates/${query}/versions`],
+      });
+      const json: VersionSearchResults = JSON.parse(stdout);
 
       return json.versions.map((version) => ({
         name: `${crate}@${version.num}`,
@@ -223,14 +289,22 @@ const searchGenerator: Fig.Generator = {
       }));
     } else if (lastToken.length > 0) {
       const query = encodeURIComponent(lastToken);
-      const [remoteOut, localOut] = await Promise.all([
-        executeShellCommand(
-          `curl -sfL 'https://crates.io/api/v1/crates?q=${query}&per_page=60'`
-        ),
-        executeShellCommand(`cargo metadata --format-version 1 --no-deps`),
-      ]);
+      const [{ stdout: remoteStdout }, { stdout: localStdout }] =
+        await Promise.all([
+          executeShellCommand({
+            command: "curl",
+            args: [
+              "-sfL",
+              `https://crates.io/api/v1/crates?q=${query}&per_page=60`,
+            ],
+          }),
+          executeShellCommand({
+            command: "cargo",
+            args: ["metadata", "--format-version", "1", "--no-deps"],
+          }),
+        ]);
 
-      const remoteJson: CrateSearchResults = JSON.parse(remoteOut);
+      const remoteJson: CrateSearchResults = JSON.parse(remoteStdout);
       const remoteSuggustions: Fig.Suggestion[] = remoteJson.crates
         .sort((a, b) => b.recent_downloads - a.recent_downloads)
         .map((crate) => ({
@@ -243,8 +317,8 @@ const searchGenerator: Fig.Generator = {
         }));
 
       let localSuggestions: Fig.Suggestion[] = [];
-      if (localOut.trim().length > 0) {
-        const localJson: Metadata = JSON.parse(localOut);
+      if (localStdout.trim().length > 0) {
+        const localJson: Metadata = JSON.parse(localStdout);
         localSuggestions = localJson.packages
           .filter((pkg) => !pkg.source)
           .map((pkg) => ({
@@ -273,7 +347,7 @@ const searchGenerator: Fig.Generator = {
 };
 
 const tripleGenerator: Fig.Generator = {
-  script: "rustc --print target-list",
+  script: ["rustc", "--print", "target-list"],
   postProcess: (data: string) => {
     return data
       .split("\n")
@@ -3840,6 +3914,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
       args: {
         name: "args",
         isVariadic: true,
+        isOptional: true,
       },
     },
     {
@@ -4655,11 +4730,12 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
       args: [
         {
           name: "TESTNAME",
+          isOptional: true,
         },
         {
           name: "args",
+          isOptional: true,
           isVariadic: true,
-          generators: testGenerator,
         },
       ],
     },
@@ -4969,7 +5045,11 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
       args: {
         name: "SPEC",
         generators: {
-          script: `cargo install --list | \\grep -E "^[a-zA-Z\\-]+\\sv" | cut -d ' ' -f 1`,
+          script: [
+            "bash",
+            "-c",
+            `cargo install --list | \\grep -E "^[a-zA-Z\\-]+\\sv" | cut -d ' ' -f 1`,
+          ],
           splitOn: "\n",
         },
         isVariadic: true,
@@ -5600,6 +5680,84 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         suggestCurrentToken: true,
       },
     },
+    {
+      name: ["remove", "rm"],
+      icon: "📦",
+      description: "Remove dependencies from a Cargo.toml manifest file",
+      options: [
+        {
+          name: "--dev",
+          description: "Remove as development dependency",
+        },
+        {
+          name: "--build",
+          description: "Remove as build dependency",
+        },
+        {
+          name: "--target",
+          description: "Remove as dependency to the given target platform",
+          args: {
+            name: "TARGET",
+            filterStrategy: "fuzzy",
+            generators: tripleGenerator,
+          },
+        },
+        {
+          name: ["-p", "--package"],
+          description: "Package to remove from",
+          args: {
+            name: "SPEC",
+            filterStrategy: "fuzzy",
+            generators: packageGenerator,
+          },
+        },
+        {
+          name: "--manifest-path",
+          description: "Path to Cargo.toml",
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Do not print cargo log messages",
+        },
+        {
+          name: "--dry-run",
+          description: "Don't actually write the manifest",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "Use verbose output",
+        },
+        {
+          name: "--color",
+          args: {
+            name: "WHEN",
+            suggestions: ["auto", "always", "never"],
+          },
+        },
+        {
+          name: "--frozen",
+          description: "Require Cargo.lock and cache are up to date",
+        },
+        {
+          name: "--locked",
+          description: "Require Cargo.lock is up to date",
+        },
+        {
+          name: "--offline",
+          description: "Run without accessing the network",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+      args: {
+        name: "DEP_ID",
+        generators: directDependencyGenerator,
+        filterStrategy: "fuzzy",
+        isVariadic: true,
+      },
+    },
   ],
   options: [
     {
@@ -5670,12 +5828,17 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
     },
   ],
   generateSpec: async (_tokens, executeShellCommand) => {
-    const [toolchainOutput, listOutput] = await Promise.all([
-      executeShellCommand("rustup toolchain list"),
-      executeShellCommand("cargo --list"),
-    ]);
+    const [{ stdout: toolchainStdout }, { stdout: listOutput }] =
+      await Promise.all([
+        executeShellCommand({
+          command: "rustup",
+          args: ["toolchain", "list"],
+        }),
+        // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+        executeShellCommand({ command: "cargo", args: ["--list"] }),
+      ]);
 
-    const toolchains: Fig.Option[] = toolchainOutput
+    const toolchains: Fig.Option[] = toolchainStdout
       .split("\n")
       .map((toolchain) => {
         return {
@@ -7221,6 +7384,171 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         ],
       };
       subcommands.push(insta);
+    }
+
+    if (commands.includes("make")) {
+      const make: Fig.Subcommand = {
+        name: "make",
+        icon: "🛠",
+        description: "Rust cargo-make task runner and build tool",
+        args: {
+          name: "TASK",
+          filterStrategy: "fuzzy",
+          isVariadic: true,
+          isOptional: true,
+          generators: makeTasksGenerator,
+        },
+        options: [
+          {
+            name: ["--help", "-h"],
+            description: "Print help information",
+          },
+          {
+            name: ["--version", "-V"],
+            description: "Print version information",
+          },
+          {
+            name: "--makefile",
+            description:
+              "The optional toml file containing the tasks definitions",
+            args: { name: "FILE", template: "filepaths" },
+          },
+          {
+            name: ["--task", "-t"],
+            description: "The task name to execute",
+            args: {
+              name: "TASK",
+              filterStrategy: "fuzzy",
+              isVariadic: true,
+              isOptional: true,
+              generators: makeTasksGenerator,
+            },
+          },
+          {
+            name: ["--profile", "-p"],
+            description: "The profile name",
+            args: { name: "PROFILE", default: "development" },
+          },
+          {
+            name: "--cwd",
+            description: "Set the current working directory",
+            args: { name: "DIRECTORY", template: "folders" },
+          },
+          {
+            name: "--no-workspace",
+            description: "Disable workspace support",
+          },
+          {
+            name: "--no-on-error",
+            description:
+              "Disable on error flow even if defined in config sections",
+          },
+          {
+            name: "--allow-private",
+            description: "Allow invocation of private tasks",
+          },
+          {
+            name: "--skip-init-end-tasks",
+            description: "If set, init and end tasks are skipped",
+          },
+          {
+            name: "--skip-tasks",
+            description: "Skip all tasks that match the provided regex",
+            args: { name: "SKIP_TASK_PATTERNS" },
+          },
+          {
+            name: "--env-file",
+            description: "Set environment variables from provided file",
+            args: { name: "FILE", template: "filepaths" },
+          },
+          {
+            name: ["--env", "-e"],
+            description: "Set environment variables",
+            args: { name: "ENV" },
+          },
+          {
+            name: ["--loglevel", "-l"],
+            description: "The log level",
+            args: {
+              name: "LOG LEVEL",
+              suggestions: ["verbose", "info", "error", "off"],
+            },
+          },
+          {
+            name: ["--verbose", "-v"],
+            description: "Sets the log level to verbose",
+          },
+          {
+            name: "--quiet",
+            description: "Sets the log level to error",
+          },
+          {
+            name: "--silent",
+            description: "Sets the log level to off",
+          },
+          {
+            name: "--no-color",
+            description: "Disables colorful output",
+          },
+          {
+            name: "--time-summary",
+            description: "Print task level time summary at end of flow",
+          },
+          {
+            name: "--experimental",
+            description:
+              "Allows access to unsupported experimental predefined tasks",
+          },
+          {
+            name: "--disable-check-for-updates",
+            description: "Disables the update check during startup",
+          },
+          {
+            name: "--output-format",
+            description: "The print/list steps format",
+            args: {
+              name: "OUTPUT FORMAT",
+              suggestions: [
+                "default",
+                "short-description",
+                "markdown",
+                "markdown-single-page",
+                "markdown-sub-section",
+                "autocomplete",
+              ],
+            },
+          },
+          {
+            name: "--output-file",
+            description: "The list steps output file name",
+            args: { name: "OUTPUT_FILE", template: "filepaths" },
+          },
+          {
+            name: "--hide-uninteresting",
+            description: "Hide any minor tasks such as pre/post hooks",
+          },
+          {
+            name: "--print-steps",
+            description:
+              "Only prints the steps of the build in the order they will be invoked but without invoking them",
+          },
+          {
+            name: "--list-all-steps",
+            description: "Lists all known steps",
+          },
+          {
+            name: "--list-category-steps",
+            description: "List steps for a given category",
+            args: { name: "CATEGORY" },
+          },
+          {
+            name: "--diff-steps",
+            description:
+              "Runs diff between custom flow and prebuilt flow (requires git)",
+          },
+        ],
+      };
+      subcommands.push(make);
     }
 
     return {

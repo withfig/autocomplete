@@ -4720,11 +4720,11 @@ export const clangBase: Fig.Spec = {
       description: "Show commands to run and use verbose output",
     },
     {
-      name: "-Wa,arg",
+      name: "-Wa",
       description:
         "Pass the comma separated arguments in <arg> to the assembler",
       args: {
-        name: "",
+        name: "arg",
       },
     },
     {
@@ -4733,10 +4733,10 @@ export const clangBase: Fig.Spec = {
         "Enable warnings for deprecated constructs and define __DEPRECATED",
     },
     {
-      name: "-Wl,arg",
+      name: "-Wl",
       description: "Pass the comma separated arguments in <arg> to the linker",
       args: {
-        name: "",
+        name: "arg",
       },
     },
     {
@@ -4747,11 +4747,11 @@ export const clangBase: Fig.Spec = {
       },
     },
     {
-      name: "-Wp,arg",
+      name: "-Wp",
       description:
         "Pass the comma separated arguments in <arg> to the preprocessor",
       args: {
-        name: "",
+        name: "arg",
       },
     },
     {

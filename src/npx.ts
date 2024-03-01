@@ -1,4 +1,10 @@
-const suggestions: Fig.Suggestion[] = [
+import autocannon from "./autocannon";
+
+export const npxSuggestions: Fig.Suggestion[] = [
+  {
+    name: autocannon.name,
+    ...("icon" in autocannon && { icon: autocannon.icon }),
+  },
   {
     name: "vite",
     icon: "https://vitejs.dev/logo.svg",
@@ -17,7 +23,7 @@ const suggestions: Fig.Suggestion[] = [
   },
   {
     name: "tailwindcss",
-    icon: "https://tailwindcss.com/favicon-32x32.png",
+    icon: "https://tailwindcss.com/favicons/favicon-32x32.png",
   },
   {
     name: "next",
@@ -25,7 +31,7 @@ const suggestions: Fig.Suggestion[] = [
   },
   {
     name: "nuxi",
-    icon: "https://raw.githubusercontent.com/nuxt/framework/main/docs/static/icon.png",
+    icon: "https://raw.githubusercontent.com/nuxt/framework/main/docs/public/icon.png",
   },
   {
     name: "gltfjsx",
@@ -37,7 +43,7 @@ const suggestions: Fig.Suggestion[] = [
   },
   {
     name: "eslint",
-    icon: "https://eslint.org/assets/img/favicon.512x512.png",
+    icon: "https://raw.githubusercontent.com/eslint/eslint.org/main/src/static/icon-512.png",
   },
   {
     name: "prettier",
@@ -80,6 +86,10 @@ const suggestions: Fig.Suggestion[] = [
     icon: "https://create.t3.gg/favicon.svg",
   },
   {
+    name: "create-discord-bot",
+    icon: "https://discordjs.dev/favicon-32x32.png",
+  },
+  {
     name: "create-video",
     icon: "https://raw.githubusercontent.com/remotion-dev/remotion/main/packages/docs/static/img/logo-small.png",
   },
@@ -94,6 +104,10 @@ const suggestions: Fig.Suggestion[] = [
   {
     name: "remix",
     icon: "https://remix.run/favicon-light.1.png",
+  },
+  {
+    name: "playwright",
+    icon: "https://playwright.dev/img/playwright-logo.svg",
   },
   {
     name: "ignite-cli",
@@ -141,6 +155,14 @@ const suggestions: Fig.Suggestion[] = [
     name: "sta",
     icon: "https://static1.smartbear.co/swagger/media/assets/swagger_fav.png",
   },
+  {
+    name: "@wordpress/create-block",
+    icon: "https://s1.wp.com/i/webclip.png",
+  },
+  {
+    name: "astro",
+    icon: "https://astro.build/favicon.svg",
+  },
 ];
 
 const completionSpec: Fig.Spec = {
@@ -150,9 +172,13 @@ const completionSpec: Fig.Spec = {
     name: "command",
     isCommand: true,
     generators: {
-      script: `until [[ -d node_modules/ ]] || [[ $PWD = '/' ]]; do cd ..; done; ls -1 node_modules/.bin/`,
+      script: [
+        "bash",
+        "-c",
+        "until [[ -d node_modules/ ]] || [[ $PWD = '/' ]]; do cd ..; done; ls -1 node_modules/.bin/",
+      ],
       postProcess: function (out) {
-        const cli = [...suggestions].reduce(
+        const cli = [...npxSuggestions].reduce(
           (acc, { name }) => [...acc, name],
           []
         );
@@ -166,7 +192,7 @@ const completionSpec: Fig.Spec = {
           }));
       },
     },
-    suggestions: [...suggestions],
+    suggestions: [...npxSuggestions],
     isOptional: true,
   },
 

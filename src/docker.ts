@@ -26,19 +26,26 @@ const sharedPostProcess: Fig.Generator["postProcess"] = (out) => {
 
 const dockerGenerators: Record<string, Fig.Generator> = {
   runningDockerContainers: {
-    script: `docker ps --format '{{ json . }}'`,
+    script: ["docker", "ps", "--format", "{{ json . }}"],
     postProcess: postProcessDockerPs,
   },
   allDockerContainers: {
-    script: `docker ps -a --format '{{ json . }}'`,
+    script: ["docker", "ps", "-a", "--format", "{{ json . }}"],
     postProcess: postProcessDockerPs,
   },
   pausedDockerContainers: {
-    script: `docker ps --filter status=paused --format '{{ json . }}'`,
+    script: [
+      "docker",
+      "ps",
+      "--filter",
+      "status=paused",
+      "--format",
+      "{{ json . }}",
+    ],
     postProcess: postProcessDockerPs,
   },
   allLocalImages: {
-    script: `docker image ls --format '{{ json . }}'`,
+    script: ["docker", "image", "ls", "--format", "{{ json . }}"],
     postProcess: function (out) {
       return out
         .split("\n")
@@ -51,7 +58,7 @@ const dockerGenerators: Record<string, Fig.Generator> = {
     },
   },
   allLocalImagesWithRepository: {
-    script: `docker image ls --format '{{ json . }}'`,
+    script: ["docker", "image", "ls", "--format", "{{ json . }}"],
     postProcess: function (out) {
       return out
         .split("\n")
@@ -65,9 +72,9 @@ const dockerGenerators: Record<string, Fig.Generator> = {
   },
   dockerHubSearch: {
     script: function (context) {
-      if (context[context.length - 1] === "") return "";
+      if (context[context.length - 1] === "") return undefined;
       const searchTerm = context[context.length - 1];
-      return `docker search ${searchTerm} --format '{{ json . }}'`;
+      return ["docker", "search", searchTerm, "--format", "{{ json . }}"];
     },
     postProcess: function (out) {
       return out
@@ -83,7 +90,7 @@ const dockerGenerators: Record<string, Fig.Generator> = {
     },
   },
   allDockerContexts: {
-    script: `docker context list --format '{{ json . }}'`,
+    script: ["docker", "context", "list", "--format", "{{ json . }}"],
     postProcess: function (out) {
       return out
         .split("\n")
@@ -96,11 +103,11 @@ const dockerGenerators: Record<string, Fig.Generator> = {
     },
   },
   listDockerNetworks: {
-    script: `docker network list --format '{{ json . }}'`,
+    script: ["docker", "network", "list", "--format", "{{ json . }}"],
     postProcess: sharedPostProcess,
   },
   listDockerSwarmNodes: {
-    script: `docker node list --format '{{ json . }}'`,
+    script: ["docker", "node", "list", "--format", "{{ json . }}"],
     postProcess: function (out) {
       return out
         .split("\n")
@@ -114,15 +121,15 @@ const dockerGenerators: Record<string, Fig.Generator> = {
     },
   },
   listDockerPlugins: {
-    script: `docker plugin list --format '{{ json . }}'`,
+    script: ["docker", "plugin", "list", "--format", "{{ json . }}"],
     postProcess: sharedPostProcess,
   },
   listDockerSecrets: {
-    script: `docker secret list --format '{{ json . }}'`,
+    script: ["docker", "secret", "list", "--format", "{{ json . }}"],
     postProcess: sharedPostProcess,
   },
   listDockerServices: {
-    script: `docker service list --format '{{ json . }}'`,
+    script: ["docker", "service", "list", "--format", "{{ json . }}"],
     postProcess: function (out) {
       return out
         .split("\n")
@@ -135,7 +142,7 @@ const dockerGenerators: Record<string, Fig.Generator> = {
     },
   },
   listDockerServicesReplicas: {
-    script: `docker service list --format '{{ json . }}'`,
+    script: ["docker", "service", "list", "--format", "{{ json . }}"],
     postProcess: function (out) {
       return out
         .split("\n")
@@ -148,7 +155,7 @@ const dockerGenerators: Record<string, Fig.Generator> = {
     },
   },
   listDockerStacks: {
-    script: `docker stack list --format '{{ json . }}'`,
+    script: ["docker", "stack", "list", "--format", "{{ json . }}"],
     postProcess: function (out) {
       return out
         .split("\n")
@@ -160,7 +167,7 @@ const dockerGenerators: Record<string, Fig.Generator> = {
     },
   },
   listDockerVolumes: {
-    script: `docker volume list --format '{{ json . }}'`,
+    script: ["docker", "volume", "list", "--format", "{{ json . }}"],
     postProcess: function (out) {
       return out
         .split("\n")
@@ -346,10 +353,10 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
                 fileFlagIndex = context.indexOf("--file");
                 dockerfilePath = context[fileFlagIndex + 1];
               } else {
-                dockerfilePath = "$PWD/Dockerfile";
+                dockerfilePath = "Dockerfile";
               }
 
-              return `\\grep -iE 'FROM.*AS' "${dockerfilePath}"`;
+              return ["grep", "-iE", "FROM.*AS", dockerfilePath];
             },
             postProcess: function (out) {
               // This just searches the Dockerfile for the alias name after AS,
@@ -1978,8 +1985,12 @@ default-cgroupns-mode option on the daemon (default)`,
         name: "image",
         description: "The Docker image to use",
         generators: {
-          script:
-            "docker images --format '{{.Repository}} {{.Size}} {{.Tag}} {{.ID}}'",
+          script: [
+            "docker",
+            "images",
+            "--format",
+            "{{.Repository}} {{.Size}} {{.Tag}} {{.ID}}",
+          ],
           postProcess: function (out) {
             return out.split("\n").map((image) => {
               const [repo, size, tag, id] = image.split(" ");
@@ -2599,7 +2610,7 @@ const completionSpec: Fig.Spec = {
         name: "Name or ID",
         generators: [
           {
-            script: `docker ps -a --format '{{ json . }}'`,
+            script: ["docker", "ps", "-a", "--format", "{{ json . }}"],
             postProcess: function (out) {
               const allLines = out.split("\n").map((line) => JSON.parse(line));
               return allLines.map((i) => ({
@@ -2609,7 +2620,7 @@ const completionSpec: Fig.Spec = {
             },
           },
           {
-            script: `docker images -a --format '{{ json . }}'`,
+            script: ["docker", "images", "-a", "--format", "{{ json . }}"],
             postProcess: function (out) {
               const allLines = out.split("\n").map((line) => JSON.parse(line));
               return allLines.map((i) => {
@@ -2631,7 +2642,7 @@ const completionSpec: Fig.Spec = {
             },
           },
           {
-            script: `docker volume ls --format '{{ json . }}'`,
+            script: ["docker", "volume", "ls", "--format", "{{ json . }}"],
             postProcess: function (out) {
               const allLines = out.split("\n").map((line) => JSON.parse(line));
               return allLines.map((i) => ({
@@ -2787,7 +2798,7 @@ const completionSpec: Fig.Spec = {
           description: "Amount of disk space to keep for cache",
           options: [
             {
-              name: "-a, --all",
+              name: ["-a", "--all"],
               description:
                 "Remove all unused build cache, not just dangling ones",
             },
@@ -2799,7 +2810,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: "-f, --force",
+              name: ["-f", "--force"],
               description: "Do not prompt for confirmation",
             },
             {
@@ -3035,7 +3046,7 @@ const completionSpec: Fig.Spec = {
                     "Use AWS environment variables for profile, or credentials and region",
                 },
                 {
-                  name: "-h, --help",
+                  name: ["-h", "--help"],
                   description: "Help for ecs",
                 },
                 {
@@ -3740,6 +3751,739 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "buildx",
+      description: "Extended build capabilities with BuildKit",
+      subcommands: [
+        {
+          name: "bake",
+          description:
+            "Bake is a high-level build command. Each specified target will run in parallel as part of the build",
+          args: {
+            name: "string",
+          },
+          options: [
+            {
+              name: ["-f", "--file"],
+              description: "Build definition file",
+              args: {
+                name: "string",
+                isVariadic: true,
+              },
+            },
+            {
+              name: "--load",
+              description: "Shorthand for --set=*.output=type=docker",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--metadata-file",
+              description: "Write build result metadata to the file",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--no-cache",
+              description: "Do not use cache when building the image",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--print",
+              description: "Print the options without building",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--progress",
+              description:
+                "Set type of progress output (auto, plain, tty). Use plain to show container output",
+              args: {
+                name: "progress",
+                default: "auto",
+                suggestions: ["auto", "plain", "tty"],
+              },
+            },
+            {
+              name: "--pull",
+              description: "Always attempt to pull all referenced images",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--push",
+              description: "Shorthand for --set=*.output=type=registry",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--set",
+              description:
+                "Override target value (e.g., targetpattern.key=value)",
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
+        {
+          name: "build",
+          description:
+            "The buildx build command starts a build using BuildKit. This command is similar to the UI of docker build command and takes the same flags and arguments",
+          args: {
+            name: "string",
+          },
+          options: [
+            {
+              name: "--add-host",
+              description: "Add a custom host-to-IP mapping",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--allow",
+              description: "Allow extra privileged entitlement",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--build-arg",
+              description: "Set build-time variables",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--build-context",
+              description: "Additional build contexts",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cache-from",
+              description: "External cache sources",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cache-to",
+              description: "Cache export destinations",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cgroup-parent",
+              description: "Optional parent cgroup for the container",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--compress",
+              description: "Compress the build context using gzip",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cpu-period",
+              description:
+                "Limit the CPU CFS (Completely Fair Scheduler) period",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cpu-quota",
+              description:
+                "Limit the CPU CFS (Completely Fair Scheduler) quota",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["--cpu-shares", "-c"],
+              description: "CPU shares (relative weight)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cpuset-cpus",
+              description: "CPUs in which to allow execution (0-3, 0,1)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cpuset-mems",
+              description: "MEMs in which to allow execution (0-3, 0,1)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["--file", "-f"],
+              description: "Name of the Dockerfile",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--force-rm",
+              description: "Always remove intermediate containers",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--iidfile",
+              description: "Write the image ID to the file",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--invoke",
+              description: "Invoke a command after the build [experimental]",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--isolation",
+              description: "Container isolation technology",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--label",
+              description: "Set metadata for an image",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--load",
+              description: "Shorthand for --output=type=docker",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["--memory", "-m"],
+              description: "Memory limit",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--memory-swap",
+              description:
+                "Swap limit equal to memory plus swap: -1 to enable unlimited swap",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--metadata-file",
+              description: "Write build result metadata to the file",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--network",
+              description:
+                "Set the networking mode for the RUN instructions during build",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--no-cache",
+              description: "Do not use cache when building the image",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--no-cache-filter",
+              description: "Do not cache specified stages",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Output destination (format: type=local,dest=path)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--platform",
+              description: "Set target platform for build",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--print",
+              description:
+                "Print result of information request (e.g., outline, targets) [experimental]",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--progress",
+              description:
+                "Set type of progress output (auto, plain, tty). Use plain to show container output",
+              args: {
+                name: "progress",
+                default: "auto",
+                suggestions: ["auto", "plain", "tty"],
+              },
+            },
+            {
+              name: "--pull",
+              description: "Always attempt to pull all referenced images",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--push",
+              description: "Shorthand for --output=type=registry",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["--quiet", "-q"],
+              description:
+                "Suppress the build output and print image ID on success",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--rm",
+              description:
+                "Remove intermediate containers after a successful build",
+              args: {
+                name: "container",
+                default: "true",
+              },
+            },
+            {
+              name: "--secret",
+              description:
+                "Secret to expose to the build (format: id=mysecret[,src=/local/secret])",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--security-opt",
+              description: "Security options",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--shm-size",
+              description: "Size of /dev/shm",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--squash",
+              description: "Squash newly built layers into a single new layer",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--ssh",
+              description:
+                "SSH agent socket or keys to expose to the build (format: default|&lt;id&gt;[=&lt;socket&gt;|&lt;key&gt;[,&lt;key&gt;]])",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["--tag", "-t"],
+              description: "Name and optionally a tag (format: name:tag)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--target",
+              description: "Set the target build stage to build",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--ulimit",
+              description: "Ulimit options",
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
+        {
+          name: "create",
+          description: "Create a new builder instance",
+          args: {
+            name: "string",
+          },
+          options: [
+            {
+              name: "--append",
+              description: "Append a node to builder instead of changing it",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--bootstrap",
+              description: "Boot builder after creation",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--buildkitd-flags",
+              description: "Flags for buildkitd daemon",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--config",
+              description: "BuildKit config file",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--driver",
+              description:
+                "Driver to use (available: docker-container, kubernetes, remote)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--driver-opt",
+              description: "Options for the driver",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--leave",
+              description: "Remove a node from builder instead of changing it",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--name",
+              description: "Builder instance name",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--node",
+              description: "Create/modify node with given name",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--platform",
+              description: "Fixed platforms for current node",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--use",
+              description: "Set the current builder instance",
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
+        {
+          name: "du",
+          description: "Disk usage",
+          args: {
+            name: "string",
+          },
+          options: [
+            { name: "--filter", description: "Provide filter values" },
+            {
+              name: "--verbose",
+              description: "Provide a more verbose output",
+            },
+          ],
+        },
+        {
+          name: "imagetools",
+          description:
+            "Imagetools contains commands for working with manifest lists in the registry. These commands are useful for inspecting multi-platform build results",
+          args: {
+            name: "string",
+          },
+          subcommands: [
+            {
+              name: "create",
+              description: "Create a new image based on source images",
+              args: {
+                name: "string",
+              },
+              options: [
+                {
+                  name: "--append",
+                  description: "Append to existing manifest",
+                  args: {
+                    name: "string",
+                  },
+                },
+                {
+                  name: "--dry-run",
+                  description: "Show final image instead of pushing",
+                  args: {
+                    name: "string",
+                  },
+                },
+                {
+                  name: ["--file", "-f"],
+                  description: "Read source descriptor from file",
+                  args: {
+                    name: "string",
+                  },
+                },
+                {
+                  name: "--progress",
+                  description:
+                    "Set type of progress output (auto, plain, tty). Use plain to show container output",
+                  args: {
+                    name: "progress",
+                    default: "auto",
+                    suggestions: ["auto", "plain", "tty"],
+                  },
+                },
+                {
+                  name: ["--tag", "-t"],
+                  description: "Set reference for new image",
+                  args: {
+                    name: "string",
+                  },
+                },
+              ],
+            },
+            {
+              name: "inspect",
+              description: "Inspect current builder instance",
+              args: {
+                name: "string",
+              },
+              options: [
+                {
+                  name: "--format",
+                  description: "Format the output using the given Go template",
+                  args: {
+                    name: "sting",
+                    default: "{{.Manifest}}",
+                  },
+                },
+                {
+                  name: "--raw",
+                  description: "Show original, unformatted JSON manifest",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "inspect",
+          description: "Inspect current builder instance",
+          args: {
+            name: "string",
+          },
+          options: [
+            {
+              name: "--bootstrap",
+              description: "Ensure builder has booted before inspecting",
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
+        {
+          name: "install",
+          description: "Install buildx as a ‘docker builder’ alias",
+        },
+        {
+          name: "ls",
+          description: "List builder instances",
+        },
+        {
+          name: "prune",
+          description: "Remove build cache",
+          args: {
+            name: "string",
+          },
+          options: [
+            {
+              name: ["--all", "-a"],
+              description: "Include internal/frontend images",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--filter",
+              description: "Provide filter values (e.g., until=24h)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["--force", "-f"],
+              description: "Do not prompt for confirmation",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--keep-storage",
+              description: "Amount of disk space to keep for cache",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--verbose",
+              description: "Provide a more verbose output",
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
+        {
+          name: "rm",
+          description: "Remove a builder instance",
+          args: {
+            name: "string",
+          },
+          options: [
+            {
+              name: "--all-inactive",
+              description: "Remove all inactive builders",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["--force", "-f"],
+              description: "Do not prompt for confirmation",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--keep-daemon",
+              description: "Keep the buildkitd daemon running",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--keep-state",
+              description: "Keep BuildKit state",
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
+        {
+          name: "stop",
+          description: "Stop builder instance",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "uninstall",
+          description: "Uninstall the ‘docker builder’ alias",
+        },
+        {
+          name: "use",
+          description: "Set the current builder instance",
+          args: {
+            name: "string",
+          },
+          options: [
+            {
+              name: "--default",
+              description: "Set builder as default for current context",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--global",
+              description: "Builder persists context changes",
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
+        {
+          name: "version",
+          description: "Show buildx version information",
+        },
+      ],
+      options: [
+        {
+          name: "--builder",
+          description: "Override the configured builder instance",
+          isPersistent: true,
+          args: {
+            name: "string",
+          },
+        },
+      ],
+    },
+    {
       name: "plugin",
       description: "Manage plugins",
       subcommands: [
@@ -4075,9 +4819,12 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: "--credential-spec credential-spec",
+              name: "--credential-spec",
               description:
                 "Credential spec for managed service account (Windows only)",
+              args: {
+                name: "credential-spec",
+              },
             },
             {
               name: ["-d", "--detach"],
@@ -4798,9 +5545,12 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: "--credential-spec credential-spec",
+              name: "--credential-spec",
               description:
                 "Credential spec for managed service account (Windows only)",
+              args: {
+                name: "credential-spec",
+              },
             },
             {
               name: ["-d", "--detach"],

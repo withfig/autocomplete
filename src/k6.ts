@@ -459,6 +459,62 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "scale",
+      description: "Scale a running test",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Help for scale",
+        },
+        {
+          name: ["-m", "--max"],
+          description: "Max available virtual users",
+          args: {
+            name: "max",
+            description: "Max available virtual users",
+          },
+        },
+        {
+          name: ["-u", "--vus"],
+          description: "Number of virtual users (default 1)",
+          args: {
+            name: "vus",
+            description: "Number of virtual users (default 1)",
+          },
+        },
+      ],
+    },
+    {
+      name: "stats",
+      description: "Show test metrics",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Help for stats",
+        },
+      ],
+    },
+    {
+      name: "status",
+      description: "Show test status",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Help for status",
+        },
+      ],
+    },
+    {
+      name: "version",
+      description: "Show the application version and exit",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Help for version",
+        },
+      ],
+    },
   ],
   options: [
     {

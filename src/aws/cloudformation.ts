@@ -1,26 +1,4 @@
-const awsRegions = [
-  "af-south-1",
-  "eu-north-1",
-  "ap-south-1",
-  "eu-west-3",
-  "eu-west-2",
-  "eu-south-1",
-  "eu-west-1",
-  "ap-northeast-3",
-  "ap-northeast-2",
-  "me-south-1",
-  "ap-northeast-1",
-  "sa-east-1",
-  "ca-central-1",
-  "ap-east-1",
-  "ap-southeast-1",
-  "ap-southeast-2",
-  "eu-central-1",
-  "us-east-1",
-  "us-east-2",
-  "us-west-1",
-  "us-west-2",
-];
+import awsRegions from "./regions";
 
 const callAs = ["SELF", "DELEGATED_ADMIN"];
 const typeSuggestion = ["RESOURCE", "MODULE"];
@@ -59,28 +37,30 @@ const postPrecessGenerator = (
 
 const customGenerator = async (
   tokens: string[],
-  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  executeShellCommand: Fig.ExecuteCommandFunction,
   command: string,
   options: string[],
   parentKey: string,
   childKey = ""
 ): Promise<Fig.Suggestion[]> => {
   try {
-    let cmd = `aws cloudformation ${command}`;
+    let args = ["cloudformation", command];
 
-    for (let i = 0; i < options.length; i++) {
-      const option = options[i];
+    for (const option of options) {
       const idx = tokens.indexOf(option);
       if (idx < 0) {
         continue;
       }
       const param = tokens[idx + 1];
-      cmd += ` ${option} ${param}`;
+      args = [...args, option, param];
     }
 
-    const out = await executeShellCommand(cmd);
+    const { stdout } = await executeShellCommand({
+      command: "aws",
+      args,
+    });
 
-    const list = JSON.parse(out)[parentKey];
+    const list = JSON.parse(stdout)[parentKey];
 
     if (!Array.isArray(list)) {
       return [
@@ -106,7 +86,7 @@ const customGenerator = async (
 
 const customGeneratorWithFilter = async (
   tokens: string[],
-  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  executeShellCommand: Fig.ExecuteCommandFunction,
   command: string,
   options: string[],
   parentKey: string,
@@ -114,21 +94,23 @@ const customGeneratorWithFilter = async (
   filter: string
 ): Promise<Fig.Suggestion[]> => {
   try {
-    let cmd = `aws cloudformation ${command}`;
+    let args = ["cloudformation", command];
 
-    for (let i = 0; i < options.length; i++) {
-      const option = options[i];
+    for (const option of options) {
       const idx = tokens.indexOf(option);
       if (idx < 0) {
         continue;
       }
       const param = tokens[idx + 1];
-      cmd += ` ${option} ${param}`;
+      args = [...args, option, param];
     }
 
-    const out = await executeShellCommand(cmd);
+    const { stdout } = await executeShellCommand({
+      command: "aws",
+      args,
+    });
 
-    const list = JSON.parse(out)[parentKey];
+    const list = JSON.parse(stdout)[parentKey];
 
     return list
       .filter((resource) => {
@@ -147,12 +129,12 @@ const customGeneratorWithFilter = async (
 const _prefixFile = "file://";
 const _prefixS3 = "s3://";
 
-const appendFolderPath = (tokens: string[], prefix: string): string => {
-  const baseLSCommand = "\\ls -1ApL ";
+const appendFolderPath = (tokens: string[], prefix: string): string[] => {
+  const baseLsCommand = ["ls", "-1ApL"];
   let whatHasUserTyped = tokens[tokens.length - 1];
 
   if (!whatHasUserTyped.startsWith(prefix)) {
-    return `echo '${prefix}'`;
+    return ["echo", prefix];
   }
   whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
 
@@ -167,7 +149,7 @@ const appendFolderPath = (tokens: string[], prefix: string): string => {
     }
   }
 
-  return baseLSCommand + folderPath;
+  return [...baseLsCommand, folderPath];
 };
 
 const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
@@ -273,7 +255,7 @@ const generators: Record<string, Fig.Generator> = {
   listRemoteFilesGenerator: {
     script: (tokens) => {
       const whatHasUserTyped = tokens[tokens.length - 1];
-      const baseLSCommand = "\\aws s3 ls ";
+      const baseLsCommand = ["aws", "s3", "ls"];
 
       let folderPath = "";
 
@@ -284,17 +266,17 @@ const generators: Record<string, Fig.Generator> = {
         // then we can assume that the filepath generator is in work
         // so do not return any s3 related filepaths
         if (!_prefixS3.startsWith(whatHasUserTyped)) {
-          return "";
+          return undefined;
         }
 
-        return "echo 's3://'";
+        return ["echo", "s3://"];
       }
 
       if (lastSlashIndex > -1) {
         folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
       }
 
-      return baseLSCommand + folderPath;
+      return [...baseLsCommand, folderPath];
     },
     postProcess: (out) => {
       if (out == "") {
@@ -373,7 +355,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listCfnStackIds: {
-    script: "aws cloudformation list-stacks",
+    script: ["aws", "cloudformation", "list-stacks"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "StackSummaries", "StackId");
     },
@@ -434,42 +416,42 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listCfnStackSets: {
-    script: "aws cloudformation list-stack-sets",
+    script: ["aws", "cloudformation", "list-stack-sets"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "Summaries", "StackSetId");
     },
   },
 
   listCfnChangeSets: {
-    script: "aws cloudformation list-change-sets",
+    script: ["aws", "cloudformation", "list-change-sets"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "Summaries", "ChangeSetId");
     },
   },
 
   listRoleArns: {
-    script: "aws iam list-roles --page-size 100",
+    script: ["aws", "iam", "list-roles", "--page-size", "100"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "Roles", "Arn");
     },
   },
 
   listRoles: {
-    script: "aws iam list-roles --page-size 100",
+    script: ["aws", "iam", "list-roles", "--page-size", "100"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "Roles", "RoleName");
     },
   },
 
   listSNSTopics: {
-    script: "aws sns list-topics",
+    script: ["aws", "sns", "list-topics"],
     postProcess: (out) => {
       return postPrecessGenerator(out, "Topics", "TopicArn");
     },
   },
 
   getAccountId: {
-    script: "aws sts get-caller-identity",
+    script: ["aws", "sts", "get-caller-identity"],
     postProcess: function (out) {
       try {
         const accountId = JSON.parse(out)["Account"];
@@ -482,7 +464,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listTypeArns: {
-    script: "aws cloudformation list-types",
+    script: ["aws", "cloudformation", "list-types"],
     postProcess: function (out) {
       return postPrecessGenerator(out, "TypeSummaries", "TypeArn");
     },
@@ -522,10 +504,17 @@ const generators: Record<string, Fig.Generator> = {
           return [];
         }
         const param = tokens[idx + 1];
-        const cmd = `aws cloudformation describe-change-set --change-set-name ${param}`;
-        const out = await executeShellCommand(cmd);
+        const { stdout } = await executeShellCommand({
+          command: "aws",
+          args: [
+            "cloudformation",
+            "describe-change-set",
+            "--change-set-name",
+            param,
+          ],
+        });
 
-        const stackId = JSON.parse(out)["StackId"];
+        const stackId = JSON.parse(stdout)["StackId"];
 
         return [
           {
@@ -541,14 +530,14 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listExportNames: {
-    script: "aws cloudformation list-exports",
+    script: ["aws", "cloudformation", "list-exports"],
     postProcess: function (out) {
       return postPrecessGenerator(out, "Exports", "Name");
     },
   },
 
   listBuckets: {
-    script: "aws s3 ls --page-size 1000",
+    script: ["aws", "s3", "ls", "--page-size", "1000"],
     postProcess: function (out, tokens) {
       try {
         return out.split("\n").map((line) => {
@@ -569,7 +558,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listKmsKeys: {
-    script: "aws kms list-keys --page-size 100",
+    script: ["aws", "kms", "list-keys", "--page-size", "100"],
     postProcess: function (out) {
       return postPrecessGenerator(out, "Keys", "KeyId");
     },

@@ -103,7 +103,7 @@ const completionSpec: Fig.Spec = {
           },
         ],
         generators: {
-          script: "fvm releases",
+          script: ["fvm", "releases"],
           postProcess: function (out): Fig.Suggestion[] {
             const matches = out.match(semverRegex);
             const matchesSet = [...new Set(matches)];

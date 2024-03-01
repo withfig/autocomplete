@@ -32,14 +32,14 @@ const postPrecessGenerator = (
 
 const listCustomGenerator = async (
   tokens: string[],
-  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  executeShellCommand: Fig.ExecuteCommandFunction,
   command: string,
   options: string[],
   parentKey: string,
   childKey = ""
 ): Promise<Fig.Suggestion[]> => {
   try {
-    let cmd = `aws eks ${command}`;
+    let args = ["eks", command];
 
     for (let i = 0; i < options.length; i++) {
       const option = options[i];
@@ -48,12 +48,15 @@ const listCustomGenerator = async (
         continue;
       }
       const param = tokens[idx + 1];
-      cmd += ` ${option} ${param}`;
+      args = [...args, option, param];
     }
 
-    const out = await executeShellCommand(cmd);
+    const { stdout } = await executeShellCommand({
+      command: "aws",
+      args,
+    });
 
-    const list = JSON.parse(out)[parentKey];
+    const list = JSON.parse(stdout)[parentKey];
 
     if (!Array.isArray(list)) {
       return [
@@ -108,12 +111,12 @@ const listRolesForPrincipal = (
 
 const _prefixFile = "file://";
 
-const appendFolderPath = (tokens: string[], prefix: string): string => {
-  const baseLSCommand = "\\ls -1ApL ";
+const appendFolderPath = (tokens: string[], prefix: string): string[] => {
+  const baseLsCommand = ["ls", "-1ApL"];
   let whatHasUserTyped = tokens[tokens.length - 1];
 
   if (!whatHasUserTyped.startsWith(prefix)) {
-    return `echo '${prefix}'`;
+    return ["echo", prefix];
   }
   whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
 
@@ -128,7 +131,7 @@ const appendFolderPath = (tokens: string[], prefix: string): string => {
     }
   }
 
-  return baseLSCommand + folderPath;
+  return [...baseLsCommand, folderPath];
 };
 
 const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
@@ -220,12 +223,12 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listClusters: {
-    script: "aws eks list-clusters",
+    script: ["aws", "eks", "list-clusters"],
     postProcess: (out) => postPrecessGenerator(out, "clusters"),
   },
 
   listKmsKeys: {
-    script: "aws kms list-keys",
+    script: ["aws", "kms", "list-keys"],
     postProcess: function (out) {
       try {
         const list = JSON.parse(out)["Keys"];
@@ -255,12 +258,12 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listAddons: {
-    script: "aws eks describe-addon-versions",
+    script: ["aws", "eks", "describe-addon-versions"],
     postProcess: (out) => postPrecessGenerator(out, "addons", "addonName"),
   },
 
   listAddonVersions: {
-    script: "aws eks describe-addon-versions",
+    script: ["aws", "eks", "describe-addon-versions"],
     postProcess: (out) => {
       try {
         const addons = JSON.parse(out)["addons"];
@@ -283,23 +286,23 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listRoles: {
-    script: "aws iam list-roles",
+    script: ["aws", "iam", "list-roles"],
     postProcess: (out) => postPrecessGenerator(out, "Roles", "RoleName"),
   },
 
   listEKSClusterRoles: {
-    script: "aws iam list-roles",
+    script: ["aws", "iam", "list-roles"],
     postProcess: (out) => listRolesForPrincipal(out, "eks.amazonaws.com"),
   },
 
   listFargatePodRoles: {
-    script: "aws iam list-roles",
+    script: ["aws", "iam", "list-roles"],
     postProcess: (out) =>
       listRolesForPrincipal(out, "eks-fargate-pods.amazonaws.com"),
   },
 
   listNodeGroupRoles: {
-    script: "aws iam list-roles",
+    script: ["aws", "iam", "list-roles"],
     postProcess: (out) =>
       listRolesForPrincipal(out, "eks-nodegroup.amazonaws.com"),
   },
@@ -313,10 +316,11 @@ const generators: Record<string, Fig.Generator> = {
         }
         const param = tokens[idx + 1];
 
-        const out = await executeShellCommand(
-          `aws eks describe-cluster --name ${param}`
-        );
-        const cluster = JSON.parse(out)["cluster"];
+        const { stdout } = await executeShellCommand({
+          command: "aws",
+          args: ["eks", "describe-cluster", "--name", param],
+        });
+        const cluster = JSON.parse(stdout)["cluster"];
         const subnets = cluster["resourcesVpcConfig"]["subnetIds"];
         return subnets.map((subnet) => {
           return {

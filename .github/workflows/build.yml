@@ -17,15 +17,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.FIG_BOT_TOKEN }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: package.json
         # Install all dependencies
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.4.0
       - name: install
-        run: npm install
+        run: pnpm install --frozen-lockfile
         # Transpile all specs from ts to js
       - name: build
-        run: npm run build
+        run: pnpm build
         # Zip the transpiled files into the specs.zip file
       - name: bundle files
         run: |
@@ -56,7 +61,7 @@ jobs:
         with:
           skip-tag: "true"
       - name: Publish to npm
-        uses: JS-DevTools/npm-publish@v1
+        uses: JS-DevTools/npm-publish@v3
         with:
           access: public
           token: ${{ secrets.NPM_PUBLISH_TOKEN }}

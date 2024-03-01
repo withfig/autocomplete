@@ -1,8 +1,11 @@
 import { filepaths } from "@fig/autocomplete-generators";
 
 const tagsGenerator: Fig.Generator = {
-  script:
+  script: [
+    "bash",
+    "-c",
     'for i in $(find -E . -regex ".*.robot" -type f); do cat -s $i ; done',
+  ],
   postProcess: (out) => {
     // find all lines with tags
     // regex: line that starts with 2+ spaces, than '[Tags]  ' and words
@@ -34,10 +37,14 @@ const variablesGenerator: Fig.Generator = {
     const finalToken = tokens[tokens.length - 1];
     const isKey = !finalToken.includes(":");
     if (!isKey) return [];
-    const out = await executeShellCommand(
-      'for i in $(find -E . -regex ".*.(robot|resource)" -type f); do cat -s $i ; done'
-    );
-    const iter = out.matchAll(/^\$\{(.*?)\}/gm);
+    const { stdout } = await executeShellCommand({
+      command: "bash",
+      args: [
+        "-c",
+        'for i in $(find -E . -regex ".*.(robot|resource)" -type f); do cat -s $i ; done',
+      ],
+    });
+    const iter = stdout.matchAll(/^\$\{(.*?)\}/gm);
     return [...iter]
       .map((item) => item[1])
       .map((variable) => ({
@@ -48,8 +55,11 @@ const variablesGenerator: Fig.Generator = {
 };
 
 const testCasesGenerator: Fig.Generator = {
-  script:
+  script: [
+    "bash",
+    "-c",
     'for i in $(find -E . -regex ".*.robot" -type f); do cat -s $i ; done',
+  ],
   postProcess: (out) => {
     // find all parts of the code with test cases
     // regex: everything after '***Test Cases***' until '***???***')

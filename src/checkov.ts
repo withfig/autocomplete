@@ -1,5 +1,5 @@
 const branches: Fig.Generator = {
-  script: "git branch --no-color",
+  script: ["git", "branch", "--no-color"],
   postProcess: (output) => {
     if (output.startsWith("fatal:")) {
       return [];
@@ -358,6 +358,150 @@ const completionSpec: Fig.Spec = {
       isRepeatable: true,
       args: {
         name: "SKIP_CVE_PACKAGE",
+      },
+    },
+    {
+      name: "--use-enforcement-rules",
+      description:
+        "Use the Enforcement rules configured in the platform for hard / soft fail logic",
+      args: {
+        name: "USE_ENFORCEMENT_RULES",
+      },
+    },
+    {
+      name: "--support",
+      description: "Enable debug logs and upload the logs to the server",
+      dependsOn: ["--bc-api-key"],
+      args: {
+        name: "SUPPORT",
+      },
+    },
+    {
+      name: "--summary-position",
+      description:
+        "Chose whether the summary will be appended on top or on bottom",
+      args: {
+        name: "SUMMARY_POSITION",
+        suggestions: ["top", "bottom"],
+      },
+    },
+    {
+      name: "--skip-resources-without-violations",
+      description: "Exclude extra resources (resources without violations)",
+      args: {
+        name: "SKIP_RESOURCES_WITHOUT_VIOLATIONS",
+      },
+    },
+    {
+      name: "--skip-download",
+      description: "Do not download any data from Prisma Cloud",
+      args: {
+        name: "SKIP_DOWNLOAD",
+      },
+    },
+    {
+      name: "--secrets-history-timeout",
+      description: "Maximum time to run the history scan",
+      args: {
+        name: "SECRETS_HISTORY_TIMEOUT",
+      },
+    },
+    {
+      name: "--scan-secrets-history",
+      description: "Will scan the history of commits for secrets",
+      args: {
+        name: "SCAN_SECRETS_HISTORY",
+      },
+    },
+    {
+      name: "--prisma-api-url",
+      description: "The Prisma Cloud API URL",
+      args: {
+        name: "PRISMA_API_URL",
+      },
+    },
+    {
+      name: "--policy-metadata-filter",
+      description:
+        "Comma separated key:value string to filter policies based on Prisma Cloud policy metadata",
+      args: {
+        name: "POLICY_METADATA_FILTER",
+      },
+    },
+    {
+      name: "--output-file-path",
+      description:
+        "Name of the output folder to save the chosen output formats",
+      args: {
+        name: "OUTPUT_FILE_PATH",
+      },
+    },
+    {
+      name: "--output-baseline-as-skipped",
+      description:
+        "Output checks that are skipped due to baseline file presence",
+      args: {
+        name: "OUTPUT_BASELINE_AS_SKIPPED",
+      },
+    },
+    {
+      name: "--openai-api-key",
+      description:
+        "Add an OpenAI API key to enhance finding guidelines. This will send Code to OpenAI",
+      args: {
+        name: "OPENAI_API_KEY",
+      },
+    },
+    {
+      name: "--no-fail-on-crash",
+      description: "Return exit code 0 instead of 2",
+      args: {
+        name: "NO_FAIL_ON_CRASH",
+      },
+    },
+    {
+      name: "--mask",
+      description:
+        "Each entry in the list will be used for masking the desired attribute",
+      args: {
+        name: "MASK",
+      },
+    },
+    {
+      name: "--include-all-checkov-policies",
+      description:
+        "When running with an API key, Checkov will omit any policies that do not exist in the Bridgecrew or Prisma Cloud platform",
+      args: {
+        name: "INCLUDE_ALL_CHECKOV_POLICIES",
+      },
+    },
+    {
+      name: "--external-checks-git",
+      description: "GitHub URL of external checks to be added",
+      args: {
+        name: "EXTERNAL_CHECKS_GIT",
+      },
+    },
+    {
+      name: "--enable-secret-scan-all-files",
+      description: "Enable secret scan for all files",
+      args: {
+        name: "ENABLE_SECRET_SCAN_ALL_FILES",
+      },
+    },
+    {
+      name: "--deep-analysis",
+      description: "Enable combine TF graph and TF Plan graph",
+      args: {
+        name: "DEEP_ANALYSIS",
+      },
+    },
+    {
+      name: "--block-list-secret-scan",
+      description: "List of files to filter out from the secret scanner",
+      dependsOn: ["--repo-root-for-plan-enrichment"],
+      args: {
+        name: "BLOCK_LIST_SECRET_SCAN",
       },
     },
   ],

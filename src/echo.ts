@@ -1,23 +1,15 @@
 const environmentVariableGenerator: Fig.Generator = {
-  custom: async (tokens, executeShellCommand) => {
+  custom: async (tokens, _, context) => {
     if (tokens.length < 3 || tokens[tokens.length - 1].startsWith("$")) {
-      // TODO: this should use the shell context when it is available
-      const output = await executeShellCommand("env");
-      return output.length === 0
-        ? []
-        : output
-            .split("\n")
-            .map((env) => env.split("=")[0])
-            .map((suggestion) => ({
-              name: `$${suggestion}`,
-              type: "arg",
-              description: "Environment Variable",
-            }));
+      return Object.keys(context.environmentVariables).map((suggestion) => ({
+        name: `$${suggestion}`,
+        type: "arg",
+        description: "Environment Variable",
+      }));
     } else {
       return [];
     }
   },
-  getQueryTerm: "$",
   trigger: "$",
 };
 
