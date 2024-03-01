@@ -8,7 +8,17 @@ const resolveAbsolutePath = (
   if (path.startsWith("/") || path.startsWith("~/") || path === "~") {
     return path.replace("~", home);
   }
-
+  if (
+    basePath.startsWith("/") ||
+    basePath.startsWith("~/") ||
+    basePath === "~"
+  ) {
+    return (
+      basePath.replace("~", home) +
+      (basePath.replace("~", home).endsWith("/") ? "" : "/") +
+      path
+    );
+  }
   return basePath + (basePath.endsWith("/") ? "" : "/") + path;
 };
 

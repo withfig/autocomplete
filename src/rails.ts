@@ -477,6 +477,21 @@ const defaultCommands: Fig.Subcommand[] = [
     ],
   },
   {
+    name: "notes",
+    description: "Enumerate all annotations",
+    options: [
+      {
+        name: ["-a", "--annotations"],
+        requiresSeparator: true,
+        args: {
+          name: "annotations",
+          isVariadic: true,
+          description: "Filter by specific annotations, e.g. Foobar TODO",
+        },
+      },
+    ],
+  },
+  {
     name: "generate",
     description: "Use templates to generate Rails resources",
     args: [

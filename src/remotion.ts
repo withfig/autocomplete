@@ -7,6 +7,10 @@ const completionSpec: Fig.Spec = {
       description: "Prints and validates versions of all Remotion packages",
     },
     {
+      name: "gpu",
+      description: "Prints information about how Chrome uses the GPU",
+    },
+    {
       name: "compositions",
       description: "Prints the list of available compositions",
       args: {
@@ -44,7 +48,7 @@ const completionSpec: Fig.Spec = {
           name: "--gl",
           description: "Which OpenGL renderer to use",
           args: {
-            suggestions: ["angle", "egl", "swiftshader", "swangle"],
+            suggestions: ["angle", "egl", "swiftshader", "swangle", "vulkan"],
           },
         },
         {
@@ -115,6 +119,13 @@ const completionSpec: Fig.Spec = {
                     name: "error",
                   },
                 ],
+              },
+            },
+            {
+              name: "--config",
+              description: "Custom location for a Remotion config file",
+              args: {
+                template: "filepaths",
               },
             },
             {
@@ -222,6 +233,13 @@ const completionSpec: Fig.Spec = {
                         name: "error",
                       },
                     ],
+                  },
+                },
+                {
+                  name: "--config",
+                  description: "Custom location for a Remotion config file",
+                  args: {
+                    template: "filepaths",
                   },
                 },
                 {
@@ -392,7 +410,13 @@ const completionSpec: Fig.Spec = {
               name: "--gl",
               description: "Which OpenGL renderer to use",
               args: {
-                suggestions: ["angle", "egl", "swiftshader", "swangle"],
+                suggestions: [
+                  "angle",
+                  "egl",
+                  "swiftshader",
+                  "swangle",
+                  "vulkan",
+                ],
               },
             },
             {
@@ -643,6 +667,25 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
+              name: "--x264-preset",
+              description:
+                "Presets balance encoding speed and compression quality, with slower presets achieving better compression. Needs --codec=h264 to be set",
+              args: {
+                suggestions: [
+                  "ultrafast",
+                  "superfast",
+                  "veryfast",
+                  "faster",
+                  "fast",
+                  "medium",
+                  "slow",
+                  "slower",
+                  "veryslow",
+                  "placebo",
+                ],
+              },
+            },
+            {
               name: "--image-format",
               description: 'Format to render the frames in, "jpeg" or "png"',
               args: {
@@ -731,6 +774,13 @@ const completionSpec: Fig.Spec = {
                     name: "error",
                   },
                 ],
+              },
+            },
+            {
+              name: "--config",
+              description: "Custom location for a Remotion config file",
+              args: {
+                template: "filepaths",
               },
             },
             {
@@ -850,6 +900,13 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
+              name: "--config",
+              description: "Custom location for a Remotion config file",
+              args: {
+                template: "filepaths",
+              },
+            },
+            {
               name: "--yes",
               description: "Skip confirmation",
             },
@@ -948,7 +1005,13 @@ const completionSpec: Fig.Spec = {
               name: "--gl",
               description: "Which OpenGL renderer to use",
               args: {
-                suggestions: ["angle", "egl", "swiftshader", "swangle"],
+                suggestions: [
+                  "angle",
+                  "egl",
+                  "swiftshader",
+                  "swangle",
+                  "vulkan",
+                ],
               },
             },
             {
@@ -1048,7 +1111,13 @@ const completionSpec: Fig.Spec = {
               name: "--gl",
               description: "Which OpenGL renderer to use",
               args: {
-                suggestions: ["angle", "egl", "swiftshader", "swangle"],
+                suggestions: [
+                  "angle",
+                  "egl",
+                  "swiftshader",
+                  "swangle",
+                  "vulkan",
+                ],
               },
             },
             {
@@ -1113,6 +1182,13 @@ const completionSpec: Fig.Spec = {
                     name: "error",
                   },
                 ],
+              },
+            },
+            {
+              name: "--config",
+              description: "Custom location for a Remotion config file",
+              args: {
+                template: "filepaths",
               },
             },
             {
@@ -1223,6 +1299,13 @@ const completionSpec: Fig.Spec = {
                         name: "error",
                       },
                     ],
+                  },
+                },
+                {
+                  name: "--config",
+                  description: "Custom location for a Remotion config file",
+                  args: {
+                    template: "filepaths",
                   },
                 },
                 {
@@ -1340,6 +1423,10 @@ const completionSpec: Fig.Spec = {
                   exclusiveOn: ["--retention-period"],
                 },
                 {
+                  name: "--enable-lambda-insights",
+                  description: "Enable Lambda Insights",
+                },
+                {
                   name: "--custom-role-arn",
                   description:
                     "Set a custom role ARN to be used instead of the default",
@@ -1383,6 +1470,13 @@ const completionSpec: Fig.Spec = {
                         name: "error",
                       },
                     ],
+                  },
+                },
+                {
+                  name: "--config",
+                  description: "Custom location for a Remotion config file",
+                  args: {
+                    template: "filepaths",
                   },
                 },
                 {
@@ -1490,6 +1584,13 @@ const completionSpec: Fig.Spec = {
                         name: "error",
                       },
                     ],
+                  },
+                },
+                {
+                  name: "--config",
+                  description: "Custom location for a Remotion config file",
+                  args: {
+                    template: "filepaths",
                   },
                 },
                 {
@@ -1604,6 +1705,13 @@ const completionSpec: Fig.Spec = {
                   },
                 },
                 {
+                  name: "--config",
+                  description: "Custom location for a Remotion config file",
+                  args: {
+                    template: "filepaths",
+                  },
+                },
+                {
                   name: "--yes",
                   description: "Skip confirmation",
                 },
@@ -1705,6 +1813,13 @@ const completionSpec: Fig.Spec = {
                     name: "error",
                   },
                 ],
+              },
+            },
+            {
+              name: "--config",
+              description: "Custom location for a Remotion config file",
+              args: {
+                template: "filepaths",
               },
             },
             {
@@ -1810,6 +1925,13 @@ const completionSpec: Fig.Spec = {
                     name: "error",
                   },
                 ],
+              },
+            },
+            {
+              name: "--config",
+              description: "Custom location for a Remotion config file",
+              args: {
+                template: "filepaths",
               },
             },
             {
@@ -1919,6 +2041,13 @@ const completionSpec: Fig.Spec = {
                   },
                 },
                 {
+                  name: "--config",
+                  description: "Custom location for a Remotion config file",
+                  args: {
+                    template: "filepaths",
+                  },
+                },
+                {
                   name: "--yes",
                   description: "Skip confirmation",
                 },
@@ -2023,6 +2152,13 @@ const completionSpec: Fig.Spec = {
                         name: "error",
                       },
                     ],
+                  },
+                },
+                {
+                  name: "--config",
+                  description: "Custom location for a Remotion config file",
+                  args: {
+                    template: "filepaths",
                   },
                 },
                 {
@@ -2137,6 +2273,13 @@ const completionSpec: Fig.Spec = {
                   },
                 },
                 {
+                  name: "--config",
+                  description: "Custom location for a Remotion config file",
+                  args: {
+                    template: "filepaths",
+                  },
+                },
+                {
                   name: "--yes",
                   description: "Skip confirmation",
                 },
@@ -2240,6 +2383,13 @@ const completionSpec: Fig.Spec = {
                         name: "error",
                       },
                     ],
+                  },
+                },
+                {
+                  name: "--config",
+                  description: "Custom location for a Remotion config file",
+                  args: {
+                    template: "filepaths",
                   },
                 },
                 {
@@ -2365,6 +2515,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--config",
+          description: "Custom location for a Remotion config file",
+          args: {
+            template: "filepaths",
+          },
+        },
+        {
           name: "--yes",
           description: "Skip confirmation",
         },
@@ -2437,6 +2594,68 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "bundle",
+      priority: 100,
+      description: "Bundle a Remotion project",
+      args: {
+        name: "entry",
+        template: ["filepaths"],
+      },
+      options: [
+        {
+          name: "--quiet",
+          description: "Print less output",
+        },
+        {
+          name: "-q",
+          description: "Print less output",
+        },
+        {
+          name: "--log",
+          description:
+            'Log level, "error", "warning", "verbose", "info" (default)',
+          args: {
+            default: "info",
+            suggestions: [
+              {
+                name: "verbose",
+              },
+              {
+                name: "info",
+              },
+              {
+                name: "warn",
+              },
+              {
+                name: "error",
+              },
+            ],
+          },
+        },
+        {
+          name: "--config",
+          description: "Custom location for a Remotion config file",
+          args: {
+            template: "filepaths",
+          },
+        },
+        {
+          name: "--public-dir",
+          description: "Location of the public/ directory",
+          args: {
+            template: "folders",
+          },
+        },
+        {
+          name: "--out-dir",
+          description: "Define the location of the resulting bundle",
+          args: {
+            template: "folders",
+          },
+        },
+      ],
+    },
+    {
       name: "render",
       priority: 60,
       description:
@@ -2472,7 +2691,7 @@ const completionSpec: Fig.Spec = {
           name: "--gl",
           description: "Which OpenGL renderer to use",
           args: {
-            suggestions: ["angle", "egl", "swiftshader", "swangle"],
+            suggestions: ["angle", "egl", "swiftshader", "swangle", "vulkan"],
           },
         },
         {
@@ -2699,6 +2918,25 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--x264-preset",
+          description:
+            "Presets balance encoding speed and compression quality, with slower presets achieving better compression. Needs --codec=h264 to be set",
+          args: {
+            suggestions: [
+              "ultrafast",
+              "superfast",
+              "veryfast",
+              "faster",
+              "fast",
+              "medium",
+              "slow",
+              "slower",
+              "veryslow",
+              "placebo",
+            ],
+          },
+        },
+        {
           name: "--image-format",
           description: 'Format to render the frames in, "jpeg" or "png"',
           args: {
@@ -2772,6 +3010,11 @@ const completionSpec: Fig.Spec = {
           description: "Include an audio track even if it's silent",
         },
         {
+          name: "--repro",
+          description:
+            "Collect information that you can submit to Remotion if asked for a reproduction",
+        },
+        {
           name: "--env-file",
           description: "Specify a location for a dotenv file",
           args: {
@@ -2817,13 +3060,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "port",
             default: "3333",
-          },
-        },
-        {
-          name: "--config",
-          description: "Custom location for a Remotion config file",
-          args: {
-            template: "filepaths",
           },
         },
         {
@@ -2875,6 +3111,13 @@ const completionSpec: Fig.Spec = {
                 name: "error",
               },
             ],
+          },
+        },
+        {
+          name: "--config",
+          description: "Custom location for a Remotion config file",
+          args: {
+            template: "filepaths",
           },
         },
       ],
@@ -2978,13 +3221,6 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--config",
-          description: "Custom location for a Remotion config file",
-          args: {
-            template: "filepaths",
-          },
-        },
-        {
           name: "--public-dir",
           description: "Location of the public/ directory",
           args: {
@@ -3013,7 +3249,7 @@ const completionSpec: Fig.Spec = {
           name: "--gl",
           description: "Which OpenGL renderer to use",
           args: {
-            suggestions: ["angle", "egl", "swiftshader", "swangle"],
+            suggestions: ["angle", "egl", "swiftshader", "swangle", "vulkan"],
           },
         },
         {
@@ -3058,13 +3294,19 @@ const completionSpec: Fig.Spec = {
             ],
           },
         },
+        {
+          name: "--config",
+          description: "Custom location for a Remotion config file",
+          args: {
+            template: "filepaths",
+          },
+        },
       ],
     },
     {
-      name: "preview",
+      name: ["preview", "studio"],
       priority: 50,
-      description:
-        "Start the server which allows you to preview the Remotion video",
+      description: "Start the Remotion Studio",
       args: {
         name: "entry",
         template: ["filepaths"],
@@ -3134,6 +3376,13 @@ const completionSpec: Fig.Spec = {
             ],
           },
         },
+        {
+          name: "--version",
+          description: "Upgrade to a specific version",
+          args: {
+            name: "version",
+          },
+        },
       ],
     },
     {
@@ -3148,7 +3397,7 @@ const completionSpec: Fig.Spec = {
           name: "--gl",
           description: "Which OpenGL renderer to use",
           args: {
-            suggestions: ["angle", "egl", "swiftshader", "swangle"],
+            suggestions: ["angle", "egl", "swiftshader", "swangle", "vulkan"],
           },
         },
         {
@@ -3375,6 +3624,25 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--x264-preset",
+          description:
+            "Presets balance encoding speed and compression quality, with slower presets achieving better compression. Needs --codec=h264 to be set",
+          args: {
+            suggestions: [
+              "ultrafast",
+              "superfast",
+              "veryfast",
+              "faster",
+              "fast",
+              "medium",
+              "slow",
+              "slower",
+              "veryslow",
+              "placebo",
+            ],
+          },
+        },
+        {
           name: "--image-format",
           description: 'Format to render the frames in, "jpeg" or "png"',
           args: {
@@ -3444,6 +3712,11 @@ const completionSpec: Fig.Spec = {
           description: "Include an audio track even if it's silent",
         },
         {
+          name: "--repro",
+          description:
+            "Collect information that you can submit to Remotion if asked for a reproduction",
+        },
+        {
           name: "--env-file",
           description: "Specify a location for a dotenv file",
           args: {
@@ -3485,13 +3758,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "port",
             default: "3333",
-          },
-        },
-        {
-          name: "--config",
-          description: "Custom location for a Remotion config file",
-          args: {
-            template: "filepaths",
           },
         },
         {
@@ -3543,6 +3809,13 @@ const completionSpec: Fig.Spec = {
                 name: "error",
               },
             ],
+          },
+        },
+        {
+          name: "--config",
+          description: "Custom location for a Remotion config file",
+          args: {
+            template: "filepaths",
           },
         },
         {
