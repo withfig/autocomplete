@@ -88,32 +88,30 @@ const completionSpec: Fig.Spec = {
       name: "project",
       description: "Access, manipulate and create projects",
       icon: bwLogo32x32,
-      options: [
+      subcommands: [
         {
           name: "create",
           description: "Create a new project",
-          insertValue: "{cursor}",
+          insertValue: "create '{cursor}'",
           args: {
             name: "NAME",
-            description: "Project Name",
+            description: "Name of project to be created",
           },
-          exclusiveOn: ["delete", "edit", "get", "list"],
         },
         {
           name: "delete",
           description: "Delete one or more existing projects",
-          insertValue: "{cursor}",
+          insertValue: "delete '{cursor}'",
           args: {
-            name: "PROJECT_IDS",
+            name: "PROJECT_ID(s)",
             description: "ID(s) of project(s) to delete",
           },
-          exclusiveOn: ["create", "edit", "get", "list"],
           isDangerous: true,
         },
         {
           name: "edit",
           description: "Change the name of an existing project",
-          insertValue: "{cursor}",
+          insertValue: "edit --name '{cursor}'",
           args: [
             {
               name: "--name",
@@ -121,27 +119,26 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "PROJECT_ID",
-              description: "Project to edit",
+              description: "ID of project to edit",
             },
           ],
-          exclusiveOn: ["create", "delete", "get", "list"],
         },
         {
           name: "get",
           description:
             "Retrieve a specific project accessible to this service account",
-          insertValue: "{cursor}",
+          insertValue: "get '{cursor}'",
           args: {
             name: "PROJECT_ID",
-            description: "Project to retrieve",
+            description: "ID of project to retrieve",
           },
-          exclusiveOn: ["create", "delete", "edit", "list"],
         },
         {
           name: "list",
           description: "List projects accessible to this service account",
-          exclusiveOn: ["create", "delete", "edit", "get"],
         },
+      ],
+      options: [
         {
           name: ["-h", "--help"],
           description: "Access, manipulate and create projects",
@@ -242,8 +239,9 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "help",
-      description: "",
+      name: ["--help", "-h"],
+      description:
+        "Get help about using the Bitwarden Secrets Manager CLI tool",
       icon: bwLogo32x32,
     },
   ],
