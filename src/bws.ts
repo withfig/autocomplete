@@ -9,38 +9,32 @@ const completionSpec: Fig.Spec = {
       name: "config",
       description: "Specify server settings for the Secrets Manager CLI",
       icon: bwLogo32x32,
+      args: {
+        name: "Setting",
+        description: "Server setting to specify",
+        suggestions: [
+          {
+            name: "server-base",
+            description: "Base server URL",
+          },
+          {
+            name: "server-api",
+            description: "Server API endpoint URL",
+          },
+          {
+            name: "server-identity",
+            description: "Server Identity endpoint URL",
+          },
+          {
+            name: "state-file-dir",
+            description: "Server file storage location",
+          },
+        ],
+      },
       options: [
-        {
-          name: "name",
-          description: "Value to set",
-          insertValue: "{cursor}",
-          args: [
-            {
-              name: "server-base",
-              description: "Base server URL",
-              isOptional: true,
-            },
-            {
-              name: "server-api",
-              description: "Server API endpoint URL",
-              isOptional: true,
-            },
-            {
-              name: "server-identity",
-              description: "Server Identity endpoint URL",
-              isOptional: true,
-            },
-            {
-              name: "state-file-dir",
-              description: "Server file storage location",
-              isOptional: true,
-            },
-          ],
-        },
         {
           name: "--profile",
           description: "Save specified value(s) to an alternate profile",
-          insertValue: "{cursor}",
           args: {
             name: "profile",
             description: "Profile name to save to",
@@ -159,11 +153,10 @@ const completionSpec: Fig.Spec = {
       name: "secret",
       description: "Access, manipulate and create secrets",
       icon: bwLogo32x32,
-      options: [
+      subcommands: [
         {
           name: "create",
           description: "Create a new secret",
-          insertValue: "{cursor}",
           args: [
             {
               name: "KEY",
@@ -174,19 +167,18 @@ const completionSpec: Fig.Spec = {
               name: "PROJECT_ID",
               description: "The ID of the project this secret will be added to",
             },
+          ],
+          options: [
             {
-              name: "NOTE",
+              name: "--note",
               description: "Optional notes about this secret",
-              isOptional: true,
+              insertValue: "--note '{cursor}'",
             },
           ],
-          exclusiveOn: ["delete", "edit", "get", "list"],
         },
         {
           name: "delete",
           description: "Delete an existing secret",
-          insertValue: "{cursor}",
-          exclusiveOn: ["create", "edit", "get", "list"],
           args: {
             name: "SECRET_IDS",
             description: "Delete one or more secrets designated by SECRET_IDS",
@@ -196,32 +188,36 @@ const completionSpec: Fig.Spec = {
         {
           name: "edit",
           description: "Edit an existing secret",
-          insertValue: "{cursor}",
-          exclusiveOn: ["create", "delete", "get", "list"],
-          args: [
+          args: {
+            name: "SECRET_ID",
+            description: "ID of secret to be edited",
+          },
+          options: [
             {
-              name: "KEY",
-              description: "Secret Key",
-              isOptional: true,
-            },
-            { name: "VALUE", description: "Secret Value", isOptional: true },
-            {
-              name: "PROJECT_ID",
-              description: "The ID of the project this secret will be added to",
-              isOptional: true,
+              name: "key",
+              description: "Edit the Secret Key",
+              insertValue: "--key '{cursor}'",
             },
             {
-              name: "NOTE",
-              description: "Optional notes about this secret",
-              isOptional: true,
+              name: "value",
+              description: "Edit the Secret Value",
+              insertValue: "--value '{cursor}'",
+            },
+            {
+              name: "project-id",
+              description: "Edit the ID of project this secret belongs to",
+              insertValue: "--project-id '{cursor}'",
+            },
+            {
+              name: "note",
+              description: "Edit the optional notes about this secret",
+              insertValue: "--note '{cursor}'",
             },
           ],
         },
         {
           name: "get",
           description: "Retrieve an existing secret",
-          insertValue: "{cursor}",
-          exclusiveOn: ["create", "delete", "edit", "list"],
           args: {
             name: "SECRET_ID",
             description: "Secret to retrieve",
@@ -230,17 +226,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List the secrets this service account can access",
-          exclusiveOn: ["create", "delete", "edit", "get"],
           args: {
             name: "Project",
             description: "Project Identifier",
             isOptional: true,
           },
         },
+      ],
+      options: [
         {
           name: ["-h", "--help"],
           description: "Display help for unlock command",
-          exclusiveOn: ["--check", "--passwordenv", "--passwordfile"],
           priority: 49,
         },
       ],
