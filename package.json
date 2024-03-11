@@ -96,7 +96,7 @@
     "tailwindcss": "^3.4.0",
     "ts-node": "^10.9.2",
     "typescript": "~5.3.3",
-    "vite": "^4.5.1",
+    "vite": "^5.1.5",
     "vite-plugin-externals": "^0.6.2"
   },
   "dependencies": {
