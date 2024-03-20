@@ -419,7 +419,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--one-file-system",
       description:
-        "Will not cross file system boundaries relative to where the the search started from",
+        "Will not cross file system boundaries relative to where the search started from",
     },
     {
       name: "--no-one-file-system",
