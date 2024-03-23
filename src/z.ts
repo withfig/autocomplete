@@ -125,9 +125,12 @@ const zoxideCompletionSpec: Fig.Spec = {
     name: "directory",
     filterStrategy: "fuzzy",
     suggestCurrentToken: true,
-    isVariadic: true,
     generators: {
-      custom: async (tokens, executeShellCommand) => {
+      custom: async (
+        tokens,
+        executeShellCommand,
+        { currentWorkingDirectory }
+      ) => {
         let args;
         if (tokens.length < 2 || tokens[1] === "") {
           args = ["query", "--list", "--score"];
@@ -146,16 +149,52 @@ const zoxideCompletionSpec: Fig.Spec = {
           args,
         });
 
-        return stdout.split("\n").map((line) => {
+        const zoxideFolders = stdout.split("\n").map((line) => {
           const trimmedLine = line.trim();
           const spaceIndex = trimmedLine.indexOf(" ");
           const score = Number(trimmedLine.slice(0, spaceIndex));
-          const path = trimmedLine.slice(spaceIndex + 1);
+          const fullPath = trimmedLine.slice(spaceIndex + 1);
+
+          const pathSplit = fullPath.split("/");
+          const parentFullPath = pathSplit
+            .slice(0, pathSplit.length - 1)
+            .join("/");
+          const folderName = pathSplit.at(-1);
+
+          const folderIsInCwd = currentWorkingDirectory === parentFullPath;
           return {
-            name: path,
+            name: folderIsInCwd ? folderName : fullPath,
             description: `Score: ${score}`,
+            icon: "💾",
+            path: fullPath,
+            priority: folderIsInCwd ? 9000 : score, // assign highest priority when in cwd
           };
         });
+
+        const cwdFolders = (
+          await getCurrentDirectoryFolders(
+            currentWorkingDirectory,
+            executeShellCommand
+          )
+        ).map(({ name, path }) => ({
+          name,
+          description: "Score: 0",
+          icon: "📁",
+          path,
+          priority: 8999, // display just below z's own suggestions for cwd
+        }));
+
+        // Prefer zoxide suggestions over cwd suggestions
+        const uniqueFolders = [...zoxideFolders, ...cwdFolders].reduce(
+          (acc, folder) => {
+            if (!acc.some(({ path }) => path === folder.path)) {
+              acc.push(folder);
+            }
+            return acc;
+          },
+          []
+        );
+        return uniqueFolders;
       },
       trigger: {
         on: "change",
