@@ -22,7 +22,7 @@ const completion: Fig.Spec = {
     },
     {
       name: ["-i", "--install"],
-      description: "Setup the the shell init script",
+      description: "Setup the shell init script",
     },
     {
       name: ["-l", "--list"],
