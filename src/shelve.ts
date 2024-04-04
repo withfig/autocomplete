@@ -83,12 +83,15 @@ const shelveSubcommands: Fig.Subcommand[] = [
 
 const completionSpec: Fig.Spec = {
   name: "shelve",
-  description: "Shelve CLI a command-line interface designed for the Shelve platform. This tool enables users to authenticate with Shelve, facilitating the seamless transfer of environment variables for project collaboration within a team directly through the terminal interface",
+  description:
+    "Shelve CLI a command-line interface designed for the Shelve platform. This tool enables users to authenticate with Shelve, facilitating the seamless transfer of environment variables for project collaboration within a team directly through the terminal interface",
   subcommands: shelveSubcommands,
-  options: [{
-    name: ["--help", "-h"],
-    description: "Show help",
-    isPersistent: true,
-  }],
+  options: [
+    {
+      name: ["--help", "-h"],
+      description: "Show help",
+      isPersistent: true,
+    },
+  ],
 };
 export default completionSpec;
