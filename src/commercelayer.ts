@@ -20,7 +20,8 @@ const completionSpec: Fig.Spec = {
             "-o",
             "--organization"
           ],
-          "description": "Organization slug"
+          "description": "Organization slug",
+          "args": {}
         },
         {
           "name": [
@@ -28,6 +29,7 @@ const completionSpec: Fig.Spec = {
             "--domain"
           ],
           "description": "Api domain",
+          "args": {},
           "hidden": true
         },
         {
@@ -63,18 +65,21 @@ const completionSpec: Fig.Spec = {
         },
         {
           "name": "--id",
-          "description": "Application id"
+          "description": "Application id",
+          "args": {}
         },
         {
           "name": [
             "-a",
             "--alias"
           ],
-          "description": "The alias associated to the application"
+          "description": "The alias associated to the application",
+          "args": {}
         },
         {
           "name": "--appkey",
           "description": "Cli application key",
+          "args": {},
           "hidden": true
         },
         {
@@ -82,7 +87,8 @@ const completionSpec: Fig.Spec = {
             "-A",
             "--api"
           ],
-          "description": "Specific api application"
+          "description": "Specific api application",
+          "args": {}
         },
         {
           "name": [
@@ -113,7 +119,8 @@ const completionSpec: Fig.Spec = {
             "-o",
             "--organization"
           ],
-          "description": "Organization slug"
+          "description": "Organization slug",
+          "args": {}
         },
         {
           "name": [
@@ -121,6 +128,7 @@ const completionSpec: Fig.Spec = {
             "--domain"
           ],
           "description": "Api domain",
+          "args": {},
           "hidden": true
         },
         {
@@ -129,6 +137,7 @@ const completionSpec: Fig.Spec = {
             "--clientId"
           ],
           "description": "Application client_id",
+          "args": {},
           "isRequired": true
         },
         {
@@ -136,28 +145,32 @@ const completionSpec: Fig.Spec = {
             "-s",
             "--clientSecret"
           ],
-          "description": "Application client_secret"
+          "description": "Application client_secret",
+          "args": {}
         },
         {
           "name": [
             "-S",
             "--scope"
           ],
-          "description": "Access token scope (market, stock location)"
+          "description": "Access token scope (market, stock location)",
+          "args": {}
         },
         {
           "name": [
             "-e",
             "--email"
           ],
-          "description": "Customer email"
+          "description": "Customer email",
+          "args": {}
         },
         {
           "name": [
             "-p",
             "--password"
           ],
-          "description": "Customer secret password"
+          "description": "Customer secret password",
+          "args": {}
         },
         {
           "name": [
@@ -165,6 +178,7 @@ const completionSpec: Fig.Spec = {
             "--alias"
           ],
           "description": "The alias you want to associate to the application",
+          "args": {},
           "isRequired": true
         },
         {
@@ -206,7 +220,8 @@ const completionSpec: Fig.Spec = {
             "-o",
             "--organization"
           ],
-          "description": "Organization slug"
+          "description": "Organization slug",
+          "args": {}
         },
         {
           "name": [
@@ -214,6 +229,7 @@ const completionSpec: Fig.Spec = {
             "--domain"
           ],
           "description": "Api domain",
+          "args": {},
           "hidden": true
         },
         {
@@ -249,18 +265,21 @@ const completionSpec: Fig.Spec = {
         },
         {
           "name": "--id",
-          "description": "Application id"
+          "description": "Application id",
+          "args": {}
         },
         {
           "name": [
             "-a",
             "--alias"
           ],
-          "description": "The alias associated to the application"
+          "description": "The alias associated to the application",
+          "args": {}
         },
         {
           "name": "--appkey",
           "description": "Cli application key",
+          "args": {},
           "hidden": true
         },
         {
@@ -268,7 +287,8 @@ const completionSpec: Fig.Spec = {
             "-A",
             "--api"
           ],
-          "description": "Specific api application"
+          "description": "Specific api application",
+          "args": {}
         },
         {
           "name": [
@@ -292,7 +312,8 @@ const completionSpec: Fig.Spec = {
             "-o",
             "--organization"
           ],
-          "description": "Organization slug"
+          "description": "Organization slug",
+          "args": {}
         },
         {
           "name": [
@@ -300,6 +321,7 @@ const completionSpec: Fig.Spec = {
             "--domain"
           ],
           "description": "Api domain",
+          "args": {},
           "hidden": true
         },
         {
@@ -308,6 +330,7 @@ const completionSpec: Fig.Spec = {
             "--clientId"
           ],
           "description": "Application client_id",
+          "args": {},
           "isRequired": true
         },
         {
@@ -315,28 +338,32 @@ const completionSpec: Fig.Spec = {
             "-s",
             "--clientSecret"
           ],
-          "description": "Application client_secret"
+          "description": "Application client_secret",
+          "args": {}
         },
         {
           "name": [
             "-S",
             "--scope"
           ],
-          "description": "Access token scope (market, stock location)"
+          "description": "Access token scope (market, stock location)",
+          "args": {}
         },
         {
           "name": [
             "-e",
             "--email"
           ],
-          "description": "Customer email"
+          "description": "Customer email",
+          "args": {}
         },
         {
           "name": [
             "-p",
             "--password"
           ],
-          "description": "Customer secret password"
+          "description": "Customer secret password",
+          "args": {}
         },
         {
           "name": [
@@ -344,6 +371,7 @@ const completionSpec: Fig.Spec = {
             "--alias"
           ],
           "description": "The alias you want to associate to the application",
+          "args": {},
           "isRequired": true
         },
         {
@@ -368,7 +396,8 @@ const completionSpec: Fig.Spec = {
             "-o",
             "--organization"
           ],
-          "description": "Organization slug"
+          "description": "Organization slug",
+          "args": {}
         },
         {
           "name": [
@@ -376,6 +405,7 @@ const completionSpec: Fig.Spec = {
             "--domain"
           ],
           "description": "Api domain",
+          "args": {},
           "hidden": true
         },
         {
@@ -411,18 +441,21 @@ const completionSpec: Fig.Spec = {
         },
         {
           "name": "--id",
-          "description": "Application id"
+          "description": "Application id",
+          "args": {}
         },
         {
           "name": [
             "-a",
             "--alias"
           ],
-          "description": "The alias associated to the application"
+          "description": "The alias associated to the application",
+          "args": {}
         },
         {
           "name": "--appkey",
           "description": "Cli application key",
+          "args": {},
           "hidden": true
         },
         {
@@ -430,7 +463,8 @@ const completionSpec: Fig.Spec = {
             "-A",
             "--api"
           ],
-          "description": "Specific api application"
+          "description": "Specific api application",
+          "args": {}
         },
         {
           "name": [
@@ -464,7 +498,8 @@ const completionSpec: Fig.Spec = {
             "-o",
             "--organization"
           ],
-          "description": "Organization slug"
+          "description": "Organization slug",
+          "args": {}
         },
         {
           "name": [
@@ -472,6 +507,7 @@ const completionSpec: Fig.Spec = {
             "--domain"
           ],
           "description": "Api domain",
+          "args": {},
           "hidden": true
         },
         {
@@ -507,18 +543,21 @@ const completionSpec: Fig.Spec = {
         },
         {
           "name": "--id",
-          "description": "Application id"
+          "description": "Application id",
+          "args": {}
         },
         {
           "name": [
             "-a",
             "--alias"
           ],
-          "description": "The alias associated to the application"
+          "description": "The alias associated to the application",
+          "args": {}
         },
         {
           "name": "--appkey",
           "description": "Cli application key",
+          "args": {},
           "hidden": true
         },
         {
@@ -526,7 +565,8 @@ const completionSpec: Fig.Spec = {
             "-A",
             "--api"
           ],
-          "description": "Specific api application"
+          "description": "Specific api application",
+          "args": {}
         },
         {
           "name": [
@@ -557,7 +597,8 @@ const completionSpec: Fig.Spec = {
             "-a",
             "--alias"
           ],
-          "description": "The alias you want to associate to the application"
+          "description": "The alias you want to associate to the application",
+          "args": {}
         }
       ],
       "args": [
@@ -579,7 +620,8 @@ const completionSpec: Fig.Spec = {
             "-o",
             "--organization"
           ],
-          "description": "Organization slug"
+          "description": "Organization slug",
+          "args": {}
         },
         {
           "name": [
@@ -587,6 +629,7 @@ const completionSpec: Fig.Spec = {
             "--domain"
           ],
           "description": "Api domain",
+          "args": {},
           "hidden": true
         },
         {
@@ -622,18 +665,21 @@ const completionSpec: Fig.Spec = {
         },
         {
           "name": "--id",
-          "description": "Application id"
+          "description": "Application id",
+          "args": {}
         },
         {
           "name": [
             "-a",
             "--alias"
           ],
-          "description": "The alias associated to the application"
+          "description": "The alias associated to the application",
+          "args": {}
         },
         {
           "name": "--appkey",
           "description": "Cli application key",
+          "args": {},
           "hidden": true
         },
         {
@@ -641,7 +687,8 @@ const completionSpec: Fig.Spec = {
             "-A",
             "--api"
           ],
-          "description": "Specific api application"
+          "description": "Specific api application",
+          "args": {}
         }
       ]
     },
@@ -657,7 +704,8 @@ const completionSpec: Fig.Spec = {
             "-o",
             "--organization"
           ],
-          "description": "Organization slug"
+          "description": "Organization slug",
+          "args": {}
         },
         {
           "name": [
@@ -665,6 +713,7 @@ const completionSpec: Fig.Spec = {
             "--domain"
           ],
           "description": "Api domain",
+          "args": {},
           "hidden": true
         },
         {
@@ -700,18 +749,21 @@ const completionSpec: Fig.Spec = {
         },
         {
           "name": "--id",
-          "description": "Application id"
+          "description": "Application id",
+          "args": {}
         },
         {
           "name": [
             "-a",
             "--alias"
           ],
-          "description": "The alias associated to the application"
+          "description": "The alias associated to the application",
+          "args": {}
         },
         {
           "name": "--appkey",
           "description": "Cli application key",
+          "args": {},
           "hidden": true
         },
         {
@@ -719,7 +771,8 @@ const completionSpec: Fig.Spec = {
             "-A",
             "--api"
           ],
-          "description": "Specific api application"
+          "description": "Specific api application",
+          "args": {}
         },
         {
           "name": [
@@ -741,6 +794,7 @@ const completionSpec: Fig.Spec = {
             "--shared"
           ],
           "description": "Organization shared secret",
+          "args": {},
           "hidden": true
         },
         {
@@ -749,6 +803,7 @@ const completionSpec: Fig.Spec = {
             "--minutes"
           ],
           "description": "Minutes to token expiration [2, 240]",
+          "args": {},
           "hidden": true
         }
       ],
@@ -767,7 +822,8 @@ const completionSpec: Fig.Spec = {
             "-v",
             "--version"
           ],
-          "description": "Update cli to a specific version or tag"
+          "description": "Update cli to a specific version or tag",
+          "args": {}
         }
       ]
     },
@@ -837,6 +893,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -845,10 +902,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -896,7 +955,8 @@ const completionSpec: Fig.Spec = {
             "-g",
             "--group"
           ],
-          "description": "The group id associated to the import in case of multi-chunk imports"
+          "description": "The group id associated to the import in case of multi-chunk imports",
+          "args": {}
         },
         {
           "name": [
@@ -932,7 +992,8 @@ const completionSpec: Fig.Spec = {
             "-l",
             "--limit"
           ],
-          "description": "Limit number of imports in output"
+          "description": "Limit number of imports in output",
+          "args": {}
         }
       ],
       "args": [
@@ -957,6 +1018,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -965,10 +1027,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -978,7 +1042,6 @@ const completionSpec: Fig.Spec = {
             "--type"
           ],
           "description": "The type of resource being imported",
-          "isRequired": true,
           "args": {
             "description": "addresses|bundles|coupons|customer_addresses|...",
             "suggestions": [
@@ -1004,14 +1067,16 @@ const completionSpec: Fig.Spec = {
               "tags",
               "tax_categories"
             ]
-          }
+          },
+          "isRequired": true
         },
         {
           "name": [
             "-p",
             "--parent"
           ],
-          "description": "The id of the parent resource to be associated with imported data"
+          "description": "The id of the parent resource to be associated with imported data",
+          "args": {}
         },
         {
           "name": [
@@ -1019,6 +1084,7 @@ const completionSpec: Fig.Spec = {
             "--inputs"
           ],
           "description": "The path of the file containing the data to import",
+          "args": {},
           "isRequired": true
         },
         {
@@ -1072,6 +1138,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -1080,10 +1147,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         }
@@ -1108,6 +1177,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -1116,10 +1186,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -1142,7 +1214,8 @@ const completionSpec: Fig.Spec = {
             "-S",
             "--save-inputs"
           ],
-          "description": "Save import inputs to local file"
+          "description": "Save import inputs to local file",
+          "args": {}
         }
       ],
       "args": [
@@ -1165,6 +1238,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -1173,10 +1247,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         }
@@ -1201,6 +1277,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -1209,10 +1286,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -1260,7 +1339,8 @@ const completionSpec: Fig.Spec = {
             "-g",
             "--group"
           ],
-          "description": "The group id associated to the import in case of multi-chunk imports"
+          "description": "The group id associated to the import in case of multi-chunk imports",
+          "args": {}
         },
         {
           "name": [
@@ -1296,7 +1376,8 @@ const completionSpec: Fig.Spec = {
             "-l",
             "--limit"
           ],
-          "description": "Limit number of imports in output"
+          "description": "Limit number of imports in output",
+          "args": {}
         }
       ]
     },
@@ -1340,6 +1421,7 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
@@ -1377,13 +1459,15 @@ const completionSpec: Fig.Spec = {
             "-o",
             "--organization"
           ],
-          "description": "The slug of your organization"
+          "description": "The slug of your organization",
+          "args": {}
         },
         {
           "name": [
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
@@ -1392,6 +1476,7 @@ const completionSpec: Fig.Spec = {
             "--clientId"
           ],
           "description": "Application client_id",
+          "args": {},
           "isRequired": true
         },
         {
@@ -1399,28 +1484,32 @@ const completionSpec: Fig.Spec = {
             "-s",
             "--clientSecret"
           ],
-          "description": "Application client_secret"
+          "description": "Application client_secret",
+          "args": {}
         },
         {
           "name": [
             "-S",
             "--scope"
           ],
-          "description": "Access token scope (market, stock location)"
+          "description": "Access token scope (market, stock location)",
+          "args": {}
         },
         {
           "name": [
             "-e",
             "--email"
           ],
-          "description": "Customer email"
+          "description": "Customer email",
+          "args": {}
         },
         {
           "name": [
             "-p",
             "--password"
           ],
-          "description": "Customer secret password"
+          "description": "Customer secret password",
+          "args": {}
         },
         {
           "name": "--info",
@@ -1446,13 +1535,15 @@ const completionSpec: Fig.Spec = {
             "-o",
             "--organization"
           ],
-          "description": "The slug of your organization"
+          "description": "The slug of your organization",
+          "args": {}
         },
         {
           "name": [
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
@@ -1461,6 +1552,7 @@ const completionSpec: Fig.Spec = {
             "--clientId"
           ],
           "description": "Application client_id",
+          "args": {},
           "isRequired": true
         },
         {
@@ -1468,14 +1560,16 @@ const completionSpec: Fig.Spec = {
             "-s",
             "--clientSecret"
           ],
-          "description": "Application client_secret"
+          "description": "Application client_secret",
+          "args": {}
         },
         {
           "name": [
             "-S",
             "--scope"
           ],
-          "description": "Access token scope"
+          "description": "Access token scope",
+          "args": {}
         },
         {
           "name": [
@@ -1494,6 +1588,8293 @@ const completionSpec: Fig.Spec = {
     },
     {
       "name": [
+        "adyen_payment"
+      ],
+      "description": "Execute an action on a resource of type adyen_payments",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "adyen_payment:details"
+      ],
+      "description": "Send this attribute if you want to send additional details the payment request.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "authorization"
+      ],
+      "description": "Execute an action on a resource of type authorizations",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "authorization:capture"
+      ],
+      "description": "Send this attribute if you want to create a capture for this authorization.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "authorization:capture_amount_cents"
+      ],
+      "description": "The associated capture amount, in cents.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "authorization:void"
+      ],
+      "description": "Send this attribute if you want to create a void for this authorization.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "axerve_payment"
+      ],
+      "description": "Execute an action on a resource of type axerve_payments",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "axerve_payment:update"
+      ],
+      "description": "Send this attribute if you want to update the payment with fresh order data.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "bundle"
+      ],
+      "description": "Execute an action on a resource of type bundles",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "bundle:compute_compare_at_amount"
+      ],
+      "description": "Send this attribute if you want to compute the compare_at_amount_cents as the sum of the prices of the bundle skus for the market.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "bundle:compute_price_amount"
+      ],
+      "description": "Send this attribute if you want to compute the price_amount_cents as the sum of the prices of the bundle skus for the market.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "buy_x_pay_y_promotion"
+      ],
+      "description": "Execute an action on a resource of type buy_x_pay_y_promotions",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "buy_x_pay_y_promotion:disable"
+      ],
+      "description": "Send this attribute if you want to mark the promotion as disabled.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "buy_x_pay_y_promotion:enable"
+      ],
+      "description": "Send this attribute if you want to mark the promotion as enabled.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "capture"
+      ],
+      "description": "Execute an action on a resource of type captures",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "capture:refund"
+      ],
+      "description": "Send this attribute if you want to create a refund for this capture.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "capture:refund_amount_cents"
+      ],
+      "description": "The associated refund amount, in cents.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "checkout_com_payment"
+      ],
+      "description": "Execute an action on a resource of type checkout_com_payments",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "checkout_com_payment:details"
+      ],
+      "description": "Send this attribute if you want to send additional details the payment request (i.e. upon 3ds check).",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "checkout_com_payment:refresh"
+      ],
+      "description": "Send this attribute if you want to refresh all the pending transactions, can be used as webhooks fallback logic.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "customer_password_reset"
+      ],
+      "description": "Execute an action on a resource of type customer_password_resets",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "customer_password_reset:reset_password_token"
+      ],
+      "description": "Send the 'reset_password_token' that you got on create when updating the customer password.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "external_promotion"
+      ],
+      "description": "Execute an action on a resource of type external_promotions",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "external_promotion:disable"
+      ],
+      "description": "Send this attribute if you want to mark the promotion as disabled.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "external_promotion:enable"
+      ],
+      "description": "Send this attribute if you want to mark the promotion as enabled.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "fixed_amount_promotion"
+      ],
+      "description": "Execute an action on a resource of type fixed_amount_promotions",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "fixed_amount_promotion:disable"
+      ],
+      "description": "Send this attribute if you want to mark the promotion as disabled.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "fixed_amount_promotion:enable"
+      ],
+      "description": "Send this attribute if you want to mark the promotion as enabled.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "fixed_price_promotion"
+      ],
+      "description": "Execute an action on a resource of type fixed_price_promotions",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "fixed_price_promotion:disable"
+      ],
+      "description": "Send this attribute if you want to mark the promotion as disabled.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "fixed_price_promotion:enable"
+      ],
+      "description": "Send this attribute if you want to mark the promotion as enabled.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "free_gift_promotion"
+      ],
+      "description": "Execute an action on a resource of type free_gift_promotions",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "free_gift_promotion:disable"
+      ],
+      "description": "Send this attribute if you want to mark the promotion as disabled.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "free_gift_promotion:enable"
+      ],
+      "description": "Send this attribute if you want to mark the promotion as enabled.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "free_shipping_promotion"
+      ],
+      "description": "Execute an action on a resource of type free_shipping_promotions",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "free_shipping_promotion:disable"
+      ],
+      "description": "Send this attribute if you want to mark the promotion as disabled.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "free_shipping_promotion:enable"
+      ],
+      "description": "Send this attribute if you want to mark the promotion as enabled.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "gift_card"
+      ],
+      "description": "Execute an action on a resource of type gift_cards",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "gift_card:activate"
+      ],
+      "description": "Send this attribute if you want to activate a gift card.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "gift_card:balance_change_cents"
+      ],
+      "description": "The balance change, in cents. send a negative value to reduces the card balance by the specified amount. send a positive value to recharge the gift card (if rechargeable).",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "gift_card:deactivate"
+      ],
+      "description": "Send this attribute if you want to deactivate a gift card.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "gift_card:purchase"
+      ],
+      "description": "Send this attribute if you want to confirm a draft gift card. the gift card becomes 'inactive', waiting to be activated.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "in_stock_subscription"
+      ],
+      "description": "Execute an action on a resource of type in_stock_subscriptions",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "in_stock_subscription:activate"
+      ],
+      "description": "Send this attribute if you want to activate an inactive subscription.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "in_stock_subscription:deactivate"
+      ],
+      "description": "Send this attribute if you want to dactivate an active subscription.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "klarna_payment"
+      ],
+      "description": "Execute an action on a resource of type klarna_payments",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "klarna_payment:update"
+      ],
+      "description": "Send this attribute if you want to update the payment session with fresh order data.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "line_item"
+      ],
+      "description": "Execute an action on a resource of type line_items",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "line_item:external_price"
+      ],
+      "description": "When creating or updating a new line item, set this attribute to '1' if you want to inject the unit_amount_cents price from an external source. any successive price computation will be done externally, until the attribute is reset to '0'.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "line_item:reserve_stock"
+      ],
+      "description": "Send this attribute if you want to reserve the stock for the line item's skus quantity. stock reservations expiration depends on the inventory model's cutoff. when used on update the existing active stock reservations are renewed.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "market"
+      ],
+      "description": "Execute an action on a resource of type markets",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "market:disable"
+      ],
+      "description": "Send this attribute if you want to mark the market as disabled.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "market:enable"
+      ],
+      "description": "Send this attribute if you want to mark the market as enabled.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order"
+      ],
+      "description": "Execute an action on a resource of type orders",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order_subscription"
+      ],
+      "description": "Execute an action on a resource of type order_subscriptions",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order_subscription:activate"
+      ],
+      "description": "Send this attribute if you want to mark this subscription as active.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order_subscription:cancel"
+      ],
+      "description": "Send this attribute if you want to mark this subscription as cancelled.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order_subscription:deactivate"
+      ],
+      "description": "Send this attribute if you want to mark this subscription as inactive.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:approve"
+      ],
+      "description": "Send this attribute if you want to approve a placed order.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:approve_and_capture"
+      ],
+      "description": "Send this attribute if you want to approve and capture a placed order.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:archive"
+      ],
+      "description": "Send this attribute if you want to archive the order.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:authorization_amount_cents"
+      ],
+      "description": "The authorization amount, in cents.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:authorize"
+      ],
+      "description": "Send this attribute if you want to authorize the order's payment source.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:billing_address_clone_id"
+      ],
+      "description": "The id of the address that you want to clone to create the order's billing address.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        },
+        {
+          "name": [
+            "-v",
+            "--value"
+          ],
+          "description": "The trigger attribute value",
+          "args": {},
+          "isRequired": true
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:billing_address_same_as_shipping"
+      ],
+      "description": "Send this attribute if you want the billing address to be cloned from the order's shipping address.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:cancel"
+      ],
+      "description": "Send this attribute if you want to cancel a placed order. the order's authorization will be automatically voided.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:capture"
+      ],
+      "description": "Send this attribute if you want to capture an authorized order.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:commit_invoice"
+      ],
+      "description": "Send this attribute if you want commit the sales tax invoice to the associated tax calculator (currently supported by avalara).",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:create_subscriptions"
+      ],
+      "description": "Send this attribute upon/after placing the order if you want to create order subscriptions from the line items that have a frequency.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:customer_payment_source_id"
+      ],
+      "description": "The id of the customer payment source (i.e. credit card) that you want to use as the order's payment source.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        },
+        {
+          "name": [
+            "-v",
+            "--value"
+          ],
+          "description": "The trigger attribute value",
+          "args": {},
+          "isRequired": true
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:nullify_payment_source"
+      ],
+      "description": "Send this attribute if you want to nullify the payment source for this order.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:place"
+      ],
+      "description": "Send this attribute if you want to place the order.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:refresh"
+      ],
+      "description": "Send this attribute if you want to manually refresh the order.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:refund"
+      ],
+      "description": "Send this attribute if you want to refund a captured order.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:refund_invoice"
+      ],
+      "description": "Send this attribute if you want refund the sales tax invoice to the associated tax calculator (currently supported by avalara).",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:save_billing_address_to_customer_address_book"
+      ],
+      "description": "Send this attribute if you want the order's billing address to be saved in the customer's address book as a customer address.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:save_payment_source_to_customer_wallet"
+      ],
+      "description": "Send this attribute if you want the order's payment source to be saved in the customer's wallet as a customer payment source.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:save_shipping_address_to_customer_address_book"
+      ],
+      "description": "Send this attribute if you want the order's shipping address to be saved in the customer's address book as a customer address.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:shipping_address_clone_id"
+      ],
+      "description": "The id of the address that you want to clone to create the order's shipping address.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        },
+        {
+          "name": [
+            "-v",
+            "--value"
+          ],
+          "description": "The trigger attribute value",
+          "args": {},
+          "isRequired": true
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:shipping_address_same_as_billing"
+      ],
+      "description": "Send this attribute if you want the shipping address to be cloned from the order's billing address.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:start_editing"
+      ],
+      "description": "Send this attribute if you want to edit the order after it is placed. remember you cannot exceed the original total amount.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:stop_editing"
+      ],
+      "description": "Send this attribute to stop the editing for the order and return back to placed status.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:unarchive"
+      ],
+      "description": "Send this attribute if you want to unarchive the order.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:update_taxes"
+      ],
+      "description": "Send this attribute if you want to force tax calculation for this order (a tax calculator must be associated to the order's market).",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "order:validate"
+      ],
+      "description": "Send this attribute if you want to trigger the external validation for the order.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "payment_method"
+      ],
+      "description": "Execute an action on a resource of type payment_methods",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "payment_method:disable"
+      ],
+      "description": "Send this attribute if you want to mark the payment method as disabled.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "payment_method:enable"
+      ],
+      "description": "Send this attribute if you want to mark the payment method as enabled.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "percentage_discount_promotion"
+      ],
+      "description": "Execute an action on a resource of type percentage_discount_promotions",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "percentage_discount_promotion:disable"
+      ],
+      "description": "Send this attribute if you want to mark the promotion as disabled.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "percentage_discount_promotion:enable"
+      ],
+      "description": "Send this attribute if you want to mark the promotion as enabled.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "return"
+      ],
+      "description": "Execute an action on a resource of type returns",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "return_line_item"
+      ],
+      "description": "Execute an action on a resource of type return_line_items",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "return_line_item:restock"
+      ],
+      "description": "Send this attribute if you want to restock the line item.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "return:approve"
+      ],
+      "description": "Send this attribute if you want to mark this return as approved.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "return:archive"
+      ],
+      "description": "Send this attribute if you want to archive the return.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "return:cancel"
+      ],
+      "description": "Send this attribute if you want to mark this return as cancelled.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "return:receive"
+      ],
+      "description": "Send this attribute if you want to mark this return as received.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "return:reject"
+      ],
+      "description": "Send this attribute if you want to mark this return as rejected.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "return:request"
+      ],
+      "description": "Send this attribute if you want to activate this return.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "return:restock"
+      ],
+      "description": "Send this attribute if you want to restock all of the return line items.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "return:ship"
+      ],
+      "description": "Send this attribute if you want to mark this return as shipped.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "return:unarchive"
+      ],
+      "description": "Send this attribute if you want to unarchive the return.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "satispay_payment"
+      ],
+      "description": "Execute an action on a resource of type satispay_payments",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "satispay_payment:refresh"
+      ],
+      "description": "Send this attribute if you want to refresh all the pending transactions, can be used as webhooks fallback logic.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "shipment"
+      ],
+      "description": "Execute an action on a resource of type shipments",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "shipment:decrement_stock"
+      ],
+      "description": "Send this attribute if you want to automatically decrement and release the stock for each of the associated stock line item. can be done only when fulfillment is in progress.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "shipment:get_rates"
+      ],
+      "description": "Send this attribute if you want get the shipping rates from the associated carrier accounts.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "shipment:on_hold"
+      ],
+      "description": "Send this attribute if you want to put this shipment on hold.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "shipment:packing"
+      ],
+      "description": "Send this attribute if you want to start packing this shipment.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "shipment:picking"
+      ],
+      "description": "Send this attribute if you want to start picking this shipment.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "shipment:purchase"
+      ],
+      "description": "Send this attribute if you want to purchase this shipment with the selected rate.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "shipment:ready_to_ship"
+      ],
+      "description": "Send this attribute if you want to mark this shipment as ready to ship.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "shipment:release_stock"
+      ],
+      "description": "Send this attribute if you want to automatically release the stock for each of the associated stock line item. can be done only when fulfillment is in progress.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "shipment:reserve_stock"
+      ],
+      "description": "Send this attribute if you want to automatically reserve the stock for each of the associated stock line item. can be done only when fulfillment is in progress.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "shipment:ship"
+      ],
+      "description": "Send this attribute if you want to mark this shipment as shipped.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "shipment:upcoming"
+      ],
+      "description": "Send this attribute if you want to mark this shipment as upcoming.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "shipping_method"
+      ],
+      "description": "Execute an action on a resource of type shipping_methods",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "shipping_method:disable"
+      ],
+      "description": "Send this attribute if you want to mark the shipping method as disabled.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "shipping_method:enable"
+      ],
+      "description": "Send this attribute if you want to mark the shipping method as enabled.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "stock_line_item"
+      ],
+      "description": "Execute an action on a resource of type stock_line_items",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "stock_line_item:decrement_stock"
+      ],
+      "description": "Send this attribute if you want to automatically decrement and release the stock this stock line item. can be done only when fulfillment is in progress.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "stock_line_item:release_stock"
+      ],
+      "description": "Send this attribute if you want to automatically release the stock for this stock line item. can be done only when fulfillment is in progress.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "stock_line_item:reserve_stock"
+      ],
+      "description": "Send this attribute if you want to automatically reserve the stock for this stock line item. can be done only when fulfillment is in progress.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "stock_reservation"
+      ],
+      "description": "Execute an action on a resource of type stock_reservations",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "stock_reservation:pending"
+      ],
+      "description": "Send this attribute if you want to mark this stock reservation as pending.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "stock_transfer"
+      ],
+      "description": "Execute an action on a resource of type stock_transfers",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "stock_transfer:cancel"
+      ],
+      "description": "Send this attribute if you want to cancel this stock transfer.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "stock_transfer:complete"
+      ],
+      "description": "Send this attribute if you want to complete this stock transfer.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "stock_transfer:in_transit"
+      ],
+      "description": "Send this attribute if you want to mark this stock transfer as in transit.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "stock_transfer:on_hold"
+      ],
+      "description": "Send this attribute if you want to put this stock transfer on hold.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "stock_transfer:picking"
+      ],
+      "description": "Send this attribute if you want to start picking this stock transfer.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "stock_transfer:upcoming"
+      ],
+      "description": "Send this attribute if you want to mark this stock transfer as upcoming.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "stripe_payment"
+      ],
+      "description": "Execute an action on a resource of type stripe_payments",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "stripe_payment:refresh"
+      ],
+      "description": "Send this attribute if you want to refresh the payment status, can be used as webhooks fallback logic.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "stripe_payment:update"
+      ],
+      "description": "Send this attribute if you want to update the created payment intent with fresh order data.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "webhook"
+      ],
+      "description": "Execute an action on a resource of type webhooks",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "webhook:disable"
+      ],
+      "description": "Send this attribute if you want to mark the webhook as disabled.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "webhook:enable"
+      ],
+      "description": "Send this attribute if you want to mark the webhook as enabled.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
+        "webhook:reset_circuit"
+      ],
+      "description": "Send this attribute if you want to reset the circuit breaker associated to this webhook to 'closed' state and zero failures count.",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-p",
+            "--print"
+          ],
+          "description": "Print out the modified resource"
+        },
+        {
+          "name": [
+            "-j",
+            "--json"
+          ],
+          "description": "Print result in json format"
+        },
+        {
+          "name": [
+            "-u",
+            "--unformatted"
+          ],
+          "description": "Print json output without indentation"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "The unique id of the resource"
+        }
+      ]
+    },
+    {
+      "name": [
         "orders"
       ],
       "description": "Execute an action on an order",
@@ -1504,6 +9885,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -1512,10 +9894,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -1560,6 +9944,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -1568,10 +9953,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -1616,6 +10003,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -1624,10 +10012,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -1672,6 +10062,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -1680,10 +10071,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -1728,6 +10121,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -1736,10 +10130,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -1784,6 +10180,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -1792,10 +10189,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -1840,6 +10239,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -1848,10 +10248,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -1882,6 +10284,7 @@ const completionSpec: Fig.Spec = {
             "--value"
           ],
           "description": "The trigger attribute value",
+          "args": {},
           "isRequired": true
         }
       ],
@@ -1904,6 +10307,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -1912,10 +10316,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -1960,6 +10366,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -1968,10 +10375,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2016,6 +10425,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2024,10 +10434,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2072,6 +10484,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2080,10 +10493,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2128,6 +10543,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2136,10 +10552,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2184,6 +10602,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2192,10 +10611,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2226,6 +10647,7 @@ const completionSpec: Fig.Spec = {
             "--value"
           ],
           "description": "The trigger attribute value",
+          "args": {},
           "isRequired": true
         }
       ],
@@ -2248,6 +10670,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2256,10 +10679,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2304,6 +10729,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2312,10 +10738,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2360,6 +10788,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2368,10 +10797,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2416,6 +10847,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2424,10 +10856,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2472,6 +10906,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2480,10 +10915,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2528,6 +10965,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2536,10 +10974,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2584,6 +11024,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2592,10 +11033,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2640,6 +11083,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2648,10 +11092,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2696,6 +11142,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2704,10 +11151,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2738,6 +11187,7 @@ const completionSpec: Fig.Spec = {
             "--value"
           ],
           "description": "The trigger attribute value",
+          "args": {},
           "isRequired": true
         }
       ],
@@ -2760,6 +11210,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2768,10 +11219,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2816,6 +11269,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2824,10 +11278,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2872,6 +11328,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2880,10 +11337,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2928,6 +11387,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2936,10 +11396,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2984,6 +11446,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -2992,10 +11455,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3040,6 +11505,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3048,10 +11514,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3096,6 +11564,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3104,10 +11573,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3129,7 +11600,8 @@ const completionSpec: Fig.Spec = {
             "-t",
             "--topic"
           ],
-          "description": "The event that triggered the webhook"
+          "description": "The event that triggered the webhook",
+          "args": {}
         },
         {
           "name": [
@@ -3167,6 +11639,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3175,10 +11648,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3188,6 +11663,7 @@ const completionSpec: Fig.Spec = {
             "--topic"
           ],
           "description": "The identifier of the event that will trigger the webhook",
+          "args": {},
           "isRequired": true
         },
         {
@@ -3196,6 +11672,7 @@ const completionSpec: Fig.Spec = {
             "--url"
           ],
           "description": "The callback url used to post data",
+          "args": {},
           "isRequired": true
         },
         {
@@ -3203,14 +11680,16 @@ const completionSpec: Fig.Spec = {
             "-i",
             "--include"
           ],
-          "description": "A comma separated list of related resources to be included"
+          "description": "A comma separated list of related resources to be included",
+          "args": {}
         },
         {
           "name": [
             "-n",
             "--name"
           ],
-          "description": "The webhook short name"
+          "description": "The webhook short name",
+          "args": {}
         }
       ]
     },
@@ -3229,6 +11708,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3237,10 +11717,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         }
@@ -3265,6 +11747,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3273,10 +11756,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3315,6 +11800,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3323,10 +11809,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3365,6 +11853,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3373,10 +11862,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3392,7 +11883,8 @@ const completionSpec: Fig.Spec = {
             "-l",
             "--limit"
           ],
-          "description": "Limit number of events in output"
+          "description": "Limit number of events in output",
+          "args": {}
         }
       ],
       "args": [
@@ -3415,6 +11907,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3423,10 +11916,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3448,7 +11943,8 @@ const completionSpec: Fig.Spec = {
             "-t",
             "--topic"
           ],
-          "description": "The event that triggered the webhook"
+          "description": "The event that triggered the webhook",
+          "args": {}
         }
       ]
     },
@@ -3465,6 +11961,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3473,10 +11970,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3485,7 +11984,10 @@ const completionSpec: Fig.Spec = {
             "-t",
             "--time"
           ],
-          "description": "Waiting time for the first event"
+          "description": "Waiting time for the first event",
+          "args": {
+            "default": "120"
+          }
         }
       ],
       "args": [
@@ -3508,6 +12010,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3516,10 +12019,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3551,6 +12056,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3559,10 +12065,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         }
@@ -3594,6 +12102,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3602,10 +12111,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3614,28 +12125,32 @@ const completionSpec: Fig.Spec = {
             "-t",
             "--topic"
           ],
-          "description": "The identifier of the event that will trigger the webhook"
+          "description": "The identifier of the event that will trigger the webhook",
+          "args": {}
         },
         {
           "name": [
             "-u",
             "--url"
           ],
-          "description": "The callback url used to post data"
+          "description": "The callback url used to post data",
+          "args": {}
         },
         {
           "name": [
             "-i",
             "--include"
           ],
-          "description": "A comma separated list of related resources to be included"
+          "description": "A comma separated list of related resources to be included",
+          "args": {}
         },
         {
           "name": [
             "-n",
             "--name"
           ],
-          "description": "The webhook short name"
+          "description": "The webhook short name",
+          "args": {}
         }
       ],
       "args": [
@@ -3657,6 +12172,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3665,6 +12181,7 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
@@ -3672,6 +12189,7 @@ const completionSpec: Fig.Spec = {
             "-a",
             "--accessToken"
           ],
+          "args": {},
           "isRequired": true,
           "hidden": false
         },
@@ -3685,6 +12203,7 @@ const completionSpec: Fig.Spec = {
             "--skuListId"
           ],
           "description": "The sku list id",
+          "args": {},
           "isRequired": true
         },
         {
@@ -3722,6 +12241,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3730,6 +12250,7 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
@@ -3738,6 +12259,7 @@ const completionSpec: Fig.Spec = {
             "--accessToken"
           ],
           "description": "Custom access token to use instead of the one used for login",
+          "args": {},
           "isRequired": true,
           "hidden": false
         },
@@ -3755,42 +12277,48 @@ const completionSpec: Fig.Spec = {
             "-O",
             "--order"
           ],
-          "description": "An order id"
+          "description": "An order id",
+          "args": {}
         },
         {
           "name": [
             "-S",
             "--sku"
           ],
-          "description": "An sku code"
+          "description": "An sku code",
+          "args": {}
         },
         {
           "name": [
             "-B",
             "--bundle"
           ],
-          "description": "A bundle code"
+          "description": "A bundle code",
+          "args": {}
         },
         {
           "name": [
             "-m",
             "--market"
           ],
-          "description": "A market number"
+          "description": "A market number",
+          "args": {}
         },
         {
           "name": [
             "-c",
             "--coupon"
           ],
-          "description": "A promo code"
+          "description": "A promo code",
+          "args": {}
         },
         {
           "name": [
             "-e",
             "--email"
           ],
-          "description": "A customer email"
+          "description": "A customer email",
+          "args": {}
         }
       ]
     },
@@ -3806,6 +12334,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3814,6 +12343,7 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
@@ -3822,6 +12352,7 @@ const completionSpec: Fig.Spec = {
             "--accessToken"
           ],
           "description": "Custom access token to use instead of the one used for login",
+          "args": {},
           "isRequired": true,
           "hidden": false
         },
@@ -3868,14 +12399,18 @@ const completionSpec: Fig.Spec = {
             "-u",
             "--url"
           ],
-          "description": "Seeder data url"
+          "description": "Seeder data url",
+          "args": {
+            "default": "https://data.commercelayer.app/seeder"
+          }
         },
         {
           "name": [
             "-n",
             "--name"
           ],
-          "description": "The name of the business model file to use"
+          "description": "The name of the business model file to use",
+          "args": {}
         },
         {
           "name": "--debug",
@@ -3917,14 +12452,18 @@ const completionSpec: Fig.Spec = {
             "-u",
             "--url"
           ],
-          "description": "Seeder data url"
+          "description": "Seeder data url",
+          "args": {
+            "default": "https://data.commercelayer.app/seeder"
+          }
         },
         {
           "name": [
             "-n",
             "--name"
           ],
-          "description": "The name of the business model file to use"
+          "description": "The name of the business model file to use",
+          "args": {}
         },
         {
           "name": "--debug",
@@ -3937,6 +12476,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -3945,10 +12485,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         }
@@ -3981,14 +12523,18 @@ const completionSpec: Fig.Spec = {
             "-u",
             "--url"
           ],
-          "description": "Seeder data url"
+          "description": "Seeder data url",
+          "args": {
+            "default": "https://data.commercelayer.app/seeder"
+          }
         },
         {
           "name": [
             "-n",
             "--name"
           ],
-          "description": "The name of the business model file to use"
+          "description": "The name of the business model file to use",
+          "args": {}
         },
         {
           "name": "--debug",
@@ -4001,6 +12547,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -4009,10 +12556,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -4029,7871 +12578,8 @@ const completionSpec: Fig.Spec = {
             "--delay"
           ],
           "description": "Add a delay in milliseconds between calls to different resources",
+          "args": {},
           "hidden": true
-        }
-      ]
-    },
-    {
-      "name": [
-        "adyen_payment"
-      ],
-      "description": "Execute an action on a resource of type adyen_payments",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "adyen_payment:details"
-      ],
-      "description": "Send this attribute if you want to send additional details the payment request.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "authorization"
-      ],
-      "description": "Execute an action on a resource of type authorizations",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "authorization:capture"
-      ],
-      "description": "Send this attribute if you want to create a capture for this authorization.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "authorization:capture_amount_cents"
-      ],
-      "description": "The associated capture amount, in cents.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "authorization:void"
-      ],
-      "description": "Send this attribute if you want to create a void for this authorization.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "axerve_payment"
-      ],
-      "description": "Execute an action on a resource of type axerve_payments",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "axerve_payment:update"
-      ],
-      "description": "Send this attribute if you want to update the payment with fresh order data.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "bundle"
-      ],
-      "description": "Execute an action on a resource of type bundles",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "bundle:compute_compare_at_amount"
-      ],
-      "description": "Send this attribute if you want to compute the compare_at_amount_cents as the sum of the prices of the bundle skus for the market.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "bundle:compute_price_amount"
-      ],
-      "description": "Send this attribute if you want to compute the price_amount_cents as the sum of the prices of the bundle skus for the market.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "buy_x_pay_y_promotion"
-      ],
-      "description": "Execute an action on a resource of type buy_x_pay_y_promotions",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "buy_x_pay_y_promotion:disable"
-      ],
-      "description": "Send this attribute if you want to mark the promotion as disabled.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "buy_x_pay_y_promotion:enable"
-      ],
-      "description": "Send this attribute if you want to mark the promotion as enabled.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "capture"
-      ],
-      "description": "Execute an action on a resource of type captures",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "capture:refund"
-      ],
-      "description": "Send this attribute if you want to create a refund for this capture.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "capture:refund_amount_cents"
-      ],
-      "description": "The associated refund amount, in cents.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "checkout_com_payment"
-      ],
-      "description": "Execute an action on a resource of type checkout_com_payments",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "checkout_com_payment:details"
-      ],
-      "description": "Send this attribute if you want to send additional details the payment request (i.e. upon 3ds check).",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "checkout_com_payment:refresh"
-      ],
-      "description": "Send this attribute if you want to refresh all the pending transactions, can be used as webhooks fallback logic.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "customer_password_reset"
-      ],
-      "description": "Execute an action on a resource of type customer_password_resets",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "customer_password_reset:reset_password_token"
-      ],
-      "description": "Send the 'reset_password_token' that you got on create when updating the customer password.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "external_promotion"
-      ],
-      "description": "Execute an action on a resource of type external_promotions",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "external_promotion:disable"
-      ],
-      "description": "Send this attribute if you want to mark the promotion as disabled.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "external_promotion:enable"
-      ],
-      "description": "Send this attribute if you want to mark the promotion as enabled.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "fixed_amount_promotion"
-      ],
-      "description": "Execute an action on a resource of type fixed_amount_promotions",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "fixed_amount_promotion:disable"
-      ],
-      "description": "Send this attribute if you want to mark the promotion as disabled.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "fixed_amount_promotion:enable"
-      ],
-      "description": "Send this attribute if you want to mark the promotion as enabled.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "fixed_price_promotion"
-      ],
-      "description": "Execute an action on a resource of type fixed_price_promotions",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "fixed_price_promotion:disable"
-      ],
-      "description": "Send this attribute if you want to mark the promotion as disabled.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "fixed_price_promotion:enable"
-      ],
-      "description": "Send this attribute if you want to mark the promotion as enabled.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "free_gift_promotion"
-      ],
-      "description": "Execute an action on a resource of type free_gift_promotions",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "free_gift_promotion:disable"
-      ],
-      "description": "Send this attribute if you want to mark the promotion as disabled.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "free_gift_promotion:enable"
-      ],
-      "description": "Send this attribute if you want to mark the promotion as enabled.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "free_shipping_promotion"
-      ],
-      "description": "Execute an action on a resource of type free_shipping_promotions",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "free_shipping_promotion:disable"
-      ],
-      "description": "Send this attribute if you want to mark the promotion as disabled.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "free_shipping_promotion:enable"
-      ],
-      "description": "Send this attribute if you want to mark the promotion as enabled.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "gift_card"
-      ],
-      "description": "Execute an action on a resource of type gift_cards",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "gift_card:activate"
-      ],
-      "description": "Send this attribute if you want to activate a gift card.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "gift_card:balance_change_cents"
-      ],
-      "description": "The balance change, in cents. send a negative value to reduces the card balance by the specified amount. send a positive value to recharge the gift card (if rechargeable).",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "gift_card:deactivate"
-      ],
-      "description": "Send this attribute if you want to deactivate a gift card.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "gift_card:purchase"
-      ],
-      "description": "Send this attribute if you want to confirm a draft gift card. the gift card becomes 'inactive', waiting to be activated.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "in_stock_subscription"
-      ],
-      "description": "Execute an action on a resource of type in_stock_subscriptions",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "in_stock_subscription:activate"
-      ],
-      "description": "Send this attribute if you want to activate an inactive subscription.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "in_stock_subscription:deactivate"
-      ],
-      "description": "Send this attribute if you want to dactivate an active subscription.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "klarna_payment"
-      ],
-      "description": "Execute an action on a resource of type klarna_payments",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "klarna_payment:update"
-      ],
-      "description": "Send this attribute if you want to update the payment session with fresh order data.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "line_item"
-      ],
-      "description": "Execute an action on a resource of type line_items",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "line_item:external_price"
-      ],
-      "description": "When creating or updating a new line item, set this attribute to '1' if you want to inject the unit_amount_cents price from an external source. any successive price computation will be done externally, until the attribute is reset to '0'.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "line_item:reserve_stock"
-      ],
-      "description": "Send this attribute if you want to reserve the stock for the line item's skus quantity. stock reservations expiration depends on the inventory model's cutoff. when used on update the existing active stock reservations are renewed.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "market"
-      ],
-      "description": "Execute an action on a resource of type markets",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "market:disable"
-      ],
-      "description": "Send this attribute if you want to mark the market as disabled.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "market:enable"
-      ],
-      "description": "Send this attribute if you want to mark the market as enabled.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order"
-      ],
-      "description": "Execute an action on a resource of type orders",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order_subscription"
-      ],
-      "description": "Execute an action on a resource of type order_subscriptions",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order_subscription:activate"
-      ],
-      "description": "Send this attribute if you want to mark this subscription as active.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order_subscription:cancel"
-      ],
-      "description": "Send this attribute if you want to mark this subscription as cancelled.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order_subscription:deactivate"
-      ],
-      "description": "Send this attribute if you want to mark this subscription as inactive.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:approve"
-      ],
-      "description": "Send this attribute if you want to approve a placed order.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:approve_and_capture"
-      ],
-      "description": "Send this attribute if you want to approve and capture a placed order.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:archive"
-      ],
-      "description": "Send this attribute if you want to archive the order.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:authorization_amount_cents"
-      ],
-      "description": "The authorization amount, in cents.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:authorize"
-      ],
-      "description": "Send this attribute if you want to authorize the order's payment source.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:billing_address_clone_id"
-      ],
-      "description": "The id of the address that you want to clone to create the order's billing address.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        },
-        {
-          "name": [
-            "-v",
-            "--value"
-          ],
-          "description": "The trigger attribute value",
-          "isRequired": true
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:billing_address_same_as_shipping"
-      ],
-      "description": "Send this attribute if you want the billing address to be cloned from the order's shipping address.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:cancel"
-      ],
-      "description": "Send this attribute if you want to cancel a placed order. the order's authorization will be automatically voided.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:capture"
-      ],
-      "description": "Send this attribute if you want to capture an authorized order.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:commit_invoice"
-      ],
-      "description": "Send this attribute if you want commit the sales tax invoice to the associated tax calculator (currently supported by avalara).",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:create_subscriptions"
-      ],
-      "description": "Send this attribute upon/after placing the order if you want to create order subscriptions from the line items that have a frequency.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:customer_payment_source_id"
-      ],
-      "description": "The id of the customer payment source (i.e. credit card) that you want to use as the order's payment source.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        },
-        {
-          "name": [
-            "-v",
-            "--value"
-          ],
-          "description": "The trigger attribute value",
-          "isRequired": true
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:nullify_payment_source"
-      ],
-      "description": "Send this attribute if you want to nullify the payment source for this order.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:place"
-      ],
-      "description": "Send this attribute if you want to place the order.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:refresh"
-      ],
-      "description": "Send this attribute if you want to manually refresh the order.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:refund"
-      ],
-      "description": "Send this attribute if you want to refund a captured order.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:refund_invoice"
-      ],
-      "description": "Send this attribute if you want refund the sales tax invoice to the associated tax calculator (currently supported by avalara).",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:save_billing_address_to_customer_address_book"
-      ],
-      "description": "Send this attribute if you want the order's billing address to be saved in the customer's address book as a customer address.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:save_payment_source_to_customer_wallet"
-      ],
-      "description": "Send this attribute if you want the order's payment source to be saved in the customer's wallet as a customer payment source.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:save_shipping_address_to_customer_address_book"
-      ],
-      "description": "Send this attribute if you want the order's shipping address to be saved in the customer's address book as a customer address.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:shipping_address_clone_id"
-      ],
-      "description": "The id of the address that you want to clone to create the order's shipping address.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        },
-        {
-          "name": [
-            "-v",
-            "--value"
-          ],
-          "description": "The trigger attribute value",
-          "isRequired": true
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:shipping_address_same_as_billing"
-      ],
-      "description": "Send this attribute if you want the shipping address to be cloned from the order's billing address.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:start_editing"
-      ],
-      "description": "Send this attribute if you want to edit the order after it is placed. remember you cannot exceed the original total amount.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:stop_editing"
-      ],
-      "description": "Send this attribute to stop the editing for the order and return back to placed status.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:unarchive"
-      ],
-      "description": "Send this attribute if you want to unarchive the order.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:update_taxes"
-      ],
-      "description": "Send this attribute if you want to force tax calculation for this order (a tax calculator must be associated to the order's market).",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "order:validate"
-      ],
-      "description": "Send this attribute if you want to trigger the external validation for the order.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "payment_method"
-      ],
-      "description": "Execute an action on a resource of type payment_methods",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "payment_method:disable"
-      ],
-      "description": "Send this attribute if you want to mark the payment method as disabled.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "payment_method:enable"
-      ],
-      "description": "Send this attribute if you want to mark the payment method as enabled.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "percentage_discount_promotion"
-      ],
-      "description": "Execute an action on a resource of type percentage_discount_promotions",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "percentage_discount_promotion:disable"
-      ],
-      "description": "Send this attribute if you want to mark the promotion as disabled.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "percentage_discount_promotion:enable"
-      ],
-      "description": "Send this attribute if you want to mark the promotion as enabled.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "return"
-      ],
-      "description": "Execute an action on a resource of type returns",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "return_line_item"
-      ],
-      "description": "Execute an action on a resource of type return_line_items",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "return_line_item:restock"
-      ],
-      "description": "Send this attribute if you want to restock the line item.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "return:approve"
-      ],
-      "description": "Send this attribute if you want to mark this return as approved.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "return:archive"
-      ],
-      "description": "Send this attribute if you want to archive the return.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "return:cancel"
-      ],
-      "description": "Send this attribute if you want to mark this return as cancelled.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "return:receive"
-      ],
-      "description": "Send this attribute if you want to mark this return as received.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "return:reject"
-      ],
-      "description": "Send this attribute if you want to mark this return as rejected.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "return:request"
-      ],
-      "description": "Send this attribute if you want to activate this return.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "return:restock"
-      ],
-      "description": "Send this attribute if you want to restock all of the return line items.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "return:ship"
-      ],
-      "description": "Send this attribute if you want to mark this return as shipped.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "return:unarchive"
-      ],
-      "description": "Send this attribute if you want to unarchive the return.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "satispay_payment"
-      ],
-      "description": "Execute an action on a resource of type satispay_payments",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "satispay_payment:refresh"
-      ],
-      "description": "Send this attribute if you want to refresh all the pending transactions, can be used as webhooks fallback logic.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "shipment"
-      ],
-      "description": "Execute an action on a resource of type shipments",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "shipment:decrement_stock"
-      ],
-      "description": "Send this attribute if you want to automatically decrement and release the stock for each of the associated stock line item. can be done only when fulfillment is in progress.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "shipment:get_rates"
-      ],
-      "description": "Send this attribute if you want get the shipping rates from the associated carrier accounts.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "shipment:on_hold"
-      ],
-      "description": "Send this attribute if you want to put this shipment on hold.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "shipment:packing"
-      ],
-      "description": "Send this attribute if you want to start packing this shipment.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "shipment:picking"
-      ],
-      "description": "Send this attribute if you want to start picking this shipment.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "shipment:purchase"
-      ],
-      "description": "Send this attribute if you want to purchase this shipment with the selected rate.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "shipment:ready_to_ship"
-      ],
-      "description": "Send this attribute if you want to mark this shipment as ready to ship.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "shipment:release_stock"
-      ],
-      "description": "Send this attribute if you want to automatically release the stock for each of the associated stock line item. can be done only when fulfillment is in progress.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "shipment:reserve_stock"
-      ],
-      "description": "Send this attribute if you want to automatically reserve the stock for each of the associated stock line item. can be done only when fulfillment is in progress.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "shipment:ship"
-      ],
-      "description": "Send this attribute if you want to mark this shipment as shipped.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "shipment:upcoming"
-      ],
-      "description": "Send this attribute if you want to mark this shipment as upcoming.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "shipping_method"
-      ],
-      "description": "Execute an action on a resource of type shipping_methods",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "shipping_method:disable"
-      ],
-      "description": "Send this attribute if you want to mark the shipping method as disabled.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "shipping_method:enable"
-      ],
-      "description": "Send this attribute if you want to mark the shipping method as enabled.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "stock_line_item"
-      ],
-      "description": "Execute an action on a resource of type stock_line_items",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "stock_line_item:decrement_stock"
-      ],
-      "description": "Send this attribute if you want to automatically decrement and release the stock this stock line item. can be done only when fulfillment is in progress.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "stock_line_item:release_stock"
-      ],
-      "description": "Send this attribute if you want to automatically release the stock for this stock line item. can be done only when fulfillment is in progress.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "stock_line_item:reserve_stock"
-      ],
-      "description": "Send this attribute if you want to automatically reserve the stock for this stock line item. can be done only when fulfillment is in progress.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "stock_reservation"
-      ],
-      "description": "Execute an action on a resource of type stock_reservations",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "stock_reservation:pending"
-      ],
-      "description": "Send this attribute if you want to mark this stock reservation as pending.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "stock_transfer"
-      ],
-      "description": "Execute an action on a resource of type stock_transfers",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "stock_transfer:cancel"
-      ],
-      "description": "Send this attribute if you want to cancel this stock transfer.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "stock_transfer:complete"
-      ],
-      "description": "Send this attribute if you want to complete this stock transfer.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "stock_transfer:in_transit"
-      ],
-      "description": "Send this attribute if you want to mark this stock transfer as in transit.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "stock_transfer:on_hold"
-      ],
-      "description": "Send this attribute if you want to put this stock transfer on hold.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "stock_transfer:picking"
-      ],
-      "description": "Send this attribute if you want to start picking this stock transfer.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "stock_transfer:upcoming"
-      ],
-      "description": "Send this attribute if you want to mark this stock transfer as upcoming.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "stripe_payment"
-      ],
-      "description": "Execute an action on a resource of type stripe_payments",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "stripe_payment:refresh"
-      ],
-      "description": "Send this attribute if you want to refresh the payment status, can be used as webhooks fallback logic.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "stripe_payment:update"
-      ],
-      "description": "Send this attribute if you want to update the created payment intent with fresh order data.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "webhook"
-      ],
-      "description": "Execute an action on a resource of type webhooks",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "webhook:disable"
-      ],
-      "description": "Send this attribute if you want to mark the webhook as disabled.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "webhook:enable"
-      ],
-      "description": "Send this attribute if you want to mark the webhook as enabled.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
-        }
-      ]
-    },
-    {
-      "name": [
-        "webhook:reset_circuit"
-      ],
-      "description": "Send this attribute if you want to reset the circuit breaker associated to this webhook to 'closed' state and zero failures count.",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-p",
-            "--print"
-          ],
-          "description": "Print out the modified resource"
-        },
-        {
-          "name": [
-            "-j",
-            "--json"
-          ],
-          "description": "Print result in json format"
-        },
-        {
-          "name": [
-            "-u",
-            "--unformatted"
-          ],
-          "description": "Print json output without indentation"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "The unique id of the resource"
         }
       ]
     },
@@ -11927,6 +12613,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -11935,10 +12622,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -11947,14 +12636,16 @@ const completionSpec: Fig.Spec = {
             "-i",
             "--include"
           ],
-          "description": "Comma separated resources to include"
+          "description": "Comma separated resources to include",
+          "args": {}
         },
         {
           "name": [
             "-f",
             "--fields"
           ],
-          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2..."
+          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2...",
+          "args": {}
         },
         {
           "name": [
@@ -12007,39 +12698,45 @@ const completionSpec: Fig.Spec = {
         },
         {
           "name": "--save-args",
-          "description": "Save command data to file for future use"
+          "description": "Save command data to file for future use",
+          "args": {}
         },
         {
           "name": "--load-args",
-          "description": "Load previously saved command arguments"
+          "description": "Load previously saved command arguments",
+          "args": {}
         },
         {
           "name": [
             "-w",
             "--where"
           ],
-          "description": "Comma separated list of query filters"
+          "description": "Comma separated list of query filters",
+          "args": {}
         },
         {
           "name": [
             "-s",
             "--sort"
           ],
-          "description": "Defines results ordering"
+          "description": "Defines results ordering",
+          "args": {}
         },
         {
           "name": [
             "-x",
             "--save"
           ],
-          "description": "Save command output to file"
+          "description": "Save command output to file",
+          "args": {}
         },
         {
           "name": [
             "-X",
             "--save-path"
           ],
-          "description": "Save command output to file and create missing path directories"
+          "description": "Save command output to file and create missing path directories",
+          "args": {}
         },
         {
           "name": [
@@ -12055,6 +12752,7 @@ const completionSpec: Fig.Spec = {
             "--clientId"
           ],
           "description": "Organization client_id",
+          "args": {},
           "hidden": true
         },
         {
@@ -12063,6 +12761,7 @@ const completionSpec: Fig.Spec = {
             "--clientSecret"
           ],
           "description": "Organization client_secret",
+          "args": {},
           "hidden": true
         },
         {
@@ -12092,7 +12791,8 @@ const completionSpec: Fig.Spec = {
             "-H",
             "--header"
           ],
-          "description": "Rename column headers defining a comma-separated list of values field:\"renamed title\""
+          "description": "Rename column headers defining a comma-separated list of values field:\"renamed title\"",
+          "args": {}
         },
         {
           "name": [
@@ -12106,7 +12806,8 @@ const completionSpec: Fig.Spec = {
             "-e",
             "--extract"
           ],
-          "description": "Extract subfields from object attributes"
+          "description": "Extract subfields from object attributes",
+          "args": {}
         },
         {
           "name": [
@@ -12114,6 +12815,7 @@ const completionSpec: Fig.Spec = {
             "--timeout"
           ],
           "description": "Set request timeout in milliseconds [1000 - 15000]",
+          "args": {},
           "hidden": true
         }
       ],
@@ -12136,14 +12838,16 @@ const completionSpec: Fig.Spec = {
             "-a",
             "--alias"
           ],
-          "description": "The alias associated to saved command arguments"
+          "description": "The alias associated to saved command arguments",
+          "args": {}
         },
         {
           "name": [
             "-r",
             "--resource"
           ],
-          "description": "The resource type"
+          "description": "The resource type",
+          "args": {}
         },
         {
           "name": [
@@ -12192,6 +12896,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -12200,10 +12905,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -12212,7 +12919,8 @@ const completionSpec: Fig.Spec = {
             "-w",
             "--where"
           ],
-          "description": "Comma separated list of query filters"
+          "description": "Comma separated list of query filters",
+          "args": {}
         }
       ],
       "args": [
@@ -12238,6 +12946,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -12246,10 +12955,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -12258,14 +12969,16 @@ const completionSpec: Fig.Spec = {
             "-i",
             "--include"
           ],
-          "description": "Comma separated resources to include"
+          "description": "Comma separated resources to include",
+          "args": {}
         },
         {
           "name": [
             "-f",
             "--fields"
           ],
-          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2..."
+          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2...",
+          "args": {}
         },
         {
           "name": [
@@ -12318,11 +13031,13 @@ const completionSpec: Fig.Spec = {
         },
         {
           "name": "--save-args",
-          "description": "Save command data to file for future use"
+          "description": "Save command data to file for future use",
+          "args": {}
         },
         {
           "name": "--load-args",
-          "description": "Load previously saved command arguments"
+          "description": "Load previously saved command arguments",
+          "args": {}
         },
         {
           "name": [
@@ -12343,42 +13058,48 @@ const completionSpec: Fig.Spec = {
             "-a",
             "--attribute"
           ],
-          "description": "Define a resource attribute"
+          "description": "Define a resource attribute",
+          "args": {}
         },
         {
           "name": [
             "-O",
             "--object"
           ],
-          "description": "Define a resource object attribute"
+          "description": "Define a resource object attribute",
+          "args": {}
         },
         {
           "name": [
             "-r",
             "--relationship"
           ],
-          "description": "Define a relationship with another resource"
+          "description": "Define a relationship with another resource",
+          "args": {}
         },
         {
           "name": [
             "-m",
             "--metadata"
           ],
-          "description": "Define a metadata attribute or a set of metadata attributes"
+          "description": "Define a metadata attribute or a set of metadata attributes",
+          "args": {}
         },
         {
           "name": [
             "-D",
             "--data"
           ],
-          "description": "The data file to use as request body"
+          "description": "The data file to use as request body",
+          "args": {}
         },
         {
           "name": [
             "-t",
             "--tags"
           ],
-          "description": "List of tags associated with the resource"
+          "description": "List of tags associated with the resource",
+          "args": {}
         }
       ],
       "args": [
@@ -12403,6 +13124,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -12411,10 +13133,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -12423,14 +13147,16 @@ const completionSpec: Fig.Spec = {
             "-i",
             "--include"
           ],
-          "description": "Comma separated resources to include"
+          "description": "Comma separated resources to include",
+          "args": {}
         },
         {
           "name": [
             "-f",
             "--fields"
           ],
-          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2..."
+          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2...",
+          "args": {}
         },
         {
           "name": [
@@ -12483,11 +13209,13 @@ const completionSpec: Fig.Spec = {
         },
         {
           "name": "--save-args",
-          "description": "Save command data to file for future use"
+          "description": "Save command data to file for future use",
+          "args": {}
         },
         {
           "name": "--load-args",
-          "description": "Load previously saved command arguments"
+          "description": "Load previously saved command arguments",
+          "args": {}
         },
         {
           "name": [
@@ -12564,6 +13292,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -12572,10 +13301,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -12584,14 +13315,16 @@ const completionSpec: Fig.Spec = {
             "-i",
             "--include"
           ],
-          "description": "Comma separated resources to include"
+          "description": "Comma separated resources to include",
+          "args": {}
         },
         {
           "name": [
             "-f",
             "--fields"
           ],
-          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2..."
+          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2...",
+          "args": {}
         },
         {
           "name": [
@@ -12644,11 +13377,13 @@ const completionSpec: Fig.Spec = {
         },
         {
           "name": "--save-args",
-          "description": "Save command data to file for future use"
+          "description": "Save command data to file for future use",
+          "args": {}
         },
         {
           "name": "--load-args",
-          "description": "Load previously saved command arguments"
+          "description": "Load previously saved command arguments",
+          "args": {}
         },
         {
           "name": [
@@ -12669,49 +13404,56 @@ const completionSpec: Fig.Spec = {
             "-x",
             "--save"
           ],
-          "description": "Save command output to file"
+          "description": "Save command output to file",
+          "args": {}
         },
         {
           "name": [
             "-X",
             "--save-path"
           ],
-          "description": "Save command output to file and create missing path directories"
+          "description": "Save command output to file and create missing path directories",
+          "args": {}
         },
         {
           "name": [
             "-e",
             "--extract"
           ],
-          "description": "Extract subfields from object attributes"
+          "description": "Extract subfields from object attributes",
+          "args": {}
         },
         {
           "name": [
             "-w",
             "--where"
           ],
-          "description": "Comma separated list of query filters"
+          "description": "Comma separated list of query filters",
+          "args": {}
         },
         {
           "name": [
             "-p",
             "--page"
           ],
-          "description": "Page number"
+          "description": "Page number",
+          "args": {}
         },
         {
           "name": [
             "-n",
             "--pageSize"
           ],
-          "description": "Number of elements per page"
+          "description": "Number of elements per page",
+          "args": {}
         },
         {
           "name": [
             "-s",
             "--sort"
           ],
-          "description": "Defines results ordering"
+          "description": "Defines results ordering",
+          "args": {}
         },
         {
           "name": [
@@ -12756,6 +13498,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -12764,10 +13507,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -12776,14 +13521,16 @@ const completionSpec: Fig.Spec = {
             "-i",
             "--include"
           ],
-          "description": "Comma separated resources to include"
+          "description": "Comma separated resources to include",
+          "args": {}
         },
         {
           "name": [
             "-f",
             "--fields"
           ],
-          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2..."
+          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2...",
+          "args": {}
         },
         {
           "name": [
@@ -12836,11 +13583,13 @@ const completionSpec: Fig.Spec = {
         },
         {
           "name": "--save-args",
-          "description": "Save command data to file for future use"
+          "description": "Save command data to file for future use",
+          "args": {}
         },
         {
           "name": "--load-args",
-          "description": "Load previously saved command arguments"
+          "description": "Load previously saved command arguments",
+          "args": {}
         },
         {
           "name": [
@@ -12861,49 +13610,56 @@ const completionSpec: Fig.Spec = {
             "-w",
             "--where"
           ],
-          "description": "Comma separated list of query filters"
+          "description": "Comma separated list of query filters",
+          "args": {}
         },
         {
           "name": [
             "-p",
             "--page"
           ],
-          "description": "Page number"
+          "description": "Page number",
+          "args": {}
         },
         {
           "name": [
             "-n",
             "--pageSize"
           ],
-          "description": "Number of elements per page"
+          "description": "Number of elements per page",
+          "args": {}
         },
         {
           "name": [
             "-s",
             "--sort"
           ],
-          "description": "Defines results ordering"
+          "description": "Defines results ordering",
+          "args": {}
         },
         {
           "name": [
             "-x",
             "--save"
           ],
-          "description": "Save command output to file"
+          "description": "Save command output to file",
+          "args": {}
         },
         {
           "name": [
             "-X",
             "--save-path"
           ],
-          "description": "Save command output to file and create missing path directories"
+          "description": "Save command output to file and create missing path directories",
+          "args": {}
         },
         {
           "name": [
             "-e",
             "--extract"
           ],
-          "description": "Extract subfields from object attributes"
+          "description": "Extract subfields from object attributes",
+          "args": {}
         },
         {
           "name": [
@@ -12941,6 +13697,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -12949,10 +13706,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -12961,14 +13720,16 @@ const completionSpec: Fig.Spec = {
             "-i",
             "--include"
           ],
-          "description": "Comma separated resources to include"
+          "description": "Comma separated resources to include",
+          "args": {}
         },
         {
           "name": [
             "-f",
             "--fields"
           ],
-          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2..."
+          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2...",
+          "args": {}
         },
         {
           "name": [
@@ -13021,11 +13782,13 @@ const completionSpec: Fig.Spec = {
         },
         {
           "name": "--save-args",
-          "description": "Save command data to file for future use"
+          "description": "Save command data to file for future use",
+          "args": {}
         },
         {
           "name": "--load-args",
-          "description": "Load previously saved command arguments"
+          "description": "Load previously saved command arguments",
+          "args": {}
         },
         {
           "name": [
@@ -13046,49 +13809,56 @@ const completionSpec: Fig.Spec = {
             "-w",
             "--where"
           ],
-          "description": "Comma separated list of query filters"
+          "description": "Comma separated list of query filters",
+          "args": {}
         },
         {
           "name": [
             "-p",
             "--page"
           ],
-          "description": "Page number"
+          "description": "Page number",
+          "args": {}
         },
         {
           "name": [
             "-n",
             "--pageSize"
           ],
-          "description": "Number of elements per page"
+          "description": "Number of elements per page",
+          "args": {}
         },
         {
           "name": [
             "-s",
             "--sort"
           ],
-          "description": "Defines results ordering"
+          "description": "Defines results ordering",
+          "args": {}
         },
         {
           "name": [
             "-x",
             "--save"
           ],
-          "description": "Save command output to file"
+          "description": "Save command output to file",
+          "args": {}
         },
         {
           "name": [
             "-X",
             "--save-path"
           ],
-          "description": "Save command output to file and create missing path directories"
+          "description": "Save command output to file and create missing path directories",
+          "args": {}
         },
         {
           "name": [
             "-e",
             "--extract"
           ],
-          "description": "Extract subfields from object attributes"
+          "description": "Extract subfields from object attributes",
+          "args": {}
         },
         {
           "name": [
@@ -13123,6 +13893,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -13131,10 +13902,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -13143,14 +13916,16 @@ const completionSpec: Fig.Spec = {
             "-i",
             "--include"
           ],
-          "description": "Comma separated resources to include"
+          "description": "Comma separated resources to include",
+          "args": {}
         },
         {
           "name": [
             "-f",
             "--fields"
           ],
-          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2..."
+          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2...",
+          "args": {}
         },
         {
           "name": [
@@ -13203,11 +13978,13 @@ const completionSpec: Fig.Spec = {
         },
         {
           "name": "--save-args",
-          "description": "Save command data to file for future use"
+          "description": "Save command data to file for future use",
+          "args": {}
         },
         {
           "name": "--load-args",
-          "description": "Load previously saved command arguments"
+          "description": "Load previously saved command arguments",
+          "args": {}
         },
         {
           "name": [
@@ -13228,49 +14005,56 @@ const completionSpec: Fig.Spec = {
             "-w",
             "--where"
           ],
-          "description": "Comma separated list of query filters"
+          "description": "Comma separated list of query filters",
+          "args": {}
         },
         {
           "name": [
             "-p",
             "--page"
           ],
-          "description": "Page number"
+          "description": "Page number",
+          "args": {}
         },
         {
           "name": [
             "-n",
             "--pageSize"
           ],
-          "description": "Number of elements per page"
+          "description": "Number of elements per page",
+          "args": {}
         },
         {
           "name": [
             "-s",
             "--sort"
           ],
-          "description": "Defines results ordering"
+          "description": "Defines results ordering",
+          "args": {}
         },
         {
           "name": [
             "-x",
             "--save"
           ],
-          "description": "Save command output to file"
+          "description": "Save command output to file",
+          "args": {}
         },
         {
           "name": [
             "-X",
             "--save-path"
           ],
-          "description": "Save command output to file and create missing path directories"
+          "description": "Save command output to file and create missing path directories",
+          "args": {}
         },
         {
           "name": [
             "-e",
             "--extract"
           ],
-          "description": "Extract subfields from object attributes"
+          "description": "Extract subfields from object attributes",
+          "args": {}
         },
         {
           "name": [
@@ -13312,6 +14096,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -13320,10 +14105,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -13332,14 +14119,16 @@ const completionSpec: Fig.Spec = {
             "-i",
             "--include"
           ],
-          "description": "Comma separated resources to include"
+          "description": "Comma separated resources to include",
+          "args": {}
         },
         {
           "name": [
             "-f",
             "--fields"
           ],
-          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2..."
+          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2...",
+          "args": {}
         },
         {
           "name": [
@@ -13392,11 +14181,13 @@ const completionSpec: Fig.Spec = {
         },
         {
           "name": "--save-args",
-          "description": "Save command data to file for future use"
+          "description": "Save command data to file for future use",
+          "args": {}
         },
         {
           "name": "--load-args",
-          "description": "Load previously saved command arguments"
+          "description": "Load previously saved command arguments",
+          "args": {}
         },
         {
           "name": [
@@ -13417,21 +14208,24 @@ const completionSpec: Fig.Spec = {
             "-x",
             "--save"
           ],
-          "description": "Save command output to file"
+          "description": "Save command output to file",
+          "args": {}
         },
         {
           "name": [
             "-X",
             "--save-path"
           ],
-          "description": "Save command output to file and create missing path directories"
+          "description": "Save command output to file and create missing path directories",
+          "args": {}
         },
         {
           "name": [
             "-e",
             "--extract"
           ],
-          "description": "Extract subfields from object attributes"
+          "description": "Extract subfields from object attributes",
+          "args": {}
         }
       ],
       "args": [
@@ -13471,6 +14265,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -13479,10 +14274,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -13491,14 +14288,16 @@ const completionSpec: Fig.Spec = {
             "-i",
             "--include"
           ],
-          "description": "Comma separated resources to include"
+          "description": "Comma separated resources to include",
+          "args": {}
         },
         {
           "name": [
             "-f",
             "--fields"
           ],
-          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2..."
+          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2...",
+          "args": {}
         },
         {
           "name": [
@@ -13551,11 +14350,13 @@ const completionSpec: Fig.Spec = {
         },
         {
           "name": "--save-args",
-          "description": "Save command data to file for future use"
+          "description": "Save command data to file for future use",
+          "args": {}
         },
         {
           "name": "--load-args",
-          "description": "Load previously saved command arguments"
+          "description": "Load previously saved command arguments",
+          "args": {}
         },
         {
           "name": [
@@ -13576,49 +14377,56 @@ const completionSpec: Fig.Spec = {
             "-a",
             "--attribute"
           ],
-          "description": "Define a resource attribute"
+          "description": "Define a resource attribute",
+          "args": {}
         },
         {
           "name": [
             "-O",
             "--object"
           ],
-          "description": "Define a resource object attribute"
+          "description": "Define a resource object attribute",
+          "args": {}
         },
         {
           "name": [
             "-r",
             "--relationship"
           ],
-          "description": "Define a relationship with another resource"
+          "description": "Define a relationship with another resource",
+          "args": {}
         },
         {
           "name": [
             "-m",
             "--metadata"
           ],
-          "description": "Define a metadata attribute and merge it with the metadata already present in the remote resource"
+          "description": "Define a metadata attribute and merge it with the metadata already present in the remote resource",
+          "args": {}
         },
         {
           "name": [
             "-M",
             "--metadata-replace"
           ],
-          "description": "Define a metadata attribute and replace every item already present in the remote resource"
+          "description": "Define a metadata attribute and replace every item already present in the remote resource",
+          "args": {}
         },
         {
           "name": [
             "-D",
             "--data"
           ],
-          "description": "The data file to use as request body"
+          "description": "The data file to use as request body",
+          "args": {}
         },
         {
           "name": [
             "-t",
             "--tags"
           ],
-          "description": "List of tags associated with the resource"
+          "description": "List of tags associated with the resource",
+          "args": {}
         }
       ],
       "args": [
@@ -13635,344 +14443,6 @@ const completionSpec: Fig.Spec = {
     },
     {
       "name": [
-        "cleanups"
-      ],
-      "description": "List all the created cleanups or show details of a single cleanup",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-A",
-            "--all"
-          ],
-          "description": "Show all cleanups instead of first 25 only"
-        },
-        {
-          "name": [
-            "-t",
-            "--type"
-          ],
-          "description": "The type of resource cleaned",
-          "args": {
-            "suggestions": [
-              "bundles",
-              "gift_cards",
-              "prices",
-              "promotions",
-              "sku_lists",
-              "sku_options",
-              "skus",
-              "stock_items"
-            ]
-          }
-        },
-        {
-          "name": [
-            "-s",
-            "--status"
-          ],
-          "description": "The cleanup job status",
-          "args": {
-            "suggestions": [
-              "in_progress",
-              "pending",
-              "completed",
-              "interrupted"
-            ]
-          }
-        },
-        {
-          "name": [
-            "-l",
-            "--limit"
-          ],
-          "description": "Limit number of cleanups in output"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "Unique id of the cleanup to be retrieved",
-          "isOptional": true
-        }
-      ]
-    },
-    {
-      "name": [
-        "cleanups:create",
-        "clp:create",
-        "cleanup"
-      ],
-      "description": "Create a new cleanup",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-t",
-            "--type"
-          ],
-          "description": "The type of resource to clean up",
-          "isRequired": true,
-          "args": {
-            "description": "bundles|gift_cards|prices|promotions|...",
-            "suggestions": [
-              "bundles",
-              "gift_cards",
-              "prices",
-              "promotions",
-              "sku_lists",
-              "sku_options",
-              "skus",
-              "stock_items"
-            ]
-          }
-        },
-        {
-          "name": [
-            "-w",
-            "--where"
-          ],
-          "description": "Comma separated list of query filters"
-        },
-        {
-          "name": [
-            "-N",
-            "--notify"
-          ],
-          "description": "Force system notification when cleanup has finished",
-          "hidden": true
-        },
-        {
-          "name": [
-            "-b",
-            "--blind"
-          ],
-          "description": "Execute in blind mode without showing the progress monitor"
-        },
-        {
-          "name": [
-            "-q",
-            "--quiet"
-          ],
-          "description": "Execute command without showing warning messages"
-        }
-      ]
-    },
-    {
-      "name": [
-        "cleanups:details",
-        "clp:details"
-      ],
-      "description": "Show the details of an existing cleanup",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-l",
-            "--logs"
-          ],
-          "description": "Show error logs related to the cleanup process"
-        }
-      ],
-      "args": [
-        {
-          "name": "id",
-          "description": "Unique id of the cleanup"
-        }
-      ]
-    },
-    {
-      "name": [
-        "cleanups:group",
-        "clp:group"
-      ],
-      "description": "List all the cleanups related to a cleanup group",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        }
-      ],
-      "args": [
-        {
-          "name": "group_id",
-          "description": "Unique id of the group cleanup"
-        }
-      ]
-    },
-    {
-      "name": [
-        "cleanups:list",
-        "clp:list"
-      ],
-      "description": "List all the created cleanups",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-A",
-            "--all"
-          ],
-          "description": "Show all cleanups instead of first 25 only"
-        },
-        {
-          "name": [
-            "-t",
-            "--type"
-          ],
-          "description": "The type of resource cleaned",
-          "args": {
-            "suggestions": [
-              "bundles",
-              "gift_cards",
-              "prices",
-              "promotions",
-              "sku_lists",
-              "sku_options",
-              "skus",
-              "stock_items"
-            ]
-          }
-        },
-        {
-          "name": [
-            "-s",
-            "--status"
-          ],
-          "description": "The cleanup job status",
-          "args": {
-            "suggestions": [
-              "in_progress",
-              "pending",
-              "completed",
-              "interrupted"
-            ]
-          }
-        },
-        {
-          "name": [
-            "-l",
-            "--limit"
-          ],
-          "description": "Limit number of cleanups in output"
-        }
-      ]
-    },
-    {
-      "name": [
-        "cleanups:types",
-        "clp:types"
-      ],
-      "description": "Show online documentation for supported resources",
-      "options": [
-        {
-          "name": [
-            "-O",
-            "--open"
-          ],
-          "description": "Open online documentation page"
-        }
-      ]
-    },
-    {
-      "name": [
         "exports"
       ],
       "description": "List all the created exports or show details of a single export",
@@ -13983,6 +14453,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -13991,10 +14462,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -14061,7 +14534,8 @@ const completionSpec: Fig.Spec = {
             "-l",
             "--limit"
           ],
-          "description": "Limit number of exports in output"
+          "description": "Limit number of exports in output",
+          "args": {}
         }
       ],
       "args": [
@@ -14086,6 +14560,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -14094,10 +14569,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -14107,7 +14584,6 @@ const completionSpec: Fig.Spec = {
             "--type"
           ],
           "description": "The type of resource being exported",
-          "isRequired": true,
           "args": {
             "description": "addresses|bundles|coupons|customer_subscriptions|...",
             "suggestions": [
@@ -14137,21 +14613,24 @@ const completionSpec: Fig.Spec = {
               "voids",
               "refunds"
             ]
-          }
+          },
+          "isRequired": true
         },
         {
           "name": [
             "-i",
             "--include"
           ],
-          "description": "Comma separated resources to include"
+          "description": "Comma separated resources to include",
+          "args": {}
         },
         {
           "name": [
             "-w",
             "--where"
           ],
-          "description": "Comma separated list of query filters"
+          "description": "Comma separated list of query filters",
+          "args": {}
         },
         {
           "name": [
@@ -14186,14 +14665,16 @@ const completionSpec: Fig.Spec = {
             "-x",
             "--save"
           ],
-          "description": "Save command output to file"
+          "description": "Save command output to file",
+          "args": {}
         },
         {
           "name": [
             "-X",
             "--save-path"
           ],
-          "description": "Save command output to file and create missing path directories"
+          "description": "Save command output to file and create missing path directories",
+          "args": {}
         },
         {
           "name": [
@@ -14254,6 +14735,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -14262,10 +14744,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -14275,7 +14759,6 @@ const completionSpec: Fig.Spec = {
             "--type"
           ],
           "description": "The type of resource being exported",
-          "isRequired": true,
           "args": {
             "description": "addresses|bundles|coupons|customer_subscriptions|...",
             "suggestions": [
@@ -14305,21 +14788,24 @@ const completionSpec: Fig.Spec = {
               "voids",
               "refunds"
             ]
-          }
+          },
+          "isRequired": true
         },
         {
           "name": [
             "-i",
             "--include"
           ],
-          "description": "Comma separated resources to include"
+          "description": "Comma separated resources to include",
+          "args": {}
         },
         {
           "name": [
             "-w",
             "--where"
           ],
-          "description": "Comma separated list of query filters"
+          "description": "Comma separated list of query filters",
+          "args": {}
         },
         {
           "name": [
@@ -14354,14 +14840,16 @@ const completionSpec: Fig.Spec = {
             "-x",
             "--save"
           ],
-          "description": "Save command output to file"
+          "description": "Save command output to file",
+          "args": {}
         },
         {
           "name": [
             "-X",
             "--save-path"
           ],
-          "description": "Save command output to file and create missing path directories"
+          "description": "Save command output to file and create missing path directories",
+          "args": {}
         },
         {
           "name": [
@@ -14407,6 +14895,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -14415,10 +14904,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         }
@@ -14443,6 +14934,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -14451,10 +14943,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         }
@@ -14479,6 +14973,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -14487,10 +14982,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -14557,7 +15054,8 @@ const completionSpec: Fig.Spec = {
             "-l",
             "--limit"
           ],
-          "description": "Limit number of exports in output"
+          "description": "Limit number of exports in output",
+          "args": {}
         }
       ]
     },
@@ -14579,9 +15077,9 @@ const completionSpec: Fig.Spec = {
     },
     {
       "name": [
-        "tags"
+        "cleanups"
       ],
-      "description": "List all the created tags or show details of a single tag",
+      "description": "List all the created cleanups or show details of a single cleanup",
       "options": [
         {
           "name": [
@@ -14589,6 +15087,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -14597,10 +15096,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -14609,30 +15110,66 @@ const completionSpec: Fig.Spec = {
             "-A",
             "--all"
           ],
-          "description": "Show all tags instead of first 25 only"
+          "description": "Show all cleanups instead of first 25 only"
+        },
+        {
+          "name": [
+            "-t",
+            "--type"
+          ],
+          "description": "The type of resource cleaned",
+          "args": {
+            "suggestions": [
+              "bundles",
+              "gift_cards",
+              "prices",
+              "promotions",
+              "sku_lists",
+              "sku_options",
+              "skus",
+              "stock_items"
+            ]
+          }
+        },
+        {
+          "name": [
+            "-s",
+            "--status"
+          ],
+          "description": "The cleanup job status",
+          "args": {
+            "suggestions": [
+              "in_progress",
+              "pending",
+              "completed",
+              "interrupted"
+            ]
+          }
         },
         {
           "name": [
             "-l",
             "--limit"
           ],
-          "description": "Limit number of tags in output"
+          "description": "Limit number of cleanups in output",
+          "args": {}
         }
       ],
       "args": [
         {
           "name": "id",
-          "description": "Unique id of the tag to be retrieved",
+          "description": "Unique id of the cleanup to be retrieved",
           "isOptional": true
         }
       ]
     },
     {
       "name": [
-        "tags:add",
-        "tag"
+        "cleanups:create",
+        "clp:create",
+        "cleanup"
       ],
-      "description": "Add one or more tags to a set of resources",
+      "description": "Create a new cleanup",
       "options": [
         {
           "name": [
@@ -14640,6 +15177,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -14648,77 +15186,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-n",
-            "--name"
-          ],
-          "description": "The tag name",
-          "isRequired": true
-        },
-        {
-          "name": [
-            "-t",
-            "--type"
-          ],
-          "description": "The type of the resource to tag",
-          "isRequired": true
-        },
-        {
-          "name": [
-            "-i",
-            "--id"
-          ],
-          "description": "The ids of the resources to tag",
-          "isRequired": true
-        },
-        {
-          "name": [
-            "-C",
-            "--create"
-          ],
-          "description": "Create tags if don't exist"
-        },
-        {
-          "name": [
-            "-v",
-            "--verbose"
-          ],
-          "description": "Show details of the tag process"
-        }
-      ]
-    },
-    {
-      "name": [
-        "tags:count"
-      ],
-      "description": "Count resources tagged with a specific tag",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -14727,28 +15200,106 @@ const completionSpec: Fig.Spec = {
             "-t",
             "--type"
           ],
-          "description": "The type of the tagged resources"
+          "description": "The type of resource to clean up",
+          "args": {
+            "description": "bundles|gift_cards|prices|promotions|...",
+            "suggestions": [
+              "bundles",
+              "gift_cards",
+              "prices",
+              "promotions",
+              "sku_lists",
+              "sku_options",
+              "skus",
+              "stock_items"
+            ]
+          },
+          "isRequired": true
         },
         {
           "name": [
-            "-z",
-            "--zero"
+            "-w",
+            "--where"
           ],
-          "description": "Show also resources without tags"
+          "description": "Comma separated list of query filters",
+          "args": {}
+        },
+        {
+          "name": [
+            "-N",
+            "--notify"
+          ],
+          "description": "Force system notification when cleanup has finished",
+          "hidden": true
+        },
+        {
+          "name": [
+            "-b",
+            "--blind"
+          ],
+          "description": "Execute in blind mode without showing the progress monitor"
+        },
+        {
+          "name": [
+            "-q",
+            "--quiet"
+          ],
+          "description": "Execute command without showing warning messages"
+        }
+      ]
+    },
+    {
+      "name": [
+        "cleanups:details",
+        "clp:details"
+      ],
+      "description": "Show the details of an existing cleanup",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-l",
+            "--logs"
+          ],
+          "description": "Show error logs related to the cleanup process"
         }
       ],
       "args": [
         {
-          "name": "id_name",
-          "description": "Unique id or name of the tag"
+          "name": "id",
+          "description": "Unique id of the cleanup"
         }
       ]
     },
     {
       "name": [
-        "tags:create"
+        "cleanups:group",
+        "clp:group"
       ],
-      "description": "Create one or more new tags",
+      "description": "List all the cleanups related to a cleanup group",
       "options": [
         {
           "name": [
@@ -14756,6 +15307,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -14764,100 +15316,29 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-n",
-            "--name"
-          ],
-          "description": "The tag name",
-          "isRequired": true
-        }
-      ]
-    },
-    {
-      "name": [
-        "tags:delete"
-      ],
-      "description": "Delete one or more existing tags",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-n",
-            "--name"
-          ],
-          "description": "The tag name",
-          "isRequired": true
-        }
-      ]
-    },
-    {
-      "name": [
-        "tags:details"
-      ],
-      "description": "Show the details of an existing tag",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         }
       ],
       "args": [
         {
-          "name": "id_name",
-          "description": "Unique id or name of the tag"
+          "name": "group_id",
+          "description": "Unique id of the group cleanup"
         }
       ]
     },
     {
       "name": [
-        "tags:list"
+        "cleanups:list",
+        "clp:list"
       ],
-      "description": "List all the created tags",
+      "description": "List all the created cleanups",
       "options": [
         {
           "name": [
@@ -14865,6 +15346,7 @@ const completionSpec: Fig.Spec = {
             "--organization"
           ],
           "description": "The slug of your organization",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -14873,10 +15355,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -14885,81 +15369,56 @@ const completionSpec: Fig.Spec = {
             "-A",
             "--all"
           ],
-          "description": "Show all tags instead of first 25 only"
-        },
-        {
-          "name": [
-            "-l",
-            "--limit"
-          ],
-          "description": "Limit number of tags in output"
-        }
-      ]
-    },
-    {
-      "name": [
-        "tags:remove",
-        "tag"
-      ],
-      "description": "Remove one or more tags to a set of resources",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-n",
-            "--name"
-          ],
-          "description": "The tag name",
-          "isRequired": true
+          "description": "Show all cleanups instead of first 25 only"
         },
         {
           "name": [
             "-t",
             "--type"
           ],
-          "description": "The type of the resource to tag",
-          "isRequired": true
+          "description": "The type of resource cleaned",
+          "args": {
+            "suggestions": [
+              "bundles",
+              "gift_cards",
+              "prices",
+              "promotions",
+              "sku_lists",
+              "sku_options",
+              "skus",
+              "stock_items"
+            ]
+          }
         },
         {
           "name": [
-            "-i",
-            "--id"
+            "-s",
+            "--status"
           ],
-          "description": "The ids of th eresources to tag",
-          "isRequired": true
+          "description": "The cleanup job status",
+          "args": {
+            "suggestions": [
+              "in_progress",
+              "pending",
+              "completed",
+              "interrupted"
+            ]
+          }
         },
         {
           "name": [
-            "-v",
-            "--verbose"
+            "-l",
+            "--limit"
           ],
-          "description": "Show details of the tag process"
+          "description": "Limit number of cleanups in output",
+          "args": {}
         }
       ]
     },
     {
       "name": [
-        "tags:types"
+        "cleanups:types",
+        "clp:types"
       ],
       "description": "Show online documentation for supported resources",
       "options": [
@@ -14969,106 +15428,6 @@ const completionSpec: Fig.Spec = {
             "--open"
           ],
           "description": "Open online documentation page"
-        }
-      ]
-    },
-    {
-      "name": [
-        "tags:update"
-      ],
-      "description": "Update an existing tag",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-n",
-            "--name"
-          ],
-          "description": "The new tag name",
-          "isRequired": true
-        }
-      ],
-      "args": [
-        {
-          "name": "id_name",
-          "description": "Unique id or name of the tag"
-        }
-      ]
-    },
-    {
-      "name": [
-        "tags:which"
-      ],
-      "description": "Show all the resources with this tag",
-      "options": [
-        {
-          "name": [
-            "-o",
-            "--organization"
-          ],
-          "description": "The slug of your organization",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-d",
-            "--domain"
-          ],
-          "hidden": true
-        },
-        {
-          "name": "--accessToken",
-          "isRequired": true,
-          "hidden": true
-        },
-        {
-          "name": [
-            "-t",
-            "--type"
-          ],
-          "description": "The type of the tagged resources",
-          "isRequired": true
-        },
-        {
-          "name": [
-            "-A",
-            "--all"
-          ],
-          "description": "Show all resources instead of first 25 only"
-        },
-        {
-          "name": [
-            "-l",
-            "--limit"
-          ],
-          "description": "Limit number of resources in output"
-        }
-      ],
-      "args": [
-        {
-          "name": "id_name",
-          "description": "Unique id or name of the tag"
         }
       ]
     },
@@ -15086,10 +15445,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -15098,14 +15459,16 @@ const completionSpec: Fig.Spec = {
             "-i",
             "--include"
           ],
-          "description": "Comma separated resources to include"
+          "description": "Comma separated resources to include",
+          "args": {}
         },
         {
           "name": [
             "-f",
             "--fields"
           ],
-          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2..."
+          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2...",
+          "args": {}
         },
         {
           "name": [
@@ -15175,35 +15538,40 @@ const completionSpec: Fig.Spec = {
             "-a",
             "--attribute"
           ],
-          "description": "Define a resource attribute"
+          "description": "Define a resource attribute",
+          "args": {}
         },
         {
           "name": [
             "-O",
             "--object"
           ],
-          "description": "Define a resource object attribute"
+          "description": "Define a resource object attribute",
+          "args": {}
         },
         {
           "name": [
             "-r",
             "--relationship"
           ],
-          "description": "Define a relationship with another resource"
+          "description": "Define a relationship with another resource",
+          "args": {}
         },
         {
           "name": [
             "-m",
             "--metadata"
           ],
-          "description": "Define a metadata attribute or a set of metadata attributes"
+          "description": "Define a metadata attribute or a set of metadata attributes",
+          "args": {}
         },
         {
           "name": [
             "-D",
             "--data"
           ],
-          "description": "The data file to use as request body"
+          "description": "The data file to use as request body",
+          "args": {}
         }
       ],
       "args": [
@@ -15228,10 +15596,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -15240,14 +15610,16 @@ const completionSpec: Fig.Spec = {
             "-i",
             "--include"
           ],
-          "description": "Comma separated resources to include"
+          "description": "Comma separated resources to include",
+          "args": {}
         },
         {
           "name": [
             "-f",
             "--fields"
           ],
-          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2..."
+          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2...",
+          "args": {}
         },
         {
           "name": [
@@ -15339,10 +15711,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -15351,7 +15725,8 @@ const completionSpec: Fig.Spec = {
             "-a",
             "--attribute"
           ],
-          "description": "Define a resource attribute"
+          "description": "Define a resource attribute",
+          "args": {}
         }
       ],
       "args": [
@@ -15384,10 +15759,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -15396,14 +15773,16 @@ const completionSpec: Fig.Spec = {
             "-i",
             "--include"
           ],
-          "description": "Comma separated resources to include"
+          "description": "Comma separated resources to include",
+          "args": {}
         },
         {
           "name": [
             "-f",
             "--fields"
           ],
-          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2..."
+          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2...",
+          "args": {}
         },
         {
           "name": [
@@ -15473,35 +15852,40 @@ const completionSpec: Fig.Spec = {
             "-e",
             "--extract"
           ],
-          "description": "Extract subfields from object attributes"
+          "description": "Extract subfields from object attributes",
+          "args": {}
         },
         {
           "name": [
             "-w",
             "--where"
           ],
-          "description": "Comma separated list of query filters"
+          "description": "Comma separated list of query filters",
+          "args": {}
         },
         {
           "name": [
             "-p",
             "--page"
           ],
-          "description": "Page number"
+          "description": "Page number",
+          "args": {}
         },
         {
           "name": [
             "-n",
             "--pageSize"
           ],
-          "description": "Number of elements per page"
+          "description": "Number of elements per page",
+          "args": {}
         },
         {
           "name": [
             "-s",
             "--sort"
           ],
-          "description": "Defines results ordering"
+          "description": "Defines results ordering",
+          "args": {}
         },
         {
           "name": [
@@ -15542,10 +15926,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -15554,14 +15940,16 @@ const completionSpec: Fig.Spec = {
             "-i",
             "--include"
           ],
-          "description": "Comma separated resources to include"
+          "description": "Comma separated resources to include",
+          "args": {}
         },
         {
           "name": [
             "-f",
             "--fields"
           ],
-          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2..."
+          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2...",
+          "args": {}
         },
         {
           "name": [
@@ -15631,35 +16019,40 @@ const completionSpec: Fig.Spec = {
             "-e",
             "--extract"
           ],
-          "description": "Extract subfields from object attributes"
+          "description": "Extract subfields from object attributes",
+          "args": {}
         },
         {
           "name": [
             "-w",
             "--where"
           ],
-          "description": "Comma separated list of query filters"
+          "description": "Comma separated list of query filters",
+          "args": {}
         },
         {
           "name": [
             "-p",
             "--page"
           ],
-          "description": "Page number"
+          "description": "Page number",
+          "args": {}
         },
         {
           "name": [
             "-n",
             "--pageSize"
           ],
-          "description": "Number of elements per page"
+          "description": "Number of elements per page",
+          "args": {}
         },
         {
           "name": [
             "-s",
             "--sort"
           ],
-          "description": "Defines results ordering"
+          "description": "Defines results ordering",
+          "args": {}
         },
         {
           "name": [
@@ -15697,10 +16090,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -15709,14 +16104,16 @@ const completionSpec: Fig.Spec = {
             "-i",
             "--include"
           ],
-          "description": "Comma separated resources to include"
+          "description": "Comma separated resources to include",
+          "args": {}
         },
         {
           "name": [
             "-f",
             "--fields"
           ],
-          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2..."
+          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2...",
+          "args": {}
         },
         {
           "name": [
@@ -15786,35 +16183,40 @@ const completionSpec: Fig.Spec = {
             "-w",
             "--where"
           ],
-          "description": "Comma separated list of query filters"
+          "description": "Comma separated list of query filters",
+          "args": {}
         },
         {
           "name": [
             "-p",
             "--page"
           ],
-          "description": "Page number"
+          "description": "Page number",
+          "args": {}
         },
         {
           "name": [
             "-n",
             "--pageSize"
           ],
-          "description": "Number of elements per page"
+          "description": "Number of elements per page",
+          "args": {}
         },
         {
           "name": [
             "-s",
             "--sort"
           ],
-          "description": "Defines results ordering"
+          "description": "Defines results ordering",
+          "args": {}
         },
         {
           "name": [
             "-e",
             "--extract"
           ],
-          "description": "Extract subfields from object attributes"
+          "description": "Extract subfields from object attributes",
+          "args": {}
         },
         {
           "name": [
@@ -15846,10 +16248,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -15858,14 +16262,16 @@ const completionSpec: Fig.Spec = {
             "-i",
             "--include"
           ],
-          "description": "Comma separated resources to include"
+          "description": "Comma separated resources to include",
+          "args": {}
         },
         {
           "name": [
             "-f",
             "--fields"
           ],
-          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2..."
+          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2...",
+          "args": {}
         },
         {
           "name": [
@@ -15935,35 +16341,40 @@ const completionSpec: Fig.Spec = {
             "-w",
             "--where"
           ],
-          "description": "Comma separated list of query filters"
+          "description": "Comma separated list of query filters",
+          "args": {}
         },
         {
           "name": [
             "-p",
             "--page"
           ],
-          "description": "Page number"
+          "description": "Page number",
+          "args": {}
         },
         {
           "name": [
             "-n",
             "--pageSize"
           ],
-          "description": "Number of elements per page"
+          "description": "Number of elements per page",
+          "args": {}
         },
         {
           "name": [
             "-s",
             "--sort"
           ],
-          "description": "Defines results ordering"
+          "description": "Defines results ordering",
+          "args": {}
         },
         {
           "name": [
             "-e",
             "--extract"
           ],
-          "description": "Extract subfields from object attributes"
+          "description": "Extract subfields from object attributes",
+          "args": {}
         },
         {
           "name": [
@@ -16021,10 +16432,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -16033,14 +16446,16 @@ const completionSpec: Fig.Spec = {
             "-i",
             "--include"
           ],
-          "description": "Comma separated resources to include"
+          "description": "Comma separated resources to include",
+          "args": {}
         },
         {
           "name": [
             "-f",
             "--fields"
           ],
-          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2..."
+          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2...",
+          "args": {}
         },
         {
           "name": [
@@ -16110,7 +16525,8 @@ const completionSpec: Fig.Spec = {
             "-e",
             "--extract"
           ],
-          "description": "Extract subfields from object attributes"
+          "description": "Extract subfields from object attributes",
+          "args": {}
         }
       ],
       "args": [
@@ -16140,10 +16556,12 @@ const completionSpec: Fig.Spec = {
             "-d",
             "--domain"
           ],
+          "args": {},
           "hidden": true
         },
         {
           "name": "--accessToken",
+          "args": {},
           "isRequired": true,
           "hidden": true
         },
@@ -16152,14 +16570,16 @@ const completionSpec: Fig.Spec = {
             "-i",
             "--include"
           ],
-          "description": "Comma separated resources to include"
+          "description": "Comma separated resources to include",
+          "args": {}
         },
         {
           "name": [
             "-f",
             "--fields"
           ],
-          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2..."
+          "description": "Comma separeted list of fields in the format [resourcetype/]field1,field2...",
+          "args": {}
         },
         {
           "name": [
@@ -16229,42 +16649,48 @@ const completionSpec: Fig.Spec = {
             "-a",
             "--attribute"
           ],
-          "description": "Define a resource attribute"
+          "description": "Define a resource attribute",
+          "args": {}
         },
         {
           "name": [
             "-O",
             "--object"
           ],
-          "description": "Define a resource object attribute"
+          "description": "Define a resource object attribute",
+          "args": {}
         },
         {
           "name": [
             "-r",
             "--relationship"
           ],
-          "description": "Define a relationship with another resource"
+          "description": "Define a relationship with another resource",
+          "args": {}
         },
         {
           "name": [
             "-m",
             "--metadata"
           ],
-          "description": "Define a metadata attribute and merge it with the metadata already present in the remote resource"
+          "description": "Define a metadata attribute and merge it with the metadata already present in the remote resource",
+          "args": {}
         },
         {
           "name": [
             "-M",
             "--metadata-replace"
           ],
-          "description": "Define a metadata attribute and replace every item already present in the remote resource"
+          "description": "Define a metadata attribute and replace every item already present in the remote resource",
+          "args": {}
         },
         {
           "name": [
             "-D",
             "--data"
           ],
-          "description": "The data file to use as request body"
+          "description": "The data file to use as request body",
+          "args": {}
         }
       ],
       "args": [
@@ -16276,6 +16702,546 @@ const completionSpec: Fig.Spec = {
           "name": "id",
           "description": "Id of the resource to update",
           "isOptional": true
+        }
+      ]
+    },
+    {
+      "name": [
+        "tags"
+      ],
+      "description": "List all the created tags or show details of a single tag",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-A",
+            "--all"
+          ],
+          "description": "Show all tags instead of first 25 only"
+        },
+        {
+          "name": [
+            "-l",
+            "--limit"
+          ],
+          "description": "Limit number of tags in output",
+          "args": {}
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "description": "Unique id of the tag to be retrieved",
+          "isOptional": true
+        }
+      ]
+    },
+    {
+      "name": [
+        "tags:add",
+        "tag"
+      ],
+      "description": "Add one or more tags to a set of resources",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-n",
+            "--name"
+          ],
+          "description": "The tag name",
+          "args": {},
+          "isRequired": true
+        },
+        {
+          "name": [
+            "-t",
+            "--type"
+          ],
+          "description": "The type of the resource to tag",
+          "args": {},
+          "isRequired": true
+        },
+        {
+          "name": [
+            "-i",
+            "--id"
+          ],
+          "description": "The ids of the resources to tag",
+          "args": {},
+          "isRequired": true
+        },
+        {
+          "name": [
+            "-C",
+            "--create"
+          ],
+          "description": "Create tags if don't exist",
+          "args": {}
+        },
+        {
+          "name": [
+            "-v",
+            "--verbose"
+          ],
+          "description": "Show details of the tag process"
+        }
+      ]
+    },
+    {
+      "name": [
+        "tags:count"
+      ],
+      "description": "Count resources tagged with a specific tag",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-t",
+            "--type"
+          ],
+          "description": "The type of the tagged resources",
+          "args": {}
+        },
+        {
+          "name": [
+            "-z",
+            "--zero"
+          ],
+          "description": "Show also resources without tags"
+        }
+      ],
+      "args": [
+        {
+          "name": "id_name",
+          "description": "Unique id or name of the tag"
+        }
+      ]
+    },
+    {
+      "name": [
+        "tags:create"
+      ],
+      "description": "Create one or more new tags",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-n",
+            "--name"
+          ],
+          "description": "The tag name",
+          "args": {},
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": [
+        "tags:delete"
+      ],
+      "description": "Delete one or more existing tags",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-n",
+            "--name"
+          ],
+          "description": "The tag name",
+          "args": {},
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": [
+        "tags:details"
+      ],
+      "description": "Show the details of an existing tag",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        }
+      ],
+      "args": [
+        {
+          "name": "id_name",
+          "description": "Unique id or name of the tag"
+        }
+      ]
+    },
+    {
+      "name": [
+        "tags:list"
+      ],
+      "description": "List all the created tags",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-A",
+            "--all"
+          ],
+          "description": "Show all tags instead of first 25 only"
+        },
+        {
+          "name": [
+            "-l",
+            "--limit"
+          ],
+          "description": "Limit number of tags in output",
+          "args": {}
+        }
+      ]
+    },
+    {
+      "name": [
+        "tags:remove",
+        "tag"
+      ],
+      "description": "Remove one or more tags to a set of resources",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-n",
+            "--name"
+          ],
+          "description": "The tag name",
+          "args": {},
+          "isRequired": true
+        },
+        {
+          "name": [
+            "-t",
+            "--type"
+          ],
+          "description": "The type of the resource to tag",
+          "args": {},
+          "isRequired": true
+        },
+        {
+          "name": [
+            "-i",
+            "--id"
+          ],
+          "description": "The ids of th eresources to tag",
+          "args": {},
+          "isRequired": true
+        },
+        {
+          "name": [
+            "-v",
+            "--verbose"
+          ],
+          "description": "Show details of the tag process"
+        }
+      ]
+    },
+    {
+      "name": [
+        "tags:types"
+      ],
+      "description": "Show online documentation for supported resources",
+      "options": [
+        {
+          "name": [
+            "-O",
+            "--open"
+          ],
+          "description": "Open online documentation page"
+        }
+      ]
+    },
+    {
+      "name": [
+        "tags:update"
+      ],
+      "description": "Update an existing tag",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-n",
+            "--name"
+          ],
+          "description": "The new tag name",
+          "args": {},
+          "isRequired": true
+        }
+      ],
+      "args": [
+        {
+          "name": "id_name",
+          "description": "Unique id or name of the tag"
+        }
+      ]
+    },
+    {
+      "name": [
+        "tags:which"
+      ],
+      "description": "Show all the resources with this tag",
+      "options": [
+        {
+          "name": [
+            "-o",
+            "--organization"
+          ],
+          "description": "The slug of your organization",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-d",
+            "--domain"
+          ],
+          "args": {},
+          "hidden": true
+        },
+        {
+          "name": "--accessToken",
+          "args": {},
+          "isRequired": true,
+          "hidden": true
+        },
+        {
+          "name": [
+            "-t",
+            "--type"
+          ],
+          "description": "The type of the tagged resources",
+          "args": {},
+          "isRequired": true
+        },
+        {
+          "name": [
+            "-A",
+            "--all"
+          ],
+          "description": "Show all resources instead of first 25 only"
+        },
+        {
+          "name": [
+            "-l",
+            "--limit"
+          ],
+          "description": "Limit number of resources in output",
+          "args": {}
+        }
+      ],
+      "args": [
+        {
+          "name": "id_name",
+          "description": "Unique id or name of the tag"
         }
       ]
     },
