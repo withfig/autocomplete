@@ -1,3 +1,2 @@
-
-import completionSpec from './commercelayer'
-export default completionSpec
+import completionSpec from "./commercelayer";
+export default completionSpec;
