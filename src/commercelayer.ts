@@ -6,7 +6,14 @@ const completionSpec: Fig.Spec = {
   name: "@commercelayer/cli",
   subcommands: [
     {
-      name: ["applications", "app:list", "applications:list", "app:available", "applications:available", "apps"],
+      name: [
+        "applications",
+        "app:list",
+        "applications:list",
+        "app:available",
+        "applications:available",
+        "apps",
+      ],
       description: "Show a list of all (logged in) available cli applications",
       options: [
         {
@@ -315,7 +322,13 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: ["applications:logout", "app:logout", "app:remove", "applications:remove", "logout"],
+      name: [
+        "applications:logout",
+        "app:logout",
+        "app:remove",
+        "applications:remove",
+        "logout",
+      ],
       description: "Remove an application from cli local configuration",
       options: [
         {
@@ -395,7 +408,13 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: ["applications:provisioning", "app:prov", "app:provisioning", "prov:apps", "prov:applications"],
+      name: [
+        "applications:provisioning",
+        "app:prov",
+        "app:provisioning",
+        "prov:apps",
+        "prov:applications",
+      ],
       description: "Show all provisioning applications",
       options: [
         {
@@ -729,7 +748,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-a", "--accessToken"],
-          description: "Custom access token to use instead of the one used for login",
+          description:
+            "Custom access token to use instead of the one used for login",
           args: {
             description: "",
           },
@@ -811,7 +831,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-a", "--accessToken"],
-          description: "Custom access token to use instead of the one used for login",
+          description:
+            "Custom access token to use instead of the one used for login",
           args: {
             description: "",
           },
@@ -835,7 +856,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "imports",
-      description: "List all the created imports or show details of a single import",
+      description:
+        "List all the created imports or show details of a single import",
       options: [
         {
           name: ["-o", "--organization"],
@@ -897,7 +919,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-g", "--group"],
-          description: "The group id associated to the import in case of multi-chunk imports",
+          description:
+            "The group id associated to the import in case of multi-chunk imports",
           args: {
             description: "",
           },
@@ -993,7 +1016,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-p", "--parent"],
-          description: "The id of the parent resource to be associated with imported data",
+          description:
+            "The id of the parent resource to be associated with imported data",
           args: {
             description: "",
           },
@@ -1012,7 +1036,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-D", "--delimiter"],
-          description: "The delimiter character used in the csv input file (one of ',', ';', '|', tab)",
+          description:
+            "The delimiter character used in the csv input file (one of ',', ';', '|', tab)",
           args: {
             description: "",
             suggestions: [",", ";", "|", "TAB"],
@@ -1020,7 +1045,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-b", "--blind"],
-          description: "Execute in blind mode without showing the progress monitor",
+          description:
+            "Execute in blind mode without showing the progress monitor",
         },
         {
           name: ["-q", "--quiet"],
@@ -1096,7 +1122,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-l", "--logs"],
-          description: "Show warning and error logs related to the import process",
+          description:
+            "Show warning and error logs related to the import process",
         },
         {
           name: ["-S", "--save-inputs"],
@@ -1209,7 +1236,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-g", "--group"],
-          description: "The group id associated to the import in case of multi-chunk imports",
+          description:
+            "The group id associated to the import in case of multi-chunk imports",
           args: {
             description: "",
           },
@@ -1304,1727 +1332,6 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "seeder:check",
-      description: "Execute a check on seeder data",
-      options: [
-        {
-          name: ["-b", "--businessModel"],
-          description: "The kind of business model you want to import",
-          args: {
-            description: "",
-            suggestions: ["single_sku", "multi_market", "custom"],
-            default: "single_sku",
-          },
-        },
-        {
-          name: ["-u", "--url"],
-          description: "Seeder data url",
-          args: {
-            description: "",
-            default: "https://data.commercelayer.app/seeder",
-          },
-        },
-        {
-          name: ["-n", "--name"],
-          description: "The name of the business model file to use",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: "--debug",
-          description: "Show command debug information",
-          hidden: true,
-        },
-        {
-          name: ["-r", "--relationships"],
-          description: "Check resource relationships",
-        },
-      ],
-    },
-    {
-      name: "seeder:clean",
-      description: "Clean previously imported seeder data",
-      options: [
-        {
-          name: ["-b", "--businessModel"],
-          description: "The kind of business model you want to import",
-          args: {
-            description: "",
-            suggestions: ["single_sku", "multi_market", "custom"],
-            default: "single_sku",
-          },
-        },
-        {
-          name: ["-u", "--url"],
-          description: "Seeder data url",
-          args: {
-            description: "",
-            default: "https://data.commercelayer.app/seeder",
-          },
-        },
-        {
-          name: ["-n", "--name"],
-          description: "The name of the business model file to use",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: "--debug",
-          description: "Show debug information",
-          hidden: true,
-        },
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-      ],
-    },
-    {
-      name: ["seeder:seed", "seed"],
-      description: "Execute commerce layer seeder",
-      options: [
-        {
-          name: ["-b", "--businessModel"],
-          description: "The kind of business model you want to import",
-          args: {
-            description: "",
-            suggestions: ["single_sku", "multi_market", "custom"],
-            default: "single_sku",
-          },
-        },
-        {
-          name: ["-u", "--url"],
-          description: "Seeder data url",
-          args: {
-            description: "",
-            default: "https://data.commercelayer.app/seeder",
-          },
-        },
-        {
-          name: ["-n", "--name"],
-          description: "The name of the business model file to use",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: "--debug",
-          description: "Show debug information",
-          hidden: true,
-        },
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-k", "--keep"],
-          description: "Keep existing resources without updating them",
-        },
-        {
-          name: ["-D", "--delay"],
-          description: "Add a delay in milliseconds between calls to different resources",
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-      ],
-    },
-    {
-      name: ["token:decode", "token:info"],
-      description: "Decode a commerce layer access token",
-      args: {
-        name: "token",
-        description: "The access token to be decoded",
-      },
-    },
-    {
-      name: "token:generate",
-      description: "Start a wizard to generate a custom access token",
-      options: [
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print users answers",
-          hidden: true,
-        },
-        {
-          name: ["-i", "--info"],
-          description: "Print generated token info",
-        },
-        {
-          name: ["-c", "--check"],
-          description: "Check generated access token",
-        },
-      ],
-    },
-    {
-      name: "token:get",
-      description: "Get a new access token",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: ["-i", "--clientId"],
-          description: "Application client_id",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-        },
-        {
-          name: ["-s", "--clientSecret"],
-          description: "Application client_secret",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-S", "--scope"],
-          description: "Access token scope (market, stock location)",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-e", "--email"],
-          description: "Customer email",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-p", "--password"],
-          description: "Customer secret password",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: "--info",
-          description: "Show access token info",
-        },
-        {
-          name: ["-P", "--provisioning"],
-          description: "Execute login to provisioning api",
-        },
-      ],
-    },
-    {
-      name: "token:revoke",
-      description: "Revoke a commerce layer access token",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: ["-i", "--clientId"],
-          description: "Application client_id",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-        },
-        {
-          name: ["-s", "--clientSecret"],
-          description: "Application client_secret",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-S", "--scope"],
-          description: "Access token scope",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-P", "--provisioning"],
-          description: "Execute login to provisioning api",
-        },
-      ],
-      args: {
-        name: "token",
-        description: "Access token to revoke",
-      },
-    },
-    {
-      name: "orders",
-      description: "Execute an action on an order",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:approve",
-      description: "Send this attribute if you want to approve a placed order",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:approve_and_capture",
-      description: "Send this attribute if you want to approve and capture a placed order",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:archive",
-      description: "Send this attribute if you want to archive the order",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:authorization_amount_cents",
-      description: "The authorization amount, in cents",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:authorize",
-      description: "Send this attribute if you want to authorize the order's payment source",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:billing_address_clone_id",
-      description: "The id of the address that you want to clone to create the order's billing addre",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-        {
-          name: ["-v", "--value"],
-          description: "The trigger attribute value",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:billing_address_same_as_shipping",
-      description: "Send this attribute if you want the billing address to be cloned from the order'",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:cancel",
-      description: "Send this attribute if you want to cancel a placed order",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:capture",
-      description: "Send this attribute if you want to capture an authorized order",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:commit_invoice",
-      description: "Send this attribute if you want commit the sales tax invoice to the associated t",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:create_subscriptions",
-      description: "Send this attribute upon/after placing the order if you want to create order sub",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:customer_payment_source_id",
-      description: "The id of the customer payment source (i",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-        {
-          name: ["-v", "--value"],
-          description: "The trigger attribute value",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:nullify_payment_source",
-      description: "Send this attribute if you want to nullify the payment source for this order",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:pending",
-      description: "Send this attribute if you want to move a draft or placing order to pending",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:place",
-      description: "Send this attribute if you want to place the order",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:refresh",
-      description: "Send this attribute if you want to manually refresh the order",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:refund",
-      description: "Send this attribute if you want to refund a captured order",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:refund_invoice",
-      description: "Send this attribute if you want refund the sales tax invoice to the associated t",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:reset_circuit",
-      description: "Send this attribute if you want to reset the circuit breaker associated to this",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:save_billing_address_to_customer_address_book",
-      description: "Send this attribute if you want the order's billing address to be saved in the c",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:save_payment_source_to_customer_wallet",
-      description: "Send this attribute if you want the order's payment source to be saved in the cu",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:save_shipping_address_to_customer_address_book",
-      description: "Send this attribute if you want the order's shipping address to be saved in the",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:shipping_address_clone_id",
-      description: "The id of the address that you want to clone to create the order's shipping addr",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-        {
-          name: ["-v", "--value"],
-          description: "The trigger attribute value",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:shipping_address_same_as_billing",
-      description: "Send this attribute if you want the shipping address to be cloned from the order",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:start_editing",
-      description: "Send this attribute if you want to edit the order after it is placed",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:stop_editing",
-      description: "Send this attribute to stop the editing for the order and return back to placed",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:unarchive",
-      description: "Send this attribute if you want to unarchive the order",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:update_taxes",
-      description: "Send this attribute if you want to force tax calculation for this order (a tax c",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
-      name: "orders:validate",
-      description: "Send this attribute if you want to trigger the external validation for the order",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print out the modified order",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Print result in json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print json output without indentation",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "The unique id of the order",
-      },
-    },
-    {
       name: "resources",
       description: "List all the available commerce layer api resources",
       options: [
@@ -3071,7 +1378,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-f", "--fields"],
-          description: "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
+          description:
+            "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
           args: {
             description: "",
           },
@@ -3108,7 +1416,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--node",
-          description: "Show the equivalent node sdk source code of the cli command",
+          description:
+            "Show the equivalent node sdk source code of the cli command",
           hidden: false,
         },
         {
@@ -3148,7 +1457,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-X", "--save-path"],
-          description: "Save command output to file and create missing path directories",
+          description:
+            "Save command output to file and create missing path directories",
           args: {
             description: "",
           },
@@ -3333,7 +1643,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-f", "--fields"],
-          description: "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
+          description:
+            "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
           args: {
             description: "",
           },
@@ -3370,7 +1681,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--node",
-          description: "Show the equivalent node sdk source code of the cli command",
+          description:
+            "Show the equivalent node sdk source code of the cli command",
           hidden: false,
         },
         {
@@ -3418,7 +1730,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-m", "--metadata"],
-          description: "Define a metadata attribute or a set of metadata attributes",
+          description:
+            "Define a metadata attribute or a set of metadata attributes",
           args: {
             description: "",
           },
@@ -3583,7 +1896,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-f", "--fields"],
-          description: "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
+          description:
+            "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
           args: {
             description: "",
           },
@@ -3620,7 +1934,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--node",
-          description: "Show the equivalent node sdk source code of the cli command",
+          description:
+            "Show the equivalent node sdk source code of the cli command",
           hidden: false,
         },
         {
@@ -3763,20 +2078,29 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["resources:doc", "res:doc", "doc"],
-      description: "Open the default browser and show the online documentation for the resource",
+      description:
+        "Open the default browser and show the online documentation for the resource",
       options: [
         {
           name: ["-p", "--page"],
           description: "The doc page you want to access",
           args: {
             description: "",
-            suggestions: ["object", "create", "retrieve", "list", "update", "delete"],
+            suggestions: [
+              "object",
+              "create",
+              "retrieve",
+              "list",
+              "update",
+              "delete",
+            ],
           },
         },
       ],
       args: {
         name: "resource",
-        description: "The resource for which you want to access the online documentation",
+        description:
+          "The resource for which you want to access the online documentation",
       },
     },
     {
@@ -3816,7 +2140,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-f", "--fields"],
-          description: "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
+          description:
+            "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
           args: {
             description: "",
           },
@@ -3853,7 +2178,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--node",
-          description: "Show the equivalent node sdk source code of the cli command",
+          description:
+            "Show the equivalent node sdk source code of the cli command",
           hidden: false,
         },
         {
@@ -3887,7 +2213,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-X", "--save-path"],
-          description: "Save command output to file and create missing path directories",
+          description:
+            "Save command output to file and create missing path directories",
           args: {
             description: "",
           },
@@ -3986,7 +2313,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-f", "--fields"],
-          description: "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
+          description:
+            "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
           args: {
             description: "",
           },
@@ -4023,7 +2351,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--node",
-          description: "Show the equivalent node sdk source code of the cli command",
+          description:
+            "Show the equivalent node sdk source code of the cli command",
           hidden: false,
         },
         {
@@ -4085,7 +2414,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-X", "--save-path"],
-          description: "Save command output to file and create missing path directories",
+          description:
+            "Save command output to file and create missing path directories",
           args: {
             description: "",
           },
@@ -4152,7 +2482,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-f", "--fields"],
-          description: "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
+          description:
+            "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
           args: {
             description: "",
           },
@@ -4189,7 +2520,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--node",
-          description: "Show the equivalent node sdk source code of the cli command",
+          description:
+            "Show the equivalent node sdk source code of the cli command",
           hidden: false,
         },
         {
@@ -4251,7 +2583,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-X", "--save-path"],
-          description: "Save command output to file and create missing path directories",
+          description:
+            "Save command output to file and create missing path directories",
           args: {
             description: "",
           },
@@ -4435,7 +2768,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-f", "--fields"],
-          description: "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
+          description:
+            "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
           args: {
             description: "",
           },
@@ -4472,7 +2806,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--node",
-          description: "Show the equivalent node sdk source code of the cli command",
+          description:
+            "Show the equivalent node sdk source code of the cli command",
           hidden: false,
         },
         {
@@ -4534,7 +2869,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-X", "--save-path"],
-          description: "Save command output to file and create missing path directories",
+          description:
+            "Save command output to file and create missing path directories",
           args: {
             description: "",
           },
@@ -4605,7 +2941,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-f", "--fields"],
-          description: "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
+          description:
+            "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
           args: {
             description: "",
           },
@@ -4642,7 +2979,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--node",
-          description: "Show the equivalent node sdk source code of the cli command",
+          description:
+            "Show the equivalent node sdk source code of the cli command",
           hidden: false,
         },
         {
@@ -4676,7 +3014,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-X", "--save-path"],
-          description: "Save command output to file and create missing path directories",
+          description:
+            "Save command output to file and create missing path directories",
           args: {
             description: "",
           },
@@ -4829,7 +3168,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["resources:schema", "schema", "res:schema", "rs"],
-      description: "Show the current commercelayer openapi schema version used by the plugin",
+      description:
+        "Show the current commercelayer openapi schema version used by the plugin",
     },
     {
       name: ["resources:update", "update", "ru", "res:update", "patch"],
@@ -4868,7 +3208,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-f", "--fields"],
-          description: "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
+          description:
+            "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
           args: {
             description: "",
           },
@@ -4905,7 +3246,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--node",
-          description: "Show the equivalent node sdk source code of the cli command",
+          description:
+            "Show the equivalent node sdk source code of the cli command",
           hidden: false,
         },
         {
@@ -5095,8 +3437,327 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: ["token:decode", "token:info"],
+      description: "Decode a commerce layer access token",
+      args: {
+        name: "token",
+        description: "The access token to be decoded",
+      },
+    },
+    {
+      name: "token:generate",
+      description: "Start a wizard to generate a custom access token",
+      options: [
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print users answers",
+          hidden: true,
+        },
+        {
+          name: ["-i", "--info"],
+          description: "Print generated token info",
+        },
+        {
+          name: ["-c", "--check"],
+          description: "Check generated access token",
+        },
+      ],
+    },
+    {
+      name: "token:get",
+      description: "Get a new access token",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: ["-i", "--clientId"],
+          description: "Application client_id",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+        },
+        {
+          name: ["-s", "--clientSecret"],
+          description: "Application client_secret",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-S", "--scope"],
+          description: "Access token scope (market, stock location)",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-e", "--email"],
+          description: "Customer email",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-p", "--password"],
+          description: "Customer secret password",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: "--info",
+          description: "Show access token info",
+        },
+        {
+          name: ["-P", "--provisioning"],
+          description: "Execute login to provisioning api",
+        },
+      ],
+    },
+    {
+      name: "token:revoke",
+      description: "Revoke a commerce layer access token",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: ["-i", "--clientId"],
+          description: "Application client_id",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+        },
+        {
+          name: ["-s", "--clientSecret"],
+          description: "Application client_secret",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-S", "--scope"],
+          description: "Access token scope",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-P", "--provisioning"],
+          description: "Execute login to provisioning api",
+        },
+      ],
+      args: {
+        name: "token",
+        description: "Access token to revoke",
+      },
+    },
+    {
+      name: "seeder:check",
+      description: "Execute a check on seeder data",
+      options: [
+        {
+          name: ["-b", "--businessModel"],
+          description: "The kind of business model you want to import",
+          args: {
+            description: "",
+            suggestions: ["single_sku", "multi_market", "custom"],
+            default: "single_sku",
+          },
+        },
+        {
+          name: ["-u", "--url"],
+          description: "Seeder data url",
+          args: {
+            description: "",
+            default: "https://data.commercelayer.app/seeder",
+          },
+        },
+        {
+          name: ["-n", "--name"],
+          description: "The name of the business model file to use",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: "--debug",
+          description: "Show command debug information",
+          hidden: true,
+        },
+        {
+          name: ["-r", "--relationships"],
+          description: "Check resource relationships",
+        },
+      ],
+    },
+    {
+      name: "seeder:clean",
+      description: "Clean previously imported seeder data",
+      options: [
+        {
+          name: ["-b", "--businessModel"],
+          description: "The kind of business model you want to import",
+          args: {
+            description: "",
+            suggestions: ["single_sku", "multi_market", "custom"],
+            default: "single_sku",
+          },
+        },
+        {
+          name: ["-u", "--url"],
+          description: "Seeder data url",
+          args: {
+            description: "",
+            default: "https://data.commercelayer.app/seeder",
+          },
+        },
+        {
+          name: ["-n", "--name"],
+          description: "The name of the business model file to use",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: "--debug",
+          description: "Show debug information",
+          hidden: true,
+        },
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+      ],
+    },
+    {
+      name: ["seeder:seed", "seed"],
+      description: "Execute commerce layer seeder",
+      options: [
+        {
+          name: ["-b", "--businessModel"],
+          description: "The kind of business model you want to import",
+          args: {
+            description: "",
+            suggestions: ["single_sku", "multi_market", "custom"],
+            default: "single_sku",
+          },
+        },
+        {
+          name: ["-u", "--url"],
+          description: "Seeder data url",
+          args: {
+            description: "",
+            default: "https://data.commercelayer.app/seeder",
+          },
+        },
+        {
+          name: ["-n", "--name"],
+          description: "The name of the business model file to use",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: "--debug",
+          description: "Show debug information",
+          hidden: true,
+        },
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-k", "--keep"],
+          description: "Keep existing resources without updating them",
+        },
+        {
+          name: ["-D", "--delay"],
+          description:
+            "Add a delay in milliseconds between calls to different resources",
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+      ],
+    },
+    {
       name: "webhooks",
-      description: "List all the registered webhooks or the details of a single webhook",
+      description:
+        "List all the registered webhooks or the details of a single webhook",
       options: [
         {
           name: ["-o", "--organization"],
@@ -5143,7 +3804,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-e", "--events"],
-          description: "Show the last event callbacks associated to the webhook",
+          description:
+            "Show the last event callbacks associated to the webhook",
         },
       ],
       args: {
@@ -5182,7 +3844,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-t", "--topic"],
-          description: "The identifier of the event that will trigger the webhook",
+          description:
+            "The identifier of the event that will trigger the webhook",
           args: {
             description: "",
           },
@@ -5198,7 +3861,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-i", "--include"],
-          description: "A comma separated list of related resources to be included",
+          description:
+            "A comma separated list of related resources to be included",
           args: {
             description: "",
           },
@@ -5280,7 +3944,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-e", "--events"],
-          description: "Show the last event callbacks associated to the webhook",
+          description:
+            "Show the last event callbacks associated to the webhook",
         },
       ],
       args: {
@@ -5568,7 +4233,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-t", "--topic"],
-          description: "The identifier of the event that will trigger the webhook",
+          description:
+            "The identifier of the event that will trigger the webhook",
           args: {
             description: "",
           },
@@ -5582,7 +4248,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-i", "--include"],
-          description: "A comma separated list of related resources to be included",
+          description:
+            "A comma separated list of related resources to be included",
           args: {
             description: "",
           },
@@ -5598,6 +4265,1431 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "id",
         description: "Unique id of the webhook",
+      },
+    },
+    {
+      name: "orders",
+      description: "Execute an action on an order",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:approve",
+      description: "Send this attribute if you want to approve a placed order",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:approve_and_capture",
+      description:
+        "Send this attribute if you want to approve and capture a placed order",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:archive",
+      description: "Send this attribute if you want to archive the order",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:authorization_amount_cents",
+      description: "The authorization amount, in cents",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:authorize",
+      description:
+        "Send this attribute if you want to authorize the order's payment source",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:billing_address_clone_id",
+      description:
+        "The id of the address that you want to clone to create the order's billing addre",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+        {
+          name: ["-v", "--value"],
+          description: "The trigger attribute value",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:billing_address_same_as_shipping",
+      description:
+        "Send this attribute if you want the billing address to be cloned from the order'",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:cancel",
+      description: "Send this attribute if you want to cancel a placed order",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:capture",
+      description:
+        "Send this attribute if you want to capture an authorized order",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:commit_invoice",
+      description:
+        "Send this attribute if you want commit the sales tax invoice to the associated t",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:create_subscriptions",
+      description:
+        "Send this attribute upon/after placing the order if you want to create order sub",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:customer_payment_source_id",
+      description: "The id of the customer payment source (i",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+        {
+          name: ["-v", "--value"],
+          description: "The trigger attribute value",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:nullify_payment_source",
+      description:
+        "Send this attribute if you want to nullify the payment source for this order",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:pending",
+      description:
+        "Send this attribute if you want to move a draft or placing order to pending",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:place",
+      description: "Send this attribute if you want to place the order",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:refresh",
+      description:
+        "Send this attribute if you want to manually refresh the order",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:refund",
+      description: "Send this attribute if you want to refund a captured order",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:refund_invoice",
+      description:
+        "Send this attribute if you want refund the sales tax invoice to the associated t",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:reset_circuit",
+      description:
+        "Send this attribute if you want to reset the circuit breaker associated to this",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:save_billing_address_to_customer_address_book",
+      description:
+        "Send this attribute if you want the order's billing address to be saved in the c",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:save_payment_source_to_customer_wallet",
+      description:
+        "Send this attribute if you want the order's payment source to be saved in the cu",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:save_shipping_address_to_customer_address_book",
+      description:
+        "Send this attribute if you want the order's shipping address to be saved in the",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:shipping_address_clone_id",
+      description:
+        "The id of the address that you want to clone to create the order's shipping addr",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+        {
+          name: ["-v", "--value"],
+          description: "The trigger attribute value",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:shipping_address_same_as_billing",
+      description:
+        "Send this attribute if you want the shipping address to be cloned from the order",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:start_editing",
+      description:
+        "Send this attribute if you want to edit the order after it is placed",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:stop_editing",
+      description:
+        "Send this attribute to stop the editing for the order and return back to placed",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:unarchive",
+      description: "Send this attribute if you want to unarchive the order",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:update_taxes",
+      description:
+        "Send this attribute if you want to force tax calculation for this order (a tax c",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:validate",
+      description:
+        "Send this attribute if you want to trigger the external validation for the order",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
       },
     },
     {
@@ -5648,7 +5740,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "adyen_payment:details",
-      description: "Send this attribute if you want to send additional details the payment request",
+      description:
+        "Send this attribute if you want to send additional details the payment request",
       options: [
         {
           name: ["-o", "--organization"],
@@ -5740,7 +5833,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "authorization:capture",
-      description: "Send this attribute if you want to create a capture for this authorization",
+      description:
+        "Send this attribute if you want to create a capture for this authorization",
       options: [
         {
           name: ["-o", "--organization"],
@@ -5832,7 +5926,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "authorization:void",
-      description: "Send this attribute if you want to create a void for this authorization",
+      description:
+        "Send this attribute if you want to create a void for this authorization",
       options: [
         {
           name: ["-o", "--organization"],
@@ -5924,7 +6019,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "axerve_payment:update",
-      description: "Send this attribute if you want to update the payment with fresh order data",
+      description:
+        "Send this attribute if you want to update the payment with fresh order data",
       options: [
         {
           name: ["-o", "--organization"],
@@ -6016,7 +6112,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "bundle:compute_compare_at_amount",
-      description: "Send this attribute if you want to compute the compare_at_amount_cents as the su",
+      description:
+        "Send this attribute if you want to compute the compare_at_amount_cents as the su",
       options: [
         {
           name: ["-o", "--organization"],
@@ -6062,7 +6159,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "bundle:compute_price_amount",
-      description: "Send this attribute if you want to compute the price_amount_cents as the sum of",
+      description:
+        "Send this attribute if you want to compute the price_amount_cents as the sum of",
       options: [
         {
           name: ["-o", "--organization"],
@@ -6108,7 +6206,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "buy_x_pay_y_promotion",
-      description: "Execute an action on a resource of type buy_x_pay_y_promotions",
+      description:
+        "Execute an action on a resource of type buy_x_pay_y_promotions",
       options: [
         {
           name: ["-o", "--organization"],
@@ -6154,7 +6253,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "buy_x_pay_y_promotion:disable",
-      description: "Send this attribute if you want to mark this resource as disabled",
+      description:
+        "Send this attribute if you want to mark this resource as disabled",
       options: [
         {
           name: ["-o", "--organization"],
@@ -6200,7 +6300,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "buy_x_pay_y_promotion:enable",
-      description: "Send this attribute if you want to mark this resource as enabled",
+      description:
+        "Send this attribute if you want to mark this resource as enabled",
       options: [
         {
           name: ["-o", "--organization"],
@@ -6292,7 +6393,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "capture:refund",
-      description: "Send this attribute if you want to create a refund for this capture",
+      description:
+        "Send this attribute if you want to create a refund for this capture",
       options: [
         {
           name: ["-o", "--organization"],
@@ -6384,7 +6486,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "checkout_com_payment",
-      description: "Execute an action on a resource of type checkout_com_payments",
+      description:
+        "Execute an action on a resource of type checkout_com_payments",
       options: [
         {
           name: ["-o", "--organization"],
@@ -6430,7 +6533,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "checkout_com_payment:details",
-      description: "Send this attribute if you want to send additional details the payment request (",
+      description:
+        "Send this attribute if you want to send additional details the payment request (",
       options: [
         {
           name: ["-o", "--organization"],
@@ -6476,7 +6580,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "checkout_com_payment:refresh",
-      description: "Send this attribute if you want to refresh all the pending transactions, can be",
+      description:
+        "Send this attribute if you want to refresh all the pending transactions, can be",
       options: [
         {
           name: ["-o", "--organization"],
@@ -6522,7 +6627,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "customer_password_reset",
-      description: "Execute an action on a resource of type customer_password_resets",
+      description:
+        "Execute an action on a resource of type customer_password_resets",
       options: [
         {
           name: ["-o", "--organization"],
@@ -6568,7 +6674,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "customer_password_reset:reset_password_token",
-      description: "Send the 'reset_password_token' that you got on create when updating the custome",
+      description:
+        "Send the 'reset_password_token' that you got on create when updating the custome",
       options: [
         {
           name: ["-o", "--organization"],
@@ -6660,7 +6767,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "external_gateway:reset_circuit",
-      description: "Send this attribute if you want to reset the circuit breaker associated to this",
+      description:
+        "Send this attribute if you want to reset the circuit breaker associated to this",
       options: [
         {
           name: ["-o", "--organization"],
@@ -6706,7 +6814,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "external_promotion",
-      description: "Execute an action on a resource of type external_promotions",
+      description:
+        "Execute an action on a resource of type external_promotions",
       options: [
         {
           name: ["-o", "--organization"],
@@ -6752,7 +6861,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "external_promotion:disable",
-      description: "Send this attribute if you want to mark this resource as disabled",
+      description:
+        "Send this attribute if you want to mark this resource as disabled",
       options: [
         {
           name: ["-o", "--organization"],
@@ -6798,7 +6908,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "external_promotion:enable",
-      description: "Send this attribute if you want to mark this resource as enabled",
+      description:
+        "Send this attribute if you want to mark this resource as enabled",
       options: [
         {
           name: ["-o", "--organization"],
@@ -6844,7 +6955,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "external_promotion:reset_circuit",
-      description: "Send this attribute if you want to reset the circuit breaker associated to this",
+      description:
+        "Send this attribute if you want to reset the circuit breaker associated to this",
       options: [
         {
           name: ["-o", "--organization"],
@@ -6890,7 +7002,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "external_tax_calculator",
-      description: "Execute an action on a resource of type external_tax_calculators",
+      description:
+        "Execute an action on a resource of type external_tax_calculators",
       options: [
         {
           name: ["-o", "--organization"],
@@ -6936,7 +7049,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "external_tax_calculator:reset_circuit",
-      description: "Send this attribute if you want to reset the circuit breaker associated to this",
+      description:
+        "Send this attribute if you want to reset the circuit breaker associated to this",
       options: [
         {
           name: ["-o", "--organization"],
@@ -6982,7 +7096,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "fixed_amount_promotion",
-      description: "Execute an action on a resource of type fixed_amount_promotions",
+      description:
+        "Execute an action on a resource of type fixed_amount_promotions",
       options: [
         {
           name: ["-o", "--organization"],
@@ -7028,7 +7143,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "fixed_amount_promotion:disable",
-      description: "Send this attribute if you want to mark this resource as disabled",
+      description:
+        "Send this attribute if you want to mark this resource as disabled",
       options: [
         {
           name: ["-o", "--organization"],
@@ -7074,7 +7190,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "fixed_amount_promotion:enable",
-      description: "Send this attribute if you want to mark this resource as enabled",
+      description:
+        "Send this attribute if you want to mark this resource as enabled",
       options: [
         {
           name: ["-o", "--organization"],
@@ -7120,7 +7237,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "fixed_price_promotion",
-      description: "Execute an action on a resource of type fixed_price_promotions",
+      description:
+        "Execute an action on a resource of type fixed_price_promotions",
       options: [
         {
           name: ["-o", "--organization"],
@@ -7166,7 +7284,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "fixed_price_promotion:disable",
-      description: "Send this attribute if you want to mark this resource as disabled",
+      description:
+        "Send this attribute if you want to mark this resource as disabled",
       options: [
         {
           name: ["-o", "--organization"],
@@ -7212,7 +7331,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "fixed_price_promotion:enable",
-      description: "Send this attribute if you want to mark this resource as enabled",
+      description:
+        "Send this attribute if you want to mark this resource as enabled",
       options: [
         {
           name: ["-o", "--organization"],
@@ -7258,7 +7378,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "free_gift_promotion",
-      description: "Execute an action on a resource of type free_gift_promotions",
+      description:
+        "Execute an action on a resource of type free_gift_promotions",
       options: [
         {
           name: ["-o", "--organization"],
@@ -7304,7 +7425,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "free_gift_promotion:disable",
-      description: "Send this attribute if you want to mark this resource as disabled",
+      description:
+        "Send this attribute if you want to mark this resource as disabled",
       options: [
         {
           name: ["-o", "--organization"],
@@ -7350,7 +7472,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "free_gift_promotion:enable",
-      description: "Send this attribute if you want to mark this resource as enabled",
+      description:
+        "Send this attribute if you want to mark this resource as enabled",
       options: [
         {
           name: ["-o", "--organization"],
@@ -7396,7 +7519,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "free_shipping_promotion",
-      description: "Execute an action on a resource of type free_shipping_promotions",
+      description:
+        "Execute an action on a resource of type free_shipping_promotions",
       options: [
         {
           name: ["-o", "--organization"],
@@ -7442,7 +7566,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "free_shipping_promotion:disable",
-      description: "Send this attribute if you want to mark this resource as disabled",
+      description:
+        "Send this attribute if you want to mark this resource as disabled",
       options: [
         {
           name: ["-o", "--organization"],
@@ -7488,7 +7613,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "free_shipping_promotion:enable",
-      description: "Send this attribute if you want to mark this resource as enabled",
+      description:
+        "Send this attribute if you want to mark this resource as enabled",
       options: [
         {
           name: ["-o", "--organization"],
@@ -7718,7 +7844,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "gift_card:purchase",
-      description: "Send this attribute if you want to confirm a draft gift card",
+      description:
+        "Send this attribute if you want to confirm a draft gift card",
       options: [
         {
           name: ["-o", "--organization"],
@@ -7764,7 +7891,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "in_stock_subscription",
-      description: "Execute an action on a resource of type in_stock_subscriptions",
+      description:
+        "Execute an action on a resource of type in_stock_subscriptions",
       options: [
         {
           name: ["-o", "--organization"],
@@ -7810,7 +7938,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "in_stock_subscription:activate",
-      description: "Send this attribute if you want to activate an inactive subscription",
+      description:
+        "Send this attribute if you want to activate an inactive subscription",
       options: [
         {
           name: ["-o", "--organization"],
@@ -7856,7 +7985,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "in_stock_subscription:deactivate",
-      description: "Send this attribute if you want to dactivate an active subscription",
+      description:
+        "Send this attribute if you want to dactivate an active subscription",
       options: [
         {
           name: ["-o", "--organization"],
@@ -7948,7 +8078,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "klarna_payment:update",
-      description: "Send this attribute if you want to update the payment session with fresh order d",
+      description:
+        "Send this attribute if you want to update the payment session with fresh order d",
       options: [
         {
           name: ["-o", "--organization"],
@@ -8040,7 +8171,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "line_item:external_price",
-      description: "When creating or updating a new line item, set this attribute to '1' if you want",
+      description:
+        "When creating or updating a new line item, set this attribute to '1' if you want",
       options: [
         {
           name: ["-o", "--organization"],
@@ -8086,7 +8218,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "line_item:reserve_stock",
-      description: "Send this attribute if you want to reserve the stock for the line item's skus qu",
+      description:
+        "Send this attribute if you want to reserve the stock for the line item's skus qu",
       options: [
         {
           name: ["-o", "--organization"],
@@ -8132,7 +8265,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "line_item:reset_circuit",
-      description: "Send this attribute if you want to reset the circuit breaker associated to this",
+      description:
+        "Send this attribute if you want to reset the circuit breaker associated to this",
       options: [
         {
           name: ["-o", "--organization"],
@@ -8224,7 +8358,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "market:disable",
-      description: "Send this attribute if you want to mark this resource as disabled",
+      description:
+        "Send this attribute if you want to mark this resource as disabled",
       options: [
         {
           name: ["-o", "--organization"],
@@ -8270,7 +8405,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "market:enable",
-      description: "Send this attribute if you want to mark this resource as enabled",
+      description:
+        "Send this attribute if you want to mark this resource as enabled",
       options: [
         {
           name: ["-o", "--organization"],
@@ -8362,7 +8498,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "order_subscription",
-      description: "Execute an action on a resource of type order_subscriptions",
+      description:
+        "Execute an action on a resource of type order_subscriptions",
       options: [
         {
           name: ["-o", "--organization"],
@@ -8408,7 +8545,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "order_subscription:activate",
-      description: "Send this attribute if you want to mark this subscription as active",
+      description:
+        "Send this attribute if you want to mark this subscription as active",
       options: [
         {
           name: ["-o", "--organization"],
@@ -8454,7 +8592,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "order_subscription:cancel",
-      description: "Send this attribute if you want to mark this subscription as cancelled",
+      description:
+        "Send this attribute if you want to mark this subscription as cancelled",
       options: [
         {
           name: ["-o", "--organization"],
@@ -8500,7 +8639,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "order_subscription:deactivate",
-      description: "Send this attribute if you want to mark this subscription as inactive",
+      description:
+        "Send this attribute if you want to mark this subscription as inactive",
       options: [
         {
           name: ["-o", "--organization"],
@@ -8592,7 +8732,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "order:approve_and_capture",
-      description: "Send this attribute if you want to approve and capture a placed order",
+      description:
+        "Send this attribute if you want to approve and capture a placed order",
       options: [
         {
           name: ["-o", "--organization"],
@@ -8730,7 +8871,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "order:authorize",
-      description: "Send this attribute if you want to authorize the order's payment source",
+      description:
+        "Send this attribute if you want to authorize the order's payment source",
       options: [
         {
           name: ["-o", "--organization"],
@@ -8776,7 +8918,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "order:billing_address_clone_id",
-      description: "The id of the address that you want to clone to create the order's billing addre",
+      description:
+        "The id of the address that you want to clone to create the order's billing addre",
       options: [
         {
           name: ["-o", "--organization"],
@@ -8830,7 +8973,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "order:billing_address_same_as_shipping",
-      description: "Send this attribute if you want the billing address to be cloned from the order'",
+      description:
+        "Send this attribute if you want the billing address to be cloned from the order'",
       options: [
         {
           name: ["-o", "--organization"],
@@ -8922,7 +9066,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "order:capture",
-      description: "Send this attribute if you want to capture an authorized order",
+      description:
+        "Send this attribute if you want to capture an authorized order",
       options: [
         {
           name: ["-o", "--organization"],
@@ -8968,7 +9113,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "order:commit_invoice",
-      description: "Send this attribute if you want commit the sales tax invoice to the associated t",
+      description:
+        "Send this attribute if you want commit the sales tax invoice to the associated t",
       options: [
         {
           name: ["-o", "--organization"],
@@ -9014,7 +9160,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "order:create_subscriptions",
-      description: "Send this attribute upon/after placing the order if you want to create order sub",
+      description:
+        "Send this attribute upon/after placing the order if you want to create order sub",
       options: [
         {
           name: ["-o", "--organization"],
@@ -9114,7 +9261,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "order:nullify_payment_source",
-      description: "Send this attribute if you want to nullify the payment source for this order",
+      description:
+        "Send this attribute if you want to nullify the payment source for this order",
       options: [
         {
           name: ["-o", "--organization"],
@@ -9160,7 +9308,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "order:pending",
-      description: "Send this attribute if you want to move a draft or placing order to pending",
+      description:
+        "Send this attribute if you want to move a draft or placing order to pending",
       options: [
         {
           name: ["-o", "--organization"],
@@ -9252,7 +9401,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "order:refresh",
-      description: "Send this attribute if you want to manually refresh the order",
+      description:
+        "Send this attribute if you want to manually refresh the order",
       options: [
         {
           name: ["-o", "--organization"],
@@ -9344,7 +9494,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "order:refund_invoice",
-      description: "Send this attribute if you want refund the sales tax invoice to the associated t",
+      description:
+        "Send this attribute if you want refund the sales tax invoice to the associated t",
       options: [
         {
           name: ["-o", "--organization"],
@@ -9390,7 +9541,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "order:reset_circuit",
-      description: "Send this attribute if you want to reset the circuit breaker associated to this",
+      description:
+        "Send this attribute if you want to reset the circuit breaker associated to this",
       options: [
         {
           name: ["-o", "--organization"],
@@ -9436,7 +9588,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "order:save_billing_address_to_customer_address_book",
-      description: "Send this attribute if you want the order's billing address to be saved in the c",
+      description:
+        "Send this attribute if you want the order's billing address to be saved in the c",
       options: [
         {
           name: ["-o", "--organization"],
@@ -9482,7 +9635,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "order:save_payment_source_to_customer_wallet",
-      description: "Send this attribute if you want the order's payment source to be saved in the cu",
+      description:
+        "Send this attribute if you want the order's payment source to be saved in the cu",
       options: [
         {
           name: ["-o", "--organization"],
@@ -9528,7 +9682,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "order:save_shipping_address_to_customer_address_book",
-      description: "Send this attribute if you want the order's shipping address to be saved in the",
+      description:
+        "Send this attribute if you want the order's shipping address to be saved in the",
       options: [
         {
           name: ["-o", "--organization"],
@@ -9574,7 +9729,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "order:shipping_address_clone_id",
-      description: "The id of the address that you want to clone to create the order's shipping addr",
+      description:
+        "The id of the address that you want to clone to create the order's shipping addr",
       options: [
         {
           name: ["-o", "--organization"],
@@ -9628,7 +9784,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "order:shipping_address_same_as_billing",
-      description: "Send this attribute if you want the shipping address to be cloned from the order",
+      description:
+        "Send this attribute if you want the shipping address to be cloned from the order",
       options: [
         {
           name: ["-o", "--organization"],
@@ -9674,7 +9831,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "order:start_editing",
-      description: "Send this attribute if you want to edit the order after it is placed",
+      description:
+        "Send this attribute if you want to edit the order after it is placed",
       options: [
         {
           name: ["-o", "--organization"],
@@ -9720,7 +9878,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "order:stop_editing",
-      description: "Send this attribute to stop the editing for the order and return back to placed",
+      description:
+        "Send this attribute to stop the editing for the order and return back to placed",
       options: [
         {
           name: ["-o", "--organization"],
@@ -9812,7 +9971,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "order:update_taxes",
-      description: "Send this attribute if you want to force tax calculation for this order (a tax c",
+      description:
+        "Send this attribute if you want to force tax calculation for this order (a tax c",
       options: [
         {
           name: ["-o", "--organization"],
@@ -9858,7 +10018,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "order:validate",
-      description: "Send this attribute if you want to trigger the external validation for the order",
+      description:
+        "Send this attribute if you want to trigger the external validation for the order",
       options: [
         {
           name: ["-o", "--organization"],
@@ -9950,7 +10111,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "payment_method:disable",
-      description: "Send this attribute if you want to mark this resource as disabled",
+      description:
+        "Send this attribute if you want to mark this resource as disabled",
       options: [
         {
           name: ["-o", "--organization"],
@@ -9996,7 +10158,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "payment_method:enable",
-      description: "Send this attribute if you want to mark this resource as enabled",
+      description:
+        "Send this attribute if you want to mark this resource as enabled",
       options: [
         {
           name: ["-o", "--organization"],
@@ -10042,7 +10205,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "percentage_discount_promotion",
-      description: "Execute an action on a resource of type percentage_discount_promotions",
+      description:
+        "Execute an action on a resource of type percentage_discount_promotions",
       options: [
         {
           name: ["-o", "--organization"],
@@ -10088,7 +10252,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "percentage_discount_promotion:disable",
-      description: "Send this attribute if you want to mark this resource as disabled",
+      description:
+        "Send this attribute if you want to mark this resource as disabled",
       options: [
         {
           name: ["-o", "--organization"],
@@ -10134,7 +10299,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "percentage_discount_promotion:enable",
-      description: "Send this attribute if you want to mark this resource as enabled",
+      description:
+        "Send this attribute if you want to mark this resource as enabled",
       options: [
         {
           name: ["-o", "--organization"],
@@ -10318,7 +10484,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "return:approve",
-      description: "Send this attribute if you want to mark this return as approved",
+      description:
+        "Send this attribute if you want to mark this return as approved",
       options: [
         {
           name: ["-o", "--organization"],
@@ -10410,7 +10577,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "return:cancel",
-      description: "Send this attribute if you want to mark this return as cancelled",
+      description:
+        "Send this attribute if you want to mark this return as cancelled",
       options: [
         {
           name: ["-o", "--organization"],
@@ -10456,7 +10624,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "return:receive",
-      description: "Send this attribute if you want to mark this return as received",
+      description:
+        "Send this attribute if you want to mark this return as received",
       options: [
         {
           name: ["-o", "--organization"],
@@ -10502,7 +10671,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "return:reject",
-      description: "Send this attribute if you want to mark this return as rejected",
+      description:
+        "Send this attribute if you want to mark this return as rejected",
       options: [
         {
           name: ["-o", "--organization"],
@@ -10594,7 +10764,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "return:restock",
-      description: "Send this attribute if you want to restock all of the return line items",
+      description:
+        "Send this attribute if you want to restock all of the return line items",
       options: [
         {
           name: ["-o", "--organization"],
@@ -10640,7 +10811,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "return:ship",
-      description: "Send this attribute if you want to mark this return as shipped",
+      description:
+        "Send this attribute if you want to mark this return as shipped",
       options: [
         {
           name: ["-o", "--organization"],
@@ -10778,7 +10950,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "satispay_payment:refresh",
-      description: "Send this attribute if you want to refresh all the pending transactions, can be",
+      description:
+        "Send this attribute if you want to refresh all the pending transactions, can be",
       options: [
         {
           name: ["-o", "--organization"],
@@ -10870,7 +11043,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "shipment:decrement_stock",
-      description: "Send this attribute if you want to automatically decrement and release the stock",
+      description:
+        "Send this attribute if you want to automatically decrement and release the stock",
       options: [
         {
           name: ["-o", "--organization"],
@@ -10916,7 +11090,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "shipment:get_rates",
-      description: "Send this attribute if you want get the shipping rates from the associated carri",
+      description:
+        "Send this attribute if you want get the shipping rates from the associated carri",
       options: [
         {
           name: ["-o", "--organization"],
@@ -10962,7 +11137,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "shipment:on_hold",
-      description: "Send this attribute if you want to put this shipment on hold",
+      description:
+        "Send this attribute if you want to put this shipment on hold",
       options: [
         {
           name: ["-o", "--organization"],
@@ -11008,7 +11184,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "shipment:packing",
-      description: "Send this attribute if you want to start packing this shipment",
+      description:
+        "Send this attribute if you want to start packing this shipment",
       options: [
         {
           name: ["-o", "--organization"],
@@ -11054,7 +11231,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "shipment:picking",
-      description: "Send this attribute if you want to start picking this shipment",
+      description:
+        "Send this attribute if you want to start picking this shipment",
       options: [
         {
           name: ["-o", "--organization"],
@@ -11100,7 +11278,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "shipment:purchase",
-      description: "Send this attribute if you want to purchase this shipment with the selected rate",
+      description:
+        "Send this attribute if you want to purchase this shipment with the selected rate",
       options: [
         {
           name: ["-o", "--organization"],
@@ -11146,7 +11325,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "shipment:ready_to_ship",
-      description: "Send this attribute if you want to mark this shipment as ready to ship",
+      description:
+        "Send this attribute if you want to mark this shipment as ready to ship",
       options: [
         {
           name: ["-o", "--organization"],
@@ -11192,7 +11372,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "shipment:release_stock",
-      description: "Send this attribute if you want to automatically destroy the stock reservations",
+      description:
+        "Send this attribute if you want to automatically destroy the stock reservations",
       options: [
         {
           name: ["-o", "--organization"],
@@ -11238,7 +11419,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "shipment:reserve_stock",
-      description: "Send this attribute if you want to automatically reserve the stock for each of t",
+      description:
+        "Send this attribute if you want to automatically reserve the stock for each of t",
       options: [
         {
           name: ["-o", "--organization"],
@@ -11284,7 +11466,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "shipment:ship",
-      description: "Send this attribute if you want to mark this shipment as shipped",
+      description:
+        "Send this attribute if you want to mark this shipment as shipped",
       options: [
         {
           name: ["-o", "--organization"],
@@ -11330,7 +11513,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "shipment:upcoming",
-      description: "Send this attribute if you want to mark this shipment as upcoming",
+      description:
+        "Send this attribute if you want to mark this shipment as upcoming",
       options: [
         {
           name: ["-o", "--organization"],
@@ -11422,7 +11606,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "shipping_method:disable",
-      description: "Send this attribute if you want to mark this resource as disabled",
+      description:
+        "Send this attribute if you want to mark this resource as disabled",
       options: [
         {
           name: ["-o", "--organization"],
@@ -11468,7 +11653,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "shipping_method:enable",
-      description: "Send this attribute if you want to mark this resource as enabled",
+      description:
+        "Send this attribute if you want to mark this resource as enabled",
       options: [
         {
           name: ["-o", "--organization"],
@@ -11514,7 +11700,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "shipping_method:reset_circuit",
-      description: "Send this attribute if you want to reset the circuit breaker associated to this",
+      description:
+        "Send this attribute if you want to reset the circuit breaker associated to this",
       options: [
         {
           name: ["-o", "--organization"],
@@ -11606,7 +11793,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "stock_item:validate",
-      description: "Send this attribute if you want to validate the stock item quantity against the",
+      description:
+        "Send this attribute if you want to validate the stock item quantity against the",
       options: [
         {
           name: ["-o", "--organization"],
@@ -11698,7 +11886,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "stock_line_item:decrement_stock",
-      description: "Send this attribute if you want to automatically decrement and release the stock",
+      description:
+        "Send this attribute if you want to automatically decrement and release the stock",
       options: [
         {
           name: ["-o", "--organization"],
@@ -11744,7 +11933,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "stock_line_item:release_stock",
-      description: "Send this attribute if you want to automatically destroy the stock reservation f",
+      description:
+        "Send this attribute if you want to automatically destroy the stock reservation f",
       options: [
         {
           name: ["-o", "--organization"],
@@ -11790,7 +11980,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "stock_line_item:reserve_stock",
-      description: "Send this attribute if you want to automatically reserve the stock for this stoc",
+      description:
+        "Send this attribute if you want to automatically reserve the stock for this stoc",
       options: [
         {
           name: ["-o", "--organization"],
@@ -11882,7 +12073,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "stock_reservation:pending",
-      description: "Send this attribute if you want to mark this stock reservation as pending",
+      description:
+        "Send this attribute if you want to mark this stock reservation as pending",
       options: [
         {
           name: ["-o", "--organization"],
@@ -11974,7 +12166,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "stock_transfer:cancel",
-      description: "Send this attribute if you want to cancel this stock transfer",
+      description:
+        "Send this attribute if you want to cancel this stock transfer",
       options: [
         {
           name: ["-o", "--organization"],
@@ -12020,7 +12213,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "stock_transfer:complete",
-      description: "Send this attribute if you want to complete this stock transfer",
+      description:
+        "Send this attribute if you want to complete this stock transfer",
       options: [
         {
           name: ["-o", "--organization"],
@@ -12066,7 +12260,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "stock_transfer:in_transit",
-      description: "Send this attribute if you want to mark this stock transfer as in transit",
+      description:
+        "Send this attribute if you want to mark this stock transfer as in transit",
       options: [
         {
           name: ["-o", "--organization"],
@@ -12112,7 +12307,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "stock_transfer:on_hold",
-      description: "Send this attribute if you want to put this stock transfer on hold",
+      description:
+        "Send this attribute if you want to put this stock transfer on hold",
       options: [
         {
           name: ["-o", "--organization"],
@@ -12158,7 +12354,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "stock_transfer:picking",
-      description: "Send this attribute if you want to start picking this stock transfer",
+      description:
+        "Send this attribute if you want to start picking this stock transfer",
       options: [
         {
           name: ["-o", "--organization"],
@@ -12204,7 +12401,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "stock_transfer:upcoming",
-      description: "Send this attribute if you want to mark this stock transfer as upcoming",
+      description:
+        "Send this attribute if you want to mark this stock transfer as upcoming",
       options: [
         {
           name: ["-o", "--organization"],
@@ -12296,7 +12494,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "stripe_payment:refresh",
-      description: "Send this attribute if you want to refresh the payment status, can be used as we",
+      description:
+        "Send this attribute if you want to refresh the payment status, can be used as we",
       options: [
         {
           name: ["-o", "--organization"],
@@ -12342,7 +12541,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "stripe_payment:update",
-      description: "Send this attribute if you want to update the created payment intent with fresh",
+      description:
+        "Send this attribute if you want to update the created payment intent with fresh",
       options: [
         {
           name: ["-o", "--organization"],
@@ -12434,7 +12634,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "webhook:disable",
-      description: "Send this attribute if you want to mark this resource as disabled",
+      description:
+        "Send this attribute if you want to mark this resource as disabled",
       options: [
         {
           name: ["-o", "--organization"],
@@ -12480,7 +12681,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "webhook:enable",
-      description: "Send this attribute if you want to mark this resource as enabled",
+      description:
+        "Send this attribute if you want to mark this resource as enabled",
       options: [
         {
           name: ["-o", "--organization"],
@@ -12526,7 +12728,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "webhook:reset_circuit",
-      description: "Send this attribute if you want to reset the circuit breaker associated to this",
+      description:
+        "Send this attribute if you want to reset the circuit breaker associated to this",
       options: [
         {
           name: ["-o", "--organization"],
@@ -12571,1055 +12774,9 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["provisioning:create", "prov:create", "pc", "pcreate"],
-      description: "Create a new resource",
-      options: [
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-i", "--include"],
-          description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-f", "--fields"],
-          description: "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Convert output in standard json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print unformatted json output",
-        },
-        {
-          name: ["-R", "--raw"],
-          description: "Print out the raw api response",
-          hidden: false,
-        },
-        {
-          name: "--doc",
-          description: "Show the cli command in a specific language",
-        },
-        {
-          name: ["-l", "--lang"],
-          description: "Show the cli command in the specified language syntax",
-          args: {
-            description: "",
-            suggestions: ["curl", "node"],
-          },
-        },
-        {
-          name: "--curl",
-          description: "Show the equivalent curl command of the cli command",
-          hidden: false,
-        },
-        {
-          name: "--node",
-          description: "Show the equivalent node sdk source code of the cli command",
-          hidden: false,
-        },
-        {
-          name: ["-H", "--headers"],
-          description: "Show response headers",
-        },
-        {
-          name: ["-Y", "--headers-only"],
-          description: "Show only response headers",
-        },
-        {
-          name: ["-a", "--attribute"],
-          description: "Define a resource attribute",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-O", "--object"],
-          description: "Define a resource object attribute",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-r", "--relationship"],
-          description: "Define a relationship with another resource",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-m", "--metadata"],
-          description: "Define a metadata attribute or a set of metadata attributes",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-D", "--data"],
-          description: "The data file to use as request body",
-          args: {
-            description: "",
-          },
-        },
-      ],
-      args: {
-        name: "resource",
-        description: "The resource type",
-        suggestions: [
-          "api_credential",
-          "application_membership",
-          "membership",
-          "organization",
-          "permission",
-          "role",
-          "subscription",
-        ],
-      },
-    },
-    {
-      name: ["provisioning:delete", "prov:delete", "pd", "pdelete", "pdel"],
-      description: "Delete an existing resource",
-      options: [
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-i", "--include"],
-          description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-f", "--fields"],
-          description: "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Convert output in standard json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print unformatted json output",
-        },
-        {
-          name: ["-R", "--raw"],
-          description: "Print out the raw api response",
-          hidden: false,
-        },
-        {
-          name: "--doc",
-          description: "Show the cli command in a specific language",
-        },
-        {
-          name: ["-l", "--lang"],
-          description: "Show the cli command in the specified language syntax",
-          args: {
-            description: "",
-            suggestions: ["curl", "node"],
-          },
-        },
-        {
-          name: "--curl",
-          description: "Show the equivalent curl command of the cli command",
-          hidden: false,
-        },
-        {
-          name: "--node",
-          description: "Show the equivalent node sdk source code of the cli command",
-          hidden: false,
-        },
-        {
-          name: ["-H", "--headers"],
-          description: "Show response headers",
-        },
-        {
-          name: ["-Y", "--headers-only"],
-          description: "Show only response headers",
-        },
-      ],
-      args: [
-        {
-          name: "resource",
-          description: "The resource type",
-          suggestions: ["api_credential", "application_membership", "membership"],
-        },
-        {
-          name: "id",
-          description: "Id of the resource to delete",
-          isOptional: true,
-        },
-      ],
-    },
-    {
-      name: ["provisioning:exec", "prov:exec", "pe", "pexec"],
-      description: "Execute an action on a resource",
-      options: [
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-a", "--attribute"],
-          description: "Define a resource attribute",
-          args: {
-            description: "",
-          },
-        },
-      ],
-      args: [
-        {
-          name: "resource",
-          description: "The resource type",
-        },
-        {
-          name: "id",
-          description: "Id of the resource on which to execute the action",
-          isOptional: true,
-        },
-        {
-          name: "action",
-          description: "Action to execute on resource",
-          isOptional: true,
-        },
-      ],
-    },
-    {
-      name: ["provisioning:fetch", "prov:fetch", "pf"],
-      description: "Retrieve a resource or list a set of resources",
-      options: [
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-i", "--include"],
-          description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-f", "--fields"],
-          description: "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Convert output in standard json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print unformatted json output",
-        },
-        {
-          name: ["-R", "--raw"],
-          description: "Print out the raw api response",
-          hidden: false,
-        },
-        {
-          name: "--doc",
-          description: "Show the cli command in a specific language",
-        },
-        {
-          name: ["-l", "--lang"],
-          description: "Show the cli command in the specified language syntax",
-          args: {
-            description: "",
-            suggestions: ["curl", "node"],
-          },
-        },
-        {
-          name: "--curl",
-          description: "Show the equivalent curl command of the cli command",
-          hidden: false,
-        },
-        {
-          name: "--node",
-          description: "Show the equivalent node sdk source code of the cli command",
-          hidden: false,
-        },
-        {
-          name: ["-H", "--headers"],
-          description: "Show response headers",
-        },
-        {
-          name: ["-Y", "--headers-only"],
-          description: "Show only response headers",
-        },
-        {
-          name: ["-e", "--extract"],
-          description: "Extract subfields from object attributes",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-w", "--where"],
-          description: "Comma separated list of query filters",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-p", "--page"],
-          description: "Page number",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-n", "--pageSize"],
-          description: "Number of elements per page",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-s", "--sort"],
-          description: "Defines results ordering",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-I", "--force-include"],
-          description: "Force resources inclusion beyound the 3rd level",
-          hidden: true,
-        },
-      ],
-      args: [
-        {
-          name: "resource",
-          description: "The resource type",
-        },
-        {
-          name: "path",
-          description: "Path (or url) of the resource(s) to fetch",
-        },
-        {
-          name: "id",
-          description: "Resource id",
-          isOptional: true,
-        },
-      ],
-    },
-    {
-      name: ["provisioning:get", "prov:get", "pg", "pget"],
-      description: "Retrieve a resource or list a set of resources",
-      options: [
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-i", "--include"],
-          description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-f", "--fields"],
-          description: "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Convert output in standard json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print unformatted json output",
-        },
-        {
-          name: ["-R", "--raw"],
-          description: "Print out the raw api response",
-          hidden: false,
-        },
-        {
-          name: "--doc",
-          description: "Show the cli command in a specific language",
-        },
-        {
-          name: ["-l", "--lang"],
-          description: "Show the cli command in the specified language syntax",
-          args: {
-            description: "",
-            suggestions: ["curl", "node"],
-          },
-        },
-        {
-          name: "--curl",
-          description: "Show the equivalent curl command of the cli command",
-          hidden: false,
-        },
-        {
-          name: "--node",
-          description: "Show the equivalent node sdk source code of the cli command",
-          hidden: false,
-        },
-        {
-          name: ["-H", "--headers"],
-          description: "Show response headers",
-        },
-        {
-          name: ["-Y", "--headers-only"],
-          description: "Show only response headers",
-        },
-        {
-          name: ["-e", "--extract"],
-          description: "Extract subfields from object attributes",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-w", "--where"],
-          description: "Comma separated list of query filters",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-p", "--page"],
-          description: "Page number",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-n", "--pageSize"],
-          description: "Number of elements per page",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-s", "--sort"],
-          description: "Defines results ordering",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-I", "--force-include"],
-          description: "Force resources inclusion beyound the 3rd level",
-          hidden: true,
-        },
-      ],
-      args: [
-        {
-          name: "resource",
-          description: "The resource type",
-        },
-        {
-          name: "id",
-          description: "Id of the resource to retrieve",
-          isOptional: true,
-        },
-      ],
-    },
-    {
-      name: ["provisioning:list", "pl", "prov:list", "plist", "pls"],
-      description: "Fetch a collection of resources",
-      options: [
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-i", "--include"],
-          description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-f", "--fields"],
-          description: "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Convert output in standard json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print unformatted json output",
-        },
-        {
-          name: ["-R", "--raw"],
-          description: "Print out the raw api response",
-          hidden: false,
-        },
-        {
-          name: "--doc",
-          description: "Show the cli command in a specific language",
-        },
-        {
-          name: ["-l", "--lang"],
-          description: "Show the cli command in the specified language syntax",
-          args: {
-            description: "",
-            suggestions: ["curl", "node"],
-          },
-        },
-        {
-          name: "--curl",
-          description: "Show the equivalent curl command of the cli command",
-          hidden: false,
-        },
-        {
-          name: "--node",
-          description: "Show the equivalent node sdk source code of the cli command",
-          hidden: false,
-        },
-        {
-          name: ["-H", "--headers"],
-          description: "Show response headers",
-        },
-        {
-          name: ["-Y", "--headers-only"],
-          description: "Show only response headers",
-        },
-        {
-          name: ["-w", "--where"],
-          description: "Comma separated list of query filters",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-p", "--page"],
-          description: "Page number",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-n", "--pageSize"],
-          description: "Number of elements per page",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-s", "--sort"],
-          description: "Defines results ordering",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-e", "--extract"],
-          description: "Extract subfields from object attributes",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-I", "--force-include"],
-          description: "Force resources inclusion beyound the 3rd level",
-          hidden: true,
-        },
-      ],
-      args: {
-        name: "resource",
-        description: "The resource type",
-        suggestions: [
-          "api_credentials",
-          "application_memberships",
-          "memberships",
-          "organizations",
-          "permissions",
-          "plans",
-          "roles",
-          "subscriptions",
-          "versions",
-        ],
-      },
-    },
-    {
-      name: ["provisioning:rel", "prov:rel", "prov:relationship"],
-      description: "Fetch a resource relationship",
-      options: [
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-i", "--include"],
-          description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-f", "--fields"],
-          description: "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Convert output in standard json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print unformatted json output",
-        },
-        {
-          name: ["-R", "--raw"],
-          description: "Print out the raw api response",
-          hidden: false,
-        },
-        {
-          name: "--doc",
-          description: "Show the cli command in a specific language",
-        },
-        {
-          name: ["-l", "--lang"],
-          description: "Show the cli command in the specified language syntax",
-          args: {
-            description: "",
-            suggestions: ["curl", "node"],
-          },
-        },
-        {
-          name: "--curl",
-          description: "Show the equivalent curl command of the cli command",
-          hidden: false,
-        },
-        {
-          name: "--node",
-          description: "Show the equivalent node sdk source code of the cli command",
-          hidden: false,
-        },
-        {
-          name: ["-H", "--headers"],
-          description: "Show response headers",
-        },
-        {
-          name: ["-Y", "--headers-only"],
-          description: "Show only response headers",
-        },
-        {
-          name: ["-w", "--where"],
-          description: "Comma separated list of query filters",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-p", "--page"],
-          description: "Page number",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-n", "--pageSize"],
-          description: "Number of elements per page",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-s", "--sort"],
-          description: "Defines results ordering",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-e", "--extract"],
-          description: "Extract subfields from object attributes",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-I", "--force-include"],
-          description: "Force resources inclusion beyound the 3rd level",
-          hidden: true,
-        },
-      ],
-      args: [
-        {
-          name: "resource",
-          description: "The resource type",
-        },
-        {
-          name: "id",
-          description: "Id of the resource to retrieve",
-        },
-        {
-          name: "relationship",
-          description: "Name of the relationship field",
-        },
-      ],
-      hidden: false,
-    },
-    {
-      name: ["provisioning:resources", "prov:resources", "pres"],
-      description: "List all the available provisioning api resources",
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Show cli help",
-        },
-      ],
-    },
-    {
-      name: ["provisioning:retrieve", "prov:retrieve", "pr", "pretrieve"],
-      description: "Fetch a single resource",
-      options: [
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-i", "--include"],
-          description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-f", "--fields"],
-          description: "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Convert output in standard json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print unformatted json output",
-        },
-        {
-          name: ["-R", "--raw"],
-          description: "Print out the raw api response",
-          hidden: false,
-        },
-        {
-          name: "--doc",
-          description: "Show the cli command in a specific language",
-        },
-        {
-          name: ["-l", "--lang"],
-          description: "Show the cli command in the specified language syntax",
-          args: {
-            description: "",
-            suggestions: ["curl", "node"],
-          },
-        },
-        {
-          name: "--curl",
-          description: "Show the equivalent curl command of the cli command",
-          hidden: false,
-        },
-        {
-          name: "--node",
-          description: "Show the equivalent node sdk source code of the cli command",
-          hidden: false,
-        },
-        {
-          name: ["-H", "--headers"],
-          description: "Show response headers",
-        },
-        {
-          name: ["-Y", "--headers-only"],
-          description: "Show only response headers",
-        },
-        {
-          name: ["-e", "--extract"],
-          description: "Extract subfields from object attributes",
-          args: {
-            description: "",
-          },
-        },
-      ],
-      args: [
-        {
-          name: "resource",
-          description: "The resource type",
-          suggestions: [
-            "api_credential",
-            "application_membership",
-            "billing_profile",
-            "membership",
-            "organization",
-            "permission",
-            "plan",
-            "role",
-            "subscription",
-            "user",
-            "version",
-          ],
-        },
-        {
-          name: "id",
-          description: "Id of the resource to retrieve",
-          isOptional: true,
-        },
-      ],
-    },
-    {
-      name: ["provisioning:update", "prov:update", "pu", "pupdate", "pupd"],
-      description: "Update an existing resource",
-      options: [
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-i", "--include"],
-          description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-f", "--fields"],
-          description: "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-j", "--json"],
-          description: "Convert output in standard json format",
-        },
-        {
-          name: ["-u", "--unformatted"],
-          description: "Print unformatted json output",
-        },
-        {
-          name: ["-R", "--raw"],
-          description: "Print out the raw api response",
-          hidden: false,
-        },
-        {
-          name: "--doc",
-          description: "Show the cli command in a specific language",
-        },
-        {
-          name: ["-l", "--lang"],
-          description: "Show the cli command in the specified language syntax",
-          args: {
-            description: "",
-            suggestions: ["curl", "node"],
-          },
-        },
-        {
-          name: "--curl",
-          description: "Show the equivalent curl command of the cli command",
-          hidden: false,
-        },
-        {
-          name: "--node",
-          description: "Show the equivalent node sdk source code of the cli command",
-          hidden: false,
-        },
-        {
-          name: ["-H", "--headers"],
-          description: "Show response headers",
-        },
-        {
-          name: ["-Y", "--headers-only"],
-          description: "Show only response headers",
-        },
-        {
-          name: ["-a", "--attribute"],
-          description: "Define a resource attribute",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-O", "--object"],
-          description: "Define a resource object attribute",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-r", "--relationship"],
-          description: "Define a relationship with another resource",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-m", "--metadata"],
-          description: "",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-M", "--metadata-replace"],
-          description: "",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-D", "--data"],
-          description: "The data file to use as request body",
-          args: {
-            description: "",
-          },
-        },
-      ],
-      args: [
-        {
-          name: "resource",
-          description: "The resource type",
-          suggestions: [
-            "api_credential",
-            "application_membership",
-            "membership",
-            "organization",
-            "permission",
-            "role",
-            "user",
-          ],
-        },
-        {
-          name: "id",
-          description: "Id of the resource to update",
-          isOptional: true,
-        },
-      ],
-    },
-    {
       name: "exports",
-      description: "List all the created exports or show details of a single export",
+      description:
+        "List all the created exports or show details of a single export",
       options: [
         {
           name: ["-o", "--organization"],
@@ -13656,8 +12813,11 @@ const completionSpec: Fig.Spec = {
             description: "",
             suggestions: [
               "addresses",
+              "authorizations",
               "bundles",
+              "captures",
               "coupons",
+              "customer_addresses",
               "customer_subscriptions",
               "customers",
               "gift_cards",
@@ -13666,6 +12826,7 @@ const completionSpec: Fig.Spec = {
               "payment_methods",
               "price_tiers",
               "prices",
+              "refunds",
               "shipments",
               "shipping_categories",
               "shipping_methods",
@@ -13674,12 +12835,10 @@ const completionSpec: Fig.Spec = {
               "sku_options",
               "skus",
               "stock_items",
+              "tags",
               "tax_categories",
               "transactions",
-              "authorizations",
-              "captures",
               "voids",
-              "refunds",
             ],
           },
         },
@@ -13737,11 +12896,14 @@ const completionSpec: Fig.Spec = {
           name: ["-t", "--type"],
           description: "The type of resource being exported",
           args: {
-            description: "Addresses|bundles|coupons|customer_subscriptions|etc",
+            description: "Addresses|authorizations|bundles|captures|etc",
             suggestions: [
               "addresses",
+              "authorizations",
               "bundles",
+              "captures",
               "coupons",
+              "customer_addresses",
               "customer_subscriptions",
               "customers",
               "gift_cards",
@@ -13750,6 +12912,7 @@ const completionSpec: Fig.Spec = {
               "payment_methods",
               "price_tiers",
               "prices",
+              "refunds",
               "shipments",
               "shipping_categories",
               "shipping_methods",
@@ -13758,12 +12921,10 @@ const completionSpec: Fig.Spec = {
               "sku_options",
               "skus",
               "stock_items",
+              "tags",
               "tax_categories",
               "transactions",
-              "authorizations",
-              "captures",
               "voids",
-              "refunds",
             ],
           },
           isRequired: true,
@@ -13808,7 +12969,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-X", "--save-path"],
-          description: "Save command output to file and create missing path directories",
+          description:
+            "Save command output to file and create missing path directories",
           args: {
             description: "",
           },
@@ -13820,7 +12982,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-b", "--blind"],
-          description: "Execute in blind mode without showing the progress monitor",
+          description:
+            "Execute in blind mode without showing the progress monitor",
         },
         {
           name: ["-P", "--prettify"],
@@ -13873,11 +13036,14 @@ const completionSpec: Fig.Spec = {
           name: ["-t", "--type"],
           description: "The type of resource being exported",
           args: {
-            description: "Addresses|bundles|coupons|customer_subscriptions|etc",
+            description: "Addresses|authorizations|bundles|captures|etc",
             suggestions: [
               "addresses",
+              "authorizations",
               "bundles",
+              "captures",
               "coupons",
+              "customer_addresses",
               "customer_subscriptions",
               "customers",
               "gift_cards",
@@ -13886,6 +13052,7 @@ const completionSpec: Fig.Spec = {
               "payment_methods",
               "price_tiers",
               "prices",
+              "refunds",
               "shipments",
               "shipping_categories",
               "shipping_methods",
@@ -13894,12 +13061,10 @@ const completionSpec: Fig.Spec = {
               "sku_options",
               "skus",
               "stock_items",
+              "tags",
               "tax_categories",
               "transactions",
-              "authorizations",
-              "captures",
               "voids",
-              "refunds",
             ],
           },
           isRequired: true,
@@ -13944,7 +13109,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-X", "--save-path"],
-          description: "Save command output to file and create missing path directories",
+          description:
+            "Save command output to file and create missing path directories",
           args: {
             description: "",
           },
@@ -13956,7 +13122,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-b", "--blind"],
-          description: "Execute in blind mode without showing the progress monitor",
+          description:
+            "Execute in blind mode without showing the progress monitor",
         },
         {
           name: ["-P", "--prettify"],
@@ -14075,8 +13242,11 @@ const completionSpec: Fig.Spec = {
             description: "",
             suggestions: [
               "addresses",
+              "authorizations",
               "bundles",
+              "captures",
               "coupons",
+              "customer_addresses",
               "customer_subscriptions",
               "customers",
               "gift_cards",
@@ -14085,6 +13255,7 @@ const completionSpec: Fig.Spec = {
               "payment_methods",
               "price_tiers",
               "prices",
+              "refunds",
               "shipments",
               "shipping_categories",
               "shipping_methods",
@@ -14093,12 +13264,10 @@ const completionSpec: Fig.Spec = {
               "sku_options",
               "skus",
               "stock_items",
+              "tags",
               "tax_categories",
               "transactions",
-              "authorizations",
-              "captures",
               "voids",
-              "refunds",
             ],
           },
         },
@@ -14121,293 +13290,6 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["exports:types", "exp:types"],
-      description: "Show online documentation for supported resources",
-      options: [
-        {
-          name: ["-O", "--open"],
-          description: "Open online documentation page",
-        },
-      ],
-    },
-    {
-      name: "cleanups",
-      description: "List all the created cleanups or show details of a single cleanup",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-A", "--all"],
-          description: "Show all cleanups instead of first 25 only",
-        },
-        {
-          name: ["-t", "--type"],
-          description: "The type of resource cleaned",
-          args: {
-            description: "",
-            suggestions: [
-              "bundles",
-              "gift_cards",
-              "prices",
-              "promotions",
-              "sku_lists",
-              "sku_options",
-              "skus",
-              "stock_items",
-            ],
-          },
-        },
-        {
-          name: ["-s", "--status"],
-          description: "The cleanup job status",
-          args: {
-            description: "",
-            suggestions: ["in_progress", "pending", "completed", "interrupted"],
-          },
-        },
-        {
-          name: ["-l", "--limit"],
-          description: "Limit number of cleanups in output",
-          args: {
-            description: "",
-          },
-        },
-      ],
-      args: {
-        name: "id",
-        description: "Unique id of the cleanup to be retrieved",
-        isOptional: true,
-      },
-    },
-    {
-      name: ["cleanups:create", "clp:create", "cleanup"],
-      description: "Create a new cleanup",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-t", "--type"],
-          description: "The type of resource to clean up",
-          args: {
-            description: "Bundles|gift_cards|prices|promotions|etc",
-            suggestions: [
-              "bundles",
-              "gift_cards",
-              "prices",
-              "promotions",
-              "sku_lists",
-              "sku_options",
-              "skus",
-              "stock_items",
-            ],
-          },
-          isRequired: true,
-        },
-        {
-          name: ["-w", "--where"],
-          description: "Comma separated list of query filters",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-N", "--notify"],
-          description: "Force system notification when cleanup has finished",
-          hidden: true,
-        },
-        {
-          name: ["-b", "--blind"],
-          description: "Execute in blind mode without showing the progress monitor",
-        },
-        {
-          name: ["-q", "--quiet"],
-          description: "Execute command without showing warning messages",
-        },
-      ],
-    },
-    {
-      name: ["cleanups:details", "clp:details"],
-      description: "Show the details of an existing cleanup",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-l", "--logs"],
-          description: "Show error logs related to the cleanup process",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "Unique id of the cleanup",
-      },
-    },
-    {
-      name: ["cleanups:group", "clp:group"],
-      description: "List all the cleanups related to a cleanup group",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-      ],
-      args: {
-        name: "group_id",
-        description: "Unique id of the group cleanup",
-      },
-    },
-    {
-      name: ["cleanups:list", "clp:list"],
-      description: "List all the created cleanups",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-A", "--all"],
-          description: "Show all cleanups instead of first 25 only",
-        },
-        {
-          name: ["-t", "--type"],
-          description: "The type of resource cleaned",
-          args: {
-            description: "",
-            suggestions: [
-              "bundles",
-              "gift_cards",
-              "prices",
-              "promotions",
-              "sku_lists",
-              "sku_options",
-              "skus",
-              "stock_items",
-            ],
-          },
-        },
-        {
-          name: ["-s", "--status"],
-          description: "The cleanup job status",
-          args: {
-            description: "",
-            suggestions: ["in_progress", "pending", "completed", "interrupted"],
-          },
-        },
-        {
-          name: ["-l", "--limit"],
-          description: "Limit number of cleanups in output",
-          args: {
-            description: "",
-          },
-        },
-      ],
-    },
-    {
-      name: ["cleanups:types", "clp:types"],
       description: "Show online documentation for supported resources",
       options: [
         {
@@ -14887,6 +13769,1363 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: ["provisioning:create", "prov:create", "pc", "pcreate"],
+      description: "Create a new resource",
+      options: [
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-i", "--include"],
+          description: "Comma separated resources to include",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-f", "--fields"],
+          description:
+            "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Convert output in standard json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print unformatted json output",
+        },
+        {
+          name: ["-R", "--raw"],
+          description: "Print out the raw api response",
+          hidden: false,
+        },
+        {
+          name: "--doc",
+          description: "Show the cli command in a specific language",
+        },
+        {
+          name: ["-l", "--lang"],
+          description: "Show the cli command in the specified language syntax",
+          args: {
+            description: "",
+            suggestions: ["curl", "node"],
+          },
+        },
+        {
+          name: "--curl",
+          description: "Show the equivalent curl command of the cli command",
+          hidden: false,
+        },
+        {
+          name: "--node",
+          description:
+            "Show the equivalent node sdk source code of the cli command",
+          hidden: false,
+        },
+        {
+          name: ["-H", "--headers"],
+          description: "Show response headers",
+        },
+        {
+          name: ["-Y", "--headers-only"],
+          description: "Show only response headers",
+        },
+        {
+          name: ["-a", "--attribute"],
+          description: "Define a resource attribute",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-O", "--object"],
+          description: "Define a resource object attribute",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-r", "--relationship"],
+          description: "Define a relationship with another resource",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-m", "--metadata"],
+          description:
+            "Define a metadata attribute or a set of metadata attributes",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-D", "--data"],
+          description: "The data file to use as request body",
+          args: {
+            description: "",
+          },
+        },
+      ],
+      args: {
+        name: "resource",
+        description: "The resource type",
+        suggestions: [
+          "api_credential",
+          "application_membership",
+          "membership",
+          "organization",
+          "permission",
+          "role",
+          "subscription",
+        ],
+      },
+    },
+    {
+      name: ["provisioning:delete", "prov:delete", "pd", "pdelete", "pdel"],
+      description: "Delete an existing resource",
+      options: [
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-i", "--include"],
+          description: "Comma separated resources to include",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-f", "--fields"],
+          description:
+            "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Convert output in standard json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print unformatted json output",
+        },
+        {
+          name: ["-R", "--raw"],
+          description: "Print out the raw api response",
+          hidden: false,
+        },
+        {
+          name: "--doc",
+          description: "Show the cli command in a specific language",
+        },
+        {
+          name: ["-l", "--lang"],
+          description: "Show the cli command in the specified language syntax",
+          args: {
+            description: "",
+            suggestions: ["curl", "node"],
+          },
+        },
+        {
+          name: "--curl",
+          description: "Show the equivalent curl command of the cli command",
+          hidden: false,
+        },
+        {
+          name: "--node",
+          description:
+            "Show the equivalent node sdk source code of the cli command",
+          hidden: false,
+        },
+        {
+          name: ["-H", "--headers"],
+          description: "Show response headers",
+        },
+        {
+          name: ["-Y", "--headers-only"],
+          description: "Show only response headers",
+        },
+      ],
+      args: [
+        {
+          name: "resource",
+          description: "The resource type",
+          suggestions: [
+            "api_credential",
+            "application_membership",
+            "membership",
+          ],
+        },
+        {
+          name: "id",
+          description: "Id of the resource to delete",
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: ["provisioning:exec", "prov:exec", "pe", "pexec"],
+      description: "Execute an action on a resource",
+      options: [
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-a", "--attribute"],
+          description: "Define a resource attribute",
+          args: {
+            description: "",
+          },
+        },
+      ],
+      args: [
+        {
+          name: "resource",
+          description: "The resource type",
+        },
+        {
+          name: "id",
+          description: "Id of the resource on which to execute the action",
+          isOptional: true,
+        },
+        {
+          name: "action",
+          description: "Action to execute on resource",
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: ["provisioning:fetch", "prov:fetch", "pf"],
+      description: "Retrieve a resource or list a set of resources",
+      options: [
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-i", "--include"],
+          description: "Comma separated resources to include",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-f", "--fields"],
+          description:
+            "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Convert output in standard json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print unformatted json output",
+        },
+        {
+          name: ["-R", "--raw"],
+          description: "Print out the raw api response",
+          hidden: false,
+        },
+        {
+          name: "--doc",
+          description: "Show the cli command in a specific language",
+        },
+        {
+          name: ["-l", "--lang"],
+          description: "Show the cli command in the specified language syntax",
+          args: {
+            description: "",
+            suggestions: ["curl", "node"],
+          },
+        },
+        {
+          name: "--curl",
+          description: "Show the equivalent curl command of the cli command",
+          hidden: false,
+        },
+        {
+          name: "--node",
+          description:
+            "Show the equivalent node sdk source code of the cli command",
+          hidden: false,
+        },
+        {
+          name: ["-H", "--headers"],
+          description: "Show response headers",
+        },
+        {
+          name: ["-Y", "--headers-only"],
+          description: "Show only response headers",
+        },
+        {
+          name: ["-e", "--extract"],
+          description: "Extract subfields from object attributes",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-w", "--where"],
+          description: "Comma separated list of query filters",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-p", "--page"],
+          description: "Page number",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-n", "--pageSize"],
+          description: "Number of elements per page",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-s", "--sort"],
+          description: "Defines results ordering",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-I", "--force-include"],
+          description: "Force resources inclusion beyound the 3rd level",
+          hidden: true,
+        },
+      ],
+      args: [
+        {
+          name: "resource",
+          description: "The resource type",
+        },
+        {
+          name: "path",
+          description: "Path (or url) of the resource(s) to fetch",
+        },
+        {
+          name: "id",
+          description: "Resource id",
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: ["provisioning:get", "prov:get", "pg", "pget"],
+      description: "Retrieve a resource or list a set of resources",
+      options: [
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-i", "--include"],
+          description: "Comma separated resources to include",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-f", "--fields"],
+          description:
+            "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Convert output in standard json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print unformatted json output",
+        },
+        {
+          name: ["-R", "--raw"],
+          description: "Print out the raw api response",
+          hidden: false,
+        },
+        {
+          name: "--doc",
+          description: "Show the cli command in a specific language",
+        },
+        {
+          name: ["-l", "--lang"],
+          description: "Show the cli command in the specified language syntax",
+          args: {
+            description: "",
+            suggestions: ["curl", "node"],
+          },
+        },
+        {
+          name: "--curl",
+          description: "Show the equivalent curl command of the cli command",
+          hidden: false,
+        },
+        {
+          name: "--node",
+          description:
+            "Show the equivalent node sdk source code of the cli command",
+          hidden: false,
+        },
+        {
+          name: ["-H", "--headers"],
+          description: "Show response headers",
+        },
+        {
+          name: ["-Y", "--headers-only"],
+          description: "Show only response headers",
+        },
+        {
+          name: ["-e", "--extract"],
+          description: "Extract subfields from object attributes",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-w", "--where"],
+          description: "Comma separated list of query filters",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-p", "--page"],
+          description: "Page number",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-n", "--pageSize"],
+          description: "Number of elements per page",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-s", "--sort"],
+          description: "Defines results ordering",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-I", "--force-include"],
+          description: "Force resources inclusion beyound the 3rd level",
+          hidden: true,
+        },
+      ],
+      args: [
+        {
+          name: "resource",
+          description: "The resource type",
+        },
+        {
+          name: "id",
+          description: "Id of the resource to retrieve",
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: ["provisioning:list", "pl", "prov:list", "plist", "pls"],
+      description: "Fetch a collection of resources",
+      options: [
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-i", "--include"],
+          description: "Comma separated resources to include",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-f", "--fields"],
+          description:
+            "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Convert output in standard json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print unformatted json output",
+        },
+        {
+          name: ["-R", "--raw"],
+          description: "Print out the raw api response",
+          hidden: false,
+        },
+        {
+          name: "--doc",
+          description: "Show the cli command in a specific language",
+        },
+        {
+          name: ["-l", "--lang"],
+          description: "Show the cli command in the specified language syntax",
+          args: {
+            description: "",
+            suggestions: ["curl", "node"],
+          },
+        },
+        {
+          name: "--curl",
+          description: "Show the equivalent curl command of the cli command",
+          hidden: false,
+        },
+        {
+          name: "--node",
+          description:
+            "Show the equivalent node sdk source code of the cli command",
+          hidden: false,
+        },
+        {
+          name: ["-H", "--headers"],
+          description: "Show response headers",
+        },
+        {
+          name: ["-Y", "--headers-only"],
+          description: "Show only response headers",
+        },
+        {
+          name: ["-w", "--where"],
+          description: "Comma separated list of query filters",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-p", "--page"],
+          description: "Page number",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-n", "--pageSize"],
+          description: "Number of elements per page",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-s", "--sort"],
+          description: "Defines results ordering",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-e", "--extract"],
+          description: "Extract subfields from object attributes",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-I", "--force-include"],
+          description: "Force resources inclusion beyound the 3rd level",
+          hidden: true,
+        },
+      ],
+      args: {
+        name: "resource",
+        description: "The resource type",
+        suggestions: [
+          "api_credentials",
+          "application_memberships",
+          "memberships",
+          "organizations",
+          "permissions",
+          "plans",
+          "roles",
+          "subscriptions",
+          "versions",
+        ],
+      },
+    },
+    {
+      name: ["provisioning:rel", "prov:rel", "prov:relationship"],
+      description: "Fetch a resource relationship",
+      options: [
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-i", "--include"],
+          description: "Comma separated resources to include",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-f", "--fields"],
+          description:
+            "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Convert output in standard json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print unformatted json output",
+        },
+        {
+          name: ["-R", "--raw"],
+          description: "Print out the raw api response",
+          hidden: false,
+        },
+        {
+          name: "--doc",
+          description: "Show the cli command in a specific language",
+        },
+        {
+          name: ["-l", "--lang"],
+          description: "Show the cli command in the specified language syntax",
+          args: {
+            description: "",
+            suggestions: ["curl", "node"],
+          },
+        },
+        {
+          name: "--curl",
+          description: "Show the equivalent curl command of the cli command",
+          hidden: false,
+        },
+        {
+          name: "--node",
+          description:
+            "Show the equivalent node sdk source code of the cli command",
+          hidden: false,
+        },
+        {
+          name: ["-H", "--headers"],
+          description: "Show response headers",
+        },
+        {
+          name: ["-Y", "--headers-only"],
+          description: "Show only response headers",
+        },
+        {
+          name: ["-w", "--where"],
+          description: "Comma separated list of query filters",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-p", "--page"],
+          description: "Page number",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-n", "--pageSize"],
+          description: "Number of elements per page",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-s", "--sort"],
+          description: "Defines results ordering",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-e", "--extract"],
+          description: "Extract subfields from object attributes",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-I", "--force-include"],
+          description: "Force resources inclusion beyound the 3rd level",
+          hidden: true,
+        },
+      ],
+      args: [
+        {
+          name: "resource",
+          description: "The resource type",
+        },
+        {
+          name: "id",
+          description: "Id of the resource to retrieve",
+        },
+        {
+          name: "relationship",
+          description: "Name of the relationship field",
+        },
+      ],
+      hidden: false,
+    },
+    {
+      name: ["provisioning:resources", "prov:resources", "pres"],
+      description: "List all the available provisioning api resources",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Show cli help",
+        },
+      ],
+    },
+    {
+      name: ["provisioning:retrieve", "prov:retrieve", "pr", "pretrieve"],
+      description: "Fetch a single resource",
+      options: [
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-i", "--include"],
+          description: "Comma separated resources to include",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-f", "--fields"],
+          description:
+            "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Convert output in standard json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print unformatted json output",
+        },
+        {
+          name: ["-R", "--raw"],
+          description: "Print out the raw api response",
+          hidden: false,
+        },
+        {
+          name: "--doc",
+          description: "Show the cli command in a specific language",
+        },
+        {
+          name: ["-l", "--lang"],
+          description: "Show the cli command in the specified language syntax",
+          args: {
+            description: "",
+            suggestions: ["curl", "node"],
+          },
+        },
+        {
+          name: "--curl",
+          description: "Show the equivalent curl command of the cli command",
+          hidden: false,
+        },
+        {
+          name: "--node",
+          description:
+            "Show the equivalent node sdk source code of the cli command",
+          hidden: false,
+        },
+        {
+          name: ["-H", "--headers"],
+          description: "Show response headers",
+        },
+        {
+          name: ["-Y", "--headers-only"],
+          description: "Show only response headers",
+        },
+        {
+          name: ["-e", "--extract"],
+          description: "Extract subfields from object attributes",
+          args: {
+            description: "",
+          },
+        },
+      ],
+      args: [
+        {
+          name: "resource",
+          description: "The resource type",
+          suggestions: [
+            "api_credential",
+            "application_membership",
+            "billing_profile",
+            "membership",
+            "organization",
+            "permission",
+            "plan",
+            "role",
+            "subscription",
+            "user",
+            "version",
+          ],
+        },
+        {
+          name: "id",
+          description: "Id of the resource to retrieve",
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: ["provisioning:update", "prov:update", "pu", "pupdate", "pupd"],
+      description: "Update an existing resource",
+      options: [
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-i", "--include"],
+          description: "Comma separated resources to include",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-f", "--fields"],
+          description:
+            "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Convert output in standard json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print unformatted json output",
+        },
+        {
+          name: ["-R", "--raw"],
+          description: "Print out the raw api response",
+          hidden: false,
+        },
+        {
+          name: "--doc",
+          description: "Show the cli command in a specific language",
+        },
+        {
+          name: ["-l", "--lang"],
+          description: "Show the cli command in the specified language syntax",
+          args: {
+            description: "",
+            suggestions: ["curl", "node"],
+          },
+        },
+        {
+          name: "--curl",
+          description: "Show the equivalent curl command of the cli command",
+          hidden: false,
+        },
+        {
+          name: "--node",
+          description:
+            "Show the equivalent node sdk source code of the cli command",
+          hidden: false,
+        },
+        {
+          name: ["-H", "--headers"],
+          description: "Show response headers",
+        },
+        {
+          name: ["-Y", "--headers-only"],
+          description: "Show only response headers",
+        },
+        {
+          name: ["-a", "--attribute"],
+          description: "Define a resource attribute",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-O", "--object"],
+          description: "Define a resource object attribute",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-r", "--relationship"],
+          description: "Define a relationship with another resource",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-m", "--metadata"],
+          description: "",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-M", "--metadata-replace"],
+          description: "",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-D", "--data"],
+          description: "The data file to use as request body",
+          args: {
+            description: "",
+          },
+        },
+      ],
+      args: [
+        {
+          name: "resource",
+          description: "The resource type",
+          suggestions: [
+            "api_credential",
+            "application_membership",
+            "membership",
+            "organization",
+            "permission",
+            "role",
+            "user",
+          ],
+        },
+        {
+          name: "id",
+          description: "Id of the resource to update",
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "cleanups",
+      description:
+        "List all the created cleanups or show details of a single cleanup",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-A", "--all"],
+          description: "Show all cleanups instead of first 25 only",
+        },
+        {
+          name: ["-t", "--type"],
+          description: "The type of resource cleaned",
+          args: {
+            description: "",
+            suggestions: [
+              "bundles",
+              "gift_cards",
+              "prices",
+              "promotions",
+              "sku_lists",
+              "sku_options",
+              "skus",
+              "stock_items",
+            ],
+          },
+        },
+        {
+          name: ["-s", "--status"],
+          description: "The cleanup job status",
+          args: {
+            description: "",
+            suggestions: ["in_progress", "pending", "completed", "interrupted"],
+          },
+        },
+        {
+          name: ["-l", "--limit"],
+          description: "Limit number of cleanups in output",
+          args: {
+            description: "",
+          },
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the cleanup to be retrieved",
+        isOptional: true,
+      },
+    },
+    {
+      name: ["cleanups:create", "clp:create", "cleanup"],
+      description: "Create a new cleanup",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-t", "--type"],
+          description: "The type of resource to clean up",
+          args: {
+            description: "Bundles|gift_cards|prices|promotions|etc",
+            suggestions: [
+              "bundles",
+              "gift_cards",
+              "prices",
+              "promotions",
+              "sku_lists",
+              "sku_options",
+              "skus",
+              "stock_items",
+            ],
+          },
+          isRequired: true,
+        },
+        {
+          name: ["-w", "--where"],
+          description: "Comma separated list of query filters",
+          args: {
+            description: "",
+          },
+        },
+        {
+          name: ["-N", "--notify"],
+          description: "Force system notification when cleanup has finished",
+          hidden: true,
+        },
+        {
+          name: ["-b", "--blind"],
+          description:
+            "Execute in blind mode without showing the progress monitor",
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Execute command without showing warning messages",
+        },
+      ],
+    },
+    {
+      name: ["cleanups:details", "clp:details"],
+      description: "Show the details of an existing cleanup",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-l", "--logs"],
+          description: "Show error logs related to the cleanup process",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the cleanup",
+      },
+    },
+    {
+      name: ["cleanups:group", "clp:group"],
+      description: "List all the cleanups related to a cleanup group",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+      ],
+      args: {
+        name: "group_id",
+        description: "Unique id of the group cleanup",
+      },
+    },
+    {
+      name: ["cleanups:list", "clp:list"],
+      description: "List all the created cleanups",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {
+            description: "",
+          },
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {
+            description: "",
+          },
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-A", "--all"],
+          description: "Show all cleanups instead of first 25 only",
+        },
+        {
+          name: ["-t", "--type"],
+          description: "The type of resource cleaned",
+          args: {
+            description: "",
+            suggestions: [
+              "bundles",
+              "gift_cards",
+              "prices",
+              "promotions",
+              "sku_lists",
+              "sku_options",
+              "skus",
+              "stock_items",
+            ],
+          },
+        },
+        {
+          name: ["-s", "--status"],
+          description: "The cleanup job status",
+          args: {
+            description: "",
+            suggestions: ["in_progress", "pending", "completed", "interrupted"],
+          },
+        },
+        {
+          name: ["-l", "--limit"],
+          description: "Limit number of cleanups in output",
+          args: {
+            description: "",
+          },
+        },
+      ],
+    },
+    {
+      name: ["cleanups:types", "clp:types"],
+      description: "Show online documentation for supported resources",
+      options: [
+        {
+          name: ["-O", "--open"],
+          description: "Open online documentation page",
+        },
+      ],
+    },
+    {
       name: "help",
       description: "Display help for <%= config.bin %>",
       options: [
@@ -14955,7 +15194,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["plugins:install", "plugins:add"],
-      description: "Uses bundled npm executable to install plugins into <%= config",
+      description:
+        "Uses bundled npm executable to install plugins into <%= config",
       options: [
         {
           name: "--json",
@@ -14963,7 +15203,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-f", "--force"],
-          description: "Force npm to fetch remote resources even if a local copy exists on disk",
+          description:
+            "Force npm to fetch remote resources even if a local copy exists on disk",
         },
         {
           name: ["-h", "--help"],
