@@ -19,23 +19,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "Organization slug",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-d", "--domain"],
           description: "Api domain",
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: ["-k", "--kind"],
           description: "Application kind",
           args: {
-            description: "",
             suggestions: ["integration", "sales_channel", "user"],
           },
         },
@@ -43,7 +38,6 @@ const completionSpec: Fig.Spec = {
           name: ["-m", "--mode"],
           description: "Execution mode",
           args: {
-            description: "",
             suggestions: ["test", "live"],
           },
         },
@@ -54,30 +48,23 @@ const completionSpec: Fig.Spec = {
         {
           name: "--id",
           description: "Application id",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-a", "--alias"],
           description: "The alias associated to the application",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: "--appkey",
           description: "Cli application key",
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: ["-A", "--api"],
           description: "Specific api application",
           args: {
-            description: "",
             suggestions: ["core", "provisioning"],
           },
         },
@@ -99,60 +86,44 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "Organization slug",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-d", "--domain"],
           description: "Api domain",
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: ["-i", "--clientId"],
           description: "Application client_id",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
         },
         {
           name: ["-s", "--clientSecret"],
           description: "Application client_secret",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-S", "--scope"],
           description: "Access token scope (market, stock location)",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-e", "--email"],
           description: "Customer email",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-p", "--password"],
           description: "Customer secret password",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-a", "--alias"],
           description: "The alias you want to associate to the application",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
         },
         {
@@ -183,23 +154,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "Organization slug",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-d", "--domain"],
           description: "Api domain",
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: ["-k", "--kind"],
           description: "Application kind",
           args: {
-            description: "",
             suggestions: ["integration", "sales_channel", "user"],
           },
         },
@@ -207,7 +173,6 @@ const completionSpec: Fig.Spec = {
           name: ["-m", "--mode"],
           description: "Execution mode",
           args: {
-            description: "",
             suggestions: ["test", "live"],
           },
         },
@@ -218,30 +183,23 @@ const completionSpec: Fig.Spec = {
         {
           name: "--id",
           description: "Application id",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-a", "--alias"],
           description: "The alias associated to the application",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: "--appkey",
           description: "Cli application key",
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: ["-A", "--api"],
           description: "Specific api application",
           args: {
-            description: "",
             suggestions: ["core", "provisioning"],
           },
         },
@@ -258,60 +216,44 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "Organization slug",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-d", "--domain"],
           description: "Api domain",
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: ["-i", "--clientId"],
           description: "Application client_id",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
         },
         {
           name: ["-s", "--clientSecret"],
           description: "Application client_secret",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-S", "--scope"],
           description: "Access token scope (market, stock location)",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-e", "--email"],
           description: "Customer email",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-p", "--password"],
           description: "Customer secret password",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-a", "--alias"],
           description: "The alias you want to associate to the application",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
         },
         {
@@ -334,23 +276,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "Organization slug",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-d", "--domain"],
           description: "Api domain",
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: ["-k", "--kind"],
           description: "Application kind",
           args: {
-            description: "",
             suggestions: ["integration", "sales_channel", "user"],
           },
         },
@@ -358,7 +295,6 @@ const completionSpec: Fig.Spec = {
           name: ["-m", "--mode"],
           description: "Execution mode",
           args: {
-            description: "",
             suggestions: ["test", "live"],
           },
         },
@@ -369,30 +305,23 @@ const completionSpec: Fig.Spec = {
         {
           name: "--id",
           description: "Application id",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-a", "--alias"],
           description: "The alias associated to the application",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: "--appkey",
           description: "Cli application key",
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: ["-A", "--api"],
           description: "Specific api application",
           args: {
-            description: "",
             suggestions: ["core", "provisioning"],
           },
         },
@@ -420,23 +349,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "Organization slug",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-d", "--domain"],
           description: "Api domain",
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: ["-k", "--kind"],
           description: "Application kind",
           args: {
-            description: "",
             suggestions: ["integration", "sales_channel", "user"],
           },
         },
@@ -444,7 +368,6 @@ const completionSpec: Fig.Spec = {
           name: ["-m", "--mode"],
           description: "Execution mode",
           args: {
-            description: "",
             suggestions: ["test", "live"],
           },
         },
@@ -455,30 +378,23 @@ const completionSpec: Fig.Spec = {
         {
           name: "--id",
           description: "Application id",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-a", "--alias"],
           description: "The alias associated to the application",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: "--appkey",
           description: "Cli application key",
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: ["-A", "--api"],
           description: "Specific api application",
           args: {
-            description: "",
             suggestions: ["core", "provisioning"],
           },
         },
@@ -500,9 +416,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-a", "--alias"],
           description: "The alias you want to associate to the application",
-          args: {
-            description: "",
-          },
+          args: {},
         },
       ],
       args: {
@@ -517,23 +431,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "Organization slug",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-d", "--domain"],
           description: "Api domain",
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: ["-k", "--kind"],
           description: "Application kind",
           args: {
-            description: "",
             suggestions: ["integration", "sales_channel", "user"],
           },
         },
@@ -541,7 +450,6 @@ const completionSpec: Fig.Spec = {
           name: ["-m", "--mode"],
           description: "Execution mode",
           args: {
-            description: "",
             suggestions: ["test", "live"],
           },
         },
@@ -552,30 +460,23 @@ const completionSpec: Fig.Spec = {
         {
           name: "--id",
           description: "Application id",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-a", "--alias"],
           description: "The alias associated to the application",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: "--appkey",
           description: "Cli application key",
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: ["-A", "--api"],
           description: "Specific api application",
           args: {
-            description: "",
             suggestions: ["core", "provisioning"],
           },
         },
@@ -588,23 +489,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "Organization slug",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-d", "--domain"],
           description: "Api domain",
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: ["-k", "--kind"],
           description: "Application kind",
           args: {
-            description: "",
             suggestions: ["integration", "sales_channel", "user"],
           },
         },
@@ -612,7 +508,6 @@ const completionSpec: Fig.Spec = {
           name: ["-m", "--mode"],
           description: "Execution mode",
           args: {
-            description: "",
             suggestions: ["test", "live"],
           },
         },
@@ -623,30 +518,23 @@ const completionSpec: Fig.Spec = {
         {
           name: "--id",
           description: "Application id",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-a", "--alias"],
           description: "The alias associated to the application",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: "--appkey",
           description: "Cli application key",
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: ["-A", "--api"],
           description: "Specific api application",
           args: {
-            description: "",
             suggestions: ["core", "provisioning"],
           },
         },
@@ -661,17 +549,13 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-S", "--shared"],
           description: "Organization shared secret",
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: ["-M", "--minutes"],
           description: "Minutes to token expiration [2, 240]",
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
       ],
@@ -684,9 +568,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-v", "--version"],
           description: "Update cli to a specific version or tag",
-          args: {
-            description: "",
-          },
+          args: {},
         },
       ],
     },
@@ -733,26 +615,20 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: ["-a", "--accessToken"],
           description:
             "Custom access token to use instead of the one used for login",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: false,
         },
@@ -768,44 +644,32 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-O", "--order"],
           description: "An order id",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-S", "--sku"],
           description: "An sku code",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-B", "--bundle"],
           description: "A bundle code",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-m", "--market"],
           description: "A market number",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-c", "--coupon"],
           description: "A promo code",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-e", "--email"],
           description: "A customer email",
-          args: {
-            description: "",
-          },
+          args: {},
         },
       ],
     },
@@ -816,26 +680,20 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: ["-a", "--accessToken"],
           description:
             "Custom access token to use instead of the one used for login",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: false,
         },
@@ -862,24 +720,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -891,7 +743,6 @@ const completionSpec: Fig.Spec = {
           name: ["-t", "--type"],
           description: "The type of resource imported",
           args: {
-            description: "",
             suggestions: [
               "addresses",
               "bundles",
@@ -921,15 +772,12 @@ const completionSpec: Fig.Spec = {
           name: ["-g", "--group"],
           description:
             "The group id associated to the import in case of multi-chunk imports",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-s", "--status"],
           description: "The import job status",
           args: {
-            description: "",
             suggestions: ["in_progress", "pending", "completed", "interrupted"],
           },
         },
@@ -944,9 +792,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-l", "--limit"],
           description: "Limit number of imports in output",
-          args: {
-            description: "",
-          },
+          args: {},
         },
       ],
       args: {
@@ -962,24 +808,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -1018,16 +858,12 @@ const completionSpec: Fig.Spec = {
           name: ["-p", "--parent"],
           description:
             "The id of the parent resource to be associated with imported data",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-i", "--inputs"],
           description: "The path of the file containing the data to import",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
         },
         {
@@ -1039,7 +875,6 @@ const completionSpec: Fig.Spec = {
           description:
             "The delimiter character used in the csv input file (one of ',', ';', '|', tab)",
           args: {
-            description: "",
             suggestions: [",", ";", "|", "TAB"],
           },
         },
@@ -1061,24 +896,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -1095,24 +924,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -1128,9 +951,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-S", "--save-inputs"],
           description: "Save import inputs to local file",
-          args: {
-            description: "",
-          },
+          args: {},
         },
       ],
       args: {
@@ -1145,24 +966,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -1179,24 +994,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -1208,7 +1017,6 @@ const completionSpec: Fig.Spec = {
           name: ["-t", "--type"],
           description: "The type of resource imported",
           args: {
-            description: "",
             suggestions: [
               "addresses",
               "bundles",
@@ -1238,15 +1046,12 @@ const completionSpec: Fig.Spec = {
           name: ["-g", "--group"],
           description:
             "The group id associated to the import in case of multi-chunk imports",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-s", "--status"],
           description: "The import job status",
           args: {
-            description: "",
             suggestions: ["in_progress", "pending", "completed", "interrupted"],
           },
         },
@@ -1261,9 +1066,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-l", "--limit"],
           description: "Limit number of imports in output",
-          args: {
-            description: "",
-          },
+          args: {},
         },
       ],
     },
@@ -1284,24 +1087,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: ["-a", "--accessToken"],
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: false,
         },
@@ -1312,9 +1109,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-S", "--skuListId"],
           description: "The sku list id",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
         },
         {
@@ -1330,6 +1125,272 @@ const completionSpec: Fig.Spec = {
           description: "Disable redirect to cart application",
         },
       ],
+    },
+    {
+      name: "seeder:check",
+      description: "Execute a check on seeder data",
+      options: [
+        {
+          name: ["-b", "--businessModel"],
+          description: "The kind of business model you want to import",
+          args: {
+            suggestions: ["single_sku", "multi_market", "custom"],
+            default: "single_sku",
+          },
+        },
+        {
+          name: ["-u", "--url"],
+          description: "Seeder data url",
+          args: {
+            default: "https://data.commercelayer.app/seeder",
+          },
+        },
+        {
+          name: ["-n", "--name"],
+          description: "The name of the business model file to use",
+          args: {},
+        },
+        {
+          name: "--debug",
+          description: "Show command debug information",
+          hidden: true,
+        },
+        {
+          name: ["-r", "--relationships"],
+          description: "Check resource relationships",
+        },
+      ],
+    },
+    {
+      name: "seeder:clean",
+      description: "Clean previously imported seeder data",
+      options: [
+        {
+          name: ["-b", "--businessModel"],
+          description: "The kind of business model you want to import",
+          args: {
+            suggestions: ["single_sku", "multi_market", "custom"],
+            default: "single_sku",
+          },
+        },
+        {
+          name: ["-u", "--url"],
+          description: "Seeder data url",
+          args: {
+            default: "https://data.commercelayer.app/seeder",
+          },
+        },
+        {
+          name: ["-n", "--name"],
+          description: "The name of the business model file to use",
+          args: {},
+        },
+        {
+          name: "--debug",
+          description: "Show debug information",
+          hidden: true,
+        },
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+      ],
+    },
+    {
+      name: ["seeder:seed", "seed"],
+      description: "Execute commerce layer seeder",
+      options: [
+        {
+          name: ["-b", "--businessModel"],
+          description: "The kind of business model you want to import",
+          args: {
+            suggestions: ["single_sku", "multi_market", "custom"],
+            default: "single_sku",
+          },
+        },
+        {
+          name: ["-u", "--url"],
+          description: "Seeder data url",
+          args: {
+            default: "https://data.commercelayer.app/seeder",
+          },
+        },
+        {
+          name: ["-n", "--name"],
+          description: "The name of the business model file to use",
+          args: {},
+        },
+        {
+          name: "--debug",
+          description: "Show debug information",
+          hidden: true,
+        },
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-k", "--keep"],
+          description: "Keep existing resources without updating them",
+        },
+        {
+          name: ["-D", "--delay"],
+          description:
+            "Add a delay in milliseconds between calls to different resources",
+          args: {},
+          hidden: true,
+        },
+      ],
+    },
+    {
+      name: ["token:decode", "token:info"],
+      description: "Decode a commerce layer access token",
+      args: {
+        name: "token",
+        description: "The access token to be decoded",
+      },
+    },
+    {
+      name: "token:generate",
+      description: "Start a wizard to generate a custom access token",
+      options: [
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print users answers",
+          hidden: true,
+        },
+        {
+          name: ["-i", "--info"],
+          description: "Print generated token info",
+        },
+        {
+          name: ["-c", "--check"],
+          description: "Check generated access token",
+        },
+      ],
+    },
+    {
+      name: "token:get",
+      description: "Get a new access token",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: ["-i", "--clientId"],
+          description: "Application client_id",
+          args: {},
+          isRequired: true,
+        },
+        {
+          name: ["-s", "--clientSecret"],
+          description: "Application client_secret",
+          args: {},
+        },
+        {
+          name: ["-S", "--scope"],
+          description: "Access token scope (market, stock location)",
+          args: {},
+        },
+        {
+          name: ["-e", "--email"],
+          description: "Customer email",
+          args: {},
+        },
+        {
+          name: ["-p", "--password"],
+          description: "Customer secret password",
+          args: {},
+        },
+        {
+          name: "--info",
+          description: "Show access token info",
+        },
+        {
+          name: ["-P", "--provisioning"],
+          description: "Execute login to provisioning api",
+        },
+      ],
+    },
+    {
+      name: "token:revoke",
+      description: "Revoke a commerce layer access token",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: ["-i", "--clientId"],
+          description: "Application client_id",
+          args: {},
+          isRequired: true,
+        },
+        {
+          name: ["-s", "--clientSecret"],
+          description: "Application client_secret",
+          args: {},
+        },
+        {
+          name: ["-S", "--scope"],
+          description: "Access token scope",
+          args: {},
+        },
+        {
+          name: ["-P", "--provisioning"],
+          description: "Execute login to provisioning api",
+        },
+      ],
+      args: {
+        name: "token",
+        description: "Access token to revoke",
+      },
     },
     {
       name: "resources",
@@ -1348,41 +1409,31 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-i", "--include"],
           description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-f", "--fields"],
           description:
             "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-j", "--json"],
@@ -1405,7 +1456,6 @@ const completionSpec: Fig.Spec = {
           name: ["-l", "--lang"],
           description: "Show the cli command in the specified language syntax",
           args: {
-            description: "",
             suggestions: ["curl", "node"],
           },
         },
@@ -1423,45 +1473,33 @@ const completionSpec: Fig.Spec = {
         {
           name: "--save-args",
           description: "Save command data to file for future use",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: "--load-args",
           description: "Load previously saved command arguments",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-w", "--where"],
           description: "Comma separated list of query filters",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-s", "--sort"],
           description: "Defines results ordering",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-x", "--save"],
           description: "Save command output to file",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-X", "--save-path"],
           description:
             "Save command output to file and create missing path directories",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-N", "--notify"],
@@ -1471,17 +1509,13 @@ const completionSpec: Fig.Spec = {
         {
           name: "--clientId",
           description: "Organization client_id",
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--clientSecret",
           description: "Organization client_secret",
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
@@ -1492,16 +1526,13 @@ const completionSpec: Fig.Spec = {
           name: ["-D", "--delimiter"],
           description: "",
           args: {
-            description: "",
             suggestions: [",", ";", "|", "TAB"],
           },
         },
         {
           name: ["-H", "--header"],
           description: "",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-b", "--blind"],
@@ -1510,16 +1541,12 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-e", "--extract"],
           description: "Extract subfields from object attributes",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-T", "--timeout"],
           description: "Set request timeout in milliseconds [1000 - 15000]",
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
       ],
@@ -1535,22 +1562,17 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-a", "--alias"],
           description: "The alias associated to saved command arguments",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-r", "--resource"],
           description: "The resource type",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-o", "--operation"],
           description: "The resource operation",
           args: {
-            description: "",
             suggestions: ["list", "retrieve", "create", "update"],
           },
         },
@@ -1572,33 +1594,25 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-w", "--where"],
           description: "Comma separated list of query filters",
-          args: {
-            description: "",
-          },
+          args: {},
         },
       ],
       args: {
@@ -1613,41 +1627,31 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-i", "--include"],
           description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-f", "--fields"],
           description:
             "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-j", "--json"],
@@ -1670,7 +1674,6 @@ const completionSpec: Fig.Spec = {
           name: ["-l", "--lang"],
           description: "Show the cli command in the specified language syntax",
           args: {
-            description: "",
             suggestions: ["curl", "node"],
           },
         },
@@ -1688,16 +1691,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--save-args",
           description: "Save command data to file for future use",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: "--load-args",
           description: "Load previously saved command arguments",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-H", "--headers"],
@@ -1710,45 +1709,33 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-a", "--attribute"],
           description: "Define a resource attribute",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-O", "--object"],
           description: "Define a resource object attribute",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-r", "--relationship"],
           description: "Define a relationship with another resource",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-m", "--metadata"],
           description:
             "Define a metadata attribute or a set of metadata attributes",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-D", "--data"],
           description: "The data file to use as request body",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-t", "--tags"],
           description: "List of tags associated with the resource",
-          args: {
-            description: "",
-          },
+          args: {},
         },
       ],
       args: {
@@ -1866,41 +1853,31 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-i", "--include"],
           description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-f", "--fields"],
           description:
             "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-j", "--json"],
@@ -1923,7 +1900,6 @@ const completionSpec: Fig.Spec = {
           name: ["-l", "--lang"],
           description: "Show the cli command in the specified language syntax",
           args: {
-            description: "",
             suggestions: ["curl", "node"],
           },
         },
@@ -1941,16 +1917,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--save-args",
           description: "Save command data to file for future use",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: "--load-args",
           description: "Load previously saved command arguments",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-H", "--headers"],
@@ -2085,7 +2057,6 @@ const completionSpec: Fig.Spec = {
           name: ["-p", "--page"],
           description: "The doc page you want to access",
           args: {
-            description: "",
             suggestions: [
               "object",
               "create",
@@ -2110,41 +2081,31 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-i", "--include"],
           description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-f", "--fields"],
           description:
             "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-j", "--json"],
@@ -2167,7 +2128,6 @@ const completionSpec: Fig.Spec = {
           name: ["-l", "--lang"],
           description: "Show the cli command in the specified language syntax",
           args: {
-            description: "",
             suggestions: ["curl", "node"],
           },
         },
@@ -2185,16 +2145,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--save-args",
           description: "Save command data to file for future use",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: "--load-args",
           description: "Load previously saved command arguments",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-H", "--headers"],
@@ -2207,52 +2163,38 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-x", "--save"],
           description: "Save command output to file",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-X", "--save-path"],
           description:
             "Save command output to file and create missing path directories",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-e", "--extract"],
           description: "Extract subfields from object attributes",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-w", "--where"],
           description: "Comma separated list of query filters",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-p", "--page"],
           description: "Page number",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-n", "--pageSize"],
           description: "Number of elements per page",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-s", "--sort"],
           description: "Defines results ordering",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-I", "--force-include"],
@@ -2283,41 +2225,31 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-i", "--include"],
           description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-f", "--fields"],
           description:
             "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-j", "--json"],
@@ -2340,7 +2272,6 @@ const completionSpec: Fig.Spec = {
           name: ["-l", "--lang"],
           description: "Show the cli command in the specified language syntax",
           args: {
-            description: "",
             suggestions: ["curl", "node"],
           },
         },
@@ -2358,16 +2289,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--save-args",
           description: "Save command data to file for future use",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: "--load-args",
           description: "Load previously saved command arguments",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-H", "--headers"],
@@ -2380,52 +2307,38 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-w", "--where"],
           description: "Comma separated list of query filters",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-p", "--page"],
           description: "Page number",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-n", "--pageSize"],
           description: "Number of elements per page",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-s", "--sort"],
           description: "Defines results ordering",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-x", "--save"],
           description: "Save command output to file",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-X", "--save-path"],
           description:
             "Save command output to file and create missing path directories",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-e", "--extract"],
           description: "Extract subfields from object attributes",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-I", "--force-include"],
@@ -2452,41 +2365,31 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-i", "--include"],
           description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-f", "--fields"],
           description:
             "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-j", "--json"],
@@ -2509,7 +2412,6 @@ const completionSpec: Fig.Spec = {
           name: ["-l", "--lang"],
           description: "Show the cli command in the specified language syntax",
           args: {
-            description: "",
             suggestions: ["curl", "node"],
           },
         },
@@ -2527,16 +2429,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--save-args",
           description: "Save command data to file for future use",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: "--load-args",
           description: "Load previously saved command arguments",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-H", "--headers"],
@@ -2549,52 +2447,38 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-w", "--where"],
           description: "Comma separated list of query filters",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-p", "--page"],
           description: "Page number",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-n", "--pageSize"],
           description: "Number of elements per page",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-s", "--sort"],
           description: "Defines results ordering",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-x", "--save"],
           description: "Save command output to file",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-X", "--save-path"],
           description:
             "Save command output to file and create missing path directories",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-e", "--extract"],
           description: "Extract subfields from object attributes",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-I", "--force-include"],
@@ -2738,41 +2622,31 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-i", "--include"],
           description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-f", "--fields"],
           description:
             "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-j", "--json"],
@@ -2795,7 +2669,6 @@ const completionSpec: Fig.Spec = {
           name: ["-l", "--lang"],
           description: "Show the cli command in the specified language syntax",
           args: {
-            description: "",
             suggestions: ["curl", "node"],
           },
         },
@@ -2813,16 +2686,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--save-args",
           description: "Save command data to file for future use",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: "--load-args",
           description: "Load previously saved command arguments",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-H", "--headers"],
@@ -2835,52 +2704,38 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-w", "--where"],
           description: "Comma separated list of query filters",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-p", "--page"],
           description: "Page number",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-n", "--pageSize"],
           description: "Number of elements per page",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-s", "--sort"],
           description: "Defines results ordering",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-x", "--save"],
           description: "Save command output to file",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-X", "--save-path"],
           description:
             "Save command output to file and create missing path directories",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-e", "--extract"],
           description: "Extract subfields from object attributes",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-I", "--force-include"],
@@ -2911,41 +2766,31 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-i", "--include"],
           description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-f", "--fields"],
           description:
             "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-j", "--json"],
@@ -2968,7 +2813,6 @@ const completionSpec: Fig.Spec = {
           name: ["-l", "--lang"],
           description: "Show the cli command in the specified language syntax",
           args: {
-            description: "",
             suggestions: ["curl", "node"],
           },
         },
@@ -2986,16 +2830,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--save-args",
           description: "Save command data to file for future use",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: "--load-args",
           description: "Load previously saved command arguments",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-H", "--headers"],
@@ -3008,24 +2848,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-x", "--save"],
           description: "Save command output to file",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-X", "--save-path"],
           description:
             "Save command output to file and create missing path directories",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-e", "--extract"],
           description: "Extract subfields from object attributes",
-          args: {
-            description: "",
-          },
+          args: {},
         },
       ],
       args: [
@@ -3178,41 +3012,31 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-i", "--include"],
           description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-f", "--fields"],
           description:
             "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-j", "--json"],
@@ -3235,7 +3059,6 @@ const completionSpec: Fig.Spec = {
           name: ["-l", "--lang"],
           description: "Show the cli command in the specified language syntax",
           args: {
-            description: "",
             suggestions: ["curl", "node"],
           },
         },
@@ -3253,16 +3076,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--save-args",
           description: "Save command data to file for future use",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: "--load-args",
           description: "Load previously saved command arguments",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-H", "--headers"],
@@ -3275,51 +3094,37 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-a", "--attribute"],
           description: "Define a resource attribute",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-O", "--object"],
           description: "Define a resource object attribute",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-r", "--relationship"],
           description: "Define a relationship with another resource",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-m", "--metadata"],
           description: "",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-M", "--metadata-replace"],
           description: "",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-D", "--data"],
           description: "The data file to use as request body",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-t", "--tags"],
           description: "List of tags associated with the resource",
-          args: {
-            description: "",
-          },
+          args: {},
         },
       ],
       args: [
@@ -3437,861 +3242,24 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: ["token:decode", "token:info"],
-      description: "Decode a commerce layer access token",
-      args: {
-        name: "token",
-        description: "The access token to be decoded",
-      },
-    },
-    {
-      name: "token:generate",
-      description: "Start a wizard to generate a custom access token",
-      options: [
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print users answers",
-          hidden: true,
-        },
-        {
-          name: ["-i", "--info"],
-          description: "Print generated token info",
-        },
-        {
-          name: ["-c", "--check"],
-          description: "Check generated access token",
-        },
-      ],
-    },
-    {
-      name: "token:get",
-      description: "Get a new access token",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: ["-i", "--clientId"],
-          description: "Application client_id",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-        },
-        {
-          name: ["-s", "--clientSecret"],
-          description: "Application client_secret",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-S", "--scope"],
-          description: "Access token scope (market, stock location)",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-e", "--email"],
-          description: "Customer email",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-p", "--password"],
-          description: "Customer secret password",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: "--info",
-          description: "Show access token info",
-        },
-        {
-          name: ["-P", "--provisioning"],
-          description: "Execute login to provisioning api",
-        },
-      ],
-    },
-    {
-      name: "token:revoke",
-      description: "Revoke a commerce layer access token",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: ["-i", "--clientId"],
-          description: "Application client_id",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-        },
-        {
-          name: ["-s", "--clientSecret"],
-          description: "Application client_secret",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-S", "--scope"],
-          description: "Access token scope",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-P", "--provisioning"],
-          description: "Execute login to provisioning api",
-        },
-      ],
-      args: {
-        name: "token",
-        description: "Access token to revoke",
-      },
-    },
-    {
-      name: "seeder:check",
-      description: "Execute a check on seeder data",
-      options: [
-        {
-          name: ["-b", "--businessModel"],
-          description: "The kind of business model you want to import",
-          args: {
-            description: "",
-            suggestions: ["single_sku", "multi_market", "custom"],
-            default: "single_sku",
-          },
-        },
-        {
-          name: ["-u", "--url"],
-          description: "Seeder data url",
-          args: {
-            description: "",
-            default: "https://data.commercelayer.app/seeder",
-          },
-        },
-        {
-          name: ["-n", "--name"],
-          description: "The name of the business model file to use",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: "--debug",
-          description: "Show command debug information",
-          hidden: true,
-        },
-        {
-          name: ["-r", "--relationships"],
-          description: "Check resource relationships",
-        },
-      ],
-    },
-    {
-      name: "seeder:clean",
-      description: "Clean previously imported seeder data",
-      options: [
-        {
-          name: ["-b", "--businessModel"],
-          description: "The kind of business model you want to import",
-          args: {
-            description: "",
-            suggestions: ["single_sku", "multi_market", "custom"],
-            default: "single_sku",
-          },
-        },
-        {
-          name: ["-u", "--url"],
-          description: "Seeder data url",
-          args: {
-            description: "",
-            default: "https://data.commercelayer.app/seeder",
-          },
-        },
-        {
-          name: ["-n", "--name"],
-          description: "The name of the business model file to use",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: "--debug",
-          description: "Show debug information",
-          hidden: true,
-        },
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-      ],
-    },
-    {
-      name: ["seeder:seed", "seed"],
-      description: "Execute commerce layer seeder",
-      options: [
-        {
-          name: ["-b", "--businessModel"],
-          description: "The kind of business model you want to import",
-          args: {
-            description: "",
-            suggestions: ["single_sku", "multi_market", "custom"],
-            default: "single_sku",
-          },
-        },
-        {
-          name: ["-u", "--url"],
-          description: "Seeder data url",
-          args: {
-            description: "",
-            default: "https://data.commercelayer.app/seeder",
-          },
-        },
-        {
-          name: ["-n", "--name"],
-          description: "The name of the business model file to use",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: "--debug",
-          description: "Show debug information",
-          hidden: true,
-        },
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-k", "--keep"],
-          description: "Keep existing resources without updating them",
-        },
-        {
-          name: ["-D", "--delay"],
-          description:
-            "Add a delay in milliseconds between calls to different resources",
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-      ],
-    },
-    {
-      name: "webhooks",
-      description:
-        "List all the registered webhooks or the details of a single webhook",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-c", "--circuit"],
-          description: "Show only webhooks with circuit in the declared state",
-          args: {
-            description: "",
-            suggestions: ["open", "closed"],
-          },
-        },
-        {
-          name: ["-t", "--topic"],
-          description: "The event that triggered the webhook",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-H", "--hide-empty"],
-          description: "Hide empty attributes",
-        },
-        {
-          name: ["-e", "--events"],
-          description:
-            "Show the last event callbacks associated to the webhook",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "Unique id of the webhook to get a single webhook",
-        isOptional: true,
-      },
-    },
-    {
-      name: ["webhooks:create", "wh:create"],
-      description: "Create a new webhook",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-t", "--topic"],
-          description:
-            "The identifier of the event that will trigger the webhook",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-        },
-        {
-          name: ["-u", "--url"],
-          description: "The callback url used to post data",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-        },
-        {
-          name: ["-i", "--include"],
-          description:
-            "A comma separated list of related resources to be included",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-n", "--name"],
-          description: "The webhook short name",
-          args: {
-            description: "",
-          },
-        },
-      ],
-    },
-    {
-      name: ["webhooks:destroy", "webhooks:delete", "wh:delete", "wh:destroy"],
-      description: "Destroy an existing webhook",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-      ],
-      args: {
-        name: "id",
-        description: "Unique id of the webhook",
-      },
-    },
-    {
-      name: ["webhooks:details", "wh:details"],
-      description: "Show the details of an existing webhook",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-H", "--hide-empty"],
-          description: "Hide empty attributes",
-        },
-        {
-          name: ["-e", "--events"],
-          description:
-            "Show the last event callbacks associated to the webhook",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "Unique id of the webhook",
-      },
-    },
-    {
-      name: ["webhooks:event", "wh:event"],
-      description: "Show the details of a firedf webhook event",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--payload"],
-          description: "Show the event payload sent to the callback endpoint",
-        },
-        {
-          name: ["-f", "--format"],
-          description: "Format the payload output",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "Unique id of the webhook",
-      },
-    },
-    {
-      name: ["webhooks:events", "wh:events"],
-      description: "List all the events associated to the webhook",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-A", "--all"],
-          description: "Show all events instead of first 25 only",
-        },
-        {
-          name: ["-l", "--limit"],
-          description: "Limit number of events in output",
-          args: {
-            description: "",
-          },
-        },
-      ],
-      args: {
-        name: "id",
-        description: "Unique id of the webhook",
-      },
-    },
-    {
-      name: ["webhooks:list", "wh:list"],
-      description: "List all the registered webhooks",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-c", "--circuit"],
-          description: "Show only webhooks with circuit in the declared state",
-          args: {
-            description: "",
-            suggestions: ["open", "closed"],
-          },
-        },
-        {
-          name: ["-t", "--topic"],
-          description: "The event that triggered the webhook",
-          args: {
-            description: "",
-          },
-        },
-      ],
-    },
-    {
-      name: ["webhooks:listen", "wh:listen"],
-      description: "Listen a webhook for outgoing callbacks",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-t", "--time"],
-          description: "Waiting time for the first event",
-          args: {
-            description: "",
-            default: "120",
-          },
-        },
-      ],
-      args: {
-        name: "id",
-        description: "Unique id of the webhook",
-      },
-    },
-    {
-      name: ["webhooks:payload", "wh:payload"],
-      description: "Show the payload associated to an event callback",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-f", "--format"],
-          description: "Format the payload output",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "Unique id of the webhook",
-      },
-    },
-    {
-      name: ["webhooks:reset", "wh:reset"],
-      description: "Reset the circuit breaker associated to the webhook",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-      ],
-      args: {
-        name: "id",
-        description: "Unique id of the webhook",
-      },
-    },
-    {
-      name: ["webhooks:topics", "wh:topics"],
-      description: "Show online documentation for supported events",
-    },
-    {
-      name: ["webhooks:update", "wh:update"],
-      description: "Update an existing webhook",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-t", "--topic"],
-          description:
-            "The identifier of the event that will trigger the webhook",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-u", "--url"],
-          description: "The callback url used to post data",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-i", "--include"],
-          description:
-            "A comma separated list of related resources to be included",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-n", "--name"],
-          description: "The webhook short name",
-          args: {
-            description: "",
-          },
-        },
-      ],
-      args: {
-        name: "id",
-        description: "Unique id of the webhook",
-      },
-    },
-    {
       name: "orders",
       description: "Execute an action on an order",
       options: [
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -4320,24 +3288,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -4367,24 +3329,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -4413,24 +3369,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -4459,24 +3409,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -4506,24 +3450,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -4553,24 +3491,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -4589,9 +3521,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-v", "--value"],
           description: "The trigger attribute value",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
         },
       ],
@@ -4608,24 +3538,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -4654,24 +3578,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -4701,24 +3619,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -4748,24 +3660,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -4795,24 +3701,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -4841,24 +3741,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -4877,9 +3771,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-v", "--value"],
           description: "The trigger attribute value",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
         },
       ],
@@ -4896,24 +3788,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -4943,24 +3829,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -4989,24 +3869,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -5036,24 +3910,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -5082,24 +3950,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -5129,24 +3991,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -5176,24 +4032,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -5223,24 +4073,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -5270,24 +4114,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -5317,24 +4155,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -5364,24 +4196,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -5400,9 +4226,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-v", "--value"],
           description: "The trigger attribute value",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
         },
       ],
@@ -5419,24 +4243,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -5466,24 +4284,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -5513,24 +4325,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -5559,24 +4365,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -5606,24 +4406,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -5653,24 +4447,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -5693,30 +4481,446 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: "webhooks",
+      description:
+        "List all the registered webhooks or the details of a single webhook",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-c", "--circuit"],
+          description: "Show only webhooks with circuit in the declared state",
+          args: {
+            suggestions: ["open", "closed"],
+          },
+        },
+        {
+          name: ["-t", "--topic"],
+          description: "The event that triggered the webhook",
+          args: {},
+        },
+        {
+          name: ["-H", "--hide-empty"],
+          description: "Hide empty attributes",
+        },
+        {
+          name: ["-e", "--events"],
+          description:
+            "Show the last event callbacks associated to the webhook",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the webhook to get a single webhook",
+        isOptional: true,
+      },
+    },
+    {
+      name: ["webhooks:create", "wh:create"],
+      description: "Create a new webhook",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-t", "--topic"],
+          description:
+            "The identifier of the event that will trigger the webhook",
+          args: {},
+          isRequired: true,
+        },
+        {
+          name: ["-u", "--url"],
+          description: "The callback url used to post data",
+          args: {},
+          isRequired: true,
+        },
+        {
+          name: ["-i", "--include"],
+          description:
+            "A comma separated list of related resources to be included",
+          args: {},
+        },
+        {
+          name: ["-n", "--name"],
+          description: "The webhook short name",
+          args: {},
+        },
+      ],
+    },
+    {
+      name: ["webhooks:destroy", "webhooks:delete", "wh:delete", "wh:destroy"],
+      description: "Destroy an existing webhook",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the webhook",
+      },
+    },
+    {
+      name: ["webhooks:details", "wh:details"],
+      description: "Show the details of an existing webhook",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-H", "--hide-empty"],
+          description: "Hide empty attributes",
+        },
+        {
+          name: ["-e", "--events"],
+          description:
+            "Show the last event callbacks associated to the webhook",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the webhook",
+      },
+    },
+    {
+      name: ["webhooks:event", "wh:event"],
+      description: "Show the details of a firedf webhook event",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--payload"],
+          description: "Show the event payload sent to the callback endpoint",
+        },
+        {
+          name: ["-f", "--format"],
+          description: "Format the payload output",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the webhook",
+      },
+    },
+    {
+      name: ["webhooks:events", "wh:events"],
+      description: "List all the events associated to the webhook",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-A", "--all"],
+          description: "Show all events instead of first 25 only",
+        },
+        {
+          name: ["-l", "--limit"],
+          description: "Limit number of events in output",
+          args: {},
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the webhook",
+      },
+    },
+    {
+      name: ["webhooks:list", "wh:list"],
+      description: "List all the registered webhooks",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-c", "--circuit"],
+          description: "Show only webhooks with circuit in the declared state",
+          args: {
+            suggestions: ["open", "closed"],
+          },
+        },
+        {
+          name: ["-t", "--topic"],
+          description: "The event that triggered the webhook",
+          args: {},
+        },
+      ],
+    },
+    {
+      name: ["webhooks:listen", "wh:listen"],
+      description: "Listen a webhook for outgoing callbacks",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-t", "--time"],
+          description: "Waiting time for the first event",
+          args: {
+            default: "120",
+          },
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the webhook",
+      },
+    },
+    {
+      name: ["webhooks:payload", "wh:payload"],
+      description: "Show the payload associated to an event callback",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-f", "--format"],
+          description: "Format the payload output",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the webhook",
+      },
+    },
+    {
+      name: ["webhooks:reset", "wh:reset"],
+      description: "Reset the circuit breaker associated to the webhook",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the webhook",
+      },
+    },
+    {
+      name: ["webhooks:topics", "wh:topics"],
+      description: "Show online documentation for supported events",
+    },
+    {
+      name: ["webhooks:update", "wh:update"],
+      description: "Update an existing webhook",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-t", "--topic"],
+          description:
+            "The identifier of the event that will trigger the webhook",
+          args: {},
+        },
+        {
+          name: ["-u", "--url"],
+          description: "The callback url used to post data",
+          args: {},
+        },
+        {
+          name: ["-i", "--include"],
+          description:
+            "A comma separated list of related resources to be included",
+          args: {},
+        },
+        {
+          name: ["-n", "--name"],
+          description: "The webhook short name",
+          args: {},
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the webhook",
+      },
+    },
+    {
       name: "adyen_payment",
       description: "Execute an action on a resource of type adyen_payments",
       options: [
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -5746,24 +4950,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -5792,24 +4990,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -5839,24 +5031,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -5885,24 +5071,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -5932,24 +5112,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -5978,24 +5152,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -6025,24 +5193,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -6071,24 +5233,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -6118,24 +5274,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -6165,24 +5315,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -6212,24 +5356,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -6259,24 +5397,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -6306,24 +5438,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -6352,24 +5478,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -6399,24 +5519,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -6445,24 +5559,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -6492,24 +5600,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -6539,24 +5641,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -6586,24 +5682,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -6633,24 +5723,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -6680,24 +5764,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -6726,24 +5804,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -6773,24 +5845,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -6820,24 +5886,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -6867,24 +5927,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -6914,24 +5968,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -6961,24 +6009,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -7008,24 +6050,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -7055,24 +6091,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -7102,24 +6132,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -7149,24 +6173,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -7196,24 +6214,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -7243,24 +6255,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -7290,24 +6296,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -7337,24 +6337,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -7384,24 +6378,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -7431,24 +6419,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -7478,24 +6460,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -7525,24 +6501,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -7572,24 +6542,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -7619,24 +6583,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -7665,24 +6623,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -7711,24 +6663,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -7757,24 +6703,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -7803,24 +6743,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -7850,24 +6784,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -7897,24 +6825,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -7944,24 +6866,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -7991,24 +6907,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -8037,24 +6947,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -8084,24 +6988,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -8130,24 +7028,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -8177,24 +7069,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -8224,24 +7110,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -8271,24 +7151,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -8317,24 +7191,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -8364,24 +7232,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -8411,24 +7273,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -8457,24 +7313,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -8504,24 +7354,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -8551,24 +7395,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -8598,24 +7436,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -8645,24 +7477,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -8691,24 +7517,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -8738,24 +7558,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -8784,24 +7598,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -8830,24 +7638,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -8877,24 +7679,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -8924,24 +7720,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -8960,9 +7750,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-v", "--value"],
           description: "The trigger attribute value",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
         },
       ],
@@ -8979,24 +7767,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -9025,24 +7807,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -9072,24 +7848,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -9119,24 +7889,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -9166,24 +7930,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -9212,24 +7970,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -9248,9 +8000,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-v", "--value"],
           description: "The trigger attribute value",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
         },
       ],
@@ -9267,24 +8017,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -9314,24 +8058,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -9360,24 +8098,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -9407,24 +8139,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -9453,24 +8179,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -9500,24 +8220,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -9547,24 +8261,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -9594,24 +8302,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -9641,24 +8343,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -9688,24 +8384,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -9735,24 +8425,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -9771,9 +8455,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-v", "--value"],
           description: "The trigger attribute value",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
         },
       ],
@@ -9790,24 +8472,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -9837,24 +8513,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -9884,24 +8554,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -9930,24 +8594,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -9977,24 +8635,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -10024,24 +8676,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -10070,24 +8716,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -10117,24 +8757,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -10164,24 +8798,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -10211,24 +8839,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -10258,24 +8880,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -10305,24 +8921,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -10351,24 +8961,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -10397,24 +9001,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -10443,24 +9041,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -10490,24 +9082,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -10536,24 +9122,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -10583,24 +9163,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -10630,24 +9204,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -10677,24 +9245,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -10723,24 +9285,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -10770,24 +9326,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -10817,24 +9367,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -10863,24 +9407,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -10909,24 +9447,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -10956,24 +9488,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -11002,24 +9528,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -11049,24 +9569,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -11096,24 +9610,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -11143,24 +9651,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -11190,24 +9692,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -11237,24 +9733,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -11284,24 +9774,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -11331,24 +9815,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -11378,24 +9856,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -11425,24 +9897,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -11472,24 +9938,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -11519,24 +9979,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -11565,24 +10019,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -11612,24 +10060,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -11659,24 +10101,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -11706,24 +10142,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -11752,24 +10182,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -11799,24 +10223,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -11845,24 +10263,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -11892,24 +10304,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -11939,24 +10345,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -11986,24 +10386,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -12032,24 +10426,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -12079,24 +10467,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -12125,24 +10507,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -12172,24 +10548,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -12219,24 +10589,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -12266,24 +10630,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -12313,24 +10671,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -12360,24 +10712,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -12407,24 +10753,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -12453,24 +10793,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -12500,24 +10834,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -12547,24 +10875,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -12593,24 +10915,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -12640,24 +10956,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -12687,24 +10997,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -12734,24 +11038,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -12781,24 +11079,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -12810,7 +11102,6 @@ const completionSpec: Fig.Spec = {
           name: ["-t", "--type"],
           description: "The type of resource exported",
           args: {
-            description: "",
             suggestions: [
               "addresses",
               "authorizations",
@@ -12846,16 +11137,13 @@ const completionSpec: Fig.Spec = {
           name: ["-s", "--status"],
           description: "The export job status",
           args: {
-            description: "",
             suggestions: ["in_progress", "pending", "completed", "interrupted"],
           },
         },
         {
           name: ["-l", "--limit"],
           description: "Limit number of exports in output",
-          args: {
-            description: "",
-          },
+          args: {},
         },
       ],
       args: {
@@ -12871,24 +11159,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -12932,16 +11214,12 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-i", "--include"],
           description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-w", "--where"],
           description: "Comma separated list of query filters",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-D", "--dry-data"],
@@ -12951,7 +11229,6 @@ const completionSpec: Fig.Spec = {
           name: ["-F", "--format"],
           description: "Export file format",
           args: {
-            description: "",
             suggestions: ["csv", "json"],
             default: "json",
           },
@@ -12963,17 +11240,13 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-x", "--save"],
           description: "Save command output to file",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-X", "--save-path"],
           description:
             "Save command output to file and create missing path directories",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-N", "--notify"],
@@ -13011,24 +11284,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -13072,16 +11339,12 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-i", "--include"],
           description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-w", "--where"],
           description: "Comma separated list of query filters",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-D", "--dry-data"],
@@ -13091,7 +11354,6 @@ const completionSpec: Fig.Spec = {
           name: ["-F", "--format"],
           description: "Export file format",
           args: {
-            description: "",
             suggestions: ["csv", "json"],
             default: "json",
           },
@@ -13103,17 +11365,13 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-x", "--save"],
           description: "Save command output to file",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-X", "--save-path"],
           description:
             "Save command output to file and create missing path directories",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-N", "--notify"],
@@ -13142,24 +11400,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -13176,24 +11428,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -13210,24 +11456,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
@@ -13239,7 +11479,6 @@ const completionSpec: Fig.Spec = {
           name: ["-t", "--type"],
           description: "The type of resource exported",
           args: {
-            description: "",
             suggestions: [
               "addresses",
               "authorizations",
@@ -13275,16 +11514,13 @@ const completionSpec: Fig.Spec = {
           name: ["-s", "--status"],
           description: "The export job status",
           args: {
-            description: "",
             suggestions: ["in_progress", "pending", "completed", "interrupted"],
           },
         },
         {
           name: ["-l", "--limit"],
           description: "Limit number of exports in output",
-          args: {
-            description: "",
-          },
+          args: {},
         },
       ],
     },
@@ -13299,372 +11535,246 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "tags",
-      description: "List all the created tags or show details of a single tag",
+      name: "cleanups",
+      description:
+        "List all the created cleanups or show details of a single cleanup",
       options: [
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-A", "--all"],
-          description: "Show all tags instead of first 25 only",
+          description: "Show all cleanups instead of first 25 only",
+        },
+        {
+          name: ["-t", "--type"],
+          description: "The type of resource cleaned",
+          args: {
+            suggestions: [
+              "bundles",
+              "gift_cards",
+              "prices",
+              "promotions",
+              "sku_lists",
+              "sku_options",
+              "skus",
+              "stock_items",
+            ],
+          },
+        },
+        {
+          name: ["-s", "--status"],
+          description: "The cleanup job status",
+          args: {
+            suggestions: ["in_progress", "pending", "completed", "interrupted"],
+          },
         },
         {
           name: ["-l", "--limit"],
-          description: "Limit number of tags in output",
-          args: {
-            description: "",
-          },
+          description: "Limit number of cleanups in output",
+          args: {},
         },
       ],
       args: {
         name: "id",
-        description: "Unique id of the tag to be retrieved",
+        description: "Unique id of the cleanup to be retrieved",
         isOptional: true,
       },
     },
     {
-      name: ["tags:add", "tag"],
-      description: "Add one or more tags to a set of resources",
+      name: ["cleanups:create", "clp:create", "cleanup"],
+      description: "Create a new cleanup",
       options: [
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-n", "--name"],
-          description: "The tag name",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-        },
-        {
-          name: ["-t", "--type"],
-          description: "The type of the resource to tag",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-        },
-        {
-          name: ["-i", "--id"],
-          description: "The ids of the resources to tag",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-        },
-        {
-          name: ["-C", "--create"],
-          description: "Create tags if don't exist",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-v", "--verbose"],
-          description: "Show details of the tag process",
-        },
-      ],
-    },
-    {
-      name: "tags:count",
-      description: "Count resources tagged with a specific tag",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-t", "--type"],
-          description: "The type of the tagged resources",
+          description: "The type of resource to clean up",
           args: {
-            description: "",
+            description: "Bundles|gift_cards|prices|promotions|etc",
+            suggestions: [
+              "bundles",
+              "gift_cards",
+              "prices",
+              "promotions",
+              "sku_lists",
+              "sku_options",
+              "skus",
+              "stock_items",
+            ],
           },
+          isRequired: true,
         },
         {
-          name: ["-z", "--zero"],
-          description: "Show also resources without tags",
+          name: ["-w", "--where"],
+          description: "Comma separated list of query filters",
+          args: {},
+        },
+        {
+          name: ["-N", "--notify"],
+          description: "Force system notification when cleanup has finished",
+          hidden: true,
+        },
+        {
+          name: ["-b", "--blind"],
+          description:
+            "Execute in blind mode without showing the progress monitor",
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Execute command without showing warning messages",
+        },
+      ],
+    },
+    {
+      name: ["cleanups:details", "clp:details"],
+      description: "Show the details of an existing cleanup",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-l", "--logs"],
+          description: "Show error logs related to the cleanup process",
         },
       ],
       args: {
-        name: "id_name",
-        description: "Unique id or name of the tag",
+        name: "id",
+        description: "Unique id of the cleanup",
       },
     },
     {
-      name: "tags:create",
-      description: "Create one or more new tags",
+      name: ["cleanups:group", "clp:group"],
+      description: "List all the cleanups related to a cleanup group",
       options: [
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-n", "--name"],
-          description: "The tag name",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-        },
-      ],
-    },
-    {
-      name: "tags:delete",
-      description: "Delete one or more existing tags",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-n", "--name"],
-          description: "The tag name",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-        },
-      ],
-    },
-    {
-      name: "tags:details",
-      description: "Show the details of an existing tag",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
       ],
       args: {
-        name: "id_name",
-        description: "Unique id or name of the tag",
+        name: "group_id",
+        description: "Unique id of the group cleanup",
       },
     },
     {
-      name: "tags:list",
-      description: "List all the created tags",
+      name: ["cleanups:list", "clp:list"],
+      description: "List all the created cleanups",
       options: [
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-A", "--all"],
-          description: "Show all tags instead of first 25 only",
-        },
-        {
-          name: ["-l", "--limit"],
-          description: "Limit number of tags in output",
-          args: {
-            description: "",
-          },
-        },
-      ],
-    },
-    {
-      name: "tags:remove",
-      description: "Remove one or more tags to a set of resources",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-n", "--name"],
-          description: "The tag name",
-          args: {
-            description: "",
-          },
-          isRequired: true,
+          description: "Show all cleanups instead of first 25 only",
         },
         {
           name: ["-t", "--type"],
-          description: "The type of the resource to tag",
+          description: "The type of resource cleaned",
           args: {
-            description: "",
+            suggestions: [
+              "bundles",
+              "gift_cards",
+              "prices",
+              "promotions",
+              "sku_lists",
+              "sku_options",
+              "skus",
+              "stock_items",
+            ],
           },
-          isRequired: true,
         },
         {
-          name: ["-i", "--id"],
-          description: "The ids of th eresources to tag",
+          name: ["-s", "--status"],
+          description: "The cleanup job status",
           args: {
-            description: "",
+            suggestions: ["in_progress", "pending", "completed", "interrupted"],
           },
-          isRequired: true,
         },
         {
-          name: ["-v", "--verbose"],
-          description: "Show details of the tag process",
+          name: ["-l", "--limit"],
+          description: "Limit number of cleanups in output",
+          args: {},
         },
       ],
     },
     {
-      name: "tags:types",
+      name: ["cleanups:types", "clp:types"],
       description: "Show online documentation for supported resources",
       options: [
         {
@@ -13674,133 +11784,30 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "tags:update",
-      description: "Update an existing tag",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-n", "--name"],
-          description: "The new tag name",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-        },
-      ],
-      args: {
-        name: "id_name",
-        description: "Unique id or name of the tag",
-      },
-    },
-    {
-      name: "tags:which",
-      description: "Show all the resources with this tag",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-t", "--type"],
-          description: "The type of the tagged resources",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-        },
-        {
-          name: ["-A", "--all"],
-          description: "Show all resources instead of first 25 only",
-        },
-        {
-          name: ["-l", "--limit"],
-          description: "Limit number of resources in output",
-          args: {
-            description: "",
-          },
-        },
-      ],
-      args: {
-        name: "id_name",
-        description: "Unique id or name of the tag",
-      },
-    },
-    {
       name: ["provisioning:create", "prov:create", "pc", "pcreate"],
       description: "Create a new resource",
       options: [
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-i", "--include"],
           description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-f", "--fields"],
           description:
             "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-j", "--json"],
@@ -13823,7 +11830,6 @@ const completionSpec: Fig.Spec = {
           name: ["-l", "--lang"],
           description: "Show the cli command in the specified language syntax",
           args: {
-            description: "",
             suggestions: ["curl", "node"],
           },
         },
@@ -13849,38 +11855,28 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-a", "--attribute"],
           description: "Define a resource attribute",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-O", "--object"],
           description: "Define a resource object attribute",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-r", "--relationship"],
           description: "Define a relationship with another resource",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-m", "--metadata"],
           description:
             "Define a metadata attribute or a set of metadata attributes",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-D", "--data"],
           description: "The data file to use as request body",
-          args: {
-            description: "",
-          },
+          args: {},
         },
       ],
       args: {
@@ -13903,33 +11899,25 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-i", "--include"],
           description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-f", "--fields"],
           description:
             "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-j", "--json"],
@@ -13952,7 +11940,6 @@ const completionSpec: Fig.Spec = {
           name: ["-l", "--lang"],
           description: "Show the cli command in the specified language syntax",
           args: {
-            description: "",
             suggestions: ["curl", "node"],
           },
         },
@@ -13999,25 +11986,19 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-a", "--attribute"],
           description: "Define a resource attribute",
-          args: {
-            description: "",
-          },
+          args: {},
         },
       ],
       args: [
@@ -14043,33 +12024,25 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-i", "--include"],
           description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-f", "--fields"],
           description:
             "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-j", "--json"],
@@ -14092,7 +12065,6 @@ const completionSpec: Fig.Spec = {
           name: ["-l", "--lang"],
           description: "Show the cli command in the specified language syntax",
           args: {
-            description: "",
             suggestions: ["curl", "node"],
           },
         },
@@ -14118,37 +12090,27 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-e", "--extract"],
           description: "Extract subfields from object attributes",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-w", "--where"],
           description: "Comma separated list of query filters",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-p", "--page"],
           description: "Page number",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-n", "--pageSize"],
           description: "Number of elements per page",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-s", "--sort"],
           description: "Defines results ordering",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-I", "--force-include"],
@@ -14178,33 +12140,25 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-i", "--include"],
           description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-f", "--fields"],
           description:
             "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-j", "--json"],
@@ -14227,7 +12181,6 @@ const completionSpec: Fig.Spec = {
           name: ["-l", "--lang"],
           description: "Show the cli command in the specified language syntax",
           args: {
-            description: "",
             suggestions: ["curl", "node"],
           },
         },
@@ -14253,37 +12206,27 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-e", "--extract"],
           description: "Extract subfields from object attributes",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-w", "--where"],
           description: "Comma separated list of query filters",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-p", "--page"],
           description: "Page number",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-n", "--pageSize"],
           description: "Number of elements per page",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-s", "--sort"],
           description: "Defines results ordering",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-I", "--force-include"],
@@ -14309,33 +12252,25 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-i", "--include"],
           description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-f", "--fields"],
           description:
             "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-j", "--json"],
@@ -14358,7 +12293,6 @@ const completionSpec: Fig.Spec = {
           name: ["-l", "--lang"],
           description: "Show the cli command in the specified language syntax",
           args: {
-            description: "",
             suggestions: ["curl", "node"],
           },
         },
@@ -14384,37 +12318,27 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-w", "--where"],
           description: "Comma separated list of query filters",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-p", "--page"],
           description: "Page number",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-n", "--pageSize"],
           description: "Number of elements per page",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-s", "--sort"],
           description: "Defines results ordering",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-e", "--extract"],
           description: "Extract subfields from object attributes",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-I", "--force-include"],
@@ -14444,33 +12368,25 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-i", "--include"],
           description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-f", "--fields"],
           description:
             "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-j", "--json"],
@@ -14493,7 +12409,6 @@ const completionSpec: Fig.Spec = {
           name: ["-l", "--lang"],
           description: "Show the cli command in the specified language syntax",
           args: {
-            description: "",
             suggestions: ["curl", "node"],
           },
         },
@@ -14519,37 +12434,27 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-w", "--where"],
           description: "Comma separated list of query filters",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-p", "--page"],
           description: "Page number",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-n", "--pageSize"],
           description: "Number of elements per page",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-s", "--sort"],
           description: "Defines results ordering",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-e", "--extract"],
           description: "Extract subfields from object attributes",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-I", "--force-include"],
@@ -14589,33 +12494,25 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-i", "--include"],
           description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-f", "--fields"],
           description:
             "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-j", "--json"],
@@ -14638,7 +12535,6 @@ const completionSpec: Fig.Spec = {
           name: ["-l", "--lang"],
           description: "Show the cli command in the specified language syntax",
           args: {
-            description: "",
             suggestions: ["curl", "node"],
           },
         },
@@ -14664,9 +12560,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-e", "--extract"],
           description: "Extract subfields from object attributes",
-          args: {
-            description: "",
-          },
+          args: {},
         },
       ],
       args: [
@@ -14700,33 +12594,25 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-i", "--include"],
           description: "Comma separated resources to include",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-f", "--fields"],
           description:
             "Comma separeted list of fields in the format [resourcetype/]field1,field2,field3",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-j", "--json"],
@@ -14749,7 +12635,6 @@ const completionSpec: Fig.Spec = {
           name: ["-l", "--lang"],
           description: "Show the cli command in the specified language syntax",
           args: {
-            description: "",
             suggestions: ["curl", "node"],
           },
         },
@@ -14775,44 +12660,32 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-a", "--attribute"],
           description: "Define a resource attribute",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-O", "--object"],
           description: "Define a resource object attribute",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-r", "--relationship"],
           description: "Define a relationship with another resource",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-m", "--metadata"],
           description: "",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-M", "--metadata-replace"],
           description: "",
-          args: {
-            description: "",
-          },
+          args: {},
         },
         {
           name: ["-D", "--data"],
           description: "The data file to use as request body",
-          args: {
-            description: "",
-          },
+          args: {},
         },
       ],
       args: [
@@ -14837,286 +12710,300 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "cleanups",
-      description:
-        "List all the created cleanups or show details of a single cleanup",
+      name: "tags",
+      description: "List all the created tags or show details of a single tag",
       options: [
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-A", "--all"],
-          description: "Show all cleanups instead of first 25 only",
-        },
-        {
-          name: ["-t", "--type"],
-          description: "The type of resource cleaned",
-          args: {
-            description: "",
-            suggestions: [
-              "bundles",
-              "gift_cards",
-              "prices",
-              "promotions",
-              "sku_lists",
-              "sku_options",
-              "skus",
-              "stock_items",
-            ],
-          },
-        },
-        {
-          name: ["-s", "--status"],
-          description: "The cleanup job status",
-          args: {
-            description: "",
-            suggestions: ["in_progress", "pending", "completed", "interrupted"],
-          },
+          description: "Show all tags instead of first 25 only",
         },
         {
           name: ["-l", "--limit"],
-          description: "Limit number of cleanups in output",
-          args: {
-            description: "",
-          },
+          description: "Limit number of tags in output",
+          args: {},
         },
       ],
       args: {
         name: "id",
-        description: "Unique id of the cleanup to be retrieved",
+        description: "Unique id of the tag to be retrieved",
         isOptional: true,
       },
     },
     {
-      name: ["cleanups:create", "clp:create", "cleanup"],
-      description: "Create a new cleanup",
+      name: ["tags:add", "tag"],
+      description: "Add one or more tags to a set of resources",
       options: [
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-n", "--name"],
+          description: "The tag name",
+          args: {},
+          isRequired: true,
+        },
+        {
+          name: ["-t", "--type"],
+          description: "The type of the resource to tag",
+          args: {},
+          isRequired: true,
+        },
+        {
+          name: ["-i", "--id"],
+          description: "The ids of the resources to tag",
+          args: {},
+          isRequired: true,
+        },
+        {
+          name: ["-C", "--create"],
+          description: "Create tags if don't exist",
+          args: {},
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "Show details of the tag process",
+        },
+      ],
+    },
+    {
+      name: "tags:count",
+      description: "Count resources tagged with a specific tag",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-t", "--type"],
-          description: "The type of resource to clean up",
-          args: {
-            description: "Bundles|gift_cards|prices|promotions|etc",
-            suggestions: [
-              "bundles",
-              "gift_cards",
-              "prices",
-              "promotions",
-              "sku_lists",
-              "sku_options",
-              "skus",
-              "stock_items",
-            ],
-          },
-          isRequired: true,
+          description: "The type of the tagged resources",
+          args: {},
         },
         {
-          name: ["-w", "--where"],
-          description: "Comma separated list of query filters",
-          args: {
-            description: "",
-          },
-        },
-        {
-          name: ["-N", "--notify"],
-          description: "Force system notification when cleanup has finished",
-          hidden: true,
-        },
-        {
-          name: ["-b", "--blind"],
-          description:
-            "Execute in blind mode without showing the progress monitor",
-        },
-        {
-          name: ["-q", "--quiet"],
-          description: "Execute command without showing warning messages",
-        },
-      ],
-    },
-    {
-      name: ["cleanups:details", "clp:details"],
-      description: "Show the details of an existing cleanup",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {
-            description: "",
-          },
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-l", "--logs"],
-          description: "Show error logs related to the cleanup process",
+          name: ["-z", "--zero"],
+          description: "Show also resources without tags",
         },
       ],
       args: {
-        name: "id",
-        description: "Unique id of the cleanup",
+        name: "id_name",
+        description: "Unique id or name of the tag",
       },
     },
     {
-      name: ["cleanups:group", "clp:group"],
-      description: "List all the cleanups related to a cleanup group",
+      name: "tags:create",
+      description: "Create one or more new tags",
       options: [
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-n", "--name"],
+          description: "The tag name",
+          args: {},
+          isRequired: true,
+        },
+      ],
+    },
+    {
+      name: "tags:delete",
+      description: "Delete one or more existing tags",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-n", "--name"],
+          description: "The tag name",
+          args: {},
+          isRequired: true,
+        },
+      ],
+    },
+    {
+      name: "tags:details",
+      description: "Show the details of an existing tag",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
           isRequired: true,
           hidden: true,
         },
       ],
       args: {
-        name: "group_id",
-        description: "Unique id of the group cleanup",
+        name: "id_name",
+        description: "Unique id or name of the tag",
       },
     },
     {
-      name: ["cleanups:list", "clp:list"],
-      description: "List all the created cleanups",
+      name: "tags:list",
+      description: "List all the created tags",
       options: [
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-d", "--domain"],
-          args: {
-            description: "",
-          },
+          args: {},
           hidden: true,
         },
         {
           name: "--accessToken",
-          args: {
-            description: "",
-          },
+          args: {},
           isRequired: true,
           hidden: true,
         },
         {
           name: ["-A", "--all"],
-          description: "Show all cleanups instead of first 25 only",
-        },
-        {
-          name: ["-t", "--type"],
-          description: "The type of resource cleaned",
-          args: {
-            description: "",
-            suggestions: [
-              "bundles",
-              "gift_cards",
-              "prices",
-              "promotions",
-              "sku_lists",
-              "sku_options",
-              "skus",
-              "stock_items",
-            ],
-          },
-        },
-        {
-          name: ["-s", "--status"],
-          description: "The cleanup job status",
-          args: {
-            description: "",
-            suggestions: ["in_progress", "pending", "completed", "interrupted"],
-          },
+          description: "Show all tags instead of first 25 only",
         },
         {
           name: ["-l", "--limit"],
-          description: "Limit number of cleanups in output",
-          args: {
-            description: "",
-          },
+          description: "Limit number of tags in output",
+          args: {},
         },
       ],
     },
     {
-      name: ["cleanups:types", "clp:types"],
+      name: "tags:remove",
+      description: "Remove one or more tags to a set of resources",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-n", "--name"],
+          description: "The tag name",
+          args: {},
+          isRequired: true,
+        },
+        {
+          name: ["-t", "--type"],
+          description: "The type of the resource to tag",
+          args: {},
+          isRequired: true,
+        },
+        {
+          name: ["-i", "--id"],
+          description: "The ids of th eresources to tag",
+          args: {},
+          isRequired: true,
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "Show details of the tag process",
+        },
+      ],
+    },
+    {
+      name: "tags:types",
       description: "Show online documentation for supported resources",
       options: [
         {
@@ -15126,18 +13013,80 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "help",
-      description: "Display help for <%= config.bin %>",
+      name: "tags:update",
+      description: "Update an existing tag",
       options: [
         {
-          name: ["-n", "--nested-commands"],
-          description: "Include all nested commands in the output",
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-n", "--name"],
+          description: "The new tag name",
+          args: {},
+          isRequired: true,
         },
       ],
       args: {
-        name: "command",
-        description: "Command to show help for",
-        isOptional: true,
+        name: "id_name",
+        description: "Unique id or name of the tag",
+      },
+    },
+    {
+      name: "tags:which",
+      description: "Show all the resources with this tag",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-t", "--type"],
+          description: "The type of the tagged resources",
+          args: {},
+          isRequired: true,
+        },
+        {
+          name: ["-A", "--all"],
+          description: "Show all resources instead of first 25 only",
+        },
+        {
+          name: ["-l", "--limit"],
+          description: "Limit number of resources in output",
+          args: {},
+        },
+      ],
+      args: {
+        name: "id_name",
+        description: "Unique id or name of the tag",
       },
     },
     {
@@ -15153,6 +13102,21 @@ const completionSpec: Fig.Spec = {
         name: "shell",
         description: "Shell type",
         suggestions: ["zsh", "bash", "powershell"],
+        isOptional: true,
+      },
+    },
+    {
+      name: "help",
+      description: "Display help for <%= config.bin %>",
+      options: [
+        {
+          name: ["-n", "--nested-commands"],
+          description: "Include all nested commands in the output",
+        },
+      ],
+      args: {
+        name: "command",
+        description: "Command to show help for",
         isOptional: true,
       },
     },
