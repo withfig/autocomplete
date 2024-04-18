@@ -960,7 +960,7 @@ const completion: Fig.Spec = {
         {
           name: "--esp",
           description:
-            "Specify to create cluster with Enterprise Security Package. If omitted, creating cluster with Enterprise Security Package will not not allowed",
+            "Specify to create cluster with Enterprise Security Package. If omitted, creating cluster with Enterprise Security Package will not allowed",
         },
         {
           name: "--headnode-size",
@@ -987,7 +987,7 @@ const completion: Fig.Spec = {
         {
           name: "--idbroker",
           description:
-            "Specify to create ESP cluster with HDInsight ID Broker. If omitted, creating ESP cluster with HDInsight ID Broker will not not allowed",
+            "Specify to create ESP cluster with HDInsight ID Broker. If omitted, creating ESP cluster with HDInsight ID Broker will not allowed",
         },
         {
           name: "--kafka-client-group-id",

@@ -795,7 +795,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-p", "--port"],
               description:
-                "Select which port the registry should be listening on on your machine (localhost) (Format: [HOST:]HOSTPORT)",
+                "Select which port the registry should be listening on your machine (localhost) (Format: [HOST:]HOSTPORT)",
               args: {
                 name: "port",
               },
