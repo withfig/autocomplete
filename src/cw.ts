@@ -1,5 +1,5 @@
 export const themesGenerator: Fig.Generator = {
-  script: ["q", "theme", "--list"],
+  script: ["cw", "theme", "--list"],
   postProcess: (output) => {
     const builtinThemes: Fig.Suggestion[] = [
       {
@@ -32,17 +32,16 @@ export const themesGenerator: Fig.Generator = {
 };
 
 const completion: Fig.Spec = {
-  name: "q_cli",
+  name: "cw",
   description: "Top level cli commands",
   subcommands: [
     {
       name: "app",
       description: "Interact with the desktop app",
-      hidden: true,
       subcommands: [
         {
           name: "install",
-          description: "Install the app",
+          description: "Install the CodeWhisperer app",
           options: [
             {
               name: ["-h", "--help"],
@@ -52,7 +51,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "onboarding",
-          description: "Run the tutorial again",
+          description: "Run the CodeWhisperer tutorial again",
           options: [
             {
               name: ["-h", "--help"],
@@ -62,7 +61,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "running",
-          description: "Check if the desktop app is running",
+          description: "Check if CodeWhisperer is running",
           options: [
             {
               name: ["-h", "--help"],
@@ -72,7 +71,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "launch",
-          description: "Launch the desktop app",
+          description: "Launch the CodeWhisperer desktop app",
           options: [
             {
               name: ["-h", "--help"],
@@ -82,7 +81,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "restart",
-          description: "Restart the desktop app",
+          description: "Restart the CodeWhisperer desktop app",
           options: [
             {
               name: ["-h", "--help"],
@@ -92,7 +91,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "quit",
-          description: "Quit the desktop app",
+          description: "Quit the CodeWhisperer desktop app",
           options: [
             {
               name: ["-h", "--help"],
@@ -112,7 +111,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "uninstall",
-          description: "Uninstall the desktop app",
+          description: "Uninstall the CodeWhisperer app",
           options: [
             {
               name: "--app-bundle",
@@ -121,6 +120,10 @@ const completion: Fig.Spec = {
             {
               name: "--input-method",
               description: "Remove input method",
+            },
+            {
+              name: "--daemon",
+              description: "Remove CodeWhisperer daemon",
             },
             {
               name: "--dotfiles",
@@ -161,27 +164,27 @@ const completion: Fig.Spec = {
           subcommands: [
             {
               name: "install",
-              description: "Install the app",
+              description: "Install the CodeWhisperer app",
             },
             {
               name: "onboarding",
-              description: "Run the tutorial again",
+              description: "Run the CodeWhisperer tutorial again",
             },
             {
               name: "running",
-              description: "Check if the desktop app is running",
+              description: "Check if CodeWhisperer is running",
             },
             {
               name: "launch",
-              description: "Launch the desktop app",
+              description: "Launch the CodeWhisperer desktop app",
             },
             {
               name: "restart",
-              description: "Restart the desktop app",
+              description: "Restart the CodeWhisperer desktop app",
             },
             {
               name: "quit",
-              description: "Quit the desktop app",
+              description: "Quit the CodeWhisperer desktop app",
             },
             {
               name: "set-path",
@@ -189,7 +192,7 @@ const completion: Fig.Spec = {
             },
             {
               name: "uninstall",
-              description: "Uninstall the desktop app",
+              description: "Uninstall the CodeWhisperer app",
             },
             {
               name: "prompts",
@@ -363,23 +366,6 @@ const completion: Fig.Spec = {
           ],
         },
         {
-          name: "clear-autocomplete-cache",
-          options: [
-            {
-              name: "--cli",
-              isRepeatable: true,
-              args: {
-                name: "cli",
-                isOptional: true,
-              },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Print help",
-            },
-          ],
-        },
-        {
           name: "help",
           description:
             "Print this message or the help of the given subcommand(s)",
@@ -409,9 +395,6 @@ const completion: Fig.Spec = {
               name: "ssh",
             },
             {
-              name: "clear-autocomplete-cache",
-            },
-            {
               name: "help",
               description:
                 "Print this message or the help of the given subcommand(s)",
@@ -428,11 +411,11 @@ const completion: Fig.Spec = {
     },
     {
       name: "debug",
-      description: "Debug the app",
+      description: "Debug CodeWhisperer",
       subcommands: [
         {
           name: "app",
-          description: "Debug the app",
+          description: "Debug CodeWhisperer app",
           options: [
             {
               name: ["-h", "--help"],
@@ -478,7 +461,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "logs",
-          description: "Show debug logs",
+          description: "Show CodeWhisperer debug logs",
           options: [
             {
               name: "--level",
@@ -501,7 +484,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "input-method",
-          description: "Input method debugger",
+          description: "CodeWhisperer input method editor",
           subcommands: [
             {
               name: "install",
@@ -619,7 +602,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "sample",
-          description: "Sample desktop process",
+          description: "Sample CodeWhisperer process",
           options: [
             {
               name: ["-h", "--help"],
@@ -629,7 +612,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "verify-codesign",
-          description: "Debug application codesigning",
+          description: "Debug CodeWhisperer codesign verification",
           options: [
             {
               name: ["-h", "--help"],
@@ -696,10 +679,10 @@ const completion: Fig.Spec = {
               },
             },
             {
-              name: ["-o", "--os"],
+              name: ["-k", "--kind"],
               isRepeatable: true,
               args: {
-                name: "os",
+                name: "kind",
               },
             },
             {
@@ -784,7 +767,7 @@ const completion: Fig.Spec = {
         {
           name: "shell",
           description:
-            "Disables sourcing of user shell config and instead uses a minimal shell config",
+            "Disables sourcing of user shell config and instead uses a minimal CodeWhisperer default",
           options: [
             {
               name: ["-h", "--help"],
@@ -799,7 +782,7 @@ const completion: Fig.Spec = {
           subcommands: [
             {
               name: "app",
-              description: "Debug the app",
+              description: "Debug CodeWhisperer app",
             },
             {
               name: "build",
@@ -811,11 +794,11 @@ const completion: Fig.Spec = {
             },
             {
               name: "logs",
-              description: "Show debug logs",
+              description: "Show CodeWhisperer debug logs",
             },
             {
               name: "input-method",
-              description: "Input method debugger",
+              description: "CodeWhisperer input method editor",
               subcommands: [
                 {
                   name: "install",
@@ -840,11 +823,11 @@ const completion: Fig.Spec = {
             },
             {
               name: "sample",
-              description: "Sample desktop process",
+              description: "Sample CodeWhisperer process",
             },
             {
               name: "verify-codesign",
-              description: "Debug application codesigning",
+              description: "Debug CodeWhisperer codesign verification",
             },
             {
               name: "accessibility",
@@ -878,7 +861,7 @@ const completion: Fig.Spec = {
             {
               name: "shell",
               description:
-                "Disables sourcing of user shell config and instead uses a minimal shell config",
+                "Disables sourcing of user shell config and instead uses a minimal CodeWhisperer default",
             },
             {
               name: "help",
@@ -1008,9 +991,97 @@ const completion: Fig.Spec = {
       ],
     },
     {
-      name: "install",
-      description: "Install cli components",
+      name: "tips",
+      description: "Enable/disable CodeWhisperer tips",
+      subcommands: [
+        {
+          name: "enable",
+          description: "Enable CodeWhisperer tips",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "disable",
+          description: "Disable CodeWhisperer tips",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "reset",
+          description: "Reset the tips to the default",
+          hidden: true,
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "prompt",
+          description: "Show the tips",
+          hidden: true,
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+        },
+        {
+          name: "help",
+          description:
+            "Print this message or the help of the given subcommand(s)",
+          subcommands: [
+            {
+              name: "enable",
+              description: "Enable CodeWhisperer tips",
+            },
+            {
+              name: "disable",
+              description: "Disable CodeWhisperer tips",
+            },
+            {
+              name: "reset",
+              description: "Reset the tips to the default",
+              hidden: true,
+            },
+            {
+              name: "prompt",
+              description: "Show the tips",
+              hidden: true,
+            },
+            {
+              name: "help",
+              description:
+                "Print this message or the help of the given subcommand(s)",
+            },
+          ],
+        },
+      ],
       options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+      ],
+    },
+    {
+      name: "install",
+      description: "Install CodeWhisperer cli components",
+      options: [
+        {
+          name: "--daemon",
+          description: "Install only the daemon",
+        },
         {
           name: "--dotfiles",
           description: "Install only the shell integrations",
@@ -1025,7 +1096,11 @@ const completion: Fig.Spec = {
         },
         {
           name: "--force",
-          description: "Force installation of fig",
+          description: "Force installation of CodeWhisperer",
+        },
+        {
+          name: "--ssh",
+          description: "Install only the ssh integration",
         },
         {
           name: ["-h", "--help"],
@@ -1035,7 +1110,7 @@ const completion: Fig.Spec = {
     },
     {
       name: "uninstall",
-      description: "Uninstall Q",
+      description: "Uninstall CodeWhisperer",
       hidden: true,
       options: [
         {
@@ -1050,8 +1125,12 @@ const completion: Fig.Spec = {
     },
     {
       name: "update",
-      description: "Update the Q application",
+      description: "Check for updates",
       options: [
+        {
+          name: "--no-confirm",
+          description: "(deprecated) Use --non-interactive instead",
+        },
         {
           name: ["-y", "--non-interactive"],
           description: "Don't prompt for confirmation",
@@ -1173,7 +1252,10 @@ const completion: Fig.Spec = {
       args: {
         name: "theme",
         isOptional: true,
-        generators: themesGenerator,
+        generators: {
+          script: ["cw", "theme", "--list"],
+          splitOn: "\n",
+        },
       },
     },
     {
@@ -1197,7 +1279,7 @@ const completion: Fig.Spec = {
     },
     {
       name: "login",
-      description: "Login",
+      description: "Login to CodeWhisperer",
       options: [
         {
           name: ["-h", "--help"],
@@ -1207,7 +1289,7 @@ const completion: Fig.Spec = {
     },
     {
       name: "logout",
-      description: "Logout",
+      description: "Logout of CodeWhisperer",
       options: [
         {
           name: ["-h", "--help"],
@@ -1250,11 +1332,11 @@ const completion: Fig.Spec = {
     },
     {
       name: "user",
-      description: "Manage your account",
+      description: "Manage your CodeWhisperer user",
       subcommands: [
         {
           name: "login",
-          description: "Login",
+          description: "Login to CodeWhisperer",
           options: [
             {
               name: ["-h", "--help"],
@@ -1264,7 +1346,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "logout",
-          description: "Logout",
+          description: "Logout of CodeWhisperer",
           options: [
             {
               name: ["-h", "--help"],
@@ -1312,11 +1394,11 @@ const completion: Fig.Spec = {
           subcommands: [
             {
               name: "login",
-              description: "Login",
+              description: "Login to CodeWhisperer",
             },
             {
               name: "logout",
-              description: "Logout",
+              description: "Logout of CodeWhisperer",
             },
             {
               name: "whoami",
@@ -1339,7 +1421,7 @@ const completion: Fig.Spec = {
     },
     {
       name: "doctor",
-      description: "Fix and diagnose common issues",
+      description: "Check CodeWhisperer is properly configured",
       options: [
         {
           name: "--verbose",
@@ -1357,7 +1439,7 @@ const completion: Fig.Spec = {
     },
     {
       name: "completion",
-      description: "Generate CLI completion spec",
+      description: "Generate the completion spec for CodeWhisperer",
       hidden: true,
       options: [
         {
@@ -1390,13 +1472,13 @@ const completion: Fig.Spec = {
     },
     {
       name: ["internal", "_"],
-      description: "Internal subcommands",
+      description: "Internal subcommands used for CodeWhisperer",
       hidden: true,
       subcommands: [
         {
           name: "pre-cmd",
           description:
-            "Command that is run during the PreCmd section of the fig integrations",
+            "Command that is run during the PreCmd section of the CodeWhisperer integrations",
           options: [
             {
               name: "--alias",
@@ -1419,6 +1501,16 @@ const completion: Fig.Spec = {
             {
               name: "init",
               description: "Reload the state listener",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help",
+                },
+              ],
+            },
+            {
+              name: "open",
+              description: "Open the state file",
               options: [
                 {
                   name: ["-h", "--help"],
@@ -1466,6 +1558,10 @@ const completion: Fig.Spec = {
                 {
                   name: "init",
                   description: "Reload the state listener",
+                },
+                {
+                  name: "open",
+                  description: "Open the state file",
                 },
                 {
                   name: "all",
@@ -1548,8 +1644,12 @@ const completion: Fig.Spec = {
         },
         {
           name: "install",
-          description: "Install Q cli",
+          description: "Install fig cli",
           options: [
+            {
+              name: "--daemon",
+              description: "Install only the daemon",
+            },
             {
               name: "--dotfiles",
               description: "Install only the shell integrations",
@@ -1567,6 +1667,10 @@ const completion: Fig.Spec = {
               description: "Force installation of fig",
             },
             {
+              name: "--ssh",
+              description: "Install only the ssh integration",
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -1574,8 +1678,12 @@ const completion: Fig.Spec = {
         },
         {
           name: "uninstall",
-          description: "Uninstall Q cli",
+          description: "Uninstall fig cli",
           options: [
+            {
+              name: "--daemon",
+              description: "Uninstall only the daemon",
+            },
             {
               name: "--dotfiles",
               description: "Uninstall only the shell integrations",
@@ -1815,14 +1923,6 @@ const completion: Fig.Spec = {
           name: "finish-update",
           options: [
             {
-              name: "--delete-bundle",
-              isRepeatable: true,
-              args: {
-                name: "delete_bundle",
-                isOptional: true,
-              },
-            },
-            {
               name: "--relaunch-dashboard",
             },
             {
@@ -1834,9 +1934,6 @@ const completion: Fig.Spec = {
         {
           name: "swap-files",
           options: [
-            {
-              name: "--not-same-bundle-name",
-            },
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -1852,6 +1949,19 @@ const completion: Fig.Spec = {
               template: "filepaths",
             },
           ],
+        },
+        {
+          name: "check-ssh",
+          hidden: true,
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+          ],
+          args: {
+            name: "remote_username",
+          },
         },
         {
           name: "brew-uninstall",
@@ -1870,40 +1980,16 @@ const completion: Fig.Spec = {
           description: "Generates an SSH configuration file",
           options: [
             {
-              name: "--remote-host",
-              description: "The remote host",
-              isRepeatable: true,
-              args: {
-                name: "remote_host",
-                isOptional: true,
-              },
-            },
-            {
-              name: "--remote-port",
-              description: "The remote port",
-              isRepeatable: true,
-              args: {
-                name: "remote_port",
-                isOptional: true,
-              },
-            },
-            {
-              name: "--remote-username",
-              description: "The remote username",
-              isRepeatable: true,
-              args: {
-                name: "remote_username",
-                isOptional: true,
-              },
-            },
-            {
               name: ["-h", "--help"],
               description: "Print help (see more with '--help')",
             },
           ],
+          args: {
+            name: "remote_username",
+          },
         },
         {
-          name: "inline-shell-completion",
+          name: "ghost-text",
           options: [
             {
               name: "--buffer",
@@ -1919,7 +2005,7 @@ const completion: Fig.Spec = {
           ],
         },
         {
-          name: "inline-shell-completion-accept",
+          name: "ghost-text-accept",
           options: [
             {
               name: "--buffer",
@@ -1960,6 +2046,10 @@ const completion: Fig.Spec = {
                   description: "Reload the state listener",
                 },
                 {
+                  name: "open",
+                  description: "Open the state file",
+                },
+                {
                   name: "all",
                   description: "List all the settings",
                 },
@@ -1971,11 +2061,11 @@ const completion: Fig.Spec = {
             },
             {
               name: "install",
-              description: "Install Q cli",
+              description: "Install fig cli",
             },
             {
               name: "uninstall",
-              description: "Uninstall Q cli",
+              description: "Uninstall fig cli",
             },
             {
               name: "get-shell",
@@ -2035,6 +2125,10 @@ const completion: Fig.Spec = {
               name: "swap-files",
             },
             {
+              name: "check-ssh",
+              hidden: true,
+            },
+            {
               name: "brew-uninstall",
             },
             {
@@ -2042,10 +2136,10 @@ const completion: Fig.Spec = {
               description: "Generates an SSH configuration file",
             },
             {
-              name: "inline-shell-completion",
+              name: "ghost-text",
             },
             {
-              name: "inline-shell-completion-accept",
+              name: "ghost-text-accept",
             },
             {
               name: "help",
@@ -2064,7 +2158,7 @@ const completion: Fig.Spec = {
     },
     {
       name: "launch",
-      description: "Launch the desktop app",
+      description: "Launch the CodeWhisperer desktop app",
       options: [
         {
           name: ["-h", "--help"],
@@ -2074,7 +2168,7 @@ const completion: Fig.Spec = {
     },
     {
       name: "quit",
-      description: "Quit the desktop app",
+      description: "Quit the CodeWhisperer desktop app",
       options: [
         {
           name: ["-h", "--help"],
@@ -2084,7 +2178,7 @@ const completion: Fig.Spec = {
     },
     {
       name: "restart",
-      description: "Restart the desktop app",
+      description: "Restart the CodeWhisperer desktop app",
       options: [
         {
           name: ["-h", "--help"],
@@ -2101,14 +2195,14 @@ const completion: Fig.Spec = {
           },
           {
             name: "app",
-            description: "Desktop Process",
+            description: "CodeWhisperer process",
           },
         ],
       },
     },
     {
       name: "onboarding",
-      description: "Run the tutorial",
+      description: "Run the CodeWhisperer tutorial",
       hidden: true,
       options: [
         {
@@ -2192,7 +2286,7 @@ const completion: Fig.Spec = {
               ],
             },
             {
-              name: ["intellij-plugin", "jetbrains-plugin"],
+              name: "intellij-plugin",
               options: [
                 {
                   name: ["-h", "--help"],
@@ -2230,7 +2324,7 @@ const completion: Fig.Spec = {
                   name: "vscode",
                 },
                 {
-                  name: "intellij-plugin",
+                  name: "intellij",
                 },
                 {
                   name: "all",
@@ -2325,7 +2419,7 @@ const completion: Fig.Spec = {
               ],
             },
             {
-              name: ["intellij-plugin", "jetbrains-plugin"],
+              name: "intellij-plugin",
               options: [
                 {
                   name: ["-h", "--help"],
@@ -2363,7 +2457,7 @@ const completion: Fig.Spec = {
                   name: "vscode",
                 },
                 {
-                  name: "intellij-plugin",
+                  name: "intellij",
                 },
                 {
                   name: "all",
@@ -2458,7 +2552,7 @@ const completion: Fig.Spec = {
               ],
             },
             {
-              name: ["intellij-plugin", "jetbrains-plugin"],
+              name: "intellij-plugin",
               options: [
                 {
                   name: ["-h", "--help"],
@@ -2496,7 +2590,7 @@ const completion: Fig.Spec = {
                   name: "vscode",
                 },
                 {
-                  name: "intellij-plugin",
+                  name: "intellij",
                 },
                 {
                   name: "all",
@@ -2591,7 +2685,7 @@ const completion: Fig.Spec = {
               ],
             },
             {
-              name: ["intellij-plugin", "jetbrains-plugin"],
+              name: "intellij-plugin",
               options: [
                 {
                   name: ["-h", "--help"],
@@ -2629,7 +2723,7 @@ const completion: Fig.Spec = {
                   name: "vscode",
                 },
                 {
-                  name: "intellij-plugin",
+                  name: "intellij",
                 },
                 {
                   name: "all",
@@ -2644,30 +2738,8 @@ const completion: Fig.Spec = {
           ],
           options: [
             {
-              name: ["-f", "--format"],
-              isRepeatable: true,
-              args: {
-                name: "format",
-                isOptional: true,
-                suggestions: [
-                  {
-                    name: "plain",
-                    description: "Outputs the results as markdown",
-                  },
-                  {
-                    name: "json",
-                    description: "Outputs the results as JSON",
-                  },
-                  {
-                    name: "json-pretty",
-                    description: "Outputs the results as pretty print JSON",
-                  },
-                ],
-              },
-            },
-            {
               name: ["-h", "--help"],
-              description: "Print help (see more with '--help')",
+              description: "Print help",
             },
           ],
         },
@@ -2695,7 +2767,7 @@ const completion: Fig.Spec = {
                   name: "vscode",
                 },
                 {
-                  name: "intellij-plugin",
+                  name: "intellij",
                 },
                 {
                   name: "all",
@@ -2721,7 +2793,7 @@ const completion: Fig.Spec = {
                   name: "vscode",
                 },
                 {
-                  name: "intellij-plugin",
+                  name: "intellij",
                 },
                 {
                   name: "all",
@@ -2747,7 +2819,7 @@ const completion: Fig.Spec = {
                   name: "vscode",
                 },
                 {
-                  name: "intellij-plugin",
+                  name: "intellij",
                 },
                 {
                   name: "all",
@@ -2773,7 +2845,7 @@ const completion: Fig.Spec = {
                   name: "vscode",
                 },
                 {
-                  name: "intellij-plugin",
+                  name: "intellij",
                 },
                 {
                   name: "all",
@@ -2796,8 +2868,8 @@ const completion: Fig.Spec = {
       ],
     },
     {
-      name: ["translate", "ai"],
-      description: "Natural Language to Shell translation",
+      name: ["ai", "q"],
+      description: "English -> Bash translation",
       options: [
         {
           name: ["-n", "--n"],
@@ -2847,31 +2919,8 @@ const completion: Fig.Spec = {
           name: "status",
           options: [
             {
-              name: ["-f", "--format"],
-              description: "Format of the output",
-              isRepeatable: true,
-              args: {
-                name: "format",
-                isOptional: true,
-                suggestions: [
-                  {
-                    name: "plain",
-                    description: "Outputs the results as markdown",
-                  },
-                  {
-                    name: "json",
-                    description: "Outputs the results as JSON",
-                  },
-                  {
-                    name: "json-pretty",
-                    description: "Outputs the results as pretty print JSON",
-                  },
-                ],
-              },
-            },
-            {
               name: ["-h", "--help"],
-              description: "Print help (see more with '--help')",
+              description: "Print help",
             },
           ],
         },
@@ -2907,7 +2956,6 @@ const completion: Fig.Spec = {
     {
       name: "version",
       description: "Version",
-      hidden: true,
       options: [
         {
           name: ["-h", "--help"],
@@ -2927,27 +2975,13 @@ const completion: Fig.Spec = {
     },
     {
       name: "dashboard",
-      description: "Open the dashboard",
+      description: "Open the fig dashboard",
       options: [
         {
           name: ["-h", "--help"],
           description: "Print help",
         },
       ],
-    },
-    {
-      name: ["chat", "q"],
-      description: "AI assistant in your terminal",
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Print help",
-        },
-      ],
-      args: {
-        name: "input",
-        isOptional: true,
-      },
     },
     {
       name: "help",
@@ -2956,31 +2990,30 @@ const completion: Fig.Spec = {
         {
           name: "app",
           description: "Interact with the desktop app",
-          hidden: true,
           subcommands: [
             {
               name: "install",
-              description: "Install the app",
+              description: "Install the Fig app",
             },
             {
               name: "onboarding",
-              description: "Run the tutorial again",
+              description: "Run the CodeWhisperer tutorial again",
             },
             {
               name: "running",
-              description: "Check if the desktop app is running",
+              description: "Check if CodeWhisperer is running",
             },
             {
               name: "launch",
-              description: "Launch the desktop app",
+              description: "Launch the CodeWhisperer desktop app",
             },
             {
               name: "restart",
-              description: "Restart the desktop app",
+              description: "Restart the CodeWhisperer desktop app",
             },
             {
               name: "quit",
-              description: "Quit the desktop app",
+              description: "Quit the CodeWhisperer desktop app",
             },
             {
               name: "set-path",
@@ -2988,7 +3021,7 @@ const completion: Fig.Spec = {
             },
             {
               name: "uninstall",
-              description: "Uninstall the desktop app",
+              description: "Uninstall the CodeWhisperer app",
             },
             {
               name: "prompts",
@@ -3025,18 +3058,15 @@ const completion: Fig.Spec = {
             {
               name: "ssh",
             },
-            {
-              name: "clear-autocomplete-cache",
-            },
           ],
         },
         {
           name: "debug",
-          description: "Debug the app",
+          description: "Debug CodeWhisperer",
           subcommands: [
             {
               name: "app",
-              description: "Debug the app",
+              description: "Debug CodeWhisperer app",
             },
             {
               name: "build",
@@ -3048,11 +3078,11 @@ const completion: Fig.Spec = {
             },
             {
               name: "logs",
-              description: "Show debug logs",
+              description: "Show CodeWhisperer debug logs",
             },
             {
               name: "input-method",
-              description: "Input method debugger",
+              description: "CodeWhisperer input method editor",
               subcommands: [
                 {
                   name: "install",
@@ -3077,11 +3107,11 @@ const completion: Fig.Spec = {
             },
             {
               name: "sample",
-              description: "Sample desktop process",
+              description: "Sample CodeWhisperer process",
             },
             {
               name: "verify-codesign",
-              description: "Debug application codesigning",
+              description: "Debug CodeWhisperer codesign verification",
             },
             {
               name: "accessibility",
@@ -3115,7 +3145,7 @@ const completion: Fig.Spec = {
             {
               name: "shell",
               description:
-                "Disables sourcing of user shell config and instead uses a minimal shell config",
+                "Disables sourcing of user shell config and instead uses a minimal CodeWhisperer default",
             },
           ],
         },
@@ -3134,17 +3164,41 @@ const completion: Fig.Spec = {
           ],
         },
         {
+          name: "tips",
+          description: "Enable/disable fig tips",
+          subcommands: [
+            {
+              name: "enable",
+              description: "Enable fig tips",
+            },
+            {
+              name: "disable",
+              description: "Disable fig tips",
+            },
+            {
+              name: "reset",
+              description: "Reset the tips to the default",
+              hidden: true,
+            },
+            {
+              name: "prompt",
+              description: "Show the tips",
+              hidden: true,
+            },
+          ],
+        },
+        {
           name: "install",
-          description: "Install cli components",
+          description: "Install fig cli components",
         },
         {
           name: "uninstall",
-          description: "Uninstall Q",
+          description: "Uninstall fig",
           hidden: true,
         },
         {
           name: "update",
-          description: "Update the Q application",
+          description: "Update dotfiles",
         },
         {
           name: "diagnostic",
@@ -3164,11 +3218,11 @@ const completion: Fig.Spec = {
         },
         {
           name: "login",
-          description: "Login",
+          description: "Login to CodeWhisperer",
         },
         {
           name: "logout",
-          description: "Logout",
+          description: "Logout of CodeWhisperer",
         },
         {
           name: "whoami",
@@ -3176,15 +3230,15 @@ const completion: Fig.Spec = {
         },
         {
           name: "user",
-          description: "Manage your account",
+          description: "Manage your fig user",
           subcommands: [
             {
               name: "login",
-              description: "Login",
+              description: "Login to CodeWhisperer",
             },
             {
               name: "logout",
-              description: "Logout",
+              description: "Logout of CodeWhisperer",
             },
             {
               name: "whoami",
@@ -3194,16 +3248,16 @@ const completion: Fig.Spec = {
         },
         {
           name: "doctor",
-          description: "Fix and diagnose common issues",
+          description: "Check CodeWhisperer is properly configured",
         },
         {
           name: "completion",
-          description: "Generate CLI completion spec",
+          description: "Generate the completion spec for CodeWhisperer",
           hidden: true,
         },
         {
           name: "internal",
-          description: "Internal subcommands",
+          description: "Internal subcommands used for CodeWhisperer",
           hidden: true,
           subcommands: [
             {
@@ -3220,6 +3274,10 @@ const completion: Fig.Spec = {
                   description: "Reload the state listener",
                 },
                 {
+                  name: "open",
+                  description: "Open the state file",
+                },
+                {
                   name: "all",
                   description: "List all the settings",
                 },
@@ -3231,11 +3289,11 @@ const completion: Fig.Spec = {
             },
             {
               name: "install",
-              description: "Install Q cli",
+              description: "Install fig cli",
             },
             {
               name: "uninstall",
-              description: "Uninstall Q cli",
+              description: "Uninstall fig cli",
             },
             {
               name: "get-shell",
@@ -3295,6 +3353,10 @@ const completion: Fig.Spec = {
               name: "swap-files",
             },
             {
+              name: "check-ssh",
+              hidden: true,
+            },
+            {
               name: "brew-uninstall",
             },
             {
@@ -3302,28 +3364,28 @@ const completion: Fig.Spec = {
               description: "Generates an SSH configuration file",
             },
             {
-              name: "inline-shell-completion",
+              name: "ghost-text",
             },
             {
-              name: "inline-shell-completion-accept",
+              name: "ghost-text-accept",
             },
           ],
         },
         {
           name: "launch",
-          description: "Launch the desktop app",
+          description: "Launch the CodeWhisperer desktop app",
         },
         {
           name: "quit",
-          description: "Quit the desktop app",
+          description: "Quit the CodeWhisperer desktop app",
         },
         {
           name: "restart",
-          description: "Restart the desktop app",
+          description: "Restart the CodeWhisperer desktop app",
         },
         {
           name: "onboarding",
-          description: "Run the tutorial",
+          description: "Run the CodeWhisperer tutorial",
           hidden: true,
         },
         {
@@ -3349,7 +3411,7 @@ const completion: Fig.Spec = {
                   name: "vscode",
                 },
                 {
-                  name: "intellij-plugin",
+                  name: "intellij",
                 },
                 {
                   name: "all",
@@ -3375,7 +3437,7 @@ const completion: Fig.Spec = {
                   name: "vscode",
                 },
                 {
-                  name: "intellij-plugin",
+                  name: "intellij",
                 },
                 {
                   name: "all",
@@ -3401,7 +3463,7 @@ const completion: Fig.Spec = {
                   name: "vscode",
                 },
                 {
-                  name: "intellij-plugin",
+                  name: "intellij",
                 },
                 {
                   name: "all",
@@ -3427,7 +3489,7 @@ const completion: Fig.Spec = {
                   name: "vscode",
                 },
                 {
-                  name: "intellij-plugin",
+                  name: "intellij",
                 },
                 {
                   name: "all",
@@ -3437,8 +3499,8 @@ const completion: Fig.Spec = {
           ],
         },
         {
-          name: "translate",
-          description: "Natural Language to Shell translation",
+          name: "ai",
+          description: "English -> Bash translation",
         },
         {
           name: "telemetry",
@@ -3459,7 +3521,6 @@ const completion: Fig.Spec = {
         {
           name: "version",
           description: "Version",
-          hidden: true,
         },
         {
           name: "help-all",
@@ -3467,11 +3528,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "dashboard",
-          description: "Open the dashboard",
-        },
-        {
-          name: "chat",
-          description: "AI assistant in your terminal",
+          description: "Open the fig dashboard",
         },
         {
           name: "help",
