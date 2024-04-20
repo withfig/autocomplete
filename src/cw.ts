@@ -1125,7 +1125,7 @@ const completion: Fig.Spec = {
     },
     {
       name: "update",
-      description: "Update dotfiles",
+      description: "Check for updates",
       options: [
         {
           name: "--no-confirm",
