@@ -33,7 +33,7 @@ export const themesGenerator: Fig.Generator = {
 
 const completion: Fig.Spec = {
   name: "q",
-  description: "Top level cli commands",
+  description: "The Amazon Q CLI",
   subcommands: [
     {
       name: "app",
