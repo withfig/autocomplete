@@ -41,19 +41,14 @@ const completion: Fig.Spec = {
       hidden: true,
       subcommands: [
         {
-          name: "install",
-          description: "Install the app",
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Print help",
-            },
-          ],
-        },
-        {
           name: "onboarding",
           description: "Run the tutorial again",
           options: [
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -65,6 +60,11 @@ const completion: Fig.Spec = {
           description: "Check if the desktop app is running",
           options: [
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -74,6 +74,11 @@ const completion: Fig.Spec = {
           name: "launch",
           description: "Launch the desktop app",
           options: [
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -85,6 +90,11 @@ const completion: Fig.Spec = {
           description: "Restart the desktop app",
           options: [
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -95,15 +105,10 @@ const completion: Fig.Spec = {
           description: "Quit the desktop app",
           options: [
             {
-              name: ["-h", "--help"],
-              description: "Print help",
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
             },
-          ],
-        },
-        {
-          name: "set-path",
-          description: "Set the internal pseudo-terminal path",
-          options: [
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -139,6 +144,11 @@ const completion: Fig.Spec = {
               description: "Only open the uninstallation page",
             },
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -148,6 +158,11 @@ const completion: Fig.Spec = {
           name: "prompts",
           description: "Prompts shown on terminal startup",
           options: [
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -159,10 +174,6 @@ const completion: Fig.Spec = {
           description:
             "Print this message or the help of the given subcommand(s)",
           subcommands: [
-            {
-              name: "install",
-              description: "Install the app",
-            },
             {
               name: "onboarding",
               description: "Run the tutorial again",
@@ -184,10 +195,6 @@ const completion: Fig.Spec = {
               description: "Quit the desktop app",
             },
             {
-              name: "set-path",
-              description: "Set the internal pseudo-terminal path",
-            },
-            {
               name: "uninstall",
               description: "Uninstall the desktop app",
             },
@@ -205,6 +212,11 @@ const completion: Fig.Spec = {
       ],
       options: [
         {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
+        },
+        {
           name: ["-h", "--help"],
           description: "Print help",
         },
@@ -218,6 +230,11 @@ const completion: Fig.Spec = {
         {
           name: "editbuffer",
           options: [
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -251,6 +268,11 @@ const completion: Fig.Spec = {
           name: "hide",
           options: [
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -259,6 +281,11 @@ const completion: Fig.Spec = {
         {
           name: "init",
           options: [
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -277,6 +304,11 @@ const completion: Fig.Spec = {
           name: "integration-ready",
           options: [
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -288,6 +320,11 @@ const completion: Fig.Spec = {
         {
           name: "keyboard-focus-changed",
           options: [
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -306,6 +343,11 @@ const completion: Fig.Spec = {
           name: "pre-exec",
           options: [
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -322,6 +364,11 @@ const completion: Fig.Spec = {
         {
           name: "prompt",
           options: [
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -341,6 +388,11 @@ const completion: Fig.Spec = {
           options: [
             {
               name: "--prompt",
+            },
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
             },
             {
               name: ["-h", "--help"],
@@ -372,6 +424,11 @@ const completion: Fig.Spec = {
                 name: "cli",
                 isOptional: true,
               },
+            },
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
             },
             {
               name: ["-h", "--help"],
@@ -421,6 +478,11 @@ const completion: Fig.Spec = {
       ],
       options: [
         {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
+        },
+        {
           name: ["-h", "--help"],
           description: "Print help",
         },
@@ -435,6 +497,11 @@ const completion: Fig.Spec = {
           description: "Debug the app",
           options: [
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -444,6 +511,11 @@ const completion: Fig.Spec = {
           name: "build",
           description: "Switch to another branch of a Fig.js app",
           options: [
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -465,6 +537,11 @@ const completion: Fig.Spec = {
           name: "autocomplete-window",
           description: "Toggle/set autocomplete window debug mode",
           options: [
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -489,6 +566,11 @@ const completion: Fig.Spec = {
               },
             },
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -507,6 +589,11 @@ const completion: Fig.Spec = {
               name: "install",
               options: [
                 {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
+                {
                   name: ["-h", "--help"],
                   description: "Print help",
                 },
@@ -520,6 +607,11 @@ const completion: Fig.Spec = {
             {
               name: "uninstall",
               options: [
+                {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
                 {
                   name: ["-h", "--help"],
                   description: "Print help",
@@ -535,6 +627,11 @@ const completion: Fig.Spec = {
               name: "list",
               options: [
                 {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
+                {
                   name: ["-h", "--help"],
                   description: "Print help",
                 },
@@ -543,6 +640,11 @@ const completion: Fig.Spec = {
             {
               name: "status",
               options: [
+                {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
                 {
                   name: ["-h", "--help"],
                   description: "Print help",
@@ -557,6 +659,11 @@ const completion: Fig.Spec = {
             {
               name: "source",
               options: [
+                {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
                 {
                   name: ["-h", "--help"],
                   description: "Print help",
@@ -602,6 +709,11 @@ const completion: Fig.Spec = {
           ],
           options: [
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -611,6 +723,11 @@ const completion: Fig.Spec = {
           name: "prompt-accessibility",
           description: "Prompt accessibility",
           options: [
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -622,6 +739,11 @@ const completion: Fig.Spec = {
           description: "Sample desktop process",
           options: [
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -632,6 +754,11 @@ const completion: Fig.Spec = {
           description: "Debug application codesigning",
           options: [
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -641,6 +768,11 @@ const completion: Fig.Spec = {
           name: "accessibility",
           description: "Accessibility",
           options: [
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -656,6 +788,11 @@ const completion: Fig.Spec = {
           name: "key-tester",
           description: "Key Tester",
           options: [
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -676,6 +813,11 @@ const completion: Fig.Spec = {
             },
             {
               name: "--watch",
+            },
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
             },
             {
               name: ["-h", "--help"],
@@ -703,7 +845,7 @@ const completion: Fig.Spec = {
               },
             },
             {
-              name: ["-v", "--variant"],
+              name: ["-V", "--variant"],
               isRepeatable: true,
               args: {
                 name: "variant",
@@ -732,7 +874,19 @@ const completion: Fig.Spec = {
               },
             },
             {
+              name: ["-f", "--file-type"],
+              isRepeatable: true,
+              args: {
+                name: "file_type",
+              },
+            },
+            {
               name: ["-r", "--enable-rollout"],
+            },
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
             },
             {
               name: ["-h", "--help"],
@@ -744,6 +898,11 @@ const completion: Fig.Spec = {
           name: "devtools",
           description: "Open up the devtools of a specific webview",
           options: [
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -763,6 +922,11 @@ const completion: Fig.Spec = {
               description: "Display using debug formatting",
             },
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -776,6 +940,11 @@ const completion: Fig.Spec = {
           description: "Lists installed IntelliJ variants",
           options: [
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -786,6 +955,11 @@ const completion: Fig.Spec = {
           description:
             "Disables sourcing of user shell config and instead uses a minimal shell config",
           options: [
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -890,6 +1064,11 @@ const completion: Fig.Spec = {
       ],
       options: [
         {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
+        },
+        {
           name: ["-h", "--help"],
           description: "Print help",
         },
@@ -903,6 +1082,11 @@ const completion: Fig.Spec = {
           name: "open",
           description: "Open the settings file",
           options: [
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -935,6 +1119,11 @@ const completion: Fig.Spec = {
                   },
                 ],
               },
+            },
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
             },
             {
               name: ["-h", "--help"],
@@ -992,6 +1181,11 @@ const completion: Fig.Spec = {
           description: "Delete a value",
         },
         {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
+        },
+        {
           name: ["-h", "--help"],
           description: "Print help (see more with '--help')",
         },
@@ -1028,6 +1222,11 @@ const completion: Fig.Spec = {
           description: "Force installation of fig",
         },
         {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
+        },
+        {
           name: ["-h", "--help"],
           description: "Print help",
         },
@@ -1043,13 +1242,18 @@ const completion: Fig.Spec = {
           description: "Force uninstall",
         },
         {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
+        },
+        {
           name: ["-h", "--help"],
           description: "Print help",
         },
       ],
     },
     {
-      name: "update",
+      name: ["update", "upgrade"],
       description: "Update the Q application",
       options: [
         {
@@ -1064,6 +1268,11 @@ const completion: Fig.Spec = {
         {
           name: "--rollout",
           description: "Uses rollout",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
         },
         {
           name: ["-h", "--help"],
@@ -1103,6 +1312,11 @@ const completion: Fig.Spec = {
           description: "Force limited diagnostic output",
         },
         {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
+        },
+        {
           name: ["-h", "--help"],
           description: "Print help (see more with '--help')",
         },
@@ -1119,6 +1333,11 @@ const completion: Fig.Spec = {
             name: "rcfile",
             isOptional: true,
           },
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
         },
         {
           name: ["-h", "--help"],
@@ -1166,6 +1385,11 @@ const completion: Fig.Spec = {
           exclusiveOn: ["--list"],
         },
         {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
+        },
+        {
           name: ["-h", "--help"],
           description: "Print help",
         },
@@ -1185,6 +1409,11 @@ const completion: Fig.Spec = {
           description: "Force issue creation",
         },
         {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
+        },
+        {
           name: ["-h", "--help"],
           description: "Print help",
         },
@@ -1200,6 +1429,11 @@ const completion: Fig.Spec = {
       description: "Login",
       options: [
         {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
+        },
+        {
           name: ["-h", "--help"],
           description: "Print help",
         },
@@ -1209,6 +1443,11 @@ const completion: Fig.Spec = {
       name: "logout",
       description: "Logout",
       options: [
+        {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
+        },
         {
           name: ["-h", "--help"],
           description: "Print help",
@@ -1243,6 +1482,11 @@ const completion: Fig.Spec = {
           },
         },
         {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
+        },
+        {
           name: ["-h", "--help"],
           description: "Print help (see more with '--help')",
         },
@@ -1257,6 +1501,11 @@ const completion: Fig.Spec = {
           description: "Login",
           options: [
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -1266,6 +1515,11 @@ const completion: Fig.Spec = {
           name: "logout",
           description: "Logout",
           options: [
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -1300,6 +1554,11 @@ const completion: Fig.Spec = {
               },
             },
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help (see more with '--help')",
             },
@@ -1332,6 +1591,11 @@ const completion: Fig.Spec = {
       ],
       options: [
         {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
+        },
+        {
           name: ["-h", "--help"],
           description: "Print help",
         },
@@ -1342,12 +1606,17 @@ const completion: Fig.Spec = {
       description: "Fix and diagnose common issues",
       options: [
         {
-          name: "--verbose",
+          name: ["-a", "--all"],
           description: "Run all doctor tests, with no fixes",
         },
         {
-          name: "--strict",
+          name: ["-s", "--strict"],
           description: "Error on warnings",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
         },
         {
           name: ["-h", "--help"],
@@ -1360,6 +1629,11 @@ const completion: Fig.Spec = {
       description: "Generate CLI completion spec",
       hidden: true,
       options: [
+        {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
+        },
         {
           name: ["-h", "--help"],
           description: "Print help (see more with '--help')",
@@ -1396,7 +1670,7 @@ const completion: Fig.Spec = {
         {
           name: "pre-cmd",
           description:
-            "Command that is run during the PreCmd section of the fig integrations",
+            "Command that is run during the PreCmd section of the Q integrations",
           options: [
             {
               name: "--alias",
@@ -1405,6 +1679,11 @@ const completion: Fig.Spec = {
                 name: "alias",
                 isOptional: true,
               },
+            },
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
             },
             {
               name: ["-h", "--help"],
@@ -1420,6 +1699,11 @@ const completion: Fig.Spec = {
               name: "init",
               description: "Reload the state listener",
               options: [
+                {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
                 {
                   name: ["-h", "--help"],
                   description: "Print help",
@@ -1451,6 +1735,11 @@ const completion: Fig.Spec = {
                       },
                     ],
                   },
+                },
+                {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
                 },
                 {
                   name: ["-h", "--help"],
@@ -1508,6 +1797,11 @@ const completion: Fig.Spec = {
               description: "Delete the state",
             },
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help (see more with '--help')",
             },
@@ -1527,6 +1821,11 @@ const completion: Fig.Spec = {
           name: "callback",
           description: "Callback used for the internal pseudoterminal",
           options: [
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -1567,6 +1866,11 @@ const completion: Fig.Spec = {
               description: "Force installation of fig",
             },
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -1593,6 +1897,11 @@ const completion: Fig.Spec = {
               description: "Uninstall only the ssh integration",
             },
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -1601,6 +1910,11 @@ const completion: Fig.Spec = {
         {
           name: "get-shell",
           options: [
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -1611,6 +1925,11 @@ const completion: Fig.Spec = {
           name: "hostname",
           options: [
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -1620,6 +1939,11 @@ const completion: Fig.Spec = {
           name: "should-figterm-launch",
           description: "Detects if Figterm should be launched",
           options: [
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
             {
               name: ["-h", "--help"],
               description: "Print help (see more with '--help')",
@@ -1656,6 +1980,11 @@ const completion: Fig.Spec = {
               },
             },
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -1664,6 +1993,11 @@ const completion: Fig.Spec = {
         {
           name: "sockets-dir",
           options: [
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -1674,6 +2008,11 @@ const completion: Fig.Spec = {
           name: "stream-from-socket",
           options: [
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -1682,6 +2021,11 @@ const completion: Fig.Spec = {
         {
           name: "figterm-socket-path",
           options: [
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -1716,6 +2060,11 @@ const completion: Fig.Spec = {
               name: "--recv",
             },
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -1726,6 +2075,11 @@ const completion: Fig.Spec = {
           description: "Linux only",
           options: [
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -1734,6 +2088,11 @@ const completion: Fig.Spec = {
         {
           name: "uuidgen",
           options: [
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -1744,7 +2103,9 @@ const completion: Fig.Spec = {
           name: "open-uninstall-page",
           options: [
             {
-              name: "--verbose",
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
             },
             {
               name: ["-h", "--help"],
@@ -1756,6 +2117,11 @@ const completion: Fig.Spec = {
           name: "ssh-local-command",
           description: "Displays prompt to install remote shell integrations",
           options: [
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -1776,6 +2142,11 @@ const completion: Fig.Spec = {
             "\\[Deprecated\\] Displays prompt to install remote shell integrations",
           options: [
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -1787,6 +2158,11 @@ const completion: Fig.Spec = {
         {
           name: "attempt-to-finish-input-method-installation",
           options: [
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -1801,6 +2177,11 @@ const completion: Fig.Spec = {
         {
           name: "dump-state",
           options: [
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -1826,6 +2207,11 @@ const completion: Fig.Spec = {
               name: "--relaunch-dashboard",
             },
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -1836,6 +2222,11 @@ const completion: Fig.Spec = {
           options: [
             {
               name: "--not-same-bundle-name",
+            },
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
             },
             {
               name: ["-h", "--help"],
@@ -1858,6 +2249,11 @@ const completion: Fig.Spec = {
           options: [
             {
               name: "--zap",
+            },
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
             },
             {
               name: ["-h", "--help"],
@@ -1897,6 +2293,11 @@ const completion: Fig.Spec = {
               },
             },
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help (see more with '--help')",
             },
@@ -1911,6 +2312,11 @@ const completion: Fig.Spec = {
               args: {
                 name: "buffer",
               },
+            },
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
             },
             {
               name: ["-h", "--help"],
@@ -1936,6 +2342,11 @@ const completion: Fig.Spec = {
               },
             },
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -1949,7 +2360,7 @@ const completion: Fig.Spec = {
             {
               name: "pre-cmd",
               description:
-                "Command that is run during the PreCmd section of the fig integrations",
+                "Command that is run during the PreCmd section of the Q integrations",
             },
             {
               name: "local-state",
@@ -2057,6 +2468,11 @@ const completion: Fig.Spec = {
       ],
       options: [
         {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
+        },
+        {
           name: ["-h", "--help"],
           description: "Print help",
         },
@@ -2066,6 +2482,11 @@ const completion: Fig.Spec = {
       name: "launch",
       description: "Launch the desktop app",
       options: [
+        {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
+        },
         {
           name: ["-h", "--help"],
           description: "Print help",
@@ -2077,6 +2498,11 @@ const completion: Fig.Spec = {
       description: "Quit the desktop app",
       options: [
         {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
+        },
+        {
           name: ["-h", "--help"],
           description: "Print help",
         },
@@ -2087,6 +2513,11 @@ const completion: Fig.Spec = {
       description: "Restart the desktop app",
       options: [
         {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
+        },
+        {
           name: ["-h", "--help"],
           description: "Print help",
         },
@@ -2095,10 +2526,6 @@ const completion: Fig.Spec = {
         name: "process",
         isOptional: true,
         suggestions: [
-          {
-            name: "daemon",
-            description: "Daemon process",
-          },
           {
             name: "app",
             description: "Desktop Process",
@@ -2111,6 +2538,11 @@ const completion: Fig.Spec = {
       description: "Run the tutorial",
       hidden: true,
       options: [
+        {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
+        },
         {
           name: ["-h", "--help"],
           description: "Print help",
@@ -2128,6 +2560,11 @@ const completion: Fig.Spec = {
               name: "dotfiles",
               options: [
                 {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
+                {
                   name: ["-h", "--help"],
                   description: "Print help (see more with '--help')",
                 },
@@ -2156,17 +2593,13 @@ const completion: Fig.Spec = {
               },
             },
             {
-              name: "daemon",
-              options: [
-                {
-                  name: ["-h", "--help"],
-                  description: "Print help",
-                },
-              ],
-            },
-            {
               name: "ssh",
               options: [
+                {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
                 {
                   name: ["-h", "--help"],
                   description: "Print help",
@@ -2177,6 +2610,11 @@ const completion: Fig.Spec = {
               name: "input-method",
               options: [
                 {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
+                {
                   name: ["-h", "--help"],
                   description: "Print help",
                 },
@@ -2185,6 +2623,11 @@ const completion: Fig.Spec = {
             {
               name: "vscode",
               options: [
+                {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
                 {
                   name: ["-h", "--help"],
                   description: "Print help",
@@ -2195,6 +2638,11 @@ const completion: Fig.Spec = {
               name: ["intellij-plugin", "jetbrains-plugin"],
               options: [
                 {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
+                {
                   name: ["-h", "--help"],
                   description: "Print help",
                 },
@@ -2203,6 +2651,11 @@ const completion: Fig.Spec = {
             {
               name: "all",
               options: [
+                {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
                 {
                   name: ["-h", "--help"],
                   description: "Print help",
@@ -2216,9 +2669,6 @@ const completion: Fig.Spec = {
               subcommands: [
                 {
                   name: "dotfiles",
-                },
-                {
-                  name: "daemon",
                 },
                 {
                   name: "ssh",
@@ -2247,6 +2697,11 @@ const completion: Fig.Spec = {
             {
               name: ["-s", "--silent"],
               description: "Suppress status messages",
+            },
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
             },
             {
               name: ["-h", "--help"],
@@ -2261,6 +2716,11 @@ const completion: Fig.Spec = {
               name: "dotfiles",
               options: [
                 {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
+                {
                   name: ["-h", "--help"],
                   description: "Print help (see more with '--help')",
                 },
@@ -2289,17 +2749,13 @@ const completion: Fig.Spec = {
               },
             },
             {
-              name: "daemon",
-              options: [
-                {
-                  name: ["-h", "--help"],
-                  description: "Print help",
-                },
-              ],
-            },
-            {
               name: "ssh",
               options: [
+                {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
                 {
                   name: ["-h", "--help"],
                   description: "Print help",
@@ -2310,6 +2766,11 @@ const completion: Fig.Spec = {
               name: "input-method",
               options: [
                 {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
+                {
                   name: ["-h", "--help"],
                   description: "Print help",
                 },
@@ -2318,6 +2779,11 @@ const completion: Fig.Spec = {
             {
               name: "vscode",
               options: [
+                {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
                 {
                   name: ["-h", "--help"],
                   description: "Print help",
@@ -2328,6 +2794,11 @@ const completion: Fig.Spec = {
               name: ["intellij-plugin", "jetbrains-plugin"],
               options: [
                 {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
+                {
                   name: ["-h", "--help"],
                   description: "Print help",
                 },
@@ -2336,6 +2807,11 @@ const completion: Fig.Spec = {
             {
               name: "all",
               options: [
+                {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
                 {
                   name: ["-h", "--help"],
                   description: "Print help",
@@ -2349,9 +2825,6 @@ const completion: Fig.Spec = {
               subcommands: [
                 {
                   name: "dotfiles",
-                },
-                {
-                  name: "daemon",
                 },
                 {
                   name: "ssh",
@@ -2380,6 +2853,11 @@ const completion: Fig.Spec = {
             {
               name: ["-s", "--silent"],
               description: "Suppress status messages",
+            },
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
             },
             {
               name: ["-h", "--help"],
@@ -2394,6 +2872,11 @@ const completion: Fig.Spec = {
               name: "dotfiles",
               options: [
                 {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
+                {
                   name: ["-h", "--help"],
                   description: "Print help (see more with '--help')",
                 },
@@ -2422,17 +2905,13 @@ const completion: Fig.Spec = {
               },
             },
             {
-              name: "daemon",
-              options: [
-                {
-                  name: ["-h", "--help"],
-                  description: "Print help",
-                },
-              ],
-            },
-            {
               name: "ssh",
               options: [
+                {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
                 {
                   name: ["-h", "--help"],
                   description: "Print help",
@@ -2443,6 +2922,11 @@ const completion: Fig.Spec = {
               name: "input-method",
               options: [
                 {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
+                {
                   name: ["-h", "--help"],
                   description: "Print help",
                 },
@@ -2451,6 +2935,11 @@ const completion: Fig.Spec = {
             {
               name: "vscode",
               options: [
+                {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
                 {
                   name: ["-h", "--help"],
                   description: "Print help",
@@ -2461,6 +2950,11 @@ const completion: Fig.Spec = {
               name: ["intellij-plugin", "jetbrains-plugin"],
               options: [
                 {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
+                {
                   name: ["-h", "--help"],
                   description: "Print help",
                 },
@@ -2469,6 +2963,11 @@ const completion: Fig.Spec = {
             {
               name: "all",
               options: [
+                {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
                 {
                   name: ["-h", "--help"],
                   description: "Print help",
@@ -2482,9 +2981,6 @@ const completion: Fig.Spec = {
               subcommands: [
                 {
                   name: "dotfiles",
-                },
-                {
-                  name: "daemon",
                 },
                 {
                   name: "ssh",
@@ -2515,6 +3011,11 @@ const completion: Fig.Spec = {
               description: "Suppress status messages",
             },
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -2526,6 +3027,11 @@ const completion: Fig.Spec = {
             {
               name: "dotfiles",
               options: [
+                {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
                 {
                   name: ["-h", "--help"],
                   description: "Print help (see more with '--help')",
@@ -2555,17 +3061,13 @@ const completion: Fig.Spec = {
               },
             },
             {
-              name: "daemon",
-              options: [
-                {
-                  name: ["-h", "--help"],
-                  description: "Print help",
-                },
-              ],
-            },
-            {
               name: "ssh",
               options: [
+                {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
                 {
                   name: ["-h", "--help"],
                   description: "Print help",
@@ -2576,6 +3078,11 @@ const completion: Fig.Spec = {
               name: "input-method",
               options: [
                 {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
+                {
                   name: ["-h", "--help"],
                   description: "Print help",
                 },
@@ -2584,6 +3091,11 @@ const completion: Fig.Spec = {
             {
               name: "vscode",
               options: [
+                {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
                 {
                   name: ["-h", "--help"],
                   description: "Print help",
@@ -2594,6 +3106,11 @@ const completion: Fig.Spec = {
               name: ["intellij-plugin", "jetbrains-plugin"],
               options: [
                 {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
+                {
                   name: ["-h", "--help"],
                   description: "Print help",
                 },
@@ -2602,6 +3119,11 @@ const completion: Fig.Spec = {
             {
               name: "all",
               options: [
+                {
+                  name: ["-v", "--verbose"],
+                  description: "Increase logging verbosity",
+                  isRepeatable: true,
+                },
                 {
                   name: ["-h", "--help"],
                   description: "Print help",
@@ -2615,9 +3137,6 @@ const completion: Fig.Spec = {
               subcommands: [
                 {
                   name: "dotfiles",
-                },
-                {
-                  name: "daemon",
                 },
                 {
                   name: "ssh",
@@ -2666,6 +3185,11 @@ const completion: Fig.Spec = {
               },
             },
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help (see more with '--help')",
             },
@@ -2681,9 +3205,6 @@ const completion: Fig.Spec = {
               subcommands: [
                 {
                   name: "dotfiles",
-                },
-                {
-                  name: "daemon",
                 },
                 {
                   name: "ssh",
@@ -2709,9 +3230,6 @@ const completion: Fig.Spec = {
                   name: "dotfiles",
                 },
                 {
-                  name: "daemon",
-                },
-                {
                   name: "ssh",
                 },
                 {
@@ -2735,9 +3253,6 @@ const completion: Fig.Spec = {
                   name: "dotfiles",
                 },
                 {
-                  name: "daemon",
-                },
-                {
                   name: "ssh",
                 },
                 {
@@ -2759,9 +3274,6 @@ const completion: Fig.Spec = {
               subcommands: [
                 {
                   name: "dotfiles",
-                },
-                {
-                  name: "daemon",
                 },
                 {
                   name: "ssh",
@@ -2790,6 +3302,11 @@ const completion: Fig.Spec = {
       ],
       options: [
         {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
+        },
+        {
           name: ["-h", "--help"],
           description: "Print help",
         },
@@ -2808,6 +3325,11 @@ const completion: Fig.Spec = {
             name: "n",
             isOptional: true,
           },
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
         },
         {
           name: ["-h", "--help"],
@@ -2829,6 +3351,11 @@ const completion: Fig.Spec = {
           name: "enable",
           options: [
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help",
             },
@@ -2837,6 +3364,11 @@ const completion: Fig.Spec = {
         {
           name: "disable",
           options: [
+            {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
             {
               name: ["-h", "--help"],
               description: "Print help",
@@ -2870,6 +3402,11 @@ const completion: Fig.Spec = {
               },
             },
             {
+              name: ["-v", "--verbose"],
+              description: "Increase logging verbosity",
+              isRepeatable: true,
+            },
+            {
               name: ["-h", "--help"],
               description: "Print help (see more with '--help')",
             },
@@ -2899,6 +3436,11 @@ const completion: Fig.Spec = {
       ],
       options: [
         {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
+        },
+        {
           name: ["-h", "--help"],
           description: "Print help",
         },
@@ -2910,15 +3452,10 @@ const completion: Fig.Spec = {
       hidden: true,
       options: [
         {
-          name: ["-h", "--help"],
-          description: "Print help",
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
         },
-      ],
-    },
-    {
-      name: "help-all",
-      description: "Print help for all subcommands",
-      options: [
         {
           name: ["-h", "--help"],
           description: "Print help",
@@ -2930,6 +3467,11 @@ const completion: Fig.Spec = {
       description: "Open the dashboard",
       options: [
         {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
+        },
+        {
           name: ["-h", "--help"],
           description: "Print help",
         },
@@ -2939,6 +3481,11 @@ const completion: Fig.Spec = {
       name: "chat",
       description: "AI assistant in your terminal",
       options: [
+        {
+          name: ["-v", "--verbose"],
+          description: "Increase logging verbosity",
+          isRepeatable: true,
+        },
         {
           name: ["-h", "--help"],
           description: "Print help",
@@ -2959,10 +3506,6 @@ const completion: Fig.Spec = {
           hidden: true,
           subcommands: [
             {
-              name: "install",
-              description: "Install the app",
-            },
-            {
               name: "onboarding",
               description: "Run the tutorial again",
             },
@@ -2981,10 +3524,6 @@ const completion: Fig.Spec = {
             {
               name: "quit",
               description: "Quit the desktop app",
-            },
-            {
-              name: "set-path",
-              description: "Set the internal pseudo-terminal path",
             },
             {
               name: "uninstall",
@@ -3209,7 +3748,7 @@ const completion: Fig.Spec = {
             {
               name: "pre-cmd",
               description:
-                "Command that is run during the PreCmd section of the fig integrations",
+                "Command that is run during the PreCmd section of the Q integrations",
             },
             {
               name: "local-state",
@@ -3337,9 +3876,6 @@ const completion: Fig.Spec = {
                   name: "dotfiles",
                 },
                 {
-                  name: "daemon",
-                },
-                {
                   name: "ssh",
                 },
                 {
@@ -3361,9 +3897,6 @@ const completion: Fig.Spec = {
               subcommands: [
                 {
                   name: "dotfiles",
-                },
-                {
-                  name: "daemon",
                 },
                 {
                   name: "ssh",
@@ -3389,9 +3922,6 @@ const completion: Fig.Spec = {
                   name: "dotfiles",
                 },
                 {
-                  name: "daemon",
-                },
-                {
                   name: "ssh",
                 },
                 {
@@ -3413,9 +3943,6 @@ const completion: Fig.Spec = {
               subcommands: [
                 {
                   name: "dotfiles",
-                },
-                {
-                  name: "daemon",
                 },
                 {
                   name: "ssh",
@@ -3462,10 +3989,6 @@ const completion: Fig.Spec = {
           hidden: true,
         },
         {
-          name: "help-all",
-          description: "Print help for all subcommands",
-        },
-        {
           name: "dashboard",
           description: "Open the dashboard",
         },
@@ -3482,6 +4005,15 @@ const completion: Fig.Spec = {
     },
   ],
   options: [
+    {
+      name: ["-v", "--verbose"],
+      description: "Increase logging verbosity",
+      isRepeatable: true,
+    },
+    {
+      name: "--help-all",
+      description: "Print help for all subcommands",
+    },
     {
       name: ["-h", "--help"],
       description: "Print help",
