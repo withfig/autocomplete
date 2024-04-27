@@ -3478,7 +3478,7 @@ const completion: Fig.Spec = {
       ],
     },
     {
-      name: ["chat"],
+      name: "chat",
       description: "AI assistant in your terminal",
       options: [
         {
