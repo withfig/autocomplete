@@ -2198,7 +2198,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-I", "--force-include"],
-          description: "Force resources inclusion beyound the 3rd level",
+          description: "Force resources inclusion beyond the 3rd level",
           hidden: true,
         },
       ],
@@ -2342,7 +2342,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-I", "--force-include"],
-          description: "Force resources inclusion beyound the 3rd level",
+          description: "Force resources inclusion beyond the 3rd level",
           hidden: true,
         },
       ],
@@ -2482,7 +2482,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-I", "--force-include"],
-          description: "Force resources inclusion beyound the 3rd level",
+          description: "Force resources inclusion beyond the 3rd level",
           hidden: true,
         },
       ],
@@ -2739,7 +2739,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-I", "--force-include"],
-          description: "Force resources inclusion beyound the 3rd level",
+          description: "Force resources inclusion beyond the 3rd level",
           hidden: true,
         },
       ],
@@ -12114,7 +12114,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-I", "--force-include"],
-          description: "Force resources inclusion beyound the 3rd level",
+          description: "Force resources inclusion beyond the 3rd level",
           hidden: true,
         },
       ],
@@ -12230,7 +12230,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-I", "--force-include"],
-          description: "Force resources inclusion beyound the 3rd level",
+          description: "Force resources inclusion beyond the 3rd level",
           hidden: true,
         },
       ],
@@ -12342,7 +12342,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-I", "--force-include"],
-          description: "Force resources inclusion beyound the 3rd level",
+          description: "Force resources inclusion beyond the 3rd level",
           hidden: true,
         },
       ],
@@ -12458,7 +12458,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-I", "--force-include"],
-          description: "Force resources inclusion beyound the 3rd level",
+          description: "Force resources inclusion beyond the 3rd level",
           hidden: true,
         },
       ],
