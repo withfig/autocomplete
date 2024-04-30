@@ -1018,7 +1018,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-flow-entitlement",
       description:
-        "You can change an entitlement's description, subscribers, and encryption. If you change the subscribers, the service will remove the outputs that are are used by the subscribers that are removed",
+        "You can change an entitlement's description, subscribers, and encryption. If you change the subscribers, the service will remove the outputs that are used by the subscribers that are removed",
       options: [
         {
           name: "--description",
