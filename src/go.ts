@@ -540,7 +540,8 @@ const completionSpec: Fig.Spec = {
             {
               name: "-module",
               description: "Change the module's path",
-            },g            {
+            },
+            {
               name: "-go",
               requiresSeparator: true,
               description: "Set the expected Go language version",
