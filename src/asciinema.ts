@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "asciinema",
-  description: "Terminal sessoin recorder",
+  description: "Terminal session recorder",
   options: [
     {
       name: "--version",
