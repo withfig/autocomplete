@@ -68,26 +68,23 @@
   "bugs": "https://github.com/withfig/autocomplete/issues",
   "repository": "https://github.com/withfig/autocomplete",
   "devDependencies": {
-    "@fig/eslint-config-autocomplete": "^1.2.1",
-    "@typescript-eslint/eslint-plugin": "^7.3.1",
-    "@typescript-eslint/parser": "^7.3.1",
+    "@fig/eslint-config-autocomplete": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
     "@withfig/autocomplete-tools": "^2.10.0",
     "@withfig/autocomplete-types": "^1.31.0",
     "danger": "^11.3.1",
     "eslint": "^8.57.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
-    "prettier": "^3.1.1",
-    "typescript": "~5.3.3"
+    "prettier": "^3.2.5",
+    "typescript": "~5.4.5"
   },
   "dependencies": {
     "@fig/autocomplete-generators": "^2.4.0",
     "@fig/autocomplete-helpers": "^1.0.7",
-    "semver": "^7.6.0",
+    "semver": "^7.6.2",
     "strip-json-comments": "^5.0.1",
-    "yaml": "^2.4.1"
-  },
-  "resolutions": {
-    "word-wrap": "1.2.4"
+    "yaml": "^2.4.2"
   }
 }
