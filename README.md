@@ -1,46 +1,38 @@
-<p align="center">
-  <img width="300" alt="Fig logo" src="https://raw.githubusercontent.com/withfig/fig/main/static/FigBanner.png#gh-light-mode-only"/>
-  <img width="300" alt="Fig logo" src="https://raw.githubusercontent.com/withfig/fig/main/static/FigBannerInverted.png#gh-dark-mode-only"/>
-</p>
-
----
-
 [![Badge: macOS](https://img.shields.io/badge/os-%20macOS-light)](#)
-[![Badge: Sign up (public beta)](https://img.shields.io/badge/signup-public%20beta-blueviolet)](https://fig.io?ref=github_autocomplete)
 [![Badge: Documentation](https://img.shields.io/badge/documentation-black)](https://fig.io/docs/)
 [![Badge: contributors](https://img.shields.io/github/contributors/withfig/autocomplete)](#Contributors)
-[![Badge: Join the Discord server](https://img.shields.io/discord/837809111248535583?color=5865F2&label=discord)](https://fig.io/community)
-[![Badge: Follow on Twitter](https://img.shields.io/twitter/follow/fig.svg?style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=fig)
 
-**[Fig](https://fig.io?ref=github_autocomplete) makes the command line easier
-for individuals and more collaborative for teams.**
-
-Our most popular product is Autocomplete. As you type, Fig pops up subcommands,
-options, and contextually relevant arguments in your existing terminal.
+**[Amazon Q Developer in the command line](https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/command-line-getting-started-installing.html)
+adds IDE-style completions for hundreds of popular CLIs like `git`, `npm`,
+`docker`, and `aws`. Start typing, and Amazon Q populates contextually relevant
+subcommands, options and arguments.**
 
 ## ⚡️ Installation
 
 - **macOS**:
-  - **DMG**: Download from our website: [fig.io](https://fig.io/welcome)
-  - **Homebrew**: `brew install fig`
-- **Windows/Linux**:
-  - Join the [waitlist](https://withfig.typeform.com/linux)
+  - **DMG**: Download from AWS:
+    [aws.amazon.com](https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/command-line-getting-started-installing.html)
+  - **Homebrew**: `brew install amazon-q`
+- **Linux/Windows**:
+  - Follow the discussions for
+    [Linux](https://github.com/aws/q-command-line-discussions/discussions/14) or
+    [Windows](https://github.com/aws/q-command-line-discussions/discussions/15)
 - **Remote machines**
-  - [Autocomplete in SSH](https://fig.io/user-manual/autocomplete/ssh)
-  - [Autocomplete in Docker Containers](https://fig.io/user-manual/autocomplete/docker)
+  - [Autocomplete in SSH](https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/command-line-autocomplete-ssh.html)
 
-> NOTE: Once it's downloaded, launch the app to set up Fig!
+> NOTE: Once it's downloaded, launch the app to set up Amazon Q for command
+> line!
 
 <br/>
 
-![Demo of Fig's visual autocomplete in a terminal](https://fig.io/gifs/demo-with-header.gif)
+![Demo of Amazon Q's CLI Completions in a terminal](https://docs.aws.amazon.com/images/amazonq/latest/qdeveloper-ug/images/command-line-completions.gif)
 
 <br/>
 
 ## 👋 What are "completion specs"?
 
 A completion spec is a _declarative_ schema that specifies the `subcommands`,
-`options` and `args` for a CLI tool. Fig uses these schemas to generate
+`options` and `args` for a CLI tool. Amazon Q uses these schemas to generate
 suggestions.
 
 <br/>
@@ -52,7 +44,7 @@ Use the steps below or follow our getting started guide:
 
 **Prerequisites:**
 
-- Download Fig for macOS
+- Download Amazon Q for command line
 - Node and Pnpm
 
 <br/>
@@ -69,8 +61,8 @@ Use the steps below or follow our getting started guide:
 
    ```bash
    # Replace `YOUR_GITHUB_USERNAME` with your own GitHub username
-   git clone https://github.com/YOUR_GITHUB_USERNAME/autocomplete.git fig-autocomplete
-   cd fig-autocomplete
+   git clone https://github.com/YOUR_GITHUB_USERNAME/autocomplete.git autocomplete
+   cd autocomplete
 
    # Add withfig/autocomplete as a remote
    git remote add upstream https://github.com/withfig/autocomplete.git
@@ -97,34 +89,6 @@ Use the steps below or follow our getting started guide:
 
 <br>
 
-## 🪄 Add AI to completions
-
-You can use Fig's autocomplete for your own tools too. Here's how to create
-private completions:
-
-```ts
-import { ai } from "@fig/autocomplete-generators"
-
-...
-
-generators: [
-  ai({
-    // the prompt
-    prompt: "Generate a git commit message",
-    
-    // Send any relevant local context.
-    message: async ({ executeShellCommand }) => {
-      return executeShellCommand("git diff")
-    },
-    
-    // turn each newline into a suggestion (can specify instead a `postProcess1 function if more flexibility is required)
-    splitOn: "\n",
-  })
-]
-```
-
-<br/>
-
 ## 📦 Other available package.json commands
 
 ```bash
@@ -142,42 +106,25 @@ pnpm lint:fix
 
 We would love contributions for:
 
-- new completion specs
-- errors with existing completion specs (e.g. missing subcommands, options, or
+- New completion specs
+- Errors with existing completion specs (e.g. missing subcommands, options, or
   arguments)
-- [generators](https://fig.io/docs/getting-started/generating-argument-suggestions)
+- [Generators](https://fig.io/docs/getting-started/generating-argument-suggestions)
   for argument suggestions
-- better descriptions, icons etc
-- [themes](https://github.com/withfig/themes)!
+- Better descriptions, icons etc
+- [Themes](https://github.com/withfig/themes)!
 
 If you aren't able to contribute, please feel free to open an
 [issue](https://github.com/withfig/autocomplete/issues/new/choose).
 
-## 😊 Need Help?
-
-<p align="center">
-  Join our community
-  <br/>
-  <a href="https://fig.io/community">
-    <img alt="Discord logo" src="http://fig.io/icons/discord-logo-square.png" width="80px" height="80px" />
-  </a>
-</p>
-
-## 🧑‍💻 Teams / Enterprise
-
-Want to use Fig to add autocomplete internal CLI tools? Or want to use Fig at
-work but have security / compliance concerns?
-
-We would love to help get you set up. Please email
-[enterprise@fig.io](mailto:enterprise@fig.io)
-
 ## 🙋‍♀️ FAQ
 
-#### What terminals does Fig work with?
+#### What terminals does Amazon Q work with?
 
-Fig works with the native macOS Terminal app, [iTerm], [Tabby], [Hyper],
-[Kitty], [WezTerm], and [Alacritty]. It also works in the integrated terminals
-of [VSCode], [JetBrains IDEs], [Android Studio], and [Nova].
+Amazon Q for command line works with the native macOS Terminal app, [iTerm],
+[Tabby], [Hyper], [Kitty], [WezTerm], and [Alacritty]. It also works in the
+integrated terminals of [VSCode], [JetBrains IDEs], [Android Studio], and
+[Nova].
 
 [iterm]: https://iterm2.com
 [tabby]: https://tabby.sh
@@ -191,51 +138,44 @@ of [VSCode], [JetBrains IDEs], [Android Studio], and [Nova].
 [nova]: https://nova.app/
 
 Want to see another terminal included? Check our
-[issue tracker](https://github.com/withfig/fig) and add your support for it!
+[issue tracker](https://github.com/aws/q-command-line-discussions) and add your
+support for it!
 
-#### How does Fig work?
+#### How does Amazon Q for command line work?
 
-Fig uses the Accessibility API on Mac to position the window, and integrates
-with your shell to read what you've typed.
+Amazon Q for command line uses the Accessibility API on Mac to position the
+window, and integrates with your shell to read what you've typed.
 
-#### Does Fig work on Windows or Linux?
+#### Does Amazon Q for command line work on Windows or Linux?
 
-Not yet, Fig is only available on macOS for now.
-[Windows](https://github.com/withfig/fig/issues/35) and
-[Linux](https://github.com/withfig/fig/issues/34) support is in progress!
+Not yet, Amazon Q for command line is only available on macOS for now.
+[Windows](https://github.com/aws/q-command-line-discussions/discussions/15) and
+[Linux](https://github.com/aws/q-command-line-discussions/discussions/14)
+support is in progress!
 
-#### How can I download Fig?
+#### How can I download Amazon Q?
 
-Run `brew install fig` or, downloading the app at
-[fig.io/download](https://fig.io/download). Then, launch the Fig app!
-
-#### Can I use Fig to build autocomplete for my team's internal scripts and CLI tools?
-
-Yes! Check out our guide on how to
-[get started building autocomplete specs](https://fig.io/docs/getting-started).
+Run `brew install amazon-q` or, downloading the app at
+[aws.amazon.com](https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/command-line-getting-started-installing.html).
+Then, launch the Amazon Q app!
 
 #### How do I submit a PR?
 
 Check out our
 [How to Contribute](https://fig.io/docs/getting-started/contributing) guide.
-Many of Fig's 200+ contributors made their first open source contribution to
-Fig!
+Many of Amazon Q's 400+ contributors made their first open source contribution
+to Amazon Q!
 
-#### Fig doesn't work for me!
+#### Amazon Q for command line doesn't work for me!
 
-[Join the Discord server](https://fig.io/community) and we'll debug it. Fixing
-Fig in your setup will fix it for other people too! 🙂
-
-#### Did we miss something?
-
-Get in touch at hello@fig.io or chat with us on
-[Discord](https://fig.io/community).
+Run `q doctor` to automatically debug issues with your installation. Otherwise
+make an issue in our GitHub discussions community:
+[aws/q-command-line-discussions](https://github.com/aws/q-command-line-discussions/discussions)
 
 <br/>
 
 ## ✨ Contributors
 
 <a href="https://github.com/withfig/autocomplete/graphs/contributors">
-  <img alt="Grid of profile icons of the 200+ contributors" src="https://contrib.rocks/image?repo=withfig/autocomplete" />
+  <img alt="Grid of profile icons of the 400+ contributors" src="https://contrib.rocks/image?repo=withfig/autocomplete" />
 </a>
-<!--  https://contrib.rocks -->
