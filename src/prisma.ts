@@ -69,8 +69,9 @@ const completionSpec: Fig.Spec = {
           description: "Enable the Data Proxy in the Prisma Client",
         },
         {
-          name: "--no-hints",
-          description: "Hides the hint messages but still outputs errors and warnings",
+          name: "--no-hint",
+          description:
+            "Hides the hint messages but still outputs errors and warnings",
         },
         {
           name: "--no-engine",
