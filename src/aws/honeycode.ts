@@ -647,6 +647,37 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-tags-for-resource",
+      description:
+        "The ListTagsForResource API allows you to return a resource's tags",
+      options: [
+        {
+          name: "--resource-arn",
+          description: "The resource's Amazon Resource Name (ARN)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "query-table-rows",
       description:
         "The QueryTableRows API allows you to use a filter formula to query for specific rows in a table",
@@ -805,7 +836,82 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "tag-resource",
+      description:
+        "The TagResource API allows you to add tags to an ARN-able resource. Resource includes workbook, table, screen and screen-automation",
+      options: [
+        {
+          name: "--resource-arn",
+          description: "The resource's Amazon Resource Name (ARN)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description: "A list of tags to apply to the resource",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "untag-resource",
+      description:
+        "The UntagResource API allows you to removes tags from an ARN-able resource. Resource includes workbook, table, screen and screen-automation",
+      options: [
+        {
+          name: "--resource-arn",
+          description: "The resource's Amazon Resource Name (ARN)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tag-keys",
+          description: "A list of tag keys to remove from the resource",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
   ],
 };
-
 export default completionSpec;

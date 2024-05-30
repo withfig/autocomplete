@@ -5,7 +5,6 @@ const postPrecessGenerator = (
 ): Fig.Suggestion[] => {
   try {
     const list = JSON.parse(out)[parentKey];
-
     if (!Array.isArray(list)) {
       return [
         {
@@ -14,7 +13,6 @@ const postPrecessGenerator = (
         },
       ];
     }
-
     return list.map((elm) => {
       const name = (childKey ? elm[childKey] : elm) as string;
       return {
@@ -27,22 +25,17 @@ const postPrecessGenerator = (
   }
   return [];
 };
-
 const _prefixFile = "file://";
 const _prefixBlob = "fileb://";
-
 const appendFolderPath = (tokens: string[], prefix: string): string[] => {
   const baseLsCommand = ["ls", "-1ApL"];
   let whatHasUserTyped = tokens[tokens.length - 1];
-
   if (!whatHasUserTyped.startsWith(prefix)) {
     return ["echo", prefix];
   }
   whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
-
   let folderPath = "";
   const lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
-
   if (lastSlashIndex > -1) {
     if (whatHasUserTyped.startsWith("/") && lastSlashIndex === 0) {
       folderPath = "/";
@@ -50,10 +43,8 @@ const appendFolderPath = (tokens: string[], prefix: string): string[] => {
       folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
     }
   }
-
   return [...baseLsCommand, folderPath];
 };
-
 const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
   if (out.trim() === prefix) {
     return [
@@ -66,31 +57,25 @@ const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
   const sortFnStrings = (a, b) => {
     return a.localeCompare(b);
   };
-
   const alphabeticalSortFilesAndFolders = (arr) => {
     const dotsArr = [];
     const otherArr = [];
-
     arr.map((elm) => {
       if (elm.toLowerCase() == ".ds_store") return;
       if (elm.slice(0, 1) === ".") dotsArr.push(elm);
       else otherArr.push(elm);
     });
-
     return [
       ...otherArr.sort(sortFnStrings),
       "../",
       ...dotsArr.sort(sortFnStrings),
     ];
   };
-
   const tempArr = alphabeticalSortFilesAndFolders(out.split("\n"));
-
   const finalArr = [];
   tempArr.forEach((item) => {
     if (!(item === "" || item === null || item === undefined)) {
       const outputType = item.slice(-1) === "/" ? "folder" : "file";
-
       finalArr.push({
         type: outputType,
         name: item,
@@ -98,10 +83,8 @@ const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
       });
     }
   });
-
   return finalArr;
 };
-
 const triggerPrefix = (
   newToken: string,
   oldToken: string,
@@ -109,18 +92,14 @@ const triggerPrefix = (
 ): boolean => {
   if (!newToken.startsWith(prefix)) {
     if (!oldToken) return false;
-
     return oldToken.startsWith(prefix);
   }
-
   return newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/");
 };
-
 const filterWithPrefix = (token: string, prefix: string): string => {
   if (!token.startsWith(prefix)) return token;
   return token.slice(token.lastIndexOf("/") + 1);
 };
-
 const generators: Record<string, Fig.Generator> = {
   listFiles: {
     script: (tokens) => {
@@ -129,16 +108,13 @@ const generators: Record<string, Fig.Generator> = {
     postProcess: (out) => {
       return postProcessFiles(out, _prefixFile);
     },
-
     trigger: (newToken, oldToken) => {
       return triggerPrefix(newToken, oldToken, _prefixFile);
     },
-
     getQueryTerm: (token) => {
       return filterWithPrefix(token, _prefixFile);
     },
   },
-
   listBlobs: {
     script: (tokens) => {
       return appendFolderPath(tokens, _prefixBlob);
@@ -146,16 +122,13 @@ const generators: Record<string, Fig.Generator> = {
     postProcess: (out) => {
       return postProcessFiles(out, _prefixBlob);
     },
-
     trigger: (newToken, oldToken) => {
       return triggerPrefix(newToken, oldToken, _prefixBlob);
     },
-
     getQueryTerm: (token) => {
       return filterWithPrefix(token, _prefixBlob);
     },
   },
-
   listCertificates: {
     script: ["aws", "acm", "list-certificates"],
     postProcess: (out) => {
@@ -166,7 +139,6 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
   },
-
   listCertificateAuthorities: {
     script: ["aws", "acm-pca", "list-certificate-authorities"],
     postProcess: (out) => {
@@ -174,16 +146,15 @@ const generators: Record<string, Fig.Generator> = {
     },
   },
 };
-
 const completionSpec: Fig.Spec = {
   name: "acm",
   description:
-    "AWS Certificate Manager You can use AWS Certificate Manager (ACM) to manage SSL/TLS certificates for your AWS-based websites and applications. For more information about using ACM, see the AWS Certificate Manager User Guide",
+    "Certificate Manager You can use Certificate Manager (ACM) to manage SSL/TLS certificates for your Amazon Web Services-based websites and applications. For more information about using ACM, see the Certificate Manager User Guide",
   subcommands: [
     {
       name: "add-tags-to-certificate",
       description:
-        "Adds one or more tags to an ACM certificate. Tags are labels that you can use to identify and organize your AWS resources. Each tag consists of a key and an optional value. You specify the certificate on input by its Amazon Resource Name (ARN). You specify the tag by using a key-value pair.  You can apply a tag to just one certificate if you want to identify a specific characteristic of that certificate, or you can apply the same tag to multiple certificates if you want to filter for a common relationship among those certificates. Similarly, you can apply the same tag to multiple resources if you want to specify a relationship among those resources. For example, you can add the same tag to an ACM certificate and an Elastic Load Balancing load balancer to indicate that they are both used by the same website. For more information, see Tagging ACM certificates.  To remove one or more tags, use the RemoveTagsFromCertificate action. To view all of the tags that have been applied to the certificate, use the ListTagsForCertificate action",
+        "Adds one or more tags to an ACM certificate. Tags are labels that you can use to identify and organize your Amazon Web Services resources. Each tag consists of a key and an optional value. You specify the certificate on input by its Amazon Resource Name (ARN). You specify the tag by using a key-value pair.  You can apply a tag to just one certificate if you want to identify a specific characteristic of that certificate, or you can apply the same tag to multiple certificates if you want to filter for a common relationship among those certificates. Similarly, you can apply the same tag to multiple resources if you want to specify a relationship among those resources. For example, you can add the same tag to an ACM certificate and an Elastic Load Balancing load balancer to indicate that they are both used by the same website. For more information, see Tagging ACM certificates.  To remove one or more tags, use the RemoveTagsFromCertificate action. To view all of the tags that have been applied to the certificate, use the ListTagsForCertificate action",
       options: [
         {
           name: "--certificate-arn",
@@ -191,7 +162,6 @@ const completionSpec: Fig.Spec = {
             "String that contains the ARN of the ACM certificate to which the tag is to be applied. This must be of the form:  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012  For more information about ARNs, see Amazon Resource Names (ARNs)",
           args: {
             name: "string",
-            generators: generators.listCertificates,
           },
         },
         {
@@ -200,8 +170,6 @@ const completionSpec: Fig.Spec = {
             "The key-value pair that defines the tag. The tag value is optional",
           args: {
             name: "list",
-            isVariadic: true,
-            description: "Key=string,Value=string",
           },
         },
         {
@@ -210,7 +178,6 @@ const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
-            generators: generators.listFiles,
           },
         },
         {
@@ -227,7 +194,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-certificate",
       description:
-        "Deletes a certificate and its associated private key. If this action succeeds, the certificate no longer appears in the list that can be displayed by calling the ListCertificates action or be retrieved by calling the GetCertificate action. The certificate will not be available for use by AWS services integrated with ACM.   You cannot delete an ACM certificate that is being used by another AWS service. To delete a certificate that is in use, the certificate association must first be removed",
+        "Deletes a certificate and its associated private key. If this action succeeds, the certificate no longer appears in the list that can be displayed by calling the ListCertificates action or be retrieved by calling the GetCertificate action. The certificate will not be available for use by Amazon Web Services services integrated with ACM.   You cannot delete an ACM certificate that is being used by another Amazon Web Services service. To delete a certificate that is in use, the certificate association must first be removed",
       options: [
         {
           name: "--certificate-arn",
@@ -235,7 +202,6 @@ const completionSpec: Fig.Spec = {
             "String that contains the ARN of the ACM certificate to be deleted. This must be of the form:  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012  For more information about ARNs, see Amazon Resource Names (ARNs)",
           args: {
             name: "string",
-            generators: generators.listCertificates,
           },
         },
         {
@@ -244,7 +210,6 @@ const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
-            generators: generators.listFiles,
           },
         },
         {
@@ -261,7 +226,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-certificate",
       description:
-        "Returns detailed metadata about the specified ACM certificate",
+        "Returns detailed metadata about the specified ACM certificate. If you have just created a certificate using the RequestCertificate action, there is a delay of several seconds before you can retrieve information about it",
       options: [
         {
           name: "--certificate-arn",
@@ -269,7 +234,6 @@ const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the ACM certificate. The ARN must have the following form:  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012  For more information about ARNs, see Amazon Resource Names (ARNs)",
           args: {
             name: "string",
-            generators: generators.listCertificates,
           },
         },
         {
@@ -278,7 +242,6 @@ const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
-            generators: generators.listFiles,
           },
         },
         {
@@ -303,16 +266,14 @@ const completionSpec: Fig.Spec = {
             "An Amazon Resource Name (ARN) of the issued certificate. This must be of the form:  arn:aws:acm:region:account:certificate/12345678-1234-1234-1234-123456789012",
           args: {
             name: "string",
-            generators: generators.listCertificates,
           },
         },
         {
           name: "--passphrase",
           description:
-            "Passphrase to associate with the encrypted exported private key. If you want to later decrypt the private key, you must have the passphrase. You can use the following OpenSSL command to decrypt a private key:   openssl rsa -in encrypted_key.pem -out decrypted_key.pem",
+            "Passphrase to associate with the encrypted exported private key.   When creating your passphrase, you can use any ASCII character except #, $, or %.  If you want to later decrypt the private key, you must have the passphrase. You can use the following OpenSSL command to decrypt a private key. After entering the command, you are prompted for the passphrase.  openssl rsa -in encrypted_key.pem -out decrypted_key.pem",
           args: {
             name: "blob",
-            generators: generators.listBlobs,
           },
         },
         {
@@ -321,7 +282,6 @@ const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
-            generators: generators.listFiles,
           },
         },
         {
@@ -338,7 +298,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-account-configuration",
       description:
-        "Returns the account configuration options associated with an AWS account",
+        "Returns the account configuration options associated with an Amazon Web Services account",
       options: [
         {
           name: "--cli-input-json",
@@ -346,7 +306,6 @@ const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
-            generators: generators.listFiles,
           },
         },
         {
@@ -371,7 +330,6 @@ const completionSpec: Fig.Spec = {
             "String that contains a certificate ARN in the following format:  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012  For more information about ARNs, see Amazon Resource Names (ARNs)",
           args: {
             name: "string",
-            generators: generators.listCertificates,
           },
         },
         {
@@ -380,7 +338,6 @@ const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
-            generators: generators.listFiles,
           },
         },
         {
@@ -397,7 +354,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "import-certificate",
       description:
-        "Imports a certificate into AWS Certificate Manager (ACM) to use with services that are integrated with ACM. Note that integrated services allow only certificate types and keys they support to be associated with their resources. Further, their support differs depending on whether the certificate is imported into IAM or into ACM. For more information, see the documentation for each service. For more information about importing certificates into ACM, see Importing Certificates in the AWS Certificate Manager User Guide.   ACM does not provide managed renewal for certificates that you import.  Note the following guidelines when importing third party certificates:   You must enter the private key that matches the certificate you are importing.   The private key must be unencrypted. You cannot import a private key that is protected by a password or a passphrase.   The private key must be no larger than 5 KB (5,120 bytes).   If the certificate you are importing is not self-signed, you must enter its certificate chain.   If a certificate chain is included, the issuer must be the subject of one of the certificates in the chain.   The certificate, private key, and certificate chain must be PEM-encoded.   The current time must be between the Not Before and Not After certificate fields.   The Issuer field must not be empty.   The OCSP authority URL, if present, must not exceed 1000 characters.   To import a new certificate, omit the CertificateArn argument. Include this argument only when you want to replace a previously imported certificate.   When you import a certificate by using the CLI, you must specify the certificate, the certificate chain, and the private key by their file names preceded by fileb://. For example, you can specify a certificate saved in the C:\\temp folder as fileb://C:\\temp\\certificate_to_import.pem. If you are making an HTTP or HTTPS Query request, include these arguments as BLOBs.    When you import a certificate by using an SDK, you must specify the certificate, the certificate chain, and the private key files in the manner required by the programming language you're using.    The cryptographic algorithm of an imported certificate must match the algorithm of the signing CA. For example, if the signing CA key type is RSA, then the certificate key type must also be RSA.   This operation returns the Amazon Resource Name (ARN) of the imported certificate",
+        "Imports a certificate into Certificate Manager (ACM) to use with services that are integrated with ACM. Note that integrated services allow only certificate types and keys they support to be associated with their resources. Further, their support differs depending on whether the certificate is imported into IAM or into ACM. For more information, see the documentation for each service. For more information about importing certificates into ACM, see Importing Certificates in the Certificate Manager User Guide.   ACM does not provide managed renewal for certificates that you import.  Note the following guidelines when importing third party certificates:   You must enter the private key that matches the certificate you are importing.   The private key must be unencrypted. You cannot import a private key that is protected by a password or a passphrase.   The private key must be no larger than 5 KB (5,120 bytes).   If the certificate you are importing is not self-signed, you must enter its certificate chain.   If a certificate chain is included, the issuer must be the subject of one of the certificates in the chain.   The certificate, private key, and certificate chain must be PEM-encoded.   The current time must be between the Not Before and Not After certificate fields.   The Issuer field must not be empty.   The OCSP authority URL, if present, must not exceed 1000 characters.   To import a new certificate, omit the CertificateArn argument. Include this argument only when you want to replace a previously imported certificate.   When you import a certificate by using the CLI, you must specify the certificate, the certificate chain, and the private key by their file names preceded by fileb://. For example, you can specify a certificate saved in the C:\\temp folder as fileb://C:\\temp\\certificate_to_import.pem. If you are making an HTTP or HTTPS Query request, include these arguments as BLOBs.    When you import a certificate by using an SDK, you must specify the certificate, the certificate chain, and the private key files in the manner required by the programming language you're using.    The cryptographic algorithm of an imported certificate must match the algorithm of the signing CA. For example, if the signing CA key type is RSA, then the certificate key type must also be RSA.   This operation returns the Amazon Resource Name (ARN) of the imported certificate",
       options: [
         {
           name: "--certificate-arn",
@@ -405,7 +362,6 @@ const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of an imported certificate to replace. To import a new certificate, omit this field",
           args: {
             name: "string",
-            generators: generators.listCertificates,
           },
         },
         {
@@ -413,7 +369,6 @@ const completionSpec: Fig.Spec = {
           description: "The certificate to import",
           args: {
             name: "blob",
-            generators: generators.listBlobs,
           },
         },
         {
@@ -422,7 +377,6 @@ const completionSpec: Fig.Spec = {
             "The private key that matches the public key in the certificate",
           args: {
             name: "blob",
-            generators: generators.listBlobs,
           },
         },
         {
@@ -430,7 +384,6 @@ const completionSpec: Fig.Spec = {
           description: "The PEM encoded certificate chain",
           args: {
             name: "blob",
-            generators: generators.listBlobs,
           },
         },
         {
@@ -439,8 +392,6 @@ const completionSpec: Fig.Spec = {
             "One or more resource tags to associate with the imported certificate.  Note: You cannot apply tags when reimporting a certificate",
           args: {
             name: "list",
-            isVariadic: true,
-            description: "Key=string,Value=string",
           },
         },
         {
@@ -449,7 +400,6 @@ const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
-            generators: generators.listFiles,
           },
         },
         {
@@ -473,16 +423,6 @@ const completionSpec: Fig.Spec = {
           description: "Filter the certificate list by status value",
           args: {
             name: "list",
-            isVariadic: true,
-            suggestions: [
-              "PENDING_VALIDATION",
-              "ISSUED",
-              "INACTIVE",
-              "EXPIRED",
-              "VALIDATION_TIMED_OUT",
-              "REVOKED",
-              "FAILED",
-            ],
           },
         },
         {
@@ -491,8 +431,6 @@ const completionSpec: Fig.Spec = {
             "Filter the certificate list. For more information, see the Filters structure",
           args: {
             name: "structure",
-            description:
-              "ExtendedKeyUsage=string,string,keyUsage=string,string,keyTypes=string,string",
           },
         },
         {
@@ -512,12 +450,27 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--sort-by",
+          description:
+            "Specifies the field to sort results by. If you specify SortBy, you must also specify SortOrder",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description:
+            "Specifies the order of sorted results. If you specify SortOrder, you must also specify SortBy",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
-            generators: generators.listFiles,
           },
         },
         {
@@ -558,7 +511,6 @@ const completionSpec: Fig.Spec = {
             "String that contains the ARN of the ACM certificate for which you want to list the tags. This must have the following form:  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012  For more information about ARNs, see Amazon Resource Names (ARNs)",
           args: {
             name: "string",
-            generators: generators.listCertificates,
           },
         },
         {
@@ -567,7 +519,6 @@ const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
-            generators: generators.listFiles,
           },
         },
         {
@@ -591,7 +542,6 @@ const completionSpec: Fig.Spec = {
           description: "Specifies expiration events associated with an account",
           args: {
             name: "structure",
-            description: "DaysBeforeExpiry=integer",
           },
         },
         {
@@ -608,7 +558,6 @@ const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
-            generators: generators.listFiles,
           },
         },
         {
@@ -633,7 +582,6 @@ const completionSpec: Fig.Spec = {
             "String that contains the ARN of the ACM Certificate with one or more tags that you want to remove. This must be of the form:  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012  For more information about ARNs, see Amazon Resource Names (ARNs)",
           args: {
             name: "string",
-            generators: generators.listCertificates,
           },
         },
         {
@@ -641,8 +589,6 @@ const completionSpec: Fig.Spec = {
           description: "The key-value pair that defines the tag to remove",
           args: {
             name: "list",
-            isVariadic: true,
-            description: "Key=string,Value=string",
           },
         },
         {
@@ -651,7 +597,6 @@ const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
-            generators: generators.listFiles,
           },
         },
         {
@@ -668,7 +613,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "renew-certificate",
       description:
-        "Renews an eligible ACM certificate. At this time, only exported private certificates can be renewed with this operation. In order to renew your ACM PCA certificates with ACM, you must first grant the ACM service principal permission to do so. For more information, see Testing Managed Renewal in the ACM User Guide",
+        "Renews an eligible ACM certificate. At this time, only exported private certificates can be renewed with this operation. In order to renew your Amazon Web Services Private CA certificates with ACM, you must first grant the ACM service principal permission to do so. For more information, see Testing Managed Renewal in the ACM User Guide",
       options: [
         {
           name: "--certificate-arn",
@@ -676,7 +621,6 @@ const completionSpec: Fig.Spec = {
             "String that contains the ARN of the ACM certificate to be renewed. This must be of the form:  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012  For more information about ARNs, see Amazon Resource Names (ARNs)",
           args: {
             name: "string",
-            generators: generators.listCertificates,
           },
         },
         {
@@ -685,7 +629,6 @@ const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
-            generators: generators.listFiles,
           },
         },
         {
@@ -702,12 +645,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "request-certificate",
       description:
-        "Requests an ACM certificate for use with other AWS services. To request an ACM certificate, you must specify a fully qualified domain name (FQDN) in the DomainName parameter. You can also specify additional FQDNs in the SubjectAlternativeNames parameter.  If you are requesting a private certificate, domain validation is not required. If you are requesting a public certificate, each domain name that you specify must be validated to verify that you own or control the domain. You can use DNS validation or email validation. We recommend that you use DNS validation. ACM issues public certificates after receiving approval from the domain owner",
+        "Requests an ACM certificate for use with other Amazon Web Services services. To request an ACM certificate, you must specify a fully qualified domain name (FQDN) in the DomainName parameter. You can also specify additional FQDNs in the SubjectAlternativeNames parameter.  If you are requesting a private certificate, domain validation is not required. If you are requesting a public certificate, each domain name that you specify must be validated to verify that you own or control the domain. You can use DNS validation or email validation. We recommend that you use DNS validation. ACM issues public certificates after receiving approval from the domain owner.   ACM behavior differs from the RFC 6125 specification of the certificate validation process. ACM first checks for a Subject Alternative Name, and, if it finds one, ignores the common name (CN).  After successful completion of the RequestCertificate action, there is a delay of several seconds before you can retrieve information about the new certificate",
       options: [
         {
           name: "--domain-name",
           description:
-            "Fully qualified domain name (FQDN), such as www.example.com, that you want to secure with an ACM certificate. Use an asterisk (*) to create a wildcard certificate that protects several sites in the same domain. For example, *.example.com protects www.example.com, site.example.com, and images.example.com.   The first domain name you enter cannot exceed 64 octets, including periods. Each subsequent Subject Alternative Name (SAN), however, can be up to 253 octets in length",
+            "Fully qualified domain name (FQDN), such as www.example.com, that you want to secure with an ACM certificate. Use an asterisk (*) to create a wildcard certificate that protects several sites in the same domain. For example, *.example.com protects www.example.com, site.example.com, and images.example.com.  In compliance with RFC 5280, the length of the domain name (technically, the Common Name) that you provide cannot exceed 64 octets (characters), including periods. To add a longer domain name, specify it in the Subject Alternative Name field, which supports names up to 253 octets in length",
           args: {
             name: "string",
           },
@@ -718,7 +661,6 @@ const completionSpec: Fig.Spec = {
             "The method you want to use if you are requesting a public certificate to validate that you own or control domain. You can validate with DNS or validate with email. We recommend that you use DNS validation",
           args: {
             name: "string",
-            suggestions: ["EMAIL", "DNS"],
           },
         },
         {
@@ -727,7 +669,6 @@ const completionSpec: Fig.Spec = {
             "Additional FQDNs to be included in the Subject Alternative Name extension of the ACM certificate. For example, add the name www.example.net to a certificate for which the DomainName field is www.example.com if users can reach your site by using either name. The maximum number of domain names that you can add to an ACM certificate is 100. However, the initial quota is 10 domain names. If you need more than 10 names, you must request a quota increase. For more information, see Quotas.  The maximum length of a SAN DNS name is 253 octets. The name is made up of multiple labels separated by periods. No label can be longer than 63 octets. Consider the following examples:     (63 octets).(63 octets).(63 octets).(61 octets) is legal because the total length is 253 octets (63+1+63+1+63+1+61) and no label exceeds 63 octets.    (64 octets).(63 octets).(63 octets).(61 octets) is not legal because the total length exceeds 253 octets (64+1+63+1+63+1+61) and the first label exceeds 63 octets.    (63 octets).(63 octets).(63 octets).(62 octets) is not legal because the total length of the DNS name (63+1+63+1+63+1+62) exceeds 253 octets",
           args: {
             name: "list",
-            isVariadic: true,
           },
         },
         {
@@ -744,8 +685,6 @@ const completionSpec: Fig.Spec = {
             "The domain name that you want ACM to use to send you emails so that you can validate domain ownership",
           args: {
             name: "list",
-            isVariadic: true,
-            description: "DomainName=string,ValidationDomain=string",
           },
         },
         {
@@ -754,16 +693,14 @@ const completionSpec: Fig.Spec = {
             "Currently, you can use this parameter to specify whether to add the certificate to a certificate transparency log. Certificate transparency makes it possible to detect SSL/TLS certificates that have been mistakenly or maliciously issued. Certificates that have not been logged typically produce an error message in a browser. For more information, see Opting Out of Certificate Transparency Logging",
           args: {
             name: "structure",
-            description: "CertificateTransparencyLoggingPreference=string",
           },
         },
         {
           name: "--certificate-authority-arn",
           description:
-            "The Amazon Resource Name (ARN) of the private certificate authority (CA) that will be used to issue the certificate. If you do not provide an ARN and you are trying to request a private certificate, ACM will attempt to issue a public certificate. For more information about private CAs, see the AWS Certificate Manager Private Certificate Authority (PCA) user guide. The ARN must have the following form:   arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012",
+            "The Amazon Resource Name (ARN) of the private certificate authority (CA) that will be used to issue the certificate. If you do not provide an ARN and you are trying to request a private certificate, ACM will attempt to issue a public certificate. For more information about private CAs, see the Amazon Web Services Private Certificate Authority user guide. The ARN must have the following form:   arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012",
           args: {
             name: "string",
-            generators: generators.listCertificateAuthorities,
           },
         },
         {
@@ -772,8 +709,14 @@ const completionSpec: Fig.Spec = {
             "One or more resource tags to associate with the certificate",
           args: {
             name: "list",
-            isVariadic: true,
-            description: "Key=string,Value=string",
+          },
+        },
+        {
+          name: "--key-algorithm",
+          description:
+            "Specifies the algorithm of the public and private key pair that your certificate uses to encrypt data. RSA is the default key algorithm for ACM certificates. Elliptic Curve Digital Signature Algorithm (ECDSA) keys are smaller, offering security comparable to RSA keys but with greater computing efficiency. However, ECDSA is not supported by all network clients. Some AWS services may require RSA keys, or only support ECDSA keys of a particular size, while others allow the use of either RSA and ECDSA keys to ensure that compatibility is not broken. Check the requirements for the AWS service where you plan to deploy your certificate. Default: RSA_2048",
+          args: {
+            name: "string",
           },
         },
         {
@@ -782,7 +725,6 @@ const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
-            generators: generators.listFiles,
           },
         },
         {
@@ -807,7 +749,6 @@ const completionSpec: Fig.Spec = {
             "String that contains the ARN of the requested certificate. The certificate ARN is generated and returned by the RequestCertificate action as soon as the request is made. By default, using this parameter causes email to be sent to all top-level domains you specified in the certificate request. The ARN must be of the form:   arn:aws:acm:us-east-1:123456789012:certificate/12345678-1234-1234-1234-123456789012",
           args: {
             name: "string",
-            generators: generators.listCertificates,
           },
         },
         {
@@ -832,7 +773,6 @@ const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
-            generators: generators.listFiles,
           },
         },
         {
@@ -857,7 +797,6 @@ const completionSpec: Fig.Spec = {
             "ARN of the requested certificate to update. This must be of the form:  arn:aws:acm:us-east-1:account:certificate/12345678-1234-1234-1234-123456789012",
           args: {
             name: "string",
-            generators: generators.listCertificates,
           },
         },
         {
@@ -866,7 +805,6 @@ const completionSpec: Fig.Spec = {
             "Use to update the options for your certificate. Currently, you can specify whether to add your certificate to a transparency log. Certificate transparency makes it possible to detect SSL/TLS certificates that have been mistakenly or maliciously issued. Certificates that have not been logged typically produce an error message in a browser",
           args: {
             name: "structure",
-            description: "CertificateTransparencyLoggingPreference=string",
           },
         },
         {
@@ -875,7 +813,6 @@ const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
-            generators: generators.listFiles,
           },
         },
         {
@@ -892,12 +829,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "wait",
       description:
-        "Wait until a particular condition is satisfied. Each subcommand polls an API until the listed requirement is met",
+        "Wait until a particular condition is satisfied. Each subcommand polls an API until the listed requirement is met.",
       subcommands: [
         {
           name: "certificate-validated",
           description:
-            "Wait until JMESPath query Certificate.DomainValidationOptions[].ValidationStatus returns SUCCESS for all elements when polling with ``describe-certificate``. It will poll every 60 seconds until a successful state has been reached. This will exit with a return code of 255 after 40 failed checks",
+            "Wait until JMESPath query Certificate.DomainValidationOptions[].ValidationStatus returns SUCCESS for all elements when polling with ``describe-certificate``. It will poll every 60 seconds until a successful state has been reached. This will exit with a return code of 255 after 40 failed checks.",
           options: [
             {
               name: "--certificate-arn",
@@ -905,7 +842,6 @@ const completionSpec: Fig.Spec = {
                 "The Amazon Resource Name (ARN) of the ACM certificate. The ARN must have the following form:  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012  For more information about ARNs, see Amazon Resource Names (ARNs)",
               args: {
                 name: "string",
-                generators: generators.listCertificates,
               },
             },
             {
@@ -914,7 +850,6 @@ const completionSpec: Fig.Spec = {
                 "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
               args: {
                 name: "string",
-                generators: generators.listFiles,
               },
             },
             {
@@ -932,5 +867,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

@@ -117,7 +117,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-data-source-from-rds",
       description:
-        "Creates a DataSource object from an  Amazon Relational Database Service (Amazon RDS). A DataSource references data that can be used to perform CreateMLModel, CreateEvaluation, or CreateBatchPrediction operations.  CreateDataSourceFromRDS is an asynchronous operation. In response to CreateDataSourceFromRDS, Amazon Machine Learning (Amazon ML) immediately returns and sets the DataSource status to PENDING. After the DataSource is created and ready for use, Amazon ML sets the Status parameter to COMPLETED. DataSource in the COMPLETED or PENDING state can be used only to perform >CreateMLModel>, CreateEvaluation, or CreateBatchPrediction operations.   If Amazon ML cannot accept the input source, it sets the Status parameter to FAILED and includes an error message in the Message attribute of the GetDataSource operation response",
+        "Creates a DataSource object from an  Amazon Relational Database Service (Amazon RDS). A DataSource references data that can be used to perform CreateMLModel, CreateEvaluation, or CreateBatchPrediction operations.  CreateDataSourceFromRDS is an asynchronous operation. In response to CreateDataSourceFromRDS, Amazon Machine Learning (Amazon ML) immediately returns and sets the DataSource status to PENDING. After the DataSource is created and ready for use, Amazon ML sets the Status parameter to COMPLETED. DataSource in the COMPLETED or PENDING state can be used only to perform &gt;CreateMLModel&gt;, CreateEvaluation, or CreateBatchPrediction operations.   If Amazon ML cannot accept the input source, it sets the Status parameter to FAILED and includes an error message in the Message attribute of the GetDataSource operation response",
       options: [
         {
           name: "--data-source-id",
@@ -1603,12 +1603,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "wait",
       description:
-        "Wait until a particular condition is satisfied. Each subcommand polls an API until the listed requirement is met",
+        "Wait until a particular condition is satisfied. Each subcommand polls an API until the listed requirement is met.",
       subcommands: [
         {
           name: "batch-prediction-available",
           description:
-            "Wait until JMESPath query Results[].Status returns COMPLETED for all elements when polling with ``describe-batch-predictions``. It will poll every 30 seconds until a successful state has been reached. This will exit with a return code of 255 after 60 failed checks",
+            "Wait until JMESPath query Results[].Status returns COMPLETED for all elements when polling with ``describe-batch-predictions``. It will poll every 30 seconds until a successful state has been reached. This will exit with a return code of 255 after 60 failed checks.",
           options: [
             {
               name: "--filter-variable",
@@ -1743,7 +1743,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "data-source-available",
           description:
-            "Wait until JMESPath query Results[].Status returns COMPLETED for all elements when polling with ``describe-data-sources``. It will poll every 30 seconds until a successful state has been reached. This will exit with a return code of 255 after 60 failed checks",
+            "Wait until JMESPath query Results[].Status returns COMPLETED for all elements when polling with ``describe-data-sources``. It will poll every 30 seconds until a successful state has been reached. This will exit with a return code of 255 after 60 failed checks.",
           options: [
             {
               name: "--filter-variable",
@@ -1878,7 +1878,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "evaluation-available",
           description:
-            "Wait until JMESPath query Results[].Status returns COMPLETED for all elements when polling with ``describe-evaluations``. It will poll every 30 seconds until a successful state has been reached. This will exit with a return code of 255 after 60 failed checks",
+            "Wait until JMESPath query Results[].Status returns COMPLETED for all elements when polling with ``describe-evaluations``. It will poll every 30 seconds until a successful state has been reached. This will exit with a return code of 255 after 60 failed checks.",
           options: [
             {
               name: "--filter-variable",
@@ -2013,7 +2013,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "ml-model-available",
           description:
-            "Wait until JMESPath query Results[].Status returns COMPLETED for all elements when polling with ``describe-ml-models``. It will poll every 30 seconds until a successful state has been reached. This will exit with a return code of 255 after 60 failed checks",
+            "Wait until JMESPath query Results[].Status returns COMPLETED for all elements when polling with ``describe-ml-models``. It will poll every 30 seconds until a successful state has been reached. This will exit with a return code of 255 after 60 failed checks.",
           options: [
             {
               name: "--filter-variable",
@@ -2149,5 +2149,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

@@ -43,7 +43,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--license-body",
           description:
-            "A local text file that contains the license of the app that matches the spdxLicenseID value of your application.\n The file has the format file://<path>/<filename>.Maximum size 5 MBYou can specify only one of licenseBody and licenseUrl; otherwise, an error results",
+            "A local text file that contains the license of the app that matches the spdxLicenseID value of your application.\n The file has the format file://&lt;path>/&lt;filename>.Maximum size 5 MBYou can specify only one of licenseBody and licenseUrl; otherwise, an error results",
           args: {
             name: "string",
           },
@@ -67,7 +67,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--readme-body",
           description:
-            "A local text readme file in Markdown language that contains a more detailed description of the application and how it works.\n The file has the format file://<path>/<filename>.Maximum size 5 MBYou can specify only one of readmeBody and readmeUrl; otherwise, an error results",
+            "A local text readme file in Markdown language that contains a more detailed description of the application and how it works.\n The file has the format file://&lt;path>/&lt;filename>.Maximum size 5 MBYou can specify only one of readmeBody and readmeUrl; otherwise, an error results",
           args: {
             name: "string",
           },
@@ -114,7 +114,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--template-body",
           description:
-            "The local raw packaged AWS SAM template file of your application.\n The file has the format file://<path>/<filename>.You can specify only one of templateBody and templateUrl; otherwise an error results",
+            "The local raw packaged AWS SAM template file of your application.\n The file has the format file://&lt;path>/&lt;filename>.You can specify only one of templateBody and templateUrl; otherwise an error results",
           args: {
             name: "string",
           },
@@ -701,7 +701,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-application-policy",
       description:
-        "Sets the permission policy for an application. For the list of actions supported for this operation, see\n Application \n Permissions\n",
+        "Sets the permission policy for an application. For the list of actions supported for this operation, see\n Application \n Permissions",
       options: [
         {
           name: "--application-id",
@@ -856,5 +856,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

@@ -1225,12 +1225,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "wait",
       description:
-        "Wait until a particular condition is satisfied. Each subcommand polls an API until the listed requirement is met",
+        "Wait until a particular condition is satisfied. Each subcommand polls an API until the listed requirement is met.",
       subcommands: [
         {
           name: "any-instance-in-service",
           description:
-            "Wait until JMESPath query InstanceStates[].State returns InService for any element when polling with ``describe-instance-health``. It will poll every 15 seconds until a successful state has been reached. This will exit with a return code of 255 after 40 failed checks",
+            "Wait until JMESPath query InstanceStates[].State returns InService for any element when polling with ``describe-instance-health``. It will poll every 15 seconds until a successful state has been reached. This will exit with a return code of 255 after 40 failed checks.",
           options: [
             {
               name: "--load-balancer-name",
@@ -1268,7 +1268,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "instance-deregistered",
           description:
-            "Wait until JMESPath query InstanceStates[].State returns OutOfService for all elements when polling with ``describe-instance-health``. It will poll every 15 seconds until a successful state has been reached. This will exit with a return code of 255 after 40 failed checks",
+            "Wait until JMESPath query InstanceStates[].State returns OutOfService for all elements when polling with ``describe-instance-health``. It will poll every 15 seconds until a successful state has been reached. This will exit with a return code of 255 after 40 failed checks.",
           options: [
             {
               name: "--load-balancer-name",
@@ -1306,7 +1306,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "instance-in-service",
           description:
-            "Wait until JMESPath query InstanceStates[].State returns InService for all elements when polling with ``describe-instance-health``. It will poll every 15 seconds until a successful state has been reached. This will exit with a return code of 255 after 40 failed checks",
+            "Wait until JMESPath query InstanceStates[].State returns InService for all elements when polling with ``describe-instance-health``. It will poll every 15 seconds until a successful state has been reached. This will exit with a return code of 255 after 40 failed checks.",
           options: [
             {
               name: "--load-balancer-name",
@@ -1345,5 +1345,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

@@ -1,12 +1,90 @@
 const completionSpec: Fig.Spec = {
   name: "personalize-events",
   description:
-    "Amazon Personalize can consume real-time user event data, such as stream or click data, and use it for model training either alone or combined with historical data. For more information see Recording Events",
+    "Amazon Personalize can consume real-time user event data, such as stream or click data, and use it for model training either alone or combined with historical data. For more information see Recording item interaction events",
   subcommands: [
+    {
+      name: "put-action-interactions",
+      description:
+        "Records action interaction event data. An action interaction event is an interaction between a user and an action. For example, a user taking an action, such a enrolling in a membership program or downloading your app.  For more information about recording action interactions, see Recording action interaction events. For more information about actions in an Actions dataset, see Actions dataset",
+      options: [
+        {
+          name: "--tracking-id",
+          description:
+            "The ID of your action interaction event tracker. When you create an Action interactions dataset, Amazon Personalize creates an action interaction event tracker for you. For more information, see Action interaction event tracker ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--action-interactions",
+          description: "A list of action interaction events from the session",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "put-actions",
+      description:
+        "Adds one or more actions to an Actions dataset. For more information see Importing actions individually",
+      options: [
+        {
+          name: "--dataset-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the Actions dataset you are adding the action or actions to",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--actions",
+          description: "A list of action data",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
     {
       name: "put-events",
       description:
-        "Records user interaction event data. For more information see Recording Events",
+        "Records item interaction event data. For more information see Recording item interaction events",
       options: [
         {
           name: "--tracking-id",
@@ -26,7 +104,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--session-id",
           description:
-            "The session ID associated with the user's visit. Your application generates the sessionId when a user first visits your website or uses your application. Amazon Personalize uses the sessionId to associate events with the user before they log in. For more information, see Recording Events",
+            "The session ID associated with the user's visit. Your application generates the sessionId when a user first visits your website or uses your application. Amazon Personalize uses the sessionId to associate events with the user before they log in. For more information, see Recording item interaction events",
           args: {
             name: "string",
           },
@@ -60,7 +138,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-items",
       description:
-        "Adds one or more items to an Items dataset. For more information see Importing Items Incrementally",
+        "Adds one or more items to an Items dataset. For more information see Importing items individually",
       options: [
         {
           name: "--dataset-arn",
@@ -99,7 +177,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-users",
       description:
-        "Adds one or more users to a Users dataset. For more information see Importing Users Incrementally",
+        "Adds one or more users to a Users dataset. For more information see Importing users individually",
       options: [
         {
           name: "--dataset-arn",
@@ -137,5 +215,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;
