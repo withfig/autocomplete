@@ -21,6 +21,16 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--cross-account",
+          description:
+            "Support discovery of schemas in events sent to the bus from another account. (default: true)",
+        },
+        {
+          name: "--no-cross-account",
+          description:
+            "Support discovery of schemas in events sent to the bus from another account. (default: true)",
+        },
+        {
           name: "--tags",
           description: "Tags associated with the resource",
           args: {
@@ -1308,6 +1318,16 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--cross-account",
+          description:
+            "Support discovery of schemas in events sent to the bus from another account. (default: true)",
+        },
+        {
+          name: "--no-cross-account",
+          description:
+            "Support discovery of schemas in events sent to the bus from another account. (default: true)",
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -1432,12 +1452,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "wait",
       description:
-        "Wait until a particular condition is satisfied. Each subcommand polls an API until the listed requirement is met",
+        "Wait until a particular condition is satisfied. Each subcommand polls an API until the listed requirement is met.",
       subcommands: [
         {
           name: "code-binding-exists",
           description:
-            "Wait until code binding is generated It will poll every 2 seconds until a successful state has been reached. This will exit with a return code of 255 after 30 failed checks",
+            "Wait until code binding is generated It will poll every 2 seconds until a successful state has been reached. This will exit with a return code of 255 after 30 failed checks.",
           options: [
             {
               name: "--language",
@@ -1491,5 +1511,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

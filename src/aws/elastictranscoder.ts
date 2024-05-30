@@ -905,12 +905,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "wait",
       description:
-        "Wait until a particular condition is satisfied. Each subcommand polls an API until the listed requirement is met",
+        "Wait until a particular condition is satisfied. Each subcommand polls an API until the listed requirement is met.",
       subcommands: [
         {
           name: "job-complete",
           description:
-            "Wait until JMESPath query Job.Status returns Complete when polling with ``read-job``. It will poll every 30 seconds until a successful state has been reached. This will exit with a return code of 255 after 120 failed checks",
+            "Wait until JMESPath query Job.Status returns Complete when polling with ``read-job``. It will poll every 30 seconds until a successful state has been reached. This will exit with a return code of 255 after 120 failed checks.",
           options: [
             {
               name: "--id",
@@ -943,5 +943,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

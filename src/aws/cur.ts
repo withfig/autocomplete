@@ -1,11 +1,12 @@
 const completionSpec: Fig.Spec = {
   name: "cur",
   description:
-    "The AWS Cost and Usage Report API enables you to programmatically create, query, and delete AWS Cost and Usage report definitions. AWS Cost and Usage reports track the monthly AWS costs and usage associated with your AWS account. The report contains line items for each unique combination of AWS product, usage type, and operation that your AWS account uses. You can configure the AWS Cost and Usage report to show only the data that you want, using the AWS Cost and Usage API. Service Endpoint The AWS Cost and Usage Report API provides the following endpoint:   cur.us-east-1.amazonaws.com",
+    "You can use the Amazon Web Services Cost and Usage Report API to programmatically create, query, and delete Amazon Web Services Cost and Usage Report definitions. Amazon Web Services Cost and Usage Report track the monthly Amazon Web Services costs and usage associated with your Amazon Web Services account. The report contains line items for each unique combination of Amazon Web Services product, usage type, and operation that your Amazon Web Services account uses. You can configure the Amazon Web Services Cost and Usage Report to show only the data that you want, using the Amazon Web Services Cost and Usage Report API. Service Endpoint The Amazon Web Services Cost and Usage Report API provides the following endpoint:   cur.us-east-1.amazonaws.com",
   subcommands: [
     {
       name: "delete-report-definition",
-      description: "Deletes the specified report",
+      description:
+        "Deletes the specified report. Any tags associated with the report are also deleted",
       options: [
         {
           name: "--report-name",
@@ -37,12 +38,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-report-definitions",
       description:
-        "Lists the AWS Cost and Usage reports available to this account",
+        "Lists the Amazon Web Services Cost and Usage Report available to this account",
       options: [
         {
           name: "--max-results",
           description:
-            "The maximum number of results that AWS returns for the operation",
+            "The maximum number of results that Amazon Web Services returns for the operation",
           args: {
             name: "integer",
           },
@@ -98,6 +99,38 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-tags-for-resource",
+      description:
+        "Lists the tags associated with the specified report definition",
+      options: [
+        {
+          name: "--report-name",
+          description:
+            "The report name of the report definition that tags are to be returned for",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "modify-report-definition",
       description:
         "Allows you to programmatically update your report preferences",
@@ -113,7 +146,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--report-definition",
           description:
-            "The definition of AWS Cost and Usage Report. You can specify the report name, time unit, report format, compression format, S3 bucket, additional artifacts, and schema elements in the definition",
+            "The definition of Amazon Web Services Cost and Usage Report. You can specify the report name, time unit, report format, compression format, S3 bucket, additional artifacts, and schema elements in the definition",
           args: {
             name: "structure",
           },
@@ -151,6 +184,92 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--tags",
+          description:
+            "The tags to be assigned to the report definition resource",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "tag-resource",
+      description: "Associates a set of tags with a report definition",
+      options: [
+        {
+          name: "--report-name",
+          description:
+            "The report name of the report definition that tags are to be associated with",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "The tags to be assigned to the report definition resource",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "untag-resource",
+      description: "Disassociates a set of tags from a report definition",
+      options: [
+        {
+          name: "--report-name",
+          description:
+            "The report name of the report definition that tags are to be disassociated from",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tag-keys",
+          description:
+            "The tags to be disassociated from the report definition resource",
+          args: {
+            name: "list",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -171,5 +290,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

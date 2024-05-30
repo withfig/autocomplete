@@ -6,7 +6,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "show",
       description:
-        "Shows the various events related to running a specific CLI command. If this command is ran without any positional arguments, it will display the events for the last CLI command ran",
+        "Shows the various events related to running a specific CLI command. If this command is ran without any positional arguments, it will display the events for the last CLI command ran.",
       options: [
         {
           name: "--include",
@@ -36,18 +36,19 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: {
-        name: "command_id",
-        description:
-          "The ID of the CLI command to show. If this positional argument is omitted, it will show the last the CLI command ran",
-      },
+      args: [
+        {
+          name: "command_id",
+          description:
+            "The ID of the CLI command to show. If this positional argument is omitted, it will show the last the CLI command ran",
+        },
+      ],
     },
     {
       name: "list",
       description:
-        "Shows a list of previously run commands and their command_ids. Each row shows only a bare minimum of details including the command_id, date, arguments and return code. You can use the ``history show`` with the command_id to see more details about a particular entry",
+        "Shows a list of previously run commands and their command_ids. Each row shows only a bare minimum of details including the command_id, date, arguments and return code. You can use the ``history show`` with the command_id to see more details about a particular entry.",
     },
   ],
 };
-
 export default completionSpec;

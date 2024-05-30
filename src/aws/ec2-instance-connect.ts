@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "ec2-instance-connect",
   description:
-    "Amazon EC2 Instance Connect enables system administrators to publish one-time use SSH public keys to EC2, providing users a simple and secure way to connect to their instances",
+    "This is the  Amazon EC2 Instance Connect API Reference. It provides descriptions, syntax, and usage examples for each of the actions for Amazon EC2 Instance Connect. Amazon EC2 Instance Connect enables system administrators to publish one-time use SSH public keys to EC2, providing users a simple and secure way to connect to their instances. To view the Amazon EC2 Instance Connect content in the  Amazon EC2 User Guide, see Connect to your Linux instance using EC2 Instance Connect. For Amazon EC2 APIs, see the Amazon EC2 API Reference",
   subcommands: [
     {
       name: "send-ssh-public-key",
@@ -107,5 +107,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;
