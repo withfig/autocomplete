@@ -1,5 +1,20 @@
+const sessionid: Fig.Generator = {
+  script: ["bash", "-c", "cat .nextflow/history | awk '{ print $7 }'"],
+  postProcess: (output) => {
+    if (output == "") {
+      return [];
+    }
+    return output.split("\n").map((sessionid) => {
+      return {
+        name: sessionid.replace("*", "").trim(),
+        description: "Session ID",
+      };
+    });
+  },
+};
+
 const runname: Fig.Generator = {
-  script: "cat .nextflow/history | awk '{ print $4 }'",
+  script: ["bash", "-c", "cat .nextflow/history | awk '{ print $4 }'"],
   postProcess: (output) => {
     if (output == "") {
       return [];
@@ -11,8 +26,11 @@ const runname: Fig.Generator = {
 };
 
 const projectname: Fig.Generator = {
-  script:
-    "find $HOME/.nextflow/assets/* -maxdepth 1 -type d | cut -d/ -f6,7 | grep / | grep -v assets",
+  script: [
+    "bash",
+    "-c",
+    `{ find * -maxdepth 0 -type f -name '*.nf' 2> /dev/null && find $HOME/.nextflow/assets/* -maxdepth 1 -type d | cut -d/ -f6,7 | grep / | grep -v assets; } 2> /dev/null`,
+  ],
   postProcess: (output) => {
     if (output == "") {
       return [];
@@ -21,6 +39,40 @@ const projectname: Fig.Generator = {
       return {
         name: projectname.replace("*", "").trim(),
         description: "Project name",
+      };
+    });
+  },
+};
+
+const dockerimage: Fig.Generator = {
+  script: ["bash", "-c", "docker images | cut -w -f 1 | grep -v REPOSITORY"],
+  postProcess: (output) => {
+    if (output == "") {
+      return [];
+    }
+    return output.split("\n").map((dockerimage) => {
+      return {
+        name: dockerimage.replace("*", "").trim(),
+        description: "Docker image",
+      };
+    });
+  },
+};
+
+const secretname: Fig.Generator = {
+  script: [
+    "bash",
+    "-c",
+    `grep -o '"name": *"[^"]*"' $HOME/.nextflow/secrets/store.json | grep -o '"[^"]*"$' | tr -d \\"`,
+  ],
+  postProcess: (output) => {
+    if (output == "") {
+      return [];
+    }
+    return output.split("\n").map((secretname) => {
+      return {
+        name: secretname.replace("*", "").trim(),
+        description: "Secret name",
       };
     });
   },
@@ -416,7 +468,7 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["-stub-ru", "-stub"],
+          name: ["-stub-run", "-stub"],
           description:
             "Execute the workflow replacing process scripts with command stubs (Default: false)",
         },
@@ -461,6 +513,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "-with-docker",
           description: "Enable process execution in a Docker container",
+          args: {
+            name: "a docker container image",
+            isOptional: true,
+            generators: dockerimage,
+          },
         },
         {
           name: ["-N", "-with-notification"],
@@ -540,6 +597,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "log",
       description: "Print executions log and runtime info",
+      args: {
+        name: "run name",
+        generators: runname,
+      },
       options: [
         {
           name: "-after",
@@ -798,6 +859,11 @@ const completionSpec: Fig.Spec = {
           name: "-resume",
           description:
             "Execute the script using the cached results, useful to continue executions that was stopped by an error",
+          args: {
+            name: "session ID",
+            isOptional: true,
+            generators: sessionid,
+          },
         },
         {
           name: ["-r", "-revision"],
@@ -849,6 +915,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "-with-docker",
           description: "Enable process execution in a Docker container",
+          args: {
+            name: "a docker container image",
+            isOptional: true,
+            generators: dockerimage,
+          },
         },
         {
           name: ["-N", "-with-notification"],
@@ -911,6 +982,48 @@ const completionSpec: Fig.Spec = {
           description: "Directory where intermediate result files are stored",
           args: {
             name: "work dir",
+          },
+        },
+      ],
+    },
+    {
+      name: "secrets",
+      description:
+        "Handle and manage sensitive information for pipeline execution in a safe manner",
+      options: [
+        {
+          name: "list",
+          description:
+            "List secrets available in the current store e.g. nextflow secrets list",
+        },
+        {
+          name: "get",
+          description:
+            "Allows retrieving a secret value e.g. nextflow secrets get FOO",
+          args: {
+            name: "secret name",
+            generators: secretname,
+          },
+        },
+        {
+          name: "set",
+          description:
+            'Allows creating creating a new secret or overriding an existing one e.g. nextflow secrets set FOO "Hello world"',
+          isDangerous: true,
+          args: {
+            name: "secret name and value",
+            generators: secretname,
+            suggestCurrentToken: true,
+          },
+        },
+        {
+          name: "delete",
+          description:
+            "Allows deleting an existing secret e.g. nextflow secrets delete FOO",
+          isDangerous: true,
+          args: {
+            name: "secret name",
+            generators: secretname,
           },
         },
       ],

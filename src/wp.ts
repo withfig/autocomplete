@@ -7816,7 +7816,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--theme",
               description:
-                "Create files in the active theme directory. Specify a theme with --theme=&lt;theme&gt; to have the file placed in that theme",
+                "Create files in the active theme directory. Specify a theme with --theme=<theme> to have the file placed in that theme",
             },
             {
               name: "--plugin",
@@ -8030,7 +8030,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--theme",
               description:
-                "Create a file in the active theme directory, instead of sending to STDOUT. Specify a theme with --theme=&lt;theme&gt; to have the file placed in that theme",
+                "Create a file in the active theme directory, instead of sending to STDOUT. Specify a theme with --theme=<theme> to have the file placed in that theme",
             },
             {
               name: "--plugin",
@@ -8079,7 +8079,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--theme",
               description:
-                "Create a file in the active theme directory, instead of sending to STDOUT. Specify a theme with --theme=&lt;theme&gt; to have the file placed in that theme",
+                "Create a file in the active theme directory, instead of sending to STDOUT. Specify a theme with --theme=<theme> to have the file placed in that theme",
             },
             {
               name: "--plugin",
@@ -10652,7 +10652,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--network",
               description:
-                "Delete the value of a network|site transient. On single site, this is is a specially-named cache key. On multisite, this is a global cache (instead of local to the site)",
+                "Delete the value of a network|site transient. On single site, this is a specially-named cache key. On multisite, this is a global cache (instead of local to the site)",
             },
             {
               name: "--all",
@@ -10689,7 +10689,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--network",
               description:
-                "Get the value of a network|site transient. On single site, this is is a specially-named cache key. On multisite, this is a global cache (instead of local to the site)",
+                "Get the value of a network|site transient. On single site, this is a specially-named cache key. On multisite, this is a global cache (instead of local to the site)",
             },
           ],
         },
@@ -10767,7 +10767,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--network",
               description:
-                "Set the value of a network|site transient. On single site, this is is a specially-named cache key. On multisite, this is a global cache (instead of local to the site)",
+                "Set the value of a network|site transient. On single site, this is a specially-named cache key. On multisite, this is a global cache (instead of local to the site)",
             },
           ],
         },

@@ -705,6 +705,104 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "work",
+      description: "Workspace maintenance",
+      subcommands: [
+        {
+          name: "edit",
+          description: "Edit go.work from tools or scripts",
+          options: [
+            {
+              name: "-fmt",
+              description:
+                "The -fmt flag reformats the go.work file without making other changes. This reformatting is also implied by any other modifications that use or rewrite the go.mod file. The only time this flag is needed is if no other flags are specified, as in 'go work edit -fmt'",
+            },
+            {
+              name: "-use",
+              requiresSeparator: true,
+              description:
+                "The -use=path and -dropuse=path flags add and drop a use directive from the go.work file's set of module directories",
+              args: {
+                name: "path",
+              },
+            },
+            {
+              name: "-dropuse",
+              requiresSeparator: true,
+              description:
+                "The -use=path and -dropuse=path flags add and drop a use directive from the go.work file's set of module directories",
+              args: {
+                name: "path",
+              },
+            },
+            {
+              name: "-replace",
+              requiresSeparator: true,
+              description:
+                "The -replace=old[@v]=new[@v] flag adds a replacement of the given module path and version pair. If the @v in old@v is omitted, a replacement without a version on the left side is added, which applies to all versions of the old module path. If the @v in new@v is omitted, the new path should be a local module root directory, not a module path. Note that -replace overrides any redundant replacements for old[@v], so omitting @v will drop existing replacements for specific versions",
+              args: {
+                name: "old[@v]=new[@v]",
+              },
+            },
+            {
+              name: "-dropreplace",
+              requiresSeparator: true,
+              description:
+                "The -dropreplace=old[@v] flag drops a replacement of the given module path and version pair. If the @v is omitted, a replacement without a version on the left side is dropped",
+              args: {
+                name: "old[@v]",
+              },
+            },
+            {
+              name: "-go",
+              requiresSeparator: true,
+              description: "Set the expected Go language version",
+              args: {
+                name: "version",
+              },
+            },
+            {
+              name: "-print",
+              description:
+                "The -print flag prints the final go.work in its text format instead of writing it back to go.mod",
+            },
+            {
+              name: "-json",
+              description:
+                "The -json flag prints the final go.work file in JSON format instead of writing it back to go.mod",
+            },
+          ],
+        },
+        {
+          name: "init",
+          description: "Initialize workspace file",
+          args: {
+            name: "moddirs",
+            isVariadic: true,
+          },
+        },
+        {
+          name: "sync",
+          description: "Sync workspace build list to modules",
+        },
+        {
+          name: "use",
+          description: "Add modules to workspace file",
+          options: [
+            {
+              name: "-r",
+              description:
+                "The -r flag searches recursively for modules in the argument directories, and the use command operates as if each of the directories were specified as arguments: namely, use directives will be added for directories that exist, and removed for directories that do not exist",
+            },
+          ],
+          args: {
+            name: "moddirs",
+            isVariadic: true,
+          },
+        },
+      ],
+    },
+    {
       name: "run",
       description: "Compile and run Go program",
       options: [
@@ -773,7 +871,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "tool",
         generators: {
-          script: "go tool",
+          script: ["go", "tool"],
           splitOn: "\n",
         },
       },

@@ -1,3 +1,5 @@
+import { awsProfileGenerator } from "./aws";
+
 const configEnvOption: Fig.Option = {
   name: "--config-env",
   description:
@@ -189,7 +191,15 @@ const profileOption: Fig.Option = {
   args: {
     name: "profile name",
     description: "The name of the AWS profile",
+    generators: awsProfileGenerator,
+    filterStrategy: "fuzzy",
   },
+};
+
+const guidedOption: Fig.Option = {
+  name: ["-g", "--guided"],
+  description:
+    "Specify this flag to allow SAM CLI to guide you through the deployment using guided prompts",
 };
 
 const regionOption: Fig.Option = {
@@ -316,18 +326,25 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "runtime",
             suggestions: [
-              "dotnetcore3.1",
+              "dotnet8",
+              "dotnet6",
               "go1.x", // TODO: Can we exclude a suggestion if `arch === arm64`?
+              "java21",
+              "java17",
               "java11",
               "java8.al2",
-              "java8",
-              "nodejs14.x",
-              "nodejs12.x",
+              "nodejs20.x",
+              "nodejs18.x",
+              "nodejs16.x",
+              "provided.al2023",
+              "provided.al2",
+              "provided",
+              "python3.12",
+              "python3.11",
+              "python3.10",
               "python3.9",
               "python3.8",
-              "python3.7",
-              "python3.6",
-              "ruby2.7",
+              "ruby3.2",
             ],
           },
         },
@@ -342,18 +359,24 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "image name",
             suggestions: [
-              "amazon/dotnetcore3.1-base",
+              "amazon/dotnet8-base",
+              "amazon/dotnet6-base",
               "amazon/go1.x-base",
+              "amazon/go-provided.al2-base",
+              "amazon/go-provided.al2023-base",
+              "amazon/java21-base",
+              "amazon/java17-base",
               "amazon/java11-base",
               "amazon/java8.al2-base",
-              "amazon/java8-base",
-              "amazon/nodejs14.x-base",
-              "amazon/nodejs12.x-base",
+              "amazon/nodejs20.x-base",
+              "amazon/nodejs18.x-base",
+              "amazon/nodejs16.x-base",
+              "amazon/python3.12-base",
+              "amazon/python3.11-base",
+              "amazon/python3.10-base",
               "amazon/python3.9-base",
               "amazon/python3.8-base",
-              "amazon/python3.7-base",
-              "amazon/python3.6-base",
-              "amazon/ruby2.7-base",
+              "amazon/ruby3.2-base",
             ],
           },
         },
@@ -664,7 +687,7 @@ const completionSpec: Fig.Spec = {
       options: [
         configEnvOption,
         configFileOption,
-        // guidedOption,
+        guidedOption,
         templateFileOption,
         // noExecuteChangesetOption,
         // failOnEmptyChangesetOption,

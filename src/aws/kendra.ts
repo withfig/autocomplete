@@ -1477,7 +1477,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--user-context-policy",
-          description: "The user user token context policy",
+          description: "The user token context policy",
           args: {
             name: "string",
           },

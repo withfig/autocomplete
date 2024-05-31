@@ -1,10 +1,9 @@
 const completionSpec: Fig.Spec = {
   name: "vim",
-  description:
-    "Vi[m] is an one of two powerhouse text editors in the Unix world, the other being EMACS",
+  description: "Vi IMproved, a programmer's text editor",
   args: {
     template: "filepaths",
-    suggestCurrentToken: true,
+    // suggestCurrentToken: true,
   },
   options: [
     {
@@ -21,8 +20,13 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-s",
-      description: "Silent (batch) mode (only for 'ex')",
-      dependsOn: ["-e"],
+      description:
+        "Enable silent mode (when in ex mode), or Read Normal mode commands from file",
+      args: {
+        name: "scriptin",
+        template: "filepaths",
+        isOptional: true,
+      },
     },
     {
       name: "-d",
@@ -156,13 +160,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "+",
-      description: "Start at end of file",
-    },
-    {
-      name: "+ (with line)",
-      description: "Start at line <lnum>",
+      description:
+        "Start at end of file, if line number is specified, start at that line",
       args: {
         name: "lnum",
+        isOptional: true,
       },
     },
     {
@@ -185,14 +187,6 @@ const completionSpec: Fig.Spec = {
       description: "Source file <session> after loading the first file",
       args: {
         name: "session",
-        template: "filepaths",
-      },
-    },
-    {
-      name: "-s (with scriptin)",
-      description: "Read Normal mode commands from file <scriptin>",
-      args: {
-        name: "scriptin",
         template: "filepaths",
       },
     },

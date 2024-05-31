@@ -1,3 +1,9 @@
+import {
+  valueList,
+  keyValueList,
+  KeyValueSuggestions,
+} from "@fig/autocomplete-generators";
+
 /** The output of processing `scc --languages` */
 interface SccLanguages {
   /** A map of file extension to language name. */
@@ -18,79 +24,25 @@ function processSccLanguages(out: string): SccLanguages {
     const language = match[1];
     languages.push(language);
 
-    const extensions = match[2].split(",");
-    for (const extension of extensions) {
+    const extensionMatches = match[2].split(",");
+    for (const extension of extensionMatches) {
       extensions[extension] = language;
     }
   }
   return { extensions, languages };
 }
 
-/** Get the index of the last `:` or `,` in a string, or -1 if not found. */
-function lastColonOrCommaIndex(token: string): number {
-  const colon = token.lastIndexOf(":");
-  const comma = token.lastIndexOf(",");
-  return Math.max(colon, comma);
-}
-
-/** Trigger when the index of the last colon or comma has changed. */
-const triggerColonComma: Fig.Generator["trigger"] = (newToken, oldToken) => {
-  const newTokenIdx = lastColonOrCommaIndex(newToken);
-  const oldTokenIdx = lastColonOrCommaIndex(oldToken);
-  return newTokenIdx !== oldTokenIdx;
-};
-
-/** Make the query term everything after the last colon or comma. */
-const getQueryTermColonComma: Fig.Generator["getQueryTerm"] = (token) => {
-  const lastPunctuationIdx = lastColonOrCommaIndex(token);
-  return token.slice(lastPunctuationIdx + 1);
-};
-
-/**
- * In a comma-separated key:value string, check if the user is writing a key.
- *
- * Some test cases:
- * ```javascript
- * isWritingKey("") === true;
- * isWritingKey("key") === true;
- * isWritingKey("key:") === false;
- * isWritingKey("key:value") === false;
- * isWritingKey("key:value,") === true;
- * ```
- */
-function isWritingKey(token: string) {
-  const idx = lastColonOrCommaIndex(token);
-  return idx === -1 || token[idx] === ",";
-}
-
-/**
- * Generate suggestions for a comma-separated key:value list where the keys
- * are arbitrary strings and the values are language names.
- *
- * Used for --remap-all and --remap-unknown. This is factored out into its
- * own value because it is shared by those two options.
- *
- * Even though the user is entering an arbitrary string, it's okay
- * to be dumb about parsing colons and commas because SCC just calls
- * `strings.Split` on the input.
- * https://github.com/boyter/scc/blob/cb04a8d/processor/workers.go#L500-L501
- */
-const generateStringToLanguage: Fig.Generator = {
-  trigger: triggerColonComma,
-  getQueryTerm: getQueryTermColonComma,
-  script: "scc --languages",
-  postProcess: (out, tokens) => {
-    const { languages } = processSccLanguages(out);
-    const lastToken = tokens[tokens.length - 1];
-
-    // If we're writing a string, suggest nothing
-    if (isWritingKey(lastToken)) {
-      return [];
-    }
-
-    // We're writing a language name, suggest names
-    return languages.map((language) => ({ name: language }));
-  },
+const generateLanguages: KeyValueSuggestions = async (
+  _,
+  executeShellCommand
+) => {
+  const { stdout } = await executeShellCommand({
+    command: "scc",
+    // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+    args: ["--language"],
+  });
+  const { languages } = processSccLanguages(stdout);
+  return languages.map((language) => ({ name: language }));
 };
 
 /** The formats that SCC can output. */
@@ -173,28 +125,23 @@ const completionSpec: Fig.Spec = {
         "Count a file extension as a language (comma-separated key:value list, eg. jst:js,tpl:Markdown)",
       args: {
         name: "string",
-        generators: {
-          trigger: triggerColonComma,
-          getQueryTerm: getQueryTermColonComma,
-          script: "scc --languages",
-          postProcess: (out, tokens) => {
-            const { extensions, languages } = processSccLanguages(out);
-            const lastToken = tokens[tokens.length - 1];
-
-            // If we're writing a file extension, suggest known extensions
-            if (isWritingKey(lastToken)) {
-              return Object.entries(extensions).map(
-                ([extension, language]) => ({
-                  name: extension,
-                  description: language,
-                })
-              );
-            }
-
-            // We're writing a language name
-            return languages.map((language) => ({ name: language }));
+        generators: keyValueList({
+          cache: true,
+          separator: ":",
+          keys: async (_, executeShellCommand) => {
+            const { stdout } = await executeShellCommand({
+              command: "scc",
+              // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+              args: ["--language"],
+            });
+            const { extensions } = processSccLanguages(stdout);
+            return Object.entries(extensions).map(([extension, language]) => ({
+              name: extension,
+              description: language,
+            }));
           },
-        },
+          values: generateLanguages,
+        }),
       },
     },
     {
@@ -235,29 +182,25 @@ const completionSpec: Fig.Spec = {
         "Multiple outputs with different formats (comma-separated key:value list, eg. tabular:stdout,csv:scc.csv)",
       args: {
         name: "string",
-        generators: {
-          trigger: triggerColonComma,
-          getQueryTerm: getQueryTermColonComma,
-          custom: async (tokens, executeShellCommand) => {
-            const lastToken = tokens[tokens.length - 1];
-
-            // If we're writing a format, suggest supported formats
-            if (isWritingKey(lastToken)) {
-              return suggestOutputFormats;
-            }
-
-            // We're writing an output, suggest stdout
-            const out = await executeShellCommand("ls -lAF1");
-            const suggestions: Fig.Suggestion[] = out
+        generators: keyValueList({
+          separator: ":",
+          keys: suggestOutputFormats,
+          values: async (_, executeShellCommand) => {
+            const { stdout } = await executeShellCommand({
+              command: "ls",
+              // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+              args: ["-lAF1"],
+            });
+            const suggestions: Fig.Suggestion[] = stdout
               .split("\n")
               .map((path) => ({
                 name: path.slice(path.lastIndexOf("/") + 1),
-                icon: `fig://${path}`,
+                icon: `fig://path/${path}`,
               }));
             suggestions.push({ name: "stdout", priority: 75 });
             return suggestions;
           },
-        },
+        }),
       },
     },
     {
@@ -283,18 +226,22 @@ const completionSpec: Fig.Spec = {
       description: "Limit to these file extensions (comma-separated list)",
       args: {
         name: "strings",
-        generators: {
-          getQueryTerm: ",",
-          script: "scc --languages",
-          postProcess: (out) => {
-            const { extensions } = processSccLanguages(out);
+        generators: valueList({
+          cache: true,
+          values: async (_, executeShellCommand) => {
+            const { stdout } = await executeShellCommand({
+              command: "scc",
+              // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+              args: ["--language"],
+            });
+            const { extensions } = processSccLanguages(stdout);
             return Object.entries(extensions).map(([extension, language]) => ({
               name: extension,
               description: language,
               icon: "fig://icon?type=string",
             }));
           },
-        },
+        }),
       },
     },
     {
@@ -402,7 +349,11 @@ const completionSpec: Fig.Spec = {
         'Inspect every file and set its type by checking for a string (comma-separated key:value list, eg. "-*- C++ -*-":"C Header")',
       args: {
         name: "string",
-        generators: generateStringToLanguage,
+        generators: keyValueList({
+          cache: true,
+          separator: ":",
+          values: generateLanguages,
+        }),
       },
     },
     {
@@ -411,7 +362,11 @@ const completionSpec: Fig.Spec = {
         'Inspect files of unknown type and set its type by checking for a string (comma-separated key:value list, eg. "-*- C++ -*-":"C Header")',
       args: {
         name: "string",
-        generators: generateStringToLanguage,
+        generators: keyValueList({
+          cache: true,
+          separator: ":",
+          values: generateLanguages,
+        }),
       },
     },
     {

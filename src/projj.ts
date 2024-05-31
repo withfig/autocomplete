@@ -1,7 +1,11 @@
 const repoGenerator: Fig.Generator = {
-  script: "cat ~/.projj/cache.json",
-  postProcess: function (out) {
-    const cache = JSON.parse(out);
+  custom: async (_, executeCommand, context) => {
+    const { stdout } = await executeCommand({
+      command: "cat",
+      // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+      args: [`${context.environmentVariables["HOME"]}/.projj/cache.json`],
+    });
+    const cache = JSON.parse(stdout);
     return Object.keys(cache).map((key) => ({
       name: key.split("/").pop(),
       description: cache[key].repo,
@@ -10,9 +14,13 @@ const repoGenerator: Fig.Generator = {
 };
 
 const hookGenerator: Fig.Generator = {
-  script: "cat ~/.projj/config.json",
-  postProcess: function (out) {
-    const cache = JSON.parse(out);
+  custom: async (_, executeCommand, context) => {
+    const { stdout } = await executeCommand({
+      command: "cat",
+      // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+      args: [`${context.environmentVariables["HOME"]}/.projj/config.json`],
+    });
+    const cache = JSON.parse(stdout);
     const hooks = cache.hooks;
     return Object.keys(hooks).map((key) => ({
       name: key,

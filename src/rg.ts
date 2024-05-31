@@ -419,7 +419,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--one-file-system",
       description:
-        "Will not cross file system boundaries relative to where the the search started from",
+        "Will not cross file system boundaries relative to where the search started from",
     },
     {
       name: "--no-one-file-system",
@@ -510,7 +510,7 @@ const completionSpec: Fig.Spec = {
       description: "Search in compressed files",
     },
     {
-      name: "-S, --smart-case",
+      name: ["-S", "--smart-case"],
       description:
         "Searches case insensitively if the pattern is all lowercase",
     },

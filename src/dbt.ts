@@ -56,7 +56,7 @@ const completionSpec: Fig.Spec = {
           args: { name: "THREADS" },
         },
         {
-          name: "--select",
+          name: ["-s", "--select"],
           description: "Select subset of models",
           args: {
             name: "subset",
@@ -90,22 +90,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bypass-cache",
           description: "Bypass the cache",
-        },
-        {
-          name: ["-m", "--models"],
-          description: "Subset of models",
-          args: {
-            name: "Model inclusions subset",
-            description: "Subset of models to include",
-            isVariadic: true,
-            suggestions: [
-              "path:",
-              "tag:",
-              "config:",
-              "test_type:",
-              "test_name:",
-            ],
-          },
         },
       ],
     },
@@ -171,7 +155,7 @@ const completionSpec: Fig.Spec = {
           args: { name: "threads" },
         },
         {
-          name: "--select",
+          name: ["-s", "--select"],
           description: "Select subset of models",
           args: {
             name: "subset",
@@ -205,22 +189,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bypass-cache",
           description: "Bypass the cache",
-        },
-        {
-          name: ["-m", "--models"],
-          description: "Subset of models",
-          args: {
-            name: "Model inclusions subset",
-            description: "Subset of models to include",
-            isVariadic: true,
-            suggestions: [
-              "path:",
-              "tag:",
-              "config:",
-              "test_type:",
-              "test_name:",
-            ],
-          },
         },
       ],
     },
@@ -338,22 +306,6 @@ const completionSpec: Fig.Spec = {
       description: "Executes tests defined in a project",
       options: [
         {
-          name: ["-m", "--models"],
-          description: "Subset of models to include",
-          args: {
-            name: "Model inclusions subset",
-            description: "Subset of models to include",
-            isVariadic: true,
-            suggestions: [
-              "path:",
-              "tag:",
-              "config:",
-              "test_type:",
-              "test_name:",
-            ],
-          },
-        },
-        {
           name: ["-x", "--fail-fast"],
           description: "Exit immediately if a single model fails to build",
         },
@@ -385,7 +337,7 @@ const completionSpec: Fig.Spec = {
           description: "Run only schema tests",
         },
         {
-          name: "--select",
+          name: ["-s", "--select"],
           description: "Select subset of models",
           args: {
             name: "subset",
@@ -737,27 +689,11 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--select",
+          name: ["-s", "--select"],
           description:
             "This flag specifies one or more selection-type arguments used to filter the nodes returned by the dbt ls command",
           args: {
             name: "SELECTION_ARG",
-            isVariadic: true,
-            suggestions: [
-              "path:",
-              "tag:",
-              "config:",
-              "test_type:",
-              "test_name:",
-            ],
-          },
-        },
-        {
-          name: ["-m", "--models"],
-          description:
-            "Like the --select flag, this flag is used to select nodes. It implies --resource-type=model, and will only return models in the results of the dbt ls command",
-          args: {
-            name: "SELECTOR",
             isVariadic: true,
             suggestions: [
               "path:",

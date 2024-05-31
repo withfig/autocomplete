@@ -10,7 +10,7 @@ const filterMessages = (out: string): string => {
 };
 
 const searchBranches: Fig.Generator = {
-  script: "git branch --no-color",
+  script: ["git", "branch", "--no-color"],
   postProcess: function (out) {
     const output = filterMessages(out);
 
@@ -39,6 +39,50 @@ const searchBranches: Fig.Generator = {
         name,
         description: "Branch",
         icon: "fig://icon?type=git",
+      };
+    });
+  },
+};
+
+const generatorInstalledPackages: Fig.Generator = {
+  script: ["pnpm", "ls"],
+  postProcess: function (out) {
+    /**
+     * out
+     * @example
+     * ```
+     * Legend: production dependency, optional only, dev only
+     *
+     * /xxxx/xxxx/<package-name> (PRIVATE)
+     *
+     * dependencies:
+     * lodash 4.17.21
+     * foo link:packages/foo
+     *
+     * devDependencies:
+     * typescript 4.7.4
+     * ```
+     */
+    if (out.includes("ERR_PNPM")) {
+      return [];
+    }
+
+    const output = out
+      .split("\n")
+      .slice(3)
+      // remove empty lines, "*dependencies:" lines, local workspace packages (eg: "foo":"workspace:*")
+      .filter(
+        (item) =>
+          !!item &&
+          !item.toLowerCase().includes("dependencies") &&
+          !item.includes("link:")
+      )
+      .map((item) => item.replace(/\s/, "@")); // typescript 4.7.4 -> typescript@4.7.4
+
+    return output.map((pkg) => {
+      return {
+        name: pkg,
+        icon: "fig://icon?type=package",
       };
     });
   },
@@ -397,6 +441,35 @@ This is similar to yarn unlink, except pnpm re-installs the dependency after rem
       },
     ],
   },
+  {
+    name: "patch",
+    description: `This command will cause a package to be extracted in a temporary directory intended to be editable at will`,
+    args: {
+      name: "package",
+      generators: generatorInstalledPackages,
+    },
+    options: [
+      {
+        name: "--edit-dir",
+        description: `The package that needs to be patched will be extracted to this directory`,
+      },
+    ],
+  },
+  {
+    name: "patch-commit",
+    args: {
+      name: "dir",
+    },
+    description: `Generate a patch out of a directory`,
+  },
+  {
+    name: "patch-remove",
+    args: {
+      name: "package",
+      isVariadic: true,
+      // TODO: would be nice to have a generator of all patched packages
+    },
+  },
 ];
 
 const SUBCOMMANDS_RUN_SCRIPTS: Fig.Subcommand[] = [
@@ -482,8 +555,14 @@ Details at: https://pnpm.io/cli/audit`,
         description: `Only print advisories with severity greater than or equal to <severity>`,
         args: {
           name: "Audit Level",
+          default: "low",
           suggestions: ["low", "moderate", "high", "critical"],
         },
+      },
+      {
+        name: "--fix",
+        description:
+          "Add overrides to the package.json file in order to force non-vulnerable versions of the dependencies",
       },
       {
         name: "--json",
@@ -818,6 +897,15 @@ Please note that this is prohibited when a store server is running`,
       },
     ],
   },
+  {
+    name: "init",
+    description:
+      "Creates a basic package.json file in the current directory, if it doesn't exist already",
+  },
+  {
+    name: "doctor",
+    description: "Checks for known common issues with pnpm configuration",
+  },
 ];
 
 const subcommands = [
@@ -855,6 +943,38 @@ const recursiveSubcommands = subcommands.filter((subcommand) => {
 // RECURSIVE SUBCOMMAND INDEX
 SUBCOMMANDS_MISC[1].subcommands = recursiveSubcommands;
 
+// common options
+const COMMON_OPTIONS: Fig.Option[] = [
+  {
+    name: ["-C", "--dir"],
+    args: {
+      name: "path",
+      template: "folders",
+    },
+    isPersistent: true,
+    description:
+      "Run as if pnpm was started in <path> instead of the current working directory",
+  },
+  {
+    name: ["-w", "--workspace-root"],
+    args: {
+      name: "workspace",
+    },
+    isPersistent: true,
+    description:
+      "Run as if pnpm was started in the root of the <workspace> instead of the current working directory",
+  },
+  {
+    name: ["-h", "--help"],
+    isPersistent: true,
+    description: "Output usage information",
+  },
+  {
+    name: ["-v", "--version"],
+    description: "Show pnpm's version",
+  },
+];
+
 // SPEC
 const completionSpec: Fig.Spec = {
   name: "pnpm",
@@ -867,15 +987,22 @@ const completionSpec: Fig.Spec = {
   },
   filterStrategy: "fuzzy",
   generateSpec: async (tokens, executeShellCommand) => {
-    const { script, postProcess } = dependenciesGenerator;
+    const { script, postProcess } = dependenciesGenerator as Fig.Generator & {
+      script: string[];
+    };
 
     const packages = postProcess(
-      await executeShellCommand(script as string),
+      (
+        await executeShellCommand({
+          command: script[0],
+          args: script.slice(1),
+        })
+      ).stdout,
       tokens
     ).map(({ name }) => name as string);
 
     const subcommands = packages
-      .filter((name) => nodeClis.includes(name))
+      .filter((name) => nodeClis.has(name))
       .map((name) => ({
         name,
         loadSpec: name,
@@ -888,6 +1015,7 @@ const completionSpec: Fig.Spec = {
     } as Fig.Spec;
   },
   subcommands,
+  options: COMMON_OPTIONS,
 };
 
 export default completionSpec;

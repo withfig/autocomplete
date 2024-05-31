@@ -4,6 +4,7 @@ const completionSpec: Fig.Spec = {
   args: {
     isVariadic: true,
     template: ["filepaths", "folders"],
+    filterStrategy: "fuzzy",
   },
   options: [
     {
@@ -188,6 +189,37 @@ const completionSpec: Fig.Spec = {
       name: "-%",
       description:
         "Distinguish dataless files and directories with a '%' character in long (-l) output, and don't materialize dataless directories when listing them",
+    },
+    {
+      name: "-,",
+      description: `When the -l option is set, print file sizes grouped and separated by thousands using the non-monetary separator returned
+by localeconv(3), typically a comma or period.  If no locale is set, or the locale does not have a non-monetary separator, this
+option has no effect.  This option is not defined in IEEE Std 1003.1-2001 (“POSIX.1”)`,
+      dependsOn: ["-l"],
+    },
+    {
+      name: "--color",
+      description: `Output colored escape sequences based on when, which may be set to either always, auto, or never`,
+      requiresSeparator: true,
+      args: {
+        name: "when",
+        suggestions: [
+          {
+            name: ["always", "yes", "force"],
+            description: "Will make ls always output color",
+          },
+          {
+            name: "auto",
+            description:
+              "Will make ls output escape sequences based on termcap(5), but only if stdout is a tty and either the -G flag is specified or the COLORTERM environment variable is set and not empty",
+          },
+          {
+            name: ["never", "no", "none"],
+            description:
+              "Will disable color regardless of environment variables",
+          },
+        ],
+      },
     },
   ],
 };

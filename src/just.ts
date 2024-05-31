@@ -85,10 +85,18 @@ function getJustfilePath(tokens: string[]): string | null {
  * Get the command to dump the justfile at the given path, or let `just` handle
  * searching for the file if the path is null.
  */
-function getJustfileDumpCommand(justfilePath: string | null): string {
+function getJustfileDumpCommand(justfilePath: string | null): string[] {
   return justfilePath
-    ? `just --unstable --dump --dump-format json --justfile '${justfilePath}'`
-    : `just --unstable --dump --dump-format json`;
+    ? [
+        "just",
+        "--unstable",
+        "--dump",
+        "--dump-format",
+        "json",
+        "--justfile",
+        justfilePath,
+      ]
+    : ["just", "--unstable", "--dump", "--dump-format", "json"];
 }
 
 /**
@@ -140,11 +148,10 @@ function getRecipeSuggestions(
 function getRecipeUsage(recipe: Recipe): string {
   const parts = [recipe.name];
   for (const parameter of recipe.parameters) {
-    // Fig sanitizes things like "<NAME>", so this has to be encoded
     if (parameter.kind === "singular") {
-      parts.push(`&lt;${parameter.name}&gt;`);
+      parts.push(`<${parameter.name}>`);
     } else if (parameter.kind === "plus") {
-      parts.push(`&lt;${parameter.name}...&gt;`);
+      parts.push(`<${parameter.name}...>`);
     } else if (parameter.kind === "star") {
       parts.push(`[${parameter.name}...]`);
     } else {

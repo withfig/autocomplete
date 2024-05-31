@@ -1,7 +1,7 @@
-// https://laravel.com/docs/9.x/valet
-// laravel version 9
-// valet version 3.1.X
-// 4 April 2022
+// https://laravel.com/docs/10.x/valet
+// laravel version 10
+// valet version 4.0.X
+// 26 March 2023
 
 const global_option_help: Fig.Option = {
   name: ["-h", "--help"],
@@ -106,6 +106,7 @@ const completionSpec: Fig.Spec = {
         description:
           "On or off. (default=off) will show a 404 page; [on] will display a listing if project folder exists but requested URI not found",
         suggestions: [{ name: "on" }, { name: "off" }],
+        isOptional: true,
       },
       options: [
         global_option_help,
@@ -119,9 +120,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "fetch-share-url",
-      description: "Get the URL to the current Ngrok tunnel",
+      description:
+        "Get the URL to the current share tunnel (for Expose or ngrok)",
       args: {
         name: "domain",
+        isOptional: true,
       },
       options: [
         global_option_help,
@@ -156,8 +159,16 @@ const completionSpec: Fig.Spec = {
       name: "help",
       description: "Display help for a command",
       args: {
-        name: "command_name",
-        description: "The command name [default: 'help']",
+        name: "command",
+        generators: {
+          script: ["valet", "list", "--raw"],
+          postProcess: function (out) {
+            return out.split("\n").map((command) => {
+              const name = command.split(" ")[0];
+              return { name: name, description: "Command", priority: 76 };
+            });
+          },
+        },
       },
       options: [
         {
@@ -206,6 +217,15 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
       },
       options: [
+        {
+          name: "--secure",
+          description: "Link the site with a trusted TLS certificate",
+        },
+        {
+          name: "--isolate",
+          description:
+            "Isolate the site to the PHP version specified in the current working directory's .valetrc file",
+        },
         global_option_secure,
         global_option_help,
         global_option_quiet,
@@ -234,12 +254,13 @@ const completionSpec: Fig.Spec = {
       description: "List commands",
       args: {
         name: "namespace",
+        isOptional: true,
       },
       options: [
         { name: "--raw", description: "To output raw command list" },
         {
           name: "--format",
-          requiresSeparator: true,
+          requiresEquals: true,
           description:
             "The output format (txt, xml, json, or md) [default: 'txt']",
           args: {
@@ -275,14 +296,7 @@ const completionSpec: Fig.Spec = {
       options: [
         { name: ["-f", "--follow"] },
         {
-          name: "-l",
-          args: {
-            name: "LINES",
-          },
-        },
-        {
-          name: "--lines",
-          requiresSeparator: true,
+          name: ["-l", "--lines"],
           args: {
             name: "LINES",
           },
@@ -301,6 +315,7 @@ const completionSpec: Fig.Spec = {
       description: "Get or set the loopback address used for Valet sites",
       args: {
         name: "loopback",
+        isOptional: true,
       },
       options: [
         global_option_help,
@@ -313,7 +328,7 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "on-latest-version",
+      name: ["on-latest-version", "latest"],
       description: "Determine if this is the latest version of Valet",
       options: [
         global_option_help,
@@ -331,6 +346,7 @@ const completionSpec: Fig.Spec = {
         "Open the site for the current (or specified) directory in your browser",
       args: {
         name: "domain",
+        isOptional: true,
       },
       options: [
         global_option_help,
@@ -349,6 +365,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "path",
         template: "folders",
+        isOptional: true,
       },
       options: [
         global_option_help,
@@ -412,6 +429,10 @@ const completionSpec: Fig.Spec = {
         },
       ],
       options: [
+        {
+          name: "--secure",
+          description: "Create a proxy with a trusted TLS certificate",
+        },
         global_option_secure,
         global_option_help,
         global_option_quiet,
@@ -444,8 +465,15 @@ const completionSpec: Fig.Spec = {
       description: "Secure the given domain with a trusted TLS certificate",
       args: {
         name: "domain",
+        isOptional: true,
       },
       options: [
+        {
+          name: "expireIn",
+          description:
+            "The amount of days the self signed certificate is valid for. Default is set to 368",
+          requiresEquals: true,
+        },
         global_option_help,
         global_option_quiet,
         global_option_version,
@@ -603,11 +631,12 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "tld",
+      name: ["tld", "domain"],
       description: "Get or set the TLD used for Valet sites",
       args: {
         name: "tld",
         suggestions: [{ name: "local" }, { name: "test" }],
+        isOptional: true,
       },
       options: [
         global_option_help,
@@ -664,6 +693,7 @@ const completionSpec: Fig.Spec = {
       description: "Remove the specified Valet link",
       args: {
         name: "name",
+        isOptional: true,
       },
       options: [
         global_option_help,
@@ -697,6 +727,7 @@ const completionSpec: Fig.Spec = {
         "Stop serving the given domain over HTTPS and remove the trusted TLS certificate",
       args: {
         name: "domain",
+        isOptional: true,
       },
       options: [
         { name: "--all" },
@@ -715,12 +746,11 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "phpVersion",
         suggestions: [
-          { name: "php@7.2" },
-          { name: "php@7.3" },
-          { name: "php@7.4" },
           { name: "php@8.0" },
           { name: "php@8.1" },
+          { name: "php@8.2" },
         ],
+        isOptional: true,
       },
       options: [
         { name: "--force" },
@@ -753,18 +783,17 @@ const completionSpec: Fig.Spec = {
         "Change the version of PHP used by Valet to serve the current working directory",
       args: {
         name: "phpVersion",
+        isOptional: true,
         suggestions: [
-          { name: "php@7.2" },
-          { name: "php@7.3" },
-          { name: "php@7.4" },
           { name: "php@8.0" },
           { name: "php@8.1" },
+          { name: "php@8.2" },
         ],
       },
       options: [
         {
           name: "--site",
-          requiresSeparator: true,
+          requiresEquals: true,
           description: "Name of the website you want to isolate",
           args: {
             name: "SITE",
@@ -786,7 +815,6 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--site",
-          requiresSeparator: true,
           description: "Name of the website you want to unisolate",
           args: {
             name: "SITE",
@@ -818,7 +846,20 @@ const completionSpec: Fig.Spec = {
       name: "php",
       description:
         'Proxy PHP commands to the "php" executable on the isolated site',
+      args: {
+        name: "command",
+        isOptional: true,
+      },
       options: [
+        {
+          name: "--site",
+          requiresEquals: true,
+          description:
+            "Specify the site to use to get the PHP version (e.g. if the site isn't linked as its directory name)",
+          args: {
+            name: "SITE",
+          },
+        },
         global_option_help,
         global_option_quiet,
         global_option_version,
@@ -832,7 +873,20 @@ const completionSpec: Fig.Spec = {
       name: "composer",
       description:
         'Proxy Composer commands with the "php" executable on the isolated site',
+      args: {
+        name: "command",
+        isOptional: true,
+      },
       options: [
+        {
+          name: "--site",
+          requiresEquals: true,
+          description:
+            "Specify the site to use to get the PHP version (e.g. if the site isn't linked as its directory name)",
+          args: {
+            name: "SITE",
+          },
+        },
         global_option_help,
         global_option_quiet,
         global_option_version,
@@ -845,6 +899,94 @@ const completionSpec: Fig.Spec = {
     {
       name: "which-php",
       description: "Get the PHP executable path for a site",
+      args: {
+        name: "site",
+        isOptional: true,
+      },
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
+    },
+    {
+      name: "completion",
+      description: "Dump the shell completion script",
+      args: {
+        name: "shell",
+        suggestions: [{ name: "bash" }, { name: "fish" }],
+        isOptional: true,
+      },
+      options: [
+        {
+          name: "--debug",
+          description: "Tail the completion debug log",
+        },
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
+    },
+    {
+      name: "secured",
+      description: "Display all of the currently secured sites",
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
+    },
+    {
+      name: "set-ngrok-token",
+      description: "Set the Ngrok auth token",
+      args: {
+        name: "token",
+        isOptional: true,
+      },
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
+    },
+    {
+      name: "share-tool",
+      description: "Get the name of the current share tool (Expose or ngrok)",
+      args: {
+        name: "tool",
+        suggestions: [{ name: "Expose" }, { name: "Ngrok" }],
+        isOptional: true,
+      },
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
+    },
+    {
+      name: "status",
+      description:
+        "Output the status of Valet and its installed services and config",
       options: [
         global_option_help,
         global_option_quiet,

@@ -10,9 +10,8 @@ npm-debug.log
 .vscode
 specs
 
-# we don't have any dependencies which are bundled with
-# the specs so we can safely ignore lockfiles
-# to make everyones life easier
+# we use pnpm-lock.yaml for dependency management
 package-lock.json
 yarn.lock
-pnpm-lock.yaml
+.pnp.*
+.yarn/*

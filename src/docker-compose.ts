@@ -1,16 +1,31 @@
+const getComposeCommand = (tokens: string[]) =>
+  tokens[0] === "docker" ? ["docker", "compose"] : ["docker-compose"];
+
+const extractFileArgs = (tokens: string[]): string[] => {
+  const files: string[] = [];
+  for (let i = 0; i < tokens.length - 1; i++) {
+    if (tokens[i] === "-f") {
+      files.push(tokens[i + 1]);
+      i += 1;
+    }
+  }
+  return files.flatMap((f) => ["-f", f]);
+};
+
 const servicesGenerator: Fig.Generator = {
   script: (tokens) => {
-    const compose =
-      tokens[0] === "docker" ? "docker compose" : "docker-compose";
-    const files: string[] = [];
-    for (let i = 0; i < tokens.length - 1; i++) {
-      if (tokens[i] === "-f") {
-        files.push(tokens[i + 1]);
-        i += 1;
-      }
-    }
-    const fileArgs = files.map((f) => `-f ${f}`).join(" ");
-    return `${compose} ${fileArgs} config --services`;
+    const compose = getComposeCommand(tokens);
+    const fileArgs = extractFileArgs(tokens);
+    return [...compose, ...fileArgs, "config", "--services"];
+  },
+  splitOn: "\n",
+};
+
+const profilesGenerator: Fig.Generator = {
+  script: (tokens) => {
+    const compose = getComposeCommand(tokens);
+    const fileArgs = extractFileArgs(tokens);
+    return [...compose, ...fileArgs, "config", "--profiles"];
   },
   splitOn: "\n",
 };
@@ -627,6 +642,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
+      args: {
+        name: "service",
+        isVariadic: true,
+        isOptional: true,
+        generators: servicesGenerator,
+      },
     },
     {
       name: "rm",
@@ -998,6 +1019,7 @@ const completionSpec: Fig.Spec = {
       isRepeatable: true,
       args: {
         name: "profile",
+        generators: profilesGenerator,
       },
     },
     {

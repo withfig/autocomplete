@@ -8,13 +8,14 @@ interface NodejsVersion {
 
 // Generators
 const versionGenerator: Fig.Generator = {
-  script: "fnm ls",
+  script: ["fnm", "list"],
   postProcess: function (out) {
     return out
       .split("\n")
       .reverse()
       .map((line) => ({
-        name: line.slice(2),
+        name: line.slice(2).split(" ")[0],
+        displayName: line.slice(2),
         description: `Node.js ${line.slice(2)}`,
       }));
   },
@@ -48,7 +49,7 @@ const uniqBy = <T = unknown>(arr: T[], callback: (a: T, b: T) => boolean) =>
  * - Every other version, sorted;
  */
 const remoteVersionGenerator: Fig.Generator = {
-  script: "fnm ls-remote",
+  script: ["fnm", "list-remote"],
   postProcess: function (out) {
     const parsed = out
       .split("\n")
@@ -185,15 +186,33 @@ const logLevel: Fig.Option = {
 
 const nodeDistMirror: Fig.Option = {
   name: "--node-dist-mirror",
-  description: "Https://nodejs.org/dist/ mirror",
+  description: "Mirror of https://nodejs.org/dist",
   args: {
     name: "nodeDistMirror",
     default: "https://nodejs.org/dist",
   },
 };
 
+const versionFileStrategy: Fig.Option = {
+  name: "--version-file-strategy",
+  description: "Strategy for how to resolve the Node version",
+  args: {
+    name: "strategy",
+    default: "local",
+    suggestions: ["local", "recursive"],
+  },
+};
+
 // Theses options are available in every single sub-command
-const baseOptions = [help, fnmVersion, arch, fnmDir, logLevel, nodeDistMirror];
+const baseOptions = [
+  help,
+  fnmVersion,
+  arch,
+  fnmDir,
+  logLevel,
+  nodeDistMirror,
+  versionFileStrategy,
+];
 
 const completionSpec: Fig.Spec = {
   name: "fnm",
@@ -307,20 +326,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "command",
         isOptional: true,
-        suggestions: [
-          "alias",
-          "completions",
-          "current",
-          "default",
-          "env",
-          "exec",
-          "help",
-          "install",
-          "list",
-          "list-remote",
-          "uninstall",
-          "use",
-        ],
+        template: "help",
       },
       options: baseOptions,
     },

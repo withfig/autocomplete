@@ -19,7 +19,7 @@ const RFileGenerator = filepaths({
 });
 
 const RLibGenerator: Fig.Generator = {
-  script: "Rscript -e '.libPaths()'",
+  script: ["Rscript", "-e", ".libPaths()"],
   postProcess: (output) => {
     if (output.includes("not found")) {
       return [];

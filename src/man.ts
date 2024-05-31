@@ -1,3 +1,5 @@
+import { valueList } from "@fig/autocomplete-generators";
+
 const sections = {
   "1": "General commands",
   "2": "System calls",
@@ -9,55 +11,102 @@ const sections = {
   "8": "System admin and daemons",
 };
 
-const sectionIcon = "📑";
+/** Cache of page suggestions. The key is the first letter of the `name` */
+const pageSuggestionCache = new Map<string, Fig.Suggestion[]>();
 
+// JS time, so this is in milliseconds
+let lastCachedAt = 0;
+// 60m ttl
+const pageSuggestionCacheTTL = 1000 * 60 * 60;
+// A lock-ish thing to prevent running the command multiple times. Without this
+// lock, `man -k .` can be run multiple times, causing some visual slowness/jank
+let isGeneratingSuggestions = false;
+
+/** Suggests manual pages, caches the list once */
 const generateManualPages: Fig.Generator = {
   // only trigger when the token length transitions to or from 0
   // soon: { on: "threshold", length: 0 }
   trigger: (current, previous) =>
     current.length === 0 || (previous.length === 0 && current.length > 0),
 
-  // have to use `custom` to skip running the script when length is 0
+  // Most of the time, this will complete instantly. When building the cache,
+  // it may take a few seconds. This is set to 15s for slower/older machines
+  // where FS access may be slower.
+  scriptTimeout: 15000,
+
   custom: async (tokens, executeShellCommand) => {
     const finalToken = tokens[tokens.length - 1];
-    if (finalToken.length === 0) {
-      return [];
+
+    // Clear the cache if the TTL has elapsed
+    const now = Date.now();
+    if (now - lastCachedAt > pageSuggestionCacheTTL) {
+      pageSuggestionCache.clear();
+      lastCachedAt = now;
     }
-    // Only lines matching the first character, delete characters after '('
-    const out = await executeShellCommand(
-      `man -k . | grep '^${finalToken[0]}' | sed 's/(.*//g' | sort -u`
-    );
-    return out
-      .trim()
-      .split("\n")
-      .map((name) => ({
-        name,
-        description: "Manual page",
-        icon: "fig://icon?type=string",
-      }));
+
+    // If there's nothing in the cache yet, build it
+    if (!isGeneratingSuggestions && pageSuggestionCache.size === 0) {
+      // try/finally is unnecessary because the operations in this block
+      // aren't fallible
+      isGeneratingSuggestions = true;
+
+      // Same as `apropos .`, lists all manual pages with a brief description
+      const { stdout } = await executeShellCommand({
+        command: "man",
+        args: ["-k", "."],
+      });
+      const seenPageNameCache = new Set<string>();
+
+      // Guaranteed to be one per line
+      for (const line of stdout.split("\n")) {
+        const splitIndex = line.indexOf(" - ");
+
+        const pageNames = line.slice(0, splitIndex);
+        let description = line.slice(splitIndex + 3) || "Manual page";
+        description = description[0].toLocaleUpperCase() + description.slice(1);
+
+        const pages = pageNames.split(", ");
+
+        for (const page of pages) {
+          const i = page.lastIndexOf("(");
+          const name = page.slice(0, i);
+          const section = page.slice(i);
+          if (seenPageNameCache.has(name)) {
+            continue;
+          }
+          seenPageNameCache.add(name);
+          const suggestion = {
+            name,
+            description: `${section} ${description}`,
+            icon: "fig://icon?type=string",
+          };
+          const arr = pageSuggestionCache.get(name[0]);
+
+          if (arr) {
+            arr.push(suggestion);
+          } else {
+            pageSuggestionCache.set(name[0], [suggestion]);
+          }
+        }
+      }
+      isGeneratingSuggestions = false;
+    } else if (isGeneratingSuggestions) {
+      // If the suggestions are being generated, try waiting 4 seconds before
+      // attempting to show the results
+      await new Promise<void>((resolve) => setTimeout(() => resolve(), 4000));
+    }
+    return pageSuggestionCache.get(finalToken[0] || "a") || [];
   },
 };
 
 const completionSpec: Fig.Spec = {
   name: "man",
   description: "Format and display the on-line manual pages",
-  args: [
-    // No `name` or `description` because the popup stays open
-    {
-      generators: generateManualPages,
-      suggestions: Object.entries(sections).map(([number, topic]) => ({
-        name: number,
-        insertValue: `${number} {cursor}`,
-        description: `Section ${number}: ${topic}`,
-        priority: 49,
-        icon: sectionIcon,
-      })),
-    },
-    {
-      generators: generateManualPages,
-      isOptional: true,
-    },
-  ],
+  args: {
+    generators: generateManualPages,
+    isOptional: true,
+    isVariadic: true,
+  },
   options: [
     {
       name: "-C",
@@ -107,18 +156,15 @@ const completionSpec: Fig.Spec = {
         "Specify a colon-separated list of manual sections to search",
       args: {
         name: "sections",
-        generators: {
-          getQueryTerm: ":",
-          custom: async (tokens) =>
-            Object.entries(sections)
-              .filter(([name]) => !tokens[tokens.length - 1].includes(name))
-              .map(([name, description]) => ({
-                name,
-                description,
-                insertValue: name + ":",
-                icon: sectionIcon,
-              })),
-        },
+        generators: valueList({
+          delimiter: ":",
+          insertDelimiter: true,
+          values: Object.entries(sections).map(([name, description]) => ({
+            name,
+            description,
+            icon: "📑",
+          })),
+        }),
       },
     },
     {

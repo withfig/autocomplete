@@ -1,8 +1,11 @@
 import { filepaths } from "@fig/autocomplete-generators";
 
 const tagsGenerator: Fig.Generator = {
-  script:
+  script: [
+    "bash",
+    "-c",
     'for i in $(find -E . -regex ".*.robot" -type f); do cat -s $i ; done',
+  ],
   postProcess: (out) => {
     // find all lines with tags
     // regex: line that starts with 2+ spaces, than '[Tags]  ' and words
@@ -34,10 +37,14 @@ const variablesGenerator: Fig.Generator = {
     const finalToken = tokens[tokens.length - 1];
     const isKey = !finalToken.includes(":");
     if (!isKey) return [];
-    const out = await executeShellCommand(
-      'for i in $(find -E . -regex ".*.(robot|resource)" -type f); do cat -s $i ; done'
-    );
-    const iter = out.matchAll(/^\$\{(.*?)\}/gm);
+    const { stdout } = await executeShellCommand({
+      command: "bash",
+      args: [
+        "-c",
+        'for i in $(find -E . -regex ".*.(robot|resource)" -type f); do cat -s $i ; done',
+      ],
+    });
+    const iter = stdout.matchAll(/^\$\{(.*?)\}/gm);
     return [...iter]
       .map((item) => item[1])
       .map((variable) => ({
@@ -48,8 +55,11 @@ const variablesGenerator: Fig.Generator = {
 };
 
 const testCasesGenerator: Fig.Generator = {
-  script:
+  script: [
+    "bash",
+    "-c",
     'for i in $(find -E . -regex ".*.robot" -type f); do cat -s $i ; done',
+  ],
   postProcess: (out) => {
     // find all parts of the code with test cases
     // regex: everything after '***Test Cases***' until '***???***')
@@ -64,7 +74,7 @@ const testCasesGenerator: Fig.Generator = {
     for (const [_, block] of iter) {
       // get every test case name
       // regex: word/s at the start of a line until '#'
-      const lines = block.matchAll(/^(\w+ *)+(?!.\#.*)(?!.\#.*)/gm);
+      const lines = block.matchAll(/^(\w+( |-)*)+(?!.\#.*)(?!.\#.*)/gm);
       // go through all the test cases names found
       for (let [testCase] of lines) {
         testCase = testCase.trim();
@@ -458,12 +468,12 @@ const completionSpec: Fig.Spec = {
         name: "pattern",
         suggestions: [
           {
-            name: "name:&lt;pattern&gt;",
+            name: "name:<pattern>",
             insertValue: "name:{cursor}",
             type: "option",
           },
           {
-            name: "tag:&lt;pattern&gt;",
+            name: "tag:<pattern>",
             insertValue: "tag:{cursor}",
             type: "option",
           },
@@ -504,12 +514,12 @@ const completionSpec: Fig.Spec = {
             type: "option",
           },
           {
-            name: "name:&lt;pattern&gt;",
+            name: "name:<pattern>",
             insertValue: "name:{cursor}",
             type: "option",
           },
           {
-            name: "tag:&lt;pattern&gt;",
+            name: "tag:<pattern>",
             insertValue: "tag:{cursor}",
             type: "option",
           },
@@ -538,12 +548,12 @@ const completionSpec: Fig.Spec = {
             type: "option",
           },
           {
-            name: "name:&lt;pattern&gt;",
+            name: "name:<pattern>",
             insertValue: "name:{cursor}",
             type: "option",
           },
           {
-            name: "tag:&lt;pattern&gt;",
+            name: "tag:<pattern>",
             insertValue: "tag:{cursor}",
             type: "option",
           },
@@ -736,7 +746,6 @@ const completionSpec: Fig.Spec = {
         name: "path",
         generators: filepaths({
           extensions: ["zip"],
-          suggestFolders: "always",
         }),
       },
     },

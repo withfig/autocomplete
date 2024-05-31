@@ -57,14 +57,14 @@ const postPrecessGenerator = (
 
 const customGenerator = async (
   tokens: string[],
-  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  executeShellCommand: Fig.ExecuteCommandFunction,
   command: string,
   options: string[],
   parentKey: string,
   childKey = ""
 ): Promise<Fig.Suggestion[]> => {
   try {
-    let cmd = `aws ecs ${command}`;
+    let args = ["ecs", command];
 
     for (const option of options) {
       const idx = tokens.indexOf(option);
@@ -72,12 +72,15 @@ const customGenerator = async (
         continue;
       }
       const param = tokens[idx + 1];
-      cmd += ` ${option} ${param}`;
+      args = [...args, option, param];
     }
 
-    const out = await executeShellCommand(cmd);
+    const { stdout } = await executeShellCommand({
+      command: "aws",
+      args,
+    });
 
-    const list = JSON.parse(out)[parentKey];
+    const list = JSON.parse(stdout)[parentKey];
 
     if (!Array.isArray(list)) {
       return [
@@ -103,22 +106,29 @@ const customGenerator = async (
 
 const MultiSuggestionsGenerator = async (
   tokens: string[],
-  executeShellCommand: Fig.ExecuteShellCommandFunction,
-  enabled: Record<string, string>[]
+  executeShellCommand: Fig.ExecuteCommandFunction,
+  enabled: {
+    command: string[];
+    parentKey: string;
+    childKey: string;
+  }[]
 ) => {
   try {
     const list: Fig.Suggestion[][] = [];
     const promises: Promise<string>[] = [];
     for (let i = 0; i < enabled.length; i++) {
-      promises[i] = executeShellCommand(enabled[i]["command"]);
+      promises[i] = executeShellCommand({
+        command: "aws",
+        args: enabled[i].command,
+      }).then(({ stdout }) => stdout);
     }
     const result = await Promise.all(promises);
 
     for (let i = 0; i < enabled.length; i++) {
       list[i] = postPrecessGenerator(
         result[i],
-        enabled[i]["parentKey"],
-        enabled[i]["childKey"]
+        enabled[i].parentKey,
+        enabled[i].childKey
       );
     }
 
@@ -131,12 +141,12 @@ const MultiSuggestionsGenerator = async (
 
 const _prefixFile = "file://";
 
-const appendFolderPath = (tokens: string[], prefix: string): string => {
-  const baseLSCommand = "\\ls -1ApL ";
+const appendFolderPath = (tokens: string[], prefix: string): string[] => {
+  const baseLsCommand = ["ls", "-1ApL"];
   let whatHasUserTyped = tokens[tokens.length - 1];
 
   if (!whatHasUserTyped.startsWith(prefix)) {
-    return `echo '${prefix}'`;
+    return ["echo", prefix];
   }
   whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
 
@@ -151,7 +161,7 @@ const appendFolderPath = (tokens: string[], prefix: string): string => {
     }
   }
 
-  return baseLSCommand + folderPath;
+  return [...baseLsCommand, folderPath];
 };
 
 const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
@@ -255,18 +265,18 @@ const generators = {
   },
 
   listCapacityProviders: {
-    script: "aws ecs describe-capacity-providers",
+    script: ["aws", "ecs", "describe-capacity-providers"],
     postProcess: (out) =>
       postPrecessGenerator(out, "capacityProviders", "name"),
   },
 
   listClusters: {
-    script: "aws ecs list-clusters",
+    script: ["aws", "ecs", "list-clusters"],
     postProcess: (out) => postPrecessGenerator(out, "clusterArns"),
   },
 
   listTaskDefinitions: {
-    script: "aws ecs list-task-definitions",
+    script: ["aws", "ecs", "list-task-definitions"],
     postProcess: (out) => postPrecessGenerator(out, "taskDefinitionArns"),
   },
 
@@ -283,32 +293,38 @@ const generators = {
   },
 
   listRoles: {
-    script: "aws iam list-roles",
+    script: ["aws", "iam", "list-roles"],
     postProcess: (out) => postPrecessGenerator(out, "Roles", "RoleName"),
   },
 
   listServices: {
-    script: "aws ecs list-services",
+    script: ["aws", "ecs", "list-services"],
     postProcess: (out) => postPrecessGenerator(out, "serviceArns"),
   },
 
   listUsers: {
-    script: "aws iam list-users",
+    script: ["aws", "iam", "list-users"],
     postProcess: (out) => postPrecessGenerator(out, "Users", "Arn"),
   },
 
   listContainerInstances: {
-    script: "aws ecs list-container-instances",
+    script: ["aws", "ecs", "list-container-instances"],
     postProcess: (out) => postPrecessGenerator(out, "containerInstanceArns"),
   },
 
   listTasks: {
-    script: "aws ecs list-tasks",
+    script: ["aws", "ecs", "list-tasks"],
     postProcess: (out) => postPrecessGenerator(out, "taskArns"),
   },
 
   listAttributeNames: {
-    script: "aws ecs list-attributes --target-type container-instance",
+    script: [
+      "aws",
+      "ecs",
+      "list-attributes",
+      "--target-type",
+      "container-instance",
+    ],
     postProcess: (out) => postPrecessGenerator(out, "attributes", "name"),
   },
 
@@ -325,7 +341,7 @@ const generators = {
   },
 
   listTaskDefinitionFamilies: {
-    script: "aws ecs list-task-definition-families",
+    script: ["aws", "ecs", "list-task-definition-families"],
     postProcess: (out) => postPrecessGenerator(out, "families"),
   },
 
@@ -334,7 +350,7 @@ const generators = {
       const out = await executeShellCommand("aws ecs list-tasks");
       const list = JSON.parse(out)["taskArns"];
       const tasks = list.map((arn) => ({
-        command: `aws ecs describe-tasks --tasks ${arn}`,
+        command: ["ecs", "describe-tasks", "--tasks", arn],
         parentKey: "tasks",
         childKey: "startedBy",
       }));
@@ -355,7 +371,7 @@ const generators = {
       );
       const list = JSON.parse(out)["taskArns"];
       const tasks = list.map((arn) => ({
-        command: `aws ecs describe-tasks --tasks ${arn}`,
+        command: ["ecs", "describe-tasks", "--tasks", arn],
         parentKey: "tasks",
         childKey: "group",
       }));
@@ -368,7 +384,7 @@ const generators = {
       customGenerator(
         out,
         executeShellCommand,
-        "aws ecs list-tags-for-resource",
+        "list-tags-for-resource",
         ["--resource-arn"],
         "tags",
         "key"
@@ -376,7 +392,7 @@ const generators = {
   },
 
   listCodedeployApplications: {
-    script: "aws deploy list-applications",
+    script: ["aws", "deploy", "list-applications"],
     postProcess: (out) => postPrecessGenerator(out, "applications"),
   },
 
@@ -2875,7 +2891,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--network-mode",
           description:
-            "The Docker networking mode to use for the containers in the task. The valid values are none, bridge, awsvpc, and host. If no network mode is specified, the default is bridge. For Amazon ECS tasks on Fargate, the awsvpc network mode is required. For Amazon ECS tasks on Amazon EC2 instances, any network mode can be used. If the network mode is set to none, you cannot specify port mappings in your container definitions, and the tasks containers do not have external connectivity. The host and awsvpc network modes offer the highest networking performance for containers because they use the EC2 network stack instead of the virtualized network stack provided by the bridge mode. With the host and awsvpc network modes, exposed container ports are mapped directly to the corresponding host port (for the host network mode) or the attached elastic network interface port (for the awsvpc network mode), so you cannot take advantage of dynamic host port mappings.   When using the host network mode, you should not run containers using the root user (UID 0). It is considered best practice to use a non-root user.  If the network mode is awsvpc, the task is allocated an elastic network interface, and you must specify a NetworkConfiguration value when you create a service or run a task with the task definition. For more information, see Task Networking in the Amazon Elastic Container Service Developer Guide.  Currently, only Amazon ECS-optimized AMIs, other Amazon Linux variants with the ecs-init package, or AWS Fargate infrastructure support the awsvpc network mode.   If the network mode is host, you cannot run multiple instantiations of the same task on a single container instance when port mappings are used. Docker for Windows uses different network modes than Docker for Linux. When you register a task definition with Windows containers, you must not specify a network mode. If you use the console to register a task definition with Windows containers, you must choose the &lt;default&gt; network mode object.  For more information, see Network settings in the Docker run reference",
+            "The Docker networking mode to use for the containers in the task. The valid values are none, bridge, awsvpc, and host. If no network mode is specified, the default is bridge. For Amazon ECS tasks on Fargate, the awsvpc network mode is required. For Amazon ECS tasks on Amazon EC2 instances, any network mode can be used. If the network mode is set to none, you cannot specify port mappings in your container definitions, and the tasks containers do not have external connectivity. The host and awsvpc network modes offer the highest networking performance for containers because they use the EC2 network stack instead of the virtualized network stack provided by the bridge mode. With the host and awsvpc network modes, exposed container ports are mapped directly to the corresponding host port (for the host network mode) or the attached elastic network interface port (for the awsvpc network mode), so you cannot take advantage of dynamic host port mappings.   When using the host network mode, you should not run containers using the root user (UID 0). It is considered best practice to use a non-root user.  If the network mode is awsvpc, the task is allocated an elastic network interface, and you must specify a NetworkConfiguration value when you create a service or run a task with the task definition. For more information, see Task Networking in the Amazon Elastic Container Service Developer Guide.  Currently, only Amazon ECS-optimized AMIs, other Amazon Linux variants with the ecs-init package, or AWS Fargate infrastructure support the awsvpc network mode.   If the network mode is host, you cannot run multiple instantiations of the same task on a single container instance when port mappings are used. Docker for Windows uses different network modes than Docker for Linux. When you register a task definition with Windows containers, you must not specify a network mode. If you use the console to register a task definition with Windows containers, you must choose the <default> network mode object.  For more information, see Network settings in the Docker run reference",
           args: {
             name: "string",
             suggestions: ["bridge", "host", "awsvpc", "none"],

@@ -17,15 +17,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.FIG_BOT_TOKEN }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: package.json
         # Install all dependencies
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4.0.0
       - name: install
-        run: npm install
+        run: pnpm install --frozen-lockfile
         # Transpile all specs from ts to js
       - name: build
-        run: npm run build
+        run: pnpm build
         # Zip the transpiled files into the specs.zip file
       - name: bundle files
         run: |
@@ -35,7 +40,7 @@ jobs:
         # Bump the version and create a git tag with the new version
       - name: Bump version and push tag
         id: tag_version
-        uses: mathieudutour/github-tag-action@v5.4
+        uses: mathieudutour/github-tag-action@v6.2
         with:
           tag_prefix: spec-build-number-
           # Bump versions in full numbers (1.0.0 -> 2.0.0)
@@ -43,7 +48,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
         # Create a new github release with the newly created specs.zip file
       - name: Release
-        uses: softprops/action-gh-release@59c3b4891632ff9a897f99a91d7bc557467a3a22
+        uses: softprops/action-gh-release@69320dbe05506a9a39fc8ae11030b214ec2d1f87
         with:
           files: specs.zip
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
@@ -56,7 +61,7 @@ jobs:
         with:
           skip-tag: "true"
       - name: Publish to npm
-        uses: JS-DevTools/npm-publish@v1
+        uses: JS-DevTools/npm-publish@v3
         with:
           access: public
           token: ${{ secrets.NPM_PUBLISH_TOKEN }}

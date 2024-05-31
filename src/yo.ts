@@ -22,7 +22,7 @@ const suggestions: Fig.Suggestion[] = [
 
 // GENERATORS
 const yeomanGeneratorList: Fig.Generator = {
-  script: "yo --generators",
+  script: ["yo", "--generators"],
   postProcess: function (out) {
     try {
       return out
@@ -42,7 +42,7 @@ const yeomanGeneratorList: Fig.Generator = {
                   description: `Help of "${toTitleCase(item)}" generator`,
                 },
               ],
-            } as Fig.Suggestion)
+            }) as Fig.Suggestion
         ) as Fig.Suggestion[];
     } catch (e) {
       console.error(e);

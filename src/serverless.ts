@@ -1,4 +1,4 @@
-// To learn more about Fig's autocomplete standard visit: https://fig.io/docs/concepts/cli-skeleton
+import YAML from "yaml";
 
 const options: Record<string, Fig.Option> = {
   awsProfile: {
@@ -403,6 +403,34 @@ const completionSpec: Fig.Spec = {
       description: "Enable or disable stats",
     },
   ],
+  generateSpec: async (tokens, executeShellCommand) => {
+    const { stdout } = await executeShellCommand({
+      command: "cat",
+      // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+      args: ["serverless-compose.yml"],
+    });
+    const servicesObject = YAML.parse(stdout).services;
+    const services: string[] = Object.keys(servicesObject);
+    // Avoid infinite recursion of generated subcommands
+    if (services.includes(tokens[0])) {
+      return;
+    }
+
+    const subcommands: Fig.Subcommand[] = services.map((service) => ({
+      name: service,
+      description: tokens.join(","),
+      priority: 100,
+      loadSpec: "serverless",
+      icon: "fig://icon?type=box",
+    }));
+
+    if (subcommands.length > 0) {
+      return {
+        name: "serverless",
+        subcommands,
+      };
+    }
+  },
 };
 
 export default completionSpec;

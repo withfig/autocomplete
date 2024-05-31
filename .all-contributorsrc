@@ -273,6 +273,24 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "paolorossig",
+      "name": "Paolo Rossi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/62861353?v=4",
+      "profile": "https://github.com/paolorossig",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "pivoshenko",
+      "name": "Volodymyr Pivoshenko",
+      "avatar_url": "https://avatars.githubusercontent.com/u/40499728?v=4",
+      "profile": "https://github.com/pivoshenko",
+      "contributions": [
+        "code"
+      ]
     }
   ]
 }

@@ -2,8 +2,20 @@ import { npmScriptsGenerator, npmSearchGenerator } from "./npm";
 
 export const yarnScriptParserDirectives: Fig.Arg["parserDirectives"] = {
   alias: async (token, executeShellCommand) => {
-    const out = await executeShellCommand("cat $(npm prefix)/package.json");
-    const script: string = JSON.parse(out).scripts?.[token];
+    const npmPrefix = await executeShellCommand({
+      command: "npm",
+      // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+      args: ["prefix"],
+    });
+    if (npmPrefix.status !== 0) {
+      throw new Error("npm prefix command failed");
+    }
+    const packageJson = await executeShellCommand({
+      command: "cat",
+      // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+      args: [`${npmPrefix.stdout.trim()}/package.json`],
+    });
+    const script: string = JSON.parse(packageJson.stdout).scripts?.[token];
     if (!script) {
       throw new Error(`Script not found: '${token}'`);
     }
@@ -11,7 +23,7 @@ export const yarnScriptParserDirectives: Fig.Arg["parserDirectives"] = {
   },
 };
 
-export const nodeClis = [
+export const nodeClis = new Set([
   "vue",
   "vite",
   "nuxt",
@@ -28,30 +40,33 @@ export const nodeClis = [
   "typeorm",
   "babel",
   "remotion",
-  "@withfig/autocomplete-tools",
-  "@redwoodjs/core",
+  "autocomplete-tools",
+  "redwood",
+  "rw",
   "create-completion-spec",
-  "@fig/publish-spec-to-team",
+  "publish-spec-to-team",
   "capacitor",
   "cap",
-];
-
-type SearchResult = {
-  package: {
-    name: string;
-    description: string;
-  };
-  searchScore: number;
-};
+]);
 
 // generate global package list from global package.json file
 const getGlobalPackagesGenerator: Fig.Generator = {
-  script: 'cat "$(yarn global dir)/package.json"',
-  postProcess: (out, tokens) => {
-    if (out.trim() == "") return [];
+  custom: async (tokens, executeCommand, generatorContext) => {
+    const { stdout: yarnGlobalDir } = await executeCommand({
+      command: "yarn",
+      args: ["global", "dir"],
+    });
+
+    const { stdout } = await executeCommand({
+      command: "cat",
+      // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+      args: [`${yarnGlobalDir.trim()}/package.json`],
+    });
+
+    if (stdout.trim() == "") return [];
 
     try {
-      const packageContent = JSON.parse(out);
+      const packageContent = JSON.parse(stdout);
       const dependencyScripts = packageContent["dependencies"] || {};
       const devDependencyScripts = packageContent["devDependencies"] || {};
       const dependencies = [
@@ -75,7 +90,7 @@ const getGlobalPackagesGenerator: Fig.Generator = {
 
 // generate package list of direct and indirect dependencies
 const allDependenciesGenerator: Fig.Generator = {
-  script: "yarn list --depth=0 --json",
+  script: ["yarn", "list", "--depth=0", "--json"],
   postProcess: (out) => {
     if (out.trim() == "") return [];
 
@@ -92,7 +107,7 @@ const allDependenciesGenerator: Fig.Generator = {
 };
 
 const configList: Fig.Generator = {
-  script: "yarn config list",
+  script: ["yarn", "config", "list"],
   postProcess: function (out) {
     if (out.trim() == "") {
       return [];
@@ -119,8 +134,11 @@ const configList: Fig.Generator = {
 };
 
 export const dependenciesGenerator: Fig.Generator = {
-  script:
+  script: [
+    "bash",
+    "-c",
     "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json",
+  ],
   postProcess: function (out, context = []) {
     if (out.trim() === "") {
       return [];
@@ -144,8 +162,8 @@ export const dependenciesGenerator: Fig.Generator = {
           description: dependencies[pkgName]
             ? "dependency"
             : optionalDependencies[pkgName]
-            ? "optionalDependency"
-            : "devDependency",
+              ? "optionalDependency"
+              : "devDependency",
         }));
     } catch (e) {
       console.error(e);
@@ -333,9 +351,15 @@ const commonOptions: Fig.Option[] = [
 
 export const createCLIsGenerator: Fig.Generator = {
   script: function (context) {
-    if (context[context.length - 1] === "") return "";
+    if (context[context.length - 1] === "") return undefined;
     const searchTerm = "create-" + context[context.length - 1];
-    return `curl -s -H "Accept: application/json" "https://api.npms.io/v2/search?q=${searchTerm}&size=20"`;
+    return [
+      "curl",
+      "-s",
+      "-H",
+      "Accept: application/json",
+      `https://api.npms.io/v2/search?q=${searchTerm}&size=20`,
+    ];
   },
   cache: {
     ttl: 100 * 24 * 60 * 60 * 3, // 3 days
@@ -347,7 +371,7 @@ export const createCLIsGenerator: Fig.Generator = {
           ({
             name: item.package.name.substring(7),
             description: item.package.description,
-          } as Fig.Suggestion)
+          }) as Fig.Suggestion
       ) as Fig.Suggestion[];
     } catch (e) {
       return [];
@@ -359,18 +383,21 @@ const completionSpec: Fig.Spec = {
   name: "yarn",
   description: "Manage packages and run scripts",
   generateSpec: async (tokens, executeShellCommand) => {
-    const { script, postProcess } = dependenciesGenerator;
+    const binaries = (
+      await executeShellCommand({
+        command: "bash",
+        args: [
+          "-c",
+          `until [[ -d node_modules/ ]] || [[ $PWD = '/' ]]; do cd ..; done; ls -1 node_modules/.bin/`,
+        ],
+      })
+    ).stdout.split("\n");
 
-    const packages = postProcess(
-      await executeShellCommand(script as string),
-      tokens
-    ).map(({ name }) => name as string);
-
-    const subcommands = packages
-      .filter((name) => nodeClis.includes(name))
+    const subcommands = binaries
+      .filter((name) => nodeClis.has(name))
       .map((name) => ({
-        name: name === "@redwoodjs/core" ? ["redwood", "rw"] : name,
-        loadSpec: name === "@redwoodjs/core" ? "redwood" : name,
+        name: name,
+        loadSpec: name === "rw" ? "redwood" : name,
         icon: "fig://icon?type=package",
       }));
 
@@ -958,6 +985,12 @@ const completionSpec: Fig.Spec = {
           name: "upgrade-interactive",
           description:
             "Display the outdated packages before performing any upgrade",
+          options: [
+            {
+              name: "--latest",
+              description: "Use the version tagged latest in the registry",
+            },
+          ],
         },
       ],
       options: [
@@ -1148,6 +1181,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "policies",
       description: "Defines project-wide policies for your project",
+      subcommands: [
+        {
+          name: "set-version",
+          description: "Will download the latest stable release",
+          options: [
+            {
+              name: "--rc",
+              description: "Download the latest rc release",
+            },
+          ],
+        },
+      ],
     },
     {
       name: "publish",
@@ -1254,6 +1299,49 @@ const completionSpec: Fig.Spec = {
     {
       name: "team",
       description: "Maintain team memberships",
+      subcommands: [
+        {
+          name: "create",
+          description: "Create a new team",
+          args: {
+            name: "<scope:team>",
+          },
+        },
+        {
+          name: "destroy",
+          description: "Destroys an existing team",
+          args: {
+            name: "<scope:team>",
+          },
+        },
+        {
+          name: "add",
+          description: "Add a user to an existing team",
+          args: [
+            {
+              name: "<scope:team>",
+            },
+            {
+              name: "<user>",
+            },
+          ],
+        },
+        {
+          name: "remove",
+          description: "Remove a user from a team they belong to",
+          args: {
+            name: "<scope:team> <user>",
+          },
+        },
+        {
+          name: "list",
+          description:
+            "If performed on an organization name, will return a list of existing teams under that organization. If performed on a team, it will instead return a list of all users belonging to that particular team",
+          args: {
+            name: "<scope>|<scope:team>",
+          },
+        },
+      ],
     },
     {
       name: "unlink",
@@ -1328,6 +1416,13 @@ const completionSpec: Fig.Spec = {
       name: "version",
       description: "Update version of your package",
       options: [
+        ...commonOptions,
+        { name: ["-h", "--help"], description: "Output usage information" },
+        {
+          name: "--new-version",
+          description: "New version",
+          args: { name: "version" },
+        },
         {
           name: "--major",
           description: "Auto-increment major version number",
@@ -1340,6 +1435,39 @@ const completionSpec: Fig.Spec = {
           name: "--patch",
           description: "Auto-increment patch version number",
         },
+        {
+          name: "--premajor",
+          description: "Auto-increment premajor version number",
+        },
+        {
+          name: "--preminor",
+          description: "Auto-increment preminor version number",
+        },
+        {
+          name: "--prepatch",
+          description: "Auto-increment prepatch version number",
+        },
+        {
+          name: "--prerelease",
+          description: "Auto-increment prerelease version number",
+        },
+        {
+          name: "--preid",
+          description: "Add a custom identifier to the prerelease",
+          args: { name: "preid" },
+        },
+        {
+          name: "--message",
+          description: "Message",
+          args: { name: "message" },
+        },
+        { name: "--no-git-tag-version", description: "No git tag version" },
+        {
+          name: "--no-commit-hooks",
+          description: "Bypass git hooks when committing new version",
+        },
+        { name: "--access", description: "Access", args: { name: "access" } },
+        { name: "--tag", description: "Tag", args: { name: "tag" } },
       ],
     },
     {
@@ -1361,6 +1489,16 @@ const completionSpec: Fig.Spec = {
           name: ["-h", "--help"],
           description: "Output usage information",
         },
+        {
+          name: "--peers",
+          description:
+            "Print the peer dependencies that match the specified name",
+        },
+        {
+          name: ["-R", "--recursive"],
+          description:
+            "List, for each workspace, what are all the paths that lead to the dependency",
+        },
       ],
     },
     {
@@ -1368,17 +1506,26 @@ const completionSpec: Fig.Spec = {
       description: "Manage workspace",
       filterStrategy: "fuzzy",
       generateSpec: async (_tokens, executeShellCommand) => {
-        const version = await executeShellCommand("yarn --version");
+        const version = (
+          await executeShellCommand({
+            command: "yarn",
+            // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+            args: ["--version"],
+          })
+        ).stdout;
         const isYarnV1 = version.startsWith("1.");
 
         const getWorkspacesDefinitionsV1 = async () => {
-          const out = await executeShellCommand(`yarn workspaces info`);
+          const { stdout } = await executeShellCommand({
+            command: "yarn",
+            args: ["workspaces", "info"],
+          });
 
-          const startJson = out.indexOf("{");
-          const endJson = out.lastIndexOf("}");
+          const startJson = stdout.indexOf("{");
+          const endJson = stdout.lastIndexOf("}");
 
           return Object.entries(
-            JSON.parse(out.slice(startJson, endJson + 1)) as Record<
+            JSON.parse(stdout.slice(startJson, endJson + 1)) as Record<
               string,
               { location: string }
             >
@@ -1390,7 +1537,13 @@ const completionSpec: Fig.Spec = {
 
         // For yarn >= 2.0.0
         const getWorkspacesDefinitionsVOther = async () => {
-          const out = await executeShellCommand(`yarn workspaces list --json`);
+          // yarn workspaces list --json
+          const out = (
+            await executeShellCommand({
+              command: "yarn",
+              args: ["workspaces", "list", "--json"],
+            })
+          ).stdout;
           return out.split("\n").map((line) => JSON.parse(line.trim()));
         };
 
@@ -1412,7 +1565,7 @@ const completionSpec: Fig.Spec = {
                     strategy: "stale-while-revalidate",
                     ttl: 60_000, // 60s
                   },
-                  script: `\\cat ${location}/package.json`,
+                  script: ["cat", `${location}/package.json`],
                   postProcess: function (out: string) {
                     if (out.trim() == "") {
                       return [];

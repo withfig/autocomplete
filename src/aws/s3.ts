@@ -1,27 +1,5 @@
 // TODO: suggest available s3 endpoints
-const awsRegions = [
-  "af-south-1",
-  "eu-north-1",
-  "ap-south-1",
-  "eu-west-3",
-  "eu-west-2",
-  "eu-south-1",
-  "eu-west-1",
-  "ap-northeast-3",
-  "ap-northeast-2",
-  "me-south-1",
-  "ap-northeast-1",
-  "sa-east-1",
-  "ca-central-1",
-  "ap-east-1",
-  "ap-southeast-1",
-  "ap-southeast-2",
-  "eu-central-1",
-  "us-east-1",
-  "us-east-2",
-  "us-west-1",
-  "us-west-2",
-];
+import awsRegions from "./regions";
 
 const storageClasses = [
   "STANDARD",
@@ -53,8 +31,8 @@ const ttl = 30000;
 
 const appendFolderPath = (
   whatHasUserTyped: string,
-  baseLSCommand: string
-): string => {
+  baseLSCommand: string[]
+): string[] => {
   let folderPath = "";
   const lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
 
@@ -66,7 +44,7 @@ const appendFolderPath = (
     }
   }
 
-  return baseLSCommand + folderPath;
+  return [...baseLSCommand, folderPath];
 };
 
 const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
@@ -153,15 +131,15 @@ const _prefixFileb = "fileb://";
 const generators: Record<string, Fig.Generator> = {
   listFilesGenerator: {
     script: (tokens) => {
-      const baseLSCommand = "\\ls -1ApL ";
+      const baseLsCommand = ["ls", "-1ApL"];
       const whatHasUserTyped = tokens[tokens.length - 1];
 
       // Do not show file suggestions when s3:// typed
       if (whatHasUserTyped.startsWith(_prefixS3)) {
-        return "";
+        return undefined;
       }
 
-      return appendFolderPath(whatHasUserTyped, baseLSCommand);
+      return appendFolderPath(whatHasUserTyped, baseLsCommand);
     },
     postProcess: (out) => {
       return postProcessFiles(out, _prefixFile);
@@ -186,13 +164,13 @@ const generators: Record<string, Fig.Generator> = {
   // See more: https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters-file.html
   listBlobsGenerator: {
     script: (tokens) => {
-      const baseLSCommand = "\\ls -1ApL ";
+      const baseLSCommand = ["ls", "-1ApL "];
       let whatHasUserTyped = tokens[tokens.length - 1];
 
       if (whatHasUserTyped.startsWith(_prefixFileb)) {
         whatHasUserTyped = whatHasUserTyped.slice(_prefixFileb.length);
       } else {
-        return "echo 'fileb://'";
+        return ["echo", "fileb://"];
       }
 
       return appendFolderPath(whatHasUserTyped, baseLSCommand);
@@ -215,7 +193,7 @@ const generators: Record<string, Fig.Generator> = {
   listRemoteFilesGenerator: {
     script: (tokens) => {
       const whatHasUserTyped = tokens[tokens.length - 1];
-      const baseLSCommand = "\\aws s3 ls ";
+      const baseLsCommand = ["aws", "s3", "ls"];
 
       let folderPath = "";
 
@@ -226,17 +204,17 @@ const generators: Record<string, Fig.Generator> = {
         // then we can assume that the filepath generator is in work
         // so do not return any s3 related filepaths
         if (!_prefixS3.startsWith(whatHasUserTyped)) {
-          return "";
+          return undefined;
         }
 
-        return "echo 's3://'";
+        return ["echo", "s3://"];
       }
 
       if (lastSlashIndex > -1) {
         folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
       }
 
-      return baseLSCommand + folderPath;
+      return [...baseLsCommand, folderPath];
     },
     postProcess: (out) => {
       if (out == "") {
@@ -319,7 +297,7 @@ const generators: Record<string, Fig.Generator> = {
 
   // just bucket names
   listBuckets: {
-    script: "aws s3 ls --page-size 1000",
+    script: ["aws", "s3", "ls", "--page-size", "1000"],
     postProcess: function (out, context) {
       try {
         return out.split("\n").map((line) => {
@@ -345,7 +323,7 @@ const generators: Record<string, Fig.Generator> = {
   kmsKeyIdGenerator: {
     // --page-size does not affect the number of items returned,
     // just chunks request so it won't timeout
-    script: "aws kms list-keys --page-size 100",
+    script: ["aws", "kms", "list-keys", "--page-size", "100"],
     postProcess: function (out) {
       try {
         const list = JSON.parse(out)["Keys"];
