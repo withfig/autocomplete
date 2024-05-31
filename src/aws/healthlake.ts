@@ -1,16 +1,16 @@
 const completionSpec: Fig.Spec = {
   name: "healthlake",
   description:
-    "Amazon HealthLake is a HIPAA eligibile service that allows customers to store, transform, query, and analyze their FHIR-formatted data in a consistent fashion in the cloud",
+    "AWS HealthLake is a HIPAA eligibile service that allows customers to store, transform, query, and analyze their FHIR-formatted data in a consistent fashion in the cloud",
   subcommands: [
     {
       name: "create-fhir-datastore",
       description:
-        "Creates a Data Store that can ingest and export FHIR formatted data",
+        "Creates a data store that can ingest and export FHIR formatted data",
       options: [
         {
           name: "--datastore-name",
-          description: "The user generated name for the Data Store",
+          description: "The user generated name for the data store",
           args: {
             name: "string",
           },
@@ -18,15 +18,23 @@ const completionSpec: Fig.Spec = {
         {
           name: "--datastore-type-version",
           description:
-            "The FHIR version of the Data Store. The only supported version is R4",
+            "The FHIR version of the data store. The only supported version is R4",
           args: {
             name: "string",
           },
         },
         {
+          name: "--sse-configuration",
+          description:
+            "The server-side encryption key configuration for a customer provided encryption key specified for creating a data store",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--preload-data-config",
           description:
-            "Optional parameter to preload data upon creation of the Data Store. Currently, the only supported preloaded data is synthetic data generated from Synthea",
+            "Optional parameter to preload data upon creation of the data store. Currently, the only supported preloaded data is synthetic data generated from Synthea",
           args: {
             name: "structure",
           },
@@ -37,6 +45,22 @@ const completionSpec: Fig.Spec = {
             "Optional user provided token used for ensuring idempotency",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "Resource tags that are applied to a data store when it is created",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--identity-provider-configuration",
+          description:
+            "The configuration of the identity provider that you want to use for your data store",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -60,11 +84,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-fhir-datastore",
-      description: "Deletes a Data Store",
+      description: "Deletes a data store",
       options: [
         {
           name: "--datastore-id",
-          description: "The AWS-generated ID for the Data Store to be deleted",
+          description: "The AWS-generated ID for the data store to be deleted",
           args: {
             name: "string",
           },
@@ -91,12 +115,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-fhir-datastore",
       description:
-        "Gets the properties associated with the FHIR Data Store, including the Data Store ID, Data Store ARN, Data Store name, Data Store status, created at, Data Store type version, and Data Store endpoint",
+        "Gets the properties associated with the FHIR data store, including the data store ID, data store ARN, data store name, data store status, when the data store was created, data store type version, and the data store's endpoint",
       options: [
         {
           name: "--datastore-id",
-          description:
-            "The AWS-generated Data Store id. This is part of the \u2018CreateFHIRDatastore\u2019 output",
+          description: "The AWS-generated data store ID",
           args: {
             name: "string",
           },
@@ -128,7 +151,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--datastore-id",
           description:
-            "The AWS generated ID for the Data Store from which files are being exported from for an export job",
+            "The AWS generated ID for the data store from which files are being exported from for an export job",
           args: {
             name: "string",
           },
@@ -166,7 +189,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--datastore-id",
-          description: "The AWS-generated ID of the Data Store",
+          description: "The AWS-generated ID of the data store",
           args: {
             name: "string",
           },
@@ -200,12 +223,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-fhir-datastores",
       description:
-        "Lists all FHIR Data Stores that are in the user\u2019s account, regardless of Data Store status",
+        "Lists all FHIR data stores that are in the user\u2019s account, regardless of data store status",
       options: [
         {
           name: "--filter",
           description:
-            "Lists all filters associated with a FHIR Data Store request",
+            "Lists all filters associated with a FHIR data store request",
           args: {
             name: "structure",
           },
@@ -213,7 +236,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "Fetches the next page of Data Stores when results are paginated",
+            "Fetches the next page of data stores when results are paginated",
           args: {
             name: "string",
           },
@@ -221,9 +244,201 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum number of Data Stores returned in a single page of a ListFHIRDatastoresRequest call",
+            "The maximum number of data stores returned in a single page of a ListFHIRDatastoresRequest call",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-fhir-export-jobs",
+      description:
+        "Lists all FHIR export jobs associated with an account and their statuses",
+      options: [
+        {
+          name: "--datastore-id",
+          description:
+            "This parameter limits the response to the export job with the specified data store ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "A pagination token used to identify the next page of results to return for a ListFHIRExportJobs query",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "This parameter limits the number of results returned for a ListFHIRExportJobs to a maximum quantity specified by the user",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--job-name",
+          description:
+            "This parameter limits the response to the export job with the specified job name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--job-status",
+          description:
+            "This parameter limits the response to the export jobs with the specified job status",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--submitted-before",
+          description:
+            "This parameter limits the response to FHIR export jobs submitted before a user specified date",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--submitted-after",
+          description:
+            "This parameter limits the response to FHIR export jobs submitted after a user specified date",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-fhir-import-jobs",
+      description:
+        "Lists all FHIR import jobs associated with an account and their statuses",
+      options: [
+        {
+          name: "--datastore-id",
+          description:
+            "This parameter limits the response to the import job with the specified data store ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "A pagination token used to identify the next page of results to return for a ListFHIRImportJobs query",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "This parameter limits the number of results returned for a ListFHIRImportJobs to a maximum quantity specified by the user",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--job-name",
+          description:
+            "This parameter limits the response to the import job with the specified job name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--job-status",
+          description:
+            "This parameter limits the response to the import job with the specified job status",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--submitted-before",
+          description:
+            "This parameter limits the response to FHIR import jobs submitted before a user specified date",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--submitted-after",
+          description:
+            "This parameter limits the response to FHIR import jobs submitted after a user specified date",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-tags-for-resource",
+      description:
+        "Returns a list of all existing tags associated with a data store",
+      options: [
+        {
+          name: "--resource-arn",
+          description:
+            "The Amazon Resource Name(ARN) of the data store for which tags are being added",
+          args: {
+            name: "string",
           },
         },
         {
@@ -267,7 +482,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--datastore-id",
           description:
-            "The AWS generated ID for the Data Store from which files are being exported for an export job",
+            "The AWS generated ID for the data store from which files are being exported for an export job",
           args: {
             name: "string",
           },
@@ -328,8 +543,16 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--job-output-data-config",
+          description:
+            "The output data configuration that was supplied when the export job was created",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--datastore-id",
-          description: "The AWS-generated Data Store ID",
+          description: "The AWS-generated data store ID",
           args: {
             name: "string",
           },
@@ -337,7 +560,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--data-access-role-arn",
           description:
-            "The Amazon Resource Name (ARN) that gives Amazon HealthLake access permission",
+            "The Amazon Resource Name (ARN) that gives AWS HealthLake access permission",
           args: {
             name: "string",
           },
@@ -369,7 +592,84 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "tag-resource",
+      description: "Adds a user specified key and value tag to a data store",
+      options: [
+        {
+          name: "--resource-arn",
+          description:
+            "The Amazon Resource Name(ARN)that gives AWS HealthLake access to the data store which tags are being added to",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "The user specified key and value pair tags being added to a data store",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "untag-resource",
+      description: "Removes tags from a data store",
+      options: [
+        {
+          name: "--resource-arn",
+          description:
+            "The Amazon Resource Name(ARN) of the data store for which tags are being removed",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tag-keys",
+          description:
+            "The keys for the tags to be removed from the HealthLake data store",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
   ],
 };
-
 export default completionSpec;

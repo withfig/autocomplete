@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "codepipeline",
   description:
-    "AWS CodePipeline  Overview  This is the AWS CodePipeline API Reference. This guide provides descriptions of the actions and data types for AWS CodePipeline. Some functionality for your pipeline can only be configured through the API. For more information, see the AWS CodePipeline User Guide. You can use the AWS CodePipeline API to work with pipelines, stages, actions, and transitions.  Pipelines are models of automated release processes. Each pipeline is uniquely named, and consists of stages, actions, and transitions.  You can work with pipelines by calling:    CreatePipeline, which creates a uniquely named pipeline.    DeletePipeline, which deletes the specified pipeline.    GetPipeline, which returns information about the pipeline structure and pipeline metadata, including the pipeline Amazon Resource Name (ARN).    GetPipelineExecution, which returns information about a specific execution of a pipeline.    GetPipelineState, which returns information about the current state of the stages and actions of a pipeline.    ListActionExecutions, which returns action-level details for past executions. The details include full stage and action-level details, including individual action duration, status, any errors that occurred during the execution, and input and output artifact location details.    ListPipelines, which gets a summary of all of the pipelines associated with your account.    ListPipelineExecutions, which gets a summary of the most recent executions for a pipeline.    StartPipelineExecution, which runs the most recent revision of an artifact through the pipeline.    StopPipelineExecution, which stops the specified pipeline execution from continuing through the pipeline.    UpdatePipeline, which updates a pipeline with edits or changes to the structure of the pipeline.   Pipelines include stages. Each stage contains one or more actions that must complete before the next stage begins. A stage results in success or failure. If a stage fails, the pipeline stops at that stage and remains stopped until either a new version of an artifact appears in the source location, or a user takes action to rerun the most recent artifact through the pipeline. You can call GetPipelineState, which displays the status of a pipeline, including the status of stages in the pipeline, or GetPipeline, which returns the entire structure of the pipeline, including the stages of that pipeline. For more information about the structure of stages and actions, see AWS CodePipeline Pipeline Structure Reference. Pipeline stages include actions that are categorized into categories such as source or build actions performed in a stage of a pipeline. For example, you can use a source action to import artifacts into a pipeline from a source such as Amazon S3. Like stages, you do not work with actions directly in most cases, but you do define and interact with actions when working with pipeline operations such as CreatePipeline and GetPipelineState. Valid action categories are:   Source   Build   Test   Deploy   Approval   Invoke   Pipelines also include transitions, which allow the transition of artifacts from one stage to the next in a pipeline after the actions in one stage complete. You can work with transitions by calling:    DisableStageTransition, which prevents artifacts from transitioning to the next stage in a pipeline.    EnableStageTransition, which enables transition of artifacts between stages in a pipeline.     Using the API to integrate with AWS CodePipeline  For third-party integrators or developers who want to create their own integrations with AWS CodePipeline, the expected sequence varies from the standard API user. To integrate with AWS CodePipeline, developers need to work with the following items:  Jobs, which are instances of an action. For example, a job for a source action might import a revision of an artifact from a source.  You can work with jobs by calling:    AcknowledgeJob, which confirms whether a job worker has received the specified job.    GetJobDetails, which returns the details of a job.    PollForJobs, which determines whether there are any jobs to act on.    PutJobFailureResult, which provides details of a job failure.     PutJobSuccessResult, which provides details of a job success.    Third party jobs, which are instances of an action created by a partner action and integrated into AWS CodePipeline. Partner actions are created by members of the AWS Partner Network. You can work with third party jobs by calling:    AcknowledgeThirdPartyJob, which confirms whether a job worker has received the specified job.    GetThirdPartyJobDetails, which requests the details of a job for a partner action.    PollForThirdPartyJobs, which determines whether there are any jobs to act on.     PutThirdPartyJobFailureResult, which provides details of a job failure.    PutThirdPartyJobSuccessResult, which provides details of a job success",
+    "CodePipeline  Overview  This is the CodePipeline API Reference. This guide provides descriptions of the actions and data types for CodePipeline. Some functionality for your pipeline can only be configured through the API. For more information, see the CodePipeline User Guide. You can use the CodePipeline API to work with pipelines, stages, actions, and transitions.  Pipelines are models of automated release processes. Each pipeline is uniquely named, and consists of stages, actions, and transitions.  You can work with pipelines by calling:    CreatePipeline, which creates a uniquely named pipeline.    DeletePipeline, which deletes the specified pipeline.    GetPipeline, which returns information about the pipeline structure and pipeline metadata, including the pipeline Amazon Resource Name (ARN).    GetPipelineExecution, which returns information about a specific execution of a pipeline.    GetPipelineState, which returns information about the current state of the stages and actions of a pipeline.    ListActionExecutions, which returns action-level details for past executions. The details include full stage and action-level details, including individual action duration, status, any errors that occurred during the execution, and input and output artifact location details.    ListPipelines, which gets a summary of all of the pipelines associated with your account.    ListPipelineExecutions, which gets a summary of the most recent executions for a pipeline.    StartPipelineExecution, which runs the most recent revision of an artifact through the pipeline.    StopPipelineExecution, which stops the specified pipeline execution from continuing through the pipeline.    UpdatePipeline, which updates a pipeline with edits or changes to the structure of the pipeline.   Pipelines include stages. Each stage contains one or more actions that must complete before the next stage begins. A stage results in success or failure. If a stage fails, the pipeline stops at that stage and remains stopped until either a new version of an artifact appears in the source location, or a user takes action to rerun the most recent artifact through the pipeline. You can call GetPipelineState, which displays the status of a pipeline, including the status of stages in the pipeline, or GetPipeline, which returns the entire structure of the pipeline, including the stages of that pipeline. For more information about the structure of stages and actions, see CodePipeline Pipeline Structure Reference. Pipeline stages include actions that are categorized into categories such as source or build actions performed in a stage of a pipeline. For example, you can use a source action to import artifacts into a pipeline from a source such as Amazon S3. Like stages, you do not work with actions directly in most cases, but you do define and interact with actions when working with pipeline operations such as CreatePipeline and GetPipelineState. Valid action categories are:   Source   Build   Test   Deploy   Approval   Invoke   Pipelines also include transitions, which allow the transition of artifacts from one stage to the next in a pipeline after the actions in one stage complete. You can work with transitions by calling:    DisableStageTransition, which prevents artifacts from transitioning to the next stage in a pipeline.    EnableStageTransition, which enables transition of artifacts between stages in a pipeline.     Using the API to integrate with CodePipeline  For third-party integrators or developers who want to create their own integrations with CodePipeline, the expected sequence varies from the standard API user. To integrate with CodePipeline, developers need to work with the following items:  Jobs, which are instances of an action. For example, a job for a source action might import a revision of an artifact from a source.  You can work with jobs by calling:    AcknowledgeJob, which confirms whether a job worker has received the specified job.    GetJobDetails, which returns the details of a job.    PollForJobs, which determines whether there are any jobs to act on.    PutJobFailureResult, which provides details of a job failure.     PutJobSuccessResult, which provides details of a job success.    Third party jobs, which are instances of an action created by a partner action and integrated into CodePipeline. Partner actions are created by members of the Amazon Web Services Partner Network. You can work with third party jobs by calling:    AcknowledgeThirdPartyJob, which confirms whether a job worker has received the specified job.    GetThirdPartyJobDetails, which requests the details of a job for a partner action.    PollForThirdPartyJobs, which determines whether there are any jobs to act on.     PutThirdPartyJobFailureResult, which provides details of a job failure.    PutThirdPartyJobSuccessResult, which provides details of a job success",
   subcommands: [
     {
       name: "acknowledge-job",
@@ -19,7 +19,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--nonce",
           description:
-            "A system-generated random number that AWS CodePipeline uses to ensure that the job is being worked on by only one job worker. Get this number from the response of the PollForJobs request that returned this job",
+            "A system-generated random number that CodePipeline uses to ensure that the job is being worked on by only one job worker. Get this number from the response of the PollForJobs request that returned this job",
           args: {
             name: "string",
           },
@@ -58,7 +58,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--nonce",
           description:
-            "A system-generated random number that AWS CodePipeline uses to ensure that the job is being worked on by only one job worker. Get this number from the response to a GetThirdPartyJobDetails request",
+            "A system-generated random number that CodePipeline uses to ensure that the job is being worked on by only one job worker. Get this number from the response to a GetThirdPartyJobDetails request",
           args: {
             name: "string",
           },
@@ -93,7 +93,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-custom-action-type",
       description:
-        "Creates a new custom action that can be used in all pipelines associated with the AWS account. Only used for custom actions",
+        "Creates a new custom action that can be used in all pipelines associated with the Amazon Web Services account. Only used for custom actions",
       options: [
         {
           name: "--category",
@@ -106,7 +106,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--provider",
           description:
-            "The provider of the service used in the custom action, such as AWS CodeDeploy",
+            "The provider of the service used in the custom action, such as CodeDeploy",
           args: {
             name: "string",
           },
@@ -231,7 +231,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--provider",
           description:
-            "The provider of the service used in the custom action, such as AWS CodeDeploy",
+            "The provider of the service used in the custom action, such as CodeDeploy",
           args: {
             name: "string",
           },
@@ -295,7 +295,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-webhook",
       description:
-        "Deletes a previously created webhook by name. Deleting the webhook stops AWS CodePipeline from starting a pipeline every time an external event occurs. The API returns successfully when trying to delete a webhook that is already deleted. If a deleted webhook is re-created by calling PutWebhook with the same name, it will have a different URL",
+        "Deletes a previously created webhook by name. Deleting the webhook stops CodePipeline from starting a pipeline every time an external event occurs. The API returns successfully when trying to delete a webhook that is already deleted. If a deleted webhook is re-created by calling PutWebhook with the same name, it will have a different URL",
       options: [
         {
           name: "--name",
@@ -516,7 +516,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-job-details",
       description:
-        "Returns information about a job. Used for custom actions only.  When this API is called, AWS CodePipeline returns temporary credentials for the S3 bucket used to store artifacts for the pipeline, if the action requires access to that S3 bucket for input or output artifacts. This API also returns any secret values defined for the action",
+        "Returns information about a job. Used for custom actions only.  When this API is called, CodePipeline returns temporary credentials for the S3 bucket used to store artifacts for the pipeline, if the action requires access to that S3 bucket for input or output artifacts. This API also returns any secret values defined for the action",
       options: [
         {
           name: "--job-id",
@@ -552,7 +552,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--name",
           description:
-            "The name of the pipeline for which you want to get information. Pipeline names must be unique under an AWS user account",
+            "The name of the pipeline for which you want to get information. Pipeline names must be unique in an Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -659,7 +659,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-third-party-job-details",
       description:
-        "Requests the details of a job for a third party action. Used for partner actions only.  When this API is called, AWS CodePipeline returns temporary credentials for the S3 bucket used to store artifacts for the pipeline, if the action requires access to that S3 bucket for input or output artifacts. This API also returns any secret values defined for the action",
+        "Requests the details of a job for a third party action. Used for partner actions only.  When this API is called, CodePipeline returns temporary credentials for the S3 bucket used to store artifacts for the pipeline, if the action requires access to that S3 bucket for input or output artifacts. This API also returns any secret values defined for the action",
       options: [
         {
           name: "--job-id",
@@ -779,7 +779,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-action-types",
       description:
-        "Gets a summary of all AWS CodePipeline action types associated with your account",
+        "Gets a summary of all CodePipeline action types associated with your account",
       options: [
         {
           name: "--action-owner-filter",
@@ -858,6 +858,13 @@ const completionSpec: Fig.Spec = {
             "The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned nextToken value. Pipeline history is limited to the most recent 12 months, based on pipeline execution start times. Default value is 100",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--filter",
+          description: "The pipeline execution to filter on",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -1050,7 +1057,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-webhooks",
       description:
-        "Gets a listing of all the webhooks in this AWS Region for this account. The output lists all webhooks and includes the webhook URL and ARN and the configuration for each webhook",
+        "Gets a listing of all the webhooks in this Amazon Web Services Region for this account. The output lists all webhooks and includes the webhook URL and ARN and the configuration for each webhook",
       options: [
         {
           name: "--next-token",
@@ -1114,7 +1121,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "poll-for-jobs",
       description:
-        'Returns information about any jobs for AWS CodePipeline to act on. PollForJobs is valid only for action types with "Custom" in the owner field. If the action type contains "AWS" or "ThirdParty" in the owner field, the PollForJobs action returns an error.  When this API is called, AWS CodePipeline returns temporary credentials for the S3 bucket used to store artifacts for the pipeline, if the action requires access to that S3 bucket for input or output artifacts. This API also returns any secret values defined for the action',
+        'Returns information about any jobs for CodePipeline to act on. PollForJobs is valid only for action types with "Custom" in the owner field. If the action type contains AWS or ThirdParty in the owner field, the PollForJobs action returns an error.  When this API is called, CodePipeline returns temporary credentials for the S3 bucket used to store artifacts for the pipeline, if the action requires access to that S3 bucket for input or output artifacts. This API also returns any secret values defined for the action',
       options: [
         {
           name: "--action-type-id",
@@ -1161,7 +1168,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "poll-for-third-party-jobs",
       description:
-        "Determines whether there are any third party jobs for a job worker to act on. Used for partner actions only.  When this API is called, AWS CodePipeline returns temporary credentials for the S3 bucket used to store artifacts for the pipeline, if the action requires access to that S3 bucket for input or output artifacts",
+        "Determines whether there are any third party jobs for a job worker to act on. Used for partner actions only.  When this API is called, CodePipeline returns temporary credentials for the S3 bucket used to store artifacts for the pipeline, if the action requires access to that S3 bucket for input or output artifacts",
       options: [
         {
           name: "--action-type-id",
@@ -1200,7 +1207,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-action-revision",
       description:
-        "Provides information to AWS CodePipeline about new revisions to a source",
+        "Provides information to CodePipeline about new revisions to a source",
       options: [
         {
           name: "--pipeline-name",
@@ -1255,7 +1262,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-approval-result",
       description:
-        "Provides the response to a manual approval request to AWS CodePipeline. Valid responses include Approved and Rejected",
+        "Provides the response to a manual approval request to CodePipeline. Valid responses include Approved and Rejected",
       options: [
         {
           name: "--pipeline-name",
@@ -1376,7 +1383,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--continuation-token",
           description:
-            "A token generated by a job worker, such as an AWS CodeDeploy deployment ID, that a successful job provides to identify a custom action in progress. Future jobs use this token to identify the running instance of the action. It can be reused to return more information about the progress of the custom action. When the action is complete, no continuation token should be supplied",
+            "A token generated by a job worker, such as a CodeDeploy deployment ID, that a successful job provides to identify a custom action in progress. Future jobs use this token to identify the running instance of the action. It can be reused to return more information about the progress of the custom action. When the action is complete, no continuation token should be supplied",
           args: {
             name: "string",
           },
@@ -1494,7 +1501,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--continuation-token",
           description:
-            "A token generated by a job worker, such as an AWS CodeDeploy deployment ID, that a successful job provides to identify a partner action in progress. Future jobs use this token to identify the running instance of the action. It can be reused to return more information about the progress of the partner action. When the action is complete, no continuation token should be supplied",
+            "A token generated by a job worker, such as a CodeDeploy deployment ID, that a successful job provides to identify a partner action in progress. Future jobs use this token to identify the running instance of the action. It can be reused to return more information about the progress of the partner action. When the action is complete, no continuation token should be supplied",
           args: {
             name: "string",
           },
@@ -1600,7 +1607,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "retry-stage-execution",
       description:
-        "Resumes the pipeline execution by retrying the last failed actions in a stage. You can retry a stage immediately if any of the actions in the stage fail. When you retry, all actions that are still in progress continue working, and failed actions are triggered again",
+        "You can retry a stage that has failed without having to run a pipeline again from the beginning. You do this by either retrying the failed actions in a stage or by retrying all actions in the stage starting from the first action in the stage. When you retry the failed actions in a stage, all actions that are still in progress continue working, and failed actions are triggered again. When you retry a failed stage from the first action in the stage, the stage cannot have any actions in progress. Before a stage can be retried, it must either have all actions failed or some actions failed and some succeeded",
       options: [
         {
           name: "--pipeline-name",
@@ -1627,8 +1634,54 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--retry-mode",
+          description: "The scope of the retry attempt",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
           description:
-            "The scope of the retry attempt. Currently, the only supported value is FAILED_ACTIONS",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "rollback-stage",
+      description: "Rolls back a stage execution",
+      options: [
+        {
+          name: "--pipeline-name",
+          description:
+            "The name of the pipeline for which the stage will be rolled back",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--stage-name",
+          description:
+            "The name of the stage in the pipeline to be rolled back",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--target-pipeline-execution-id",
+          description:
+            "The pipeline execution ID for the stage to be rolled back to",
           args: {
             name: "string",
           },
@@ -1665,11 +1718,27 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--variables",
+          description:
+            "A list that overrides pipeline variables for a pipeline execution that's being started. Variable names must match [A-Za-z0-9@\\-_]+, and the values can be anything except an empty string",
+          args: {
+            name: "list",
+          },
+        },
+        {
           name: "--client-request-token",
           description:
             "The system-generated unique ID used to identify a unique execution request",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--source-revisions",
+          description:
+            "A list that allows you to specify, or override, the source revision for a pipeline execution that's being started. A source revision is the version with all the changes to your application code, or source artifact, for the pipeline execution",
+          args: {
+            name: "list",
           },
         },
         {
@@ -1789,7 +1858,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "untag-resource",
-      description: "Removes tags from an AWS resource",
+      description: "Removes tags from an Amazon Web Services resource",
       options: [
         {
           name: "--resource-arn",
@@ -1891,5 +1960,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;
