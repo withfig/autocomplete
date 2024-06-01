@@ -1,3 +1,20 @@
+const runningAppsGenerator: Fig.Generator = {
+  script: ["dapr", "list", "-o", "json"],
+  postProcess: function (out) {
+    try {
+      const appList = JSON.parse(out);
+      return appList.map((app) => {
+        return {
+          name: app.appId,
+          description: `HTTP Port: ${app.httpPort} age: ${app.age}`,
+        };
+      });
+    } catch {
+      return [];
+    }
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "dapr",
   description: "Dapr CLI",
@@ -15,7 +32,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--app-id", "-a"],
           description: "The app id to annotate",
-          args: { name: "app-id" },
+          args: { name: "app-id", generators: runningAppsGenerator },
         },
         {
           name: "--app-max-concurrency",
@@ -460,7 +477,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--app-id", "-a"],
           description: "The application id to invoke",
-          args: { name: "app-id" },
+          args: { name: "app-id", generators: runningAppsGenerator },
           isRequired: true,
         },
         {
@@ -528,7 +545,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--app-id", "-a"],
           description: "The application id for which logs are needed",
-          args: { name: "app-id" },
+          args: { name: "app-id", generators: runningAppsGenerator },
           isRequired: true,
         },
         { name: ["--help", "-h"], description: "Print this help message" },
@@ -536,6 +553,7 @@ const completionSpec: Fig.Spec = {
           name: ["--kubernetes", "-k"],
           description: "Get logs from a Kubernetes cluster",
           isRequired: true,
+          priority: 100,
         },
         {
           name: ["--namespace", "-n"],
@@ -868,7 +886,11 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--app-id", "-a"],
           description: "The application id to be stopped",
-          args: { name: "app-id" },
+          args: {
+            name: "app-id",
+            isVariadic: true,
+            generators: runningAppsGenerator,
+          },
         },
         { name: ["--help", "-h"], description: "Print this help message" },
         {
