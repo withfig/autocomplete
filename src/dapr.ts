@@ -17,6 +17,40 @@ const runningAppsGenerator: Fig.Generator = {
   },
 };
 
+const runtimeVersionsGenerator: Fig.Generator = {
+  cache: {
+    ttl: 1000 * 60 * 60 * 24 * 2, // 2 days
+  },
+  custom: async (context, executeShellCommand): Promise<Fig.Suggestion[]> => {
+    const queryVersions = [
+      "-s",
+      "-H",
+      "Accept: application/json",
+      "https://hub.docker.com/v2/namespaces/daprio/repositories/daprd/tags?page_size=100",
+    ];
+
+    const out = () =>
+      executeShellCommand({
+        command: "curl",
+        args: queryVersions,
+      });
+
+    try {
+      const data = JSON.parse((await out()).stdout);
+
+      const results = data.results;
+
+      return results.map((item) => ({
+        name: item.name,
+        description: `Updated: ${item.last_updated}`,
+      })) as Fig.Suggestion[];
+    } catch (error) {
+      console.error({ error });
+      return [];
+    }
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "dapr",
   description: "Dapr CLI",
@@ -476,7 +510,12 @@ const completionSpec: Fig.Spec = {
           name: "--runtime-version",
           description:
             "The version of the Dapr runtime to install, for example: 1.0.0",
-          args: { name: "runtime-version", default: "latest" },
+          args: {
+            name: "runtime-version",
+            default: "latest",
+            suggestCurrentToken: true,
+            generators: runtimeVersionsGenerator,
+          },
         },
         {
           name: "--set",
