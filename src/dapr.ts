@@ -1,3 +1,5 @@
+import { filepaths } from "@fig/autocomplete-generators";
+
 const runningAppsGenerator: Fig.Generator = {
   script: ["dapr", "list", "-A", "-o", "json"],
   postProcess: function (out) {
@@ -66,7 +68,13 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--config", "-c"],
           description: "The config file to annotate",
-          args: { name: "config", template: "filepaths" },
+          args: {
+            name: "config",
+            generators: filepaths({
+              extensions: ["yaml", "yml"],
+              editFileSuggestions: { priority: 99 },
+            }),
+          },
         },
         {
           name: "--cpu-limit",
@@ -118,6 +126,8 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--kubernetes", "-k"],
           description: "Apply annotations to Kubernetes resources",
+          isRequired: true,
+          priority: 100,
         },
         {
           name: "--listen-addresses",
@@ -226,6 +236,13 @@ const completionSpec: Fig.Spec = {
           args: { name: "volume-mounts-rw" },
         },
       ],
+      args: {
+        name: "config",
+        generators: filepaths({
+          extensions: ["yaml", "yml"],
+          editFileSuggestions: { priority: 99 },
+        }),
+      },
     },
     {
       name: "build-info",
@@ -788,7 +805,10 @@ const completionSpec: Fig.Spec = {
           description: "Dapr configuration file",
           args: {
             name: "config",
-            template: "filepaths",
+            generators: filepaths({
+              extensions: ["yaml", "yml"],
+              editFileSuggestions: { priority: 100 },
+            }),
           },
         },
         {
@@ -874,7 +894,13 @@ const completionSpec: Fig.Spec = {
           name: ["--run-file", "-f"],
           description:
             "Path to the run template file for the list of apps to run",
-          args: { name: "run-file", template: "filepaths" },
+          args: {
+            name: "run-file",
+            generators: filepaths({
+              extensions: ["yaml", "yml"],
+              editFileSuggestions: { priority: 100 },
+            }),
+          },
         },
         {
           name: ["--unix-domain-socket", "-u"],
@@ -922,7 +948,13 @@ const completionSpec: Fig.Spec = {
           name: ["--run-file", "-f"],
           description:
             "Path to the run template file for the list of apps to stop",
-          args: { name: "run-file", template: "filepaths" },
+          args: {
+            name: "run-file",
+            generators: filepaths({
+              extensions: ["yaml", "yml"],
+              editFileSuggestions: { priority: 100 },
+            }),
+          },
         },
       ],
     },
