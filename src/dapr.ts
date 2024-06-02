@@ -1,5 +1,5 @@
 const runningAppsGenerator: Fig.Generator = {
-  script: ["dapr", "list", "-o", "json"],
+  script: ["dapr", "list", "-A", "-o", "json"],
   postProcess: function (out) {
     try {
       const appList = JSON.parse(out);
