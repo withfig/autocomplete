@@ -391,7 +391,11 @@ const completionSpec: Fig.Spec = {
           name: "--container-runtime",
           description:
             "The container runtime to use. Supported values are docker (default) and podman",
-          args: { name: "container-runtime", default: "docker" },
+          args: {
+            name: "container-runtime",
+            default: "docker",
+            suggestions: ["docker", "podman"],
+          },
         },
         {
           name: "--dashboard-version",
