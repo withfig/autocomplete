@@ -400,7 +400,6 @@ const completionSpec: Fig.Spec = {
         generators: npmSearchGenerator,
         debounce: true,
         isVariadic: true,
-        filterStrategy: "fuzzy",
       },
       options: [
         {
