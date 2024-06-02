@@ -63,7 +63,7 @@ export const createNpmSearchHandler =
       const out = () =>
         executeShellCommand({
           command: "npm",
-          args: ["--json", "search", searchTerm, keywordParameter],
+          args: ["--json", "search", keywordParameter, searchTerm],
         });
 
       const results = JSON.parse((await out()).stdout);
