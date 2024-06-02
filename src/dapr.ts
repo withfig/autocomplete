@@ -66,7 +66,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--config", "-c"],
           description: "The config file to annotate",
-          args: { name: "config" },
+          args: { name: "config", template: "filepaths" },
         },
         {
           name: "--cpu-limit",
@@ -491,7 +491,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--data-file", "-f"],
           description: "A file containing the JSON serialized data (optional)",
-          args: { name: "data-file" },
+          args: { name: "data-file", template: "filepaths" },
         },
         { name: ["--help", "-h"], description: "Print this help message" },
         {
@@ -764,19 +764,20 @@ const completionSpec: Fig.Spec = {
         {
           name: "--app-ssl",
           description: "Enable https when Dapr invokes the application",
-          hidden: true,
         },
         {
           name: ["--components-path", "-d"],
           description:
             "The path for components directory. Default is $HOME/.dapr/components or %USERPROFILE%.daprcomponents",
-          hidden: true,
-          args: { name: "components-path" },
+          args: { name: "components-path", template: "folders" },
         },
         {
           name: ["--config", "-c"],
           description: "Dapr configuration file",
-          args: { name: "config" },
+          args: {
+            name: "config",
+            template: "filepaths",
+          },
         },
         {
           name: ["--dapr-grpc-port", "-G"],
@@ -855,13 +856,13 @@ const completionSpec: Fig.Spec = {
           name: "--resources-path",
           description: "The path for resources directory",
           isRepeatable: true,
-          args: { name: "resources-path" },
+          args: { name: "resources-path", template: "folders" },
         },
         {
           name: ["--run-file", "-f"],
           description:
             "Path to the run template file for the list of apps to run",
-          args: { name: "run-file" },
+          args: { name: "run-file", template: "filepaths" },
         },
         {
           name: ["--unix-domain-socket", "-u"],
@@ -909,7 +910,7 @@ const completionSpec: Fig.Spec = {
           name: ["--run-file", "-f"],
           description:
             "Path to the run template file for the list of apps to stop",
-          args: { name: "run-file" },
+          args: { name: "run-file", template: "filepaths" },
         },
       ],
     },
@@ -1155,7 +1156,7 @@ const completionSpec: Fig.Spec = {
       name: "--runtime-path",
       description: "The path to the dapr runtime installation directory",
       isPersistent: true,
-      args: { name: "runtime-path" },
+      args: { name: "runtime-path", template: "folders" },
     },
     { name: ["--help", "-h"], description: "Display help", isPersistent: true },
   ],
