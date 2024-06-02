@@ -298,7 +298,11 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--output", "-o"],
           description: "Output format (options: json or yaml or list)",
-          args: { name: "output", default: "list" },
+          args: {
+            name: "output",
+            default: "list",
+            suggestions: ["json", "yaml", "list"],
+          },
         },
       ],
     },
@@ -332,7 +336,11 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--output", "-o"],
           description: "Output format (options: json or yaml or list)",
-          args: { name: "output", default: "list" },
+          args: {
+            name: "output",
+            default: "list",
+            suggestions: ["json", "yaml", "list"],
+          },
         },
       ],
     },
@@ -536,7 +544,7 @@ const completionSpec: Fig.Spec = {
           name: ["--output", "-o"],
           description:
             "The output format of the list. Valid values are: json, yaml, or table (default)",
-          args: { name: "output" },
+          args: { name: "output", suggestions: ["json", "yaml", "table"] },
         },
       ],
     },
@@ -1016,7 +1024,7 @@ const completionSpec: Fig.Spec = {
           name: ["--output", "-o"],
           description:
             "The output format of the version command. Valid values are: json",
-          args: { name: "output" },
+          args: { name: "output", suggestions: ["json"] },
         },
       ],
     },
