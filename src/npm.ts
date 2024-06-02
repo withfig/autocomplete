@@ -93,7 +93,11 @@ export const npmSearchGenerator: Fig.Generator = {
     // we see the first '@' so we can generate version suggestions
     return !(oldToken.includes("@") && newToken.includes("@"));
   },
-  getQueryTerm: "@",
+  getQueryTerm: (token) => {
+    // If we are looking for versions, there's no need filter the 
+    // search anymore, otherwise use the query the user entered
+    return token.endsWith("@") ? "" : token;
+  },
   cache: {
     ttl: 1000 * 60 * 60 * 24 * 2, // 2 days
   },
