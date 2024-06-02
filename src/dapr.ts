@@ -48,7 +48,10 @@ const completionSpec: Fig.Spec = {
           name: "--app-protocol",
           description:
             "The protocol to use for the app. Allowed values http, https, h2c, grpc, grpcs",
-          args: { name: "app-protocol" },
+          args: {
+            name: "app-protocol",
+            suggestions: ["http", "https", "h2c", "grpc", "grpcs"],
+          },
         },
         {
           name: "--app-ssl",
@@ -752,7 +755,11 @@ const completionSpec: Fig.Spec = {
           name: ["--app-protocol", "-P"],
           description:
             "The protocol (grpc, grpcs, http, https, h2c) Dapr uses to talk to the application",
-          args: { name: "app-protocol", default: "http" },
+          args: {
+            name: "app-protocol",
+            default: "http",
+            suggestions: ["http", "https", "h2c", "grpc", "grpcs"],
+          },
         },
         {
           name: "--app-ssl",
