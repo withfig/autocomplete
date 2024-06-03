@@ -94,7 +94,7 @@ export const npmSearchGenerator: Fig.Generator = {
     return !(oldToken.includes("@") && newToken.includes("@"));
   },
   getQueryTerm: (token) => {
-    // If we are looking for versions, there's no need filter the 
+    // If we are looking for versions, there's no need filter the
     // search anymore, otherwise use the query the user entered
     return token.endsWith("@") ? "" : token;
   },
