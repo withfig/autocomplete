@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "workdocs",
   description:
-    "The WorkDocs API is designed for the following use cases:   File Migration: File migration applications are supported for users who want to migrate their files from an on-premises or off-premises file system or service. Users can insert files into a user directory structure, as well as allow for basic metadata changes, such as modifications to the permissions of files.   Security: Support security applications are supported for users who have additional security needs, such as antivirus or data loss prevention. The API actions, along with AWS CloudTrail, allow these applications to detect when changes occur in Amazon WorkDocs. Then, the application can take the necessary actions and replace the target file. If the target file violates the policy, the application can also choose to email the user.   eDiscovery/Analytics: General administrative applications are supported, such as eDiscovery and analytics. These applications can choose to mimic or record the actions in an Amazon WorkDocs site, along with AWS CloudTrail, to replicate data for eDiscovery, backup, or analytical applications.   All Amazon WorkDocs API actions are Amazon authenticated and certificate-signed. They not only require the use of the AWS SDK, but also allow for the exclusive use of IAM users and roles to help facilitate access, trust, and permission policies. By creating a role and allowing an IAM user to access the Amazon WorkDocs site, the IAM user gains full administrative visibility into the entire Amazon WorkDocs site (or as set in the IAM policy). This includes, but is not limited to, the ability to modify file permissions and upload any file to any user. This allows developers to perform the three use cases above, as well as give users the ability to grant access on a selective basis using the IAM model",
+    "The Amazon WorkDocs API is designed for the following use cases:   File Migration: File migration applications are supported for users who want to migrate their files from an on-premises or off-premises file system or service. Users can insert files into a user directory structure, as well as allow for basic metadata changes, such as modifications to the permissions of files.   Security: Support security applications are supported for users who have additional security needs, such as antivirus or data loss prevention. The API actions, along with CloudTrail, allow these applications to detect when changes occur in Amazon WorkDocs. Then, the application can take the necessary actions and replace the target file. If the target file violates the policy, the application can also choose to email the user.   eDiscovery/Analytics: General administrative applications are supported, such as eDiscovery and analytics. These applications can choose to mimic or record the actions in an Amazon WorkDocs site, along with CloudTrail, to replicate data for eDiscovery, backup, or analytical applications.   All Amazon WorkDocs API actions are Amazon authenticated and certificate-signed. They not only require the use of the Amazon Web Services SDK, but also allow for the exclusive use of IAM users and roles to help facilitate access, trust, and permission policies. By creating a role and allowing an IAM user to access the Amazon WorkDocs site, the IAM user gains full administrative visibility into the entire Amazon WorkDocs site (or as set in the IAM policy). This includes, but is not limited to, the ability to modify file permissions and upload any file to any user. This allows developers to perform the three use cases above, as well as give users the ability to grant access on a selective basis using the IAM model.  The pricing for Amazon WorkDocs APIs varies depending on the API call type for these actions:    READ (Get*)     WRITE (Activate*, Add*, Create*, Deactivate*, Initiate*, Update*)     LIST (Describe*)     DELETE*, CANCEL    For information about Amazon WorkDocs API pricing, see Amazon WorkDocs Pricing",
   subcommands: [
     {
       name: "abort-document-version-upload",
@@ -11,7 +11,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -64,7 +64,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -96,7 +96,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -149,7 +149,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -234,7 +234,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -287,7 +287,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -347,7 +347,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -374,7 +374,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-notification-subscription",
       description:
-        "Configure Amazon WorkDocs to use Amazon SNS notifications. The endpoint receives a confirmation message, and must confirm the subscription. For more information, see Subscribe to Notifications in the Amazon WorkDocs Developer Guide",
+        "Configure Amazon WorkDocs to use Amazon SNS notifications. The endpoint receives a confirmation message, and must confirm the subscription. For more information, see Setting up notifications for an IAM user or role in the Amazon WorkDocs Developer Guide",
       options: [
         {
           name: "--organization-id",
@@ -489,7 +489,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -528,7 +528,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -559,7 +559,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -611,7 +611,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -675,7 +675,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -707,13 +707,69 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-document-version",
+      description: "Deletes a specific version of a document",
+      options: [
+        {
+          name: "--authentication-token",
+          description:
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--document-id",
+          description:
+            "The ID of the document associated with the version being deleted",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--version-id",
+          description: "The ID of the version being deleted",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--delete-prior-versions",
+          description:
+            "Deletes all versions of a document prior to the current version",
+        },
+        {
+          name: "--no-delete-prior-versions",
+          description:
+            "Deletes all versions of a document prior to the current version",
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-folder",
       description: "Permanently deletes the specified folder and its contents",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -751,7 +807,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -796,7 +852,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -878,12 +934,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-user",
       description:
-        "Deletes the specified user from a Simple AD or Microsoft AD directory",
+        "Deletes the specified user from a Simple AD or Microsoft AD directory.  Deleting a user immediately and permanently deletes all content in that user's folder structure. Site retention policies do NOT apply to this type of deletion",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Do not set this field when using administrative API actions, as in accessing the API using AWS credentials",
+            "Amazon WorkDocs authentication token. Do not set this field when using administrative API actions, as in accessing the API using Amazon Web Services credentials",
           args: {
             name: "string",
           },
@@ -921,7 +977,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -1048,7 +1104,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -1133,7 +1189,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -1228,7 +1284,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -1335,7 +1391,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -1488,7 +1544,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -1643,7 +1699,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -1709,7 +1765,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--user-query",
-          description: "A query to filter users by user name",
+          description:
+            'A query to filter users by user name. Remember the following about the Userids and Query parameters:   If you don\'t use either parameter, the API returns a paginated list of all users on the site.   If you use both parameters, the API ignores the Query parameter.   The Userid parameter only returns user names that match a corresponding user ID.   The Query parameter runs a "prefix" search for users by the GivenName, SurName, or UserName fields included in a CreateUser API call. For example, querying on Ma returns M\u00e1rcia Oliveira, Mar\u00eda Garc\u00eda, and Mateo Jackson. If you use multiple characters, the API only returns data that matches all characters. For example, querying on Ma J only returns Mateo Jackson',
           args: {
             name: "string",
           },
@@ -1795,7 +1852,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -1844,7 +1901,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -1905,7 +1962,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -1968,7 +2025,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -2015,7 +2072,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -2077,7 +2134,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "The Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "The Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -2139,7 +2196,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -2221,7 +2278,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -2260,7 +2317,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -2306,6 +2363,160 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "restore-document-versions",
+      description: "Recovers a deleted version of an Amazon WorkDocs document",
+      options: [
+        {
+          name: "--authentication-token",
+          description:
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--document-id",
+          description: "The ID of the document",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "search-resources",
+      description:
+        "Searches metadata and the content of folders, documents, document versions, and comments",
+      options: [
+        {
+          name: "--authentication-token",
+          description:
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--query-text",
+          description:
+            "The String to search for. Searches across different text fields based on request parameters. Use double quotes around the query string for exact phrase matches",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--query-scopes",
+          description:
+            "Filter based on the text field type. A Folder has only a name and no content. A Comment has only content and no name. A Document or Document Version has a name and content",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--organization-id",
+          description:
+            "Filters based on the resource owner OrgId. This is a mandatory parameter when using Admin SigV4 credentials",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--additional-response-fields",
+          description:
+            "A list of attributes to include in the response. Used to request fields that are not normally returned in a standard response",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--filters",
+          description: "Filters results based on entity metadata",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--order-by",
+          description: "Order by results in one or more categories",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--limit",
+          description: "Max results count per page",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--marker",
+          description: "The marker for the next set of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "update-document",
       description:
         "Updates the specified attributes of a document. The user must have access to both the document and its parent folder, if applicable",
@@ -2313,7 +2524,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -2374,7 +2585,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -2427,7 +2638,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -2488,7 +2699,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
+            "Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -2545,7 +2756,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--grant-poweruser-privileges",
           description:
-            "Boolean value to determine whether the user is granted Poweruser privileges",
+            "Boolean value to determine whether the user is granted Power user privileges",
           args: {
             name: "string",
           },
@@ -2571,5 +2782,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

@@ -1,12 +1,12 @@
 const completionSpec: Fig.Spec = {
   name: "iotfleethub",
   description:
-    "With Fleet Hub for AWS IoT Device Management you can build stand-alone web applications for monitoring the health of your device fleets.  Fleet Hub for AWS IoT Device Management is in public preview and is subject to change",
+    "With Fleet Hub for IoT Device Management you can build stand-alone web applications for monitoring the health of your device fleets",
   subcommands: [
     {
       name: "create-application",
       description:
-        "Creates a Fleet Hub for AWS IoT Device Management web application.  Fleet Hub for AWS IoT Device Management is in public preview and is subject to change",
+        "Creates a Fleet Hub for IoT Device Management web application. When creating a Fleet Hub application, you must create an organization instance of IAM Identity Center if you don't already have one. The Fleet Hub application you create must also be in the same Amazon Web Services Region of the organization instance of IAM Identity Center. For more information see Enabling IAM Identity Center and Organization instances of IAM Identity Center",
       options: [
         {
           name: "--application-name",
@@ -33,7 +33,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--role-arn",
           description:
-            "The ARN of the role that the web application assumes when it interacts with AWS IoT Core.  The name of the role must be in the form AWSIotFleetHub_random_string",
+            "The ARN of the role that the web application assumes when it interacts with Amazon Web Services IoT Core.  The name of the role must be in the form AWSIotFleetHub_random_string",
           args: {
             name: "string",
           },
@@ -68,7 +68,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-application",
       description:
-        "Deletes a Fleet Hub for AWS IoT Device Management web application.  Fleet Hub for AWS IoT Device Management is in public preview and is subject to change",
+        "Deletes a Fleet Hub for IoT Device Management web application",
       options: [
         {
           name: "--application-id",
@@ -107,7 +107,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-application",
       description:
-        "Gets information about a Fleet Hub for AWS IoT Device Management web application.  Fleet Hub for AWS IoT Device Management is in public preview and is subject to change",
+        "Gets information about a Fleet Hub for IoT Device Management web application",
       options: [
         {
           name: "--application-id",
@@ -138,7 +138,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-applications",
       description:
-        "Gets a list of Fleet Hub for AWS IoT Device Management web applications for the current account.  Fleet Hub for AWS IoT Device Management is in public preview and is subject to change",
+        "Gets a list of Fleet Hub for IoT Device Management web applications for the current account",
       options: [
         {
           name: "--next-token",
@@ -184,8 +184,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-tags-for-resource",
-      description:
-        "Lists the tags for the specified resource.  Fleet Hub for AWS IoT Device Management is in public preview and is subject to change",
+      description: "Lists the tags for the specified resource",
       options: [
         {
           name: "--resource-arn",
@@ -216,7 +215,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "tag-resource",
       description:
-        "Adds to or modifies the tags of the specified resource. Tags are metadata which can be used to manage a resource.  Fleet Hub for AWS IoT Device Management is in public preview and is subject to change",
+        "Adds to or modifies the tags of the specified resource. Tags are metadata which can be used to manage a resource",
       options: [
         {
           name: "--resource-arn",
@@ -253,8 +252,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "untag-resource",
-      description:
-        "Removes the specified tags (metadata) from the resource.  Fleet Hub for AWS IoT Device Management is in public preview and is subject to change",
+      description: "Removes the specified tags (metadata) from the resource",
       options: [
         {
           name: "--resource-arn",
@@ -293,7 +291,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-application",
       description:
-        "Updates information about a Fleet Hub for a AWS IoT Device Management web application.  Fleet Hub for AWS IoT Device Management is in public preview and is subject to change",
+        "Updates information about a Fleet Hub for IoT Device Management web application",
       options: [
         {
           name: "--application-id",
@@ -345,5 +343,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

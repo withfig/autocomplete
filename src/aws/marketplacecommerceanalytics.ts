@@ -85,12 +85,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "start-support-data-export",
       description:
-        "Given a data set type and a from date, asynchronously publishes the requested customer support data to the specified S3 bucket and notifies the specified SNS topic once the data is available. Returns a unique request identifier that can be used to correlate requests with notifications from the SNS topic. Data sets will be published in comma-separated values (CSV) format with the file name {data_set_type}_YYYY-MM-DD'T'HH-mm-ss'Z'.csv. If a file with the same name already exists (e.g. if the same data set is requested twice), the original file will be overwritten by the new file. Requires a Role with an attached permissions policy providing Allow permissions for the following actions: s3:PutObject, s3:GetBucketLocation, sns:GetTopicAttributes, sns:Publish, iam:GetRolePolicy",
+        "This target has been deprecated. Given a data set type and a from date, asynchronously publishes the requested customer support data to the specified S3 bucket and notifies the specified SNS topic once the data is available. Returns a unique request identifier that can be used to correlate requests with notifications from the SNS topic. Data sets will be published in comma-separated values (CSV) format with the file name {data_set_type}_YYYY-MM-DD'T'HH-mm-ss'Z'.csv. If a file with the same name already exists (e.g. if the same data set is requested twice), the original file will be overwritten by the new file. Requires a Role with an attached permissions policy providing Allow permissions for the following actions: s3:PutObject, s3:GetBucketLocation, sns:GetTopicAttributes, sns:Publish, iam:GetRolePolicy",
       options: [
         {
           name: "--data-set-type",
           description:
-            "Specifies the data set type to be written to the output csv file. The data set types customer_support_contacts_data and test_customer_support_contacts_data both result in a csv file containing the following fields: Product Id, Product Code, Customer Guid, Subscription Guid, Subscription Start Date, Organization, AWS Account Id, Given Name, Surname, Telephone Number, Email, Title, Country Code, ZIP Code, Operation Type, and Operation Time.    customer_support_contacts_data Customer support contact data. The data set will contain all changes (Creates, Updates, and Deletes) to customer support contact data from the date specified in the from_date parameter. test_customer_support_contacts_data An example data set containing static test data in the same format as customer_support_contacts_data",
+            "This target has been deprecated. Specifies the data set type to be written to the output csv file. The data set types customer_support_contacts_data and test_customer_support_contacts_data both result in a csv file containing the following fields: Product Id, Product Code, Customer Guid, Subscription Guid, Subscription Start Date, Organization, AWS Account Id, Given Name, Surname, Telephone Number, Email, Title, Country Code, ZIP Code, Operation Type, and Operation Time.    customer_support_contacts_data Customer support contact data. The data set will contain all changes (Creates, Updates, and Deletes) to customer support contact data from the date specified in the from_date parameter. test_customer_support_contacts_data An example data set containing static test data in the same format as customer_support_contacts_data",
           args: {
             name: "string",
           },
@@ -98,7 +98,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--from-date",
           description:
-            "The start date from which to retrieve the data set in UTC. This parameter only affects the customer_support_contacts_data data set type",
+            "This target has been deprecated. The start date from which to retrieve the data set in UTC. This parameter only affects the customer_support_contacts_data data set type",
           args: {
             name: "timestamp",
           },
@@ -106,7 +106,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--role-name-arn",
           description:
-            "The Amazon Resource Name (ARN) of the Role with an attached permissions policy to interact with the provided AWS services",
+            "This target has been deprecated. The Amazon Resource Name (ARN) of the Role with an attached permissions policy to interact with the provided AWS services",
           args: {
             name: "string",
           },
@@ -114,7 +114,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--destination-s3-bucket-name",
           description:
-            "The name (friendly name, not ARN) of the destination S3 bucket",
+            "This target has been deprecated. The name (friendly name, not ARN) of the destination S3 bucket",
           args: {
             name: "string",
           },
@@ -122,7 +122,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--destination-s3-prefix",
           description:
-            '(Optional) The desired S3 prefix for the published data set, similar to a directory path in standard file systems. For example, if given the bucket name "mybucket" and the prefix "myprefix/mydatasets", the output file "outputfile" would be published to "s3://mybucket/myprefix/mydatasets/outputfile". If the prefix directory structure does not exist, it will be created. If no prefix is provided, the data set will be published to the S3 bucket root',
+            'This target has been deprecated. (Optional) The desired S3 prefix for the published data set, similar to a directory path in standard file systems. For example, if given the bucket name "mybucket" and the prefix "myprefix/mydatasets", the output file "outputfile" would be published to "s3://mybucket/myprefix/mydatasets/outputfile". If the prefix directory structure does not exist, it will be created. If no prefix is provided, the data set will be published to the S3 bucket root',
           args: {
             name: "string",
           },
@@ -130,7 +130,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sns-topic-arn",
           description:
-            "Amazon Resource Name (ARN) for the SNS Topic that will be notified when the data set has been published or if an error has occurred",
+            "This target has been deprecated. Amazon Resource Name (ARN) for the SNS Topic that will be notified when the data set has been published or if an error has occurred",
           args: {
             name: "string",
           },
@@ -138,7 +138,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--customer-defined-values",
           description:
-            "(Optional) Key-value pairs which will be returned, unmodified, in the Amazon SNS notification message and the data set metadata file",
+            "This target has been deprecated. (Optional) Key-value pairs which will be returned, unmodified, in the Amazon SNS notification message and the data set metadata file",
           args: {
             name: "map",
           },
@@ -164,5 +164,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;
