@@ -6,7 +6,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "add-role-to-db-cluster",
       description:
-        "Associates an Identity and Access Management (IAM) role from an Neptune DB cluster",
+        "Associates an Identity and Access Management (IAM) role with an Neptune DB cluster",
       options: [
         {
           name: "--db-cluster-identifier",
@@ -185,7 +185,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--source-db-cluster-parameter-group-identifier",
           description:
-            "The identifier or Amazon Resource Name (ARN) for the source DB cluster parameter group. For information about creating an ARN, see  Constructing an Amazon Resource Name (ARN). Constraints:   Must specify a valid DB cluster parameter group.   If the source DB cluster parameter group is in the same AWS Region as the copy, specify a valid DB parameter group identifier, for example my-db-cluster-param-group, or a valid ARN.   If the source DB parameter group is in a different AWS Region than the copy, specify a valid DB cluster parameter group ARN, for example arn:aws:rds:us-east-1:123456789012:cluster-pg:custom-cluster-group1",
+            "The identifier or Amazon Resource Name (ARN) for the source DB cluster parameter group. For information about creating an ARN, see  Constructing an Amazon Resource Name (ARN). Constraints:   Must specify a valid DB cluster parameter group.   If the source DB cluster parameter group is in the same Amazon Region as the copy, specify a valid DB parameter group identifier, for example my-db-cluster-param-group, or a valid ARN.   If the source DB parameter group is in a different Amazon Region than the copy, specify a valid DB cluster parameter group ARN, for example arn:aws:rds:us-east-1:123456789012:cluster-pg:custom-cluster-group1",
           args: {
             name: "string",
           },
@@ -241,7 +241,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--source-db-cluster-snapshot-identifier",
           description:
-            'The identifier of the DB cluster snapshot to copy. This parameter is not case-sensitive. You can\'t copy from one AWS Region to another. Constraints:   Must specify a valid system snapshot in the "available" state.   Specify a valid DB snapshot identifier.   Example: my-cluster-snapshot1',
+            'The identifier of the DB cluster snapshot to copy. This parameter is not case-sensitive. Constraints:   Must specify a valid system snapshot in the "available" state.   Specify a valid DB snapshot identifier.   Example: my-cluster-snapshot1',
           args: {
             name: "string",
           },
@@ -257,7 +257,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kms-key-id",
           description:
-            "The AWS AWS KMS key ID for an encrypted DB cluster snapshot. The KMS key ID is the Amazon Resource Name (ARN), KMS key identifier, or the KMS key alias for the KMS encryption key. If you copy an encrypted DB cluster snapshot from your AWS account, you can specify a value for KmsKeyId to encrypt the copy with a new KMS encryption key. If you don't specify a value for KmsKeyId, then the copy of the DB cluster snapshot is encrypted with the same KMS key as the source DB cluster snapshot. If you copy an encrypted DB cluster snapshot that is shared from another AWS account, then you must specify a value for KmsKeyId.  KMS encryption keys are specific to the AWS Region that they are created in, and you can't use encryption keys from one AWS Region in another AWS Region. You cannot encrypt an unencrypted DB cluster snapshot when you copy it. If you try to copy an unencrypted DB cluster snapshot and specify a value for the KmsKeyId parameter, an error is returned",
+            "The Amazon Amazon KMS key ID for an encrypted DB cluster snapshot. The KMS key ID is the Amazon Resource Name (ARN), KMS key identifier, or the KMS key alias for the KMS encryption key. If you copy an encrypted DB cluster snapshot from your Amazon account, you can specify a value for KmsKeyId to encrypt the copy with a new KMS encryption key. If you don't specify a value for KmsKeyId, then the copy of the DB cluster snapshot is encrypted with the same KMS key as the source DB cluster snapshot. If you copy an encrypted DB cluster snapshot that is shared from another Amazon account, then you must specify a value for KmsKeyId.  KMS encryption keys are specific to the Amazon Region that they are created in, and you can't use encryption keys from one Amazon Region in another Amazon Region. You cannot encrypt an unencrypted DB cluster snapshot when you copy it. If you try to copy an unencrypted DB cluster snapshot and specify a value for the KmsKeyId parameter, an error is returned",
           args: {
             name: "string",
           },
@@ -396,6 +396,16 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--copy-tags-to-snapshot",
+          description:
+            "If set to true, tags are copied to any snapshot of the DB cluster that is created",
+        },
+        {
+          name: "--no-copy-tags-to-snapshot",
+          description:
+            "If set to true, tags are copied to any snapshot of the DB cluster that is created",
+        },
+        {
           name: "--database-name",
           description:
             "The name for your database of up to 64 alpha-numeric characters. If you do not provide a name, Amazon Neptune will not create a database in the DB cluster you are creating",
@@ -461,16 +471,14 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--master-username",
-          description:
-            "The name of the master user for the DB cluster. Constraints:   Must be 1 to 16 letters or numbers.   First character must be a letter.   Cannot be a reserved word for the chosen database engine",
+          description: "Not supported by Neptune",
           args: {
             name: "string",
           },
         },
         {
           name: "--master-user-password",
-          description:
-            'The password for the master database user. This password can contain any printable ASCII character except "/", """, or "@". Constraints: Must contain from 8 to 41 characters',
+          description: "Not supported by Neptune",
           args: {
             name: "string",
           },
@@ -485,7 +493,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--preferred-backup-window",
           description:
-            "The daily time range during which automated backups are created if automated backups are enabled using the BackupRetentionPeriod parameter. The default is a 30-minute window selected at random from an 8-hour block of time for each AWS Region. To see the time blocks available, see  Adjusting the Preferred Maintenance Window in the Amazon Neptune User Guide.  Constraints:   Must be in the format hh24:mi-hh24:mi.   Must be in Universal Coordinated Time (UTC).   Must not conflict with the preferred maintenance window.   Must be at least 30 minutes",
+            "The daily time range during which automated backups are created if automated backups are enabled using the BackupRetentionPeriod parameter. The default is a 30-minute window selected at random from an 8-hour block of time for each Amazon Region. To see the time blocks available, see Neptune Maintenance Window in the Amazon Neptune User Guide.  Constraints:   Must be in the format hh24:mi-hh24:mi.   Must be in Universal Coordinated Time (UTC).   Must not conflict with the preferred maintenance window.   Must be at least 30 minutes",
           args: {
             name: "string",
           },
@@ -493,7 +501,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--preferred-maintenance-window",
           description:
-            "The weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC). Format: ddd:hh24:mi-ddd:hh24:mi  The default is a 30-minute window selected at random from an 8-hour block of time for each AWS Region, occurring on a random day of the week. To see the time blocks available, see  Adjusting the Preferred Maintenance Window in the Amazon Neptune User Guide.  Valid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun. Constraints: Minimum 30-minute window",
+            "The weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC). Format: ddd:hh24:mi-ddd:hh24:mi  The default is a 30-minute window selected at random from an 8-hour block of time for each Amazon Region, occurring on a random day of the week. To see the time blocks available, see Neptune Maintenance Window in the Amazon Neptune User Guide.  Valid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun. Constraints: Minimum 30-minute window",
           args: {
             name: "string",
           },
@@ -524,7 +532,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kms-key-id",
           description:
-            "The AWS KMS key identifier for an encrypted DB cluster. The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption key. If you are creating a DB cluster with the same AWS account that owns the KMS encryption key used to encrypt the new DB cluster, then you can use the KMS key alias instead of the ARN for the KMS encryption key. If an encryption key is not specified in KmsKeyId:   If ReplicationSourceIdentifier identifies an encrypted source, then Amazon Neptune will use the encryption key used to encrypt the source. Otherwise, Amazon Neptune will use your default encryption key.   If the StorageEncrypted parameter is true and ReplicationSourceIdentifier is not specified, then Amazon Neptune will use your default encryption key.   AWS KMS creates the default encryption key for your AWS account. Your AWS account has a different default encryption key for each AWS Region. If you create a Read Replica of an encrypted DB cluster in another AWS Region, you must set KmsKeyId to a KMS key ID that is valid in the destination AWS Region. This key is used to encrypt the Read Replica in that AWS Region",
+            "The Amazon KMS key identifier for an encrypted DB cluster. The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption key. If you are creating a DB cluster with the same Amazon account that owns the KMS encryption key used to encrypt the new DB cluster, then you can use the KMS key alias instead of the ARN for the KMS encryption key. If an encryption key is not specified in KmsKeyId:   If ReplicationSourceIdentifier identifies an encrypted source, then Amazon Neptune will use the encryption key used to encrypt the source. Otherwise, Amazon Neptune will use your default encryption key.   If the StorageEncrypted parameter is true and ReplicationSourceIdentifier is not specified, then Amazon Neptune will use your default encryption key.   Amazon KMS creates the default encryption key for your Amazon account. Your Amazon account has a different default encryption key for each Amazon Region. If you create a Read Replica of an encrypted DB cluster in another Amazon Region, you must set KmsKeyId to a KMS key ID that is valid in the destination Amazon Region. This key is used to encrypt the Read Replica in that Amazon Region",
           args: {
             name: "string",
           },
@@ -538,16 +546,18 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--enable-iam-database-authentication",
-          description: "Not supported by Neptune",
+          description:
+            "If set to true, enables Amazon Identity and Access Management (IAM) authentication for the entire DB cluster (this cannot be set at an instance level). Default: false",
         },
         {
           name: "--no-enable-iam-database-authentication",
-          description: "Not supported by Neptune",
+          description:
+            "If set to true, enables Amazon Identity and Access Management (IAM) authentication for the entire DB cluster (this cannot be set at an instance level). Default: false",
         },
         {
           name: "--enable-cloudwatch-logs-exports",
           description:
-            "The list of log types that need to be enabled for exporting to CloudWatch Logs",
+            "A list of the log types that this DB cluster should export to CloudWatch Logs. Valid log types are: audit (to publish audit logs) and slowquery (to publish slow-query logs). See Publishing Neptune logs to Amazon CloudWatch logs",
           args: {
             name: "list",
           },
@@ -561,6 +571,30 @@ const completionSpec: Fig.Spec = {
           name: "--no-deletion-protection",
           description:
             "A value that indicates whether the DB cluster has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is enabled",
+        },
+        {
+          name: "--serverless-v2-scaling-configuration",
+          description:
+            "Contains the scaling configuration of a Neptune Serverless DB cluster. For more information, see Using Amazon Neptune Serverless in the Amazon Neptune User Guide",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--global-cluster-identifier",
+          description:
+            "The ID of the Neptune global database to which this new DB cluster should be added",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--storage-type",
+          description:
+            "The storage type to associate with the DB cluster. Valid Values:    standard | iopt1    Default:    standard     When you create a Neptune cluster with the storage type set to iopt1, the storage type is returned in the response. The storage type isn't returned when you set it to standard",
+          args: {
+            name: "string",
+          },
         },
         {
           name: "--source-region",
@@ -781,8 +815,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--allocated-storage",
-          description:
-            "The amount of storage (in gibibytes) to allocate for the DB instance. Type: Integer Not applicable. Neptune cluster volumes automatically grow as the amount of data in your database increases, though you are only charged for the space that you use in a Neptune cluster volume",
+          description: "Not supported by Neptune",
           args: {
             name: "integer",
           },
@@ -790,7 +823,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--db-instance-class",
           description:
-            "The compute and memory capacity of the DB instance, for example, db.m4.large. Not all DB instance classes are available in all AWS Regions",
+            "The compute and memory capacity of the DB instance, for example, db.m4.large. Not all DB instance classes are available in all Amazon Regions",
           args: {
             name: "string",
           },
@@ -805,15 +838,14 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--master-username",
-          description: "The name for the master user. Not used",
+          description: "Not supported by Neptune",
           args: {
             name: "string",
           },
         },
         {
           name: "--master-user-password",
-          description:
-            'The password for the master user. The password can include any printable ASCII character except "/", """, or "@".  Not used',
+          description: "Not supported by Neptune",
           args: {
             name: "string",
           },
@@ -837,7 +869,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--availability-zone",
           description:
-            "The EC2 Availability Zone that the DB instance is created in Default: A random, system-chosen Availability Zone in the endpoint's AWS Region.  Example: us-east-1d   Constraint: The AvailabilityZone parameter can't be specified if the MultiAZ parameter is set to true. The specified Availability Zone must be in the same AWS Region as the current endpoint",
+            "The EC2 Availability Zone that the DB instance is created in Default: A random, system-chosen Availability Zone in the endpoint's Amazon Region.  Example: us-east-1d   Constraint: The AvailabilityZone parameter can't be specified if the MultiAZ parameter is set to true. The specified Availability Zone must be in the same Amazon Region as the current endpoint",
           args: {
             name: "string",
           },
@@ -853,7 +885,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--preferred-maintenance-window",
           description:
-            "The time range each week during which system maintenance can occur, in Universal Coordinated Time (UTC).  Format: ddd:hh24:mi-ddd:hh24:mi  The default is a 30-minute window selected at random from an 8-hour block of time for each AWS Region, occurring on a random day of the week. Valid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun. Constraints: Minimum 30-minute window",
+            "The time range each week during which system maintenance can occur, in Universal Coordinated Time (UTC).  Format: ddd:hh24:mi-ddd:hh24:mi  The default is a 30-minute window selected at random from an 8-hour block of time for each Amazon Region, occurring on a random day of the week. Valid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun. Constraints: Minimum 30-minute window",
           args: {
             name: "string",
           },
@@ -1008,7 +1040,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kms-key-id",
           description:
-            "The AWS KMS key identifier for an encrypted DB instance. The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption key. If you are creating a DB instance with the same AWS account that owns the KMS encryption key used to encrypt the new DB instance, then you can use the KMS key alias instead of the ARN for the KM encryption key. Not applicable. The KMS key identifier is managed by the DB cluster. For more information, see CreateDBCluster. If the StorageEncrypted parameter is true, and you do not specify a value for the KmsKeyId parameter, then Amazon Neptune will use your default encryption key. AWS KMS creates the default encryption key for your AWS account. Your AWS account has a different default encryption key for each AWS Region",
+            "The Amazon KMS key identifier for an encrypted DB instance. The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption key. If you are creating a DB instance with the same Amazon account that owns the KMS encryption key used to encrypt the new DB instance, then you can use the KMS key alias instead of the ARN for the KM encryption key. Not applicable. The KMS key identifier is managed by the DB cluster. For more information, see CreateDBCluster. If the StorageEncrypted parameter is true, and you do not specify a value for the KmsKeyId parameter, then Amazon Neptune will use your default encryption key. Amazon KMS creates the default encryption key for your Amazon account. Your Amazon account has a different default encryption key for each Amazon Region",
           args: {
             name: "string",
           },
@@ -1072,13 +1104,11 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--enable-iam-database-authentication",
-          description:
-            "True to enable AWS Identity and Access Management (IAM) authentication for Neptune. Default: false",
+          description: "Not supported by Neptune (ignored)",
         },
         {
           name: "--no-enable-iam-database-authentication",
-          description:
-            "True to enable AWS Identity and Access Management (IAM) authentication for Neptune. Default: false",
+          description: "Not supported by Neptune (ignored)",
         },
         {
           name: "--enable-performance-insights",
@@ -1189,7 +1219,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-db-subnet-group",
       description:
-        "Creates a new DB subnet group. DB subnet groups must contain at least one subnet in at least two AZs in the AWS Region",
+        "Creates a new DB subnet group. DB subnet groups must contain at least one subnet in at least two AZs in the Amazon Region",
       options: [
         {
           name: "--db-subnet-group-name",
@@ -1300,6 +1330,82 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
           },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-global-cluster",
+      description:
+        "Creates a Neptune global database spread across multiple Amazon Regions. The global database contains a single primary cluster with read-write capability, and read-only secondary clusters that receive data from the primary cluster through high-speed replication performed by the Neptune storage subsystem. You can create a global database that is initially empty, and then add a primary cluster and secondary clusters to it, or you can specify an existing Neptune cluster during the create operation to become the primary cluster of the global database",
+      options: [
+        {
+          name: "--global-cluster-identifier",
+          description:
+            "The cluster identifier of the new global database cluster",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--source-db-cluster-identifier",
+          description:
+            "(Optional) The Amazon Resource Name (ARN) of an existing Neptune DB cluster to use as the primary cluster of the new global database",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--engine",
+          description:
+            "The name of the database engine to be used in the global database. Valid values: neptune",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--engine-version",
+          description:
+            "The Neptune engine version to be used by the global database. Valid values: 1.2.0.0 or above",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--deletion-protection",
+          description:
+            "The deletion protection setting for the new global database. The global database can't be deleted when deletion protection is enabled",
+        },
+        {
+          name: "--no-deletion-protection",
+          description:
+            "The deletion protection setting for the new global database. The global database can't be deleted when deletion protection is enabled",
+        },
+        {
+          name: "--storage-encrypted",
+          description:
+            "The storage encryption setting for the new global database cluster",
+        },
+        {
+          name: "--no-storage-encrypted",
+          description:
+            "The storage encryption setting for the new global database cluster",
         },
         {
           name: "--cli-input-json",
@@ -1612,6 +1718,38 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-global-cluster",
+      description:
+        "Deletes a global database. The primary and all secondary clusters must already be detached or deleted first",
+      options: [
+        {
+          name: "--global-cluster-identifier",
+          description:
+            "The cluster identifier of the global database cluster being deleted",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "describe-db-cluster-endpoints",
       description:
         "Returns information about endpoints for an Amazon Neptune DB cluster.  This operation can also return information for Amazon RDS clusters and Amazon DocDB clusters",
@@ -1868,7 +2006,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-db-cluster-snapshot-attributes",
       description:
-        "Returns a list of DB cluster snapshot attribute names and values for a manual DB cluster snapshot. When sharing snapshots with other AWS accounts, DescribeDBClusterSnapshotAttributes returns the restore attribute and a list of IDs for the AWS accounts that are authorized to copy or restore the manual DB cluster snapshot. If all is included in the list of values for the restore attribute, then the manual DB cluster snapshot is public and can be copied or restored by all AWS accounts. To add or remove access for an AWS account to copy or restore a manual DB cluster snapshot, or to make the manual DB cluster snapshot public or private, use the ModifyDBClusterSnapshotAttribute API action",
+        "Returns a list of DB cluster snapshot attribute names and values for a manual DB cluster snapshot. When sharing snapshots with other Amazon accounts, DescribeDBClusterSnapshotAttributes returns the restore attribute and a list of IDs for the Amazon accounts that are authorized to copy or restore the manual DB cluster snapshot. If all is included in the list of values for the restore attribute, then the manual DB cluster snapshot is public and can be copied or restored by all Amazon accounts. To add or remove access for an Amazon account to copy or restore a manual DB cluster snapshot, or to make the manual DB cluster snapshot public or private, use the ModifyDBClusterSnapshotAttribute API action",
       options: [
         {
           name: "--db-cluster-snapshot-identifier",
@@ -1921,7 +2059,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--snapshot-type",
           description:
-            "The type of DB cluster snapshots to be returned. You can specify one of the following values:    automated - Return all DB cluster snapshots that have been automatically taken by Amazon Neptune for my AWS account.    manual - Return all DB cluster snapshots that have been taken by my AWS account.    shared - Return all manual DB cluster snapshots that have been shared to my AWS account.    public - Return all DB cluster snapshots that have been marked as public.   If you don't specify a SnapshotType value, then both automated and manual DB cluster snapshots are returned. You can include shared DB cluster snapshots with these results by setting the IncludeShared parameter to true. You can include public DB cluster snapshots with these results by setting the IncludePublic parameter to true. The IncludeShared and IncludePublic parameters don't apply for SnapshotType values of manual or automated. The IncludePublic parameter doesn't apply when SnapshotType is set to shared. The IncludeShared parameter doesn't apply when SnapshotType is set to public",
+            "The type of DB cluster snapshots to be returned. You can specify one of the following values:    automated - Return all DB cluster snapshots that have been automatically taken by Amazon Neptune for my Amazon account.    manual - Return all DB cluster snapshots that have been taken by my Amazon account.    shared - Return all manual DB cluster snapshots that have been shared to my Amazon account.    public - Return all DB cluster snapshots that have been marked as public.   If you don't specify a SnapshotType value, then both automated and manual DB cluster snapshots are returned. You can include shared DB cluster snapshots with these results by setting the IncludeShared parameter to true. You can include public DB cluster snapshots with these results by setting the IncludePublic parameter to true. The IncludeShared and IncludePublic parameters don't apply for SnapshotType values of manual or automated. The IncludePublic parameter doesn't apply when SnapshotType is set to shared. The IncludeShared parameter doesn't apply when SnapshotType is set to public",
           args: {
             name: "string",
           },
@@ -1952,22 +2090,22 @@ const completionSpec: Fig.Spec = {
         {
           name: "--include-shared",
           description:
-            "True to include shared manual DB cluster snapshots from other AWS accounts that this AWS account has been given permission to copy or restore, and otherwise false. The default is false. You can give an AWS account permission to restore a manual DB cluster snapshot from another AWS account by the ModifyDBClusterSnapshotAttribute API action",
+            "True to include shared manual DB cluster snapshots from other Amazon accounts that this Amazon account has been given permission to copy or restore, and otherwise false. The default is false. You can give an Amazon account permission to restore a manual DB cluster snapshot from another Amazon account by the ModifyDBClusterSnapshotAttribute API action",
         },
         {
           name: "--no-include-shared",
           description:
-            "True to include shared manual DB cluster snapshots from other AWS accounts that this AWS account has been given permission to copy or restore, and otherwise false. The default is false. You can give an AWS account permission to restore a manual DB cluster snapshot from another AWS account by the ModifyDBClusterSnapshotAttribute API action",
+            "True to include shared manual DB cluster snapshots from other Amazon accounts that this Amazon account has been given permission to copy or restore, and otherwise false. The default is false. You can give an Amazon account permission to restore a manual DB cluster snapshot from another Amazon account by the ModifyDBClusterSnapshotAttribute API action",
         },
         {
           name: "--include-public",
           description:
-            "True to include manual DB cluster snapshots that are public and can be copied or restored by any AWS account, and otherwise false. The default is false. The default is false. You can share a manual DB cluster snapshot as public by using the ModifyDBClusterSnapshotAttribute API action",
+            "True to include manual DB cluster snapshots that are public and can be copied or restored by any Amazon account, and otherwise false. The default is false. The default is false. You can share a manual DB cluster snapshot as public by using the ModifyDBClusterSnapshotAttribute API action",
         },
         {
           name: "--no-include-public",
           description:
-            "True to include manual DB cluster snapshots that are public and can be copied or restored by any AWS account, and otherwise false. The default is false. The default is false. You can share a manual DB cluster snapshot as public by using the ModifyDBClusterSnapshotAttribute API action",
+            "True to include manual DB cluster snapshots that are public and can be copied or restored by any Amazon account, and otherwise false. The default is false. The default is false. You can share a manual DB cluster snapshot as public by using the ModifyDBClusterSnapshotAttribute API action",
         },
         {
           name: "--cli-input-json",
@@ -2028,7 +2166,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--filters",
           description:
-            "A filter that specifies one or more DB clusters to describe. Supported filters:    db-cluster-id - Accepts DB cluster identifiers and DB cluster Amazon Resource Names (ARNs). The results list will only include information about the DB clusters identified by these ARNs.    engine - Accepts an engine name (such as neptune), and restricts the results list to DB clusters created by that engine.   For example, to invoke this API from the AWS CLI and filter so that only Neptune DB clusters are returned, you could use the following command:",
+            "A filter that specifies one or more DB clusters to describe. Supported filters:    db-cluster-id - Accepts DB cluster identifiers and DB cluster Amazon Resource Names (ARNs). The results list will only include information about the DB clusters identified by these ARNs.    engine - Accepts an engine name (such as neptune), and restricts the results list to DB clusters created by that engine.   For example, to invoke this API from the Amazon CLI and filter so that only Neptune DB clusters are returned, you could use the following command:",
           args: {
             name: "list",
           },
@@ -2230,7 +2368,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--filters",
           description:
-            "A filter that specifies one or more DB instances to describe. Supported filters:    db-cluster-id - Accepts DB cluster identifiers and DB cluster Amazon Resource Names (ARNs). The results list will only include information about the DB instances associated with the DB clusters identified by these ARNs.    engine - Accepts an engine name (such as neptune), and restricts the results list to DB instances created by that engine.   For example, to invoke this API from the AWS CLI and filter so that only Neptune DB instances are returned, you could use the following command:",
+            "A filter that specifies one or more DB instances to describe. Supported filters:    db-cluster-id - Accepts DB cluster identifiers and DB cluster Amazon Resource Names (ARNs). The results list will only include information about the DB instances associated with the DB clusters identified by these ARNs.    engine - Accepts an engine name (such as neptune), and restricts the results list to DB instances created by that engine.   For example, to invoke this API from the Amazon CLI and filter so that only Neptune DB instances are returned, you could use the following command:",
           args: {
             name: "list",
           },
@@ -2909,6 +3047,78 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "describe-global-clusters",
+      description:
+        "Returns information about Neptune global database clusters. This API supports pagination",
+      options: [
+        {
+          name: "--global-cluster-identifier",
+          description:
+            "The user-supplied DB cluster identifier. If this parameter is specified, only information about the specified DB cluster is returned. This parameter is not case-sensitive. Constraints: If supplied, must match an existing DB cluster identifier",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination marker token is included in the response that you can use to retrieve the remaining results. Default: 100  Constraints: Minimum 20, maximum 100",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--marker",
+          description:
+            "(Optional) A pagination token returned by a previous call to DescribeGlobalClusters. If this parameter is specified, the response will only include records beyond the marker, up to the number specified by MaxRecords",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "describe-orderable-db-instance-options",
       description:
         "Returns a list of orderable DB instance options for the specified engine",
@@ -3173,6 +3383,46 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "failover-global-cluster",
+      description:
+        "Initiates the failover process for a Neptune global database. A failover for a Neptune global database promotes one of secondary read-only DB clusters to be the primary DB cluster and demotes the primary DB cluster to being a secondary (read-only) DB cluster. In other words, the role of the current primary DB cluster and the selected target secondary DB cluster are switched. The selected secondary DB cluster assumes full read/write capabilities for the Neptune global database.  This action applies only to Neptune global databases. This action is only intended for use on healthy Neptune global databases with healthy Neptune DB clusters and no region-wide outages, to test disaster recovery scenarios or to reconfigure the global database topology",
+      options: [
+        {
+          name: "--global-cluster-identifier",
+          description:
+            "Identifier of the Neptune global database that should be failed over. The identifier is the unique key assigned by the user when the Neptune global database was created. In other words, it's the name of the global database that you want to fail over. Constraints: Must match the identifier of an existing Neptune global database",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--target-db-cluster-identifier",
+          description:
+            "The Amazon Resource Name (ARN) of the secondary Neptune DB cluster that you want to promote to primary for the global database",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-tags-for-resource",
       description: "Lists all tags on an Amazon Neptune resource",
       options: [
@@ -3234,12 +3484,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--apply-immediately",
           description:
-            "A value that specifies whether the modifications in this request and any pending modifications are asynchronously applied as soon as possible, regardless of the PreferredMaintenanceWindow setting for the DB cluster. If this parameter is set to false, changes to the DB cluster are applied during the next maintenance window. The ApplyImmediately parameter only affects the NewDBClusterIdentifier and MasterUserPassword values. If you set the ApplyImmediately parameter value to false, then changes to the NewDBClusterIdentifier and MasterUserPassword values are applied during the next maintenance window. All other changes are applied immediately, regardless of the value of the ApplyImmediately parameter. Default: false",
+            "A value that specifies whether the modifications in this request and any pending modifications are asynchronously applied as soon as possible, regardless of the PreferredMaintenanceWindow setting for the DB cluster. If this parameter is set to false, changes to the DB cluster are applied during the next maintenance window. The ApplyImmediately parameter only affects NewDBClusterIdentifier values. If you set the ApplyImmediately parameter value to false, then changes to NewDBClusterIdentifier values are applied during the next maintenance window. All other changes are applied immediately, regardless of the value of the ApplyImmediately parameter. Default: false",
         },
         {
           name: "--no-apply-immediately",
           description:
-            "A value that specifies whether the modifications in this request and any pending modifications are asynchronously applied as soon as possible, regardless of the PreferredMaintenanceWindow setting for the DB cluster. If this parameter is set to false, changes to the DB cluster are applied during the next maintenance window. The ApplyImmediately parameter only affects the NewDBClusterIdentifier and MasterUserPassword values. If you set the ApplyImmediately parameter value to false, then changes to the NewDBClusterIdentifier and MasterUserPassword values are applied during the next maintenance window. All other changes are applied immediately, regardless of the value of the ApplyImmediately parameter. Default: false",
+            "A value that specifies whether the modifications in this request and any pending modifications are asynchronously applied as soon as possible, regardless of the PreferredMaintenanceWindow setting for the DB cluster. If this parameter is set to false, changes to the DB cluster are applied during the next maintenance window. The ApplyImmediately parameter only affects NewDBClusterIdentifier values. If you set the ApplyImmediately parameter value to false, then changes to NewDBClusterIdentifier values are applied during the next maintenance window. All other changes are applied immediately, regardless of the value of the ApplyImmediately parameter. Default: false",
         },
         {
           name: "--backup-retention-period",
@@ -3275,15 +3525,14 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--master-user-password",
-          description:
-            'The new password for the master database user. This password can contain any printable ASCII character except "/", """, or "@". Constraints: Must contain from 8 to 41 characters',
+          description: "Not supported by Neptune",
           args: {
             name: "string",
           },
         },
         {
           name: "--option-group-name",
-          description: "(Not supported by Neptune)",
+          description: "Not supported by Neptune",
           args: {
             name: "string",
           },
@@ -3291,7 +3540,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--preferred-backup-window",
           description:
-            "The daily time range during which automated backups are created if automated backups are enabled, using the BackupRetentionPeriod parameter. The default is a 30-minute window selected at random from an 8-hour block of time for each AWS Region. Constraints:   Must be in the format hh24:mi-hh24:mi.   Must be in Universal Coordinated Time (UTC).   Must not conflict with the preferred maintenance window.   Must be at least 30 minutes",
+            "The daily time range during which automated backups are created if automated backups are enabled, using the BackupRetentionPeriod parameter. The default is a 30-minute window selected at random from an 8-hour block of time for each Amazon Region. Constraints:   Must be in the format hh24:mi-hh24:mi.   Must be in Universal Coordinated Time (UTC).   Must not conflict with the preferred maintenance window.   Must be at least 30 minutes",
           args: {
             name: "string",
           },
@@ -3299,7 +3548,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--preferred-maintenance-window",
           description:
-            "The weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC). Format: ddd:hh24:mi-ddd:hh24:mi  The default is a 30-minute window selected at random from an 8-hour block of time for each AWS Region, occurring on a random day of the week. Valid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun. Constraints: Minimum 30-minute window",
+            "The weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC). Format: ddd:hh24:mi-ddd:hh24:mi  The default is a 30-minute window selected at random from an 8-hour block of time for each Amazon Region, occurring on a random day of the week. Valid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun. Constraints: Minimum 30-minute window",
           args: {
             name: "string",
           },
@@ -3307,17 +3556,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--enable-iam-database-authentication",
           description:
-            "True to enable mapping of AWS Identity and Access Management (IAM) accounts to database accounts, and otherwise false. Default: false",
+            "True to enable mapping of Amazon Identity and Access Management (IAM) accounts to database accounts, and otherwise false. Default: false",
         },
         {
           name: "--no-enable-iam-database-authentication",
           description:
-            "True to enable mapping of AWS Identity and Access Management (IAM) accounts to database accounts, and otherwise false. Default: false",
+            "True to enable mapping of Amazon Identity and Access Management (IAM) accounts to database accounts, and otherwise false. Default: false",
         },
         {
           name: "--cloudwatch-logs-export-configuration",
           description:
-            "The configuration setting for the log types to be enabled for export to CloudWatch Logs for a specific DB cluster",
+            "The configuration setting for the log types to be enabled for export to CloudWatch Logs for a specific DB cluster. See Using the CLI to publish Neptune audit logs to CloudWatch Logs",
           args: {
             name: "structure",
           },
@@ -3331,6 +3580,24 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--allow-major-version-upgrade",
+          description:
+            "A value that indicates whether upgrades between different major versions are allowed. Constraints: You must set the allow-major-version-upgrade flag when providing an EngineVersion parameter that uses a different major version than the DB cluster's current version",
+        },
+        {
+          name: "--no-allow-major-version-upgrade",
+          description:
+            "A value that indicates whether upgrades between different major versions are allowed. Constraints: You must set the allow-major-version-upgrade flag when providing an EngineVersion parameter that uses a different major version than the DB cluster's current version",
+        },
+        {
+          name: "--db-instance-parameter-group-name",
+          description:
+            "The name of the DB parameter group to apply to all instances of the DB cluster.   When you apply a parameter group using DBInstanceParameterGroupName, parameter changes aren't applied during the next maintenance window but instead are applied immediately.  Default: The existing name setting Constraints:   The DB parameter group must be in the same DB parameter group family as the target DB cluster version.   The DBInstanceParameterGroupName parameter is only valid in combination with the AllowMajorVersionUpgrade parameter",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--deletion-protection",
           description:
             "A value that indicates whether the DB cluster has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is disabled",
@@ -3339,6 +3606,32 @@ const completionSpec: Fig.Spec = {
           name: "--no-deletion-protection",
           description:
             "A value that indicates whether the DB cluster has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is disabled",
+        },
+        {
+          name: "--copy-tags-to-snapshot",
+          description:
+            "If set to true, tags are copied to any snapshot of the DB cluster that is created",
+        },
+        {
+          name: "--no-copy-tags-to-snapshot",
+          description:
+            "If set to true, tags are copied to any snapshot of the DB cluster that is created",
+        },
+        {
+          name: "--serverless-v2-scaling-configuration",
+          description:
+            "Contains the scaling configuration of a Neptune Serverless DB cluster. For more information, see Using Amazon Neptune Serverless in the Amazon Neptune User Guide",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--storage-type",
+          description:
+            "The storage type to associate with the DB cluster. Valid Values:    standard | iopt1    Default:    standard",
+          args: {
+            name: "string",
+          },
         },
         {
           name: "--cli-input-json",
@@ -3456,7 +3749,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "modify-db-cluster-snapshot-attribute",
       description:
-        "Adds an attribute and values to, or removes an attribute and values from, a manual DB cluster snapshot. To share a manual DB cluster snapshot with other AWS accounts, specify restore as the AttributeName and use the ValuesToAdd parameter to add a list of IDs of the AWS accounts that are authorized to restore the manual DB cluster snapshot. Use the value all to make the manual DB cluster snapshot public, which means that it can be copied or restored by all AWS accounts. Do not add the all value for any manual DB cluster snapshots that contain private information that you don't want available to all AWS accounts. If a manual DB cluster snapshot is encrypted, it can be shared, but only by specifying a list of authorized AWS account IDs for the ValuesToAdd parameter. You can't use all as a value for that parameter in this case. To view which AWS accounts have access to copy or restore a manual DB cluster snapshot, or whether a manual DB cluster snapshot public or private, use the DescribeDBClusterSnapshotAttributes API action",
+        "Adds an attribute and values to, or removes an attribute and values from, a manual DB cluster snapshot. To share a manual DB cluster snapshot with other Amazon accounts, specify restore as the AttributeName and use the ValuesToAdd parameter to add a list of IDs of the Amazon accounts that are authorized to restore the manual DB cluster snapshot. Use the value all to make the manual DB cluster snapshot public, which means that it can be copied or restored by all Amazon accounts. Do not add the all value for any manual DB cluster snapshots that contain private information that you don't want available to all Amazon accounts. If a manual DB cluster snapshot is encrypted, it can be shared, but only by specifying a list of authorized Amazon account IDs for the ValuesToAdd parameter. You can't use all as a value for that parameter in this case. To view which Amazon accounts have access to copy or restore a manual DB cluster snapshot, or whether a manual DB cluster snapshot public or private, use the DescribeDBClusterSnapshotAttributes API action",
       options: [
         {
           name: "--db-cluster-snapshot-identifier",
@@ -3469,7 +3762,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--attribute-name",
           description:
-            "The name of the DB cluster snapshot attribute to modify. To manage authorization for other AWS accounts to copy or restore a manual DB cluster snapshot, set this value to restore",
+            "The name of the DB cluster snapshot attribute to modify. To manage authorization for other Amazon accounts to copy or restore a manual DB cluster snapshot, set this value to restore",
           args: {
             name: "string",
           },
@@ -3477,7 +3770,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--values-to-add",
           description:
-            "A list of DB cluster snapshot attributes to add to the attribute specified by AttributeName. To authorize other AWS accounts to copy or restore a manual DB cluster snapshot, set this list to include one or more AWS account IDs, or all to make the manual DB cluster snapshot restorable by any AWS account. Do not add the all value for any manual DB cluster snapshots that contain private information that you don't want available to all AWS accounts",
+            "A list of DB cluster snapshot attributes to add to the attribute specified by AttributeName. To authorize other Amazon accounts to copy or restore a manual DB cluster snapshot, set this list to include one or more Amazon account IDs, or all to make the manual DB cluster snapshot restorable by any Amazon account. Do not add the all value for any manual DB cluster snapshots that contain private information that you don't want available to all Amazon accounts",
           args: {
             name: "list",
           },
@@ -3485,7 +3778,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--values-to-remove",
           description:
-            "A list of DB cluster snapshot attributes to remove from the attribute specified by AttributeName. To remove authorization for other AWS accounts to copy or restore a manual DB cluster snapshot, set this list to include one or more AWS account identifiers, or all to remove authorization for any AWS account to copy or restore the DB cluster snapshot. If you specify all, an AWS account whose account ID is explicitly added to the restore attribute can still copy or restore a manual DB cluster snapshot",
+            "A list of DB cluster snapshot attributes to remove from the attribute specified by AttributeName. To remove authorization for other Amazon accounts to copy or restore a manual DB cluster snapshot, set this list to include one or more Amazon account identifiers, or all to remove authorization for any Amazon account to copy or restore the DB cluster snapshot. If you specify all, an Amazon account whose account ID is explicitly added to the restore attribute can still copy or restore a manual DB cluster snapshot",
           args: {
             name: "list",
           },
@@ -3524,8 +3817,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--allocated-storage",
-          description:
-            "The new amount of storage (in gibibytes) to allocate for the DB instance. Not applicable. Storage is managed by the DB Cluster",
+          description: "Not supported by Neptune",
           args: {
             name: "integer",
           },
@@ -3533,7 +3825,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--db-instance-class",
           description:
-            "The new compute and memory capacity of the DB instance, for example, db.m4.large. Not all DB instance classes are available in all AWS Regions. If you modify the DB instance class, an outage occurs during the change. The change is applied during the next maintenance window, unless ApplyImmediately is specified as true for this request. Default: Uses existing setting",
+            "The new compute and memory capacity of the DB instance, for example, db.m4.large. Not all DB instance classes are available in all Amazon Regions. If you modify the DB instance class, an outage occurs during the change. The change is applied during the next maintenance window, unless ApplyImmediately is specified as true for this request. Default: Uses existing setting",
           args: {
             name: "string",
           },
@@ -3574,7 +3866,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--master-user-password",
-          description: "Not applicable",
+          description: "Not supported by Neptune",
           args: {
             name: "string",
           },
@@ -3651,7 +3943,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--license-model",
-          description: "Not supported",
+          description: "Not supported by Neptune",
           args: {
             name: "string",
           },
@@ -3777,12 +4069,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--enable-iam-database-authentication",
           description:
-            "True to enable mapping of AWS Identity and Access Management (IAM) accounts to database accounts, and otherwise false. You can enable IAM database authentication for the following database engines Not applicable. Mapping AWS IAM accounts to database accounts is managed by the DB cluster. For more information, see ModifyDBCluster. Default: false",
+            "True to enable mapping of Amazon Identity and Access Management (IAM) accounts to database accounts, and otherwise false. You can enable IAM database authentication for the following database engines Not applicable. Mapping Amazon IAM accounts to database accounts is managed by the DB cluster. For more information, see ModifyDBCluster. Default: false",
         },
         {
           name: "--no-enable-iam-database-authentication",
           description:
-            "True to enable mapping of AWS Identity and Access Management (IAM) accounts to database accounts, and otherwise false. You can enable IAM database authentication for the following database engines Not applicable. Mapping AWS IAM accounts to database accounts is managed by the DB cluster. For more information, see ModifyDBCluster. Default: false",
+            "True to enable mapping of Amazon Identity and Access Management (IAM) accounts to database accounts, and otherwise false. You can enable IAM database authentication for the following database engines Not applicable. Mapping Amazon IAM accounts to database accounts is managed by the DB cluster. For more information, see ModifyDBCluster. Default: false",
         },
         {
           name: "--enable-performance-insights",
@@ -3879,7 +4171,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "modify-db-subnet-group",
       description:
-        "Modifies an existing DB subnet group. DB subnet groups must contain at least one subnet in at least two AZs in the AWS Region",
+        "Modifies an existing DB subnet group. DB subnet groups must contain at least one subnet in at least two AZs in the Amazon Region",
       options: [
         {
           name: "--db-subnet-group-name",
@@ -3988,6 +4280,74 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "modify-global-cluster",
+      description:
+        "Modify a setting for an Amazon Neptune global cluster. You can change one or more database configuration parameters by specifying these parameters and their new values in the request",
+      options: [
+        {
+          name: "--global-cluster-identifier",
+          description:
+            "The DB cluster identifier for the global cluster being modified. This parameter is not case-sensitive. Constraints: Must match the identifier of an existing global database cluster",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--new-global-cluster-identifier",
+          description:
+            "A new cluster identifier to assign to the global database. This value is stored as a lowercase string. Constraints:   Must contain from 1 to 63 letters, numbers, or hyphens.   The first character must be a letter.   Can't end with a hyphen or contain two consecutive hyphens   Example: my-cluster2",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--deletion-protection",
+          description:
+            "Indicates whether the global database has deletion protection enabled. The global database cannot be deleted when deletion protection is enabled",
+        },
+        {
+          name: "--no-deletion-protection",
+          description:
+            "Indicates whether the global database has deletion protection enabled. The global database cannot be deleted when deletion protection is enabled",
+        },
+        {
+          name: "--engine-version",
+          description:
+            "The version number of the database engine to which you want to upgrade. Changing this parameter will result in an outage. The change is applied during the next maintenance window unless ApplyImmediately is enabled. To list all of the available Neptune engine versions, use the following command:",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--allow-major-version-upgrade",
+          description:
+            "A value that indicates whether major version upgrades are allowed. Constraints: You must allow major version upgrades if you specify a value for the EngineVersion parameter that is a different major version than the DB cluster's current version. If you upgrade the major version of a global database, the cluster and DB instance parameter groups are set to the default parameter groups for the new version, so you will need to apply any custom parameter groups after completing the upgrade",
+        },
+        {
+          name: "--no-allow-major-version-upgrade",
+          description:
+            "A value that indicates whether major version upgrades are allowed. Constraints: You must allow major version upgrades if you specify a value for the EngineVersion parameter that is a different major version than the DB cluster's current version. If you upgrade the major version of a global database, the cluster and DB instance parameter groups are set to the default parameter groups for the new version, so you will need to apply any custom parameter groups after completing the upgrade",
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "promote-read-replica-db-cluster",
       description: "Not supported",
       options: [
@@ -4060,6 +4420,46 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "remove-from-global-cluster",
+      description:
+        "Detaches a Neptune DB cluster from a Neptune global database. A secondary cluster becomes a normal standalone cluster with read-write capability instead of being read-only, and no longer receives data from a the primary cluster",
+      options: [
+        {
+          name: "--global-cluster-identifier",
+          description:
+            "The identifier of the Neptune global database from which to detach the specified Neptune DB cluster",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--db-cluster-identifier",
+          description:
+            "The Amazon Resource Name (ARN) identifying the cluster to be detached from the Neptune global database cluster",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "remove-role-from-db-cluster",
       description:
         "Disassociates an Identity and Access Management (IAM) role from a DB cluster",
@@ -4083,7 +4483,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--feature-name",
           description:
-            "The name of the feature for the DB cluster that the IAM role is to be disassociated from. For the list of supported feature names, see DBEngineVersion",
+            "The name of the feature for the DB cluster that the IAM role is to be disassociated from. For the list of supported feature names, see DescribeDBEngineVersions",
           args: {
             name: "string",
           },
@@ -4377,7 +4777,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kms-key-id",
           description:
-            "The AWS KMS key identifier to use when restoring an encrypted DB cluster from a DB snapshot or DB cluster snapshot. The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption key. If you are restoring a DB cluster with the same AWS account that owns the KMS encryption key used to encrypt the new DB cluster, then you can use the KMS key alias instead of the ARN for the KMS encryption key. If you do not specify a value for the KmsKeyId parameter, then the following will occur:   If the DB snapshot or DB cluster snapshot in SnapshotIdentifier is encrypted, then the restored DB cluster is encrypted using the KMS key that was used to encrypt the DB snapshot or DB cluster snapshot.   If the DB snapshot or DB cluster snapshot in SnapshotIdentifier is not encrypted, then the restored DB cluster is not encrypted",
+            "The Amazon KMS key identifier to use when restoring an encrypted DB cluster from a DB snapshot or DB cluster snapshot. The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption key. If you are restoring a DB cluster with the same Amazon account that owns the KMS encryption key used to encrypt the new DB cluster, then you can use the KMS key alias instead of the ARN for the KMS encryption key. If you do not specify a value for the KmsKeyId parameter, then the following will occur:   If the DB snapshot or DB cluster snapshot in SnapshotIdentifier is encrypted, then the restored DB cluster is encrypted using the KMS key that was used to encrypt the DB snapshot or DB cluster snapshot.   If the DB snapshot or DB cluster snapshot in SnapshotIdentifier is not encrypted, then the restored DB cluster is not encrypted",
           args: {
             name: "string",
           },
@@ -4385,12 +4785,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--enable-iam-database-authentication",
           description:
-            "True to enable mapping of AWS Identity and Access Management (IAM) accounts to database accounts, and otherwise false. Default: false",
+            "True to enable mapping of Amazon Identity and Access Management (IAM) accounts to database accounts, and otherwise false. Default: false",
         },
         {
           name: "--no-enable-iam-database-authentication",
           description:
-            "True to enable mapping of AWS Identity and Access Management (IAM) accounts to database accounts, and otherwise false. Default: false",
+            "True to enable mapping of Amazon Identity and Access Management (IAM) accounts to database accounts, and otherwise false. Default: false",
         },
         {
           name: "--enable-cloudwatch-logs-exports",
@@ -4417,6 +4817,32 @@ const completionSpec: Fig.Spec = {
           name: "--no-deletion-protection",
           description:
             "A value that indicates whether the DB cluster has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is disabled",
+        },
+        {
+          name: "--copy-tags-to-snapshot",
+          description:
+            "If set to true, tags are copied to any snapshot of the restored DB cluster that is created",
+        },
+        {
+          name: "--no-copy-tags-to-snapshot",
+          description:
+            "If set to true, tags are copied to any snapshot of the restored DB cluster that is created",
+        },
+        {
+          name: "--serverless-v2-scaling-configuration",
+          description:
+            "Contains the scaling configuration of a Neptune Serverless DB cluster. For more information, see Using Amazon Neptune Serverless in the Amazon Neptune User Guide",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--storage-type",
+          description:
+            "Specifies the storage type to be associated with the DB cluster. Valid values: standard, iopt1  Default: standard",
+          args: {
+            name: "string",
+          },
         },
         {
           name: "--cli-input-json",
@@ -4525,7 +4951,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kms-key-id",
           description:
-            "The AWS KMS key identifier to use when restoring an encrypted DB cluster from an encrypted DB cluster. The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption key. If you are restoring a DB cluster with the same AWS account that owns the KMS encryption key used to encrypt the new DB cluster, then you can use the KMS key alias instead of the ARN for the KMS encryption key. You can restore to a new DB cluster and encrypt the new DB cluster with a KMS key that is different than the KMS key used to encrypt the source DB cluster. The new DB cluster is encrypted with the KMS key identified by the KmsKeyId parameter. If you do not specify a value for the KmsKeyId parameter, then the following will occur:   If the DB cluster is encrypted, then the restored DB cluster is encrypted using the KMS key that was used to encrypt the source DB cluster.   If the DB cluster is not encrypted, then the restored DB cluster is not encrypted.   If DBClusterIdentifier refers to a DB cluster that is not encrypted, then the restore request is rejected",
+            "The Amazon KMS key identifier to use when restoring an encrypted DB cluster from an encrypted DB cluster. The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption key. If you are restoring a DB cluster with the same Amazon account that owns the KMS encryption key used to encrypt the new DB cluster, then you can use the KMS key alias instead of the ARN for the KMS encryption key. You can restore to a new DB cluster and encrypt the new DB cluster with a KMS key that is different than the KMS key used to encrypt the source DB cluster. The new DB cluster is encrypted with the KMS key identified by the KmsKeyId parameter. If you do not specify a value for the KmsKeyId parameter, then the following will occur:   If the DB cluster is encrypted, then the restored DB cluster is encrypted using the KMS key that was used to encrypt the source DB cluster.   If the DB cluster is not encrypted, then the restored DB cluster is not encrypted.   If DBClusterIdentifier refers to a DB cluster that is not encrypted, then the restore request is rejected",
           args: {
             name: "string",
           },
@@ -4533,12 +4959,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--enable-iam-database-authentication",
           description:
-            "True to enable mapping of AWS Identity and Access Management (IAM) accounts to database accounts, and otherwise false. Default: false",
+            "True to enable mapping of Amazon Identity and Access Management (IAM) accounts to database accounts, and otherwise false. Default: false",
         },
         {
           name: "--no-enable-iam-database-authentication",
           description:
-            "True to enable mapping of AWS Identity and Access Management (IAM) accounts to database accounts, and otherwise false. Default: false",
+            "True to enable mapping of Amazon Identity and Access Management (IAM) accounts to database accounts, and otherwise false. Default: false",
         },
         {
           name: "--enable-cloudwatch-logs-exports",
@@ -4567,6 +4993,22 @@ const completionSpec: Fig.Spec = {
             "A value that indicates whether the DB cluster has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is disabled",
         },
         {
+          name: "--serverless-v2-scaling-configuration",
+          description:
+            "Contains the scaling configuration of a Neptune Serverless DB cluster. For more information, see Using Amazon Neptune Serverless in the Amazon Neptune User Guide",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--storage-type",
+          description:
+            "Specifies the storage type to be associated with the DB cluster. Valid values: standard, iopt1  Default: standard",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -4588,7 +5030,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "start-db-cluster",
       description:
-        "Starts an Amazon Neptune DB cluster that was stopped using the AWS console, the AWS CLI stop-db-cluster command, or the StopDBCluster API",
+        "Starts an Amazon Neptune DB cluster that was stopped using the Amazon console, the Amazon CLI stop-db-cluster command, or the StopDBCluster API",
       options: [
         {
           name: "--db-cluster-identifier",
@@ -4670,7 +5112,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--filters",
               description:
-                "A filter that specifies one or more DB instances to describe. Supported filters:    db-cluster-id - Accepts DB cluster identifiers and DB cluster Amazon Resource Names (ARNs). The results list will only include information about the DB instances associated with the DB clusters identified by these ARNs.    engine - Accepts an engine name (such as neptune), and restricts the results list to DB instances created by that engine.   For example, to invoke this API from the AWS CLI and filter so that only Neptune DB instances are returned, you could use the following command:",
+                "A filter that specifies one or more DB instances to describe. Supported filters:    db-cluster-id - Accepts DB cluster identifiers and DB cluster Amazon Resource Names (ARNs). The results list will only include information about the DB instances associated with the DB clusters identified by these ARNs.    engine - Accepts an engine name (such as neptune), and restricts the results list to DB instances created by that engine.   For example, to invoke this API from the Amazon CLI and filter so that only Neptune DB instances are returned, you could use the following command:",
               args: {
                 name: "list",
               },
@@ -4750,7 +5192,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--filters",
               description:
-                "A filter that specifies one or more DB instances to describe. Supported filters:    db-cluster-id - Accepts DB cluster identifiers and DB cluster Amazon Resource Names (ARNs). The results list will only include information about the DB instances associated with the DB clusters identified by these ARNs.    engine - Accepts an engine name (such as neptune), and restricts the results list to DB instances created by that engine.   For example, to invoke this API from the AWS CLI and filter so that only Neptune DB instances are returned, you could use the following command:",
+                "A filter that specifies one or more DB instances to describe. Supported filters:    db-cluster-id - Accepts DB cluster identifiers and DB cluster Amazon Resource Names (ARNs). The results list will only include information about the DB instances associated with the DB clusters identified by these ARNs.    engine - Accepts an engine name (such as neptune), and restricts the results list to DB instances created by that engine.   For example, to invoke this API from the Amazon CLI and filter so that only Neptune DB instances are returned, you could use the following command:",
               args: {
                 name: "list",
               },
@@ -4818,5 +5260,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

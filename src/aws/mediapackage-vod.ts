@@ -5,7 +5,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "configure-logs",
       description:
-        "Changes the packaging group's properties to configure log subscription",
+        "Changes the packaging group's properities to configure log subscription",
       options: [
         {
           name: "--egress-access-logs",
@@ -772,5 +772,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

@@ -1422,7 +1422,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-route-request-parameter",
-      description: "Deletes a route request parameter",
+      description:
+        "Deletes a route request parameter. Supported only for WebSocket APIs",
       options: [
         {
           name: "--api-id",
@@ -4225,5 +4226,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

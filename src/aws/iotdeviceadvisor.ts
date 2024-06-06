@@ -1,11 +1,12 @@
 const completionSpec: Fig.Spec = {
   name: "iotdeviceadvisor",
   description:
-    "AWS IoT Core Device Advisor is a cloud-based, fully managed test capability for validating IoT devices during device software development. Device Advisor provides pre-built tests that you can use to validate IoT devices for reliable and secure connectivity with AWS IoT Core before deploying devices to production. By using Device Advisor, you can confirm that your devices can connect to AWS IoT Core, follow security best practices and, if applicable, receive software updates from IoT Device Management. You can also download signed qualification reports to submit to the AWS Partner Network to get your device qualified for the AWS Partner Device Catalog without the need to send your device in and wait for it to be tested",
+    "Amazon Web Services IoT Core Device Advisor is a cloud-based, fully managed test capability for validating IoT devices during device software development. Device Advisor provides pre-built tests that you can use to validate IoT devices for reliable and secure connectivity with Amazon Web Services IoT Core before deploying devices to production. By using Device Advisor, you can confirm that your devices can connect to Amazon Web Services IoT Core, follow security best practices and, if applicable, receive software updates from IoT Device Management. You can also download signed qualification reports to submit to the Amazon Web Services Partner Network to get your device qualified for the Amazon Web Services Partner Device Catalog without the need to send your device in and wait for it to be tested",
   subcommands: [
     {
       name: "create-suite-definition",
-      description: "Creates a Device Advisor test suite",
+      description:
+        "Creates a Device Advisor test suite. Requires permission to access the CreateSuiteDefinition action",
       options: [
         {
           name: "--suite-definition-configuration",
@@ -43,12 +44,67 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-suite-definition",
-      description: "Deletes a Device Advisor test suite",
+      description:
+        "Deletes a Device Advisor test suite. Requires permission to access the DeleteSuiteDefinition action",
       options: [
         {
           name: "--suite-definition-id",
+          description: "Suite definition ID of the test suite to be deleted",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
           description:
-            "Deletes a Device Advisor test suite with defined suite Id",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-endpoint",
+      description: "Gets information about an Device Advisor endpoint",
+      options: [
+        {
+          name: "--thing-arn",
+          description:
+            "The thing ARN of the device. This is an optional parameter",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--certificate-arn",
+          description:
+            "The certificate ARN of the device. This is an optional parameter",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--device-role-arn",
+          description:
+            "The device role ARN of the device. This is an optional parameter",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--authentication-method",
+          description:
+            "The authentication method used during the device connection",
           args: {
             name: "string",
           },
@@ -74,19 +130,19 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-suite-definition",
-      description: "Gets information about a Device Advisor test suite",
+      description:
+        "Gets information about a Device Advisor test suite. Requires permission to access the GetSuiteDefinition action",
       options: [
         {
           name: "--suite-definition-id",
-          description:
-            "Requests suite definition Id with GetSuiteDefinition API call",
+          description: "Suite definition ID of the test suite to get",
           args: {
             name: "string",
           },
         },
         {
           name: "--suite-definition-version",
-          description: "Requests the suite definition version of a test suite",
+          description: "Suite definition version of the test suite to get",
           args: {
             name: "string",
           },
@@ -112,20 +168,19 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-suite-run",
-      description: "Gets information about a Device Advisor test suite run",
+      description:
+        "Gets information about a Device Advisor test suite run. Requires permission to access the GetSuiteRun action",
       options: [
         {
           name: "--suite-definition-id",
-          description:
-            "Requests the information about Device Advisor test suite run based on suite definition Id",
+          description: "Suite definition ID for the test suite run",
           args: {
             name: "string",
           },
         },
         {
           name: "--suite-run-id",
-          description:
-            "Requests the information about Device Advisor test suite run based on suite run Id",
+          description: "Suite run ID for the test suite run",
           args: {
             name: "string",
           },
@@ -152,18 +207,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-suite-run-report",
       description:
-        "Gets a report download link for a successful Device Advisor qualifying test suite run",
+        "Gets a report download link for a successful Device Advisor qualifying test suite run. Requires permission to access the GetSuiteRunReport action",
       options: [
         {
           name: "--suite-definition-id",
-          description: "Device Advisor suite definition Id",
+          description: "Suite definition ID of the test suite",
           args: {
             name: "string",
           },
         },
         {
           name: "--suite-run-id",
-          description: "Device Advisor suite run Id",
+          description: "Suite run ID of the test suite run",
           args: {
             name: "string",
           },
@@ -189,18 +244,19 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-suite-definitions",
-      description: "Lists the Device Advisor test suites you have created",
+      description:
+        "Lists the Device Advisor test suites you have created. Requires permission to access the ListSuiteDefinitions action",
       options: [
         {
           name: "--max-results",
-          description: "Request the list of all the Device Advisor test suites",
+          description: "The maximum number of results to return at once",
           args: {
             name: "integer",
           },
         },
         {
           name: "--next-token",
-          description: "Requests the Device Advisor test suites next token",
+          description: "A token used to get the next set of results",
           args: {
             name: "string",
           },
@@ -227,12 +283,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-suite-runs",
       description:
-        "Lists the runs of the specified Device Advisor test suite. You can list all runs of the test suite, or the runs of a specific version of the test suite",
+        "Lists runs of the specified Device Advisor test suite. You can list all runs of the test suite, or the runs of a specific version of the test suite. Requires permission to access the ListSuiteRuns action",
       options: [
         {
           name: "--suite-definition-id",
           description:
-            "Lists the runs of the specified Device Advisor test suite based on suite definition Id",
+            "Lists the test suite runs of the specified test suite based on suite definition ID",
           args: {
             name: "string",
           },
@@ -240,21 +296,21 @@ const completionSpec: Fig.Spec = {
         {
           name: "--suite-definition-version",
           description:
-            "Lists the runs of the specified Device Advisor test suite based on suite definition version",
+            "Must be passed along with suiteDefinitionId. Lists the test suite runs of the specified test suite based on suite definition version",
           args: {
             name: "string",
           },
         },
         {
           name: "--max-results",
-          description: "MaxResults for list suite run API request",
+          description: "The maximum number of results to return at once",
           args: {
             name: "integer",
           },
         },
         {
           name: "--next-token",
-          description: "Next pagination token for list suite run request",
+          description: "A token to retrieve the next set of results",
           args: {
             name: "string",
           },
@@ -280,58 +336,13 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-tags-for-resource",
-      description: "Lists the tags attached to an IoT Device Advisor resource",
+      description:
+        "Lists the tags attached to an IoT Device Advisor resource. Requires permission to access the ListTagsForResource action",
       options: [
         {
           name: "--resource-arn",
-          description: "The ARN of the IoT Device Advisor resource",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "list-test-cases",
-      description: "Lists all the test cases in the test suite",
-      options: [
-        {
-          name: "--intended-for-qualification",
-          description:
-            "Lists all the qualification test cases in the test suite",
-        },
-        {
-          name: "--no-intended-for-qualification",
-          description:
-            "Lists all the qualification test cases in the test suite",
-        },
-        {
-          name: "--max-results",
-          description: "Requests the test cases max results",
-          args: {
-            name: "integer",
-          },
-        },
-        {
-          name: "--next-token",
-          description: "Requests the test cases next token",
+            "The resource ARN of the IoT Device Advisor resource. This can be SuiteDefinition ARN or SuiteRun ARN",
           args: {
             name: "string",
           },
@@ -357,28 +368,26 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "start-suite-run",
-      description: "Starts a Device Advisor test suite run",
+      description:
+        "Starts a Device Advisor test suite run. Requires permission to access the StartSuiteRun action",
       options: [
         {
           name: "--suite-definition-id",
-          description:
-            "Request to start suite run based on suite definition Id",
+          description: "Suite definition ID of the test suite",
           args: {
             name: "string",
           },
         },
         {
           name: "--suite-definition-version",
-          description:
-            "Request to start suite run based on suite definition version",
+          description: "Suite definition version of the test suite",
           args: {
             name: "string",
           },
         },
         {
           name: "--suite-run-configuration",
-          description:
-            "Request to start suite run based on suite configuration",
+          description: "Suite run configuration",
           args: {
             name: "structure",
           },
@@ -410,13 +419,53 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "stop-suite-run",
+      description:
+        "Stops a Device Advisor test suite run that is currently running. Requires permission to access the StopSuiteRun action",
+      options: [
+        {
+          name: "--suite-definition-id",
+          description:
+            "Suite definition ID of the test suite run to be stopped",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--suite-run-id",
+          description: "Suite run ID of the test suite run to be stopped",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "tag-resource",
       description:
-        "Adds to and modifies existing tags of an IoT Device Advisor resource",
+        "Adds to and modifies existing tags of an IoT Device Advisor resource. Requires permission to access the TagResource action",
       options: [
         {
           name: "--resource-arn",
-          description: "The resource ARN of an IoT Device Advisor resource",
+          description:
+            "The resource ARN of an IoT Device Advisor resource. This can be SuiteDefinition ARN or SuiteRun ARN",
           args: {
             name: "string",
           },
@@ -450,11 +499,13 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "untag-resource",
-      description: "Removes tags from an IoT Device Advisor resource",
+      description:
+        "Removes tags from an IoT Device Advisor resource. Requires permission to access the UntagResource action",
       options: [
         {
           name: "--resource-arn",
-          description: "The resource ARN of an IoT Device Advisor resource",
+          description:
+            "The resource ARN of an IoT Device Advisor resource. This can be SuiteDefinition ARN or SuiteRun ARN",
           args: {
             name: "string",
           },
@@ -488,12 +539,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "update-suite-definition",
-      description: "Updates a Device Advisor test suite",
+      description:
+        "Updates a Device Advisor test suite. Requires permission to access the UpdateSuiteDefinition action",
       options: [
         {
           name: "--suite-definition-id",
-          description:
-            "Updates a Device Advisor test suite with suite definition id",
+          description: "Suite definition ID of the test suite to be updated",
           args: {
             name: "string",
           },
@@ -527,5 +578,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

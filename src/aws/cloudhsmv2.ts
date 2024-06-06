@@ -634,7 +634,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "restore-backup",
       description:
-        "Restores a specified AWS CloudHSM backup that is in the PENDING_DELETION state. For more information on deleting a backup, see DeleteBackup",
+        "Restores a specified AWS CloudHSM backup that is in the PENDING_DELETION state. For mor information on deleting a backup, see DeleteBackup",
       options: [
         {
           name: "--backup-id",
@@ -744,5 +744,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

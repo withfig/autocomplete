@@ -212,6 +212,13 @@ const completionSpec: Fig.Spec = {
             "Whether the field can be used to sort the search results",
         },
         {
+          name: "--source-field",
+          description: "The name of the source field to map to the field",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--highlight-enabled",
           description: "Whether highlights can be returned for the field",
         },
@@ -1068,5 +1075,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;
