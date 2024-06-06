@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "sso",
   description:
-    "AWS Single Sign-On Portal is a web service that makes it easy for you to assign user access to AWS SSO resources such as the user portal. Users can get AWS account applications and roles assigned to them and get federated into the application. For general information about AWS SSO, see What is AWS Single Sign-On? in the AWS SSO User Guide. This API reference guide describes the AWS SSO Portal operations that you can call programmatically and includes detailed information on data types and errors.  AWS provides SDKs that consist of libraries and sample code for various programming languages and platforms, such as Java, Ruby, .Net, iOS, or Android. The SDKs provide a convenient way to create programmatic access to AWS SSO and other AWS services. For more information about the AWS SDKs, including how to download and install them, see Tools for Amazon Web Services",
+    "AWS IAM Identity Center (successor to AWS Single Sign-On) Portal is a web service that makes it easy for you to assign user access to IAM Identity Center resources such as the AWS access portal. Users can get AWS account applications and roles assigned to them and get federated into the application.  Although AWS Single Sign-On was renamed, the sso and identitystore API namespaces will continue to retain their original name for backward compatibility purposes. For more information, see IAM Identity Center rename.  This reference guide describes the IAM Identity Center Portal operations that you can call programatically and includes detailed information on data types and errors.  AWS provides SDKs that consist of libraries and sample code for various programming languages and platforms, such as Java, Ruby, .Net, iOS, or Android. The SDKs provide a convenient way to create programmatic access to IAM Identity Center and other AWS services. For more information about the AWS SDKs, including how to download and install them, see Tools for Amazon Web Services",
   subcommands: [
     {
       name: "get-role-credentials",
@@ -13,7 +13,7 @@ const completionSpec: Fig.Spec = {
           description:
             "The friendly name of the role that is assigned to the user",
           args: {
-            name: "name",
+            name: "string",
           },
         },
         {
@@ -21,15 +21,15 @@ const completionSpec: Fig.Spec = {
           description:
             "The identifier for the AWS account that is assigned to the user",
           args: {
-            name: "account id",
+            name: "string",
           },
         },
         {
           name: "--access-token",
           description:
-            "The token issued by the CreateToken API call. For more information, see CreateToken in the AWS SSO OIDC API Reference Guide",
+            "The token issued by the CreateToken API call. For more information, see CreateToken in the IAM Identity Center OIDC API Reference Guide",
           args: {
-            name: "token",
+            name: "string",
           },
         },
         {
@@ -74,9 +74,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "--access-token",
           description:
-            "The token issued by the CreateToken API call. For more information, see CreateToken in the AWS SSO OIDC API Reference Guide",
+            "The token issued by the CreateToken API call. For more information, see CreateToken in the IAM Identity Center OIDC API Reference Guide",
           args: {
-            name: "token",
+            name: "string",
           },
         },
         {
@@ -84,7 +84,7 @@ const completionSpec: Fig.Spec = {
           description:
             "The identifier for the AWS account that is assigned to the user",
           args: {
-            name: "account id",
+            name: "string",
           },
         },
         {
@@ -133,7 +133,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-accounts",
       description:
-        "Lists all AWS accounts assigned to the user. These AWS accounts are assigned by the administrator of the account. For more information, see Assign User Access in the AWS SSO User Guide. This operation returns a paginated response",
+        "Lists all AWS accounts assigned to the user. These AWS accounts are assigned by the administrator of the account. For more information, see Assign User Access in the IAM Identity Center User Guide. This operation returns a paginated response",
       options: [
         {
           name: "--next-token",
@@ -154,9 +154,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "--access-token",
           description:
-            "The token issued by the CreateToken API call. For more information, see CreateToken in the AWS SSO OIDC API Reference Guide",
+            "The token issued by the CreateToken API call. For more information, see CreateToken in the IAM Identity Center OIDC API Reference Guide",
           args: {
-            name: "token",
+            name: "string",
           },
         },
         {
@@ -203,31 +203,16 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "login",
-      description:
-        "Refreshes SSO access tokens and logs in. Required setup using `aws configure sso`",
-      options: [
-        {
-          name: "--profile",
-          description:
-            "The name of the profile to use.\n\nIf not set, will use the default profile",
-          args: {
-            name: "name",
-          },
-        },
-      ],
-    },
-    {
       name: "logout",
       description:
-        "Removes the client- and server-side session that is associated with the user",
+        "Removes the locally stored SSO tokens from the client-side cache and sends an API call to the IAM Identity Center service to invalidate the corresponding server-side IAM Identity Center sign in session.  If a user uses IAM Identity Center to access the AWS CLI, the user\u2019s IAM Identity Center sign in session is used to obtain an IAM session, as specified in the corresponding IAM Identity Center permission set. More specifically, IAM Identity Center assumes an IAM role in the target account on behalf of the user, and the corresponding temporary AWS credentials are returned to the client. After user logout, any existing IAM role sessions that were created by using IAM Identity Center permission sets continue based on the duration configured in the permission set. For more information, see User authentications in the IAM Identity Center User Guide",
       options: [
         {
           name: "--access-token",
           description:
-            "The token issued by the CreateToken API call. For more information, see CreateToken in the AWS SSO OIDC API Reference Guide",
+            "The token issued by the CreateToken API call. For more information, see CreateToken in the IAM Identity Center OIDC API Reference Guide",
           args: {
-            name: "token",
+            name: "string",
           },
         },
         {
@@ -251,5 +236,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

@@ -111,6 +111,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--cluster-endpoint-encryption-type",
+          description:
+            "The type of encryption the cluster's endpoint should support. Values are:    NONE for no encryption    TLS for Transport Layer Security",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -1075,7 +1083,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--notification-topic-status",
-          description: "The current state of the topic",
+          description:
+            "The current state of the topic. A value of \u201cactive\u201d means that notifications will be sent to the topic. A value of \u201cinactive\u201d means that notifications will not be sent to the topic",
           args: {
             name: "string",
           },
@@ -1129,7 +1138,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--parameter-name-values",
           description:
-            "An array of name-value pairs for the parameters in the group. Each element in the array represents a single parameter",
+            "An array of name-value pairs for the parameters in the group. Each element in the array represents a single parameter.   record-ttl-millis and query-ttl-millis are the only supported parameter names. For more details, see Configuring TTL Settings",
           args: {
             name: "list",
           },
@@ -1199,5 +1208,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

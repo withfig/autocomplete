@@ -1,17 +1,105 @@
 const completionSpec: Fig.Spec = {
   name: "datasync",
   description:
-    "AWS DataSync AWS DataSync is a managed data transfer service that makes it simpler for you to automate moving data between on-premises storage and Amazon Simple Storage Service (Amazon S3) or Amazon Elastic File System (Amazon EFS).  This API interface reference for AWS DataSync contains documentation for a programming interface that you can use to manage AWS DataSync",
+    "DataSync DataSync is an online data movement and discovery service that simplifies data migration and helps you quickly, easily, and securely transfer your file or object data to, from, and between Amazon Web Services storage services. This API interface reference includes documentation for using DataSync programmatically. For complete information, see the  DataSync User Guide",
   subcommands: [
+    {
+      name: "add-storage-system",
+      description:
+        "Creates an Amazon Web Services resource for an on-premises storage system that you want DataSync Discovery to collect information about",
+      options: [
+        {
+          name: "--server-configuration",
+          description:
+            "Specifies the server name and network port required to connect with the management interface of your on-premises storage system",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--system-type",
+          description:
+            "Specifies the type of on-premises storage system that you want DataSync Discovery to collect information about.  DataSync Discovery currently supports NetApp Fabric-Attached Storage (FAS) and All Flash FAS (AFF) systems running ONTAP 9.7 or later",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--agent-arns",
+          description:
+            "Specifies the Amazon Resource Name (ARN) of the DataSync agent that connects to and reads from your on-premises storage system's management interface. You can only specify one ARN",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cloud-watch-log-group-arn",
+          description:
+            "Specifies the ARN of the Amazon CloudWatch log group for monitoring and logging discovery job events",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "Specifies labels that help you categorize, filter, and search for your Amazon Web Services resources. We recommend creating at least a name tag for your on-premises storage system",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--name",
+          description:
+            "Specifies a familiar name for your on-premises storage system",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "Specifies a client token to make sure requests with this API operation are idempotent. If you don't specify a client token, DataSync generates one for you automatically",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--credentials",
+          description:
+            "Specifies the user name and password for accessing your on-premises storage system's management interface",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
     {
       name: "cancel-task-execution",
       description:
-        "Cancels execution of a task.  When you cancel a task execution, the transfer of some files is abruptly interrupted. The contents of files that are transferred to the destination might be incomplete or inconsistent with the source files. However, if you start a new task execution on the same task and you allow the task execution to complete, file content on the destination is complete and consistent. This applies to other unexpected failures that interrupt a task execution. In all of these cases, AWS DataSync successfully complete the transfer when you start the next task execution",
+        "Stops an DataSync task execution that's in progress. The transfer of some files are abruptly interrupted. File contents that're transferred to the destination might be incomplete or inconsistent with the source files. However, if you start a new task execution using the same task and allow it to finish, file content on the destination will be complete and consistent. This applies to other unexpected failures that interrupt a task execution. In all of these cases, DataSync successfully completes the transfer when you start the next task execution",
       options: [
         {
           name: "--task-execution-arn",
           description:
-            "The Amazon Resource Name (ARN) of the task execution to cancel",
+            "The Amazon Resource Name (ARN) of the task execution to stop",
           args: {
             name: "string",
           },
@@ -38,12 +126,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-agent",
       description:
-        "Activates an AWS DataSync agent that you have deployed on your host. The activation process associates your agent with your account. In the activation process, you specify information such as the AWS Region that you want to activate the agent in. You activate the agent in the AWS Region where your target locations (in Amazon S3 or Amazon EFS) reside. Your tasks are created in this AWS Region. You can activate the agent in a VPC (virtual private cloud) or provide the agent access to a VPC endpoint so you can run tasks without going over the public internet. You can use an agent for more than one location. If a task uses multiple agents, all of them need to have status AVAILABLE for the task to run. If you use multiple agents for a source location, the status of all the agents must be AVAILABLE for the task to run.  Agents are automatically updated by AWS on a regular basis, using a mechanism that ensures minimal interruption to your tasks",
+        "Activates an DataSync agent that you've deployed in your storage environment. The activation process associates the agent with your Amazon Web Services account. If you haven't deployed an agent yet, see the following topics to learn more:    Agent requirements     Create an agent     If you're transferring between Amazon Web Services storage services, you don't need a DataSync agent",
       options: [
         {
           name: "--activation-key",
           description:
-            "Your agent activation key. You can get the activation key either by sending an HTTP GET request with redirects that enable you to get the agent IP address (port 80). Alternatively, you can get it from the AWS DataSync console. The redirect URL returned in the response provides you the activation key for your agent in the query string parameter activationKey. It might also include other activation-related parameters; however, these are merely defaults. The arguments you pass to this API call determine the actual configuration of your agent. For more information, see Activating an Agent in the AWS DataSync User Guide",
+            "Specifies your DataSync agent's activation key. If you don't have an activation key, see Activate your agent",
           args: {
             name: "string",
           },
@@ -51,7 +139,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--agent-name",
           description:
-            "The name you configured for your agent. This value is a text reference that is used to identify the agent in the console",
+            "Specifies a name for your agent. You can see this name in the DataSync console",
           args: {
             name: "string",
           },
@@ -59,7 +147,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "The key-value pair that represents the tag that you want to associate with the agent. The value can be an empty string. This value helps you manage, filter, and search for your agents.  Valid characters for key and value are letters, spaces, and numbers representable in UTF-8 format, and the following special characters: + - = . _ : / @",
+            "Specifies labels that help you categorize, filter, and search for your Amazon Web Services resources. We recommend creating at least one tag for your agent",
           args: {
             name: "list",
           },
@@ -67,7 +155,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--vpc-endpoint-id",
           description:
-            "The ID of the VPC (virtual private cloud) endpoint that the agent has access to. This is the client-side VPC endpoint, also called a PrivateLink. If you don't have a PrivateLink VPC endpoint, see Creating a VPC Endpoint Service Configuration in the Amazon VPC User Guide. VPC endpoint ID looks like this: vpce-01234d5aff67890e1",
+            "Specifies the ID of the VPC endpoint that you want your agent to connect to. For example, a VPC endpoint ID looks like vpce-01234d5aff67890e1.  The VPC endpoint you use must include the DataSync service name (for example, com.amazonaws.us-east-2.datasync)",
           args: {
             name: "string",
           },
@@ -75,7 +163,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--subnet-arns",
           description:
-            "The Amazon Resource Names (ARNs) of the subnets in which DataSync will create elastic network interfaces for each data transfer task. The agent that runs a task must be private. When you start a task that is associated with an agent created in a VPC, or one that has access to an IP address in a VPC, then the task is also private. In this case, DataSync creates four network interfaces for each task in your subnet. For a data transfer to work, the agent must be able to route to all these four network interfaces",
+            "Specifies the ARN of the subnet where you want to run your DataSync task when using a VPC endpoint. This is the subnet where DataSync creates and manages the network interfaces for your transfer. You can only specify one ARN",
           args: {
             name: "list",
           },
@@ -83,7 +171,95 @@ const completionSpec: Fig.Spec = {
         {
           name: "--security-group-arns",
           description:
-            "The ARNs of the security groups used to protect your data transfer task subnets. See CreateAgentRequest$SubnetArns",
+            "Specifies the Amazon Resource Name (ARN) of the security group that protects your task's network interfaces when using a virtual private cloud (VPC) endpoint. You can only specify one ARN",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-location-azure-blob",
+      description:
+        "Creates a transfer location for a Microsoft Azure Blob Storage container. DataSync can use this location as a transfer source or destination. Before you begin, make sure you know how DataSync accesses Azure Blob Storage and works with access tiers and blob types. You also need a DataSync agent that can connect to your container",
+      options: [
+        {
+          name: "--container-url",
+          description:
+            "Specifies the URL of the Azure Blob Storage container involved in your transfer",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--authentication-type",
+          description:
+            "Specifies the authentication method DataSync uses to access your Azure Blob Storage. DataSync can access blob storage using a shared access signature (SAS)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sas-configuration",
+          description:
+            "Specifies the SAS configuration that allows DataSync to access your Azure Blob Storage",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--blob-type",
+          description:
+            "Specifies the type of blob that you want your objects or files to be when transferring them into Azure Blob Storage. Currently, DataSync only supports moving data into Azure Blob Storage as block blobs. For more information on blob types, see the Azure Blob Storage documentation",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--access-tier",
+          description:
+            "Specifies the access tier that you want your objects or files transferred into. This only applies when using the location as a transfer destination. For more information, see Access tiers",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--subdirectory",
+          description:
+            "Specifies path segments if you want to limit your transfer to a virtual directory in your container (for example, /my/images)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--agent-arns",
+          description:
+            "Specifies the Amazon Resource Name (ARN) of the DataSync agent that can connect with your Azure Blob Storage container. You can specify more than one agent. For more information, see Using multiple agents for your transfer",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "Specifies labels that help you categorize, filter, and search for your Amazon Web Services resources. We recommend creating at least a name tag for your transfer location",
           args: {
             name: "list",
           },
@@ -109,20 +285,20 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "create-location-efs",
-      description: "Creates an endpoint for an Amazon EFS file system",
+      description:
+        "Creates a transfer location for an Amazon EFS file system. DataSync can use this location as a source or destination for transferring data. Before you begin, make sure that you understand how DataSync accesses Amazon EFS file systems",
       options: [
         {
           name: "--subdirectory",
           description:
-            "A subdirectory in the location\u2019s path. This subdirectory in the EFS file system is used to read data from the EFS source location or write data to the EFS destination. By default, AWS DataSync uses the root directory.   Subdirectory must be specified with forward slashes. For example, /path/to/folder",
+            "Specifies a mount path for your Amazon EFS file system. This is where DataSync reads or writes data (depending on if this is a source or destination location). By default, DataSync uses the root directory, but you can also include subdirectories.  You must specify a value with forward slashes (for example, /path/to/folder)",
           args: {
             name: "string",
           },
         },
         {
           name: "--efs-filesystem-arn",
-          description:
-            "The Amazon Resource Name (ARN) for the Amazon EFS file system",
+          description: "Specifies the ARN for the Amazon EFS file system",
           args: {
             name: "string",
           },
@@ -130,9 +306,217 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ec2-config",
           description:
-            "The subnet and security group that the Amazon EFS file system uses. The security group that you provide needs to be able to communicate with the security group on the mount target in the subnet specified. The exact relationship between security group M (of the mount target) and security group S (which you provide for DataSync to use at this stage) is as follows:     Security group M (which you associate with the mount target) must allow inbound access for the Transmission Control Protocol (TCP) on the NFS port (2049) from security group S. You can enable inbound connections either by IP address (CIDR range) or security group.    Security group S (provided to DataSync to access EFS) should have a rule that enables outbound connections to the NFS port on one of the file system\u2019s mount targets. You can enable outbound connections either by IP address (CIDR range) or security group. For information about security groups and mount targets, see Security Groups for Amazon EC2 Instances and Mount Targets in the Amazon EFS User Guide",
+            "Specifies the subnet and security groups DataSync uses to access your Amazon EFS file system",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "Specifies the key-value pair that represents a tag that you want to add to the resource. The value can be an empty string. This value helps you manage, filter, and search for your resources. We recommend that you create a name tag for your location",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--access-point-arn",
+          description:
+            "Specifies the Amazon Resource Name (ARN) of the access point that DataSync uses to access the Amazon EFS file system",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--file-system-access-role-arn",
+          description:
+            "Specifies an Identity and Access Management (IAM) role that DataSync assumes when mounting the Amazon EFS file system",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--in-transit-encryption",
+          description:
+            "Specifies whether you want DataSync to use Transport Layer Security (TLS) 1.2 encryption when it copies data to or from the Amazon EFS file system. If you specify an access point using AccessPointArn or an IAM role using FileSystemAccessRoleArn, you must set this parameter to TLS1_2",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-location-fsx-lustre",
+      description:
+        "Creates a transfer location for an Amazon FSx for Lustre file system. DataSync can use this location as a source or destination for transferring data. Before you begin, make sure that you understand how DataSync accesses FSx for Lustre file systems",
+      options: [
+        {
+          name: "--fsx-filesystem-arn",
+          description:
+            "The Amazon Resource Name (ARN) for the FSx for Lustre file system",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--security-group-arns",
+          description:
+            "The Amazon Resource Names (ARNs) of the security groups that are used to configure the FSx for Lustre file system",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--subdirectory",
+          description:
+            "A subdirectory in the location's path. This subdirectory in the FSx for Lustre file system is used to read data from the FSx for Lustre source location or write data to the FSx for Lustre destination",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "The key-value pair that represents a tag that you want to add to the resource. The value can be an empty string. This value helps you manage, filter, and search for your resources. We recommend that you create a name tag for your location",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-location-fsx-ontap",
+      description:
+        "Creates a transfer location for an Amazon FSx for NetApp ONTAP file system. DataSync can use this location as a source or destination for transferring data. Before you begin, make sure that you understand how DataSync accesses FSx for ONTAP file systems",
+      options: [
+        {
+          name: "--protocol",
+          description:
+            "Specifies the data transfer protocol that DataSync uses to access your Amazon FSx file system",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--security-group-arns",
+          description:
+            "Specifies the Amazon EC2 security groups that provide access to your file system's preferred subnet. The security groups must allow outbound traffic on the following ports (depending on the protocol you use):    Network File System (NFS): TCP ports 111, 635, and 2049    Server Message Block (SMB): TCP port 445   Your file system's security groups must also allow inbound traffic on the same ports",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--storage-virtual-machine-arn",
+          description:
+            "Specifies the ARN of the storage virtual machine (SVM) in your file system where you want to copy data to or from",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--subdirectory",
+          description:
+            "Specifies a path to the file share in the SVM where you'll copy your data. You can specify a junction path (also known as a mount point), qtree path (for NFS file shares), or share name (for SMB file shares). For example, your mount path might be /vol1, /vol1/tree1, or /share1.  Don't specify a junction path in the SVM's root volume. For more information, see Managing FSx for ONTAP storage virtual machines in the Amazon FSx for NetApp ONTAP User Guide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "Specifies labels that help you categorize, filter, and search for your Amazon Web Services resources. We recommend creating at least a name tag for your location",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-location-fsx-open-zfs",
+      description:
+        "Creates a transfer location for an Amazon FSx for OpenZFS file system. DataSync can use this location as a source or destination for transferring data. Before you begin, make sure that you understand how DataSync accesses FSx for OpenZFS file systems.  Request parameters related to SMB aren't supported with the CreateLocationFsxOpenZfs operation",
+      options: [
+        {
+          name: "--fsx-filesystem-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the FSx for OpenZFS file system",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--protocol",
+          description:
+            "The type of protocol that DataSync uses to access your file system",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--security-group-arns",
+          description:
+            "The ARNs of the security groups that are used to configure the FSx for OpenZFS file system",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--subdirectory",
+          description:
+            "A subdirectory in the location's path that must begin with /fsx. DataSync uses this subdirectory to read or write data (depending on whether the file system is a source or destination location)",
+          args: {
+            name: "string",
           },
         },
         {
@@ -165,12 +549,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-location-fsx-windows",
       description:
-        "Creates an endpoint for an Amazon FSx for Windows File Server file system",
+        "Creates a transfer location for an Amazon FSx for Windows File Server file system. DataSync can use this location as a source or destination for transferring data. Before you begin, make sure that you understand how DataSync accesses FSx for Windows File Server file systems",
       options: [
         {
           name: "--subdirectory",
           description:
-            "A subdirectory in the location\u2019s path. This subdirectory in the Amazon FSx for Windows File Server file system is used to read data from the Amazon FSx for Windows File Server source location or write data to the FSx for Windows File Server destination",
+            "Specifies a mount path for your file system using forward slashes. This is where DataSync reads or writes data (depending on if this is a source or destination location)",
           args: {
             name: "string",
           },
@@ -178,7 +562,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--fsx-filesystem-arn",
           description:
-            "The Amazon Resource Name (ARN) for the FSx for Windows File Server file system",
+            "Specifies the Amazon Resource Name (ARN) for the FSx for Windows File Server file system",
           args: {
             name: "string",
           },
@@ -186,7 +570,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--security-group-arns",
           description:
-            "The Amazon Resource Names (ARNs) of the security groups that are to use to configure the FSx for Windows File Server file system",
+            "Specifies the ARNs of the security groups that provide access to your file system's preferred subnet.  If you choose a security group that doesn't allow connections from within itself, do one of the following:   Configure the security group to allow it to communicate within itself.   Choose a different security group that can communicate with the mount target's security group",
           args: {
             name: "list",
           },
@@ -194,7 +578,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "The key-value pair that represents a tag that you want to add to the resource. The value can be an empty string. This value helps you manage, filter, and search for your resources. We recommend that you create a name tag for your location",
+            "Specifies labels that help you categorize, filter, and search for your Amazon Web Services resources. We recommend creating at least a name tag for your location",
           args: {
             name: "list",
           },
@@ -202,7 +586,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--user",
           description:
-            "The user who has the permissions to access files and folders in the FSx for Windows File Server file system",
+            "Specifies the user with the permissions to mount and access the files, folders, and file metadata in your FSx for Windows File Server file system. For information about choosing a user with the right level of access for your transfer, see required permissions for FSx for Windows File Server locations",
           args: {
             name: "string",
           },
@@ -210,7 +594,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--domain",
           description:
-            "The name of the Windows domain that the FSx for Windows File Server belongs to",
+            "Specifies the name of the Microsoft Active Directory domain that the FSx for Windows File Server file system belongs to. If you have multiple Active Directory domains in your environment, configuring this parameter makes sure that DataSync connects to the right file system",
           args: {
             name: "string",
           },
@@ -218,7 +602,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--password",
           description:
-            "The password of the user who has the permissions to access files and folders in the FSx for Windows File Server file system",
+            "Specifies the password of the user with the permissions to mount and access the files, folders, and file metadata in your FSx for Windows File Server file system",
           args: {
             name: "string",
           },
@@ -243,14 +627,142 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "create-location-nfs",
+      name: "create-location-hdfs",
       description:
-        "Defines a file system on a Network File System (NFS) server that can be read from or written to",
+        "Creates a transfer location for a Hadoop Distributed File System (HDFS). DataSync can use this location as a source or destination for transferring data. Before you begin, make sure that you understand how DataSync accesses HDFS clusters",
       options: [
         {
           name: "--subdirectory",
           description:
-            'The subdirectory in the NFS file system that is used to read data from the NFS source location or write data to the NFS destination. The NFS path should be a path that\'s exported by the NFS server, or a subdirectory of that path. The path should be such that it can be mounted by other NFS clients in your network.  To see all the paths exported by your NFS server, run "showmount -e nfs-server-name" from an NFS client that has access to your server. You can specify any directory that appears in the results, and any subdirectory of that directory. Ensure that the NFS export is accessible without Kerberos authentication.  To transfer all the data in the folder you specified, DataSync needs to have permissions to read all the data. To ensure this, either configure the NFS export with no_root_squash, or ensure that the permissions for all of the files that you want DataSync allow read access for all users. Doing either enables the agent to read the files. For the agent to access directories, you must additionally enable all execute access. If you are copying data to or from your AWS Snowcone device, see NFS Server on AWS Snowcone for more information. For information about NFS export configuration, see 18.7. The /etc/exports Configuration File in the Red Hat Enterprise Linux documentation',
+            "A subdirectory in the HDFS cluster. This subdirectory is used to read data from or write data to the HDFS cluster. If the subdirectory isn't specified, it will default to /",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--name-nodes",
+          description:
+            "The NameNode that manages the HDFS namespace. The NameNode performs operations such as opening, closing, and renaming files and directories. The NameNode contains the information to map blocks of data to the DataNodes. You can use only one NameNode",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--block-size",
+          description:
+            "The size of data blocks to write into the HDFS cluster. The block size must be a multiple of 512 bytes. The default block size is 128 mebibytes (MiB)",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--replication-factor",
+          description:
+            "The number of DataNodes to replicate the data to when writing to the HDFS cluster. By default, data is replicated to three DataNodes",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--kms-key-provider-uri",
+          description:
+            "The URI of the HDFS cluster's Key Management Server (KMS)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--qop-configuration",
+          description:
+            "The Quality of Protection (QOP) configuration specifies the Remote Procedure Call (RPC) and data transfer protection settings configured on the Hadoop Distributed File System (HDFS) cluster. If QopConfiguration isn't specified, RpcProtection and DataTransferProtection default to PRIVACY. If you set RpcProtection or DataTransferProtection, the other parameter assumes the same value",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--authentication-type",
+          description:
+            "The type of authentication used to determine the identity of the user",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--simple-user",
+          description:
+            "The user name used to identify the client on the host operating system.   If SIMPLE is specified for AuthenticationType, this parameter is required",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--kerberos-principal",
+          description:
+            "The Kerberos principal with access to the files and folders on the HDFS cluster.   If KERBEROS is specified for AuthenticationType, this parameter is required",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--kerberos-keytab",
+          description:
+            "The Kerberos key table (keytab) that contains mappings between the defined Kerberos principal and the encrypted keys. You can load the keytab from a file by providing the file's address. If you're using the CLI, it performs base64 encoding for you. Otherwise, provide the base64-encoded text.   If KERBEROS is specified for AuthenticationType, this parameter is required",
+          args: {
+            name: "blob",
+          },
+        },
+        {
+          name: "--kerberos-krb5-conf",
+          description:
+            "The krb5.conf file that contains the Kerberos configuration information. You can load the krb5.conf file by providing the file's address. If you're using the CLI, it performs the base64 encoding for you. Otherwise, provide the base64-encoded text.   If KERBEROS is specified for AuthenticationType, this parameter is required",
+          args: {
+            name: "blob",
+          },
+        },
+        {
+          name: "--agent-arns",
+          description:
+            "The Amazon Resource Names (ARNs) of the agents that are used to connect to the HDFS cluster",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "The key-value pair that represents the tag that you want to add to the location. The value can be an empty string. We recommend using tags to name your resources",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-location-nfs",
+      description:
+        "Creates a transfer location for a Network File System (NFS) file server. DataSync can use this location as a source or destination for transferring data. Before you begin, make sure that you understand how DataSync accesses NFS file servers.  If you're copying data to or from an Snowcone device, you can also use CreateLocationNfs to create your transfer location. For more information, see Configuring transfers with Snowcone",
+      options: [
+        {
+          name: "--subdirectory",
+          description:
+            "Specifies the export path in your NFS file server that you want DataSync to mount. This path (or a subdirectory of the path) is where DataSync transfers data to or from. For information on configuring an export for DataSync, see Accessing NFS file servers",
           args: {
             name: "string",
           },
@@ -258,7 +770,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--server-hostname",
           description:
-            "The name of the NFS server. This value is the IP address or Domain Name Service (DNS) name of the NFS server. An agent that is installed on-premises uses this host name to mount the NFS server in a network.  If you are copying data to or from your AWS Snowcone device, see NFS Server on AWS Snowcone for more information.  This name must either be DNS-compliant or must be an IP version 4 (IPv4) address",
+            "Specifies the Domain Name System (DNS) name or IP version 4 address of the NFS file server that your DataSync agent connects to",
           args: {
             name: "string",
           },
@@ -266,7 +778,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--on-prem-config",
           description:
-            "Contains a list of Amazon Resource Names (ARNs) of agents that are used to connect to an NFS server.  If you are copying data to or from your AWS Snowcone device, see NFS Server on AWS Snowcone for more information",
+            "Specifies the Amazon Resource Name (ARN) of the DataSync agent that want to connect to your NFS file server. You can specify more than one agent. For more information, see Using multiple agents for transfers",
           args: {
             name: "structure",
           },
@@ -274,7 +786,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--mount-options",
           description:
-            "The NFS mount options that DataSync can use to mount your NFS share",
+            "Specifies the options that DataSync can use to mount your NFS file server",
           args: {
             name: "structure",
           },
@@ -282,7 +794,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "The key-value pair that represents the tag that you want to add to the location. The value can be an empty string. We recommend using tags to name your resources",
+            "Specifies labels that help you categorize, filter, and search for your Amazon Web Services resources. We recommend creating at least a name tag for your location",
           args: {
             name: "list",
           },
@@ -309,12 +821,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-location-object-storage",
       description:
-        "Creates an endpoint for a self-managed object storage bucket. For more information about self-managed object storage locations, see create-object-location",
+        "Creates a transfer location for an object storage system. DataSync can use this location as a source or destination for transferring data. Before you begin, make sure that you understand the prerequisites for DataSync to work with object storage systems",
       options: [
         {
           name: "--server-hostname",
           description:
-            "The name of the self-managed object storage server. This value is the IP address or Domain Name Service (DNS) name of the object storage server. An agent uses this host name to mount the object storage server in a network",
+            "Specifies the domain name or IP address of the object storage server. A DataSync agent uses this hostname to mount the object storage server in a network",
           args: {
             name: "string",
           },
@@ -322,7 +834,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--server-port",
           description:
-            "The port that your self-managed object storage server accepts inbound network traffic on. The server port is set by default to TCP 80 (HTTP) or TCP 443 (HTTPS). You can specify a custom port if your self-managed object storage server requires one",
+            "Specifies the port that your object storage server accepts inbound network traffic on (for example, port 443)",
           args: {
             name: "integer",
           },
@@ -330,7 +842,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--server-protocol",
           description:
-            "The protocol that the object storage server uses to communicate. Valid values are HTTP or HTTPS",
+            "Specifies the protocol that your object storage server uses to communicate",
           args: {
             name: "string",
           },
@@ -338,7 +850,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--subdirectory",
           description:
-            "The subdirectory in the self-managed object storage server that is used to read data from",
+            "Specifies the object prefix for your object storage server. If this is a source location, DataSync only copies objects with this prefix. If this is a destination location, DataSync writes all objects with this prefix",
           args: {
             name: "string",
           },
@@ -346,7 +858,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket-name",
           description:
-            "The bucket on the self-managed object storage server that is used to read data from",
+            "Specifies the name of the object storage bucket involved in the transfer",
           args: {
             name: "string",
           },
@@ -354,7 +866,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--access-key",
           description:
-            "Optional. The access key is used if credentials are required to access the self-managed object storage server. If your object storage requires a user name and password to authenticate, use AccessKey and SecretKey to provide the user name and password, respectively",
+            "Specifies the access key (for example, a user name) if credentials are required to authenticate with the object storage server",
           args: {
             name: "string",
           },
@@ -362,7 +874,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--secret-key",
           description:
-            "Optional. The secret key is used if credentials are required to access the self-managed object storage server. If your object storage requires a user name and password to authenticate, use AccessKey and SecretKey to provide the user name and password, respectively",
+            "Specifies the secret key (for example, a password) if credentials are required to authenticate with the object storage server",
           args: {
             name: "string",
           },
@@ -370,7 +882,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--agent-arns",
           description:
-            "The Amazon Resource Name (ARN) of the agents associated with the self-managed object storage server location",
+            "Specifies the Amazon Resource Names (ARNs) of the DataSync agents that can securely connect with your location",
           args: {
             name: "list",
           },
@@ -378,9 +890,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "The key-value pair that represents the tag that you want to add to the location. The value can be an empty string. We recommend using tags to name your resources",
+            "Specifies the key-value pair that represents a tag that you want to add to the resource. Tags can help you manage, filter, and search for your resources. We recommend creating a name tag for your location",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--server-certificate",
+          description:
+            "Specifies a certificate chain for DataSync to authenticate with your object storage system if the system uses a private or self-signed certificate authority (CA). You must specify a single .pem file with a full certificate chain (for example, file:///home/user/.ssh/object_storage_certificates.pem). The certificate chain might include:   The object storage system's certificate   All intermediate certificates (if there are any)   The root certificate of the signing CA   You can concatenate your certificates into a .pem file (which can be up to 32768 bytes before base64 encoding). The following example cat command creates an object_storage_certificates.pem file that includes three certificates:  cat object_server_certificate.pem intermediate_certificate.pem ca_root_certificate.pem > object_storage_certificates.pem  To use this parameter, configure ServerProtocol to HTTPS",
+          args: {
+            name: "blob",
           },
         },
         {
@@ -405,12 +925,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-location-s3",
       description:
-        "Creates an endpoint for an Amazon S3 bucket. For more information, see https://docs.aws.amazon.com/datasync/latest/userguide/create-locations-cli.html#create-location-s3-cli in the AWS DataSync User Guide",
+        "Creates a transfer location for an Amazon S3 bucket. DataSync can use this location as a source or destination for transferring data.  Before you begin, make sure that you read the following topics:    Storage class considerations with Amazon S3 locations     Evaluating S3 request costs when using DataSync      For more information, see Configuring transfers with Amazon S3",
       options: [
         {
           name: "--subdirectory",
           description:
-            "A subdirectory in the Amazon S3 bucket. This subdirectory in Amazon S3 is used to read data from the S3 source location or write data to the S3 destination",
+            "Specifies a prefix in the S3 bucket that DataSync reads from or writes to (depending on whether the bucket is a source or destination location).  DataSync can't transfer objects with a prefix that begins with a slash (/) or includes //, /./, or /../ patterns. For example:    /photos     photos//2006/January     photos/./2006/February     photos/../2006/March",
           args: {
             name: "string",
           },
@@ -418,7 +938,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--s3-bucket-arn",
           description:
-            "The ARN of the Amazon S3 bucket. If the bucket is on an AWS Outpost, this must be an access point ARN",
+            "Specifies the ARN of the S3 bucket that you want to use as a location. (When creating your DataSync task later, you specify whether this location is a transfer source or destination.)  If your S3 bucket is located on an Outposts resource, you must specify an Amazon S3 access point. For more information, see Managing data access with Amazon S3 access points in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
@@ -426,7 +946,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--s3-storage-class",
           description:
-            "The Amazon S3 storage class that you want to store your files in when this location is used as a task destination. For buckets in AWS Regions, the storage class defaults to Standard. For buckets on AWS Outposts, the storage class defaults to AWS S3 Outposts. For more information about S3 storage classes, see Amazon S3 Storage Classes. Some storage classes have behaviors that can affect your S3 storage cost. For detailed information, see using-storage-classes",
+            "Specifies the storage class that you want your objects to use when Amazon S3 is a transfer destination. For buckets in Amazon Web Services Regions, the storage class defaults to STANDARD. For buckets on Outposts, the storage class defaults to OUTPOSTS. For more information, see Storage class considerations with Amazon S3 transfers",
           args: {
             name: "string",
           },
@@ -434,7 +954,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--s3-config",
           description:
-            "The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that is used to access an Amazon S3 bucket. For detailed information about using such a role, see Creating a Location for Amazon S3 in the AWS DataSync User Guide",
+            "Specifies the Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role that DataSync uses to access your S3 bucket. For more information, see Accessing S3 buckets",
           args: {
             name: "structure",
           },
@@ -442,7 +962,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--agent-arns",
           description:
-            "If you are using DataSync on an AWS Outpost, specify the Amazon Resource Names (ARNs) of the DataSync agents deployed on your Outpost. For more information about launching a DataSync agent on an AWS Outpost, see outposts-agent",
+            "(Amazon S3 on Outposts only) Specifies the Amazon Resource Name (ARN) of the DataSync agent on your Outpost. For more information, see Deploy your DataSync agent on Outposts",
           args: {
             name: "list",
           },
@@ -450,7 +970,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "The key-value pair that represents the tag that you want to add to the location. The value can be an empty string. We recommend using tags to name your resources",
+            "Specifies labels that help you categorize, filter, and search for your Amazon Web Services resources. We recommend creating at least a name tag for your transfer location",
           args: {
             name: "list",
           },
@@ -477,12 +997,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-location-smb",
       description:
-        "Defines a file system on a Server Message Block (SMB) server that can be read from or written to",
+        "Creates a transfer location for a Server Message Block (SMB) file server. DataSync can use this location as a source or destination for transferring data. Before you begin, make sure that you understand how DataSync accesses SMB file servers",
       options: [
         {
           name: "--subdirectory",
           description:
-            "The subdirectory in the SMB file system that is used to read data from the SMB source location or write data to the SMB destination. The SMB path should be a path that's exported by the SMB server, or a subdirectory of that path. The path should be such that it can be mounted by other SMB clients in your network.   Subdirectory must be specified with forward slashes. For example, /path/to/folder.  To transfer all the data in the folder you specified, DataSync needs to have permissions to mount the SMB share, as well as to access all the data in that share. To ensure this, either ensure that the user/password specified belongs to the user who can mount the share, and who has the appropriate permissions for all of the files and directories that you want DataSync to access, or use credentials of a member of the Backup Operators group to mount the share. Doing either enables the agent to access the data. For the agent to access directories, you must additionally enable all execute access",
+            "Specifies the name of the share exported by your SMB file server where DataSync will read or write data. You can include a subdirectory in the share path (for example, /path/to/subdirectory). Make sure that other SMB clients in your network can also mount this path. To copy all data in the subdirectory, DataSync must be able to mount the SMB share and access all of its data. For more information, see required permissions for SMB locations",
           args: {
             name: "string",
           },
@@ -490,7 +1010,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--server-hostname",
           description:
-            "The name of the SMB server. This value is the IP address or Domain Name Service (DNS) name of the SMB server. An agent that is installed on-premises uses this hostname to mount the SMB server in a network.  This name must either be DNS-compliant or must be an IP version 4 (IPv4) address",
+            "Specifies the Domain Name Service (DNS) name or IP address of the SMB file server that your DataSync agent will mount.  You can't specify an IP version 6 (IPv6) address",
           args: {
             name: "string",
           },
@@ -498,7 +1018,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--user",
           description:
-            "The user who can mount the share, has the permissions to access files and folders in the SMB share",
+            "Specifies the user that can mount and access the files, folders, and file metadata in your SMB file server. For information about choosing a user with the right level of access for your transfer, see required permissions for SMB locations",
           args: {
             name: "string",
           },
@@ -506,7 +1026,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--domain",
           description:
-            "The name of the Windows domain that the SMB server belongs to",
+            "Specifies the name of the Active Directory domain that your SMB file server belongs to.  If you have multiple Active Directory domains in your environment, configuring this parameter makes sure that DataSync connects to the right file server",
           args: {
             name: "string",
           },
@@ -514,7 +1034,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--password",
           description:
-            "The password of the user who can mount the share, has the permissions to access files and folders in the SMB share",
+            "Specifies the password of the user who can mount your SMB file server and has permission to access the files and folders involved in your transfer. For more information, see required permissions for SMB locations",
           args: {
             name: "string",
           },
@@ -522,7 +1042,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--agent-arns",
           description:
-            "The Amazon Resource Names (ARNs) of agents to use for a Simple Message Block (SMB) location",
+            "Specifies the DataSync agent (or agents) which you want to connect to your SMB file server. You specify an agent by using its Amazon Resource Name (ARN)",
           args: {
             name: "list",
           },
@@ -530,7 +1050,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--mount-options",
           description:
-            "The mount options used by DataSync to access the SMB server",
+            "Specifies the version of the SMB protocol that DataSync uses to access your SMB file server",
           args: {
             name: "structure",
           },
@@ -538,7 +1058,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "The key-value pair that represents the tag that you want to add to the location. The value can be an empty string. We recommend using tags to name your resources",
+            "Specifies labels that help you categorize, filter, and search for your Amazon Web Services resources. We recommend creating at least a name tag for your location",
           args: {
             name: "list",
           },
@@ -565,12 +1085,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-task",
       description:
-        "Creates a task. A task includes a source location and a destination location, and a configuration that specifies how data is transferred. A task always transfers data from the source location to the destination location. The configuration specifies options such as task scheduling, bandwidth limits, etc. A task is the complete definition of a data transfer. When you create a task that transfers data between AWS services in different AWS Regions, one of the two locations that you specify must reside in the Region where DataSync is being used. The other location must be specified in a different Region. You can transfer data between commercial AWS Regions except for China, or between AWS GovCloud (US-East and US-West) Regions.  When you use DataSync to copy files or objects between AWS Regions, you pay for data transfer between Regions. This is billed as data transfer OUT from your source Region to your destination Region. For more information, see Data Transfer pricing",
+        "Configures a task, which defines where and how DataSync transfers your data. A task includes a source location, destination location, and transfer options (such as bandwidth limits, scheduling, and more).  If you're planning to transfer data to or from an Amazon S3 location, review how DataSync can affect your S3 request charges and the DataSync pricing page before you begin",
       options: [
         {
           name: "--source-location-arn",
-          description:
-            "The Amazon Resource Name (ARN) of the source location for the task",
+          description: "Specifies the ARN of your transfer's source location",
           args: {
             name: "string",
           },
@@ -578,7 +1097,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--destination-location-arn",
           description:
-            "The Amazon Resource Name (ARN) of an AWS storage resource's location",
+            "Specifies the ARN of your transfer's destination location",
           args: {
             name: "string",
           },
@@ -586,15 +1105,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cloud-watch-log-group-arn",
           description:
-            "The Amazon Resource Name (ARN) of the Amazon CloudWatch log group that is used to monitor and log events in the task",
+            "Specifies the Amazon Resource Name (ARN) of an Amazon CloudWatch log group for monitoring your task",
           args: {
             name: "string",
           },
         },
         {
           name: "--name",
-          description:
-            "The name of a task. This value is a text reference that is used to identify the task in the console",
+          description: "Specifies the name of your task",
           args: {
             name: "string",
           },
@@ -602,7 +1120,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--options",
           description:
-            "The set of configuration options that control the behavior of a single execution of the task that occurs when you call StartTaskExecution. You can configure these options to preserve metadata such as user ID (UID) and group ID (GID), file permissions, data integrity verification, and so on. For each individual task execution, you can override these options by specifying the OverrideOptions before starting the task execution. For more information, see the operation",
+            "Specifies your task's settings, such as preserving file metadata, verifying data integrity, among other options",
           args: {
             name: "structure",
           },
@@ -610,7 +1128,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--excludes",
           description:
-            'A list of filter rules that determines which files to exclude from a task. The list should contain a single filter string that consists of the patterns to exclude. The patterns are delimited by "|" (that is, a pipe), for example, "/folder1|/folder2"',
+            "Specifies exclude filters that define the files, objects, and folders in your source location that you don't want DataSync to transfer. For more information and examples, see Specifying what DataSync transfers by using filters",
           args: {
             name: "list",
           },
@@ -618,7 +1136,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--schedule",
           description:
-            "Specifies a schedule used to periodically transfer files from a source to a destination location. The schedule should be specified in UTC time. For more information, see task-scheduling",
+            "Specifies a schedule for when you want your task to run. For more information, see Scheduling your task",
           args: {
             name: "structure",
           },
@@ -626,9 +1144,33 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "The key-value pair that represents the tag that you want to add to the resource. The value can be an empty string",
+            "Specifies the tags that you want to apply to your task.  Tags are key-value pairs that help you manage, filter, and search for your DataSync resources",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--includes",
+          description:
+            "Specifies include filters define the files, objects, and folders in your source location that you want DataSync to transfer. For more information and examples, see Specifying what DataSync transfers by using filters",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--manifest-config",
+          description:
+            "Configures a manifest, which is a list of files or objects that you want DataSync to transfer. For more information and configuration examples, see Specifying what DataSync transfers by using a manifest. When using this parameter, your caller identity (the role that you're using DataSync with) must have the iam:PassRole permission. The AWSDataSyncFullAccess policy includes this permission",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--task-report-config",
+          description:
+            "Specifies how you want to configure a task report, which provides detailed information about your DataSync transfer. For more information, see Monitoring your DataSync transfers with task reports. When using this parameter, your caller identity (the role that you're using DataSync with) must have the iam:PassRole permission. The AWSDataSyncFullAccess policy includes this permission",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -653,12 +1195,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-agent",
       description:
-        "Deletes an agent. To specify which agent to delete, use the Amazon Resource Name (ARN) of the agent in your request. The operation disassociates the agent from your AWS account. However, it doesn't delete the agent virtual machine (VM) from your on-premises environment",
+        "Removes an DataSync agent resource from your Amazon Web Services account. Keep in mind that this operation (which can't be undone) doesn't remove the agent's virtual machine (VM) or Amazon EC2 instance from your storage environment. For next steps, you can delete the VM or instance from your storage environment or reuse it to activate a new agent",
       options: [
         {
           name: "--agent-arn",
           description:
-            "The Amazon Resource Name (ARN) of the agent to delete. Use the ListAgents operation to return a list of agents for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the agent to delete. Use the ListAgents operation to return a list of agents for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -684,8 +1226,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-location",
-      description:
-        "Deletes the configuration of a location used by AWS DataSync",
+      description: "Deletes a transfer location resource from DataSync",
       options: [
         {
           name: "--location-arn",
@@ -716,11 +1257,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-task",
-      description: "Deletes a task",
+      description: "Deletes a transfer task resource from DataSync",
       options: [
         {
           name: "--task-arn",
-          description: "The Amazon Resource Name (ARN) of the task to delete",
+          description:
+            "Specifies the Amazon Resource Name (ARN) of the task that you want to delete",
           args: {
             name: "string",
           },
@@ -747,12 +1289,75 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-agent",
       description:
-        "Returns metadata such as the name, the network interfaces, and the status (that is, whether the agent is running or not) for an agent. To specify which agent to describe, use the Amazon Resource Name (ARN) of the agent in your request",
+        "Returns information about an DataSync agent, such as its name, service endpoint type, and status",
       options: [
         {
           name: "--agent-arn",
           description:
-            "The Amazon Resource Name (ARN) of the agent to describe",
+            "Specifies the Amazon Resource Name (ARN) of the DataSync agent that you want information about",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-discovery-job",
+      description: "Returns information about a DataSync discovery job",
+      options: [
+        {
+          name: "--discovery-job-arn",
+          description:
+            "Specifies the Amazon Resource Name (ARN) of the discovery job that you want information about",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-location-azure-blob",
+      description:
+        "Provides details about how an DataSync transfer location for Microsoft Azure Blob Storage is configured",
+      options: [
+        {
+          name: "--location-arn",
+          description:
+            "Specifies the Amazon Resource Name (ARN) of your Azure Blob Storage transfer location",
           args: {
             name: "string",
           },
@@ -779,12 +1384,108 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-location-efs",
       description:
-        "Returns metadata, such as the path information about an Amazon EFS location",
+        "Provides details about how an DataSync transfer location for an Amazon EFS file system is configured",
       options: [
         {
           name: "--location-arn",
           description:
-            "The Amazon Resource Name (ARN) of the EFS location to describe",
+            "The Amazon Resource Name (ARN) of the Amazon EFS file system location that you want information about",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-location-fsx-lustre",
+      description:
+        "Provides details about how an DataSync transfer location for an Amazon FSx for Lustre file system is configured",
+      options: [
+        {
+          name: "--location-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the FSx for Lustre location to describe",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-location-fsx-ontap",
+      description:
+        "Provides details about how an DataSync transfer location for an Amazon FSx for NetApp ONTAP file system is configured.  If your location uses SMB, the DescribeLocationFsxOntap operation doesn't actually return a Password",
+      options: [
+        {
+          name: "--location-arn",
+          description:
+            "Specifies the Amazon Resource Name (ARN) of the FSx for ONTAP file system location that you want information about",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-location-fsx-open-zfs",
+      description:
+        "Provides details about how an DataSync transfer location for an Amazon FSx for OpenZFS file system is configured.  Response elements related to SMB aren't supported with the DescribeLocationFsxOpenZfs operation",
+      options: [
+        {
+          name: "--location-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the FSx for OpenZFS location to describe",
           args: {
             name: "string",
           },
@@ -811,12 +1512,44 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-location-fsx-windows",
       description:
-        "Returns metadata, such as the path information about an Amazon FSx for Windows File Server location",
+        "Provides details about how an DataSync transfer location for an Amazon FSx for Windows File Server file system is configured",
       options: [
         {
           name: "--location-arn",
           description:
-            "The Amazon Resource Name (ARN) of the FSx for Windows File Server location to describe",
+            "Specifies the Amazon Resource Name (ARN) of the FSx for Windows File Server location",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-location-hdfs",
+      description:
+        "Provides details about how an DataSync transfer location for a Hadoop Distributed File System (HDFS) is configured",
+      options: [
+        {
+          name: "--location-arn",
+          description:
+            "Specifies the Amazon Resource Name (ARN) of the HDFS location",
           args: {
             name: "string",
           },
@@ -843,12 +1576,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-location-nfs",
       description:
-        "Returns metadata, such as the path information, about an NFS location",
+        "Provides details about how an DataSync transfer location for a Network File System (NFS) file server is configured",
       options: [
         {
           name: "--location-arn",
           description:
-            "The Amazon Resource Name (ARN) of the NFS location to describe",
+            "Specifies the Amazon Resource Name (ARN) of the NFS location that you want information about",
           args: {
             name: "string",
           },
@@ -875,12 +1608,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-location-object-storage",
       description:
-        "Returns metadata about a self-managed object storage server location. For more information about self-managed object storage locations, see create-object-location",
+        "Provides details about how an DataSync transfer location for an object storage system is configured",
       options: [
         {
           name: "--location-arn",
           description:
-            "The Amazon Resource Name (ARN) of the self-managed object storage server location that was described",
+            "Specifies the Amazon Resource Name (ARN) of the object storage system location",
           args: {
             name: "string",
           },
@@ -907,12 +1640,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-location-s3",
       description:
-        "Returns metadata, such as bucket name, about an Amazon S3 bucket location",
+        "Provides details about how an DataSync transfer location for an S3 bucket is configured",
       options: [
         {
           name: "--location-arn",
           description:
-            "The Amazon Resource Name (ARN) of the Amazon S3 bucket location to describe",
+            "Specifies the Amazon Resource Name (ARN) of the Amazon S3 location",
           args: {
             name: "string",
           },
@@ -939,12 +1672,220 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-location-smb",
       description:
-        "Returns metadata, such as the path and user information about an SMB location",
+        "Provides details about how an DataSync transfer location for a Server Message Block (SMB) file server is configured",
       options: [
         {
           name: "--location-arn",
           description:
-            "The Amazon Resource Name (ARN) of the SMB location to describe",
+            "Specifies the Amazon Resource Name (ARN) of the SMB location that you want information about",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-storage-system",
+      description:
+        "Returns information about an on-premises storage system that you're using with DataSync Discovery",
+      options: [
+        {
+          name: "--storage-system-arn",
+          description:
+            "Specifies the Amazon Resource Name (ARN) of an on-premises storage system that you're using with DataSync Discovery",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-storage-system-resource-metrics",
+      description:
+        "Returns information, including performance data and capacity usage, which DataSync Discovery collects about a specific resource in your-premises storage system",
+      options: [
+        {
+          name: "--discovery-job-arn",
+          description:
+            "Specifies the Amazon Resource Name (ARN) of the discovery job that collects information about your on-premises storage system",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--resource-type",
+          description:
+            "Specifies the kind of storage system resource that you want information about",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--resource-id",
+          description:
+            "Specifies the universally unique identifier (UUID) of the storage system resource that you want information about",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--start-time",
+          description:
+            "Specifies a time within the total duration that the discovery job ran. To see information gathered during a certain time frame, use this parameter with EndTime",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--end-time",
+          description:
+            "Specifies a time within the total duration that the discovery job ran. To see information gathered during a certain time frame, use this parameter with StartTime",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "Specifies how many results that you want in the response",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "Specifies an opaque string that indicates the position to begin the next list of results in the response",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-storage-system-resources",
+      description:
+        "Returns information that DataSync Discovery collects about resources in your on-premises storage system",
+      options: [
+        {
+          name: "--discovery-job-arn",
+          description:
+            "Specifies the Amazon Resource Name (ARN) of the discovery job that's collecting data from your on-premises storage system",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--resource-type",
+          description:
+            "Specifies what kind of storage system resources that you want information about",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--resource-ids",
+          description:
+            "Specifies the universally unique identifiers (UUIDs) of the storage system resources that you want information about. You can't use this parameter in combination with the Filter parameter",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--filter",
+          description:
+            "Filters the storage system resources that you want returned. For example, this might be volumes associated with a specific storage virtual machine (SVM)",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "Specifies the maximum number of storage system resources that you want to list in a response",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "Specifies an opaque string that indicates the position to begin the next list of results in the response",
           args: {
             name: "string",
           },
@@ -970,11 +1911,13 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "describe-task",
-      description: "Returns metadata about a task",
+      description:
+        "Provides information about a task, which defines where and how DataSync transfers your data",
       options: [
         {
           name: "--task-arn",
-          description: "The Amazon Resource Name (ARN) of the task to describe",
+          description:
+            "Specifies the Amazon Resource Name (ARN) of the transfer task that you want information about",
           args: {
             name: "string",
           },
@@ -1001,12 +1944,60 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-task-execution",
       description:
-        "Returns detailed metadata about a task that is being executed",
+        "Provides information about an execution of your DataSync task. You can use this operation to help monitor the progress of an ongoing transfer or check the results of the transfer",
       options: [
         {
           name: "--task-execution-arn",
           description:
-            "The Amazon Resource Name (ARN) of the task that is being executed",
+            "Specifies the Amazon Resource Name (ARN) of the task execution that you want information about",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "generate-recommendations",
+      description:
+        "Creates recommendations about where to migrate your data to in Amazon Web Services. Recommendations are generated based on information that DataSync Discovery collects about your on-premises storage system's resources. For more information, see Recommendations provided by DataSync Discovery. Once generated, you can view your recommendations by using the DescribeStorageSystemResources operation",
+      options: [
+        {
+          name: "--discovery-job-arn",
+          description:
+            "Specifies the Amazon Resource Name (ARN) of the discovery job that collects information about your on-premises storage system",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--resource-ids",
+          description:
+            "Specifies the universally unique identifiers (UUIDs) of the resources in your storage system that you want recommendations on",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--resource-type",
+          description:
+            "Specifies the type of resource in your storage system that you want recommendations on",
           args: {
             name: "string",
           },
@@ -1033,11 +2024,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-agents",
       description:
-        "Returns a list of agents owned by an AWS account in the AWS Region specified in the request. The returned list is ordered by agent Amazon Resource Name (ARN). By default, this operation returns a maximum of 100 agents. This operation supports pagination that enables you to optionally reduce the number of agents returned in a response. If you have more agents than are returned in a response (that is, the response returns only a truncated list of your agents), the response contains a marker that you can specify in your next request to fetch the next page of agents",
+        "Returns a list of DataSync agents that belong to an Amazon Web Services account in the Amazon Web Services Region specified in the request. With pagination, you can reduce the number of agents returned in a response. If you get a truncated list of agents in a response, the response contains a marker that you can specify in your next request to fetch the next page of agents.  ListAgents is eventually consistent. This means the result of running the operation might not reflect that you just created or deleted an agent. For example, if you create an agent with CreateAgent and then immediately run ListAgents, that agent might not show up in the list right away. In situations like this, you can always confirm whether an agent has been created (or deleted) by using DescribeAgent",
       options: [
         {
           name: "--max-results",
-          description: "The maximum number of agents to list",
+          description:
+            "Specifies the maximum number of DataSync agents to list in a response. By default, a response shows a maximum of 100 agents",
           args: {
             name: "integer",
           },
@@ -1045,7 +2037,78 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "An opaque string that indicates the position at which to begin the next list of agents",
+            "Specifies an opaque string that indicates the position to begin the next list of results in the response",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-discovery-jobs",
+      description:
+        "Provides a list of the existing discovery jobs in the Amazon Web Services Region and Amazon Web Services account where you're using DataSync Discovery",
+      options: [
+        {
+          name: "--storage-system-arn",
+          description:
+            "Specifies the Amazon Resource Name (ARN) of an on-premises storage system. Use this parameter if you only want to list the discovery jobs that are associated with a specific storage system",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "Specifies how many results you want in the response",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "Specifies an opaque string that indicates the position to begin the next list of results in the response",
           args: {
             name: "string",
           },
@@ -1165,20 +2228,13 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "list-tags-for-resource",
-      description: "Returns all the tags associated with a specified resource",
+      name: "list-storage-systems",
+      description:
+        "Lists the on-premises storage systems that you're using with DataSync Discovery",
       options: [
         {
-          name: "--resource-arn",
-          description:
-            "The Amazon Resource Name (ARN) of the resource whose tags to list",
-          args: {
-            name: "string",
-          },
-        },
-        {
           name: "--max-results",
-          description: "The maximum number of locations to return",
+          description: "Specifies how many results you want in the response",
           args: {
             name: "integer",
           },
@@ -1186,7 +2242,79 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "An opaque string that indicates the position at which to begin the next list of locations",
+            "Specifies an opaque string that indicates the position to begin the next list of results in the response",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-tags-for-resource",
+      description:
+        "Returns all the tags associated with an Amazon Web Services resource",
+      options: [
+        {
+          name: "--resource-arn",
+          description:
+            "Specifies the Amazon Resource Name (ARN) of the resource that you want tag information on",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "Specifies how many results that you want in the response",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "Specifies an opaque string that indicates the position to begin the next list of results in the response",
           args: {
             name: "string",
           },
@@ -1236,19 +2364,19 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-task-executions",
-      description: "Returns a list of executed tasks",
+      description: "Returns a list of executions for an DataSync transfer task",
       options: [
         {
           name: "--task-arn",
           description:
-            "The Amazon Resource Name (ARN) of the task whose tasks you want to list",
+            "Specifies the Amazon Resource Name (ARN) of the task that you want execution information about",
           args: {
             name: "string",
           },
         },
         {
           name: "--max-results",
-          description: "The maximum number of executed tasks to list",
+          description: "Specifies how many results you want in the response",
           args: {
             name: "integer",
           },
@@ -1256,7 +2384,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "An opaque string that indicates the position at which to begin the next list of the executed tasks",
+            "Specifies an opaque string that indicates the position at which to begin the next list of results in the response",
           args: {
             name: "string",
           },
@@ -1306,7 +2434,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-tasks",
-      description: "Returns a list of all the tasks",
+      description: "Returns a list of the DataSync tasks you created",
       options: [
         {
           name: "--max-results",
@@ -1375,29 +2503,70 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "start-task-execution",
+      name: "remove-storage-system",
       description:
-        "Starts a specific invocation of a task. A TaskExecution value represents an individual run of a task. Each task can have at most one TaskExecution at a time.  TaskExecution has the following transition phases: INITIALIZING | PREPARING | TRANSFERRING | VERIFYING | SUCCESS/FAILURE.  For detailed information, see the Task Execution section in the Components and Terminology topic in the AWS DataSync User Guide",
+        "Permanently removes a storage system resource from DataSync Discovery, including the associated discovery jobs, collected data, and recommendations",
       options: [
         {
-          name: "--task-arn",
-          description: "The Amazon Resource Name (ARN) of the task to start",
+          name: "--storage-system-arn",
+          description:
+            "Specifies the Amazon Resource Name (ARN) of the storage system that you want to permanently remove from DataSync Discovery",
           args: {
             name: "string",
           },
         },
         {
-          name: "--override-options",
+          name: "--cli-input-json",
           description:
-            "Represents the options that are available to control the behavior of a StartTaskExecution operation. Behavior includes preserving metadata such as user ID (UID), group ID (GID), and file permissions, and also overwriting files in the destination, data integrity verification, and so on. A task has a set of default options associated with it. If you don't specify an option in StartTaskExecution, the default value is used. You can override the defaults options on each task execution by specifying an overriding Options value to StartTaskExecution",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
-            name: "structure",
+            name: "string",
           },
         },
         {
-          name: "--includes",
+          name: "--generate-cli-skeleton",
           description:
-            'A list of filter rules that determines which files to include when running a task. The pattern should contain a single filter string that consists of the patterns to include. The patterns are delimited by "|" (that is, a pipe). For example: "/folder1|/folder2"',
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "start-discovery-job",
+      description:
+        "Runs a DataSync discovery job on your on-premises storage system. If you haven't added the storage system to DataSync Discovery yet, do this first by using the AddStorageSystem operation",
+      options: [
+        {
+          name: "--storage-system-arn",
+          description:
+            "Specifies the Amazon Resource Name (ARN) of the on-premises storage system that you want to run the discovery job on",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--collection-duration-minutes",
+          description:
+            "Specifies in minutes how long you want the discovery job to run.  For more accurate recommendations, we recommend a duration of at least 14 days. Longer durations allow time to collect a sufficient number of data points and provide a realistic representation of storage performance and utilization",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "Specifies a client token to make sure requests with this API operation are idempotent. If you don't specify a client token, DataSync generates one for you automatically",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "Specifies labels that help you categorize, filter, and search for your Amazon Web Services resources",
           args: {
             name: "list",
           },
@@ -1422,20 +2591,134 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "start-task-execution",
+      description:
+        "Starts an DataSync transfer task. For each task, you can only run one task execution at a time. There are several phases to a task execution. For more information, see Task execution statuses.  If you're planning to transfer data to or from an Amazon S3 location, review how DataSync can affect your S3 request charges and the DataSync pricing page before you begin",
+      options: [
+        {
+          name: "--task-arn",
+          description:
+            "Specifies the Amazon Resource Name (ARN) of the task that you want to start",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--override-options",
+          description:
+            "Indicates how your transfer task is configured. These options include how DataSync handles files, objects, and their associated metadata during your transfer. You also can specify how to verify data integrity, set bandwidth limits for your task, among other options. Each option has a default value. Unless you need to, you don't have to configure any option before calling StartTaskExecution. You also can override your task options for each task execution. For example, you might want to adjust the LogLevel for an individual execution",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--includes",
+          description:
+            'Specifies a list of filter rules that determines which files to include when running a task. The pattern should contain a single filter string that consists of the patterns to include. The patterns are delimited by "|" (that is, a pipe), for example, "/folder1|/folder2"',
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--excludes",
+          description:
+            'Specifies a list of filter rules that determines which files to exclude from a task. The list contains a single filter string that consists of the patterns to exclude. The patterns are delimited by "|" (that is, a pipe), for example, "/folder1|/folder2"',
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--manifest-config",
+          description:
+            "Configures a manifest, which is a list of files or objects that you want DataSync to transfer. For more information and configuration examples, see Specifying what DataSync transfers by using a manifest. When using this parameter, your caller identity (the role that you're using DataSync with) must have the iam:PassRole permission. The AWSDataSyncFullAccess policy includes this permission. To remove a manifest configuration, specify this parameter with an empty value",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--task-report-config",
+          description:
+            "Specifies how you want to configure a task report, which provides detailed information about your DataSync transfer. For more information, see Monitoring your DataSync transfers with task reports. When using this parameter, your caller identity (the role that you're using DataSync with) must have the iam:PassRole permission. The AWSDataSyncFullAccess policy includes this permission. To remove a task report configuration, specify this parameter as empty",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "Specifies the tags that you want to apply to the Amazon Resource Name (ARN) representing the task execution.  Tags are key-value pairs that help you manage, filter, and search for your DataSync resources",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "stop-discovery-job",
+      description:
+        "Stops a running DataSync discovery job. You can stop a discovery job anytime. A job that's stopped before it's scheduled to end likely will provide you some information about your on-premises storage system resources. To get recommendations for a stopped job, you must use the GenerateRecommendations operation",
+      options: [
+        {
+          name: "--discovery-job-arn",
+          description:
+            "Specifies the Amazon Resource Name (ARN) of the discovery job that you want to stop",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "tag-resource",
-      description: "Applies a key-value pair to an AWS resource",
+      description:
+        "Applies a tag to an Amazon Web Services resource. Tags are key-value pairs that can help you manage, filter, and search for your resources. These include DataSync resources, such as locations, tasks, and task executions",
       options: [
         {
           name: "--resource-arn",
           description:
-            "The Amazon Resource Name (ARN) of the resource to apply the tag to",
+            "Specifies the Amazon Resource Name (ARN) of the resource to apply the tag to",
           args: {
             name: "string",
           },
         },
         {
           name: "--tags",
-          description: "The tags to apply",
+          description:
+            "Specifies the tags that you want to apply to the resource",
           args: {
             name: "list",
           },
@@ -1461,19 +2744,19 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "untag-resource",
-      description: "Removes a tag from an AWS resource",
+      description: "Removes tags from an Amazon Web Services resource",
       options: [
         {
           name: "--resource-arn",
           description:
-            "The Amazon Resource Name (ARN) of the resource to remove the tag from",
+            "Specifies the Amazon Resource Name (ARN) of the resource to remove the tags from",
           args: {
             name: "string",
           },
         },
         {
           name: "--keys",
-          description: "The keys in the key-value pair in the tag to remove",
+          description: "Specifies the keys in the tags that you want to remove",
           args: {
             name: "list",
           },
@@ -1499,7 +2782,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "update-agent",
-      description: "Updates the name of an agent",
+      description: "Updates the name of an DataSync agent",
       options: [
         {
           name: "--agent-arn",
@@ -1535,14 +2818,53 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "update-location-nfs",
+      name: "update-discovery-job",
+      description: "Edits a DataSync discovery job configuration",
+      options: [
+        {
+          name: "--discovery-job-arn",
+          description:
+            "Specifies the Amazon Resource Name (ARN) of the discovery job that you want to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--collection-duration-minutes",
+          description:
+            "Specifies in minutes how long that you want the discovery job to run. (You can't set this parameter to less than the number of minutes that the job has already run for.)",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-location-azure-blob",
       description:
-        "Updates some of the parameters of a previously created location for Network File System (NFS) access. For information about creating an NFS location, see create-nfs-location",
+        "Modifies some configurations of the Microsoft Azure Blob Storage transfer location that you're using with DataSync",
       options: [
         {
           name: "--location-arn",
           description:
-            "The Amazon Resource Name (ARN) of the NFS location to update",
+            "Specifies the ARN of the Azure Blob Storage transfer location that you're updating",
           args: {
             name: "string",
           },
@@ -1550,7 +2872,215 @@ const completionSpec: Fig.Spec = {
         {
           name: "--subdirectory",
           description:
-            'The subdirectory in the NFS file system that is used to read data from the NFS source location or write data to the NFS destination. The NFS path should be a path that\'s exported by the NFS server, or a subdirectory of that path. The path should be such that it can be mounted by other NFS clients in your network. To see all the paths exported by your NFS server, run "showmount -e nfs-server-name" from an NFS client that has access to your server. You can specify any directory that appears in the results, and any subdirectory of that directory. Ensure that the NFS export is accessible without Kerberos authentication.  To transfer all the data in the folder that you specified, DataSync must have permissions to read all the data. To ensure this, either configure the NFS export with no_root_squash, or ensure that the files you want DataSync to access have permissions that allow read access for all users. Doing either option enables the agent to read the files. For the agent to access directories, you must additionally enable all execute access. If you are copying data to or from your AWS Snowcone device, see NFS Server on AWS Snowcone for more information. For information about NFS export configuration, see 18.7. The /etc/exports Configuration File in the Red Hat Enterprise Linux documentation',
+            "Specifies path segments if you want to limit your transfer to a virtual directory in your container (for example, /my/images)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--authentication-type",
+          description:
+            "Specifies the authentication method DataSync uses to access your Azure Blob Storage. DataSync can access blob storage using a shared access signature (SAS)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sas-configuration",
+          description:
+            "Specifies the SAS configuration that allows DataSync to access your Azure Blob Storage",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--blob-type",
+          description:
+            "Specifies the type of blob that you want your objects or files to be when transferring them into Azure Blob Storage. Currently, DataSync only supports moving data into Azure Blob Storage as block blobs. For more information on blob types, see the Azure Blob Storage documentation",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--access-tier",
+          description:
+            "Specifies the access tier that you want your objects or files transferred into. This only applies when using the location as a transfer destination. For more information, see Access tiers",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--agent-arns",
+          description:
+            "Specifies the Amazon Resource Name (ARN) of the DataSync agent that can connect with your Azure Blob Storage container. You can specify more than one agent. For more information, see Using multiple agents for your transfer",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-location-hdfs",
+      description:
+        "Updates some parameters of a previously created location for a Hadoop Distributed File System cluster",
+      options: [
+        {
+          name: "--location-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the source HDFS cluster location",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--subdirectory",
+          description:
+            "A subdirectory in the HDFS cluster. This subdirectory is used to read data from or write data to the HDFS cluster",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--name-nodes",
+          description:
+            "The NameNode that manages the HDFS namespace. The NameNode performs operations such as opening, closing, and renaming files and directories. The NameNode contains the information to map blocks of data to the DataNodes. You can use only one NameNode",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--block-size",
+          description:
+            "The size of the data blocks to write into the HDFS cluster",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--replication-factor",
+          description:
+            "The number of DataNodes to replicate the data to when writing to the HDFS cluster",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--kms-key-provider-uri",
+          description:
+            "The URI of the HDFS cluster's Key Management Server (KMS)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--qop-configuration",
+          description:
+            "The Quality of Protection (QOP) configuration specifies the Remote Procedure Call (RPC) and data transfer privacy settings configured on the Hadoop Distributed File System (HDFS) cluster",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--authentication-type",
+          description:
+            "The type of authentication used to determine the identity of the user",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--simple-user",
+          description:
+            "The user name used to identify the client on the host operating system",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--kerberos-principal",
+          description:
+            "The Kerberos principal with access to the files and folders on the HDFS cluster",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--kerberos-keytab",
+          description:
+            "The Kerberos key table (keytab) that contains mappings between the defined Kerberos principal and the encrypted keys. You can load the keytab from a file by providing the file's address. If you use the CLI, it performs base64 encoding for you. Otherwise, provide the base64-encoded text",
+          args: {
+            name: "blob",
+          },
+        },
+        {
+          name: "--kerberos-krb5-conf",
+          description:
+            "The krb5.conf file that contains the Kerberos configuration information. You can load the krb5.conf file by providing the file's address. If you're using the CLI, it performs the base64 encoding for you. Otherwise, provide the base64-encoded text",
+          args: {
+            name: "blob",
+          },
+        },
+        {
+          name: "--agent-arns",
+          description:
+            "The ARNs of the agents that are used to connect to the HDFS cluster",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-location-nfs",
+      description:
+        "Modifies some configurations of the Network File System (NFS) transfer location that you're using with DataSync. For more information, see Configuring transfers to or from an NFS file server",
+      options: [
+        {
+          name: "--location-arn",
+          description:
+            "Specifies the Amazon Resource Name (ARN) of the NFS transfer location that you want to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--subdirectory",
+          description:
+            "Specifies the export path in your NFS file server that you want DataSync to mount. This path (or a subdirectory of the path) is where DataSync transfers data to or from. For information on configuring an export for DataSync, see Accessing NFS file servers",
           args: {
             name: "string",
           },
@@ -1558,7 +3088,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--on-prem-config",
           description:
-            "A list of Amazon Resource Names (ARNs) of agents to use for a Network File System (NFS) location",
+            "The DataSync agents that are connecting to a Network File System (NFS) location",
           args: {
             name: "structure",
           },
@@ -1566,7 +3096,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--mount-options",
           description:
-            "Represents the mount options that are available for DataSync to access an NFS location",
+            "Specifies how DataSync can access a location using the NFS protocol",
           args: {
             name: "structure",
           },
@@ -1593,12 +3123,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-location-object-storage",
       description:
-        "Updates some of the parameters of a previously created location for self-managed object storage server access. For information about creating a self-managed object storage location, see create-object-location",
+        "Updates some parameters of an existing DataSync location for an object storage system",
       options: [
         {
           name: "--location-arn",
           description:
-            "The Amazon Resource Name (ARN) of the self-managed object storage server location to be updated",
+            "Specifies the ARN of the object storage system location that you're updating",
           args: {
             name: "string",
           },
@@ -1606,7 +3136,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--server-port",
           description:
-            "The port that your self-managed object storage server accepts inbound network traffic on. The server port is set by default to TCP 80 (HTTP) or TCP 443 (HTTPS). You can specify a custom port if your self-managed object storage server requires one",
+            "Specifies the port that your object storage server accepts inbound network traffic on (for example, port 443)",
           args: {
             name: "integer",
           },
@@ -1614,7 +3144,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--server-protocol",
           description:
-            "The protocol that the object storage server uses to communicate. Valid values are HTTP or HTTPS",
+            "Specifies the protocol that your object storage server uses to communicate",
           args: {
             name: "string",
           },
@@ -1622,7 +3152,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--subdirectory",
           description:
-            "The subdirectory in the self-managed object storage server that is used to read data from",
+            "Specifies the object prefix for your object storage server. If this is a source location, DataSync only copies objects with this prefix. If this is a destination location, DataSync writes all objects with this prefix",
           args: {
             name: "string",
           },
@@ -1630,7 +3160,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--access-key",
           description:
-            "Optional. The access key is used if credentials are required to access the self-managed object storage server. If your object storage requires a user name and password to authenticate, use AccessKey and SecretKey to provide the user name and password, respectively",
+            "Specifies the access key (for example, a user name) if credentials are required to authenticate with the object storage server",
           args: {
             name: "string",
           },
@@ -1638,7 +3168,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--secret-key",
           description:
-            "Optional. The secret key is used if credentials are required to access the self-managed object storage server. If your object storage requires a user name and password to authenticate, use AccessKey and SecretKey to provide the user name and password, respectively",
+            "Specifies the secret key (for example, a password) if credentials are required to authenticate with the object storage server",
           args: {
             name: "string",
           },
@@ -1646,9 +3176,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--agent-arns",
           description:
-            "The Amazon Resource Name (ARN) of the agents associated with the self-managed object storage server location",
+            "Specifies the Amazon Resource Names (ARNs) of the DataSync agents that can securely connect with your location",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--server-certificate",
+          description:
+            "Specifies a certificate chain for DataSync to authenticate with your object storage system if the system uses a private or self-signed certificate authority (CA). You must specify a single .pem file with a full certificate chain (for example, file:///home/user/.ssh/object_storage_certificates.pem). The certificate chain might include:   The object storage system's certificate   All intermediate certificates (if there are any)   The root certificate of the signing CA   You can concatenate your certificates into a .pem file (which can be up to 32768 bytes before base64 encoding). The following example cat command creates an object_storage_certificates.pem file that includes three certificates:  cat object_server_certificate.pem intermediate_certificate.pem ca_root_certificate.pem > object_storage_certificates.pem  To use this parameter, configure ServerProtocol to HTTPS. Updating this parameter doesn't interfere with tasks that you have in progress",
+          args: {
+            name: "blob",
           },
         },
         {
@@ -1673,12 +3211,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-location-smb",
       description:
-        "Updates some of the parameters of a previously created location for Server Message Block (SMB) file system access. For information about creating an SMB location, see create-smb-location",
+        "Updates some of the parameters of a Server Message Block (SMB) file server location that you can use for DataSync transfers",
       options: [
         {
           name: "--location-arn",
           description:
-            "The Amazon Resource Name (ARN) of the SMB location to update",
+            "Specifies the ARN of the SMB location that you want to update",
           args: {
             name: "string",
           },
@@ -1686,7 +3224,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--subdirectory",
           description:
-            "The subdirectory in the SMB file system that is used to read data from the SMB source location or write data to the SMB destination. The SMB path should be a path that's exported by the SMB server, or a subdirectory of that path. The path should be such that it can be mounted by other SMB clients in your network.   Subdirectory must be specified with forward slashes. For example, /path/to/folder.  To transfer all the data in the folder that you specified, DataSync must have permissions to mount the SMB share and to access all the data in that share. To ensure this, do either of the following:   Ensure that the user/password specified belongs to the user who can mount the share and who has the appropriate permissions for all of the files and directories that you want DataSync to access.   Use credentials of a member of the Backup Operators group to mount the share.    Doing either of these options enables the agent to access the data. For the agent to access directories, you must also enable all execute access",
+            "Specifies the name of the share exported by your SMB file server where DataSync will read or write data. You can include a subdirectory in the share path (for example, /path/to/subdirectory). Make sure that other SMB clients in your network can also mount this path. To copy all data in the specified subdirectory, DataSync must be able to mount the SMB share and access all of its data. For more information, see required permissions for SMB locations",
           args: {
             name: "string",
           },
@@ -1694,7 +3232,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--user",
           description:
-            "The user who can mount the share has the permissions to access files and folders in the SMB share",
+            "Specifies the user name that can mount your SMB file server and has permission to access the files and folders involved in your transfer. For information about choosing a user with the right level of access for your transfer, see required permissions for SMB locations",
           args: {
             name: "string",
           },
@@ -1702,7 +3240,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--domain",
           description:
-            "The name of the Windows domain that the SMB server belongs to",
+            "Specifies the Windows domain name that your SMB file server belongs to.  If you have multiple domains in your environment, configuring this parameter makes sure that DataSync connects to the right file server. For more information, see required permissions for SMB locations",
           args: {
             name: "string",
           },
@@ -1710,7 +3248,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--password",
           description:
-            "The password of the user who can mount the share has the permissions to access files and folders in the SMB share",
+            "Specifies the password of the user who can mount your SMB file server and has permission to access the files and folders involved in your transfer. For more information, see required permissions for SMB locations",
           args: {
             name: "string",
           },
@@ -1718,7 +3256,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--agent-arns",
           description:
-            "The Amazon Resource Names (ARNs) of agents to use for a Simple Message Block (SMB) location",
+            "Specifies the DataSync agent (or agents) which you want to connect to your SMB file server. You specify an agent by using its Amazon Resource Name (ARN)",
           args: {
             name: "list",
           },
@@ -1726,7 +3264,79 @@ const completionSpec: Fig.Spec = {
         {
           name: "--mount-options",
           description:
-            "Represents the mount options that are available for DataSync to access an SMB location",
+            "Specifies the version of the Server Message Block (SMB) protocol that DataSync uses to access an SMB file server",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-storage-system",
+      description:
+        "Modifies some configurations of an on-premises storage system resource that you're using with DataSync Discovery",
+      options: [
+        {
+          name: "--storage-system-arn",
+          description:
+            "Specifies the ARN of the on-premises storage system that you want reconfigure",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--server-configuration",
+          description:
+            "Specifies the server name and network port required to connect with your on-premises storage system's management interface",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--agent-arns",
+          description:
+            "Specifies the Amazon Resource Name (ARN) of the DataSync agent that connects to and reads your on-premises storage system. You can only specify one ARN",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--name",
+          description:
+            "Specifies a familiar name for your on-premises storage system",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cloud-watch-log-group-arn",
+          description:
+            "Specifies the ARN of the Amazon CloudWatch log group for monitoring and logging discovery job events",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--credentials",
+          description:
+            "Specifies the user name and password for accessing your on-premises storage system's management interface",
           args: {
             name: "structure",
           },
@@ -1752,12 +3362,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "update-task",
-      description: "Updates the metadata associated with a task",
+      description:
+        "Updates the configuration of a task, which defines where and how DataSync transfers your data",
       options: [
         {
           name: "--task-arn",
-          description:
-            "The Amazon Resource Name (ARN) of the resource name of the task to update",
+          description: "Specifies the ARN of the task that you want to update",
           args: {
             name: "string",
           },
@@ -1765,7 +3375,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--options",
           description:
-            "Represents the options that are available to control the behavior of a StartTaskExecution operation. Behavior includes preserving metadata such as user ID (UID), group ID (GID), and file permissions, and also overwriting files in the destination, data integrity verification, and so on. A task has a set of default options associated with it. If you don't specify an option in StartTaskExecution, the default value is used. You can override the defaults options on each task execution by specifying an overriding Options value to StartTaskExecution",
+            "Indicates how your transfer task is configured. These options include how DataSync handles files, objects, and their associated metadata during your transfer. You also can specify how to verify data integrity, set bandwidth limits for your task, among other options. Each option has a default value. Unless you need to, you don't have to configure any option before calling StartTaskExecution. You also can override your task options for each task execution. For example, you might want to adjust the LogLevel for an individual execution",
           args: {
             name: "structure",
           },
@@ -1773,7 +3383,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--excludes",
           description:
-            'A list of filter rules that determines which files to exclude from a task. The list should contain a single filter string that consists of the patterns to exclude. The patterns are delimited by "|" (that is, a pipe), for example: "/folder1|/folder2"',
+            "Specifies exclude filters that define the files, objects, and folders in your source location that you don't want DataSync to transfer. For more information and examples, see Specifying what DataSync transfers by using filters",
           args: {
             name: "list",
           },
@@ -1781,14 +3391,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--schedule",
           description:
-            "Specifies a schedule used to periodically transfer files from a source to a destination location. You can configure your task to execute hourly, daily, weekly or on specific days of the week. You control when in the day or hour you want the task to execute. The time you specify is UTC time. For more information, see task-scheduling",
+            "Specifies a schedule for when you want your task to run. For more information, see Scheduling your task",
           args: {
             name: "structure",
           },
         },
         {
           name: "--name",
-          description: "The name of the task to update",
+          description: "Specifies the name of your task",
           args: {
             name: "string",
           },
@@ -1796,9 +3406,33 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cloud-watch-log-group-arn",
           description:
-            "The Amazon Resource Name (ARN) of the resource name of the CloudWatch LogGroup",
+            "Specifies the Amazon Resource Name (ARN) of an Amazon CloudWatch log group for monitoring your task",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--includes",
+          description:
+            "Specifies include filters define the files, objects, and folders in your source location that you want DataSync to transfer. For more information and examples, see Specifying what DataSync transfers by using filters",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--manifest-config",
+          description:
+            "Configures a manifest, which is a list of files or objects that you want DataSync to transfer. For more information and configuration examples, see Specifying what DataSync transfers by using a manifest. When using this parameter, your caller identity (the IAM role that you're using DataSync with) must have the iam:PassRole permission. The AWSDataSyncFullAccess policy includes this permission. To remove a manifest configuration, specify this parameter as empty",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--task-report-config",
+          description:
+            "Specifies how you want to configure a task report, which provides detailed information about your DataSync transfer. For more information, see Monitoring your DataSync transfers with task reports. When using this parameter, your caller identity (the IAM role that you're using DataSync with) must have the iam:PassRole permission. The AWSDataSyncFullAccess policy includes this permission. To remove a task report configuration, specify this parameter as empty",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -1823,12 +3457,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-task-execution",
       description:
-        "Updates execution of a task. You can modify bandwidth throttling for a task execution that is running or queued. For more information, see Adjusting Bandwidth Throttling for a Task Execution.  The only Option that can be modified by UpdateTaskExecution is  BytesPerSecond",
+        "Updates the configuration of a running DataSync task execution.  Currently, the only Option that you can modify with UpdateTaskExecution is  BytesPerSecond , which throttles bandwidth for a running or queued task execution",
       options: [
         {
           name: "--task-execution-arn",
           description:
-            "The Amazon Resource Name (ARN) of the specific task execution that is being updated",
+            "Specifies the Amazon Resource Name (ARN) of the task execution that you're updating",
           args: {
             name: "string",
           },
@@ -1836,7 +3470,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--options",
           description:
-            "Represents the options that are available to control the behavior of a StartTaskExecution operation. Behavior includes preserving metadata such as user ID (UID), group ID (GID), and file permissions, and also overwriting files in the destination, data integrity verification, and so on. A task has a set of default options associated with it. If you don't specify an option in StartTaskExecution, the default value is used. You can override the defaults options on each task execution by specifying an overriding Options value to StartTaskExecution",
+            "Indicates how your transfer task is configured. These options include how DataSync handles files, objects, and their associated metadata during your transfer. You also can specify how to verify data integrity, set bandwidth limits for your task, among other options. Each option has a default value. Unless you need to, you don't have to configure any option before calling StartTaskExecution. You also can override your task options for each task execution. For example, you might want to adjust the LogLevel for an individual execution",
           args: {
             name: "structure",
           },
@@ -1862,5 +3496,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

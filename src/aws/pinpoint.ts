@@ -192,6 +192,45 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-in-app-template",
+      description:
+        "Creates a new message template for messages using the in-app message channel",
+      options: [
+        {
+          name: "--in-app-template-request",
+          description: "InApp Template Request",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--template-name",
+          description:
+            "The name of the message template. A template name must start with an alphanumeric character and can contain a maximum of 128 characters. The characters can be alphanumeric characters, underscores (_), or hyphens (-). Template names are case sensitive",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-journey",
       description: "Creates a journey for an application",
       options: [
@@ -769,7 +808,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--endpoint-id",
-          description: "The unique identifier for the endpoint",
+          description:
+            "The case insensitive unique identifier for the endpoint. The identifier can't contain $, { or }",
           args: {
             name: "string",
           },
@@ -833,6 +873,46 @@ const completionSpec: Fig.Spec = {
           name: "--application-id",
           description:
             "The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-in-app-template",
+      description:
+        "Deletes a message template for messages sent using the in-app message channel",
+      options: [
+        {
+          name: "--template-name",
+          description:
+            "The name of the message template. A template name must start with an alphanumeric character and can contain a maximum of 128 characters. The characters can be alphanumeric characters, underscores (_), or hyphens (-). Template names are case sensitive",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--template-version",
+          description:
+            "The unique identifier for the version of the message template to update, retrieve information about, or delete. To retrieve identifiers and other information for all the versions of a template, use the Template Versions resource. If specified, this value must match the identifier for an existing template version. If specified for an update operation, this value must match the identifier for the latest existing version of the template. This restriction helps ensure that race conditions don't occur. If you don't specify a value for this parameter, Amazon Pinpoint does the following: For a get operation, retrieves information about the active version of the template. For an update operation, saves the updates to (overwrites) the latest existing version of the template, if the create-new-version parameter isn't used or is set to false. For a delete operation, deletes the template, including all versions of the template",
           args: {
             name: "string",
           },
@@ -1996,7 +2076,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--endpoint-id",
-          description: "The unique identifier for the endpoint",
+          description:
+            "The case insensitive unique identifier for the endpoint. The identifier can't contain $, { or }",
           args: {
             name: "string",
           },
@@ -2259,6 +2340,85 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-in-app-messages",
+      description:
+        "Retrieves the in-app messages targeted for the provided endpoint ID",
+      options: [
+        {
+          name: "--application-id",
+          description:
+            "The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--endpoint-id",
+          description: "The unique identifier for the endpoint",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-in-app-template",
+      description:
+        "Retrieves the content and settings of a message template for messages sent through the in-app channel",
+      options: [
+        {
+          name: "--template-name",
+          description:
+            "The name of the message template. A template name must start with an alphanumeric character and can contain a maximum of 128 characters. The characters can be alphanumeric characters, underscores (_), or hyphens (-). Template names are case sensitive",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--template-version",
+          description:
+            "The unique identifier for the version of the message template to update, retrieve information about, or delete. To retrieve identifiers and other information for all the versions of a template, use the Template Versions resource. If specified, this value must match the identifier for an existing template version. If specified for an update operation, this value must match the identifier for the latest existing version of the template. This restriction helps ensure that race conditions don't occur. If you don't specify a value for this parameter, Amazon Pinpoint does the following: For a get operation, retrieves information about the active version of the template. For an update operation, saves the updates to (overwrites) the latest existing version of the template, if the create-new-version parameter isn't used or is set to false. For a delete operation, deletes the template, including all versions of the template",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-journey",
       description:
         "Retrieves information about the status, configuration, and other settings for a journey",
@@ -2470,6 +2630,191 @@ const completionSpec: Fig.Spec = {
           name: "--page-size",
           description:
             "The maximum number of items to include in each page of a paginated response. This parameter is not supported for application, campaign, and journey metrics",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-journey-run-execution-activity-metrics",
+      description:
+        "Retrieves (queries) pre-aggregated data for a standard run execution metric that applies to a journey activity",
+      options: [
+        {
+          name: "--application-id",
+          description:
+            "The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--journey-activity-id",
+          description: "The unique identifier for the journey activity",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--journey-id",
+          description: "The unique identifier for the journey",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The  string that specifies which page of results to return in a paginated response. This parameter is not supported for application, campaign, and journey metrics",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The maximum number of items to include in each page of a paginated response. This parameter is not supported for application, campaign, and journey metrics",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--run-id",
+          description: "The unique identifier for the journey run",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-journey-run-execution-metrics",
+      description:
+        "Retrieves (queries) pre-aggregated data for a standard run execution metric that applies to a journey",
+      options: [
+        {
+          name: "--application-id",
+          description:
+            "The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--journey-id",
+          description: "The unique identifier for the journey",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The  string that specifies which page of results to return in a paginated response. This parameter is not supported for application, campaign, and journey metrics",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The maximum number of items to include in each page of a paginated response. This parameter is not supported for application, campaign, and journey metrics",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--run-id",
+          description: "The unique identifier for the journey run",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-journey-runs",
+      description: "Provides information about the runs of a journey",
+      options: [
+        {
+          name: "--application-id",
+          description:
+            "The unique identifier for the application. This identifier is displayed as the Project ID on the Amazon Pinpoint console",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--journey-id",
+          description: "The unique identifier for the journey",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The maximum number of items to include in each page of a paginated response. This parameter is not supported for application, campaign, and journey metrics",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--token",
+          description:
+            "The NextToken string that specifies which page of results to return in a paginated response",
           args: {
             name: "string",
           },
@@ -3391,7 +3736,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "remove-attributes",
       description:
-        "Removes one or more attributes, of the same attribute type, from all the endpoints that are associated with an application",
+        "Removes one or more custom attributes, of the same attribute type, from the application. Existing endpoints still have the attributes but Amazon Pinpoint will stop capturing new or changed values for these attributes",
       options: [
         {
           name: "--application-id",
@@ -3452,6 +3797,43 @@ const completionSpec: Fig.Spec = {
           name: "--message-request",
           description:
             "Specifies the configuration and other settings for a message",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "send-otp-message",
+      description: "Send an OTP message",
+      options: [
+        {
+          name: "--application-id",
+          description: "The unique ID of your Amazon Pinpoint application",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--send-otp-message-request-parameters",
+          description: "Send OTP message request parameters",
           args: {
             name: "structure",
           },
@@ -4030,7 +4412,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--endpoint-id",
-          description: "The unique identifier for the endpoint",
+          description:
+            "The case insensitive unique identifier for the endpoint. The identifier can't contain $, { or }",
           args: {
             name: "string",
           },
@@ -4121,6 +4504,63 @@ const completionSpec: Fig.Spec = {
             "Specifies the status and settings of the GCM channel for an application. This channel enables Amazon Pinpoint to send push notifications through the Firebase Cloud Messaging (FCM), formerly Google Cloud Messaging (GCM), service",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-in-app-template",
+      description:
+        "Updates an existing message template for messages sent through the in-app message channel",
+      options: [
+        {
+          name: "--create-new-version",
+          description:
+            "Specifies whether to save the updates as a new version of the message template. Valid values are: true, save the updates as a new version; and, false, save the updates to (overwrite) the latest existing version of the template. If you don't specify a value for this parameter, Amazon Pinpoint saves the updates to (overwrites) the latest existing version of the template. If you specify a value of true for this parameter, don't specify a value for the version parameter. Otherwise, an error will occur",
+        },
+        {
+          name: "--no-create-new-version",
+          description:
+            "Specifies whether to save the updates as a new version of the message template. Valid values are: true, save the updates as a new version; and, false, save the updates to (overwrite) the latest existing version of the template. If you don't specify a value for this parameter, Amazon Pinpoint saves the updates to (overwrites) the latest existing version of the template. If you specify a value of true for this parameter, don't specify a value for the version parameter. Otherwise, an error will occur",
+        },
+        {
+          name: "--in-app-template-request",
+          description: "InApp Template Request",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--template-name",
+          description:
+            "The name of the message template. A template name must start with an alphanumeric character and can contain a maximum of 128 characters. The characters can be alphanumeric characters, underscores (_), or hyphens (-). Template names are case sensitive",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--template-version",
+          description:
+            "The unique identifier for the version of the message template to update, retrieve information about, or delete. To retrieve identifiers and other information for all the versions of a template, use the Template Versions resource. If specified, this value must match the identifier for an existing template version. If specified for an update operation, this value must match the identifier for the latest existing version of the template. This restriction helps ensure that race conditions don't occur. If you don't specify a value for this parameter, Amazon Pinpoint does the following: For a get operation, retrieves information about the active version of the template. For an update operation, saves the updates to (overwrites) the latest existing version of the template, if the create-new-version parameter isn't used or is set to false. For a delete operation, deletes the template, including all versions of the template",
+          args: {
+            name: "string",
           },
         },
         {
@@ -4622,7 +5062,43 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "verify-otp-message",
+      description: "Verify an OTP",
+      options: [
+        {
+          name: "--application-id",
+          description: "The unique ID of your Amazon Pinpoint application",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--verify-otp-message-request-parameters",
+          description: "Verify OTP message request",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
   ],
 };
-
 export default completionSpec;

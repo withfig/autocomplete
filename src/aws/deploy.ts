@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "deploy",
   description:
-    "AWS CodeDeploy AWS CodeDeploy is a deployment service that automates application deployments to Amazon EC2 instances, on-premises instances running in your own facility, serverless AWS Lambda functions, or applications in an Amazon ECS service. You can deploy a nearly unlimited variety of application content, such as an updated Lambda function, updated applications in an Amazon ECS service, code, web and configuration files, executables, packages, scripts, multimedia files, and so on. AWS CodeDeploy can deploy application content stored in Amazon S3 buckets, GitHub repositories, or Bitbucket repositories. You do not need to make changes to your existing code before you can use AWS CodeDeploy. AWS CodeDeploy makes it easier for you to rapidly release new features, helps you avoid downtime during application deployment, and handles the complexity of updating your applications, without many of the risks associated with error-prone manual deployments.  AWS CodeDeploy Components  Use the information in this guide to help you work with the following AWS CodeDeploy components:    Application: A name that uniquely identifies the application you want to deploy. AWS CodeDeploy uses this name, which functions as a container, to ensure the correct combination of revision, deployment configuration, and deployment group are referenced during a deployment.    Deployment group: A set of individual instances, CodeDeploy Lambda deployment configuration settings, or an Amazon ECS service and network details. A Lambda deployment group specifies how to route traffic to a new version of a Lambda function. An Amazon ECS deployment group specifies the service created in Amazon ECS to deploy, a load balancer, and a listener to reroute production traffic to an updated containerized application. An EC2/On-premises deployment group contains individually tagged instances, Amazon EC2 instances in Amazon EC2 Auto Scaling groups, or both. All deployment groups can specify optional trigger, alarm, and rollback settings.    Deployment configuration: A set of deployment rules and deployment success and failure conditions used by AWS CodeDeploy during a deployment.    Deployment: The process and the components used when updating a Lambda function, a containerized application in an Amazon ECS service, or of installing content on one or more instances.     Application revisions: For an AWS Lambda deployment, this is an AppSpec file that specifies the Lambda function to be updated and one or more functions to validate deployment lifecycle events. For an Amazon ECS deployment, this is an AppSpec file that specifies the Amazon ECS task definition, container, and port where production traffic is rerouted. For an EC2/On-premises deployment, this is an archive file that contains source content\u2014source code, webpages, executable files, and deployment scripts\u2014along with an AppSpec file. Revisions are stored in Amazon S3 buckets or GitHub repositories. For Amazon S3, a revision is uniquely identified by its Amazon S3 object key and its ETag, version, or both. For GitHub, a revision is uniquely identified by its commit ID.   This guide also contains information to help you get details about the instances in your deployments, to make on-premises instances available for AWS CodeDeploy deployments, to get details about a Lambda function deployment, and to get details about Amazon ECS service deployments.  AWS CodeDeploy Information Resources     AWS CodeDeploy User Guide     AWS CodeDeploy API Reference Guide     AWS CLI Reference for AWS CodeDeploy     AWS CodeDeploy Developer Forum",
+    "CodeDeploy is a deployment service that automates application deployments to Amazon EC2 instances, on-premises instances running in your own facility, serverless Lambda functions, or applications in an Amazon ECS service. You can deploy a nearly unlimited variety of application content, such as an updated Lambda function, updated applications in an Amazon ECS service, code, web and configuration files, executables, packages, scripts, multimedia files, and so on. CodeDeploy can deploy application content stored in Amazon S3 buckets, GitHub repositories, or Bitbucket repositories. You do not need to make changes to your existing code before you can use CodeDeploy. CodeDeploy makes it easier for you to rapidly release new features, helps you avoid downtime during application deployment, and handles the complexity of updating your applications, without many of the risks associated with error-prone manual deployments.  CodeDeploy Components  Use the information in this guide to help you work with the following CodeDeploy components:    Application: A name that uniquely identifies the application you want to deploy. CodeDeploy uses this name, which functions as a container, to ensure the correct combination of revision, deployment configuration, and deployment group are referenced during a deployment.    Deployment group: A set of individual instances, CodeDeploy Lambda deployment configuration settings, or an Amazon ECS service and network details. A Lambda deployment group specifies how to route traffic to a new version of a Lambda function. An Amazon ECS deployment group specifies the service created in Amazon ECS to deploy, a load balancer, and a listener to reroute production traffic to an updated containerized application. An Amazon EC2/On-premises deployment group contains individually tagged instances, Amazon EC2 instances in Amazon EC2 Auto Scaling groups, or both. All deployment groups can specify optional trigger, alarm, and rollback settings.    Deployment configuration: A set of deployment rules and deployment success and failure conditions used by CodeDeploy during a deployment.    Deployment: The process and the components used when updating a Lambda function, a containerized application in an Amazon ECS service, or of installing content on one or more instances.     Application revisions: For an Lambda deployment, this is an AppSpec file that specifies the Lambda function to be updated and one or more functions to validate deployment lifecycle events. For an Amazon ECS deployment, this is an AppSpec file that specifies the Amazon ECS task definition, container, and port where production traffic is rerouted. For an EC2/On-premises deployment, this is an archive file that contains source content\u2014source code, webpages, executable files, and deployment scripts\u2014along with an AppSpec file. Revisions are stored in Amazon S3 buckets or GitHub repositories. For Amazon S3, a revision is uniquely identified by its Amazon S3 object key and its ETag, version, or both. For GitHub, a revision is uniquely identified by its commit ID.   This guide also contains information to help you get details about the instances in your deployments, to make on-premises instances available for CodeDeploy deployments, to get details about a Lambda function deployment, and to get details about Amazon ECS service deployments.  CodeDeploy Information Resources     CodeDeploy User Guide     CodeDeploy API Reference Guide     CLI Reference for CodeDeploy     CodeDeploy Developer Forum",
   subcommands: [
     {
       name: "add-tags-to-on-premises-instances",
@@ -50,7 +50,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--application-name",
           description:
-            "The name of an AWS CodeDeploy application about which to get revision information",
+            "The name of an CodeDeploy application about which to get revision information",
           args: {
             name: "string",
           },
@@ -121,7 +121,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--application-name",
           description:
-            "The name of an AWS CodeDeploy application associated with the applicable IAM user or AWS account",
+            "The name of an CodeDeploy application associated with the applicable user or Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -155,7 +155,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "batch-get-deployment-instances",
       description:
-        "This method works, but is deprecated. Use BatchGetDeploymentTargets instead.    Returns an array of one or more instances associated with a deployment. This method works with EC2/On-premises and AWS Lambda compute platforms. The newer BatchGetDeploymentTargets works with all compute platforms. The maximum number of instances that can be returned is 25",
+        "This method works, but is deprecated. Use BatchGetDeploymentTargets instead.    Returns an array of one or more instances associated with a deployment. This method works with EC2/On-premises and Lambda compute platforms. The newer BatchGetDeploymentTargets works with all compute platforms. The maximum number of instances that can be returned is 25",
       options: [
         {
           name: "--deployment-id",
@@ -194,7 +194,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "batch-get-deployment-targets",
       description:
-        "Returns an array of one or more targets associated with a deployment. This method works with all compute types and should be used instead of the deprecated BatchGetDeploymentInstances. The maximum number of targets that can be returned is 25.  The type of targets returned depends on the deployment's compute platform or deployment method:     EC2/On-premises: Information about EC2 instance targets.     AWS Lambda: Information about Lambda functions targets.     Amazon ECS: Information about Amazon ECS service targets.     CloudFormation: Information about targets of blue/green deployments initiated by a CloudFormation stack update",
+        "Returns an array of one or more targets associated with a deployment. This method works with all compute types and should be used instead of the deprecated BatchGetDeploymentInstances. The maximum number of targets that can be returned is 25.  The type of targets returned depends on the deployment's compute platform or deployment method:     EC2/On-premises: Information about Amazon EC2 instance targets.     Lambda: Information about Lambda functions targets.     Amazon ECS: Information about Amazon ECS service targets.     CloudFormation: Information about targets of blue/green deployments initiated by a CloudFormation stack update",
       options: [
         {
           name: "--deployment-id",
@@ -206,7 +206,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--target-ids",
           description:
-            "The unique IDs of the deployment targets. The compute platform of the deployment determines the type of the targets and their formats. The maximum number of deployment target IDs you can specify is 25.    For deployments that use the EC2/On-premises compute platform, the target IDs are EC2 or on-premises instances IDs, and their target type is instanceTarget.     For deployments that use the AWS Lambda compute platform, the target IDs are the names of Lambda functions, and their target type is instanceTarget.     For deployments that use the Amazon ECS compute platform, the target IDs are pairs of Amazon ECS clusters and services specified using the format <clustername>:<servicename>. Their target type is ecsTarget.     For deployments that are deployed with AWS CloudFormation, the target IDs are CloudFormation stack IDs. Their target type is cloudFormationTarget",
+            "The unique IDs of the deployment targets. The compute platform of the deployment determines the type of the targets and their formats. The maximum number of deployment target IDs you can specify is 25.    For deployments that use the EC2/On-premises compute platform, the target IDs are Amazon EC2 or on-premises instances IDs, and their target type is instanceTarget.     For deployments that use the Lambda compute platform, the target IDs are the names of Lambda functions, and their target type is instanceTarget.     For deployments that use the Amazon ECS compute platform, the target IDs are pairs of Amazon ECS clusters and services specified using the format <clustername>:<servicename>. Their target type is ecsTarget.     For deployments that are deployed with CloudFormation, the target IDs are CloudFormation stack IDs. Their target type is cloudFormationTarget",
           args: {
             name: "list",
           },
@@ -341,7 +341,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--application-name",
           description:
-            "The name of the application. This name must be unique with the applicable IAM user or AWS account",
+            "The name of the application. This name must be unique with the applicable user or Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -389,7 +389,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--application-name",
           description:
-            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account",
+            "The name of an CodeDeploy application associated with the user or Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -411,7 +411,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--deployment-config-name",
           description:
-            "The name of a deployment configuration associated with the IAM user or AWS account. If not specified, the value configured in the deployment group is used as the default. If the deployment group does not have a deployment configuration associated with it, CodeDeployDefault.OneAtATime is used by default",
+            "The name of a deployment configuration associated with the user or Amazon Web Services account. If not specified, the value configured in the deployment group is used as the default. If the deployment group does not have a deployment configuration associated with it, CodeDeployDefault.OneAtATime is used by default",
           args: {
             name: "string",
           },
@@ -426,12 +426,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ignore-application-stop-failures",
           description:
-            "If true, then if an ApplicationStop, BeforeBlockTraffic, or AfterBlockTraffic deployment lifecycle event to an instance fails, then the deployment continues to the next deployment lifecycle event. For example, if ApplicationStop fails, the deployment continues with DownloadBundle. If BeforeBlockTraffic fails, the deployment continues with BlockTraffic. If AfterBlockTraffic fails, the deployment continues with ApplicationStop.   If false or not specified, then if a lifecycle event fails during a deployment to an instance, that deployment fails. If deployment to that instance is part of an overall deployment and the number of healthy hosts is not less than the minimum number of healthy hosts, then a deployment to the next instance is attempted.   During a deployment, the AWS CodeDeploy agent runs the scripts specified for ApplicationStop, BeforeBlockTraffic, and AfterBlockTraffic in the AppSpec file from the previous successful deployment. (All other scripts are run from the AppSpec file in the current deployment.) If one of these scripts contains an error and does not run successfully, the deployment can fail.   If the cause of the failure is a script from the last successful deployment that will never run successfully, create a new deployment and use ignoreApplicationStopFailures to specify that the ApplicationStop, BeforeBlockTraffic, and AfterBlockTraffic failures should be ignored",
+            "If true, then if an ApplicationStop, BeforeBlockTraffic, or AfterBlockTraffic deployment lifecycle event to an instance fails, then the deployment continues to the next deployment lifecycle event. For example, if ApplicationStop fails, the deployment continues with DownloadBundle. If BeforeBlockTraffic fails, the deployment continues with BlockTraffic. If AfterBlockTraffic fails, the deployment continues with ApplicationStop.   If false or not specified, then if a lifecycle event fails during a deployment to an instance, that deployment fails. If deployment to that instance is part of an overall deployment and the number of healthy hosts is not less than the minimum number of healthy hosts, then a deployment to the next instance is attempted.   During a deployment, the CodeDeploy agent runs the scripts specified for ApplicationStop, BeforeBlockTraffic, and AfterBlockTraffic in the AppSpec file from the previous successful deployment. (All other scripts are run from the AppSpec file in the current deployment.) If one of these scripts contains an error and does not run successfully, the deployment can fail.   If the cause of the failure is a script from the last successful deployment that will never run successfully, create a new deployment and use ignoreApplicationStopFailures to specify that the ApplicationStop, BeforeBlockTraffic, and AfterBlockTraffic failures should be ignored",
         },
         {
           name: "--no-ignore-application-stop-failures",
           description:
-            "If true, then if an ApplicationStop, BeforeBlockTraffic, or AfterBlockTraffic deployment lifecycle event to an instance fails, then the deployment continues to the next deployment lifecycle event. For example, if ApplicationStop fails, the deployment continues with DownloadBundle. If BeforeBlockTraffic fails, the deployment continues with BlockTraffic. If AfterBlockTraffic fails, the deployment continues with ApplicationStop.   If false or not specified, then if a lifecycle event fails during a deployment to an instance, that deployment fails. If deployment to that instance is part of an overall deployment and the number of healthy hosts is not less than the minimum number of healthy hosts, then a deployment to the next instance is attempted.   During a deployment, the AWS CodeDeploy agent runs the scripts specified for ApplicationStop, BeforeBlockTraffic, and AfterBlockTraffic in the AppSpec file from the previous successful deployment. (All other scripts are run from the AppSpec file in the current deployment.) If one of these scripts contains an error and does not run successfully, the deployment can fail.   If the cause of the failure is a script from the last successful deployment that will never run successfully, create a new deployment and use ignoreApplicationStopFailures to specify that the ApplicationStop, BeforeBlockTraffic, and AfterBlockTraffic failures should be ignored",
+            "If true, then if an ApplicationStop, BeforeBlockTraffic, or AfterBlockTraffic deployment lifecycle event to an instance fails, then the deployment continues to the next deployment lifecycle event. For example, if ApplicationStop fails, the deployment continues with DownloadBundle. If BeforeBlockTraffic fails, the deployment continues with BlockTraffic. If AfterBlockTraffic fails, the deployment continues with ApplicationStop.   If false or not specified, then if a lifecycle event fails during a deployment to an instance, that deployment fails. If deployment to that instance is part of an overall deployment and the number of healthy hosts is not less than the minimum number of healthy hosts, then a deployment to the next instance is attempted.   During a deployment, the CodeDeploy agent runs the scripts specified for ApplicationStop, BeforeBlockTraffic, and AfterBlockTraffic in the AppSpec file from the previous successful deployment. (All other scripts are run from the AppSpec file in the current deployment.) If one of these scripts contains an error and does not run successfully, the deployment can fail.   If the cause of the failure is a script from the last successful deployment that will never run successfully, create a new deployment and use ignoreApplicationStopFailures to specify that the ApplicationStop, BeforeBlockTraffic, and AfterBlockTraffic failures should be ignored",
         },
         {
           name: "--target-instances",
@@ -462,9 +462,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--file-exists-behavior",
           description:
-            "Information about how AWS CodeDeploy handles files that already exist in a deployment target location but weren't part of the previous successful deployment. The fileExistsBehavior parameter takes any of the following values:   DISALLOW: The deployment fails. This is also the default behavior if no option is specified.   OVERWRITE: The version of the file from the application revision currently being deployed replaces the version already on the instance.   RETAIN: The version of the file already on the instance is kept and used as part of the new deployment",
+            "Information about how CodeDeploy handles files that already exist in a deployment target location but weren't part of the previous successful deployment. The fileExistsBehavior parameter takes any of the following values:   DISALLOW: The deployment fails. This is also the default behavior if no option is specified.   OVERWRITE: The version of the file from the application revision currently being deployed replaces the version already on the instance.   RETAIN: The version of the file already on the instance is kept and used as part of the new deployment",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--override-alarm-configuration",
+          description:
+            "Allows you to specify information about alarms associated with a deployment. The alarm configuration that you specify here will override the alarm configuration at the deployment group level. Consider overriding the alarm configuration if you have set up alarms at the deployment group level that are causing deployment failures. In this case, you would call CreateDeployment to create a new deployment that uses a previous application revision that is known to work, and set its alarm configuration to turn off alarm polling. Turning off alarm polling ensures that the new deployment proceeds without being blocked by the alarm that was generated by the previous, failed, deployment.  If you specify an overrideAlarmConfiguration, you need the UpdateDeploymentGroup IAM permission when calling CreateDeployment",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -516,7 +524,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--minimum-healthy-hosts",
           description:
-            "The minimum number of healthy instances that should be available at any time during the deployment. There are two parameters expected in the input: type and value. The type parameter takes either of the following values:   HOST_COUNT: The value parameter represents the minimum number of healthy instances as an absolute value.   FLEET_PERCENT: The value parameter represents the minimum number of healthy instances as a percentage of the total number of instances in the deployment. If you specify FLEET_PERCENT, at the start of the deployment, AWS CodeDeploy converts the percentage to the equivalent number of instances and rounds up fractional instances.   The value parameter takes an integer. For example, to set a minimum of 95% healthy instance, specify a type of FLEET_PERCENT and a value of 95",
+            "The minimum number of healthy instances that should be available at any time during the deployment. There are two parameters expected in the input: type and value. The type parameter takes either of the following values:   HOST_COUNT: The value parameter represents the minimum number of healthy instances as an absolute value.   FLEET_PERCENT: The value parameter represents the minimum number of healthy instances as a percentage of the total number of instances in the deployment. If you specify FLEET_PERCENT, at the start of the deployment, CodeDeploy converts the percentage to the equivalent number of instances and rounds up fractional instances.   The value parameter takes an integer. For example, to set a minimum of 95% healthy instance, specify a type of FLEET_PERCENT and a value of 95",
           args: {
             name: "structure",
           },
@@ -535,6 +543,14 @@ const completionSpec: Fig.Spec = {
             "The destination platform type for the deployment (Lambda, Server, or ECS)",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--zonal-config",
+          description:
+            "Configure the ZonalConfig object if you want CodeDeploy to deploy your application to one Availability Zone at a time, within an Amazon Web Services Region. For more information about the zonal configuration feature, see zonal configuration in the CodeDeploy User Guide",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -564,7 +580,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--application-name",
           description:
-            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account",
+            "The name of an CodeDeploy application associated with the user or Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -580,7 +596,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--deployment-config-name",
           description:
-            "If specified, the deployment configuration name can be either one of the predefined configurations provided with AWS CodeDeploy or a custom deployment configuration that you create by calling the create deployment configuration operation.  CodeDeployDefault.OneAtATime is the default deployment configuration. It is used if a configuration isn't specified for the deployment or deployment group. For more information about the predefined deployment configurations in AWS CodeDeploy, see Working with Deployment Configurations in CodeDeploy in the AWS CodeDeploy User Guide",
+            "If specified, the deployment configuration name can be either one of the predefined configurations provided with CodeDeploy or a custom deployment configuration that you create by calling the create deployment configuration operation.  CodeDeployDefault.OneAtATime is the default deployment configuration. It is used if a configuration isn't specified for the deployment or deployment group. For more information about the predefined deployment configurations in CodeDeploy, see Working with Deployment Configurations in CodeDeploy in the CodeDeploy User Guide",
           args: {
             name: "string",
           },
@@ -588,7 +604,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ec2-tag-filters",
           description:
-            "The Amazon EC2 tags on which to filter. The deployment group includes EC2 instances with any of the specified tags. Cannot be used in the same call as ec2TagSet",
+            "The Amazon EC2 tags on which to filter. The deployment group includes Amazon EC2 instances with any of the specified tags. Cannot be used in the same call as ec2TagSet",
           args: {
             name: "list",
           },
@@ -611,7 +627,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--service-role-arn",
           description:
-            "A service role Amazon Resource Name (ARN) that allows AWS CodeDeploy to act on the user's behalf when interacting with AWS services",
+            "A service role Amazon Resource Name (ARN) that allows CodeDeploy to act on the user's behalf when interacting with Amazon Web Services services",
           args: {
             name: "string",
           },
@@ -619,7 +635,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--trigger-configurations",
           description:
-            "Information about triggers to create when the deployment group is created. For examples, see Create a Trigger for an AWS CodeDeploy Event in the AWS CodeDeploy User Guide",
+            "Information about triggers to create when the deployment group is created. For examples, see Create a Trigger for an CodeDeploy Event in the CodeDeploy User Guide",
           args: {
             name: "list",
           },
@@ -643,7 +659,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--outdated-instances-strategy",
           description:
-            "Indicates what happens when new EC2 instances are launched mid-deployment and do not receive the deployed application revision. If this option is set to UPDATE or is unspecified, CodeDeploy initiates one or more 'auto-update outdated instances' deployments to apply the deployed application revision to the new EC2 instances. If this option is set to IGNORE, CodeDeploy does not initiate a deployment to update the new EC2 instances. This may result in instances having different revisions",
+            "Indicates what happens when new Amazon EC2 instances are launched mid-deployment and do not receive the deployed application revision. If this option is set to UPDATE or is unspecified, CodeDeploy initiates one or more 'auto-update outdated instances' deployments to apply the deployed application revision to the new Amazon EC2 instances. If this option is set to IGNORE, CodeDeploy does not initiate a deployment to update the new Amazon EC2 instances. This may result in instances having different revisions",
           args: {
             name: "string",
           },
@@ -675,7 +691,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ec2-tag-set",
           description:
-            "Information about groups of tags applied to EC2 instances. The deployment group includes only EC2 instances identified by all the tag groups. Cannot be used in the same call as ec2TagFilters",
+            "Information about groups of tags applied to Amazon EC2 instances. The deployment group includes only Amazon EC2 instances identified by all the tag groups. Cannot be used in the same call as ec2TagFilters",
           args: {
             name: "structure",
           },
@@ -705,9 +721,19 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--termination-hook-enabled",
+          description:
+            "This parameter only applies if you are using CodeDeploy with Amazon EC2 Auto Scaling. For more information, see Integrating CodeDeploy with Amazon EC2 Auto Scaling in the CodeDeploy User Guide. Set terminationHookEnabled to true to have CodeDeploy install a termination hook into your Auto Scaling group when you create a deployment group. When this hook is installed, CodeDeploy will perform termination deployments. For information about termination deployments, see Enabling termination deployments during Auto Scaling scale-in events in the CodeDeploy User Guide. For more information about Auto Scaling scale-in events, see the Scale in topic in the Amazon EC2 Auto Scaling User Guide",
+        },
+        {
+          name: "--no-termination-hook-enabled",
+          description:
+            "This parameter only applies if you are using CodeDeploy with Amazon EC2 Auto Scaling. For more information, see Integrating CodeDeploy with Amazon EC2 Auto Scaling in the CodeDeploy User Guide. Set terminationHookEnabled to true to have CodeDeploy install a termination hook into your Auto Scaling group when you create a deployment group. When this hook is installed, CodeDeploy will perform termination deployments. For information about termination deployments, see Enabling termination deployments during Auto Scaling scale-in events in the CodeDeploy User Guide. For more information about Auto Scaling scale-in events, see the Scale in topic in the Amazon EC2 Auto Scaling User Guide",
+        },
+        {
           name: "--ec-2-tag-set",
           description:
-            "Information about groups of tags applied to EC2 instances. The deployment group includes only EC2 instances identified by all the tag groups. Cannot be used in the same call as ec2TagFilters",
+            "Information about groups of tags applied to Amazon EC2 instances. The deployment group includes only Amazon EC2 instances identified by all the tag groups. Cannot be used in the same call as ec2TagFilters",
           args: {
             name: "structure",
           },
@@ -738,7 +764,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--application-name",
           description:
-            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account",
+            "The name of an CodeDeploy application associated with the user or Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -770,7 +796,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--deployment-config-name",
           description:
-            "The name of a deployment configuration associated with the IAM user or AWS account",
+            "The name of a deployment configuration associated with the user or Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -801,7 +827,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--application-name",
           description:
-            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account",
+            "The name of an CodeDeploy application associated with the user or Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -865,7 +891,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-resources-by-external-id",
-      description: "Deletes resources linked to an external ID",
+      description:
+        "Deletes resources linked to an external ID. This action only applies if you have configured blue/green deployments through CloudFormation.   It is not necessary to call this action directly. CloudFormation calls it on your behalf when it needs to delete stack resources. This action is offered publicly in case you need to delete resources to comply with General Data Protection Regulation (GDPR) requirements",
       options: [
         {
           name: "--external-id",
@@ -931,7 +958,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--application-name",
           description:
-            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account",
+            "The name of an CodeDeploy application associated with the user or Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -1018,7 +1045,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--deployment-id",
           description:
-            "The unique ID of a deployment associated with the IAM user or AWS account",
+            "The unique ID of a deployment associated with the user or Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -1049,7 +1076,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--deployment-config-name",
           description:
-            "The name of a deployment configuration associated with the IAM user or AWS account",
+            "The name of a deployment configuration associated with the user or Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -1080,7 +1107,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--application-name",
           description:
-            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account",
+            "The name of an CodeDeploy application associated with the user or Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -1224,7 +1251,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--application-name",
           description:
-            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account",
+            "The name of an CodeDeploy application associated with the user or Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -1232,7 +1259,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sort-by",
           description:
-            "The column name to use to sort the list results:    registerTime: Sort by the time the revisions were registered with AWS CodeDeploy.    firstUsedTime: Sort by the time the revisions were first used in a deployment.    lastUsedTime: Sort by the time the revisions were last used in a deployment.    If not specified or set to null, the results are returned in an arbitrary order",
+            "The column name to use to sort the list results:    registerTime: Sort by the time the revisions were registered with CodeDeploy.    firstUsedTime: Sort by the time the revisions were first used in a deployment.    lastUsedTime: Sort by the time the revisions were last used in a deployment.    If not specified or set to null, the results are returned in an arbitrary order",
           args: {
             name: "string",
           },
@@ -1331,7 +1358,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-applications",
       description:
-        "Lists the applications registered with the IAM user or AWS account",
+        "Lists the applications registered with the user or Amazon Web Services account",
       options: [
         {
           name: "--next-token",
@@ -1379,7 +1406,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-deployment-configs",
       description:
-        "Lists the deployment configurations with the IAM user or AWS account",
+        "Lists the deployment configurations with the user or Amazon Web Services account",
       options: [
         {
           name: "--next-token",
@@ -1427,12 +1454,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-deployment-groups",
       description:
-        "Lists the deployment groups for an application registered with the IAM user or AWS account",
+        "Lists the deployment groups for an application registered with the Amazon Web Services user or Amazon Web Services account",
       options: [
         {
           name: "--application-name",
           description:
-            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account",
+            "The name of an CodeDeploy application associated with the user or Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -1483,7 +1510,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-deployment-instances",
       description:
-        "The newer BatchGetDeploymentTargets should be used instead because it works with all compute types. ListDeploymentInstances throws an exception if it is used with a compute platform other than EC2/On-premises or AWS Lambda.    Lists the instance for a deployment associated with the IAM user or AWS account",
+        "The newer BatchGetDeploymentTargets should be used instead because it works with all compute types. ListDeploymentInstances throws an exception if it is used with a compute platform other than EC2/On-premises or Lambda.    Lists the instance for a deployment associated with the user or Amazon Web Services account",
       options: [
         {
           name: "--deployment-id",
@@ -1617,12 +1644,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-deployments",
       description:
-        "Lists the deployments in a deployment group for an application registered with the IAM user or AWS account",
+        "Lists the deployments in a deployment group for an application registered with the user or Amazon Web Services account",
       options: [
         {
           name: "--application-name",
           description:
-            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account.  If applicationName is specified, then deploymentGroupName must be specified. If it is not specified, then deploymentGroupName must not be specified",
+            "The name of an CodeDeploy application associated with the user or Amazon Web Services account.  If applicationName is specified, then deploymentGroupName must be specified. If it is not specified, then deploymentGroupName must not be specified",
           args: {
             name: "string",
           },
@@ -1856,7 +1883,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-lifecycle-event-hook-execution-status",
       description:
-        "Sets the result of a Lambda validation function. The function validates lifecycle hooks during a deployment that uses the AWS Lambda or Amazon ECS compute platform. For AWS Lambda deployments, the available lifecycle hooks are BeforeAllowTraffic and AfterAllowTraffic. For Amazon ECS deployments, the available lifecycle hooks are BeforeInstall, AfterInstall, AfterAllowTestTraffic, BeforeAllowTraffic, and AfterAllowTraffic. Lambda validation functions return Succeeded or Failed. For more information, see AppSpec 'hooks' Section for an AWS Lambda Deployment  and AppSpec 'hooks' Section for an Amazon ECS Deployment",
+        "Sets the result of a Lambda validation function. The function validates lifecycle hooks during a deployment that uses the Lambda or Amazon ECS compute platform. For Lambda deployments, the available lifecycle hooks are BeforeAllowTraffic and AfterAllowTraffic. For Amazon ECS deployments, the available lifecycle hooks are BeforeInstall, AfterInstall, AfterAllowTestTraffic, BeforeAllowTraffic, and AfterAllowTraffic. Lambda validation functions return Succeeded or Failed. For more information, see AppSpec 'hooks' Section for an Lambda Deployment  and AppSpec 'hooks' Section for an Amazon ECS Deployment",
       options: [
         {
           name: "--deployment-id",
@@ -1877,7 +1904,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--status",
           description:
-            "The result of a Lambda function that validates a deployment lifecycle event. Succeeded and Failed are the only valid values for status",
+            "The result of a Lambda function that validates a deployment lifecycle event. The values listed in Valid Values are valid for lifecycle statuses in general; however, only Succeeded and Failed can be passed successfully in your API call",
           args: {
             name: "string",
           },
@@ -1904,12 +1931,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "register-application-revision",
       description:
-        "Registers with AWS CodeDeploy a revision for the specified application",
+        "Registers with CodeDeploy a revision for the specified application",
       options: [
         {
           name: "--application-name",
           description:
-            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account",
+            "The name of an CodeDeploy application associated with the user or Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -1987,7 +2014,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--iam-user-arn",
           description:
-            "The ARN of the IAM user to associate with the on-premises instance",
+            "The ARN of the user to associate with the on-premises instance",
           args: {
             name: "string",
           },
@@ -2294,7 +2321,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--auto-scaling-groups",
           description:
-            "The replacement list of Auto Scaling groups to be included in the deployment group, if you want to change them. To keep the Auto Scaling groups, enter their names. To remove Auto Scaling groups, do not enter any Auto Scaling group names",
+            'The replacement list of Auto Scaling groups to be included in the deployment group, if you want to change them.   To keep the Auto Scaling groups, enter their names or do not specify this parameter.    To remove Auto Scaling groups, specify a non-null empty list of Auto Scaling group names to detach all CodeDeploy-managed Auto Scaling lifecycle hooks. For examples, see Amazon EC2 instances in an Amazon EC2 Auto Scaling group fail to launch and receive the error "Heartbeat Timeout" in the CodeDeploy User Guide',
           args: {
             name: "list",
           },
@@ -2310,7 +2337,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--trigger-configurations",
           description:
-            "Information about triggers to change when the deployment group is updated. For examples, see Edit a Trigger in a CodeDeploy Deployment Group in the AWS CodeDeploy User Guide",
+            "Information about triggers to change when the deployment group is updated. For examples, see Edit a Trigger in a CodeDeploy Deployment Group in the CodeDeploy User Guide",
           args: {
             name: "list",
           },
@@ -2334,7 +2361,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--outdated-instances-strategy",
           description:
-            "Indicates what happens when new EC2 instances are launched mid-deployment and do not receive the deployed application revision. If this option is set to UPDATE or is unspecified, CodeDeploy initiates one or more 'auto-update outdated instances' deployments to apply the deployed application revision to the new EC2 instances. If this option is set to IGNORE, CodeDeploy does not initiate a deployment to update the new EC2 instances. This may result in instances having different revisions",
+            "Indicates what happens when new Amazon EC2 instances are launched mid-deployment and do not receive the deployed application revision. If this option is set to UPDATE or is unspecified, CodeDeploy initiates one or more 'auto-update outdated instances' deployments to apply the deployed application revision to the new Amazon EC2 instances. If this option is set to IGNORE, CodeDeploy does not initiate a deployment to update the new Amazon EC2 instances. This may result in instances having different revisions",
           args: {
             name: "string",
           },
@@ -2366,7 +2393,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ec2-tag-set",
           description:
-            "Information about groups of tags applied to on-premises instances. The deployment group includes only EC2 instances identified by all the tag groups",
+            "Information about groups of tags applied to on-premises instances. The deployment group includes only Amazon EC2 instances identified by all the tag groups",
           args: {
             name: "structure",
           },
@@ -2388,9 +2415,19 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--termination-hook-enabled",
+          description:
+            "This parameter only applies if you are using CodeDeploy with Amazon EC2 Auto Scaling. For more information, see Integrating CodeDeploy with Amazon EC2 Auto Scaling in the CodeDeploy User Guide. Set terminationHookEnabled to true to have CodeDeploy install a termination hook into your Auto Scaling group when you update a deployment group. When this hook is installed, CodeDeploy will perform termination deployments. For information about termination deployments, see Enabling termination deployments during Auto Scaling scale-in events in the CodeDeploy User Guide. For more information about Auto Scaling scale-in events, see the Scale in topic in the Amazon EC2 Auto Scaling User Guide",
+        },
+        {
+          name: "--no-termination-hook-enabled",
+          description:
+            "This parameter only applies if you are using CodeDeploy with Amazon EC2 Auto Scaling. For more information, see Integrating CodeDeploy with Amazon EC2 Auto Scaling in the CodeDeploy User Guide. Set terminationHookEnabled to true to have CodeDeploy install a termination hook into your Auto Scaling group when you update a deployment group. When this hook is installed, CodeDeploy will perform termination deployments. For information about termination deployments, see Enabling termination deployments during Auto Scaling scale-in events in the CodeDeploy User Guide. For more information about Auto Scaling scale-in events, see the Scale in topic in the Amazon EC2 Auto Scaling User Guide",
+        },
+        {
           name: "--ec-2-tag-set",
           description:
-            "Information about groups of tags applied to on-premises instances. The deployment group includes only EC2 instances identified by all the tag groups",
+            "Information about groups of tags applied to on-premises instances. The deployment group includes only Amazon EC2 instances identified by all the tag groups",
           args: {
             name: "structure",
           },
@@ -2556,7 +2593,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--deployment-id",
               description:
-                "The unique ID of a deployment associated with the IAM user or AWS account",
+                "The unique ID of a deployment associated with the user or Amazon Web Services account",
               args: {
                 name: "string",
               },
@@ -2584,5 +2621,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

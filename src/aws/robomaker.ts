@@ -67,7 +67,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "cancel-deployment-job",
-      description: "Cancels the specified deployment job",
+      description:
+        "Cancels the specified deployment job.  This API will no longer be supported as of May 2, 2022. Use it to remove resources that were created for Deployment Service",
       options: [
         {
           name: "--job",
@@ -221,7 +222,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-deployment-job",
       description:
-        "Deploys a specific version of a robot application to robots in a fleet. The robot application must have a numbered applicationVersion for consistency reasons. To create a new version, use CreateRobotApplicationVersion or see Creating a Robot Application Version.   After 90 days, deployment jobs expire and will be deleted. They will no longer be accessible",
+        "Deploys a specific version of a robot application to robots in a fleet.  This API is no longer supported and will throw an error if used.  The robot application must have a numbered applicationVersion for consistency reasons. To create a new version, use CreateRobotApplicationVersion or see Creating a Robot Application Version.   After 90 days, deployment jobs expire and will be deleted. They will no longer be accessible",
       options: [
         {
           name: "--deployment-config",
@@ -282,7 +283,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-fleet",
       description:
-        "Creates a fleet, a logical group of robots running the same robot application",
+        "Creates a fleet, a logical group of robots running the same robot application.  This API is no longer supported and will throw an error if used",
       options: [
         {
           name: "--name",
@@ -320,7 +321,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "create-robot",
-      description: "Creates a robot",
+      description:
+        "Creates a robot.  This API is no longer supported and will throw an error if used",
       options: [
         {
           name: "--name",
@@ -391,7 +393,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--robot-software-suite",
           description:
-            "The robot software suite (ROS distribution) used by the robot application",
+            "The robot software suite (ROS distribuition) used by the robot application",
           args: {
             name: "structure",
           },
@@ -402,6 +404,14 @@ const completionSpec: Fig.Spec = {
             "A map that contains tag keys and tag values that are attached to the robot application",
           args: {
             name: "map",
+          },
+        },
+        {
+          name: "--environment",
+          description:
+            "The object that contains that URI of the Docker image that you use for your robot application",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -438,6 +448,22 @@ const completionSpec: Fig.Spec = {
           name: "--current-revision-id",
           description:
             "The current revision id for the robot application. If you provide a value and it matches the latest revision ID, a new version will be created",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--s3-etags",
+          description:
+            "The Amazon S3 identifier for the zip file bundle that you use for your robot application",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--image-digest",
+          description:
+            "A SHA256 identifier for the Docker image that you use for your robot application",
           args: {
             name: "string",
           },
@@ -511,6 +537,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--environment",
+          description:
+            "The object that contains the Docker image URI used to create your simulation application",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -546,6 +580,22 @@ const completionSpec: Fig.Spec = {
           name: "--current-revision-id",
           description:
             "The current revision id for the simulation application. If you provide a value and it matches the latest revision ID, a new version will be created",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--s3-etags",
+          description:
+            "The Amazon S3 eTag identifier for the zip file bundle that you use to create the simulation application",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--image-digest",
+          description:
+            "The SHA256 digest used to identify the Docker image URI used to created the simulation application",
           args: {
             name: "string",
           },
@@ -616,7 +666,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--failure-behavior",
           description:
-            "The failure behavior the simulation job.  Continue  Restart the simulation job in the same host instance.  Fail  Stop the simulation job and terminate the instance",
+            "The failure behavior the simulation job.  Continue  Leaves the instance running for its maximum timeout duration after a 4XX error code.  Fail  Stop the simulation job and terminate the instance",
           args: {
             name: "string",
           },
@@ -872,7 +922,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-fleet",
-      description: "Deletes a fleet",
+      description:
+        "Deletes a fleet.  This API will no longer be supported as of May 2, 2022. Use it to remove resources that were created for Deployment Service",
       options: [
         {
           name: "--fleet",
@@ -902,7 +953,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-robot",
-      description: "Deletes a robot",
+      description:
+        "Deletes a robot.  This API will no longer be supported as of May 2, 2022. Use it to remove resources that were created for Deployment Service",
       options: [
         {
           name: "--robot",
@@ -1039,7 +1091,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "deregister-robot",
-      description: "Deregisters a robot",
+      description:
+        "Deregisters a robot.  This API will no longer be supported as of May 2, 2022. Use it to remove resources that were created for Deployment Service",
       options: [
         {
           name: "--fleet",
@@ -1076,7 +1129,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "describe-deployment-job",
-      description: "Describes a deployment job",
+      description:
+        "Describes a deployment job.  This API will no longer be supported as of May 2, 2022. Use it to remove resources that were created for Deployment Service",
       options: [
         {
           name: "--job",
@@ -1106,7 +1160,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "describe-fleet",
-      description: "Describes a fleet",
+      description:
+        "Describes a fleet.  This API will no longer be supported as of May 2, 2022. Use it to remove resources that were created for Deployment Service",
       options: [
         {
           name: "--fleet",
@@ -1136,7 +1191,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "describe-robot",
-      description: "Describes a robot",
+      description:
+        "Describes a robot.  This API will no longer be supported as of May 2, 2022. Use it to remove resources that were created for Deployment Service",
       options: [
         {
           name: "--robot",
@@ -1467,7 +1523,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-deployment-jobs",
       description:
-        "Returns a list of deployment jobs for a fleet. You can optionally provide filters to retrieve specific deployment jobs",
+        "Returns a list of deployment jobs for a fleet. You can optionally provide filters to retrieve specific deployment jobs.  This API will no longer be supported as of May 2, 2022. Use it to remove resources that were created for Deployment Service",
       options: [
         {
           name: "--filters",
@@ -1539,7 +1595,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-fleets",
       description:
-        "Returns a list of fleets. You can optionally provide filters to retrieve specific fleets",
+        "Returns a list of fleets. You can optionally provide filters to retrieve specific fleets.  This API will no longer be supported as of May 2, 2022. Use it to remove resources that were created for Deployment Service",
       options: [
         {
           name: "--next-token",
@@ -1690,7 +1746,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-robots",
       description:
-        "Returns a list of robots. You can optionally provide filters to retrieve specific robots",
+        "Returns a list of robots. You can optionally provide filters to retrieve specific robots.  This API will no longer be supported as of May 2, 2022. Use it to remove resources that were created for Deployment Service",
       options: [
         {
           name: "--next-token",
@@ -2289,7 +2345,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "register-robot",
-      description: "Registers a robot with a fleet",
+      description:
+        "Registers a robot with a fleet.  This API is no longer supported and will throw an error if used",
       options: [
         {
           name: "--fleet",
@@ -2412,7 +2469,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "sync-deployment-job",
       description:
-        "Syncrhonizes robots in a fleet to the latest deployment. This is helpful if robots were added after a deployment",
+        "Syncrhonizes robots in a fleet to the latest deployment. This is helpful if robots were added after a deployment.  This API will no longer be supported as of May 2, 2022. Use it to remove resources that were created for Deployment Service",
       options: [
         {
           name: "--client-request-token",
@@ -2562,6 +2619,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--environment",
+          description:
+            "The object that contains the Docker image URI for your robot application",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -2627,6 +2692,14 @@ const completionSpec: Fig.Spec = {
           description: "The revision id for the robot application",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--environment",
+          description:
+            "The object that contains the Docker image URI for your simulation application",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -2702,5 +2775,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;
