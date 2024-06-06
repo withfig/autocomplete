@@ -19,7 +19,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--variable"],
           description: "Variable key/value pairs",
-          args: { name: "name=value", default: "[object Map]" },
+          args: { name: "name=value" },
         },
         {
           name: ["--variable-all"],
@@ -61,7 +61,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--variable"],
               description: "Variable key/value pairs",
-              args: { name: "name=value", default: "[object Map]" },
+              args: { name: "name=value" },
             },
             {
               name: ["--variable-all"],
@@ -101,7 +101,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--variable"],
               description: "Variable key/value pairs",
-              args: { name: "name=value", default: "[object Map]" },
+              args: { name: "name=value" },
             },
             {
               name: ["--variable-all"],
@@ -137,7 +137,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--variable"],
               description: "Variable key/value pairs",
-              args: { name: "name=value", default: "[object Map]" },
+              args: { name: "name=value" },
             },
             {
               name: ["--variable-all"],
@@ -185,7 +185,79 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--variable"],
               description: "Variable key/value pairs",
-              args: { name: "name=value", default: "[object Map]" },
+              args: { name: "name=value" },
+            },
+            {
+              name: ["--variable-all"],
+              description: "Import all environment variables",
+            },
+            {
+              name: ["-v", "--verbose"],
+              description: "Enable diagnostic console output",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "display help for command",
+              priority: 49,
+            },
+          ],
+        },
+        {
+          name: "fetch-constraint",
+          description: "Retrieves cube constraint from SPARQL endpoint",
+          options: [
+            {
+              name: ["--endpoint"],
+              description: "SPARQL endpoint",
+              isRequired: true,
+              args: { name: "endpoint" },
+            },
+            {
+              name: ["--cube"],
+              description: "cube URI",
+              isRequired: true,
+              args: { name: "cube" },
+            },
+            {
+              name: ["--variable"],
+              description: "Variable key/value pairs",
+              args: { name: "name=value" },
+            },
+            {
+              name: ["--variable-all"],
+              description: "Import all environment variables",
+            },
+            {
+              name: ["-v", "--verbose"],
+              description: "Enable diagnostic console output",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "display help for command",
+              priority: 49,
+            },
+          ],
+        },
+        {
+          name: "fetch-cube",
+          description: "Retrieves cube with observations from SPARQL endpoint",
+          options: [
+            {
+              name: ["--endpoint"],
+              description: "SPARQL endpoint",
+              isRequired: true,
+              args: { name: "endpoint" },
+            },
+            {
+              name: ["--cube"],
+              description: "cube URI",
+              isRequired: true,
+              args: { name: "cube" },
+            },
+            {
+              name: ["--variable"],
+              description: "Variable key/value pairs",
+              args: { name: "name=value" },
             },
             {
               name: ["--variable-all"],
@@ -240,13 +312,9 @@ const completionSpec: Fig.Spec = {
             { name: ["--user"], args: { name: "user" } },
             { name: ["--password"], args: { name: "password" } },
             {
-              name: ["--maxQuadsPerRequest"],
-              args: { name: "maxQuadsPerRequest" },
-            },
-            {
               name: ["--variable"],
               description: "Variable key/value pairs",
-              args: { name: "name=value", default: "[object Map]" },
+              args: { name: "name=value" },
             },
             {
               name: ["--variable-all"],
@@ -301,7 +369,31 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--variable"],
               description: "Variable key/value pairs",
-              args: { name: "name=value", default: "[object Map]" },
+              args: { name: "name=value" },
+            },
+            {
+              name: ["--variable-all"],
+              description: "Import all environment variables",
+            },
+            {
+              name: ["-v", "--verbose"],
+              description: "Enable diagnostic console output",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "display help for command",
+              priority: 49,
+            },
+          ],
+        },
+        {
+          name: "report-summary",
+          description: "Human-readable summary of SHACL validation report",
+          options: [
+            {
+              name: ["--variable"],
+              description: "Variable key/value pairs",
+              args: { name: "name=value" },
             },
             {
               name: ["--variable-all"],
@@ -345,7 +437,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--variable"],
       description: "Variable key/value pairs",
-      args: { name: "name=value", default: "[object Map]" },
+      args: { name: "name=value" },
     },
     {
       name: ["--variable-all"],
