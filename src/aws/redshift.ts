@@ -50,7 +50,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--account-id",
-          description: "The AWS account ID that owns the cluster",
+          description:
+            "The Amazon Web Services account ID that owns the cluster",
           args: {
             name: "string",
           },
@@ -99,9 +100,77 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "associate-data-share-consumer",
+      description:
+        "From a datashare consumer account, associates a datashare with the account (AssociateEntireAccount) or the specified namespace (ConsumerArn). If you make this association, the consumer can consume the datashare",
+      options: [
+        {
+          name: "--data-share-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the datashare that the consumer is to use",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--associate-entire-account",
+          description:
+            "A value that specifies whether the datashare is associated with the entire account",
+        },
+        {
+          name: "--no-associate-entire-account",
+          description:
+            "A value that specifies whether the datashare is associated with the entire account",
+        },
+        {
+          name: "--consumer-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the consumer namespace associated with the datashare",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--consumer-region",
+          description:
+            "From a datashare consumer account, associates a datashare with all existing and future namespaces in the specified Amazon Web Services Region",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--allow-writes",
+          description:
+            "If set to true, allows write operations for a datashare",
+        },
+        {
+          name: "--no-allow-writes",
+          description:
+            "If set to true, allows write operations for a datashare",
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "authorize-cluster-security-group-ingress",
       description:
-        "Adds an inbound (ingress) rule to an Amazon Redshift security group. Depending on whether the application accessing your cluster is running on the Internet or an Amazon EC2 instance, you can authorize inbound access to either a Classless Interdomain Routing (CIDR)/Internet Protocol (IP) range or to an Amazon EC2 security group. You can add as many as 20 ingress rules to an Amazon Redshift security group. If you authorize access to an Amazon EC2 security group, specify EC2SecurityGroupName and EC2SecurityGroupOwnerId. The Amazon EC2 security group and Amazon Redshift cluster must be in the same AWS Region.  If you authorize access to a CIDR/IP address range, specify CIDRIP. For an overview of CIDR blocks, see the Wikipedia article on Classless Inter-Domain Routing.  You must also associate the security group with a cluster so that clients running on these IP addresses or the EC2 instance are authorized to connect to the cluster. For information about managing security groups, go to Working with Security Groups in the Amazon Redshift Cluster Management Guide",
+        "Adds an inbound (ingress) rule to an Amazon Redshift security group. Depending on whether the application accessing your cluster is running on the Internet or an Amazon EC2 instance, you can authorize inbound access to either a Classless Interdomain Routing (CIDR)/Internet Protocol (IP) range or to an Amazon EC2 security group. You can add as many as 20 ingress rules to an Amazon Redshift security group. If you authorize access to an Amazon EC2 security group, specify EC2SecurityGroupName and EC2SecurityGroupOwnerId. The Amazon EC2 security group and Amazon Redshift cluster must be in the same Amazon Web Services Region.  If you authorize access to a CIDR/IP address range, specify CIDRIP. For an overview of CIDR blocks, see the Wikipedia article on Classless Inter-Domain Routing.  You must also associate the security group with a cluster so that clients running on these IP addresses or the EC2 instance are authorized to connect to the cluster. For information about managing security groups, go to Working with Security Groups in the Amazon Redshift Cluster Management Guide",
       options: [
         {
           name: "--cluster-security-group-name",
@@ -130,10 +199,60 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ec2-security-group-owner-id",
           description:
-            "The AWS account number of the owner of the security group specified by the EC2SecurityGroupName parameter. The AWS Access Key ID is not an acceptable value.  Example: 111122223333",
+            "The Amazon Web Services account number of the owner of the security group specified by the EC2SecurityGroupName parameter. The Amazon Web Services Access Key ID is not an acceptable value.  Example: 111122223333",
           args: {
             name: "string",
           },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "authorize-data-share",
+      description:
+        "From a data producer account, authorizes the sharing of a datashare with one or more consumer accounts or managing entities. To authorize a datashare for a data consumer, the producer account must have the correct access permissions",
+      options: [
+        {
+          name: "--data-share-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the datashare namespace that producers are to authorize sharing for",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--consumer-identifier",
+          description:
+            "The identifier of the data consumer that is authorized to access the datashare. This identifier is an Amazon Web Services account ID or a keyword, such as ADX",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--allow-writes",
+          description:
+            "If set to true, allows write operations for a datashare",
+        },
+        {
+          name: "--no-allow-writes",
+          description:
+            "If set to true, allows write operations for a datashare",
         },
         {
           name: "--cli-input-json",
@@ -168,7 +287,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--account",
-          description: "The AWS account ID to grant access to",
+          description: "The Amazon Web Services account ID to grant access to",
           args: {
             name: "string",
           },
@@ -203,7 +322,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "authorize-snapshot-access",
       description:
-        "Authorizes the specified AWS customer account to restore the specified snapshot.  For more information about working with snapshots, go to Amazon Redshift Snapshots in the Amazon Redshift Cluster Management Guide",
+        "Authorizes the specified Amazon Web Services account to restore the specified snapshot.  For more information about working with snapshots, go to Amazon Redshift Snapshots in the Amazon Redshift Cluster Management Guide",
       options: [
         {
           name: "--snapshot-identifier",
@@ -214,9 +333,17 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--snapshot-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the snapshot to authorize access to",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--snapshot-cluster-identifier",
           description:
-            "The identifier of the cluster the snapshot was created from. This parameter is required if your IAM user has a policy containing a snapshot resource element that specifies anything other than * for the cluster name",
+            "The identifier of the cluster the snapshot was created from.    If the snapshot to access doesn't exist and the associated IAM policy doesn't allow access to all (*) snapshots - This parameter is required. Otherwise, permissions aren't available to check if the snapshot exists.    If the snapshot to access exists - This parameter isn't required. Redshift can retrieve the cluster identifier and use it to validate snapshot authorization",
           args: {
             name: "string",
           },
@@ -224,7 +351,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--account-with-restore-access",
           description:
-            "The identifier of the AWS customer account authorized to restore the specified snapshot. To share a snapshot with AWS support, specify amazon-redshift-support",
+            "The identifier of the Amazon Web Services account authorized to restore the specified snapshot. To share a snapshot with Amazon Web Services Support, specify amazon-redshift-support",
           args: {
             name: "string",
           },
@@ -382,7 +509,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--target-snapshot-identifier",
           description:
-            "The identifier given to the new manual snapshot. Constraints:   Cannot be null, empty, or blank.   Must contain from 1 to 255 alphanumeric characters or hyphens.   First character must be a letter.   Cannot end with a hyphen or contain two consecutive hyphens.   Must be unique for the AWS account that is making the request",
+            "The identifier given to the new manual snapshot. Constraints:   Cannot be null, empty, or blank.   Must contain from 1 to 255 alphanumeric characters or hyphens.   First character must be a letter.   Cannot end with a hyphen or contain two consecutive hyphens.   Must be unique for the Amazon Web Services account that is making the request",
           args: {
             name: "string",
           },
@@ -393,6 +520,45 @@ const completionSpec: Fig.Spec = {
             "The number of days that a manual snapshot is retained. If the value is -1, the manual snapshot is retained indefinitely.  The value must be either -1 or an integer between 1 and 3,653. The default value is -1",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-authentication-profile",
+      description:
+        "Creates an authentication profile with the specified parameters",
+      options: [
+        {
+          name: "--authentication-profile-name",
+          description: "The name of the authentication profile to be created",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--authentication-profile-content",
+          description:
+            "The content of the authentication profile in JSON format. The maximum length of the JSON string is determined by a quota for your account",
+          args: {
+            name: "string",
           },
         },
         {
@@ -430,7 +596,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cluster-identifier",
           description:
-            "A unique identifier for the cluster. You use this identifier to refer to the cluster for any subsequent cluster operations such as deleting or modifying. The identifier also appears in the Amazon Redshift console. Constraints:   Must contain from 1 to 63 alphanumeric characters or hyphens.   Alphabetic characters must be lowercase.   First character must be a letter.   Cannot end with a hyphen or contain two consecutive hyphens.   Must be unique for all clusters within an AWS account.   Example: myexamplecluster",
+            "A unique identifier for the cluster. You use this identifier to refer to the cluster for any subsequent cluster operations such as deleting or modifying. The identifier also appears in the Amazon Redshift console. Constraints:   Must contain from 1 to 63 alphanumeric characters or hyphens.   Alphabetic characters must be lowercase.   First character must be a letter.   Cannot end with a hyphen or contain two consecutive hyphens.   Must be unique for all clusters within an Amazon Web Services account.   Example: myexamplecluster",
           args: {
             name: "string",
           },
@@ -454,7 +620,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--master-username",
           description:
-            "The user name associated with the master user account for the cluster that is being created. Constraints:   Must be 1 - 128 alphanumeric characters. The user name can't be PUBLIC.   First character must be a letter.   Cannot be a reserved word. A list of reserved words can be found in Reserved Words in the Amazon Redshift Database Developer Guide",
+            "The user name associated with the admin user account for the cluster that is being created. Constraints:   Must be 1 - 128 alphanumeric characters or hyphens. The user name can't be PUBLIC.   Must contain only lowercase letters, numbers, underscore, plus sign, period (dot), at symbol (@), or hyphen.   The first character must be a letter.   Must not contain a colon (:) or a slash (/).   Cannot be a reserved word. A list of reserved words can be found in Reserved Words in the Amazon Redshift Database Developer Guide",
           args: {
             name: "string",
           },
@@ -462,7 +628,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--master-user-password",
           description:
-            "The password associated with the master user account for the cluster that is being created. Constraints:   Must be between 8 and 64 characters in length.   Must contain at least one uppercase letter.   Must contain at least one lowercase letter.   Must contain one number.   Can be any printable ASCII character (ASCII code 33 to 126) except ' (single quote), \" (double quote), \\, /, @, or space",
+            "The password associated with the admin user account for the cluster that is being created. You can't use MasterUserPassword if ManageMasterPassword is true. Constraints:   Must be between 8 and 64 characters in length.   Must contain at least one uppercase letter.   Must contain at least one lowercase letter.   Must contain one number.   Can be any printable ASCII character (ASCII code 33-126) except ' (single quote), \" (double quote), \\, /, or @",
           args: {
             name: "string",
           },
@@ -534,7 +700,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--port",
           description:
-            "The port number on which the cluster accepts incoming connections. The cluster is accessible only via the JDBC and ODBC connection strings. Part of the connection string requires the port on which the cluster will listen for incoming connections. Default: 5439  Valid Values: 1150-65535",
+            "The port number on which the cluster accepts incoming connections. The cluster is accessible only via the JDBC and ODBC connection strings. Part of the connection string requires the port on which the cluster will listen for incoming connections. Default: 5439  Valid Values:    For clusters with ra3 nodes - Select a port within the ranges 5431-5455 or 8191-8215. (If you have an existing cluster with ra3 nodes, it isn't required that you change the port to these ranges.)   For clusters with ds2 or dc2 nodes - Select a port within the range 1150-65535",
           args: {
             name: "integer",
           },
@@ -604,7 +770,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--elastic-ip",
           description:
-            "The Elastic IP (EIP) address for the cluster. Constraints: The cluster must be provisioned in EC2-VPC and publicly-accessible through an Internet gateway. For more information about provisioning clusters in EC2-VPC, go to Supported Platforms to Launch Your Cluster in the Amazon Redshift Cluster Management Guide",
+            "The Elastic IP (EIP) address for the cluster. Constraints: The cluster must be provisioned in EC2-VPC and publicly-accessible through an Internet gateway. Don't specify the Elastic IP address for a publicly accessible cluster with availability zone relocation turned on. For more information about provisioning clusters in EC2-VPC, go to Supported Platforms to Launch Your Cluster in the Amazon Redshift Cluster Management Guide",
           args: {
             name: "string",
           },
@@ -619,7 +785,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kms-key-id",
           description:
-            "The AWS Key Management Service (KMS) key ID of the encryption key that you want to use to encrypt data in the cluster",
+            "The Key Management Service (KMS) key ID of the encryption key that you want to use to encrypt data in the cluster",
           args: {
             name: "string",
           },
@@ -644,7 +810,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--iam-roles",
           description:
-            "A list of AWS Identity and Access Management (IAM) roles that can be used by the cluster to access other AWS services. You must supply the IAM roles in their Amazon Resource Name (ARN) format. You can supply up to 10 IAM roles in a single request. A cluster can have up to 10 IAM roles associated with it at any time",
+            "A list of Identity and Access Management (IAM) roles that can be used by the cluster to access other Amazon Web Services services. You must supply the IAM roles in their Amazon Resource Name (ARN) format.  The maximum number of IAM roles that you can associate is subject to a quota. For more information, go to Quotas and limits in the Amazon Redshift Cluster Management Guide",
           args: {
             name: "list",
           },
@@ -677,7 +843,67 @@ const completionSpec: Fig.Spec = {
         {
           name: "--aqua-configuration-status",
           description:
-            "The value represents how the cluster is configured to use AQUA (Advanced Query Accelerator) when it is created. Possible values include the following.   enabled - Use AQUA if it is available for the current AWS Region and Amazon Redshift node type.   disabled - Don't use AQUA.    auto - Amazon Redshift determines whether to use AQUA",
+            "This parameter is retired. It does not set the AQUA configuration status. Amazon Redshift automatically determines whether to use AQUA (Advanced Query Accelerator)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--default-iam-role-arn",
+          description:
+            "The Amazon Resource Name (ARN) for the IAM role that was set as default for the cluster when the cluster was created",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--load-sample-data",
+          description:
+            "A flag that specifies whether to load sample data once the cluster is created",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--manage-master-password",
+          description:
+            "If true, Amazon Redshift uses Secrets Manager to manage this cluster's admin credentials. You can't use MasterUserPassword if ManageMasterPassword is true. If ManageMasterPassword is false or not set, Amazon Redshift uses MasterUserPassword for the admin user account's password",
+        },
+        {
+          name: "--no-manage-master-password",
+          description:
+            "If true, Amazon Redshift uses Secrets Manager to manage this cluster's admin credentials. You can't use MasterUserPassword if ManageMasterPassword is true. If ManageMasterPassword is false or not set, Amazon Redshift uses MasterUserPassword for the admin user account's password",
+        },
+        {
+          name: "--master-password-secret-kms-key-id",
+          description:
+            "The ID of the Key Management Service (KMS) key used to encrypt and store the cluster's admin credentials secret. You can only use this parameter if ManageMasterPassword is true",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--ip-address-type",
+          description:
+            "The IP address types that the cluster supports. Possible values are ipv4 and dualstack",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--multi-az",
+          description:
+            "If true, Amazon Redshift will deploy the cluster in two Availability Zones (AZ)",
+        },
+        {
+          name: "--no-multi-az",
+          description:
+            "If true, Amazon Redshift will deploy the cluster in two Availability Zones (AZ)",
+        },
+        {
+          name: "--redshift-idc-application-arn",
+          description:
+            "The Amazon resource name (ARN) of the Amazon Redshift IAM Identity Center application",
           args: {
             name: "string",
           },
@@ -709,7 +935,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--parameter-group-name",
           description:
-            "The name of the cluster parameter group. Constraints:   Must be 1 to 255 alphanumeric characters or hyphens   First character must be a letter.   Cannot end with a hyphen or contain two consecutive hyphens.   Must be unique within your AWS account.    This value is stored as a lower-case string",
+            "The name of the cluster parameter group. Constraints:   Must be 1 to 255 alphanumeric characters or hyphens   First character must be a letter.   Cannot end with a hyphen or contain two consecutive hyphens.   Must be unique withing your Amazon Web Services account.    This value is stored as a lower-case string",
           args: {
             name: "string",
           },
@@ -717,7 +943,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--parameter-group-family",
           description:
-            'The Amazon Redshift engine version to which the cluster parameter group applies. The cluster engine version determines the set of parameters. To get a list of valid parameter group family names, you can call DescribeClusterParameterGroups. By default, Amazon Redshift returns a list of all the parameter groups that are owned by your AWS account, including the default parameter groups for each Amazon Redshift engine version. The parameter group family names associated with the default parameter groups provide you the valid values. For example, a valid family name is "redshift-1.0"',
+            'The Amazon Redshift engine version to which the cluster parameter group applies. The cluster engine version determines the set of parameters. To get a list of valid parameter group family names, you can call DescribeClusterParameterGroups. By default, Amazon Redshift returns a list of all the parameter groups that are owned by your Amazon Web Services account, including the default parameter groups for each Amazon Redshift engine version. The parameter group family names associated with the default parameter groups provide you the valid values. For example, a valid family name is "redshift-1.0"',
           args: {
             name: "string",
           },
@@ -763,7 +989,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cluster-security-group-name",
           description:
-            'The name for the security group. Amazon Redshift stores the value as a lowercase string. Constraints:   Must contain no more than 255 alphanumeric characters or hyphens.   Must not be "Default".   Must be unique for all security groups that are created by your AWS account.   Example: examplesecuritygroup',
+            'The name for the security group. Amazon Redshift stores the value as a lowercase string. Constraints:   Must contain no more than 255 alphanumeric characters or hyphens.   Must not be "Default".   Must be unique for all security groups that are created by your Amazon Web Services account.   Example: examplesecuritygroup',
           args: {
             name: "string",
           },
@@ -809,7 +1035,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--snapshot-identifier",
           description:
-            "A unique identifier for the snapshot that you are requesting. This identifier must be unique for all snapshots within the AWS account. Constraints:   Cannot be null, empty, or blank   Must contain from 1 to 255 alphanumeric characters or hyphens   First character must be a letter   Cannot end with a hyphen or contain two consecutive hyphens   Example: my-snapshot-id",
+            "A unique identifier for the snapshot that you are requesting. This identifier must be unique for all snapshots within the Amazon Web Services account. Constraints:   Cannot be null, empty, or blank   Must contain from 1 to 255 alphanumeric characters or hyphens   First character must be a letter   Cannot end with a hyphen or contain two consecutive hyphens   Example: my-snapshot-id",
           args: {
             name: "string",
           },
@@ -863,7 +1089,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cluster-subnet-group-name",
           description:
-            'The name for the subnet group. Amazon Redshift stores the value as a lowercase string. Constraints:   Must contain no more than 255 alphanumeric characters or hyphens.   Must not be "Default".   Must be unique for all subnet groups that are created by your AWS account.   Example: examplesubnetgroup',
+            'The name for the subnet group. Amazon Redshift stores the value as a lowercase string. Constraints:   Must contain no more than 255 alphanumeric characters or hyphens.   Must not be "Default".   Must be unique for all subnet groups that are created by your Amazon Web Services account.   Example: examplesubnetgroup',
           args: {
             name: "string",
           },
@@ -910,6 +1136,53 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-custom-domain-association",
+      description:
+        "Used to create a custom domain name for a cluster. Properties include the custom domain name, the cluster the custom domain is associated with, and the certificate Amazon Resource Name (ARN)",
+      options: [
+        {
+          name: "--custom-domain-name",
+          description: "The custom domain name for a custom domain association",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--custom-domain-certificate-arn",
+          description:
+            "The certificate Amazon Resource Name (ARN) for the custom domain name association",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cluster-identifier",
+          description:
+            "The cluster identifier that the custom domain is associated with",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-endpoint-access",
       description: "Creates a Redshift-managed VPC endpoint",
       options: [
@@ -923,7 +1196,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-owner",
           description:
-            "The AWS account ID of the owner of the cluster. This is only required if the cluster is in another AWS account",
+            "The Amazon Web Services account ID of the owner of the cluster. This is only required if the cluster is in another Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -974,7 +1247,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-event-subscription",
       description:
-        "Creates an Amazon Redshift event notification subscription. This action requires an ARN (Amazon Resource Name) of an Amazon SNS topic created by either the Amazon Redshift console, the Amazon SNS console, or the Amazon SNS API. To obtain an ARN with Amazon SNS, you must create a topic in Amazon SNS and subscribe to the topic. The ARN is displayed in the SNS console. You can specify the source type, and lists of Amazon Redshift source IDs, event categories, and event severities. Notifications will be sent for all events you want that match those criteria. For example, you can specify source type = cluster, source ID = my-cluster-1 and mycluster2, event categories = Availability, Backup, and severity = ERROR. The subscription will only send notifications for those ERROR events in the Availability and Backup categories for the specified clusters. If you specify both the source type and source IDs, such as source type = cluster and source identifier = my-cluster-1, notifications will be sent for all the cluster events for my-cluster-1. If you specify a source type but do not specify a source identifier, you will receive notice of the events for the objects of that type in your AWS account. If you do not specify either the SourceType nor the SourceIdentifier, you will be notified of events generated from all Amazon Redshift sources belonging to your AWS account. You must specify a source type if you specify a source ID",
+        "Creates an Amazon Redshift event notification subscription. This action requires an ARN (Amazon Resource Name) of an Amazon SNS topic created by either the Amazon Redshift console, the Amazon SNS console, or the Amazon SNS API. To obtain an ARN with Amazon SNS, you must create a topic in Amazon SNS and subscribe to the topic. The ARN is displayed in the SNS console. You can specify the source type, and lists of Amazon Redshift source IDs, event categories, and event severities. Notifications will be sent for all events you want that match those criteria. For example, you can specify source type = cluster, source ID = my-cluster-1 and mycluster2, event categories = Availability, Backup, and severity = ERROR. The subscription will only send notifications for those ERROR events in the Availability and Backup categories for the specified clusters. If you specify both the source type and source IDs, such as source type = cluster and source identifier = my-cluster-1, notifications will be sent for all the cluster events for my-cluster-1. If you specify a source type but do not specify a source identifier, you will receive notice of the events for the objects of that type in your Amazon Web Services account. If you do not specify either the SourceType nor the SourceIdentifier, you will be notified of events generated from all Amazon Redshift sources belonging to your Amazon Web Services account. You must specify a source type if you specify a source ID",
       options: [
         {
           name: "--subscription-name",
@@ -995,7 +1268,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--source-type",
           description:
-            "The type of source that will be generating the events. For example, if you want to be notified of events generated by a cluster, you would set this parameter to cluster. If this value is not specified, events are returned for all Amazon Redshift objects in your AWS account. You must specify a source type in order to specify source IDs. Valid values: cluster, cluster-parameter-group, cluster-security-group, cluster-snapshot, and scheduled-action",
+            "The type of source that will be generating the events. For example, if you want to be notified of events generated by a cluster, you would set this parameter to cluster. If this value is not specified, events are returned for all Amazon Redshift objects in your Amazon Web Services account. You must specify a source type in order to specify source IDs. Valid values: cluster, cluster-parameter-group, cluster-security-group, cluster-snapshot, and scheduled-action",
           args: {
             name: "string",
           },
@@ -1011,7 +1284,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--event-categories",
           description:
-            "Specifies the Amazon Redshift event categories to be published by the event notification subscription. Values: configuration, management, monitoring, security",
+            "Specifies the Amazon Redshift event categories to be published by the event notification subscription. Values: configuration, management, monitoring, security, pending",
           args: {
             name: "list",
           },
@@ -1178,6 +1451,86 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-redshift-idc-application",
+      description:
+        "Creates an Amazon Redshift application for use with IAM Identity Center",
+      options: [
+        {
+          name: "--idc-instance-arn",
+          description:
+            "The Amazon resource name (ARN) of the IAM Identity Center instance where Amazon Redshift creates a new managed application",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--redshift-idc-application-name",
+          description:
+            "The name of the Redshift application in IAM Identity Center",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--identity-namespace",
+          description:
+            "The namespace for the Amazon Redshift IAM Identity Center application instance. It determines which managed application verifies the connection token",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--idc-display-name",
+          description:
+            "The display name for the Amazon Redshift IAM Identity Center application instance. It appears in the console",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--iam-role-arn",
+          description:
+            "The IAM role ARN for the Amazon Redshift IAM Identity Center application instance. It has the required permissions to be assumed and invoke the IDC Identity Center API",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--authorized-token-issuer-list",
+          description:
+            "The token issuer list for the Amazon Redshift IAM Identity Center application instance",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--service-integrations",
+          description:
+            "A collection of service integrations for the Redshift IAM Identity Center application",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-scheduled-action",
       description:
         "Creates a scheduled action. A scheduled action contains a schedule and an Amazon Redshift API action. For example, you can create a schedule of when to run the ResizeCluster API operation",
@@ -1269,12 +1622,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-snapshot-copy-grant",
       description:
-        "Creates a snapshot copy grant that permits Amazon Redshift to use a customer master key (CMK) from AWS Key Management Service (AWS KMS) to encrypt copied snapshots in a destination region.  For more information about managing snapshot copy grants, go to Amazon Redshift Database Encryption in the Amazon Redshift Cluster Management Guide",
+        "Creates a snapshot copy grant that permits Amazon Redshift to use an encrypted symmetric key from Key Management Service (KMS) to encrypt copied snapshots in a destination region.  For more information about managing snapshot copy grants, go to Amazon Redshift Database Encryption in the Amazon Redshift Cluster Management Guide",
       options: [
         {
           name: "--snapshot-copy-grant-name",
           description:
-            "The name of the snapshot copy grant. This name must be unique in the region for the AWS account. Constraints:   Must contain from 1 to 63 alphanumeric characters or hyphens.   Alphabetic characters must be lowercase.   First character must be a letter.   Cannot end with a hyphen or contain two consecutive hyphens.   Must be unique for all clusters within an AWS account",
+            "The name of the snapshot copy grant. This name must be unique in the region for the Amazon Web Services account. Constraints:   Must contain from 1 to 63 alphanumeric characters or hyphens.   Alphabetic characters must be lowercase.   First character must be a letter.   Cannot end with a hyphen or contain two consecutive hyphens.   Must be unique for all clusters within an Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -1282,7 +1635,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kms-key-id",
           description:
-            "The unique identifier of the customer master key (CMK) to which to grant Amazon Redshift permission. If no key is specified, the default key is used",
+            "The unique identifier of the encrypted symmetric key to which to grant Amazon Redshift permission. If no key is specified, the default key is used",
           args: {
             name: "string",
           },
@@ -1443,7 +1796,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--limit-type",
           description:
-            "The type of limit. Depending on the feature type, this can be based on a time duration or data size. If FeatureType is spectrum, then LimitType must be data-scanned. If FeatureType is concurrency-scaling, then LimitType must be time",
+            "The type of limit. Depending on the feature type, this can be based on a time duration or data size. If FeatureType is spectrum, then LimitType must be data-scanned. If FeatureType is concurrency-scaling, then LimitType must be time. If FeatureType is cross-region-datasharing, then LimitType must be data-scanned",
           args: {
             name: "string",
           },
@@ -1477,6 +1830,76 @@ const completionSpec: Fig.Spec = {
           description: "A list of tag instances",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "deauthorize-data-share",
+      description:
+        "From a datashare producer account, removes authorization from the specified datashare",
+      options: [
+        {
+          name: "--data-share-arn",
+          description:
+            "The namespace Amazon Resource Name (ARN) of the datashare to remove authorization from",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--consumer-identifier",
+          description:
+            "The identifier of the data consumer that is to have authorization removed from the datashare. This identifier is an Amazon Web Services account ID or a keyword, such as ADX",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-authentication-profile",
+      description: "Deletes an authentication profile",
+      options: [
+        {
+          name: "--authentication-profile-name",
+          description: "The name of the authentication profile to delete",
+          args: {
+            name: "string",
           },
         },
         {
@@ -1691,6 +2114,46 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-custom-domain-association",
+      description:
+        "Contains information about deleting a custom domain association for a cluster",
+      options: [
+        {
+          name: "--cluster-identifier",
+          description:
+            "The identifier of the cluster to delete a custom domain association for",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--custom-domain-name",
+          description:
+            "The custom domain name for the custom domain association",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-endpoint-access",
       description: "Deletes a Redshift-managed VPC endpoint",
       options: [
@@ -1820,7 +2283,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--account-id",
-          description: "The AWS account ID that owns the cluster",
+          description:
+            "The Amazon Web Services account ID that owns the cluster",
           args: {
             name: "string",
           },
@@ -1845,6 +2309,68 @@ const completionSpec: Fig.Spec = {
           name: "--partner-name",
           description:
             "The name of the partner that is authorized to send data",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-redshift-idc-application",
+      description: "Deletes an Amazon Redshift IAM Identity Center application",
+      options: [
+        {
+          name: "--redshift-idc-application-arn",
+          description:
+            "The ARN for a deleted Amazon Redshift IAM Identity Center application",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-resource-policy",
+      description: "Deletes the resource policy for a specified resource",
+      options: [
+        {
+          name: "--resource-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the resource of which its resource policy is deleted",
           args: {
             name: "string",
           },
@@ -2058,6 +2584,37 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "describe-authentication-profiles",
+      description: "Describes an authentication profile",
+      options: [
+        {
+          name: "--authentication-profile-name",
+          description:
+            "The name of the authentication profile to describe. If not specified then all authentication profiles owned by the account are listed",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "describe-cluster-db-revisions",
       description: "Returns an array of ClusterDbRevision objects",
       options: [
@@ -2152,7 +2709,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeClusterParameterGroups request exceed the value specified in MaxRecords, AWS returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
+            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeClusterParameterGroups request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
           args: {
             name: "string",
           },
@@ -2248,7 +2805,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeClusterParameters request exceed the value specified in MaxRecords, AWS returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
+            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeClusterParameters request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
           args: {
             name: "string",
           },
@@ -2304,7 +2861,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cluster-security-group-name",
           description:
-            "The name of a cluster security group for which you are requesting details. You can specify either the Marker parameter or a ClusterSecurityGroupName parameter, but not both.   Example: securitygroup1",
+            "The name of a cluster security group for which you are requesting details. You must specify either the Marker parameter or a ClusterSecurityGroupName parameter, but not both.   Example: securitygroup1",
           args: {
             name: "string",
           },
@@ -2320,7 +2877,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeClusterSecurityGroups request exceed the value specified in MaxRecords, AWS returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request.  Constraints: You can specify either the ClusterSecurityGroupName parameter or the Marker parameter, but not both",
+            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeClusterSecurityGroups request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request.  Constraints: You must specify either the ClusterSecurityGroupName parameter or the Marker parameter, but not both",
           args: {
             name: "string",
           },
@@ -2387,7 +2944,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-cluster-snapshots",
       description:
-        "Returns one or more snapshot objects, which contain metadata about your cluster snapshots. By default, this operation returns information about all snapshots of all clusters that are owned by you AWS customer account. No information is returned for snapshots owned by inactive AWS customer accounts. If you specify both tag keys and tag values in the same request, Amazon Redshift returns all snapshots that match any combination of the specified keys and values. For example, if you have owner and environment for tag keys, and admin and test for tag values, all snapshots that have any combination of those values are returned. Only snapshots that you own are returned in the response; shared snapshots are not returned with the tag key and tag value request parameters. If both tag keys and values are omitted from the request, snapshots are returned regardless of whether they have tag keys or values associated with them",
+        "Returns one or more snapshot objects, which contain metadata about your cluster snapshots. By default, this operation returns information about all snapshots of all clusters that are owned by your Amazon Web Services account. No information is returned for snapshots owned by inactive Amazon Web Services accounts. If you specify both tag keys and tag values in the same request, Amazon Redshift returns all snapshots that match any combination of the specified keys and values. For example, if you have owner and environment for tag keys, and admin and test for tag values, all snapshots that have any combination of those values are returned. Only snapshots that you own are returned in the response; shared snapshots are not returned with the tag key and tag value request parameters. If both tag keys and values are omitted from the request, snapshots are returned regardless of whether they have tag keys or values associated with them",
       options: [
         {
           name: "--cluster-identifier",
@@ -2401,6 +2958,14 @@ const completionSpec: Fig.Spec = {
           name: "--snapshot-identifier",
           description:
             "The snapshot identifier of the snapshot about which to return information",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--snapshot-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the snapshot associated with the message to describe cluster snapshots",
           args: {
             name: "string",
           },
@@ -2440,7 +3005,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeClusterSnapshots request exceed the value specified in MaxRecords, AWS returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
+            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeClusterSnapshots request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
           args: {
             name: "string",
           },
@@ -2448,7 +3013,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--owner-account",
           description:
-            "The AWS customer account used to create or copy the snapshot. Use this field to filter the results to snapshots owned by a particular account. To describe snapshots you own, either specify your AWS customer account, or do not specify the parameter",
+            "The Amazon Web Services account used to create or copy the snapshot. Use this field to filter the results to snapshots owned by a particular account. To describe snapshots you own, either specify your Amazon Web Services account, or do not specify the parameter",
           args: {
             name: "string",
           },
@@ -2531,7 +3096,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-cluster-subnet-groups",
       description:
-        "Returns one or more cluster subnet group objects, which contain metadata about your cluster subnet groups. By default, this operation returns information about all cluster subnet groups that are defined in you AWS account. If you specify both tag keys and tag values in the same request, Amazon Redshift returns all subnet groups that match any combination of the specified keys and values. For example, if you have owner and environment for tag keys, and admin and test for tag values, all subnet groups that have any combination of those values are returned. If both tag keys and values are omitted from the request, subnet groups are returned regardless of whether they have tag keys or values associated with them",
+        "Returns one or more cluster subnet group objects, which contain metadata about your cluster subnet groups. By default, this operation returns information about all cluster subnet groups that are defined in your Amazon Web Services account. If you specify both tag keys and tag values in the same request, Amazon Redshift returns all subnet groups that match any combination of the specified keys and values. For example, if you have owner and environment for tag keys, and admin and test for tag values, all subnet groups that have any combination of those values are returned. If both tag keys and values are omitted from the request, subnet groups are returned regardless of whether they have tag keys or values associated with them",
       options: [
         {
           name: "--cluster-subnet-group-name",
@@ -2552,7 +3117,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeClusterSubnetGroups request exceed the value specified in MaxRecords, AWS returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
+            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeClusterSubnetGroups request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
           args: {
             name: "string",
           },
@@ -2717,7 +3282,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeClusterVersions request exceed the value specified in MaxRecords, AWS returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
+            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeClusterVersions request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
           args: {
             name: "string",
           },
@@ -2789,7 +3354,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeClusters request exceed the value specified in MaxRecords, AWS returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request.  Constraints: You can specify either the ClusterIdentifier parameter or the Marker parameter, but not both",
+            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeClusters request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request.  Constraints: You can specify either the ClusterIdentifier parameter or the Marker parameter, but not both",
           args: {
             name: "string",
           },
@@ -2808,6 +3373,317 @@ const completionSpec: Fig.Spec = {
             "A tag value or values for which you want to return all matching clusters that are associated with the specified tag value or values. For example, suppose that you have clusters that are tagged with values called admin and test. If you specify both of these tag values in the request, Amazon Redshift returns a response with the clusters that have either or both of these tag values associated with them",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-custom-domain-associations",
+      description:
+        "Contains information about custom domain associations for a cluster",
+      options: [
+        {
+          name: "--custom-domain-name",
+          description:
+            "The custom domain name for the custom domain association",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--custom-domain-certificate-arn",
+          description:
+            "The certificate Amazon Resource Name (ARN) for the custom domain association",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "The maximum records setting for the associated custom domain",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--marker",
+          description: "The marker for the custom domain association",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-data-shares",
+      description:
+        "Shows the status of any inbound or outbound datashares available in the specified account",
+      options: [
+        {
+          name: "--data-share-arn",
+          description:
+            "The Amazon resource name (ARN) of the datashare to describe details of",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified MaxRecords value, a value is returned in a marker field of the response. You can retrieve the next set of records by retrying the command with the returned marker value",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--marker",
+          description:
+            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeDataShares request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-data-shares-for-consumer",
+      description:
+        "Returns a list of datashares where the account identifier being called is a consumer account identifier",
+      options: [
+        {
+          name: "--consumer-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the consumer namespace that returns in the list of datashares",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--status",
+          description:
+            "An identifier giving the status of a datashare in the consumer cluster. If this field is specified, Amazon Redshift returns the list of datashares that have the specified status",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified MaxRecords value, a value is returned in a marker field of the response. You can retrieve the next set of records by retrying the command with the returned marker value",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--marker",
+          description:
+            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeDataSharesForConsumer request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-data-shares-for-producer",
+      description:
+        "Returns a list of datashares when the account identifier being called is a producer account identifier",
+      options: [
+        {
+          name: "--producer-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the producer namespace that returns in the list of datashares",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--status",
+          description:
+            "An identifier giving the status of a datashare in the producer. If this field is specified, Amazon Redshift returns the list of datashares that have the specified status",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified MaxRecords value, a value is returned in a marker field of the response. You can retrieve the next set of records by retrying the command with the returned marker value",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--marker",
+          description:
+            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeDataSharesForProducer request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
+          args: {
+            name: "string",
           },
         },
         {
@@ -2876,7 +3752,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeDefaultClusterParameters request exceed the value specified in MaxRecords, AWS returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
+            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeDefaultClusterParameters request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
           args: {
             name: "string",
           },
@@ -2938,7 +3814,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--resource-owner",
-          description: "The AWS account ID of the owner of the cluster",
+          description:
+            "The Amazon Web Services account ID of the owner of the cluster",
           args: {
             name: "string",
           },
@@ -3031,7 +3908,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--account",
           description:
-            "The AWS account ID of either the cluster owner (grantor) or grantee. If Grantee parameter is true, then the Account value is of the grantor",
+            "The Amazon Web Services account ID of either the cluster owner (grantor) or grantee. If Grantee parameter is true, then the Account value is of the grantor",
           args: {
             name: "string",
           },
@@ -3161,7 +4038,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeEventSubscriptions request exceed the value specified in MaxRecords, AWS returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
+            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeEventSubscriptions request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
           args: {
             name: "string",
           },
@@ -3281,7 +4158,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeEvents request exceed the value specified in MaxRecords, AWS returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
+            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeEvents request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
           args: {
             name: "string",
           },
@@ -3332,12 +4209,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-hsm-client-certificates",
       description:
-        "Returns information about the specified HSM client certificate. If no certificate ID is specified, returns information about all the HSM certificates owned by your AWS customer account. If you specify both tag keys and tag values in the same request, Amazon Redshift returns all HSM client certificates that match any combination of the specified keys and values. For example, if you have owner and environment for tag keys, and admin and test for tag values, all HSM client certificates that have any combination of those values are returned. If both tag keys and values are omitted from the request, HSM client certificates are returned regardless of whether they have tag keys or values associated with them",
+        "Returns information about the specified HSM client certificate. If no certificate ID is specified, returns information about all the HSM certificates owned by your Amazon Web Services account. If you specify both tag keys and tag values in the same request, Amazon Redshift returns all HSM client certificates that match any combination of the specified keys and values. For example, if you have owner and environment for tag keys, and admin and test for tag values, all HSM client certificates that have any combination of those values are returned. If both tag keys and values are omitted from the request, HSM client certificates are returned regardless of whether they have tag keys or values associated with them",
       options: [
         {
           name: "--hsm-client-certificate-identifier",
           description:
-            "The identifier of a specific HSM client certificate for which you want information. If no identifier is specified, information is returned for all HSM client certificates owned by your AWS customer account",
+            "The identifier of a specific HSM client certificate for which you want information. If no identifier is specified, information is returned for all HSM client certificates owned by your Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -3353,7 +4230,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeHsmClientCertificates request exceed the value specified in MaxRecords, AWS returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
+            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeHsmClientCertificates request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
           args: {
             name: "string",
           },
@@ -3420,12 +4297,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-hsm-configurations",
       description:
-        "Returns information about the specified Amazon Redshift HSM configuration. If no configuration ID is specified, returns information about all the HSM configurations owned by your AWS customer account. If you specify both tag keys and tag values in the same request, Amazon Redshift returns all HSM connections that match any combination of the specified keys and values. For example, if you have owner and environment for tag keys, and admin and test for tag values, all HSM connections that have any combination of those values are returned. If both tag keys and values are omitted from the request, HSM connections are returned regardless of whether they have tag keys or values associated with them",
+        "Returns information about the specified Amazon Redshift HSM configuration. If no configuration ID is specified, returns information about all the HSM configurations owned by your Amazon Web Services account. If you specify both tag keys and tag values in the same request, Amazon Redshift returns all HSM connections that match any combination of the specified keys and values. For example, if you have owner and environment for tag keys, and admin and test for tag values, all HSM connections that have any combination of those values are returned. If both tag keys and values are omitted from the request, HSM connections are returned regardless of whether they have tag keys or values associated with them",
       options: [
         {
           name: "--hsm-configuration-identifier",
           description:
-            "The identifier of a specific Amazon Redshift HSM configuration to be described. If no identifier is specified, information is returned for all HSM configurations owned by your AWS customer account",
+            "The identifier of a specific Amazon Redshift HSM configuration to be described. If no identifier is specified, information is returned for all HSM configurations owned by your Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -3441,7 +4318,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeHsmConfigurations request exceed the value specified in MaxRecords, AWS returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
+            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeHsmConfigurations request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
           args: {
             name: "string",
           },
@@ -3460,6 +4337,85 @@ const completionSpec: Fig.Spec = {
             "A tag value or values for which you want to return all matching HSM configurations that are associated with the specified tag value or values. For example, suppose that you have HSM configurations that are tagged with values called admin and test. If you specify both of these tag values in the request, Amazon Redshift returns a response with the HSM configurations that have either or both of these tag values associated with them",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-inbound-integrations",
+      description: "Returns a list of inbound integrations",
+      options: [
+        {
+          name: "--integration-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the inbound integration",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--target-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the target of an inbound integration",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified MaxRecords value, a value is returned in a marker field of the response. You can retrieve the next set of records by retrying the command with the returned marker value.  Default: 100  Constraints: minimum 20, maximum 100",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--marker",
+          description:
+            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeInboundIntegrations request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
+          args: {
+            name: "string",
           },
         },
         {
@@ -3567,9 +4523,17 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--snapshot-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the snapshot associated with the message to describe node configuration",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--owner-account",
           description:
-            "The AWS customer account used to create or copy the snapshot. Required if you are restoring a snapshot you do not own, optional if you own the snapshot",
+            "The Amazon Web Services account used to create or copy the snapshot. Required if you are restoring a snapshot you do not own, optional if you own the snapshot",
           args: {
             name: "string",
           },
@@ -3585,7 +4549,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeNodeConfigurationOptions request exceed the value specified in MaxRecords, AWS returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
+            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeNodeConfigurationOptions request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
           args: {
             name: "string",
           },
@@ -3644,7 +4608,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-orderable-cluster-options",
       description:
-        "Returns a list of orderable cluster options. Before you create a new cluster you can use this operation to find what options are available, such as the EC2 Availability Zones (AZ) in the specific AWS Region that you can specify, and the node types you can request. The node types differ by available storage, memory, CPU and price. With the cost involved you might want to obtain a list of cluster options in the specific region and specify values when creating a cluster. For more information about managing clusters, go to Amazon Redshift Clusters in the Amazon Redshift Cluster Management Guide",
+        "Returns a list of orderable cluster options. Before you create a new cluster you can use this operation to find what options are available, such as the EC2 Availability Zones (AZ) in the specific Amazon Web Services Region that you can specify, and the node types you can request. The node types differ by available storage, memory, CPU and price. With the cost involved you might want to obtain a list of cluster options in the specific region and specify values when creating a cluster. For more information about managing clusters, go to Amazon Redshift Clusters in the Amazon Redshift Cluster Management Guide",
       options: [
         {
           name: "--cluster-version",
@@ -3673,7 +4637,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeOrderableClusterOptions request exceed the value specified in MaxRecords, AWS returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
+            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeOrderableClusterOptions request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
           args: {
             name: "string",
           },
@@ -3728,7 +4692,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--account-id",
-          description: "The AWS account ID that owns the cluster",
+          description:
+            "The Amazon Web Services account ID that owns the cluster",
           args: {
             name: "string",
           },
@@ -3777,6 +4742,156 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "describe-redshift-idc-applications",
+      description: "Lists the Amazon Redshift IAM Identity Center applications",
+      options: [
+        {
+          name: "--redshift-idc-application-arn",
+          description:
+            "The ARN for the Redshift application that integrates with IAM Identity Center",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified MaxRecords value, a value is returned in a marker field of the response. You can retrieve the next set of records by retrying the command with the returned marker value",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--marker",
+          description:
+            "A value that indicates the starting point for the next set of response records in a subsequent request. If a value is returned in a response, you can retrieve the next set of records by providing this returned marker value in the Marker parameter and retrying the command. If the Marker field is empty, all response records have been retrieved for the request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-reserved-node-exchange-status",
+      description:
+        "Returns exchange status details and associated metadata for a reserved-node exchange. Statuses include such values as in progress and requested",
+      options: [
+        {
+          name: "--reserved-node-id",
+          description:
+            "The identifier of the source reserved node in a reserved-node exchange request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--reserved-node-exchange-request-id",
+          description: "The identifier of the reserved-node exchange request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified MaxRecords value, a value is returned in a Marker field of the response. You can retrieve the next set of records by retrying the command with the returned marker value",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--marker",
+          description:
+            "An optional pagination token provided by a previous DescribeReservedNodeExchangeStatus request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by the MaxRecords parameter. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "describe-reserved-node-offerings",
       description:
         "Returns a list of the available reserved node offerings by Amazon Redshift with their descriptions including the node type, the fixed and recurring costs of reserving the node and duration the node will be reserved for you. These descriptions help you determine which reserve node offering you want to purchase. You then use the unique offering ID in you call to PurchaseReservedNodeOffering to reserve one or more nodes for your Amazon Redshift cluster.   For more information about reserved node offerings, go to Purchasing Reserved Nodes in the Amazon Redshift Cluster Management Guide",
@@ -3799,7 +4914,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeReservedNodeOfferings request exceed the value specified in MaxRecords, AWS returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
+            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeReservedNodeOfferings request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
           args: {
             name: "string",
           },
@@ -3869,7 +4984,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeReservedNodes request exceed the value specified in MaxRecords, AWS returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
+            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeReservedNodes request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
           args: {
             name: "string",
           },
@@ -3925,7 +5040,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cluster-identifier",
           description:
-            "The unique identifier of a cluster whose resize progress you are requesting. This parameter is case-sensitive. By default, resize operations for all clusters defined for an AWS account are returned",
+            "The unique identifier of a cluster whose resize progress you are requesting. This parameter is case-sensitive. By default, resize operations for all clusters defined for an Amazon Web Services account are returned",
           args: {
             name: "string",
           },
@@ -4003,7 +5118,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeScheduledActions request exceed the value specified in MaxRecords, AWS returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
+            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeScheduledActions request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
           args: {
             name: "string",
           },
@@ -4062,7 +5177,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-snapshot-copy-grants",
       description:
-        "Returns a list of snapshot copy grants owned by the AWS account in the destination region.  For more information about managing snapshot copy grants, go to Amazon Redshift Database Encryption in the Amazon Redshift Cluster Management Guide",
+        "Returns a list of snapshot copy grants owned by the Amazon Web Services account in the destination region.  For more information about managing snapshot copy grants, go to Amazon Redshift Database Encryption in the Amazon Redshift Cluster Management Guide",
       options: [
         {
           name: "--snapshot-copy-grant-name",
@@ -4082,7 +5197,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeSnapshotCopyGrant request exceed the value specified in MaxRecords, AWS returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request.  Constraints: You can specify either the SnapshotCopyGrantName parameter or the Marker parameter, but not both",
+            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeSnapshotCopyGrant request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request.  Constraints: You can specify either the SnapshotCopyGrantName parameter or the Marker parameter, but not both",
           args: {
             name: "string",
           },
@@ -4478,7 +5593,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeUsageLimits request exceed the value specified in MaxRecords, AWS returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
+            "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeUsageLimits request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
           args: {
             name: "string",
           },
@@ -4577,12 +5692,70 @@ const completionSpec: Fig.Spec = {
     {
       name: "disable-snapshot-copy",
       description:
-        "Disables the automatic copying of snapshots from one region to another region for a specified cluster. If your cluster and its snapshots are encrypted using a customer master key (CMK) from AWS KMS, use DeleteSnapshotCopyGrant to delete the grant that grants Amazon Redshift permission to the CMK in the destination region",
+        "Disables the automatic copying of snapshots from one region to another region for a specified cluster. If your cluster and its snapshots are encrypted using an encrypted symmetric key from Key Management Service, use DeleteSnapshotCopyGrant to delete the grant that grants Amazon Redshift permission to the key in the destination region",
       options: [
         {
           name: "--cluster-identifier",
           description:
             "The unique identifier of the source cluster that you want to disable copying of snapshots to a destination region. Constraints: Must be the valid name of an existing cluster that has cross-region snapshot copy enabled",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "disassociate-data-share-consumer",
+      description:
+        "From a datashare consumer account, remove association for the specified datashare",
+      options: [
+        {
+          name: "--data-share-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the datashare to remove association for",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--disassociate-entire-account",
+          description:
+            "A value that specifies whether association for the datashare is removed from the entire account",
+        },
+        {
+          name: "--no-disassociate-entire-account",
+          description:
+            "A value that specifies whether association for the datashare is removed from the entire account",
+        },
+        {
+          name: "--consumer-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the consumer namespace that association for the datashare is removed from",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--consumer-region",
+          description:
+            "From a datashare consumer account, removes association of a datashare from all the existing and future namespaces in the specified Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -4636,6 +5809,22 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--log-destination-type",
+          description:
+            "The log destination type. An enum with possible values of s3 and cloudwatch",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--log-exports",
+          description:
+            "The collection of exported log types. Possible values are connectionlog, useractivitylog, and userlog",
+          args: {
+            name: "list",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -4670,7 +5859,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--destination-region",
           description:
-            "The destination AWS Region that you want to copy snapshots to. Constraints: Must be the name of a valid AWS Region. For more information, see Regions and Endpoints in the Amazon Web Services General Reference",
+            "The destination Amazon Web Services Region that you want to copy snapshots to. Constraints: Must be the name of a valid Amazon Web Services Region. For more information, see Regions and Endpoints in the Amazon Web Services General Reference",
           args: {
             name: "string",
           },
@@ -4686,7 +5875,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--snapshot-copy-grant-name",
           description:
-            "The name of the snapshot copy grant to use when snapshots of an AWS KMS-encrypted cluster are copied to the destination region",
+            "The name of the snapshot copy grant to use when snapshots of an Amazon Web Services KMS-encrypted cluster are copied to the destination region",
           args: {
             name: "string",
           },
@@ -4694,7 +5883,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--manual-snapshot-retention-period",
           description:
-            "The number of days to retain newly copied snapshots in the destination AWS Region after they are copied from the source AWS Region. If the value is -1, the manual snapshot is retained indefinitely.  The value must be either -1 or an integer between 1 and 3,653",
+            "The number of days to retain newly copied snapshots in the destination Amazon Web Services Region after they are copied from the source Amazon Web Services Region. If the value is -1, the manual snapshot is retained indefinitely.  The value must be either -1 or an integer between 1 and 3,653",
           args: {
             name: "integer",
           },
@@ -4719,14 +5908,46 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "failover-primary-compute",
+      description:
+        "Fails over the primary compute unit of the specified Multi-AZ cluster to another Availability Zone",
+      options: [
+        {
+          name: "--cluster-identifier",
+          description:
+            "The unique identifier of the cluster for which the primary compute unit will be failed over to another Availability Zone",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-cluster-credentials",
       description:
-        "Returns a database user name and temporary password with temporary authorization to log on to an Amazon Redshift database. The action returns the database user name prefixed with IAM: if AutoCreate is False or IAMA: if AutoCreate is True. You can optionally specify one or more database user groups that the user will join at log on. By default, the temporary credentials expire in 900 seconds. You can optionally specify a duration between 900 seconds (15 minutes) and 3600 seconds (60 minutes). For more information, see Using IAM Authentication to Generate Database User Credentials in the Amazon Redshift Cluster Management Guide. The AWS Identity and Access Management (IAM)user or role that executes GetClusterCredentials must have an IAM policy attached that allows access to all necessary actions and resources. For more information about permissions, see Resource Policies for GetClusterCredentials in the Amazon Redshift Cluster Management Guide. If the DbGroups parameter is specified, the IAM policy must allow the redshift:JoinGroup action with access to the listed dbgroups.  In addition, if the AutoCreate parameter is set to True, then the policy must include the redshift:CreateClusterUser privilege. If the DbName parameter is specified, the IAM policy must allow access to the resource dbname for the specified database name",
+        "Returns a database user name and temporary password with temporary authorization to log on to an Amazon Redshift database. The action returns the database user name prefixed with IAM: if AutoCreate is False or IAMA: if AutoCreate is True. You can optionally specify one or more database user groups that the user will join at log on. By default, the temporary credentials expire in 900 seconds. You can optionally specify a duration between 900 seconds (15 minutes) and 3600 seconds (60 minutes). For more information, see Using IAM Authentication to Generate Database User Credentials in the Amazon Redshift Cluster Management Guide. The Identity and Access Management (IAM) user or role that runs GetClusterCredentials must have an IAM policy attached that allows access to all necessary actions and resources. For more information about permissions, see Resource Policies for GetClusterCredentials in the Amazon Redshift Cluster Management Guide. If the DbGroups parameter is specified, the IAM policy must allow the redshift:JoinGroup action with access to the listed dbgroups.  In addition, if the AutoCreate parameter is set to True, then the policy must include the redshift:CreateClusterUser permission. If the DbName parameter is specified, the IAM policy must allow access to the resource dbname for the specified database name",
       options: [
         {
           name: "--db-user",
           description:
-            "The name of a database user. If a user name matching DbUser exists in the database, the temporary user credentials have the same permissions as the existing user. If DbUser doesn't exist in the database and Autocreate is True, a new user is created using the value for DbUser with PUBLIC permissions. If a database user matching the value for DbUser doesn't exist and Autocreate is False, then the command succeeds but the connection attempt will fail because the user doesn't exist in the database. For more information, see CREATE USER in the Amazon Redshift Database Developer Guide.  Constraints:   Must be 1 to 64 alphanumeric characters or hyphens. The user name can't be PUBLIC.   Must contain only lowercase letters, numbers, underscore, plus sign, period (dot), at symbol (@), or hyphen.   First character must be a letter.   Must not contain a colon ( : ) or slash ( / ).    Cannot be a reserved word. A list of reserved words can be found in Reserved Words in the Amazon Redshift Database Developer Guide",
+            "The name of a database user. If a user name matching DbUser exists in the database, the temporary user credentials have the same permissions as the existing user. If DbUser doesn't exist in the database and Autocreate is True, a new user is created using the value for DbUser with PUBLIC permissions. If a database user matching the value for DbUser doesn't exist and Autocreate is False, then the command succeeds but the connection attempt will fail because the user doesn't exist in the database. For more information, see CREATE USER in the Amazon Redshift Database Developer Guide.  Constraints:   Must be 1 to 64 alphanumeric characters or hyphens. The user name can't be PUBLIC.   Must contain uppercase or lowercase letters, numbers, underscore, plus sign, period (dot), at symbol (@), or hyphen.   First character must be a letter.   Must not contain a colon ( : ) or slash ( / ).    Cannot be a reserved word. A list of reserved words can be found in Reserved Words in the Amazon Redshift Database Developer Guide",
           args: {
             name: "string",
           },
@@ -4734,7 +5955,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--db-name",
           description:
-            "The name of a database that DbUser is authorized to log on to. If DbName is not specified, DbUser can log on to any existing database. Constraints:   Must be 1 to 64 alphanumeric characters or hyphens   Must contain only lowercase letters, numbers, underscore, plus sign, period (dot), at symbol (@), or hyphen.   First character must be a letter.   Must not contain a colon ( : ) or slash ( / ).    Cannot be a reserved word. A list of reserved words can be found in Reserved Words in the Amazon Redshift Database Developer Guide",
+            "The name of a database that DbUser is authorized to log on to. If DbName is not specified, DbUser can log on to any existing database. Constraints:   Must be 1 to 64 alphanumeric characters or hyphens   Must contain uppercase or lowercase letters, numbers, underscore, plus sign, period (dot), at symbol (@), or hyphen.   First character must be a letter.   Must not contain a colon ( : ) or slash ( / ).    Cannot be a reserved word. A list of reserved words can be found in Reserved Words in the Amazon Redshift Database Developer Guide",
           args: {
             name: "string",
           },
@@ -4742,7 +5963,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cluster-identifier",
           description:
-            "The unique identifier of the cluster that contains the database for which your are requesting credentials. This parameter is case sensitive",
+            "The unique identifier of the cluster that contains the database for which you are requesting credentials. This parameter is case sensitive",
           args: {
             name: "string",
           },
@@ -4774,11 +5995,162 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--custom-domain-name",
+          description: "The custom domain name for the cluster credentials",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-cluster-credentials-with-iam",
+      description:
+        "Returns a database user name and temporary password with temporary authorization to log in to an Amazon Redshift database. The database user is mapped 1:1 to the source Identity and Access Management (IAM) identity. For more information about IAM identities, see IAM Identities (users, user groups, and roles) in the Amazon Web Services Identity and Access Management User Guide. The Identity and Access Management (IAM) identity that runs this operation must have an IAM policy attached that allows access to all necessary actions and resources. For more information about permissions, see Using identity-based policies (IAM policies) in the Amazon Redshift Cluster Management Guide",
+      options: [
+        {
+          name: "--db-name",
+          description:
+            "The name of the database for which you are requesting credentials. If the database name is specified, the IAM policy must allow access to the resource dbname for the specified database name. If the database name is not specified, access to all databases is allowed",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cluster-identifier",
+          description:
+            "The unique identifier of the cluster that contains the database for which you are requesting credentials",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--duration-seconds",
+          description:
+            "The number of seconds until the returned temporary password expires. Range: 900-3600. Default: 900",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--custom-domain-name",
+          description:
+            "The custom domain name for the IAM message cluster credentials",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-reserved-node-exchange-configuration-options",
+      description:
+        "Gets the configuration options for the reserved-node exchange. These options include information about the source reserved node and target reserved node offering. Details include the node type, the price, the node count, and the offering type",
+      options: [
+        {
+          name: "--action-type",
+          description:
+            "The action type of the reserved-node configuration. The action type can be an exchange initiated from either a snapshot or a resize",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cluster-identifier",
+          description:
+            "The identifier for the cluster that is the source for a reserved-node exchange",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--snapshot-identifier",
+          description:
+            "The identifier for the snapshot that is the source for the reserved-node exchange",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified MaxRecords value, a value is returned in a Marker field of the response. You can retrieve the next set of records by retrying the command with the returned marker value",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--marker",
+          description:
+            "An optional pagination token provided by a previous GetReservedNodeExchangeConfigurationOptions request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by the MaxRecords parameter. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -4865,9 +6237,120 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-resource-policy",
+      description: "Get the resource policy for a specified resource",
+      options: [
+        {
+          name: "--resource-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the resource of which its resource policy is fetched",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-recommendations",
+      description:
+        "List the Amazon Redshift Advisor recommendations for one or multiple Amazon Redshift clusters in an Amazon Web Services account",
+      options: [
+        {
+          name: "--cluster-identifier",
+          description:
+            "The unique identifier of the Amazon Redshift cluster for which the list of Advisor recommendations is returned. If the neither the cluster identifier and the cluster namespace ARN parameters are specified, then recommendations for all clusters in the account are returned",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--namespace-arn",
+          description:
+            "The Amazon Redshift cluster namespace Amazon Resource Name (ARN) for which the list of Advisor recommendations is returned. If the neither the cluster identifier and the cluster namespace ARN parameters are specified, then recommendations for all clusters in the account are returned",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified MaxRecords value, a value is returned in a marker field of the response. You can retrieve the next set of records by retrying the command with the returned marker value",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--marker",
+          description:
+            "A value that indicates the starting point for the next set of response records in a subsequent request. If a value is returned in a response, you can retrieve the next set of records by providing this returned marker value in the Marker parameter and retrying the command. If the Marker field is empty, all response records have been retrieved for the request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "modify-aqua-configuration",
       description:
-        "Modifies whether a cluster can use AQUA (Advanced Query Accelerator)",
+        "This operation is retired. Calling this operation does not change AQUA configuration. Amazon Redshift automatically determines whether to use AQUA (Advanced Query Accelerator)",
       options: [
         {
           name: "--cluster-identifier",
@@ -4879,7 +6362,45 @@ const completionSpec: Fig.Spec = {
         {
           name: "--aqua-configuration-status",
           description:
-            "The new value of AQUA configuration status. Possible values include the following.   enabled - Use AQUA if it is available for the current AWS Region and Amazon Redshift node type.   disabled - Don't use AQUA.    auto - Amazon Redshift determines whether to use AQUA",
+            "This parameter is retired. Amazon Redshift automatically determines whether to use AQUA (Advanced Query Accelerator)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "modify-authentication-profile",
+      description: "Modifies an authentication profile",
+      options: [
+        {
+          name: "--authentication-profile-name",
+          description: "The name of the authentication profile to replace",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--authentication-profile-content",
+          description:
+            "The new content of the authentication profile in JSON format. The maximum length of the JSON string is determined by a quota for your account",
           args: {
             name: "string",
           },
@@ -4906,7 +6427,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "modify-cluster",
       description:
-        "Modifies the settings for a cluster. You can also change node type and the number of nodes to scale up or down the cluster. When resizing a cluster, you must specify both the number of nodes and the node type even if one of the parameters does not change. You can add another security or parameter group, or change the master user password. Resetting a cluster password or modifying the security groups associated with a cluster do not need a reboot. However, modifying a parameter group requires a reboot for parameters to take effect. For more information about managing clusters, go to Amazon Redshift Clusters in the Amazon Redshift Cluster Management Guide",
+        "Modifies the settings for a cluster. You can also change node type and the number of nodes to scale up or down the cluster. When resizing a cluster, you must specify both the number of nodes and the node type even if one of the parameters does not change. You can add another security or parameter group, or change the admin user password. Resetting a cluster password or modifying the security groups associated with a cluster do not need a reboot. However, modifying a parameter group requires a reboot for parameters to take effect. For more information about managing clusters, go to Amazon Redshift Clusters in the Amazon Redshift Cluster Management Guide",
       options: [
         {
           name: "--cluster-identifier",
@@ -4959,7 +6480,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--master-user-password",
           description:
-            "The new password for the cluster master user. This change is asynchronously applied as soon as possible. Between the time of the request and the completion of the request, the MasterUserPassword element exists in the PendingModifiedValues element of the operation response.   Operations never return the password, so this operation provides a way to regain access to the master user account for a cluster if the password is lost.  Default: Uses existing setting. Constraints:   Must be between 8 and 64 characters in length.   Must contain at least one uppercase letter.   Must contain at least one lowercase letter.   Must contain one number.   Can be any printable ASCII character (ASCII code 33 to 126) except ' (single quote), \" (double quote), \\, /, @, or space",
+            "The new password for the cluster admin user. This change is asynchronously applied as soon as possible. Between the time of the request and the completion of the request, the MasterUserPassword element exists in the PendingModifiedValues element of the operation response.  You can't use MasterUserPassword if ManageMasterPassword is true.  Operations never return the password, so this operation provides a way to regain access to the admin user account for a cluster if the password is lost.  Default: Uses existing setting. Constraints:   Must be between 8 and 64 characters in length.   Must contain at least one uppercase letter.   Must contain at least one lowercase letter.   Must contain one number.   Can be any printable ASCII character (ASCII code 33-126) except ' (single quote), \" (double quote), \\, /, or @",
           args: {
             name: "string",
           },
@@ -5033,7 +6554,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--new-cluster-identifier",
           description:
-            "The new identifier for the cluster. Constraints:   Must contain from 1 to 63 alphanumeric characters or hyphens.   Alphabetic characters must be lowercase.   First character must be a letter.   Cannot end with a hyphen or contain two consecutive hyphens.   Must be unique for all clusters within an AWS account.   Example: examplecluster",
+            "The new identifier for the cluster. Constraints:   Must contain from 1 to 63 alphanumeric characters or hyphens.   Alphabetic characters must be lowercase.   First character must be a letter.   Cannot end with a hyphen or contain two consecutive hyphens.   Must be unique for all clusters within an Amazon Web Services account.   Example: examplecluster",
           args: {
             name: "string",
           },
@@ -5087,7 +6608,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kms-key-id",
           description:
-            "The AWS Key Management Service (KMS) key ID of the encryption key that you want to use to encrypt data in the cluster",
+            "The Key Management Service (KMS) key ID of the encryption key that you want to use to encrypt data in the cluster",
           args: {
             name: "string",
           },
@@ -5113,10 +6634,46 @@ const completionSpec: Fig.Spec = {
         {
           name: "--port",
           description:
-            "The option to change the port of an Amazon Redshift cluster",
+            "The option to change the port of an Amazon Redshift cluster. Valid Values:    For clusters with ra3 nodes - Select a port within the ranges 5431-5455 or 8191-8215. (If you have an existing cluster with ra3 nodes, it isn't required that you change the port to these ranges.)   For clusters with ds2 or dc2 nodes - Select a port within the range 1150-65535",
           args: {
             name: "integer",
           },
+        },
+        {
+          name: "--manage-master-password",
+          description:
+            "If true, Amazon Redshift uses Secrets Manager to manage this cluster's admin credentials. You can't use MasterUserPassword if ManageMasterPassword is true. If ManageMasterPassword is false or not set, Amazon Redshift uses MasterUserPassword for the admin user account's password",
+        },
+        {
+          name: "--no-manage-master-password",
+          description:
+            "If true, Amazon Redshift uses Secrets Manager to manage this cluster's admin credentials. You can't use MasterUserPassword if ManageMasterPassword is true. If ManageMasterPassword is false or not set, Amazon Redshift uses MasterUserPassword for the admin user account's password",
+        },
+        {
+          name: "--master-password-secret-kms-key-id",
+          description:
+            "The ID of the Key Management Service (KMS) key used to encrypt and store the cluster's admin credentials secret. You can only use this parameter if ManageMasterPassword is true",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--ip-address-type",
+          description:
+            "The IP address types that the cluster supports. Possible values are ipv4 and dualstack",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--multi-az",
+          description:
+            "If true and the cluster is currently only deployed in a single Availability Zone, the cluster will be modified to be deployed in two Availability Zones",
+        },
+        {
+          name: "--no-multi-az",
+          description:
+            "If true and the cluster is currently only deployed in a single Availability Zone, the cluster will be modified to be deployed in two Availability Zones",
         },
         {
           name: "--cli-input-json",
@@ -5180,7 +6737,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "modify-cluster-iam-roles",
       description:
-        "Modifies the list of AWS Identity and Access Management (IAM) roles that can be used by the cluster to access other AWS services. A cluster can have up to 10 IAM roles associated at any time",
+        "Modifies the list of Identity and Access Management (IAM) roles that can be used by the cluster to access other Amazon Web Services services. The maximum number of IAM roles that you can associate is subject to a quota. For more information, go to Quotas and limits in the Amazon Redshift Cluster Management Guide",
       options: [
         {
           name: "--cluster-identifier",
@@ -5193,7 +6750,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--add-iam-roles",
           description:
-            "Zero or more IAM roles to associate with the cluster. The roles must be in their Amazon Resource Name (ARN) format. You can associate up to 10 IAM roles with a single cluster in a single request",
+            "Zero or more IAM roles to associate with the cluster. The roles must be in their Amazon Resource Name (ARN) format",
           args: {
             name: "list",
           },
@@ -5201,9 +6758,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--remove-iam-roles",
           description:
-            "Zero or more IAM roles in ARN format to disassociate from the cluster. You can disassociate up to 10 IAM roles from a single cluster in a single request",
+            "Zero or more IAM roles in ARN format to disassociate from the cluster",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--default-iam-role-arn",
+          description:
+            "The Amazon Resource Name (ARN) for the IAM role that was set as default for the cluster when the cluster was last modified",
+          args: {
+            name: "string",
           },
         },
         {
@@ -5300,7 +6865,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "modify-cluster-parameter-group",
       description:
-        "Modifies the parameters of a parameter group.  For more information about parameters and parameter groups, go to Amazon Redshift Parameter Groups in the Amazon Redshift Cluster Management Guide",
+        "Modifies the parameters of a parameter group. For the parameters parameter, it can't contain ASCII characters.  For more information about parameters and parameter groups, go to Amazon Redshift Parameter Groups in the Amazon Redshift Cluster Management Guide",
       options: [
         {
           name: "--parameter-group-name",
@@ -5482,6 +7047,54 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "modify-custom-domain-association",
+      description:
+        "Contains information for changing a custom domain association",
+      options: [
+        {
+          name: "--custom-domain-name",
+          description:
+            "The custom domain name for a changed custom domain association",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--custom-domain-certificate-arn",
+          description:
+            "The certificate Amazon Resource Name (ARN) for the changed custom domain association",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cluster-identifier",
+          description:
+            "The identifier of the cluster to change a custom domain association for",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "modify-endpoint-access",
       description: "Modifies a Redshift-managed VPC endpoint",
       options: [
@@ -5543,7 +7156,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--source-type",
           description:
-            "The type of source that will be generating the events. For example, if you want to be notified of events generated by a cluster, you would set this parameter to cluster. If this value is not specified, events are returned for all Amazon Redshift objects in your AWS account. You must specify a source type in order to specify source IDs. Valid values: cluster, cluster-parameter-group, cluster-security-group, cluster-snapshot, and scheduled-action",
+            "The type of source that will be generating the events. For example, if you want to be notified of events generated by a cluster, you would set this parameter to cluster. If this value is not specified, events are returned for all Amazon Redshift objects in your Amazon Web Services account. You must specify a source type in order to specify source IDs. Valid values: cluster, cluster-parameter-group, cluster-security-group, cluster-snapshot, and scheduled-action",
           args: {
             name: "string",
           },
@@ -5559,7 +7172,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--event-categories",
           description:
-            "Specifies the Amazon Redshift event categories to be published by the event notification subscription. Values: configuration, management, monitoring, security",
+            "Specifies the Amazon Redshift event categories to be published by the event notification subscription. Values: configuration, management, monitoring, security, pending",
           args: {
             name: "list",
           },
@@ -5581,6 +7194,78 @@ const completionSpec: Fig.Spec = {
           name: "--no-enabled",
           description:
             "A Boolean value indicating if the subscription is enabled. true indicates the subscription is enabled",
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "modify-redshift-idc-application",
+      description:
+        "Changes an existing Amazon Redshift IAM Identity Center application",
+      options: [
+        {
+          name: "--redshift-idc-application-arn",
+          description:
+            "The ARN for the Redshift application that integrates with IAM Identity Center",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--identity-namespace",
+          description:
+            "The namespace for the Amazon Redshift IAM Identity Center application to change. It determines which managed application verifies the connection token",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--iam-role-arn",
+          description:
+            "The IAM role ARN associated with the Amazon Redshift IAM Identity Center application to change. It has the required permissions to be assumed and invoke the IDC Identity Center API",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--idc-display-name",
+          description:
+            "The display name for the Amazon Redshift IAM Identity Center application to change. It appears on the console",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--authorized-token-issuer-list",
+          description:
+            "The authorized token issuer list for the Amazon Redshift IAM Identity Center application to change",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--service-integrations",
+          description:
+            "A collection of service integrations associated with the application",
+          args: {
+            name: "list",
+          },
         },
         {
           name: "--cli-input-json",
@@ -5691,12 +7376,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "modify-snapshot-copy-retention-period",
       description:
-        "Modifies the number of days to retain snapshots in the destination AWS Region after they are copied from the source AWS Region. By default, this operation only changes the retention period of copied automated snapshots. The retention periods for both new and existing copied automated snapshots are updated with the new retention period. You can set the manual option to change only the retention periods of copied manual snapshots. If you set this option, only newly copied manual snapshots have the new retention period",
+        "Modifies the number of days to retain snapshots in the destination Amazon Web Services Region after they are copied from the source Amazon Web Services Region. By default, this operation only changes the retention period of copied automated snapshots. The retention periods for both new and existing copied automated snapshots are updated with the new retention period. You can set the manual option to change only the retention periods of copied manual snapshots. If you set this option, only newly copied manual snapshots have the new retention period",
       options: [
         {
           name: "--cluster-identifier",
           description:
-            "The unique identifier of the cluster for which you want to change the retention period for either automated or manual snapshots that are copied to a destination AWS Region. Constraints: Must be the valid name of an existing cluster that has cross-region snapshot copy enabled",
+            "The unique identifier of the cluster for which you want to change the retention period for either automated or manual snapshots that are copied to a destination Amazon Web Services Region. Constraints: Must be the valid name of an existing cluster that has cross-region snapshot copy enabled",
           args: {
             name: "string",
           },
@@ -5704,7 +7389,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--retention-period",
           description:
-            "The number of days to retain automated snapshots in the destination AWS Region after they are copied from the source AWS Region. By default, this only changes the retention period of copied automated snapshots.  If you decrease the retention period for automated snapshots that are copied to a destination AWS Region, Amazon Redshift deletes any existing automated snapshots that were copied to the destination AWS Region and that fall outside of the new retention period. Constraints: Must be at least 1 and no more than 35 for automated snapshots.  If you specify the manual option, only newly copied manual snapshots will have the new retention period.  If you specify the value of -1 newly copied manual snapshots are retained indefinitely. Constraints: The number of days must be either -1 or an integer between 1 and 3,653 for manual snapshots",
+            "The number of days to retain automated snapshots in the destination Amazon Web Services Region after they are copied from the source Amazon Web Services Region. By default, this only changes the retention period of copied automated snapshots.  If you decrease the retention period for automated snapshots that are copied to a destination Amazon Web Services Region, Amazon Redshift deletes any existing automated snapshots that were copied to the destination Amazon Web Services Region and that fall outside of the new retention period. Constraints: Must be at least 1 and no more than 35 for automated snapshots.  If you specify the manual option, only newly copied manual snapshots will have the new retention period.  If you specify the value of -1 newly copied manual snapshots are retained indefinitely. Constraints: The number of days must be either -1 or an integer between 1 and 3,653 for manual snapshots",
           args: {
             name: "integer",
           },
@@ -5896,6 +7581,44 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "put-resource-policy",
+      description: "Updates the resource policy for a specified resource",
+      options: [
+        {
+          name: "--resource-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the resource of which its resource policy is updated",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--policy",
+          description: "The content of the resource policy being updated",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "reboot-cluster",
       description:
         "Reboots a cluster. This action is taken as soon as possible. It results in a momentary outage to the cluster, during which the cluster status is set to rebooting. A cluster event is created when the reboot is completed. Any pending cluster modifications (see ModifyCluster) are applied at this reboot. For more information about managing clusters, go to Amazon Redshift Clusters in the Amazon Redshift Cluster Management Guide",
@@ -5903,6 +7626,38 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cluster-identifier",
           description: "The cluster identifier",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "reject-data-share",
+      description:
+        "From a datashare consumer account, rejects the specified datashare",
+      options: [
+        {
+          name: "--data-share-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the datashare to reject",
           args: {
             name: "string",
           },
@@ -6021,6 +7776,20 @@ const completionSpec: Fig.Spec = {
             "A boolean value indicating whether the resize operation is using the classic resize process. If you don't provide this parameter or set the value to false, the resize type is elastic",
         },
         {
+          name: "--reserved-node-id",
+          description: "The identifier of the reserved node",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--target-reserved-node-offering-id",
+          description: "The identifier of the target reserved node offering",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -6047,7 +7816,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cluster-identifier",
           description:
-            "The identifier of the cluster that will be created from restoring the snapshot. Constraints:   Must contain from 1 to 63 alphanumeric characters or hyphens.   Alphabetic characters must be lowercase.   First character must be a letter.   Cannot end with a hyphen or contain two consecutive hyphens.   Must be unique for all clusters within an AWS account",
+            "The identifier of the cluster that will be created from restoring the snapshot. Constraints:   Must contain from 1 to 63 alphanumeric characters or hyphens.   Alphabetic characters must be lowercase.   First character must be a letter.   Cannot end with a hyphen or contain two consecutive hyphens.   Must be unique for all clusters within an Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -6055,7 +7824,15 @@ const completionSpec: Fig.Spec = {
         {
           name: "--snapshot-identifier",
           description:
-            "The name of the snapshot from which to create the new cluster. This parameter isn't case sensitive. Example: my-snapshot-id",
+            "The name of the snapshot from which to create the new cluster. This parameter isn't case sensitive. You must specify this parameter or snapshotArn, but not both. Example: my-snapshot-id",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--snapshot-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the snapshot associated with the message to restore from a cluster. You must specify this parameter or snapshotIdentifier, but not both",
           args: {
             name: "string",
           },
@@ -6071,7 +7848,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--port",
           description:
-            "The port number on which the cluster accepts connections. Default: The same port as the original cluster. Constraints: Must be between 1115 and 65535",
+            "The port number on which the cluster accepts connections. Default: The same port as the original cluster. Valid values: For clusters with ds2 or dc2 nodes, must be within the range 1150-65535. For clusters with ra3 nodes, must be within the ranges 5431-5455 or 8191-8215",
           args: {
             name: "integer",
           },
@@ -6115,7 +7892,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--owner-account",
           description:
-            "The AWS customer account used to create or copy the snapshot. Required if you are restoring a snapshot you do not own, optional if you own the snapshot",
+            "The Amazon Web Services account used to create or copy the snapshot. Required if you are restoring a snapshot you do not own, optional if you own the snapshot",
           args: {
             name: "string",
           },
@@ -6138,7 +7915,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--elastic-ip",
-          description: "The elastic IP (EIP) address for the cluster",
+          description:
+            "The Elastic IP (EIP) address for the cluster. Don't specify the Elastic IP address for a publicly accessible cluster with availability zone relocation turned on",
           args: {
             name: "string",
           },
@@ -6194,7 +7972,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kms-key-id",
           description:
-            "The AWS Key Management Service (KMS) key ID of the encryption key that you want to use to encrypt data in the cluster that you restore from a shared snapshot",
+            "The Key Management Service (KMS) key ID of the encryption key that encrypts data in the cluster restored from a shared snapshot. You can also provide the key ID when you restore from an unencrypted snapshot to an encrypted cluster in the same account. Additionally, you can specify a new KMS key ID when you restore from an encrypted snapshot in the same account in order to change it. In that case, the restored cluster is encrypted with the new KMS key ID",
           args: {
             name: "string",
           },
@@ -6227,7 +8005,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--iam-roles",
           description:
-            "A list of AWS Identity and Access Management (IAM) roles that can be used by the cluster to access other AWS services. You must supply the IAM roles in their Amazon Resource Name (ARN) format. You can supply up to 10 IAM roles in a single request. A cluster can have up to 10 IAM roles associated at any time",
+            "A list of Identity and Access Management (IAM) roles that can be used by the cluster to access other Amazon Web Services services. You must supply the IAM roles in their Amazon Resource Name (ARN) format.  The maximum number of IAM roles that you can associate is subject to a quota. For more information, go to Quotas and limits in the Amazon Redshift Cluster Management Guide",
           args: {
             name: "list",
           },
@@ -6268,10 +8046,78 @@ const completionSpec: Fig.Spec = {
         {
           name: "--aqua-configuration-status",
           description:
-            "The value represents how the cluster is configured to use AQUA (Advanced Query Accelerator) after the cluster is restored. Possible values include the following.   enabled - Use AQUA if it is available for the current AWS Region and Amazon Redshift node type.   disabled - Don't use AQUA.    auto - Amazon Redshift determines whether to use AQUA",
+            "This parameter is retired. It does not set the AQUA configuration status. Amazon Redshift automatically determines whether to use AQUA (Advanced Query Accelerator)",
           args: {
             name: "string",
           },
+        },
+        {
+          name: "--default-iam-role-arn",
+          description:
+            "The Amazon Resource Name (ARN) for the IAM role that was set as default for the cluster when the cluster was last modified while it was restored from a snapshot",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--reserved-node-id",
+          description: "The identifier of the target reserved node offering",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--target-reserved-node-offering-id",
+          description: "The identifier of the target reserved node offering",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--encrypted",
+          description:
+            "Enables support for restoring an unencrypted snapshot to a cluster encrypted with Key Management Service (KMS) and a customer managed key",
+        },
+        {
+          name: "--no-encrypted",
+          description:
+            "Enables support for restoring an unencrypted snapshot to a cluster encrypted with Key Management Service (KMS) and a customer managed key",
+        },
+        {
+          name: "--manage-master-password",
+          description:
+            "If true, Amazon Redshift uses Secrets Manager to manage the restored cluster's admin credentials. If ManageMasterPassword is false or not set, Amazon Redshift uses the admin credentials the cluster had at the time the snapshot was taken",
+        },
+        {
+          name: "--no-manage-master-password",
+          description:
+            "If true, Amazon Redshift uses Secrets Manager to manage the restored cluster's admin credentials. If ManageMasterPassword is false or not set, Amazon Redshift uses the admin credentials the cluster had at the time the snapshot was taken",
+        },
+        {
+          name: "--master-password-secret-kms-key-id",
+          description:
+            "The ID of the Key Management Service (KMS) key used to encrypt and store the cluster's admin credentials secret. You can only use this parameter if ManageMasterPassword is true",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--ip-address-type",
+          description:
+            "The IP address type for the cluster. Possible values are ipv4 and dualstack",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--multi-az",
+          description:
+            "If true, the snapshot will be restored to a cluster deployed in two Availability Zones",
+        },
+        {
+          name: "--no-multi-az",
+          description:
+            "If true, the snapshot will be restored to a cluster deployed in two Availability Zones",
         },
         {
           name: "--cli-input-json",
@@ -6295,7 +8141,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "restore-table-from-cluster-snapshot",
       description:
-        "Creates a new table from a table in an Amazon Redshift cluster snapshot. You must create the new table within the Amazon Redshift cluster that the snapshot was taken from. You cannot use RestoreTableFromClusterSnapshot to restore a table with the same name as an existing table in an Amazon Redshift cluster. That is, you cannot overwrite an existing table in a cluster with a restored table. If you want to replace your original table with a new, restored table, then rename or drop your original table before you call RestoreTableFromClusterSnapshot. When you have renamed your original table, then you can pass the original name of the table as the NewTableName parameter value in the call to RestoreTableFromClusterSnapshot. This way, you can replace the original table with the table created from the snapshot",
+        "Creates a new table from a table in an Amazon Redshift cluster snapshot. You must create the new table within the Amazon Redshift cluster that the snapshot was taken from. You cannot use RestoreTableFromClusterSnapshot to restore a table with the same name as an existing table in an Amazon Redshift cluster. That is, you cannot overwrite an existing table in a cluster with a restored table. If you want to replace your original table with a new, restored table, then rename or drop your original table before you call RestoreTableFromClusterSnapshot. When you have renamed your original table, then you can pass the original name of the table as the NewTableName parameter value in the call to RestoreTableFromClusterSnapshot. This way, you can replace the original table with the table created from the snapshot. You can't use this operation to restore tables with interleaved sort keys",
       options: [
         {
           name: "--cluster-identifier",
@@ -6449,7 +8295,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ec2-security-group-owner-id",
           description:
-            "The AWS account number of the owner of the security group specified in the EC2SecurityGroupName parameter. The AWS access key ID is not an acceptable value. If EC2SecurityGroupOwnerId is specified, EC2SecurityGroupName must also be provided. and CIDRIP cannot be provided.  Example: 111122223333",
+            "The Amazon Web Services account number of the owner of the security group specified in the EC2SecurityGroupName parameter. The Amazon Web Services access key ID is not an acceptable value. If EC2SecurityGroupOwnerId is specified, EC2SecurityGroupName must also be provided. and CIDRIP cannot be provided.  Example: 111122223333",
           args: {
             name: "string",
           },
@@ -6486,7 +8332,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--account",
-          description: "The AWS account ID whose access is to be revoked",
+          description:
+            "The Amazon Web Services account ID whose access is to be revoked",
           args: {
             name: "string",
           },
@@ -6531,12 +8378,20 @@ const completionSpec: Fig.Spec = {
     {
       name: "revoke-snapshot-access",
       description:
-        "Removes the ability of the specified AWS customer account to restore the specified snapshot. If the account is currently restoring the snapshot, the restore will run to completion.  For more information about working with snapshots, go to Amazon Redshift Snapshots in the Amazon Redshift Cluster Management Guide",
+        "Removes the ability of the specified Amazon Web Services account to restore the specified snapshot. If the account is currently restoring the snapshot, the restore will run to completion.  For more information about working with snapshots, go to Amazon Redshift Snapshots in the Amazon Redshift Cluster Management Guide",
       options: [
         {
           name: "--snapshot-identifier",
           description:
             "The identifier of the snapshot that the account can no longer access",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--snapshot-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the snapshot associated with the message to revoke access",
           args: {
             name: "string",
           },
@@ -6552,7 +8407,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--account-with-restore-access",
           description:
-            "The identifier of the AWS customer account that can no longer restore the specified snapshot",
+            "The identifier of the Amazon Web Services account that can no longer restore the specified snapshot",
           args: {
             name: "string",
           },
@@ -6613,7 +8468,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--account-id",
-          description: "The AWS account ID that owns the cluster",
+          description:
+            "The Amazon Web Services account ID that owns the cluster",
           args: {
             name: "string",
           },
@@ -6704,7 +8560,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--marker",
               description:
-                "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeClusters request exceed the value specified in MaxRecords, AWS returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request.  Constraints: You can specify either the ClusterIdentifier parameter or the Marker parameter, but not both",
+                "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeClusters request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request.  Constraints: You can specify either the ClusterIdentifier parameter or the Marker parameter, but not both",
               args: {
                 name: "string",
               },
@@ -6792,7 +8648,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--marker",
               description:
-                "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeClusters request exceed the value specified in MaxRecords, AWS returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request.  Constraints: You can specify either the ClusterIdentifier parameter or the Marker parameter, but not both",
+                "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeClusters request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request.  Constraints: You can specify either the ClusterIdentifier parameter or the Marker parameter, but not both",
               args: {
                 name: "string",
               },
@@ -6880,7 +8736,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--marker",
               description:
-                "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeClusters request exceed the value specified in MaxRecords, AWS returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request.  Constraints: You can specify either the ClusterIdentifier parameter or the Marker parameter, but not both",
+                "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeClusters request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request.  Constraints: You can specify either the ClusterIdentifier parameter or the Marker parameter, but not both",
               args: {
                 name: "string",
               },
@@ -6966,6 +8822,14 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
+              name: "--snapshot-arn",
+              description:
+                "The Amazon Resource Name (ARN) of the snapshot associated with the message to describe cluster snapshots",
+              args: {
+                name: "string",
+              },
+            },
+            {
               name: "--snapshot-type",
               description:
                 "The type of snapshots for which you are requesting information. By default, snapshots of all types are returned. Valid Values: automated | manual",
@@ -7000,7 +8864,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--marker",
               description:
-                "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeClusterSnapshots request exceed the value specified in MaxRecords, AWS returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
+                "An optional parameter that specifies the starting point to return a set of response records. When the results of a DescribeClusterSnapshots request exceed the value specified in MaxRecords, Amazon Web Services returns a value in the Marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the Marker parameter and retrying the request",
               args: {
                 name: "string",
               },
@@ -7008,7 +8872,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--owner-account",
               description:
-                "The AWS customer account used to create or copy the snapshot. Use this field to filter the results to snapshots owned by a particular account. To describe snapshots you own, either specify your AWS customer account, or do not specify the parameter",
+                "The Amazon Web Services account used to create or copy the snapshot. Use this field to filter the results to snapshots owned by a particular account. To describe snapshots you own, either specify your Amazon Web Services account, or do not specify the parameter",
               args: {
                 name: "string",
               },
@@ -7092,5 +8956,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

@@ -701,7 +701,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-application-policy",
       description:
-        "Sets the permission policy for an application. For the list of actions supported for this operation, see\n Application \n Permissions\n",
+        "Sets the permission policy for an application. For the list of actions supported for this operation, see\n Application \n Permissions",
       options: [
         {
           name: "--application-id",
@@ -856,5 +856,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

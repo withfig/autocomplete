@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "signer",
   description:
-    "AWS Signer is a fully managed code signing service to help you ensure the trust and integrity of your code.  AWS Signer supports the following applications: With code signing for AWS Lambda, you can sign AWS Lambda deployment packages. Integrated support is provided for Amazon S3, Amazon CloudWatch, and AWS CloudTrail. In order to sign code, you create a signing profile and then use Signer to sign Lambda zip files in S3.  With code signing for IoT, you can sign code for any IoT device that is supported by AWS. IoT code signing is available for Amazon FreeRTOS and AWS IoT Device Management, and is integrated with AWS Certificate Manager (ACM). In order to sign code, you import a third-party code signing certificate using ACM, and use that to sign updates in Amazon FreeRTOS and AWS IoT Device Management.  For more information about AWS Signer, see the AWS Signer Developer Guide",
+    "AWS Signer is a fully managed code-signing service to help you ensure the trust and integrity of your code.  Signer supports the following applications: With code signing for AWS Lambda, you can sign AWS Lambda deployment packages. Integrated support is provided for Amazon S3, Amazon CloudWatch, and AWS CloudTrail. In order to sign code, you create a signing profile and then use Signer to sign Lambda zip files in S3.  With code signing for IoT, you can sign code for any IoT device that is supported by AWS. IoT code signing is available for Amazon FreeRTOS and AWS IoT Device Management, and is integrated with AWS Certificate Manager (ACM). In order to sign code, you import a third-party code-signing certificate using ACM, and use that to sign updates in Amazon FreeRTOS and AWS IoT Device Management.  With Signer and the Notation CLI from the Notary\u2028 Project, you can sign container images stored in a container registry such as Amazon Elastic Container Registry (ECR). The signatures are stored in the registry alongside the images, where they are available for verifying image authenticity and integrity. For more information about Signer, see the AWS Signer Developer Guide",
   subcommands: [
     {
       name: "add-profile-permission",
@@ -24,7 +24,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--action",
           description:
-            "The AWS Signer action permitted as part of cross-account permissions",
+            "For cross-account signing. Grant a designated account permission to perform one or more of the following actions. Each action is associated with a specific API's operations. For more information about cross-account signing, see Using cross-account signing with signing profiles in the AWS Signer Developer Guide. You can designate the following actions to an account.    signer:StartSigningJob. This action isn't supported for container image workflows. For details, see StartSigningJob.    signer:SignPayload. This action isn't supported for AWS Lambda workflows. For details, see SignPayload     signer:GetSigningProfile. For details, see GetSigningProfile.    signer:RevokeSignature. For details, see RevokeSignature",
           args: {
             name: "string",
           },
@@ -112,6 +112,67 @@ const completionSpec: Fig.Spec = {
           description: "The ID of the signing job on input",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-revocation-status",
+      description:
+        "Retrieves the revocation status of one or more of the signing profile, signing job, and signing certificate",
+      options: [
+        {
+          name: "--signature-timestamp",
+          description:
+            "The timestamp of the signature that validates the profile or job",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--platform-id",
+          description: "The ID of a signing platform",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--profile-version-arn",
+          description: "The version of a signing profile",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--job-arn",
+          description: "The ARN of a signing job",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--certificate-hashes",
+          description:
+            "A list of composite signed hashes that identify certificates. A certificate identifier consists of a subject certificate TBS hash (signed by the parent CA) combined with a parent CA TBS hash (signed by the parent CA\u2019s CA). Root certificates are defined as their own CA. The following example shows how to calculate a hash for this parameter using OpenSSL commands:   openssl asn1parse -in childCert.pem -strparse 4 -out childCert.tbs   openssl sha384 < childCert.tbs -binary > childCertTbsHash   openssl asn1parse -in parentCert.pem -strparse 4 -out parentCert.tbs   openssl sha384 < parentCert.tbs -binary > parentCertTbsHash xxd -p childCertTbsHash > certificateHash.hex xxd -p parentCertTbsHash >> certificateHash.hex   cat certificateHash.hex | tr -d '\\n'",
+          args: {
+            name: "list",
           },
         },
         {
@@ -243,7 +304,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-signing-jobs",
       description:
-        "Lists all your signing jobs. You can use the maxResults parameter to limit the number of signing jobs that are returned in the response. If additional jobs remain to be listed, code signing returns a nextToken value. Use this value in subsequent calls to ListSigningJobs to fetch the remaining values. You can continue calling ListSigningJobs with your maxResults parameter and with new values that code signing returns in the nextToken parameter until all of your signing jobs have been returned",
+        "Lists all your signing jobs. You can use the maxResults parameter to limit the number of signing jobs that are returned in the response. If additional jobs remain to be listed, AWS Signer returns a nextToken value. Use this value in subsequent calls to ListSigningJobs to fetch the remaining values. You can continue calling ListSigningJobs with your maxResults parameter and with new values that Signer returns in the nextToken parameter until all of your signing jobs have been returned",
       options: [
         {
           name: "--status",
@@ -363,7 +424,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-signing-platforms",
       description:
-        "Lists all signing platforms available in code signing that match the request parameters. If additional jobs remain to be listed, code signing returns a nextToken value. Use this value in subsequent calls to ListSigningJobs to fetch the remaining values. You can continue calling ListSigningJobs with your maxResults parameter and with new values that code signing returns in the nextToken parameter until all of your signing jobs have been returned",
+        "Lists all signing platforms available in AWS Signer that match the request parameters. If additional jobs remain to be listed, Signer returns a nextToken value. Use this value in subsequent calls to ListSigningJobs to fetch the remaining values. You can continue calling ListSigningJobs with your maxResults parameter and with new values that Signer returns in the nextToken parameter until all of your signing jobs have been returned",
       options: [
         {
           name: "--category",
@@ -449,7 +510,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-signing-profiles",
       description:
-        "Lists all available signing profiles in your AWS account. Returns only profiles with an ACTIVE status unless the includeCanceled request field is set to true. If additional jobs remain to be listed, code signing returns a nextToken value. Use this value in subsequent calls to ListSigningJobs to fetch the remaining values. You can continue calling ListSigningJobs with your maxResults parameter and with new values that code signing returns in the nextToken parameter until all of your signing jobs have been returned",
+        "Lists all available signing profiles in your AWS account. Returns only profiles with an ACTIVE status unless the includeCanceled request field is set to true. If additional jobs remain to be listed, AWS Signer returns a nextToken value. Use this value in subsequent calls to ListSigningJobs to fetch the remaining values. You can continue calling ListSigningJobs with your maxResults parameter and with new values that Signer returns in the nextToken parameter until all of your signing jobs have been returned",
       options: [
         {
           name: "--include-canceled",
@@ -569,7 +630,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-signing-profile",
       description:
-        "Creates a signing profile. A signing profile is a code signing template that can be used to carry out a pre-defined signing job. For more information, see http://docs.aws.amazon.com/signer/latest/developerguide/gs-profile.html",
+        "Creates a signing profile. A signing profile is a code-signing template that can be used to carry out a pre-defined signing job",
       options: [
         {
           name: "--profile-name",
@@ -790,9 +851,61 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "sign-payload",
+      description: "Signs a binary payload and returns a signature envelope",
+      options: [
+        {
+          name: "--profile-name",
+          description: "The name of the signing profile",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--profile-owner",
+          description: "The AWS account ID of the profile owner",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--payload",
+          description: "Specifies the object digest (hash) to sign",
+          args: {
+            name: "blob",
+          },
+        },
+        {
+          name: "--payload-format",
+          description:
+            "Payload content type. The single valid type is application/vnd.cncf.notary.payload.v1+json",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "start-signing-job",
       description:
-        "Initiates a signing job to be performed on the code provided. Signing jobs are viewable by the ListSigningJobs operation for two years after they are performed. Note the following requirements:     You must create an Amazon S3 source bucket. For more information, see Create a Bucket in the Amazon S3 Getting Started Guide.    Your S3 source bucket must be version enabled.   You must create an S3 destination bucket. Code signing uses your S3 destination bucket to write your signed code.   You specify the name of the source and destination buckets when calling the StartSigningJob operation.   You must also specify a request token that identifies your request to code signing.   You can call the DescribeSigningJob and the ListSigningJobs actions after you call StartSigningJob. For a Java example that shows how to use this action, see http://docs.aws.amazon.com/acm/latest/userguide/",
+        "Initiates a signing job to be performed on the code provided. Signing jobs are viewable by the ListSigningJobs operation for two years after they are performed. Note the following requirements:     You must create an Amazon S3 source bucket. For more information, see Creating a Bucket in the Amazon S3 Getting Started Guide.    Your S3 source bucket must be version enabled.   You must create an S3 destination bucket. AWS Signer uses your S3 destination bucket to write your signed code.   You specify the name of the source and destination buckets when calling the StartSigningJob operation.   You must ensure the S3 buckets are from the same Region as the signing profile. Cross-Region signing isn't supported.   You must also specify a request token that identifies your request to Signer.   You can call the DescribeSigningJob and the ListSigningJobs actions after you call StartSigningJob. For a Java example that shows how to use this action, see StartSigningJob",
       options: [
         {
           name: "--source",
@@ -969,5 +1082,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

@@ -5,7 +5,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "configure-logs",
       description:
-        "Changes the Channel's properties to configure log subscription",
+        "Changes the Channel's properities to configure log subscription",
       options: [
         {
           name: "--egress-access-logs",
@@ -965,5 +965,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

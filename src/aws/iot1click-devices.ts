@@ -108,7 +108,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-device-methods",
       description:
-        "Given a device ID, returns the invocable methods associated with the device",
+        "Given a device ID, returns the invokable methods associated with the device",
       options: [
         {
           name: "--device-id",
@@ -551,5 +551,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

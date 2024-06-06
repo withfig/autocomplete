@@ -6,7 +6,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "add-permission",
       description:
-        "Adds a statement to a topic's access control policy, granting access for the specified AWS accounts to the specified actions",
+        "Adds a statement to a topic's access control policy, granting access for the specified Amazon Web Services accounts to the specified actions.  To remove the ability to change topic permissions, you must deny permissions to the AddPermission, RemovePermission, and SetTopicAttributes actions in your IAM policy",
       options: [
         {
           name: "--topic-arn",
@@ -26,7 +26,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--aws-account-id",
           description:
-            "The AWS account IDs of the users (principals) who will be given access to the specified actions. The users must have AWS accounts, but do not need to be signed up for this service",
+            "The Amazon Web Services account IDs of the users (principals) who will be given access to the specified actions. The users must have Amazon Web Services account, but do not need to be signed up for this service",
           args: {
             name: "list",
           },
@@ -61,7 +61,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "check-if-phone-number-is-opted-out",
       description:
-        "Accepts a phone number and indicates whether the phone holder has opted out of receiving SMS messages from your account. You cannot send SMS messages to a number that is opted out. To resume sending messages, you can opt in the number by using the OptInPhoneNumber action",
+        "Accepts a phone number and indicates whether the phone holder has opted out of receiving SMS messages from your Amazon Web Services account. You cannot send SMS messages to a number that is opted out. To resume sending messages, you can opt in the number by using the OptInPhoneNumber action",
       options: [
         {
           name: "--phone-number",
@@ -114,7 +114,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authenticate-on-unsubscribe",
           description:
-            "Disallows unauthenticated unsubscribes of the subscription. If the value of this parameter is true and the request has an AWS signature, then only the topic owner and the subscription owner can unsubscribe the endpoint. The unsubscribe action requires AWS authentication",
+            "Disallows unauthenticated unsubscribes of the subscription. If the value of this parameter is true and the request has an Amazon Web Services signature, then only the topic owner and the subscription owner can unsubscribe the endpoint. The unsubscribe action requires Amazon Web Services authentication",
           args: {
             name: "string",
           },
@@ -141,7 +141,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-platform-application",
       description:
-        "Creates a platform application object for one of the supported push notification services, such as APNS and GCM (Firebase Cloud Messaging), to which devices and mobile apps may register. You must specify PlatformPrincipal and PlatformCredential attributes when using the CreatePlatformApplication action.  PlatformPrincipal and PlatformCredential are received from the notification service.   For ADM, PlatformPrincipal is client id and PlatformCredential is client secret.   For Baidu, PlatformPrincipal is API key and PlatformCredential is secret key.   For APNS and APNS_SANDBOX, PlatformPrincipal is SSL certificate and PlatformCredential is private key.   For GCM (Firebase Cloud Messaging), there is no PlatformPrincipal and the PlatformCredential is API key.   For MPNS, PlatformPrincipal is TLS certificate and PlatformCredential is private key.   For WNS, PlatformPrincipal is Package Security Identifier and PlatformCredential is secret key.   You can use the returned PlatformApplicationArn as an attribute for the CreatePlatformEndpoint action",
+        "Creates a platform application object for one of the supported push notification services, such as APNS and GCM (Firebase Cloud Messaging), to which devices and mobile apps may register. You must specify PlatformPrincipal and PlatformCredential attributes when using the CreatePlatformApplication action.  PlatformPrincipal and PlatformCredential are received from the notification service.   For ADM, PlatformPrincipal is client id and PlatformCredential is client secret.   For Baidu, PlatformPrincipal is API key and PlatformCredential is secret key.   For APNS and APNS_SANDBOX using certificate credentials, PlatformPrincipal is SSL certificate and PlatformCredential is private key.   For APNS and APNS_SANDBOX using token credentials, PlatformPrincipal is signing key ID and PlatformCredential is signing key.   For GCM (Firebase Cloud Messaging) using key credentials, there is no PlatformPrincipal. The PlatformCredential is API key.   For GCM (Firebase Cloud Messaging) using token credentials, there is no PlatformPrincipal. The PlatformCredential is a JSON formatted private key file. When using the Amazon Web Services CLI, the file must be in string format and special characters must be ignored. To format the file correctly, Amazon SNS recommends using the following command: SERVICE_JSON=`jq @json <<< cat service.json`.   For MPNS, PlatformPrincipal is TLS certificate and PlatformCredential is private key.   For WNS, PlatformPrincipal is Package Security Identifier and PlatformCredential is secret key.   You can use the returned PlatformApplicationArn as an attribute for the CreatePlatformEndpoint action",
       options: [
         {
           name: "--name",
@@ -162,7 +162,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--attributes",
           description:
-            "For a list of attributes, see SetPlatformApplicationAttributes",
+            "For a list of attributes, see  SetPlatformApplicationAttributes",
           args: {
             name: "map",
           },
@@ -217,7 +217,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--attributes",
-          description: "For a list of attributes, see SetEndpointAttributes",
+          description: "For a list of attributes, see  SetEndpointAttributes",
           args: {
             name: "map",
           },
@@ -242,9 +242,49 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-sms-sandbox-phone-number",
+      description:
+        "Adds a destination phone number to an Amazon Web Services account in the SMS sandbox and sends a one-time password (OTP) to that phone number. When you start using Amazon SNS to send SMS messages, your Amazon Web Services account is in the SMS sandbox. The SMS sandbox provides a safe environment for you to try Amazon SNS features without risking your reputation as an SMS sender. While your Amazon Web Services account is in the SMS sandbox, you can use all of the features of Amazon SNS. However, you can send SMS messages only to verified destination phone numbers. For more information, including how to move out of the sandbox to send messages without restrictions, see SMS sandbox in the Amazon SNS Developer Guide",
+      options: [
+        {
+          name: "--phone-number",
+          description:
+            "The destination phone number to verify. On verification, Amazon SNS adds this phone number to the list of verified phone numbers that you can send SMS messages to",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--language-code",
+          description:
+            "The language to use for sending the OTP. The default value is en-US",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-topic",
       description:
-        "Creates a topic to which notifications can be published. Users can create at most 100,000 standard topics (at most 1,000 FIFO topics). For more information, see https://aws.amazon.com/sns. This action is idempotent, so if the requester already owns a topic with the specified name, that topic's ARN is returned without creating a new topic",
+        "Creates a topic to which notifications can be published. Users can create at most 100,000 standard topics (at most 1,000 FIFO topics). For more information, see Creating an Amazon SNS topic in the Amazon SNS Developer Guide. This action is idempotent, so if the requester already owns a topic with the specified name, that topic's ARN is returned without creating a new topic",
       options: [
         {
           name: "--name",
@@ -257,7 +297,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--attributes",
           description:
-            "A map of attributes with their corresponding values. The following lists the names, descriptions, and values of the special request parameters that the CreateTopic action uses:    DeliveryPolicy \u2013 The policy that defines how Amazon SNS retries failed deliveries to HTTP/S endpoints.    DisplayName \u2013 The display name to use for a topic with SMS subscriptions.    FifoTopic \u2013 Set to true to create a FIFO topic.    Policy \u2013 The policy that defines who can access your topic. By default, only the topic owner can publish or subscribe to the topic.   The following attribute applies only to server-side-encryption:    KmsMasterKeyId \u2013 The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CMK. For more information, see Key Terms. For more examples, see KeyId in the AWS Key Management Service API Reference.    The following attributes apply only to FIFO topics:    FifoTopic \u2013 When this is set to true, a FIFO topic is created.    ContentBasedDeduplication \u2013 Enables content-based deduplication for FIFO topics.    By default, ContentBasedDeduplication is set to false. If you create a FIFO topic and this attribute is false, you must specify a value for the MessageDeduplicationId parameter for the Publish action.    When you set ContentBasedDeduplication to true, Amazon SNS uses a SHA-256 hash to generate the MessageDeduplicationId using the body of the message (but not the attributes of the message). (Optional) To override the generated value, you can specify a value for the the MessageDeduplicationId parameter for the Publish action",
+            "A map of attributes with their corresponding values. The following lists the names, descriptions, and values of the special request parameters that the CreateTopic action uses:    DeliveryPolicy \u2013 The policy that defines how Amazon SNS retries failed deliveries to HTTP/S endpoints.    DisplayName \u2013 The display name to use for a topic with SMS subscriptions.    FifoTopic \u2013 Set to true to create a FIFO topic.    Policy \u2013 The policy that defines who can access your topic. By default, only the topic owner can publish or subscribe to the topic.    SignatureVersion \u2013 The signature version corresponds to the hashing algorithm used while creating the signature of the notifications, subscription confirmations, or unsubscribe confirmation messages sent by Amazon SNS. By default, SignatureVersion is set to 1.    TracingConfig \u2013 Tracing mode of an Amazon SNS topic. By default TracingConfig is set to PassThrough, and the topic passes through the tracing header it receives from an Amazon SNS publisher to its subscriptions. If set to Active, Amazon SNS will vend X-Ray segment data to topic owner account if the sampled flag in the tracing header is true. This is only supported on standard topics.   The following attribute applies only to server-side encryption:    KmsMasterKeyId \u2013 The ID of an Amazon Web Services managed customer master key (CMK) for Amazon SNS or a custom CMK. For more information, see Key Terms. For more examples, see KeyId in the Key Management Service API Reference.    The following attributes apply only to FIFO topics:    ArchivePolicy \u2013 Adds or updates an inline policy document to archive messages stored in the specified Amazon SNS topic.    BeginningArchiveTime \u2013 The earliest starting point at which a message in the topic\u2019s archive can be replayed from. This point in time is based on the configured message retention period set by the topic\u2019s message archiving policy.    ContentBasedDeduplication \u2013 Enables content-based deduplication for FIFO topics.   By default, ContentBasedDeduplication is set to false. If you create a FIFO topic and this attribute is false, you must specify a value for the MessageDeduplicationId parameter for the Publish action.    When you set ContentBasedDeduplication to true, Amazon SNS uses a SHA-256 hash to generate the MessageDeduplicationId using the body of the message (but not the attributes of the message). (Optional) To override the generated value, you can specify a value for the MessageDeduplicationId parameter for the Publish action",
           args: {
             name: "map",
           },
@@ -268,6 +308,14 @@ const completionSpec: Fig.Spec = {
             "The list of tags to add to a new topic.  To be able to tag a topic on creation, you must have the sns:CreateTopic and sns:TagResource permissions",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--data-protection-policy",
+          description:
+            "The body of the policy document you want to use for this topic. You can only add one policy per topic. The policy must be in JSON string format. Length Constraints: Maximum length of 30,720",
+          args: {
+            name: "string",
           },
         },
         {
@@ -353,6 +401,37 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-sms-sandbox-phone-number",
+      description:
+        "Deletes an Amazon Web Services account's verified or pending phone number from the SMS sandbox. When you start using Amazon SNS to send SMS messages, your Amazon Web Services account is in the SMS sandbox. The SMS sandbox provides a safe environment for you to try Amazon SNS features without risking your reputation as an SMS sender. While your Amazon Web Services account is in the SMS sandbox, you can use all of the features of Amazon SNS. However, you can send SMS messages only to verified destination phone numbers. For more information, including how to move out of the sandbox to send messages without restrictions, see SMS sandbox in the Amazon SNS Developer Guide",
+      options: [
+        {
+          name: "--phone-number",
+          description: "The destination phone number to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-topic",
       description:
         "Deletes a topic and all its subscriptions. Deleting a topic might prevent some messages previously sent to the topic from being delivered to subscribers. This action is idempotent, so deleting a topic that does not exist does not result in an error",
@@ -360,6 +439,38 @@ const completionSpec: Fig.Spec = {
         {
           name: "--topic-arn",
           description: "The ARN of the topic you want to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-data-protection-policy",
+      description:
+        "Retrieves the specified inline DataProtectionPolicy document that is stored in the specified Amazon SNS topic",
+      options: [
+        {
+          name: "--resource-arn",
+          description:
+            "The ARN of the topic whose DataProtectionPolicy you want to get. For more information about ARNs, see Amazon Resource Names (ARNs) in the Amazon Web Services General Reference",
           args: {
             name: "string",
           },
@@ -449,7 +560,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-sms-attributes",
       description:
-        "Returns the settings for sending SMS messages from your account. These settings are set with the SetSMSAttributes action",
+        "Returns the settings for sending SMS messages from your Amazon Web Services account. These settings are set with the SetSMSAttributes action",
       options: [
         {
           name: "--attributes",
@@ -459,6 +570,30 @@ const completionSpec: Fig.Spec = {
             name: "list",
           },
         },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-sms-sandbox-account-status",
+      description:
+        "Retrieves the SMS sandbox status for the calling Amazon Web Services account in the target Amazon Web Services Region. When you start using Amazon SNS to send SMS messages, your Amazon Web Services account is in the SMS sandbox. The SMS sandbox provides a safe environment for you to try Amazon SNS features without risking your reputation as an SMS sender. While your Amazon Web Services account is in the SMS sandbox, you can use all of the features of Amazon SNS. However, you can send SMS messages only to verified destination phone numbers. For more information, including how to move out of the sandbox to send messages without restrictions, see SMS sandbox in the Amazon SNS Developer Guide",
+      options: [
         {
           name: "--cli-input-json",
           description:
@@ -597,6 +732,69 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-origination-numbers",
+      description:
+        "Lists the calling Amazon Web Services account's dedicated origination numbers and their metadata. For more information about origination numbers, see Origination numbers in the Amazon SNS Developer Guide",
+      options: [
+        {
+          name: "--next-token",
+          description:
+            "Token that the previous ListOriginationNumbers request returns",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum number of origination numbers to return",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-phone-numbers-opted-out",
       description:
         "Returns a list of phone numbers that are opted out, meaning you cannot send SMS messages to them. The results for ListPhoneNumbersOptedOut are paginated, and each page returns up to 100 phone numbers. If additional phone numbers are available after the first page of results, then a NextToken string will be returned. To receive the next page, you call ListPhoneNumbersOptedOut again using the NextToken string received from the previous call. When there are no more records to return, NextToken will be null",
@@ -671,6 +869,69 @@ const completionSpec: Fig.Spec = {
             "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-sms-sandbox-phone-numbers",
+      description:
+        "Lists the calling Amazon Web Services account's current verified and pending destination phone numbers in the SMS sandbox. When you start using Amazon SNS to send SMS messages, your Amazon Web Services account is in the SMS sandbox. The SMS sandbox provides a safe environment for you to try Amazon SNS features without risking your reputation as an SMS sender. While your Amazon Web Services account is in the SMS sandbox, you can use all of the features of Amazon SNS. However, you can send SMS messages only to verified destination phone numbers. For more information, including how to move out of the sandbox to send messages without restrictions, see SMS sandbox in the Amazon SNS Developer Guide",
+      options: [
+        {
+          name: "--next-token",
+          description:
+            "Token that the previous ListSMSSandboxPhoneNumbersInput request returns",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum number of phone numbers to return",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -908,7 +1169,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "publish",
       description:
-        "Sends a message to an Amazon SNS topic, a text message (SMS message) directly to a phone number, or a message to a mobile platform endpoint (when you specify the TargetArn). If you send a message to a topic, Amazon SNS delivers the message to each endpoint that is subscribed to the topic. The format of the message depends on the notification protocol for each subscribed endpoint. When a messageId is returned, the message has been saved and Amazon SNS will attempt to deliver it shortly. To use the Publish action for sending a message to a mobile endpoint, such as an app on a Kindle device or mobile phone, you must specify the EndpointArn for the TargetArn parameter. The EndpointArn is returned when making a call with the CreatePlatformEndpoint action.  For more information about formatting messages, see Send Custom Platform-Specific Payloads in Messages to Mobile Devices.   You can publish messages only to topics and endpoints in the same AWS Region",
+        "Sends a message to an Amazon SNS topic, a text message (SMS message) directly to a phone number, or a message to a mobile platform endpoint (when you specify the TargetArn). If you send a message to a topic, Amazon SNS delivers the message to each endpoint that is subscribed to the topic. The format of the message depends on the notification protocol for each subscribed endpoint. When a messageId is returned, the message is saved and Amazon SNS immediately delivers it to subscribers. To use the Publish action for publishing a message to a mobile endpoint, such as an app on a Kindle device or mobile phone, you must specify the EndpointArn for the TargetArn parameter. The EndpointArn is returned when making a call with the CreatePlatformEndpoint action.  For more information about formatting messages, see Send Custom Platform-Specific Payloads in Messages to Mobile Devices.   You can publish messages only to topics and endpoints in the same Amazon Web Services Region",
       options: [
         {
           name: "--topic-arn",
@@ -1001,8 +1262,89 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "publish-batch",
+      description:
+        "Publishes up to ten messages to the specified topic. This is a batch version of Publish. For FIFO topics, multiple messages within a single batch are published in the order they are sent, and messages are deduplicated within the batch and across batches for 5 minutes. The result of publishing each message is reported individually in the response. Because the batch request can result in a combination of successful and unsuccessful actions, you should check for batch errors even when the call returns an HTTP status code of 200. The maximum allowed individual message size and the maximum total payload size (the sum of the individual lengths of all of the batched messages) are both 256 KB (262,144 bytes).  Some actions take lists of parameters. These lists are specified using the param.n notation. Values of n are integers starting from 1. For example, a parameter list with two elements looks like this:  &AttributeName.1=first &AttributeName.2=second If you send a batch message to a topic, Amazon SNS publishes the batch message to each endpoint that is subscribed to the topic. The format of the batch message depends on the notification protocol for each subscribed endpoint. When a messageId is returned, the batch message is saved and Amazon SNS immediately delivers the message to subscribers",
+      options: [
+        {
+          name: "--topic-arn",
+          description:
+            "The Amazon resource name (ARN) of the topic you want to batch publish to",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--publish-batch-request-entries",
+          description:
+            "A list of PublishBatch request entries to be sent to the SNS topic",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "put-data-protection-policy",
+      description:
+        "Adds or updates an inline policy document that is stored in the specified Amazon SNS topic",
+      options: [
+        {
+          name: "--resource-arn",
+          description:
+            "The ARN of the topic whose DataProtectionPolicy you want to add or update. For more information about ARNs, see Amazon Resource Names (ARNs) in the Amazon Web Services General Reference",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--data-protection-policy",
+          description:
+            "The JSON serialization of the topic's DataProtectionPolicy. The DataProtectionPolicy must be in JSON string format. Length Constraints: Maximum length of 30,720",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "remove-permission",
-      description: "Removes a statement from a topic's access control policy",
+      description:
+        "Removes a statement from a topic's access control policy.  To remove the ability to change topic permissions, you must deny permissions to the AddPermission, RemovePermission, and SetTopicAttributes actions in your IAM policy",
       options: [
         {
           name: "--topic-arn",
@@ -1093,7 +1435,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--attributes",
           description:
-            "A map of the platform application attributes. Attributes in this map include the following:    PlatformCredential \u2013 The credential received from the notification service. For APNS and APNS_SANDBOX, PlatformCredential is private key. For GCM (Firebase Cloud Messaging), PlatformCredential is API key. For ADM, PlatformCredential is client secret.    PlatformPrincipal \u2013 The principal received from the notification service. For APNS and APNS_SANDBOX, PlatformPrincipal is SSL certificate. For GCM (Firebase Cloud Messaging), there is no PlatformPrincipal. For ADM, PlatformPrincipal is client id.    EventEndpointCreated \u2013 Topic ARN to which EndpointCreated event notifications are sent.    EventEndpointDeleted \u2013 Topic ARN to which EndpointDeleted event notifications are sent.    EventEndpointUpdated \u2013 Topic ARN to which EndpointUpdate event notifications are sent.    EventDeliveryFailure \u2013 Topic ARN to which DeliveryFailure event notifications are sent upon Direct Publish delivery failure (permanent) to one of the application's endpoints.    SuccessFeedbackRoleArn \u2013 IAM role ARN used to give Amazon SNS write access to use CloudWatch Logs on your behalf.    FailureFeedbackRoleArn \u2013 IAM role ARN used to give Amazon SNS write access to use CloudWatch Logs on your behalf.    SuccessFeedbackSampleRate \u2013 Sample rate percentage (0-100) of successfully delivered messages",
+            "A map of the platform application attributes. Attributes in this map include the following:    PlatformCredential \u2013 The credential received from the notification service.   For ADM, PlatformCredentialis client secret.   For Apple Services using certificate credentials, PlatformCredential is private key.   For Apple Services using token credentials, PlatformCredential is signing key.   For GCM (Firebase Cloud Messaging) using key credentials, there is no PlatformPrincipal. The PlatformCredential is API key.   For GCM (Firebase Cloud Messaging) using token credentials, there is no PlatformPrincipal. The PlatformCredential is a JSON formatted private key file. When using the Amazon Web Services CLI, the file must be in string format and special characters must be ignored. To format the file correctly, Amazon SNS recommends using the following command: SERVICE_JSON=`jq @json <<< cat service.json`.        PlatformPrincipal \u2013 The principal received from the notification service.   For ADM, PlatformPrincipalis client id.   For Apple Services using certificate credentials, PlatformPrincipal is SSL certificate.   For Apple Services using token credentials, PlatformPrincipal is signing key ID.   For GCM (Firebase Cloud Messaging), there is no PlatformPrincipal.         EventEndpointCreated \u2013 Topic ARN to which EndpointCreated event notifications are sent.    EventEndpointDeleted \u2013 Topic ARN to which EndpointDeleted event notifications are sent.    EventEndpointUpdated \u2013 Topic ARN to which EndpointUpdate event notifications are sent.    EventDeliveryFailure \u2013 Topic ARN to which DeliveryFailure event notifications are sent upon Direct Publish delivery failure (permanent) to one of the application's endpoints.    SuccessFeedbackRoleArn \u2013 IAM role ARN used to give Amazon SNS write access to use CloudWatch Logs on your behalf.    FailureFeedbackRoleArn \u2013 IAM role ARN used to give Amazon SNS write access to use CloudWatch Logs on your behalf.    SuccessFeedbackSampleRate \u2013 Sample rate percentage (0-100) of successfully delivered messages.   The following attributes only apply to APNs token-based authentication:    ApplePlatformTeamID \u2013 The identifier that's assigned to your Apple developer account team.    ApplePlatformBundleID \u2013 The bundle identifier that's assigned to your iOS app",
           args: {
             name: "map",
           },
@@ -1125,7 +1467,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--attributes",
           description:
-            "The default settings for sending SMS messages from your account. You can set values for the following attribute names:  MonthlySpendLimit \u2013 The maximum amount in USD that you are willing to spend each month to send SMS messages. When Amazon SNS determines that sending an SMS message would incur a cost that exceeds this limit, it stops sending SMS messages within minutes.  Amazon SNS stops sending SMS messages within minutes of the limit being crossed. During that interval, if you continue to send SMS messages, you will incur costs that exceed your limit.  By default, the spend limit is set to the maximum allowed by Amazon SNS. If you want to raise the limit, submit an SNS Limit Increase case. For New limit value, enter your desired monthly spend limit. In the Use Case Description field, explain that you are requesting an SMS monthly spend limit increase.  DeliveryStatusIAMRole \u2013 The ARN of the IAM role that allows Amazon SNS to write logs about SMS deliveries in CloudWatch Logs. For each SMS message that you send, Amazon SNS writes a log that includes the message price, the success or failure status, the reason for failure (if the message failed), the message dwell time, and other information.  DeliveryStatusSuccessSamplingRate \u2013 The percentage of successful SMS deliveries for which Amazon SNS will write logs in CloudWatch Logs. The value can be an integer from 0 - 100. For example, to write logs only for failed deliveries, set this value to 0. To write logs for 10% of your successful deliveries, set it to 10.  DefaultSenderID \u2013 A string, such as your business brand, that is displayed as the sender on the receiving device. Support for sender IDs varies by country. The sender ID can be 1 - 11 alphanumeric characters, and it must contain at least one letter.  DefaultSMSType \u2013 The type of SMS message that you will send by default. You can assign the following values:    Promotional \u2013 (Default) Noncritical messages, such as marketing messages. Amazon SNS optimizes the message delivery to incur the lowest cost.    Transactional \u2013 Critical messages that support customer transactions, such as one-time passcodes for multi-factor authentication. Amazon SNS optimizes the message delivery to achieve the highest reliability.    UsageReportS3Bucket \u2013 The name of the Amazon S3 bucket to receive daily SMS usage reports from Amazon SNS. Each day, Amazon SNS will deliver a usage report as a CSV file to the bucket. The report includes the following information for each SMS message that was successfully delivered by your account:   Time that the message was published (in UTC)   Message ID   Destination phone number   Message type   Delivery status   Message price (in USD)   Part number (a message is split into multiple parts if it is too long for a single message)   Total number of parts   To receive the report, the bucket must have a policy that allows the Amazon SNS service principle to perform the s3:PutObject and s3:GetBucketLocation actions. For an example bucket policy and usage report, see Monitoring SMS Activity in the Amazon SNS Developer Guide",
+            "The default settings for sending SMS messages from your Amazon Web Services account. You can set values for the following attribute names:  MonthlySpendLimit \u2013 The maximum amount in USD that you are willing to spend each month to send SMS messages. When Amazon SNS determines that sending an SMS message would incur a cost that exceeds this limit, it stops sending SMS messages within minutes.  Amazon SNS stops sending SMS messages within minutes of the limit being crossed. During that interval, if you continue to send SMS messages, you will incur costs that exceed your limit.  By default, the spend limit is set to the maximum allowed by Amazon SNS. If you want to raise the limit, submit an SNS Limit Increase case. For New limit value, enter your desired monthly spend limit. In the Use Case Description field, explain that you are requesting an SMS monthly spend limit increase.  DeliveryStatusIAMRole \u2013 The ARN of the IAM role that allows Amazon SNS to write logs about SMS deliveries in CloudWatch Logs. For each SMS message that you send, Amazon SNS writes a log that includes the message price, the success or failure status, the reason for failure (if the message failed), the message dwell time, and other information.  DeliveryStatusSuccessSamplingRate \u2013 The percentage of successful SMS deliveries for which Amazon SNS will write logs in CloudWatch Logs. The value can be an integer from 0 - 100. For example, to write logs only for failed deliveries, set this value to 0. To write logs for 10% of your successful deliveries, set it to 10.  DefaultSenderID \u2013 A string, such as your business brand, that is displayed as the sender on the receiving device. Support for sender IDs varies by country. The sender ID can be 1 - 11 alphanumeric characters, and it must contain at least one letter.  DefaultSMSType \u2013 The type of SMS message that you will send by default. You can assign the following values:    Promotional \u2013 (Default) Noncritical messages, such as marketing messages. Amazon SNS optimizes the message delivery to incur the lowest cost.    Transactional \u2013 Critical messages that support customer transactions, such as one-time passcodes for multi-factor authentication. Amazon SNS optimizes the message delivery to achieve the highest reliability.    UsageReportS3Bucket \u2013 The name of the Amazon S3 bucket to receive daily SMS usage reports from Amazon SNS. Each day, Amazon SNS will deliver a usage report as a CSV file to the bucket. The report includes the following information for each SMS message that was successfully delivered by your Amazon Web Services account:   Time that the message was published (in UTC)   Message ID   Destination phone number   Message type   Delivery status   Message price (in USD)   Part number (a message is split into multiple parts if it is too long for a single message)   Total number of parts   To receive the report, the bucket must have a policy that allows the Amazon SNS service principal to perform the s3:PutObject and s3:GetBucketLocation actions. For an example bucket policy and usage report, see Monitoring SMS Activity in the Amazon SNS Developer Guide",
           args: {
             name: "map",
           },
@@ -1164,7 +1506,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--attribute-name",
           description:
-            "A map of attributes with their corresponding values. The following lists the names, descriptions, and values of the special request parameters that this action uses:    DeliveryPolicy \u2013 The policy that defines how Amazon SNS retries failed deliveries to HTTP/S endpoints.    FilterPolicy \u2013 The simple JSON object that lets your subscriber receive only a subset of messages, rather than receiving every message published to the topic.    RawMessageDelivery \u2013 When set to true, enables raw message delivery to Amazon SQS or HTTP/S endpoints. This eliminates the need for the endpoints to process JSON formatting, which is otherwise created for Amazon SNS metadata.    RedrivePolicy \u2013 When specified, sends undeliverable messages to the specified Amazon SQS dead-letter queue. Messages that can't be delivered due to client errors (for example, when the subscribed endpoint is unreachable) or server errors (for example, when the service that powers the subscribed endpoint becomes unavailable) are held in the dead-letter queue for further analysis or reprocessing.   The following attribute applies only to Amazon Kinesis Data Firehose delivery stream subscriptions:    SubscriptionRoleArn \u2013 The ARN of the IAM role that has the following:   Permission to write to the Kinesis Data Firehose delivery stream   Amazon SNS listed as a trusted entity   Specifying a valid ARN for this attribute is required for Kinesis Data Firehose delivery stream subscriptions. For more information, see Fanout to Kinesis Data Firehose delivery streams in the Amazon SNS Developer Guide",
+            "A map of attributes with their corresponding values. The following lists the names, descriptions, and values of the special request parameters that this action uses:    DeliveryPolicy \u2013 The policy that defines how Amazon SNS retries failed deliveries to HTTP/S endpoints.    FilterPolicy \u2013 The simple JSON object that lets your subscriber receive only a subset of messages, rather than receiving every message published to the topic.    FilterPolicyScope \u2013 This attribute lets you choose the filtering scope by using one of the following string value types:    MessageAttributes (default) \u2013 The filter is applied on the message attributes.    MessageBody \u2013 The filter is applied on the message body.      RawMessageDelivery \u2013 When set to true, enables raw message delivery to Amazon SQS or HTTP/S endpoints. This eliminates the need for the endpoints to process JSON formatting, which is otherwise created for Amazon SNS metadata.    RedrivePolicy \u2013 When specified, sends undeliverable messages to the specified Amazon SQS dead-letter queue. Messages that can't be delivered due to client errors (for example, when the subscribed endpoint is unreachable) or server errors (for example, when the service that powers the subscribed endpoint becomes unavailable) are held in the dead-letter queue for further analysis or reprocessing.   The following attribute applies only to Amazon Kinesis Data Firehose delivery stream subscriptions:    SubscriptionRoleArn \u2013 The ARN of the IAM role that has the following:   Permission to write to the Kinesis Data Firehose delivery stream   Amazon SNS listed as a trusted entity   Specifying a valid ARN for this attribute is required for Kinesis Data Firehose delivery stream subscriptions. For more information, see Fanout to Kinesis Data Firehose delivery streams in the Amazon SNS Developer Guide",
           args: {
             name: "string",
           },
@@ -1198,7 +1540,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "set-topic-attributes",
       description:
-        "Allows a topic owner to set an attribute of the topic to a new value",
+        "Allows a topic owner to set an attribute of the topic to a new value.  To remove the ability to change topic permissions, you must deny permissions to the AddPermission, RemovePermission, and SetTopicAttributes actions in your IAM policy",
       options: [
         {
           name: "--topic-arn",
@@ -1210,7 +1552,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--attribute-name",
           description:
-            "A map of attributes with their corresponding values. The following lists the names, descriptions, and values of the special request parameters that the SetTopicAttributes action uses:    DeliveryPolicy \u2013 The policy that defines how Amazon SNS retries failed deliveries to HTTP/S endpoints.    DisplayName \u2013 The display name to use for a topic with SMS subscriptions.    Policy \u2013 The policy that defines who can access your topic. By default, only the topic owner can publish or subscribe to the topic.   The following attribute applies only to server-side-encryption:    KmsMasterKeyId \u2013 The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CMK. For more information, see Key Terms. For more examples, see KeyId in the AWS Key Management Service API Reference.    The following attribute applies only to FIFO topics:    ContentBasedDeduplication \u2013 Enables content-based deduplication for FIFO topics.    By default, ContentBasedDeduplication is set to false. If you create a FIFO topic and this attribute is false, you must specify a value for the MessageDeduplicationId parameter for the Publish action.    When you set ContentBasedDeduplication to true, Amazon SNS uses a SHA-256 hash to generate the MessageDeduplicationId using the body of the message (but not the attributes of the message). (Optional) To override the generated value, you can specify a value for the the MessageDeduplicationId parameter for the Publish action",
+            "A map of attributes with their corresponding values. The following lists the names, descriptions, and values of the special request parameters that the SetTopicAttributes action uses:    ApplicationSuccessFeedbackRoleArn \u2013 Indicates failed message delivery status for an Amazon SNS topic that is subscribed to a platform application endpoint.    DeliveryPolicy \u2013 The policy that defines how Amazon SNS retries failed deliveries to HTTP/S endpoints.    DisplayName \u2013 The display name to use for a topic with SMS subscriptions.    Policy \u2013 The policy that defines who can access your topic. By default, only the topic owner can publish or subscribe to the topic.    TracingConfig \u2013 Tracing mode of an Amazon SNS topic. By default TracingConfig is set to PassThrough, and the topic passes through the tracing header it receives from an Amazon SNS publisher to its subscriptions. If set to Active, Amazon SNS will vend X-Ray segment data to topic owner account if the sampled flag in the tracing header is true. This is only supported on standard topics.   HTTP    HTTPSuccessFeedbackRoleArn \u2013 Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an HTTP endpoint.     HTTPSuccessFeedbackSampleRate \u2013 Indicates percentage of successful messages to sample for an Amazon SNS topic that is subscribed to an HTTP endpoint.    HTTPFailureFeedbackRoleArn \u2013 Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an HTTP endpoint.     Amazon Kinesis Data Firehose    FirehoseSuccessFeedbackRoleArn \u2013 Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an Amazon Kinesis Data Firehose endpoint.    FirehoseSuccessFeedbackSampleRate \u2013 Indicates percentage of successful messages to sample for an Amazon SNS topic that is subscribed to an Amazon Kinesis Data Firehose endpoint.    FirehoseFailureFeedbackRoleArn \u2013 Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an Amazon Kinesis Data Firehose endpoint.      Lambda    LambdaSuccessFeedbackRoleArn \u2013 Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an Lambda endpoint.    LambdaSuccessFeedbackSampleRate \u2013 Indicates percentage of successful messages to sample for an Amazon SNS topic that is subscribed to an Lambda endpoint.    LambdaFailureFeedbackRoleArn \u2013 Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an Lambda endpoint.      Platform application endpoint    ApplicationSuccessFeedbackRoleArn \u2013 Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an Amazon Web Services application endpoint.    ApplicationSuccessFeedbackSampleRate \u2013 Indicates percentage of successful messages to sample for an Amazon SNS topic that is subscribed to an Amazon Web Services application endpoint.    ApplicationFailureFeedbackRoleArn \u2013 Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an Amazon Web Services application endpoint.    In addition to being able to configure topic attributes for message delivery status of notification messages sent to Amazon SNS application endpoints, you can also configure application attributes for the delivery status of push notification messages sent to push notification services. For example, For more information, see Using Amazon SNS Application Attributes for Message Delivery Status.     Amazon SQS    SQSSuccessFeedbackRoleArn \u2013 Indicates successful message delivery status for an Amazon SNS topic that is subscribed to an Amazon SQS endpoint.     SQSSuccessFeedbackSampleRate \u2013 Indicates percentage of successful messages to sample for an Amazon SNS topic that is subscribed to an Amazon SQS endpoint.     SQSFailureFeedbackRoleArn \u2013 Indicates failed message delivery status for an Amazon SNS topic that is subscribed to an Amazon SQS endpoint.       The <ENDPOINT>SuccessFeedbackRoleArn and <ENDPOINT>FailureFeedbackRoleArn attributes are used to give Amazon SNS write access to use CloudWatch Logs on your behalf. The <ENDPOINT>SuccessFeedbackSampleRate attribute is for specifying the sample rate percentage (0-100) of successfully delivered messages. After you configure the <ENDPOINT>FailureFeedbackRoleArn attribute, then all failed message deliveries generate CloudWatch Logs.   The following attribute applies only to server-side-encryption:    KmsMasterKeyId \u2013 The ID of an Amazon Web Services managed customer master key (CMK) for Amazon SNS or a custom CMK. For more information, see Key Terms. For more examples, see KeyId in the Key Management Service API Reference.     SignatureVersion \u2013 The signature version corresponds to the hashing algorithm used while creating the signature of the notifications, subscription confirmations, or unsubscribe confirmation messages sent by Amazon SNS. By default, SignatureVersion is set to 1.   The following attribute applies only to FIFO topics:    ContentBasedDeduplication \u2013 Enables content-based deduplication for FIFO topics.   By default, ContentBasedDeduplication is set to false. If you create a FIFO topic and this attribute is false, you must specify a value for the MessageDeduplicationId parameter for the Publish action.    When you set ContentBasedDeduplication to true, Amazon SNS uses a SHA-256 hash to generate the MessageDeduplicationId using the body of the message (but not the attributes of the message). (Optional) To override the generated value, you can specify a value for the MessageDeduplicationId parameter for the Publish action",
           args: {
             name: "string",
           },
@@ -1244,7 +1586,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "subscribe",
       description:
-        "Subscribes an endpoint to an Amazon SNS topic. If the endpoint type is HTTP/S or email, or if the endpoint and the topic are not in the same AWS account, the endpoint owner must run the ConfirmSubscription action to confirm the subscription. You call the ConfirmSubscription action with the token from the subscription response. Confirmation tokens are valid for three days. This action is throttled at 100 transactions per second (TPS)",
+        "Subscribes an endpoint to an Amazon SNS topic. If the endpoint type is HTTP/S or email, or if the endpoint and the topic are not in the same Amazon Web Services account, the endpoint owner must run the ConfirmSubscription action to confirm the subscription. You call the ConfirmSubscription action with the token from the subscription response. Confirmation tokens are valid for two days. This action is throttled at 100 transactions per second (TPS)",
       options: [
         {
           name: "--topic-arn",
@@ -1256,7 +1598,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--protocol",
           description:
-            "The protocol that you want to use. Supported protocols include:    http \u2013 delivery of JSON-encoded message via HTTP POST    https \u2013 delivery of JSON-encoded message via HTTPS POST    email \u2013 delivery of message via SMTP    email-json \u2013 delivery of JSON-encoded message via SMTP    sms \u2013 delivery of message via SMS    sqs \u2013 delivery of JSON-encoded message to an Amazon SQS queue    application \u2013 delivery of JSON-encoded message to an EndpointArn for a mobile app and device    lambda \u2013 delivery of JSON-encoded message to an AWS Lambda function    firehose \u2013 delivery of JSON-encoded message to an Amazon Kinesis Data Firehose delivery stream",
+            "The protocol that you want to use. Supported protocols include:    http \u2013 delivery of JSON-encoded message via HTTP POST    https \u2013 delivery of JSON-encoded message via HTTPS POST    email \u2013 delivery of message via SMTP    email-json \u2013 delivery of JSON-encoded message via SMTP    sms \u2013 delivery of message via SMS    sqs \u2013 delivery of JSON-encoded message to an Amazon SQS queue    application \u2013 delivery of JSON-encoded message to an EndpointArn for a mobile app and device    lambda \u2013 delivery of JSON-encoded message to an Lambda function    firehose \u2013 delivery of JSON-encoded message to an Amazon Kinesis Data Firehose delivery stream",
           args: {
             name: "string",
           },
@@ -1264,7 +1606,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--attributes",
           description:
-            "A map of attributes with their corresponding values. The following lists the names, descriptions, and values of the special request parameters that the SetTopicAttributes action uses:    DeliveryPolicy \u2013 The policy that defines how Amazon SNS retries failed deliveries to HTTP/S endpoints.    FilterPolicy \u2013 The simple JSON object that lets your subscriber receive only a subset of messages, rather than receiving every message published to the topic.    RawMessageDelivery \u2013 When set to true, enables raw message delivery to Amazon SQS or HTTP/S endpoints. This eliminates the need for the endpoints to process JSON formatting, which is otherwise created for Amazon SNS metadata.    RedrivePolicy \u2013 When specified, sends undeliverable messages to the specified Amazon SQS dead-letter queue. Messages that can't be delivered due to client errors (for example, when the subscribed endpoint is unreachable) or server errors (for example, when the service that powers the subscribed endpoint becomes unavailable) are held in the dead-letter queue for further analysis or reprocessing.   The following attribute applies only to Amazon Kinesis Data Firehose delivery stream subscriptions:    SubscriptionRoleArn \u2013 The ARN of the IAM role that has the following:   Permission to write to the Kinesis Data Firehose delivery stream   Amazon SNS listed as a trusted entity   Specifying a valid ARN for this attribute is required for Kinesis Data Firehose delivery stream subscriptions. For more information, see Fanout to Kinesis Data Firehose delivery streams in the Amazon SNS Developer Guide",
+            "A map of attributes with their corresponding values. The following lists the names, descriptions, and values of the special request parameters that the Subscribe action uses:    DeliveryPolicy \u2013 The policy that defines how Amazon SNS retries failed deliveries to HTTP/S endpoints.    FilterPolicy \u2013 The simple JSON object that lets your subscriber receive only a subset of messages, rather than receiving every message published to the topic.    FilterPolicyScope \u2013 This attribute lets you choose the filtering scope by using one of the following string value types:    MessageAttributes (default) \u2013 The filter is applied on the message attributes.    MessageBody \u2013 The filter is applied on the message body.      RawMessageDelivery \u2013 When set to true, enables raw message delivery to Amazon SQS or HTTP/S endpoints. This eliminates the need for the endpoints to process JSON formatting, which is otherwise created for Amazon SNS metadata.    RedrivePolicy \u2013 When specified, sends undeliverable messages to the specified Amazon SQS dead-letter queue. Messages that can't be delivered due to client errors (for example, when the subscribed endpoint is unreachable) or server errors (for example, when the service that powers the subscribed endpoint becomes unavailable) are held in the dead-letter queue for further analysis or reprocessing.   The following attribute applies only to Amazon Kinesis Data Firehose delivery stream subscriptions:    SubscriptionRoleArn \u2013 The ARN of the IAM role that has the following:   Permission to write to the Kinesis Data Firehose delivery stream   Amazon SNS listed as a trusted entity   Specifying a valid ARN for this attribute is required for Kinesis Data Firehose delivery stream subscriptions. For more information, see Fanout to Kinesis Data Firehose delivery streams in the Amazon SNS Developer Guide.   The following attributes apply only to FIFO topics:    ReplayPolicy \u2013 Adds or updates an inline policy document for a subscription to replay messages stored in the specified Amazon SNS topic.    ReplayStatus \u2013 Retrieves the status of the subscription message replay, which can be one of the following:    Completed \u2013 The replay has successfully redelivered all messages, and is now delivering newly published messages. If an ending point was specified in the ReplayPolicy then the subscription will no longer receive newly published messages.    In progress \u2013 The replay is currently replaying the selected messages.    Failed \u2013 The replay was unable to complete.    Pending \u2013 The default state while the replay initiates",
           args: {
             name: "map",
           },
@@ -1282,7 +1624,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--notification-endpoint",
           description:
-            "The endpoint that you want to receive notifications. Endpoints vary by protocol:   For the http protocol, the (public) endpoint is a URL beginning with http://.   For the https protocol, the (public) endpoint is a URL beginning with https://.   For the email protocol, the endpoint is an email address.   For the email-json protocol, the endpoint is an email address.   For the sms protocol, the endpoint is a phone number of an SMS-enabled device.   For the sqs protocol, the endpoint is the ARN of an Amazon SQS queue.   For the application protocol, the endpoint is the EndpointArn of a mobile app and device.   For the lambda protocol, the endpoint is the ARN of an AWS Lambda function.   For the firehose protocol, the endpoint is the ARN of an Amazon Kinesis Data Firehose delivery stream",
+            "The endpoint that you want to receive notifications. Endpoints vary by protocol:   For the http protocol, the (public) endpoint is a URL beginning with http://.   For the https protocol, the (public) endpoint is a URL beginning with https://.   For the email protocol, the endpoint is an email address.   For the email-json protocol, the endpoint is an email address.   For the sms protocol, the endpoint is a phone number of an SMS-enabled device.   For the sqs protocol, the endpoint is the ARN of an Amazon SQS queue.   For the application protocol, the endpoint is the EndpointArn of a mobile app and device.   For the lambda protocol, the endpoint is the ARN of an Lambda function.   For the firehose protocol, the endpoint is the ARN of an Amazon Kinesis Data Firehose delivery stream",
           args: {
             name: "string",
           },
@@ -1309,7 +1651,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "tag-resource",
       description:
-        "Add tags to the specified Amazon SNS topic. For an overview, see Amazon SNS Tags in the Amazon SNS Developer Guide. When you use topic tags, keep the following guidelines in mind:   Adding more than 50 tags to a topic isn't recommended.   Tags don't have any semantic meaning. Amazon SNS interprets tags as character strings.   Tags are case-sensitive.   A new tag with a key identical to that of an existing tag overwrites the existing tag.   Tagging actions are limited to 10 TPS per AWS account, per AWS region. If your application requires a higher throughput, file a technical support request",
+        "Add tags to the specified Amazon SNS topic. For an overview, see Amazon SNS Tags in the Amazon SNS Developer Guide. When you use topic tags, keep the following guidelines in mind:   Adding more than 50 tags to a topic isn't recommended.   Tags don't have any semantic meaning. Amazon SNS interprets tags as character strings.   Tags are case-sensitive.   A new tag with a key identical to that of an existing tag overwrites the existing tag.   Tagging actions are limited to 10 TPS per Amazon Web Services account, per Amazon Web Services Region. If your application requires a higher throughput, file a technical support request",
       options: [
         {
           name: "--resource-arn",
@@ -1348,7 +1690,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "unsubscribe",
       description:
-        "Deletes a subscription. If the subscription requires authentication for deletion, only the owner of the subscription or the topic's owner can unsubscribe, and an AWS signature is required. If the Unsubscribe call does not require authentication and the requester is not the subscription owner, a final cancellation message is delivered to the endpoint, so that the endpoint owner can easily resubscribe to the topic if the Unsubscribe request was unintended. This action is throttled at 100 transactions per second (TPS)",
+        "Deletes a subscription. If the subscription requires authentication for deletion, only the owner of the subscription or the topic's owner can unsubscribe, and an Amazon Web Services signature is required. If the Unsubscribe call does not require authentication and the requester is not the subscription owner, a final cancellation message is delivered to the endpoint, so that the endpoint owner can easily resubscribe to the topic if the Unsubscribe request was unintended.  Amazon SQS queue subscriptions require authentication for deletion. Only the owner of the subscription, or the owner of the topic can unsubscribe using the required Amazon Web Services signature.  This action is throttled at 100 transactions per second (TPS)",
       options: [
         {
           name: "--subscription-arn",
@@ -1415,7 +1757,45 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "verify-sms-sandbox-phone-number",
+      description:
+        "Verifies a destination phone number with a one-time password (OTP) for the calling Amazon Web Services account. When you start using Amazon SNS to send SMS messages, your Amazon Web Services account is in the SMS sandbox. The SMS sandbox provides a safe environment for you to try Amazon SNS features without risking your reputation as an SMS sender. While your Amazon Web Services account is in the SMS sandbox, you can use all of the features of Amazon SNS. However, you can send SMS messages only to verified destination phone numbers. For more information, including how to move out of the sandbox to send messages without restrictions, see SMS sandbox in the Amazon SNS Developer Guide",
+      options: [
+        {
+          name: "--phone-number",
+          description: "The destination phone number to verify",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--one-time-password",
+          description:
+            "The OTP sent to the destination number from the CreateSMSSandBoxPhoneNumber call",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
   ],
 };
-
 export default completionSpec;
