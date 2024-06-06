@@ -24,7 +24,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--max-results",
-          description: "The maximum number of results to return per page",
+          description: "The maximimum number of results to return per page",
           args: {
             name: "integer",
           },
@@ -58,5 +58,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

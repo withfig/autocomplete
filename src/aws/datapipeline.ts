@@ -464,7 +464,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "poll-for-task",
       description:
-        "Task runners call PollForTask to receive a task to perform from AWS Data Pipeline. The task runner specifies which tasks it can perform by setting a value for the workerGroup parameter. The task returned can come from any of the pipelines that match the workerGroup value passed in by the task runner and that was launched using the IAM user credentials specified by the task runner. If tasks are ready in the work queue, PollForTask returns a response immediately. If no tasks are available in the queue, PollForTask uses long-polling and holds on to a poll connection for up to a 90 seconds, during which time the first newly scheduled task is handed to the task runner. To accommodate this, set the socket timeout in your task runner to 90 seconds. The task runner should not call PollForTask again on the same workerGroup until it receives a response, and this can take up to 90 seconds",
+        "Task runners call PollForTask to receive a task to perform from AWS Data Pipeline. The task runner specifies which tasks it can perform by setting a value for the workerGroup parameter. The task returned can come from any of the pipelines that match the workerGroup value passed in by the task runner and that was launched using the IAM user credentials specified by the task runner. If tasks are ready in the work queue, PollForTask returns a response immediately. If no tasks are available in the queue, PollForTask uses long-polling and holds on to a poll connection for up to a 90 seconds, during which time the first newly scheduled task is handed to the task runner. To accomodate this, set the socket timeout in your task runner to 90 seconds. The task runner should not call PollForTask again on the same workerGroup until it receives a response, and this can take up to 90 seconds",
       options: [
         {
           name: "--worker-group",
@@ -833,7 +833,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "set-task-status",
       description:
-        "Task runners call SetTaskStatus to notify AWS Data Pipeline that a task is completed and provide information about the final status. A task runner makes this call regardless of whether the task was successful. A task runner does not need to call SetTaskStatus for tasks that are canceled by the web service during a call to ReportTaskProgress",
+        "Task runners call SetTaskStatus to notify AWS Data Pipeline that a task is completed and provide information about the final status. A task runner makes this call regardless of whether the task was sucessful. A task runner does not need to call SetTaskStatus for tasks that are canceled by the web service during a call to ReportTaskProgress",
       options: [
         {
           name: "--task-id",
@@ -988,9 +988,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-default-roles",
       description:
-        "Creates the default IAM role DataPipelineDefaultRole and DataPipelineDefaultResourceRole which are used while creating an EMR cluster.\nIf the roles do not exist, create-default-roles will automatically create them and set their policies. If these roles are already created create-default-roles will not update their policies.\n",
+        'NOTE: \nSupport for this command has been deprecated and may fail to create these roles\nif they do not already exist. For more information on managing these policies\nmanually see the following documentation:\n\nhttps://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-iam-roles.html\n\n\nCreates the default IAM role "DataPipelineDefaultRole" and "DataPipelineDefaultResourceRole" which are used while creating an EMR\ncluster.\n\nIf these roles do not exist, create-default-roles will automatically create\nthem and set their policies.\n\nIf these roles have already been created create-default-roles will not update\ntheir policies',
     },
   ],
 };
-
 export default completionSpec;

@@ -1,17 +1,17 @@
 const completionSpec: Fig.Spec = {
   name: "storagegateway",
   description:
-    "AWS Storage Gateway Service AWS Storage Gateway is the service that connects an on-premises software appliance with cloud-based storage to provide seamless and secure integration between an organization's on-premises IT environment and the AWS storage infrastructure. The service enables you to securely upload data to the AWS Cloud for cost effective backup and rapid disaster recovery. Use the following links to get started using the AWS Storage Gateway Service API Reference:    AWS Storage Gateway required request headers: Describes the required headers that you must send with every POST request to AWS Storage Gateway.    Signing requests: AWS Storage Gateway requires that you authenticate every request you send; this topic describes how sign such a request.    Error responses: Provides reference information about AWS Storage Gateway errors.    Operations in AWS Storage Gateway: Contains detailed descriptions of all AWS Storage Gateway operations, their request parameters, response elements, possible errors, and examples of requests and responses.    AWS Storage Gateway endpoints and quotas: Provides a list of each AWS Region and the endpoints available for use with AWS Storage Gateway.    AWS Storage Gateway resource IDs are in uppercase. When you use these resource IDs with the Amazon EC2 API, EC2 expects resource IDs in lowercase. You must change your resource ID to lowercase to use it with the EC2 API. For example, in Storage Gateway the ID for a volume might be vol-AA22BB012345DAF670. When you use this ID with the EC2 API, you must change it to vol-aa22bb012345daf670. Otherwise, the EC2 API might not behave as expected.   IDs for Storage Gateway volumes and Amazon EBS snapshots created from gateway volumes are changing to a longer format. Starting in December 2016, all new volumes and snapshots will be created with a 17-character string. Starting in April 2016, you will be able to use these longer IDs so you can test your systems with the new format. For more information, see Longer EC2 and EBS resource IDs. For example, a volume Amazon Resource Name (ARN) with the longer volume ID format looks like the following:  arn:aws:storagegateway:us-west-2:111122223333:gateway/sgw-12A3456B/volume/vol-1122AABBCCDDEEFFG. A snapshot ID with the longer ID format looks like the following: snap-78e226633445566ee. For more information, see Announcement: Heads-up \u2013 Longer AWS Storage Gateway volume and snapshot IDs coming in 2016",
+    "Storage Gateway Service Storage Gateway is the service that connects an on-premises software appliance with cloud-based storage to provide seamless and secure integration between an organization's on-premises IT environment and the Amazon Web Services storage infrastructure. The service enables you to securely upload data to the Amazon Web Services Cloud for cost effective backup and rapid disaster recovery. Use the following links to get started using the Storage Gateway Service API Reference:    Storage Gateway required request headers: Describes the required headers that you must send with every POST request to Storage Gateway.    Signing requests: Storage Gateway requires that you authenticate every request you send; this topic describes how sign such a request.    Error responses: Provides reference information about Storage Gateway errors.    Operations in Storage Gateway: Contains detailed descriptions of all Storage Gateway operations, their request parameters, response elements, possible errors, and examples of requests and responses.    Storage Gateway endpoints and quotas: Provides a list of each Amazon Web Services Region and the endpoints available for use with Storage Gateway.    Storage Gateway resource IDs are in uppercase. When you use these resource IDs with the Amazon EC2 API, EC2 expects resource IDs in lowercase. You must change your resource ID to lowercase to use it with the EC2 API. For example, in Storage Gateway the ID for a volume might be vol-AA22BB012345DAF670. When you use this ID with the EC2 API, you must change it to vol-aa22bb012345daf670. Otherwise, the EC2 API might not behave as expected.   IDs for Storage Gateway volumes and Amazon EBS snapshots created from gateway volumes are changing to a longer format. Starting in December 2016, all new volumes and snapshots will be created with a 17-character string. Starting in April 2016, you will be able to use these longer IDs so you can test your systems with the new format. For more information, see Longer EC2 and EBS resource IDs. For example, a volume Amazon Resource Name (ARN) with the longer volume ID format looks like the following:  arn:aws:storagegateway:us-west-2:111122223333:gateway/sgw-12A3456B/volume/vol-1122AABBCCDDEEFFG. A snapshot ID with the longer ID format looks like the following: snap-78e226633445566ee. For more information, see Announcement: Heads-up \u2013 Longer Storage Gateway volume and snapshot IDs coming in 2016",
   subcommands: [
     {
       name: "activate-gateway",
       description:
-        "Activates the gateway you previously deployed on your host. In the activation process, you specify information such as the AWS Region that you want to use for storing snapshots or tapes, the time zone for scheduled snapshots the gateway snapshot schedule window, an activation key, and a name for your gateway. The activation process also associates your gateway with your account. For more information, see UpdateGatewayInformation.  You must turn on the gateway VM before you can activate your gateway",
+        "Activates the gateway you previously deployed on your host. In the activation process, you specify information such as the Amazon Web Services Region that you want to use for storing snapshots or tapes, the time zone for scheduled snapshots the gateway snapshot schedule window, an activation key, and a name for your gateway. The activation process also associates your gateway with your account. For more information, see UpdateGatewayInformation.  You must turn on the gateway VM before you can activate your gateway",
       options: [
         {
           name: "--activation-key",
           description:
-            "Your gateway activation key. You can obtain the activation key by sending an HTTP GET request with redirects enabled to the gateway IP address (port 80). The redirect URL returned in the response provides you the activation key for your gateway in the query string parameter activationKey. It may also include other activation-related parameters, however, these are merely defaults -- the arguments you pass to the ActivateGateway API call determine the actual configuration of your gateway. For more information, see Getting activation key in the AWS Storage Gateway User Guide",
+            "Your gateway activation key. You can obtain the activation key by sending an HTTP GET request with redirects enabled to the gateway IP address (port 80). The redirect URL returned in the response provides you the activation key for your gateway in the query string parameter activationKey. It may also include other activation-related parameters, however, these are merely defaults -- the arguments you pass to the ActivateGateway API call determine the actual configuration of your gateway. For more information, see Getting activation key in the Storage Gateway User Guide",
           args: {
             name: "string",
           },
@@ -26,7 +26,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-timezone",
           description:
-            'A value that indicates the time zone you want to set for the gateway. The time zone is of the format "GMT-hr:mm" or "GMT+hr:mm". For example, GMT-4:00 indicates the time is 4 hours behind GMT. GMT+2:00 indicates the time is 2 hours ahead of GMT. The time zone is used, for example, for scheduling snapshots and your gateway\'s maintenance schedule',
+            'A value that indicates the time zone you want to set for the gateway. The time zone is of the format "GMT", "GMT-hr:mm", or "GMT+hr:mm". For example, GMT indicates Greenwich Mean Time without any offset. GMT-4:00 indicates the time is 4 hours behind GMT. GMT+2:00 indicates the time is 2 hours ahead of GMT. The time zone is used, for example, for scheduling snapshots and your gateway\'s maintenance schedule',
           args: {
             name: "string",
           },
@@ -34,7 +34,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-region",
           description:
-            "A value that indicates the AWS Region where you want to store your data. The gateway AWS Region specified must be the same AWS Region as the AWS Region in your Host header in the request. For more information about available AWS Regions and endpoints for AWS Storage Gateway, see AWS Storage Gateway endpoints and quotas in the AWS General Reference. Valid Values: See AWS Storage Gateway endpoints and quotas in the AWS General Reference",
+            "A value that indicates the Amazon Web Services Region where you want to store your data. The gateway Amazon Web Services Region specified must be the same Amazon Web Services Region as the Amazon Web Services Region in your Host header in the request. For more information about available Amazon Web Services Regions and endpoints for Storage Gateway, see  Storage Gateway endpoints and quotas in the Amazon Web Services General Reference. Valid Values: See  Storage Gateway endpoints and quotas in the Amazon Web Services General Reference",
           args: {
             name: "string",
           },
@@ -42,7 +42,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-type",
           description:
-            "A value that defines the type of gateway to activate. The type specified is critical to all later functions of the gateway and cannot be changed after activation. The default value is CACHED. Valid Values: STORED | CACHED | VTL | FILE_S3",
+            "A value that defines the type of gateway to activate. The type specified is critical to all later functions of the gateway and cannot be changed after activation. The default value is CACHED. Valid Values: STORED | CACHED | VTL | FILE_S3 | FILE_FSX_SMB",
           args: {
             name: "string",
           },
@@ -93,12 +93,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "add-cache",
       description:
-        "Configures one or more gateway local disks as cache for a gateway. This operation is only supported in the cached volume, tape, and file gateway type (see How AWS Storage Gateway works (architecture). In the request, you specify the gateway Amazon Resource Name (ARN) to which you want to add cache, and one or more disk IDs that you want to configure as cache",
+        "Configures one or more gateway local disks as cache for a gateway. This operation is only supported in the cached volume, tape, and file gateway type (see How Storage Gateway works (architecture). In the request, you specify the gateway Amazon Resource Name (ARN) to which you want to add cache, and one or more disk IDs that you want to configure as cache",
       options: [
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -133,7 +133,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "add-tags-to-resource",
       description:
-        "Adds one or more tags to the specified resource. You use tags to add metadata to resources, which you can use to categorize these resources. For example, you can categorize resources by purpose, owner, environment, or team. Each tag consists of a key and a value, which you define. You can add tags to the following AWS Storage Gateway resources:   Storage gateways of all types   Storage volumes   Virtual tapes   NFS and SMB file shares   You can create a maximum of 50 tags for each resource. Virtual tapes and storage volumes that are recovered to a new gateway maintain their tags",
+        "Adds one or more tags to the specified resource. You use tags to add metadata to resources, which you can use to categorize these resources. For example, you can categorize resources by purpose, owner, environment, or team. Each tag consists of a key and a value, which you define. You can add tags to the following Storage Gateway resources:   Storage gateways of all types   Storage volumes   Virtual tapes   NFS and SMB file shares   File System associations   You can create a maximum of 50 tags for each resource. Virtual tapes and storage volumes that are recovered to a new gateway maintain their tags",
       options: [
         {
           name: "--resource-arn",
@@ -178,7 +178,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -218,7 +218,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -253,7 +253,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "assign-tape-pool",
       description:
-        "Assigns a tape to a tape pool for archiving. The tape assigned to a pool is archived in the S3 storage class that is associated with the pool. When you use your backup application to eject the tape, the tape is archived directly into the S3 storage class (S3 Glacier or S3 Glacier Deep Archive) that corresponds to the pool. Valid Values: GLACIER | DEEP_ARCHIVE",
+        "Assigns a tape to a tape pool for archiving. The tape assigned to a pool is archived in the S3 storage class that is associated with the pool. When you use your backup application to eject the tape, the tape is archived directly into the S3 storage class (S3 Glacier or S3 Glacier Deep Archive) that corresponds to the pool",
       options: [
         {
           name: "--tape-arn",
@@ -266,7 +266,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--pool-id",
           description:
-            "The ID of the pool that you want to add your tape to for archiving. The tape in this pool is archived in the S3 storage class that is associated with the pool. When you use your backup application to eject the tape, the tape is archived directly into the storage class (S3 Glacier or S3 Glacier Deep Archive) that corresponds to the pool. Valid Values: GLACIER | DEEP_ARCHIVE",
+            "The ID of the pool that you want to add your tape to for archiving. The tape in this pool is archived in the S3 storage class that is associated with the pool. When you use your backup application to eject the tape, the tape is archived directly into the storage class (S3 Glacier or S3 Glacier Deep Archive) that corresponds to the pool",
           args: {
             name: "string",
           },
@@ -303,7 +303,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "associate-file-system",
       description:
-        "Associate an Amazon FSx file system with the Amazon FSx file gateway. After the association process is complete, the file shares on the Amazon FSx file system are available for access through the gateway. This operation only supports the Amazon FSx file gateway type",
+        "Associate an Amazon FSx file system with the FSx File Gateway. After the association process is complete, the file shares on the Amazon FSx file system are available for access through the gateway. This operation only supports the FSx File Gateway type",
       options: [
         {
           name: "--user-name",
@@ -323,7 +323,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--client-token",
           description:
-            "A unique string value that you supply that is used by the file gateway to ensure idempotent file system association creation",
+            "A unique string value that you supply that is used by the FSx File Gateway to ensure idempotent file system association creation",
           args: {
             name: "string",
           },
@@ -331,7 +331,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -339,7 +339,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--location-arn",
           description:
-            "The Amazon Resource Name (ARN) of the Amazon FSx file system to associate with the Amazon FSx file gateway",
+            "The Amazon Resource Name (ARN) of the Amazon FSx file system to associate with the FSx File Gateway",
           args: {
             name: "string",
           },
@@ -362,7 +362,16 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--cache-attributes",
-          description: "The refresh cache information for the file share",
+          description:
+            "The refresh cache information for the file share or FSx file systems",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--endpoint-network-configuration",
+          description:
+            "Specifies the network configuration information for the gateway associated with the Amazon FSx file system.  If multiple file systems are associated with this gateway, this parameter's IpAddresses field is required",
           args: {
             name: "structure",
           },
@@ -458,7 +467,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -498,7 +507,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -538,7 +547,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -593,12 +602,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kms-encrypted",
           description:
-            "Set to true to use Amazon S3 server-side encryption with your own AWS KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
+            "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
         },
         {
           name: "--no-kms-encrypted",
           description:
-            "Set to true to use Amazon S3 server-side encryption with your own AWS KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
+            "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
         },
         {
           name: "--kms-key",
@@ -638,12 +647,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-nfs-file-share",
       description:
-        "Creates a Network File System (NFS) file share on an existing file gateway. In Storage Gateway, a file share is a file system mount point backed by Amazon S3 cloud storage. Storage Gateway exposes file shares using an NFS interface. This operation is only supported for file gateways.  File gateway requires AWS Security Token Service (AWS STS) to be activated to enable you to create a file share. Make sure AWS STS is activated in the AWS Region you are creating your file gateway in. If AWS STS is not activated in the AWS Region, activate it. For information about how to activate AWS STS, see Activating and deactivating AWS STS in an AWS Region in the AWS Identity and Access Management User Guide. File gateway does not support creating hard or symbolic links on a file share",
+        "Creates a Network File System (NFS) file share on an existing S3 File Gateway. In Storage Gateway, a file share is a file system mount point backed by Amazon S3 cloud storage. Storage Gateway exposes file shares using an NFS interface. This operation is only supported for S3 File Gateways.  S3 File gateway requires Security Token Service (Amazon Web Services STS) to be activated to enable you to create a file share. Make sure Amazon Web Services STS is activated in the Amazon Web Services Region you are creating your S3 File Gateway in. If Amazon Web Services STS is not activated in the Amazon Web Services Region, activate it. For information about how to activate Amazon Web Services STS, see Activating and deactivating Amazon Web Services STS in an Amazon Web Services Region in the Identity and Access Management User Guide. S3 File Gateways do not support creating hard or symbolic links on a file share",
       options: [
         {
           name: "--client-token",
           description:
-            "A unique string value that you supply that is used by file gateway to ensure idempotent file share creation",
+            "A unique string value that you supply that is used by S3 File Gateway to ensure idempotent file share creation",
           args: {
             name: "string",
           },
@@ -658,7 +667,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the file gateway on which you want to create a file share",
+            "The Amazon Resource Name (ARN) of the S3 File Gateway on which you want to create a file share",
           args: {
             name: "string",
           },
@@ -666,12 +675,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kms-encrypted",
           description:
-            "Set to true to use Amazon S3 server-side encryption with your own AWS KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
+            "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
         },
         {
           name: "--no-kms-encrypted",
           description:
-            "Set to true to use Amazon S3 server-side encryption with your own AWS KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
+            "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
         },
         {
           name: "--kms-key",
@@ -684,7 +693,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--role",
           description:
-            "The ARN of the AWS Identity and Access Management (IAM) role that a file gateway assumes when it accesses the underlying storage",
+            "The ARN of the Identity and Access Management (IAM) role that an S3 File Gateway assumes when it accesses the underlying storage",
           args: {
             name: "string",
           },
@@ -692,7 +701,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--location-arn",
           description:
-            'The ARN of the backend storage used for storing file data. A prefix name can be added to the S3 bucket name. It must end with a "/"',
+            "A custom ARN for the backend storage used for storing data for file shares. It includes a resource ARN with an optional prefix concatenation. The prefix must end with a forward slash (/).  You can specify LocationARN as a bucket ARN, access point ARN or access point alias, as shown in the following examples. Bucket ARN:  arn:aws:s3:::my-bucket/prefix/  Access point ARN:  arn:aws:s3:region:account-id:accesspoint/access-point-name/prefix/  If you specify an access point, the bucket policy must be configured to delegate access control to the access point. For information, see Delegating access control to access points in the Amazon S3 User Guide. Access point alias:  test-ap-ab123cdef4gehijklmn5opqrstuvuse1a-s3alias",
           args: {
             name: "string",
           },
@@ -700,7 +709,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--default-storage-class",
           description:
-            "The default storage class for objects put into an Amazon S3 bucket by the file gateway. The default value is S3_INTELLIGENT_TIERING. Optional. Valid Values: S3_STANDARD | S3_INTELLIGENT_TIERING | S3_STANDARD_IA | S3_ONEZONE_IA",
+            "The default storage class for objects put into an Amazon S3 bucket by the S3 File Gateway. The default value is S3_STANDARD. Optional. Valid Values: S3_STANDARD | S3_INTELLIGENT_TIERING | S3_STANDARD_IA | S3_ONEZONE_IA",
           args: {
             name: "string",
           },
@@ -708,7 +717,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--object-acl",
           description:
-            "A value that sets the access control list (ACL) permission for objects in the S3 bucket that a file gateway puts objects into. The default value is private",
+            "A value that sets the access control list (ACL) permission for objects in the S3 bucket that a S3 File Gateway puts objects into. The default value is private",
           args: {
             name: "string",
           },
@@ -716,7 +725,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--client-list",
           description:
-            "The list of clients that are allowed to access the file gateway. The list must contain either valid IP addresses or valid CIDR blocks",
+            "The list of clients that are allowed to access the S3 File Gateway. The list must contain either valid IP addresses or valid CIDR blocks",
           args: {
             name: "list",
           },
@@ -770,7 +779,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--file-share-name",
           description:
-            "The name of the file share. Optional.   FileShareName must be set if an S3 prefix name is set in LocationARN",
+            "The name of the file share. Optional.   FileShareName must be set if an S3 prefix name is set in LocationARN, or if an access point or access point alias is used",
           args: {
             name: "string",
           },
@@ -786,6 +795,30 @@ const completionSpec: Fig.Spec = {
           name: "--notification-policy",
           description:
             'The notification policy of the file share. SettlingTimeInSeconds controls the number of seconds to wait after the last point in time a client wrote to a file before generating an ObjectUploaded notification. Because clients can make many small writes to files, it\'s best to set this parameter for as long as possible to avoid generating multiple notifications for the same file in a small time period.   SettlingTimeInSeconds has no effect on the timing of the object uploading to Amazon S3, only the timing of the notification.  The following example sets NotificationPolicy on with SettlingTimeInSeconds set to 60.  {\\"Upload\\": {\\"SettlingTimeInSeconds\\": 60}}  The following example sets NotificationPolicy off.  {}',
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--vpc-endpoint-dns-name",
+          description:
+            "Specifies the DNS name for the VPC endpoint that the NFS file share uses to connect to Amazon S3.  This parameter is required for NFS file shares that connect to Amazon S3 through a VPC endpoint, a VPC access point, or an access point alias that points to a VPC access point",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--bucket-region",
+          description:
+            "Specifies the Region of the S3 bucket where the NFS file share stores files.  This parameter is required for NFS file shares that connect to Amazon S3 through a VPC endpoint, a VPC access point, or an access point alias that points to a VPC access point",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--audit-destination-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the storage used for audit logs",
           args: {
             name: "string",
           },
@@ -812,12 +845,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-smb-file-share",
       description:
-        "Creates a Server Message Block (SMB) file share on an existing file gateway. In Storage Gateway, a file share is a file system mount point backed by Amazon S3 cloud storage. Storage Gateway exposes file shares using an SMB interface. This operation is only supported for file gateways.  File gateways require AWS Security Token Service (AWS STS) to be activated to enable you to create a file share. Make sure that AWS STS is activated in the AWS Region you are creating your file gateway in. If AWS STS is not activated in this AWS Region, activate it. For information about how to activate AWS STS, see Activating and deactivating AWS STS in an AWS Region in the AWS Identity and Access Management User Guide. File gateways don't support creating hard or symbolic links on a file share",
+        "Creates a Server Message Block (SMB) file share on an existing S3 File Gateway. In Storage Gateway, a file share is a file system mount point backed by Amazon S3 cloud storage. Storage Gateway exposes file shares using an SMB interface. This operation is only supported for S3 File Gateways.  S3 File Gateways require Security Token Service (Amazon Web Services STS) to be activated to enable you to create a file share. Make sure that Amazon Web Services STS is activated in the Amazon Web Services Region you are creating your S3 File Gateway in. If Amazon Web Services STS is not activated in this Amazon Web Services Region, activate it. For information about how to activate Amazon Web Services STS, see Activating and deactivating Amazon Web Services STS in an Amazon Web Services Region in the Identity and Access Management User Guide. File gateways don't support creating hard or symbolic links on a file share",
       options: [
         {
           name: "--client-token",
           description:
-            "A unique string value that you supply that is used by file gateway to ensure idempotent file share creation",
+            "A unique string value that you supply that is used by S3 File Gateway to ensure idempotent file share creation",
           args: {
             name: "string",
           },
@@ -825,7 +858,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The ARN of the file gateway on which you want to create a file share",
+            "The ARN of the S3 File Gateway on which you want to create a file share",
           args: {
             name: "string",
           },
@@ -833,12 +866,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kms-encrypted",
           description:
-            "Set to true to use Amazon S3 server-side encryption with your own AWS KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
+            "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
         },
         {
           name: "--no-kms-encrypted",
           description:
-            "Set to true to use Amazon S3 server-side encryption with your own AWS KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
+            "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
         },
         {
           name: "--kms-key",
@@ -851,7 +884,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--role",
           description:
-            "The ARN of the AWS Identity and Access Management (IAM) role that a file gateway assumes when it accesses the underlying storage",
+            "The ARN of the Identity and Access Management (IAM) role that an S3 File Gateway assumes when it accesses the underlying storage",
           args: {
             name: "string",
           },
@@ -859,7 +892,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--location-arn",
           description:
-            'The ARN of the backend storage used for storing file data. A prefix name can be added to the S3 bucket name. It must end with a "/"',
+            "A custom ARN for the backend storage used for storing data for file shares. It includes a resource ARN with an optional prefix concatenation. The prefix must end with a forward slash (/).  You can specify LocationARN as a bucket ARN, access point ARN or access point alias, as shown in the following examples. Bucket ARN:  arn:aws:s3:::my-bucket/prefix/  Access point ARN:  arn:aws:s3:region:account-id:accesspoint/access-point-name/prefix/  If you specify an access point, the bucket policy must be configured to delegate access control to the access point. For information, see Delegating access control to access points in the Amazon S3 User Guide. Access point alias:  test-ap-ab123cdef4gehijklmn5opqrstuvuse1a-s3alias",
           args: {
             name: "string",
           },
@@ -867,7 +900,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--default-storage-class",
           description:
-            "The default storage class for objects put into an Amazon S3 bucket by the file gateway. The default value is S3_INTELLIGENT_TIERING. Optional. Valid Values: S3_STANDARD | S3_INTELLIGENT_TIERING | S3_STANDARD_IA | S3_ONEZONE_IA",
+            "The default storage class for objects put into an Amazon S3 bucket by the S3 File Gateway. The default value is S3_STANDARD. Optional. Valid Values: S3_STANDARD | S3_INTELLIGENT_TIERING | S3_STANDARD_IA | S3_ONEZONE_IA",
           args: {
             name: "string",
           },
@@ -875,7 +908,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--object-acl",
           description:
-            "A value that sets the access control list (ACL) permission for objects in the S3 bucket that a file gateway puts objects into. The default value is private",
+            "A value that sets the access control list (ACL) permission for objects in the S3 bucket that a S3 File Gateway puts objects into. The default value is private",
           args: {
             name: "string",
           },
@@ -913,12 +946,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--smbacl-enabled",
           description:
-            "Set this value to true to enable access control list (ACL) on the SMB file share. Set it to false to map file and directory permissions to the POSIX permissions. For more information, see Using Microsoft Windows ACLs to control access to an SMB file share in the AWS Storage Gateway User Guide. Valid Values: true | false",
+            "Set this value to true to enable access control list (ACL) on the SMB file share. Set it to false to map file and directory permissions to the POSIX permissions. For more information, see Using Microsoft Windows ACLs to control access to an SMB file share in the Storage Gateway User Guide. Valid Values: true | false",
         },
         {
           name: "--no-smbacl-enabled",
           description:
-            "Set this value to true to enable access control list (ACL) on the SMB file share. Set it to false to map file and directory permissions to the POSIX permissions. For more information, see Using Microsoft Windows ACLs to control access to an SMB file share in the AWS Storage Gateway User Guide. Valid Values: true | false",
+            "Set this value to true to enable access control list (ACL) on the SMB file share. Set it to false to map file and directory permissions to the POSIX permissions. For more information, see Using Microsoft Windows ACLs to control access to an SMB file share in the Storage Gateway User Guide. Valid Values: true | false",
         },
         {
           name: "--access-based-enumeration",
@@ -989,7 +1022,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--file-share-name",
           description:
-            "The name of the file share. Optional.   FileShareName must be set if an S3 prefix name is set in LocationARN",
+            "The name of the file share. Optional.   FileShareName must be set if an S3 prefix name is set in LocationARN, or if an access point or access point alias is used",
           args: {
             name: "string",
           },
@@ -1008,6 +1041,32 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "string",
           },
+        },
+        {
+          name: "--vpc-endpoint-dns-name",
+          description:
+            "Specifies the DNS name for the VPC endpoint that the SMB file share uses to connect to Amazon S3.  This parameter is required for SMB file shares that connect to Amazon S3 through a VPC endpoint, a VPC access point, or an access point alias that points to a VPC access point",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--bucket-region",
+          description:
+            "Specifies the Region of the S3 bucket where the SMB file share stores files.  This parameter is required for SMB file shares that connect to Amazon S3 through a VPC endpoint, a VPC access point, or an access point alias that points to a VPC access point",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--oplocks-enabled",
+          description:
+            "Specifies whether opportunistic locking is enabled for the SMB file share.  Enabling opportunistic locking on case-sensitive shares is not recommended for workloads that involve access to files with the same name in different case.  Valid Values: true | false",
+        },
+        {
+          name: "--no-oplocks-enabled",
+          description:
+            "Specifies whether opportunistic locking is enabled for the SMB file share.  Enabling opportunistic locking on case-sensitive shares is not recommended for workloads that involve access to files with the same name in different case.  Valid Values: true | false",
         },
         {
           name: "--cli-input-json",
@@ -1031,7 +1090,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-snapshot",
       description:
-        "Initiates a snapshot of a volume. AWS Storage Gateway provides the ability to back up point-in-time snapshots of your data to Amazon Simple Storage (Amazon S3) for durable off-site recovery, and also import the data to an Amazon Elastic Block Store (EBS) volume in Amazon Elastic Compute Cloud (EC2). You can take snapshots of your gateway volume on a scheduled or ad hoc basis. This API enables you to take an ad hoc snapshot. For more information, see Editing a snapshot schedule. In the CreateSnapshot request, you identify the volume by providing its Amazon Resource Name (ARN). You must also provide description for the snapshot. When AWS Storage Gateway takes the snapshot of specified volume, the snapshot and description appears in the AWS Storage Gateway console. In response, AWS Storage Gateway returns you a snapshot ID. You can use this snapshot ID to check the snapshot progress or later use it when you want to create a volume from a snapshot. This operation is only supported in stored and cached volume gateway type.  To list or delete a snapshot, you must use the Amazon EC2 API. For more information, see DescribeSnapshots or DeleteSnapshot in the Amazon Elastic Compute Cloud API Reference.   Volume and snapshot IDs are changing to a longer length ID format. For more information, see the important note on the Welcome page",
+        "Initiates a snapshot of a volume. Storage Gateway provides the ability to back up point-in-time snapshots of your data to Amazon Simple Storage (Amazon S3) for durable off-site recovery, and also import the data to an Amazon Elastic Block Store (EBS) volume in Amazon Elastic Compute Cloud (EC2). You can take snapshots of your gateway volume on a scheduled or ad hoc basis. This API enables you to take an ad hoc snapshot. For more information, see Editing a snapshot schedule. In the CreateSnapshot request, you identify the volume by providing its Amazon Resource Name (ARN). You must also provide description for the snapshot. When Storage Gateway takes the snapshot of specified volume, the snapshot and description appears in the Storage Gateway console. In response, Storage Gateway returns you a snapshot ID. You can use this snapshot ID to check the snapshot progress or later use it when you want to create a volume from a snapshot. This operation is only supported in stored and cached volume gateway type.  To list or delete a snapshot, you must use the Amazon EC2 API. For more information, see DescribeSnapshots or DeleteSnapshot in the Amazon Elastic Compute Cloud API Reference.   Volume and snapshot IDs are changing to a longer length ID format. For more information, see the important note on the Welcome page",
       options: [
         {
           name: "--volume-arn",
@@ -1044,7 +1103,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--snapshot-description",
           description:
-            "Textual description of the snapshot that appears in the Amazon EC2 console, Elastic Block Store snapshots panel in the Description field, and in the AWS Storage Gateway snapshot Details pane, Description field",
+            "Textual description of the snapshot that appears in the Amazon EC2 console, Elastic Block Store snapshots panel in the Description field, and in the Storage Gateway snapshot Details pane, Description field",
           args: {
             name: "string",
           },
@@ -1079,7 +1138,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-snapshot-from-volume-recovery-point",
       description:
-        "Initiates a snapshot of a gateway from a volume recovery point. This operation is only supported in the cached volume gateway type. A volume recovery point is a point in time at which all data of the volume is consistent and from which you can create a snapshot. To get a list of volume recovery point for cached volume gateway, use ListVolumeRecoveryPoints. In the CreateSnapshotFromVolumeRecoveryPoint request, you identify the volume by providing its Amazon Resource Name (ARN). You must also provide a description for the snapshot. When the gateway takes a snapshot of the specified volume, the snapshot and its description appear in the AWS Storage Gateway console. In response, the gateway returns you a snapshot ID. You can use this snapshot ID to check the snapshot progress or later use it when you want to create a volume from a snapshot.  To list or delete a snapshot, you must use the Amazon EC2 API. For more information, see DescribeSnapshots or DeleteSnapshot in the Amazon Elastic Compute Cloud API Reference",
+        "Initiates a snapshot of a gateway from a volume recovery point. This operation is only supported in the cached volume gateway type. A volume recovery point is a point in time at which all data of the volume is consistent and from which you can create a snapshot. To get a list of volume recovery point for cached volume gateway, use ListVolumeRecoveryPoints. In the CreateSnapshotFromVolumeRecoveryPoint request, you identify the volume by providing its Amazon Resource Name (ARN). You must also provide a description for the snapshot. When the gateway takes a snapshot of the specified volume, the snapshot and its description appear in the Storage Gateway console. In response, the gateway returns you a snapshot ID. You can use this snapshot ID to check the snapshot progress or later use it when you want to create a volume from a snapshot.  To list or delete a snapshot, you must use the Amazon EC2 API. For more information, see DescribeSnapshots or DeleteSnapshot in the Amazon Elastic Compute Cloud API Reference",
       options: [
         {
           name: "--volume-arn",
@@ -1092,7 +1151,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--snapshot-description",
           description:
-            "Textual description of the snapshot that appears in the Amazon EC2 console, Elastic Block Store snapshots panel in the Description field, and in the AWS Storage Gateway snapshot Details pane, Description field",
+            "Textual description of the snapshot that appears in the Amazon EC2 console, Elastic Block Store snapshots panel in the Description field, and in the Storage Gateway snapshot Details pane, Description field",
           args: {
             name: "string",
           },
@@ -1132,7 +1191,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -1182,12 +1241,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kms-encrypted",
           description:
-            "Set to true to use Amazon S3 server-side encryption with your own AWS KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
+            "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
         },
         {
           name: "--no-kms-encrypted",
           description:
-            "Set to true to use Amazon S3 server-side encryption with your own AWS KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
+            "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
         },
         {
           name: "--kms-key",
@@ -1247,7 +1306,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--retention-lock-type",
           description:
-            "Tape retention lock can be configured in two modes. When configured in governance mode, AWS accounts with specific IAM permissions are authorized to remove the tape retention lock from archived virtual tapes. When configured in compliance mode, the tape retention lock cannot be removed by any user, including the root AWS account",
+            "Tape retention lock can be configured in two modes. When configured in governance mode, Amazon Web Services accounts with specific IAM permissions are authorized to remove the tape retention lock from archived virtual tapes. When configured in compliance mode, the tape retention lock cannot be removed by any user, including the root Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -1295,7 +1354,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The unique Amazon Resource Name (ARN) that represents the gateway to associate the virtual tape with. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The unique Amazon Resource Name (ARN) that represents the gateway to associate the virtual tape with. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -1319,12 +1378,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kms-encrypted",
           description:
-            "Set to true to use Amazon S3 server-side encryption with your own AWS KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
+            "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
         },
         {
           name: "--no-kms-encrypted",
           description:
-            "Set to true to use Amazon S3 server-side encryption with your own AWS KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
+            "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
         },
         {
           name: "--kms-key",
@@ -1337,7 +1396,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--pool-id",
           description:
-            "The ID of the pool that you want to add your tape to for archiving. The tape in this pool is archived in the S3 storage class that is associated with the pool. When you use your backup application to eject the tape, the tape is archived directly into the storage class (S3 Glacier or S3 Deep Archive) that corresponds to the pool. Valid Values: GLACIER | DEEP_ARCHIVE",
+            "The ID of the pool that you want to add your tape to for archiving. The tape in this pool is archived in the S3 storage class that is associated with the pool. When you use your backup application to eject the tape, the tape is archived directly into the storage class (S3 Glacier or S3 Deep Archive) that corresponds to the pool",
           args: {
             name: "string",
           },
@@ -1387,7 +1446,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The unique Amazon Resource Name (ARN) that represents the gateway to associate the virtual tapes with. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The unique Amazon Resource Name (ARN) that represents the gateway to associate the virtual tapes with. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -1426,12 +1485,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kms-encrypted",
           description:
-            "Set to true to use Amazon S3 server-side encryption with your own AWS KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
+            "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
         },
         {
           name: "--no-kms-encrypted",
           description:
-            "Set to true to use Amazon S3 server-side encryption with your own AWS KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
+            "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
         },
         {
           name: "--kms-key",
@@ -1444,7 +1503,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--pool-id",
           description:
-            "The ID of the pool that you want to add your tape to for archiving. The tape in this pool is archived in the S3 storage class that is associated with the pool. When you use your backup application to eject the tape, the tape is archived directly into the storage class (S3 Glacier or S3 Glacier Deep Archive) that corresponds to the pool. Valid Values: GLACIER | DEEP_ARCHIVE",
+            "The ID of the pool that you want to add your tape to for archiving. The tape in this pool is archived in the S3 storage class that is associated with the pool. When you use your backup application to eject the tape, the tape is archived directly into the storage class (S3 Glacier or S3 Glacier Deep Archive) that corresponds to the pool",
           args: {
             name: "string",
           },
@@ -1494,7 +1553,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -1521,12 +1580,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-bandwidth-rate-limit",
       description:
-        "Deletes the bandwidth rate limits of a gateway. You can delete either the upload and download bandwidth rate limit, or you can delete both. If you delete only one of the limits, the other limit remains unchanged. To specify which gateway to work with, use the Amazon Resource Name (ARN) of the gateway in your request. This operation is supported for the stored volume, cached volume and tape gateway types",
+        "Deletes the bandwidth rate limits of a gateway. You can delete either the upload and download bandwidth rate limit, or you can delete both. If you delete only one of the limits, the other limit remains unchanged. To specify which gateway to work with, use the Amazon Resource Name (ARN) of the gateway in your request. This operation is supported only for the stored volume, cached volume, and tape gateway types",
       options: [
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -1600,7 +1659,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-file-share",
       description:
-        "Deletes a file share from a file gateway. This operation is only supported for file gateways",
+        "Deletes a file share from an S3 File Gateway. This operation is only supported for S3 File Gateways",
       options: [
         {
           name: "--file-share-arn",
@@ -1613,12 +1672,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--force-delete",
           description:
-            "If this value is set to true, the operation deletes a file share immediately and aborts all data uploads to AWS. Otherwise, the file share is not deleted until all data is uploaded to AWS. This process aborts the data upload process, and the file share enters the FORCE_DELETING status. Valid Values: true | false",
+            "If this value is set to true, the operation deletes a file share immediately and aborts all data uploads to Amazon Web Services. Otherwise, the file share is not deleted until all data is uploaded to Amazon Web Services. This process aborts the data upload process, and the file share enters the FORCE_DELETING status. Valid Values: true | false",
         },
         {
           name: "--no-force-delete",
           description:
-            "If this value is set to true, the operation deletes a file share immediately and aborts all data uploads to AWS. Otherwise, the file share is not deleted until all data is uploaded to AWS. This process aborts the data upload process, and the file share enters the FORCE_DELETING status. Valid Values: true | false",
+            "If this value is set to true, the operation deletes a file share immediately and aborts all data uploads to Amazon Web Services. Otherwise, the file share is not deleted until all data is uploaded to Amazon Web Services. This process aborts the data upload process, and the file share enters the FORCE_DELETING status. Valid Values: true | false",
         },
         {
           name: "--cli-input-json",
@@ -1642,12 +1701,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-gateway",
       description:
-        "Deletes a gateway. To specify which gateway to delete, use the Amazon Resource Name (ARN) of the gateway in your request. The operation deletes the gateway; however, it does not delete the gateway virtual machine (VM) from your host computer. After you delete a gateway, you cannot reactivate it. Completed snapshots of the gateway volumes are not deleted upon deleting the gateway, however, pending snapshots will not complete. After you delete a gateway, your next step is to remove it from your environment.  You no longer pay software charges after the gateway is deleted; however, your existing Amazon EBS snapshots persist and you will continue to be billed for these snapshots.\u00a0You can choose to remove all remaining Amazon EBS snapshots by canceling your Amazon EC2 subscription.\u00a0 If you prefer not to cancel your Amazon EC2 subscription, you can delete your snapshots using the Amazon EC2 console. For more information, see the AWS Storage Gateway detail page",
+        "Deletes a gateway. To specify which gateway to delete, use the Amazon Resource Name (ARN) of the gateway in your request. The operation deletes the gateway; however, it does not delete the gateway virtual machine (VM) from your host computer. After you delete a gateway, you cannot reactivate it. Completed snapshots of the gateway volumes are not deleted upon deleting the gateway, however, pending snapshots will not complete. After you delete a gateway, your next step is to remove it from your environment.  You no longer pay software charges after the gateway is deleted; however, your existing Amazon EBS snapshots persist and you will continue to be billed for these snapshots.\u00a0You can choose to remove all remaining Amazon EBS snapshots by canceling your Amazon EC2 subscription.\u00a0 If you prefer not to cancel your Amazon EC2 subscription, you can delete your snapshots using the Amazon EC2 console. For more information, see the Storage Gateway detail page",
       options: [
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -1674,7 +1733,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-snapshot-schedule",
       description:
-        "Deletes a snapshot of a volume. You can take snapshots of your gateway volumes on a scheduled or ad hoc basis. This API action enables you to delete a snapshot schedule for a volume. For more information, see Backing up your volumes. In the DeleteSnapshotSchedule request, you identify the volume by providing its Amazon Resource Name (ARN). This operation is only supported in stored and cached volume gateway types.  To list or delete a snapshot, you must use the Amazon EC2 API. For more information, go to DescribeSnapshots in the Amazon Elastic Compute Cloud API Reference",
+        "Deletes a snapshot of a volume. You can take snapshots of your gateway volumes on a scheduled or ad hoc basis. This API action enables you to delete a snapshot schedule for a volume. For more information, see Backing up your volumes. In the DeleteSnapshotSchedule request, you identify the volume by providing its Amazon Resource Name (ARN). This operation is only supported for cached volume gateway types.  To list or delete a snapshot, you must use the Amazon EC2 API. For more information, go to DescribeSnapshots in the Amazon Elastic Compute Cloud API Reference",
       options: [
         {
           name: "--volume-arn",
@@ -1710,7 +1769,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The unique Amazon Resource Name (ARN) of the gateway that the virtual tape to delete is associated with. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The unique Amazon Resource Name (ARN) of the gateway that the virtual tape to delete is associated with. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -1866,7 +1925,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -1893,12 +1952,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-bandwidth-rate-limit",
       description:
-        "Returns the bandwidth rate limits of a gateway. By default, these limits are not set, which means no bandwidth rate limiting is in effect. This operation is supported for the stored volume, cached volume, and tape gateway types. This operation only returns a value for a bandwidth rate limit only if the limit is set. If no limits are set for the gateway, then this operation returns only the gateway ARN in the response body. To specify which gateway to describe, use the Amazon Resource Name (ARN) of the gateway in your request",
+        "Returns the bandwidth rate limits of a gateway. By default, these limits are not set, which means no bandwidth rate limiting is in effect. This operation is supported only for the stored volume, cached volume, and tape gateway types. To describe bandwidth rate limits for S3 file gateways, use DescribeBandwidthRateLimitSchedule. This operation returns a value for a bandwidth rate limit only if the limit is set. If no limits are set for the gateway, then this operation returns only the gateway ARN in the response body. To specify which gateway to describe, use the Amazon Resource Name (ARN) of the gateway in your request",
       options: [
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -1925,12 +1984,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-bandwidth-rate-limit-schedule",
       description:
-        "Returns information about the bandwidth rate limit schedule of a gateway. By default, gateways do not have bandwidth rate limit schedules, which means no bandwidth rate limiting is in effect. This operation is supported only in the volume and tape gateway types.  This operation returns information about a gateway's bandwidth rate limit schedule. A bandwidth rate limit schedule consists of one or more bandwidth rate limit intervals. A bandwidth rate limit interval defines a period of time on one or more days of the week, during which bandwidth rate limits are specified for uploading, downloading, or both.   A bandwidth rate limit interval consists of one or more days of the week, a start hour and minute, an ending hour and minute, and bandwidth rate limits for uploading and downloading   If no bandwidth rate limit schedule intervals are set for the gateway, this operation returns an empty response. To specify which gateway to describe, use the Amazon Resource Name (ARN) of the gateway in your request",
+        "Returns information about the bandwidth rate limit schedule of a gateway. By default, gateways do not have bandwidth rate limit schedules, which means no bandwidth rate limiting is in effect. This operation is supported only for volume, tape and S3 file gateways. FSx file gateways do not support bandwidth rate limits. This operation returns information about a gateway's bandwidth rate limit schedule. A bandwidth rate limit schedule consists of one or more bandwidth rate limit intervals. A bandwidth rate limit interval defines a period of time on one or more days of the week, during which bandwidth rate limits are specified for uploading, downloading, or both.   A bandwidth rate limit interval consists of one or more days of the week, a start hour and minute, an ending hour and minute, and bandwidth rate limits for uploading and downloading   If no bandwidth rate limit schedule intervals are set for the gateway, this operation returns an empty response. To specify which gateway to describe, use the Amazon Resource Name (ARN) of the gateway in your request",
       options: [
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -1962,7 +2021,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -1989,7 +2048,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-cached-iscsi-volumes",
       description:
-        "Returns a description of the gateway volumes specified in the request. This operation is only supported in the cached volume gateway types. The list of gateway volumes in the request must be from one gateway. In the response, AWS Storage Gateway returns volume information sorted by volume Amazon Resource Name (ARN)",
+        "Returns a description of the gateway volumes specified in the request. This operation is only supported in the cached volume gateway types. The list of gateway volumes in the request must be from one gateway. In the response, Storage Gateway returns volume information sorted by volume Amazon Resource Name (ARN)",
       options: [
         {
           name: "--volume-arns",
@@ -2061,7 +2120,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-file-system-associations",
       description:
-        "Gets the file system association information. This operation is only supported for Amazon FSx file gateways",
+        "Gets the file system association information. This operation is only supported for FSx File Gateways",
       options: [
         {
           name: "--file-system-association-arn-list",
@@ -2093,12 +2152,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-gateway-information",
       description:
-        "Returns metadata about a gateway such as its name, network interfaces, configured time zone, and the state (whether the gateway is running or not). To specify which gateway to describe, use the Amazon Resource Name (ARN) of the gateway in your request",
+        "Returns metadata about a gateway such as its name, network interfaces, time zone, status, and software version. To specify which gateway to describe, use the Amazon Resource Name (ARN) of the gateway in your request",
       options: [
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -2130,7 +2189,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -2157,7 +2216,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-nfs-file-shares",
       description:
-        "Gets a description for one or more Network File System (NFS) file shares from a file gateway. This operation is only supported for file gateways",
+        "Gets a description for one or more Network File System (NFS) file shares from an S3 File Gateway. This operation is only supported for S3 File Gateways",
       options: [
         {
           name: "--file-share-arn-list",
@@ -2189,7 +2248,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-smb-file-shares",
       description:
-        "Gets a description for one or more Server Message Block (SMB) file shares from a file gateway. This operation is only supported for file gateways",
+        "Gets a description for one or more Server Message Block (SMB) file shares from a S3 File Gateway. This operation is only supported for S3 File Gateways",
       options: [
         {
           name: "--file-share-arn-list",
@@ -2226,7 +2285,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -2285,7 +2344,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-stored-iscsi-volumes",
       description:
-        "Returns the description of the gateway volumes specified in the request. The list of gateway volumes in the request must be from one gateway. In the response, AWS Storage Gateway returns volume information sorted by volume ARNs. This operation is only supported in stored volume gateway type",
+        "Returns the description of the gateway volumes specified in the request. The list of gateway volumes in the request must be from one gateway. In the response, Storage Gateway returns volume information sorted by volume ARNs. This operation is only supported in stored volume gateway type",
       options: [
         {
           name: "--volume-arns",
@@ -2325,7 +2384,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-tape-archives",
       description:
-        "Returns a description of specified virtual tapes in the virtual tape shelf (VTS). This operation is only supported in the tape gateway type. If a specific TapeARN is not specified, AWS Storage Gateway returns a description of all virtual tapes found in the VTS associated with your account",
+        "Returns a description of specified virtual tapes in the virtual tape shelf (VTS). This operation is only supported in the tape gateway type. If a specific TapeARN is not specified, Storage Gateway returns a description of all virtual tapes found in the VTS associated with your account",
       options: [
         {
           name: "--tape-arns",
@@ -2410,7 +2469,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -2477,12 +2536,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-tapes",
       description:
-        "Returns a description of the specified Amazon Resource Name (ARN) of virtual tapes. If a TapeARN is not specified, returns a description of all virtual tapes associated with the specified gateway. This operation is only supported in the tape gateway type",
+        "Returns a description of virtual tapes that correspond to the specified Amazon Resource Names (ARNs). If TapeARN is not specified, returns a description of the virtual tapes associated with the specified gateway. This operation is only supported for the tape gateway type. The operation supports pagination. By default, the operation returns a maximum of up to 100 tapes. You can optionally specify the Limit field in the body to limit the number of tapes in the response. If the number of tapes returned in the response is truncated, the response includes a Marker field. You can use this Marker value in your subsequent request to retrieve the next set of tapes",
       options: [
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -2570,7 +2629,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -2597,12 +2656,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-vtl-devices",
       description:
-        "Returns a description of virtual tape library (VTL) devices for the specified tape gateway. In the response, AWS Storage Gateway returns VTL device information. This operation is only supported in the tape gateway type",
+        "Returns a description of virtual tape library (VTL) devices for the specified tape gateway. In the response, Storage Gateway returns VTL device information. This operation is only supported in the tape gateway type",
       options: [
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -2690,7 +2749,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -2764,7 +2823,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -2791,7 +2850,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "disassociate-file-system",
       description:
-        "Disassociates an Amazon FSx file system from the specified gateway. After the disassociation process finishes, the gateway can no longer access the Amazon FSx file system. This operation is only supported in the Amazon FSx file gateway type",
+        "Disassociates an Amazon FSx file system from the specified gateway. After the disassociation process finishes, the gateway can no longer access the Amazon FSx file system. This operation is only supported in the FSx File Gateway type",
       options: [
         {
           name: "--file-system-association-arn",
@@ -2833,12 +2892,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "join-domain",
       description:
-        "Adds a file gateway to an Active Directory domain. This operation is only supported for file gateways that support the SMB file protocol",
+        "Adds a file gateway to an Active Directory domain. This operation is only supported for file gateways that support the SMB file protocol.  Joining a domain creates an Active Directory computer account in the default organizational unit, using the gateway's Gateway ID as the account name (for example, SGW-1234ADE). If your Active Directory environment requires that you pre-stage accounts to facilitate the join domain process, you will need to create this account ahead of time. To create the gateway's computer account in an organizational unit other than the default, you must specify the organizational unit when joining the domain",
       options: [
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -2918,7 +2977,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -2945,7 +3004,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-file-shares",
       description:
-        "Gets a list of the file shares for a specific file gateway, or the list of file shares that belong to the calling user account. This operation is only supported for file gateways",
+        "Gets a list of the file shares for a specific S3 File Gateway, or the list of file shares that belong to the calling Amazon Web Services account. This operation is only supported for S3 File Gateways",
       options: [
         {
           name: "--gateway-arn",
@@ -3017,12 +3076,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-file-system-associations",
       description:
-        "Gets a list of FileSystemAssociationSummary objects. Each object contains a summary of a file system association. This operation is only supported for Amazon FSx file gateways",
+        "Gets a list of FileSystemAssociationSummary objects. Each object contains a summary of a file system association. This operation is only supported for FSx File Gateways",
       options: [
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -3089,7 +3148,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-gateways",
       description:
-        "Lists gateways owned by an AWS account in an AWS Region specified in the request. The returned list is ordered by gateway Amazon Resource Name (ARN). By default, the operation returns a maximum of 100 gateways. This operation supports pagination that allows you to optionally reduce the number of gateways returned in a response. If you have more gateways than are returned in a response (that is, the response returns only a truncated list of your gateways), the response contains a marker that you can specify in your next request to fetch the next page of gateways",
+        "Lists gateways owned by an Amazon Web Services account in an Amazon Web Services Region specified in the request. The returned list is ordered by gateway Amazon Resource Name (ARN). By default, the operation returns a maximum of 100 gateways. This operation supports pagination that allows you to optionally reduce the number of gateways returned in a response. If you have more gateways than are returned in a response (that is, the response returns only a truncated list of your gateways), the response contains a marker that you can specify in your next request to fetch the next page of gateways",
       options: [
         {
           name: "--marker",
@@ -3158,7 +3217,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -3438,7 +3497,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -3470,7 +3529,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -3537,7 +3596,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "notify-when-uploaded",
       description:
-        "Sends you notification through CloudWatch Events when all files written to your file share have been uploaded to Amazon S3. AWS Storage Gateway can send a notification through Amazon CloudWatch Events when all files written to your file share up to that point in time have been uploaded to Amazon S3. These files include files written to the file share up to the time that you make a request for notification. When the upload is done, Storage Gateway sends you notification through an Amazon CloudWatch Event. You can configure CloudWatch Events to send the notification through event targets such as Amazon SNS or AWS Lambda function. This operation is only supported for file gateways. For more information, see Getting file upload notification in the AWS Storage Gateway User Guide",
+        "Sends you notification through CloudWatch Events when all files written to your file share have been uploaded to Amazon S3. Storage Gateway can send a notification through Amazon CloudWatch Events when all files written to your file share up to that point in time have been uploaded to Amazon S3. These files include files written to the file share up to the time that you make a request for notification. When the upload is done, Storage Gateway sends you notification through an Amazon CloudWatch Event. You can configure CloudWatch Events to send the notification through event targets such as Amazon SNS or Lambda function. This operation is only supported for S3 File Gateways. For more information, see Getting file upload notification in the Amazon S3 File Gateway User Guide",
       options: [
         {
           name: "--file-share-arn",
@@ -3568,7 +3627,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "refresh-cache",
       description:
-        "Refreshes the cached inventory of objects for the specified file share. This operation finds objects in the Amazon S3 bucket that were added, removed, or replaced since the gateway last listed the bucket's contents and cached the results. This operation does not import files into the file gateway cache storage. It only updates the cached inventory to reflect changes in the inventory of the objects in the S3 bucket. This operation is only supported in the file gateway type. You can subscribe to be notified through an Amazon CloudWatch event when your RefreshCache operation completes. For more information, see Getting notified about file operations in the AWS Storage Gateway User Guide. When this API is called, it only initiates the refresh operation. When the API call completes and returns a success code, it doesn't necessarily mean that the file refresh has completed. You should use the refresh-complete notification to determine that the operation has completed before you check for new files on the gateway file share. You can subscribe to be notified through a CloudWatch event when your RefreshCache operation completes. Throttle limit: This API is asynchronous, so the gateway will accept no more than two refreshes at any time. We recommend using the refresh-complete CloudWatch event notification before issuing additional requests. For more information, see Getting notified about file operations in the AWS Storage Gateway User Guide. If you invoke the RefreshCache API when two requests are already being processed, any new request will cause an InvalidGatewayRequestException error because too many requests were sent to the server. For more information, see Getting notified about file operations in the AWS Storage Gateway User Guide",
+        "Refreshes the cached inventory of objects for the specified file share. This operation finds objects in the Amazon S3 bucket that were added, removed, or replaced since the gateway last listed the bucket's contents and cached the results. This operation does not import files into the S3 File Gateway cache storage. It only updates the cached inventory to reflect changes in the inventory of the objects in the S3 bucket. This operation is only supported in the S3 File Gateway types. You can subscribe to be notified through an Amazon CloudWatch event when your RefreshCache operation completes. For more information, see Getting notified about file operations in the Amazon S3 File Gateway User Guide. This operation is Only supported for S3 File Gateways. When this API is called, it only initiates the refresh operation. When the API call completes and returns a success code, it doesn't necessarily mean that the file refresh has completed. You should use the refresh-complete notification to determine that the operation has completed before you check for new files on the gateway file share. You can subscribe to be notified through a CloudWatch event when your RefreshCache operation completes. Throttle limit: This API is asynchronous, so the gateway will accept no more than two refreshes at any time. We recommend using the refresh-complete CloudWatch event notification before issuing additional requests. For more information, see Getting notified about file operations in the Amazon S3 File Gateway User Guide.    Wait at least 60 seconds between consecutive RefreshCache API requests.   If you invoke the RefreshCache API when two requests are already being processed, any new request will cause an InvalidGatewayRequestException error because too many requests were sent to the server.     The S3 bucket name does not need to be included when entering the list of folders in the FolderList parameter.  For more information, see Getting notified about file operations in the Amazon S3 File Gateway User Guide",
       options: [
         {
           name: "--file-share-arn",
@@ -3581,7 +3640,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--folder-list",
           description:
-            'A comma-separated list of the paths of folders to refresh in the cache. The default is ["/"]. The default refreshes objects and folders at the root of the Amazon S3 bucket. If Recursive is set to true, the entire S3 bucket that the file share has access to is refreshed',
+            'A comma-separated list of the paths of folders to refresh in the cache. The default is ["/"]. The default refreshes objects and folders at the root of the Amazon S3 bucket. If Recursive is set to true, the entire S3 bucket that the file share has access to is refreshed. Do not include / when specifying folder names. For example, you would specify samplefolder rather than samplefolder/',
           args: {
             name: "list",
           },
@@ -3663,7 +3722,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -3703,7 +3762,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway you want to retrieve the virtual tape to. Use the ListGateways operation to return a list of gateways for your account and AWS Region. You retrieve archived virtual tapes to only one gateway and the gateway must be a tape gateway",
+            "The Amazon Resource Name (ARN) of the gateway you want to retrieve the virtual tape to. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region. You retrieve archived virtual tapes to only one gateway and the gateway must be a tape gateway",
           args: {
             name: "string",
           },
@@ -3743,7 +3802,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -3775,7 +3834,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -3809,12 +3868,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "set-smb-guest-password",
       description:
-        "Sets the password for the guest user smbguest. The smbguest user is the user when the authentication method for the file share is set to GuestAccess",
+        "Sets the password for the guest user smbguest. The smbguest user is the user when the authentication method for the file share is set to GuestAccess. This operation only supported for S3 File Gateways",
       options: [
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the file gateway the SMB file share is associated with",
+            "The Amazon Resource Name (ARN) of the S3 File Gateway the SMB file share is associated with",
           args: {
             name: "string",
           },
@@ -3848,12 +3907,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "shutdown-gateway",
       description:
-        "Shuts down a gateway. To specify which gateway to shut down, use the Amazon Resource Name (ARN) of the gateway in the body of your request. The operation shuts down the gateway service component running in the gateway's virtual machine (VM) and not the host VM.  If you want to shut down the VM, it is recommended that you first shut down the gateway component in the VM to avoid unpredictable conditions.  After the gateway is shutdown, you cannot call any other API except StartGateway, DescribeGatewayInformation, and ListGateways. For more information, see ActivateGateway. Your applications cannot read from or write to the gateway's storage volumes, and there are no snapshots taken.  When you make a shutdown request, you will get a 200 OK success response immediately. However, it might take some time for the gateway to shut down. You can call the DescribeGatewayInformation API to check the status. For more information, see ActivateGateway.  If do not intend to use the gateway again, you must delete the gateway (using DeleteGateway) to no longer pay software charges associated with the gateway",
+        "Shuts down a Tape Gateway or Volume Gateway. To specify which gateway to shut down, use the Amazon Resource Name (ARN) of the gateway in the body of your request.  This API action cannot be used to shut down S3 File Gateway or FSx File Gateway.  The operation shuts down the gateway service component running in the gateway's virtual machine (VM) and not the host VM.  If you want to shut down the VM, it is recommended that you first shut down the gateway component in the VM to avoid unpredictable conditions.  After the gateway is shutdown, you cannot call any other API except StartGateway, DescribeGatewayInformation, and ListGateways. For more information, see ActivateGateway. Your applications cannot read from or write to the gateway's storage volumes, and there are no snapshots taken.  When you make a shutdown request, you will get a 200 OK success response immediately. However, it might take some time for the gateway to shut down. You can call the DescribeGatewayInformation API to check the status. For more information, see ActivateGateway.  If do not intend to use the gateway again, you must delete the gateway (using DeleteGateway) to no longer pay software charges associated with the gateway",
       options: [
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -3885,7 +3944,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -3917,7 +3976,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -3957,7 +4016,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -3984,12 +4043,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-bandwidth-rate-limit",
       description:
-        "Updates the bandwidth rate limits of a gateway. You can update both the upload and download bandwidth rate limit or specify only one of the two. If you don't set a bandwidth rate limit, the existing rate limit remains. This operation is supported for the stored volume, cached volume, and tape gateway types. By default, a gateway's bandwidth rate limits are not set. If you don't set any limit, the gateway does not have any limitations on its bandwidth usage and could potentially use the maximum available bandwidth. To specify which gateway to update, use the Amazon Resource Name (ARN) of the gateway in your request",
+        "Updates the bandwidth rate limits of a gateway. You can update both the upload and download bandwidth rate limit or specify only one of the two. If you don't set a bandwidth rate limit, the existing rate limit remains. This operation is supported only for the stored volume, cached volume, and tape gateway types. To update bandwidth rate limits for S3 file gateways, use UpdateBandwidthRateLimitSchedule. By default, a gateway's bandwidth rate limits are not set. If you don't set any limit, the gateway does not have any limitations on its bandwidth usage and could potentially use the maximum available bandwidth. To specify which gateway to update, use the Amazon Resource Name (ARN) of the gateway in your request",
       options: [
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -4032,12 +4091,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-bandwidth-rate-limit-schedule",
       description:
-        "Updates the bandwidth rate limit schedule for a specified gateway. By default, gateways do not have bandwidth rate limit schedules, which means no bandwidth rate limiting is in effect. Use this to initiate or update a gateway's bandwidth rate limit schedule. This operation is supported in the volume and tape gateway types",
+        "Updates the bandwidth rate limit schedule for a specified gateway. By default, gateways do not have bandwidth rate limit schedules, which means no bandwidth rate limiting is in effect. Use this to initiate or update a gateway's bandwidth rate limit schedule. This operation is supported for volume, tape, and S3 file gateways. S3 file gateways support bandwidth rate limits for upload only. FSx file gateways do not support bandwidth rate limits",
       options: [
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -4127,7 +4186,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-file-system-association",
       description:
-        "Updates a file system association. This operation is only supported in the Amazon FSx file gateway type",
+        "Updates a file system association. This operation is only supported in the FSx File Gateways",
       options: [
         {
           name: "--file-system-association-arn",
@@ -4162,7 +4221,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--cache-attributes",
-          description: "The refresh cache information for the file share",
+          description:
+            "The refresh cache information for the file share or FSx file systems",
           args: {
             name: "structure",
           },
@@ -4194,7 +4254,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -4217,6 +4277,13 @@ const completionSpec: Fig.Spec = {
           name: "--cloud-watch-log-group-arn",
           description:
             "The Amazon Resource Name (ARN) of the Amazon CloudWatch log group that you want to use to monitor and log events in the gateway. For more information, see What is Amazon CloudWatch Logs?",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--gateway-capacity",
+          description: "Specifies the size of the gateway's metadata cache",
           args: {
             name: "string",
           },
@@ -4248,7 +4315,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -4280,7 +4347,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -4339,7 +4406,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-nfs-file-share",
       description:
-        "Updates a Network File System (NFS) file share. This operation is only supported in the file gateway type.  To leave a file share field unchanged, set the corresponding input field to null.  Updates the following file share settings:   Default storage class for your S3 bucket   Metadata defaults for your S3 bucket   Allowed NFS clients for your file share   Squash settings   Write status of your file share",
+        "Updates a Network File System (NFS) file share. This operation is only supported in S3 File Gateways.  To leave a file share field unchanged, set the corresponding input field to null.  Updates the following file share settings:   Default storage class for your S3 bucket   Metadata defaults for your S3 bucket   Allowed NFS clients for your file share   Squash settings   Write status of your file share",
       options: [
         {
           name: "--file-share-arn",
@@ -4352,12 +4419,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kms-encrypted",
           description:
-            "Set to true to use Amazon S3 server-side encryption with your own AWS KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
+            "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
         },
         {
           name: "--no-kms-encrypted",
           description:
-            "Set to true to use Amazon S3 server-side encryption with your own AWS KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
+            "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
         },
         {
           name: "--kms-key",
@@ -4377,7 +4444,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--default-storage-class",
           description:
-            "The default storage class for objects put into an Amazon S3 bucket by the file gateway. The default value is S3_INTELLIGENT_TIERING. Optional. Valid Values: S3_STANDARD | S3_INTELLIGENT_TIERING | S3_STANDARD_IA | S3_ONEZONE_IA",
+            "The default storage class for objects put into an Amazon S3 bucket by the S3 File Gateway. The default value is S3_STANDARD. Optional. Valid Values: S3_STANDARD | S3_INTELLIGENT_TIERING | S3_STANDARD_IA | S3_ONEZONE_IA",
           args: {
             name: "string",
           },
@@ -4385,7 +4452,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--object-acl",
           description:
-            "A value that sets the access control list (ACL) permission for objects in the S3 bucket that a file gateway puts objects into. The default value is private",
+            "A value that sets the access control list (ACL) permission for objects in the S3 bucket that a S3 File Gateway puts objects into. The default value is private",
           args: {
             name: "string",
           },
@@ -4393,7 +4460,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--client-list",
           description:
-            "The list of clients that are allowed to access the file gateway. The list must contain either valid IP addresses or valid CIDR blocks",
+            "The list of clients that are allowed to access the S3 File Gateway. The list must contain either valid IP addresses or valid CIDR blocks",
           args: {
             name: "list",
           },
@@ -4439,7 +4506,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--file-share-name",
           description:
-            "The name of the file share. Optional.   FileShareName must be set if an S3 prefix name is set in LocationARN",
+            "The name of the file share. Optional.   FileShareName must be set if an S3 prefix name is set in LocationARN, or if an access point or access point alias is used",
           args: {
             name: "string",
           },
@@ -4455,6 +4522,14 @@ const completionSpec: Fig.Spec = {
           name: "--notification-policy",
           description:
             'The notification policy of the file share. SettlingTimeInSeconds controls the number of seconds to wait after the last point in time a client wrote to a file before generating an ObjectUploaded notification. Because clients can make many small writes to files, it\'s best to set this parameter for as long as possible to avoid generating multiple notifications for the same file in a small time period.   SettlingTimeInSeconds has no effect on the timing of the object uploading to Amazon S3, only the timing of the notification.  The following example sets NotificationPolicy on with SettlingTimeInSeconds set to 60.  {\\"Upload\\": {\\"SettlingTimeInSeconds\\": 60}}  The following example sets NotificationPolicy off.  {}',
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--audit-destination-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the storage used for audit logs",
           args: {
             name: "string",
           },
@@ -4481,7 +4556,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-smb-file-share",
       description:
-        "Updates a Server Message Block (SMB) file share. This operation is only supported for file gateways.  To leave a file share field unchanged, set the corresponding input field to null.   File gateways require AWS Security Token Service (AWS STS) to be activated to enable you to create a file share. Make sure that AWS STS is activated in the AWS Region you are creating your file gateway in. If AWS STS is not activated in this AWS Region, activate it. For information about how to activate AWS STS, see Activating and deactivating AWS STS in an AWS Region in the AWS Identity and Access Management User Guide. File gateways don't support creating hard or symbolic links on a file share",
+        "Updates a Server Message Block (SMB) file share. This operation is only supported for S3 File Gateways.  To leave a file share field unchanged, set the corresponding input field to null.   File gateways require Security Token Service (Amazon Web Services STS) to be activated to enable you to create a file share. Make sure that Amazon Web Services STS is activated in the Amazon Web Services Region you are creating your file gateway in. If Amazon Web Services STS is not activated in this Amazon Web Services Region, activate it. For information about how to activate Amazon Web Services STS, see Activating and deactivating Amazon Web Services STS in an Amazon Web Services Region in the Identity and Access Management User Guide. File gateways don't support creating hard or symbolic links on a file share",
       options: [
         {
           name: "--file-share-arn",
@@ -4494,12 +4569,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kms-encrypted",
           description:
-            "Set to true to use Amazon S3 server-side encryption with your own AWS KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
+            "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
         },
         {
           name: "--no-kms-encrypted",
           description:
-            "Set to true to use Amazon S3 server-side encryption with your own AWS KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
+            "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional. Valid Values: true | false",
         },
         {
           name: "--kms-key",
@@ -4512,7 +4587,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--default-storage-class",
           description:
-            "The default storage class for objects put into an Amazon S3 bucket by the file gateway. The default value is S3_INTELLIGENT_TIERING. Optional. Valid Values: S3_STANDARD | S3_INTELLIGENT_TIERING | S3_STANDARD_IA | S3_ONEZONE_IA",
+            "The default storage class for objects put into an Amazon S3 bucket by the S3 File Gateway. The default value is S3_STANDARD. Optional. Valid Values: S3_STANDARD | S3_INTELLIGENT_TIERING | S3_STANDARD_IA | S3_ONEZONE_IA",
           args: {
             name: "string",
           },
@@ -4520,7 +4595,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--object-acl",
           description:
-            "A value that sets the access control list (ACL) permission for objects in the S3 bucket that a file gateway puts objects into. The default value is private",
+            "A value that sets the access control list (ACL) permission for objects in the S3 bucket that a S3 File Gateway puts objects into. The default value is private",
           args: {
             name: "string",
           },
@@ -4558,12 +4633,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--smbacl-enabled",
           description:
-            "Set this value to true to enable access control list (ACL) on the SMB file share. Set it to false to map file and directory permissions to the POSIX permissions. For more information, see Using Microsoft Windows ACLs to control access to an SMB file share in the AWS Storage Gateway User Guide. Valid Values: true | false",
+            "Set this value to true to enable access control list (ACL) on the SMB file share. Set it to false to map file and directory permissions to the POSIX permissions. For more information, see Using Microsoft Windows ACLs to control access to an SMB file share in the Storage Gateway User Guide. Valid Values: true | false",
         },
         {
           name: "--no-smbacl-enabled",
           description:
-            "Set this value to true to enable access control list (ACL) on the SMB file share. Set it to false to map file and directory permissions to the POSIX permissions. For more information, see Using Microsoft Windows ACLs to control access to an SMB file share in the AWS Storage Gateway User Guide. Valid Values: true | false",
+            "Set this value to true to enable access control list (ACL) on the SMB file share. Set it to false to map file and directory permissions to the POSIX permissions. For more information, see Using Microsoft Windows ACLs to control access to an SMB file share in the Storage Gateway User Guide. Valid Values: true | false",
         },
         {
           name: "--access-based-enumeration",
@@ -4618,7 +4693,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--file-share-name",
           description:
-            "The name of the file share. Optional.   FileShareName must be set if an S3 prefix name is set in LocationARN",
+            "The name of the file share. Optional.   FileShareName must be set if an S3 prefix name is set in LocationARN, or if an access point or access point alias is used",
           args: {
             name: "string",
           },
@@ -4637,6 +4712,16 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "string",
           },
+        },
+        {
+          name: "--oplocks-enabled",
+          description:
+            "Specifies whether opportunistic locking is enabled for the SMB file share.  Enabling opportunistic locking on case-sensitive shares is not recommended for workloads that involve access to files with the same name in different case.  Valid Values: true | false",
+        },
+        {
+          name: "--no-oplocks-enabled",
+          description:
+            "Specifies whether opportunistic locking is enabled for the SMB file share.  Enabling opportunistic locking on case-sensitive shares is not recommended for workloads that involve access to files with the same name in different case.  Valid Values: true | false",
         },
         {
           name: "--cli-input-json",
@@ -4660,12 +4745,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-smb-file-share-visibility",
       description:
-        "Controls whether the shares on a gateway are visible in a net view or browse list",
+        "Controls whether the shares on an S3 File Gateway are visible in a net view or browse list. The operation is only supported for S3 File Gateways",
       options: [
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -4698,6 +4783,46 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "update-smb-local-groups",
+      description:
+        "Updates the list of Active Directory users and groups that have special permissions for SMB file shares on the gateway",
+      options: [
+        {
+          name: "--gateway-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--smb-local-groups",
+          description:
+            "A list of Active Directory users and groups that you want to grant special permissions for SMB file shares on the gateway",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "update-smb-security-strategy",
       description:
         "Updates the SMB security strategy on a file gateway. This action is only supported in file gateways.  This API is called Security level in the User Guide. A higher security level can affect performance of the gateway",
@@ -4705,7 +4830,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gateway-arn",
           description:
-            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and AWS Region",
+            "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -4713,7 +4838,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--smb-security-strategy",
           description:
-            "Specifies the type of security strategy. ClientSpecified: if you use this option, requests are established based on what is negotiated by the client. This option is recommended when you want to maximize compatibility across different clients in your environment. MandatorySigning: if you use this option, file gateway only allows connections from SMBv2 or SMBv3 clients that have signing enabled. This option works with SMB clients on Microsoft Windows Vista, Windows Server 2008 or newer. MandatoryEncryption: if you use this option, file gateway only allows connections from SMBv3 clients that have encryption enabled. This option is highly recommended for environments that handle sensitive data. This option works with SMB clients on Microsoft Windows 8, Windows Server 2012 or newer",
+            "Specifies the type of security strategy. ClientSpecified: if you use this option, requests are established based on what is negotiated by the client. This option is recommended when you want to maximize compatibility across different clients in your environment. Supported only in S3 File Gateway. MandatorySigning: if you use this option, file gateway only allows connections from SMBv2 or SMBv3 clients that have signing enabled. This option works with SMB clients on Microsoft Windows Vista, Windows Server 2008 or newer. MandatoryEncryption: if you use this option, file gateway only allows connections from SMBv3 clients that have encryption enabled. This option is highly recommended for environments that handle sensitive data. This option works with SMB clients on Microsoft Windows 8, Windows Server 2012 or newer",
           args: {
             name: "string",
           },
@@ -4843,5 +4968,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

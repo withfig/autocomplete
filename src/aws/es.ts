@@ -114,6 +114,87 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "authorize-vpc-endpoint-access",
+      description:
+        "Provides access to an Amazon OpenSearch Service domain through the use of an interface VPC endpoint",
+      options: [
+        {
+          name: "--domain-name",
+          description:
+            "The name of the OpenSearch Service domain to provide access to",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--account",
+          description: "The account ID to grant access to",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "cancel-domain-config-change",
+      description:
+        "Cancels a pending configuration change on an Amazon OpenSearch Service domain",
+      options: [
+        {
+          name: "--domain-name",
+          description:
+            "Name of the OpenSearch Service domain configuration request to cancel",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--dry-run",
+          description:
+            "When set to True, returns the list of change IDs and properties that will be cancelled without actually cancelling the change",
+        },
+        {
+          name: "--no-dry-run",
+          description:
+            "When set to True, returns the list of change IDs and properties that will be cancelled without actually cancelling the change",
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "cancel-elasticsearch-service-software-update",
       description:
         "Cancels a scheduled service software update for an Amazon ES domain. You can only perform this operation before the AutomatedUpdateDate and when the UpdateStatus is in the PENDING_UPDATE state",
@@ -393,6 +474,53 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-vpc-endpoint",
+      description: "Creates an Amazon OpenSearch Service-managed VPC endpoint",
+      options: [
+        {
+          name: "--domain-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the domain to grant access to",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--vpc-options",
+          description:
+            "Options to specify the subnets and security groups for the endpoint",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "Unique, case-sensitive identifier to ensure idempotency of the request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-elasticsearch-domain",
       description:
         "Permanently deletes the specified Elasticsearch domain and all of its data. Once a domain is deleted, it cannot be recovered",
@@ -544,6 +672,37 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-vpc-endpoint",
+      description:
+        "Deletes an Amazon OpenSearch Service-managed interface VPC endpoint",
+      options: [
+        {
+          name: "--vpc-endpoint-id",
+          description: "The unique identifier of the endpoint to be deleted",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "describe-domain-auto-tunes",
       description:
         "Provides scheduled Auto-Tune action details for the Elasticsearch domain, such as Auto-Tune action type, description, severity, and scheduled date",
@@ -568,6 +727,46 @@ const completionSpec: Fig.Spec = {
           name: "--next-token",
           description:
             "NextToken is sent in case the earlier API call results contain the NextToken. It is used for pagination",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-domain-change-progress",
+      description:
+        "Returns information about the current blue/green deployment happening on a domain, including a change ID, status, and progress stages",
+      options: [
+        {
+          name: "--domain-name",
+          description:
+            "The domain you want to get the progress information about",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--change-id",
+          description:
+            "The specific change ID for which you want to get progress information. This is an optional parameter. If omitted, the service returns information about the most recent configuration change",
           args: {
             name: "string",
           },
@@ -1021,6 +1220,38 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "describe-vpc-endpoints",
+      description:
+        "Describes one or more Amazon OpenSearch Service-managed VPC endpoints",
+      options: [
+        {
+          name: "--vpc-endpoint-ids",
+          description:
+            "The unique identifiers of the endpoints to get information about",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "dissociate-package",
       description: "Dissociates a package from the Amazon ES domain",
       options: [
@@ -1245,6 +1476,14 @@ const completionSpec: Fig.Spec = {
       description:
         "Returns the name of all Elasticsearch domains owned by the current user's account",
       options: [
+        {
+          name: "--engine-type",
+          description:
+            "Optional parameter to filter the output by domain engine type. Acceptable values are 'Elasticsearch' and 'OpenSearch'",
+          args: {
+            name: "string",
+          },
+        },
         {
           name: "--cli-input-json",
           description:
@@ -1530,6 +1769,117 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-vpc-endpoint-access",
+      description:
+        "Retrieves information about each principal that is allowed to access a given Amazon OpenSearch Service domain through the use of an interface VPC endpoint",
+      options: [
+        {
+          name: "--domain-name",
+          description:
+            "The name of the OpenSearch Service domain to retrieve access information for",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "Provides an identifier to allow retrieval of paginated results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-vpc-endpoints",
+      description:
+        "Retrieves all Amazon OpenSearch Service-managed VPC endpoints in the current account and Region",
+      options: [
+        {
+          name: "--next-token",
+          description: "Identifier to allow retrieval of paginated results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-vpc-endpoints-for-domain",
+      description:
+        "Retrieves all Amazon OpenSearch Service-managed VPC endpoints associated with a particular domain",
+      options: [
+        {
+          name: "--domain-name",
+          description:
+            "Name of the ElasticSearch domain whose VPC endpoints are to be listed",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "Provides an identifier to allow retrieval of paginated results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "purchase-reserved-elasticsearch-instance-offering",
       description: "Allows you to purchase reserved Elasticsearch instances",
       options: [
@@ -1626,6 +1976,44 @@ const completionSpec: Fig.Spec = {
             "Specifies the TagKey list which you want to remove from the Elasticsearch domain",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "revoke-vpc-endpoint-access",
+      description:
+        "Revokes access to an Amazon OpenSearch Service domain that was provided through an interface VPC endpoint",
+      options: [
+        {
+          name: "--domain-name",
+          description: "The name of the OpenSearch Service domain",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--account",
+          description: "The account ID to revoke access from",
+          args: {
+            name: "string",
           },
         },
         {
@@ -1792,6 +2180,16 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--dry-run",
+          description:
+            "This flag, when set to True, specifies whether the UpdateElasticsearchDomain request should return the results of validation checks without actually applying the change. This flag, when set to True, specifies the deployment mechanism through which the update shall be applied on the domain. This will not actually perform the Update",
+        },
+        {
+          name: "--no-dry-run",
+          description:
+            "This flag, when set to True, specifies whether the UpdateElasticsearchDomain request should return the results of validation checks without actually applying the change. This flag, when set to True, specifies the deployment mechanism through which the update shall be applied on the domain. This will not actually perform the Update",
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -1842,6 +2240,45 @@ const completionSpec: Fig.Spec = {
             "An info message for the new version which will be shown as part of GetPackageVersionHistoryResponse",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-vpc-endpoint",
+      description:
+        "Modifies an Amazon OpenSearch Service-managed interface VPC endpoint",
+      options: [
+        {
+          name: "--vpc-endpoint-id",
+          description: "Unique identifier of the VPC endpoint to be updated",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--vpc-options",
+          description:
+            "The security groups and/or subnets to add, remove, or modify",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -1915,5 +2352,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;
