@@ -1,17 +1,17 @@
 const completionSpec: Fig.Spec = {
   name: "codestar-notifications",
   description:
-    "This AWS CodeStar Notifications API Reference provides descriptions and usage examples of the operations and data types for the AWS CodeStar Notifications API. You can use the AWS CodeStar Notifications API to work with the following objects: Notification rules, by calling the following:     CreateNotificationRule, which creates a notification rule for a resource in your account.     DeleteNotificationRule, which deletes a notification rule.     DescribeNotificationRule, which provides information about a notification rule.     ListNotificationRules, which lists the notification rules associated with your account.     UpdateNotificationRule, which changes the name, events, or targets associated with a notification rule.     Subscribe, which subscribes a target to a notification rule.     Unsubscribe, which removes a target from a notification rule.    Targets, by calling the following:     DeleteTarget, which removes a notification rule target (SNS topic) from a notification rule.     ListTargets, which lists the targets associated with a notification rule.    Events, by calling the following:     ListEventTypes, which lists the event types you can include in a notification rule.    Tags, by calling the following:     ListTagsForResource, which lists the tags already associated with a notification rule in your account.     TagResource, which associates a tag you provide with a notification rule in your account.     UntagResource, which removes a tag from a notification rule in your account.     For information about how to use AWS CodeStar Notifications, see link in the CodeStarNotifications User Guide",
+    "This AWS CodeStar Notifications API Reference provides descriptions and usage examples of the operations and data types for the AWS CodeStar Notifications API. You can use the AWS CodeStar Notifications API to work with the following objects: Notification rules, by calling the following:     CreateNotificationRule, which creates a notification rule for a resource in your account.     DeleteNotificationRule, which deletes a notification rule.     DescribeNotificationRule, which provides information about a notification rule.     ListNotificationRules, which lists the notification rules associated with your account.     UpdateNotificationRule, which changes the name, events, or targets associated with a notification rule.     Subscribe, which subscribes a target to a notification rule.     Unsubscribe, which removes a target from a notification rule.    Targets, by calling the following:     DeleteTarget, which removes a notification rule target from a notification rule.     ListTargets, which lists the targets associated with a notification rule.    Events, by calling the following:     ListEventTypes, which lists the event types you can include in a notification rule.    Tags, by calling the following:     ListTagsForResource, which lists the tags already associated with a notification rule in your account.     TagResource, which associates a tag you provide with a notification rule in your account.     UntagResource, which removes a tag from a notification rule in your account.     For information about how to use AWS CodeStar Notifications, see the Amazon Web Services Developer Tools Console User Guide",
   subcommands: [
     {
       name: "create-notification-rule",
       description:
-        "Creates a notification rule for a resource. The rule specifies the events you want notifications about and the targets (such as SNS topics) where you want to receive them",
+        "Creates a notification rule for a resource. The rule specifies the events you want notifications about and the targets (such as Chatbot topics or Chatbot clients configured for Slack) where you want to receive them",
       options: [
         {
           name: "--name",
           description:
-            "The name for the notification rule. Notifictaion rule names must be unique in your AWS account",
+            "The name for the notification rule. Notification rule names must be unique in your Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -27,7 +27,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource",
           description:
-            "The Amazon Resource Name (ARN) of the resource to associate with the notification rule. Supported resources include pipelines in AWS CodePipeline, repositories in AWS CodeCommit, and build projects in AWS CodeBuild",
+            "The Amazon Resource Name (ARN) of the resource to associate with the notification rule. Supported resources include pipelines in CodePipeline, repositories in CodeCommit, and build projects in CodeBuild",
           args: {
             name: "string",
           },
@@ -35,7 +35,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--targets",
           description:
-            "A list of Amazon Resource Names (ARNs) of SNS topics to associate with the notification rule",
+            "A list of Amazon Resource Names (ARNs) of Amazon Simple Notification Service topics and Chatbot clients to associate with the notification rule",
           args: {
             name: "list",
           },
@@ -43,7 +43,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detail-type",
           description:
-            "The level of detail to include in the notifications for this resource. BASIC will include only the contents of the event as it would appear in AWS CloudWatch. FULL will include any supplemental information provided by AWS CodeStar Notifications and/or the service for the resource for which the notification is created",
+            "The level of detail to include in the notifications for this resource. BASIC will include only the contents of the event as it would appear in Amazon CloudWatch. FULL will include any supplemental information provided by AWS CodeStar Notifications and/or the service for the resource for which the notification is created",
           args: {
             name: "string",
           },
@@ -51,7 +51,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--client-request-token",
           description:
-            "A unique, client-generated idempotency token that, when provided in a request, ensures the request cannot be repeated with a changed parameter. If a request with the same parameters is received and a token is included, the request returns information about the initial request that used that token.  The AWS SDKs prepopulate client request tokens. If you are using an AWS SDK, an idempotency token is created for you",
+            "A unique, client-generated idempotency token that, when provided in a request, ensures the request cannot be repeated with a changed parameter. If a request with the same parameters is received and a token is included, the request returns information about the initial request that used that token.  The Amazon Web Services SDKs prepopulate client request tokens. If you are using an Amazon Web Services SDK, an idempotency token is created for you",
           args: {
             name: "string",
           },
@@ -129,7 +129,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--target-address",
           description:
-            "The Amazon Resource Name (ARN) of the SNS topic to delete",
+            "The Amazon Resource Name (ARN) of the Chatbot topic or Chatbot client to delete",
           args: {
             name: "string",
           },
@@ -137,12 +137,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--force-unsubscribe-all",
           description:
-            "A Boolean value that can be used to delete all associations with this SNS topic. The default value is FALSE. If set to TRUE, all associations between that target and every notification rule in your AWS account are deleted",
+            "A Boolean value that can be used to delete all associations with this Chatbot topic. The default value is FALSE. If set to TRUE, all associations between that target and every notification rule in your Amazon Web Services account are deleted",
         },
         {
           name: "--no-force-unsubscribe-all",
           description:
-            "A Boolean value that can be used to delete all associations with this SNS topic. The default value is FALSE. If set to TRUE, all associations between that target and every notification rule in your AWS account are deleted",
+            "A Boolean value that can be used to delete all associations with this Chatbot topic. The default value is FALSE. If set to TRUE, all associations between that target and every notification rule in your Amazon Web Services account are deleted",
         },
         {
           name: "--cli-input-json",
@@ -269,7 +269,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-notification-rules",
       description:
-        "Returns a list of the notification rules for an AWS account",
+        "Returns a list of the notification rules for an Amazon Web Services account",
       options: [
         {
           name: "--filters",
@@ -373,7 +373,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-targets",
       description:
-        "Returns a list of the notification rule targets for an AWS account",
+        "Returns a list of the notification rule targets for an Amazon Web Services account",
       options: [
         {
           name: "--filters",
@@ -445,7 +445,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "subscribe",
       description:
-        "Creates an association between a notification rule and an SNS topic so that the associated target can receive notifications when the events described in the rule are triggered",
+        "Creates an association between a notification rule and an Chatbot topic or Chatbot client so that the associated target can receive notifications when the events described in the rule are triggered",
       options: [
         {
           name: "--arn",
@@ -458,7 +458,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--target",
           description:
-            "Information about the SNS topics associated with a notification rule",
+            "Information about the Chatbot topics or Chatbot clients associated with a notification rule",
           args: {
             name: "structure",
           },
@@ -532,7 +532,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "unsubscribe",
       description:
-        "Removes an association between a notification rule and an Amazon SNS topic so that subscribers to that topic stop receiving notifications when the events described in the rule are triggered",
+        "Removes an association between a notification rule and an Chatbot topic so that subscribers to that topic stop receiving notifications when the events described in the rule are triggered",
       options: [
         {
           name: "--arn",
@@ -545,7 +545,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--target-address",
           description:
-            "The ARN of the SNS topic to unsubscribe from the notification rule",
+            "The ARN of the Chatbot topic to unsubscribe from the notification rule",
           args: {
             name: "string",
           },
@@ -639,7 +639,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--event-type-ids",
           description:
-            "A list of event types associated with this notification rule",
+            "A list of event types associated with this notification rule. For a complete list of event types and IDs, see Notification concepts in the Developer Tools Console User Guide",
           args: {
             name: "list",
           },
@@ -655,7 +655,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detail-type",
           description:
-            "The level of detail to include in the notifications for this resource. BASIC will include only the contents of the event as it would appear in AWS CloudWatch. FULL will include any supplemental information provided by AWS CodeStar Notifications and/or the service for the resource for which the notification is created",
+            "The level of detail to include in the notifications for this resource. BASIC will include only the contents of the event as it would appear in Amazon CloudWatch. FULL will include any supplemental information provided by AWS CodeStar Notifications and/or the service for the resource for which the notification is created",
           args: {
             name: "string",
           },
@@ -681,5 +681,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

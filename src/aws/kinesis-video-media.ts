@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "kinesis-video-media",
-  description: "",
+  description: null,
   subcommands: [
     {
       name: "get-media",
@@ -42,5 +42,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

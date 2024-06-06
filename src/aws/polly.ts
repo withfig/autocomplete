@@ -6,7 +6,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-lexicon",
       description:
-        "Deletes the specified pronunciation lexicon stored in an AWS Region. A lexicon which has been deleted is not available for speech synthesis, nor is it possible to retrieve it using either the GetLexicon or ListLexicon APIs. For more information, see Managing Lexicons",
+        "Deletes the specified pronunciation lexicon stored in an Amazon Web Services Region. A lexicon which has been deleted is not available for speech synthesis, nor is it possible to retrieve it using either the GetLexicon or ListLexicon APIs. For more information, see Managing Lexicons",
       options: [
         {
           name: "--name",
@@ -43,7 +43,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--engine",
           description:
-            "Specifies the engine (standard or neural) used by Amazon Polly when processing input text for speech synthesis",
+            "Specifies the engine (standard, neural, long-form or generative) used by Amazon Polly when processing input text for speech synthesis",
           args: {
             name: "string",
           },
@@ -112,7 +112,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-lexicon",
       description:
-        "Returns the content of the specified pronunciation lexicon stored in an AWS Region. For more information, see Managing Lexicons",
+        "Returns the content of the specified pronunciation lexicon stored in an Amazon Web Services Region. For more information, see Managing Lexicons",
       options: [
         {
           name: "--name",
@@ -175,7 +175,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-lexicons",
       description:
-        "Returns a list of pronunciation lexicons stored in an AWS Region. For more information, see Managing Lexicons",
+        "Returns a list of pronunciation lexicons stored in an Amazon Web Services Region. For more information, see Managing Lexicons",
       options: [
         {
           name: "--next-token",
@@ -295,7 +295,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-lexicon",
       description:
-        "Stores a pronunciation lexicon in an AWS Region. If a lexicon with the same name already exists in the region, it is overwritten by the new lexicon. Lexicon operations have eventual consistency, therefore, it might take some time before the lexicon is available to the SynthesizeSpeech operation. For more information, see Managing Lexicons",
+        "Stores a pronunciation lexicon in an Amazon Web Services Region. If a lexicon with the same name already exists in the region, it is overwritten by the new lexicon. Lexicon operations have eventual consistency, therefore, it might take some time before the lexicon is available to the SynthesizeSpeech operation. For more information, see Managing Lexicons",
       options: [
         {
           name: "--name",
@@ -334,12 +334,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "start-speech-synthesis-task",
       description:
-        "Allows the creation of an asynchronous synthesis task, by starting a new SpeechSynthesisTask. This operation requires all the standard information needed for speech synthesis, plus the name of an Amazon S3 bucket for the service to store the output of the synthesis task and two optional parameters (OutputS3KeyPrefix and SnsTopicArn). Once the synthesis task is created, this operation will return a SpeechSynthesisTask object, which will include an identifier of this task as well as the current status",
+        "Allows the creation of an asynchronous synthesis task, by starting a new SpeechSynthesisTask. This operation requires all the standard information needed for speech synthesis, plus the name of an Amazon S3 bucket for the service to store the output of the synthesis task and two optional parameters (OutputS3KeyPrefix and SnsTopicArn). Once the synthesis task is created, this operation will return a SpeechSynthesisTask object, which will include an identifier of this task as well as the current status. The SpeechSynthesisTask object is available for 72 hours after starting the asynchronous synthesis task",
       options: [
         {
           name: "--engine",
           description:
-            "Specifies the engine (standard or neural) for Amazon Polly to use when processing input text for speech synthesis. Using a voice that is not supported for the engine selected will result in an error",
+            "Specifies the engine (standard, neural, long-form or generative) for Amazon Polly to use when processing input text for speech synthesis. Using a voice that is not supported for the engine selected will result in an error",
           args: {
             name: "string",
           },
@@ -347,7 +347,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--language-code",
           description:
-            "Optional language code for the Speech Synthesis request. This is only necessary if using a bilingual voice, such as Aditi, which can be used for either Indian English (en-IN) or Hindi (hi-IN).  If a bilingual voice is used and no language code is specified, Amazon Polly will use the default language of the bilingual voice. The default language for any voice is the one returned by the DescribeVoices operation for the LanguageCode parameter. For example, if no language code is specified, Aditi will use Indian English rather than Hindi",
+            "Optional language code for the Speech Synthesis request. This is only necessary if using a bilingual voice, such as Aditi, which can be used for either Indian English (en-IN) or Hindi (hi-IN).  If a bilingual voice is used and no language code is specified, Amazon Polly uses the default language of the bilingual voice. The default language for any voice is the one returned by the DescribeVoices operation for the LanguageCode parameter. For example, if no language code is specified, Aditi will use Indian English rather than Hindi",
           args: {
             name: "string",
           },
@@ -386,7 +386,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sample-rate",
           description:
-            'The audio frequency specified in Hz. The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and "24000". The default value for standard voices is "22050". The default value for neural voices is "24000". Valid values for pcm are "8000" and "16000" The default value is "16000"',
+            'The audio frequency specified in Hz. The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and "24000". The default value for standard voices is "22050". The default value for neural voices is "24000". The default value for long-form voices is "24000". The default value for generative voices is "24000". Valid values for pcm are "8000" and "16000" The default value is "16000"',
           args: {
             name: "string",
           },
@@ -456,7 +456,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--engine",
           description:
-            "Specifies the engine (standard or neural) for Amazon Polly to use when processing input text for speech synthesis. For information on Amazon Polly voices and which voices are available in standard-only, NTTS-only, and both standard and NTTS formats, see Available Voices.  NTTS-only voices  When using NTTS-only voices such as Kevin (en-US), this parameter is required and must be set to neural. If the engine is not specified, or is set to standard, this will result in an error.  Type: String Valid Values: standard | neural  Required: Yes  Standard voices  For standard voices, this is not required; the engine parameter defaults to standard. If the engine is not specified, or is set to standard and an NTTS-only voice is selected, this will result in an error",
+            "Specifies the engine (standard, neural, long-form, or generative) for Amazon Polly to use when processing input text for speech synthesis. Provide an engine that is supported by the voice you select. If you don't provide an engine, the standard engine is selected by default. If a chosen voice isn't supported by the standard engine, this will result in an error. For information on Amazon Polly voices and which voices are available for each engine, see Available Voices. Type: String Valid Values: standard | neural | long-form | generative  Required: Yes",
           args: {
             name: "string",
           },
@@ -464,7 +464,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--language-code",
           description:
-            "Optional language code for the Synthesize Speech request. This is only necessary if using a bilingual voice, such as Aditi, which can be used for either Indian English (en-IN) or Hindi (hi-IN).  If a bilingual voice is used and no language code is specified, Amazon Polly will use the default language of the bilingual voice. The default language for any voice is the one returned by the DescribeVoices operation for the LanguageCode parameter. For example, if no language code is specified, Aditi will use Indian English rather than Hindi",
+            "Optional language code for the Synthesize Speech request. This is only necessary if using a bilingual voice, such as Aditi, which can be used for either Indian English (en-IN) or Hindi (hi-IN).  If a bilingual voice is used and no language code is specified, Amazon Polly uses the default language of the bilingual voice. The default language for any voice is the one returned by the DescribeVoices operation for the LanguageCode parameter. For example, if no language code is specified, Aditi will use Indian English rather than Hindi",
           args: {
             name: "string",
           },
@@ -488,7 +488,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sample-rate",
           description:
-            'The audio frequency specified in Hz. The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and "24000". The default value for standard voices is "22050". The default value for neural voices is "24000". Valid values for pcm are "8000" and "16000" The default value is "16000"',
+            'The audio frequency specified in Hz. The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and "24000". The default value for standard voices is "22050". The default value for neural voices is "24000". The default value for long-form voices is "24000". The default value for generative voices is "24000". Valid values for pcm are "8000" and "16000" The default value is "16000"',
           args: {
             name: "string",
           },
@@ -535,5 +535,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

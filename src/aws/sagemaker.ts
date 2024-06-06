@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "sagemaker",
   description:
-    "Provides APIs for creating and managing Amazon SageMaker resources.  Other Resources:    Amazon SageMaker Developer Guide     Amazon Augmented AI Runtime API Reference",
+    "Provides APIs for creating and managing SageMaker resources.  Other Resources:    SageMaker Developer Guide     Amazon Augmented AI Runtime API Reference",
   subcommands: [
     {
       name: "add-association",
@@ -52,7 +52,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "add-tags",
       description:
-        "Adds or overwrites one or more tags for the specified Amazon SageMaker resource. You can add tags to notebook instances, training jobs, hyperparameter tuning jobs, batch transform jobs, models, labeling jobs, work teams, endpoint configurations, and endpoints. Each tag consists of a key and an optional value. Tag keys must be unique per resource. For more information about tags, see For more information, see AWS Tagging Strategies.  Tags that you add to a hyperparameter tuning job by calling this API are also added to any training jobs that the hyperparameter tuning job launches after you call this API, but not to training jobs that the hyperparameter tuning job launched before you called this API. To make sure that the tags associated with a hyperparameter tuning job are also added to all training jobs that the hyperparameter tuning job launches, add the tags when you first create the tuning job by specifying them in the Tags parameter of CreateHyperParameterTuningJob",
+        "Adds or overwrites one or more tags for the specified SageMaker resource. You can add tags to notebook instances, training jobs, hyperparameter tuning jobs, batch transform jobs, models, labeling jobs, work teams, endpoint configurations, and endpoints. Each tag consists of a key and an optional value. Tag keys must be unique per resource. For more information about tags, see For more information, see Amazon Web Services Tagging Strategies.  Tags that you add to a hyperparameter tuning job by calling this API are also added to any training jobs that the hyperparameter tuning job launches after you call this API, but not to training jobs that the hyperparameter tuning job launched before you called this API. To make sure that the tags associated with a hyperparameter tuning job are also added to all training jobs that the hyperparameter tuning job launches, add the tags when you first create the tuning job by specifying them in the Tags parameter of CreateHyperParameterTuningJob    Tags that you add to a SageMaker Domain or User Profile by calling this API are also added to any Apps that the Domain or User Profile launches after you call this API, but not to Apps that the Domain or User Profile launched before you called this API. To make sure that the tags associated with a Domain or User Profile are also added to all Apps that the Domain or User Profile launches, add the tags when you first create the Domain or User Profile by specifying them in the Tags parameter of CreateDomain or CreateUserProfile",
       options: [
         {
           name: "--resource-arn",
@@ -65,7 +65,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "An array of key-value pairs. You can use tags to categorize your AWS resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging AWS Resources",
+            "An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging Amazon Web Services Resources",
           args: {
             name: "list",
           },
@@ -128,6 +128,38 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "batch-describe-model-package",
+      description:
+        "This action batch describes a list of versioned model packages",
+      options: [
+        {
+          name: "--model-package-arn-list",
+          description:
+            "The list of Amazon Resource Name (ARN) of the model package groups",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-action",
       description:
         "Creates an action. An action is a lineage tracking entity that represents an action or activity. For example, a model deployment or an HPO job. Generally, an action involves at least one input or output artifact. For more information, see Amazon SageMaker ML Lineage Tracking",
@@ -135,7 +167,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--action-name",
           description:
-            "The name of the action. Must be unique to your account in an AWS Region",
+            "The name of the action. Must be unique to your account in an Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -212,7 +244,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-algorithm",
       description:
-        "Create a machine learning algorithm that you can use in Amazon SageMaker and list in the AWS Marketplace",
+        "Create a machine learning algorithm that you can use in SageMaker and list in the Amazon Web Services Marketplace",
       options: [
         {
           name: "--algorithm-name",
@@ -247,7 +279,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--validation-specification",
           description:
-            "Specifies configurations for one or more training jobs and that Amazon SageMaker runs to test the algorithm's training code and, optionally, one or more batch transform jobs that Amazon SageMaker runs to test the algorithm's inference code",
+            "Specifies configurations for one or more training jobs and that SageMaker runs to test the algorithm's training code and, optionally, one or more batch transform jobs that SageMaker runs to test the algorithm's inference code",
           args: {
             name: "structure",
           },
@@ -255,17 +287,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--certify-for-marketplace",
           description:
-            "Whether to certify the algorithm so that it can be listed in AWS Marketplace",
+            "Whether to certify the algorithm so that it can be listed in Amazon Web Services Marketplace",
         },
         {
           name: "--no-certify-for-marketplace",
           description:
-            "Whether to certify the algorithm so that it can be listed in AWS Marketplace",
+            "Whether to certify the algorithm so that it can be listed in Amazon Web Services Marketplace",
         },
         {
           name: "--tags",
           description:
-            "An array of key-value pairs. You can use tags to categorize your AWS resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging AWS Resources",
+            "An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging Amazon Web Services Resources",
           args: {
             name: "list",
           },
@@ -292,7 +324,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-app",
       description:
-        "Creates a running app for the specified UserProfile. Supported apps are JupyterServer and KernelGateway. This operation is automatically invoked by Amazon SageMaker Studio upon access to the associated Domain, and when new kernel configurations are selected by the user. A user may have multiple Apps active simultaneously",
+        "Creates a running app for the specified UserProfile. This operation is automatically invoked by Amazon SageMaker upon access to the associated Domain, and when new kernel configurations are selected by the user. A user may have multiple Apps active simultaneously",
       options: [
         {
           name: "--domain-id",
@@ -303,15 +335,23 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--user-profile-name",
-          description: "The user profile name",
+          description:
+            "The user profile name. If this value is not set, then SpaceName must be set",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--space-name",
+          description:
+            "The name of the space. If this value is not set, then UserProfileName must be set",
           args: {
             name: "string",
           },
         },
         {
           name: "--app-type",
-          description:
-            "The type of app. Supported apps are JupyterServer and KernelGateway. TensorBoard is not supported",
+          description: "The type of app",
           args: {
             name: "string",
           },
@@ -334,7 +374,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-spec",
           description:
-            "The instance type and the Amazon Resource Name (ARN) of the SageMaker image created on the instance",
+            "The instance type and the Amazon Resource Name (ARN) of the SageMaker image created on the instance.  The value of InstanceType passed as part of the ResourceSpec in the CreateApp call overrides the value passed as part of the ResourceSpec configured for the user profile or the domain. If InstanceType is not specified in any of those three ResourceSpec values for a KernelGateway app, the CreateApp call fails with a request validation error",
           args: {
             name: "structure",
           },
@@ -361,7 +401,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-app-image-config",
       description:
-        "Creates a configuration for running a SageMaker image as a KernelGateway app. The configuration specifies the Amazon Elastic File System (EFS) storage volume on the image, and a list of the kernels in the image",
+        "Creates a configuration for running a SageMaker image as a KernelGateway app. The configuration specifies the Amazon Elastic File System storage volume on the image, and a list of the kernels in the image",
       options: [
         {
           name: "--app-image-config-name",
@@ -380,7 +420,24 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--kernel-gateway-image-config",
-          description: "The KernelGatewayImageConfig",
+          description:
+            "The KernelGatewayImageConfig. You can only specify one image kernel in the AppImageConfig API. This kernel will be shown to users before the image starts. Once the image runs, all kernels are visible in JupyterLab",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--jupyter-lab-app-image-config",
+          description:
+            "The JupyterLabAppImageConfig. You can only specify one image kernel in the AppImageConfig API. This kernel is shown to users before the image starts. After the image runs, all kernels are visible in JupyterLab",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--code-editor-app-image-config",
+          description:
+            "The CodeEditorAppImageConfig. You can only specify one image kernel in the AppImageConfig API. This kernel is shown to users before the image starts. After the image runs, all kernels are visible in Code Editor",
           args: {
             name: "structure",
           },
@@ -412,7 +469,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--artifact-name",
           description:
-            "The name of the artifact. Must be unique to your account in an AWS Region",
+            "The name of the artifact. Must be unique to your account in an Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -475,12 +532,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-auto-ml-job",
       description:
-        "Creates an Autopilot job. Find the best performing model after you run an Autopilot job by calling . For information about how to use Autopilot, see Automate Model Development with Amazon SageMaker Autopilot",
+        "Creates an Autopilot job also referred to as Autopilot experiment or AutoML job.  We recommend using the new versions CreateAutoMLJobV2 and DescribeAutoMLJobV2, which offer backward compatibility.  CreateAutoMLJobV2 can manage tabular problem types identical to those of its previous version CreateAutoMLJob, as well as time-series forecasting, non-tabular problem types such as image or text classification, and text generation (LLMs fine-tuning). Find guidelines about how to migrate a CreateAutoMLJob to CreateAutoMLJobV2 in Migrate a CreateAutoMLJob to CreateAutoMLJobV2.  You can find the best-performing model after you run an AutoML job by calling DescribeAutoMLJobV2 (recommended) or DescribeAutoMLJob",
       options: [
         {
           name: "--auto-ml-job-name",
           description:
-            "Identifies an Autopilot job. The name must be unique to your account and is case-insensitive",
+            "Identifies an Autopilot job. The name must be unique to your account and is case insensitive",
           args: {
             name: "string",
           },
@@ -488,7 +545,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--input-data-config",
           description:
-            "An array of channel objects that describes the input data and its location. Each channel is a named input source. Similar to InputDataConfig supported by . Format(s) supported: CSV. Minimum of 500 rows",
+            "An array of channel objects that describes the input data and its location. Each channel is a named input source. Similar to InputDataConfig supported by HyperParameterTrainingJobDefinition. Format(s) supported: CSV, Parquet. A minimum of 500 rows is required for the training dataset. There is not a minimum number of rows required for the validation dataset",
           args: {
             name: "list",
           },
@@ -504,7 +561,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--problem-type",
           description:
-            "Defines the type of supervised learning available for the candidates. Options include: BinaryClassification, MulticlassClassification, and Regression. For more information, see  Amazon SageMaker Autopilot problem types and algorithm support",
+            "Defines the type of supervised learning problem available for the candidates. For more information, see  SageMaker Autopilot problem types",
           args: {
             name: "string",
           },
@@ -512,7 +569,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--auto-ml-job-objective",
           description:
-            "Defines the objective metric used to measure the predictive quality of an AutoML job. You provide a AutoMLJobObjective$MetricName and Autopilot infers whether to minimize or maximize it",
+            "Specifies a metric to minimize or maximize as the objective of a job. If not specified, the default objective metric depends on the problem type. See AutoMLJobObjective for the default values",
           args: {
             name: "structure",
           },
@@ -520,7 +577,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--auto-ml-job-config",
           description:
-            "Contains CompletionCriteria and SecurityConfig settings for the AutoML job",
+            "A collection of settings used to configure an AutoML job",
           args: {
             name: "structure",
           },
@@ -545,7 +602,173 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "Each tag consists of a key and an optional value. Tag keys must be unique per resource",
+            "An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging Amazon Web ServicesResources. Tag keys must be unique per resource",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--model-deploy-config",
+          description:
+            "Specifies how to generate the endpoint name for an automatic one-click Autopilot model deployment",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-auto-ml-job-v2",
+      description:
+        "Creates an Autopilot job also referred to as Autopilot experiment or AutoML job V2.   CreateAutoMLJobV2 and DescribeAutoMLJobV2 are new versions of CreateAutoMLJob and DescribeAutoMLJob which offer backward compatibility.  CreateAutoMLJobV2 can manage tabular problem types identical to those of its previous version CreateAutoMLJob, as well as time-series forecasting, non-tabular problem types such as image or text classification, and text generation (LLMs fine-tuning). Find guidelines about how to migrate a CreateAutoMLJob to CreateAutoMLJobV2 in Migrate a CreateAutoMLJob to CreateAutoMLJobV2.  For the list of available problem types supported by CreateAutoMLJobV2, see AutoMLProblemTypeConfig. You can find the best-performing model after you run an AutoML job V2 by calling DescribeAutoMLJobV2",
+      options: [
+        {
+          name: "--auto-ml-job-name",
+          description:
+            "Identifies an Autopilot job. The name must be unique to your account and is case insensitive",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--auto-ml-job-input-data-config",
+          description:
+            "An array of channel objects describing the input data and their location. Each channel is a named input source. Similar to the InputDataConfig attribute in the CreateAutoMLJob input parameters. The supported formats depend on the problem type:   For tabular problem types: S3Prefix, ManifestFile.   For image classification: S3Prefix, ManifestFile, AugmentedManifestFile.   For text classification: S3Prefix.   For time-series forecasting: S3Prefix.   For text generation (LLMs fine-tuning): S3Prefix",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--output-data-config",
+          description:
+            "Provides information about encryption and the Amazon S3 output path needed to store artifacts from an AutoML job",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--auto-ml-problem-type-config",
+          description:
+            "Defines the configuration settings of one of the supported problem types",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--role-arn",
+          description: "The ARN of the role that is used to access the data",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, such as by purpose, owner, or environment. For more information, see Tagging Amazon Web ServicesResources. Tag keys must be unique per resource",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--security-config",
+          description:
+            "The security configuration for traffic encryption or Amazon VPC settings",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--auto-ml-job-objective",
+          description:
+            "Specifies a metric to minimize or maximize as the objective of a job. If not specified, the default objective metric depends on the problem type. For the list of default values per problem type, see AutoMLJobObjective.    For tabular problem types: You must either provide both the AutoMLJobObjective and indicate the type of supervised learning problem in AutoMLProblemTypeConfig (TabularJobConfig.ProblemType), or none at all.   For text generation problem types (LLMs fine-tuning): Fine-tuning language models in Autopilot does not require setting the AutoMLJobObjective field. Autopilot fine-tunes LLMs without requiring multiple candidates to be trained and evaluated. Instead, using your dataset, Autopilot directly fine-tunes your target model to enhance a default objective metric, the cross-entropy loss. After fine-tuning a language model, you can evaluate the quality of its generated text using different metrics. For a list of the available metrics, see Metrics for fine-tuning LLMs in Autopilot",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--model-deploy-config",
+          description:
+            "Specifies how to generate the endpoint name for an automatic one-click Autopilot model deployment",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--data-split-config",
+          description:
+            "This structure specifies how to split the data into train and validation datasets. The validation and training datasets must contain the same headers. For jobs created by calling CreateAutoMLJob, the validation dataset must be less than 2 GB in size.  This attribute must not be set for the time-series forecasting problem type, as Autopilot automatically splits the input dataset into training and validation sets",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-cluster",
+      description:
+        "Creates a SageMaker HyperPod cluster. SageMaker HyperPod is a capability of SageMaker for creating and managing persistent clusters for developing large machine learning models, such as large language models (LLMs) and diffusion models. To learn more, see Amazon SageMaker HyperPod in the Amazon SageMaker Developer Guide",
+      options: [
+        {
+          name: "--cluster-name",
+          description: "The name for the new SageMaker HyperPod cluster",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--instance-groups",
+          description:
+            "The instance groups to be created in the SageMaker HyperPod cluster",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--vpc-config",
+          description:
+            "Specifies an Amazon Virtual Private Cloud (VPC) that your SageMaker jobs, hosted models, and compute resources have access to. You can control access to and from your resources by configuring a VPC. For more information, see Give SageMaker Access to Resources in your Amazon VPC",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "Custom tags for managing the SageMaker HyperPod cluster as an Amazon Web Services resource. You can add tags to your cluster in the same way you add them in other Amazon Web Services services that support tagging. To learn more about tagging Amazon Web Services resources in general, see Tagging Amazon Web Services Resources User Guide",
           args: {
             name: "list",
           },
@@ -572,7 +795,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-code-repository",
       description:
-        "Creates a Git repository as a resource in your Amazon SageMaker account. You can associate the repository with notebook instances so that you can use Git source control for the notebooks you create. The Git repository is a resource in your Amazon SageMaker account, so it can be associated with more than one notebook instance, and it persists independently from the lifecycle of any notebook instances it is associated with. The repository can be hosted either in AWS CodeCommit or in any other Git repository",
+        "Creates a Git repository as a resource in your SageMaker account. You can associate the repository with notebook instances so that you can use Git source control for the notebooks you create. The Git repository is a resource in your SageMaker account, so it can be associated with more than one notebook instance, and it persists independently from the lifecycle of any notebook instances it is associated with. The repository can be hosted either in Amazon Web Services CodeCommit or in any other Git repository",
       options: [
         {
           name: "--code-repository-name",
@@ -593,7 +816,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "An array of key-value pairs. You can use tags to categorize your AWS resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging AWS Resources",
+            "An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging Amazon Web Services Resources",
           args: {
             name: "list",
           },
@@ -620,12 +843,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-compilation-job",
       description:
-        "Starts a model compilation job. After the model has been compiled, Amazon SageMaker saves the resulting model artifacts to an Amazon Simple Storage Service (Amazon S3) bucket that you specify.  If you choose to host your model using Amazon SageMaker hosting services, you can use the resulting model artifacts as part of the model. You can also use the artifacts with AWS IoT Greengrass. In that case, deploy them as an ML resource. In the request body, you provide the following:   A name for the compilation job    Information about the input model artifacts    The output location for the compiled model and the device (target) that the model runs on    The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker assumes to perform the model compilation job.    You can also provide a Tag to track the model compilation job's resource use and costs. The response body contains the CompilationJobArn for the compiled job. To stop a model compilation job, use StopCompilationJob. To get information about a particular model compilation job, use DescribeCompilationJob. To get information about multiple model compilation jobs, use ListCompilationJobs",
+        "Starts a model compilation job. After the model has been compiled, Amazon SageMaker saves the resulting model artifacts to an Amazon Simple Storage Service (Amazon S3) bucket that you specify.  If you choose to host your model using Amazon SageMaker hosting services, you can use the resulting model artifacts as part of the model. You can also use the artifacts with Amazon Web Services IoT Greengrass. In that case, deploy them as an ML resource. In the request body, you provide the following:   A name for the compilation job    Information about the input model artifacts    The output location for the compiled model and the device (target) that the model runs on    The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker assumes to perform the model compilation job.    You can also provide a Tag to track the model compilation job's resource use and costs. The response body contains the CompilationJobArn for the compiled job. To stop a model compilation job, use StopCompilationJob. To get information about a particular model compilation job, use DescribeCompilationJob. To get information about multiple model compilation jobs, use ListCompilationJobs",
       options: [
         {
           name: "--compilation-job-name",
           description:
-            "A name for the model compilation job. The name must be unique within the AWS Region and within your AWS account",
+            "A name for the model compilation job. The name must be unique within the Amazon Web Services Region and within your Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -634,6 +857,14 @@ const completionSpec: Fig.Spec = {
           name: "--role-arn",
           description:
             "The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker to perform tasks on your behalf.  During model compilation, Amazon SageMaker needs your permission to:   Read input data from an S3 bucket   Write model artifacts to an S3 bucket   Write logs to Amazon CloudWatch Logs   Publish metrics to Amazon CloudWatch   You grant permissions for all of these tasks to an IAM role. To pass this role to Amazon SageMaker, the caller of this API must have the iam:PassRole permission. For more information, see Amazon SageMaker Roles",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--model-package-version-arn",
+          description:
+            "The Amazon Resource Name (ARN) of a versioned model package. Provide either a ModelPackageVersionArn or an InputConfig object in the request syntax. The presence of both objects in the CreateCompilationJob request will return an exception",
           args: {
             name: "string",
           },
@@ -655,6 +886,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--vpc-config",
+          description:
+            "A VpcConfig object that specifies the VPC that you want your compilation job to connect to. Control access to your models by configuring the VPC. For more information, see Protect Compilation Jobs by Using an Amazon Virtual Private Cloud",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--stopping-condition",
           description:
             "Specifies a limit to how long a model compilation job can run. When the job reaches the time limit, Amazon SageMaker ends the compilation job. Use this API to cap model training costs",
@@ -665,7 +904,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "An array of key-value pairs. You can use tags to categorize your AWS resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging AWS Resources",
+            "An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging Amazon Web Services Resources",
           args: {
             name: "list",
           },
@@ -697,7 +936,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--context-name",
           description:
-            "The name of the context. Must be unique to your account in an AWS Region",
+            "The name of the context. Must be unique to your account in an Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -833,7 +1072,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "(Optional) An array of key-value pairs. For more information, see Using Cost Allocation Tags in the AWS Billing and Cost Management User Guide",
+            "(Optional) An array of key-value pairs. For more information, see  Using Cost Allocation Tags in the Amazon Web Services Billing and Cost Management User Guide",
           args: {
             name: "list",
           },
@@ -871,7 +1110,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--role-arn",
           description:
-            "The Amazon Resource Name (ARN) that has access to AWS Internet of Things (IoT)",
+            "The Amazon Resource Name (ARN) that has access to Amazon Web Services Internet of Things (IoT)",
           args: {
             name: "string",
           },
@@ -899,6 +1138,16 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--enable-iot-role-alias",
+          description:
+            'Whether to create an Amazon Web Services IoT Role Alias during device fleet creation. The name of the role alias generated will match this pattern: "SageMakerEdge-{DeviceFleetName}". For example, if your device fleet is called "demo-fleet", the name of the role alias will be "SageMakerEdge-demo-fleet"',
+        },
+        {
+          name: "--no-enable-iot-role-alias",
+          description:
+            'Whether to create an Amazon Web Services IoT Role Alias during device fleet creation. The name of the role alias generated will match this pattern: "SageMakerEdge-{DeviceFleetName}". For example, if your device fleet is called "demo-fleet", the name of the role alias will be "SageMakerEdge-demo-fleet"',
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -920,7 +1169,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-domain",
       description:
-        "Creates a Domain used by Amazon SageMaker Studio. A domain consists of an associated Amazon Elastic File System (EFS) volume, a list of authorized users, and a variety of security, application, policy, and Amazon Virtual Private Cloud (VPC) configurations. An AWS account is limited to one domain per region. Users within a domain can share notebook files and other artifacts with each other.  EFS storage  When a domain is created, an EFS volume is created for use by all of the users within the domain. Each user receives a private home directory within the EFS volume for notebooks, Git repositories, and data files. SageMaker uses the AWS Key Management Service (AWS KMS) to encrypt the EFS volume attached to the domain with an AWS managed customer master key (CMK) by default. For more control, you can specify a customer managed CMK. For more information, see Protect Data at Rest Using Encryption.  VPC configuration  All SageMaker Studio traffic between the domain and the EFS volume is through the specified VPC and subnets. For other Studio traffic, you can specify the AppNetworkAccessType parameter. AppNetworkAccessType corresponds to the network access type that you choose when you onboard to Studio. The following options are available:    PublicInternetOnly - Non-EFS traffic goes through a VPC managed by Amazon SageMaker, which allows internet access. This is the default value.    VpcOnly - All Studio traffic is through the specified VPC and subnets. Internet access is disabled by default. To allow internet access, you must specify a NAT gateway. When internet access is disabled, you won't be able to run a Studio notebook or to train or host models unless your VPC has an interface endpoint to the SageMaker API and runtime or a NAT gateway and your security groups allow outbound connections.   For more information, see Connect SageMaker Studio Notebooks to Resources in a VPC",
+        "Creates a Domain. A domain consists of an associated Amazon Elastic File System volume, a list of authorized users, and a variety of security, application, policy, and Amazon Virtual Private Cloud (VPC) configurations. Users within a domain can share notebook files and other artifacts with each other.  EFS storage  When a domain is created, an EFS volume is created for use by all of the users within the domain. Each user receives a private home directory within the EFS volume for notebooks, Git repositories, and data files. SageMaker uses the Amazon Web Services Key Management Service (Amazon Web Services KMS) to encrypt the EFS volume attached to the domain with an Amazon Web Services managed key by default. For more control, you can specify a customer managed key. For more information, see Protect Data at Rest Using Encryption.  VPC configuration  All traffic between the domain and the Amazon EFS volume is through the specified VPC and subnets. For other traffic, you can specify the AppNetworkAccessType parameter. AppNetworkAccessType corresponds to the network access type that you choose when you onboard to the domain. The following options are available:    PublicInternetOnly - Non-EFS traffic goes through a VPC managed by Amazon SageMaker, which allows internet access. This is the default value.    VpcOnly - All traffic is through the specified VPC and subnets. Internet access is disabled by default. To allow internet access, you must specify a NAT gateway. When internet access is disabled, you won't be able to run a Amazon SageMaker Studio notebook or to train or host models unless your VPC has an interface endpoint to the SageMaker API and runtime or a NAT gateway and your security groups allow outbound connections.    NFS traffic over TCP on port 2049 needs to be allowed in both inbound and outbound rules in order to launch a Amazon SageMaker Studio app successfully.  For more information, see Connect Amazon SageMaker Studio Notebooks to Resources in a VPC",
       options: [
         {
           name: "--domain-name",
@@ -946,8 +1195,15 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--domain-settings",
+          description: "A collection of Domain settings",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--subnet-ids",
-          description: "The VPC subnets that Studio uses for communication",
+          description: "The VPC subnets that the domain uses for communication",
           args: {
             name: "list",
           },
@@ -955,7 +1211,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--vpc-id",
           description:
-            "The ID of the Amazon Virtual Private Cloud (VPC) that Studio uses for communication",
+            "The ID of the Amazon Virtual Private Cloud (VPC) that the domain uses for communication",
           args: {
             name: "string",
           },
@@ -963,7 +1219,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "Tags to associated with the Domain. Each tag consists of a key and an optional value. Tag keys must be unique per resource. Tags are searchable using the Search API",
+            "Tags to associated with the Domain. Each tag consists of a key and an optional value. Tag keys must be unique per resource. Tags are searchable using the Search API. Tags that you specify for the Domain are also added to all Apps that the Domain launches",
           args: {
             name: "list",
           },
@@ -971,14 +1227,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--app-network-access-type",
           description:
-            "Specifies the VPC used for non-EFS traffic. The default value is PublicInternetOnly.    PublicInternetOnly - Non-EFS traffic is through a VPC managed by Amazon SageMaker, which allows direct internet access    VpcOnly - All Studio traffic is through the specified VPC and subnets",
+            "Specifies the VPC used for non-EFS traffic. The default value is PublicInternetOnly.    PublicInternetOnly - Non-EFS traffic is through a VPC managed by Amazon SageMaker, which allows direct internet access    VpcOnly - All traffic is through the specified VPC and subnets",
           args: {
             name: "string",
           },
         },
         {
           name: "--home-efs-file-system-kms-key-id",
-          description: "This member is deprecated and replaced with KmsKeyId",
+          description: "Use KmsKeyId",
           args: {
             name: "string",
           },
@@ -986,9 +1242,123 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kms-key-id",
           description:
-            "SageMaker uses AWS KMS to encrypt the EFS volume attached to the domain with an AWS managed customer master key (CMK) by default. For more control, specify a customer managed CMK",
+            "SageMaker uses Amazon Web Services KMS to encrypt EFS and EBS volumes attached to the domain with an Amazon Web Services managed key by default. For more control, specify a customer managed key",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--app-security-group-management",
+          description:
+            "The entity that creates and manages the required security groups for inter-app communication in VPCOnly mode. Required when CreateDomain.AppNetworkAccessType is VPCOnly and DomainSettings.RStudioServerProDomainSettings.DomainExecutionRoleArn is provided. If setting up the domain for use with RStudio, this value must be set to Service",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--default-space-settings",
+          description: "The default settings used to create a space",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-edge-deployment-plan",
+      description:
+        "Creates an edge deployment plan, consisting of multiple stages. Each stage may have a different deployment configuration and devices",
+      options: [
+        {
+          name: "--edge-deployment-plan-name",
+          description: "The name of the edge deployment plan",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--model-configs",
+          description:
+            "List of models associated with the edge deployment plan",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--device-fleet-name",
+          description: "The device fleet used for this edge deployment plan",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--stages",
+          description:
+            "List of stages of the edge deployment plan. The number of stages is limited to 10 per deployment",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "List of tags with which to tag the edge deployment plan",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-edge-deployment-stage",
+      description: "Creates a new stage in an existing edge deployment plan",
+      options: [
+        {
+          name: "--edge-deployment-plan-name",
+          description: "The name of the edge deployment plan",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--stages",
+          description: "List of stages to be added to the edge deployment plan",
+          args: {
+            name: "list",
           },
         },
         {
@@ -1063,7 +1433,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-key",
           description:
-            "The CMK to use when encrypting the EBS volume the edge packaging job runs on",
+            "The Amazon Web Services KMS key to use when encrypting the EBS volume the edge packaging job runs on",
           args: {
             name: "string",
           },
@@ -1097,12 +1467,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-endpoint",
       description:
-        'Creates an endpoint using the endpoint configuration specified in the request. Amazon SageMaker uses the endpoint to provision resources and deploy models. You create the endpoint configuration with the CreateEndpointConfig API.   Use this API to deploy models using Amazon SageMaker hosting services.  For an example that calls this method when deploying a model to Amazon SageMaker hosting services, see Deploy the Model to Amazon SageMaker Hosting Services (AWS SDK for Python (Boto 3)).    You must not delete an EndpointConfig that is in use by an endpoint that is live or while the UpdateEndpoint or CreateEndpoint operations are being performed on the endpoint. To update an endpoint, you must create a new EndpointConfig.  The endpoint name must be unique within an AWS Region in your AWS account.  When it receives the request, Amazon SageMaker creates the endpoint, launches the resources (ML compute instances), and deploys the model(s) on them.   When you call CreateEndpoint, a load call is made to DynamoDB to verify that your endpoint configuration exists. When you read data from a DynamoDB table supporting  Eventually Consistent Reads , the response might not reflect the results of a recently completed write operation. The response might include some stale data. If the dependent entities are not yet in DynamoDB, this causes a validation error. If you repeat your read request after a short time, the response should return the latest data. So retry logic is recommended to handle these possible issues. We also recommend that customers call DescribeEndpointConfig before calling CreateEndpoint to minimize the potential impact of a DynamoDB eventually consistent read.  When Amazon SageMaker receives the request, it sets the endpoint status to Creating. After it creates the endpoint, it sets the status to InService. Amazon SageMaker can then process incoming requests for inferences. To check the status of an endpoint, use the DescribeEndpoint API. If any of the models hosted at this endpoint get model data from an Amazon S3 location, Amazon SageMaker uses AWS Security Token Service to download model artifacts from the S3 path you provided. AWS STS is activated in your IAM user account by default. If you previously deactivated AWS STS for a region, you need to reactivate AWS STS for that region. For more information, see Activating and Deactivating AWS STS in an AWS Region in the AWS Identity and Access Management User Guide.   To add the IAM role policies for using this API operation, go to the IAM console, and choose Roles in the left navigation pane. Search the IAM role that you want to grant access to use the CreateEndpoint and CreateEndpointConfig API operations, add the following policies to the role.    Option 1: For a full Amazon SageMaker access, search and attach the AmazonSageMakerFullAccess policy.   Option 2: For granting a limited access to an IAM role, paste the following Action elements manually into the JSON file of the IAM role:   "Action": ["sagemaker:CreateEndpoint", "sagemaker:CreateEndpointConfig"]   "Resource": [   "arn:aws:sagemaker:region:account-id:endpoint/endpointName"   "arn:aws:sagemaker:region:account-id:endpoint-config/endpointConfigName"   ]  For more information, see Amazon SageMaker API Permissions: Actions, Permissions, and Resources Reference',
+        'Creates an endpoint using the endpoint configuration specified in the request. SageMaker uses the endpoint to provision resources and deploy models. You create the endpoint configuration with the CreateEndpointConfig API.   Use this API to deploy models using SageMaker hosting services.    You must not delete an EndpointConfig that is in use by an endpoint that is live or while the UpdateEndpoint or CreateEndpoint operations are being performed on the endpoint. To update an endpoint, you must create a new EndpointConfig.  The endpoint name must be unique within an Amazon Web Services Region in your Amazon Web Services account.  When it receives the request, SageMaker creates the endpoint, launches the resources (ML compute instances), and deploys the model(s) on them.   When you call CreateEndpoint, a load call is made to DynamoDB to verify that your endpoint configuration exists. When you read data from a DynamoDB table supporting  Eventually Consistent Reads , the response might not reflect the results of a recently completed write operation. The response might include some stale data. If the dependent entities are not yet in DynamoDB, this causes a validation error. If you repeat your read request after a short time, the response should return the latest data. So retry logic is recommended to handle these possible issues. We also recommend that customers call DescribeEndpointConfig before calling CreateEndpoint to minimize the potential impact of a DynamoDB eventually consistent read.  When SageMaker receives the request, it sets the endpoint status to Creating. After it creates the endpoint, it sets the status to InService. SageMaker can then process incoming requests for inferences. To check the status of an endpoint, use the DescribeEndpoint API. If any of the models hosted at this endpoint get model data from an Amazon S3 location, SageMaker uses Amazon Web Services Security Token Service to download model artifacts from the S3 path you provided. Amazon Web Services STS is activated in your Amazon Web Services account by default. If you previously deactivated Amazon Web Services STS for a region, you need to reactivate Amazon Web Services STS for that region. For more information, see Activating and Deactivating Amazon Web Services STS in an Amazon Web Services Region in the Amazon Web Services Identity and Access Management User Guide.   To add the IAM role policies for using this API operation, go to the IAM console, and choose Roles in the left navigation pane. Search the IAM role that you want to grant access to use the CreateEndpoint and CreateEndpointConfig API operations, add the following policies to the role.    Option 1: For a full SageMaker access, search and attach the AmazonSageMakerFullAccess policy.   Option 2: For granting a limited access to an IAM role, paste the following Action elements manually into the JSON file of the IAM role:   "Action": ["sagemaker:CreateEndpoint", "sagemaker:CreateEndpointConfig"]   "Resource": [   "arn:aws:sagemaker:region:account-id:endpoint/endpointName"   "arn:aws:sagemaker:region:account-id:endpoint-config/endpointConfigName"   ]  For more information, see SageMaker API Permissions: Actions, Permissions, and Resources Reference',
       options: [
         {
           name: "--endpoint-name",
           description:
-            "The name of the endpoint.The name must be unique within an AWS Region in your AWS account. The name is case-insensitive in CreateEndpoint, but the case is preserved and must be matched in",
+            "The name of the endpoint.The name must be unique within an Amazon Web Services Region in your Amazon Web Services account. The name is case-insensitive in CreateEndpoint, but the case is preserved and must be matched in InvokeEndpoint",
           args: {
             name: "string",
           },
@@ -1116,9 +1486,17 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--deployment-config",
+          description:
+            "The deployment configuration for an endpoint, which contains the desired deployment strategy and rollback configurations",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--tags",
           description:
-            "An array of key-value pairs. You can use tags to categorize your AWS resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging AWS Resources",
+            "An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging Amazon Web Services Resources",
           args: {
             name: "list",
           },
@@ -1145,7 +1523,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-endpoint-config",
       description:
-        "Creates an endpoint configuration that Amazon SageMaker hosting services uses to deploy models. In the configuration, you identify one or more models, created using the CreateModel API, to deploy and the resources that you want Amazon SageMaker to provision. Then you call the CreateEndpoint API.   Use this API if you want to use Amazon SageMaker hosting services to deploy models into production.   In the request, you define a ProductionVariant, for each model that you want to deploy. Each ProductionVariant parameter also describes the resources that you want Amazon SageMaker to provision. This includes the number and type of ML compute instances to deploy.  If you are hosting multiple models, you also assign a VariantWeight to specify how much traffic you want to allocate to each model. For example, suppose that you want to host two models, A and B, and you assign traffic weight 2 for model A and 1 for model B. Amazon SageMaker distributes two-thirds of the traffic to Model A, and one-third to model B.  For an example that calls this method when deploying a model to Amazon SageMaker hosting services, see Deploy the Model to Amazon SageMaker Hosting Services (AWS SDK for Python (Boto 3)).   When you call CreateEndpoint, a load call is made to DynamoDB to verify that your endpoint configuration exists. When you read data from a DynamoDB table supporting  Eventually Consistent Reads , the response might not reflect the results of a recently completed write operation. The response might include some stale data. If the dependent entities are not yet in DynamoDB, this causes a validation error. If you repeat your read request after a short time, the response should return the latest data. So retry logic is recommended to handle these possible issues. We also recommend that customers call DescribeEndpointConfig before calling CreateEndpoint to minimize the potential impact of a DynamoDB eventually consistent read",
+        "Creates an endpoint configuration that SageMaker hosting services uses to deploy models. In the configuration, you identify one or more models, created using the CreateModel API, to deploy and the resources that you want SageMaker to provision. Then you call the CreateEndpoint API.   Use this API if you want to use SageMaker hosting services to deploy models into production.   In the request, you define a ProductionVariant, for each model that you want to deploy. Each ProductionVariant parameter also describes the resources that you want SageMaker to provision. This includes the number and type of ML compute instances to deploy.  If you are hosting multiple models, you also assign a VariantWeight to specify how much traffic you want to allocate to each model. For example, suppose that you want to host two models, A and B, and you assign traffic weight 2 for model A and 1 for model B. SageMaker distributes two-thirds of the traffic to Model A, and one-third to model B.   When you call CreateEndpoint, a load call is made to DynamoDB to verify that your endpoint configuration exists. When you read data from a DynamoDB table supporting  Eventually Consistent Reads , the response might not reflect the results of a recently completed write operation. The response might include some stale data. If the dependent entities are not yet in DynamoDB, this causes a validation error. If you repeat your read request after a short time, the response should return the latest data. So retry logic is recommended to handle these possible issues. We also recommend that customers call DescribeEndpointConfig before calling CreateEndpoint to minimize the potential impact of a DynamoDB eventually consistent read",
       options: [
         {
           name: "--endpoint-config-name",
@@ -1158,13 +1536,15 @@ const completionSpec: Fig.Spec = {
         {
           name: "--production-variants",
           description:
-            "An list of ProductionVariant objects, one for each model that you want to host at this endpoint",
+            "An array of ProductionVariant objects, one for each model that you want to host at this endpoint",
           args: {
             name: "list",
           },
         },
         {
           name: "--data-capture-config",
+          description:
+            "Configuration to control how SageMaker captures inference data",
           args: {
             name: "structure",
           },
@@ -1172,7 +1552,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "An array of key-value pairs. You can use tags to categorize your AWS resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging AWS Resources",
+            "An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging Amazon Web Services Resources",
           args: {
             name: "list",
           },
@@ -1180,10 +1560,60 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kms-key-id",
           description:
-            "The Amazon Resource Name (ARN) of a AWS Key Management Service key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance that hosts the endpoint. The KmsKeyId can be any of the following formats:    Key ID: 1234abcd-12ab-34cd-56ef-1234567890ab    Key ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab    Alias name: alias/ExampleAlias    Alias name ARN: arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias    The KMS key policy must grant permission to the IAM role that you specify in your CreateEndpoint, UpdateEndpoint requests. For more information, refer to the AWS Key Management Service section Using Key Policies in AWS KMS    Certain Nitro-based instances include local storage, dependent on the instance type. Local storage volumes are encrypted using a hardware module on the instance. You can't request a KmsKeyId when using an instance type with local storage. If any of the models that you specify in the ProductionVariants parameter use nitro-based instances with local storage, do not specify a value for the KmsKeyId parameter. If you specify a value for KmsKeyId when using any nitro-based instances with local storage, the call to CreateEndpointConfig fails. For a list of instance types that support local instance storage, see Instance Store Volumes. For more information about local instance storage encryption, see SSD Instance Store Volumes",
+            "The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service key that SageMaker uses to encrypt data on the storage volume attached to the ML compute instance that hosts the endpoint. The KmsKeyId can be any of the following formats:    Key ID: 1234abcd-12ab-34cd-56ef-1234567890ab    Key ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab    Alias name: alias/ExampleAlias    Alias name ARN: arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias    The KMS key policy must grant permission to the IAM role that you specify in your CreateEndpoint, UpdateEndpoint requests. For more information, refer to the Amazon Web Services Key Management Service section Using Key Policies in Amazon Web Services KMS    Certain Nitro-based instances include local storage, dependent on the instance type. Local storage volumes are encrypted using a hardware module on the instance. You can't request a KmsKeyId when using an instance type with local storage. If any of the models that you specify in the ProductionVariants parameter use nitro-based instances with local storage, do not specify a value for the KmsKeyId parameter. If you specify a value for KmsKeyId when using any nitro-based instances with local storage, the call to CreateEndpointConfig fails. For a list of instance types that support local instance storage, see Instance Store Volumes. For more information about local instance storage encryption, see SSD Instance Store Volumes",
           args: {
             name: "string",
           },
+        },
+        {
+          name: "--async-inference-config",
+          description:
+            "Specifies configuration for how an endpoint performs asynchronous inference. This is a required field in order for your Endpoint to be invoked using InvokeEndpointAsync",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--explainer-config",
+          description:
+            "A member of CreateEndpointConfig that enables explainers",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--shadow-production-variants",
+          description:
+            "An array of ProductionVariant objects, one for each model that you want to host at this endpoint in shadow mode with production traffic replicated from the model specified on ProductionVariants. If you use this field, you can only specify one variant for ProductionVariants and one variant for ShadowProductionVariants",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--execution-role-arn",
+          description:
+            "The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform actions on your behalf. For more information, see SageMaker Roles.   To be able to pass this role to Amazon SageMaker, the caller of this action must have the iam:PassRole permission",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--vpc-config",
+          description:
+            "Specifies an Amazon Virtual Private Cloud (VPC) that your SageMaker jobs, hosted models, and compute resources have access to. You can control access to and from your resources by configuring a VPC. For more information, see Give SageMaker Access to Resources in your Amazon VPC",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--enable-network-isolation",
+          description:
+            "Sets whether all model containers deployed to the endpoint are isolated. If they are, no inbound or outbound network calls can be made to or from the model containers",
+        },
+        {
+          name: "--no-enable-network-isolation",
+          description:
+            "Sets whether all model containers deployed to the endpoint are isolated. If they are, no inbound or outbound network calls can be made to or from the model containers",
         },
         {
           name: "--cli-input-json",
@@ -1207,12 +1637,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-experiment",
       description:
-        "Creates an SageMaker experiment. An experiment is a collection of trials that are observed, compared and evaluated as a group. A trial is a set of steps, called trial components, that produce a machine learning model. The goal of an experiment is to determine the components that produce the best model. Multiple trials are performed, each one isolating and measuring the impact of a change to one or more inputs, while keeping the remaining inputs constant. When you use Amazon SageMaker Studio or the Amazon SageMaker Python SDK, all experiments, trials, and trial components are automatically tracked, logged, and indexed. When you use the AWS SDK for Python (Boto), you must use the logging APIs provided by the SDK. You can add tags to experiments, trials, trial components and then use the Search API to search for the tags. To add a description to an experiment, specify the optional Description parameter. To add a description later, or to change the description, call the UpdateExperiment API. To get a list of all your experiments, call the ListExperiments API. To view an experiment's properties, call the DescribeExperiment API. To get a list of all the trials associated with an experiment, call the ListTrials API. To create a trial call the CreateTrial API",
+        "Creates a SageMaker experiment. An experiment is a collection of trials that are observed, compared and evaluated as a group. A trial is a set of steps, called trial components, that produce a machine learning model.  In the Studio UI, trials are referred to as run groups and trial components are referred to as runs.  The goal of an experiment is to determine the components that produce the best model. Multiple trials are performed, each one isolating and measuring the impact of a change to one or more inputs, while keeping the remaining inputs constant. When you use SageMaker Studio or the SageMaker Python SDK, all experiments, trials, and trial components are automatically tracked, logged, and indexed. When you use the Amazon Web Services SDK for Python (Boto), you must use the logging APIs provided by the SDK. You can add tags to experiments, trials, trial components and then use the Search API to search for the tags. To add a description to an experiment, specify the optional Description parameter. To add a description later, or to change the description, call the UpdateExperiment API. To get a list of all your experiments, call the ListExperiments API. To view an experiment's properties, call the DescribeExperiment API. To get a list of all the trials associated with an experiment, call the ListTrials API. To create a trial call the CreateTrial API",
       options: [
         {
           name: "--experiment-name",
           description:
-            "The name of the experiment. The name must be unique in your AWS account and is not case-sensitive",
+            "The name of the experiment. The name must be unique in your Amazon Web Services account and is not case-sensitive",
           args: {
             name: "string",
           },
@@ -1262,12 +1692,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-feature-group",
       description:
-        "Create a new FeatureGroup. A FeatureGroup is a group of Features defined in the FeatureStore to describe a Record.  The FeatureGroup defines the schema and features contained in the FeatureGroup. A FeatureGroup definition is composed of a list of Features, a RecordIdentifierFeatureName, an EventTimeFeatureName and configurations for its OnlineStore and OfflineStore. Check AWS service quotas to see the FeatureGroups quota for your AWS account.  You must include at least one of OnlineStoreConfig and OfflineStoreConfig to create a FeatureGroup",
+        "Create a new FeatureGroup. A FeatureGroup is a group of Features defined in the FeatureStore to describe a Record.  The FeatureGroup defines the schema and features contained in the FeatureGroup. A FeatureGroup definition is composed of a list of Features, a RecordIdentifierFeatureName, an EventTimeFeatureName and configurations for its OnlineStore and OfflineStore. Check Amazon Web Services service quotas to see the FeatureGroups quota for your Amazon Web Services account. Note that it can take approximately 10-15 minutes to provision an OnlineStore FeatureGroup with the InMemory StorageType.  You must include at least one of OnlineStoreConfig and OfflineStoreConfig to create a FeatureGroup",
       options: [
         {
           name: "--feature-group-name",
           description:
-            "The name of the FeatureGroup. The name must be unique within an AWS Region in an AWS account. The name:   Must start and end with an alphanumeric character.   Can only contain alphanumeric character and hyphens. Spaces are not allowed",
+            "The name of the FeatureGroup. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account. The name:   Must start with an alphanumeric character.   Can only include alphanumeric characters, underscores, and hyphens. Spaces are not allowed",
           args: {
             name: "string",
           },
@@ -1275,7 +1705,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--record-identifier-feature-name",
           description:
-            "The name of the Feature whose value uniquely identifies a Record defined in the FeatureStore. Only the latest record per identifier value will be stored in the OnlineStore. RecordIdentifierFeatureName must be one of feature definitions' names. You use the RecordIdentifierFeatureName to access data in a FeatureStore. This name:   Must start and end with an alphanumeric character.   Can only contains alphanumeric characters, hyphens, underscores. Spaces are not allowed",
+            "The name of the Feature whose value uniquely identifies a Record defined in the FeatureStore. Only the latest record per identifier value will be stored in the OnlineStore. RecordIdentifierFeatureName must be one of feature definitions' names. You use the RecordIdentifierFeatureName to access data in a FeatureStore. This name:   Must start with an alphanumeric character.   Can only contains alphanumeric characters, hyphens, underscores. Spaces are not allowed",
           args: {
             name: "string",
           },
@@ -1299,7 +1729,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--online-store-config",
           description:
-            "You can turn the OnlineStore on or off by specifying True for the EnableOnlineStore flag in OnlineStoreConfig; the default value is False. You can also include an AWS KMS key ID (KMSKeyId) for at-rest encryption of the OnlineStore",
+            "You can turn the OnlineStore on or off by specifying True for the EnableOnlineStore flag in OnlineStoreConfig. You can also include an Amazon Web Services KMS key ID (KMSKeyId) for at-rest encryption of the OnlineStore. The default value is False",
           args: {
             name: "structure",
           },
@@ -1307,7 +1737,15 @@ const completionSpec: Fig.Spec = {
         {
           name: "--offline-store-config",
           description:
-            "Use this to configure an OfflineFeatureStore. This parameter allows you to specify:   The Amazon Simple Storage Service (Amazon S3) location of an OfflineStore.   A configuration for an AWS Glue or AWS Hive data cataolgue.    An KMS encryption key to encrypt the Amazon S3 location used for OfflineStore.   To learn more about this parameter, see OfflineStoreConfig",
+            "Use this to configure an OfflineFeatureStore. This parameter allows you to specify:   The Amazon Simple Storage Service (Amazon S3) location of an OfflineStore.   A configuration for an Amazon Web Services Glue or Amazon Web Services Hive data catalog.    An KMS encryption key to encrypt the Amazon S3 location used for OfflineStore. If KMS encryption key is not specified, by default we encrypt all data at rest using Amazon Web Services KMS key. By defining your bucket-level key for SSE, you can reduce Amazon Web Services KMS requests costs by up to 99 percent.   Format for the offline store table. Supported formats are Glue (Default) and Apache Iceberg.   To learn more about this parameter, see OfflineStoreConfig",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--throughput-config",
+          description:
+            "Used to set feature group throughput configuration. There are two modes: ON_DEMAND and PROVISIONED. With on-demand mode, you are charged for data reads and writes that your application performs on your feature group. You do not need to specify read and write throughput because Feature Store accommodates your workloads as they ramp up and down. You can switch a feature group to on-demand only once in a 24 hour period. With provisioned throughput mode, you specify the read and write capacity per second that you expect your application to require, and you are billed based on those limits. Exceeding provisioned throughput will result in your requests being throttled.  Note: PROVISIONED throughput mode is supported only for feature groups that are offline-only, or use the  Standard  tier online store",
           args: {
             name: "structure",
           },
@@ -1432,6 +1870,72 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-hub",
+      description:
+        "Create a hub.  Hub APIs are only callable through SageMaker Studio",
+      options: [
+        {
+          name: "--hub-name",
+          description: "The name of the hub to create",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--hub-description",
+          description: "A description of the hub",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--hub-display-name",
+          description: "The display name of the hub",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--hub-search-keywords",
+          description: "The searchable keywords for the hub",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--s3-storage-config",
+          description: "The Amazon S3 storage configuration for the hub",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--tags",
+          description: "Any tags to associate with the hub",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-human-task-ui",
       description:
         "Defines the settings you will use for the human review workflow user interface. Reviewers will see a three-panel interface with an instruction area, the item to review, and an input area",
@@ -1480,12 +1984,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-hyper-parameter-tuning-job",
       description:
-        "Starts a hyperparameter tuning job. A hyperparameter tuning job finds the best version of a model by running many training jobs on your dataset using the algorithm you choose and values for hyperparameters within ranges that you specify. It then chooses the hyperparameter values that result in a model that performs the best, as measured by an objective metric that you choose",
+        "Starts a hyperparameter tuning job. A hyperparameter tuning job finds the best version of a model by running many training jobs on your dataset using the algorithm you choose and values for hyperparameters within ranges that you specify. It then chooses the hyperparameter values that result in a model that performs the best, as measured by an objective metric that you choose. A hyperparameter tuning job automatically creates Amazon SageMaker experiments, trials, and trial components for each training job that it runs. You can view these entities in Amazon SageMaker Studio. For more information, see View Experiments, Trials, and Trial Components.  Do not include any security-sensitive information including account access IDs, secrets or tokens in any hyperparameter field. If the use of security-sensitive credentials are detected, SageMaker will reject your training job request and return an exception error",
       options: [
         {
           name: "--hyper-parameter-tuning-job-name",
           description:
-            "The name of the tuning job. This name is the prefix for the names of all training jobs that this tuning job launches. The name must be unique within the same AWS account and AWS Region. The name must have 1 to 32 characters. Valid characters are a-z, A-Z, 0-9, and : + = @ _ % - (hyphen). The name is not case sensitive",
+            "The name of the tuning job. This name is the prefix for the names of all training jobs that this tuning job launches. The name must be unique within the same Amazon Web Services account and Amazon Web Services Region. The name must have 1 to 32 characters. Valid characters are a-z, A-Z, 0-9, and : + = @ _ % - (hyphen). The name is not case sensitive",
           args: {
             name: "string",
           },
@@ -1525,9 +2029,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "An array of key-value pairs. You can use tags to categorize your AWS resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging AWS Resources. Tags that you specify for the tuning job are also added to all training jobs that the tuning job launches",
+            "An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging Amazon Web Services Resources. Tags that you specify for the tuning job are also added to all training jobs that the tuning job launches",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--autotune",
+          description:
+            "Configures SageMaker Automatic model tuning (AMT) to automatically find optimal parameters for the following fields:    ParameterRanges: The names and ranges of parameters that a hyperparameter tuning job can optimize.    ResourceLimits: The maximum resources that can be used for a training job. These resources include the maximum number of training jobs, the maximum runtime of a tuning job, and the maximum number of training jobs to run at the same time.    TrainingJobEarlyStoppingType: A flag that specifies whether or not to use early stopping for training jobs launched by a hyperparameter tuning job.    RetryStrategy: The number of times to retry a training job.    Strategy: Specifies how hyperparameter tuning chooses the combinations of hyperparameter values to use for the training jobs that it launches.    ConvergenceDetected: A flag to indicate that Automatic model tuning (AMT) has detected model convergence",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -1552,7 +2064,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-image",
       description:
-        "Creates a custom SageMaker image. A SageMaker image is a set of image versions. Each image version represents a container image stored in Amazon Container Registry (ECR). For more information, see Bring your own SageMaker image",
+        "Creates a custom SageMaker image. A SageMaker image is a set of image versions. Each image version represents a container image stored in Amazon ECR. For more information, see Bring your own SageMaker image",
       options: [
         {
           name: "--description",
@@ -1579,7 +2091,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--role-arn",
           description:
-            "The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker to perform tasks on your behalf",
+            "The ARN of an IAM role that enables Amazon SageMaker to perform tasks on your behalf",
           args: {
             name: "string",
           },
@@ -1613,12 +2125,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-image-version",
       description:
-        "Creates a version of the SageMaker image specified by ImageName. The version represents the Amazon Container Registry (ECR) container image specified by BaseImage",
+        "Creates a version of the SageMaker image specified by ImageName. The version represents the Amazon ECR container image specified by BaseImage",
       options: [
         {
           name: "--base-image",
           description:
-            "The registry path of the container image to use as the starting point for this version. The path is an Amazon Container Registry (ECR) URI in the following format:  <acct-id>.dkr.ecr.<region>.amazonaws.com/<repo-name[:tag] or [@digest]>",
+            "The registry path of the container image to use as the starting point for this version. The path is an Amazon ECR URI in the following format:  <acct-id>.dkr.ecr.<region>.amazonaws.com/<repo-name[:tag] or [@digest]>",
           args: {
             name: "string",
           },
@@ -1626,7 +2138,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--client-token",
           description:
-            "A unique ID. If not specified, the AWS CLI and AWS SDKs, such as the SDK for Python (Boto3), add a unique value to the call",
+            "A unique ID. If not specified, the Amazon Web Services CLI and Amazon Web Services SDKs, such as the SDK for Python (Boto3), add a unique value to the call",
           args: {
             name: "string",
           },
@@ -1634,6 +2146,67 @@ const completionSpec: Fig.Spec = {
         {
           name: "--image-name",
           description: "The ImageName of the Image to create a version of",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--aliases",
+          description: "A list of aliases created with the image version",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--vendor-guidance",
+          description:
+            "The stability of the image version, specified by the maintainer.    NOT_PROVIDED: The maintainers did not provide a status for image version stability.    STABLE: The image version is stable.    TO_BE_ARCHIVED: The image version is set to be archived. Custom image versions that are set to be archived are automatically archived after three months.    ARCHIVED: The image version is archived. Archived image versions are not searchable and are no longer actively supported",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--job-type",
+          description:
+            "Indicates SageMaker job type compatibility.    TRAINING: The image version is compatible with SageMaker training jobs.    INFERENCE: The image version is compatible with SageMaker inference jobs.    NOTEBOOK_KERNEL: The image version is compatible with SageMaker notebook kernels",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--ml-framework",
+          description:
+            "The machine learning framework vended in the image version",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--programming-lang",
+          description: "The supported programming language and its version",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--processor",
+          description:
+            "Indicates CPU or GPU compatibility.    CPU: The image version is compatible with CPU.    GPU: The image version is compatible with GPU",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--horovod",
+          description: "Indicates Horovod compatibility",
+        },
+        {
+          name: "--no-horovod",
+          description: "Indicates Horovod compatibility",
+        },
+        {
+          name: "--release-notes",
+          description: "The maintainer description of the image version",
           args: {
             name: "string",
           },
@@ -1658,14 +2231,282 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-inference-component",
+      description:
+        "Creates an inference component, which is a SageMaker hosting object that you can use to deploy a model to an endpoint. In the inference component settings, you specify the model, the endpoint, and how the model utilizes the resources that the endpoint hosts. You can optimize resource utilization by tailoring how the required CPU cores, accelerators, and memory are allocated. You can deploy multiple inference components to an endpoint, where each inference component contains one model and the resource utilization needs for that individual model. After you deploy an inference component, you can directly invoke the associated model when you use the InvokeEndpoint API action",
+      options: [
+        {
+          name: "--inference-component-name",
+          description: "A unique name to assign to the inference component",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--endpoint-name",
+          description:
+            "The name of an existing endpoint where you host the inference component",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--variant-name",
+          description:
+            "The name of an existing production variant where you host the inference component",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--specification",
+          description:
+            "Details about the resources to deploy with this inference component, including the model, container, and compute resources",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--runtime-config",
+          description:
+            "Runtime settings for a model that is deployed with an inference component",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "A list of key-value pairs associated with the model. For more information, see Tagging Amazon Web Services resources in the Amazon Web Services General Reference",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-inference-experiment",
+      description:
+        "Creates an inference experiment using the configurations specified in the request.   Use this API to setup and schedule an experiment to compare model variants on a Amazon SageMaker inference endpoint. For more information about inference experiments, see Shadow tests.   Amazon SageMaker begins your experiment at the scheduled time and routes traffic to your endpoint's model variants based on your specified configuration.   While the experiment is in progress or after it has concluded, you can view metrics that compare your model variants. For more information, see View, monitor, and edit shadow tests",
+      options: [
+        {
+          name: "--name",
+          description: "The name for the inference experiment",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--type",
+          description:
+            "The type of the inference experiment that you want to run. The following types of experiments are possible:     ShadowMode: You can use this type to validate a shadow variant. For more information, see Shadow tests",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--schedule",
+          description:
+            "The duration for which you want the inference experiment to run. If you don't specify this field, the experiment automatically starts immediately upon creation and concludes after 7 days",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--description",
+          description: "A description for the inference experiment",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--role-arn",
+          description:
+            "The ARN of the IAM role that Amazon SageMaker can assume to access model artifacts and container images, and manage Amazon SageMaker Inference endpoints for model deployment",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--endpoint-name",
+          description:
+            "The name of the Amazon SageMaker endpoint on which you want to run the inference experiment",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--model-variants",
+          description:
+            "An array of ModelVariantConfig objects. There is one for each variant in the inference experiment. Each ModelVariantConfig object in the array describes the infrastructure configuration for the corresponding variant",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--data-storage-config",
+          description:
+            "The Amazon S3 location and configuration for storing inference request and response data.   This is an optional parameter that you can use for data capture. For more information, see Capture data",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--shadow-mode-config",
+          description:
+            "The configuration of ShadowMode inference experiment type. Use this field to specify a production variant which takes all the inference requests, and a shadow variant to which Amazon SageMaker replicates a percentage of the inference requests. For the shadow variant also specify the percentage of requests that Amazon SageMaker replicates",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--kms-key",
+          description:
+            'The Amazon Web Services Key Management Service (Amazon Web Services KMS) key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance that hosts the endpoint. The KmsKey can be any of the following formats:    KMS key ID  "1234abcd-12ab-34cd-56ef-1234567890ab"    Amazon Resource Name (ARN) of a KMS key  "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"    KMS key Alias  "alias/ExampleAlias"    Amazon Resource Name (ARN) of a KMS key Alias  "arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias"     If you use a KMS key ID or an alias of your KMS key, the Amazon SageMaker execution role must include permissions to call kms:Encrypt. If you don\'t provide a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon S3 for your role\'s account. Amazon SageMaker uses server-side encryption with KMS managed keys for OutputDataConfig. If you use a bucket policy with an s3:PutObject permission that only allows objects with server-side encryption, set the condition key of s3:x-amz-server-side-encryption to "aws:kms". For more information, see KMS managed Encryption Keys in the Amazon Simple Storage Service Developer Guide.   The KMS key policy must grant permission to the IAM role that you specify in your CreateEndpoint and UpdateEndpoint requests. For more information, see Using Key Policies in Amazon Web Services KMS in the Amazon Web Services Key Management Service Developer Guide',
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "Array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging your Amazon Web Services Resources",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-inference-recommendations-job",
+      description:
+        "Starts a recommendation job. You can create either an instance recommendation or load test job",
+      options: [
+        {
+          name: "--job-name",
+          description:
+            "A name for the recommendation job. The name must be unique within the Amazon Web Services Region and within your Amazon Web Services account. The job name is passed down to the resources created by the recommendation job. The names of resources (such as the model, endpoint configuration, endpoint, and compilation) that are prefixed with the job name are truncated at 40 characters",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--job-type",
+          description:
+            "Defines the type of recommendation job. Specify Default to initiate an instance recommendation and Advanced to initiate a load test. If left unspecified, Amazon SageMaker Inference Recommender will run an instance recommendation (DEFAULT) job",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--role-arn",
+          description:
+            "The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker to perform tasks on your behalf",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--input-config",
+          description:
+            "Provides information about the versioned model package Amazon Resource Name (ARN), the traffic pattern, and endpoint configurations",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--job-description",
+          description: "Description of the recommendation job",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--stopping-conditions",
+          description:
+            "A set of conditions for stopping a recommendation job. If any of the conditions are met, the job is automatically stopped",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--output-config",
+          description:
+            "Provides information about the output artifacts and the KMS key to use for Amazon S3 server-side encryption",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "The metadata that you apply to Amazon Web Services resources to help you categorize and organize them. Each tag consists of a key and a value, both of which you define. For more information, see Tagging Amazon Web Services Resources in the Amazon Web Services General Reference",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-labeling-job",
       description:
-        "Creates a job that uses workers to label the data objects in your input dataset. You can use the labeled data to train machine learning models.  You can select your workforce from one of three providers:   A private workforce that you create. It can include employees, contractors, and outside experts. Use a private workforce when want the data to stay within your organization or when a specific set of skills is required.   One or more vendors that you select from the AWS Marketplace. Vendors provide expertise in specific areas.    The Amazon Mechanical Turk workforce. This is the largest workforce, but it should only be used for public data or data that has been stripped of any personally identifiable information.   You can also use automated data labeling to reduce the number of data objects that need to be labeled by a human. Automated data labeling uses active learning to determine if a data object can be labeled by machine or if it needs to be sent to a human worker. For more information, see Using Automated Data Labeling. The data objects to be labeled are contained in an Amazon S3 bucket. You create a manifest file that describes the location of each object. For more information, see Using Input and Output Data. The output can be used as the manifest file for another labeling job or as training data for your machine learning models. You can use this operation to create a static labeling job or a streaming labeling job. A static labeling job stops if all data objects in the input manifest file identified in ManifestS3Uri have been labeled. A streaming labeling job runs perpetually until it is manually stopped, or remains idle for 10 days. You can send new data objects to an active (InProgress) streaming labeling job in real time. To learn how to create a static labeling job, see Create a Labeling Job (API)  in the Amazon SageMaker Developer Guide. To learn how to create a streaming labeling job, see Create a Streaming Labeling Job",
+        "Creates a job that uses workers to label the data objects in your input dataset. You can use the labeled data to train machine learning models.  You can select your workforce from one of three providers:   A private workforce that you create. It can include employees, contractors, and outside experts. Use a private workforce when want the data to stay within your organization or when a specific set of skills is required.   One or more vendors that you select from the Amazon Web Services Marketplace. Vendors provide expertise in specific areas.    The Amazon Mechanical Turk workforce. This is the largest workforce, but it should only be used for public data or data that has been stripped of any personally identifiable information.   You can also use automated data labeling to reduce the number of data objects that need to be labeled by a human. Automated data labeling uses active learning to determine if a data object can be labeled by machine or if it needs to be sent to a human worker. For more information, see Using Automated Data Labeling. The data objects to be labeled are contained in an Amazon S3 bucket. You create a manifest file that describes the location of each object. For more information, see Using Input and Output Data. The output can be used as the manifest file for another labeling job or as training data for your machine learning models. You can use this operation to create a static labeling job or a streaming labeling job. A static labeling job stops if all data objects in the input manifest file identified in ManifestS3Uri have been labeled. A streaming labeling job runs perpetually until it is manually stopped, or remains idle for 10 days. You can send new data objects to an active (InProgress) streaming labeling job in real time. To learn how to create a static labeling job, see Create a Labeling Job (API)  in the Amazon SageMaker Developer Guide. To learn how to create a streaming labeling job, see Create a Streaming Labeling Job",
       options: [
         {
           name: "--labeling-job-name",
           description:
-            "The name of the labeling job. This name is used to identify the job in a list of labeling jobs. Labeling job names must be unique within an AWS account and region. LabelingJobName is not case sensitive. For example, Example-job and example-job are considered the same labeling job name by Ground Truth",
+            "The name of the labeling job. This name is used to identify the job in a list of labeling jobs. Labeling job names must be unique within an Amazon Web Services account and region. LabelingJobName is not case sensitive. For example, Example-job and example-job are considered the same labeling job name by Ground Truth",
           args: {
             name: "string",
           },
@@ -1689,7 +2530,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--output-config",
           description:
-            "The location of the output data and the AWS Key Management Service key ID for the key used to encrypt the output data, if any",
+            "The location of the output data and the Amazon Web Services Key Management Service key ID for the key used to encrypt the output data, if any",
           args: {
             name: "structure",
           },
@@ -1705,7 +2546,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--label-category-config-s3-uri",
           description:
-            'The S3 URI of the file, referred to as a label category configuration file, that defines the categories used to label the data objects. For 3D point cloud and video frame task types, you can add label category attributes and frame attributes to your label category configuration file. To learn how, see Create a Labeling Category Configuration File for 3D Point Cloud Labeling Jobs.  For all other built-in task types and custom tasks, your label category configuration file must be a JSON file in the following format. Identify the labels you want to use by replacing label_1, label_2,...,label_n with your label categories.  {    "document-version": "2018-11-28",   "labels": [{"label": "label_1"},{"label": "label_2"},...{"label": "label_n"}]   }  Note the following about the label category configuration file:   For image classification and text classification (single and multi-label) you must specify at least two label categories. For all other task types, the minimum number of label categories required is one.    Each label category must be unique, you cannot specify duplicate label categories.   If you create a 3D point cloud or video frame adjustment or verification labeling job, you must include auditLabelAttributeName in the label category configuration. Use this parameter to enter the  LabelAttributeName  of the labeling job you want to adjust or verify annotations of',
+            'The S3 URI of the file, referred to as a label category configuration file, that defines the categories used to label the data objects. For 3D point cloud and video frame task types, you can add label category attributes and frame attributes to your label category configuration file. To learn how, see Create a Labeling Category Configuration File for 3D Point Cloud Labeling Jobs.  For named entity recognition jobs, in addition to "labels", you must provide worker instructions in the label category configuration file using the "instructions" parameter: "instructions": {"shortInstruction":"<h1>Add header</h1><p>Add Instructions</p>", "fullInstruction":"<p>Add additional instructions.</p>"}. For details and an example, see Create a Named Entity Recognition Labeling Job (API) . For all other built-in task types and custom tasks, your label category configuration file must be a JSON file in the following format. Identify the labels you want to use by replacing label_1, label_2,...,label_n with your label categories.  {    "document-version": "2018-11-28",   "labels": [{"label": "label_1"},{"label": "label_2"},...{"label": "label_n"}]   }  Note the following about the label category configuration file:   For image classification and text classification (single and multi-label) you must specify at least two label categories. For all other task types, the minimum number of label categories required is one.    Each label category must be unique, you cannot specify duplicate label categories.   If you create a 3D point cloud or video frame adjustment or verification labeling job, you must include auditLabelAttributeName in the label category configuration. Use this parameter to enter the  LabelAttributeName  of the labeling job you want to adjust or verify annotations of',
           args: {
             name: "string",
           },
@@ -1737,7 +2578,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "An array of key/value pairs. For more information, see Using Cost Allocation Tags in the AWS Billing and Cost Management User Guide",
+            "An array of key/value pairs. For more information, see Using Cost Allocation Tags in the Amazon Web Services Billing and Cost Management User Guide",
           args: {
             name: "list",
           },
@@ -1764,7 +2605,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-model",
       description:
-        "Creates a model in Amazon SageMaker. In the request, you name the model and describe a primary container. For the primary container, you specify the Docker image that contains inference code, artifacts (from prior training), and a custom environment map that the inference code uses when you deploy the model for predictions. Use this API to create a model if you want to use Amazon SageMaker hosting services or run a batch transform job. To host your model, you create an endpoint configuration with the CreateEndpointConfig API, and then create an endpoint with the CreateEndpoint API. Amazon SageMaker then deploys all of the containers that you defined for the model in the hosting environment.  For an example that calls this method when deploying a model to Amazon SageMaker hosting services, see Deploy the Model to Amazon SageMaker Hosting Services (AWS SDK for Python (Boto 3)).  To run a batch transform using your model, you start a job with the CreateTransformJob API. Amazon SageMaker uses your model and your dataset to get inferences which are then saved to a specified S3 location. In the CreateModel request, you must define a container with the PrimaryContainer parameter. In the request, you also provide an IAM role that Amazon SageMaker can assume to access model artifacts and docker image for deployment on ML compute hosting instances or for batch transform jobs. In addition, you also use the IAM role to manage permissions the inference code needs. For example, if the inference code access any other AWS resources, you grant necessary permissions via this role",
+        "Creates a model in SageMaker. In the request, you name the model and describe a primary container. For the primary container, you specify the Docker image that contains inference code, artifacts (from prior training), and a custom environment map that the inference code uses when you deploy the model for predictions. Use this API to create a model if you want to use SageMaker hosting services or run a batch transform job. To host your model, you create an endpoint configuration with the CreateEndpointConfig API, and then create an endpoint with the CreateEndpoint API. SageMaker then deploys all of the containers that you defined for the model in the hosting environment.  To run a batch transform using your model, you start a job with the CreateTransformJob API. SageMaker uses your model and your dataset to get inferences which are then saved to a specified S3 location. In the request, you also provide an IAM role that SageMaker can assume to access model artifacts and docker image for deployment on ML compute hosting instances or for batch transform jobs. In addition, you also use the IAM role to manage permissions the inference code needs. For example, if the inference code access any other Amazon Web Services resources, you grant necessary permissions via this role",
       options: [
         {
           name: "--model-name",
@@ -1799,7 +2640,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--execution-role-arn",
           description:
-            "The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker can assume to access model artifacts and docker image for deployment on ML compute instances or for batch transform jobs. Deploying on ML compute instances is part of model hosting. For more information, see Amazon SageMaker Roles.   To be able to pass this role to Amazon SageMaker, the caller of this API must have the iam:PassRole permission",
+            "The Amazon Resource Name (ARN) of the IAM role that SageMaker can assume to access model artifacts and docker image for deployment on ML compute instances or for batch transform jobs. Deploying on ML compute instances is part of model hosting. For more information, see SageMaker Roles.   To be able to pass this role to SageMaker, the caller of this API must have the iam:PassRole permission",
           args: {
             name: "string",
           },
@@ -1807,7 +2648,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "An array of key-value pairs. You can use tags to categorize your AWS resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging AWS Resources",
+            "An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging Amazon Web Services Resources",
           args: {
             name: "list",
           },
@@ -1856,7 +2697,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--job-definition-name",
           description:
-            "The name of the bias job definition. The name must be unique within an AWS Region in the AWS account",
+            "The name of the bias job definition. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -1924,9 +2765,126 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "(Optional) An array of key-value pairs. For more information, see Using Cost Allocation Tags in the AWS Billing and Cost Management User Guide",
+            "(Optional) An array of key-value pairs. For more information, see  Using Cost Allocation Tags in the Amazon Web Services Billing and Cost Management User Guide",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-model-card",
+      description:
+        "Creates an Amazon SageMaker Model Card. For information about how to use model cards, see Amazon SageMaker Model Card",
+      options: [
+        {
+          name: "--model-card-name",
+          description: "The unique name of the model card",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--security-config",
+          description:
+            "An optional Key Management Service key to encrypt, decrypt, and re-encrypt model card content for regulated workloads with highly sensitive data",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--content",
+          description:
+            "The content of the model card. Content must be in model card JSON schema and provided as a string",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--model-card-status",
+          description:
+            "The approval status of the model card within your organization. Different organizations might have different criteria for model card review and approval.    Draft: The model card is a work in progress.    PendingReview: The model card is pending review.    Approved: The model card is approved.    Archived: The model card is archived. No more updates should be made to the model card, but it can still be exported",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "Key-value pairs used to manage metadata for model cards",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-model-card-export-job",
+      description: "Creates an Amazon SageMaker Model Card export job",
+      options: [
+        {
+          name: "--model-card-name",
+          description:
+            "The name or Amazon Resource Name (ARN) of the model card to export",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--model-card-version",
+          description:
+            "The version of the model card to export. If a version is not provided, then the latest version of the model card is exported",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--model-card-export-job-name",
+          description: "The name of the model card export job",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--output-config",
+          description:
+            "The model card output configuration that specifies the Amazon S3 path for exporting",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -1955,7 +2913,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--job-definition-name",
           description:
-            "The name of the model explainability job definition. The name must be unique within an AWS Region in the AWS account",
+            "The name of the model explainability job definition. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -2024,7 +2982,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "(Optional) An array of key-value pairs. For more information, see Using Cost Allocation Tags in the AWS Billing and Cost Management User Guide",
+            "(Optional) An array of key-value pairs. For more information, see  Using Cost Allocation Tags in the Amazon Web Services Billing and Cost Management User Guide",
           args: {
             name: "list",
           },
@@ -2051,7 +3009,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-model-package",
       description:
-        "Creates a model package that you can use to create Amazon SageMaker models or list on AWS Marketplace, or a versioned model that is part of a model group. Buyers can subscribe to model packages listed on AWS Marketplace to create models in Amazon SageMaker. To create a model package by specifying a Docker container that contains your inference code and the Amazon S3 location of your model artifacts, provide values for InferenceSpecification. To create a model from an algorithm resource that you created or subscribed to in AWS Marketplace, provide a value for SourceAlgorithmSpecification.  There are two types of model packages:   Versioned - a model that is part of a model group in the model registry.   Unversioned - a model package that is not part of a model group",
+        "Creates a model package that you can use to create SageMaker models or list on Amazon Web Services Marketplace, or a versioned model that is part of a model group. Buyers can subscribe to model packages listed on Amazon Web Services Marketplace to create models in SageMaker. To create a model package by specifying a Docker container that contains your inference code and the Amazon S3 location of your model artifacts, provide values for InferenceSpecification. To create a model from an algorithm resource that you created or subscribed to in Amazon Web Services Marketplace, provide a value for SourceAlgorithmSpecification.  There are two types of model packages:   Versioned - a model that is part of a model group in the model registry.   Unversioned - a model package that is not part of a model group",
       options: [
         {
           name: "--model-package-name",
@@ -2064,7 +3022,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--model-package-group-name",
           description:
-            "The name of the model group that this model version belongs to. This parameter is required for versioned models, and does not apply to unversioned models",
+            "The name or Amazon Resource Name (ARN) of the model package group that this model version belongs to. This parameter is required for versioned models, and does not apply to unversioned models",
           args: {
             name: "string",
           },
@@ -2079,7 +3037,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--inference-specification",
           description:
-            "Specifies details about inference jobs that can be run with models based on this model package, including the following:   The Amazon ECR paths of containers that contain the inference code and model artifacts.   The instance types that the model package supports for transform jobs and real-time endpoints used for inference.   The input and output content formats that the model package supports for inference",
+            "Specifies details about inference jobs that you can run with models based on this model package, including the following information:   The Amazon ECR paths of containers that contain the inference code and model artifacts.   The instance types that the model package supports for transform jobs and real-time endpoints used for inference.   The input and output content formats that the model package supports for inference",
           args: {
             name: "structure",
           },
@@ -2087,7 +3045,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--validation-specification",
           description:
-            "Specifies configurations for one or more transform jobs that Amazon SageMaker runs to test the model package",
+            "Specifies configurations for one or more transform jobs that SageMaker runs to test the model package",
           args: {
             name: "structure",
           },
@@ -2103,17 +3061,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--certify-for-marketplace",
           description:
-            "Whether to certify the model package for listing on AWS Marketplace. This parameter is optional for unversioned models, and does not apply to versioned models",
+            "Whether to certify the model package for listing on Amazon Web Services Marketplace. This parameter is optional for unversioned models, and does not apply to versioned models",
         },
         {
           name: "--no-certify-for-marketplace",
           description:
-            "Whether to certify the model package for listing on AWS Marketplace. This parameter is optional for unversioned models, and does not apply to versioned models",
+            "Whether to certify the model package for listing on Amazon Web Services Marketplace. This parameter is optional for unversioned models, and does not apply to versioned models",
         },
         {
           name: "--tags",
           description:
-            "A list of key value pairs associated with the model. For more information, see Tagging AWS resources in the AWS General Reference Guide",
+            "A list of key value pairs associated with the model. For more information, see Tagging Amazon Web Services resources in the Amazon Web Services General Reference Guide. If you supply ModelPackageGroupName, your model package belongs to the model group you specify and uses the tags associated with the model group. In this case, you cannot supply a tag argument",
           args: {
             name: "list",
           },
@@ -2145,6 +3103,69 @@ const completionSpec: Fig.Spec = {
           name: "--client-token",
           description:
             "A unique token that guarantees that the call to this API is idempotent",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--domain",
+          description:
+            "The machine learning domain of your model package and its components. Common machine learning domains include computer vision and natural language processing",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--task",
+          description:
+            'The machine learning task your model package accomplishes. Common machine learning tasks include object detection and image classification. The following tasks are supported by Inference Recommender: "IMAGE_CLASSIFICATION" | "OBJECT_DETECTION" | "TEXT_GENERATION" |"IMAGE_SEGMENTATION" | "FILL_MASK" | "CLASSIFICATION" | "REGRESSION" | "OTHER". Specify "OTHER" if none of the tasks listed fit your use case',
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sample-payload-url",
+          description:
+            "The Amazon Simple Storage Service (Amazon S3) path where the sample payload is stored. This path must point to a single gzip compressed tar archive (.tar.gz suffix). This archive can hold multiple files that are all equally used in the load test. Each file in the archive must satisfy the size constraints of the InvokeEndpoint call",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--customer-metadata-properties",
+          description:
+            "The metadata properties associated with the model package versions",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--drift-check-baselines",
+          description:
+            "Represents the drift check baselines that can be used when the model monitor is set using the model package. For more information, see the topic on Drift Detection against Previous Baselines in SageMaker Pipelines in the Amazon SageMaker Developer Guide",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--additional-inference-specifications",
+          description:
+            "An array of additional Inference Specification objects. Each additional Inference Specification specifies artifacts based on this model package that can be used on inference endpoints. Generally used with SageMaker Neo to store the compiled artifacts",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--skip-model-validation",
+          description: "Indicates if you want to skip model validation",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--source-uri",
+          description:
+            "The URI of the source for the model package. If you want to clone a model package, set it to the model package Amazon Resource Name (ARN). If you want to register a model, set it to the model ARN",
           args: {
             name: "string",
           },
@@ -2190,7 +3211,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of key value pairs associated with the model group. For more information, see Tagging AWS resources in the AWS General Reference Guide",
+            "A list of key value pairs associated with the model group. For more information, see Tagging Amazon Web Services resources in the Amazon Web Services General Reference Guide",
           args: {
             name: "list",
           },
@@ -2291,7 +3312,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "(Optional) An array of key-value pairs. For more information, see Using Cost Allocation Tags in the AWS Billing and Cost Management User Guide",
+            "(Optional) An array of key-value pairs. For more information, see  Using Cost Allocation Tags in the Amazon Web Services Billing and Cost Management User Guide",
           args: {
             name: "list",
           },
@@ -2323,7 +3344,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--monitoring-schedule-name",
           description:
-            "The name of the monitoring schedule. The name must be unique within an AWS Region within an AWS account",
+            "The name of the monitoring schedule. The name must be unique within an Amazon Web Services Region within an Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -2339,7 +3360,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "(Optional) An array of key-value pairs. For more information, see Using Cost Allocation Tags in the AWS Billing and Cost Management User Guide",
+            "(Optional) An array of key-value pairs. For more information, see Using Cost Allocation Tags in the Amazon Web Services Billing and Cost Management User Guide",
           args: {
             name: "list",
           },
@@ -2366,7 +3387,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-notebook-instance",
       description:
-        "Creates an Amazon SageMaker notebook instance. A notebook instance is a machine learning (ML) compute instance running on a Jupyter notebook.  In a CreateNotebookInstance request, specify the type of ML compute instance that you want to run. Amazon SageMaker launches the instance, installs common libraries that you can use to explore datasets for model training, and attaches an ML storage volume to the notebook instance.  Amazon SageMaker also provides a set of example notebooks. Each notebook demonstrates how to use Amazon SageMaker with a specific algorithm or with a machine learning framework.  After receiving the request, Amazon SageMaker does the following:   Creates a network interface in the Amazon SageMaker VPC.   (Option) If you specified SubnetId, Amazon SageMaker creates a network interface in your own VPC, which is inferred from the subnet ID that you provide in the input. When creating this network interface, Amazon SageMaker attaches the security group that you specified in the request to the network interface that it creates in your VPC.   Launches an EC2 instance of the type specified in the request in the Amazon SageMaker VPC. If you specified SubnetId of your VPC, Amazon SageMaker specifies both network interfaces when launching this instance. This enables inbound traffic from your own VPC to the notebook instance, assuming that the security groups allow it.   After creating the notebook instance, Amazon SageMaker returns its Amazon Resource Name (ARN). You can't change the name of a notebook instance after you create it. After Amazon SageMaker creates the notebook instance, you can connect to the Jupyter server and work in Jupyter notebooks. For example, you can write code to explore a dataset that you can use for model training, train a model, host models by creating Amazon SageMaker endpoints, and validate hosted models.  For more information, see How It Works",
+        "Creates an SageMaker notebook instance. A notebook instance is a machine learning (ML) compute instance running on a Jupyter notebook.  In a CreateNotebookInstance request, specify the type of ML compute instance that you want to run. SageMaker launches the instance, installs common libraries that you can use to explore datasets for model training, and attaches an ML storage volume to the notebook instance.  SageMaker also provides a set of example notebooks. Each notebook demonstrates how to use SageMaker with a specific algorithm or with a machine learning framework.  After receiving the request, SageMaker does the following:   Creates a network interface in the SageMaker VPC.   (Option) If you specified SubnetId, SageMaker creates a network interface in your own VPC, which is inferred from the subnet ID that you provide in the input. When creating this network interface, SageMaker attaches the security group that you specified in the request to the network interface that it creates in your VPC.   Launches an EC2 instance of the type specified in the request in the SageMaker VPC. If you specified SubnetId of your VPC, SageMaker specifies both network interfaces when launching this instance. This enables inbound traffic from your own VPC to the notebook instance, assuming that the security groups allow it.   After creating the notebook instance, SageMaker returns its Amazon Resource Name (ARN). You can't change the name of a notebook instance after you create it. After SageMaker creates the notebook instance, you can connect to the Jupyter server and work in Jupyter notebooks. For example, you can write code to explore a dataset that you can use for model training, train a model, host models by creating SageMaker endpoints, and validate hosted models.  For more information, see How It Works",
       options: [
         {
           name: "--notebook-instance-name",
@@ -2402,7 +3423,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--role-arn",
           description:
-            "When you send any requests to AWS resources from the notebook instance, Amazon SageMaker assumes this role to perform tasks on your behalf. You must grant this role necessary permissions so Amazon SageMaker can perform these tasks. The policy must allow the Amazon SageMaker service principal (sagemaker.amazonaws.com) permissions to assume this role. For more information, see Amazon SageMaker Roles.   To be able to pass this role to Amazon SageMaker, the caller of this API must have the iam:PassRole permission",
+            "When you send any requests to Amazon Web Services resources from the notebook instance, SageMaker assumes this role to perform tasks on your behalf. You must grant this role necessary permissions so SageMaker can perform these tasks. The policy must allow the SageMaker service principal (sagemaker.amazonaws.com) permissions to assume this role. For more information, see SageMaker Roles.   To be able to pass this role to SageMaker, the caller of this API must have the iam:PassRole permission",
           args: {
             name: "string",
           },
@@ -2410,7 +3431,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kms-key-id",
           description:
-            "The Amazon Resource Name (ARN) of a AWS Key Management Service key that Amazon SageMaker uses to encrypt data on the storage volume attached to your notebook instance. The KMS key you provide must be enabled. For information, see Enabling and Disabling Keys in the AWS Key Management Service Developer Guide",
+            "The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service key that SageMaker uses to encrypt data on the storage volume attached to your notebook instance. The KMS key you provide must be enabled. For information, see Enabling and Disabling Keys in the Amazon Web Services Key Management Service Developer Guide",
           args: {
             name: "string",
           },
@@ -2418,7 +3439,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "An array of key-value pairs. You can use tags to categorize your AWS resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging AWS Resources",
+            "An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging Amazon Web Services Resources",
           args: {
             name: "list",
           },
@@ -2434,7 +3455,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--direct-internet-access",
           description:
-            "Sets whether Amazon SageMaker provides internet access to the notebook instance. If you set this to Disabled this notebook instance will be able to access resources only in your VPC, and will not be able to connect to Amazon SageMaker training and endpoint services unless your configure a NAT Gateway in your VPC. For more information, see Notebook Instances Are Internet-Enabled by Default. You can set the value of this parameter to Disabled only if you set a value for the SubnetId parameter",
+            "Sets whether SageMaker provides internet access to the notebook instance. If you set this to Disabled this notebook instance is able to access resources only in your VPC, and is not be able to connect to SageMaker training and endpoint services unless you configure a NAT Gateway in your VPC. For more information, see Notebook Instances Are Internet-Enabled by Default. You can set the value of this parameter to Disabled only if you set a value for the SubnetId parameter",
           args: {
             name: "string",
           },
@@ -2458,7 +3479,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--default-code-repository",
           description:
-            "A Git repository to associate with the notebook instance as its default code repository. This can be either the name of a Git repository stored as a resource in your account, or the URL of a Git repository in AWS CodeCommit or in any other Git repository. When you open a notebook instance, it opens in the directory that contains this repository. For more information, see Associating Git Repositories with Amazon SageMaker Notebook Instances",
+            "A Git repository to associate with the notebook instance as its default code repository. This can be either the name of a Git repository stored as a resource in your account, or the URL of a Git repository in Amazon Web Services CodeCommit or in any other Git repository. When you open a notebook instance, it opens in the directory that contains this repository. For more information, see Associating Git Repositories with SageMaker Notebook Instances",
           args: {
             name: "string",
           },
@@ -2466,7 +3487,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--additional-code-repositories",
           description:
-            "An array of up to three Git repositories to associate with the notebook instance. These can be either the names of Git repositories stored as resources in your account, or the URL of Git repositories in AWS CodeCommit or in any other Git repository. These repositories are cloned at the same level as the default repository of your notebook instance. For more information, see Associating Git Repositories with Amazon SageMaker Notebook Instances",
+            "An array of up to three Git repositories to associate with the notebook instance. These can be either the names of Git repositories stored as resources in your account, or the URL of Git repositories in Amazon Web Services CodeCommit or in any other Git repository. These repositories are cloned at the same level as the default repository of your notebook instance. For more information, see Associating Git Repositories with SageMaker Notebook Instances",
           args: {
             name: "list",
           },
@@ -2477,6 +3498,22 @@ const completionSpec: Fig.Spec = {
             "Whether root access is enabled or disabled for users of the notebook instance. The default value is Enabled.  Lifecycle configurations need root access to be able to set up a notebook instance. Because of this, lifecycle configurations associated with a notebook instance always run with root access even if you disable root access for users",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--platform-identifier",
+          description:
+            "The platform identifier of the notebook instance runtime environment",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--instance-metadata-service-configuration",
+          description:
+            "Information on the IMDS configuration of the notebook instance",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -2501,7 +3538,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-notebook-instance-lifecycle-config",
       description:
-        "Creates a lifecycle configuration that you can associate with a notebook instance. A lifecycle configuration is a collection of shell scripts that run when you create or start a notebook instance. Each lifecycle configuration script has a limit of 16384 characters. The value of the $PATH environment variable that is available to both scripts is /sbin:bin:/usr/sbin:/usr/bin. View CloudWatch Logs for notebook instance lifecycle configurations in log group /aws/sagemaker/NotebookInstances in log stream [notebook-instance-name]/[LifecycleConfigHook]. Lifecycle configuration scripts cannot run for longer than 5 minutes. If a script runs for longer than 5 minutes, it fails and the notebook instance is not created or started. For information about notebook instance lifestyle configurations, see Step 2.1: (Optional) Customize a Notebook Instance",
+        "Creates a lifecycle configuration that you can associate with a notebook instance. A lifecycle configuration is a collection of shell scripts that run when you create or start a notebook instance. Each lifecycle configuration script has a limit of 16384 characters. The value of the $PATH environment variable that is available to both scripts is /sbin:bin:/usr/sbin:/usr/bin. View Amazon CloudWatch Logs for notebook instance lifecycle configurations in log group /aws/sagemaker/NotebookInstances in log stream [notebook-instance-name]/[LifecycleConfigHook]. Lifecycle configuration scripts cannot run for longer than 5 minutes. If a script runs for longer than 5 minutes, it fails and the notebook instance is not created or started. For information about notebook instance lifestyle configurations, see Step 2.1: (Optional) Customize a Notebook Instance",
       options: [
         {
           name: "--notebook-instance-lifecycle-config-name",
@@ -2571,6 +3608,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--pipeline-definition-s3-location",
+          description:
+            "The location of the pipeline definition stored in Amazon S3. If specified, SageMaker will retrieve the pipeline definition from this location",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--pipeline-description",
           description: "A description of the pipeline",
           args: {
@@ -2601,6 +3646,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--parallelism-configuration",
+          description:
+            "This is the configuration that controls the parallelism of the pipeline. If specified, it applies to all runs of this pipeline by default",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -2622,7 +3675,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-presigned-domain-url",
       description:
-        "Creates a URL for a specified UserProfile in a Domain. When accessed in a web browser, the user will be automatically signed in to Amazon SageMaker Studio, and granted access to all of the Apps and files associated with the Domain's Amazon Elastic File System (EFS) volume. This operation can only be called when the authentication mode equals IAM.   The URL that you get from a call to CreatePresignedDomainUrl has a default timeout of 5 minutes. You can configure this value using ExpiresInSeconds. If you try to use the URL after the timeout limit expires, you are directed to the AWS console sign-in page",
+        "Creates a URL for a specified UserProfile in a Domain. When accessed in a web browser, the user will be automatically signed in to the domain, and granted access to all of the Apps and files associated with the Domain's Amazon Elastic File System volume. This operation can only be called when the authentication mode equals IAM.  The IAM role or user passed to this API defines the permissions to access the app. Once the presigned URL is created, no additional permission is required to access this URL. IAM authorization policies for this API are also enforced for every HTTP request and WebSocket frame that attempts to connect to the app. You can restrict access to this API and to the URL that it returns to a list of IP addresses, Amazon VPCs or Amazon VPC Endpoints that you specify. For more information, see Connect to Amazon SageMaker Studio Through an Interface VPC Endpoint .  The URL that you get from a call to CreatePresignedDomainUrl has a default timeout of 5 minutes. You can configure this value using ExpiresInSeconds. If you try to use the URL after the timeout limit expires, you are directed to the Amazon Web Services console sign-in page",
       options: [
         {
           name: "--domain-id",
@@ -2655,6 +3708,21 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--space-name",
+          description: "The name of the space",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--landing-uri",
+          description:
+            "The landing page that the user is directed to when accessing the presigned URL. Using this value, users can access Studio or Studio Classic, even if it is not the default experience for the domain. The supported values are:    studio::relative/path: Directs users to the relative path in Studio.    app:JupyterServer:relative/path: Directs users to the relative path in the Studio Classic application.    app:JupyterLab:relative/path: Directs users to the relative path in the JupyterLab application.    app:RStudioServerPro:relative/path: Directs users to the relative path in the RStudio application.    app:CodeEditor:relative/path: Directs users to the relative path in the Code Editor, based on Code-OSS, Visual Studio Code - Open Source application.    app:Canvas:relative/path: Directs users to the relative path in the Canvas application",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -2676,7 +3744,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-presigned-notebook-instance-url",
       description:
-        "Returns a URL that you can use to connect to the Jupyter server from a notebook instance. In the Amazon SageMaker console, when you choose Open next to a notebook instance, Amazon SageMaker opens a new tab showing the Jupyter server home page from the notebook instance. The console uses this API to get the URL and show the page.  The IAM role or user used to call this API defines the permissions to access the notebook instance. Once the presigned URL is created, no additional permission is required to access this URL. IAM authorization policies for this API are also enforced for every HTTP request and WebSocket frame that attempts to connect to the notebook instance. You can restrict access to this API and to the URL that it returns to a list of IP addresses that you specify. Use the NotIpAddress condition operator and the aws:SourceIP condition context key to specify the list of IP addresses that you want to have access to the notebook instance. For more information, see Limit Access to a Notebook Instance by IP Address.  The URL that you get from a call to CreatePresignedNotebookInstanceUrl is valid only for 5 minutes. If you try to use the URL after the 5-minute limit expires, you are directed to the AWS console sign-in page",
+        "Returns a URL that you can use to connect to the Jupyter server from a notebook instance. In the SageMaker console, when you choose Open next to a notebook instance, SageMaker opens a new tab showing the Jupyter server home page from the notebook instance. The console uses this API to get the URL and show the page.  The IAM role or user used to call this API defines the permissions to access the notebook instance. Once the presigned URL is created, no additional permission is required to access this URL. IAM authorization policies for this API are also enforced for every HTTP request and WebSocket frame that attempts to connect to the notebook instance. You can restrict access to this API and to the URL that it returns to a list of IP addresses that you specify. Use the NotIpAddress condition operator and the aws:SourceIP condition context key to specify the list of IP addresses that you want to have access to the notebook instance. For more information, see Limit Access to a Notebook Instance by IP Address.  The URL that you get from a call to CreatePresignedNotebookInstanceUrl is valid only for 5 minutes. If you try to use the URL after the 5-minute limit expires, you are directed to the Amazon Web Services console sign-in page",
       options: [
         {
           name: "--notebook-instance-name",
@@ -2734,7 +3802,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--processing-job-name",
           description:
-            "The name of the processing job. The name must be unique within an AWS Region in the AWS account",
+            "The name of the processing job. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -2790,7 +3858,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "(Optional) An array of key-value pairs. For more information, see Using Cost Allocation Tags in the AWS Billing and Cost Management User Guide",
+            "(Optional) An array of key-value pairs. For more information, see Using Cost Allocation Tags in the Amazon Web Services Billing and Cost Management User Guide",
           args: {
             name: "list",
           },
@@ -2844,7 +3912,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--service-catalog-provisioning-details",
           description:
-            "The product ID and provisioning artifact ID to provision a service catalog. For information, see What is AWS Service Catalog",
+            "The product ID and provisioning artifact ID to provision a service catalog. The provisioning artifact ID will default to the latest provisioning artifact ID of the product, if you don't provide the provisioning artifact ID. For more information, see What is Amazon Web Services Service Catalog",
           args: {
             name: "structure",
           },
@@ -2852,7 +3920,138 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "An array of key-value pairs that you want to use to organize and track your AWS resource costs. For more information, see Tagging AWS resources in the AWS General Reference Guide",
+            "An array of key-value pairs that you want to use to organize and track your Amazon Web Services resource costs. For more information, see Tagging Amazon Web Services resources in the Amazon Web Services General Reference Guide",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-space",
+      description:
+        "Creates a private space or a space used for real time collaboration in a domain",
+      options: [
+        {
+          name: "--domain-id",
+          description: "The ID of the associated domain",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--space-name",
+          description: "The name of the space",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "Tags to associated with the space. Each tag consists of a key and an optional value. Tag keys must be unique for each resource. Tags are searchable using the Search API",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--space-settings",
+          description: "A collection of space settings",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--ownership-settings",
+          description: "A collection of ownership settings",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--space-sharing-settings",
+          description: "A collection of space sharing settings",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--space-display-name",
+          description:
+            "The name of the space that appears in the SageMaker Studio UI",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-studio-lifecycle-config",
+      description:
+        "Creates a new Amazon SageMaker Studio Lifecycle Configuration",
+      options: [
+        {
+          name: "--studio-lifecycle-config-name",
+          description:
+            "The name of the Amazon SageMaker Studio Lifecycle Configuration to create",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--studio-lifecycle-config-content",
+          description:
+            "The content of your Amazon SageMaker Studio Lifecycle Configuration script. This content must be base64 encoded",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--studio-lifecycle-config-app-type",
+          description:
+            "The App type that the Lifecycle Configuration is attached to",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "Tags to be associated with the Lifecycle Configuration. Each tag consists of a key and an optional value. Tag keys must be unique per resource. Tags are searchable using the Search API",
           args: {
             name: "list",
           },
@@ -2879,12 +4078,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-training-job",
       description:
-        "Starts a model training job. After training completes, Amazon SageMaker saves the resulting model artifacts to an Amazon S3 location that you specify.  If you choose to host your model using Amazon SageMaker hosting services, you can use the resulting model artifacts as part of the model. You can also use the artifacts in a machine learning service other than Amazon SageMaker, provided that you know how to use them for inference.  In the request body, you provide the following:     AlgorithmSpecification - Identifies the training algorithm to use.     HyperParameters - Specify these algorithm-specific parameters to enable the estimation of model parameters during training. Hyperparameters can be tuned to optimize this learning process. For a list of hyperparameters for each training algorithm provided by Amazon SageMaker, see Algorithms.     InputDataConfig - Describes the training dataset and the Amazon S3, EFS, or FSx location where it is stored.    OutputDataConfig - Identifies the Amazon S3 bucket where you want Amazon SageMaker to save the results of model training.      ResourceConfig - Identifies the resources, ML compute instances, and ML storage volumes to deploy for model training. In distributed training, you specify more than one instance.     EnableManagedSpotTraining - Optimize the cost of training machine learning models by up to 80% by using Amazon EC2 Spot instances. For more information, see Managed Spot Training.     RoleArn - The Amazon Resource Name (ARN) that Amazon SageMaker assumes to perform tasks on your behalf during model training. You must grant this role the necessary permissions so that Amazon SageMaker can successfully complete model training.     StoppingCondition - To help cap training costs, use MaxRuntimeInSeconds to set a time limit for training. Use MaxWaitTimeInSeconds to specify how long you are willing to wait for a managed spot training job to complete.     Environment - The environment variables to set in the Docker container.    For more information about Amazon SageMaker, see How It Works",
+        "Starts a model training job. After training completes, SageMaker saves the resulting model artifacts to an Amazon S3 location that you specify.  If you choose to host your model using SageMaker hosting services, you can use the resulting model artifacts as part of the model. You can also use the artifacts in a machine learning service other than SageMaker, provided that you know how to use them for inference.  In the request body, you provide the following:     AlgorithmSpecification - Identifies the training algorithm to use.     HyperParameters - Specify these algorithm-specific parameters to enable the estimation of model parameters during training. Hyperparameters can be tuned to optimize this learning process. For a list of hyperparameters for each training algorithm provided by SageMaker, see Algorithms.   Do not include any security-sensitive information including account access IDs, secrets or tokens in any hyperparameter field. If the use of security-sensitive credentials are detected, SageMaker will reject your training job request and return an exception error.     InputDataConfig - Describes the input required by the training job and the Amazon S3, EFS, or FSx location where it is stored.    OutputDataConfig - Identifies the Amazon S3 bucket where you want SageMaker to save the results of model training.     ResourceConfig - Identifies the resources, ML compute instances, and ML storage volumes to deploy for model training. In distributed training, you specify more than one instance.     EnableManagedSpotTraining - Optimize the cost of training machine learning models by up to 80% by using Amazon EC2 Spot instances. For more information, see Managed Spot Training.     RoleArn - The Amazon Resource Name (ARN) that SageMaker assumes to perform tasks on your behalf during model training. You must grant this role the necessary permissions so that SageMaker can successfully complete model training.     StoppingCondition - To help cap training costs, use MaxRuntimeInSeconds to set a time limit for training. Use MaxWaitTimeInSeconds to specify how long a managed spot training job has to complete.     Environment - The environment variables to set in the Docker container.    RetryStrategy - The number of times to retry the job when the job fails due to an InternalServerError.    For more information about SageMaker, see How It Works",
       options: [
         {
           name: "--training-job-name",
           description:
-            "The name of the training job. The name must be unique within an AWS Region in an AWS account",
+            "The name of the training job. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -2892,7 +4091,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--hyper-parameters",
           description:
-            "Algorithm-specific parameters that influence the quality of the model. You set hyperparameters before you start the learning process. For a list of hyperparameters for each training algorithm provided by Amazon SageMaker, see Algorithms.  You can specify a maximum of 100 hyperparameters. Each hyperparameter is a key-value pair. Each key and value is limited to 256 characters, as specified by the Length Constraint",
+            "Algorithm-specific parameters that influence the quality of the model. You set hyperparameters before you start the learning process. For a list of hyperparameters for each training algorithm provided by SageMaker, see Algorithms.  You can specify a maximum of 100 hyperparameters. Each hyperparameter is a key-value pair. Each key and value is limited to 256 characters, as specified by the Length Constraint.   Do not include any security-sensitive information including account access IDs, secrets or tokens in any hyperparameter field. If the use of security-sensitive credentials are detected, SageMaker will reject your training job request and return an exception error",
           args: {
             name: "map",
           },
@@ -2900,7 +4099,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--algorithm-specification",
           description:
-            "The registry path of the Docker image that contains the training algorithm and algorithm-specific metadata, including the input mode. For more information about algorithms provided by Amazon SageMaker, see Algorithms. For information about providing your own algorithms, see Using Your Own Algorithms with Amazon SageMaker",
+            "The registry path of the Docker image that contains the training algorithm and algorithm-specific metadata, including the input mode. For more information about algorithms provided by SageMaker, see Algorithms. For information about providing your own algorithms, see Using Your Own Algorithms with Amazon SageMaker",
           args: {
             name: "structure",
           },
@@ -2908,7 +4107,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--role-arn",
           description:
-            "The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.  During model training, Amazon SageMaker needs your permission to read input data from an S3 bucket, download a Docker image that contains training code, write model artifacts to an S3 bucket, write logs to Amazon CloudWatch Logs, and publish metrics to Amazon CloudWatch. You grant permissions for all of these tasks to an IAM role. For more information, see Amazon SageMaker Roles.   To be able to pass this role to Amazon SageMaker, the caller of this API must have the iam:PassRole permission",
+            "The Amazon Resource Name (ARN) of an IAM role that SageMaker can assume to perform tasks on your behalf.  During model training, SageMaker needs your permission to read input data from an S3 bucket, download a Docker image that contains training code, write model artifacts to an S3 bucket, write logs to Amazon CloudWatch Logs, and publish metrics to Amazon CloudWatch. You grant permissions for all of these tasks to an IAM role. For more information, see SageMaker Roles.   To be able to pass this role to SageMaker, the caller of this API must have the iam:PassRole permission",
           args: {
             name: "string",
           },
@@ -2916,7 +4115,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--input-data-config",
           description:
-            "An array of Channel objects. Each channel is a named input source. InputDataConfig describes the input data and its location.  Algorithms can accept input data from one or more channels. For example, an algorithm might have two channels of input data, training_data and validation_data. The configuration for each channel provides the S3, EFS, or FSx location where the input data is stored. It also provides information about the stored data: the MIME type, compression method, and whether the data is wrapped in RecordIO format.  Depending on the input mode that the algorithm supports, Amazon SageMaker either copies input data files from an S3 bucket to a local directory in the Docker container, or makes it available as input streams. For example, if you specify an EFS location, input data files will be made available as input streams. They do not need to be downloaded",
+            "An array of Channel objects. Each channel is a named input source. InputDataConfig describes the input data and its location.  Algorithms can accept input data from one or more channels. For example, an algorithm might have two channels of input data, training_data and validation_data. The configuration for each channel provides the S3, EFS, or FSx location where the input data is stored. It also provides information about the stored data: the MIME type, compression method, and whether the data is wrapped in RecordIO format.  Depending on the input mode that the algorithm supports, SageMaker either copies input data files from an S3 bucket to a local directory in the Docker container, or makes it available as input streams. For example, if you specify an EFS location, input data files are available as input streams. They do not need to be downloaded. Your input must be in the same Amazon Web Services region as your training job",
           args: {
             name: "list",
           },
@@ -2924,7 +4123,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--output-data-config",
           description:
-            "Specifies the path to the S3 location where you want to store model artifacts. Amazon SageMaker creates subfolders for the artifacts",
+            "Specifies the path to the S3 location where you want to store model artifacts. SageMaker creates subfolders for the artifacts",
           args: {
             name: "structure",
           },
@@ -2932,7 +4131,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-config",
           description:
-            "The resources, including the ML compute instances and ML storage volumes, to use for model training.  ML storage volumes store model artifacts and incremental states. Training algorithms might also use ML storage volumes for scratch space. If you want Amazon SageMaker to use the ML storage volume to store the training data, choose File as the TrainingInputMode in the algorithm specification. For distributed training algorithms, specify an instance count greater than 1",
+            "The resources, including the ML compute instances and ML storage volumes, to use for model training.  ML storage volumes store model artifacts and incremental states. Training algorithms might also use ML storage volumes for scratch space. If you want SageMaker to use the ML storage volume to store the training data, choose File as the TrainingInputMode in the algorithm specification. For distributed training algorithms, specify an instance count greater than 1",
           args: {
             name: "structure",
           },
@@ -2948,7 +4147,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--stopping-condition",
           description:
-            "Specifies a limit to how long a model training job can run. When the job reaches the time limit, Amazon SageMaker ends the training job. Use this API to cap model training costs. To stop a job, Amazon SageMaker sends the algorithm the SIGTERM signal, which delays job termination for 120 seconds. Algorithms can use this 120-second window to save the model artifacts, so the results of training are not lost",
+            "Specifies a limit to how long a model training job can run. It also specifies how long a managed Spot training job has to complete. When the job reaches the time limit, SageMaker ends the training job. Use this API to cap model training costs. To stop a job, SageMaker sends the algorithm the SIGTERM signal, which delays job termination for 120 seconds. Algorithms can use this 120-second window to save the model artifacts, so the results of training are not lost",
           args: {
             name: "structure",
           },
@@ -2956,7 +4155,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "An array of key-value pairs. You can use tags to categorize your AWS resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging AWS Resources",
+            "An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging Amazon Web Services Resources",
           args: {
             name: "list",
           },
@@ -2964,12 +4163,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--enable-network-isolation",
           description:
-            "Isolates the training container. No inbound or outbound network calls can be made, except for calls between peers within a training cluster for distributed training. If you enable network isolation for training jobs that are configured to use a VPC, Amazon SageMaker downloads and uploads customer data and model artifacts through the specified VPC, but the training container does not have network access",
+            "Isolates the training container. No inbound or outbound network calls can be made, except for calls between peers within a training cluster for distributed training. If you enable network isolation for training jobs that are configured to use a VPC, SageMaker downloads and uploads customer data and model artifacts through the specified VPC, but the training container does not have network access",
         },
         {
           name: "--no-enable-network-isolation",
           description:
-            "Isolates the training container. No inbound or outbound network calls can be made, except for calls between peers within a training cluster for distributed training. If you enable network isolation for training jobs that are configured to use a VPC, Amazon SageMaker downloads and uploads customer data and model artifacts through the specified VPC, but the training container does not have network access",
+            "Isolates the training container. No inbound or outbound network calls can be made, except for calls between peers within a training cluster for distributed training. If you enable network isolation for training jobs that are configured to use a VPC, SageMaker downloads and uploads customer data and model artifacts through the specified VPC, but the training container does not have network access",
         },
         {
           name: "--enable-inter-container-traffic-encryption",
@@ -3002,7 +4201,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--debug-hook-config",
           description:
-            "Configuration information for the Debugger hook parameters, metric and tensor collections, and storage paths. To learn more about how to configure the DebugHookConfig parameter, see Use the SageMaker and Debugger Configuration API Operations to Create, Update, and Debug Your Training Job",
+            "Configuration information for the Amazon SageMaker Debugger hook parameters, metric and tensor collections, and storage paths. To learn more about how to configure the DebugHookConfig parameter, see Use the SageMaker and Debugger Configuration API Operations to Create, Update, and Debug Your Training Job",
           args: {
             name: "structure",
           },
@@ -3010,7 +4209,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--debug-rule-configurations",
           description:
-            "Configuration information for Debugger rules for debugging output tensors",
+            "Configuration information for Amazon SageMaker Debugger rules for debugging output tensors",
           args: {
             name: "list",
           },
@@ -3018,7 +4217,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tensor-board-output-config",
           description:
-            "Configuration of storage locations for the Debugger TensorBoard output data",
+            "Configuration of storage locations for the Amazon SageMaker Debugger TensorBoard output data",
           args: {
             name: "structure",
           },
@@ -3034,7 +4233,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--profiler-config",
           description:
-            "Configuration information for Debugger system monitoring, framework profiling, and storage paths",
+            "Configuration information for Amazon SageMaker Debugger system monitoring, framework profiling, and storage paths",
           args: {
             name: "structure",
           },
@@ -3042,7 +4241,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--profiler-rule-configurations",
           description:
-            "Configuration information for Debugger rules for profiling system and framework metrics",
+            "Configuration information for Amazon SageMaker Debugger rules for profiling system and framework metrics",
           args: {
             name: "list",
           },
@@ -3053,6 +4252,38 @@ const completionSpec: Fig.Spec = {
             "The environment variables to set in the Docker container",
           args: {
             name: "map",
+          },
+        },
+        {
+          name: "--retry-strategy",
+          description:
+            "The number of times to retry the job when the job fails due to an InternalServerError",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--remote-debug-config",
+          description:
+            "Configuration for remote debugging. To learn more about the remote debugging functionality of SageMaker, see Access a training container through Amazon Web Services Systems Manager (SSM) for remote debugging",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--infra-check-config",
+          description:
+            "Contains information about the infrastructure health check configuration for the training job",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--session-chaining-config",
+          description:
+            "Contains information about attribute-based access control (ABAC) for the training job",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -3077,12 +4308,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-transform-job",
       description:
-        "Starts a transform job. A transform job uses a trained model to get inferences on a dataset and saves these results to an Amazon S3 location that you specify. To perform batch transformations, you create a transform job and use the data that you have readily available. In the request body, you provide the following:    TransformJobName - Identifies the transform job. The name must be unique within an AWS Region in an AWS account.    ModelName - Identifies the model to use. ModelName must be the name of an existing Amazon SageMaker model in the same AWS Region and AWS account. For information on creating a model, see CreateModel.    TransformInput - Describes the dataset to be transformed and the Amazon S3 location where it is stored.    TransformOutput - Identifies the Amazon S3 location where you want Amazon SageMaker to save the results from the transform job.    TransformResources - Identifies the ML compute instances for the transform job.   For more information about how batch transformation works, see Batch Transform",
+        "Starts a transform job. A transform job uses a trained model to get inferences on a dataset and saves these results to an Amazon S3 location that you specify. To perform batch transformations, you create a transform job and use the data that you have readily available. In the request body, you provide the following:    TransformJobName - Identifies the transform job. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account.    ModelName - Identifies the model to use. ModelName must be the name of an existing Amazon SageMaker model in the same Amazon Web Services Region and Amazon Web Services account. For information on creating a model, see CreateModel.    TransformInput - Describes the dataset to be transformed and the Amazon S3 location where it is stored.    TransformOutput - Identifies the Amazon S3 location where you want Amazon SageMaker to save the results from the transform job.    TransformResources - Identifies the ML compute instances for the transform job.   For more information about how batch transformation works, see Batch Transform",
       options: [
         {
           name: "--transform-job-name",
           description:
-            "The name of the transform job. The name must be unique within an AWS Region in an AWS account",
+            "The name of the transform job. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -3090,7 +4321,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--model-name",
           description:
-            "The name of the model that you want to use for the transform job. ModelName must be the name of an existing Amazon SageMaker model within an AWS Region in an AWS account",
+            "The name of the model that you want to use for the transform job. ModelName must be the name of an existing Amazon SageMaker model within an Amazon Web Services Region in an Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -3114,7 +4345,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-payload-in-mb",
           description:
-            "The maximum allowed size of the payload, in MB. A payload is the data portion of a record (without metadata). The value in MaxPayloadInMB must be greater than, or equal to, the size of a single record. To estimate the size of a record in MB, divide the size of your dataset by the number of records. To ensure that the records fit within the maximum payload size, we recommend using a slightly larger value. The default value is 6 MB.  For cases where the payload might be arbitrarily large and is transmitted using HTTP chunked encoding, set the value to 0. This feature works only in supported algorithms. Currently, Amazon SageMaker built-in algorithms do not support HTTP chunked encoding",
+            "The maximum allowed size of the payload, in MB. A payload is the data portion of a record (without metadata). The value in MaxPayloadInMB must be greater than, or equal to, the size of a single record. To estimate the size of a record in MB, divide the size of your dataset by the number of records. To ensure that the records fit within the maximum payload size, we recommend using a slightly larger value. The default value is 6 MB.  The value of MaxPayloadInMB cannot be greater than 100 MB. If you specify the MaxConcurrentTransforms parameter, the value of (MaxConcurrentTransforms * MaxPayloadInMB) also cannot exceed 100 MB. For cases where the payload might be arbitrarily large and is transmitted using HTTP chunked encoding, set the value to 0. This feature works only in supported algorithms. Currently, Amazon SageMaker built-in algorithms do not support HTTP chunked encoding",
           args: {
             name: "integer",
           },
@@ -3151,6 +4382,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--data-capture-config",
+          description:
+            "Configuration to control how SageMaker captures inference data",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--transform-resources",
           description:
             "Describes the resources, including ML instance types and ML instance count, to use for the transform job",
@@ -3169,7 +4408,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "(Optional) An array of key-value pairs. For more information, see Using Cost Allocation Tags in the AWS Billing and Cost Management User Guide",
+            "(Optional) An array of key-value pairs. For more information, see Using Cost Allocation Tags in the Amazon Web Services Billing and Cost Management User Guide",
           args: {
             name: "list",
           },
@@ -3204,12 +4443,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-trial",
       description:
-        "Creates an Amazon SageMaker trial. A trial is a set of steps called trial components that produce a machine learning model. A trial is part of a single Amazon SageMaker experiment. When you use Amazon SageMaker Studio or the Amazon SageMaker Python SDK, all experiments, trials, and trial components are automatically tracked, logged, and indexed. When you use the AWS SDK for Python (Boto), you must use the logging APIs provided by the SDK. You can add tags to a trial and then use the Search API to search for the tags. To get a list of all your trials, call the ListTrials API. To view a trial's properties, call the DescribeTrial API. To create a trial component, call the CreateTrialComponent API",
+        "Creates an SageMaker trial. A trial is a set of steps called trial components that produce a machine learning model. A trial is part of a single SageMaker experiment. When you use SageMaker Studio or the SageMaker Python SDK, all experiments, trials, and trial components are automatically tracked, logged, and indexed. When you use the Amazon Web Services SDK for Python (Boto), you must use the logging APIs provided by the SDK. You can add tags to a trial and then use the Search API to search for the tags. To get a list of all your trials, call the ListTrials API. To view a trial's properties, call the DescribeTrial API. To create a trial component, call the CreateTrialComponent API",
       options: [
         {
           name: "--trial-name",
           description:
-            "The name of the trial. The name must be unique in your AWS account and is not case-sensitive",
+            "The name of the trial. The name must be unique in your Amazon Web Services account and is not case-sensitive",
           args: {
             name: "string",
           },
@@ -3267,12 +4506,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-trial-component",
       description:
-        "Creates a trial component, which is a stage of a machine learning trial. A trial is composed of one or more trial components. A trial component can be used in multiple trials. Trial components include pre-processing jobs, training jobs, and batch transform jobs. When you use Amazon SageMaker Studio or the Amazon SageMaker Python SDK, all experiments, trials, and trial components are automatically tracked, logged, and indexed. When you use the AWS SDK for Python (Boto), you must use the logging APIs provided by the SDK. You can add tags to a trial component and then use the Search API to search for the tags.   CreateTrialComponent can only be invoked from within an Amazon SageMaker managed environment. This includes Amazon SageMaker training jobs, processing jobs, transform jobs, and Amazon SageMaker notebooks. A call to CreateTrialComponent from outside one of these environments results in an error",
+        "Creates a trial component, which is a stage of a machine learning trial. A trial is composed of one or more trial components. A trial component can be used in multiple trials. Trial components include pre-processing jobs, training jobs, and batch transform jobs. When you use SageMaker Studio or the SageMaker Python SDK, all experiments, trials, and trial components are automatically tracked, logged, and indexed. When you use the Amazon Web Services SDK for Python (Boto), you must use the logging APIs provided by the SDK. You can add tags to a trial component and then use the Search API to search for the tags",
       options: [
         {
           name: "--trial-component-name",
           description:
-            "The name of the component. The name must be unique in your AWS account and is not case-sensitive",
+            "The name of the component. The name must be unique in your Amazon Web Services account and is not case-sensitive",
           args: {
             name: "string",
           },
@@ -3368,7 +4607,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-user-profile",
       description:
-        'Creates a user profile. A user profile represents a single user within a domain, and is the main way to reference a "person" for the purposes of sharing, reporting, and other user-oriented features. This entity is created when a user onboards to Amazon SageMaker Studio. If an administrator invites a person by email or imports them from SSO, a user profile is automatically created. A user profile is the primary holder of settings for an individual user and has a reference to the user\'s private Amazon Elastic File System (EFS) home directory',
+        'Creates a user profile. A user profile represents a single user within a domain, and is the main way to reference a "person" for the purposes of sharing, reporting, and other user-oriented features. This entity is created when a user onboards to a domain. If an administrator invites a person by email or imports them from IAM Identity Center, a user profile is automatically created. A user profile is the primary holder of settings for an individual user and has a reference to the user\'s private Amazon Elastic File System home directory',
       options: [
         {
           name: "--domain-id",
@@ -3379,7 +4618,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--user-profile-name",
-          description: "A name for the UserProfile",
+          description:
+            "A name for the UserProfile. This value is not case sensitive",
           args: {
             name: "string",
           },
@@ -3387,7 +4627,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--single-sign-on-user-identifier",
           description:
-            "A specifier for the type of value specified in SingleSignOnUserValue. Currently, the only supported value is \"UserName\". If the Domain's AuthMode is SSO, this field is required. If the Domain's AuthMode is not SSO, this field cannot be specified",
+            "A specifier for the type of value specified in SingleSignOnUserValue. Currently, the only supported value is \"UserName\". If the Domain's AuthMode is IAM Identity Center, this field is required. If the Domain's AuthMode is not IAM Identity Center, this field cannot be specified",
           args: {
             name: "string",
           },
@@ -3395,7 +4635,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--single-sign-on-user-value",
           description:
-            "The username of the associated AWS Single Sign-On User for this UserProfile. If the Domain's AuthMode is SSO, this field is required, and must match a valid username of a user in your directory. If the Domain's AuthMode is not SSO, this field cannot be specified",
+            "The username of the associated Amazon Web Services Single Sign-On User for this UserProfile. If the Domain's AuthMode is IAM Identity Center, this field is required, and must match a valid username of a user in your directory. If the Domain's AuthMode is not IAM Identity Center, this field cannot be specified",
           args: {
             name: "string",
           },
@@ -3403,7 +4643,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "Each tag consists of a key and an optional value. Tag keys must be unique per resource",
+            "Each tag consists of a key and an optional value. Tag keys must be unique per resource. Tags that you specify for the User Profile are also added to all Apps that the User Profile launches",
           args: {
             name: "list",
           },
@@ -3437,7 +4677,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-workforce",
       description:
-        "Use this operation to create a workforce. This operation will return an error if a workforce already exists in the AWS Region that you specify. You can only create one workforce in each AWS Region per AWS account. If you want to create a new workforce in an AWS Region where a workforce already exists, use the API operation to delete the existing workforce and then use CreateWorkforce to create a new workforce. To create a private workforce using Amazon Cognito, you must specify a Cognito user pool in CognitoConfig. You can also create an Amazon Cognito workforce using the Amazon SageMaker console. For more information, see  Create a Private Workforce (Amazon Cognito). To create a private workforce using your own OIDC Identity Provider (IdP), specify your IdP configuration in OidcConfig. Your OIDC IdP must support groups because groups are used by Ground Truth and Amazon A2I to create work teams. For more information, see  Create a Private Workforce (OIDC IdP)",
+        "Use this operation to create a workforce. This operation will return an error if a workforce already exists in the Amazon Web Services Region that you specify. You can only create one workforce in each Amazon Web Services Region per Amazon Web Services account. If you want to create a new workforce in an Amazon Web Services Region where a workforce already exists, use the DeleteWorkforce API operation to delete the existing workforce and then use CreateWorkforce to create a new workforce. To create a private workforce using Amazon Cognito, you must specify a Cognito user pool in CognitoConfig. You can also create an Amazon Cognito workforce using the Amazon SageMaker console. For more information, see  Create a Private Workforce (Amazon Cognito). To create a private workforce using your own OIDC Identity Provider (IdP), specify your IdP configuration in OidcConfig. Your OIDC IdP must support groups because groups are used by Ground Truth and Amazon A2I to create work teams. For more information, see  Create a Private Workforce (OIDC IdP)",
       options: [
         {
           name: "--cognito-config",
@@ -3476,6 +4716,13 @@ const completionSpec: Fig.Spec = {
             "An array of key-value pairs that contain metadata to help you categorize and organize our workforce. Each tag consists of a key and a value, both of which you define",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--workforce-vpc-config",
+          description: "Use this parameter to configure a workforce using VPC",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -3541,9 +4788,17 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--worker-access-configuration",
+          description:
+            "Use this optional parameter to constrain access to an Amazon S3 resource based on the IP address using supported IAM global condition keys. The Amazon S3 resource is accessed in the worker portal using a Amazon S3 presigned URL",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--tags",
           description:
-            "An array of key-value pairs. For more information, see Resource Tag and Using Cost Allocation Tags in the  AWS Billing and Cost Management User Guide",
+            "An array of key-value pairs. For more information, see Resource Tag and Using Cost Allocation Tags in the  Amazon Web Services Billing and Cost Management User Guide",
           args: {
             name: "list",
           },
@@ -3640,7 +4895,16 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--user-profile-name",
-          description: "The user profile name",
+          description:
+            "The user profile name. If this value is not set, then SpaceName must be set",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--space-name",
+          description:
+            "The name of the space. If this value is not set, then UserProfileName must be set",
           args: {
             name: "string",
           },
@@ -3785,12 +5049,74 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-cluster",
+      description: "Delete a SageMaker HyperPod cluster",
+      options: [
+        {
+          name: "--cluster-name",
+          description:
+            "The string name or the Amazon Resource Name (ARN) of the SageMaker HyperPod cluster to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-code-repository",
       description: "Deletes the specified Git repository from your account",
       options: [
         {
           name: "--code-repository-name",
           description: "The name of the Git repository to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-compilation-job",
+      description:
+        "Deletes the specified compilation job. This action deletes only the compilation job resource in Amazon SageMaker. It doesn't delete other resources that are related to that job, such as the model artifacts that the job creates, the compilation logs in CloudWatch, the compiled model, or the IAM role. You can delete a compilation job only if its current status is COMPLETED, FAILED, or STOPPED. If the job status is STARTING or INPROGRESS, stop the job, and then delete it after its status becomes STOPPED",
+      options: [
+        {
+          name: "--compilation-job-name",
+          description: "The name of the compilation job to delete",
           args: {
             name: "string",
           },
@@ -3908,7 +5234,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-domain",
       description:
-        "Used to delete a domain. If you onboarded with IAM mode, you will need to delete your domain to onboard again using SSO. Use with caution. All of the members of the domain will lose access to their EFS volume, including data, notebooks, and other artifacts",
+        "Used to delete a domain. If you onboarded with IAM mode, you will need to delete your domain to onboard again using IAM Identity Center. Use with caution. All of the members of the domain will lose access to their EFS volume, including data, notebooks, and other artifacts",
       options: [
         {
           name: "--domain-id",
@@ -3945,9 +5271,79 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-edge-deployment-plan",
+      description:
+        "Deletes an edge deployment plan if (and only if) all the stages in the plan are inactive or there are no stages in the plan",
+      options: [
+        {
+          name: "--edge-deployment-plan-name",
+          description: "The name of the edge deployment plan to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-edge-deployment-stage",
+      description:
+        "Delete a stage in an edge deployment plan if (and only if) the stage is inactive",
+      options: [
+        {
+          name: "--edge-deployment-plan-name",
+          description:
+            "The name of the edge deployment plan from which the stage will be deleted",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--stage-name",
+          description: "The name of the stage",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-endpoint",
       description:
-        "Deletes an endpoint. Amazon SageMaker frees up all of the resources that were deployed when the endpoint was created.  Amazon SageMaker retires any custom KMS key grants associated with the endpoint, meaning you don't need to use the RevokeGrant API call",
+        "Deletes an endpoint. SageMaker frees up all of the resources that were deployed when the endpoint was created.  SageMaker retires any custom KMS key grants associated with the endpoint, meaning you don't need to use the RevokeGrant API call. When you delete your endpoint, SageMaker asynchronously deletes associated endpoint resources such as KMS key grants. You might still see these resources in your account for a few minutes after deleting your endpoint. Do not delete or revoke the permissions for your  ExecutionRoleArn , otherwise SageMaker cannot delete these resources",
       options: [
         {
           name: "--endpoint-name",
@@ -4010,7 +5406,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-experiment",
       description:
-        "Deletes an Amazon SageMaker experiment. All trials associated with the experiment must be deleted first. Use the ListTrials API to get a list of the trials associated with the experiment",
+        "Deletes an SageMaker experiment. All trials associated with the experiment must be deleted first. Use the ListTrials API to get a list of the trials associated with the experiment",
       options: [
         {
           name: "--experiment-name",
@@ -4041,12 +5437,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-feature-group",
       description:
-        "Delete the FeatureGroup and any data that was written to the OnlineStore of the FeatureGroup. Data cannot be accessed from the OnlineStore immediately after DeleteFeatureGroup is called.  Data written into the OfflineStore will not be deleted. The AWS Glue database and tables that are automatically created for your OfflineStore are not deleted",
+        "Delete the FeatureGroup and any data that was written to the OnlineStore of the FeatureGroup. Data cannot be accessed from the OnlineStore immediately after DeleteFeatureGroup is called.  Data written into the OfflineStore will not be deleted. The Amazon Web Services Glue database and tables that are automatically created for your OfflineStore are not deleted.  Note that it can take approximately 10-15 minutes to delete an OnlineStore FeatureGroup with the InMemory StorageType",
       options: [
         {
           name: "--feature-group-name",
           description:
-            "The name of the FeatureGroup you want to delete. The name must be unique within an AWS Region in an AWS account",
+            "The name of the FeatureGroup you want to delete. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -4101,14 +5497,131 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-hub",
+      description:
+        "Delete a hub.  Hub APIs are only callable through SageMaker Studio",
+      options: [
+        {
+          name: "--hub-name",
+          description: "The name of the hub to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-hub-content",
+      description:
+        "Delete the contents of a hub.  Hub APIs are only callable through SageMaker Studio",
+      options: [
+        {
+          name: "--hub-name",
+          description: "The name of the hub that you want to delete content in",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--hub-content-type",
+          description: "The type of content that you want to delete from a hub",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--hub-content-name",
+          description:
+            "The name of the content that you want to delete from a hub",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--hub-content-version",
+          description:
+            "The version of the content that you want to delete from a hub",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-human-task-ui",
       description:
-        "Use this operation to delete a human task user interface (worker task template).  To see a list of human task user interfaces (work task templates) in your account, use . When you delete a worker task template, it no longer appears when you call ListHumanTaskUis",
+        "Use this operation to delete a human task user interface (worker task template).  To see a list of human task user interfaces (work task templates) in your account, use ListHumanTaskUis. When you delete a worker task template, it no longer appears when you call ListHumanTaskUis",
       options: [
         {
           name: "--human-task-ui-name",
           description:
             "The name of the human task user interface (work task template) you want to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-hyper-parameter-tuning-job",
+      description:
+        "Deletes a hyperparameter tuning job. The DeleteHyperParameterTuningJob API deletes only the tuning job entry that was created in SageMaker when you called the CreateHyperParameterTuningJob API. It does not delete training jobs, artifacts, or the IAM role that you specified when creating the model",
+      options: [
+        {
+          name: "--hyper-parameter-tuning-job-name",
+          description:
+            "The name of the hyperparameter tuning job that you want to delete",
           args: {
             name: "string",
           },
@@ -4170,7 +5683,14 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--image-name",
-          description: "The name of the image",
+          description: "The name of the image to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--alias",
+          description: "The alias of the image to delete",
           args: {
             name: "string",
           },
@@ -4202,9 +5722,71 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-inference-component",
+      description: "Deletes an inference component",
+      options: [
+        {
+          name: "--inference-component-name",
+          description: "The name of the inference component to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-inference-experiment",
+      description:
+        "Deletes an inference experiment.   This operation does not delete your endpoint, variants, or any underlying resources. This operation only deletes the metadata of your experiment",
+      options: [
+        {
+          name: "--name",
+          description:
+            "The name of the inference experiment you want to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-model",
       description:
-        "Deletes a model. The DeleteModel API deletes only the model entry that was created in Amazon SageMaker when you called the CreateModel API. It does not delete model artifacts, inference code, or the IAM role that you specified when creating the model",
+        "Deletes a model. The DeleteModel API deletes only the model entry that was created in SageMaker when you called the CreateModel API. It does not delete model artifacts, inference code, or the IAM role that you specified when creating the model",
       options: [
         {
           name: "--model-name",
@@ -4263,6 +5845,36 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-model-card",
+      description: "Deletes an Amazon SageMaker Model Card",
+      options: [
+        {
+          name: "--model-card-name",
+          description: "The name of the model card to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-model-explainability-job-definition",
       description:
         "Deletes an Amazon SageMaker model explainability job definition",
@@ -4297,12 +5909,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-model-package",
       description:
-        "Deletes a model package. A model package is used to create Amazon SageMaker models or list on AWS Marketplace. Buyers can subscribe to model packages listed on AWS Marketplace to create models in Amazon SageMaker",
+        "Deletes a model package. A model package is used to create SageMaker models or list on Amazon Web Services Marketplace. Buyers can subscribe to model packages listed on Amazon Web Services Marketplace to create models in SageMaker",
       options: [
         {
           name: "--model-package-name",
           description:
-            "The name of the model package. The name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen)",
+            "The name or Amazon Resource Name (ARN) of the model package to delete. When you specify a name, the name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen)",
           args: {
             name: "string",
           },
@@ -4453,12 +6065,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-notebook-instance",
       description:
-        "Deletes an Amazon SageMaker notebook instance. Before you can delete a notebook instance, you must call the StopNotebookInstance API.   When you delete a notebook instance, you lose all of your data. Amazon SageMaker removes the ML compute instance, and deletes the ML storage volume and the network interface associated with the notebook instance",
+        "Deletes an SageMaker notebook instance. Before you can delete a notebook instance, you must call the StopNotebookInstance API.   When you delete a notebook instance, you lose all of your data. SageMaker removes the ML compute instance, and deletes the ML storage volume and the network interface associated with the notebook instance",
       options: [
         {
           name: "--notebook-instance-name",
-          description:
-            "The name of the Amazon SageMaker notebook instance to delete",
+          description: "The name of the SageMaker notebook instance to delete",
           args: {
             name: "string",
           },
@@ -4514,7 +6125,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-pipeline",
-      description: "Deletes a pipeline if there are no in-progress executions",
+      description:
+        "Deletes a pipeline if there are no running instances of the pipeline. To delete a pipeline, you must stop all running instances of the pipeline using the StopPipelineExecution API. When you delete a pipeline, all instances of the pipeline are deleted",
       options: [
         {
           name: "--pipeline-name",
@@ -4581,9 +6193,78 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-space",
+      description: "Used to delete a space",
+      options: [
+        {
+          name: "--domain-id",
+          description: "The ID of the associated domain",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--space-name",
+          description: "The name of the space",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-studio-lifecycle-config",
+      description:
+        "Deletes the Amazon SageMaker Studio Lifecycle Configuration. In order to delete the Lifecycle Configuration, there must be no running apps using the Lifecycle Configuration. You must also remove the Lifecycle Configuration from UserSettings in all Domains and UserProfiles",
+      options: [
+        {
+          name: "--studio-lifecycle-config-name",
+          description:
+            "The name of the Amazon SageMaker Studio Lifecycle Configuration to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-tags",
       description:
-        "Deletes the specified tags from an Amazon SageMaker resource. To list a resource's tags, use the ListTags API.   When you call this API to delete tags from a hyperparameter tuning job, the deleted tags are not removed from training jobs that the hyperparameter tuning job launched before you called this API",
+        "Deletes the specified tags from an SageMaker resource. To list a resource's tags, use the ListTags API.   When you call this API to delete tags from a hyperparameter tuning job, the deleted tags are not removed from training jobs that the hyperparameter tuning job launched before you called this API.   When you call this API to delete tags from a SageMaker Domain or User Profile, the deleted tags are not removed from Apps that the SageMaker Domain or User Profile launched before you called this API",
       options: [
         {
           name: "--resource-arn",
@@ -4722,7 +6403,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-workforce",
       description:
-        "Use this operation to delete a workforce. If you want to create a new workforce in an AWS Region where a workforce already exists, use this operation to delete the existing workforce and then use to create a new workforce.  If a private workforce contains one or more work teams, you must use the operation to delete all work teams before you delete the workforce. If you try to delete a workforce that contains one or more work teams, you will receive a ResourceInUse error",
+        "Use this operation to delete a workforce. If you want to create a new workforce in an Amazon Web Services Region where a workforce already exists, use this operation to delete the existing workforce and then use CreateWorkforce to create a new workforce.  If a private workforce contains one or more work teams, you must use the DeleteWorkteam operation to delete all work teams before you delete the workforce. If you try to delete a workforce that contains one or more work teams, you will recieve a ResourceInUse error",
       options: [
         {
           name: "--workforce-name",
@@ -4893,7 +6574,15 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--user-profile-name",
-          description: "The user profile name",
+          description:
+            "The user profile name. If this value is not set, then SpaceName must be set",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--space-name",
+          description: "The name of the space",
           args: {
             name: "string",
           },
@@ -4994,12 +6683,115 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "describe-auto-ml-job",
-      description: "Returns information about an Amazon SageMaker AutoML job",
+      description:
+        "Returns information about an AutoML job created by calling CreateAutoMLJob.  AutoML jobs created by calling CreateAutoMLJobV2 cannot be described by DescribeAutoMLJob",
       options: [
         {
           name: "--auto-ml-job-name",
           description:
             "Requests information about an AutoML job using its unique name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-auto-ml-job-v2",
+      description:
+        "Returns information about an AutoML job created by calling CreateAutoMLJobV2 or CreateAutoMLJob",
+      options: [
+        {
+          name: "--auto-ml-job-name",
+          description:
+            "Requests information about an AutoML job V2 using its unique name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-cluster",
+      description: "Retrieves information of a SageMaker HyperPod cluster",
+      options: [
+        {
+          name: "--cluster-name",
+          description:
+            "The string name or the Amazon Resource Name (ARN) of the SageMaker HyperPod cluster",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-cluster-node",
+      description:
+        "Retrieves information of an instance (also called a node interchangeably) of a SageMaker HyperPod cluster",
+      options: [
+        {
+          name: "--cluster-name",
+          description:
+            "The string name or the Amazon Resource Name (ARN) of the SageMaker HyperPod cluster in which the instance is",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--node-id",
+          description: "The ID of the instance",
           args: {
             name: "string",
           },
@@ -5252,6 +7044,53 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "describe-edge-deployment-plan",
+      description:
+        "Describes an edge deployment plan with deployment status per stage",
+      options: [
+        {
+          name: "--edge-deployment-plan-name",
+          description: "The name of the deployment plan to describe",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If the edge deployment plan has enough stages to require tokening, then this is the response from the last list of stages returned",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to select (50 by default)",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "describe-edge-packaging-job",
       description: "A description of edge packaging jobs",
       options: [
@@ -5379,7 +7218,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--feature-group-name",
-          description: "The name of the FeatureGroup you want described",
+          description:
+            "The name or Amazon Resource Name (ARN) of the FeatureGroup you want described",
           args: {
             name: "string",
           },
@@ -5412,12 +7252,134 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "describe-feature-metadata",
+      description: "Shows the metadata for a feature within a feature group",
+      options: [
+        {
+          name: "--feature-group-name",
+          description:
+            "The name or Amazon Resource Name (ARN) of the feature group containing the feature",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--feature-name",
+          description: "The name of the feature",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "describe-flow-definition",
       description: "Returns information about the specified flow definition",
       options: [
         {
           name: "--flow-definition-name",
           description: "The name of the flow definition",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-hub",
+      description:
+        "Describe a hub.  Hub APIs are only callable through SageMaker Studio",
+      options: [
+        {
+          name: "--hub-name",
+          description: "The name of the hub to describe",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-hub-content",
+      description:
+        "Describe the content of a hub.  Hub APIs are only callable through SageMaker Studio",
+      options: [
+        {
+          name: "--hub-name",
+          description:
+            "The name of the hub that contains the content to describe",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--hub-content-type",
+          description: "The type of content in the hub",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--hub-content-name",
+          description: "The name of the content to describe",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--hub-content-version",
+          description: "The version of the content to describe",
           args: {
             name: "string",
           },
@@ -5475,7 +7437,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "describe-hyper-parameter-tuning-job",
-      description: "Gets a description of a hyperparameter tuning job",
+      description:
+        "Returns a description of a hyperparameter tuning job, depending on the fields selected. These fields can include the name, Amazon Resource Name (ARN), job status of your tuning job and more",
       options: [
         {
           name: "--hyper-parameter-tuning-job-name",
@@ -5545,11 +7508,110 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--alias",
+          description: "The alias of the image version",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--version-number",
           description:
             "The version of the image. If not specified, the latest version is described",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-inference-component",
+      description: "Returns information about an inference component",
+      options: [
+        {
+          name: "--inference-component-name",
+          description: "The name of the inference component",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-inference-experiment",
+      description: "Returns details about an inference experiment",
+      options: [
+        {
+          name: "--name",
+          description: "The name of the inference experiment to describe",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-inference-recommendations-job",
+      description:
+        "Provides the results of the Inference Recommender job. One or more recommendation jobs are returned",
+      options: [
+        {
+          name: "--job-name",
+          description:
+            "The name of the job. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account",
+          args: {
+            name: "string",
           },
         },
         {
@@ -5578,6 +7640,37 @@ const completionSpec: Fig.Spec = {
         {
           name: "--labeling-job-name",
           description: "The name of the labeling job to return information for",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-lineage-group",
+      description:
+        "Provides a list of properties for the requested lineage group. For more information, see  Cross-Account Lineage Tracking  in the Amazon SageMaker Developer Guide",
+      options: [
+        {
+          name: "--lineage-group-name",
+          description: "The name of the lineage group",
           args: {
             name: "string",
           },
@@ -5639,7 +7732,78 @@ const completionSpec: Fig.Spec = {
         {
           name: "--job-definition-name",
           description:
-            "The name of the model bias job definition. The name must be unique within an AWS Region in the AWS account",
+            "The name of the model bias job definition. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-model-card",
+      description:
+        "Describes the content, creation time, and security configuration of an Amazon SageMaker Model Card",
+      options: [
+        {
+          name: "--model-card-name",
+          description:
+            "The name or Amazon Resource Name (ARN) of the model card to describe",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--model-card-version",
+          description:
+            "The version of the model card to describe. If a version is not provided, then the latest version of the model card is described",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-model-card-export-job",
+      description: "Describes an Amazon SageMaker Model Card export job",
+      options: [
+        {
+          name: "--model-card-export-job-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the model card export job to describe",
           args: {
             name: "string",
           },
@@ -5671,7 +7835,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--job-definition-name",
           description:
-            "The name of the model explainability job definition. The name must be unique within an AWS Region in the AWS account",
+            "The name of the model explainability job definition. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -5698,11 +7862,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-model-package",
       description:
-        "Returns a description of the specified model package, which is used to create Amazon SageMaker models or list them on AWS Marketplace. To create models in Amazon SageMaker, buyers can subscribe to model packages listed on AWS Marketplace",
+        "Returns a description of the specified model package, which is used to create SageMaker models or list them on Amazon Web Services Marketplace. To create models in SageMaker, buyers can subscribe to model packages listed on Amazon Web Services Marketplace",
       options: [
         {
           name: "--model-package-name",
-          description: "The name of the model package to describe",
+          description:
+            "The name or Amazon Resource Name (ARN) of the model package to describe. When you specify a name, the name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen)",
           args: {
             name: "string",
           },
@@ -5763,7 +7928,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--job-definition-name",
           description:
-            "The name of the model quality job. The name must be unique within an AWS Region in the AWS account",
+            "The name of the model quality job. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -5885,7 +8050,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--pipeline-name",
-          description: "The name of the pipeline to describe",
+          description:
+            "The name or Amazon Resource Name (ARN) of the pipeline to describe",
           args: {
             name: "string",
           },
@@ -5979,7 +8145,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--processing-job-name",
           description:
-            "The name of the processing job. The name must be unique within an AWS Region in the AWS account",
+            "The name of the processing job. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -6034,9 +8200,78 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "describe-space",
+      description: "Describes the space",
+      options: [
+        {
+          name: "--domain-id",
+          description: "The ID of the associated domain",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--space-name",
+          description: "The name of the space",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-studio-lifecycle-config",
+      description:
+        "Describes the Amazon SageMaker Studio Lifecycle Configuration",
+      options: [
+        {
+          name: "--studio-lifecycle-config-name",
+          description:
+            "The name of the Amazon SageMaker Studio Lifecycle Configuration to describe",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "describe-subscribed-workteam",
       description:
-        "Gets information about a work team provided by a vendor. It returns details about the subscription with a vendor in the AWS Marketplace",
+        "Gets information about a work team provided by a vendor. It returns details about the subscription with a vendor in the Amazon Web Services Marketplace",
       options: [
         {
           name: "--workteam-arn",
@@ -6201,7 +8436,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--user-profile-name",
-          description: "The user profile name",
+          description:
+            "The user profile name. This value is not case sensitive",
           args: {
             name: "string",
           },
@@ -6406,9 +8642,40 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-lineage-group-policy",
+      description: "The resource policy for the lineage group",
+      options: [
+        {
+          name: "--lineage-group-name",
+          description:
+            "The name or Amazon Resource Name (ARN) of the lineage group",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-model-package-group-policy",
       description:
-        "Gets a resource policy that manages access for a model group. For information about resource policies, see Identity-based policies and resource-based policies in the AWS Identity and Access Management User Guide",
+        "Gets a resource policy that manages access for a model group. For information about resource policies, see Identity-based policies and resource-based policies in the Amazon Web Services Identity and Access Management User Guide",
       options: [
         {
           name: "--model-package-group-name",
@@ -6462,14 +8729,77 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-scaling-configuration-recommendation",
+      description:
+        "Starts an Amazon SageMaker Inference Recommender autoscaling recommendation job. Returns recommendations for autoscaling policies that you can apply to your SageMaker endpoint",
+      options: [
+        {
+          name: "--inference-recommendations-job-name",
+          description:
+            "The name of a previously completed Inference Recommender job",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--recommendation-id",
+          description:
+            "The recommendation ID of a previously completed inference recommendation. This ID should come from one of the recommendations returned by the job specified in the InferenceRecommendationsJobName field. Specify either this field or the EndpointName field",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--endpoint-name",
+          description:
+            "The name of an endpoint benchmarked during a previously completed inference recommendation job. This name should come from one of the recommendations returned by the job specified in the InferenceRecommendationsJobName field. Specify either this field or the RecommendationId field",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--target-cpu-utilization-per-core",
+          description:
+            "The percentage of how much utilization you want an instance to use before autoscaling. The default value is 50%",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--scaling-policy-objective",
+          description:
+            "An object where you specify the anticipated traffic pattern for an endpoint",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-search-suggestions",
       description:
-        "An auto-complete API for the search functionality in the Amazon SageMaker console. It returns suggestions of possible matches for the property name to use in Search queries. Provides suggestions for HyperParameters, Tags, and Metrics",
+        "An auto-complete API for the search functionality in the SageMaker console. It returns suggestions of possible matches for the property name to use in Search queries. Provides suggestions for HyperParameters, Tags, and Metrics",
       options: [
         {
           name: "--resource",
-          description:
-            "The name of the Amazon SageMaker resource to search for",
+          description: "The name of the SageMaker resource to search for",
           args: {
             name: "string",
           },
@@ -6480,6 +8810,109 @@ const completionSpec: Fig.Spec = {
             "Limits the property names that are included in the response",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "import-hub-content",
+      description:
+        "Import hub content.  Hub APIs are only callable through SageMaker Studio",
+      options: [
+        {
+          name: "--hub-content-name",
+          description: "The name of the hub content to import",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--hub-content-version",
+          description: "The version of the hub content to import",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--hub-content-type",
+          description: "The type of hub content to import",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--document-schema-version",
+          description: "The version of the hub content schema to import",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--hub-name",
+          description: "The name of the hub to import content into",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--hub-content-display-name",
+          description: "The display name of the hub content to import",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--hub-content-description",
+          description: "A description of the hub content to import",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--hub-content-markdown",
+          description:
+            "A string that provides a description of the hub content. This string can include links, tables, and standard markdown formating",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--hub-content-document",
+          description:
+            "The hub content document that describes information about the hub content such as type, associated containers, scripts, and more",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--hub-content-search-keywords",
+          description: "The searchable keywords of the hub content",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--tags",
+          description: "Any tags associated with the hub content",
+          args: {
+            name: "list",
           },
         },
         {
@@ -6716,6 +9149,90 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-aliases",
+      description: "Lists the aliases of a specified image or image version",
+      options: [
+        {
+          name: "--image-name",
+          description: "The name of the image",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--alias",
+          description: "The alias of the image version",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum number of aliases to return",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If the previous call to ListAliases didn't return the full set of aliases, the call returns a token for retrieving the next set of aliases",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--version-number",
+          description:
+            "The version of the image. If image version is not specified, the aliases of all versions of the image are listed",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-app-image-configs",
       description:
         "Lists the AppImageConfigs in your account and their properties. The list can be filtered by creation time or modified time, and whether the AppImageConfig name contains a specified string",
@@ -6723,7 +9240,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum number of AppImageConfigs to return in the response. The default value is 10",
+            "The total number of items to return in the response. If the total number of items available is more than the value specified, a NextToken is provided in the response. To resume pagination, provide the NextToken value in the as part of a subsequent call. The default value is 10",
           args: {
             name: "integer",
           },
@@ -6848,7 +9365,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--max-results",
-          description: "Returns a list up to a specified limit",
+          description:
+            "This parameter defines the maximum number of results that can be returned in a single response. The MaxResults parameter is an upper bound, not a target. If there are more results available than the value specified, a NextToken is provided in the response. The NextToken indicates that the user should get the next set of results by providing this token as a part of a subsequent call. The default value for MaxResults is 10",
           args: {
             name: "integer",
           },
@@ -6878,7 +9396,16 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--user-profile-name-equals",
-          description: "A parameter to search by user profile name",
+          description:
+            "A parameter to search by user profile name. If SpaceNameEquals is set, then this value cannot be set",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--space-name-equals",
+          description:
+            "A parameter to search by space name. If UserProfileNameEquals is set, then this value cannot be set",
           args: {
             name: "string",
           },
@@ -7228,7 +9755,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sort-by",
           description:
-            "The parameter by which to sort the results. The default is AutoMLJobName",
+            "The parameter by which to sort the results. The default is Name",
           args: {
             name: "string",
           },
@@ -7345,6 +9872,220 @@ const completionSpec: Fig.Spec = {
           name: "--next-token",
           description:
             "If the previous response was truncated, you receive this token. Use it in your next request to receive the next set of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-cluster-nodes",
+      description:
+        "Retrieves the list of instances (also called nodes interchangeably) in a SageMaker HyperPod cluster",
+      options: [
+        {
+          name: "--cluster-name",
+          description:
+            "The string name or the Amazon Resource Name (ARN) of the SageMaker HyperPod cluster in which you want to retrieve the list of nodes",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--creation-time-after",
+          description:
+            "A filter that returns nodes in a SageMaker HyperPod cluster created after the specified time. Timestamps are formatted according to the ISO 8601 standard.  Acceptable formats include:    YYYY-MM-DDThh:mm:ss.sssTZD (UTC), for example, 2014-10-01T20:30:00.000Z     YYYY-MM-DDThh:mm:ss.sssTZD (with offset), for example, 2014-10-01T12:30:00.000-08:00     YYYY-MM-DD, for example, 2014-10-01    Unix time in seconds, for example, 1412195400. This is also referred to as Unix Epoch time and represents the number of seconds since midnight, January 1, 1970 UTC.   For more information about the timestamp format, see Timestamp in the Amazon Web Services Command Line Interface User Guide",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--creation-time-before",
+          description:
+            "A filter that returns nodes in a SageMaker HyperPod cluster created before the specified time. The acceptable formats are the same as the timestamp formats for CreationTimeAfter. For more information about the timestamp format, see Timestamp in the Amazon Web Services Command Line Interface User Guide",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--instance-group-name-contains",
+          description:
+            "A filter that returns the instance groups whose name contain a specified string",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum number of nodes to return in the response",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If the result of the previous ListClusterNodes request was truncated, the response includes a NextToken. To retrieve the next set of cluster nodes, use the token in the next request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-by",
+          description:
+            "The field by which to sort results. The default value is CREATION_TIME",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description:
+            "The sort order for results. The default value is Ascending",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-clusters",
+      description: "Retrieves the list of SageMaker HyperPod clusters",
+      options: [
+        {
+          name: "--creation-time-after",
+          description:
+            "Set a start time for the time range during which you want to list SageMaker HyperPod clusters. Timestamps are formatted according to the ISO 8601 standard.  Acceptable formats include:    YYYY-MM-DDThh:mm:ss.sssTZD (UTC), for example, 2014-10-01T20:30:00.000Z     YYYY-MM-DDThh:mm:ss.sssTZD (with offset), for example, 2014-10-01T12:30:00.000-08:00     YYYY-MM-DD, for example, 2014-10-01    Unix time in seconds, for example, 1412195400. This is also referred to as Unix Epoch time and represents the number of seconds since midnight, January 1, 1970 UTC.   For more information about the timestamp format, see Timestamp in the Amazon Web Services Command Line Interface User Guide",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--creation-time-before",
+          description:
+            "Set an end time for the time range during which you want to list SageMaker HyperPod clusters. A filter that returns nodes in a SageMaker HyperPod cluster created before the specified time. The acceptable formats are the same as the timestamp formats for CreationTimeAfter. For more information about the timestamp format, see Timestamp in the Amazon Web Services Command Line Interface User Guide",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "Set the maximum number of SageMaker HyperPod clusters to list",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--name-contains",
+          description:
+            "Set the maximum number of instances to print in the list",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "Set the next token to retrieve the list of SageMaker HyperPod clusters",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-by",
+          description:
+            "The field by which to sort results. The default value is CREATION_TIME",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description:
+            "The sort order for results. The default value is Ascending",
           args: {
             name: "string",
           },
@@ -7573,7 +10314,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--status-equals",
           description:
-            "A filter that retrieves model compilation jobs with a specific DescribeCompilationJobResponse$CompilationJobStatus status",
+            "A filter that retrieves model compilation jobs with a specific CompilationJobStatus status",
           args: {
             name: "string",
           },
@@ -7768,7 +10509,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--sort-order",
-          description: "The sort order for results. The default is Descending",
+          description:
+            "Whether to sort the results in Ascending or Descending order. The default is Descending",
           args: {
             name: "string",
           },
@@ -8069,9 +10811,134 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--max-results",
-          description: "Returns a list up to a specified limit",
+          description:
+            "This parameter defines the maximum number of results that can be returned in a single response. The MaxResults parameter is an upper bound, not a target. If there are more results available than the value specified, a NextToken is provided in the response. The NextToken indicates that the user should get the next set of results by providing this token as a part of a subsequent call. The default value for MaxResults is 10",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-edge-deployment-plans",
+      description: "Lists all edge deployment plans",
+      options: [
+        {
+          name: "--next-token",
+          description:
+            "The response from the last list when returning a list large enough to need tokening",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to select (50 by default)",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--creation-time-after",
+          description: "Selects edge deployment plans created after this time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--creation-time-before",
+          description: "Selects edge deployment plans created before this time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--last-modified-time-after",
+          description:
+            "Selects edge deployment plans that were last updated after this time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--last-modified-time-before",
+          description:
+            "Selects edge deployment plans that were last updated before this time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--name-contains",
+          description:
+            "Selects edge deployment plans with names containing this name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--device-fleet-name-contains",
+          description:
+            "Selects edge deployment plans with a device fleet name containing this name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-by",
+          description:
+            "The column by which to sort the edge deployment plans. Can be one of NAME, DEVICEFLEETNAME, CREATIONTIME, LASTMODIFIEDTIME",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description: "The direction of the sorting (ascending or descending)",
+          args: {
+            name: "string",
           },
         },
         {
@@ -8379,7 +11246,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum number of endpoints to return in the response",
+            "The maximum number of endpoints to return in the response. This value defaults to 10",
           args: {
             name: "integer",
           },
@@ -8759,6 +11626,304 @@ const completionSpec: Fig.Spec = {
             "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-hub-content-versions",
+      description:
+        "List hub content versions.  Hub APIs are only callable through SageMaker Studio",
+      options: [
+        {
+          name: "--hub-name",
+          description: "The name of the hub to list the content versions of",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--hub-content-type",
+          description: "The type of hub content to list versions of",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--hub-content-name",
+          description: "The name of the hub content",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--min-version",
+          description: "The lower bound of the hub content versions to list",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-schema-version",
+          description: "The upper bound of the hub content schema version",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--creation-time-before",
+          description:
+            "Only list hub content versions that were created before the time specified",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--creation-time-after",
+          description:
+            "Only list hub content versions that were created after the time specified",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--sort-by",
+          description:
+            "Sort hub content versions by either name or creation time",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description:
+            "Sort hub content versions by ascending or descending order",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum number of hub content versions to list",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If the response to a previous ListHubContentVersions request was truncated, the response includes a NextToken. To retrieve the next set of hub content versions, use the token in the next request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-hub-contents",
+      description:
+        "List the contents of a hub.  Hub APIs are only callable through SageMaker Studio",
+      options: [
+        {
+          name: "--hub-name",
+          description: "The name of the hub to list the contents of",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--hub-content-type",
+          description: "The type of hub content to list",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--name-contains",
+          description:
+            "Only list hub content if the name contains the specified string",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-schema-version",
+          description: "The upper bound of the hub content schema verion",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--creation-time-before",
+          description:
+            "Only list hub content that was created before the time specified",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--creation-time-after",
+          description:
+            "Only list hub content that was created after the time specified",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--sort-by",
+          description:
+            "Sort hub content versions by either name or creation time",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description: "Sort hubs by ascending or descending order",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum amount of hub content to list",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If the response to a previous ListHubContents request was truncated, the response includes a NextToken. To retrieve the next set of hub content, use the token in the next request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-hubs",
+      description:
+        "List all existing hubs.  Hub APIs are only callable through SageMaker Studio",
+      options: [
+        {
+          name: "--name-contains",
+          description:
+            "Only list hubs with names that contain the specified string",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--creation-time-before",
+          description:
+            "Only list hubs that were created before the time specified",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--creation-time-after",
+          description:
+            "Only list hubs that were created after the time specified",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--last-modified-time-before",
+          description:
+            "Only list hubs that were last modified before the time specified",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--last-modified-time-after",
+          description:
+            "Only list hubs that were last modified after the time specified",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--sort-by",
+          description: "Sort hubs by either name or creation time",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description: "Sort hubs by ascending or descending order",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum number of hubs to list",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If the response to a previous ListHubs request was truncated, the response includes a NextToken. To retrieve the next set of hubs, use the token in the next request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
           },
         },
         {
@@ -9223,6 +12388,509 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-inference-components",
+      description:
+        "Lists the inference components in your account and their properties",
+      options: [
+        {
+          name: "--sort-by",
+          description:
+            "The field by which to sort the inference components in the response. The default is CreationTime",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description: "The sort order for results. The default is Descending",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "A token that you use to get the next set of results following a truncated response. If the response to the previous request was truncated, that response provides the value for this token",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of inference components to return in the response. This value defaults to 10",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--name-contains",
+          description:
+            "Filters the results to only those inference components with a name that contains the specified string",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--creation-time-before",
+          description:
+            "Filters the results to only those inference components that were created before the specified time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--creation-time-after",
+          description:
+            "Filters the results to only those inference components that were created after the specified time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--last-modified-time-before",
+          description:
+            "Filters the results to only those inference components that were updated before the specified time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--last-modified-time-after",
+          description:
+            "Filters the results to only those inference components that were updated after the specified time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--status-equals",
+          description:
+            "Filters the results to only those inference components with the specified status",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--endpoint-name-equals",
+          description:
+            "An endpoint name to filter the listed inference components. The response includes only those inference components that are hosted at the specified endpoint",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--variant-name-equals",
+          description:
+            "A production variant name to filter the listed inference components. The response includes only those inference components that are hosted at the specified variant",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-inference-experiments",
+      description: "Returns the list of all inference experiments",
+      options: [
+        {
+          name: "--name-contains",
+          description:
+            "Selects inference experiments whose names contain this name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--type",
+          description:
+            "Selects inference experiments of this type. For the possible types of inference experiments, see CreateInferenceExperiment",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--status-equals",
+          description:
+            "Selects inference experiments which are in this status. For the possible statuses, see DescribeInferenceExperiment",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--creation-time-after",
+          description:
+            "Selects inference experiments which were created after this timestamp",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--creation-time-before",
+          description:
+            "Selects inference experiments which were created before this timestamp",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--last-modified-time-after",
+          description:
+            "Selects inference experiments which were last modified after this timestamp",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--last-modified-time-before",
+          description:
+            "Selects inference experiments which were last modified before this timestamp",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--sort-by",
+          description:
+            "The column by which to sort the listed inference experiments",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description: "The direction of sorting (ascending or descending)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The response from the last list when returning a list large enough to need tokening",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum number of results to select",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-inference-recommendations-job-steps",
+      description:
+        "Returns a list of the subtasks for an Inference Recommender job. The supported subtasks are benchmarks, which evaluate the performance of your model on different instance types",
+      options: [
+        {
+          name: "--job-name",
+          description: "The name for the Inference Recommender job",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--status",
+          description:
+            "A filter to return benchmarks of a specified status. If this field is left empty, then all benchmarks are returned",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--step-type",
+          description:
+            "A filter to return details about the specified type of subtask.  BENCHMARK: Evaluate the performance of your model on different instance types",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum number of results to return",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "A token that you can specify to return more results from the list. Specify this field if you have a token that was returned from a previous request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-inference-recommendations-jobs",
+      description: "Lists recommendation jobs that satisfy various filters",
+      options: [
+        {
+          name: "--creation-time-after",
+          description:
+            "A filter that returns only jobs created after the specified time (timestamp)",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--creation-time-before",
+          description:
+            "A filter that returns only jobs created before the specified time (timestamp)",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--last-modified-time-after",
+          description:
+            "A filter that returns only jobs that were last modified after the specified time (timestamp)",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--last-modified-time-before",
+          description:
+            "A filter that returns only jobs that were last modified before the specified time (timestamp)",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--name-contains",
+          description:
+            "A string in the job name. This filter returns only recommendations whose name contains the specified string",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--status-equals",
+          description:
+            "A filter that retrieves only inference recommendations jobs with a specific status",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-by",
+          description: "The parameter by which to sort the results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description: "The sort order for the results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If the response to a previous ListInferenceRecommendationsJobsRequest request was truncated, the response includes a NextToken. To retrieve the next set of recommendations, use the token in the next request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of recommendations to return in the response",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--model-name-equals",
+          description:
+            "A filter that returns only jobs that were created for this model",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--model-package-version-arn-equals",
+          description:
+            "A filter that returns only jobs that were created for this versioned model package",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-labeling-jobs",
       description: "Gets a list of labeling jobs",
       options: [
@@ -9460,6 +13128,102 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-lineage-groups",
+      description:
+        "A list of lineage groups shared with your Amazon Web Services account. For more information, see  Cross-Account Lineage Tracking  in the Amazon SageMaker Developer Guide",
+      options: [
+        {
+          name: "--created-after",
+          description:
+            "A timestamp to filter against lineage groups created after a certain point in time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--created-before",
+          description:
+            "A timestamp to filter against lineage groups created before a certain point in time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--sort-by",
+          description:
+            "The parameter by which to sort the results. The default is CreationTime",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description:
+            "The sort order for the results. The default is Ascending",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If the response is truncated, SageMaker returns this token. To retrieve the next set of algorithms, use it in the subsequent request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of endpoints to return in the response. This value defaults to 10",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-model-bias-job-definitions",
       description:
         "Lists model bias jobs definitions that satisfy various filters",
@@ -9525,6 +13289,351 @@ const completionSpec: Fig.Spec = {
             "A filter that returns only model bias jobs created after a specified time",
           args: {
             name: "timestamp",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-model-card-export-jobs",
+      description: "List the export jobs for the Amazon SageMaker Model Card",
+      options: [
+        {
+          name: "--model-card-name",
+          description:
+            "List export jobs for the model card with the specified name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--model-card-version",
+          description:
+            "List export jobs for the model card with the specified version",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--creation-time-after",
+          description:
+            "Only list model card export jobs that were created after the time specified",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--creation-time-before",
+          description:
+            "Only list model card export jobs that were created before the time specified",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--model-card-export-job-name-contains",
+          description:
+            "Only list model card export jobs with names that contain the specified string",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--status-equals",
+          description:
+            "Only list model card export jobs with the specified status",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-by",
+          description:
+            "Sort model card export jobs by either name or creation time. Sorts by creation time by default",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description:
+            "Sort model card export jobs by ascending or descending order",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If the response to a previous ListModelCardExportJobs request was truncated, the response includes a NextToken. To retrieve the next set of model card export jobs, use the token in the next request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum number of model card export jobs to list",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-model-card-versions",
+      description: "List existing versions of an Amazon SageMaker Model Card",
+      options: [
+        {
+          name: "--creation-time-after",
+          description:
+            "Only list model card versions that were created after the time specified",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--creation-time-before",
+          description:
+            "Only list model card versions that were created before the time specified",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum number of model card versions to list",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--model-card-name",
+          description:
+            "List model card versions for the model card with the specified name or Amazon Resource Name (ARN)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--model-card-status",
+          description:
+            "Only list model card versions with the specified approval status",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If the response to a previous ListModelCardVersions request was truncated, the response includes a NextToken. To retrieve the next set of model card versions, use the token in the next request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-by",
+          description:
+            "Sort listed model card versions by version. Sorts by version by default",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description:
+            "Sort model card versions by ascending or descending order",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-model-cards",
+      description: "List existing model cards",
+      options: [
+        {
+          name: "--creation-time-after",
+          description:
+            "Only list model cards that were created after the time specified",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--creation-time-before",
+          description:
+            "Only list model cards that were created before the time specified",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum number of model cards to list",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--name-contains",
+          description:
+            "Only list model cards with names that contain the specified string",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--model-card-status",
+          description:
+            "Only list model cards with the specified approval status",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If the response to a previous ListModelCards request was truncated, the response includes a NextToken. To retrieve the next set of model cards, use the token in the next request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-by",
+          description:
+            "Sort model cards by either name or creation time. Sorts by creation time by default",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description: "Sort model cards by ascending or descending order",
+          args: {
+            name: "string",
           },
         },
         {
@@ -9683,8 +13792,80 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-model-metadata",
+      description:
+        "Lists the domain, framework, task, and model name of standard machine learning models found in common model zoos",
+      options: [
+        {
+          name: "--search-expression",
+          description:
+            "One or more filters that searches for the specified resource or resources in a search. All resource objects that satisfy the expression's condition are included in the search results. Specify the Framework, FrameworkVersion, Domain or Task to filter supported. Filter names and values are case-sensitive",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If the response to a previous ListModelMetadataResponse request was truncated, the response includes a NextToken. To retrieve the next set of model metadata, use the token in the next request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum number of models to return in the response",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-model-package-groups",
-      description: "Gets a list of the model groups in your AWS account",
+      description:
+        "Gets a list of the model groups in your Amazon Web Services account",
       options: [
         {
           name: "--creation-time-after",
@@ -9839,7 +14020,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--model-package-type",
           description:
-            "A filter that returns onlyl the model packages of the specified type. This can be one of the following values.    VERSIONED - List only versioned models.    UNVERSIONED - List only unversioined models.    BOTH - List both versioned and unversioned models",
+            "A filter that returns only the model packages of the specified type. This can be one of the following values.    UNVERSIONED - List only unversioined models. This is the default value if no ModelPackageType is specified.    VERSIONED - List only versioned models.    BOTH - List both versioned and unversioned models",
           args: {
             name: "string",
           },
@@ -9934,7 +14115,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--sort-order",
-          description: "The sort order for results. The default is Descending",
+          description:
+            "Whether to sort the results in Ascending or Descending order. The default is Descending",
           args: {
             name: "string",
           },
@@ -10058,7 +14240,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--name-contains",
           description:
-            "A string in the training job name. This filter returns only models in the training job whose name contains the specified string",
+            "A string in the model name. This filter returns only models whose name contains the specified string",
           args: {
             name: "string",
           },
@@ -10077,6 +14259,193 @@ const completionSpec: Fig.Spec = {
             "A filter that returns only models with a creation time greater than or equal to the specified time (timestamp)",
           args: {
             name: "timestamp",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-monitoring-alert-history",
+      description: "Gets a list of past alerts in a model monitoring schedule",
+      options: [
+        {
+          name: "--monitoring-schedule-name",
+          description: "The name of a monitoring schedule",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--monitoring-alert-name",
+          description: "The name of a monitoring alert",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-by",
+          description:
+            "The field used to sort results. The default is CreationTime",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description:
+            "The sort order, whether Ascending or Descending, of the alert history. The default is Descending",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If the result of the previous ListMonitoringAlertHistory request was truncated, the response includes a NextToken. To retrieve the next set of alerts in the history, use the token in the next request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to display. The default is 100",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--creation-time-before",
+          description:
+            "A filter that returns only alerts created on or before the specified time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--creation-time-after",
+          description:
+            "A filter that returns only alerts created on or after the specified time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--status-equals",
+          description:
+            "A filter that retrieves only alerts with a specific status",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-monitoring-alerts",
+      description: "Gets the alerts for a single monitoring schedule",
+      options: [
+        {
+          name: "--monitoring-schedule-name",
+          description: "The name of a monitoring schedule",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If the result of the previous ListMonitoringAlerts request was truncated, the response includes a NextToken. To retrieve the next set of alerts in the history, use the token in the next request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to display. The default is 100",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -10143,7 +14512,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sort-by",
           description:
-            "Whether to sort results by Status, CreationTime, ScheduledTime field. The default is CreationTime",
+            "Whether to sort the results by the Status, CreationTime, or ScheduledTime field. The default is CreationTime",
           args: {
             name: "string",
           },
@@ -10299,7 +14668,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sort-by",
           description:
-            "Whether to sort results by Status, CreationTime, ScheduledTime field. The default is CreationTime",
+            "Whether to sort the results by the Status, CreationTime, or ScheduledTime field. The default is CreationTime",
           args: {
             name: "string",
           },
@@ -10556,7 +14925,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-notebook-instances",
       description:
-        "Returns a list of the Amazon SageMaker notebook instances in the requester's account in an AWS Region",
+        "Returns a list of the SageMaker notebook instances in the requester's account in an Amazon Web Services Region",
       options: [
         {
           name: "--next-token",
@@ -10787,7 +15156,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--pipeline-name",
-          description: "The name of the pipeline",
+          description: "The name or Amazon Resource Name (ARN) of the pipeline",
           args: {
             name: "string",
           },
@@ -11182,7 +15551,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-projects",
-      description: "Gets a list of the projects in an AWS account",
+      description:
+        "Gets a list of the projects in an Amazon Web Services account",
       options: [
         {
           name: "--creation-time-after",
@@ -11259,9 +15629,416 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-resource-catalogs",
+      description:
+        "Lists Amazon SageMaker Catalogs based on given filters and orders. The maximum number of ResourceCatalogs viewable is 1000",
+      options: [
+        {
+          name: "--name-contains",
+          description:
+            "A string that partially matches one or more ResourceCatalogs names. Filters ResourceCatalog by name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--creation-time-after",
+          description:
+            "Use this parameter to search for ResourceCatalogs created after a specific date and time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--creation-time-before",
+          description:
+            "Use this parameter to search for ResourceCatalogs created before a specific date and time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--sort-order",
+          description: "The order in which the resource catalogs are listed",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-by",
+          description: "The value on which the resource catalog list is sorted",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results returned by ListResourceCatalogs",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "A token to resume pagination of ListResourceCatalogs results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-spaces",
+      description: "Lists spaces",
+      options: [
+        {
+          name: "--next-token",
+          description:
+            "If the previous response was truncated, you will receive this token. Use it in your next request to receive the next set of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "This parameter defines the maximum number of results that can be returned in a single response. The MaxResults parameter is an upper bound, not a target. If there are more results available than the value specified, a NextToken is provided in the response. The NextToken indicates that the user should get the next set of results by providing this token as a part of a subsequent call. The default value for MaxResults is 10",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--sort-order",
+          description:
+            "The sort order for the results. The default is Ascending",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-by",
+          description:
+            "The parameter by which to sort the results. The default is CreationTime",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--domain-id-equals",
+          description: "A parameter to search for the domain ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--space-name-contains",
+          description: "A parameter by which to filter the results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-stage-devices",
+      description:
+        "Lists devices allocated to the stage, containing detailed device information and deployment status",
+      options: [
+        {
+          name: "--next-token",
+          description:
+            "The response from the last list when returning a list large enough to neeed tokening",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum number of requests to select",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--edge-deployment-plan-name",
+          description: "The name of the edge deployment plan",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--exclude-devices-deployed-in-other-stage",
+          description: "Toggle for excluding devices deployed in other stages",
+        },
+        {
+          name: "--no-exclude-devices-deployed-in-other-stage",
+          description: "Toggle for excluding devices deployed in other stages",
+        },
+        {
+          name: "--stage-name",
+          description: "The name of the stage in the deployment",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-studio-lifecycle-configs",
+      description:
+        "Lists the Amazon SageMaker Studio Lifecycle Configurations in your Amazon Web Services Account",
+      options: [
+        {
+          name: "--max-results",
+          description:
+            "The total number of items to return in the response. If the total number of items available is more than the value specified, a NextToken is provided in the response. To resume pagination, provide the NextToken value in the as part of a subsequent call. The default value is 10",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If the previous call to ListStudioLifecycleConfigs didn't return the full set of Lifecycle Configurations, the call returns a token for getting the next set of Lifecycle Configurations",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--name-contains",
+          description:
+            "A string in the Lifecycle Configuration name. This filter returns only Lifecycle Configurations whose name contains the specified string",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--app-type-equals",
+          description:
+            "A parameter to search for the App Type to which the Lifecycle Configuration is attached",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--creation-time-before",
+          description:
+            "A filter that returns only Lifecycle Configurations created on or before the specified time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--creation-time-after",
+          description:
+            "A filter that returns only Lifecycle Configurations created on or after the specified time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--modified-time-before",
+          description:
+            "A filter that returns only Lifecycle Configurations modified before the specified time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--modified-time-after",
+          description:
+            "A filter that returns only Lifecycle Configurations modified after the specified time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--sort-by",
+          description:
+            "The property used to sort results. The default value is CreationTime",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description: "The sort order. The default value is Descending",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-subscribed-workteams",
       description:
-        "Gets a list of the work teams that you are subscribed to in the AWS Marketplace. The list may be empty if no work team satisfies the filter specified in the NameContains parameter",
+        "Gets a list of the work teams that you are subscribed to in the Amazon Web Services Marketplace. The list may be empty if no work team satisfies the filter specified in the NameContains parameter",
       options: [
         {
           name: "--name-contains",
@@ -11332,8 +16109,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-tags",
-      description:
-        "Returns the tags for the specified Amazon SageMaker resource",
+      description: "Returns the tags for the specified SageMaker resource",
       options: [
         {
           name: "--resource-arn",
@@ -11346,7 +16122,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "If the response to the previous ListTags request is truncated, Amazon SageMaker returns this token. To retrieve the next set of tags, use it in the subsequent request",
+            "If the response to the previous ListTags request is truncated, SageMaker returns this token. To retrieve the next set of tags, use it in the subsequent request",
           args: {
             name: "string",
           },
@@ -11404,7 +16180,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-training-jobs",
       description:
-        "Lists training jobs.  When StatusEquals and MaxResults are set at the same time, the MaxResults number of training jobs are first retrieved ignoring the StatusEquals parameter and then they are filtered by the StatusEquals parameter, which is returned as a response. For example, if ListTrainingJobs is invoked with the following parameters:  { ... MaxResults: 100, StatusEquals: InProgress ... }  Then, 100 trainings jobs with any status including those other than InProgress are selected first (sorted according the creation time, from the latest to the oldest) and those with status InProgress are returned. You can quickly test the API using the following AWS CLI code.  aws sagemaker list-training-jobs --max-results 100 --status-equals InProgress",
+        "Lists training jobs.  When StatusEquals and MaxResults are set at the same time, the MaxResults number of training jobs are first retrieved ignoring the StatusEquals parameter and then they are filtered by the StatusEquals parameter, which is returned as a response. For example, if ListTrainingJobs is invoked with the following parameters:  { ... MaxResults: 100, StatusEquals: InProgress ... }  First, 100 trainings jobs with any status, including those other than InProgress, are selected (sorted according to the creation time, from the most current to the oldest). Next, those with a status of InProgress are returned. You can quickly test the API using the following Amazon Web Services CLI code.  aws sagemaker list-training-jobs --max-results 100 --status-equals InProgress",
       options: [
         {
           name: "--next-token",
@@ -11481,6 +16257,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sort-order",
           description: "The sort order for results. The default is Ascending",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--warm-pool-status-equals",
+          description:
+            "A filter that retrieves only training jobs with a specific warm pool status",
           args: {
             name: "string",
           },
@@ -11993,7 +16777,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--max-results",
-          description: "Returns a list up to a specified limit",
+          description:
+            "This parameter defines the maximum number of results that can be returned in a single response. The MaxResults parameter is an upper bound, not a target. If there are more results available than the value specified, a NextToken is provided in the response. The NextToken indicates that the user should get the next set of results by providing this token as a part of a subsequent call. The default value for MaxResults is 10",
           args: {
             name: "integer",
           },
@@ -12074,7 +16859,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-workforces",
       description:
-        "Use this operation to list all private and vendor workforces in an AWS Region. Note that you can only have one private workforce per AWS Region",
+        "Use this operation to list all private and vendor workforces in an Amazon Web Services Region. Note that you can only have one private workforce per Amazon Web Services Region",
       options: [
         {
           name: "--sort-by",
@@ -12247,7 +17032,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-model-package-group-policy",
       description:
-        "Adds a resource policy to control access to a model group. For information about resource policies, see Identity-based policies and resource-based policies in the AWS Identity and Access Management User Guide",
+        "Adds a resouce policy to control access to a model group. For information about resoure policies, see Identity-based policies and resource-based policies in the Amazon Web Services Identity and Access Management User Guide",
       options: [
         {
           name: "--model-package-group-name",
@@ -12260,6 +17045,88 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-policy",
           description: "The resource policy for the model group",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "query-lineage",
+      description:
+        "Use this action to inspect your lineage and discover relationships between entities. For more information, see  Querying Lineage Entities in the Amazon SageMaker Developer Guide",
+      options: [
+        {
+          name: "--start-arns",
+          description:
+            "A list of resource Amazon Resource Name (ARN) that represent the starting point for your lineage query",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--direction",
+          description:
+            "Associations between lineage entities have a direction. This parameter determines the direction from the StartArn(s) that the query traverses",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--include-edges",
+          description:
+            "Setting this value to True retrieves not only the entities of interest but also the Associations and lineage entities on the path. Set to False to only return lineage entities that match your query",
+        },
+        {
+          name: "--no-include-edges",
+          description:
+            "Setting this value to True retrieves not only the entities of interest but also the Associations and lineage entities on the path. Set to False to only return lineage entities that match your query",
+        },
+        {
+          name: "--filters",
+          description:
+            "A set of filtering parameters that allow you to specify which entities should be returned.   Properties - Key-value pairs to match on the lineage entities' properties.   LineageTypes - A set of lineage entity types to match on. For example: TrialComponent, Artifact, or Context.   CreatedBefore - Filter entities created before this date.   ModifiedBefore - Filter entities modified before this date.   ModifiedAfter - Filter entities modified after this date",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--max-depth",
+          description:
+            "The maximum depth in lineage relationships from the StartArns that are traversed. Depth is a measure of the number of Associations from the StartArn entity to the matched results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "Limits the number of vertices in the results. Use the NextToken in a response to to retrieve the next page of results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "Limits the number of vertices in the request. Use the NextToken in a response to to retrieve the next page of results",
           args: {
             name: "string",
           },
@@ -12385,14 +17252,60 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "retry-pipeline-execution",
+      description: "Retry the execution of the pipeline",
+      options: [
+        {
+          name: "--pipeline-execution-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the pipeline execution",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--client-request-token",
+          description:
+            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than once",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--parallelism-configuration",
+          description:
+            "This configuration, if specified, overrides the parallelism configuration of the parent pipeline",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "search",
       description:
-        "Finds Amazon SageMaker resources that match a search query. Matching resources are returned as a list of SearchRecord objects in the response. You can sort the search results by any resource property in a ascending or descending order. You can query against the following value types: numeric, text, Boolean, and timestamp",
+        "Finds SageMaker resources that match a search query. Matching resources are returned as a list of SearchRecord objects in the response. You can sort the search results by any resource property in a ascending or descending order. You can query against the following value types: numeric, text, Boolean, and timestamp.  The Search API may provide access to otherwise restricted data. See Amazon SageMaker API Permissions: Actions, Permissions, and Resources Reference for more information",
       options: [
         {
           name: "--resource",
-          description:
-            "The name of the Amazon SageMaker resource to search for",
+          description: "The name of the SageMaker resource to search for",
           args: {
             name: "string",
           },
@@ -12437,6 +17350,22 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--cross-account-filter-option",
+          description:
+            'A cross account filter option. When the value is "CrossAccount" the search results will only include resources made discoverable to you from other accounts. When the value is "SameAccount" or null the search results will only include resources from your account. Default is null. For more information on searching for resources made discoverable to your account, see  Search discoverable resources in the SageMaker Developer Guide. The maximum number of ResourceCatalogs viewable is 1000',
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--visibility-conditions",
+          description:
+            "Limits the results of your search request to the resources that you can access",
+          args: {
+            name: "list",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -12466,6 +17395,165 @@ const completionSpec: Fig.Spec = {
             "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "send-pipeline-execution-step-failure",
+      description:
+        "Notifies the pipeline that the execution of a callback step failed, along with a message describing why. When a callback step is run, the pipeline generates a callback token and includes the token in a message sent to Amazon Simple Queue Service (Amazon SQS)",
+      options: [
+        {
+          name: "--callback-token",
+          description: "The pipeline generated token from the Amazon SQS queue",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--failure-reason",
+          description: "A message describing why the step failed",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--client-request-token",
+          description:
+            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "send-pipeline-execution-step-success",
+      description:
+        "Notifies the pipeline that the execution of a callback step succeeded and provides a list of the step's output parameters. When a callback step is run, the pipeline generates a callback token and includes the token in a message sent to Amazon Simple Queue Service (Amazon SQS)",
+      options: [
+        {
+          name: "--callback-token",
+          description: "The pipeline generated token from the Amazon SQS queue",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--output-parameters",
+          description: "A list of the output parameters of the callback step",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--client-request-token",
+          description:
+            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "start-edge-deployment-stage",
+      description: "Starts a stage in an edge deployment plan",
+      options: [
+        {
+          name: "--edge-deployment-plan-name",
+          description: "The name of the edge deployment plan to start",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--stage-name",
+          description: "The name of the stage to start",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "start-inference-experiment",
+      description: "Starts an inference experiment",
+      options: [
+        {
+          name: "--name",
+          description: "The name of the inference experiment to start",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
           },
         },
         {
@@ -12513,7 +17601,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "start-notebook-instance",
       description:
-        "Launches an ML compute instance with the latest version of the libraries and attaches your ML storage volume. After configuring the notebook instance, Amazon SageMaker sets the notebook instance status to InService. A notebook instance's status must be InService before you can connect to your Jupyter notebook",
+        "Launches an ML compute instance with the latest version of the libraries and attaches your ML storage volume. After configuring the notebook instance, SageMaker sets the notebook instance status to InService. A notebook instance's status must be InService before you can connect to your Jupyter notebook",
       options: [
         {
           name: "--notebook-instance-name",
@@ -12547,7 +17635,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--pipeline-name",
-          description: "The name of the pipeline",
+          description: "The name or Amazon Resource Name (ARN) of the pipeline",
           args: {
             name: "string",
           },
@@ -12577,9 +17665,25 @@ const completionSpec: Fig.Spec = {
         {
           name: "--client-request-token",
           description:
-            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time",
+            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than once",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--parallelism-configuration",
+          description:
+            "This configuration, if specified, overrides the parallelism configuration of the parent pipeline for this specific run",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--selective-execution-config",
+          description:
+            "The selective execution configuration applied to the pipeline run",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -12603,7 +17707,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "stop-auto-ml-job",
-      description: "A method for forcing the termination of a running job",
+      description: "A method for forcing a running job to shut down",
       options: [
         {
           name: "--auto-ml-job-name",
@@ -12634,11 +17738,48 @@ const completionSpec: Fig.Spec = {
     {
       name: "stop-compilation-job",
       description:
-        "Stops a model compilation job.  To stop a job, Amazon SageMaker sends the algorithm the SIGTERM signal. This gracefully shuts the job down. If the job hasn't stopped, it sends the SIGKILL signal. When it receives a StopCompilationJob request, Amazon SageMaker changes the CompilationJobSummary$CompilationJobStatus of the job to Stopping. After Amazon SageMaker stops the job, it sets the CompilationJobSummary$CompilationJobStatus to Stopped",
+        "Stops a model compilation job.  To stop a job, Amazon SageMaker sends the algorithm the SIGTERM signal. This gracefully shuts the job down. If the job hasn't stopped, it sends the SIGKILL signal. When it receives a StopCompilationJob request, Amazon SageMaker changes the CompilationJobStatus of the job to Stopping. After Amazon SageMaker stops the job, it sets the CompilationJobStatus to Stopped",
       options: [
         {
           name: "--compilation-job-name",
           description: "The name of the model compilation job to stop",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "stop-edge-deployment-stage",
+      description: "Stops a stage in an edge deployment plan",
+      options: [
+        {
+          name: "--edge-deployment-plan-name",
+          description: "The name of the edge deployment plan to stop",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--stage-name",
+          description: "The name of the stage to stop",
           args: {
             name: "string",
           },
@@ -12700,6 +17841,97 @@ const completionSpec: Fig.Spec = {
         {
           name: "--hyper-parameter-tuning-job-name",
           description: "The name of the tuning job to stop",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "stop-inference-experiment",
+      description: "Stops an inference experiment",
+      options: [
+        {
+          name: "--name",
+          description: "The name of the inference experiment to stop",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--model-variant-actions",
+          description:
+            "Array of key-value pairs, with names of variants mapped to actions. The possible actions are the following:     Promote - Promote the shadow variant to a production variant    Remove - Delete the variant    Retain - Keep the variant as it is",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--desired-model-variants",
+          description:
+            "An array of ModelVariantConfig objects. There is one for each variant that you want to deploy after the inference experiment stops. Each ModelVariantConfig describes the infrastructure configuration for deploying the corresponding variant",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--desired-state",
+          description:
+            "The desired state of the experiment after stopping. The possible states are the following:     Completed: The experiment completed successfully    Cancelled: The experiment was canceled",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--reason",
+          description: "The reason for stopping the experiment",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "stop-inference-recommendations-job",
+      description: "Stops an Inference Recommender job",
+      options: [
+        {
+          name: "--job-name",
+          description: "The name of the job you want to stop",
           args: {
             name: "string",
           },
@@ -12787,7 +18019,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "stop-notebook-instance",
       description:
-        "Terminates the ML compute instance. Before terminating the instance, Amazon SageMaker disconnects the ML storage volume from it. Amazon SageMaker preserves the ML storage volume. Amazon SageMaker stops charging you for the ML compute instance when you call StopNotebookInstance. To access data on the ML storage volume for a notebook instance that has been terminated, call the StartNotebookInstance API. StartNotebookInstance launches another ML compute instance, configures it, and attaches the preserved ML storage volume so you can continue your work",
+        "Terminates the ML compute instance. Before terminating the instance, SageMaker disconnects the ML storage volume from it. SageMaker preserves the ML storage volume. SageMaker stops charging you for the ML compute instance when you call StopNotebookInstance. To access data on the ML storage volume for a notebook instance that has been terminated, call the StartNotebookInstance API. StartNotebookInstance launches another ML compute instance, configures it, and attaches the preserved ML storage volume so you can continue your work",
       options: [
         {
           name: "--notebook-instance-name",
@@ -12817,7 +18049,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "stop-pipeline-execution",
-      description: "Stops a pipeline execution",
+      description:
+        'Stops a pipeline execution.  Callback Step  A pipeline execution won\'t stop while a callback step is running. When you call StopPipelineExecution on a pipeline execution with a running callback step, SageMaker Pipelines sends an additional Amazon SQS message to the specified SQS queue. The body of the SQS message contains a "Status" field which is set to "Stopping". You should add logic to your Amazon SQS message consumer to take any needed action (for example, resource cleanup) upon receipt of the message followed by a call to SendPipelineExecutionStepSuccess or SendPipelineExecutionStepFailure. Only when SageMaker Pipelines receives one of these calls will it stop the pipeline execution.  Lambda Step  A pipeline execution can\'t be stopped while a lambda step is running because the Lambda function invoked by the lambda step can\'t be stopped. If you attempt to stop the execution while the Lambda function is running, the pipeline waits for the Lambda function to finish or until the timeout is hit, whichever occurs first, and then stops. If the Lambda function finishes, the pipeline execution status is Stopped. If the timeout is hit the pipeline execution status is Failed',
       options: [
         {
           name: "--pipeline-execution-arn",
@@ -12830,7 +18063,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--client-request-token",
           description:
-            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time",
+            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than once",
           args: {
             name: "string",
           },
@@ -12887,7 +18120,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "stop-training-job",
       description:
-        "Stops a training job. To stop a job, Amazon SageMaker sends the algorithm the SIGTERM signal, which delays job termination for 120 seconds. Algorithms might use this 120-second window to save the model artifacts, so the results of the training is not lost.  When it receives a StopTrainingJob request, Amazon SageMaker changes the status of the job to Stopping. After Amazon SageMaker stops the job, it sets the status to Stopped",
+        "Stops a training job. To stop a job, SageMaker sends the algorithm the SIGTERM signal, which delays job termination for 120 seconds. Algorithms might use this 120-second window to save the model artifacts, so the results of the training is not lost.  When it receives a StopTrainingJob request, SageMaker changes the status of the job to Stopping. After SageMaker stops the job, it sets the status to Stopped",
       options: [
         {
           name: "--training-job-name",
@@ -12918,11 +18151,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "stop-transform-job",
       description:
-        "Stops a transform job. When Amazon SageMaker receives a StopTransformJob request, the status of the job changes to Stopping. After Amazon SageMaker stops the job, the status is set to Stopped. When you stop a transform job before it is completed, Amazon SageMaker doesn't store the job's output in Amazon S3",
+        "Stops a batch transform job. When Amazon SageMaker receives a StopTransformJob request, the status of the job changes to Stopping. After Amazon SageMaker stops the job, the status is set to Stopped. When you stop a batch transform job before it is completed, Amazon SageMaker doesn't store the job's output in Amazon S3",
       options: [
         {
           name: "--transform-job-name",
-          description: "The name of the transform job to stop",
+          description: "The name of the batch transform job to stop",
           args: {
             name: "string",
           },
@@ -13024,6 +18257,20 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--jupyter-lab-app-image-config",
+          description: "The JupyterLab app running on the image",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--code-editor-app-image-config",
+          description: "The Code Editor app running on the image",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -13096,6 +18343,76 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "update-cluster",
+      description: "Updates a SageMaker HyperPod cluster",
+      options: [
+        {
+          name: "--cluster-name",
+          description:
+            "Specify the name of the SageMaker HyperPod cluster you want to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--instance-groups",
+          description: "Specify the instance groups to update",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-cluster-software",
+      description:
+        "Updates the platform software of a SageMaker HyperPod cluster for security patching. To learn how to use this API, see Update the SageMaker HyperPod platform software of a cluster",
+      options: [
+        {
+          name: "--cluster-name",
+          description:
+            "Specify the name or the Amazon Resource Name (ARN) of the SageMaker HyperPod cluster you want to update for security patching",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "update-code-repository",
       description:
         "Updates the specified Git repository with the specified values",
@@ -13110,7 +18427,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--git-config",
           description:
-            'The configuration of the git repository, including the URL and the Amazon Resource Name (ARN) of the AWS Secrets Manager secret that contains the credentials used to access the repository. The secret must have a staging label of AWSCURRENT and must be in the following format:  {"username": UserName, "password": Password}',
+            'The configuration of the git repository, including the URL and the Amazon Resource Name (ARN) of the Amazon Web Services Secrets Manager secret that contains the credentials used to access the repository. The secret must have a staging label of AWSCURRENT and must be in the following format:  {"username": UserName, "password": Password}',
           args: {
             name: "structure",
           },
@@ -13220,6 +18537,16 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--enable-iot-role-alias",
+          description:
+            'Whether to create an Amazon Web Services IoT Role Alias during device fleet creation. The name of the role alias generated will match this pattern: "SageMakerEdge-{DeviceFleetName}". For example, if your device fleet is called "demo-fleet", the name of the role alias will be "SageMakerEdge-demo-fleet"',
+        },
+        {
+          name: "--no-enable-iot-role-alias",
+          description:
+            'Whether to create an Amazon Web Services IoT Role Alias during device fleet creation. The name of the role alias generated will match this pattern: "SageMakerEdge-{DeviceFleetName}". For example, if your device fleet is called "demo-fleet", the name of the role alias will be "SageMakerEdge-demo-fleet"',
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -13295,6 +18622,46 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--domain-settings-for-update",
+          description:
+            "A collection of DomainSettings configuration values to update",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--app-security-group-management",
+          description:
+            "The entity that creates and manages the required security groups for inter-app communication in VPCOnly mode. Required when CreateDomain.AppNetworkAccessType is VPCOnly and DomainSettings.RStudioServerProDomainSettings.DomainExecutionRoleArn is provided. If setting up the domain for use with RStudio, this value must be set to Service",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--default-space-settings",
+          description:
+            "The default settings used to create a space within the domain",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--subnet-ids",
+          description:
+            "The VPC subnets that Studio uses for communication. If removing subnets, ensure there are no apps in the InService, Pending, or Deleting state",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--app-network-access-type",
+          description:
+            "Specifies the VPC used for non-EFS traffic.    PublicInternetOnly - Non-EFS traffic is through a VPC managed by Amazon SageMaker, which allows direct internet access.    VpcOnly - All Studio traffic is through the specified VPC and subnets.   This configuration can only be modified if there are no apps in the InService, Pending, or Deleting state. The configuration cannot be updated if DomainSettings.RStudioServerProDomainSettings.DomainExecutionRoleArn is already set or DomainSettings.RStudioServerProDomainSettings.DomainExecutionRoleArn is provided as part of the same request",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -13316,7 +18683,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-endpoint",
       description:
-        "Deploys the new EndpointConfig specified in the request, switches to using newly created endpoint, and then deletes resources provisioned for the endpoint using the previous EndpointConfig (there is no availability loss).  When Amazon SageMaker receives the request, it sets the endpoint status to Updating. After updating the endpoint, it sets the status to InService. To check the status of an endpoint, use the DescribeEndpoint API.   You must not delete an EndpointConfig in use by an endpoint that is live or while the UpdateEndpoint or CreateEndpoint operations are being performed on the endpoint. To update an endpoint, you must create a new EndpointConfig. If you delete the EndpointConfig of an endpoint that is active or being created or updated you may lose visibility into the instance type the endpoint is using. The endpoint must be deleted in order to stop incurring charges",
+        "Deploys the EndpointConfig specified in the request to a new fleet of instances. SageMaker shifts endpoint traffic to the new instances with the updated endpoint configuration and then deletes the old instances using the previous EndpointConfig (there is no availability loss). For more information about how to control the update and traffic shifting process, see  Update models in production. When SageMaker receives the request, it sets the endpoint status to Updating. After updating the endpoint, it sets the status to InService. To check the status of an endpoint, use the DescribeEndpoint API.   You must not delete an EndpointConfig in use by an endpoint that is live or while the UpdateEndpoint or CreateEndpoint operations are being performed on the endpoint. To update an endpoint, you must create a new EndpointConfig. If you delete the EndpointConfig of an endpoint that is active or being created or updated you may lose visibility into the instance type the endpoint is using. The endpoint must be deleted in order to stop incurring charges",
       options: [
         {
           name: "--endpoint-name",
@@ -13346,7 +18713,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--exclude-retained-variant-properties",
           description:
-            "When you are updating endpoint resources with UpdateEndpointInput$RetainAllVariantProperties, whose value is set to true, ExcludeRetainedVariantProperties specifies the list of type VariantProperty to override with the values provided by EndpointConfig. If you don't specify a value for ExcludeAllVariantProperties, no variant properties are overridden",
+            "When you are updating endpoint resources with RetainAllVariantProperties, whose value is set to true, ExcludeRetainedVariantProperties specifies the list of type VariantProperty to override with the values provided by EndpointConfig. If you don't specify a value for ExcludeRetainedVariantProperties, no variant properties are overridden",
           args: {
             name: "list",
           },
@@ -13354,10 +18721,20 @@ const completionSpec: Fig.Spec = {
         {
           name: "--deployment-config",
           description:
-            "The deployment configuration for the endpoint to be updated",
+            "The deployment configuration for an endpoint, which contains the desired deployment strategy and rollback configurations",
           args: {
             name: "structure",
           },
+        },
+        {
+          name: "--retain-deployment-config",
+          description:
+            "Specifies whether to reuse the last deployment configuration. The default value is false (the configuration is not reused)",
+        },
+        {
+          name: "--no-retain-deployment-config",
+          description:
+            "Specifies whether to reuse the last deployment configuration. The default value is false (the configuration is not reused)",
         },
         {
           name: "--cli-input-json",
@@ -13381,11 +18758,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-endpoint-weights-and-capacities",
       description:
-        "Updates variant weight of one or more variants associated with an existing endpoint, or capacity of one variant associated with an existing endpoint. When it receives the request, Amazon SageMaker sets the endpoint status to Updating. After updating the endpoint, it sets the status to InService. To check the status of an endpoint, use the DescribeEndpoint API",
+        "Updates variant weight of one or more variants associated with an existing endpoint, or capacity of one variant associated with an existing endpoint. When it receives the request, SageMaker sets the endpoint status to Updating. After updating the endpoint, it sets the status to InService. To check the status of an endpoint, use the DescribeEndpoint API",
       options: [
         {
           name: "--endpoint-name",
-          description: "The name of an existing Amazon SageMaker endpoint",
+          description: "The name of an existing SageMaker endpoint",
           args: {
             name: "string",
           },
@@ -13464,6 +18841,176 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "update-feature-group",
+      description:
+        "Updates the feature group by either adding features or updating the online store configuration. Use one of the following request parameters at a time while using the UpdateFeatureGroup API. You can add features for your feature group using the FeatureAdditions request parameter. Features cannot be removed from a feature group. You can update the online store configuration by using the OnlineStoreConfig request parameter. If a TtlDuration is specified, the default TtlDuration applies for all records added to the feature group after the feature group is updated. If a record level TtlDuration exists from using the PutRecord API, the record level TtlDuration applies to that record instead of the default TtlDuration. To remove the default TtlDuration from an existing feature group, use the UpdateFeatureGroup API and set the TtlDuration Unit and Value to null",
+      options: [
+        {
+          name: "--feature-group-name",
+          description:
+            "The name or Amazon Resource Name (ARN) of the feature group that you're updating",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--feature-additions",
+          description:
+            "Updates the feature group. Updating a feature group is an asynchronous operation. When you get an HTTP 200 response, you've made a valid request. It takes some time after you've made a valid request for Feature Store to update the feature group",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--online-store-config",
+          description: "Updates the feature group online store configuration",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--throughput-config",
+          description:
+            "The new throughput configuration for the feature group. You can switch between on-demand and provisioned modes or update the read / write capacity of provisioned feature groups. You can switch a feature group to on-demand only once in a 24 hour period",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-feature-metadata",
+      description:
+        "Updates the description and parameters of the feature group",
+      options: [
+        {
+          name: "--feature-group-name",
+          description:
+            "The name or Amazon Resource Name (ARN) of the feature group containing the feature that you're updating",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--feature-name",
+          description: "The name of the feature that you're updating",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description:
+            "A description that you can write to better describe the feature",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--parameter-additions",
+          description:
+            "A list of key-value pairs that you can add to better describe the feature",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--parameter-removals",
+          description:
+            "A list of parameter keys that you can specify to remove parameters that describe your feature",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-hub",
+      description:
+        "Update a hub.  Hub APIs are only callable through SageMaker Studio",
+      options: [
+        {
+          name: "--hub-name",
+          description: "The name of the hub to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--hub-description",
+          description: "A description of the updated hub",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--hub-display-name",
+          description: "The display name of the hub",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--hub-search-keywords",
+          description: "The searchable keywords for the hub",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "update-image",
       description:
         "Updates the properties of a SageMaker image. To change the image's tags, use the AddTags and DeleteTags APIs",
@@ -13500,7 +19047,322 @@ const completionSpec: Fig.Spec = {
         {
           name: "--role-arn",
           description:
-            "The new Amazon Resource Name (ARN) for the IAM role that enables Amazon SageMaker to perform tasks on your behalf",
+            "The new ARN for the IAM role that enables Amazon SageMaker to perform tasks on your behalf",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-image-version",
+      description: "Updates the properties of a SageMaker image version",
+      options: [
+        {
+          name: "--image-name",
+          description: "The name of the image",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--alias",
+          description: "The alias of the image version",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--aliases-to-add",
+          description: "A list of aliases to add",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--aliases-to-delete",
+          description: "A list of aliases to delete",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--vendor-guidance",
+          description:
+            "The availability of the image version specified by the maintainer.    NOT_PROVIDED: The maintainers did not provide a status for image version stability.    STABLE: The image version is stable.    TO_BE_ARCHIVED: The image version is set to be archived. Custom image versions that are set to be archived are automatically archived after three months.    ARCHIVED: The image version is archived. Archived image versions are not searchable and are no longer actively supported",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--job-type",
+          description:
+            "Indicates SageMaker job type compatibility.    TRAINING: The image version is compatible with SageMaker training jobs.    INFERENCE: The image version is compatible with SageMaker inference jobs.    NOTEBOOK_KERNEL: The image version is compatible with SageMaker notebook kernels",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--ml-framework",
+          description:
+            "The machine learning framework vended in the image version",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--programming-lang",
+          description: "The supported programming language and its version",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--processor",
+          description:
+            "Indicates CPU or GPU compatibility.    CPU: The image version is compatible with CPU.    GPU: The image version is compatible with GPU",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--horovod",
+          description: "Indicates Horovod compatibility",
+        },
+        {
+          name: "--no-horovod",
+          description: "Indicates Horovod compatibility",
+        },
+        {
+          name: "--release-notes",
+          description: "The maintainer description of the image version",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--version-number",
+          description: "The version of the image",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-inference-component",
+      description: "Updates an inference component",
+      options: [
+        {
+          name: "--inference-component-name",
+          description: "The name of the inference component",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--specification",
+          description:
+            "Details about the resources to deploy with this inference component, including the model, container, and compute resources",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--runtime-config",
+          description:
+            "Runtime settings for a model that is deployed with an inference component",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-inference-component-runtime-config",
+      description:
+        "Runtime settings for a model that is deployed with an inference component",
+      options: [
+        {
+          name: "--inference-component-name",
+          description: "The name of the inference component to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--desired-runtime-config",
+          description:
+            "Runtime settings for a model that is deployed with an inference component",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-inference-experiment",
+      description:
+        "Updates an inference experiment that you created. The status of the inference experiment has to be either Created, Running. For more information on the status of an inference experiment, see DescribeInferenceExperiment",
+      options: [
+        {
+          name: "--name",
+          description: "The name of the inference experiment to be updated",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--schedule",
+          description:
+            "The duration for which the inference experiment will run. If the status of the inference experiment is Created, then you can update both the start and end dates. If the status of the inference experiment is Running, then you can update only the end date",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--description",
+          description: "The description of the inference experiment",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--model-variants",
+          description:
+            "An array of ModelVariantConfig objects. There is one for each variant, whose infrastructure configuration you want to update",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--data-storage-config",
+          description:
+            "The Amazon S3 location and configuration for storing inference request and response data",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--shadow-mode-config",
+          description:
+            "The configuration of ShadowMode inference experiment type. Use this field to specify a production variant which takes all the inference requests, and a shadow variant to which Amazon SageMaker replicates a percentage of the inference requests. For the shadow variant also specify the percentage of requests that Amazon SageMaker replicates",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-model-card",
+      description:
+        "Update an Amazon SageMaker Model Card.  You cannot update both model card content and model card status in a single call",
+      options: [
+        {
+          name: "--model-card-name",
+          description:
+            "The name or Amazon Resource Name (ARN) of the model card to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--content",
+          description:
+            "The updated model card content. Content must be in model card JSON schema and provided as a string. When updating model card content, be sure to include the full content and not just updated content",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--model-card-status",
+          description:
+            "The approval status of the model card within your organization. Different organizations might have different criteria for model card review and approval.    Draft: The model card is a work in progress.    PendingReview: The model card is pending review.    Approved: The model card is approved.    Archived: The model card is archived. No more updates should be made to the model card, but it can still be exported",
           args: {
             name: "string",
           },
@@ -13530,7 +19392,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--model-package-arn",
-          description: "The Amazon Resource Name (ARN) of the model",
+          description: "The Amazon Resource Name (ARN) of the model package",
           args: {
             name: "string",
           },
@@ -13547,6 +19409,98 @@ const completionSpec: Fig.Spec = {
           description: "A description for the approval status of the model",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--customer-metadata-properties",
+          description:
+            "The metadata properties associated with the model package versions",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--customer-metadata-properties-to-remove",
+          description:
+            "The metadata properties associated with the model package versions to remove",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--additional-inference-specifications-to-add",
+          description:
+            "An array of additional Inference Specification objects to be added to the existing array additional Inference Specification. Total number of additional Inference Specifications can not exceed 15. Each additional Inference Specification specifies artifacts based on this model package that can be used on inference endpoints. Generally used with SageMaker Neo to store the compiled artifacts",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--inference-specification",
+          description:
+            "Specifies details about inference jobs that you can run with models based on this model package, including the following information:   The Amazon ECR paths of containers that contain the inference code and model artifacts.   The instance types that the model package supports for transform jobs and real-time endpoints used for inference.   The input and output content formats that the model package supports for inference",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--source-uri",
+          description: "The URI of the source for the model package",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-monitoring-alert",
+      description: "Update the parameters of a model monitor alert",
+      options: [
+        {
+          name: "--monitoring-schedule-name",
+          description: "The name of a monitoring schedule",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--monitoring-alert-name",
+          description: "The name of a monitoring alert",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--datapoints-to-alert",
+          description:
+            "Within EvaluationPeriod, how many execution failures will raise an alert",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--evaluation-period",
+          description:
+            "The number of most recent monitoring executions to consider when evaluating alert status",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -13575,7 +19529,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--monitoring-schedule-name",
           description:
-            "The name of the monitoring schedule. The name must be unique within an AWS Region within an AWS account",
+            "The name of the monitoring schedule. The name must be unique within an Amazon Web Services Region within an Amazon Web Services account",
           args: {
             name: "string",
           },
@@ -13629,7 +19583,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--role-arn",
           description:
-            "The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker can assume to access the notebook instance. For more information, see Amazon SageMaker Roles.   To be able to pass this role to Amazon SageMaker, the caller of this API must have the iam:PassRole permission",
+            "The Amazon Resource Name (ARN) of the IAM role that SageMaker can assume to access the notebook instance. For more information, see SageMaker Roles.   To be able to pass this role to SageMaker, the caller of this API must have the iam:PassRole permission",
           args: {
             name: "string",
           },
@@ -13655,7 +19609,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--volume-size-in-gb",
           description:
-            "The size, in GB, of the ML storage volume to attach to the notebook instance. The default value is 5 GB. ML storage volumes are encrypted, so Amazon SageMaker can't determine the amount of available free space on the volume. Because of this, you can increase the volume size when you update a notebook instance, but you can't decrease the volume size. If you want to decrease the size of the ML storage volume in use, create a new notebook instance with the desired size",
+            "The size, in GB, of the ML storage volume to attach to the notebook instance. The default value is 5 GB. ML storage volumes are encrypted, so SageMaker can't determine the amount of available free space on the volume. Because of this, you can increase the volume size when you update a notebook instance, but you can't decrease the volume size. If you want to decrease the size of the ML storage volume in use, create a new notebook instance with the desired size",
           args: {
             name: "integer",
           },
@@ -13663,7 +19617,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--default-code-repository",
           description:
-            "The Git repository to associate with the notebook instance as its default code repository. This can be either the name of a Git repository stored as a resource in your account, or the URL of a Git repository in AWS CodeCommit or in any other Git repository. When you open a notebook instance, it opens in the directory that contains this repository. For more information, see Associating Git Repositories with Amazon SageMaker Notebook Instances",
+            "The Git repository to associate with the notebook instance as its default code repository. This can be either the name of a Git repository stored as a resource in your account, or the URL of a Git repository in Amazon Web Services CodeCommit or in any other Git repository. When you open a notebook instance, it opens in the directory that contains this repository. For more information, see Associating Git Repositories with SageMaker Notebook Instances",
           args: {
             name: "string",
           },
@@ -13671,7 +19625,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--additional-code-repositories",
           description:
-            "An array of up to three Git repositories to associate with the notebook instance. These can be either the names of Git repositories stored as resources in your account, or the URL of Git repositories in AWS CodeCommit or in any other Git repository. These repositories are cloned at the same level as the default repository of your notebook instance. For more information, see Associating Git Repositories with Amazon SageMaker Notebook Instances",
+            "An array of up to three Git repositories to associate with the notebook instance. These can be either the names of Git repositories stored as resources in your account, or the URL of Git repositories in Amazon Web Services CodeCommit or in any other Git repository. These repositories are cloned at the same level as the default repository of your notebook instance. For more information, see Associating Git Repositories with SageMaker Notebook Instances",
           args: {
             name: "list",
           },
@@ -13720,6 +19674,14 @@ const completionSpec: Fig.Spec = {
             "Whether root access is enabled or disabled for users of the notebook instance. The default value is Enabled.  If you set this to Disabled, users don't have root access on the notebook instance, but lifecycle configuration scripts still run with root permissions",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--instance-metadata-service-configuration",
+          description:
+            "Information on the IMDS configuration of the notebook instance",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -13814,6 +19776,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--pipeline-definition-s3-location",
+          description:
+            "The location of the pipeline definition stored in Amazon S3. If specified, SageMaker will retrieve the pipeline definition from this location",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--pipeline-description",
           description: "The description of the pipeline",
           args: {
@@ -13826,6 +19796,14 @@ const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) that the pipeline uses to execute",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--parallelism-configuration",
+          description:
+            "If specified, it applies to all executions of this pipeline by default",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -13874,6 +19852,120 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--parallelism-configuration",
+          description:
+            "This configuration, if specified, overrides the parallelism configuration of the parent pipeline for this specific run",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-project",
+      description:
+        "Updates a machine learning (ML) project that is created from a template that sets up an ML pipeline from training to deploying an approved model.  You must not update a project that is in use. If you update the ServiceCatalogProvisioningUpdateDetails of a project that is active or being created, or updated, you may lose resources already created by the project",
+      options: [
+        {
+          name: "--project-name",
+          description: "The name of the project",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--project-description",
+          description: "The description for the project",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--service-catalog-provisioning-update-details",
+          description:
+            "The product ID and provisioning artifact ID to provision a service catalog. The provisioning artifact ID will default to the latest provisioning artifact ID of the product, if you don't provide the provisioning artifact ID. For more information, see What is Amazon Web Services Service Catalog",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging Amazon Web Services Resources. In addition, the project must have tag update constraints set in order to include this parameter in the request. For more information, see Amazon Web Services Service Catalog Tag Update Constraints",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-space",
+      description: "Updates the settings of a space",
+      options: [
+        {
+          name: "--domain-id",
+          description: "The ID of the associated domain",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--space-name",
+          description: "The name of the space",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--space-settings",
+          description: "A collection of space settings",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--space-display-name",
+          description:
+            "The name of the space that appears in the Amazon SageMaker Studio UI",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -13895,7 +19987,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-training-job",
       description:
-        "Update a model training job to request a new Debugger profiling configuration",
+        "Update a model training job to request a new Debugger profiling configuration or to change warm pool retention length",
       options: [
         {
           name: "--training-job-name",
@@ -13908,7 +20000,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--profiler-config",
           description:
-            "Configuration information for Debugger system monitoring, framework profiling, and storage paths",
+            "Configuration information for Amazon SageMaker Debugger system monitoring, framework profiling, and storage paths",
           args: {
             name: "structure",
           },
@@ -13916,9 +20008,25 @@ const completionSpec: Fig.Spec = {
         {
           name: "--profiler-rule-configurations",
           description:
-            "Configuration information for Debugger rules for profiling system and framework metrics",
+            "Configuration information for Amazon SageMaker Debugger rules for profiling system and framework metrics",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--resource-config",
+          description:
+            "The training job ResourceConfig to update warm pool retention length",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--remote-debug-config",
+          description:
+            "Configuration for remote debugging while the training job is running. You can update the remote debugging configuration when the SecondaryStatus of the job is Downloading or Training.To learn more about the remote debugging functionality of SageMaker, see Access a training container through Amazon Web Services Systems Manager (SSM) for remote debugging",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -14021,7 +20129,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--parameters",
           description:
-            "Replaces all of the component's hyperparameters with the specified hyperparameters",
+            "Replaces all of the component's hyperparameters with the specified hyperparameters or add new hyperparameters. Existing hyperparameters are replaced if the trial component is updated with an identical hyperparameter key",
           args: {
             name: "map",
           },
@@ -14036,7 +20144,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--input-artifacts",
           description:
-            "Replaces all of the component's input artifacts with the specified artifacts",
+            "Replaces all of the component's input artifacts with the specified artifacts or adds new input artifacts. Existing input artifacts are replaced if the trial component is updated with an identical input artifact key",
           args: {
             name: "map",
           },
@@ -14051,7 +20159,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--output-artifacts",
           description:
-            "Replaces all of the component's output artifacts with the specified artifacts",
+            "Replaces all of the component's output artifacts with the specified artifacts or adds new output artifacts. Existing output artifacts are replaced if the trial component is updated with an identical output artifact key",
           args: {
             name: "map",
           },
@@ -14129,12 +20237,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-workforce",
       description:
-        "Use this operation to update your workforce. You can use this operation to require that workers use specific IP addresses to work on tasks and to update your OpenID Connect (OIDC) Identity Provider (IdP) workforce configuration.  Use SourceIpConfig to restrict worker access to tasks to a specific range of IP addresses. You specify allowed IP addresses by creating a list of up to ten CIDRs. By default, a workforce isn't restricted to specific IP addresses. If you specify a range of IP addresses, workers who attempt to access tasks using any IP address outside the specified range are denied and get a Not Found error message on the worker portal. Use OidcConfig to update the configuration of a workforce created using your own OIDC IdP.   You can only update your OIDC IdP configuration when there are no work teams associated with your workforce. You can delete work teams using the operation.  After restricting access to a range of IP addresses or updating your OIDC IdP configuration with this operation, you can view details about your update workforce using the operation.  This operation only applies to private workforces",
+        'Use this operation to update your workforce. You can use this operation to require that workers use specific IP addresses to work on tasks and to update your OpenID Connect (OIDC) Identity Provider (IdP) workforce configuration. The worker portal is now supported in VPC and public internet.  Use SourceIpConfig to restrict worker access to tasks to a specific range of IP addresses. You specify allowed IP addresses by creating a list of up to ten CIDRs. By default, a workforce isn\'t restricted to specific IP addresses. If you specify a range of IP addresses, workers who attempt to access tasks using any IP address outside the specified range are denied and get a Not Found error message on the worker portal. To restrict access to all the workers in public internet, add the SourceIpConfig CIDR value as "10.0.0.0/16".  Amazon SageMaker does not support Source Ip restriction for worker portals in VPC.  Use OidcConfig to update the configuration of a workforce created using your own OIDC IdP.   You can only update your OIDC IdP configuration when there are no work teams associated with your workforce. You can delete work teams using the DeleteWorkteam operation.  After restricting access to a range of IP addresses or updating your OIDC IdP configuration with this operation, you can view details about your update workforce using the DescribeWorkforce operation.  This operation only applies to private workforces',
       options: [
         {
           name: "--workforce-name",
           description:
-            "The name of the private workforce that you want to update. You can find your workforce name by using the operation",
+            "The name of the private workforce that you want to update. You can find your workforce name by using the ListWorkforces operation",
           args: {
             name: "string",
           },
@@ -14151,6 +20259,14 @@ const completionSpec: Fig.Spec = {
           name: "--oidc-config",
           description:
             "Use this parameter to update your OIDC Identity Provider (IdP) configuration for a workforce made using your own IdP",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--workforce-vpc-config",
+          description:
+            "Use this parameter to update your VPC configuration for a workforce",
           args: {
             name: "structure",
           },
@@ -14205,6 +20321,14 @@ const completionSpec: Fig.Spec = {
           name: "--notification-configuration",
           description:
             "Configures SNS topic notifications for available or expiring work items",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--worker-access-configuration",
+          description:
+            "Use this optional parameter to constrain access to an Amazon S3 resource based on the IP address using supported IAM global condition keys. The Amazon S3 resource is accessed in the worker portal using a Amazon S3 presigned URL",
           args: {
             name: "structure",
           },
@@ -14272,6 +20396,191 @@ const completionSpec: Fig.Spec = {
             {
               name: "--endpoint-name",
               description: "The name of the endpoint",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cli-input-json",
+              description:
+                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--generate-cli-skeleton",
+              description:
+                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+              args: {
+                name: "string",
+                suggestions: ["input", "output"],
+              },
+            },
+          ],
+        },
+        {
+          name: "image-created",
+          description:
+            "Wait until JMESPath query ImageStatus returns CREATED when polling with ``describe-image``. It will poll every 60 seconds until a successful state has been reached. This will exit with a return code of 255 after 60 failed checks",
+          options: [
+            {
+              name: "--image-name",
+              description: "The name of the image to describe",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cli-input-json",
+              description:
+                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--generate-cli-skeleton",
+              description:
+                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+              args: {
+                name: "string",
+                suggestions: ["input", "output"],
+              },
+            },
+          ],
+        },
+        {
+          name: "image-deleted",
+          description:
+            "Wait until ResourceNotFoundException is thrown when polling with ``describe-image``. It will poll every 60 seconds until a successful state has been reached. This will exit with a return code of 255 after 60 failed checks",
+          options: [
+            {
+              name: "--image-name",
+              description: "The name of the image to describe",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cli-input-json",
+              description:
+                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--generate-cli-skeleton",
+              description:
+                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+              args: {
+                name: "string",
+                suggestions: ["input", "output"],
+              },
+            },
+          ],
+        },
+        {
+          name: "image-updated",
+          description:
+            "Wait until JMESPath query ImageStatus returns CREATED when polling with ``describe-image``. It will poll every 60 seconds until a successful state has been reached. This will exit with a return code of 255 after 60 failed checks",
+          options: [
+            {
+              name: "--image-name",
+              description: "The name of the image to describe",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cli-input-json",
+              description:
+                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--generate-cli-skeleton",
+              description:
+                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+              args: {
+                name: "string",
+                suggestions: ["input", "output"],
+              },
+            },
+          ],
+        },
+        {
+          name: "image-version-created",
+          description:
+            "Wait until JMESPath query ImageVersionStatus returns CREATED when polling with ``describe-image-version``. It will poll every 60 seconds until a successful state has been reached. This will exit with a return code of 255 after 60 failed checks",
+          options: [
+            {
+              name: "--image-name",
+              description: "The name of the image",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--version",
+              description:
+                "The version of the image. If not specified, the latest version is described",
+              args: {
+                name: "integer",
+              },
+            },
+            {
+              name: "--alias",
+              description: "The alias of the image version",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cli-input-json",
+              description:
+                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--generate-cli-skeleton",
+              description:
+                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+              args: {
+                name: "string",
+                suggestions: ["input", "output"],
+              },
+            },
+          ],
+        },
+        {
+          name: "image-version-deleted",
+          description:
+            "Wait until ResourceNotFoundException is thrown when polling with ``describe-image-version``. It will poll every 60 seconds until a successful state has been reached. This will exit with a return code of 255 after 60 failed checks",
+          options: [
+            {
+              name: "--image-name",
+              description: "The name of the image",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--version",
+              description:
+                "The version of the image. If not specified, the latest version is described",
+              args: {
+                name: "integer",
+              },
+            },
+            {
+              name: "--alias",
+              description: "The alias of the image version",
               args: {
                 name: "string",
               },
@@ -14399,7 +20708,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--processing-job-name",
               description:
-                "The name of the processing job. The name must be unique within an AWS Region in the AWS account",
+                "The name of the processing job. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account",
               args: {
                 name: "string",
               },
@@ -14490,5 +20799,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

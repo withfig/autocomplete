@@ -1,12 +1,12 @@
 const completionSpec: Fig.Spec = {
   name: "appconfig",
   description:
-    "AWS AppConfig Use AWS AppConfig, a capability of AWS Systems Manager, to create, manage, and quickly deploy application configurations. AppConfig supports controlled deployments to applications of any size and includes built-in validation checks and monitoring. You can use AppConfig with applications hosted on Amazon EC2 instances, AWS Lambda, containers, mobile applications, or IoT devices. To prevent errors when deploying application configurations, especially for production systems where a simple typo could cause an unexpected outage, AppConfig includes validators. A validator provides a syntactic or semantic check to ensure that the configuration you want to deploy works as intended. To validate your application configuration data, you provide a schema or a Lambda function that runs against the configuration. The configuration deployment or update can only proceed when the configuration data is valid. During a configuration deployment, AppConfig monitors the application to ensure that the deployment is successful. If the system encounters an error, AppConfig rolls back the change to minimize impact for your application users. You can configure a deployment strategy for each application or environment that includes deployment criteria, including velocity, bake time, and alarms to monitor. Similar to error monitoring, if a deployment triggers an alarm, AppConfig automatically rolls back to the previous version.  AppConfig supports multiple use cases. Here are some examples.    Application tuning: Use AppConfig to carefully introduce changes to your application that can only be tested with production traffic.    Feature toggle: Use AppConfig to turn on new features that require a timely deployment, such as a product launch or announcement.     Allow list: Use AppConfig to allow premium subscribers to access paid content.     Operational issues: Use AppConfig to reduce stress on your application when a dependency or other external factor impacts the system.   This reference is intended to be used with the AWS AppConfig User Guide",
+    "AppConfig feature flags and dynamic configurations help software builders quickly and securely adjust application behavior in production environments without full code deployments. AppConfig speeds up software release frequency, improves application resiliency, and helps you address emergent issues more quickly. With feature flags, you can gradually release new capabilities to users and measure the impact of those changes before fully deploying the new capabilities to all users. With operational flags and dynamic configurations, you can update block lists, allow lists, throttling limits, logging verbosity, and perform other operational tuning to quickly respond to issues in production environments.  AppConfig is a capability of Amazon Web Services Systems Manager.  Despite the fact that application configuration content can vary greatly from application to application, AppConfig supports the following use cases, which cover a broad spectrum of customer needs:    Feature flags and toggles - Safely release new capabilities to your customers in a controlled environment. Instantly roll back changes if you experience a problem.    Application tuning - Carefully introduce application changes while testing the impact of those changes with users in production environments.    Allow list or block list - Control access to premium features or instantly block specific users without deploying new code.     Centralized configuration storage - Keep your configuration data organized and consistent across all of your workloads. You can use AppConfig to deploy configuration data stored in the AppConfig hosted configuration store, Secrets Manager, Systems Manager, Parameter Store, or Amazon S3.    How AppConfig works  This section provides a high-level description of how AppConfig works and how you get started.  1. Identify configuration values in code you want to manage in the cloud  Before you start creating AppConfig artifacts, we recommend you identify configuration data in your code that you want to dynamically manage using AppConfig. Good examples include feature flags or toggles, allow and block lists, logging verbosity, service limits, and throttling rules, to name a few. If your configuration data already exists in the cloud, you can take advantage of AppConfig validation, deployment, and extension features to further streamline configuration data management.  2. Create an application namespace  To create a namespace, you create an AppConfig artifact called an application. An application is simply an organizational construct like a folder.  3. Create environments  For each AppConfig application, you define one or more environments. An environment is a logical grouping of targets, such as applications in a Beta or Production environment, Lambda functions, or containers. You can also define environments for application subcomponents, such as the Web, Mobile, and Back-end. You can configure Amazon CloudWatch alarms for each environment. The system monitors alarms during a configuration deployment. If an alarm is triggered, the system rolls back the configuration.  4. Create a configuration profile  A configuration profile includes, among other things, a URI that enables AppConfig to locate your configuration data in its stored location and a profile type. AppConfig supports two configuration profile types: feature flags and freeform configurations. Feature flag configuration profiles store their data in the AppConfig hosted configuration store and the URI is simply hosted. For freeform configuration profiles, you can store your data in the AppConfig hosted configuration store or any Amazon Web Services service that integrates with AppConfig, as described in Creating a free form configuration profile in the the AppConfig User Guide. A configuration profile can also include optional validators to ensure your configuration data is syntactically and semantically correct. AppConfig performs a check using the validators when you start a deployment. If any errors are detected, the deployment rolls back to the previous configuration data.  5. Deploy configuration data  When you create a new deployment, you specify the following:   An application ID   A configuration profile ID   A configuration version   An environment ID where you want to deploy the configuration data   A deployment strategy ID that defines how fast you want the changes to take effect   When you call the StartDeployment API action, AppConfig performs the following tasks:   Retrieves the configuration data from the underlying data store by using the location URI in the configuration profile.   Verifies the configuration data is syntactically and semantically correct by using the validators you specified when you created your configuration profile.   Caches a copy of the data so it is ready to be retrieved by your application. This cached copy is called the deployed data.    6. Retrieve the configuration  You can configure AppConfig Agent as a local host and have the agent poll AppConfig for configuration updates. The agent calls the StartConfigurationSession and GetLatestConfiguration API actions and caches your configuration data locally. To retrieve the data, your application makes an HTTP call to the localhost server. AppConfig Agent supports several use cases, as described in Simplified retrieval methods in the the AppConfig User Guide. If AppConfig Agent isn't supported for your use case, you can configure your application to poll AppConfig for configuration updates by directly calling the StartConfigurationSession and GetLatestConfiguration API actions.    This reference is intended to be used with the AppConfig User Guide",
   subcommands: [
     {
       name: "create-application",
       description:
-        "An application in AppConfig is a logical unit of code that provides capabilities for your customers. For example, an application can be a microservice that runs on Amazon EC2 instances, a mobile application installed by your users, a serverless application using Amazon API Gateway and AWS Lambda, or any system you run on behalf of others",
+        "Creates an application. In AppConfig, an application is simply an organizational construct like a folder. This organizational construct has a relationship with some unit of executable code. For example, you could create an application called MyMobileApp to organize and manage configuration data for a mobile application installed by your users",
       options: [
         {
           name: "--name",
@@ -52,7 +52,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-configuration-profile",
       description:
-        "Information that enables AppConfig to access the configuration source. Valid configuration sources include Systems Manager (SSM) documents, SSM Parameter Store parameters, and Amazon S3 objects. A configuration profile includes the following information.   The Uri location of the configuration data.   The AWS Identity and Access Management (IAM) role that provides access to the configuration data.   A validator for the configuration data. Available validators include either a JSON Schema or an AWS Lambda function.   For more information, see Create a Configuration and a Configuration Profile in the AWS AppConfig User Guide",
+        "Creates a configuration profile, which is information that enables AppConfig to access the configuration source. Valid configuration sources include the following:   Configuration data in YAML, JSON, and other formats stored in the AppConfig hosted configuration store   Configuration data stored as objects in an Amazon Simple Storage Service (Amazon S3) bucket   Pipelines stored in CodePipeline   Secrets stored in Secrets Manager   Standard and secure string parameters stored in Amazon Web Services Systems Manager Parameter Store   Configuration data in SSM documents stored in the Systems Manager document store   A configuration profile includes the following information:   The URI location of the configuration data.   The Identity and Access Management (IAM) role that provides access to the configuration data.   A validator for the configuration data. Available validators include either a JSON Schema or an Amazon Web Services Lambda function.   For more information, see Create a Configuration and a Configuration Profile in the AppConfig User Guide",
       options: [
         {
           name: "--application-id",
@@ -78,7 +78,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--location-uri",
           description:
-            "A URI to locate the configuration. You can specify a Systems Manager (SSM) document, an SSM Parameter Store parameter, or an Amazon S3 object. For an SSM document, specify either the document name in the format ssm-document://<Document_name> or the Amazon Resource Name (ARN). For a parameter, specify either the parameter name in the format ssm-parameter://<Parameter_name> or the ARN. For an Amazon S3 object, specify the URI in the following format: s3://<bucket>/<objectKey> . Here is an example: s3://my-bucket/my-app/us-east-1/my-config.json",
+            "A URI to locate the configuration. You can specify the following:   For the AppConfig hosted configuration store and for feature flags, specify hosted.   For an Amazon Web Services Systems Manager Parameter Store parameter, specify either the parameter name in the format ssm-parameter://<parameter name> or the ARN.   For an Amazon Web Services CodePipeline pipeline, specify the URI in the following format: codepipeline://<pipeline name>.   For an Secrets Manager secret, specify the URI in the following format: secretsmanager://<secret name>.   For an Amazon S3 object, specify the URI in the following format: s3://<bucket>/<objectKey> . Here is an example: s3://my-bucket/my-app/us-east-1/my-config.json    For an SSM document, specify either the document name in the format ssm-document://<document name> or the Amazon Resource Name (ARN)",
           args: {
             name: "string",
           },
@@ -86,7 +86,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--retrieval-role-arn",
           description:
-            "The ARN of an IAM role with permission to access the configuration at the specified LocationUri",
+            "The ARN of an IAM role with permission to access the configuration at the specified LocationUri.  A retrieval role ARN is not required for configurations stored in the AppConfig hosted configuration store. It is required for all other sources that store your configuration",
           args: {
             name: "string",
           },
@@ -104,6 +104,22 @@ const completionSpec: Fig.Spec = {
             "Metadata to assign to the configuration profile. Tags help organize and categorize your AppConfig resources. Each tag consists of a key and an optional value, both of which you define",
           args: {
             name: "map",
+          },
+        },
+        {
+          name: "--type",
+          description:
+            "The type of configurations contained in the profile. AppConfig supports feature flags and freeform configurations. We recommend you create feature flag configurations to enable or disable new features and freeform configurations to distribute configurations to an application. When calling this API, enter one of the following values for Type:  AWS.AppConfig.FeatureFlags   AWS.Freeform",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--kms-key-identifier",
+          description:
+            "The identifier for an Key Management Service key to encrypt new configuration data versions in the AppConfig hosted configuration store. This attribute is only used for hosted configuration types. The identifier can be an KMS key ID, alias, or the Amazon Resource Name (ARN) of the key ID or alias. To encrypt data managed in other configuration stores, see the documentation for how to specify an KMS key for that particular service",
+          args: {
+            name: "string",
           },
         },
         {
@@ -128,7 +144,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-deployment-strategy",
       description:
-        "A deployment strategy defines important criteria for rolling out your configuration to the designated targets. A deployment strategy includes: the overall duration required, a percentage of targets to receive the deployment during each interval, an algorithm that defines how percentage grows, and bake time",
+        "Creates a deployment strategy that defines important criteria for rolling out your configuration to the designated targets. A deployment strategy includes the overall duration required, a percentage of targets to receive the deployment during each interval, an algorithm that defines how percentage grows, and bake time",
       options: [
         {
           name: "--name",
@@ -154,7 +170,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--final-bake-time-in-minutes",
           description:
-            "The amount of time AppConfig monitors for alarms before considering the deployment to be complete and no longer eligible for automatic roll back",
+            "Specifies the amount of time AppConfig monitors for Amazon CloudWatch alarms after the configuration has been deployed to 100% of its targets, before considering the deployment to be complete. If an alarm is triggered during this time, AppConfig rolls back the deployment. You must configure permissions for AppConfig to roll back based on CloudWatch alarms. For more information, see Configuring permissions for rollback based on Amazon CloudWatch alarms in the AppConfig User Guide",
           args: {
             name: "integer",
           },
@@ -170,7 +186,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--growth-type",
           description:
-            "The algorithm used to define how percentage grows over time. AWS AppConfig supports the following growth types:  Linear: For this type, AppConfig processes the deployment by dividing the total number of targets by the value specified for Step percentage. For example, a linear deployment that uses a Step percentage of 10 deploys the configuration to 10 percent of the hosts. After those deployments are complete, the system deploys the configuration to the next 10 percent. This continues until 100% of the targets have successfully received the configuration.  Exponential: For this type, AppConfig processes the deployment exponentially using the following formula: G*(2^N). In this formula, G is the growth factor specified by the user and N is the number of steps until the configuration is deployed to all targets. For example, if you specify a growth factor of 2, then the system rolls out the configuration as follows:  2*(2^0)   2*(2^1)   2*(2^2)  Expressed numerically, the deployment rolls out as follows: 2% of the targets, 4% of the targets, 8% of the targets, and continues until the configuration has been deployed to all targets",
+            "The algorithm used to define how percentage grows over time. AppConfig supports the following growth types:  Linear: For this type, AppConfig processes the deployment by dividing the total number of targets by the value specified for Step percentage. For example, a linear deployment that uses a Step percentage of 10 deploys the configuration to 10 percent of the hosts. After those deployments are complete, the system deploys the configuration to the next 10 percent. This continues until 100% of the targets have successfully received the configuration.  Exponential: For this type, AppConfig processes the deployment exponentially using the following formula: G*(2^N). In this formula, G is the growth factor specified by the user and N is the number of steps until the configuration is deployed to all targets. For example, if you specify a growth factor of 2, then the system rolls out the configuration as follows:  2*(2^0)   2*(2^1)   2*(2^2)  Expressed numerically, the deployment rolls out as follows: 2% of the targets, 4% of the targets, 8% of the targets, and continues until the configuration has been deployed to all targets",
           args: {
             name: "string",
           },
@@ -213,7 +229,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-environment",
       description:
-        "For each application, you define one or more environments. An environment is a logical deployment group of AppConfig targets, such as applications in a Beta or Production environment. You can also define environments for application subcomponents such as the Web, Mobile and Back-end components for your application. You can configure Amazon CloudWatch alarms for each environment. The system monitors alarms during a configuration deployment. If an alarm is triggered, the system rolls back the configuration",
+        "Creates an environment. For each application, you define one or more environments. An environment is a deployment group of AppConfig targets, such as applications in a Beta or Production environment. You can also define environments for application subcomponents such as the Web, Mobile and Back-end components for your application. You can configure Amazon CloudWatch alarms for each environment. The system monitors alarms during a configuration deployment. If an alarm is triggered, the system rolls back the configuration",
       options: [
         {
           name: "--application-id",
@@ -272,9 +288,143 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-extension",
+      description:
+        "Creates an AppConfig extension. An extension augments your ability to inject logic or behavior at different points during the AppConfig workflow of creating or deploying a configuration. You can create your own extensions or use the Amazon Web Services authored extensions provided by AppConfig. For an AppConfig extension that uses Lambda, you must create a Lambda function to perform any computation and processing defined in the extension. If you plan to create custom versions of the Amazon Web Services authored notification extensions, you only need to specify an Amazon Resource Name (ARN) in the Uri field for the new extension version.   For a custom EventBridge notification extension, enter the ARN of the EventBridge default events in the Uri field.   For a custom Amazon SNS notification extension, enter the ARN of an Amazon SNS topic in the Uri field.   For a custom Amazon SQS notification extension, enter the ARN of an Amazon SQS message queue in the Uri field.    For more information about extensions, see Extending workflows in the AppConfig User Guide",
+      options: [
+        {
+          name: "--name",
+          description:
+            "A name for the extension. Each extension name in your account must be unique. Extension versions use the same name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "Information about the extension",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--actions",
+          description: "The actions defined in the extension",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--parameters",
+          description:
+            "The parameters accepted by the extension. You specify parameter values when you associate the extension to an AppConfig resource by using the CreateExtensionAssociation API action. For Lambda extension actions, these parameters are included in the Lambda request object",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "Adds one or more tags for the specified extension. Tags are metadata that help you categorize resources in different ways, for example, by purpose, owner, or environment. Each tag consists of a key and an optional value, both of which you define",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--latest-version-number",
+          description:
+            "You can omit this field when you create an extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-extension-association",
+      description:
+        "When you create an extension or configure an Amazon Web Services authored extension, you associate the extension with an AppConfig application, environment, or configuration profile. For example, you can choose to run the AppConfig deployment events to Amazon SNS Amazon Web Services authored extension and receive notifications on an Amazon SNS topic anytime a configuration deployment is started for a specific application. Defining which extension to associate with an AppConfig resource is called an extension association. An extension association is a specified relationship between an extension and an AppConfig resource, such as an application or a configuration profile. For more information about extensions and associations, see Extending workflows in the AppConfig User Guide",
+      options: [
+        {
+          name: "--extension-identifier",
+          description:
+            "The name, the ID, or the Amazon Resource Name (ARN) of the extension",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--extension-version-number",
+          description:
+            "The version number of the extension. If not specified, AppConfig uses the maximum version of the extension",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--resource-identifier",
+          description:
+            "The ARN of an application, configuration profile, or environment",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--parameters",
+          description:
+            "The parameter names and values defined in the extensions. Extension parameters marked Required must be entered for this field",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "Adds one or more tags for the specified extension association. Tags are metadata that help you categorize resources in different ways, for example, by purpose, owner, or environment. Each tag consists of a key and an optional value, both of which you define",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-hosted-configuration-version",
       description:
-        "Create a new configuration in the AppConfig configuration store",
+        "Creates a new configuration in the AppConfig hosted configuration store",
       options: [
         {
           name: "--application-id",
@@ -316,9 +466,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--latest-version-number",
           description:
-            "An optional locking token used to prevent race conditions from overwriting configuration updates when creating a new version. To ensure your data is not overwritten when creating multiple hosted configuration versions in rapid succession, specify the version of the latest hosted configuration version",
+            "An optional locking token used to prevent race conditions from overwriting configuration updates when creating a new version. To ensure your data is not overwritten when creating multiple hosted configuration versions in rapid succession, specify the version number of the latest hosted configuration version",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--version-label",
+          description:
+            'An optional, user-defined label for the AppConfig hosted configuration version. This value must contain at least one non-numeric character. For example, "v2.2.0"',
+          args: {
+            name: "string",
           },
         },
         {
@@ -333,7 +491,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-application",
       description:
-        "Delete an application. Deleting an application does not delete a configuration from a host",
+        "Deletes an application. Deleting an application does not delete a configuration from a host",
       options: [
         {
           name: "--application-id",
@@ -364,7 +522,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-configuration-profile",
       description:
-        "Delete a configuration profile. Deleting a configuration profile does not delete a configuration from a host",
+        "Deletes a configuration profile. Deleting a configuration profile does not delete a configuration from a host",
       options: [
         {
           name: "--application-id",
@@ -403,7 +561,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-deployment-strategy",
       description:
-        "Delete a deployment strategy. Deleting a deployment strategy does not delete a configuration from a host",
+        "Deletes a deployment strategy. Deleting a deployment strategy does not delete a configuration from a host",
       options: [
         {
           name: "--deployment-strategy-id",
@@ -434,19 +592,90 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-environment",
       description:
-        "Delete an environment. Deleting an environment does not delete a configuration from a host",
+        "Deletes an environment. Deleting an environment does not delete a configuration from a host",
       options: [
         {
           name: "--application-id",
           description:
-            "The application ID that includes the environment you want to delete",
+            "The application ID that includes the environment that you want to delete",
           args: {
             name: "string",
           },
         },
         {
           name: "--environment-id",
-          description: "The ID of the environment you want to delete",
+          description: "The ID of the environment that you want to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-extension",
+      description:
+        "Deletes an AppConfig extension. You must delete all associations to an extension before you delete the extension",
+      options: [
+        {
+          name: "--extension-identifier",
+          description:
+            "The name, ID, or Amazon Resource Name (ARN) of the extension you want to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--version-number",
+          description:
+            "A specific version of an extension to delete. If omitted, the highest version is deleted",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-extension-association",
+      description:
+        "Deletes an extension association. This action doesn't delete extensions defined in the association",
+      options: [
+        {
+          name: "--extension-association-id",
+          description: "The ID of the extension association to delete",
           args: {
             name: "string",
           },
@@ -473,7 +702,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-hosted-configuration-version",
       description:
-        "Delete a version of a configuration from the AppConfig configuration store",
+        "Deletes a version of a configuration from the AppConfig hosted configuration store",
       options: [
         {
           name: "--application-id",
@@ -517,7 +746,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-application",
-      description: "Retrieve information about an application",
+      description: "Retrieves information about an application",
       options: [
         {
           name: "--application-id",
@@ -548,7 +777,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-configuration",
       description:
-        "Receive information about a configuration.  AWS AppConfig uses the value of the ClientConfigurationVersion parameter to identify the configuration version on your clients. If you don\u2019t send ClientConfigurationVersion with each call to GetConfiguration, your clients receive the current configuration. You are charged each time your clients receive a configuration. To avoid excess charges, we recommend that you include the ClientConfigurationVersion value with every call to GetConfiguration. This value must be saved on your client. Subsequent calls to GetConfiguration must pass this value by using the ClientConfigurationVersion parameter",
+        "(Deprecated) Retrieves the latest deployed configuration.  Note the following important information.   This API action is deprecated. Calls to receive configuration data should use the StartConfigurationSession and GetLatestConfiguration APIs instead.     GetConfiguration is a priced call. For more information, see Pricing",
       options: [
         {
           name: "--application",
@@ -577,7 +806,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--client-id",
           description:
-            "A unique ID to identify the client for the configuration. This ID enables AppConfig to deploy the configuration in intervals, as defined in the deployment strategy",
+            "The clientId parameter in the following command is a unique, user-specified ID to identify the client for the configuration. This ID enables AppConfig to deploy the configuration in intervals, as defined in the deployment strategy",
           args: {
             name: "string",
           },
@@ -585,7 +814,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--client-configuration-version",
           description:
-            "The configuration version returned in the most recent GetConfiguration response.  AWS AppConfig uses the value of the ClientConfigurationVersion parameter to identify the configuration version on your clients. If you don\u2019t send ClientConfigurationVersion with each call to GetConfiguration, your clients receive the current configuration. You are charged each time your clients receive a configuration. To avoid excess charges, we recommend that you include the ClientConfigurationVersion value with every call to GetConfiguration. This value must be saved on your client. Subsequent calls to GetConfiguration must pass this value by using the ClientConfigurationVersion parameter.   For more information about working with configurations, see Retrieving the Configuration in the AWS AppConfig User Guide",
+            "The configuration version returned in the most recent GetConfiguration response.  AppConfig uses the value of the ClientConfigurationVersion parameter to identify the configuration version on your clients. If you don\u2019t send ClientConfigurationVersion with each call to GetConfiguration, your clients receive the current configuration. You are charged each time your clients receive a configuration. To avoid excess charges, we recommend you use the StartConfigurationSession and GetLatestConfiguration APIs, which track the client configuration version on your behalf. If you choose to continue using GetConfiguration, we recommend that you include the ClientConfigurationVersion value with every call to GetConfiguration. The value to use for ClientConfigurationVersion comes from the ConfigurationVersion attribute returned by GetConfiguration when there is new or updated data, and should be saved for subsequent calls to GetConfiguration.  For more information about working with configurations, see Retrieving the Configuration in the AppConfig User Guide",
           args: {
             name: "string",
           },
@@ -601,7 +830,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-configuration-profile",
-      description: "Retrieve information about a configuration profile",
+      description: "Retrieves information about a configuration profile",
       options: [
         {
           name: "--application-id",
@@ -613,7 +842,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--configuration-profile-id",
-          description: "The ID of the configuration profile you want to get",
+          description:
+            "The ID of the configuration profile that you want to get",
           args: {
             name: "string",
           },
@@ -639,7 +869,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-deployment",
-      description: "Retrieve information about a configuration deployment",
+      description: "Retrieves information about a configuration deployment",
       options: [
         {
           name: "--application-id",
@@ -686,7 +916,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-deployment-strategy",
       description:
-        "Retrieve information about a deployment strategy. A deployment strategy defines important criteria for rolling out your configuration to the designated targets. A deployment strategy includes: the overall duration required, a percentage of targets to receive the deployment during each interval, an algorithm that defines how percentage grows, and bake time",
+        "Retrieves information about a deployment strategy. A deployment strategy defines important criteria for rolling out your configuration to the designated targets. A deployment strategy includes the overall duration required, a percentage of targets to receive the deployment during each interval, an algorithm that defines how percentage grows, and bake time",
       options: [
         {
           name: "--deployment-strategy-id",
@@ -717,7 +947,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-environment",
       description:
-        "Retrieve information about an environment. An environment is a logical deployment group of AppConfig applications, such as applications in a Production environment or in an EU_Region environment. Each configuration deployment targets an environment. You can enable one or more Amazon CloudWatch alarms for an environment. If an alarm is triggered during a deployment, AppConfig roles back the configuration",
+        "Retrieves information about an environment. An environment is a deployment group of AppConfig applications, such as applications in a Production environment or in an EU_Region environment. Each configuration deployment targets an environment. You can enable one or more Amazon CloudWatch alarms for an environment. If an alarm is triggered during a deployment, AppConfig roles back the configuration",
       options: [
         {
           name: "--application-id",
@@ -729,7 +959,77 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--environment-id",
-          description: "The ID of the environment you want to get",
+          description: "The ID of the environment that you want to get",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-extension",
+      description: "Returns information about an AppConfig extension",
+      options: [
+        {
+          name: "--extension-identifier",
+          description:
+            "The name, the ID, or the Amazon Resource Name (ARN) of the extension",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--version-number",
+          description:
+            "The extension version number. If no version number was defined, AppConfig uses the highest version",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-extension-association",
+      description:
+        "Returns information about an AppConfig extension association. For more information about extensions and associations, see Extending workflows in the AppConfig User Guide",
+      options: [
+        {
+          name: "--extension-association-id",
+          description: "The extension association ID to get",
           args: {
             name: "string",
           },
@@ -755,7 +1055,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-hosted-configuration-version",
-      description: "Get information about a specific configuration version",
+      description:
+        "Retrieves information about a specific configuration version",
       options: [
         {
           name: "--application-id",
@@ -789,7 +1090,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-applications",
-      description: "List all applications in your AWS account",
+      description: "Lists all applications in your Amazon Web Services account",
       options: [
         {
           name: "--max-results",
@@ -802,7 +1103,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "A token to start the list. Use this token to get the next set of results",
+            "A token to start the list. Next token is a pagination token generated by AppConfig to describe what page the previous List call ended on. For the first List request, the nextToken should not be set. On subsequent calls, the nextToken parameter should be set to the previous responses nextToken value. Use this token to get the next set of results",
           args: {
             name: "string",
           },
@@ -813,6 +1114,30 @@ const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -854,11 +1179,43 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--type",
+          description:
+            "A filter based on the type of configurations that the configuration profile contains. A configuration can be a feature flag or a freeform configuration",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -874,7 +1231,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-deployment-strategies",
-      description: "List deployment strategies",
+      description: "Lists deployment strategies",
       options: [
         {
           name: "--max-results",
@@ -901,6 +1258,30 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
           name: "--generate-cli-skeleton",
           description:
             "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
@@ -913,7 +1294,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-deployments",
-      description: "Lists the deployments for an environment",
+      description:
+        "Lists the deployments for an environment in descending deployment number order",
       options: [
         {
           name: "--application-id",
@@ -932,7 +1314,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results",
+            "The maximum number of items that may be returned for this call. If there are items that have not yet been returned, the response will include a non-null NextToken that you can provide in a subsequent call to get the next set of results",
           args: {
             name: "integer",
           },
@@ -940,7 +1322,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "A token to start the list. Use this token to get the next set of results",
+            "The token returned by a prior call to this operation indicating the next set of results to be returned. If not specified, the operation will return the first set of results",
           args: {
             name: "string",
           },
@@ -951,6 +1333,30 @@ const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -966,7 +1372,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-environments",
-      description: "List the environments for an application",
+      description: "Lists the environments for an application",
       options: [
         {
           name: "--application-id",
@@ -1000,6 +1406,189 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-extension-associations",
+      description:
+        "Lists all AppConfig extension associations in the account. For more information about extensions and associations, see Extending workflows in the AppConfig User Guide",
+      options: [
+        {
+          name: "--resource-identifier",
+          description:
+            "The ARN of an application, configuration profile, or environment",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--extension-identifier",
+          description:
+            "The name, the ID, or the Amazon Resource Name (ARN) of the extension",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--extension-version-number",
+          description:
+            "The version number for the extension defined in the association",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "A token to start the list. Use this token to get the next set of results or pass null to get the first set of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-extensions",
+      description:
+        "Lists all custom and Amazon Web Services authored AppConfig extensions in the account. For more information about extensions, see Extending workflows in the AppConfig User Guide",
+      options: [
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "A token to start the list. Use this token to get the next set of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--name",
+          description: "The extension name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
           name: "--generate-cli-skeleton",
           description:
             "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
@@ -1013,7 +1602,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-hosted-configuration-versions",
       description:
-        "View a list of configurations stored in the AppConfig configuration store by version",
+        "Lists configurations stored in the AppConfig hosted configuration store by version",
       options: [
         {
           name: "--application-id",
@@ -1046,11 +1635,43 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--version-label",
+          description:
+            'An optional filter that can be used to specify the version label of an AppConfig hosted configuration version. This parameter supports filtering by prefix using a wildcard, for example "v2*". If you don\'t specify an asterisk at the end of the value, only an exact match is returned',
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -1129,7 +1750,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--configuration-version",
-          description: "The configuration version to deploy",
+          description:
+            "The configuration version to deploy. If deploying an AppConfig hosted configuration version, you can specify either the version number or version label. For all other configurations, you must specify the version number",
           args: {
             name: "string",
           },
@@ -1145,6 +1767,22 @@ const completionSpec: Fig.Spec = {
           name: "--tags",
           description:
             "Metadata to assign to the deployment. Tags help organize and categorize your AppConfig resources. Each tag consists of a key and an optional value, both of which you define",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--kms-key-identifier",
+          description:
+            "The KMS key identifier (key ID, key alias, or key ARN). AppConfig uses this ID to encrypt the configuration data using a customer managed key",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--dynamic-extension-parameters",
+          description:
+            "A map of dynamic extension parameter names to values to pass to associated extensions with PRE_START_DEPLOYMENT actions",
           args: {
             name: "map",
           },
@@ -1216,7 +1854,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "tag-resource",
       description:
-        "Metadata to assign to an AppConfig resource. Tags help organize and categorize your AppConfig resources. Each tag consists of a key and an optional value, both of which you define. You can specify a maximum of 50 tags for a resource",
+        "Assigns metadata to an AppConfig resource. Tags help organize and categorize your AppConfig resources. Each tag consists of a key and an optional value, both of which you define. You can specify a maximum of 50 tags for a resource",
       options: [
         {
           name: "--resource-arn",
@@ -1381,6 +2019,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--kms-key-identifier",
+          description:
+            "The identifier for a Key Management Service key to encrypt new configuration data versions in the AppConfig hosted configuration store. This attribute is only used for hosted configuration types. The identifier can be an KMS key ID, alias, or the Amazon Resource Name (ARN) of the key ID or alias. To encrypt data managed in other configuration stores, see the documentation for how to specify an KMS key for that particular service",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -1427,7 +2073,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--final-bake-time-in-minutes",
           description:
-            "The amount of time AppConfig monitors for alarms before considering the deployment to be complete and no longer eligible for automatic roll back",
+            "The amount of time that AppConfig monitors for alarms before considering the deployment to be complete and no longer eligible for automatic rollback",
           args: {
             name: "integer",
           },
@@ -1443,7 +2089,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--growth-type",
           description:
-            "The algorithm used to define how percentage grows over time. AWS AppConfig supports the following growth types:  Linear: For this type, AppConfig processes the deployment by increments of the growth factor evenly distributed over the deployment time. For example, a linear deployment that uses a growth factor of 20 initially makes the configuration available to 20 percent of the targets. After 1/5th of the deployment time has passed, the system updates the percentage to 40 percent. This continues until 100% of the targets are set to receive the deployed configuration.  Exponential: For this type, AppConfig processes the deployment exponentially using the following formula: G*(2^N). In this formula, G is the growth factor specified by the user and N is the number of steps until the configuration is deployed to all targets. For example, if you specify a growth factor of 2, then the system rolls out the configuration as follows:  2*(2^0)   2*(2^1)   2*(2^2)  Expressed numerically, the deployment rolls out as follows: 2% of the targets, 4% of the targets, 8% of the targets, and continues until the configuration has been deployed to all targets",
+            "The algorithm used to define how percentage grows over time. AppConfig supports the following growth types:  Linear: For this type, AppConfig processes the deployment by increments of the growth factor evenly distributed over the deployment time. For example, a linear deployment that uses a growth factor of 20 initially makes the configuration available to 20 percent of the targets. After 1/5th of the deployment time has passed, the system updates the percentage to 40 percent. This continues until 100% of the targets are set to receive the deployed configuration.  Exponential: For this type, AppConfig processes the deployment exponentially using the following formula: G*(2^N). In this formula, G is the growth factor specified by the user and N is the number of steps until the configuration is deployed to all targets. For example, if you specify a growth factor of 2, then the system rolls out the configuration as follows:  2*(2^0)   2*(2^1)   2*(2^2)  Expressed numerically, the deployment rolls out as follows: 2% of the targets, 4% of the targets, 8% of the targets, and continues until the configuration has been deployed to all targets",
           args: {
             name: "string",
           },
@@ -1527,6 +2173,106 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "update-extension",
+      description:
+        "Updates an AppConfig extension. For more information about extensions, see Extending workflows in the AppConfig User Guide",
+      options: [
+        {
+          name: "--extension-identifier",
+          description:
+            "The name, the ID, or the Amazon Resource Name (ARN) of the extension",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "Information about the extension",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--actions",
+          description: "The actions defined in the extension",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--parameters",
+          description:
+            "One or more parameters for the actions called by the extension",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--version-number",
+          description: "The extension version number",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-extension-association",
+      description:
+        "Updates an association. For more information about extensions and associations, see Extending workflows in the AppConfig User Guide",
+      options: [
+        {
+          name: "--extension-association-id",
+          description: "The system-generated ID for the association",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--parameters",
+          description:
+            "The parameter names and values defined in the extension",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "validate-configuration",
       description:
         "Uses the validators in a configuration profile to validate a configuration",
@@ -1573,5 +2319,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;
