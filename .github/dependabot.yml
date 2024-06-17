@@ -4,12 +4,12 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    open-pull-requests-limit: 0
+    open-pull-requests-limit: 100
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"
-    open-pull-requests-limit: 0
+    open-pull-requests-limit: 100
     groups:
       typescript-eslint:
         patterns:
