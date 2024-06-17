@@ -4,15 +4,15 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    open-pull-requests-limit: 0
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"
+    open-pull-requests-limit: 0
     groups:
-      eslint:
+      typescript-eslint:
         patterns:
-          - "eslint"
-          - "@eslint/*"
           - "@typescript-eslint/*"
       fig:
         patterns:
