@@ -293,7 +293,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--scope",
           description:
-            "The wrapper that contains the Amazon Web Services accounts and services that are in scope for the assessment",
+            "The wrapper that contains the Amazon Web Services accounts that are in scope for the assessment.   You no longer need to specify which Amazon Web Services are in scope when you create or update an assessment. Audit Manager infers the services in scope by examining your assessment controls and their data sources, and then mapping this information to the relevant Amazon Web Services.  If an underlying data source changes for your assessment, we automatically update the services scope as needed to reflect the correct Amazon Web Services. This ensures that your assessment collects accurate and comprehensive evidence about all of the relevant services in your AWS environment",
           args: {
             name: "structure",
           },
@@ -1422,7 +1422,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-services-in-scope",
       description:
-        "Gets a list of all of the Amazon Web Services that you can choose to include in your assessment. When you create an assessment, specify which of these services you want to include to narrow the assessment's scope",
+        "Gets a list of the Amazon Web Services from which Audit Manager can collect evidence.  Audit Manager defines which Amazon Web Services are in scope for an assessment. Audit Manager infers this scope by examining the assessment\u2019s controls and their data sources, and then mapping this information to one or more of the corresponding Amazon Web Services that are in this list.  For information about why it's no longer possible to specify services in scope manually, see I can't edit the services in scope for my assessment in the Troubleshooting section of the Audit Manager user guide",
       options: [
         {
           name: "--cli-input-json",
@@ -1481,7 +1481,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--control-domain-id",
-          description: "The unique identifier for the control domain",
+          description:
+            "The unique identifier for the control domain.  Audit Manager supports the control domains that are provided by Amazon Web Services Control Catalog. For information about how to find a list of available control domains, see  ListDomains  in the Amazon Web Services Control Catalog API Reference",
           args: {
             name: "string",
           },
@@ -1714,7 +1715,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-control-domain-insights",
       description:
-        "Lists the latest analytics data for control domains across all of your active assessments.   A control domain is listed only if at least one of the controls within that domain collected evidence on the lastUpdated date of controlDomainInsights. If this condition isn\u2019t met, no data is listed for that control domain",
+        "Lists the latest analytics data for control domains across all of your active assessments.  Audit Manager supports the control domains that are provided by Amazon Web Services Control Catalog. For information about how to find a list of available control domains, see  ListDomains  in the Amazon Web Services Control Catalog API Reference.  A control domain is listed only if at least one of the controls within that domain collected evidence on the lastUpdated date of controlDomainInsights. If this condition isn\u2019t met, no data is listed for that control domain",
       options: [
         {
           name: "--next-token",
@@ -1754,7 +1755,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-control-domain-insights-by-assessment",
       description:
-        "Lists analytics data for control domains within a specified active assessment.  A control domain is listed only if at least one of the controls within that domain collected evidence on the lastUpdated date of controlDomainInsights. If this condition isn\u2019t met, no data is listed for that domain",
+        "Lists analytics data for control domains within a specified active assessment. Audit Manager supports the control domains that are provided by Amazon Web Services Control Catalog. For information about how to find a list of available control domains, see  ListDomains  in the Amazon Web Services Control Catalog API Reference.  A control domain is listed only if at least one of the controls within that domain collected evidence on the lastUpdated date of controlDomainInsights. If this condition isn\u2019t met, no data is listed for that domain",
       options: [
         {
           name: "--assessment-id",
@@ -1805,7 +1806,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--control-domain-id",
-          description: "The unique identifier for the control domain",
+          description:
+            "The unique identifier for the control domain.  Audit Manager supports the control domains that are provided by Amazon Web Services Control Catalog. For information about how to find a list of available control domains, see  ListDomains  in the Amazon Web Services Control Catalog API Reference",
           args: {
             name: "string",
           },
@@ -1852,7 +1854,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--control-type",
           description:
-            "The type of control, such as a standard control or a custom control",
+            "A filter that narrows the list of controls to a specific type",
           args: {
             name: "string",
           },
@@ -1868,9 +1870,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "Represents the maximum number of results on a page or for an API request call",
+            "The maximum number of results on a page or for an API request call",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--control-catalog-id",
+          description:
+            "A filter that narrows the list of controls to a specific resource from the Amazon Web Services Control Catalog.  To use this parameter, specify the ARN of the Control Catalog resource. You can specify either a control domain, a control objective, or a common control. For information about how to find the ARNs for these resources, see  ListDomains ,  ListObjectives , and  ListCommonControls .  You can only filter by one Control Catalog resource at a time. Specifying multiple resource ARNs isn\u2019t currently supported. If you want to filter by more than one ARN, we recommend that you run the ListControls operation separately for each ARN.   Alternatively, specify UNCATEGORIZED to list controls that aren't mapped to a Control Catalog resource. For example, this operation might return a list of custom controls that don't belong to any control domain or control objective",
+          args: {
+            name: "string",
           },
         },
         {

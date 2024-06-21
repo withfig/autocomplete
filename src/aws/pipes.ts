@@ -9,6 +9,13 @@ const completionSpec: Fig.Spec = {
         "Create a pipe. Amazon EventBridge Pipes connect event sources to targets and reduces the need for specialized knowledge and integration code",
       options: [
         {
+          name: "--name",
+          description: "The name of the pipe",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--description",
           description: "A description of the pipe",
           args: {
@@ -18,43 +25,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "--desired-state",
           description: "The state the pipe should be in",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--enrichment",
-          description: "The ARN of the enrichment resource",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--enrichment-parameters",
-          description:
-            "The parameters required to set up enrichment on your pipe",
-          args: {
-            name: "structure",
-          },
-        },
-        {
-          name: "--log-configuration",
-          description: "The logging configuration settings for the pipe",
-          args: {
-            name: "structure",
-          },
-        },
-        {
-          name: "--name",
-          description: "The name of the pipe",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--role-arn",
-          description:
-            "The ARN of the role that allows the pipe to send data to the target",
           args: {
             name: "string",
           },
@@ -75,10 +45,18 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--tags",
-          description: "The list of key-value pairs to associate with the pipe",
+          name: "--enrichment",
+          description: "The ARN of the enrichment resource",
           args: {
-            name: "map",
+            name: "string",
+          },
+        },
+        {
+          name: "--enrichment-parameters",
+          description:
+            "The parameters required to set up enrichment on your pipe",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -92,6 +70,28 @@ const completionSpec: Fig.Spec = {
           name: "--target-parameters",
           description:
             "The parameters required to set up a target for your pipe. For more information about pipe target parameters, including how to use dynamic path parameters, see Target parameters in the Amazon EventBridge User Guide",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--role-arn",
+          description:
+            "The ARN of the role that allows the pipe to send data to the target",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description: "The list of key-value pairs to associate with the pipe",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--log-configuration",
+          description: "The logging configuration settings for the pipe",
           args: {
             name: "structure",
           },
@@ -183,8 +183,9 @@ const completionSpec: Fig.Spec = {
         "Get the pipes associated with this account. For more information about pipes, see Amazon EventBridge Pipes in the Amazon EventBridge User Guide",
       options: [
         {
-          name: "--current-state",
-          description: "The state the pipe is in",
+          name: "--name-prefix",
+          description:
+            'A value that will return a subset of the pipes associated with this account. For example, "NamePrefix": "ABC" will return all endpoints with "ABC" in the name',
           args: {
             name: "string",
           },
@@ -197,24 +198,8 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--limit",
-          description: "The maximum number of pipes to include in the response",
-          args: {
-            name: "integer",
-          },
-        },
-        {
-          name: "--name-prefix",
-          description:
-            'A value that will return a subset of the pipes associated with this account. For example, "NamePrefix": "ABC" will return all endpoints with "ABC" in the name',
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--next-token",
-          description:
-            "If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 24 hours. Using an expired pagination token will return an HTTP 400 InvalidToken error",
+          name: "--current-state",
+          description: "The state the pipe is in",
           args: {
             name: "string",
           },
@@ -231,6 +216,21 @@ const completionSpec: Fig.Spec = {
           description: "The prefix matching the pipe target",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 24 hours. Using an expired pagination token will return an HTTP 400 InvalidToken error",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--limit",
+          description: "The maximum number of pipes to include in the response",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -447,6 +447,13 @@ const completionSpec: Fig.Spec = {
         "Update an existing pipe. When you call UpdatePipe, EventBridge only the updates fields you have specified in the request; the rest remain unchanged. The exception to this is if you modify any Amazon Web Services-service specific fields in the SourceParameters, EnrichmentParameters, or TargetParameters objects. For example, DynamoDBStreamParameters or EventBridgeEventBusParameters. EventBridge updates the fields in these objects atomically as one and overrides existing values. This is by design, and means that if you don't specify an optional field in one of these Parameters objects, EventBridge sets that field to its system-default value during the update. For more information about pipes, see  Amazon EventBridge Pipes in the Amazon EventBridge User Guide",
       options: [
         {
+          name: "--name",
+          description: "The name of the pipe",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--description",
           description: "A description of the pipe",
           args: {
@@ -458,6 +465,14 @@ const completionSpec: Fig.Spec = {
           description: "The state the pipe should be in",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--source-parameters",
+          description:
+            "The parameters required to set up a source for your pipe",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -476,17 +491,18 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--log-configuration",
-          description: "The logging configuration settings for the pipe",
+          name: "--target",
+          description: "The ARN of the target resource",
           args: {
-            name: "structure",
+            name: "string",
           },
         },
         {
-          name: "--name",
-          description: "The name of the pipe",
+          name: "--target-parameters",
+          description:
+            "The parameters required to set up a target for your pipe. For more information about pipe target parameters, including how to use dynamic path parameters, see Target parameters in the Amazon EventBridge User Guide",
           args: {
-            name: "string",
+            name: "structure",
           },
         },
         {
@@ -498,24 +514,8 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--source-parameters",
-          description:
-            "The parameters required to set up a source for your pipe",
-          args: {
-            name: "structure",
-          },
-        },
-        {
-          name: "--target",
-          description: "The ARN of the target resource",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--target-parameters",
-          description:
-            "The parameters required to set up a target for your pipe. For more information about pipe target parameters, including how to use dynamic path parameters, see Target parameters in the Amazon EventBridge User Guide",
+          name: "--log-configuration",
+          description: "The logging configuration settings for the pipe",
           args: {
             name: "structure",
           },
@@ -541,5 +541,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

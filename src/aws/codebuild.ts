@@ -277,7 +277,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--fleet-service-role",
-          description: "The service role associated with the compute fleet",
+          description:
+            "The service role associated with the compute fleet. For more information, see  Allow a user to add a permission policy for a fleet service role in the CodeBuild User Guide",
           args: {
             name: "string",
           },
@@ -586,6 +587,24 @@ const completionSpec: Fig.Spec = {
           description: "Specifies the type of build this webhook will trigger",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--manual-creation",
+          description:
+            "If manualCreation is true, CodeBuild doesn't create a webhook in GitHub and instead returns payloadUrl and secret values for the webhook. The payloadUrl and secret values in the output can be used to manually create a webhook within GitHub.   manualCreation is only available for GitHub webhooks",
+        },
+        {
+          name: "--no-manual-creation",
+          description:
+            "If manualCreation is true, CodeBuild doesn't create a webhook in GitHub and instead returns payloadUrl and secret values for the webhook. The payloadUrl and secret values in the output can be used to manually create a webhook within GitHub.   manualCreation is only available for GitHub webhooks",
+        },
+        {
+          name: "--scope-configuration",
+          description:
+            "The scope configuration for global or organization webhooks.  Global or organization webhooks are only available for GitHub and Github Enterprise webhooks",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -2884,7 +2903,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--fleet-service-role",
-          description: "The service role associated with the compute fleet",
+          description:
+            "The service role associated with the compute fleet. For more information, see  Allow a user to add a permission policy for a fleet service role in the CodeBuild User Guide",
           args: {
             name: "string",
           },

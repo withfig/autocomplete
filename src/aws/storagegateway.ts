@@ -2184,7 +2184,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-maintenance-start-time",
       description:
-        "Returns your gateway's weekly maintenance start time including the day and time of the week. Note that values are in terms of the gateway's time zone",
+        "Returns your gateway's maintenance window schedule information, with values for monthly or weekly cadence, specific day and time to begin maintenance, and which types of updates to apply. Time values returned are for the gateway's time zone",
       options: [
         {
           name: "--gateway-arn",
@@ -4249,7 +4249,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-gateway-information",
       description:
-        "Updates a gateway's metadata, which includes the gateway's name and time zone. To specify which gateway to update, use the Amazon Resource Name (ARN) of the gateway in your request.  For gateways activated after September 2, 2015, the gateway's ARN contains the gateway ID rather than the gateway name. However, changing the name of the gateway has no effect on the gateway's ARN",
+        "Updates a gateway's metadata, which includes the gateway's name, time zone, and metadata cache size. To specify which gateway to update, use the Amazon Resource Name (ARN) of the gateway in your request.  For gateways activated after September 2, 2015, the gateway's ARN contains the gateway ID rather than the gateway name. However, changing the name of the gateway has no effect on the gateway's ARN",
       options: [
         {
           name: "--gateway-arn",
@@ -4283,7 +4283,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--gateway-capacity",
-          description: "Specifies the size of the gateway's metadata cache",
+          description:
+            "Specifies the size of the gateway's metadata cache. This setting impacts gateway performance and hardware recommendations. For more information, see Performance guidance for gateways with multiple file shares in the Amazon S3 File Gateway User Guide",
           args: {
             name: "string",
           },
@@ -4342,7 +4343,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-maintenance-start-time",
       description:
-        "Updates a gateway's weekly maintenance start time information, including day and time of the week. The maintenance time is the time in your gateway's time zone",
+        "Updates a gateway's maintenance window schedule, with settings for monthly or weekly cadence, specific day and time to begin maintenance, and which types of updates to apply. Time configuration uses the gateway's time zone. You can pass values for a complete maintenance schedule, or update policy, or both. Previous values will persist for whichever setting you choose not to modify. If an incomplete or invalid maintenance schedule is passed, the entire request will be rejected with an error and no changes will occur. A complete maintenance schedule must include values for both MinuteOfHour and HourOfDay, and either DayOfMonth or DayOfWeek.  We recommend keeping maintenance updates turned on, except in specific use cases where the brief disruptions caused by updating the gateway could critically impact your deployment",
       options: [
         {
           name: "--gateway-arn",
@@ -4371,7 +4372,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--day-of-week",
           description:
-            "The day of the week component of the maintenance start time week represented as an ordinal number from 0 to 6, where 0 represents Sunday and 6 Saturday",
+            "The day of the week component of the maintenance start time week represented as an ordinal number from 0 to 6, where 0 represents Sunday and 6 represents Saturday",
           args: {
             name: "integer",
           },
@@ -4379,9 +4380,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--day-of-month",
           description:
-            "The day of the month component of the maintenance start time represented as an ordinal number from 1 to 28, where 1 represents the first day of the month and 28 represents the last day of the month",
+            "The day of the month component of the maintenance start time represented as an ordinal number from 1 to 28, where 1 represents the first day of the month. It is not possible to set the maintenance schedule to start on days 29 through 31",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--software-update-preferences",
+          description:
+            "A set of variables indicating the software update preferences for the gateway. Includes AutomaticUpdatePolicy field with the following inputs:  ALL_VERSIONS - Enables regular gateway maintenance updates.  EMERGENCY_VERSIONS_ONLY - Disables regular gateway maintenance updates",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -4825,7 +4834,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-smb-security-strategy",
       description:
-        "Updates the SMB security strategy on a file gateway. This action is only supported in file gateways.  This API is called Security level in the User Guide. A higher security level can affect performance of the gateway",
+        "Updates the SMB security strategy level for an Amazon S3 file gateway. This action is only supported for Amazon S3 file gateways.  For information about configuring this setting using the Amazon Web Services console, see Setting a security level for your gateway in the Amazon S3 File Gateway User Guide. A higher security strategy level can affect performance of the gateway",
       options: [
         {
           name: "--gateway-arn",
@@ -4838,7 +4847,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--smb-security-strategy",
           description:
-            "Specifies the type of security strategy. ClientSpecified: if you use this option, requests are established based on what is negotiated by the client. This option is recommended when you want to maximize compatibility across different clients in your environment. Supported only in S3 File Gateway. MandatorySigning: if you use this option, file gateway only allows connections from SMBv2 or SMBv3 clients that have signing enabled. This option works with SMB clients on Microsoft Windows Vista, Windows Server 2008 or newer. MandatoryEncryption: if you use this option, file gateway only allows connections from SMBv3 clients that have encryption enabled. This option is highly recommended for environments that handle sensitive data. This option works with SMB clients on Microsoft Windows 8, Windows Server 2012 or newer",
+            "Specifies the type of security strategy.  ClientSpecified: If you choose this option, requests are established based on what is negotiated by the client. This option is recommended when you want to maximize compatibility across different clients in your environment. Supported only for S3 File Gateway.  MandatorySigning: If you choose this option, File Gateway only allows connections from SMBv2 or SMBv3 clients that have signing enabled. This option works with SMB clients on Microsoft Windows Vista, Windows Server 2008 or newer.  MandatoryEncryption: If you choose this option, File Gateway only allows connections from SMBv3 clients that have encryption enabled. This option is recommended for environments that handle sensitive data. This option works with SMB clients on Microsoft Windows 8, Windows Server 2012 or newer.  MandatoryEncryptionNoAes128: If you choose this option, File Gateway only allows connections from SMBv3 clients that use 256-bit AES encryption algorithms. 128-bit algorithms are not allowed. This option is recommended for environments that handle sensitive data. It works with SMB clients on Microsoft Windows 8, Windows Server 2012, or later",
           args: {
             name: "string",
           },

@@ -720,7 +720,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned nextToken value. Action execution history is retained for up to 12 months, based on action execution start times. Default value is 100.   Detailed execution history is available for executions run on or after February 21, 2019",
+            "The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned nextToken value. Action execution history is retained for up to 12 months, based on action execution start times. Default value is 100",
           args: {
             name: "integer",
           },
@@ -842,7 +842,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-pipeline-executions",
       description:
-        "Gets a summary of the most recent executions for a pipeline",
+        "Gets a summary of the most recent executions for a pipeline.  When applying the filter for pipeline executions that have succeeded in the stage, the operation returns all executions in the current pipeline version beginning on February 1, 2024",
       options: [
         {
           name: "--pipeline-name",

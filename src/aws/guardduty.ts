@@ -375,6 +375,68 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-malware-protection-plan",
+      description:
+        "Creates a new Malware Protection plan for the protected resource. When you create a Malware Protection plan, the Amazon Web Services service terms for GuardDuty Malware Protection apply. For more information, see Amazon Web Services service terms for GuardDuty Malware Protection",
+      options: [
+        {
+          name: "--client-token",
+          description: "The idempotency token for the create request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--role",
+          description:
+            "IAM role with permissions required to scan and add tags to the associated protected resource",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--protected-resource",
+          description:
+            "Information about the protected resource that is associated with the created Malware Protection plan. Presently, S3Bucket is the only supported protected resource",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--actions",
+          description:
+            "Information about whether the tags will be added to the S3 object after scanning",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--tags",
+          description: "Tags added to the Malware Protection plan resource",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-members",
       description:
         "Creates member accounts of the current Amazon Web Services account by specifying a list of Amazon Web Services account IDs. This step is a prerequisite for managing the associated member accounts either by invitation or through an organization. As a delegated administrator, using CreateMembers will enable GuardDuty in the added member accounts, with the exception of the organization delegated administrator account. A delegated administrator must enable GuardDuty prior to being added as a member. When you use CreateMembers as an Organizations delegated administrator, GuardDuty applies your organization's auto-enable settings to the member accounts in this request, irrespective of the accounts being new or existing members. For more information about the existing auto-enable settings for your organization, see DescribeOrganizationConfiguration. If you disassociate a member account that was added by invitation, the member account details obtained from this API, including the associated email addresses, will be retained. This is done so that the delegated administrator can invoke the InviteMembers API without the need to invoke the CreateMembers API again. To remove the details associated with a member account, the delegated administrator must invoke the DeleteMembers API.  When the member accounts added through Organizations are later disassociated, you (administrator) can't invite them by calling the InviteMembers API. You can create an association with these member accounts again only by calling the CreateMembers API",
@@ -737,6 +799,38 @@ const completionSpec: Fig.Spec = {
             "A list of account IDs of the Amazon Web Services accounts that sent invitations to the current member account that you want to delete invitations from",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-malware-protection-plan",
+      description:
+        "Deletes the Malware Protection plan ID associated with the Malware Protection plan resource. Use this API only when you no longer want to protect the resource associated with this Malware Protection plan ID",
+      options: [
+        {
+          name: "--malware-protection-plan-id",
+          description:
+            "A unique identifier associated with Malware Protection plan resource",
+          args: {
+            name: "string",
           },
         },
         {
@@ -1506,6 +1600,38 @@ const completionSpec: Fig.Spec = {
       description:
         "Returns the count of all GuardDuty membership invitations that were sent to the current member account except the currently accepted invitation",
       options: [
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-malware-protection-plan",
+      description:
+        "Retrieves the Malware Protection plan details associated with a Malware Protection plan ID",
+      options: [
+        {
+          name: "--malware-protection-plan-id",
+          description:
+            "A unique identifier associated with Malware Protection plan resource",
+          args: {
+            name: "string",
+          },
+        },
         {
           name: "--cli-input-json",
           description:
@@ -2346,6 +2472,38 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-malware-protection-plans",
+      description:
+        "Lists the Malware Protection plan IDs associated with the protected resources in your Amazon Web Services account",
+      options: [
+        {
+          name: "--next-token",
+          description:
+            "You can use this parameter when paginating results. Set the value of this parameter to null on your first call to the list action. For subsequent calls to the action, fill nextToken in the request with the value of NextToken from the previous response to continue listing data",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-members",
       description:
         "Lists details about all member accounts for the current GuardDuty administrator account",
@@ -3100,6 +3258,61 @@ const completionSpec: Fig.Spec = {
           name: "--no-activate",
           description:
             "The updated Boolean value that specifies whether the IPSet is active or not",
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-malware-protection-plan",
+      description: "Updates an existing Malware Protection plan resource",
+      options: [
+        {
+          name: "--malware-protection-plan-id",
+          description:
+            "A unique identifier associated with the Malware Protection plan",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--role",
+          description:
+            "IAM role with permissions required to scan and add tags to the associated protected resource",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--actions",
+          description:
+            "Information about whether the tags will be added to the S3 object after scanning",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--protected-resource",
+          description:
+            "Information about the protected resource that is associated with the created Malware Protection plan. Presently, S3Bucket is the only supported protected resource",
+          args: {
+            name: "structure",
+          },
         },
         {
           name: "--cli-input-json",

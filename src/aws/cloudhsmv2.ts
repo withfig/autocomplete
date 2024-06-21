@@ -64,7 +64,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--hsm-type",
           description:
-            "The type of HSM to use in the cluster. Currently the only allowed value is hsm1.medium",
+            "The type of HSM to use in the cluster. The allowed values are hsm1.medium and hsm2m.medium",
           args: {
             name: "string",
           },
@@ -90,6 +90,14 @@ const completionSpec: Fig.Spec = {
           description: "Tags to apply to the CloudHSM cluster during creation",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--mode",
+          description:
+            "The mode to use in the cluster. The allowed values are FIPS and NON_FIPS",
+          args: {
+            name: "string",
           },
         },
         {

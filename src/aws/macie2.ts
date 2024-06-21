@@ -82,6 +82,38 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "batch-update-automated-discovery-accounts",
+      description:
+        "Changes the status of automated sensitive data discovery for one or more accounts",
+      options: [
+        {
+          name: "--accounts",
+          description:
+            "An array of objects, one for each account to change the status of automated sensitive data discovery for. Each object specifies the Amazon Web Services account ID for an account and a new status for that account",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-allow-list",
       description: "Creates and defines the settings for an allow list",
       options: [
@@ -193,7 +225,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--job-type",
           description:
-            "The schedule for running the job. Valid values are: ONE_TIME - Run the job only once. If you specify this value, don't specify a value for the scheduleFrequency property. SCHEDULED - Run the job on a daily, weekly, or monthly basis. If you specify this value, use the scheduleFrequency property to define the recurrence pattern for the job",
+            "The schedule for running the job. Valid values are: ONE_TIME - Run the job only once. If you specify this value, don't specify a value for the scheduleFrequency property. SCHEDULED - Run the job on a daily, weekly, or monthly basis. If you specify this value, use the scheduleFrequency property to specify the recurrence pattern for the job",
           args: {
             name: "string",
           },
@@ -209,7 +241,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--managed-data-identifier-selector",
           description:
-            "The selection type to apply when determining which managed data identifiers the job uses to analyze data. Valid values are: ALL - Use all managed data identifiers. If you specify this value, don't specify any values for the managedDataIdentifierIds property. EXCLUDE - Use all managed data identifiers except the ones specified by the managedDataIdentifierIds property. INCLUDE - Use only the managed data identifiers specified by the managedDataIdentifierIds property. NONE - Don't use any managed data identifiers. If you specify this value, specify at least one value for the customDataIdentifierIds property and don't specify any values for the managedDataIdentifierIds property. RECOMMENDED (default) - Use the recommended set of managed data identifiers. If you specify this value, don't specify any values for the managedDataIdentifierIds property. If you don't specify a value for this property, the job uses the recommended set of managed data identifiers. If the job is a recurring job and you specify ALL or EXCLUDE, each job run automatically uses new managed data identifiers that are released. If you don't specify a value for this property or you specify RECOMMENDED for a recurring job, each job run automatically uses all the managed data identifiers that are in the recommended set when the run starts. For information about individual managed data identifiers or to determine which ones are in the recommended set, see Using managed data identifiers and Recommended managed data identifiers in the Amazon Macie User Guide",
+            "The selection type to apply when determining which managed data identifiers the job uses to analyze data. Valid values are: ALL - Use all managed data identifiers. If you specify this value, don't specify any values for the managedDataIdentifierIds property. EXCLUDE - Use all managed data identifiers except the ones specified by the managedDataIdentifierIds property. INCLUDE - Use only the managed data identifiers specified by the managedDataIdentifierIds property. NONE - Don't use any managed data identifiers. If you specify this value, specify at least one value for the customDataIdentifierIds property and don't specify any values for the managedDataIdentifierIds property. RECOMMENDED (default) - Use the recommended set of managed data identifiers. If you specify this value, don't specify any values for the managedDataIdentifierIds property. If you don't specify a value for this property, the job uses the recommended set of managed data identifiers. If the job is a recurring job and you specify ALL or EXCLUDE, each job run automatically uses new managed data identifiers that are released. If you don't specify a value for this property or you specify RECOMMENDED for a recurring job, each job run automatically uses all the managed data identifiers that are in the recommended set when the run starts. To learn about individual managed data identifiers or determine which ones are in the recommended set, see Using managed data identifiers or Recommended managed data identifiers in the Amazon Macie User Guide",
           args: {
             name: "string",
           },
@@ -1180,7 +1212,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-automated-discovery-configuration",
       description:
-        "Retrieves the configuration settings and status of automated sensitive data discovery for an account",
+        "Retrieves the configuration settings and status of automated sensitive data discovery for an organization or standalone account",
       options: [
         {
           name: "--cli-input-json",
@@ -1905,6 +1937,78 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-automated-discovery-accounts",
+      description:
+        "Retrieves the status of automated sensitive data discovery for one or more accounts",
+      options: [
+        {
+          name: "--account-ids",
+          description:
+            "The Amazon Web Services account ID for each account, for as many as 50 accounts. To retrieve the status for multiple accounts, append the accountIds parameter and argument for each account, separated by an ampersand (&). To retrieve the status for all the accounts in an organization, omit this parameter",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of items to include in each page of a paginated response",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The nextToken string that specifies which page of results to return in a paginated response",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-classification-jobs",
       description:
         "Retrieves a subset of information about one or more classification jobs",
@@ -2247,7 +2351,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-invitations",
       description:
-        "Retrieves information about the Amazon Macie membership invitations that were received by an account",
+        "Retrieves information about Amazon Macie membership invitations that were received by an account",
       options: [
         {
           name: "--max-results",
@@ -2495,7 +2599,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-resource-profile-artifacts",
       description:
-        "Retrieves information about objects that were selected from an S3 bucket for automated sensitive data discovery",
+        "Retrieves information about objects that Amazon Macie selected from an S3 bucket for automated sensitive data discovery",
       options: [
         {
           name: "--next-token",
@@ -2718,7 +2822,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-classification-export-configuration",
       description:
-        "Creates or updates the configuration settings for storing data classification results",
+        "Adds or updates the configuration settings for storing data classification results",
       options: [
         {
           name: "--configuration",
@@ -2907,7 +3011,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "test-custom-data-identifier",
-      description: "Tests a custom data identifier",
+      description: "Tests criteria for a custom data identifier",
       options: [
         {
           name: "--ignore-words",
@@ -3065,12 +3169,20 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-automated-discovery-configuration",
       description:
-        "Enables or disables automated sensitive data discovery for an account",
+        "Changes the configuration settings and status of automated sensitive data discovery for an organization or standalone account",
       options: [
+        {
+          name: "--auto-enable-organization-members",
+          description:
+            "Specifies whether to automatically enable automated sensitive data discovery for accounts in the organization. Valid values are: ALL (default), enable it for all existing accounts and new member accounts; NEW, enable it only for new member accounts; and, NONE, don't enable it for any accounts. If you specify NEW or NONE, automated sensitive data discovery continues to be enabled for any existing accounts that it's currently enabled for. To enable or disable it for individual member accounts, specify NEW or NONE, and then enable or disable it for each account by using the BatchUpdateAutomatedDiscoveryAccounts operation",
+          args: {
+            name: "string",
+          },
+        },
         {
           name: "--status",
           description:
-            "The new status of automated sensitive data discovery for the account. Valid values are: ENABLED, start or resume automated sensitive data discovery activities for the account; and, DISABLED, stop performing automated sensitive data discovery activities for the account. When you enable automated sensitive data discovery for the first time, Amazon Macie uses default configuration settings to determine which data sources to analyze and which managed data identifiers to use. To change these settings, use the UpdateClassificationScope and UpdateSensitivityInspectionTemplate operations, respectively. If you change the settings and subsequently disable the configuration, Amazon Macie retains your changes",
+            "The new status of automated sensitive data discovery for the organization or account. Valid values are: ENABLED, start or resume all automated sensitive data discovery activities; and, DISABLED, stop performing all automated sensitive data discovery activities. If you specify DISABLED for an administrator account, you also disable automated sensitive data discovery for all member accounts in the organization",
           args: {
             name: "string",
           },
@@ -3338,12 +3450,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--auto-enable",
           description:
-            "Specifies whether to enable Amazon Macie automatically for an account when the account is added to the organization in Organizations",
+            "Specifies whether to enable Amazon Macie automatically for accounts that are added to the organization in Organizations",
         },
         {
           name: "--no-auto-enable",
           description:
-            "Specifies whether to enable Amazon Macie automatically for an account when the account is added to the organization in Organizations",
+            "Specifies whether to enable Amazon Macie automatically for accounts that are added to the organization in Organizations",
         },
         {
           name: "--cli-input-json",
@@ -3498,7 +3610,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--excludes",
           description:
-            "The managed data identifiers to explicitly exclude (not use) when analyzing data. To exclude an allow list or custom data identifier that's currently included by the template, update the values for the SensitivityInspectionTemplateIncludes.allowListIds and SensitivityInspectionTemplateIncludes.customDataIdentifierIds properties, respectively",
+            "The managed data identifiers to explicitly exclude (not use) when performing automated sensitive data discovery. To exclude an allow list or custom data identifier that's currently included by the template, update the values for the SensitivityInspectionTemplateIncludes.allowListIds and SensitivityInspectionTemplateIncludes.customDataIdentifierIds properties, respectively",
           args: {
             name: "structure",
           },
@@ -3514,7 +3626,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--includes",
           description:
-            "The allow lists, custom data identifiers, and managed data identifiers to explicitly include (use) when analyzing data",
+            "The allow lists, custom data identifiers, and managed data identifiers to explicitly include (use) when performing automated sensitive data discovery",
           args: {
             name: "structure",
           },

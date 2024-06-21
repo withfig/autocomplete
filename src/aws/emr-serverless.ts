@@ -269,6 +269,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--attempt",
+          description:
+            "An optimal parameter that indicates the amount of attempts for the job. If not specified, this value defaults to the attempt of the latest job",
+          args: {
+            name: "integer",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -304,6 +312,14 @@ const completionSpec: Fig.Spec = {
           description: "The ID of the job run",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--attempt",
+          description:
+            "An optimal parameter that indicates the amount of attempts for the job. If not specified, this value defaults to the attempt of the latest job",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -349,6 +365,81 @@ const completionSpec: Fig.Spec = {
             "An optional filter for application states. Note that if this filter contains multiple states, the resulting list will be grouped by the state",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-job-run-attempts",
+      description: "Lists all attempt of a job run",
+      options: [
+        {
+          name: "--application-id",
+          description: "The ID of the application for which to list job runs",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--job-run-id",
+          description: "The ID of the job run to list",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description: "The token for the next set of job run attempt results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum number of job run attempts to list",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -442,6 +533,13 @@ const completionSpec: Fig.Spec = {
             "An optional filter for job run states. Note that if this filter contains multiple states, the resulting list will be grouped by the state",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--mode",
+          description: "The mode of the job runs to list",
+          args: {
+            name: "string",
           },
         },
         {
@@ -610,6 +708,20 @@ const completionSpec: Fig.Spec = {
             "The optional job run name. This doesn't have to be unique",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--mode",
+          description: "The mode of the job run when it starts",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--retry-policy",
+          description: "The retry policy when job run starts",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -875,5 +987,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

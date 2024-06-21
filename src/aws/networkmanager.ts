@@ -316,7 +316,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--core-network-address",
-          description: "A Connect peer core network address",
+          description:
+            "A Connect peer core network address. This only applies only when the protocol is GRE",
           args: {
             name: "string",
           },
@@ -330,7 +331,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--bgp-options",
-          description: "The Connect peer BGP options",
+          description:
+            "The Connect peer BGP options. This only applies only when the protocol is GRE",
           args: {
             name: "structure",
           },
@@ -358,7 +360,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--subnet-arn",
-          description: "The subnet ARN for the Connect peer",
+          description:
+            "The subnet ARN for the Connect peer. This only applies only when the protocol is NO_ENCAP",
           args: {
             name: "string",
           },
@@ -2484,7 +2487,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-type",
           description:
-            "The resource type. The following are the supported resource types for Direct Connect:    dxcon     dx-gateway     dx-vif    The following are the supported resource types for Network Manager:    connection     device     link     site    The following are the supported resource types for Amazon VPC:    customer-gateway     transit-gateway     transit-gateway-attachment     transit-gateway-connect-peer     transit-gateway-route-table     vpn-connection",
+            "The resource type. The following are the supported resource types for Direct Connect:    dxcon     dx-gateway     dx-vif    The following are the supported resource types for Network Manager:    attachment     connect-peer     connection     core-network     device     link     peering     site    The following are the supported resource types for Amazon VPC:    customer-gateway     transit-gateway     transit-gateway-attachment     transit-gateway-connect-peer     transit-gateway-route-table     vpn-connection",
           args: {
             name: "string",
           },
@@ -2589,7 +2592,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-type",
           description:
-            "The resource type. The following are the supported resource types for Direct Connect:    dxcon     dx-gateway     dx-vif    The following are the supported resource types for Network Manager:    connection     device     link     site    The following are the supported resource types for Amazon VPC:    customer-gateway     transit-gateway     transit-gateway-attachment     transit-gateway-connect-peer     transit-gateway-route-table     vpn-connection",
+            "The resource type. The following are the supported resource types for Direct Connect:    dxcon     dx-gateway     dx-vif    The following are the supported resource types for Network Manager:    attachment     connect-peer     connection     core-network     device     link     peering     site    The following are the supported resource types for Amazon VPC:    customer-gateway     transit-gateway     transit-gateway-attachment     transit-gateway-connect-peer     transit-gateway-route-table     vpn-connection",
           args: {
             name: "string",
           },
@@ -2701,7 +2704,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-type",
           description:
-            "The resource type. The following are the supported resource types for Direct Connect:    dxcon - The definition model is Connection.    dx-gateway - The definition model is DirectConnectGateway.    dx-vif - The definition model is VirtualInterface.   The following are the supported resource types for Network Manager:    connection - The definition model is Connection.    device - The definition model is Device.    link - The definition model is Link.    site - The definition model is Site.   The following are the supported resource types for Amazon VPC:    customer-gateway - The definition model is CustomerGateway.    transit-gateway - The definition model is TransitGateway.    transit-gateway-attachment - The definition model is TransitGatewayAttachment.    transit-gateway-connect-peer - The definition model is TransitGatewayConnectPeer.    transit-gateway-route-table - The definition model is TransitGatewayRouteTable.    vpn-connection - The definition model is VpnConnection",
+            "The resource type. The following are the supported resource types for Direct Connect:    dxcon     dx-gateway     dx-vif    The following are the supported resource types for Network Manager:    attachment     connect-peer     connection     core-network     device     link     peering     site    The following are the supported resource types for Amazon VPC:    customer-gateway     transit-gateway     transit-gateway-attachment     transit-gateway-connect-peer     transit-gateway-route-table     vpn-connection",
           args: {
             name: "string",
           },
@@ -2909,7 +2912,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-type",
           description:
-            "The resource type. The following are the supported resource types for Direct Connect:    dxcon     dx-gateway     dx-vif    The following are the supported resource types for Network Manager:    connection     device     link     site    The following are the supported resource types for Amazon VPC:    customer-gateway     transit-gateway     transit-gateway-attachment     transit-gateway-connect-peer     transit-gateway-route-table     vpn-connection",
+            "The resource type. The following are the supported resource types:    connect-peer     transit-gateway-connect-peer     vpn-connection",
           args: {
             name: "string",
           },

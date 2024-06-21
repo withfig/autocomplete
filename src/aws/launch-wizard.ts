@@ -36,7 +36,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--specifications",
           description:
-            "The settings specified for the deployment. For more information on the specifications required for creating a deployment, see Workload specifications",
+            "The settings specified for the deployment. These settings define how to deploy and configure your resources created by the deployment. For more information about the specifications required for creating a deployment for a SAP workload, see SAP deployment specifications. To retrieve the specifications required to create a deployment for other workloads, use the  GetWorkloadDeploymentPattern  operation",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--tags",
+          description: "The tags to add to the deployment",
           args: {
             name: "map",
           },
@@ -44,7 +51,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--workload-name",
           description:
-            "The name of the workload. You can use the  ListWorkloadDeploymentPatterns  operation to discover supported values for this parameter",
+            "The name of the workload. You can use the  ListWorkloads  operation to discover supported values for this parameter",
           args: {
             name: "string",
           },
@@ -159,6 +166,44 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-workload-deployment-pattern",
+      description:
+        "Returns details for a given workload and deployment pattern, including the available specifications. You can use the ListWorkloads operation to discover the available workload names and the ListWorkloadDeploymentPatterns operation to discover the available deployment pattern names of a given workload",
+      options: [
+        {
+          name: "--deployment-pattern-name",
+          description: "The name of the deployment pattern",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--workload-name",
+          description: "The name of the workload",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-deployment-events",
       description: "Lists the events of a deployment",
       options: [
@@ -235,7 +280,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--filters",
           description:
-            "Filters to scope the results. The following filters are supported:    WORKLOAD_NAME     DEPLOYMENT_STATUS",
+            "Filters to scope the results. The following filters are supported:    WORKLOAD_NAME - The name used in deployments.    DEPLOYMENT_STATUS - COMPLETED | CREATING | DELETE_IN_PROGRESS | DELETE_INITIATING | DELETE_FAILED | DELETED | FAILED | IN_PROGRESS | VALIDATING",
           args: {
             name: "list",
           },
@@ -300,8 +345,39 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-tags-for-resource",
+      description: "Lists the tags associated with a specified resource",
+      options: [
+        {
+          name: "--resource-arn",
+          description: "The Amazon Resource Name (ARN) of the resource",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-workload-deployment-patterns",
-      description: "Lists the workload deployment patterns",
+      description:
+        "Lists the workload deployment patterns for a given workload name. You can use the ListWorkloads operation to discover the available workload names",
       options: [
         {
           name: "--max-results",
@@ -371,7 +447,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-workloads",
-      description: "Lists the workloads",
+      description:
+        "Lists the available workload names. You can use the ListWorkloadDeploymentPatterns operation to discover the available deployment patterns for a given workload",
       options: [
         {
           name: "--max-results",
@@ -432,7 +509,80 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "tag-resource",
+      description: "Adds the specified tags to the given resource",
+      options: [
+        {
+          name: "--resource-arn",
+          description: "The Amazon Resource Name (ARN) of the resource",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description: "One or more tags to attach to the resource",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "untag-resource",
+      description: "Removes the specified tags from the given resource",
+      options: [
+        {
+          name: "--resource-arn",
+          description: "The Amazon Resource Name (ARN) of the resource",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tag-keys",
+          description: "Keys identifying the tags to remove",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
   ],
 };
-
 export default completionSpec;

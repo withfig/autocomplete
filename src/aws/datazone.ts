@@ -120,6 +120,51 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "associate-environment-role",
+      description: "Associates the environment role in Amazon DataZone",
+      options: [
+        {
+          name: "--domain-identifier",
+          description:
+            "The ID of the Amazon DataZone domain in which the environment role is associated",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--environment-identifier",
+          description: "The ID of the Amazon DataZone environment",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--environment-role-arn",
+          description: "The ARN of the environment role",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "cancel-metadata-generation-run",
       description: "Cancels the metadata generation run",
       options: [
@@ -671,6 +716,30 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--environment-account-identifier",
+          description:
+            "The ID of the account in which the environment is being created",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--environment-account-region",
+          description:
+            "The region of the account in which the environment is being created",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--environment-blueprint-identifier",
+          description:
+            "The ID of the blueprint with which the environment is being created",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--environment-profile-identifier",
           description:
             "The identifier of the environment profile that is used to create this Amazon DataZone environment",
@@ -707,6 +776,68 @@ const completionSpec: Fig.Spec = {
             "The user parameters of this Amazon DataZone environment",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-environment-action",
+      description:
+        "Creates an action for the environment, for example, creates a console link for an analytics tool that is available in this environment",
+      options: [
+        {
+          name: "--description",
+          description:
+            "The description of the environment action that is being created in the environment",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--domain-identifier",
+          description:
+            "The ID of the Amazon DataZone domain in which the environment action is created",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--environment-identifier",
+          description:
+            "The ID of the environment in which the environment action is created",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--name",
+          description: "The name of the environment action",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--parameters",
+          description: "The parameters of the environment action",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -1642,6 +1773,16 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--retain-permissions-on-revoke-failure",
+          description:
+            "Specifies that the granted permissions are retained in case of a self-subscribe functionality failure for a data source",
+        },
+        {
+          name: "--no-retain-permissions-on-revoke-failure",
+          description:
+            "Specifies that the granted permissions are retained in case of a self-subscribe functionality failure for a data source",
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -1725,6 +1866,53 @@ const completionSpec: Fig.Spec = {
           name: "--identifier",
           description:
             "The identifier of the environment that is to be deleted",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-environment-action",
+      description:
+        "Deletes an action for the environment, for example, deletes a console link for an analytics tool that is available in this environment",
+      options: [
+        {
+          name: "--domain-identifier",
+          description:
+            "The ID of the Amazon DataZone domain in which an environment action is deleted",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--environment-identifier",
+          description:
+            "The ID of the environment where an environment action is deleted",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--identifier",
+          description: "The ID of the environment action that is deleted",
           args: {
             name: "string",
           },
@@ -2257,6 +2445,51 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "disassociate-environment-role",
+      description: "Disassociates the environment role in Amazon DataZone",
+      options: [
+        {
+          name: "--domain-identifier",
+          description:
+            "The ID of the Amazon DataZone domain in which an environment role is disassociated",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--environment-identifier",
+          description: "The ID of the environment",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--environment-role-arn",
+          description: "The ARN of the environment role",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-asset",
       description: "Gets an Amazon DataZone asset",
       options: [
@@ -2467,6 +2700,51 @@ const completionSpec: Fig.Spec = {
         {
           name: "--identifier",
           description: "The ID of the Amazon DataZone environment",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-environment-action",
+      description: "Gets the specified environment action",
+      options: [
+        {
+          name: "--domain-identifier",
+          description:
+            "The ID of the Amazon DataZone domain in which the GetEnvironmentAction API is invoked",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--environment-identifier",
+          description: "The environment ID of the environment action",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--identifier",
+          description: "The ID of the environment action",
           args: {
             name: "string",
           },
@@ -3562,6 +3840,85 @@ const completionSpec: Fig.Spec = {
         {
           name: "--status",
           description: "The status of the data source",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-environment-actions",
+      description: "Lists existing environment actions",
+      options: [
+        {
+          name: "--domain-identifier",
+          description:
+            "The ID of the Amazon DataZone domain in which the environment actions are listed",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--environment-identifier",
+          description:
+            "The ID of the envrironment whose environment actions are listed",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of environment actions to return in a single call to ListEnvironmentActions. When the number of environment actions to be listed is greater than the value of MaxResults, the response contains a NextToken value that you can use in a subsequent call to ListEnvironmentActions to list the next set of environment actions",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "When the number of environment actions is greater than the default value for the MaxResults parameter, or if you explicitly specify a value for MaxResults that is less than the number of environment actions, the response includes a pagination token named NextToken. You can specify this NextToken value in a subsequent call to ListEnvironmentActions to list the next set of environment actions",
           args: {
             name: "string",
           },
@@ -6034,6 +6391,16 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--retain-permissions-on-revoke-failure",
+          description:
+            "Specifies that the granted permissions are retained in case of a self-subscribe functionality failure for a data source",
+        },
+        {
+          name: "--no-retain-permissions-on-revoke-failure",
+          description:
+            "Specifies that the granted permissions are retained in case of a self-subscribe functionality failure for a data source",
+        },
+        {
           name: "--schedule",
           description:
             "The schedule to be updated as part of the UpdateDataSource action",
@@ -6173,6 +6540,71 @@ const completionSpec: Fig.Spec = {
             "The name to be updated as part of the UpdateEnvironment action",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-environment-action",
+      description: "Updates an environment action",
+      options: [
+        {
+          name: "--description",
+          description: "The description of the environment action",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--domain-identifier",
+          description: "The domain ID of the environment action",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--environment-identifier",
+          description: "The environment ID of the environment action",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--identifier",
+          description: "The ID of the environment action",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--name",
+          description: "The name of the environment action",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--parameters",
+          description: "The parameters of the environment action",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -6808,5 +7240,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

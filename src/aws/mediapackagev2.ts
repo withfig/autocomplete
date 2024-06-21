@@ -33,6 +33,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--input-type",
+          description:
+            "The input type will be an immutable field which will be used to define whether the channel will allow CMAF ingest or HLS ingest. If unprovided, it will default to HLS to preserve current behavior. The allowed values are:    HLS - The HLS streaming specification (which defines M3U8 manifests and TS segments).    CMAF - The DASH-IF CMAF Ingest specification (which defines CMAF segments with optional DASH manifests)",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--description",
           description:
             "Enter any descriptive text that helps you to identify the channel",
@@ -211,6 +219,13 @@ const completionSpec: Fig.Spec = {
           description: "A DASH manifest configuration",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--force-endpoint-error-configuration",
+          description: "The failover settings for the endpoint",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -1268,6 +1283,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--force-endpoint-error-configuration",
+          description: "The failover settings for the endpoint",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--e-tag",
           description:
             "The expected current Entity Tag (ETag) for the resource. If the specified ETag does not match the resource's current entity tag, the update request will be rejected",
@@ -1296,5 +1318,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;
