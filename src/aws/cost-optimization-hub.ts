@@ -64,13 +64,6 @@ const completionSpec: Fig.Spec = {
         "Retrieves the enrollment status for an account. It can also return the list of accounts that are enrolled under the organization",
       options: [
         {
-          name: "--account-id",
-          description: "The account ID of a member account in the organization",
-          args: {
-            name: "string",
-          },
-        },
-        {
           name: "--include-organization-info",
           description:
             "Indicates whether to return the enrollment status for the organization",
@@ -81,11 +74,10 @@ const completionSpec: Fig.Spec = {
             "Indicates whether to return the enrollment status for the organization",
         },
         {
-          name: "--max-results",
-          description:
-            "The maximum number of objects that are returned for the request",
+          name: "--account-id",
+          description: "The account ID of a member account in the organization",
           args: {
-            name: "integer",
+            name: "string",
           },
         },
         {
@@ -93,6 +85,14 @@ const completionSpec: Fig.Spec = {
           description: "The token to retrieve the next set of results",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of objects that are returned for the request",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -229,6 +229,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--order-by",
+          description: "The ordering of recommendations by a dimension",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--include-all-recommendations",
           description:
             "List of all recommendations for a resource, or a single recommendation if de-duped by resourceId",
@@ -251,13 +258,6 @@ const completionSpec: Fig.Spec = {
           description: "The token to retrieve the next set of results",
           args: {
             name: "string",
-          },
-        },
-        {
-          name: "--order-by",
-          description: "The ordering of recommendations by a dimension",
-          args: {
-            name: "structure",
           },
         },
         {
@@ -309,6 +309,13 @@ const completionSpec: Fig.Spec = {
         "Updates the enrollment (opt in and opt out) status of an account to the Cost Optimization Hub service. If the account is a management account of an organization, this action can also be used to enroll member accounts of the organization. You must have the appropriate permissions to opt in to Cost Optimization Hub and to view its recommendations. When you opt in, Cost Optimization Hub automatically creates a service-linked role in your account to access its data",
       options: [
         {
+          name: "--status",
+          description: "Sets the account status",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--include-member-accounts",
           description:
             "Indicates whether to enroll member accounts of the organization if the account is the management account",
@@ -317,13 +324,6 @@ const completionSpec: Fig.Spec = {
           name: "--no-include-member-accounts",
           description:
             "Indicates whether to enroll member accounts of the organization if the account is the management account",
-        },
-        {
-          name: "--status",
-          description: "Sets the account status",
-          args: {
-            name: "string",
-          },
         },
         {
           name: "--cli-input-json",
@@ -350,16 +350,16 @@ const completionSpec: Fig.Spec = {
         "Updates a set of preferences for an account in order to add account-specific preferences into the service. These preferences impact how the savings associated with recommendations are presented",
       options: [
         {
-          name: "--member-account-discount-visibility",
-          description:
-            'Sets the "member account discount visibility" preference',
+          name: "--savings-estimation-mode",
+          description: 'Sets the "savings estimation mode" preference',
           args: {
             name: "string",
           },
         },
         {
-          name: "--savings-estimation-mode",
-          description: 'Sets the "savings estimation mode" preference',
+          name: "--member-account-discount-visibility",
+          description:
+            'Sets the "member account discount visibility" preference',
           args: {
             name: "string",
           },
@@ -385,5 +385,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

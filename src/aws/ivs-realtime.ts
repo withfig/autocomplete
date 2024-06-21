@@ -15,19 +15,19 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--tags",
-          description:
-            'Tags attached to the resource. Array of maps, each of the form string:string (key:value). See Tagging AWS Resources for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented there',
-          args: {
-            name: "map",
-          },
-        },
-        {
           name: "--video",
           description:
             "Video configuration. Default: video resolution 1280x720, bitrate 2500 kbps, 30 fps",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            'Tags attached to the resource. Array of maps, each of the form string:string (key:value). See Tagging AWS Resources for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented there',
+          args: {
+            name: "map",
           },
         },
         {
@@ -55,6 +55,29 @@ const completionSpec: Fig.Spec = {
         "Creates an additional token for a specified stage. This can be done after stage creation or when tokens expire. Tokens always are scoped to the stage for which they are created. Encryption keys are owned by Amazon IVS and never used directly by your application",
       options: [
         {
+          name: "--stage-arn",
+          description: "ARN of the stage to which this token is scoped",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--duration",
+          description:
+            "Duration (in minutes), after which the token expires. Default: 720 (12 hours)",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--user-id",
+          description:
+            "Name that can be specified to help identify the token. This can be any UTF-8 encoded text. This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--attributes",
           description:
             "Application-provided attributes to encode into the token and attach to a stage. Map keys and values can contain UTF-8 encoded text. The maximum length of this field is 1 KB total. This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information",
@@ -68,29 +91,6 @@ const completionSpec: Fig.Spec = {
             "Set of capabilities that the user is allowed to perform in the stage. Default: PUBLISH, SUBSCRIBE",
           args: {
             name: "list",
-          },
-        },
-        {
-          name: "--duration",
-          description:
-            "Duration (in minutes), after which the token expires. Default: 720 (12 hours)",
-          args: {
-            name: "integer",
-          },
-        },
-        {
-          name: "--stage-arn",
-          description: "ARN of the stage to which this token is scoped",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--user-id",
-          description:
-            "Name that can be specified to help identify the token. This can be any UTF-8 encoded text. This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information",
-          args: {
-            name: "string",
           },
         },
         {
@@ -138,6 +138,14 @@ const completionSpec: Fig.Spec = {
             'Tags attached to the resource. Array of maps, each of the form string:string (key:value). See Tagging AWS Resources for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented there',
           args: {
             name: "map",
+          },
+        },
+        {
+          name: "--auto-participant-recording-configuration",
+          description:
+            "Auto participant recording configuration object attached to the stage",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -306,6 +314,13 @@ const completionSpec: Fig.Spec = {
         "Disconnects a specified participant and revokes the participant permanently from a specified stage",
       options: [
         {
+          name: "--stage-arn",
+          description: "ARN of the stage to which the participant is attached",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--participant-id",
           description:
             "Identifier of the participant to be disconnected. This is assigned by IVS and returned by CreateParticipantToken",
@@ -317,13 +332,6 @@ const completionSpec: Fig.Spec = {
           name: "--reason",
           description:
             "Description of why this participant is being disconnected",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--stage-arn",
-          description: "ARN of the stage to which the participant is attached",
           args: {
             name: "string",
           },
@@ -413,9 +421,8 @@ const completionSpec: Fig.Spec = {
       description: "Gets information about the specified participant token",
       options: [
         {
-          name: "--participant-id",
-          description:
-            "Unique identifier for the participant. This is assigned by IVS and returned by CreateParticipantToken",
+          name: "--stage-arn",
+          description: "Stage ARN",
           args: {
             name: "string",
           },
@@ -428,8 +435,9 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--stage-arn",
-          description: "Stage ARN",
+          name: "--participant-id",
+          description:
+            "Unique identifier for the participant. This is assigned by IVS and returned by CreateParticipantToken",
           args: {
             name: "string",
           },
@@ -489,16 +497,16 @@ const completionSpec: Fig.Spec = {
       description: "Gets information for the specified stage session",
       options: [
         {
-          name: "--session-id",
-          description: "ID of a session within the stage",
+          name: "--stage-arn",
+          description:
+            "ARN of the stage for which the information is to be retrieved",
           args: {
             name: "string",
           },
         },
         {
-          name: "--stage-arn",
-          description:
-            "ARN of the stage for which the information is to be retrieved",
+          name: "--session-id",
+          description: "ID of a session within the stage",
           args: {
             name: "string",
           },
@@ -558,6 +566,14 @@ const completionSpec: Fig.Spec = {
         "Gets summary information about all Compositions in your account, in the AWS region where the API request is processed",
       options: [
         {
+          name: "--filter-by-stage-arn",
+          description:
+            "Filters the Composition list to match the specified Stage ARN",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--filter-by-encoder-configuration-arn",
           description:
             "Filters the Composition list to match the specified EncoderConfiguration attached to at least one of its output",
@@ -566,9 +582,9 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--filter-by-stage-arn",
+          name: "--next-token",
           description:
-            "Filters the Composition list to match the specified Stage ARN",
+            "The first Composition to retrieve. This is used for pagination; see the nextToken response field",
           args: {
             name: "string",
           },
@@ -578,14 +594,6 @@ const completionSpec: Fig.Spec = {
           description: "Maximum number of results to return. Default: 100",
           args: {
             name: "integer",
-          },
-        },
-        {
-          name: "--next-token",
-          description:
-            "The first Composition to retrieve. This is used for pagination; see the nextToken response field",
-          args: {
-            name: "string",
           },
         },
         {
@@ -613,18 +621,18 @@ const completionSpec: Fig.Spec = {
         "Gets summary information about all EncoderConfigurations in your account, in the AWS region where the API request is processed",
       options: [
         {
-          name: "--max-results",
-          description: "Maximum number of results to return. Default: 100",
-          args: {
-            name: "integer",
-          },
-        },
-        {
           name: "--next-token",
           description:
             "The first encoder configuration to retrieve. This is used for pagination; see the nextToken response field",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "Maximum number of results to return. Default: 100",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -652,16 +660,15 @@ const completionSpec: Fig.Spec = {
         "Lists events for a specified participant that occurred during a specified stage session",
       options: [
         {
-          name: "--max-results",
-          description: "Maximum number of results to return. Default: 50",
+          name: "--stage-arn",
+          description: "Stage ARN",
           args: {
-            name: "integer",
+            name: "string",
           },
         },
         {
-          name: "--next-token",
-          description:
-            "The first participant event to retrieve. This is used for pagination; see the nextToken response field",
+          name: "--session-id",
+          description: "ID of a session within the stage",
           args: {
             name: "string",
           },
@@ -675,17 +682,18 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--session-id",
-          description: "ID of a session within the stage",
+          name: "--next-token",
+          description:
+            "The first participant event to retrieve. This is used for pagination; see the nextToken response field",
           args: {
             name: "string",
           },
         },
         {
-          name: "--stage-arn",
-          description: "Stage ARN",
+          name: "--max-results",
+          description: "Maximum number of results to return. Default: 50",
           args: {
-            name: "string",
+            name: "integer",
           },
         },
         {
@@ -712,42 +720,8 @@ const completionSpec: Fig.Spec = {
       description: "Lists all participants in a specified stage session",
       options: [
         {
-          name: "--filter-by-published",
-          description:
-            "Filters the response list to only show participants who published during the stage session. Only one of filterByUserId, filterByPublished, or filterByState can be provided per request",
-        },
-        {
-          name: "--no-filter-by-published",
-          description:
-            "Filters the response list to only show participants who published during the stage session. Only one of filterByUserId, filterByPublished, or filterByState can be provided per request",
-        },
-        {
-          name: "--filter-by-state",
-          description:
-            "Filters the response list to only show participants in the specified state. Only one of filterByUserId, filterByPublished, or filterByState can be provided per request",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--filter-by-user-id",
-          description:
-            "Filters the response list to match the specified user ID. Only one of filterByUserId, filterByPublished, or filterByState can be provided per request. A userId is a customer-assigned name to help identify the token; this can be used to link a participant to a user in the customer\u2019s own systems",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--max-results",
-          description: "Maximum number of results to return. Default: 50",
-          args: {
-            name: "integer",
-          },
-        },
-        {
-          name: "--next-token",
-          description:
-            "The first participant to retrieve. This is used for pagination; see the nextToken response field",
+          name: "--stage-arn",
+          description: "Stage ARN",
           args: {
             name: "string",
           },
@@ -760,8 +734,50 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--stage-arn",
-          description: "Stage ARN",
+          name: "--filter-by-user-id",
+          description:
+            "Filters the response list to match the specified user ID. Only one of filterByUserId, filterByPublished, filterByState, or filterByRecordingState can be provided per request. A userId is a customer-assigned name to help identify the token; this can be used to link a participant to a user in the customer\u2019s own systems",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--filter-by-published",
+          description:
+            "Filters the response list to only show participants who published during the stage session. Only one of filterByUserId, filterByPublished, filterByState, or filterByRecordingState can be provided per request",
+        },
+        {
+          name: "--no-filter-by-published",
+          description:
+            "Filters the response list to only show participants who published during the stage session. Only one of filterByUserId, filterByPublished, filterByState, or filterByRecordingState can be provided per request",
+        },
+        {
+          name: "--filter-by-state",
+          description:
+            "Filters the response list to only show participants in the specified state. Only one of filterByUserId, filterByPublished, filterByState, or filterByRecordingState can be provided per request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The first participant to retrieve. This is used for pagination; see the nextToken response field",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "Maximum number of results to return. Default: 50",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--filter-by-recording-state",
+          description:
+            "Filters the response list to only show participants with the specified recording state. Only one of filterByUserId, filterByPublished, filterByState, or filterByRecordingState can be provided per request",
           args: {
             name: "string",
           },
@@ -790,10 +806,10 @@ const completionSpec: Fig.Spec = {
       description: "Gets all sessions for a specified stage",
       options: [
         {
-          name: "--max-results",
-          description: "Maximum number of results to return. Default: 50",
+          name: "--stage-arn",
+          description: "Stage ARN",
           args: {
-            name: "integer",
+            name: "string",
           },
         },
         {
@@ -805,10 +821,10 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--stage-arn",
-          description: "Stage ARN",
+          name: "--max-results",
+          description: "Maximum number of results to return. Default: 50",
           args: {
-            name: "string",
+            name: "integer",
           },
         },
         {
@@ -836,18 +852,18 @@ const completionSpec: Fig.Spec = {
         "Gets summary information about all stages in your account, in the AWS region where the API request is processed",
       options: [
         {
-          name: "--max-results",
-          description: "Maximum number of results to return. Default: 50",
-          args: {
-            name: "integer",
-          },
-        },
-        {
           name: "--next-token",
           description:
             "The first stage to retrieve. This is used for pagination; see the nextToken response field",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "Maximum number of results to return. Default: 50",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -875,19 +891,19 @@ const completionSpec: Fig.Spec = {
         "Gets summary information about all storage configurations in your account, in the AWS region where the API request is processed",
       options: [
         {
-          name: "--max-results",
-          description:
-            "Maximum number of storage configurations to return. Default: your service quota or 100, whichever is smaller",
-          args: {
-            name: "integer",
-          },
-        },
-        {
           name: "--next-token",
           description:
             "The first storage configuration to retrieve. This is used for pagination; see the nextToken response field",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "Maximum number of storage configurations to return. Default: your service quota or 100, whichever is smaller",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -946,10 +962,10 @@ const completionSpec: Fig.Spec = {
         "Starts a Composition from a stage based on the configuration provided in the request. A Composition is an ephemeral resource that exists after this endpoint returns successfully. Composition stops and the resource is deleted:   When StopComposition is called.   After a 1-minute timeout, when all participants are disconnected from the stage.   After a 1-minute timeout, if there are no participants in the stage when StartComposition is called.   When broadcasting to the IVS channel fails and all retries are exhausted.   When broadcasting is disconnected and all attempts to reconnect are exhausted",
       options: [
         {
-          name: "--destinations",
-          description: "Array of destination configuration",
+          name: "--stage-arn",
+          description: "ARN of the stage to be used for compositing",
           args: {
-            name: "list",
+            name: "string",
           },
         },
         {
@@ -967,10 +983,10 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--stage-arn",
-          description: "ARN of the stage to be used for compositing",
+          name: "--destinations",
+          description: "Array of destination configuration",
           args: {
-            name: "string",
+            name: "list",
           },
         },
         {
@@ -1129,6 +1145,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--auto-participant-recording-configuration",
+          description:
+            "Auto-participant-recording configuration object to attach to the stage. Auto-participant-recording configuration cannot be updated while recording is active",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -1149,5 +1173,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

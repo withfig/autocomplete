@@ -514,7 +514,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-backend-environment",
       description:
-        "Creates a new backend environment for an Amplify app.  This API is available only to Amplify Gen 1 applications where the backend is created using Amplify Studio or the Amplify command line interface (CLI). This API isn\u2019t available to applications created using the Amplify Gen 2 public preview. When you deploy an application with Amplify Gen 2, you provision the app's backend infrastructure using Typescript code",
+        "Creates a new backend environment for an Amplify app.  This API is available only to Amplify Gen 1 applications where the backend is created using Amplify Studio or the Amplify command line interface (CLI). This API isn\u2019t available to Amplify Gen 2 applications. When you deploy an application with Amplify Gen 2, you provision the app's backend infrastructure using Typescript code",
       options: [
         {
           name: "--app-id",
@@ -708,7 +708,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--backend-environment-arn",
           description:
-            "The Amazon Resource Name (ARN) for a backend environment that is part of an Amplify app",
+            "The Amazon Resource Name (ARN) for a backend environment that is part of a Gen 1 Amplify app.  This field is available to Amplify Gen 1 apps only where the backend is created using Amplify Studio or the Amplify command line interface (CLI)",
           args: {
             name: "string",
             generators: generators.listEnvironmentArns,
@@ -717,7 +717,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--backend",
           description:
-            "The backend for a Branch of an Amplify app. Use for a backend created from an CloudFormation stack",
+            "The backend for a Branch of an Amplify app. Use for a backend created from an CloudFormation stack. This field is available to Amplify Gen 2 apps only. When you deploy an application with Amplify Gen 2, you provision the app's backend infrastructure using Typescript code",
           args: {
             name: "structure",
           },
@@ -957,7 +957,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-backend-environment",
       description:
-        "Deletes a backend environment for an Amplify app.  This API is available only to Amplify Gen 1 applications where the backend was created using Amplify Studio or the Amplify command line interface (CLI). This API isn\u2019t available to applications created using the Amplify Gen 2 public preview. When you deploy an application with Amplify Gen 2, you provision the app's backend infrastructure using Typescript code",
+        "Deletes a backend environment for an Amplify app.  This API is available only to Amplify Gen 1 applications where the backend is created using Amplify Studio or the Amplify command line interface (CLI). This API isn\u2019t available to Amplify Gen 2 applications. When you deploy an application with Amplify Gen 2, you provision the app's backend infrastructure using Typescript code",
       options: [
         {
           name: "--app-id",
@@ -1279,7 +1279,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-backend-environment",
       description:
-        "Returns a backend environment for an Amplify app.  This API is available only to Amplify Gen 1 applications where the backend was created using Amplify Studio or the Amplify command line interface (CLI). This API isn\u2019t available to applications created using the Amplify Gen 2 public preview. When you deploy an application with Amplify Gen 2, you provision the app's backend infrastructure using Typescript code",
+        "Returns a backend environment for an Amplify app.  This API is available only to Amplify Gen 1 applications where the backend is created using Amplify Studio or the Amplify command line interface (CLI). This API isn\u2019t available to Amplify Gen 2 applications. When you deploy an application with Amplify Gen 2, you provision the app's backend infrastructure using Typescript code",
       options: [
         {
           name: "--app-id",
@@ -1610,7 +1610,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-backend-environments",
       description:
-        "Lists the backend environments for an Amplify app.  This API is available only to Amplify Gen 1 applications where the backend was created using Amplify Studio or the Amplify command line interface (CLI). This API isn\u2019t available to applications created using the Amplify Gen 2 public preview. When you deploy an application with Amplify Gen 2, you provision the app's backend infrastructure using Typescript code",
+        "Lists the backend environments for an Amplify app.  This API is available only to Amplify Gen 1 applications where the backend is created using Amplify Studio or the Amplify command line interface (CLI). This API isn\u2019t available to Amplify Gen 2 applications. When you deploy an application with Amplify Gen 2, you provision the app's backend infrastructure using Typescript code",
       options: [
         {
           name: "--app-id",
@@ -2558,7 +2558,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--backend-environment-arn",
           description:
-            "The Amazon Resource Name (ARN) for a backend environment that is part of an Amplify app",
+            "The Amazon Resource Name (ARN) for a backend environment that is part of a Gen 1 Amplify app.  This field is available to Amplify Gen 1 apps only where the backend is created using Amplify Studio or the Amplify command line interface (CLI)",
           args: {
             name: "string",
             generators: generators.listEnvironmentArns,
@@ -2567,7 +2567,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--backend",
           description:
-            "The backend for a Branch of an Amplify app. Use for a backend created from an CloudFormation stack",
+            "The backend for a Branch of an Amplify app. Use for a backend created from an CloudFormation stack. This field is available to Amplify Gen 2 apps only. When you deploy an application with Amplify Gen 2, you provision the app's backend infrastructure using Typescript code",
           args: {
             name: "structure",
           },

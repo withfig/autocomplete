@@ -3330,6 +3330,48 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "start-live-tail",
+      description:
+        "Starts a Live Tail streaming session for one or more log groups. A Live Tail session provides a near real-time streaming of log events as they are ingested into selected log groups. A session can go on for a maximum of 3 hours.\n\nYou must have logs:StartLiveTail permission to perform this operation. If the log events matching the filters are more than 500 events per second, we sample the events to provide the real-time tailing experience.\n\nIf you are using CloudWatch cross-account observability, you can use this operation in a monitoring account and start tailing on Log Group(s) present in the linked source accounts. For more information, see https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Unified-Cross-Account.html.\n\nLive Tail sessions incur charges by session usage time, per minute. For pricing details, please refer to https://aws.amazon.com/cloudwatch/pricing/",
+      options: [
+        {
+          name: "--log-group-identifiers",
+          description:
+            "The Log Group Identifiers are the ARNs for the CloudWatch Logs groups to tail. You can provide up to 10 Log Group Identifiers.\n\nLogs can be filtered by Log Stream(s) by providing  --log-stream-names or --log-stream-name-prefixes. If more than one Log Group is provided --log-stream-names and --log-stream-name-prefixes  is disabled. --log-stream-names and --log-stream-name-prefixes can't be provided simultaneously.\n\nNote -  The Log Group ARN must be in the following format. Replace REGION and ACCOUNT_ID with your Region and account ID. ``arn:aws:logs:REGION :ACCOUNT_ID :log-group:LOG_GROUP_NAME``. A ``:*`` after the ARN is prohibited.For more information about ARN format, see CloudWatch Logs resources and operations",
+          args: {
+            name: "list",
+            isVariadic: true,
+          },
+        },
+        {
+          name: "--log-stream-names",
+          description:
+            "The list of stream names to filter logs by.\n\n This parameter cannot be specified when --log-stream-name-prefixes are also specified. This parameter cannot be specified when multiple log-group-identifiers are specified",
+          args: {
+            name: "list",
+            isVariadic: true,
+          },
+        },
+        {
+          name: "--log-stream-name-prefixes",
+          description:
+            "The prefix to filter logs by. Only events from log streams with names beginning with this prefix will be returned. \n\nThis parameter cannot be specified when --log-stream-names is also specified. This parameter cannot be specified when multiple log-group-identifiers are specified",
+          args: {
+            name: "list",
+            isVariadic: true,
+          },
+        },
+        {
+          name: "--log-event-filter-pattern",
+          description:
+            "The filter pattern to use. See Filter and Pattern Syntax for details. If not provided, all the events are matched. This option can be used to include or exclude log events patterns.  Additionally, when multiple filter patterns are provided, they must be encapsulated by quotes",
+          args: {
+            name: "string",
+          },
+        },
+      ],
+    },
+    {
       name: "start-query",
       description:
         "Schedules a query of a log group using CloudWatch Logs Insights. You specify the log group and time range to query and the query string to use. For more information, see CloudWatch Logs Insights Query Syntax. After you run a query using StartQuery, the query results are stored by CloudWatch Logs. You can use GetQueryResults to retrieve the results of a query, using the queryId that StartQuery returns.  If you have associated a KMS key with the query results in this account, then StartQuery uses that key to encrypt the results when it stores them. If no key is associated with query results, the query results are encrypted with the default CloudWatch Logs encryption method. Queries time out after 60 minutes of runtime. If your queries are timing out, reduce the time range being searched or partition your query into a number of queries. If you are using CloudWatch cross-account observability, you can use this operation in a monitoring account to start a query in a linked source account. For more information, see CloudWatch cross-account observability. For a cross-account StartQuery operation, the query definition must be defined in the monitoring account. You can have up to 30 concurrent CloudWatch Logs insights queries, including queries that have been added to dashboards",

@@ -247,7 +247,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--subscriber-identity",
-          description: "The AWS identity used to access your data",
+          description:
+            "The Amazon Web Services identity used to access your data",
           args: {
             name: "structure",
           },
@@ -1312,5 +1313,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

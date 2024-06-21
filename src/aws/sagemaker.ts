@@ -1871,8 +1871,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "create-hub",
-      description:
-        "Create a hub.  Hub APIs are only callable through SageMaker Studio",
+      description: "Create a hub",
       options: [
         {
           name: "--hub-name",
@@ -1912,6 +1911,66 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description: "Any tags to associate with the hub",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-hub-content-reference",
+      description:
+        "Create a hub content reference in order to add a model in the JumpStart public hub to a private hub",
+      options: [
+        {
+          name: "--hub-name",
+          description:
+            "The name of the hub to add the hub content reference to",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sage-maker-public-hub-content-arn",
+          description: "The ARN of the public hub content to reference",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--hub-content-name",
+          description: "The name of the hub content to reference",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--min-version",
+          description: "The minimum version of the hub content to reference",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description: "Any tags associated with the hub content to reference",
           args: {
             name: "list",
           },
@@ -2603,6 +2662,96 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-mlflow-tracking-server",
+      description:
+        "Creates an MLflow Tracking Server using a general purpose Amazon S3 bucket as the artifact store. For more information, see Create an MLflow Tracking Server",
+      options: [
+        {
+          name: "--tracking-server-name",
+          description:
+            "A unique string identifying the tracking server name. This string is part of the tracking server ARN",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--artifact-store-uri",
+          description:
+            "The S3 URI for a general purpose bucket to use as the MLflow Tracking Server artifact store",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tracking-server-size",
+          description:
+            'The size of the tracking server you want to create. You can choose between "Small", "Medium", and "Large". The default MLflow Tracking Server configuration size is "Small". You can choose a size depending on the projected use of the tracking server such as the volume of data logged, number of users, and frequency of use.  We recommend using a small tracking server for teams of up to 25 users, a medium tracking server for teams of up to 50 users, and a large tracking server for teams of up to 100 users',
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--mlflow-version",
+          description:
+            "The version of MLflow that the tracking server uses. To see which MLflow versions are available to use, see How it works",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--role-arn",
+          description:
+            "The Amazon Resource Name (ARN) for an IAM role in your account that the MLflow Tracking Server uses to access the artifact store in Amazon S3. The role should have AmazonS3FullAccess permissions. For more information on IAM permissions for tracking server creation, see Set up IAM permissions for MLflow",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--automatic-model-registration",
+          description:
+            "Whether to enable or disable automatic registration of new MLflow models to the SageMaker Model Registry. To enable automatic model registration, set this value to True. To disable automatic model registration, set this value to False. If not specified, AutomaticModelRegistration defaults to False",
+        },
+        {
+          name: "--no-automatic-model-registration",
+          description:
+            "Whether to enable or disable automatic registration of new MLflow models to the SageMaker Model Registry. To enable automatic model registration, set this value to True. To disable automatic model registration, set this value to False. If not specified, AutomaticModelRegistration defaults to False",
+        },
+        {
+          name: "--weekly-maintenance-window-start",
+          description:
+            "The day and time of the week in Coordinated Universal Time (UTC) 24-hour standard time that weekly maintenance updates are scheduled. For example: TUE:03:30",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "Tags consisting of key-value pairs used to manage metadata for the tracking server",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-model",
       description:
         "Creates a model in SageMaker. In the request, you name the model and describe a primary container. For the primary container, you specify the Docker image that contains inference code, artifacts (from prior training), and a custom environment map that the inference code uses when you deploy the model for predictions. Use this API to create a model if you want to use SageMaker hosting services or run a batch transform job. To host your model, you create an endpoint configuration with the CreateEndpointConfig API, and then create an endpoint with the CreateEndpoint API. SageMaker then deploys all of the containers that you defined for the model in the hosting environment.  To run a batch transform using your model, you start a job with the CreateTransformJob API. SageMaker uses your model and your dataset to get inferences which are then saved to a specified S3 location. In the request, you also provide an IAM role that SageMaker can assume to access model artifacts and docker image for deployment on ML compute hosting instances or for batch transform jobs. In addition, you also use the IAM role to manage permissions the inference code needs. For example, if the inference code access any other Amazon Web Services resources, you grant necessary permissions via this role",
@@ -3171,6 +3320,22 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--security-config",
+          description:
+            "The KMS Key ID (KMSKeyId) used for encryption of model package information",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--model-card",
+          description:
+            "The model card associated with the model package. Since ModelPackageModelCard is tied to a model package, it is a specific usage of a model card and its schema is simplified compared to the schema of ModelCard. The ModelPackageModelCard schema does not include model_package_details, and model_overview is composed of the model_creator and model_artifact properties. For more information about the model package model card schema, see Model package model card schema. For more information about the model card associated with the model package, see View the Details of a Model Version",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -3720,6 +3885,54 @@ const completionSpec: Fig.Spec = {
             "The landing page that the user is directed to when accessing the presigned URL. Using this value, users can access Studio or Studio Classic, even if it is not the default experience for the domain. The supported values are:    studio::relative/path: Directs users to the relative path in Studio.    app:JupyterServer:relative/path: Directs users to the relative path in the Studio Classic application.    app:JupyterLab:relative/path: Directs users to the relative path in the JupyterLab application.    app:RStudioServerPro:relative/path: Directs users to the relative path in the RStudio application.    app:CodeEditor:relative/path: Directs users to the relative path in the Code Editor, based on Code-OSS, Visual Studio Code - Open Source application.    app:Canvas:relative/path: Directs users to the relative path in the Canvas application",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-presigned-mlflow-tracking-server-url",
+      description:
+        "Returns a presigned URL that you can use to connect to the MLflow UI attached to your tracking server. For more information, see Launch the MLflow UI using a presigned URL",
+      options: [
+        {
+          name: "--tracking-server-name",
+          description:
+            "The name of the tracking server to connect to your MLflow UI",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--expires-in-seconds",
+          description:
+            "The duration in seconds that your presigned URL is valid. The presigned URL can be used only once",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--session-expiration-duration-in-seconds",
+          description:
+            "The duration in seconds that your MLflow UI session is valid",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -4698,7 +4911,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--source-ip-config",
           description:
-            "A list of IP address ranges (CIDRs). Used to create an allow list of IP addresses for a private workforce. Workers will only be able to login to their worker portal from an IP address within this range. By default, a workforce isn't restricted to specific IP addresses",
+            "A list of IP address ranges (CIDRs). Used to create an allow list of IP addresses for a private workforce. Workers will only be able to log in to their worker portal from an IP address within this range. By default, a workforce isn't restricted to specific IP addresses",
           args: {
             name: "structure",
           },
@@ -5498,8 +5711,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-hub",
-      description:
-        "Delete a hub.  Hub APIs are only callable through SageMaker Studio",
+      description: "Delete a hub",
       options: [
         {
           name: "--hub-name",
@@ -5529,8 +5741,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-hub-content",
-      description:
-        "Delete the contents of a hub.  Hub APIs are only callable through SageMaker Studio",
+      description: "Delete the contents of a hub",
       options: [
         {
           name: "--hub-name",
@@ -5558,6 +5769,52 @@ const completionSpec: Fig.Spec = {
           name: "--hub-content-version",
           description:
             "The version of the content that you want to delete from a hub",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-hub-content-reference",
+      description:
+        "Delete a hub content reference in order to remove a model from a private hub",
+      options: [
+        {
+          name: "--hub-name",
+          description:
+            "The name of the hub to delete the hub content reference from",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--hub-content-type",
+          description: "The type of hub content to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--hub-content-name",
+          description: "The name of the hub content to delete",
           args: {
             name: "string",
           },
@@ -5760,6 +6017,37 @@ const completionSpec: Fig.Spec = {
           name: "--name",
           description:
             "The name of the inference experiment you want to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-mlflow-tracking-server",
+      description:
+        "Deletes an MLflow Tracking Server. For more information, see Clean up MLflow resources",
+      options: [
+        {
+          name: "--tracking-server-name",
+          description: "The name of the the tracking server to delete",
           args: {
             name: "string",
           },
@@ -6403,7 +6691,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-workforce",
       description:
-        "Use this operation to delete a workforce. If you want to create a new workforce in an Amazon Web Services Region where a workforce already exists, use this operation to delete the existing workforce and then use CreateWorkforce to create a new workforce.  If a private workforce contains one or more work teams, you must use the DeleteWorkteam operation to delete all work teams before you delete the workforce. If you try to delete a workforce that contains one or more work teams, you will recieve a ResourceInUse error",
+        "Use this operation to delete a workforce. If you want to create a new workforce in an Amazon Web Services Region where a workforce already exists, use this operation to delete the existing workforce and then use CreateWorkforce to create a new workforce.  If a private workforce contains one or more work teams, you must use the DeleteWorkteam operation to delete all work teams before you delete the workforce. If you try to delete a workforce that contains one or more work teams, you will receive a ResourceInUse error",
       options: [
         {
           name: "--workforce-name",
@@ -6779,19 +7067,19 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-cluster-node",
       description:
-        "Retrieves information of an instance (also called a node interchangeably) of a SageMaker HyperPod cluster",
+        "Retrieves information of a node (also called a instance interchangeably) of a SageMaker HyperPod cluster",
       options: [
         {
           name: "--cluster-name",
           description:
-            "The string name or the Amazon Resource Name (ARN) of the SageMaker HyperPod cluster in which the instance is",
+            "The string name or the Amazon Resource Name (ARN) of the SageMaker HyperPod cluster in which the node is",
           args: {
             name: "string",
           },
         },
         {
           name: "--node-id",
-          description: "The ID of the instance",
+          description: "The ID of the SageMaker HyperPod cluster node",
           args: {
             name: "string",
           },
@@ -7321,8 +7609,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "describe-hub",
-      description:
-        "Describe a hub.  Hub APIs are only callable through SageMaker Studio",
+      description: "Describes a hub",
       options: [
         {
           name: "--hub-name",
@@ -7352,8 +7639,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "describe-hub-content",
-      description:
-        "Describe the content of a hub.  Hub APIs are only callable through SageMaker Studio",
+      description: "Describe the content of a hub",
       options: [
         {
           name: "--hub-name",
@@ -7695,6 +7981,36 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "describe-mlflow-tracking-server",
+      description: "Returns information about an MLflow Tracking Server",
+      options: [
+        {
+          name: "--tracking-server-name",
+          description: "The name of the MLflow Tracking Server to describe",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "describe-model",
       description:
         "Describes a model that you created using the CreateModel API",
@@ -7862,7 +8178,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-model-package",
       description:
-        "Returns a description of the specified model package, which is used to create SageMaker models or list them on Amazon Web Services Marketplace. To create models in SageMaker, buyers can subscribe to model packages listed on Amazon Web Services Marketplace",
+        "Returns a description of the specified model package, which is used to create SageMaker models or list them on Amazon Web Services Marketplace.  If you provided a KMS Key ID when you created your model package, you will see the KMS Decrypt API call in your CloudTrail logs when you use this API.  To create models in SageMaker, buyers can subscribe to model packages listed on Amazon Web Services Marketplace",
       options: [
         {
           name: "--model-package-name",
@@ -8496,7 +8812,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-workteam",
       description:
-        "Gets information about a specific work team. You can see information such as the create date, the last updated date, membership information, and the work team's Amazon Resource Name (ARN)",
+        "Gets information about a specific work team. You can see information such as the creation date, the last updated date, membership information, and the work team's Amazon Resource Name (ARN)",
       options: [
         {
           name: "--workteam-name",
@@ -8833,8 +9149,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "import-hub-content",
-      description:
-        "Import hub content.  Hub APIs are only callable through SageMaker Studio",
+      description: "Import hub content",
       options: [
         {
           name: "--hub-content-name",
@@ -9366,7 +9681,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "This parameter defines the maximum number of results that can be returned in a single response. The MaxResults parameter is an upper bound, not a target. If there are more results available than the value specified, a NextToken is provided in the response. The NextToken indicates that the user should get the next set of results by providing this token as a part of a subsequent call. The default value for MaxResults is 10",
+            "This parameter defines the maximum number of results that can be return in a single response. The MaxResults parameter is an upper bound, not a target. If there are more results available than the value specified, a NextToken is provided in the response. The NextToken indicates that the user should get the next set of results by providing this token as a part of a subsequent call. The default value for MaxResults is 10",
           args: {
             name: "integer",
           },
@@ -10812,7 +11127,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "This parameter defines the maximum number of results that can be returned in a single response. The MaxResults parameter is an upper bound, not a target. If there are more results available than the value specified, a NextToken is provided in the response. The NextToken indicates that the user should get the next set of results by providing this token as a part of a subsequent call. The default value for MaxResults is 10",
+            "This parameter defines the maximum number of results that can be return in a single response. The MaxResults parameter is an upper bound, not a target. If there are more results available than the value specified, a NextToken is provided in the response. The NextToken indicates that the user should get the next set of results by providing this token as a part of a subsequent call. The default value for MaxResults is 10",
           args: {
             name: "integer",
           },
@@ -11641,8 +11956,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-hub-content-versions",
-      description:
-        "List hub content versions.  Hub APIs are only callable through SageMaker Studio",
+      description: "List hub content versions",
       options: [
         {
           name: "--hub-name",
@@ -11747,8 +12061,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-hub-contents",
-      description:
-        "List the contents of a hub.  Hub APIs are only callable through SageMaker Studio",
+      description: "List the contents of a hub",
       options: [
         {
           name: "--hub-name",
@@ -11846,8 +12159,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-hubs",
-      description:
-        "List all existing hubs.  Hub APIs are only callable through SageMaker Studio",
+      description: "List all existing hubs",
       options: [
         {
           name: "--name-contains",
@@ -13224,6 +13536,116 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-mlflow-tracking-servers",
+      description: "Lists all MLflow Tracking Servers",
+      options: [
+        {
+          name: "--created-after",
+          description:
+            'Use the CreatedAfter filter to only list tracking servers created after a specific date and time. Listed tracking servers are shown with a date and time such as "2024-03-16T01:46:56+00:00". The CreatedAfter parameter takes in a Unix timestamp. To convert a date and time into a Unix timestamp, see EpochConverter',
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--created-before",
+          description:
+            'Use the CreatedBefore filter to only list tracking servers created before a specific date and time. Listed tracking servers are shown with a date and time such as "2024-03-16T01:46:56+00:00". The CreatedBefore parameter takes in a Unix timestamp. To convert a date and time into a Unix timestamp, see EpochConverter',
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--tracking-server-status",
+          description:
+            "Filter for tracking servers with a specified creation status",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--mlflow-version",
+          description:
+            "Filter for tracking servers using the specified MLflow version",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-by",
+          description:
+            "Filter for trackings servers sorting by name, creation time, or creation status",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description:
+            "Change the order of the listed tracking servers. By default, tracking servers are listed in Descending order by creation time. To change the list order, you can specify SortOrder to be Ascending",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If the previous response was truncated, you will receive this token. Use it in your next request to receive the next set of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum number of tracking servers to list",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-model-bias-job-definitions",
       description:
         "Lists model bias jobs definitions that satisfy various filters",
@@ -13918,6 +14340,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sort-order",
           description: "The sort order for results. The default is Ascending",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cross-account-filter-option",
+          description:
+            "A filter that returns either model groups shared with you or model groups in your own account. When the value is CrossAccount, the results show the resources made discoverable to you from other accounts. When the value is SameAccount or null, the results show resources from your account. The default is SameAccount",
           args: {
             name: "string",
           },
@@ -15745,7 +16175,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "This parameter defines the maximum number of results that can be returned in a single response. The MaxResults parameter is an upper bound, not a target. If there are more results available than the value specified, a NextToken is provided in the response. The NextToken indicates that the user should get the next set of results by providing this token as a part of a subsequent call. The default value for MaxResults is 10",
+            "This parameter defines the maximum number of results that can be return in a single response. The MaxResults parameter is an upper bound, not a target. If there are more results available than the value specified, a NextToken is provided in the response. The NextToken indicates that the user should get the next set of results by providing this token as a part of a subsequent call. The default value for MaxResults is 10",
           args: {
             name: "integer",
           },
@@ -16778,7 +17208,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "This parameter defines the maximum number of results that can be returned in a single response. The MaxResults parameter is an upper bound, not a target. If there are more results available than the value specified, a NextToken is provided in the response. The NextToken indicates that the user should get the next set of results by providing this token as a part of a subsequent call. The default value for MaxResults is 10",
+            "This parameter defines the maximum number of results that can be return in a single response. The MaxResults parameter is an upper bound, not a target. If there are more results available than the value specified, a NextToken is provided in the response. The NextToken indicates that the user should get the next set of results by providing this token as a part of a subsequent call. The default value for MaxResults is 10",
           args: {
             name: "integer",
           },
@@ -17568,6 +17998,36 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "start-mlflow-tracking-server",
+      description: "Programmatically start an MLflow Tracking Server",
+      options: [
+        {
+          name: "--tracking-server-name",
+          description: "The name of the tracking server to start",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "start-monitoring-schedule",
       description:
         "Starts a previously stopped monitoring schedule.  By default, when you successfully create a new schedule, the status of a monitoring schedule is scheduled",
@@ -17963,6 +18423,36 @@ const completionSpec: Fig.Spec = {
         {
           name: "--labeling-job-name",
           description: "The name of the labeling job to stop",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "stop-mlflow-tracking-server",
+      description: "Programmatically stop an MLflow Tracking Server",
+      options: [
+        {
+          name: "--tracking-server-name",
+          description: "The name of the tracking server to stop",
           args: {
             name: "string",
           },
@@ -18960,8 +19450,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "update-hub",
-      description:
-        "Update a hub.  Hub APIs are only callable through SageMaker Studio",
+      description: "Update a hub",
       options: [
         {
           name: "--hub-name",
@@ -19339,6 +19828,69 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "update-mlflow-tracking-server",
+      description: "Updates properties of an existing MLflow Tracking Server",
+      options: [
+        {
+          name: "--tracking-server-name",
+          description: "The name of the MLflow Tracking Server to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--artifact-store-uri",
+          description:
+            "The new S3 URI for the general purpose bucket to use as the artifact store for the MLflow Tracking Server",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tracking-server-size",
+          description: "The new size for the MLflow Tracking Server",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--automatic-model-registration",
+          description:
+            "Whether to enable or disable automatic registration of new MLflow models to the SageMaker Model Registry. To enable automatic model registration, set this value to True. To disable automatic model registration, set this value to False. If not specified, AutomaticModelRegistration defaults to False",
+        },
+        {
+          name: "--no-automatic-model-registration",
+          description:
+            "Whether to enable or disable automatic registration of new MLflow models to the SageMaker Model Registry. To enable automatic model registration, set this value to True. To disable automatic model registration, set this value to False. If not specified, AutomaticModelRegistration defaults to False",
+        },
+        {
+          name: "--weekly-maintenance-window-start",
+          description:
+            "The new weekly maintenance window start day and time to update. The maintenance window day and time should be in Coordinated Universal Time (UTC) 24-hour standard time. For example: TUE:03:30",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "update-model-card",
       description:
         "Update an Amazon SageMaker Model Card.  You cannot update both model card content and model card status in a single call",
@@ -19448,6 +20000,14 @@ const completionSpec: Fig.Spec = {
           description: "The URI of the source for the model package",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--model-card",
+          description:
+            "The model card associated with the model package. Since ModelPackageModelCard is tied to a model package, it is a specific usage of a model card and its schema is simplified compared to the schema of ModelCard. The ModelPackageModelCard schema does not include model_package_details, and model_overview is composed of the model_creator and model_artifact properties. For more information about the model package model card schema, see Model package model card schema. For more information about the model card associated with the model package, see View the Details of a Model Version",
+          args: {
+            name: "structure",
           },
         },
         {

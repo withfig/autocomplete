@@ -2487,7 +2487,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--status",
-          description: "The status of the data source update request",
+          description: "The status of the data source update",
           args: {
             name: "string",
           },
@@ -2897,5 +2897,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;
