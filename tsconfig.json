@@ -1,12 +1,11 @@
 {
   "compilerOptions": {
-    "jsx": "react-jsx",
     "moduleResolution": "node",
     "outDir": "./build",
-    "target": "ES6",
+    "target": "ES2018",
     "module": "ESNext",
     "lib": [
-      "ESNext",
+      "ES2018",
       "DOM"
     ],
     "noImplicitAny": false,
