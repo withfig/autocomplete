@@ -12,8 +12,11 @@
     "pnpm": ">=9"
   },
   "browserslist": [
-    "safari >=12",
-    "edge >=79"
+    "safari >= 15",
+    "last 2 chrome versions",
+    "last 2 edge versions",
+    "last 2 firefox versions",
+    "maintained node versions"
   ],
   "scripts": {
     "dev": "npx @withfig/autocomplete-tools dev",
@@ -69,22 +72,23 @@
   "repository": "https://github.com/withfig/autocomplete",
   "devDependencies": {
     "@fig/eslint-config-autocomplete": "^2.0.0",
-    "@typescript-eslint/eslint-plugin": "^7.8.0",
-    "@typescript-eslint/parser": "^7.8.0",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.14.1",
     "@withfig/autocomplete-tools": "^2.10.0",
     "@withfig/autocomplete-types": "^1.31.0",
     "danger": "^11.3.1",
     "eslint": "^8.57.0",
+    "eslint-plugin-compat": "4.2.0",
     "husky": "^9.0.11",
-    "lint-staged": "^15.2.2",
-    "prettier": "^3.2.5",
-    "typescript": "~5.4.5"
+    "lint-staged": "^15.2.7",
+    "prettier": "^3.3.2",
+    "typescript": "~5.5.2"
   },
   "dependencies": {
     "@fig/autocomplete-generators": "^2.4.0",
     "@fig/autocomplete-helpers": "^1.0.7",
     "semver": "^7.6.2",
     "strip-json-comments": "^5.0.1",
-    "yaml": "^2.4.2"
+    "yaml": "^2.4.5"
   }
 }

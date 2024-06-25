@@ -11,7 +11,7 @@ const processXcodeList = (out: string, tokens: string[]) =>
           : tokens.includes("select") || tokens.includes("uninstall")
             ? "🔨"
             : "⬇️",
-      description: line.slice(line.indexOf("(")).replaceAll(/[\(\)]/g, ""),
+      description: line.slice(line.indexOf("(")).replace(/[\(\)]/g, ""),
     }));
 
 const allXcodes: Fig.Generator = {
