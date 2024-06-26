@@ -76,7 +76,7 @@
     "@typescript-eslint/parser": "^7.14.1",
     "@withfig/autocomplete-tools": "^2.10.0",
     "@withfig/autocomplete-types": "^1.31.0",
-    "danger": "^11.3.1",
+    "danger": "^12.3.3",
     "eslint": "^8.57.0",
     "eslint-plugin-compat": "4.2.0",
     "husky": "^9.0.11",
