@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "customer-profiles",
   description:
-    "Amazon Connect Customer Profiles Amazon Connect Customer Profiles is a unified customer profile for your contact center that has pre-built connectors powered by AppFlow that make it easy to combine customer information from third party applications, such as Salesforce (CRM), ServiceNow (ITSM), and your enterprise resource planning (ERP), with contact history from your Amazon Connect contact center. If you're new to Amazon Connect, you might find it helpful to review the Amazon Connect Administrator Guide",
+    "Amazon Connect Customer Profiles Amazon Connect Customer Profiles is a unified customer profile for your contact center that has pre-built connectors powered by AppFlow that make it easy to combine customer information from third party applications, such as Salesforce (CRM), ServiceNow (ITSM), and your enterprise resource planning (ERP), with contact history from your Amazon Connect contact center.  For more information about the Amazon Connect Customer Profiles feature, see Use Customer Profiles in the Amazon Connect Administrator's Guide",
   subcommands: [
     {
       name: "add-profile-key",
@@ -143,7 +143,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-domain",
       description:
-        "Creates a domain, which is a container for all customer data, such as customer profile attributes, object types, profile keys, and encryption keys. You can create multiple domains, and each domain can have multiple third-party integrations. Each Amazon Connect instance can be associated with only one domain. Multiple Amazon Connect instances can be associated with one domain. Use this API or UpdateDomain to enable identity resolution: set Matching to true. To prevent cross-service impersonation when you call this API, see Cross-service confused deputy prevention for sample policies that you should apply",
+        "Creates a domain, which is a container for all customer data, such as customer profile attributes, object types, profile keys, and encryption keys. You can create multiple domains, and each domain can have multiple third-party integrations. Each Amazon Connect instance can be associated with only one domain. Multiple Amazon Connect instances can be associated with one domain. Use this API or UpdateDomain to enable identity resolution: set Matching to true. To prevent cross-service impersonation when you call this API, see Cross-service confused deputy prevention for sample policies that you should apply.   It is not possible to associate a Customer Profiles domain with an Amazon Connect Instance directly from the API. If you would like to create a domain and associate a Customer Profiles domain, use the Amazon Connect admin website. For more information, see Enable Customer Profiles. Each Amazon Connect instance can be associated with only one domain. Multiple Amazon Connect instances can be associated with one domain",
       options: [
         {
           name: "--domain-name",
@@ -356,8 +356,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--account-number",
-          description:
-            "A unique account number that you have given to the customer",
+          description: "An account number that you have given to the customer",
           args: {
             name: "string",
           },
@@ -2401,6 +2400,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--max-profile-object-count",
+          description:
+            "The amount of profile object max count assigned to the object type",
+          args: {
+            name: "integer",
+          },
+        },
+        {
           name: "--fields",
           description: "A map of the name and ObjectType field",
           args: {
@@ -2766,8 +2773,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--account-number",
-          description:
-            "A unique account number that you have given to the customer",
+          description: "An account number that you have given to the customer",
           args: {
             name: "string",
           },

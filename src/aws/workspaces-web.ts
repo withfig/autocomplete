@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "workspaces-web",
   description:
-    "WorkSpaces Web is a low cost, fully managed WorkSpace built specifically to facilitate secure, web-based workloads. WorkSpaces Web makes it easy for customers to safely provide their employees with access to internal websites and SaaS web applications without the administrative burden of appliances or specialized client software. WorkSpaces Web provides simple policy tools tailored for user interactions, while offloading common tasks like capacity management, scaling, and maintaining browser images",
+    "Amazon WorkSpaces Secure Browser is a low cost, fully managed WorkSpace built specifically to facilitate secure, web-based workloads. WorkSpaces Secure Browser makes it easy for customers to safely provide their employees with access to internal websites and SaaS web applications without the administrative burden of appliances or specialized client software. WorkSpaces Secure Browser provides simple policy tools tailored for user interactions, while offloading common tasks like capacity management, scaling, and maintaining browser images",
   subcommands: [
     {
       name: "associate-browser-settings",
@@ -332,6 +332,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--tags",
+          description:
+            "The tags to add to the identity provider resource. A tag is a key-value pair",
+          args: {
+            name: "list",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -402,7 +410,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "The tags to add to the browser settings resource. A tag is a key-value pair",
+            "The tags to add to the IP access settings resource. A tag is a key-value pair",
           args: {
             name: "list",
           },
@@ -708,6 +716,14 @@ const completionSpec: Fig.Spec = {
           name: "--customer-managed-key",
           description:
             "The customer managed key used to encrypt sensitive information in the user settings",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--deep-link-allowed",
+          description:
+            "Specifies whether the user can use deep links that open automatically when connecting to a session",
           args: {
             name: "string",
           },
@@ -2402,6 +2418,14 @@ const completionSpec: Fig.Spec = {
           name: "--copy-allowed",
           description:
             "Specifies whether the user can copy text from the streaming session to the local device",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--deep-link-allowed",
+          description:
+            "Specifies whether the user can use deep links that open automatically when connecting to a session",
           args: {
             name: "string",
           },
