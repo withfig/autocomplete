@@ -6857,7 +6857,6 @@ const completionSpec: Fig.Spec = {
           name: "push", // TODO: support for no subcommand is missing
           description:
             "Save your local modifications to a new stash entry and roll them back to HEAD",
-          insertValue: "push {cursor}",
           options: [
             {
               name: ["-p", "--patch"],
@@ -6902,7 +6901,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "show",
           description: "Show the changes recorded in the stash entry as a diff",
-          insertValue: "show {cursor}",
           args: {
             name: "stash",
             isOptional: true,
@@ -6913,7 +6911,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "save",
           description: "Temporarily stores all the modified tracked files",
-          insertValue: "save {cursor}",
           options: [
             {
               name: ["-p", "--patch"],
@@ -6968,12 +6965,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "Lists all stashed changesets",
-          insertValue: "list {cursor}",
         },
         {
           name: "drop",
           description: "Discards the most recently stashed changeset",
-          insertValue: "drop {cursor}",
           options: [
             {
               name: ["-q", "--quiet"],
@@ -7033,16 +7028,16 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "create",
-          description: "Creates a stash with the message <msg>",
-          insertValue: "create {cursor}",
+          description: "Creates a stash entry",
           args: {
             name: "message",
+            isOptional: true,
           },
         },
         {
           name: "store",
           description:
-            "Store a given stash in the stash ref., updating the staft reflog",
+            "Store a given stash in the stash ref, updating the stash reflog",
           options: [
             {
               name: ["-m", "--message"],
