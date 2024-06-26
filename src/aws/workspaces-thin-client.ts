@@ -85,6 +85,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--device-creation-tags",
+          description:
+            "A map of the key-value pairs of the tag or tags to assign to the newly created devices for this environment",
+          args: {
+            name: "map",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -729,6 +737,14 @@ const completionSpec: Fig.Spec = {
           description: "The ID of the software set to apply",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--device-creation-tags",
+          description:
+            "A map of the key-value pairs of the tag or tags to assign to the newly created devices for this environment",
+          args: {
+            name: "map",
           },
         },
         {

@@ -188,7 +188,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--parent-message-id",
           description:
-            "The identifier of the previous end user text input message in a conversation",
+            "The identifier of the previous system message in a conversation",
           args: {
             name: "string",
           },
@@ -306,6 +306,14 @@ const completionSpec: Fig.Spec = {
           name: "--attachments-configuration",
           description:
             "An option to allow end users to upload files directly during chat",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--q-apps-configuration",
+          description:
+            "An option to allow end users to create and use Amazon Q Apps in the web experience",
           args: {
             name: "structure",
           },
@@ -462,7 +470,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--type",
           description:
-            "The index type that's suitable for your needs. For more information on what's included in each type of index or index tier, see Amazon Q Business tiers",
+            "The index type that's suitable for your needs. For more information on what's included in each type of index, see Amazon Q Business tiers",
           args: {
             name: "string",
           },
@@ -2886,6 +2894,14 @@ const completionSpec: Fig.Spec = {
           name: "--attachments-configuration",
           description:
             "An option to allow end users to upload files directly during chat",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--q-apps-configuration",
+          description:
+            "An option to allow end users to create and use Amazon Q Apps in the web experience",
           args: {
             name: "structure",
           },
