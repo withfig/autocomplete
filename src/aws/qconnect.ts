@@ -222,6 +222,74 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-content-association",
+      description:
+        "Creates an association between a content resource in a knowledge base and step-by-step guides. Step-by-step guides offer instructions to agents for resolving common customer issues. You create a content association to integrate Amazon Q in Connect and step-by-step guides.  After you integrate Amazon Q and step-by-step guides, when Amazon Q provides a recommendation to an agent based on the intent that it's detected, it also provides them with the option to start the step-by-step guide that you have associated with the content. Note the following limitations:   You can create only one content association for each content resource in a knowledge base.   You can associate a step-by-step guide with multiple content resources.   For more information, see Integrate Amazon Q in Connect with step-by-step guides in the Amazon Connect Administrator Guide",
+      options: [
+        {
+          name: "--association",
+          description: "The identifier of the associated resource",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--association-type",
+          description: "The type of association",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see Making retries safe with idempotent APIs",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--content-id",
+          description: "The identifier of the content",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--knowledge-base-id",
+          description: "The identifier of the knowledge base",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "The tags used to organize, track, or control access for this resource",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-knowledge-base",
       description:
         "Creates a knowledge base.  When using this API, you cannot reuse Amazon AppIntegrations DataIntegrations with external knowledge bases such as Salesforce and ServiceNow. If you do, you'll get an InvalidRequestException error.  For example, you're programmatically managing your external knowledge base, and you want to add or remove one of the fields that is being ingested from Salesforce. Do the following:   Call DeleteKnowledgeBase.   Call DeleteDataIntegration.   Call CreateDataIntegration to recreate the DataIntegration or a create different one.   Call CreateKnowledgeBase",
@@ -601,6 +669,52 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-content-association",
+      description:
+        "Deletes the content association.  For more information about content associations--what they are and when they are used--see Integrate Amazon Q in Connect with step-by-step guides in the Amazon Connect Administrator Guide",
+      options: [
+        {
+          name: "--content-association-id",
+          description:
+            "The identifier of the content association. Can be either the ID or the ARN. URLs cannot contain the ARN",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--content-id",
+          description: "The identifier of the content",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--knowledge-base-id",
+          description: "The identifier of the knowledge base",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-import-job",
       description: "Deletes the quick response import job",
       options: [
@@ -794,6 +908,52 @@ const completionSpec: Fig.Spec = {
           name: "--knowledge-base-id",
           description:
             "The identifier of the knowledge base. This should not be a QUICK_RESPONSES type knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-content-association",
+      description:
+        "Returns the content association. For more information about content associations--what they are and when they are used--see Integrate Amazon Q in Connect with step-by-step guides in the Amazon Connect Administrator Guide",
+      options: [
+        {
+          name: "--content-association-id",
+          description:
+            "The identifier of the content association. Can be either the ID or the ARN. URLs cannot contain the ARN",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--content-id",
+          description: "The identifier of the content",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--knowledge-base-id",
+          description: "The identifier of the knowledge base",
           args: {
             name: "string",
           },
@@ -1131,6 +1291,83 @@ const completionSpec: Fig.Spec = {
       name: "list-assistants",
       description: "Lists information about assistants",
       options: [
+        {
+          name: "--max-results",
+          description: "The maximum number of results to return per page",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-content-associations",
+      description:
+        "Lists the content associations. For more information about content associations--what they are and when they are used--see Integrate Amazon Q in Connect with step-by-step guides in the Amazon Connect Administrator Guide",
+      options: [
+        {
+          name: "--content-id",
+          description: "The identifier of the content",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--knowledge-base-id",
+          description: "The identifier of the knowledge base",
+          args: {
+            name: "string",
+          },
+        },
         {
           name: "--max-results",
           description: "The maximum number of results to return per page",

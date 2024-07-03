@@ -5807,7 +5807,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--hub-content-type",
-          description: "The type of hub content to delete",
+          description:
+            "The type of hub content reference to delete. The only supported type of hub content reference to delete is ModelReference",
           args: {
             name: "string",
           },

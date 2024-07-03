@@ -3490,7 +3490,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-tags-for-resource",
-      description: "List tags for a CloudFront resource",
+      description:
+        "List tags for a CloudFront resource. For more information, see Tagging a distribution in the Amazon CloudFront Developer Guide",
       options: [
         {
           name: "--resource",
@@ -3559,7 +3560,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "tag-resource",
-      description: "Add tags to a CloudFront resource",
+      description:
+        "Add tags to a CloudFront resource. For more information, see Tagging a distribution in the Amazon CloudFront Developer Guide",
       options: [
         {
           name: "--resource",
@@ -3651,7 +3653,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "untag-resource",
-      description: "Remove tags from a CloudFront resource",
+      description:
+        "Remove tags from a CloudFront resource. For more information, see Tagging a distribution in the Amazon CloudFront Developer Guide",
       options: [
         {
           name: "--resource",
