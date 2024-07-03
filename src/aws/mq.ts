@@ -19,12 +19,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--auto-minor-version-upgrade",
           description:
-            "Enables automatic upgrades to new minor versions for brokers, as new versions are released and supported by Amazon MQ. Automatic upgrades occur during the scheduled maintenance window of the broker or after a manual broker reboot. Set to true by default, if no value is specified",
+            "Enables automatic upgrades to new patch versions for brokers as new versions are released and supported by Amazon MQ. Automatic upgrades occur during the scheduled maintenance window or after a manual broker reboot. Set to true by default, if no value is specified. Must be set to true for ActiveMQ brokers version 5.18 and above and for RabbitMQ brokers version 3.13 and above",
         },
         {
           name: "--no-auto-minor-version-upgrade",
           description:
-            "Enables automatic upgrades to new minor versions for brokers, as new versions are released and supported by Amazon MQ. Automatic upgrades occur during the scheduled maintenance window of the broker or after a manual broker reboot. Set to true by default, if no value is specified",
+            "Enables automatic upgrades to new patch versions for brokers as new versions are released and supported by Amazon MQ. Automatic upgrades occur during the scheduled maintenance window or after a manual broker reboot. Set to true by default, if no value is specified. Must be set to true for ActiveMQ brokers version 5.18 and above and for RabbitMQ brokers version 3.13 and above",
         },
         {
           name: "--broker-name",
@@ -74,7 +74,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--engine-version",
           description:
-            "Required. The broker engine's version. For a list of supported engine versions, see Supported engines",
+            "The broker engine version. Defaults to the latest available version for the specified broker engine type. For more information, see the ActiveMQ version management and the RabbitMQ version management sections in the Amazon MQ Developer Guide",
           args: {
             name: "string",
           },
@@ -215,7 +215,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--engine-version",
           description:
-            "Required. The broker engine's version. For a list of supported engine versions, see Supported engines",
+            "The broker engine version. Defaults to the latest available version for the specified broker engine type. For more information, see the ActiveMQ version management and the RabbitMQ version management sections in the Amazon MQ Developer Guide",
           args: {
             name: "string",
           },
@@ -1025,12 +1025,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--auto-minor-version-upgrade",
           description:
-            "Enables automatic upgrades to new minor versions for brokers, as new versions are released and supported by Amazon MQ. Automatic upgrades occur during the scheduled maintenance window of the broker or after a manual broker reboot",
+            "Enables automatic upgrades to new patch versions for brokers as new versions are released and supported by Amazon MQ. Automatic upgrades occur during the scheduled maintenance window or after a manual broker reboot. Must be set to true for ActiveMQ brokers version 5.18 and above and for RabbitMQ brokers version 3.13 and above",
         },
         {
           name: "--no-auto-minor-version-upgrade",
           description:
-            "Enables automatic upgrades to new minor versions for brokers, as new versions are released and supported by Amazon MQ. Automatic upgrades occur during the scheduled maintenance window of the broker or after a manual broker reboot",
+            "Enables automatic upgrades to new patch versions for brokers as new versions are released and supported by Amazon MQ. Automatic upgrades occur during the scheduled maintenance window or after a manual broker reboot. Must be set to true for ActiveMQ brokers version 5.18 and above and for RabbitMQ brokers version 3.13 and above",
         },
         {
           name: "--broker-id",
@@ -1049,7 +1049,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--engine-version",
           description:
-            "The broker engine version. For a list of supported engine versions, see Supported engines",
+            "The broker engine version. For more information, see the ActiveMQ version management and the RabbitMQ version management sections in the Amazon MQ Developer Guide. When upgrading to ActiveMQ version 5.18 and above or RabbitMQ version 3.13 and above, you must have autoMinorVersionUpgrade set to true for the broker",
           args: {
             name: "string",
           },

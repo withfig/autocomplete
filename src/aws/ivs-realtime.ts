@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "ivs-realtime",
   description:
-    'Introduction  The Amazon Interactive Video Service (IVS) real-time API is REST compatible, using a standard HTTP API and an AWS EventBridge event stream for responses. JSON is used for both requests and responses, including errors.  Terminology:   A stage is a virtual space where participants can exchange video in real time.   A participant token is a token that authenticates a participant when they join a stage.   A participant object represents participants (people) in the stage and contains information about them. When a token is created, it includes a participant ID; when a participant uses that token to join a stage, the participant is associated with that participant ID. There is a 1:1 mapping between participant tokens and participants.   Server-side composition: The composition process composites participants of a stage into a single video and forwards it to a set of outputs (e.g., IVS channels). Composition endpoints support this process.   Server-side composition: A composition controls the look of the outputs, including how participants are positioned in the video.    Resources  The following resources contain information about your IVS live stream (see Getting Started with Amazon IVS Real-Time Streaming):    Stage \u2014 A stage is a virtual space where participants can exchange video in real time.    Tagging  A tag is a metadata label that you assign to an AWS resource. A tag comprises a key and a value, both set by you. For example, you might set a tag as topic:nature to label a particular video category. See Tagging AWS Resources for more information, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS stages has no service-specific constraints beyond what is documented there. Tags can help you identify and organize your AWS resources. For example, you can use the same tag for different resources to indicate that they are related. You can also use tags to manage access (see Access Tags). The Amazon IVS real-time API has these tag-related endpoints: TagResource, UntagResource, and ListTagsForResource. The following resource supports tagging: Stage. At most 50 tags can be applied to a resource.  Stages Endpoints     CreateParticipantToken \u2014 Creates an additional token for a specified stage. This can be done after stage creation or when tokens expire.    CreateStage \u2014 Creates a new stage (and optionally participant tokens).    DeleteStage \u2014 Shuts down and deletes the specified stage (disconnecting all participants).    DisconnectParticipant \u2014 Disconnects a specified participant and revokes the participant permanently from a specified stage.    GetParticipant \u2014 Gets information about the specified participant token.    GetStage \u2014 Gets information for the specified stage.    GetStageSession \u2014 Gets information for the specified stage session.    ListParticipantEvents \u2014 Lists events for a specified participant that occurred during a specified stage session.    ListParticipants \u2014 Lists all participants in a specified stage session.    ListStages \u2014 Gets summary information about all stages in your account, in the AWS region where the API request is processed.    ListStageSessions \u2014 Gets all sessions for a specified stage.    UpdateStage \u2014 Updates a stage\u2019s configuration.    Composition Endpoints     GetComposition \u2014 Gets information about the specified Composition resource.    ListCompositions \u2014 Gets summary information about all Compositions in your account, in the AWS region where the API request is processed.    StartComposition \u2014 Starts a Composition from a stage based on the configuration provided in the request.    StopComposition \u2014 Stops and deletes a Composition resource. Any broadcast from the Composition resource is stopped.    EncoderConfiguration Endpoints     CreateEncoderConfiguration \u2014 Creates an EncoderConfiguration object.    DeleteEncoderConfiguration \u2014 Deletes an EncoderConfiguration resource. Ensures that no Compositions are using this template; otherwise, returns an error.    GetEncoderConfiguration \u2014 Gets information about the specified EncoderConfiguration resource.    ListEncoderConfigurations \u2014 Gets summary information about all EncoderConfigurations in your account, in the AWS region where the API request is processed.    StorageConfiguration Endpoints     CreateStorageConfiguration \u2014 Creates a new storage configuration, used to enable recording to Amazon S3.    DeleteStorageConfiguration \u2014 Deletes the storage configuration for the specified ARN.    GetStorageConfiguration \u2014 Gets the storage configuration for the specified ARN.    ListStorageConfigurations \u2014 Gets summary information about all storage configurations in your account, in the AWS region where the API request is processed.    Tags Endpoints     ListTagsForResource \u2014 Gets information about AWS tags for the specified ARN.    TagResource \u2014 Adds or updates tags for the AWS resource with the specified ARN.    UntagResource \u2014 Removes tags from the resource with the specified ARN',
+    'The Amazon Interactive Video Service (IVS) real-time API is REST compatible, using a standard HTTP API and an AWS EventBridge event stream for responses. JSON is used for both requests and responses, including errors.   Key Concepts     Stage \u2014 A virtual space where participants can exchange video in real time.    Participant token \u2014 A token that authenticates a participant when they join a stage.    Participant object \u2014 Represents participants (people) in the stage and contains information about them. When a token is created, it includes a participant ID; when a participant uses that token to join a stage, the participant is associated with that participant ID. There is a 1:1 mapping between participant tokens and participants.   For server-side composition:    Composition process \u2014 Composites participants of a stage into a single video and forwards it to a set of outputs (e.g., IVS channels). Composition endpoints support this process.    Composition \u2014 Controls the look of the outputs, including how participants are positioned in the video.   For more information about your IVS live stream, also see Getting Started with Amazon IVS Real-Time Streaming.  Tagging  A tag is a metadata label that you assign to an AWS resource. A tag comprises a key and a value, both set by you. For example, you might set a tag as topic:nature to label a particular video category. See Tagging AWS Resources for more information, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS stages has no service-specific constraints beyond what is documented there. Tags can help you identify and organize your AWS resources. For example, you can use the same tag for different resources to indicate that they are related. You can also use tags to manage access (see Access Tags). The Amazon IVS real-time API has these tag-related endpoints: TagResource, UntagResource, and ListTagsForResource. The following resource supports tagging: Stage. At most 50 tags can be applied to a resource',
   subcommands: [
     {
       name: "create-encoder-configuration",
@@ -143,7 +143,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--auto-participant-recording-configuration",
           description:
-            "Auto participant recording configuration object attached to the stage",
+            "Configuration object for individual participant recording, to attach to the new stage",
           args: {
             name: "structure",
           },
@@ -223,6 +223,37 @@ const completionSpec: Fig.Spec = {
         {
           name: "--arn",
           description: "ARN of the EncoderConfiguration",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-public-key",
+      description:
+        "Deletes the specified public key used to sign stage participant tokens. This invalidates future participant tokens generated using the key pair\u2019s private key",
+      options: [
+        {
+          name: "--arn",
+          description: "ARN of the public key to be deleted",
           args: {
             name: "string",
           },
@@ -462,6 +493,37 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-public-key",
+      description: "Gets information for the specified public key",
+      options: [
+        {
+          name: "--arn",
+          description:
+            "ARN of the public key for which the information is to be retrieved",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-stage",
       description: "Gets information for the specified stage",
       options: [
@@ -539,6 +601,52 @@ const completionSpec: Fig.Spec = {
           description: "ARN of the storage configuration to be retrieved",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "import-public-key",
+      description:
+        "Import a public key to be used for signing stage participant tokens",
+      options: [
+        {
+          name: "--public-key-material",
+          description: "The content of the public key to be imported",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--name",
+          description: "Name of the public key to be imported",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            'Tags attached to the resource. Array of maps, each of the form string:string (key:value). See Tagging AWS Resources for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented there',
+          args: {
+            name: "map",
           },
         },
         {
@@ -788,6 +896,69 @@ const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-public-keys",
+      description:
+        "Gets summary information about all public keys in your account, in the AWS region where the API request is processed",
+      options: [
+        {
+          name: "--next-token",
+          description:
+            "The first public key to retrieve. This is used for pagination; see the nextToken response field",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "Maximum number of results to return. Default: 50",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -1147,7 +1318,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--auto-participant-recording-configuration",
           description:
-            "Auto-participant-recording configuration object to attach to the stage. Auto-participant-recording configuration cannot be updated while recording is active",
+            "Configuration object for individual participant recording, to attach to the stage. Note that this cannot be updated while recording is active",
           args: {
             name: "structure",
           },

@@ -1001,7 +1001,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--db-subnet-group-name",
           description:
-            "A DB subnet group to associate with this DB cluster. This setting is required to create a Multi-AZ DB cluster. Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters Constraints:   Must match the name of an existing DB subnet group.   Must not be default.   Example: mydbsubnetgroup",
+            "A DB subnet group to associate with this DB cluster. This setting is required to create a Multi-AZ DB cluster. Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters Constraints:   Must match the name of an existing DB subnet group.   Example: mydbsubnetgroup",
           args: {
             name: "string",
           },
@@ -13317,7 +13317,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "start-export-task",
       description:
-        "Starts an export of DB snapshot or DB cluster data to Amazon S3. The provided IAM role must have access to the S3 bucket. You can't export snapshot data from Db2 or RDS Custom DB instances. You can't export cluster data from Multi-AZ DB clusters. For more information on exporting DB snapshot data, see Exporting DB snapshot data to Amazon S3 in the Amazon RDS User Guide or Exporting DB cluster snapshot data to Amazon S3 in the Amazon Aurora User Guide. For more information on exporting DB cluster data, see Exporting DB cluster data to Amazon S3 in the Amazon Aurora User Guide",
+        "Starts an export of DB snapshot or DB cluster data to Amazon S3. The provided IAM role must have access to the S3 bucket. You can't export snapshot data from Db2 or RDS Custom DB instances. For more information on exporting DB snapshot data, see Exporting DB snapshot data to Amazon S3 in the Amazon RDS User Guide or Exporting DB cluster snapshot data to Amazon S3 in the Amazon Aurora User Guide. For more information on exporting DB cluster data, see Exporting DB cluster data to Amazon S3 in the Amazon Aurora User Guide",
       options: [
         {
           name: "--export-task-identifier",

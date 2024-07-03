@@ -744,6 +744,16 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--bootstrap-self-managed-addons",
+          description:
+            "If you set this value to False when creating a cluster, the default networking add-ons will not be installed. The default networking addons include vpc-cni, coredns, and kube-proxy. Use this option when you plan to install third-party alternative add-ons or self-manage the default networking add-ons",
+        },
+        {
+          name: "--no-bootstrap-self-managed-addons",
+          description:
+            "If you set this value to False when creating a cluster, the default networking add-ons will not be installed. The default networking addons include vpc-cni, coredns, and kube-proxy. Use this option when you plan to install third-party alternative add-ons or self-manage the default networking add-ons",
+        },
+        {
           name: "--kubernetes-version",
           description:
             "The desired Kubernetes version for your cluster. If you don't specify a value here, the default version available in Amazon EKS is used.  The default version might not be the latest version available",

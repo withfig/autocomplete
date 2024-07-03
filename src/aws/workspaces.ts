@@ -722,6 +722,85 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-workspaces-pool",
+      description: "Creates a pool of WorkSpaces",
+      options: [
+        {
+          name: "--pool-name",
+          description: "The name of the pool",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "The pool description",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--bundle-id",
+          description: "The identifier of the bundle for the pool",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--directory-id",
+          description: "The identifier of the directory for the pool",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--capacity",
+          description: "The user capacity of the pool",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--tags",
+          description: "The tags for the pool",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--application-settings",
+          description: "Indicates the application settings of the pool",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--timeout-settings",
+          description: "Indicates the timeout settings of the pool",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-account-link-invitation",
       description: "Deletes the account link invitation",
       options: [
@@ -1776,6 +1855,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--workspace-directory-names",
+          description: "The names of the WorkSpace directories",
+          args: {
+            name: "list",
+          },
+        },
+        {
           name: "--limit",
           description: "The maximum number of directories to return",
           args: {
@@ -2123,6 +2209,112 @@ const completionSpec: Fig.Spec = {
             "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-workspaces-pool-sessions",
+      description:
+        "Retrieves a list that describes the streaming sessions for a specified pool",
+      options: [
+        {
+          name: "--pool-id",
+          description: "The identifier of the pool",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--user-id",
+          description: "The identifier of the user",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--limit",
+          description: "The maximum number of items to return",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If you received a NextToken from a previous call that was paginated, provide this token to receive the next set of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-workspaces-pools",
+      description: "Describes the specified WorkSpaces Pools",
+      options: [
+        {
+          name: "--pool-ids",
+          description: "The identifier of the WorkSpaces Pools",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--filters",
+          description:
+            "The filter conditions for the WorkSpaces Pool to return",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--limit",
+          description: "The maximum number of items to return",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If you received a NextToken from a previous call that was paginated, provide this token to receive the next set of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
           },
         },
         {
@@ -2812,6 +3004,43 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "modify-streaming-properties",
+      description: "Modifies the specified streaming properties",
+      options: [
+        {
+          name: "--resource-id",
+          description: "The identifier of the resource",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--streaming-properties",
+          description: "The streaming properties to configure",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "modify-workspace-access-properties",
       description:
         "Specifies which devices and operating systems users can use to access their WorkSpaces. For more information, see  Control Device Access",
@@ -3091,6 +3320,42 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--workspace-directory-name",
+          description: "The name of the directory to register",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--workspace-directory-description",
+          description: "Description of the directory to register",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--user-identity-type",
+          description: "The type of identity management the user is using",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--workspace-type",
+          description:
+            "Indicates whether the directory's WorkSpace type is personal or pools",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--active-directory-config",
+          description: "The active directory config of the directory",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -3249,6 +3514,37 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "start-workspaces-pool",
+      description:
+        "Starts the specified pool. You cannot start a pool unless it has a running mode of AutoStop and a state of STOPPED",
+      options: [
+        {
+          name: "--pool-id",
+          description: "The identifier of the pool",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "stop-workspaces",
       description:
         "Stops the specified WorkSpaces. You cannot stop a WorkSpace unless it has a running mode of AutoStop and a state of AVAILABLE, IMPAIRED, UNHEALTHY, or ERROR",
@@ -3281,6 +3577,37 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "stop-workspaces-pool",
+      description:
+        "Stops the specified pool. You cannot stop a WorkSpace pool unless it has a running mode of AutoStop and a state of AVAILABLE, IMPAIRED, UNHEALTHY, or ERROR",
+      options: [
+        {
+          name: "--pool-id",
+          description: "The identifier of the pool",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "terminate-workspaces",
       description:
         "Terminates the specified WorkSpaces.  Terminating a WorkSpace is a permanent action and cannot be undone. The user's data is destroyed. If you need to archive any user data, contact Amazon Web Services Support before terminating the WorkSpace.  You can terminate a WorkSpace that is in any state except SUSPENDED. This operation is asynchronous and returns before the WorkSpaces have been completely terminated. After a WorkSpace is terminated, the TERMINATED state is returned only briefly before the WorkSpace directory metadata is cleaned up, so this state is rarely returned. To confirm that a WorkSpace is terminated, check for the WorkSpace ID by using  DescribeWorkSpaces. If the WorkSpace ID isn't returned, then the WorkSpace has been successfully terminated.  Simple AD and AD Connector are made available to you free of charge to use with WorkSpaces. If there are no WorkSpaces being used with your Simple AD or AD Connector directory for 30 consecutive days, this directory will be automatically deregistered for use with Amazon WorkSpaces, and you will be charged for this directory as per the Directory Service pricing terms. To delete empty directories, see  Delete the Directory for Your WorkSpaces. If you delete your Simple AD or AD Connector directory, you can always create a new one when you want to start using WorkSpaces again",
@@ -3291,6 +3618,66 @@ const completionSpec: Fig.Spec = {
             "The WorkSpaces to terminate. You can specify up to 25 WorkSpaces",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "terminate-workspaces-pool",
+      description: "Terminates the specified pool",
+      options: [
+        {
+          name: "--pool-id",
+          description: "The identifier of the pool",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "terminate-workspaces-pool-session",
+      description: "Terminates the pool session",
+      options: [
+        {
+          name: "--session-id",
+          description: "The identifier of the pool session",
+          args: {
+            name: "string",
           },
         },
         {
@@ -3509,6 +3896,79 @@ const completionSpec: Fig.Spec = {
             "The identifier of the Amazon Web Services account to share or unshare the image with.  Before sharing the image, confirm that you are sharing to the correct Amazon Web Services account ID",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-workspaces-pool",
+      description: "Updates the specified pool",
+      options: [
+        {
+          name: "--pool-id",
+          description: "The identifier of the specified pool to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "Describes the specified pool to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--bundle-id",
+          description: "The identifier of the bundle",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--directory-id",
+          description: "The identifier of the directory",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--capacity",
+          description: "The desired capacity for the pool",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--application-settings",
+          description:
+            "The persistent application settings for users in the pool",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--timeout-settings",
+          description: "Indicates the timeout settings of the specified pool",
+          args: {
+            name: "structure",
           },
         },
         {

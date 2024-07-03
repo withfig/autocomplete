@@ -4767,6 +4767,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--attributes-to-get",
+          description:
+            "Specifies the database fields returned by the GetDatabases call. This parameter doesn\u2019t accept an empty list. The request must include the NAME",
+          args: {
+            name: "list",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
