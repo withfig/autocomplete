@@ -1,12 +1,12 @@
 const completionSpec: Fig.Spec = {
   name: "codeguru-reviewer",
   description:
-    "This section provides documentation for the Amazon CodeGuru Reviewer API operations. CodeGuru Reviewer is a service that uses program analysis and machine learning to detect potential defects that are difficult for developers to find and recommendations to address them in your Java and Python code. By proactively detecting and providing recommendations for addressing code defects and implementing best practices, CodeGuru Reviewer improves the overall quality and maintainability of your code base during the code review stage. For more information about CodeGuru Reviewer, see the  Amazon CodeGuru Reviewer User Guide.   To improve the security of your CodeGuru Reviewer API calls, you can establish a private connection between your VPC and CodeGuru Reviewer by creating an interface VPC endpoint. For more information, see CodeGuru Reviewer and interface VPC endpoints (AWS PrivateLink) in the Amazon CodeGuru Reviewer User Guide",
+    "This section provides documentation for the Amazon CodeGuru Reviewer API operations. CodeGuru Reviewer is a service that uses program analysis and machine learning to detect potential defects that are difficult for developers to find and recommends fixes in your Java and Python code. By proactively detecting and providing recommendations for addressing code defects and implementing best practices, CodeGuru Reviewer improves the overall quality and maintainability of your code base during the code review stage. For more information about CodeGuru Reviewer, see the  Amazon CodeGuru Reviewer User Guide.  To improve the security of your CodeGuru Reviewer API calls, you can establish a private connection between your VPC and CodeGuru Reviewer by creating an interface VPC endpoint. For more information, see CodeGuru Reviewer and interface VPC endpoints (Amazon Web Services PrivateLink) in the Amazon CodeGuru Reviewer User Guide",
   subcommands: [
     {
       name: "associate-repository",
       description:
-        "Use to associate an AWS CodeCommit repository or a repostory managed by AWS CodeStar Connections with Amazon CodeGuru Reviewer. When you associate a repository, CodeGuru Reviewer reviews source code changes in the repository's pull requests and provides automatic recommendations. You can view recommendations using the CodeGuru Reviewer console. For more information, see Recommendations in Amazon CodeGuru Reviewer in the Amazon CodeGuru Reviewer User Guide.  If you associate a CodeCommit repository, it must be in the same AWS Region and AWS account where its CodeGuru Reviewer code reviews are configured. Bitbucket and GitHub Enterprise Server repositories are managed by AWS CodeStar Connections to connect to CodeGuru Reviewer. For more information, see Associate a repository in the Amazon CodeGuru Reviewer User Guide.    You cannot use the CodeGuru Reviewer SDK or the AWS CLI to associate a GitHub repository with Amazon CodeGuru Reviewer. To associate a GitHub repository, use the console. For more information, see Getting started with CodeGuru Reviewer in the CodeGuru Reviewer User Guide",
+        "Use to associate an Amazon Web Services CodeCommit repository or a repository managed by Amazon Web Services CodeStar Connections with Amazon CodeGuru Reviewer. When you associate a repository, CodeGuru Reviewer reviews source code changes in the repository's pull requests and provides automatic recommendations. You can view recommendations using the CodeGuru Reviewer console. For more information, see Recommendations in Amazon CodeGuru Reviewer in the Amazon CodeGuru Reviewer User Guide.  If you associate a CodeCommit or S3 repository, it must be in the same Amazon Web Services Region and Amazon Web Services account where its CodeGuru Reviewer code reviews are configured. Bitbucket and GitHub Enterprise Server repositories are managed by Amazon Web Services CodeStar Connections to connect to CodeGuru Reviewer. For more information, see Associate a repository in the Amazon CodeGuru Reviewer User Guide.   You cannot use the CodeGuru Reviewer SDK or the Amazon Web Services CLI to associate a GitHub repository with Amazon CodeGuru Reviewer. To associate a GitHub repository, use the console. For more information, see Getting started with CodeGuru Reviewer in the CodeGuru Reviewer User Guide",
       options: [
         {
           name: "--repository",
@@ -26,7 +26,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "An array of key-value pairs used to tag an associated repository. A tag is a custom attribute label with two parts:    A tag key (for example, CostCenter, Environment, Project, or Secret). Tag keys are case sensitive.   An optional field known as a tag value (for example, 111122223333, Production, or a team name). Omitting the tag value is the same as using an empty string. Like tag keys, tag values are case sensitive",
+            "An array of key-value pairs used to tag an associated repository. A tag is a custom attribute label with two parts:   A tag key (for example, CostCenter, Environment, Project, or Secret). Tag keys are case sensitive.   An optional field known as a tag value (for example, 111122223333, Production, or a team name). Omitting the tag value is the same as using an empty string. Like tag keys, tag values are case sensitive",
           args: {
             name: "map",
           },
@@ -34,7 +34,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kms-key-details",
           description:
-            "A KMSKeyDetails object that contains:   The encryption option for this repository association. It is either owned by AWS Key Management Service (KMS) (AWS_OWNED_CMK) or customer managed (CUSTOMER_MANAGED_CMK).   The ID of the AWS KMS key that is associated with this repository association",
+            "A KMSKeyDetails object that contains:   The encryption option for this repository association. It is either owned by Amazon Web Services Key Management Service (KMS) (AWS_OWNED_CMK) or customer managed (CUSTOMER_MANAGED_CMK).   The ID of the Amazon Web Services KMS key that is associated with this repository association",
           args: {
             name: "structure",
           },
@@ -61,12 +61,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-code-review",
       description:
-        "Use to create a code review with a  CodeReviewType  of RepositoryAnalysis. This type of code review analyzes all code under a specified branch in an associated repository. PullRequest code reviews are automatically triggered by a pull request so cannot be created using this method",
+        "Use to create a code review with a CodeReviewType of RepositoryAnalysis. This type of code review analyzes all code under a specified branch in an associated repository. PullRequest code reviews are automatically triggered by a pull request",
       options: [
         {
           name: "--name",
           description:
-            "The name of the code review. The name of each code review in your AWS account must be unique",
+            "The name of the code review. The name of each code review in your Amazon Web Services account must be unique",
           args: {
             name: "string",
           },
@@ -74,7 +74,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--repository-association-arn",
           description:
-            "The Amazon Resource Name (ARN) of the  RepositoryAssociation  object. You can retrieve this ARN by calling  ListRepositoryAssociations .   A code review can only be created on an associated repository. This is the ARN of the associated repository",
+            "The Amazon Resource Name (ARN) of the RepositoryAssociation object. You can retrieve this ARN by calling ListRepositoryAssociations. A code review can only be created on an associated repository. This is the ARN of the associated repository",
           args: {
             name: "string",
           },
@@ -82,7 +82,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--type",
           description:
-            "The type of code review to create. This is specified using a  CodeReviewType  object. You can create a code review only of type RepositoryAnalysis",
+            "The type of code review to create. This is specified using a CodeReviewType object. You can create a code review only of type RepositoryAnalysis",
           args: {
             name: "structure",
           },
@@ -122,7 +122,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--code-review-arn",
           description:
-            "The Amazon Resource Name (ARN) of the  CodeReview  object",
+            "The Amazon Resource Name (ARN) of the CodeReview object",
           args: {
             name: "string",
           },
@@ -154,7 +154,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--code-review-arn",
           description:
-            "The Amazon Resource Name (ARN) of the  CodeReview  object",
+            "The Amazon Resource Name (ARN) of the CodeReview object",
           args: {
             name: "string",
           },
@@ -170,7 +170,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--user-id",
           description:
-            "Optional parameter to describe the feedback for a given user. If this is not supplied, it defaults to the user making the request.   The UserId is an IAM principal that can be specified as an AWS account ID or an Amazon Resource Name (ARN). For more information, see  Specifying a Principal in the AWS Identity and Access Management User Guide",
+            "Optional parameter to describe the feedback for a given user. If this is not supplied, it defaults to the user making the request.  The UserId is an IAM principal that can be specified as an Amazon Web Services account ID or an Amazon Resource Name (ARN). For more information, see  Specifying a Principal in the Amazon Web Services Identity and Access Management User Guide",
           args: {
             name: "string",
           },
@@ -197,12 +197,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-repository-association",
       description:
-        "Returns a  RepositoryAssociation  object that contains information about the requested repository association",
+        "Returns a RepositoryAssociation object that contains information about the requested repository association",
       options: [
         {
           name: "--association-arn",
           description:
-            "The Amazon Resource Name (ARN) of the  RepositoryAssociation  object. You can retrieve this ARN by calling  ListRepositoryAssociations",
+            "The Amazon Resource Name (ARN) of the RepositoryAssociation object. You can retrieve this ARN by calling ListRepositoryAssociations",
           args: {
             name: "string",
           },
@@ -234,7 +234,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--association-arn",
           description:
-            "The Amazon Resource Name (ARN) of the  RepositoryAssociation  object. You can retrieve this ARN by calling  ListRepositoryAssociations",
+            "The Amazon Resource Name (ARN) of the RepositoryAssociation object. You can retrieve this ARN by calling ListRepositoryAssociations",
           args: {
             name: "string",
           },
@@ -274,7 +274,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--states",
           description:
-            "List of states for filtering that needs to be applied before displaying the result. For example, states=[Pending] lists code reviews in the Pending state.  The valid code review states are:    Completed: The code review is complete.     Pending: The code review started and has not completed or failed.     Failed: The code review failed.     Deleting: The code review is being deleted",
+            "List of states for filtering that needs to be applied before displaying the result. For example, states=[Pending] lists code reviews in the Pending state. The valid code review states are:    Completed: The code review is complete.    Pending: The code review started and has not completed or failed.    Failed: The code review failed.    Deleting: The code review is being deleted",
           args: {
             name: "list",
           },
@@ -332,7 +332,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-recommendation-feedback",
       description:
-        "Returns a list of  RecommendationFeedbackSummary  objects that contain customer recommendation feedback for all CodeGuru Reviewer users",
+        "Returns a list of RecommendationFeedbackSummary objects that contain customer recommendation feedback for all CodeGuru Reviewer users",
       options: [
         {
           name: "--next-token",
@@ -353,7 +353,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--code-review-arn",
           description:
-            "The Amazon Resource Name (ARN) of the  CodeReview  object",
+            "The Amazon Resource Name (ARN) of the CodeReview object",
           args: {
             name: "string",
           },
@@ -361,7 +361,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--user-ids",
           description:
-            "An AWS user's account ID or Amazon Resource Name (ARN). Use this ID to query the recommendation feedback for a code review from that user.   The UserId is an IAM principal that can be specified as an AWS account ID or an Amazon Resource Name (ARN). For more information, see  Specifying a Principal in the AWS Identity and Access Management User Guide",
+            "An Amazon Web Services user's account ID or Amazon Resource Name (ARN). Use this ID to query the recommendation feedback for a code review from that user.  The UserId is an IAM principal that can be specified as an Amazon Web Services account ID or an Amazon Resource Name (ARN). For more information, see  Specifying a Principal in the Amazon Web Services Identity and Access Management User Guide",
           args: {
             name: "list",
           },
@@ -416,7 +416,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--code-review-arn",
           description:
-            "The Amazon Resource Name (ARN) of the  CodeReview  object",
+            "The Amazon Resource Name (ARN) of the CodeReview object",
           args: {
             name: "string",
           },
@@ -443,7 +443,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-repository-associations",
       description:
-        "Returns a list of  RepositoryAssociationSummary  objects that contain summary information about a repository association. You can filter the returned list by  ProviderType ,  Name ,  State , and  Owner",
+        "Returns a list of RepositoryAssociationSummary objects that contain summary information about a repository association. You can filter the returned list by ProviderType, Name, State, and Owner",
       options: [
         {
           name: "--provider-types",
@@ -455,7 +455,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--states",
           description:
-            "List of repository association states to use as a filter. The valid repository association states are:    Associated: The repository association is complete.     Associating: CodeGuru Reviewer is:     Setting up pull request notifications. This is required for pull requests to trigger a CodeGuru Reviewer review.    If your repository ProviderType is GitHub, GitHub Enterprise Server, or Bitbucket, CodeGuru Reviewer creates webhooks in your repository to trigger CodeGuru Reviewer reviews. If you delete these webhooks, reviews of code in your repository cannot be triggered.      Setting up source code access. This is required for CodeGuru Reviewer to securely clone code in your repository.       Failed: The repository failed to associate or disassociate.     Disassociating: CodeGuru Reviewer is removing the repository's pull request notifications and source code access.     Disassociated: CodeGuru Reviewer successfully disassociated the repository. You can create a new association with this repository if you want to review source code in it later. You can control access to code reviews created in an associated repository with tags after it has been disassociated. For more information, see Using tags to control access to associated repositories in the Amazon CodeGuru Reviewer User Guide",
+            "List of repository association states to use as a filter. The valid repository association states are:    Associated: The repository association is complete.    Associating: CodeGuru Reviewer is:   Setting up pull request notifications. This is required for pull requests to trigger a CodeGuru Reviewer review.  If your repository ProviderType is GitHub, GitHub Enterprise Server, or Bitbucket, CodeGuru Reviewer creates webhooks in your repository to trigger CodeGuru Reviewer reviews. If you delete these webhooks, reviews of code in your repository cannot be triggered.    Setting up source code access. This is required for CodeGuru Reviewer to securely clone code in your repository.      Failed: The repository failed to associate or disassociate.    Disassociating: CodeGuru Reviewer is removing the repository's pull request notifications and source code access.    Disassociated: CodeGuru Reviewer successfully disassociated the repository. You can create a new association with this repository if you want to review source code in it later. You can control access to code reviews created in anassociated repository with tags after it has been disassociated. For more information, see Using tags to control access to associated repositories in the Amazon CodeGuru Reviewer User Guide",
           args: {
             name: "list",
           },
@@ -470,7 +470,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--owners",
           description:
-            "List of owners to use as a filter. For AWS CodeCommit, it is the name of the CodeCommit account that was used to associate the repository. For other repository source providers, such as Bitbucket and GitHub Enterprise Server, this is name of the account that was used to associate the repository",
+            "List of owners to use as a filter. For Amazon Web Services CodeCommit, it is the name of the CodeCommit account that was used to associate the repository. For other repository source providers, such as Bitbucket and GitHub Enterprise Server, this is name of the account that was used to associate the repository",
           args: {
             name: "list",
           },
@@ -542,7 +542,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-arn",
           description:
-            "The Amazon Resource Name (ARN) of the  RepositoryAssociation  object. You can retrieve this ARN by calling  ListRepositoryAssociations",
+            "The Amazon Resource Name (ARN) of the RepositoryAssociation object. You can retrieve this ARN by calling ListRepositoryAssociations",
           args: {
             name: "string",
           },
@@ -574,7 +574,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--code-review-arn",
           description:
-            "The Amazon Resource Name (ARN) of the  CodeReview  object",
+            "The Amazon Resource Name (ARN) of the CodeReview object",
           args: {
             name: "string",
           },
@@ -621,7 +621,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-arn",
           description:
-            "The Amazon Resource Name (ARN) of the  RepositoryAssociation  object. You can retrieve this ARN by calling  ListRepositoryAssociations",
+            "The Amazon Resource Name (ARN) of the RepositoryAssociation object. You can retrieve this ARN by calling ListRepositoryAssociations",
           args: {
             name: "string",
           },
@@ -629,7 +629,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "An array of key-value pairs used to tag an associated repository. A tag is a custom attribute label with two parts:    A tag key (for example, CostCenter, Environment, Project, or Secret). Tag keys are case sensitive.   An optional field known as a tag value (for example, 111122223333, Production, or a team name). Omitting the tag value is the same as using an empty string. Like tag keys, tag values are case sensitive",
+            "An array of key-value pairs used to tag an associated repository. A tag is a custom attribute label with two parts:   A tag key (for example, CostCenter, Environment, Project, or Secret). Tag keys are case sensitive.   An optional field known as a tag value (for example, 111122223333, Production, or a team name). Omitting the tag value is the same as using an empty string. Like tag keys, tag values are case sensitive",
           args: {
             name: "map",
           },
@@ -660,7 +660,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-arn",
           description:
-            "The Amazon Resource Name (ARN) of the  RepositoryAssociation  object. You can retrieve this ARN by calling  ListRepositoryAssociations",
+            "The Amazon Resource Name (ARN) of the RepositoryAssociation object. You can retrieve this ARN by calling ListRepositoryAssociations",
           args: {
             name: "string",
           },
@@ -692,7 +692,77 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "wait",
+      description:
+        "Wait until a particular condition is satisfied. Each subcommand polls an API until the listed requirement is met",
+      subcommands: [
+        {
+          name: "code-review-completed",
+          description:
+            "Wait until a code review is complete. It will poll every 10 seconds until a successful state has been reached. This will exit with a return code of 255 after 180 failed checks",
+          options: [
+            {
+              name: "--code-review-arn",
+              description:
+                "The Amazon Resource Name (ARN) of the CodeReview object",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cli-input-json",
+              description:
+                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--generate-cli-skeleton",
+              description:
+                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+              args: {
+                name: "string",
+                suggestions: ["input", "output"],
+              },
+            },
+          ],
+        },
+        {
+          name: "repository-association-succeeded",
+          description:
+            "Wait until a repository association is complete. It will poll every 10 seconds until a successful state has been reached. This will exit with a return code of 255 after 30 failed checks",
+          options: [
+            {
+              name: "--association-arn",
+              description:
+                "The Amazon Resource Name (ARN) of the RepositoryAssociation object. You can retrieve this ARN by calling ListRepositoryAssociations",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cli-input-json",
+              description:
+                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--generate-cli-skeleton",
+              description:
+                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+              args: {
+                name: "string",
+                suggestions: ["input", "output"],
+              },
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
-
 export default completionSpec;

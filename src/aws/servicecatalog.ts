@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "servicecatalog",
   description:
-    "AWS Service Catalog  AWS Service Catalog enables organizations to create and manage catalogs of IT services that are approved for AWS. To get the most out of this documentation, you should be familiar with the terminology discussed in AWS Service Catalog Concepts",
+    "Service Catalog  Service Catalog enables organizations to create and manage catalogs of IT services that are approved for Amazon Web Services. To get the most out of this documentation, you should be familiar with the terminology discussed in Service Catalog Concepts",
   subcommands: [
     {
       name: "accept-portfolio-share",
@@ -9,8 +9,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -91,12 +90,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "associate-principal-with-portfolio",
       description:
-        "Associates the specified principal ARN with the specified portfolio",
+        "Associates the specified principal ARN with the specified portfolio. If you share the portfolio with principal name sharing enabled, the PrincipalARN association is included in the share.  The PortfolioID, PrincipalARN, and PrincipalType parameters are required.  You can associate a maximum of 10 Principals with a portfolio using PrincipalType as IAM_PATTERN.   When you associate a principal with portfolio, a potential privilege escalation path may occur when that portfolio is then shared with other accounts. For a user in a recipient account who is not an Service Catalog Admin, but still has the ability to create Principals (Users/Groups/Roles), that user could create a role that matches a principal name association for the portfolio. Although this user may not know which principal names are associated through Service Catalog, they may be able to guess the user. If this potential escalation path is a concern, then Service Catalog recommends using PrincipalType as IAM. With this configuration, the PrincipalARN must already exist in the recipient account before it can be associated",
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -110,14 +108,16 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--principal-arn",
-          description: "The ARN of the principal (IAM user, role, or group)",
+          description:
+            'The ARN of the principal (user, role, or group). If the PrincipalType is IAM, the supported value is a fully defined IAM Amazon Resource Name (ARN). If the PrincipalType is IAM_PATTERN, the supported value is an IAM ARN without an AccountID in the following format:  arn:partition:iam:::resource-type/resource-id  The ARN resource-id can be either:   A fully formed resource-id. For example, arn:aws:iam:::role/resource-name or arn:aws:iam:::role/resource-path/resource-name    A wildcard ARN. The wildcard ARN accepts IAM_PATTERN values with a "*" or "?" in the resource-id segment of the ARN. For example arn:partition:service:::resource-type/resource-path/resource-name. The new symbols are exclusive to the resource-path and resource-name and cannot replace the resource-type or other ARN values.  The ARN path and principal name allow unlimited wildcard characters.   Examples of an acceptable wildcard ARN:   arn:aws:iam:::role/ResourceName_*   arn:aws:iam:::role/*/ResourceName_?   Examples of an unacceptable wildcard ARN:   arn:aws:iam:::*/ResourceName   You can associate multiple IAM_PATTERNs even if the account has no principal with that name.  The "?" wildcard character matches zero or one of any character. This is similar to ".?" in regular regex context. The "*" wildcard character matches any number of any characters. This is similar to ".*" in regular regex context. In the IAM Principal ARN format (arn:partition:iam:::resource-type/resource-path/resource-name), valid resource-type values include user/, group/, or role/. The "?" and "*" characters are allowed only after the resource-type in the resource-id segment. You can use special characters anywhere within the resource-id.  The "*" character also matches the "/" character, allowing paths to be formed within the resource-id. For example, arn:aws:iam:::role/*/ResourceName_? matches both arn:aws:iam:::role/pathA/pathB/ResourceName_1 and arn:aws:iam:::role/pathA/ResourceName_1',
           args: {
             name: "string",
           },
         },
         {
           name: "--principal-type",
-          description: "The principal type. The supported value is IAM",
+          description:
+            "The principal type. The supported value is IAM if you use a fully defined Amazon Resource Name (ARN), or IAM_PATTERN if you use an ARN with no accountID, with or without wildcard characters",
           args: {
             name: "string",
           },
@@ -148,8 +148,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -225,8 +224,15 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--accept-language",
+          description: "The language code.    jp - Japanese    zh - Chinese",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--idempotency-token",
           description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+            "A unique identifier that you provide to ensure idempotency. If multiple requests from the same Amazon Web Services account use the same idempotency token, the same response is returned for each repeated request",
           args: {
             name: "string",
           },
@@ -303,8 +309,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -343,8 +348,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -371,12 +375,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "copy-product",
       description:
-        "Copies the specified source product to the specified target product or a new product. You can copy a product to the same account or another account. You can copy a product to the same region or another region. This operation is performed asynchronously. To track the progress of the operation, use DescribeCopyProductStatus",
+        "Copies the specified source product to the specified target product or a new product. You can copy a product to the same account or another account. You can copy a product to the same Region or another Region. If you copy a product to another account, you must first share the product in a portfolio using CreatePortfolioShare. This operation is performed asynchronously. To track the progress of the operation, use DescribeCopyProductStatus",
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -454,8 +457,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -477,7 +479,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--parameters",
           description:
-            'The constraint parameters, in JSON format. The syntax depends on the constraint type as follows:  LAUNCH  You are required to specify either the RoleArn or the LocalRoleName but can\'t use both. Specify the RoleArn property as follows:  {"RoleArn" : "arn:aws:iam::123456789012:role/LaunchRole"}  Specify the LocalRoleName property as follows:  {"LocalRoleName": "SCBasicLaunchRole"}  If you specify the LocalRoleName property, when an account uses the launch constraint, the IAM role with that name in the account will be used. This allows launch-role constraints to be account-agnostic so the administrator can create fewer resources per shared account.  The given role name must exist in the account used to create the launch constraint and the account of the user who launches a product with this launch constraint.  You cannot have both a LAUNCH and a STACKSET constraint. You also cannot have more than one LAUNCH constraint on a product and portfolio.  NOTIFICATION  Specify the NotificationArns property as follows:  {"NotificationArns" : ["arn:aws:sns:us-east-1:123456789012:Topic"]}   RESOURCE_UPDATE  Specify the TagUpdatesOnProvisionedProduct property as follows:  {"Version":"2.0","Properties":{"TagUpdateOnProvisionedProduct":"String"}}  The TagUpdatesOnProvisionedProduct property accepts a string value of ALLOWED or NOT_ALLOWED.  STACKSET  Specify the Parameters property as follows:  {"Version": "String", "Properties": {"AccountList": [ "String" ], "RegionList": [ "String" ], "AdminRole": "String", "ExecutionRole": "String"}}  You cannot have both a LAUNCH and a STACKSET constraint. You also cannot have more than one STACKSET constraint on a product and portfolio. Products with a STACKSET constraint will launch an AWS CloudFormation stack set.  TEMPLATE  Specify the Rules property. For more information, see Template Constraint Rules',
+            'The constraint parameters, in JSON format. The syntax depends on the constraint type as follows:  LAUNCH  You are required to specify either the RoleArn or the LocalRoleName but can\'t use both. Specify the RoleArn property as follows:  {"RoleArn" : "arn:aws:iam::123456789012:role/LaunchRole"}  Specify the LocalRoleName property as follows:  {"LocalRoleName": "SCBasicLaunchRole"}  If you specify the LocalRoleName property, when an account uses the launch constraint, the IAM role with that name in the account will be used. This allows launch-role constraints to be account-agnostic so the administrator can create fewer resources per shared account.  The given role name must exist in the account used to create the launch constraint and the account of the user who launches a product with this launch constraint.  You cannot have both a LAUNCH and a STACKSET constraint. You also cannot have more than one LAUNCH constraint on a product and portfolio.  NOTIFICATION  Specify the NotificationArns property as follows:  {"NotificationArns" : ["arn:aws:sns:us-east-1:123456789012:Topic"]}   RESOURCE_UPDATE  Specify the TagUpdatesOnProvisionedProduct property as follows:  {"Version":"2.0","Properties":{"TagUpdateOnProvisionedProduct":"String"}}  The TagUpdatesOnProvisionedProduct property accepts a string value of ALLOWED or NOT_ALLOWED.  STACKSET  Specify the Parameters property as follows:  {"Version": "String", "Properties": {"AccountList": [ "String" ], "RegionList": [ "String" ], "AdminRole": "String", "ExecutionRole": "String"}}  You cannot have both a LAUNCH and a STACKSET constraint. You also cannot have more than one STACKSET constraint on a product and portfolio. Products with a STACKSET constraint will launch an CloudFormation stack set.  TEMPLATE  Specify the Rules property. For more information, see Template Constraint Rules',
           args: {
             name: "string",
           },
@@ -531,8 +533,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -595,12 +596,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-portfolio-share",
       description:
-        "Shares the specified portfolio with the specified account or organization node. Shares to an organization node can only be created by the management account of an organization or by a delegated administrator. You can share portfolios to an organization, an organizational unit, or a specific account. Note that if a delegated admin is de-registered, they can no longer create portfolio shares.  AWSOrganizationsAccess must be enabled in order to create a portfolio share to an organization node. You can't share a shared resource, including portfolios that contain a shared product. If the portfolio share with the specified account or organization node already exists, this action will have no effect and will not return an error. To update an existing share, you must use the  UpdatePortfolioShare API instead",
+        "Shares the specified portfolio with the specified account or organization node. Shares to an organization node can only be created by the management account of an organization or by a delegated administrator. You can share portfolios to an organization, an organizational unit, or a specific account. Note that if a delegated admin is de-registered, they can no longer create portfolio shares.  AWSOrganizationsAccess must be enabled in order to create a portfolio share to an organization node. You can't share a shared resource, including portfolios that contain a shared product. If the portfolio share with the specified account or organization node already exists, this action will have no effect and will not return an error. To update an existing share, you must use the  UpdatePortfolioShare API instead.   When you associate a principal with portfolio, a potential privilege escalation path may occur when that portfolio is then shared with other accounts. For a user in a recipient account who is not an Service Catalog Admin, but still has the ability to create Principals (Users/Groups/Roles), that user could create a role that matches a principal name association for the portfolio. Although this user may not know which principal names are associated through Service Catalog, they may be able to guess the user. If this potential escalation path is a concern, then Service Catalog recommends using PrincipalType as IAM. With this configuration, the PrincipalARN must already exist in the recipient account before it can be associated",
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -614,7 +614,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--account-id",
-          description: "The AWS account ID. For example, 123456789012",
+          description:
+            "The Amazon Web Services account ID. For example, 123456789012",
           args: {
             name: "string",
           },
@@ -622,7 +623,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--organization-node",
           description:
-            "The organization node to whom you are going to share. If OrganizationNode is passed in, PortfolioShare will be created for the node an ListOrganizationPortfolioAccessd its children (when applies), and a PortfolioShareToken will be returned in the output in order for the administrator to monitor the status of the PortfolioShare creation process",
+            "The organization node to whom you are going to share. When you pass OrganizationNode, it creates PortfolioShare for all of the Amazon Web Services accounts that are associated to the OrganizationNode. The output returns a PortfolioShareToken, which enables the administrator to monitor the status of the PortfolioShare creation process",
           args: {
             name: "structure",
           },
@@ -636,6 +637,16 @@ const completionSpec: Fig.Spec = {
           name: "--no-share-tag-options",
           description:
             "Enables or disables TagOptions  sharing when creating the portfolio share. If this flag is not provided, TagOptions sharing is disabled",
+        },
+        {
+          name: "--share-principals",
+          description:
+            "This parameter is only supported for portfolios with an OrganizationalNode Type of ORGANIZATION or ORGANIZATIONAL_UNIT.  Enables or disables Principal sharing when creating the portfolio share. If you do not provide this flag, principal sharing is disabled.  When you enable Principal Name Sharing for a portfolio share, the share recipient account end users with a principal that matches any of the associated IAM patterns can provision products from the portfolio. Once shared, the share recipient can view associations of PrincipalType: IAM_PATTERN on their portfolio. You can create the principals in the recipient account before or after creating the share",
+        },
+        {
+          name: "--no-share-principals",
+          description:
+            "This parameter is only supported for portfolios with an OrganizationalNode Type of ORGANIZATION or ORGANIZATIONAL_UNIT.  Enables or disables Principal sharing when creating the portfolio share. If you do not provide this flag, principal sharing is disabled.  When you enable Principal Name Sharing for a portfolio share, the share recipient account end users with a principal that matches any of the associated IAM patterns can provision products from the portfolio. Once shared, the share recipient can view associations of PrincipalType: IAM_PATTERN on their portfolio. You can create the principals in the recipient account before or after creating the share",
         },
         {
           name: "--cli-input-json",
@@ -663,8 +674,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -749,6 +759,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--source-connection",
+          description:
+            "Specifies connection details for the created product and syncs the product to the connection source artifact. This automatically manages the product's artifacts based on changes to the source. The SourceConnection parameter consists of the following sub-fields.    Type     ConnectionParamters",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -770,12 +788,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-provisioned-product-plan",
       description:
-        "Creates a plan. A plan includes the list of resources to be created (when provisioning a new product) or modified (when updating a provisioned product) when the plan is executed. You can create one plan per provisioned product. To create a plan for an existing provisioned product, the product status must be AVAILABLE or TAINTED. To view the resource changes in the change set, use DescribeProvisionedProductPlan. To create or modify the provisioned product, use ExecuteProvisionedProductPlan",
+        "Creates a plan. A plan includes the list of resources to be created (when provisioning a new product) or modified (when updating a provisioned product) when the plan is executed. You can create one plan for each provisioned product. To create a plan for an existing provisioned product, the product status must be AVAILABLE or TAINTED. To view the resource changes in the change set, use DescribeProvisionedProductPlan. To create or modify the provisioned product, use ExecuteProvisionedProductPlan",
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -820,7 +837,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--provisioned-product-name",
           description:
-            "A user-friendly name for the provisioned product. This value must be unique for the AWS account and cannot be updated after the product is provisioned",
+            "A user-friendly name for the provisioned product. This value must be unique for the Amazon Web Services account and cannot be updated after the product is provisioned",
           args: {
             name: "string",
           },
@@ -882,8 +899,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -951,7 +967,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--definition",
           description:
-            'The self-service action definition. Can be one of the following:  Name  The name of the AWS Systems Manager document (SSM document). For example, AWS-RestartEC2Instance. If you are using a shared SSM document, you must provide the ARN instead of the name.  Version  The AWS Systems Manager automation document version. For example, "Version": "1"   AssumeRole  The Amazon Resource Name (ARN) of the role that performs the self-service actions on your behalf. For example, "AssumeRole": "arn:aws:iam::12345678910:role/ActionRole". To reuse the provisioned product launch role, set to "AssumeRole": "LAUNCH_ROLE".  Parameters  The list of parameters in JSON format. For example: [{\\"Name\\":\\"InstanceId\\",\\"Type\\":\\"TARGET\\"}] or [{\\"Name\\":\\"InstanceId\\",\\"Type\\":\\"TEXT_VALUE\\"}]',
+            'The self-service action definition. Can be one of the following:  Name  The name of the Amazon Web Services Systems Manager document (SSM document). For example, AWS-RestartEC2Instance. If you are using a shared SSM document, you must provide the ARN instead of the name.  Version  The Amazon Web Services Systems Manager automation document version. For example, "Version": "1"   AssumeRole  The Amazon Resource Name (ARN) of the role that performs the self-service actions on your behalf. For example, "AssumeRole": "arn:aws:iam::12345678910:role/ActionRole". To reuse the provisioned product launch role, set to "AssumeRole": "LAUNCH_ROLE".  Parameters  The list of parameters in JSON format. For example: [{\\"Name\\":\\"InstanceId\\",\\"Type\\":\\"TARGET\\"}] or [{\\"Name\\":\\"InstanceId\\",\\"Type\\":\\"TEXT_VALUE\\"}]',
           args: {
             name: "map",
           },
@@ -965,8 +981,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -1042,8 +1057,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -1081,8 +1095,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -1120,8 +1133,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -1135,7 +1147,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--account-id",
-          description: "The AWS account ID",
+          description: "The Amazon Web Services account ID",
           args: {
             name: "string",
           },
@@ -1174,8 +1186,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -1212,8 +1223,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -1228,12 +1238,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ignore-errors",
           description:
-            "If set to true, AWS Service Catalog stops managing the specified provisioned product even if it cannot delete the underlying resources",
+            "If set to true, Service Catalog stops managing the specified provisioned product even if it cannot delete the underlying resources",
         },
         {
           name: "--no-ignore-errors",
           description:
-            "If set to true, AWS Service Catalog stops managing the specified provisioned product even if it cannot delete the underlying resources",
+            "If set to true, Service Catalog stops managing the specified provisioned product even if it cannot delete the underlying resources",
         },
         {
           name: "--cli-input-json",
@@ -1261,8 +1271,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -1314,8 +1323,15 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--accept-language",
+          description: "The language code.    jp - Japanese    zh - Chinese",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--idempotency-token",
           description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+            "A unique identifier that you provide to ensure idempotency. If multiple requests from the same Amazon Web Services account use the same idempotency token, the same response is returned for each repeated request",
           args: {
             name: "string",
           },
@@ -1376,8 +1392,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -1414,8 +1429,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -1454,8 +1468,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -1575,12 +1588,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "describe-product",
-      description: "Gets information about the specified product",
+      description:
+        "Gets information about the specified product.   Running this operation with administrator access results in a failure. DescribeProductAsAdmin should be used instead",
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -1625,8 +1638,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -1678,8 +1690,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -1716,8 +1727,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -1764,8 +1774,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -1818,8 +1827,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -1861,6 +1869,16 @@ const completionSpec: Fig.Spec = {
           description: "Indicates whether a verbose level of detail is enabled",
         },
         {
+          name: "--include-provisioning-artifact-parameters",
+          description:
+            "Indicates if the API call response does or does not include additional details about the provisioning parameters",
+        },
+        {
+          name: "--no-include-provisioning-artifact-parameters",
+          description:
+            "Indicates if the API call response does or does not include additional details about the provisioning parameters",
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -1886,8 +1904,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -1966,8 +1983,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -2027,8 +2043,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -2073,8 +2088,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -2131,7 +2145,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "disable-aws-organizations-access",
       description:
-        "Disable portfolio sharing through AWS Organizations feature. This feature will not delete your current shares but it will prevent you from creating new shares throughout your organization. Current shares will not be in sync with your organization structure if it changes after calling this API. This API can only be called by the management account in the organization. This API can't be invoked if there are active delegated administrators in the organization. Note that a delegated administrator is not authorized to invoke DisableAWSOrganizationsAccess",
+        "Disable portfolio sharing through the Organizations service. This command will not delete your current shares, but prevents you from creating new shares throughout your organization. Current shares are not kept in sync with your organization structure if the structure changes after calling this API. Only the management account in the organization can call this API. You cannot call this API if there are active delegated administrators in the organization. Note that a delegated administrator is not authorized to invoke DisableAWSOrganizationsAccess.  If you share an Service Catalog portfolio in an organization within Organizations, and then disable Organizations access for Service Catalog, the portfolio access permissions will not sync with the latest changes to the organization structure. Specifically, accounts that you removed from the organization after disabling Service Catalog access will retain access to the previously shared portfolio",
       options: [
         {
           name: "--cli-input-json",
@@ -2194,12 +2208,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "disassociate-principal-from-portfolio",
       description:
-        "Disassociates a previously associated principal ARN from a specified portfolio",
+        "Disassociates a previously associated principal ARN from a specified portfolio. The PrincipalType and PrincipalARN must match the AssociatePrincipalWithPortfolio call request details. For example, to disassociate an association created with a PrincipalARN of PrincipalType IAM you must use the PrincipalType IAM when calling DisassociatePrincipalFromPortfolio.  For portfolios that have been shared with principal name sharing enabled: after disassociating a principal, share recipient accounts will no longer be able to provision products in this portfolio using a role matching the name of the associated principal.  For more information, review associate-principal-with-portfolio in the Amazon Web Services CLI Command Reference.   If you disassociate a principal from a portfolio, with PrincipalType as IAM, the same principal will still have access to the portfolio if it matches one of the associated principals of type IAM_PATTERN. To fully remove access for a principal, verify all the associated Principals of type IAM_PATTERN, and then ensure you disassociate any IAM_PATTERN principals that match the principal whose access you are removing",
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -2213,7 +2226,16 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--principal-arn",
-          description: "The ARN of the principal (IAM user, role, or group)",
+          description:
+            "The ARN of the principal (user, role, or group). This field allows an ARN with no accountID with or without wildcard characters if PrincipalType is IAM_PATTERN",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--principal-type",
+          description:
+            "The supported value is IAM if you use a fully defined ARN, or IAM_PATTERN if you specify an IAM ARN with no AccountId, with or without wildcard characters",
           args: {
             name: "string",
           },
@@ -2244,8 +2266,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -2314,8 +2335,15 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--accept-language",
+          description: "The language code.    jp - Japanese    zh - Chinese",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--idempotency-token",
           description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+            "A unique identifier that you provide to ensure idempotency. If multiple requests from the same Amazon Web Services account use the same idempotency token, the same response is returned for each repeated request",
           args: {
             name: "string",
           },
@@ -2380,7 +2408,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "enable-aws-organizations-access",
       description:
-        "Enable portfolio sharing feature through AWS Organizations. This API will allow Service Catalog to receive updates on your organization in order to sync your shares with the current structure. This API can only be called by the management account in the organization. By calling this API Service Catalog will make a call to organizations:EnableAWSServiceAccess on your behalf so that your shares can be in sync with any changes in your AWS Organizations structure. Note that a delegated administrator is not authorized to invoke EnableAWSOrganizationsAccess",
+        "Enable portfolio sharing feature through Organizations. This API will allow Service Catalog to receive updates on your organization in order to sync your shares with the current structure. This API can only be called by the management account in the organization. When you call this API, Service Catalog calls organizations:EnableAWSServiceAccess on your behalf so that your shares stay in sync with any changes in your Organizations structure. Note that a delegated administrator is not authorized to invoke EnableAWSOrganizationsAccess.  If you have previously disabled Organizations access for Service Catalog, and then enable access again, the portfolio access permissions might not sync with the latest changes to the organization structure. Specifically, accounts that you removed from the organization after disabling Service Catalog access, and before you enabled access again, can retain access to the previously shared portfolio. As a result, an account that has been removed from the organization might still be able to create or manage Amazon Web Services resources when it is no longer authorized to do so. Amazon Web Services is working to resolve this issue",
       options: [
         {
           name: "--cli-input-json",
@@ -2408,8 +2436,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -2478,8 +2505,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -2487,7 +2513,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--parameters",
           description:
-            "A map of all self-service action parameters and their values. If a provided parameter is of a special type, such as TARGET, the provided value will override the default value generated by AWS Service Catalog. If the parameters field is not provided, no additional parameters are passed and default values will be used for any special parameters such as TARGET",
+            "A map of all self-service action parameters and their values. If a provided parameter is of a special type, such as TARGET, the provided value will override the default value generated by Service Catalog. If the parameters field is not provided, no additional parameters are passed and default values will be used for any special parameters such as TARGET",
           args: {
             name: "map",
           },
@@ -2514,7 +2540,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-aws-organizations-access-status",
       description:
-        "Get the Access Status for AWS Organization portfolio share feature. This API can only be called by the management account in the organization or by a delegated admin",
+        "Get the Access Status for Organizations portfolio share feature. This API can only be called by the management account in the organization or by a delegated admin",
       options: [
         {
           name: "--cli-input-json",
@@ -2542,8 +2568,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -2609,12 +2634,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "import-as-provisioned-product",
       description:
-        "Requests the import of a resource as a Service Catalog provisioned product that is associated to a Service Catalog product and provisioning artifact. Once imported, all supported Service Catalog governance actions are supported on the provisioned product. Resource import only supports CloudFormation stack ARNs. CloudFormation StackSets and non-root nested stacks are not supported. The CloudFormation stack must have one of the following statuses to be imported: CREATE_COMPLETE, UPDATE_COMPLETE, UPDATE_ROLLBACK_COMPLETE, IMPORT_COMPLETE, IMPORT_ROLLBACK_COMPLETE. Import of the resource requires that the CloudFormation stack template matches the associated Service Catalog product provisioning artifact.  The user or role that performs this operation must have the cloudformation:GetTemplate and cloudformation:DescribeStacks IAM policy permissions",
+        "Requests the import of a resource as an Service Catalog provisioned product that is associated to an Service Catalog product and provisioning artifact. Once imported, all supported governance actions are supported on the provisioned product.   Resource import only supports CloudFormation stack ARNs. CloudFormation StackSets, and non-root nested stacks, are not supported.   The CloudFormation stack must have one of the following statuses to be imported: CREATE_COMPLETE, UPDATE_COMPLETE, UPDATE_ROLLBACK_COMPLETE, IMPORT_COMPLETE, and IMPORT_ROLLBACK_COMPLETE.   Import of the resource requires that the CloudFormation stack template matches the associated Service Catalog product provisioning artifact.    When you import an existing CloudFormation stack into a portfolio, Service Catalog does not apply the product's associated constraints during the import process. Service Catalog applies the constraints after you call UpdateProvisionedProduct for the provisioned product.    The user or role that performs this operation must have the cloudformation:GetTemplate and cloudformation:DescribeStacks IAM policy permissions.  You can only import one provisioned product at a time. The product's CloudFormation stack must have the IMPORT_COMPLETE status before you import another",
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -2636,7 +2660,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--provisioned-product-name",
           description:
-            "The user-friendly name of the provisioned product. The value must be unique for the AWS account. The name cannot be updated after the product is provisioned",
+            "The user-friendly name of the provisioned product. The value must be unique for the Amazon Web Services account. The name cannot be updated after the product is provisioned",
           args: {
             name: "string",
           },
@@ -2679,12 +2703,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-accepted-portfolio-shares",
       description:
-        "Lists all portfolios for which sharing was accepted by this account",
+        "Lists all imported portfolios for which account-to-account shares were accepted by this account. By specifying the PortfolioShareType, you can list portfolios for which organizational shares were accepted by this account",
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -2708,7 +2731,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--portfolio-share-type",
           description:
-            "The type of shared portfolios to list. The default is to list imported portfolios.    AWS_ORGANIZATIONS - List portfolios shared by the management account of your organization    AWS_SERVICECATALOG - List default portfolios    IMPORTED - List imported portfolios",
+            "The type of shared portfolios to list. The default is to list imported portfolios.    AWS_ORGANIZATIONS - List portfolios accepted and shared via organizational sharing by the management account or delegated administrator of your organization.    AWS_SERVICECATALOG - Deprecated type.    IMPORTED - List imported portfolios that have been accepted and shared through account-to-account sharing",
           args: {
             name: "string",
           },
@@ -2754,8 +2777,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -2808,8 +2830,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -2882,12 +2903,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-launch-paths",
       description:
-        "Lists the paths to the specified product. A path is how the user has access to a specified product, and is necessary when provisioning a product. A path also determines the constraints put on the product",
+        "Lists the paths to the specified product. A path describes how the user gets access to a specified product and is necessary when provisioning a product. A path also determines the constraints that are put on a product. A path is dependent on a specific product, porfolio, and principal.    When provisioning a product that's been added to a portfolio, you must grant your user, group, or role access to the portfolio. For more information, see Granting users access in the Service Catalog User Guide",
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -2957,8 +2977,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -3037,8 +3056,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -3098,8 +3116,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -3162,8 +3179,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -3229,12 +3245,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-principals-for-portfolio",
       description:
-        "Lists all principal ARNs associated with the specified portfolio",
+        "Lists all PrincipalARNs and corresponding PrincipalTypes associated with the specified portfolio",
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -3304,8 +3319,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -3383,8 +3397,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -3446,8 +3459,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -3493,8 +3505,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -3641,8 +3652,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -3737,8 +3747,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -3781,12 +3790,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-stack-instances-for-provisioned-product",
       description:
-        "Returns summary information about stack instances that are associated with the specified CFN_STACKSET type provisioned product. You can filter for stack instances that are associated with a specific AWS account name or region",
+        "Returns summary information about stack instances that are associated with the specified CFN_STACKSET type provisioned product. You can filter for stack instances that are associated with a specific Amazon Web Services account name or Region",
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -3896,14 +3904,216 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "notify-provision-product-engine-workflow-result",
+      description: "Notifies the result of the provisioning engine execution",
+      options: [
+        {
+          name: "--workflow-token",
+          description:
+            "The encrypted contents of the provisioning engine execution payload that Service Catalog sends after the Terraform product provisioning workflow starts",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--record-id",
+          description: "The identifier of the record",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--status",
+          description: "The status of the provisioning engine execution",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--failure-reason",
+          description:
+            "The reason why the provisioning engine execution failed",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--resource-identifier",
+          description:
+            "The ID for the provisioned product resources that are part of a resource group",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--outputs",
+          description: "The output of the provisioning engine execution",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--idempotency-token",
+          description:
+            "The idempotency token that identifies the provisioning engine execution",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "notify-terminate-provisioned-product-engine-workflow-result",
+      description: "Notifies the result of the terminate engine execution",
+      options: [
+        {
+          name: "--workflow-token",
+          description:
+            "The encrypted contents of the terminate engine execution payload that Service Catalog sends after the Terraform product terminate workflow starts",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--record-id",
+          description: "The identifier of the record",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--status",
+          description: "The status of the terminate engine execution",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--failure-reason",
+          description: "The reason why the terminate engine execution failed",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--idempotency-token",
+          description:
+            "The idempotency token that identifies the terminate engine execution",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "notify-update-provisioned-product-engine-workflow-result",
+      description: "Notifies the result of the update engine execution",
+      options: [
+        {
+          name: "--workflow-token",
+          description:
+            "The encrypted contents of the update engine execution payload that Service Catalog sends after the Terraform product update workflow starts",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--record-id",
+          description: "The identifier of the record",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--status",
+          description: "The status of the update engine execution",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--failure-reason",
+          description: "The reason why the update engine execution failed",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--outputs",
+          description: "The output of the update engine execution",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--idempotency-token",
+          description:
+            "The idempotency token that identifies the update engine execution",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "provision-product",
       description:
-        'Provisions the specified product. A provisioned product is a resourced instance of a product. For example, provisioning a product based on a CloudFormation template launches a CloudFormation stack and its underlying resources. You can check the status of this request using DescribeRecord. If the request contains a tag key with an empty list of values, there is a tag conflict for that key. Do not include conflicted keys as tags, or this causes the error "Parameter validation failed: Missing required parameter in Tags[N]:Value"',
+        "Provisions the specified product.   A provisioned product is a resourced instance of a product. For example, provisioning a product that's based on an CloudFormation template launches an CloudFormation stack and its underlying resources. You can check the status of this request using DescribeRecord.   If the request contains a tag key with an empty list of values, there's a tag conflict for that key. Don't include conflicted keys as tags, or this will cause the error \"Parameter validation failed: Missing required parameter in Tags[N]:Value\".    When provisioning a product that's been added to a portfolio, you must grant your user, group, or role access to the portfolio. For more information, see Granting users access in the Service Catalog User Guide",
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -3959,7 +4169,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--provisioned-product-name",
           description:
-            "A user-friendly name for the provisioned product. This value must be unique for the AWS account and cannot be updated after the product is provisioned",
+            "A user-friendly name for the provisioned product. This value must be unique for the Amazon Web Services account and cannot be updated after the product is provisioned",
           args: {
             name: "string",
           },
@@ -4028,8 +4238,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -4075,8 +4284,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -4147,8 +4355,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -4218,8 +4425,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -4320,8 +4526,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -4337,7 +4542,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--filters",
           description:
-            'The search filters. When the key is SearchQuery, the searchable fields are arn, createdTime, id, lastRecordId, idempotencyToken, name, physicalId, productId, provisioningArtifact, type, status, tags, userArn, userArnSession, lastProvisioningRecordId, lastSuccessfulProvisioningRecordId, productName, and provisioningArtifactName. Example: "SearchQuery":["status:AVAILABLE"]',
+            'The search filters. When the key is SearchQuery, the searchable fields are arn, createdTime, id, lastRecordId, idempotencyToken, name, physicalId, productId, provisioningArtifactId, type, status, tags, userArn, userArnSession, lastProvisioningRecordId, lastSuccessfulProvisioningRecordId, productName, and provisioningArtifactName. Example: "SearchQuery":["status:AVAILABLE"]',
           args: {
             name: "map",
           },
@@ -4424,17 +4629,16 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ignore-errors",
           description:
-            "If set to true, AWS Service Catalog stops managing the specified provisioned product even if it cannot delete the underlying resources",
+            "If set to true, Service Catalog stops managing the specified provisioned product even if it cannot delete the underlying resources",
         },
         {
           name: "--no-ignore-errors",
           description:
-            "If set to true, AWS Service Catalog stops managing the specified provisioned product even if it cannot delete the underlying resources",
+            "If set to true, Service Catalog stops managing the specified provisioned product even if it cannot delete the underlying resources",
         },
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -4474,8 +4678,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -4497,7 +4700,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--parameters",
           description:
-            'The constraint parameters, in JSON format. The syntax depends on the constraint type as follows:  LAUNCH  You are required to specify either the RoleArn or the LocalRoleName but can\'t use both. Specify the RoleArn property as follows:  {"RoleArn" : "arn:aws:iam::123456789012:role/LaunchRole"}  Specify the LocalRoleName property as follows:  {"LocalRoleName": "SCBasicLaunchRole"}  If you specify the LocalRoleName property, when an account uses the launch constraint, the IAM role with that name in the account will be used. This allows launch-role constraints to be account-agnostic so the administrator can create fewer resources per shared account.  The given role name must exist in the account used to create the launch constraint and the account of the user who launches a product with this launch constraint.  You cannot have both a LAUNCH and a STACKSET constraint. You also cannot have more than one LAUNCH constraint on a product and portfolio.  NOTIFICATION  Specify the NotificationArns property as follows:  {"NotificationArns" : ["arn:aws:sns:us-east-1:123456789012:Topic"]}   RESOURCE_UPDATE  Specify the TagUpdatesOnProvisionedProduct property as follows:  {"Version":"2.0","Properties":{"TagUpdateOnProvisionedProduct":"String"}}  The TagUpdatesOnProvisionedProduct property accepts a string value of ALLOWED or NOT_ALLOWED.  STACKSET  Specify the Parameters property as follows:  {"Version": "String", "Properties": {"AccountList": [ "String" ], "RegionList": [ "String" ], "AdminRole": "String", "ExecutionRole": "String"}}  You cannot have both a LAUNCH and a STACKSET constraint. You also cannot have more than one STACKSET constraint on a product and portfolio. Products with a STACKSET constraint will launch an AWS CloudFormation stack set.  TEMPLATE  Specify the Rules property. For more information, see Template Constraint Rules',
+            'The constraint parameters, in JSON format. The syntax depends on the constraint type as follows:  LAUNCH  You are required to specify either the RoleArn or the LocalRoleName but can\'t use both. Specify the RoleArn property as follows:  {"RoleArn" : "arn:aws:iam::123456789012:role/LaunchRole"}  Specify the LocalRoleName property as follows:  {"LocalRoleName": "SCBasicLaunchRole"}  If you specify the LocalRoleName property, when an account uses the launch constraint, the IAM role with that name in the account will be used. This allows launch-role constraints to be account-agnostic so the administrator can create fewer resources per shared account.  The given role name must exist in the account used to create the launch constraint and the account of the user who launches a product with this launch constraint.  You cannot have both a LAUNCH and a STACKSET constraint. You also cannot have more than one LAUNCH constraint on a product and portfolio.  NOTIFICATION  Specify the NotificationArns property as follows:  {"NotificationArns" : ["arn:aws:sns:us-east-1:123456789012:Topic"]}   RESOURCE_UPDATE  Specify the TagUpdatesOnProvisionedProduct property as follows:  {"Version":"2.0","Properties":{"TagUpdateOnProvisionedProduct":"String"}}  The TagUpdatesOnProvisionedProduct property accepts a string value of ALLOWED or NOT_ALLOWED.  STACKSET  Specify the Parameters property as follows:  {"Version": "String", "Properties": {"AccountList": [ "String" ], "RegionList": [ "String" ], "AdminRole": "String", "ExecutionRole": "String"}}  You cannot have both a LAUNCH and a STACKSET constraint. You also cannot have more than one STACKSET constraint on a product and portfolio. Products with a STACKSET constraint will launch an CloudFormation stack set.  TEMPLATE  Specify the Rules property. For more information, see Template Constraint Rules',
           args: {
             name: "string",
           },
@@ -4528,8 +4731,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -4598,12 +4800,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-portfolio-share",
       description:
-        "Updates the specified portfolio share. You can use this API to enable or disable TagOptions sharing for an existing portfolio share.  The portfolio share cannot be updated if the  CreatePortfolioShare operation is IN_PROGRESS, as the share is not available to recipient entities. In this case, you must wait for the portfolio share to be COMPLETED. You must provide the accountId or organization node in the input, but not both. If the portfolio is shared to both an external account and an organization node, and both shares need to be updated, you must invoke UpdatePortfolioShare separately for each share type.  This API cannot be used for removing the portfolio share. You must use DeletePortfolioShare API for that action",
+        "Updates the specified portfolio share. You can use this API to enable or disable TagOptions sharing or Principal sharing for an existing portfolio share.  The portfolio share cannot be updated if the CreatePortfolioShare operation is IN_PROGRESS, as the share is not available to recipient entities. In this case, you must wait for the portfolio share to be completed. You must provide the accountId or organization node in the input, but not both. If the portfolio is shared to both an external account and an organization node, and both shares need to be updated, you must invoke UpdatePortfolioShare separately for each share type.  This API cannot be used for removing the portfolio share. You must use DeletePortfolioShare API for that action.   When you associate a principal with portfolio, a potential privilege escalation path may occur when that portfolio is then shared with other accounts. For a user in a recipient account who is not an Service Catalog Admin, but still has the ability to create Principals (Users/Groups/Roles), that user could create a role that matches a principal name association for the portfolio. Although this user may not know which principal names are associated through Service Catalog, they may be able to guess the user. If this potential escalation path is a concern, then Service Catalog recommends using PrincipalType as IAM. With this configuration, the PrincipalARN must already exist in the recipient account before it can be associated",
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -4619,7 +4820,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--account-id",
           description:
-            "The AWS Account Id of the recipient account. This field is required when updating an external account to account type share",
+            "The Amazon Web Services account Id of the recipient account. This field is required when updating an external account to account type share",
           args: {
             name: "string",
           },
@@ -4634,12 +4835,22 @@ const completionSpec: Fig.Spec = {
         {
           name: "--share-tag-options",
           description:
-            "A flag to enable or disable TagOptions sharing for the portfolio share. If this field is not provided, the current state of TagOptions sharing on the portfolio share will not be modified",
+            "Enables or disables TagOptions sharing for the portfolio share. If this field is not provided, the current state of TagOptions sharing on the portfolio share will not be modified",
         },
         {
           name: "--no-share-tag-options",
           description:
-            "A flag to enable or disable TagOptions sharing for the portfolio share. If this field is not provided, the current state of TagOptions sharing on the portfolio share will not be modified",
+            "Enables or disables TagOptions sharing for the portfolio share. If this field is not provided, the current state of TagOptions sharing on the portfolio share will not be modified",
+        },
+        {
+          name: "--share-principals",
+          description:
+            "A flag to enables or disables Principals sharing in the portfolio. If this field is not provided, the current state of the Principals sharing on the portfolio share will not be modified",
+        },
+        {
+          name: "--no-share-principals",
+          description:
+            "A flag to enables or disables Principals sharing in the portfolio. If this field is not provided, the current state of the Principals sharing on the portfolio share will not be modified",
         },
         {
           name: "--cli-input-json",
@@ -4666,8 +4877,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -4743,6 +4953,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--source-connection",
+          description:
+            "Specifies connection details for the updated product and syncs the product to the connection source artifact. This automatically manages the product's artifacts based on changes to the source. The SourceConnection parameter consists of the following sub-fields.    Type     ConnectionParamters",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -4768,8 +4986,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -4894,8 +5111,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -4910,7 +5126,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--provisioned-product-properties",
           description:
-            "A map that contains the provisioned product properties to be updated. The LAUNCH_ROLE key accepts role ARNs. This key allows an administrator to call UpdateProvisionedProductProperties to update the launch role that is associated with a provisioned product. This role is used when an end user calls a provisioning operation such as UpdateProvisionedProduct, TerminateProvisionedProduct, or ExecuteProvisionedProductServiceAction. Only a role ARN is valid. A user ARN is invalid.  The OWNER key accepts user ARNs and role ARNs. The owner is the user that has permission to see, update, terminate, and execute service actions in the provisioned product. The administrator can change the owner of a provisioned product to another IAM user within the same account. Both end user owners and administrators can see ownership history of the provisioned product using the ListRecordHistory API. The new owner can describe all past records for the provisioned product using the DescribeRecord API. The previous owner can no longer use DescribeRecord, but can still see the product's history from when he was an owner using ListRecordHistory. If a provisioned product ownership is assigned to an end user, they can see and perform any action through the API or Service Catalog console such as update, terminate, and execute service actions. If an end user provisions a product and the owner is updated to someone else, they will no longer be able to see or perform any actions through API or the Service Catalog console on that provisioned product",
+            "A map that contains the provisioned product properties to be updated. The LAUNCH_ROLE key accepts role ARNs. This key allows an administrator to call UpdateProvisionedProductProperties to update the launch role that is associated with a provisioned product. This role is used when an end user calls a provisioning operation such as UpdateProvisionedProduct, TerminateProvisionedProduct, or ExecuteProvisionedProductServiceAction. Only a role ARN is valid. A user ARN is invalid.  The OWNER key accepts user ARNs, IAM role ARNs, and STS assumed-role ARNs. The owner is the user that has permission to see, update, terminate, and execute service actions in the provisioned product. The administrator can change the owner of a provisioned product to another IAM or STS entity within the same account. Both end user owners and administrators can see ownership history of the provisioned product using the ListRecordHistory API. The new owner can describe all past records for the provisioned product using the DescribeRecord API. The previous owner can no longer use DescribeRecord, but can still see the product's history from when he was an owner using ListRecordHistory. If a provisioned product ownership is assigned to an end user, they can see and perform any action through the API or Service Catalog console such as update, terminate, and execute service actions. If an end user provisions a product and the owner is updated to someone else, they will no longer be able to see or perform any actions through API or the Service Catalog console on that provisioned product",
           args: {
             name: "map",
           },
@@ -4949,8 +5165,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -5054,8 +5269,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--accept-language",
-          description:
-            "The language code.    en - English (default)    jp - Japanese    zh - Chinese",
+          description: "The language code.    jp - Japanese    zh - Chinese",
           args: {
             name: "string",
           },
@@ -5296,5 +5510,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

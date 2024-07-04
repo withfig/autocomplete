@@ -3,13 +3,13 @@ name: Build and release specs
 on:
   push:
     paths:
-      - 'src/**/*.ts'
-      - '!package.json'
+      - "src/**/*.ts"
+      - "!package.json"
     branches:
       # We only want to create a new release when
       # - a pr is merged to master
       # - we push into master
-      - 'master'
+      - "master"
   workflow_dispatch:
 
 jobs:
@@ -20,12 +20,17 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.FIG_BOT_TOKEN }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: package.json
         # Install all dependencies
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4.0.0
       - name: install
-        run: yarn install --no-immutable
+        run: pnpm install --frozen-lockfile
         # Transpile all specs from ts to js
       - name: build
-        run: yarn build
+        run: pnpm build
         # Zip the transpiled files into the specs.zip file
       - name: bundle files
         run: |
@@ -35,7 +40,7 @@ jobs:
         # Bump the version and create a git tag with the new version
       - name: Bump version and push tag
         id: tag_version
-        uses: mathieudutour/github-tag-action@v6.1
+        uses: mathieudutour/github-tag-action@v6.2
         with:
           tag_prefix: spec-build-number-
           # Bump versions in full numbers (1.0.0 -> 2.0.0)
@@ -43,18 +48,18 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
         # Create a new github release with the newly created specs.zip file
       - name: Release
-        uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844
+        uses: softprops/action-gh-release@a74c6b72af54cfa997e81df42d94703d6313a2d0
         with:
           files: specs.zip
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: 'Automated Version Bump'
-        uses: 'phips28/gh-action-bump-version@master'
+      - name: "Automated Version Bump"
+        uses: "phips28/gh-action-bump-version@master"
         env:
           GITHUB_TOKEN: ${{ secrets.FIG_BOT_TOKEN }}
         with:
-          skip-tag: 'true'
+          skip-tag: "true"
       - name: Publish to npm
         uses: JS-DevTools/npm-publish@v3
         with:

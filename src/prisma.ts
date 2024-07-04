@@ -69,8 +69,21 @@ const completionSpec: Fig.Spec = {
           description: "Enable the Data Proxy in the Prisma Client",
         },
         {
+          name: "--no-hints",
+          description:
+            "Hides the hint messages but still outputs errors and warnings",
+        },
+        {
+          name: "--no-engine",
+          description: "Generate a client for use with Accelerate only",
+        },
+        {
           name: "--watch",
           description: "Watch the Prisma schema and rerun after a change",
+        },
+        {
+          name: "--allow-no-models",
+          description: "Allow generating a client without models",
         },
       ],
     },

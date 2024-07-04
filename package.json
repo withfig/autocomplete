@@ -1,20 +1,27 @@
 {
   "name": "@withfig/autocomplete",
-  "version": "2.648.0",
+  "version": "2.663.0",
   "description": "Fig Autocomplete Specs",
   "schemaVersion": "v7",
   "main": "./build/index",
   "types": "./build/index.d.ts",
   "type": "module",
-  "packageManager": "yarn@3.5.1",
+  "packageManager": "pnpm@9.1.0+sha256.22e36fba7f4880ecf749a5ca128b8435da085ecd49575e7fb9e64d6bf4fad394",
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
   "browserslist": [
-    "safari >=12",
-    "edge >=79"
+    "safari >= 15",
+    "last 2 chrome versions",
+    "last 2 edge versions",
+    "last 2 firefox versions",
+    "maintained node versions"
   ],
   "scripts": {
     "dev": "npx @withfig/autocomplete-tools dev",
     "create-spec": "npx @withfig/autocomplete-tools create-spec",
-    "build": "npx @withfig/autocomplete-tools compile; node generate-index.js; vite build",
+    "build": "npx @withfig/autocomplete-tools compile",
     "lint": "eslint '**/*.ts' && npx prettier --check '**/*.ts' --parser typescript",
     "lint:fix": "eslint '**/*.ts' --fix && npx prettier --write '**/*.ts' --parser typescript",
     "test": "tsc --noEmit && echo 'All specs passed validation. You are ready to push!'",
@@ -56,56 +63,32 @@
   },
   "files": [
     "build/**/*.js",
-    "build/**/*.css"
+    "build/**/*.css",
+    "build/**/*.json"
   ],
   "author": "",
   "license": "ISC",
   "bugs": "https://github.com/withfig/autocomplete/issues",
   "repository": "https://github.com/withfig/autocomplete",
   "devDependencies": {
-    "@fig/eslint-config-autocomplete": "^1.2.1",
-    "@types/node": "^20.7.1",
-    "@types/progress": "^2.0.5",
-    "@types/react": "^18.2.23",
-    "@types/react-dom": "^18.2.8",
-    "@typescript-eslint/eslint-plugin": "^6.7.3",
-    "@typescript-eslint/parser": "^6.7.3",
-    "@vitejs/plugin-react": "^4.1.0",
-    "@withfig/autocomplete-tools": "^2.7.10",
-    "@withfig/autocomplete-types": "^1.29.0",
-    "autoprefixer": "^10.4.16",
-    "chalk": "^5.3.0",
-    "chokidar": "^3.5.3",
-    "cors": "^2.8.5",
-    "danger": "^11.3.0",
-    "esbuild": "^0.19.4",
-    "eslint": "^8.50.0",
-    "express": "^4.18.2",
-    "glob": "^10.3.10",
-    "husky": "^8.0.3",
-    "lint-staged": "^15.0.2",
-    "postcss": "^8.4.31",
-    "prettier": "^3.0.3",
-    "pretty-quick": "^3.1.3",
-    "progress": "^2.0.3",
-    "tailwindcss": "^3.3.3",
-    "ts-node": "^10.9.1",
-    "typescript": "~5.3.2",
-    "vite": "^4.4.9",
-    "vite-plugin-externals": "^0.6.2"
+    "@fig/eslint-config-autocomplete": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.14.1",
+    "@withfig/autocomplete-tools": "^2.10.0",
+    "@withfig/autocomplete-types": "^1.31.0",
+    "danger": "^11.3.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-compat": "4.2.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.7",
+    "prettier": "^3.3.2",
+    "typescript": "~5.5.2"
   },
   "dependencies": {
     "@fig/autocomplete-generators": "^2.4.0",
     "@fig/autocomplete-helpers": "^1.0.7",
-    "@fig/autocomplete-hooks": "^1.0.2",
-    "@withfig/api-bindings": "^0.30.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "semver": "^7.5.4",
+    "semver": "^7.6.2",
     "strip-json-comments": "^5.0.1",
-    "yaml": "^2.3.2"
-  },
-  "resolutions": {
-    "word-wrap": "1.2.4"
+    "yaml": "^2.4.5"
   }
 }

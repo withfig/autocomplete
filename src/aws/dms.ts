@@ -1,17 +1,17 @@
 const completionSpec: Fig.Spec = {
   name: "dms",
   description:
-    "AWS Database Migration Service AWS Database Migration Service (AWS DMS) can migrate your data to and from the most widely used commercial and open-source databases such as Oracle, PostgreSQL, Microsoft SQL Server, Amazon Redshift, MariaDB, Amazon Aurora, MySQL, and SAP Adaptive Server Enterprise (ASE). The service supports homogeneous migrations such as Oracle to Oracle, as well as heterogeneous migrations between different database platforms, such as Oracle to MySQL or SQL Server to PostgreSQL. For more information about AWS DMS, see What Is AWS Database Migration Service? in the AWS Database Migration User Guide",
+    "Database Migration Service Database Migration Service (DMS) can migrate your data to and from the most widely used commercial and open-source databases such as Oracle, PostgreSQL, Microsoft SQL Server, Amazon Redshift, MariaDB, Amazon Aurora, MySQL, and SAP Adaptive Server Enterprise (ASE). The service supports homogeneous migrations such as Oracle to Oracle, as well as heterogeneous migrations between different database platforms, such as Oracle to MySQL or SQL Server to PostgreSQL. For more information about DMS, see What Is Database Migration Service? in the Database Migration Service User Guide",
   subcommands: [
     {
       name: "add-tags-to-resource",
       description:
-        "Adds metadata tags to an AWS DMS resource, including replication instance, endpoint, security group, and migration task. These tags can also be used with cost allocation reporting to track cost associated with DMS resources, or used in a Condition statement in an IAM policy for DMS. For more information, see  Tag  data type description",
+        "Adds metadata tags to an DMS resource, including replication instance, endpoint, subnet group, and migration task. These tags can also be used with cost allocation reporting to track cost associated with DMS resources, or used in a Condition statement in an IAM policy for DMS. For more information, see  Tag  data type description",
       options: [
         {
           name: "--resource-arn",
           description:
-            "Identifies the AWS DMS resource to which tags should be added. The value for this parameter is an Amazon Resource Name (ARN). For AWS DMS, you can tag a replication instance, an endpoint, or a replication task",
+            "Identifies the DMS resource to which tags should be added. The value for this parameter is an Amazon Resource Name (ARN). For DMS, you can tag a replication instance, an endpoint, or a replication task",
           args: {
             name: "string",
           },
@@ -50,7 +50,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--replication-instance-arn",
           description:
-            "The Amazon Resource Name (ARN) of the AWS DMS resource that the pending maintenance action applies to",
+            "The Amazon Resource Name (ARN) of the DMS resource that the pending maintenance action applies to",
           args: {
             name: "string",
           },
@@ -58,7 +58,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--apply-action",
           description:
-            "The pending maintenance action to apply to this resource",
+            "The pending maintenance action to apply to this resource. Valid values: os-upgrade, system-update, db-upgrade",
           args: {
             name: "string",
           },
@@ -69,6 +69,38 @@ const completionSpec: Fig.Spec = {
             "A value that specifies the type of opt-in request, or undoes an opt-in request. You can't undo an opt-in request of type immediate. Valid values:    immediate - Apply the maintenance action immediately.    next-maintenance - Apply the maintenance action during the next maintenance window for the resource.    undo-opt-in - Cancel any existing next-maintenance opt-in requests",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "batch-start-recommendations",
+      description:
+        "Starts the analysis of up to 20 source databases to recommend target engines for each source database. This is a batch version of StartRecommendations. The result of analysis of each source database is reported individually in the response. Because the batch request can result in a combination of successful and unsuccessful actions, you should check for batch errors even when the call returns an HTTP status code of 200",
+      options: [
+        {
+          name: "--data",
+          description:
+            "Provides information about source databases to analyze. After this analysis, Fleet Advisor recommends target engines for each source database",
+          args: {
+            name: "list",
           },
         },
         {
@@ -123,8 +155,69 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-data-provider",
+      description:
+        "Creates a data provider using the provided settings. A data provider stores a data store type and location information about your database",
+      options: [
+        {
+          name: "--data-provider-name",
+          description: "A user-friendly name for the data provider",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "A user-friendly description of the data provider",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--engine",
+          description:
+            'The type of database engine for the data provider. Valid values include "aurora", "aurora-postgresql", "mysql", "oracle", "postgres", "sqlserver", redshift, mariadb, mongodb, and docdb. A value of "aurora" represents Amazon Aurora MySQL-Compatible Edition',
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--settings",
+          description: "The settings in JSON format for a data provider",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--tags",
+          description: "One or more tags to be assigned to the data provider",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-endpoint",
-      description: "Creates an endpoint using the provided settings",
+      description:
+        "Creates an endpoint using the provided settings.  For a MySQL source or target endpoint, don't explicitly specify the database using the DatabaseName request parameter on the CreateEndpoint API call. Specifying DatabaseName when you create a MySQL endpoint replicates all the task tables to this single database. For MySQL endpoints, you specify the database only when you specify the schema in the table-mapping rules of the DMS task",
       options: [
         {
           name: "--endpoint-identifier",
@@ -145,7 +238,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--engine-name",
           description:
-            'The type of engine for the endpoint. Valid values, depending on the EndpointType value, include "mysql", "oracle", "postgres", "mariadb", "aurora", "aurora-postgresql", "redshift", "s3", "db2", "azuredb", "sybase", "dynamodb", "mongodb", "kinesis", "kafka", "elasticsearch", "docdb", "sqlserver", and "neptune"',
+            'The type of engine for the endpoint. Valid values, depending on the EndpointType value, include "mysql", "oracle", "postgres", "mariadb", "aurora", "aurora-postgresql", "opensearch", "redshift", "s3", "db2", "db2-zos", "azuredb", "sybase", "dynamodb", "mongodb", "kinesis", "kafka", "elasticsearch", "docdb", "sqlserver", "neptune", and "babelfish"',
           args: {
             name: "string",
           },
@@ -183,7 +276,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--database-name",
-          description: "The name of the endpoint database",
+          description:
+            "The name of the endpoint database. For a MySQL source or target endpoint, do not specify DatabaseName. To migrate to a specific database, use this setting and targetDbType",
           args: {
             name: "string",
           },
@@ -191,7 +285,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--extra-connection-attributes",
           description:
-            "Additional attributes associated with the connection. Each attribute is specified as a name-value pair associated by an equal sign (=). Multiple attributes are separated by a semicolon (;) with no additional white space. For information on the attributes available for connecting your source or target endpoint, see Working with AWS DMS Endpoints in the AWS Database Migration Service User Guide",
+            "Additional attributes associated with the connection. Each attribute is specified as a name-value pair associated by an equal sign (=). Multiple attributes are separated by a semicolon (;) with no additional white space. For information on the attributes available for connecting your source or target endpoint, see Working with DMS Endpoints in the Database Migration Service User Guide",
           args: {
             name: "string",
           },
@@ -199,7 +293,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kms-key-id",
           description:
-            "An AWS KMS key identifier that is used to encrypt the connection parameters for the endpoint. If you don't specify a value for the KmsKeyId parameter, then AWS DMS uses your default encryption key. AWS KMS creates the default encryption key for your AWS account. Your AWS account has a different default encryption key for each AWS Region",
+            "An KMS key identifier that is used to encrypt the connection parameters for the endpoint. If you don't specify a value for the KmsKeyId parameter, then DMS uses your default encryption key. KMS creates the default encryption key for your Amazon Web Services account. Your Amazon Web Services account has a different default encryption key for each Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -229,7 +323,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--service-access-role-arn",
           description:
-            "The Amazon Resource Name (ARN) for the service access role that you want to use to create the endpoint",
+            "The Amazon Resource Name (ARN) for the service access role that you want to use to create the endpoint. The role must allow the iam:PassRole action",
           args: {
             name: "string",
           },
@@ -244,7 +338,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--dynamo-db-settings",
           description:
-            "Settings in JSON format for the target Amazon DynamoDB endpoint. For information about other available settings, see Using Object Mapping to Migrate Data to DynamoDB in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the target Amazon DynamoDB endpoint. For information about other available settings, see Using Object Mapping to Migrate Data to DynamoDB in the Database Migration Service User Guide",
           args: {
             name: "structure",
           },
@@ -252,7 +346,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--s3-settings",
           description:
-            "Settings in JSON format for the target Amazon S3 endpoint. For more information about the available settings, see Extra Connection Attributes When Using Amazon S3 as a Target for AWS DMS in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the target Amazon S3 endpoint. For more information about the available settings, see Extra Connection Attributes When Using Amazon S3 as a Target for DMS in the Database Migration Service User Guide",
           args: {
             name: "structure",
           },
@@ -260,7 +354,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--dms-transfer-settings",
           description:
-            'The settings in JSON format for the DMS transfer type of source endpoint.  Possible settings include the following:    ServiceAccessRoleArn - The IAM role that has permission to access the Amazon S3 bucket.    BucketName - The name of the S3 bucket to use.    CompressionType - An optional parameter to use GZIP to compress the target files. To use GZIP, set this value to NONE (the default). To keep the files uncompressed, don\'t use this value.   Shorthand syntax for these settings is as follows: ServiceAccessRoleArn=string,BucketName=string,CompressionType=string  JSON syntax for these settings is as follows: { "ServiceAccessRoleArn": "string", "BucketName": "string", "CompressionType": "none"|"gzip" }',
+            'The settings in JSON format for the DMS transfer type of source endpoint.  Possible settings include the following:    ServiceAccessRoleArn - The Amazon Resource Name (ARN) used by the service access IAM role. The role must allow the iam:PassRole action.    BucketName - The name of the S3 bucket to use.   Shorthand syntax for these settings is as follows: ServiceAccessRoleArn=string,BucketName=string  JSON syntax for these settings is as follows: { "ServiceAccessRoleArn": "string", "BucketName": "string", }',
           args: {
             name: "structure",
           },
@@ -268,7 +362,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--mongo-db-settings",
           description:
-            "Settings in JSON format for the source MongoDB endpoint. For more information about the available settings, see Using MongoDB as a Target for AWS Database Migration Service in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the source MongoDB endpoint. For more information about the available settings, see Endpoint configuration settings when using MongoDB as a source for Database Migration Service in the Database Migration Service User Guide",
           args: {
             name: "structure",
           },
@@ -276,7 +370,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kinesis-settings",
           description:
-            "Settings in JSON format for the target endpoint for Amazon Kinesis Data Streams. For more information about the available settings, see Using Amazon Kinesis Data Streams as a Target for AWS Database Migration Service in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the target endpoint for Amazon Kinesis Data Streams. For more information about the available settings, see Using object mapping to migrate data to a Kinesis data stream in the Database Migration Service User Guide",
           args: {
             name: "structure",
           },
@@ -284,7 +378,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kafka-settings",
           description:
-            "Settings in JSON format for the target Apache Kafka endpoint. For more information about the available settings, see Using Apache Kafka as a Target for AWS Database Migration Service in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the target Apache Kafka endpoint. For more information about the available settings, see Using object mapping to migrate data to a Kafka topic in the Database Migration Service User Guide",
           args: {
             name: "structure",
           },
@@ -292,7 +386,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--elasticsearch-settings",
           description:
-            "Settings in JSON format for the target Elasticsearch endpoint. For more information about the available settings, see Extra Connection Attributes When Using Elasticsearch as a Target for AWS DMS in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the target OpenSearch endpoint. For more information about the available settings, see Extra Connection Attributes When Using OpenSearch as a Target for DMS in the Database Migration Service User Guide",
           args: {
             name: "structure",
           },
@@ -300,7 +394,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--neptune-settings",
           description:
-            "Settings in JSON format for the target Amazon Neptune endpoint. For more information about the available settings, see Specifying Endpoint Settings for Amazon Neptune as a Target in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the target Amazon Neptune endpoint. For more information about the available settings, see Specifying graph-mapping rules using Gremlin and R2RML for Amazon Neptune as a target in the Database Migration Service User Guide",
           args: {
             name: "structure",
           },
@@ -316,7 +410,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--postgre-sql-settings",
           description:
-            "Settings in JSON format for the source and target PostgreSQL endpoint. For information about other available settings, see Extra connection attributes when using PostgreSQL as a source for AWS DMS and  Extra connection attributes when using PostgreSQL as a target for AWS DMS in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the source and target PostgreSQL endpoint. For information about other available settings, see Extra connection attributes when using PostgreSQL as a source for DMS and  Extra connection attributes when using PostgreSQL as a target for DMS in the Database Migration Service User Guide",
           args: {
             name: "structure",
           },
@@ -324,7 +418,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--my-sql-settings",
           description:
-            "Settings in JSON format for the source and target MySQL endpoint. For information about other available settings, see Extra connection attributes when using MySQL as a source for AWS DMS and Extra connection attributes when using a MySQL-compatible database as a target for AWS DMS in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the source and target MySQL endpoint. For information about other available settings, see Extra connection attributes when using MySQL as a source for DMS and Extra connection attributes when using a MySQL-compatible database as a target for DMS in the Database Migration Service User Guide",
           args: {
             name: "structure",
           },
@@ -332,7 +426,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--oracle-settings",
           description:
-            "Settings in JSON format for the source and target Oracle endpoint. For information about other available settings, see Extra connection attributes when using Oracle as a source for AWS DMS and  Extra connection attributes when using Oracle as a target for AWS DMS in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the source and target Oracle endpoint. For information about other available settings, see Extra connection attributes when using Oracle as a source for DMS and  Extra connection attributes when using Oracle as a target for DMS in the Database Migration Service User Guide",
           args: {
             name: "structure",
           },
@@ -340,7 +434,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sybase-settings",
           description:
-            "Settings in JSON format for the source and target SAP ASE endpoint. For information about other available settings, see Extra connection attributes when using SAP ASE as a source for AWS DMS and Extra connection attributes when using SAP ASE as a target for AWS DMS in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the source and target SAP ASE endpoint. For information about other available settings, see Extra connection attributes when using SAP ASE as a source for DMS and Extra connection attributes when using SAP ASE as a target for DMS in the Database Migration Service User Guide",
           args: {
             name: "structure",
           },
@@ -348,7 +442,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--microsoft-sql-server-settings",
           description:
-            "Settings in JSON format for the source and target Microsoft SQL Server endpoint. For information about other available settings, see Extra connection attributes when using SQL Server as a source for AWS DMS and  Extra connection attributes when using SQL Server as a target for AWS DMS in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the source and target Microsoft SQL Server endpoint. For information about other available settings, see Extra connection attributes when using SQL Server as a source for DMS and  Extra connection attributes when using SQL Server as a target for DMS in the Database Migration Service User Guide",
           args: {
             name: "structure",
           },
@@ -356,7 +450,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ibm-db2-settings",
           description:
-            "Settings in JSON format for the source IBM Db2 LUW endpoint. For information about other available settings, see Extra connection attributes when using Db2 LUW as a source for AWS DMS in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the source IBM Db2 LUW endpoint. For information about other available settings, see Extra connection attributes when using Db2 LUW as a source for DMS in the Database Migration Service User Guide",
           args: {
             name: "structure",
           },
@@ -364,7 +458,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-identifier",
           description:
-            "A friendly name for the resource identifier at the end of the EndpointArn response parameter that is returned in the created Endpoint object. The value for this parameter can have up to 31 characters. It can contain only ASCII letters, digits, and hyphen ('-'). Also, it can't end with a hyphen or contain two consecutive hyphens, and can only begin with a letter, such as Example-App-ARN1. For example, this value might result in the EndpointArn value arn:aws:dms:eu-west-1:012345678901:rep:Example-App-ARN1. If you don't specify a ResourceIdentifier value, AWS DMS generates a default identifier value for the end of EndpointArn",
+            "A friendly name for the resource identifier at the end of the EndpointArn response parameter that is returned in the created Endpoint object. The value for this parameter can have up to 31 characters. It can contain only ASCII letters, digits, and hyphen ('-'). Also, it can't end with a hyphen or contain two consecutive hyphens, and can only begin with a letter, such as Example-App-ARN1. For example, this value might result in the EndpointArn value arn:aws:dms:eu-west-1:012345678901:rep:Example-App-ARN1. If you don't specify a ResourceIdentifier value, DMS generates a default identifier value for the end of EndpointArn",
           args: {
             name: "string",
           },
@@ -373,6 +467,29 @@ const completionSpec: Fig.Spec = {
           name: "--doc-db-settings",
           description:
             "Provides information that defines a DocumentDB endpoint",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--redis-settings",
+          description: "Settings in JSON format for the target Redis endpoint",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--gcp-my-sql-settings",
+          description:
+            "Settings in JSON format for the source GCP MySQL endpoint",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--timestream-settings",
+          description:
+            "Settings in JSON format for the target Amazon Timestream endpoint",
           args: {
             name: "structure",
           },
@@ -399,12 +516,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-event-subscription",
       description:
-        "Creates an AWS DMS event notification subscription.  You can specify the type of source (SourceType) you want to be notified of, provide a list of AWS DMS source IDs (SourceIds) that triggers the events, and provide a list of event categories (EventCategories) for events you want to be notified of. If you specify both the SourceType and SourceIds, such as SourceType = replication-instance and SourceIdentifier = my-replinstance, you will be notified of all the replication instance events for the specified source. If you specify a SourceType but don't specify a SourceIdentifier, you receive notice of the events for that source type for all your AWS DMS sources. If you don't specify either SourceType nor SourceIdentifier, you will be notified of events generated from all AWS DMS sources belonging to your customer account. For more information about AWS DMS events, see Working with Events and Notifications in the AWS Database Migration Service User Guide",
+        "Creates an DMS event notification subscription.  You can specify the type of source (SourceType) you want to be notified of, provide a list of DMS source IDs (SourceIds) that triggers the events, and provide a list of event categories (EventCategories) for events you want to be notified of. If you specify both the SourceType and SourceIds, such as SourceType = replication-instance and SourceIdentifier = my-replinstance, you will be notified of all the replication instance events for the specified source. If you specify a SourceType but don't specify a SourceIdentifier, you receive notice of the events for that source type for all your DMS sources. If you don't specify either SourceType nor SourceIdentifier, you will be notified of events generated from all DMS sources belonging to your customer account. For more information about DMS events, see Working with Events and Notifications in the Database Migration Service User Guide",
       options: [
         {
           name: "--subscription-name",
           description:
-            "The name of the AWS DMS event notification subscription. This name must be less than 255 characters",
+            "The name of the DMS event notification subscription. This name must be less than 255 characters",
           args: {
             name: "string",
           },
@@ -420,7 +537,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--source-type",
           description:
-            "The type of AWS DMS resource that generates the events. For example, if you want to be notified of events generated by a replication instance, you set this parameter to replication-instance. If this value isn't specified, all events are returned.  Valid values: replication-instance | replication-task",
+            "The type of DMS resource that generates the events. For example, if you want to be notified of events generated by a replication instance, you set this parameter to replication-instance. If this value isn't specified, all events are returned.  Valid values: replication-instance | replication-task",
           args: {
             name: "string",
           },
@@ -428,7 +545,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--event-categories",
           description:
-            "A list of event categories for a source type that you want to subscribe to. For more information, see Working with Events and Notifications in the AWS Database Migration Service User Guide",
+            "A list of event categories for a source type that you want to subscribe to. For more information, see Working with Events and Notifications in the Database Migration Service User Guide",
           args: {
             name: "list",
           },
@@ -436,7 +553,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--source-ids",
           description:
-            "A list of identifiers for which AWS DMS provides notification events. If you don't specify a value, notifications are provided for all sources. If you specify multiple values, they must be of the same type. For example, if you specify a database instance ID, then all of the other values must be database instance IDs",
+            "A list of identifiers for which DMS provides notification events. If you don't specify a value, notifications are provided for all sources. If you specify multiple values, they must be of the same type. For example, if you specify a database instance ID, then all of the other values must be database instance IDs",
           args: {
             name: "list",
           },
@@ -479,9 +596,349 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-fleet-advisor-collector",
+      description:
+        "Creates a Fleet Advisor collector using the specified parameters",
+      options: [
+        {
+          name: "--collector-name",
+          description:
+            "The name of your Fleet Advisor collector (for example, sample-collector)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "A summary description of your Fleet Advisor collector",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--service-access-role-arn",
+          description:
+            "The IAM role that grants permissions to access the specified Amazon S3 bucket",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--s3-bucket-name",
+          description:
+            "The Amazon S3 bucket that the Fleet Advisor collector uses to store inventory metadata",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-instance-profile",
+      description:
+        "Creates the instance profile using the specified parameters",
+      options: [
+        {
+          name: "--availability-zone",
+          description:
+            "The Availability Zone where the instance profile will be created. The default value is a random, system-chosen Availability Zone in the Amazon Web Services Region where your data provider is created, for examplem us-east-1d",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--kms-key-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the KMS key that is used to encrypt the connection parameters for the instance profile. If you don't specify a value for the KmsKeyArn parameter, then DMS uses your default encryption key. KMS creates the default encryption key for your Amazon Web Services account. Your Amazon Web Services account has a different default encryption key for each Amazon Web Services Region",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--publicly-accessible",
+          description:
+            "Specifies the accessibility options for the instance profile. A value of true represents an instance profile with a public IP address. A value of false represents an instance profile with a private IP address. The default value is true",
+        },
+        {
+          name: "--no-publicly-accessible",
+          description:
+            "Specifies the accessibility options for the instance profile. A value of true represents an instance profile with a public IP address. A value of false represents an instance profile with a private IP address. The default value is true",
+        },
+        {
+          name: "--tags",
+          description:
+            "One or more tags to be assigned to the instance profile",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--network-type",
+          description:
+            "Specifies the network type for the instance profile. A value of IPV4 represents an instance profile with IPv4 network type and only supports IPv4 addressing. A value of IPV6 represents an instance profile with IPv6 network type and only supports IPv6 addressing. A value of DUAL represents an instance profile with dual network type that supports IPv4 and IPv6 addressing",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--instance-profile-name",
+          description: "A user-friendly name for the instance profile",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "A user-friendly description of the instance profile",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--subnet-group-identifier",
+          description: "A subnet group to associate with the instance profile",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--vpc-security-groups",
+          description:
+            "Specifies the VPC security group names to be used with the instance profile. The VPC security group must work with the VPC containing the instance profile",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-migration-project",
+      description:
+        "Creates the migration project using the specified parameters. You can run this action only after you create an instance profile and data providers using CreateInstanceProfile and CreateDataProvider",
+      options: [
+        {
+          name: "--migration-project-name",
+          description: "A user-friendly name for the migration project",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--source-data-provider-descriptors",
+          description:
+            "Information about the source data provider, including the name, ARN, and Secrets Manager parameters",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--target-data-provider-descriptors",
+          description:
+            "Information about the target data provider, including the name, ARN, and Amazon Web Services Secrets Manager parameters",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--instance-profile-identifier",
+          description:
+            "The identifier of the associated instance profile. Identifiers must begin with a letter and must contain only ASCII letters, digits, and hyphens. They can't end with a hyphen, or contain two consecutive hyphens",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--transformation-rules",
+          description:
+            "The settings in JSON format for migration rules. Migration rules make it possible for you to change the object names according to the rules that you specify. For example, you can change an object name to lowercase or uppercase, add or remove a prefix or suffix, or rename objects",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "A user-friendly description of the migration project",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "One or more tags to be assigned to the migration project",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--schema-conversion-application-attributes",
+          description:
+            "The schema conversion application attributes, including the Amazon S3 bucket name and Amazon S3 role ARN",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-replication-config",
+      description:
+        "Creates a configuration that you can later provide to configure and start an DMS Serverless replication. You can also provide options to validate the configuration inputs before you start the replication",
+      options: [
+        {
+          name: "--replication-config-identifier",
+          description:
+            "A unique identifier that you want to use to create a ReplicationConfigArn that is returned as part of the output from this action. You can then pass this output ReplicationConfigArn as the value of the ReplicationConfigArn option for other actions to identify both DMS Serverless replications and replication configurations that you want those actions to operate on. For some actions, you can also use either this unique identifier or a corresponding ARN in action filters to identify the specific replication and replication configuration to operate on",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--source-endpoint-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the source endpoint for this DMS Serverless replication configuration",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--target-endpoint-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the target endpoint for this DMS serverless replication configuration",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--compute-config",
+          description:
+            "Configuration parameters for provisioning an DMS Serverless replication",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--replication-type",
+          description:
+            'The type of DMS Serverless replication to provision using this replication configuration. Possible values:    "full-load"     "cdc"     "full-load-and-cdc"',
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--table-mappings",
+          description:
+            "JSON table mappings for DMS Serverless replications that are provisioned using this replication configuration. For more information, see  Specifying table selection and transformations rules using JSON",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--replication-settings",
+          description:
+            "Optional JSON settings for DMS Serverless replications that are provisioned using this replication configuration. For example, see  Change processing tuning settings",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--supplemental-settings",
+          description:
+            "Optional JSON settings for specifying supplemental data. For more information, see  Specifying supplemental data for task settings",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--resource-identifier",
+          description:
+            "Optional unique value or name that you set for a given resource that can be used to construct an Amazon Resource Name (ARN) for that resource. For more information, see  Fine-grained access control using resource names and tags",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "One or more optional tags associated with resources used by the DMS Serverless replication. For more information, see  Tagging resources in Database Migration Service",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-replication-instance",
       description:
-        "Creates the replication instance using the specified parameters. AWS DMS requires that your account have certain roles with appropriate permissions before you can create a replication instance. For information on the required roles, see Creating the IAM Roles to Use With the AWS CLI and AWS DMS API. For information on the required permissions, see IAM Permissions Needed to Use AWS DMS",
+        "Creates the replication instance using the specified parameters. DMS requires that your account have certain roles with appropriate permissions before you can create a replication instance. For information on the required roles, see Creating the IAM Roles to Use With the CLI and DMS API. For information on the required permissions, see IAM Permissions Needed to Use DMS.  If you don't specify a version when creating a replication instance, DMS will create the instance using the default engine version. For information about the default engine version, see Release Notes",
       options: [
         {
           name: "--replication-instance-identifier",
@@ -502,7 +959,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--replication-instance-class",
           description:
-            'The compute and memory capacity of the replication instance as defined for the specified replication instance class. For example to specify the instance class dms.c4.large, set this parameter to "dms.c4.large". For more information on the settings and capacities for the available replication instance classes, see  Selecting the right AWS DMS replication instance for your migration',
+            'The compute and memory capacity of the replication instance as defined for the specified replication instance class. For example to specify the instance class dms.c4.large, set this parameter to "dms.c4.large". For more information on the settings and capacities for the available replication instance classes, see  Choosing the right DMS replication instance; and, Selecting the best size for a replication instance',
           args: {
             name: "string",
           },
@@ -518,7 +975,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--availability-zone",
           description:
-            "The Availability Zone where the replication instance will be created. The default value is a random, system-chosen Availability Zone in the endpoint's AWS Region, for example: us-east-1d",
+            "The Availability Zone where the replication instance will be created. The default value is a random, system-chosen Availability Zone in the endpoint's Amazon Web Services Region, for example: us-east-1d",
           args: {
             name: "string",
           },
@@ -534,7 +991,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--preferred-maintenance-window",
           description:
-            "The weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC).  Format: ddd:hh24:mi-ddd:hh24:mi  Default: A 30-minute window selected at random from an 8-hour block of time per AWS Region, occurring on a random day of the week. Valid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun Constraints: Minimum 30-minute window",
+            "The weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC).  Format: ddd:hh24:mi-ddd:hh24:mi  Default: A 30-minute window selected at random from an 8-hour block of time per Amazon Web Services Region, occurring on a random day of the week. Valid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun Constraints: Minimum 30-minute window",
           args: {
             name: "string",
           },
@@ -578,7 +1035,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kms-key-id",
           description:
-            "An AWS KMS key identifier that is used to encrypt the data on the replication instance. If you don't specify a value for the KmsKeyId parameter, then AWS DMS uses your default encryption key. AWS KMS creates the default encryption key for your AWS account. Your AWS account has a different default encryption key for each AWS Region",
+            "An KMS key identifier that is used to encrypt the data on the replication instance. If you don't specify a value for the KmsKeyId parameter, then DMS uses your default encryption key. KMS creates the default encryption key for your Amazon Web Services account. Your Amazon Web Services account has a different default encryption key for each Amazon Web Services Region",
           args: {
             name: "string",
           },
@@ -604,7 +1061,15 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-identifier",
           description:
-            "A friendly name for the resource identifier at the end of the EndpointArn response parameter that is returned in the created Endpoint object. The value for this parameter can have up to 31 characters. It can contain only ASCII letters, digits, and hyphen ('-'). Also, it can't end with a hyphen or contain two consecutive hyphens, and can only begin with a letter, such as Example-App-ARN1. For example, this value might result in the EndpointArn value arn:aws:dms:eu-west-1:012345678901:rep:Example-App-ARN1. If you don't specify a ResourceIdentifier value, AWS DMS generates a default identifier value for the end of EndpointArn",
+            "A friendly name for the resource identifier at the end of the EndpointArn response parameter that is returned in the created Endpoint object. The value for this parameter can have up to 31 characters. It can contain only ASCII letters, digits, and hyphen ('-'). Also, it can't end with a hyphen or contain two consecutive hyphens, and can only begin with a letter, such as Example-App-ARN1. For example, this value might result in the EndpointArn value arn:aws:dms:eu-west-1:012345678901:rep:Example-App-ARN1. If you don't specify a ResourceIdentifier value, DMS generates a default identifier value for the end of EndpointArn",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--network-type",
+          description:
+            "The type of IP address protocol used by a replication instance, such as IPv4 only or Dual-stack that supports both IPv4 and IPv6 addressing. IPv6 only is not yet supported",
           args: {
             name: "string",
           },
@@ -631,7 +1096,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-replication-subnet-group",
       description:
-        "Creates a replication subnet group given a list of the subnet IDs in a VPC",
+        "Creates a replication subnet group given a list of the subnet IDs in a VPC. The VPC needs to have at least one subnet in at least two availability zones in the Amazon Web Services Region, otherwise the service will throw a ReplicationSubnetGroupDoesNotCoverEnoughAZs exception. If a replication subnet group exists in your Amazon Web Services account, the CreateReplicationSubnetGroup action returns the following error message: The Replication Subnet Group already exists. In this case, delete the existing replication subnet group. To do so, use the DeleteReplicationSubnetGroup action. Optionally, choose Subnet groups in the DMS console, then choose your subnet group. Next, choose Delete from Actions",
       options: [
         {
           name: "--replication-subnet-group-identifier",
@@ -651,7 +1116,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--subnet-ids",
           description:
-            "One or more subnet IDs to be assigned to the subnet group",
+            "Two or more subnet IDs to be assigned to the subnet group",
           args: {
             name: "list",
           },
@@ -729,7 +1194,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--table-mappings",
           description:
-            "The table mappings for the task, in JSON format. For more information, see Using Table Mapping to Specify Task Settings in the AWS Database Migration Service User Guide",
+            "The table mappings for the task, in JSON format. For more information, see Using Table Mapping to Specify Task Settings in the Database Migration Service User Guide",
           args: {
             name: "string",
           },
@@ -737,7 +1202,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--replication-task-settings",
           description:
-            "Overall settings for the task, in JSON format. For more information, see Specifying Task Settings for AWS Database Migration Service Tasks in the AWS Database Migration User Guide",
+            "Overall settings for the task, in JSON format. For more information, see Specifying Task Settings for Database Migration Service Tasks in the Database Migration Service User Guide",
           args: {
             name: "string",
           },
@@ -753,7 +1218,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cdc-start-position",
           description:
-            'Indicates when you want a change data capture (CDC) operation to start. Use either CdcStartPosition or CdcStartTime to specify when you want a CDC operation to start. Specifying both values results in an error.  The value can be in date, checkpoint, or LSN/SCN format. Date Example: --cdc-start-position \u201c2018-03-08T12:12:12\u201d Checkpoint Example: --cdc-start-position "checkpoint:V1#27#mysql-bin-changelog.157832:1975:-1:2002:677883278264080:mysql-bin-changelog.157832:1876#0#0#*#0#93" LSN Example: --cdc-start-position \u201cmysql-bin-changelog.000024:373\u201d  When you use this task setting with a source PostgreSQL database, a logical replication slot should already be created and associated with the source endpoint. You can verify this by setting the slotName extra connection attribute to the name of this logical replication slot. For more information, see Extra Connection Attributes When Using PostgreSQL as a Source for AWS DMS',
+            'Indicates when you want a change data capture (CDC) operation to start. Use either CdcStartPosition or CdcStartTime to specify when you want a CDC operation to start. Specifying both values results in an error.  The value can be in date, checkpoint, or LSN/SCN format. Date Example: --cdc-start-position \u201c2018-03-08T12:12:12\u201d Checkpoint Example: --cdc-start-position "checkpoint:V1#27#mysql-bin-changelog.157832:1975:-1:2002:677883278264080:mysql-bin-changelog.157832:1876#0#0#*#0#93" LSN Example: --cdc-start-position \u201cmysql-bin-changelog.000024:373\u201d  When you use this task setting with a source PostgreSQL database, a logical replication slot should already be created and associated with the source endpoint. You can verify this by setting the slotName extra connection attribute to the name of this logical replication slot. For more information, see Extra Connection Attributes When Using PostgreSQL as a Source for DMS',
           args: {
             name: "string",
           },
@@ -761,7 +1226,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cdc-stop-position",
           description:
-            "Indicates when you want a change data capture (CDC) operation to stop. The value can be either server time or commit time. Server time example: --cdc-stop-position \u201cserver_time:2018-02-09T12:12:12\u201d Commit time example: --cdc-stop-position \u201ccommit_time: 2018-02-09T12:12:12 \u201c",
+            "Indicates when you want a change data capture (CDC) operation to stop. The value can be either server time or commit time. Server time example: --cdc-stop-position \u201cserver_time:2018-02-09T12:12:12\u201d Commit time example: --cdc-stop-position \u201ccommit_time:2018-02-09T12:12:12\u201c",
           args: {
             name: "string",
           },
@@ -777,7 +1242,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--task-data",
           description:
-            "Supplemental information that the task requires to migrate the data for certain source and target endpoints. For more information, see Specifying Supplemental Data for Task Settings in the AWS Database Migration Service User Guide",
+            "Supplemental information that the task requires to migrate the data for certain source and target endpoints. For more information, see Specifying Supplemental Data for Task Settings in the Database Migration Service User Guide",
           args: {
             name: "string",
           },
@@ -785,7 +1250,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-identifier",
           description:
-            "A friendly name for the resource identifier at the end of the EndpointArn response parameter that is returned in the created Endpoint object. The value for this parameter can have up to 31 characters. It can contain only ASCII letters, digits, and hyphen ('-'). Also, it can't end with a hyphen or contain two consecutive hyphens, and can only begin with a letter, such as Example-App-ARN1. For example, this value might result in the EndpointArn value arn:aws:dms:eu-west-1:012345678901:rep:Example-App-ARN1. If you don't specify a ResourceIdentifier value, AWS DMS generates a default identifier value for the end of EndpointArn",
+            "A friendly name for the resource identifier at the end of the EndpointArn response parameter that is returned in the created Endpoint object. The value for this parameter can have up to 31 characters. It can contain only ASCII letters, digits, and hyphen ('-'). Also, it can't end with a hyphen or contain two consecutive hyphens, and can only begin with a letter, such as Example-App-ARN1. For example, this value might result in the EndpointArn value arn:aws:dms:eu-west-1:012345678901:rep:Example-App-ARN1. If you don't specify a ResourceIdentifier value, DMS generates a default identifier value for the end of EndpointArn",
           args: {
             name: "string",
           },
@@ -815,8 +1280,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--certificate-arn",
-          description:
-            "The Amazon Resource Name (ARN) of the deleted certificate",
+          description: "The Amazon Resource Name (ARN) of the certificate",
           args: {
             name: "string",
           },
@@ -881,6 +1345,37 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-data-provider",
+      description:
+        "Deletes the specified data provider.  All migration projects associated with the data provider must be deleted or modified before you can delete the data provider",
+      options: [
+        {
+          name: "--data-provider-identifier",
+          description: "The identifier of the data provider to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-endpoint",
       description:
         "Deletes the specified endpoint.  All tasks associated with the endpoint must be deleted before you can delete the endpoint",
@@ -914,12 +1409,168 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-event-subscription",
-      description: "Deletes an AWS DMS event subscription",
+      description: "Deletes an DMS event subscription",
       options: [
         {
           name: "--subscription-name",
           description:
             "The name of the DMS event notification subscription to be deleted",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-fleet-advisor-collector",
+      description: "Deletes the specified Fleet Advisor collector",
+      options: [
+        {
+          name: "--collector-referenced-id",
+          description:
+            "The reference ID of the Fleet Advisor collector to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-fleet-advisor-databases",
+      description: "Deletes the specified Fleet Advisor collector databases",
+      options: [
+        {
+          name: "--database-ids",
+          description:
+            "The IDs of the Fleet Advisor collector databases to delete",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-instance-profile",
+      description:
+        "Deletes the specified instance profile.  All migration projects associated with the instance profile must be deleted or modified before you can delete the instance profile",
+      options: [
+        {
+          name: "--instance-profile-identifier",
+          description: "The identifier of the instance profile to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-migration-project",
+      description:
+        "Deletes the specified migration project.  The migration project must be closed before you can delete it",
+      options: [
+        {
+          name: "--migration-project-identifier",
+          description:
+            "The name or Amazon Resource Name (ARN) of the migration project to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-replication-config",
+      description:
+        "Deletes an DMS Serverless replication configuration. This effectively deprovisions any and all replications that use this configuration. You can't delete the configuration for an DMS Serverless replication that is ongoing. You can delete the configuration when the replication is in a non-RUNNING and non-STARTING state",
+      options: [
+        {
+          name: "--replication-config-arn",
+          description: "The replication config to delete",
           args: {
             name: "string",
           },
@@ -1039,7 +1690,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-replication-task-assessment-run",
       description:
-        "Deletes the record of a single premigration assessment run. This operation removes all metadata that AWS DMS maintains about this assessment run. However, the operation leaves untouched all information about this assessment run that is stored in your Amazon S3 bucket",
+        "Deletes the record of a single premigration assessment run. This operation removes all metadata that DMS maintains about this assessment run. However, the operation leaves untouched all information about this assessment run that is stored in your Amazon S3 bucket",
       options: [
         {
           name: "--replication-task-assessment-run-arn",
@@ -1071,7 +1722,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-account-attributes",
       description:
-        "Lists all of the AWS DMS attributes for a customer account. These attributes include AWS DMS quotas for the account and a unique account identifier in a particular DMS region. DMS quotas include a list of resource quotas supported by the account, such as the number of replication instances allowed. The description for each resource quota, includes the quota name, current usage toward that quota, and the quota's maximum value. DMS uses the unique account identifier to name each artifact used by DMS in the given region. This command does not take any parameters",
+        "Lists all of the DMS attributes for a customer account. These attributes include DMS quotas for the account and a unique account identifier in a particular DMS region. DMS quotas include a list of resource quotas supported by the account, such as the number of replication instances allowed. The description for each resource quota, includes the quota name, current usage toward that quota, and the quota's maximum value. DMS uses the unique account identifier to name each artifact used by DMS in the given region. This command does not take any parameters",
       options: [
         {
           name: "--cli-input-json",
@@ -1179,7 +1830,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--filters",
           description:
-            "Filters applied to the certificates described in the form of key-value pairs",
+            "Filters applied to the certificates described in the form of key-value pairs. Valid values are certificate-arn and certificate-id",
           args: {
             name: "list",
           },
@@ -1302,6 +1953,86 @@ const completionSpec: Fig.Spec = {
             "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-conversion-configuration",
+      description:
+        "Returns configuration parameters for a schema conversion project",
+      options: [
+        {
+          name: "--migration-project-identifier",
+          description:
+            "The name or Amazon Resource Name (ARN) for the schema conversion project to describe",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-data-providers",
+      description:
+        "Returns a paginated list of data providers for your account in the current region",
+      options: [
+        {
+          name: "--filters",
+          description:
+            "Filters applied to the data providers described in the form of key-value pairs. Valid filter names: data-provider-identifier",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, DMS includes a pagination token in the response so that you can retrieve the remaining results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--marker",
+          description:
+            "Specifies the unique pagination token that makes it possible to display the next page of results. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords. If Marker is returned by a previous response, there are more results available. The value of Marker is a unique pagination token for each page. To retrieve the next page, make the call again using the returned token and keeping all other arguments unchanged",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
           },
         },
         {
@@ -1507,14 +2238,54 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "describe-engine-versions",
+      description:
+        "Returns information about the replication instance versions used in the project",
+      options: [
+        {
+          name: "--max-records",
+          description:
+            "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--marker",
+          description:
+            "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "describe-event-categories",
       description:
-        "Lists categories for all event source types, or, if specified, for a specified source type. You can see a list of the event categories and source types in Working with Events and Notifications in the AWS Database Migration Service User Guide",
+        "Lists categories for all event source types, or, if specified, for a specified source type. You can see a list of the event categories and source types in Working with Events and Notifications in the Database Migration Service User Guide",
       options: [
         {
           name: "--source-type",
           description:
-            "The type of AWS DMS resource that generates events.  Valid values: replication-instance | replication-task",
+            "The type of DMS resource that generates events.  Valid values: replication-instance | replication-task",
           args: {
             name: "string",
           },
@@ -1552,15 +2323,15 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--subscription-name",
-          description:
-            "The name of the AWS DMS event subscription to be described",
+          description: "The name of the DMS event subscription to be described",
           args: {
             name: "string",
           },
         },
         {
           name: "--filters",
-          description: "Filters applied to event subscriptions",
+          description:
+            "Filters applied to event subscriptions. Valid filter names: event-subscription-arn | event-subscription-id",
           args: {
             name: "list",
           },
@@ -1627,7 +2398,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-events",
       description:
-        "Lists events for a given source identifier and source type. You can also specify a start and end time. For more information on AWS DMS events, see Working with Events and Notifications in the AWS Database Migration User Guide",
+        "Lists events for a given source identifier and source type. You can also specify a start and end time. For more information on DMS events, see Working with Events and Notifications in the Database Migration Service User Guide",
       options: [
         {
           name: "--source-identifier",
@@ -1639,7 +2410,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--source-type",
           description:
-            "The type of AWS DMS resource that generates events. Valid values: replication-instance | replication-task",
+            "The type of DMS resource that generates events. Valid values: replication-instance | replication-task",
           args: {
             name: "string",
           },
@@ -1675,7 +2446,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--filters",
-          description: "Filters applied to events",
+          description:
+            "Filters applied to events. The only valid filter is replication-instance-id",
           args: {
             name: "list",
           },
@@ -1726,6 +2498,665 @@ const completionSpec: Fig.Spec = {
             "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-extension-pack-associations",
+      description:
+        "Returns a paginated list of extension pack associations for the specified migration project. An extension pack is an add-on module that emulates functions present in a source database that are required when converting objects to the target database",
+      options: [
+        {
+          name: "--migration-project-identifier",
+          description:
+            "The name or Amazon Resource Name (ARN) for the migration project",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--filters",
+          description:
+            "Filters applied to the extension pack associations described in the form of key-value pairs",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--marker",
+          description:
+            "Specifies the unique pagination token that makes it possible to display the next page of results. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords. If Marker is returned by a previous response, there are more results available. The value of Marker is a unique pagination token for each page. To retrieve the next page, make the call again using the returned token and keeping all other arguments unchanged",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, DMS includes a pagination token in the response so that you can retrieve the remaining results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-fleet-advisor-collectors",
+      description:
+        "Returns a list of the Fleet Advisor collectors in your account",
+      options: [
+        {
+          name: "--filters",
+          description:
+            'If you specify any of the following filters, the output includes information for only those collectors that meet the filter criteria:    collector-referenced-id \u2013 The ID of the collector agent, for example d4610ac5-e323-4ad9-bc50-eaf7249dfe9d.    collector-name \u2013 The name of the collector agent.   An example is: describe-fleet-advisor-collectors --filter Name="collector-referenced-id",Values="d4610ac5-e323-4ad9-bc50-eaf7249dfe9d"',
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "Sets the maximum number of records returned in the response",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If NextToken is returned by a previous response, there are more results available. The value of NextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-fleet-advisor-databases",
+      description: "Returns a list of Fleet Advisor databases in your account",
+      options: [
+        {
+          name: "--filters",
+          description:
+            'If you specify any of the following filters, the output includes information for only those databases that meet the filter criteria:     database-id \u2013 The ID of the database.    database-name \u2013 The name of the database.    database-engine \u2013 The name of the database engine.    server-ip-address \u2013 The IP address of the database server.    database-ip-address \u2013 The IP address of the database.    collector-name \u2013 The name of the associated Fleet Advisor collector.   An example is: describe-fleet-advisor-databases --filter Name="database-id",Values="45"',
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "Sets the maximum number of records returned in the response",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If NextToken is returned by a previous response, there are more results available. The value of NextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-fleet-advisor-lsa-analysis",
+      description:
+        "Provides descriptions of large-scale assessment (LSA) analyses produced by your Fleet Advisor collectors",
+      options: [
+        {
+          name: "--max-records",
+          description:
+            "Sets the maximum number of records returned in the response",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If NextToken is returned by a previous response, there are more results available. The value of NextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-fleet-advisor-schema-object-summary",
+      description:
+        "Provides descriptions of the schemas discovered by your Fleet Advisor collectors",
+      options: [
+        {
+          name: "--filters",
+          description:
+            'If you specify any of the following filters, the output includes information for only those schema objects that meet the filter criteria:    schema-id \u2013 The ID of the schema, for example d4610ac5-e323-4ad9-bc50-eaf7249dfe9d.   Example: describe-fleet-advisor-schema-object-summary --filter Name="schema-id",Values="50"',
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "Sets the maximum number of records returned in the response",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If NextToken is returned by a previous response, there are more results available. The value of NextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-fleet-advisor-schemas",
+      description:
+        "Returns a list of schemas detected by Fleet Advisor Collectors in your account",
+      options: [
+        {
+          name: "--filters",
+          description:
+            "If you specify any of the following filters, the output includes information for only those schemas that meet the filter criteria:    complexity \u2013 The schema's complexity, for example Simple.    database-id \u2013 The ID of the schema's database.    database-ip-address \u2013 The IP address of the schema's database.    database-name \u2013 The name of the schema's database.    database-engine \u2013 The name of the schema database's engine.    original-schema-name \u2013 The name of the schema's database's main schema.    schema-id \u2013 The ID of the schema, for example 15.    schema-name \u2013 The name of the schema.    server-ip-address \u2013 The IP address of the schema database's server.   An example is: describe-fleet-advisor-schemas --filter Name=\"schema-id\",Values=\"50\"",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "Sets the maximum number of records returned in the response",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If NextToken is returned by a previous response, there are more results available. The value of NextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-instance-profiles",
+      description:
+        "Returns a paginated list of instance profiles for your account in the current region",
+      options: [
+        {
+          name: "--filters",
+          description:
+            "Filters applied to the instance profiles described in the form of key-value pairs",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, DMS includes a pagination token in the response so that you can retrieve the remaining results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--marker",
+          description:
+            "Specifies the unique pagination token that makes it possible to display the next page of results. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords. If Marker is returned by a previous response, there are more results available. The value of Marker is a unique pagination token for each page. To retrieve the next page, make the call again using the returned token and keeping all other arguments unchanged",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-metadata-model-assessments",
+      description:
+        "Returns a paginated list of metadata model assessments for your account in the current region",
+      options: [
+        {
+          name: "--migration-project-identifier",
+          description:
+            "The name or Amazon Resource Name (ARN) of the migration project",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--filters",
+          description:
+            "Filters applied to the metadata model assessments described in the form of key-value pairs",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--marker",
+          description:
+            "Specifies the unique pagination token that makes it possible to display the next page of results. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords. If Marker is returned by a previous response, there are more results available. The value of Marker is a unique pagination token for each page. To retrieve the next page, make the call again using the returned token and keeping all other arguments unchanged",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, DMS includes a pagination token in the response so that you can retrieve the remaining results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-metadata-model-conversions",
+      description:
+        "Returns a paginated list of metadata model conversions for a migration project",
+      options: [
+        {
+          name: "--migration-project-identifier",
+          description:
+            "The migration project name or Amazon Resource Name (ARN)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--filters",
+          description:
+            "Filters applied to the metadata model conversions described in the form of key-value pairs",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--marker",
+          description:
+            "Specifies the unique pagination token that makes it possible to display the next page of results. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords. If Marker is returned by a previous response, there are more results available. The value of Marker is a unique pagination token for each page. To retrieve the next page, make the call again using the returned token and keeping all other arguments unchanged",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, DMS includes a pagination token in the response so that you can retrieve the remaining results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-metadata-model-exports-as-script",
+      description: "Returns a paginated list of metadata model exports",
+      options: [
+        {
+          name: "--migration-project-identifier",
+          description:
+            "The migration project name or Amazon Resource Name (ARN)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--filters",
+          description:
+            "Filters applied to the metadata model exports described in the form of key-value pairs",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--marker",
+          description:
+            "Specifies the unique pagination token that makes it possible to display the next page of results. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords. If Marker is returned by a previous response, there are more results available. The value of Marker is a unique pagination token for each page. To retrieve the next page, make the call again using the returned token and keeping all other arguments unchanged",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, DMS includes a pagination token in the response so that you can retrieve the remaining results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-metadata-model-exports-to-target",
+      description: "Returns a paginated list of metadata model exports",
+      options: [
+        {
+          name: "--migration-project-identifier",
+          description:
+            "The migration project name or Amazon Resource Name (ARN)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--filters",
+          description:
+            "Filters applied to the metadata model exports described in the form of key-value pairs",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--marker",
+          description:
+            "Specifies the unique pagination token that makes it possible to display the next page of results. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords. If Marker is returned by a previous response, there are more results available. The value of Marker is a unique pagination token for each page. To retrieve the next page, make the call again using the returned token and keeping all other arguments unchanged",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, DMS includes a pagination token in the response so that you can retrieve the remaining results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-metadata-model-imports",
+      description: "Returns a paginated list of metadata model imports",
+      options: [
+        {
+          name: "--migration-project-identifier",
+          description:
+            "The migration project name or Amazon Resource Name (ARN)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--filters",
+          description:
+            "Filters applied to the metadata model imports described in the form of key-value pairs",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--marker",
+          description:
+            "Specifies the unique pagination token that makes it possible to display the next page of results. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords. If Marker is returned by a previous response, there are more results available. The value of Marker is a unique pagination token for each page. To retrieve the next page, make the call again using the returned token and keeping all other arguments unchanged",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-records",
+          description: "A paginated list of metadata model imports",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-migration-projects",
+      description:
+        "Returns a paginated list of migration projects for your account in the current region",
+      options: [
+        {
+          name: "--filters",
+          description:
+            "Filters applied to the migration projects described in the form of key-value pairs",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, DMS includes a pagination token in the response so that you can retrieve the remaining results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--marker",
+          description:
+            "Specifies the unique pagination token that makes it possible to display the next page of results. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords. If Marker is returned by a previous response, there are more results available. The value of Marker is a unique pagination token for each page. To retrieve the next page, make the call again using the returned token and keeping all other arguments unchanged",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
           },
         },
         {
@@ -1857,6 +3288,102 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "describe-recommendation-limitations",
+      description:
+        "Returns a paginated list of limitations for recommendations of target Amazon Web Services engines",
+      options: [
+        {
+          name: "--filters",
+          description:
+            "Filters applied to the limitations described in the form of key-value pairs",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, Fleet Advisor includes a pagination token in the response so that you can retrieve the remaining results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "Specifies the unique pagination token that makes it possible to display the next page of results. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords. If NextToken is returned by a previous response, there are more results available. The value of NextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-recommendations",
+      description:
+        "Returns a paginated list of target engine recommendations for your source databases",
+      options: [
+        {
+          name: "--filters",
+          description:
+            "Filters applied to the target engine recommendations described in the form of key-value pairs",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, Fleet Advisor includes a pagination token in the response so that you can retrieve the remaining results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "Specifies the unique pagination token that makes it possible to display the next page of results. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords. If NextToken is returned by a previous response, there are more results available. The value of NextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "describe-refresh-schemas-status",
       description: "Returns the status of the RefreshSchemas operation",
       options: [
@@ -1864,6 +3391,53 @@ const completionSpec: Fig.Spec = {
           name: "--endpoint-arn",
           description:
             "The Amazon Resource Name (ARN) string that uniquely identifies the endpoint",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-replication-configs",
+      description:
+        "Returns one or more existing DMS Serverless replication configurations as a list of structures",
+      options: [
+        {
+          name: "--filters",
+          description: "Filters applied to the replication configs",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--marker",
+          description:
+            "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords",
           args: {
             name: "string",
           },
@@ -2079,9 +3653,63 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "describe-replication-table-statistics",
+      description:
+        "Returns table and schema statistics for one or more provisioned replications that use a given DMS Serverless replication configuration",
+      options: [
+        {
+          name: "--replication-config-arn",
+          description: "The replication config to describe",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--marker",
+          description:
+            "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--filters",
+          description: "Filters applied to the replication table statistics",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "describe-replication-task-assessment-results",
       description:
-        "Returns the task assessment results from Amazon S3. This action always returns the latest results",
+        "Returns the task assessment results from the Amazon S3 bucket that DMS creates in your Amazon Web Services account. This action always returns the latest results. For more information about DMS task assessments, see Creating a task assessment report in the Database Migration Service User Guide",
       options: [
         {
           name: "--replication-task-arn",
@@ -2329,6 +3957,53 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "describe-replications",
+      description:
+        "Provides details on replication progress by returning status information for one or more provisioned DMS Serverless replications",
+      options: [
+        {
+          name: "--filters",
+          description: "Filters applied to the replications",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--marker",
+          description:
+            "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "describe-schemas",
       description:
         "Returns information about the schema for the specified endpoint",
@@ -2403,7 +4078,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-table-statistics",
       description:
-        'Returns table statistics on the database migration task, including table name, rows inserted, rows updated, and rows deleted. Note that the "last updated" column the DMS console only indicates the time that AWS DMS last updated the table statistics record for a table. It does not indicate the time of the last update to the table',
+        'Returns table statistics on the database migration task, including table name, rows inserted, rows updated, and rows deleted. Note that the "last updated" column the DMS console only indicates the time that DMS last updated the table statistics record for a table. It does not indicate the time of the last update to the table',
       options: [
         {
           name: "--replication-task-arn",
@@ -2480,6 +4155,60 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "export-metadata-model-assessment",
+      description:
+        "Saves a copy of a database migration assessment report to your Amazon S3 bucket. DMS can save your assessment report as a comma-separated value (CSV) or a PDF file",
+      options: [
+        {
+          name: "--migration-project-identifier",
+          description:
+            "The migration project name or Amazon Resource Name (ARN)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--selection-rules",
+          description: "A value that specifies the database objects to assess",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--file-name",
+          description:
+            "The name of the assessment file to create in your Amazon S3 bucket",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--assessment-report-types",
+          description: "The file format of the assessment file",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "import-certificate",
       description: "Uploads the specified certificate",
       options: [
@@ -2502,7 +4231,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--certificate-wallet",
           description:
-            "The location of an imported Oracle Wallet certificate for use with SSL",
+            'The location of an imported Oracle Wallet certificate for use with SSL. Provide the name of a .sso file using the fileb:// prefix. You can\'t provide the certificate inline. Example: filebase64("${path.root}/rds-ca-2019-root.sso")',
           args: {
             name: "blob",
           },
@@ -2536,12 +4265,59 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-tags-for-resource",
       description:
-        "Lists all metadata tags attached to an AWS DMS resource, including replication instance, endpoint, security group, and migration task. For more information, see  Tag  data type description",
+        "Lists all metadata tags attached to an DMS resource, including replication instance, endpoint, subnet group, and migration task. For more information, see  Tag  data type description",
       options: [
         {
           name: "--resource-arn",
           description:
-            "The Amazon Resource Name (ARN) string that uniquely identifies the AWS DMS resource",
+            "The Amazon Resource Name (ARN) string that uniquely identifies the DMS resource to list tags for. This returns a list of keys (names of tags) created for the resource and their associated tag values",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--resource-arn-list",
+          description:
+            "List of ARNs that identify multiple DMS resources that you want to list tags for. This returns a list of keys (tag names) and their associated tag values. It also returns each tag's associated ResourceArn value, which is the ARN of the resource for which each listed tag is created",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "modify-conversion-configuration",
+      description:
+        "Modifies the specified schema conversion configuration using the provided parameters",
+      options: [
+        {
+          name: "--migration-project-identifier",
+          description:
+            "The migration project name or Amazon Resource Name (ARN)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--conversion-configuration",
+          description: "The new conversion configuration",
           args: {
             name: "string",
           },
@@ -2566,8 +4342,80 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "modify-data-provider",
+      description:
+        "Modifies the specified data provider using the provided settings.  You must remove the data provider from all migration projects before you can modify it",
+      options: [
+        {
+          name: "--data-provider-identifier",
+          description:
+            "The identifier of the data provider. Identifiers must begin with a letter and must contain only ASCII letters, digits, and hyphens. They can't end with a hyphen, or contain two consecutive hyphens",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--data-provider-name",
+          description: "The name of the data provider",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "A user-friendly description of the data provider",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--engine",
+          description:
+            'The type of database engine for the data provider. Valid values include "aurora", "aurora-postgresql", "mysql", "oracle", "postgres", "sqlserver", redshift, mariadb, mongodb, and docdb. A value of "aurora" represents Amazon Aurora MySQL-Compatible Edition',
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--exact-settings",
+          description:
+            "If this attribute is Y, the current call to ModifyDataProvider replaces all existing data provider settings with the exact settings that you specify in this call. If this attribute is N, the current call to ModifyDataProvider does two things:    It replaces any data provider settings that already exist with new values, for settings with the same names.   It creates new data provider settings that you specify in the call, for settings with different names",
+        },
+        {
+          name: "--no-exact-settings",
+          description:
+            "If this attribute is Y, the current call to ModifyDataProvider replaces all existing data provider settings with the exact settings that you specify in this call. If this attribute is N, the current call to ModifyDataProvider does two things:    It replaces any data provider settings that already exist with new values, for settings with the same names.   It creates new data provider settings that you specify in the call, for settings with different names",
+        },
+        {
+          name: "--settings",
+          description: "The settings in JSON format for a data provider",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "modify-endpoint",
-      description: "Modifies the specified endpoint",
+      description:
+        "Modifies the specified endpoint.  For a MySQL source or target endpoint, don't explicitly specify the database using the DatabaseName request parameter on the ModifyEndpoint API call. Specifying DatabaseName when you modify a MySQL endpoint replicates all the task tables to this single database. For MySQL endpoints, you specify the database only when you specify the schema in the table-mapping rules of the DMS task",
       options: [
         {
           name: "--endpoint-arn",
@@ -2596,7 +4444,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--engine-name",
           description:
-            'The type of engine for the endpoint. Valid values, depending on the EndpointType, include "mysql", "oracle", "postgres", "mariadb", "aurora", "aurora-postgresql", "redshift", "s3", "db2", "azuredb", "sybase", "dynamodb", "mongodb", "kinesis", "kafka", "elasticsearch", "documentdb", "sqlserver", and "neptune"',
+            'The database engine name. Valid values, depending on the EndpointType, include "mysql", "oracle", "postgres", "mariadb", "aurora", "aurora-postgresql", "redshift", "s3", "db2", "db2-zos", "azuredb", "sybase", "dynamodb", "mongodb", "kinesis", "kafka", "elasticsearch", "documentdb", "sqlserver", "neptune", and "babelfish"',
           args: {
             name: "string",
           },
@@ -2634,7 +4482,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--database-name",
-          description: "The name of the endpoint database",
+          description:
+            "The name of the endpoint database. For a MySQL source or target endpoint, do not specify DatabaseName",
           args: {
             name: "string",
           },
@@ -2666,7 +4515,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--service-access-role-arn",
           description:
-            "The Amazon Resource Name (ARN) for the service access role you want to use to modify the endpoint",
+            "The Amazon Resource Name (ARN) for the IAM role you want to use to modify the endpoint. The role must allow the iam:PassRole action",
           args: {
             name: "string",
           },
@@ -2681,7 +4530,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--dynamo-db-settings",
           description:
-            "Settings in JSON format for the target Amazon DynamoDB endpoint. For information about other available settings, see Using Object Mapping to Migrate Data to DynamoDB in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the target Amazon DynamoDB endpoint. For information about other available settings, see Using Object Mapping to Migrate Data to DynamoDB in the Database Migration Service User Guide",
           args: {
             name: "structure",
           },
@@ -2689,7 +4538,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--s3-settings",
           description:
-            "Settings in JSON format for the target Amazon S3 endpoint. For more information about the available settings, see Extra Connection Attributes When Using Amazon S3 as a Target for AWS DMS in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the target Amazon S3 endpoint. For more information about the available settings, see Extra Connection Attributes When Using Amazon S3 as a Target for DMS in the Database Migration Service User Guide",
           args: {
             name: "structure",
           },
@@ -2697,7 +4546,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--dms-transfer-settings",
           description:
-            'The settings in JSON format for the DMS transfer type of source endpoint.  Attributes include the following:   serviceAccessRoleArn - The AWS Identity and Access Management (IAM) role that has permission to access the Amazon S3 bucket.   BucketName - The name of the S3 bucket to use.   compressionType - An optional parameter to use GZIP to compress the target files. Either set this parameter to NONE (the default) or don\'t use it to leave the files uncompressed.   Shorthand syntax for these settings is as follows: ServiceAccessRoleArn=string ,BucketName=string,CompressionType=string  JSON syntax for these settings is as follows: { "ServiceAccessRoleArn": "string", "BucketName": "string", "CompressionType": "none"|"gzip" }',
+            'The settings in JSON format for the DMS transfer type of source endpoint.  Attributes include the following:   serviceAccessRoleArn - The Amazon Resource Name (ARN) used by the service access IAM role. The role must allow the iam:PassRole action.   BucketName - The name of the S3 bucket to use.   Shorthand syntax for these settings is as follows: ServiceAccessRoleArn=string ,BucketName=string  JSON syntax for these settings is as follows: { "ServiceAccessRoleArn": "string", "BucketName": "string"}',
           args: {
             name: "structure",
           },
@@ -2705,7 +4554,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--mongo-db-settings",
           description:
-            "Settings in JSON format for the source MongoDB endpoint. For more information about the available settings, see the configuration properties section in  Using MongoDB as a Target for AWS Database Migration Service in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the source MongoDB endpoint. For more information about the available settings, see the configuration properties section in Endpoint configuration settings when using MongoDB as a source for Database Migration Service in the Database Migration Service User Guide",
           args: {
             name: "structure",
           },
@@ -2713,7 +4562,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kinesis-settings",
           description:
-            "Settings in JSON format for the target endpoint for Amazon Kinesis Data Streams. For more information about the available settings, see Using Amazon Kinesis Data Streams as a Target for AWS Database Migration Service in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the target endpoint for Amazon Kinesis Data Streams. For more information about the available settings, see Using object mapping to migrate data to a Kinesis data stream in the Database Migration Service User Guide",
           args: {
             name: "structure",
           },
@@ -2721,7 +4570,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kafka-settings",
           description:
-            "Settings in JSON format for the target Apache Kafka endpoint. For more information about the available settings, see Using Apache Kafka as a Target for AWS Database Migration Service in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the target Apache Kafka endpoint. For more information about the available settings, see Using object mapping to migrate data to a Kafka topic in the Database Migration Service User Guide",
           args: {
             name: "structure",
           },
@@ -2729,7 +4578,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--elasticsearch-settings",
           description:
-            "Settings in JSON format for the target Elasticsearch endpoint. For more information about the available settings, see Extra Connection Attributes When Using Elasticsearch as a Target for AWS DMS in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the target OpenSearch endpoint. For more information about the available settings, see Extra Connection Attributes When Using OpenSearch as a Target for DMS in the Database Migration Service User Guide",
           args: {
             name: "structure",
           },
@@ -2737,7 +4586,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--neptune-settings",
           description:
-            "Settings in JSON format for the target Amazon Neptune endpoint. For more information about the available settings, see Specifying Endpoint Settings for Amazon Neptune as a Target in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the target Amazon Neptune endpoint. For more information about the available settings, see Specifying graph-mapping rules using Gremlin and R2RML for Amazon Neptune as a target in the Database Migration Service User Guide",
           args: {
             name: "structure",
           },
@@ -2753,7 +4602,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--postgre-sql-settings",
           description:
-            "Settings in JSON format for the source and target PostgreSQL endpoint. For information about other available settings, see Extra connection attributes when using PostgreSQL as a source for AWS DMS and  Extra connection attributes when using PostgreSQL as a target for AWS DMS in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the source and target PostgreSQL endpoint. For information about other available settings, see Extra connection attributes when using PostgreSQL as a source for DMS and  Extra connection attributes when using PostgreSQL as a target for DMS in the Database Migration Service User Guide",
           args: {
             name: "structure",
           },
@@ -2761,7 +4610,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--my-sql-settings",
           description:
-            "Settings in JSON format for the source and target MySQL endpoint. For information about other available settings, see Extra connection attributes when using MySQL as a source for AWS DMS and Extra connection attributes when using a MySQL-compatible database as a target for AWS DMS in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the source and target MySQL endpoint. For information about other available settings, see Extra connection attributes when using MySQL as a source for DMS and Extra connection attributes when using a MySQL-compatible database as a target for DMS in the Database Migration Service User Guide",
           args: {
             name: "structure",
           },
@@ -2769,7 +4618,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--oracle-settings",
           description:
-            "Settings in JSON format for the source and target Oracle endpoint. For information about other available settings, see Extra connection attributes when using Oracle as a source for AWS DMS and  Extra connection attributes when using Oracle as a target for AWS DMS in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the source and target Oracle endpoint. For information about other available settings, see Extra connection attributes when using Oracle as a source for DMS and  Extra connection attributes when using Oracle as a target for DMS in the Database Migration Service User Guide",
           args: {
             name: "structure",
           },
@@ -2777,7 +4626,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sybase-settings",
           description:
-            "Settings in JSON format for the source and target SAP ASE endpoint. For information about other available settings, see Extra connection attributes when using SAP ASE as a source for AWS DMS and Extra connection attributes when using SAP ASE as a target for AWS DMS in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the source and target SAP ASE endpoint. For information about other available settings, see Extra connection attributes when using SAP ASE as a source for DMS and Extra connection attributes when using SAP ASE as a target for DMS in the Database Migration Service User Guide",
           args: {
             name: "structure",
           },
@@ -2785,7 +4634,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--microsoft-sql-server-settings",
           description:
-            "Settings in JSON format for the source and target Microsoft SQL Server endpoint. For information about other available settings, see Extra connection attributes when using SQL Server as a source for AWS DMS and  Extra connection attributes when using SQL Server as a target for AWS DMS in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the source and target Microsoft SQL Server endpoint. For information about other available settings, see Extra connection attributes when using SQL Server as a source for DMS and  Extra connection attributes when using SQL Server as a target for DMS in the Database Migration Service User Guide",
           args: {
             name: "structure",
           },
@@ -2793,7 +4642,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ibm-db2-settings",
           description:
-            "Settings in JSON format for the source IBM Db2 LUW endpoint. For information about other available settings, see Extra connection attributes when using Db2 LUW as a source for AWS DMS in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the source IBM Db2 LUW endpoint. For information about other available settings, see Extra connection attributes when using Db2 LUW as a source for DMS in the Database Migration Service User Guide",
           args: {
             name: "structure",
           },
@@ -2801,7 +4650,40 @@ const completionSpec: Fig.Spec = {
         {
           name: "--doc-db-settings",
           description:
-            "Settings in JSON format for the source DocumentDB endpoint. For more information about the available settings, see the configuration properties section in  Using DocumentDB as a Target for AWS Database Migration Service in the AWS Database Migration Service User Guide",
+            "Settings in JSON format for the source DocumentDB endpoint. For more information about the available settings, see the configuration properties section in  Using DocumentDB as a Target for Database Migration Service  in the Database Migration Service User Guide",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--redis-settings",
+          description: "Settings in JSON format for the Redis target endpoint",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--exact-settings",
+          description:
+            'If this attribute is Y, the current call to ModifyEndpoint replaces all existing endpoint settings with the exact settings that you specify in this call. If this attribute is N, the current call to ModifyEndpoint does two things:    It replaces any endpoint settings that already exist with new values, for settings with the same names.   It creates new endpoint settings that you specify in the call, for settings with different names.    For example, if you call create-endpoint ... --endpoint-settings \'{"a":1}\' ..., the endpoint has the following endpoint settings: \'{"a":1}\'. If you then call modify-endpoint ... --endpoint-settings \'{"b":2}\' ... for the same endpoint, the endpoint has the following settings: \'{"a":1,"b":2}\'.  However, suppose that you follow this with a call to modify-endpoint ... --endpoint-settings \'{"b":2}\' --exact-settings ... for that same endpoint again. Then the endpoint has the following settings: \'{"b":2}\'. All existing settings are replaced with the exact settings that you specify',
+        },
+        {
+          name: "--no-exact-settings",
+          description:
+            'If this attribute is Y, the current call to ModifyEndpoint replaces all existing endpoint settings with the exact settings that you specify in this call. If this attribute is N, the current call to ModifyEndpoint does two things:    It replaces any endpoint settings that already exist with new values, for settings with the same names.   It creates new endpoint settings that you specify in the call, for settings with different names.    For example, if you call create-endpoint ... --endpoint-settings \'{"a":1}\' ..., the endpoint has the following endpoint settings: \'{"a":1}\'. If you then call modify-endpoint ... --endpoint-settings \'{"b":2}\' ... for the same endpoint, the endpoint has the following settings: \'{"a":1,"b":2}\'.  However, suppose that you follow this with a call to modify-endpoint ... --endpoint-settings \'{"b":2}\' --exact-settings ... for that same endpoint again. Then the endpoint has the following settings: \'{"b":2}\'. All existing settings are replaced with the exact settings that you specify',
+        },
+        {
+          name: "--gcp-my-sql-settings",
+          description:
+            "Settings in JSON format for the source GCP MySQL endpoint",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--timestream-settings",
+          description:
+            "Settings in JSON format for the target Amazon Timestream endpoint",
           args: {
             name: "structure",
           },
@@ -2827,13 +4709,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "modify-event-subscription",
-      description:
-        "Modifies an existing AWS DMS event notification subscription",
+      description: "Modifies an existing DMS event notification subscription",
       options: [
         {
           name: "--subscription-name",
           description:
-            "The name of the AWS DMS event notification subscription to be modified",
+            "The name of the DMS event notification subscription to be modified",
           args: {
             name: "string",
           },
@@ -2849,7 +4730,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--source-type",
           description:
-            "The type of AWS DMS resource that generates the events you want to subscribe to.  Valid values: replication-instance | replication-task",
+            "The type of DMS resource that generates the events you want to subscribe to.  Valid values: replication-instance | replication-task",
           args: {
             name: "string",
           },
@@ -2871,6 +4752,276 @@ const completionSpec: Fig.Spec = {
           name: "--no-enabled",
           description:
             "A Boolean value; set to true to activate the subscription",
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "modify-instance-profile",
+      description:
+        "Modifies the specified instance profile using the provided parameters.  All migration projects associated with the instance profile must be deleted or modified before you can modify the instance profile",
+      options: [
+        {
+          name: "--instance-profile-identifier",
+          description:
+            "The identifier of the instance profile. Identifiers must begin with a letter and must contain only ASCII letters, digits, and hyphens. They can't end with a hyphen, or contain two consecutive hyphens",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--availability-zone",
+          description: "The Availability Zone where the instance profile runs",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--kms-key-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the KMS key that is used to encrypt the connection parameters for the instance profile. If you don't specify a value for the KmsKeyArn parameter, then DMS uses your default encryption key. KMS creates the default encryption key for your Amazon Web Services account. Your Amazon Web Services account has a different default encryption key for each Amazon Web Services Region",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--publicly-accessible",
+          description:
+            "Specifies the accessibility options for the instance profile. A value of true represents an instance profile with a public IP address. A value of false represents an instance profile with a private IP address. The default value is true",
+        },
+        {
+          name: "--no-publicly-accessible",
+          description:
+            "Specifies the accessibility options for the instance profile. A value of true represents an instance profile with a public IP address. A value of false represents an instance profile with a private IP address. The default value is true",
+        },
+        {
+          name: "--network-type",
+          description:
+            "Specifies the network type for the instance profile. A value of IPV4 represents an instance profile with IPv4 network type and only supports IPv4 addressing. A value of IPV6 represents an instance profile with IPv6 network type and only supports IPv6 addressing. A value of DUAL represents an instance profile with dual network type that supports IPv4 and IPv6 addressing",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--instance-profile-name",
+          description: "A user-friendly name for the instance profile",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "A user-friendly description for the instance profile",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--subnet-group-identifier",
+          description: "A subnet group to associate with the instance profile",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--vpc-security-groups",
+          description:
+            "Specifies the VPC security groups to be used with the instance profile. The VPC security group must work with the VPC containing the instance profile",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "modify-migration-project",
+      description:
+        "Modifies the specified migration project using the provided parameters.  The migration project must be closed before you can modify it",
+      options: [
+        {
+          name: "--migration-project-identifier",
+          description:
+            "The identifier of the migration project. Identifiers must begin with a letter and must contain only ASCII letters, digits, and hyphens. They can't end with a hyphen, or contain two consecutive hyphens",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--migration-project-name",
+          description: "A user-friendly name for the migration project",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--source-data-provider-descriptors",
+          description:
+            "Information about the source data provider, including the name, ARN, and Amazon Web Services Secrets Manager parameters",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--target-data-provider-descriptors",
+          description:
+            "Information about the target data provider, including the name, ARN, and Amazon Web Services Secrets Manager parameters",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--instance-profile-identifier",
+          description:
+            "The name or Amazon Resource Name (ARN) for the instance profile",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--transformation-rules",
+          description:
+            "The settings in JSON format for migration rules. Migration rules make it possible for you to change the object names according to the rules that you specify. For example, you can change an object name to lowercase or uppercase, add or remove a prefix or suffix, or rename objects",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "A user-friendly description of the migration project",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--schema-conversion-application-attributes",
+          description:
+            "The schema conversion application attributes, including the Amazon S3 bucket name and Amazon S3 role ARN",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "modify-replication-config",
+      description:
+        "Modifies an existing DMS Serverless replication configuration that you can use to start a replication. This command includes input validation and logic to check the state of any replication that uses this configuration. You can only modify a replication configuration before any replication that uses it has started. As soon as you have initially started a replication with a given configuiration, you can't modify that configuration, even if you stop it. Other run statuses that allow you to run this command include FAILED and CREATED. A provisioning state that allows you to run this command is FAILED_PROVISION",
+      options: [
+        {
+          name: "--replication-config-arn",
+          description: "The Amazon Resource Name of the replication to modify",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--replication-config-identifier",
+          description: "The new replication config to apply to the replication",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--replication-type",
+          description: "The type of replication",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--table-mappings",
+          description: "Table mappings specified in the replication",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--replication-settings",
+          description: "The settings for the replication",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--supplemental-settings",
+          description: "Additional settings for the replication",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--compute-config",
+          description:
+            "Configuration parameters for provisioning an DMS Serverless replication",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--source-endpoint-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the source endpoint for this DMS serverless replication configuration",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--target-endpoint-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the target endpoint for this DMS serverless replication configuration",
+          args: {
+            name: "string",
+          },
         },
         {
           name: "--cli-input-json",
@@ -2925,7 +5076,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--replication-instance-class",
           description:
-            'The compute and memory capacity of the replication instance as defined for the specified replication instance class. For example to specify the instance class dms.c4.large, set this parameter to "dms.c4.large". For more information on the settings and capacities for the available replication instance classes, see  Selecting the right AWS DMS replication instance for your migration',
+            'The compute and memory capacity of the replication instance as defined for the specified replication instance class. For example to specify the instance class dms.c4.large, set this parameter to "dms.c4.large". For more information on the settings and capacities for the available replication instance classes, see  Selecting the right DMS replication instance for your migration',
           args: {
             name: "string",
           },
@@ -2977,17 +5128,25 @@ const completionSpec: Fig.Spec = {
         {
           name: "--auto-minor-version-upgrade",
           description:
-            "A value that indicates that minor version upgrades are applied automatically to the replication instance during the maintenance window. Changing this parameter doesn't result in an outage, except in the case described following. The change is asynchronously applied as soon as possible.  An outage does result if these factors apply:    This parameter is set to true during the maintenance window.   A newer minor version is available.    AWS DMS has enabled automatic patching for the given engine version",
+            "A value that indicates that minor version upgrades are applied automatically to the replication instance during the maintenance window. Changing this parameter doesn't result in an outage, except in the case described following. The change is asynchronously applied as soon as possible.  An outage does result if these factors apply:    This parameter is set to true during the maintenance window.   A newer minor version is available.    DMS has enabled automatic patching for the given engine version",
         },
         {
           name: "--no-auto-minor-version-upgrade",
           description:
-            "A value that indicates that minor version upgrades are applied automatically to the replication instance during the maintenance window. Changing this parameter doesn't result in an outage, except in the case described following. The change is asynchronously applied as soon as possible.  An outage does result if these factors apply:    This parameter is set to true during the maintenance window.   A newer minor version is available.    AWS DMS has enabled automatic patching for the given engine version",
+            "A value that indicates that minor version upgrades are applied automatically to the replication instance during the maintenance window. Changing this parameter doesn't result in an outage, except in the case described following. The change is asynchronously applied as soon as possible.  An outage does result if these factors apply:    This parameter is set to true during the maintenance window.   A newer minor version is available.    DMS has enabled automatic patching for the given engine version",
         },
         {
           name: "--replication-instance-identifier",
           description:
             "The replication instance identifier. This parameter is stored as a lowercase string",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--network-type",
+          description:
+            "The type of IP address protocol used by a replication instance, such as IPv4 only or Dual-stack that supports both IPv4 and IPv6 addressing. IPv6 only is not yet supported",
           args: {
             name: "string",
           },
@@ -3060,7 +5219,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "modify-replication-task",
       description:
-        "Modifies the specified replication task. You can't modify the task endpoints. The task must be stopped before you can modify it.  For more information about AWS DMS tasks, see Working with Migration Tasks in the AWS Database Migration Service User Guide",
+        "Modifies the specified replication task. You can't modify the task endpoints. The task must be stopped before you can modify it.  For more information about DMS tasks, see Working with Migration Tasks in the Database Migration Service User Guide",
       options: [
         {
           name: "--replication-task-arn",
@@ -3088,7 +5247,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--table-mappings",
           description:
-            "When using the AWS CLI or boto3, provide the path of the JSON file that contains the table mappings. Precede the path with file://. For example, --table-mappings file://mappingfile.json. When working with the DMS API, provide the JSON as the parameter value",
+            "When using the CLI or boto3, provide the path of the JSON file that contains the table mappings. Precede the path with file://. For example, --table-mappings file://mappingfile.json. When working with the DMS API, provide the JSON as the parameter value",
           args: {
             name: "string",
           },
@@ -3112,7 +5271,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cdc-start-position",
           description:
-            'Indicates when you want a change data capture (CDC) operation to start. Use either CdcStartPosition or CdcStartTime to specify when you want a CDC operation to start. Specifying both values results in an error.  The value can be in date, checkpoint, or LSN/SCN format. Date Example: --cdc-start-position \u201c2018-03-08T12:12:12\u201d Checkpoint Example: --cdc-start-position "checkpoint:V1#27#mysql-bin-changelog.157832:1975:-1:2002:677883278264080:mysql-bin-changelog.157832:1876#0#0#*#0#93" LSN Example: --cdc-start-position \u201cmysql-bin-changelog.000024:373\u201d  When you use this task setting with a source PostgreSQL database, a logical replication slot should already be created and associated with the source endpoint. You can verify this by setting the slotName extra connection attribute to the name of this logical replication slot. For more information, see Extra Connection Attributes When Using PostgreSQL as a Source for AWS DMS',
+            'Indicates when you want a change data capture (CDC) operation to start. Use either CdcStartPosition or CdcStartTime to specify when you want a CDC operation to start. Specifying both values results in an error.  The value can be in date, checkpoint, or LSN/SCN format. Date Example: --cdc-start-position \u201c2018-03-08T12:12:12\u201d Checkpoint Example: --cdc-start-position "checkpoint:V1#27#mysql-bin-changelog.157832:1975:-1:2002:677883278264080:mysql-bin-changelog.157832:1876#0#0#*#0#93" LSN Example: --cdc-start-position \u201cmysql-bin-changelog.000024:373\u201d  When you use this task setting with a source PostgreSQL database, a logical replication slot should already be created and associated with the source endpoint. You can verify this by setting the slotName extra connection attribute to the name of this logical replication slot. For more information, see Extra Connection Attributes When Using PostgreSQL as a Source for DMS',
           args: {
             name: "string",
           },
@@ -3120,7 +5279,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cdc-stop-position",
           description:
-            "Indicates when you want a change data capture (CDC) operation to stop. The value can be either server time or commit time. Server time example: --cdc-stop-position \u201cserver_time:2018-02-09T12:12:12\u201d Commit time example: --cdc-stop-position \u201ccommit_time: 2018-02-09T12:12:12 \u201c",
+            "Indicates when you want a change data capture (CDC) operation to stop. The value can be either server time or commit time. Server time example: --cdc-stop-position \u201cserver_time:2018-02-09T12:12:12\u201d Commit time example: --cdc-stop-position \u201ccommit_time:2018-02-09T12:12:12\u201c",
           args: {
             name: "string",
           },
@@ -3128,7 +5287,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--task-data",
           description:
-            "Supplemental information that the task requires to migrate the data for certain source and target endpoints. For more information, see Specifying Supplemental Data for Task Settings in the AWS Database Migration Service User Guide",
+            "Supplemental information that the task requires to migrate the data for certain source and target endpoints. For more information, see Specifying Supplemental Data for Task Settings in the Database Migration Service User Guide",
           args: {
             name: "string",
           },
@@ -3155,7 +5314,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "move-replication-task",
       description:
-        "Moves a replication task from its current replication instance to a different target replication instance using the specified parameters. The target replication instance must be created with the same or later AWS DMS version as the current replication instance",
+        "Moves a replication task from its current replication instance to a different target replication instance using the specified parameters. The target replication instance must be created with the same or later DMS version as the current replication instance",
       options: [
         {
           name: "--replication-task-arn",
@@ -3208,12 +5367,22 @@ const completionSpec: Fig.Spec = {
         {
           name: "--force-failover",
           description:
-            "If this parameter is true, the reboot is conducted through a Multi-AZ failover. (If the instance isn't configured for Multi-AZ, then you can't specify true.)",
+            "If this parameter is true, the reboot is conducted through a Multi-AZ failover. If the instance isn't configured for Multi-AZ, then you can't specify true. ( --force-planned-failover and --force-failover can't both be set to true.)",
         },
         {
           name: "--no-force-failover",
           description:
-            "If this parameter is true, the reboot is conducted through a Multi-AZ failover. (If the instance isn't configured for Multi-AZ, then you can't specify true.)",
+            "If this parameter is true, the reboot is conducted through a Multi-AZ failover. If the instance isn't configured for Multi-AZ, then you can't specify true. ( --force-planned-failover and --force-failover can't both be set to true.)",
+        },
+        {
+          name: "--force-planned-failover",
+          description:
+            "If this parameter is true, the reboot is conducted through a planned Multi-AZ failover where resources are released and cleaned up prior to conducting the failover. If the instance isn''t configured for Multi-AZ, then you can't specify true. ( --force-planned-failover and --force-failover can't both be set to true.)",
+        },
+        {
+          name: "--no-force-planned-failover",
+          description:
+            "If this parameter is true, the reboot is conducted through a planned Multi-AZ failover where resources are released and cleaned up prior to conducting the failover. If the instance isn''t configured for Multi-AZ, then you can't specify true. ( --force-planned-failover and --force-failover can't both be set to true.)",
         },
         {
           name: "--cli-input-json",
@@ -3275,8 +5444,56 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "reload-replication-tables",
+      description:
+        "Reloads the target database table with the source data for a given DMS Serverless replication configuration. You can only use this operation with a task in the RUNNING state, otherwise the service will throw an InvalidResourceStateFault exception",
+      options: [
+        {
+          name: "--replication-config-arn",
+          description:
+            "The Amazon Resource Name of the replication config for which to reload tables",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tables-to-reload",
+          description: "The list of tables to reload",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--reload-option",
+          description:
+            "Options for reload. Specify data-reload to reload the data and re-validate it if validation is enabled. Specify validate-only to re-validate the table. This option applies only when validation is enabled for the replication",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "reload-tables",
-      description: "Reloads the target database table with the source data",
+      description:
+        "Reloads the target database table with the source data.  You can only use this operation with a task in the RUNNING state, otherwise the service will throw an InvalidResourceStateFault exception",
       options: [
         {
           name: "--replication-task-arn",
@@ -3322,12 +5539,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "remove-tags-from-resource",
       description:
-        "Removes metadata tags from an AWS DMS resource, including replication instance, endpoint, security group, and migration task. For more information, see  Tag  data type description",
+        "Removes metadata tags from an DMS resource, including replication instance, endpoint, subnet group, and migration task. For more information, see  Tag  data type description",
       options: [
         {
           name: "--resource-arn",
           description:
-            "An AWS DMS resource from which you want to remove tag(s). The value for this parameter is an Amazon Resource Name (ARN)",
+            "An DMS resource from which you want to remove tag(s). The value for this parameter is an Amazon Resource Name (ARN)",
           args: {
             name: "string",
           },
@@ -3359,9 +5576,406 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "run-fleet-advisor-lsa-analysis",
+      description:
+        "Runs large-scale assessment (LSA) analysis on every Fleet Advisor collector in your account",
+      options: [
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "start-extension-pack-association",
+      description:
+        "Applies the extension pack to your target database. An extension pack is an add-on module that emulates functions present in a source database that are required when converting objects to the target database",
+      options: [
+        {
+          name: "--migration-project-identifier",
+          description:
+            "The migration project name or Amazon Resource Name (ARN)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "start-metadata-model-assessment",
+      description:
+        "Creates a database migration assessment report by assessing the migration complexity for your source database. A database migration assessment report summarizes all of the schema conversion tasks. It also details the action items for database objects that can't be converted to the database engine of your target database instance",
+      options: [
+        {
+          name: "--migration-project-identifier",
+          description:
+            "The migration project name or Amazon Resource Name (ARN)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--selection-rules",
+          description: "A value that specifies the database objects to assess",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "start-metadata-model-conversion",
+      description:
+        "Converts your source database objects to a format compatible with the target database",
+      options: [
+        {
+          name: "--migration-project-identifier",
+          description:
+            "The migration project name or Amazon Resource Name (ARN)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--selection-rules",
+          description: "A value that specifies the database objects to convert",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "start-metadata-model-export-as-script",
+      description:
+        "Saves your converted code to a file as a SQL script, and stores this file on your Amazon S3 bucket",
+      options: [
+        {
+          name: "--migration-project-identifier",
+          description:
+            "The migration project name or Amazon Resource Name (ARN)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--selection-rules",
+          description: "A value that specifies the database objects to export",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--origin",
+          description:
+            "Whether to export the metadata model from the source or the target",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--file-name",
+          description:
+            "The name of the model file to create in the Amazon S3 bucket",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "start-metadata-model-export-to-target",
+      description: "Applies converted database objects to your target database",
+      options: [
+        {
+          name: "--migration-project-identifier",
+          description:
+            "The migration project name or Amazon Resource Name (ARN)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--selection-rules",
+          description: "A value that specifies the database objects to export",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--overwrite-extension-pack",
+          description:
+            "Whether to overwrite the migration project extension pack. An extension pack is an add-on module that emulates functions present in a source database that are required when converting objects to the target database",
+        },
+        {
+          name: "--no-overwrite-extension-pack",
+          description:
+            "Whether to overwrite the migration project extension pack. An extension pack is an add-on module that emulates functions present in a source database that are required when converting objects to the target database",
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "start-metadata-model-import",
+      description:
+        "Loads the metadata for all the dependent database objects of the parent object. This operation uses your project's Amazon S3 bucket as a metadata cache to improve performance",
+      options: [
+        {
+          name: "--migration-project-identifier",
+          description:
+            "The migration project name or Amazon Resource Name (ARN)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--selection-rules",
+          description: "A value that specifies the database objects to import",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--origin",
+          description:
+            "Whether to load metadata to the source or target database",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--refresh",
+          description:
+            "If true, DMS loads metadata for the specified objects from the source database",
+        },
+        {
+          name: "--no-refresh",
+          description:
+            "If true, DMS loads metadata for the specified objects from the source database",
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "start-recommendations",
+      description:
+        "Starts the analysis of your source database to provide recommendations of target engines. You can create recommendations for multiple source databases using BatchStartRecommendations",
+      options: [
+        {
+          name: "--database-id",
+          description:
+            "The identifier of the source database to analyze and provide recommendations for",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--settings",
+          description:
+            "The settings in JSON format that Fleet Advisor uses to determine target engine recommendations. These parameters include target instance sizing and availability and durability settings. For target instance sizing, Fleet Advisor supports the following two options: total capacity and resource utilization. For availability and durability, Fleet Advisor supports the following two options: production (Multi-AZ deployments) and Dev/Test (Single-AZ deployments)",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "start-replication",
+      description:
+        "For a given DMS Serverless replication configuration, DMS connects to the source endpoint and collects the metadata to analyze the replication workload. Using this metadata, DMS then computes and provisions the required capacity and starts replicating to the target endpoint using the server resources that DMS has provisioned for the DMS Serverless replication",
+      options: [
+        {
+          name: "--replication-config-arn",
+          description:
+            "The Amazon Resource Name of the replication for which to start replication",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--start-replication-type",
+          description: "The replication type",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cdc-start-time",
+          description:
+            "Indicates the start time for a change data capture (CDC) operation. Use either CdcStartTime or CdcStartPosition to specify when you want a CDC operation to start. Specifying both values results in an error",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--cdc-start-position",
+          description:
+            "Indicates when you want a change data capture (CDC) operation to start. Use either CdcStartPosition or CdcStartTime to specify when you want a CDC operation to start. Specifying both values results in an error. The value can be in date, checkpoint, or LSN/SCN format",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cdc-stop-position",
+          description:
+            "Indicates when you want a change data capture (CDC) operation to stop. The value can be either server time or commit time",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "start-replication-task",
       description:
-        "Starts the replication task. For more information about AWS DMS tasks, see Working with Migration Tasks  in the AWS Database Migration Service User Guide",
+        "Starts the replication task. For more information about DMS tasks, see Working with Migration Tasks  in the Database Migration Service User Guide",
       options: [
         {
           name: "--replication-task-arn",
@@ -3373,7 +5987,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--start-replication-task-type",
-          description: "A type of replication task",
+          description:
+            "The type of replication task to start. When the migration type is full-load or full-load-and-cdc, the only valid value for the first run of the task is start-replication. This option will start the migration. You can also use ReloadTables to reload specific tables that failed during migration instead of restarting the task. The resume-processing option isn't applicable for a full-load task, because you can't resume partially loaded tables during the full load phase. For a full-load-and-cdc task, DMS migrates table data, and then applies data changes that occur on the source. To load all the tables again, and start capturing source changes, use reload-target. Otherwise use resume-processing, to replicate the changes from the last stop position",
           args: {
             name: "string",
           },
@@ -3389,7 +6004,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cdc-start-position",
           description:
-            'Indicates when you want a change data capture (CDC) operation to start. Use either CdcStartPosition or CdcStartTime to specify when you want a CDC operation to start. Specifying both values results in an error.  The value can be in date, checkpoint, or LSN/SCN format. Date Example: --cdc-start-position \u201c2018-03-08T12:12:12\u201d Checkpoint Example: --cdc-start-position "checkpoint:V1#27#mysql-bin-changelog.157832:1975:-1:2002:677883278264080:mysql-bin-changelog.157832:1876#0#0#*#0#93" LSN Example: --cdc-start-position \u201cmysql-bin-changelog.000024:373\u201d  When you use this task setting with a source PostgreSQL database, a logical replication slot should already be created and associated with the source endpoint. You can verify this by setting the slotName extra connection attribute to the name of this logical replication slot. For more information, see Extra Connection Attributes When Using PostgreSQL as a Source for AWS DMS',
+            'Indicates when you want a change data capture (CDC) operation to start. Use either CdcStartPosition or CdcStartTime to specify when you want a CDC operation to start. Specifying both values results in an error.  The value can be in date, checkpoint, or LSN/SCN format. Date Example: --cdc-start-position \u201c2018-03-08T12:12:12\u201d Checkpoint Example: --cdc-start-position "checkpoint:V1#27#mysql-bin-changelog.157832:1975:-1:2002:677883278264080:mysql-bin-changelog.157832:1876#0#0#*#0#93" LSN Example: --cdc-start-position \u201cmysql-bin-changelog.000024:373\u201d  When you use this task setting with a source PostgreSQL database, a logical replication slot should already be created and associated with the source endpoint. You can verify this by setting the slotName extra connection attribute to the name of this logical replication slot. For more information, see Extra Connection Attributes When Using PostgreSQL as a Source for DMS',
           args: {
             name: "string",
           },
@@ -3397,7 +6012,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cdc-stop-position",
           description:
-            "Indicates when you want a change data capture (CDC) operation to stop. The value can be either server time or commit time. Server time example: --cdc-stop-position \u201cserver_time:2018-02-09T12:12:12\u201d Commit time example: --cdc-stop-position \u201ccommit_time: 2018-02-09T12:12:12 \u201c",
+            "Indicates when you want a change data capture (CDC) operation to stop. The value can be either server time or commit time. Server time example: --cdc-stop-position \u201cserver_time:2018-02-09T12:12:12\u201d Commit time example: --cdc-stop-position \u201ccommit_time:2018-02-09T12:12:12\u201c",
           args: {
             name: "string",
           },
@@ -3424,7 +6039,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "start-replication-task-assessment",
       description:
-        "Starts the replication task assessment for unsupported data types in the source database",
+        "Starts the replication task assessment for unsupported data types in the source database.  You can only use this operation for a task if the following conditions are true:   The task must be in the stopped state.   The task must have successful connections to the source and target.   If either of these conditions are not met, an InvalidResourceStateFault error will result.  For information about DMS task assessments, see Creating a task assessment report in the Database Migration Service User Guide",
       options: [
         {
           name: "--replication-task-arn",
@@ -3468,7 +6083,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--service-access-role-arn",
           description:
-            "ARN of a service role needed to start the assessment run",
+            "ARN of the service role needed to start the assessment run. The role must allow the iam:PassRole action",
           args: {
             name: "string",
           },
@@ -3476,7 +6091,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--result-location-bucket",
           description:
-            "Amazon S3 bucket where you want AWS DMS to store the results of this assessment run",
+            "Amazon S3 bucket where you want DMS to store the results of this assessment run",
           args: {
             name: "string",
           },
@@ -3484,7 +6099,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--result-location-folder",
           description:
-            "Folder within an Amazon S3 bucket where you want AWS DMS to store the results of this assessment run",
+            "Folder within an Amazon S3 bucket where you want DMS to store the results of this assessment run",
           args: {
             name: "string",
           },
@@ -3492,7 +6107,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--result-encryption-mode",
           description:
-            'Encryption mode that you can specify to encrypt the results of this assessment run. If you don\'t specify this request parameter, AWS DMS stores the assessment run results without encryption. You can specify one of the options following:    "SSE_S3" \u2013 The server-side encryption provided as a default by Amazon S3.    "SSE_KMS" \u2013 AWS Key Management Service (AWS KMS) encryption. This encryption can use either a custom KMS encryption key that you specify or the default KMS encryption key that DMS provides',
+            'Encryption mode that you can specify to encrypt the results of this assessment run. If you don\'t specify this request parameter, DMS stores the assessment run results without encryption. You can specify one of the options following:    "SSE_S3" \u2013 The server-side encryption provided as a default by Amazon S3.    "SSE_KMS" \u2013 Key Management Service (KMS) encryption. This encryption can use either a custom KMS encryption key that you specify or the default KMS encryption key that DMS provides',
           args: {
             name: "string",
           },
@@ -3515,7 +6130,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--include-only",
           description:
-            "Space-separated list of names for specific individual assessments that you want to include. These names come from the default list of individual assessments that AWS DMS supports for the associated migration task. This task is specified by ReplicationTaskArn.  You can't set a value for IncludeOnly if you also set a value for Exclude in the API operation.  To identify the names of the default individual assessments that AWS DMS supports for the associated migration task, run the DescribeApplicableIndividualAssessments operation using its own ReplicationTaskArn request parameter",
+            "Space-separated list of names for specific individual assessments that you want to include. These names come from the default list of individual assessments that DMS supports for the associated migration task. This task is specified by ReplicationTaskArn.  You can't set a value for IncludeOnly if you also set a value for Exclude in the API operation.  To identify the names of the default individual assessments that DMS supports for the associated migration task, run the DescribeApplicableIndividualAssessments operation using its own ReplicationTaskArn request parameter",
           args: {
             name: "list",
           },
@@ -3523,9 +6138,40 @@ const completionSpec: Fig.Spec = {
         {
           name: "--exclude",
           description:
-            "Space-separated list of names for specific individual assessments that you want to exclude. These names come from the default list of individual assessments that AWS DMS supports for the associated migration task. This task is specified by ReplicationTaskArn.  You can't set a value for Exclude if you also set a value for IncludeOnly in the API operation. To identify the names of the default individual assessments that AWS DMS supports for the associated migration task, run the DescribeApplicableIndividualAssessments operation using its own ReplicationTaskArn request parameter",
+            "Space-separated list of names for specific individual assessments that you want to exclude. These names come from the default list of individual assessments that DMS supports for the associated migration task. This task is specified by ReplicationTaskArn.  You can't set a value for Exclude if you also set a value for IncludeOnly in the API operation. To identify the names of the default individual assessments that DMS supports for the associated migration task, run the DescribeApplicableIndividualAssessments operation using its own ReplicationTaskArn request parameter",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "stop-replication",
+      description:
+        "For a given DMS Serverless replication configuration, DMS stops any and all ongoing DMS Serverless replications. This command doesn't deprovision the stopped replications",
+      options: [
+        {
+          name: "--replication-config-arn",
+          description: "The Amazon Resource Name of the replication to stop",
+          args: {
+            name: "string",
           },
         },
         {
@@ -3598,6 +6244,40 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "string",
           },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-subscriptions-to-event-bridge",
+      description:
+        "Migrates 10 active and enabled Amazon SNS subscriptions at a time and converts them to corresponding Amazon EventBridge rules. By default, this operation migrates subscriptions only when all your replication instance versions are 3.4.5 or higher. If any replication instances are from versions earlier than 3.4.5, the operation raises an error and tells you to upgrade these instances to version 3.4.5 or higher. To enable migration regardless of version, set the Force option to true. However, if you don't upgrade instances earlier than version 3.4.5, some types of events might not be available when you use Amazon EventBridge. To call this operation, make sure that you have certain permissions added to your user account. For more information, see Migrating event subscriptions to Amazon EventBridge in the Amazon Web Services Database Migration Service User Guide",
+      options: [
+        {
+          name: "--force-move",
+          description:
+            "When set to true, this operation migrates DMS subscriptions for Amazon SNS notifications no matter what your replication instance version is. If not set or set to false, this operation runs only when all your replication instances are from DMS version 3.4.5 or higher",
+        },
+        {
+          name: "--no-force-move",
+          description:
+            "When set to true, this operation migrates DMS subscriptions for Amazon SNS notifications no matter what your replication instance version is. If not set or set to false, this operation runs only when all your replication instances are from DMS version 3.4.5 or higher",
         },
         {
           name: "--cli-input-json",
@@ -4243,5 +6923,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

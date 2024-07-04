@@ -642,6 +642,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
+      args: {
+        name: "service",
+        isVariadic: true,
+        isOptional: true,
+        generators: servicesGenerator,
+      },
     },
     {
       name: "rm",

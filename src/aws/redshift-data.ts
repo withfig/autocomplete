@@ -1,17 +1,115 @@
 const completionSpec: Fig.Spec = {
   name: "redshift-data",
   description:
-    "You can use the Amazon Redshift Data API to run queries on Amazon Redshift tables. You can run individual SQL statements, which are committed if the statement succeeds.  For more information about the Amazon Redshift Data API, see Using the Amazon Redshift Data API in the Amazon Redshift Cluster Management Guide",
+    "You can use the Amazon Redshift Data API to run queries on Amazon Redshift tables. You can run SQL statements, which are committed if the statement succeeds.  For more information about the Amazon Redshift Data API and CLI usage examples, see Using the Amazon Redshift Data API in the Amazon Redshift Management Guide",
   subcommands: [
+    {
+      name: "batch-execute-statement",
+      description:
+        "Runs one or more SQL statements, which can be data manipulation language (DML) or data definition language (DDL). Depending on the authorization method, use one of the following combinations of request parameters:    Secrets Manager - when connecting to a cluster, provide the secret-arn of a secret stored in Secrets Manager which has username and password. The specified secret contains credentials to connect to the database you specify. When you are connecting to a cluster, you also supply the database name, If you provide a cluster identifier (dbClusterIdentifier), it must match the cluster identifier stored in the secret. When you are connecting to a serverless workgroup, you also supply the database name.   Temporary credentials - when connecting to your data warehouse, choose one of the following options:   When connecting to a serverless workgroup, specify the workgroup name and database name. The database user name is derived from the IAM identity. For example, arn:iam::123456789012:user:foo has the database user name IAM:foo. Also, permission to call the redshift-serverless:GetCredentials operation is required.   When connecting to a cluster as an IAM identity, specify the cluster identifier and the database name. The database user name is derived from the IAM identity. For example, arn:iam::123456789012:user:foo has the database user name IAM:foo. Also, permission to call the redshift:GetClusterCredentialsWithIAM operation is required.   When connecting to a cluster as a database user, specify the cluster identifier, the database name, and the database user name. Also, permission to call the redshift:GetClusterCredentials operation is required.     For more information about the Amazon Redshift Data API and CLI usage examples, see Using the Amazon Redshift Data API in the Amazon Redshift Management Guide",
+      options: [
+        {
+          name: "--client-token",
+          description:
+            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cluster-identifier",
+          description:
+            "The cluster identifier. This parameter is required when connecting to a cluster and authenticating using either Secrets Manager or temporary credentials",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--database",
+          description:
+            "The name of the database. This parameter is required when authenticating using either Secrets Manager or temporary credentials",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--db-user",
+          description:
+            "The database user name. This parameter is required when connecting to a cluster as a database user and authenticating using temporary credentials",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--secret-arn",
+          description:
+            "The name or ARN of the secret that enables access to the database. This parameter is required when authenticating using Secrets Manager",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sqls",
+          description:
+            "One or more SQL statements to run.  The SQL statements are run as a single transaction. They run serially in the order of the array. Subsequent SQL statements don't start until the previous statement in the array completes. If any SQL statement fails, then because they are run as one transaction, all work is rolled back.</p>",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--statement-name",
+          description:
+            "The name of the SQL statements. You can name the SQL statements when you create them to identify the query",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--with-event",
+          description:
+            "A value that indicates whether to send an event to the Amazon EventBridge event bus after the SQL statements run",
+        },
+        {
+          name: "--no-with-event",
+          description:
+            "A value that indicates whether to send an event to the Amazon EventBridge event bus after the SQL statements run",
+        },
+        {
+          name: "--workgroup-name",
+          description:
+            "The serverless workgroup name or Amazon Resource Name (ARN). This parameter is required when connecting to a serverless workgroup and authenticating using either Secrets Manager or temporary credentials",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
     {
       name: "cancel-statement",
       description:
-        "Cancels a running query. To be canceled, a query must be running",
+        "Cancels a running query. To be canceled, a query must be running.  For more information about the Amazon Redshift Data API and CLI usage examples, see Using the Amazon Redshift Data API in the Amazon Redshift Management Guide",
       options: [
         {
           name: "--id",
           description:
-            "The identifier of the SQL statement to cancel. This value is a universally unique identifier (UUID) generated by Amazon Redshift Data API. This identifier is returned by ExecuteStatement and ListStatements",
+            "The identifier of the SQL statement to cancel. This value is a universally unique identifier (UUID) generated by Amazon Redshift Data API. This identifier is returned by BatchExecuteStatment, ExecuteStatment, and ListStatements",
           args: {
             name: "string",
           },
@@ -38,12 +136,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-statement",
       description:
-        "Describes the details about a specific instance when a query was run by the Amazon Redshift Data API. The information includes when the query started, when it finished, the query status, the number of rows returned, and the SQL statement",
+        "Describes the details about a specific instance when a query was run by the Amazon Redshift Data API. The information includes when the query started, when it finished, the query status, the number of rows returned, and the SQL statement.  For more information about the Amazon Redshift Data API and CLI usage examples, see Using the Amazon Redshift Data API in the Amazon Redshift Management Guide",
       options: [
         {
           name: "--id",
           description:
-            "The identifier of the SQL statement to describe. This value is a universally unique identifier (UUID) generated by Amazon Redshift Data API. This identifier is returned by ExecuteStatement and ListStatements",
+            "The identifier of the SQL statement to describe. This value is a universally unique identifier (UUID) generated by Amazon Redshift Data API. A suffix indicates the number of the SQL statement. For example, d9b6c0c9-0747-4bf4-b142-e8883122f766:2 has a suffix of :2 that indicates the second SQL statement of a batch query. This identifier is returned by BatchExecuteStatment, ExecuteStatement, and ListStatements",
           args: {
             name: "string",
           },
@@ -70,12 +168,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-table",
       description:
-        "Describes the detailed information about a table from metadata in the cluster. The information includes its columns. A token is returned to page through the column list. Depending on the authorization method, use one of the following combinations of request parameters:    AWS Secrets Manager - specify the Amazon Resource Name (ARN) of the secret and the cluster identifier that matches the cluster in the secret.    Temporary credentials - specify the cluster identifier, the database name, and the database user name. Permission to call the redshift:GetClusterCredentials operation is required to use this method",
+        "Describes the detailed information about a table from metadata in the cluster. The information includes its columns. A token is returned to page through the column list. Depending on the authorization method, use one of the following combinations of request parameters:    Secrets Manager - when connecting to a cluster, provide the secret-arn of a secret stored in Secrets Manager which has username and password. The specified secret contains credentials to connect to the database you specify. When you are connecting to a cluster, you also supply the database name, If you provide a cluster identifier (dbClusterIdentifier), it must match the cluster identifier stored in the secret. When you are connecting to a serverless workgroup, you also supply the database name.   Temporary credentials - when connecting to your data warehouse, choose one of the following options:   When connecting to a serverless workgroup, specify the workgroup name and database name. The database user name is derived from the IAM identity. For example, arn:iam::123456789012:user:foo has the database user name IAM:foo. Also, permission to call the redshift-serverless:GetCredentials operation is required.   When connecting to a cluster as an IAM identity, specify the cluster identifier and the database name. The database user name is derived from the IAM identity. For example, arn:iam::123456789012:user:foo has the database user name IAM:foo. Also, permission to call the redshift:GetClusterCredentialsWithIAM operation is required.   When connecting to a cluster as a database user, specify the cluster identifier, the database name, and the database user name. Also, permission to call the redshift:GetClusterCredentials operation is required.     For more information about the Amazon Redshift Data API and CLI usage examples, see Using the Amazon Redshift Data API in the Amazon Redshift Management Guide",
       options: [
         {
           name: "--cluster-identifier",
           description:
-            "The cluster identifier. This parameter is required when authenticating using either AWS Secrets Manager or temporary credentials",
+            "The cluster identifier. This parameter is required when connecting to a cluster and authenticating using either Secrets Manager or temporary credentials",
           args: {
             name: "string",
           },
@@ -99,7 +197,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--db-user",
           description:
-            "The database user name. This parameter is required when authenticating using temporary credentials",
+            "The database user name. This parameter is required when connecting to a cluster as a database user and authenticating using temporary credentials",
           args: {
             name: "string",
           },
@@ -131,7 +229,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--secret-arn",
           description:
-            "The name or ARN of the secret that enables access to the database. This parameter is required when authenticating using AWS Secrets Manager",
+            "The name or ARN of the secret that enables access to the database. This parameter is required when authenticating using Secrets Manager",
           args: {
             name: "string",
           },
@@ -140,6 +238,14 @@ const completionSpec: Fig.Spec = {
           name: "--table",
           description:
             "The table name. If no table is specified, then all tables for all matching schemas are returned. If no table and no schema is specified, then all tables for all schemas in the database are returned",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--workgroup-name",
+          description:
+            "The serverless workgroup name or Amazon Resource Name (ARN). This parameter is required when connecting to a serverless workgroup and authenticating using either Secrets Manager or temporary credentials",
           args: {
             name: "string",
           },
@@ -190,12 +296,20 @@ const completionSpec: Fig.Spec = {
     {
       name: "execute-statement",
       description:
-        "Runs an SQL statement, which can be data manipulation language (DML) or data definition language (DDL). This statement must be a single SQL statement. Depending on the authorization method, use one of the following combinations of request parameters:    AWS Secrets Manager - specify the Amazon Resource Name (ARN) of the secret and the cluster identifier that matches the cluster in the secret.    Temporary credentials - specify the cluster identifier, the database name, and the database user name. Permission to call the redshift:GetClusterCredentials operation is required to use this method",
+        "Runs an SQL statement, which can be data manipulation language (DML) or data definition language (DDL). This statement must be a single SQL statement. Depending on the authorization method, use one of the following combinations of request parameters:    Secrets Manager - when connecting to a cluster, provide the secret-arn of a secret stored in Secrets Manager which has username and password. The specified secret contains credentials to connect to the database you specify. When you are connecting to a cluster, you also supply the database name, If you provide a cluster identifier (dbClusterIdentifier), it must match the cluster identifier stored in the secret. When you are connecting to a serverless workgroup, you also supply the database name.   Temporary credentials - when connecting to your data warehouse, choose one of the following options:   When connecting to a serverless workgroup, specify the workgroup name and database name. The database user name is derived from the IAM identity. For example, arn:iam::123456789012:user:foo has the database user name IAM:foo. Also, permission to call the redshift-serverless:GetCredentials operation is required.   When connecting to a cluster as an IAM identity, specify the cluster identifier and the database name. The database user name is derived from the IAM identity. For example, arn:iam::123456789012:user:foo has the database user name IAM:foo. Also, permission to call the redshift:GetClusterCredentialsWithIAM operation is required.   When connecting to a cluster as a database user, specify the cluster identifier, the database name, and the database user name. Also, permission to call the redshift:GetClusterCredentials operation is required.     For more information about the Amazon Redshift Data API and CLI usage examples, see Using the Amazon Redshift Data API in the Amazon Redshift Management Guide",
       options: [
+        {
+          name: "--client-token",
+          description:
+            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request",
+          args: {
+            name: "string",
+          },
+        },
         {
           name: "--cluster-identifier",
           description:
-            "The cluster identifier. This parameter is required when authenticating using either AWS Secrets Manager or temporary credentials",
+            "The cluster identifier. This parameter is required when connecting to a cluster and authenticating using either Secrets Manager or temporary credentials",
           args: {
             name: "string",
           },
@@ -203,7 +317,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--database",
           description:
-            "The name of the database. This parameter is required when authenticating using temporary credentials",
+            "The name of the database. This parameter is required when authenticating using either Secrets Manager or temporary credentials",
           args: {
             name: "string",
           },
@@ -211,15 +325,22 @@ const completionSpec: Fig.Spec = {
         {
           name: "--db-user",
           description:
-            "The database user name. This parameter is required when authenticating using temporary credentials",
+            "The database user name. This parameter is required when connecting to a cluster as a database user and authenticating using temporary credentials",
           args: {
             name: "string",
           },
         },
         {
+          name: "--parameters",
+          description: "The parameters for the SQL statement",
+          args: {
+            name: "list",
+          },
+        },
+        {
           name: "--secret-arn",
           description:
-            "The name or ARN of the secret that enables access to the database. This parameter is required when authenticating using AWS Secrets Manager",
+            "The name or ARN of the secret that enables access to the database. This parameter is required when authenticating using Secrets Manager",
           args: {
             name: "string",
           },
@@ -250,6 +371,14 @@ const completionSpec: Fig.Spec = {
             "A value that indicates whether to send an event to the Amazon EventBridge event bus after the SQL statement runs",
         },
         {
+          name: "--workgroup-name",
+          description:
+            "The serverless workgroup name or Amazon Resource Name (ARN). This parameter is required when connecting to a serverless workgroup and authenticating using either Secrets Manager or temporary credentials",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -271,12 +400,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-statement-result",
       description:
-        "Fetches the temporarily cached result of an SQL statement. A token is returned to page through the statement results",
+        "Fetches the temporarily cached result of an SQL statement. A token is returned to page through the statement results.  For more information about the Amazon Redshift Data API and CLI usage examples, see Using the Amazon Redshift Data API in the Amazon Redshift Management Guide",
       options: [
         {
           name: "--id",
           description:
-            "The identifier of the SQL statement whose results are to be fetched. This value is a universally unique identifier (UUID) generated by Amazon Redshift Data API. This identifier is returned by ExecuteStatement and ListStatements",
+            "The identifier of the SQL statement whose results are to be fetched. This value is a universally unique identifier (UUID) generated by Amazon Redshift Data API. A suffix indicates then number of the SQL statement. For example, d9b6c0c9-0747-4bf4-b142-e8883122f766:2 has a suffix of :2 that indicates the second SQL statement of a batch query. This identifier is returned by BatchExecuteStatment, ExecuteStatment, and ListStatements",
           args: {
             name: "string",
           },
@@ -327,12 +456,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-databases",
       description:
-        "List the databases in a cluster. A token is returned to page through the database list. Depending on the authorization method, use one of the following combinations of request parameters:    AWS Secrets Manager - specify the Amazon Resource Name (ARN) of the secret and the cluster identifier that matches the cluster in the secret.    Temporary credentials - specify the cluster identifier, the database name, and the database user name. Permission to call the redshift:GetClusterCredentials operation is required to use this method",
+        "List the databases in a cluster. A token is returned to page through the database list. Depending on the authorization method, use one of the following combinations of request parameters:    Secrets Manager - when connecting to a cluster, provide the secret-arn of a secret stored in Secrets Manager which has username and password. The specified secret contains credentials to connect to the database you specify. When you are connecting to a cluster, you also supply the database name, If you provide a cluster identifier (dbClusterIdentifier), it must match the cluster identifier stored in the secret. When you are connecting to a serverless workgroup, you also supply the database name.   Temporary credentials - when connecting to your data warehouse, choose one of the following options:   When connecting to a serverless workgroup, specify the workgroup name and database name. The database user name is derived from the IAM identity. For example, arn:iam::123456789012:user:foo has the database user name IAM:foo. Also, permission to call the redshift-serverless:GetCredentials operation is required.   When connecting to a cluster as an IAM identity, specify the cluster identifier and the database name. The database user name is derived from the IAM identity. For example, arn:iam::123456789012:user:foo has the database user name IAM:foo. Also, permission to call the redshift:GetClusterCredentialsWithIAM operation is required.   When connecting to a cluster as a database user, specify the cluster identifier, the database name, and the database user name. Also, permission to call the redshift:GetClusterCredentials operation is required.     For more information about the Amazon Redshift Data API and CLI usage examples, see Using the Amazon Redshift Data API in the Amazon Redshift Management Guide",
       options: [
         {
           name: "--cluster-identifier",
           description:
-            "The cluster identifier. This parameter is required when authenticating using either AWS Secrets Manager or temporary credentials",
+            "The cluster identifier. This parameter is required when connecting to a cluster and authenticating using either Secrets Manager or temporary credentials",
           args: {
             name: "string",
           },
@@ -340,7 +469,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--database",
           description:
-            "The name of the database. This parameter is required when authenticating using temporary credentials",
+            "The name of the database. This parameter is required when authenticating using either Secrets Manager or temporary credentials",
           args: {
             name: "string",
           },
@@ -348,7 +477,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--db-user",
           description:
-            "The database user name. This parameter is required when authenticating using temporary credentials",
+            "The database user name. This parameter is required when connecting to a cluster as a database user and authenticating using temporary credentials",
           args: {
             name: "string",
           },
@@ -372,7 +501,15 @@ const completionSpec: Fig.Spec = {
         {
           name: "--secret-arn",
           description:
-            "The name or ARN of the secret that enables access to the database. This parameter is required when authenticating using AWS Secrets Manager",
+            "The name or ARN of the secret that enables access to the database. This parameter is required when authenticating using Secrets Manager",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--workgroup-name",
+          description:
+            "The serverless workgroup name or Amazon Resource Name (ARN). This parameter is required when connecting to a serverless workgroup and authenticating using either Secrets Manager or temporary credentials",
           args: {
             name: "string",
           },
@@ -423,12 +560,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-schemas",
       description:
-        "Lists the schemas in a database. A token is returned to page through the schema list. Depending on the authorization method, use one of the following combinations of request parameters:    AWS Secrets Manager - specify the Amazon Resource Name (ARN) of the secret and the cluster identifier that matches the cluster in the secret.    Temporary credentials - specify the cluster identifier, the database name, and the database user name. Permission to call the redshift:GetClusterCredentials operation is required to use this method",
+        "Lists the schemas in a database. A token is returned to page through the schema list. Depending on the authorization method, use one of the following combinations of request parameters:    Secrets Manager - when connecting to a cluster, provide the secret-arn of a secret stored in Secrets Manager which has username and password. The specified secret contains credentials to connect to the database you specify. When you are connecting to a cluster, you also supply the database name, If you provide a cluster identifier (dbClusterIdentifier), it must match the cluster identifier stored in the secret. When you are connecting to a serverless workgroup, you also supply the database name.   Temporary credentials - when connecting to your data warehouse, choose one of the following options:   When connecting to a serverless workgroup, specify the workgroup name and database name. The database user name is derived from the IAM identity. For example, arn:iam::123456789012:user:foo has the database user name IAM:foo. Also, permission to call the redshift-serverless:GetCredentials operation is required.   When connecting to a cluster as an IAM identity, specify the cluster identifier and the database name. The database user name is derived from the IAM identity. For example, arn:iam::123456789012:user:foo has the database user name IAM:foo. Also, permission to call the redshift:GetClusterCredentialsWithIAM operation is required.   When connecting to a cluster as a database user, specify the cluster identifier, the database name, and the database user name. Also, permission to call the redshift:GetClusterCredentials operation is required.     For more information about the Amazon Redshift Data API and CLI usage examples, see Using the Amazon Redshift Data API in the Amazon Redshift Management Guide",
       options: [
         {
           name: "--cluster-identifier",
           description:
-            "The cluster identifier. This parameter is required when authenticating using either AWS Secrets Manager or temporary credentials",
+            "The cluster identifier. This parameter is required when connecting to a cluster and authenticating using either Secrets Manager or temporary credentials",
           args: {
             name: "string",
           },
@@ -452,7 +589,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--db-user",
           description:
-            "The database user name. This parameter is required when authenticating using temporary credentials",
+            "The database user name. This parameter is required when connecting to a cluster as a database user and authenticating using temporary credentials",
           args: {
             name: "string",
           },
@@ -484,7 +621,15 @@ const completionSpec: Fig.Spec = {
         {
           name: "--secret-arn",
           description:
-            "The name or ARN of the secret that enables access to the database. This parameter is required when authenticating using AWS Secrets Manager",
+            "The name or ARN of the secret that enables access to the database. This parameter is required when authenticating using Secrets Manager",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--workgroup-name",
+          description:
+            "The serverless workgroup name or Amazon Resource Name (ARN). This parameter is required when connecting to a serverless workgroup and authenticating using either Secrets Manager or temporary credentials",
           args: {
             name: "string",
           },
@@ -535,7 +680,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-statements",
       description:
-        "List of SQL statements. By default, only finished statements are shown. A token is returned to page through the statement list",
+        "List of SQL statements. By default, only finished statements are shown. A token is returned to page through the statement list.  For more information about the Amazon Redshift Data API and CLI usage examples, see Using the Amazon Redshift Data API in the Amazon Redshift Management Guide",
       options: [
         {
           name: "--max-results",
@@ -566,7 +711,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--statement-name",
           description:
-            "The name of the SQL statement specified as input to ExecuteStatement to identify the query. You can list multiple statements by providing a prefix that matches the beginning of the statement name. For example, to list myStatement1, myStatement2, myStatement3, and so on, then provide the a value of myStatement. Data API does a case-sensitive match of SQL statement names to the prefix value you provide",
+            "The name of the SQL statement specified as input to BatchExecuteStatement or ExecuteStatement to identify the query. You can list multiple statements by providing a prefix that matches the beginning of the statement name. For example, to list myStatement1, myStatement2, myStatement3, and so on, then provide the a value of myStatement. Data API does a case-sensitive match of SQL statement names to the prefix value you provide",
           args: {
             name: "string",
           },
@@ -625,12 +770,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-tables",
       description:
-        "List the tables in a database. If neither SchemaPattern nor TablePattern are specified, then all tables in the database are returned. A token is returned to page through the table list. Depending on the authorization method, use one of the following combinations of request parameters:    AWS Secrets Manager - specify the Amazon Resource Name (ARN) of the secret and the cluster identifier that matches the cluster in the secret.    Temporary credentials - specify the cluster identifier, the database name, and the database user name. Permission to call the redshift:GetClusterCredentials operation is required to use this method",
+        "List the tables in a database. If neither SchemaPattern nor TablePattern are specified, then all tables in the database are returned. A token is returned to page through the table list. Depending on the authorization method, use one of the following combinations of request parameters:    Secrets Manager - when connecting to a cluster, provide the secret-arn of a secret stored in Secrets Manager which has username and password. The specified secret contains credentials to connect to the database you specify. When you are connecting to a cluster, you also supply the database name, If you provide a cluster identifier (dbClusterIdentifier), it must match the cluster identifier stored in the secret. When you are connecting to a serverless workgroup, you also supply the database name.   Temporary credentials - when connecting to your data warehouse, choose one of the following options:   When connecting to a serverless workgroup, specify the workgroup name and database name. The database user name is derived from the IAM identity. For example, arn:iam::123456789012:user:foo has the database user name IAM:foo. Also, permission to call the redshift-serverless:GetCredentials operation is required.   When connecting to a cluster as an IAM identity, specify the cluster identifier and the database name. The database user name is derived from the IAM identity. For example, arn:iam::123456789012:user:foo has the database user name IAM:foo. Also, permission to call the redshift:GetClusterCredentialsWithIAM operation is required.   When connecting to a cluster as a database user, specify the cluster identifier, the database name, and the database user name. Also, permission to call the redshift:GetClusterCredentials operation is required.     For more information about the Amazon Redshift Data API and CLI usage examples, see Using the Amazon Redshift Data API in the Amazon Redshift Management Guide",
       options: [
         {
           name: "--cluster-identifier",
           description:
-            "The cluster identifier. This parameter is required when authenticating using either AWS Secrets Manager or temporary credentials",
+            "The cluster identifier. This parameter is required when connecting to a cluster and authenticating using either Secrets Manager or temporary credentials",
           args: {
             name: "string",
           },
@@ -654,7 +799,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--db-user",
           description:
-            "The database user name. This parameter is required when authenticating using temporary credentials",
+            "The database user name. This parameter is required when connecting to a cluster as a database user and authenticating using temporary credentials",
           args: {
             name: "string",
           },
@@ -686,7 +831,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--secret-arn",
           description:
-            "The name or ARN of the secret that enables access to the database. This parameter is required when authenticating using AWS Secrets Manager",
+            "The name or ARN of the secret that enables access to the database. This parameter is required when authenticating using Secrets Manager",
           args: {
             name: "string",
           },
@@ -695,6 +840,14 @@ const completionSpec: Fig.Spec = {
           name: "--table-pattern",
           description:
             'A pattern to filter results by table name. Within a table pattern, "%" means match any substring of 0 or more characters and "_" means match any one character. Only table name entries matching the search pattern are returned. If TablePattern is not specified, then all tables that match SchemaPatternare returned. If neither SchemaPattern or TablePattern are specified, then all tables are returned',
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--workgroup-name",
+          description:
+            "The serverless workgroup name or Amazon Resource Name (ARN). This parameter is required when connecting to a serverless workgroup and authenticating using either Secrets Manager or temporary credentials",
           args: {
             name: "string",
           },
@@ -744,5 +897,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

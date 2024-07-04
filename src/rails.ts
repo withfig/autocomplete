@@ -477,13 +477,40 @@ const defaultCommands: Fig.Subcommand[] = [
     ],
   },
   {
+    name: "notes",
+    description: "Enumerate all annotations",
+    options: [
+      {
+        name: ["-a", "--annotations"],
+        requiresSeparator: true,
+        args: {
+          name: "annotations",
+          isVariadic: true,
+          description: "Filter by specific annotations, e.g. Foobar TODO",
+        },
+      },
+    ],
+  },
+  {
     name: "generate",
     description: "Use templates to generate Rails resources",
     args: [
       {
         name: "generator",
+        filterStrategy: "fuzzy",
+        suggestions: [
+          "model",
+          "resource",
+          "scaffold",
+          "controller",
+          "migration",
+        ],
         generators: {
           script: ["rails", "g", "--help"],
+          cache: {
+            cacheByDirectory: true,
+            strategy: "stale-while-revalidate",
+          },
           postProcess(out) {
             const lines = out.split("Rails:")[1].trim().split("\n");
 

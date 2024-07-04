@@ -51,7 +51,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--skip",
           description:
-            "Skip the given options (valid options are before, post-hooks, pre-hooks, validate)",
+            "Skip the given options (valid options are: before, post-hooks, pre-hooks, validate)",
           isRepeatable: true,
           args: { name: "skip" },
         },
@@ -257,7 +257,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--skip",
           description:
-            "Skip the given options (valid options are announce, aur, before, docker, homebrew, ko, nix, publish, sbom, scoop, sign, snapcraft, validate, winget)",
+            "Skip the given options (valid options are announce, aur, before, chocolatey, docker, homebrew, ko, nfpm, nix, publish, sbom, scoop, sign, snapcraft, validate, winget)",
           isRepeatable: true,
           args: { name: "skip" },
         },

@@ -1,23 +1,25 @@
 {
-  "ts-node": {
-    "transpileOnly": true,
-    "files": true,
-    "compilerOptions": {
-      "module": "commonjs"
-    }
-  },
   "compilerOptions": {
-    "jsx": "react-jsx",
     "moduleResolution": "node",
     "outDir": "./build",
-    "target": "ES6",
+    "target": "ES2018",
     "module": "ESNext",
-    "lib": ["ESNext", "DOM"],
+    "lib": [
+      "ES2018",
+      "DOM"
+    ],
     "noImplicitAny": false,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
-    "types": ["@withfig/autocomplete-types"]
+    "types": [
+      "@withfig/autocomplete-types"
+    ]
   },
-  "exclude": ["node_modules/"],
-  "include": ["./src/**/*", "dangerfile.ts"]
+  "exclude": [
+    "node_modules/"
+  ],
+  "include": [
+    "./src/**/*",
+    "dangerfile.ts"
+  ]
 }

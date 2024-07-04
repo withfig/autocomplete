@@ -1,3 +1,4 @@
+import awsRegions from "./regions";
 const awsPrincipals = [
   "a4b.amazonaws.com",
   "acm-pca.amazonaws.com",
@@ -178,31 +179,6 @@ const awsPrincipals = [
   "workspaces.amazonaws.com",
   "xray.amazonaws.com",
 ];
-
-const awsRegions = [
-  "af-south-1",
-  "eu-north-1",
-  "ap-south-1",
-  "eu-west-3",
-  "eu-west-2",
-  "eu-south-1",
-  "eu-west-1",
-  "ap-northeast-3",
-  "ap-northeast-2",
-  "me-south-1",
-  "ap-northeast-1",
-  "sa-east-1",
-  "ca-central-1",
-  "ap-east-1",
-  "ap-southeast-1",
-  "ap-southeast-2",
-  "eu-central-1",
-  "us-east-1",
-  "us-east-2",
-  "us-west-1",
-  "us-west-2",
-];
-
 const runtimes = [
   "nodejs",
   "nodejs4.3",
@@ -229,9 +205,7 @@ const runtimes = [
   "provided",
   "provided.al2",
 ];
-
 const ttl = 300000;
-
 const postPrecessGenerator = (
   out: string,
   parentKey: string,
@@ -239,7 +213,6 @@ const postPrecessGenerator = (
 ): Fig.Suggestion[] => {
   try {
     const list = JSON.parse(out)[parentKey];
-
     if (!Array.isArray(list)) {
       return [
         {
@@ -248,7 +221,6 @@ const postPrecessGenerator = (
         },
       ];
     }
-
     return list.map((elm) => {
       const name = (childKey ? elm[childKey] : elm) as string;
       return {
@@ -261,7 +233,6 @@ const postPrecessGenerator = (
   }
   return [];
 };
-
 const listCustomGenerator = async (
   tokens: string[],
   executeShellCommand: Fig.ExecuteCommandFunction,
@@ -272,7 +243,6 @@ const listCustomGenerator = async (
 ): Promise<Fig.Suggestion[]> => {
   try {
     let args = ["lambda", command];
-
     for (let i = 0; i < options.length; i++) {
       const option = options[i];
       const idx = tokens.indexOf(option);
@@ -282,14 +252,11 @@ const listCustomGenerator = async (
       const param = tokens[idx + 1];
       args = [...args, option, param];
     }
-
     const { stdout } = await executeShellCommand({
       command: "aws",
       args,
     });
-
     const list = JSON.parse(stdout)[parentKey];
-
     if (!Array.isArray(list)) {
       return [
         {
@@ -298,7 +265,6 @@ const listCustomGenerator = async (
         },
       ];
     }
-
     return list.map((elm) => {
       const name = (childKey ? elm[childKey] : elm) as string;
       return {
@@ -311,7 +277,6 @@ const listCustomGenerator = async (
   }
   return [];
 };
-
 const listCustomSIDGenerator = async (
   tokens: string[],
   executeShellCommand: Fig.ExecuteCommandFunction,
@@ -320,7 +285,6 @@ const listCustomSIDGenerator = async (
 ): Promise<Fig.Suggestion[]> => {
   try {
     let args = ["lambda", command];
-
     for (let i = 0; i < options.length; i++) {
       const option = options[i];
       const idx = tokens.indexOf(option);
@@ -330,12 +294,10 @@ const listCustomSIDGenerator = async (
       const param = tokens[idx + 1];
       args = [...args, option, param];
     }
-
     const { stdout } = await executeShellCommand({
       command: "aws",
       args,
     });
-
     const policies = JSON.parse(stdout)["Policy"];
     const statement = JSON.parse(policies)["Statement"];
     return statement.map((elm) => {
@@ -349,7 +311,6 @@ const listCustomSIDGenerator = async (
   }
   return [];
 };
-
 const MultiSuggestionsGenerator = async (
   tokens: string[],
   executeShellCommand: Fig.ExecuteCommandFunction,
@@ -369,7 +330,6 @@ const MultiSuggestionsGenerator = async (
       }).then(({ stdout }) => stdout);
     }
     const result = await Promise.all(promises);
-
     for (let i = 0; i < enabled.length; i++) {
       list[i] = postPrecessGenerator(
         result[i],
@@ -377,30 +337,24 @@ const MultiSuggestionsGenerator = async (
         enabled[i].childKey
       );
     }
-
     return list.flat();
   } catch (e) {
     console.log(e);
   }
   return [];
 };
-
 const _prefixFile = "file://";
 const _prefixBlob = "fileb://";
 const _prefixS3 = "s3://";
-
 const appendFolderPath = (tokens: string[], prefix: string): string[] => {
   const baseLsCommand = ["ls", "-1ApL"];
   let whatHasUserTyped = tokens[tokens.length - 1];
-
   if (!whatHasUserTyped.startsWith(prefix)) {
     return ["echo", prefix];
   }
   whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
-
   let folderPath = "";
   const lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
-
   if (lastSlashIndex > -1) {
     if (whatHasUserTyped.startsWith("/") && lastSlashIndex === 0) {
       folderPath = "/";
@@ -408,10 +362,8 @@ const appendFolderPath = (tokens: string[], prefix: string): string[] => {
       folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
     }
   }
-
   return [...baseLsCommand, folderPath];
 };
-
 const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
   if (out.trim() === prefix) {
     return [
@@ -424,31 +376,25 @@ const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
   const sortFnStrings = (a, b) => {
     return a.localeCompare(b);
   };
-
   const alphabeticalSortFilesAndFolders = (arr) => {
     const dotsArr = [];
     const otherArr = [];
-
     arr.map((elm) => {
       if (elm.toLowerCase() == ".ds_store") return;
       if (elm.slice(0, 1) === ".") dotsArr.push(elm);
       else otherArr.push(elm);
     });
-
     return [
       ...otherArr.sort(sortFnStrings),
       "../",
       ...dotsArr.sort(sortFnStrings),
     ];
   };
-
   const tempArr = alphabeticalSortFilesAndFolders(out.split("\n"));
-
   const finalArr = [];
   tempArr.forEach((item) => {
     if (!(item === "" || item === null || item === undefined)) {
       const outputType = item.slice(-1) === "/" ? "folder" : "file";
-
       finalArr.push({
         type: outputType,
         name: item,
@@ -456,10 +402,8 @@ const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
       });
     }
   });
-
   return finalArr;
 };
-
 const triggerPrefix = (
   newToken: string,
   oldToken: string,
@@ -467,18 +411,14 @@ const triggerPrefix = (
 ): boolean => {
   if (!newToken.startsWith(prefix)) {
     if (!oldToken) return false;
-
     return oldToken.startsWith(prefix);
   }
-
   return newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/");
 };
-
 const filterWithPrefix = (token: string, prefix: string): string => {
   if (!token.startsWith(prefix)) return token;
   return token.slice(token.lastIndexOf("/") + 1);
 };
-
 const generators: Record<string, Fig.Generator> = {
   // --cli-input-json and a few other options takes a JSON string literal, or arbitrary files containing valid JSON.
   // In case the JSON is passed as a file, the filepath must be prefixed by file://
@@ -490,16 +430,13 @@ const generators: Record<string, Fig.Generator> = {
     postProcess: (out) => {
       return postProcessFiles(out, _prefixFile);
     },
-
     trigger: (newToken, oldToken) => {
       return triggerPrefix(newToken, oldToken, _prefixFile);
     },
-
     getQueryTerm: (token) => {
       return filterWithPrefix(token, _prefixFile);
     },
   },
-
   listBlobs: {
     script: (tokens) => {
       return appendFolderPath(tokens, _prefixBlob);
@@ -507,16 +444,13 @@ const generators: Record<string, Fig.Generator> = {
     postProcess: (out) => {
       return postProcessFiles(out, _prefixBlob);
     },
-
     trigger: (newToken, oldToken) => {
       return triggerPrefix(newToken, oldToken, _prefixBlob);
     },
-
     getQueryTerm: (token) => {
       return filterWithPrefix(token, _prefixBlob);
     },
   },
-
   listLayerArns: {
     script: ["aws", "lambda", "list-layers"],
     postProcess: (out) => {
@@ -526,7 +460,6 @@ const generators: Record<string, Fig.Generator> = {
       ttl: ttl,
     },
   },
-
   listLayerVersionNumber: {
     custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
@@ -542,7 +475,6 @@ const generators: Record<string, Fig.Generator> = {
       ttl: ttl,
     },
   },
-
   getPrincipal: {
     script: ["aws", "sts", "get-caller-identity"],
     postProcess: function (out, tokens) {
@@ -558,7 +490,6 @@ const generators: Record<string, Fig.Generator> = {
       ttl: ttl,
     },
   },
-
   getLayerVersionPolicyRevision: {
     custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
@@ -573,7 +504,6 @@ const generators: Record<string, Fig.Generator> = {
       ttl: ttl,
     },
   },
-
   getFunctionPolicyRevisionId: {
     custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
@@ -588,7 +518,6 @@ const generators: Record<string, Fig.Generator> = {
       ttl: ttl,
     },
   },
-
   getFunctionRevisionId: {
     custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
@@ -604,7 +533,6 @@ const generators: Record<string, Fig.Generator> = {
       ttl: ttl,
     },
   },
-
   listLambdaFunctions: {
     script: ["aws", "lambda", "list-functions"],
     postProcess: (out) => {
@@ -614,13 +542,11 @@ const generators: Record<string, Fig.Generator> = {
       ttl: ttl,
     },
   },
-
   awsPrincipals: {
     custom: async () => {
       return awsPrincipals.map((elm) => ({ name: elm }));
     },
   },
-
   listAliases: {
     custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
@@ -636,7 +562,6 @@ const generators: Record<string, Fig.Generator> = {
       ttl: ttl,
     },
   },
-
   listVersions: {
     custom: async function (tokens, executeShellCommand) {
       try {
@@ -647,18 +572,15 @@ const generators: Record<string, Fig.Generator> = {
           "--function-name",
           tokens[idx + 1],
         ];
-
         const { stdout } = await executeShellCommand({
           command: "aws",
           args,
         });
-
         const list = JSON.parse(stdout)["Versions"];
         return list
           .filter((elm) => elm.Version !== "$LATEST")
           .map((elm) => {
             const version = elm["Version"];
-
             return {
               insertValue: version,
               name: version,
@@ -675,7 +597,6 @@ const generators: Record<string, Fig.Generator> = {
       ttl: ttl,
     },
   },
-
   listSIDs: {
     custom: async function (tokens, executeShellCommand) {
       return listCustomSIDGenerator(tokens, executeShellCommand, "get-policy", [
@@ -686,7 +607,6 @@ const generators: Record<string, Fig.Generator> = {
       ttl: ttl,
     },
   },
-
   listLayerVersionSIDs: {
     custom: async function (tokens, executeShellCommand) {
       return listCustomSIDGenerator(
@@ -700,18 +620,15 @@ const generators: Record<string, Fig.Generator> = {
       ttl: ttl,
     },
   },
-
   listEventSourceArns: {
     custom: async function (tokens, executeShellCommand) {
       // Getting sqs queues is implemented, although it has a huge performance toll.
       // It seems Fig rejects long-running promises after a time.
       // I am currently investigating if this is the case.
-
       // const result = await Promise.all([
       //   getResultList(tokens, executeShellCommand, "aws sqs list-queues", "QueueUrls"),
       //   getResultList(tokens, executeShellCommand, "aws kinesis list-streams", "StreamNames")
       // ]);
-
       // const objects = result.flat().map((elm) => {
       //   if (elm.includes("sqs")) {
       //     return ({
@@ -726,7 +643,6 @@ const generators: Record<string, Fig.Generator> = {
       //     childKey: "StreamARN",
       //   })
       // });
-
       return MultiSuggestionsGenerator(tokens, executeShellCommand, [
         {
           command: ["dynamodbstreams", "list-streams"],
@@ -745,13 +661,11 @@ const generators: Record<string, Fig.Generator> = {
       ttl: ttl,
     },
   },
-
   listDestinationConfigArns: {
     custom: async function (tokens, executeShellCommand) {
       // Getting sqs queues is implemented, although it has a huge performance toll.
       // It seems Fig rejects long-running promises after a time.
       // I am currently investigating if this is the case.
-
       // const out = await executeShellCommand("aws sqs list-queues");
       // const list = JSON.parse(out)["QueueUrls"];
       // const sqsObjects = list.map((url) => ({
@@ -759,7 +673,6 @@ const generators: Record<string, Fig.Generator> = {
       //   parentKey: "Attributes",
       //   childKey: "QueueArn",
       // }));
-
       return MultiSuggestionsGenerator(tokens, executeShellCommand, [
         {
           command: ["sns", "list-topics"],
@@ -783,7 +696,6 @@ const generators: Record<string, Fig.Generator> = {
       ttl: ttl,
     },
   },
-
   listRoles: {
     script: ["aws", "iam", "list-roles", "--page-size", "100"],
     postProcess: function (out) {
@@ -793,7 +705,6 @@ const generators: Record<string, Fig.Generator> = {
       ttl: ttl,
     },
   },
-
   listKmsKeys: {
     script: ["aws", "kms", "list-keys", "--page-size", "100"],
     postProcess: function (out) {
@@ -803,7 +714,6 @@ const generators: Record<string, Fig.Generator> = {
       ttl: ttl,
     },
   },
-
   listLayers: {
     script: ["aws", "lambda", "list-layers"],
     postProcess: function (out) {
@@ -813,7 +723,6 @@ const generators: Record<string, Fig.Generator> = {
       ttl: ttl,
     },
   },
-
   listLayerArnsWithVersion: {
     script: ["aws", "lambda", "list-layers"],
     postProcess: function (out) {
@@ -834,7 +743,6 @@ const generators: Record<string, Fig.Generator> = {
       ttl: ttl,
     },
   },
-
   listFilesystemConfigs: {
     script: ["aws", "efs", "describe-file-systems"],
     postProcess: function (out) {
@@ -856,7 +764,6 @@ const generators: Record<string, Fig.Generator> = {
       ttl: ttl,
     },
   },
-
   listCodeSigningConfigs: {
     script: [
       "aws",
@@ -876,7 +783,6 @@ const generators: Record<string, Fig.Generator> = {
       ttl: ttl,
     },
   },
-
   listEventSourceMappingUUIDs: {
     script: [
       "aws",
@@ -892,7 +798,6 @@ const generators: Record<string, Fig.Generator> = {
       ttl: ttl,
     },
   },
-
   listCodeSHA: {
     script: ["aws", "lambda", "list-functions"],
     postProcess: function (out) {
@@ -902,7 +807,6 @@ const generators: Record<string, Fig.Generator> = {
       ttl: ttl,
     },
   },
-
   listBuckets: {
     script: ["aws", "s3", "ls", "--page-size", "1000"],
     postProcess: function (out, tokens) {
@@ -926,7 +830,6 @@ const generators: Record<string, Fig.Generator> = {
       ttl: ttl,
     },
   },
-
   listS3Objects: {
     custom: async function (tokens, executeShellCommand) {
       try {
@@ -939,16 +842,13 @@ const generators: Record<string, Fig.Generator> = {
           "--page-size",
           "1000",
         ];
-
         const { stdout } = await executeShellCommand({
           command: "aws",
           args,
         });
-
         if (stdout == "") {
           return [];
         }
-
         if (stdout.trim() === _prefixS3) {
           return [
             {
@@ -957,7 +857,6 @@ const generators: Record<string, Fig.Generator> = {
             },
           ];
         }
-
         return stdout.split("\n").map((line) => {
           const parts = line.split(/\s+/);
           // sub prefix
@@ -977,7 +876,6 @@ const generators: Record<string, Fig.Generator> = {
       ttl: ttl,
     },
   },
-
   listS3ObjectVersions: {
     custom: async function (tokens, executeShellCommand) {
       try {
@@ -991,16 +889,13 @@ const generators: Record<string, Fig.Generator> = {
           "--prefix",
           tokens[objectIdx + 1],
         ];
-
         const { stdout } = await executeShellCommand({
           command: "aws",
           args,
         });
-
         if (stdout == "") {
           return [];
         }
-
         if (stdout.trim() === _prefixS3) {
           return [
             {
@@ -1009,7 +904,6 @@ const generators: Record<string, Fig.Generator> = {
             },
           ];
         }
-
         const list = JSON.parse(stdout)["Versions"];
         return list
           .filter((elm) => elm["VersionId"] !== "null")
@@ -1029,16 +923,15 @@ const generators: Record<string, Fig.Generator> = {
     },
   },
 };
-
 const completionSpec: Fig.Spec = {
   name: "lambda",
   description:
-    "AWS Lambda  Overview  This is the AWS Lambda API Reference. The AWS Lambda Developer Guide provides additional information. For the service overview, see What is AWS Lambda, and for information about how the service works, see AWS Lambda: How it Works in the AWS Lambda Developer Guide",
+    "Lambda  Overview  Lambda is a compute service that lets you run code without provisioning or managing servers. Lambda runs your code on a high-availability compute infrastructure and performs all of the administration of the compute resources, including server and operating system maintenance, capacity provisioning and automatic scaling, code monitoring and logging. With Lambda, you can run code for virtually any type of application or backend service. For more information about the Lambda service, see What is Lambda in the Lambda Developer Guide. The Lambda API Reference provides information about each of the API methods, including details about the parameters in each API request and response.   You can use Software Development Kits (SDKs), Integrated Development Environment (IDE) Toolkits, and command line tools to access the API. For installation instructions, see Tools for Amazon Web Services.  For a list of Region-specific endpoints that Lambda supports, see Lambda endpoints and quotas  in the Amazon Web Services General Reference..  When making the API calls, you will need to authenticate your request by providing a signature. Lambda supports signature version 4. For more information, see Signature Version 4 signing process in the Amazon Web Services General Reference..   CA certificates  Because Amazon Web Services SDKs use the CA certificates from your computer, changes to the certificates on the Amazon Web Services servers can cause connection failures when you attempt to use an SDK. You can prevent these failures by keeping your computer's CA certificates and operating system up-to-date. If you encounter this issue in a corporate environment and do not manage your own computer, you might need to ask an administrator to assist with the update process. The following list shows minimum operating system and Java versions:   Microsoft Windows versions that have updates from January 2005 or later installed contain at least one of the required CAs in their trust list.    Mac OS X 10.4 with Java for Mac OS X 10.4 Release 5 (February 2007), Mac OS X 10.5 (October 2007), and later versions contain at least one of the required CAs in their trust list.    Red Hat Enterprise Linux 5 (March 2007), 6, and 7 and CentOS 5, 6, and 7 all contain at least one of the required CAs in their default trusted CA list.    Java 1.4.2_12 (May 2006), 5 Update 2 (March 2005), and all later versions, including Java 6 (December 2006), 7, and 8, contain at least one of the required CAs in their default trusted CA list.    When accessing the Lambda management console or Lambda API endpoints, whether through browsers or programmatically, you will need to ensure your client machines support any of the following CAs:    Amazon Root CA 1   Starfield Services Root Certificate Authority - G2   Starfield Class 2 Certification Authority   Root certificates from the first two authorities are available from Amazon trust services, but keeping your computer up-to-date is the more straightforward solution. To learn more about ACM-provided certificates, see Amazon Web Services Certificate Manager FAQs",
   subcommands: [
     {
       name: "add-layer-version-permission",
       description:
-        "Adds permissions to the resource-based policy of a version of an AWS Lambda layer. Use this action to grant layer usage permission to other accounts. You can grant permission to a single account, all AWS accounts, or all accounts in an organization. To revoke permission, call RemoveLayerVersionPermission with the statement ID that you specified when you added it",
+        "Adds permissions to the resource-based policy of a version of an Lambda layer. Use this action to grant layer usage permission to other accounts. You can grant permission to a single account, all accounts in an organization, or all Amazon Web Services accounts.  To revoke permission, call RemoveLayerVersionPermission with the statement ID that you specified when you added it",
       options: [
         {
           name: "--layer-name",
@@ -1076,7 +969,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--principal",
           description:
-            "An account ID, or * to grant permission to all AWS accounts",
+            "An account ID, or * to grant layer usage permission to all accounts in an organization, or all Amazon Web Services accounts (if organizationId is not specified). For the last case, make sure that you really do want all Amazon Web Services accounts to have usage permission to this layer",
           args: {
             name: "string",
             generators: generators.getPrincipal,
@@ -1123,12 +1016,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "add-permission",
       description:
-        "Grants an AWS service or another account permission to use a function. You can apply the policy at the function level, or specify a qualifier to restrict access to a single version or alias. If you use a qualifier, the invoker must use the full Amazon Resource Name (ARN) of that version or alias to invoke the function. To grant permission to another account, specify the account ID as the Principal. For AWS services, the principal is a domain-style identifier defined by the service, like s3.amazonaws.com or sns.amazonaws.com. For AWS services, you can also specify the ARN of the associated resource as the SourceArn. If you grant permission to a service principal without specifying the source, other accounts could potentially configure resources in their account to invoke your Lambda function. This action adds a statement to a resource-based permissions policy for the function. For more information about function policies, see Lambda Function Policies",
+        "Grants an Amazon Web Service, Amazon Web Services account, or Amazon Web Services organization permission to use a function. You can apply the policy at the function level, or specify a qualifier to restrict access to a single version or alias. If you use a qualifier, the invoker must use the full Amazon Resource Name (ARN) of that version or alias to invoke the function. Note: Lambda does not support adding policies to version $LATEST. To grant permission to another account, specify the account ID as the Principal. To grant permission to an organization defined in Organizations, specify the organization ID as the PrincipalOrgID. For Amazon Web Services, the principal is a domain-style identifier that the service defines, such as s3.amazonaws.com or sns.amazonaws.com. For Amazon Web Services, you can also specify the ARN of the associated resource as the SourceArn. If you grant permission to a service principal without specifying the source, other accounts could potentially configure resources in their account to invoke your Lambda function. This operation adds a statement to a resource-based permissions policy for the function. For more information about function policies, see Using resource-based policies for Lambda",
       options: [
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function, version, or alias.  Name formats     Function name - my-function (name-only), my-function:v1 (with alias).    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function, version, or alias.  Name formats     Function name \u2013 my-function (name-only), my-function:v1 (with alias).    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -1154,7 +1047,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--principal",
           description:
-            "The AWS service or account that invokes the function. If you specify a service, use SourceArn or SourceAccount to limit who can invoke the function through that service",
+            "The Amazon Web Service or Amazon Web Services account that invokes the function. If you specify a service, use SourceArn or SourceAccount to limit who can invoke the function through that service",
           args: {
             name: "string",
             generators: [generators.getPrincipal, generators.awsPrincipals],
@@ -1163,7 +1056,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--source-arn",
           description:
-            "For AWS services, the ARN of the AWS resource that invokes the function. For example, an Amazon S3 bucket or Amazon SNS topic",
+            "For Amazon Web Services, the ARN of the Amazon Web Services resource that invokes the function. For example, an Amazon S3 bucket or Amazon SNS topic. Note that Lambda configures the comparison using the StringLike operator",
           args: {
             name: "string",
           },
@@ -1171,7 +1064,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--source-account",
           description:
-            "For Amazon S3, the ID of the account that owns the resource. Use this together with SourceArn to ensure that the resource is owned by the specified account. It is possible for an Amazon S3 bucket to be deleted by its owner and recreated by another account",
+            "For Amazon Web Service, the ID of the Amazon Web Services account that owns the resource. Use this together with SourceArn to ensure that the specified account owns the resource. It is possible for an Amazon S3 bucket to be deleted by its owner and recreated by another account",
           args: {
             name: "string",
             generators: generators.getPrincipal,
@@ -1180,7 +1073,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--event-source-token",
           description:
-            "For Alexa Smart Home functions, a token that must be supplied by the invoker",
+            "For Alexa Smart Home functions, a token that the invoker must supply",
           args: {
             name: "string",
           },
@@ -1197,10 +1090,26 @@ const completionSpec: Fig.Spec = {
         {
           name: "--revision-id",
           description:
-            "Only update the policy if the revision ID matches the ID that's specified. Use this option to avoid modifying a policy that has changed since you last read it",
+            "Update the policy only if the revision ID matches the ID that's specified. Use this option to avoid modifying a policy that has changed since you last read it",
           args: {
             name: "string",
             generators: generators.getFunctionPolicyRevisionId,
+          },
+        },
+        {
+          name: "--principal-org-id",
+          description:
+            "The identifier for your organization in Organizations. Use this to grant permissions to all the Amazon Web Services accounts under this organization",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--function-url-auth-type",
+          description:
+            "The type of authentication that your function URL uses. Set to AWS_IAM if you want to restrict access to authenticated users only. Set to NONE if you want to bypass IAM authentication to create a public endpoint. For more information, see Security and auth model for Lambda function URLs",
+          args: {
+            name: "string",
           },
         },
         {
@@ -1231,7 +1140,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -1264,7 +1173,6 @@ const completionSpec: Fig.Spec = {
           description: "The routing configuration of the alias",
           args: {
             name: "structure",
-            description: "AdditionalVersionWeights={Key1=double,Key2=double}",
           },
         },
         {
@@ -1304,7 +1212,6 @@ const completionSpec: Fig.Spec = {
           description: "Signing profiles for this code signing configuration",
           args: {
             name: "structure",
-            description: "SigningProfileVersionArns=string,string",
           },
         },
         {
@@ -1342,26 +1249,21 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-event-source-mapping",
       description:
-        "Creates a mapping between an event source and an AWS Lambda function. Lambda reads items from the event source and triggers the function. For details about each event source type, see the following topics.    Using AWS Lambda with Amazon DynamoDB     Using AWS Lambda with Amazon Kinesis     Using AWS Lambda with Amazon SQS     Using AWS Lambda with Amazon MQ     Using AWS Lambda with Amazon MSK     Using AWS Lambda with Self-Managed Apache Kafka    The following error handling options are only available for stream sources (DynamoDB and Kinesis):    BisectBatchOnFunctionError - If the function returns an error, split the batch in two and retry.    DestinationConfig - Send discarded records to an Amazon SQS queue or Amazon SNS topic.    MaximumRecordAgeInSeconds - Discard records older than the specified age. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires    MaximumRetryAttempts - Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.    ParallelizationFactor - Process multiple batches from each shard concurrently",
+        "Creates a mapping between an event source and an Lambda function. Lambda reads items from the event source and invokes the function. For details about how to configure different event sources, see the following topics.      Amazon DynamoDB Streams      Amazon Kinesis      Amazon SQS      Amazon MQ and RabbitMQ      Amazon MSK      Apache Kafka      Amazon DocumentDB    The following error handling options are available only for stream sources (DynamoDB and Kinesis):    BisectBatchOnFunctionError \u2013 If the function returns an error, split the batch in two and retry.    DestinationConfig \u2013 Send discarded records to an Amazon SQS queue or Amazon SNS topic.    MaximumRecordAgeInSeconds \u2013 Discard records older than the specified age. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires    MaximumRetryAttempts \u2013 Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.    ParallelizationFactor \u2013 Process multiple batches from each shard concurrently.   For information about which configuration parameters apply to each event source, see the following topics.     Amazon DynamoDB Streams      Amazon Kinesis      Amazon SQS      Amazon MQ and RabbitMQ      Amazon MSK      Apache Kafka      Amazon DocumentDB",
       options: [
         {
           name: "--event-source-arn",
           description:
-            "The Amazon Resource Name (ARN) of the event source.    Amazon Kinesis - The ARN of the data stream or a stream consumer.    Amazon DynamoDB Streams - The ARN of the stream.    Amazon Simple Queue Service - The ARN of the queue.    Amazon Managed Streaming for Apache Kafka - The ARN of the cluster",
+            "The Amazon Resource Name (ARN) of the event source.    Amazon Kinesis \u2013 The ARN of the data stream or a stream consumer.    Amazon DynamoDB Streams \u2013 The ARN of the stream.    Amazon Simple Queue Service \u2013 The ARN of the queue.    Amazon Managed Streaming for Apache Kafka \u2013 The ARN of the cluster or the ARN of the VPC connection (for cross-account event source mappings).    Amazon MQ \u2013 The ARN of the broker.    Amazon DocumentDB \u2013 The ARN of the DocumentDB change stream",
           args: {
             name: "string",
-            // SQS & Kineses seem to be non-performant / impossible via CLI
-            // 1. list each streams / queues to get a list of names
-            // 2. fire a request for each names to be able to extract arns
-            // 3. Wait for each request to finish
-            // It is simply a slow / poor ux operation
             generators: generators.listEventSourceArns,
           },
         },
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Version or Alias ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it's limited to 64 characters in length",
+            "The name or ARN of the Lambda function.  Name formats     Function name \u2013 MyFunction.    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Version or Alias ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD.    Partial ARN \u2013 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it's limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -1370,25 +1272,33 @@ const completionSpec: Fig.Spec = {
         {
           name: "--enabled",
           description:
-            "If true, the event source mapping is active. Set to false to pause polling and invocation",
+            "When true, the event source mapping is active. When false, Lambda pauses polling and invocation. Default: True",
         },
         {
           name: "--no-enabled",
           description:
-            "If true, the event source mapping is active. Set to false to pause polling and invocation",
+            "When true, the event source mapping is active. When false, Lambda pauses polling and invocation. Default: True",
         },
         {
           name: "--batch-size",
           description:
-            "The maximum number of items to retrieve in a single batch.    Amazon Kinesis - Default 100. Max 10,000.    Amazon DynamoDB Streams - Default 100. Max 1,000.    Amazon Simple Queue Service - Default 10. For standard queues the max is 10,000. For FIFO queues the max is 10.    Amazon Managed Streaming for Apache Kafka - Default 100. Max 10,000.    Self-Managed Apache Kafka - Default 100. Max 10,000",
+            "The maximum number of records in each batch that Lambda pulls from your stream or queue and sends to your function. Lambda passes all of the records in the batch to the function in a single call, up to the payload limit for synchronous invocation (6 MB).    Amazon Kinesis \u2013 Default 100. Max 10,000.    Amazon DynamoDB Streams \u2013 Default 100. Max 10,000.    Amazon Simple Queue Service \u2013 Default 10. For standard queues the max is 10,000. For FIFO queues the max is 10.    Amazon Managed Streaming for Apache Kafka \u2013 Default 100. Max 10,000.    Self-managed Apache Kafka \u2013 Default 100. Max 10,000.    Amazon MQ (ActiveMQ and RabbitMQ) \u2013 Default 100. Max 10,000.    DocumentDB \u2013 Default 100. Max 10,000",
           args: {
             name: "integer",
           },
         },
         {
+          name: "--filter-criteria",
+          description:
+            "An object that defines the filter criteria that determine whether Lambda should process an event. For more information, see Lambda event filtering",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--maximum-batching-window-in-seconds",
           description:
-            "(Streams and SQS standard queues) The maximum amount of time to gather records before invoking the function, in seconds",
+            "The maximum amount of time, in seconds, that Lambda spends gathering records before invoking the function. You can configure MaximumBatchingWindowInSeconds to any value from 0 seconds to 300 seconds in increments of seconds. For streams and Amazon SQS event sources, the default batching window is 0 seconds. For Amazon MSK, Self-managed Apache Kafka, Amazon MQ, and DocumentDB event sources, the default batching window is 500 ms. Note that because you can only change MaximumBatchingWindowInSeconds in increments of seconds, you cannot revert back to the 500 ms default batching window after you have changed it. To restore the default batching window, you must create a new event source mapping. Related setting: For streams and Amazon SQS event sources, when you set BatchSize to a value greater than 10, you must set MaximumBatchingWindowInSeconds to at least 1",
           args: {
             name: "integer",
           },
@@ -1396,7 +1306,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--parallelization-factor",
           description:
-            "(Streams) The number of batches to process from each shard concurrently",
+            "(Kinesis and DynamoDB Streams only) The number of batches to process from each shard concurrently",
           args: {
             name: "integer",
           },
@@ -1404,7 +1314,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-position",
           description:
-            "The position in a stream from which to start reading. Required for Amazon Kinesis, Amazon DynamoDB, and Amazon MSK Streams sources. AT_TIMESTAMP is only supported for Amazon Kinesis streams",
+            "The position in a stream from which to start reading. Required for Amazon Kinesis and Amazon DynamoDB Stream event sources. AT_TIMESTAMP is supported only for Amazon Kinesis streams, Amazon DocumentDB, Amazon MSK, and self-managed Apache Kafka",
           args: {
             name: "string",
             suggestions: ["TRIM_HORIZON", "LATEST", "AT_TIMESTAMP"],
@@ -1413,7 +1323,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-position-timestamp",
           description:
-            "With StartingPosition set to AT_TIMESTAMP, the time from which to start reading",
+            "With StartingPosition set to AT_TIMESTAMP, the time from which to start reading. StartingPositionTimestamp cannot be in the future",
           args: {
             name: "timestamp",
           },
@@ -1421,17 +1331,15 @@ const completionSpec: Fig.Spec = {
         {
           name: "--destination-config",
           description:
-            "(Streams) An Amazon SQS queue or Amazon SNS topic destination for discarded records",
+            "(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Kafka only) A configuration object that specifies the destination of an event after Lambda processes it",
           args: {
             name: "structure",
-            description:
-              "OnSuccess={Destination=string},OnFailure={Destination=string",
           },
         },
         {
           name: "--maximum-record-age-in-seconds",
           description:
-            "(Streams) Discard records older than the specified age. The default value is infinite (-1)",
+            "(Kinesis and DynamoDB Streams only) Discard records older than the specified age. The default value is infinite (-1)",
           args: {
             name: "integer",
           },
@@ -1439,17 +1347,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bisect-batch-on-function-error",
           description:
-            "(Streams) If the function returns an error, split the batch in two and retry",
+            "(Kinesis and DynamoDB Streams only) If the function returns an error, split the batch in two and retry",
         },
         {
           name: "--no-bisect-batch-on-function-error",
           description:
-            "(Streams) If the function returns an error, split the batch in two and retry",
+            "(Kinesis and DynamoDB Streams only) If the function returns an error, split the batch in two and retry",
         },
         {
           name: "--maximum-retry-attempts",
           description:
-            "(Streams) Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records will be retried until the record expires",
+            "(Kinesis and DynamoDB Streams only) Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires",
           args: {
             name: "integer",
           },
@@ -1457,7 +1365,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tumbling-window-in-seconds",
           description:
-            "(Streams) The duration in seconds of a processing window. The range is between 1 second up to 900 seconds",
+            "(Kinesis and DynamoDB Streams only) The duration in seconds of a processing window for DynamoDB and Kinesis Streams event sources. A value of 0 seconds indicates no tumbling window",
           args: {
             name: "integer",
           },
@@ -1482,7 +1390,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--source-access-configurations",
           description:
-            "An array of the authentication protocol, or the VPC components to secure your event source",
+            "An array of authentication protocols or VPC components required to secure your event source",
           args: {
             name: "list",
             isVariadic: true,
@@ -1490,19 +1398,51 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--self-managed-event-source",
-          description: "The Self-Managed Apache Kafka cluster to send records",
+          description:
+            "The self-managed Apache Kafka cluster to receive records from",
           args: {
             name: "structure",
-            description: "Endpoints={Key1=string,string,Key2=string,string}",
           },
         },
         {
           name: "--function-response-types",
           description:
-            "(Streams) A list of current response type enums applied to the event source mapping",
+            "(Kinesis, DynamoDB Streams, and Amazon SQS) A list of current response type enums applied to the event source mapping",
           args: {
             name: "list",
             isVariadic: true,
+          },
+        },
+        {
+          name: "--amazon-managed-kafka-event-source-config",
+          description:
+            "Specific configuration settings for an Amazon Managed Streaming for Apache Kafka (Amazon MSK) event source",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--self-managed-kafka-event-source-config",
+          description:
+            "Specific configuration settings for a self-managed Apache Kafka event source",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--scaling-config",
+          description:
+            "(Amazon SQS only) The scaling configuration for the event source. For more information, see Configuring maximum concurrency for Amazon SQS event sources",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--document-db-event-source-config",
+          description:
+            "Specific configuration settings for a DocumentDB event source",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -1528,19 +1468,20 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-function",
       description:
-        "Creates a Lambda function. To create a function, you need a deployment package and an execution role. The deployment package is a .zip file archive or container image that contains your function code. The execution role grants the function permission to use AWS services, such as Amazon CloudWatch Logs for log streaming and AWS X-Ray for request tracing. When you create a function, Lambda provisions an instance of the function and its supporting resources. If your function connects to a VPC, this process can take a minute or so. During this time, you can't invoke or modify the function. The State, StateReason, and StateReasonCode fields in the response from GetFunctionConfiguration indicate when the function is ready to invoke. For more information, see Function States. A function has an unpublished version, and can have published versions and aliases. The unpublished version changes when you update your function's code and configuration. A published version is a snapshot of your function code and configuration that can't be changed. An alias is a named resource that maps to a version, and can be changed to map to a different version. Use the Publish parameter to create version 1 of your function from its initial configuration. The other parameters let you configure version-specific and function-level settings. You can modify version-specific settings later with UpdateFunctionConfiguration. Function-level settings apply to both the unpublished and published versions of the function, and include tags (TagResource) and per-function concurrency limits (PutFunctionConcurrency). You can use code signing if your deployment package is a .zip file archive. To enable code signing for this function, specify the ARN of a code-signing configuration. When a user attempts to deploy a code package with UpdateFunctionCode, Lambda checks that the code package has a valid signature from a trusted publisher. The code-signing configuration includes set set of signing profiles, which define the trusted publishers for this function. If another account or an AWS service invokes your function, use AddPermission to grant permission by creating a resource-based IAM policy. You can grant permissions at the function level, on a version, or on an alias. To invoke your function directly, use Invoke. To invoke your function in response to events in other AWS services, create an event source mapping (CreateEventSourceMapping), or configure a function trigger in the other service. For more information, see Invoking Functions",
+        "Creates a Lambda function. To create a function, you need a deployment package and an execution role. The deployment package is a .zip file archive or container image that contains your function code. The execution role grants the function permission to use Amazon Web Services, such as Amazon CloudWatch Logs for log streaming and X-Ray for request tracing. If the deployment package is a container image, then you set the package type to Image. For a container image, the code property must include the URI of a container image in the Amazon ECR registry. You do not need to specify the handler and runtime properties. If the deployment package is a .zip file archive, then you set the package type to Zip. For a .zip file archive, the code property specifies the location of the .zip file. You must also specify the handler and runtime properties. The code in the deployment package must be compatible with the target instruction set architecture of the function (x86-64 or arm64). If you do not specify the architecture, then the default value is x86-64. When you create a function, Lambda provisions an instance of the function and its supporting resources. If your function connects to a VPC, this process can take a minute or so. During this time, you can't invoke or modify the function. The State, StateReason, and StateReasonCode fields in the response from GetFunctionConfiguration indicate when the function is ready to invoke. For more information, see Lambda function states. A function has an unpublished version, and can have published versions and aliases. The unpublished version changes when you update your function's code and configuration. A published version is a snapshot of your function code and configuration that can't be changed. An alias is a named resource that maps to a version, and can be changed to map to a different version. Use the Publish parameter to create version 1 of your function from its initial configuration. The other parameters let you configure version-specific and function-level settings. You can modify version-specific settings later with UpdateFunctionConfiguration. Function-level settings apply to both the unpublished and published versions of the function, and include tags (TagResource) and per-function concurrency limits (PutFunctionConcurrency). You can use code signing if your deployment package is a .zip file archive. To enable code signing for this function, specify the ARN of a code-signing configuration. When a user attempts to deploy a code package with UpdateFunctionCode, Lambda checks that the code package has a valid signature from a trusted publisher. The code-signing configuration includes set of signing profiles, which define the trusted publishers for this function. If another Amazon Web Services account or an Amazon Web Service invokes your function, use AddPermission to grant permission by creating a resource-based Identity and Access Management (IAM) policy. You can grant permissions at the function level, on a version, or on an alias. To invoke your function directly, use Invoke. To invoke your function in response to events in other Amazon Web Services, create an event source mapping (CreateEventSourceMapping), or configure a function trigger in the other service. For more information, see Invoking Lambda functions",
       options: [
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function.  Name formats     Function name - my-function.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function.  Name formats     Function name \u2013 my-function.    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
           },
         },
         {
           name: "--runtime",
-          description: "The identifier of the function's runtime",
+          description:
+            "The identifier of the function's runtime. Runtime is required if the deployment package is a .zip file archive. The following list includes deprecated runtimes. For more information, see Runtime deprecation policy",
           args: {
             name: "string",
             suggestions: runtimes,
@@ -1558,7 +1499,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--handler",
           description:
-            "The name of the method within your code that Lambda calls to execute your function. The format includes the file name. It can also include namespaces and other qualifiers, depending on the runtime. For more information, see Programming Model",
+            "The name of the method within your code that Lambda calls to run your function. Handler is required if the deployment package is a .zip file archive. The format includes the file name. It can also include namespaces and other qualifiers, depending on the runtime. For more information, see Lambda programming model",
           args: {
             name: "string",
           },
@@ -1568,8 +1509,6 @@ const completionSpec: Fig.Spec = {
           description: "The code for the function",
           args: {
             name: "structure",
-            description:
-              "S3Bucket=string,S3Key=string,S3ObjectVersion=string,ImageUri=string",
           },
         },
         {
@@ -1582,7 +1521,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--timeout",
           description:
-            "The amount of time that Lambda allows a function to run before stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds",
+            "The amount of time (in seconds) that Lambda allows a function to run before stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds. For more information, see Lambda execution environment",
           args: {
             name: "integer",
           },
@@ -1590,7 +1529,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--memory-size",
           description:
-            "The amount of memory available to the function at runtime. Increasing the function's memory also increases its CPU allocation. The default value is 128 MB. The value can be any multiple of 1 MB",
+            "The amount of memory available to the function at runtime. Increasing the function memory also increases its CPU allocation. The default value is 128 MB. The value can be any multiple of 1 MB",
           args: {
             name: "integer",
           },
@@ -1608,17 +1547,15 @@ const completionSpec: Fig.Spec = {
         {
           name: "--vpc-config",
           description:
-            "For network connectivity to AWS resources in a VPC, specify a list of security groups and subnets in the VPC. When you connect a function to a VPC, it can only access resources and the internet through that VPC. For more information, see VPC Settings",
+            "For network connectivity to Amazon Web Services resources in a VPC, specify a list of security groups and subnets in the VPC. When you connect a function to a VPC, it can access resources and the internet only through that VPC. For more information, see Configuring a Lambda function to access resources in a VPC",
           args: {
             name: "structure",
-            description:
-              "SubnetIds=string,string,SecurityGroupIds=string,string",
           },
         },
         {
           name: "--package-type",
           description:
-            "The type of deployment package. Set to Image for container image and set Zip for ZIP archive",
+            "The type of deployment package. Set to Image for container image and set to Zip for .zip file archive",
           args: {
             name: "string",
             suggestions: ["Zip", "Image"],
@@ -1627,7 +1564,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--dead-letter-config",
           description:
-            "A dead letter queue configuration that specifies the queue or topic where Lambda sends asynchronous events when they fail processing. For more information, see Dead Letter Queues",
+            "A dead-letter queue configuration that specifies the queue or topic where Lambda sends asynchronous events when they fail processing. For more information, see Dead-letter queues",
           args: {
             name: "structure",
           },
@@ -1638,13 +1575,12 @@ const completionSpec: Fig.Spec = {
             "Environment variables that are accessible from function code during execution",
           args: {
             name: "structure",
-            description: "Variables={Key1=string,Key2=string}",
           },
         },
         {
           name: "--kms-key-arn",
           description:
-            "The ARN of the AWS Key Management Service (AWS KMS) key that's used to encrypt your function's environment variables. If it's not provided, AWS Lambda uses a default service key",
+            "The ARN of the Key Management Service (KMS) customer managed key that's used to encrypt your function's environment variables. When Lambda SnapStart is activated, Lambda also uses this key is to encrypt your function's snapshot. If you deploy your function using a container image, Lambda also uses this key to encrypt your function when it's deployed. Note that this is not the same key that's used to protect your container image in the Amazon Elastic Container Registry (Amazon ECR). If you don't provide a customer managed key, Lambda uses a default service key",
           args: {
             name: "string",
             generators: generators.listKmsKeys,
@@ -1653,7 +1589,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tracing-config",
           description:
-            "Set Mode to Active to sample and trace a subset of incoming requests with AWS X-Ray",
+            "Set Mode to Active to sample and trace a subset of incoming requests with X-Ray",
           args: {
             name: "structure",
             suggestions: ["Mode=Active", "Mode=PassThrough"],
@@ -1664,7 +1600,6 @@ const completionSpec: Fig.Spec = {
           description: "A list of tags to apply to the function",
           args: {
             name: "map",
-            description: "Key1=string,Key2=string",
           },
         },
         {
@@ -1684,7 +1619,6 @@ const completionSpec: Fig.Spec = {
             name: "list",
             isVariadic: true,
             generators: generators.listFilesystemConfigs,
-            description: "Arn=string,LocalMountPath=string",
           },
         },
         {
@@ -1693,8 +1627,6 @@ const completionSpec: Fig.Spec = {
             "Container image configuration values that override the values in the container image Dockerfile",
           args: {
             name: "structure",
-            description:
-              "EntryPoint=string,string,Command=string,string,WorkingDirectory=string",
           },
         },
         {
@@ -1704,6 +1636,37 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "string",
             generators: generators.listCodeSigningConfigs,
+          },
+        },
+        {
+          name: "--architectures",
+          description:
+            "The instruction set architecture that the function supports. Enter a string array with one of the valid values (arm64 or x86_64). The default value is x86_64",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--ephemeral-storage",
+          description:
+            "The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For more information, see Configuring ephemeral storage (console)",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--snap-start",
+          description: "The function's SnapStart setting",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--logging-config",
+          description:
+            "The function's Amazon CloudWatch Logs configuration settings",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -1736,13 +1699,76 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-function-url-config",
+      description:
+        "Creates a Lambda function URL with the specified configuration parameters. A function URL is a dedicated HTTP(S) endpoint that you can use to invoke your function",
+      options: [
+        {
+          name: "--function-name",
+          description:
+            "The name or ARN of the Lambda function.  Name formats     Function name \u2013 my-function.    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--qualifier",
+          description: "The alias name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--auth-type",
+          description:
+            "The type of authentication that your function URL uses. Set to AWS_IAM if you want to restrict access to authenticated users only. Set to NONE if you want to bypass IAM authentication to create a public endpoint. For more information, see Security and auth model for Lambda function URLs",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cors",
+          description:
+            "The cross-origin resource sharing (CORS) settings for your function URL",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--invoke-mode",
+          description:
+            "Use one of the following options:    BUFFERED \u2013 This is the default option. Lambda invokes your function using the Invoke API operation. Invocation results are available when the payload is complete. The maximum payload size is 6 MB.    RESPONSE_STREAM \u2013 Your function streams payload results as they become available. Lambda invokes your function using the InvokeWithResponseStream API operation. The maximum response payload size is 20 MB, however, you can request a quota increase",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-alias",
       description: "Deletes a Lambda function alias",
       options: [
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -1846,12 +1872,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-function",
       description:
-        "Deletes a Lambda function. To delete a specific function version, use the Qualifier parameter. Otherwise, all versions and aliases are deleted. To delete Lambda event source mappings that invoke a function, use DeleteEventSourceMapping. For AWS services and resources that invoke your function directly, delete the trigger in the service where you originally configured it",
+        "Deletes a Lambda function. To delete a specific function version, use the Qualifier parameter. Otherwise, all versions and aliases are deleted. This doesn't require the user to have explicit permissions for DeleteAlias. To delete Lambda event source mappings that invoke a function, use DeleteEventSourceMapping. For Amazon Web Services and resources that invoke your function directly, delete the trigger in the service where you originally configured it",
       options: [
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function or version.  Name formats     Function name - my-function (name-only), my-function:1 (with version).    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function or version.  Name formats     Function name \u2013 my-function (name-only), my-function:1 (with version).    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -1860,7 +1886,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--qualifier",
           description:
-            "Specify a version to delete. You can't delete a version that's referenced by an alias",
+            "Specify a version to delete. You can't delete a version that an alias references",
           args: {
             name: "string",
             generators: generators.listVersions,
@@ -1893,7 +1919,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -1926,7 +1952,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function.  Name formats     Function name - my-function.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function.  Name formats     Function name \u2013 my-function.    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -1960,7 +1986,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function, version, or alias.  Name formats     Function name - my-function (name-only), my-function:v1 (with alias).    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function, version, or alias.  Name formats     Function name - my-function (name-only), my-function:v1 (with alias).    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -1995,9 +2021,48 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-function-url-config",
+      description:
+        "Deletes a Lambda function URL. When you delete a function URL, you can't recover it. Creating a new function URL results in a different URL address",
+      options: [
+        {
+          name: "--function-name",
+          description:
+            "The name or ARN of the Lambda function.  Name formats     Function name \u2013 my-function.    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--qualifier",
+          description: "The alias name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-layer-version",
       description:
-        "Deletes a version of an AWS Lambda layer. Deleted versions can no longer be viewed or added to functions. To avoid breaking functions, a copy of the version remains in Lambda until no functions refer to it",
+        "Deletes a version of an Lambda layer. Deleted versions can no longer be viewed or added to functions. To avoid breaking functions, a copy of the version remains in Lambda until no functions refer to it",
       options: [
         {
           name: "--layer-name",
@@ -2043,7 +2108,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function.  Name formats     Function name - my-function.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function.  Name formats     Function name \u2013 my-function.    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -2080,7 +2145,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-account-settings",
       description:
-        "Retrieves details about your account's limits and usage in an AWS Region",
+        "Retrieves details about your account's limits and usage in an Amazon Web Services Region",
       options: [
         {
           name: "--cli-input-json",
@@ -2109,7 +2174,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -2218,7 +2283,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function, version, or alias.  Name formats     Function name - my-function (name-only), my-function:v1 (with alias).    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function, version, or alias.  Name formats     Function name \u2013 my-function (name-only), my-function:v1 (with alias).    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -2261,7 +2326,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -2295,7 +2360,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function.  Name formats     Function name - my-function.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function.  Name formats     Function name \u2013 my-function.    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -2329,7 +2394,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function, version, or alias.  Name formats     Function name - my-function (name-only), my-function:v1 (with alias).    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function, version, or alias.  Name formats     Function name \u2013 my-function (name-only), my-function:v1 (with alias).    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -2372,7 +2437,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function, version, or alias.  Name formats     Function name - my-function (name-only), my-function:v1 (with alias).    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function, version, or alias.  Name formats     Function name - my-function (name-only), my-function:v1 (with alias).    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -2407,9 +2472,47 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-function-url-config",
+      description: "Returns details about a Lambda function URL",
+      options: [
+        {
+          name: "--function-name",
+          description:
+            "The name or ARN of the Lambda function.  Name formats     Function name \u2013 my-function.    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--qualifier",
+          description: "The alias name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-layer-version",
       description:
-        "Returns information about a version of an AWS Lambda layer, with a link to download the layer archive that's valid for 10 minutes",
+        "Returns information about a version of an Lambda layer, with a link to download the layer archive that's valid for 10 minutes",
       options: [
         {
           name: "--layer-name",
@@ -2450,7 +2553,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-layer-version-by-arn",
       description:
-        "Returns information about a version of an AWS Lambda layer, with a link to download the layer archive that's valid for 10 minutes",
+        "Returns information about a version of an Lambda layer, with a link to download the layer archive that's valid for 10 minutes",
       options: [
         {
           name: "--arn",
@@ -2483,7 +2586,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-layer-version-policy",
       description:
-        "Returns the permission policy for a version of an AWS Lambda layer. For more information, see AddLayerVersionPermission",
+        "Returns the permission policy for a version of an Lambda layer. For more information, see AddLayerVersionPermission",
       options: [
         {
           name: "--layer-name",
@@ -2529,7 +2632,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function, version, or alias.  Name formats     Function name - my-function (name-only), my-function:v1 (with alias).    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function, version, or alias.  Name formats     Function name \u2013 my-function (name-only), my-function:v1 (with alias).    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -2572,7 +2675,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function.  Name formats     Function name - my-function.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function.  Name formats     Function name \u2013 my-function.    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -2607,14 +2710,54 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "invoke",
+      name: "get-runtime-management-config",
       description:
-        "Invokes a Lambda function. You can invoke a function synchronously (and wait for the response), or asynchronously. To invoke a function asynchronously, set InvocationType to Event. For synchronous invocation, details about the function response, including errors, are included in the response body and headers. For either invocation type, you can find more information in the execution log and trace. When an error occurs, your function may be invoked multiple times. Retry behavior varies by error type, client, event source, and invocation type. For example, if you invoke a function asynchronously and it returns an error, Lambda executes the function up to two more times. For more information, see Retry Behavior. For asynchronous invocation, Lambda adds events to a queue before sending them to your function. If your function does not have enough capacity to keep up with the queue, events may be lost. Occasionally, your function may receive the same event multiple times, even if no error occurs. To retain events that were not processed, configure your function with a dead-letter queue. The status code in the API response doesn't reflect function errors. Error codes are reserved for errors that prevent your function from executing, such as permissions errors, limit errors, or issues with your function's code and configuration. For example, Lambda returns TooManyRequestsException if executing the function would cause you to exceed a concurrency limit at either the account level (ConcurrentInvocationLimitExceeded) or function level (ReservedFunctionConcurrentInvocationLimitExceeded). For functions with a long timeout, your client might be disconnected during synchronous invocation while it waits for a response. Configure your HTTP client, SDK, firewall, proxy, or operating system to allow for long connections with timeout or keep-alive settings. This operation requires permission for the lambda:InvokeFunction action",
+        "Retrieves the runtime management configuration for a function's version. If the runtime update mode is Manual, this includes the ARN of the runtime version and the runtime update mode. If the runtime update mode is Auto or Function update, this includes the runtime update mode and null is returned for the ARN. For more information, see Runtime updates",
       options: [
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function, version, or alias.  Name formats     Function name - my-function (name-only), my-function:v1 (with alias).    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function.  Name formats     Function name \u2013 my-function.    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--qualifier",
+          description:
+            "Specify a version of the function. This can be $LATEST or a published version number. If no value is specified, the configuration for the $LATEST version is returned",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "invoke",
+      description:
+        "Invokes a Lambda function. You can invoke a function synchronously (and wait for the response), or asynchronously. By default, Lambda invokes your function synchronously (i.e. theInvocationType is RequestResponse). To invoke a function asynchronously, set InvocationType to Event. Lambda passes the ClientContext object to your function for synchronous invocations only. For synchronous invocation, details about the function response, including errors, are included in the response body and headers. For either invocation type, you can find more information in the execution log and trace. When an error occurs, your function may be invoked multiple times. Retry behavior varies by error type, client, event source, and invocation type. For example, if you invoke a function asynchronously and it returns an error, Lambda executes the function up to two more times. For more information, see Error handling and automatic retries in Lambda. For asynchronous invocation, Lambda adds events to a queue before sending them to your function. If your function does not have enough capacity to keep up with the queue, events may be lost. Occasionally, your function may receive the same event multiple times, even if no error occurs. To retain events that were not processed, configure your function with a dead-letter queue. The status code in the API response doesn't reflect function errors. Error codes are reserved for errors that prevent your function from executing, such as permissions errors, quota errors, or issues with your function's code and configuration. For example, Lambda returns TooManyRequestsException if running the function would cause you to exceed a concurrency limit at either the account level (ConcurrentInvocationLimitExceeded) or function level (ReservedFunctionConcurrentInvocationLimitExceeded). For functions with a long timeout, your client might disconnect during synchronous invocation while it waits for a response. Configure your HTTP client, SDK, firewall, proxy, or operating system to allow for long connections with timeout or keep-alive settings. This operation requires permission for the lambda:InvokeFunction action. For details on how to set up permissions for cross-account invocations, see Granting function access to other accounts",
+      options: [
+        {
+          name: "--function-name",
+          description:
+            "The name or ARN of the Lambda function, version, or alias.  Name formats     Function name \u2013 my-function (name-only), my-function:v1 (with alias).    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -2623,7 +2766,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--invocation-type",
           description:
-            "Choose from the following options.    RequestResponse (default) - Invoke the function synchronously. Keep the connection open until the function returns a response or times out. The API response includes the function response and additional data.    Event - Invoke the function asynchronously. Send events that fail multiple times to the function's dead-letter queue (if it's configured). The API response only includes a status code.    DryRun - Validate parameter values and verify that the user or role has permission to invoke the function",
+            "Choose from the following options.    RequestResponse (default) \u2013 Invoke the function synchronously. Keep the connection open until the function returns a response or times out. The API response includes the function response and additional data.    Event \u2013 Invoke the function asynchronously. Send events that fail multiple times to the function's dead-letter queue (if one is configured). The API response only includes a status code.    DryRun \u2013 Validate parameter values and verify that the user or role has permission to invoke the function",
           args: {
             name: "string",
             suggestions: ["Event", "RequestResponse", "DryRun"],
@@ -2632,7 +2775,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--log-type",
           description:
-            "Set to Tail to include the execution log in the response",
+            "Set to Tail to include the execution log in the response. Applies to synchronously invoked functions only",
           args: {
             name: "string",
             suggestions: ["None", "Tail"],
@@ -2641,7 +2784,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--client-context",
           description:
-            "Up to 3583 bytes of base64-encoded data about the invoking client to pass to the function in the context object",
+            "Up to 3,583 bytes of base64-encoded data about the invoking client to pass to the function in the context object. Lambda passes the ClientContext object to your function for synchronous invocations only",
           args: {
             name: "string",
           },
@@ -2649,7 +2792,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--payload",
           description:
-            "The JSON that you want to provide to your Lambda function as input",
+            'The JSON that you want to provide to your Lambda function as input. You can enter the JSON directly. For example, --payload \'{ "key": "value" }\'. You can also specify a file path. For example, --payload file://payload.json',
           args: {
             name: "blob",
             generators: generators.listBlobs,
@@ -2676,12 +2819,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "invoke-async",
       description:
-        "For asynchronous function invocation, use Invoke.  Invokes a function asynchronously",
+        "For asynchronous function invocation, use Invoke.  Invokes a function asynchronously.  If you do use the InvokeAsync action, note that it doesn't support the use of X-Ray active tracing. Trace ID is not propagated to the function, even if X-Ray active tracing is turned on",
       options: [
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function.  Name formats     Function name - my-function.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function.  Name formats     Function name \u2013 my-function.    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -2723,7 +2866,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -2850,12 +2993,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-event-source-mappings",
       description:
-        "Lists event source mappings. Specify an EventSourceArn to only show event source mappings for a single event source",
+        "Lists event source mappings. Specify an EventSourceArn to show only event source mappings for a single event source",
       options: [
         {
           name: "--event-source-arn",
           description:
-            "The Amazon Resource Name (ARN) of the event source.    Amazon Kinesis - The ARN of the data stream or a stream consumer.    Amazon DynamoDB Streams - The ARN of the stream.    Amazon Simple Queue Service - The ARN of the queue.    Amazon Managed Streaming for Apache Kafka - The ARN of the cluster",
+            "The Amazon Resource Name (ARN) of the event source.    Amazon Kinesis \u2013 The ARN of the data stream or a stream consumer.    Amazon DynamoDB Streams \u2013 The ARN of the stream.    Amazon Simple Queue Service \u2013 The ARN of the queue.    Amazon Managed Streaming for Apache Kafka \u2013 The ARN of the cluster or the ARN of the VPC connection (for cross-account event source mappings).    Amazon MQ \u2013 The ARN of the broker.    Amazon DocumentDB \u2013 The ARN of the DocumentDB change stream",
           args: {
             name: "string",
             generators: generators.listEventSourceArns,
@@ -2864,7 +3007,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Version or Alias ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it's limited to 64 characters in length",
+            "The name or ARN of the Lambda function.  Name formats     Function name \u2013 MyFunction.    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Version or Alias ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD.    Partial ARN \u2013 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it's limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -2929,7 +3072,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function.  Name formats     Function name - my-function.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function.  Name formats     Function name - my-function.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -2988,14 +3131,78 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-function-url-configs",
+      description:
+        "Returns a list of Lambda function URLs for the specified function",
+      options: [
+        {
+          name: "--function-name",
+          description:
+            "The name or ARN of the Lambda function.  Name formats     Function name \u2013 my-function.    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--marker",
+          description:
+            "Specify the pagination token that's returned by a previous request to retrieve the next page of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-functions",
       description:
-        "Returns a list of Lambda functions, with the version-specific configuration of each. Lambda returns up to 50 functions per call. Set FunctionVersion to ALL to include all published versions of each function in addition to the unpublished version.   The ListFunctions action returns a subset of the FunctionConfiguration fields. To get the additional fields (State, StateReasonCode, StateReason, LastUpdateStatus, LastUpdateStatusReason, LastUpdateStatusReasonCode) for a function or version, use GetFunction",
+        "Returns a list of Lambda functions, with the version-specific configuration of each. Lambda returns up to 50 functions per call. Set FunctionVersion to ALL to include all published versions of each function in addition to the unpublished version.  The ListFunctions operation returns a subset of the FunctionConfiguration fields. To get the additional fields (State, StateReasonCode, StateReason, LastUpdateStatus, LastUpdateStatusReason, LastUpdateStatusReasonCode, RuntimeVersionConfig) for a function or version, use GetFunction",
       options: [
         {
           name: "--master-region",
           description:
-            "For Lambda@Edge functions, the AWS Region of the master function. For example, us-east-1 filters the list of functions to only include Lambda@Edge functions replicated from a master function in US East (N. Virginia). If specified, you must set FunctionVersion to ALL",
+            "For Lambda@Edge functions, the Amazon Web Services Region of the master function. For example, us-east-1 filters the list of functions to include only Lambda@Edge functions replicated from a master function in US East (N. Virginia). If specified, you must set FunctionVersion to ALL",
           args: {
             name: "string",
             suggestions: awsRegions,
@@ -3131,11 +3338,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-layer-versions",
       description:
-        "Lists the versions of an AWS Lambda layer. Versions that have been deleted aren't listed. Specify a runtime identifier to list only versions that indicate that they're compatible with that runtime",
+        "Lists the versions of an Lambda layer. Versions that have been deleted aren't listed. Specify a runtime identifier to list only versions that indicate that they're compatible with that runtime. Specify a compatible architecture to include only layer versions that are compatible with that architecture",
       options: [
         {
           name: "--compatible-runtime",
-          description: "A runtime identifier. For example, go1.x",
+          description:
+            "A runtime identifier. For example, java21. The following list includes deprecated runtimes. For more information, see Runtime deprecation policy",
           args: {
             name: "string",
             suggestions: runtimes,
@@ -3162,6 +3370,13 @@ const completionSpec: Fig.Spec = {
             "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--compatible-architecture",
+          description: "The compatible instruction set architecture",
+          args: {
+            name: "string",
           },
         },
         {
@@ -3203,11 +3418,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-layers",
       description:
-        "Lists AWS Lambda layers and shows information about the latest version of each. Specify a runtime identifier to list only layers that indicate that they're compatible with that runtime",
+        "Lists Lambda layers and shows information about the latest version of each. Specify a runtime identifier to list only layers that indicate that they're compatible with that runtime. Specify a compatible architecture to include only layers that are compatible with that instruction set architecture",
       options: [
         {
           name: "--compatible-runtime",
-          description: "A runtime identifier. For example, go1.x",
+          description:
+            "A runtime identifier. For example, java21. The following list includes deprecated runtimes. For more information, see Runtime deprecation policy",
           args: {
             name: "string",
             suggestions: runtimes,
@@ -3226,6 +3442,13 @@ const completionSpec: Fig.Spec = {
             "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--compatible-architecture",
+          description: "The compatible instruction set architecture",
+          args: {
+            name: "string",
           },
         },
         {
@@ -3272,7 +3495,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function.  Name formats     Function name - my-function.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function.  Name formats     Function name \u2013 my-function.    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -3337,7 +3560,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--resource",
-          description: "The function's Amazon Resource Name (ARN)",
+          description:
+            "The function's Amazon Resource Name (ARN). Note: Lambda does not support adding tags to aliases or versions",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -3371,7 +3595,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -3432,7 +3656,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "publish-layer-version",
       description:
-        "Creates an AWS Lambda layer from a ZIP archive. Each time you call PublishLayerVersion with the same layer name, a new version is created. Add layers to your function with CreateFunction or UpdateFunctionConfiguration",
+        "Creates an Lambda layer from a ZIP archive. Each time you call PublishLayerVersion with the same layer name, a new version is created. Add layers to your function with CreateFunction or UpdateFunctionConfiguration",
       options: [
         {
           name: "--layer-name",
@@ -3454,13 +3678,12 @@ const completionSpec: Fig.Spec = {
           description: "The function layer archive",
           args: {
             name: "structure",
-            description: "S3Bucket=string,S3Key=string,S3ObjectVersion=string",
           },
         },
         {
           name: "--compatible-runtimes",
           description:
-            "A list of compatible function runtimes. Used for filtering with ListLayers and ListLayerVersions",
+            "A list of compatible function runtimes. Used for filtering with ListLayers and ListLayerVersions. The following list includes deprecated runtimes. For more information, see Runtime deprecation policy",
           args: {
             name: "list",
             isVariadic: true,
@@ -3473,6 +3696,13 @@ const completionSpec: Fig.Spec = {
             "The layer's software license. It can be any of the following:   An SPDX license identifier. For example, MIT.   The URL of a license hosted on the internet. For example, https://opensource.org/licenses/MIT.   The full text of the license",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--compatible-architectures",
+          description: "A list of compatible instruction set architectures",
+          args: {
+            name: "list",
           },
         },
         {
@@ -3507,12 +3737,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "publish-version",
       description:
-        "Creates a version from the current code and configuration of a function. Use versions to create a snapshot of your function code and configuration that doesn't change. AWS Lambda doesn't publish a version if the function's configuration and code haven't changed since the last version. Use UpdateFunctionCode or UpdateFunctionConfiguration to update the function before publishing a version. Clients can invoke versions directly or with an alias. To create an alias, use CreateAlias",
+        "Creates a version from the current code and configuration of a function. Use versions to create a snapshot of your function code and configuration that doesn't change. Lambda doesn't publish a version if the function's configuration and code haven't changed since the last version. Use UpdateFunctionCode or UpdateFunctionConfiguration to update the function before publishing a version. Clients can invoke versions directly or with an alias. To create an alias, use CreateAlias",
       options: [
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -3542,6 +3772,14 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "string",
             generators: generators.getFunctionRevisionId,
+          },
+        },
+        {
+          name: "--code-sha-256",
+          description:
+            "Only publish a version if the hash value matches the value that's specified. Use this option to avoid publishing a version if the function code has changed since you last updated it. You can get the hash for the version that you uploaded from the output of UpdateFunctionCode",
+          args: {
+            name: "string",
           },
         },
         {
@@ -3581,7 +3819,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -3610,12 +3848,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-function-concurrency",
       description:
-        "Sets the maximum number of simultaneous executions for a function, and reserves capacity for that concurrency level. Concurrency settings apply to the function as a whole, including all published versions and the unpublished version. Reserving concurrency both ensures that your function has capacity to process the specified number of events simultaneously, and prevents it from scaling beyond that level. Use GetFunction to see the current setting for a function. Use GetAccountSettings to see your Regional concurrency limit. You can reserve concurrency for as many functions as you like, as long as you leave at least 100 simultaneous executions unreserved for functions that aren't configured with a per-function limit. For more information, see Managing Concurrency",
+        "Sets the maximum number of simultaneous executions for a function, and reserves capacity for that concurrency level. Concurrency settings apply to the function as a whole, including all published versions and the unpublished version. Reserving concurrency both ensures that your function has capacity to process the specified number of events simultaneously, and prevents it from scaling beyond that level. Use GetFunction to see the current setting for a function. Use GetAccountSettings to see your Regional concurrency limit. You can reserve concurrency for as many functions as you like, as long as you leave at least 100 simultaneous executions unreserved for functions that aren't configured with a per-function limit. For more information, see Lambda function scaling",
       options: [
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function.  Name formats     Function name - my-function.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function.  Name formats     Function name \u2013 my-function.    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -3657,7 +3895,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function, version, or alias.  Name formats     Function name - my-function (name-only), my-function:v1 (with alias).    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function, version, or alias.  Name formats     Function name - my-function (name-only), my-function:v1 (with alias).    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -3690,7 +3928,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--destination-config",
           description:
-            "A destination for events after they have been sent to a function for processing.  Destinations     Function - The Amazon Resource Name (ARN) of a Lambda function.    Queue - The ARN of an SQS queue.    Topic - The ARN of an SNS topic.    Event Bus - The ARN of an Amazon EventBridge event bus",
+            "A destination for events after they have been sent to a function for processing.  Destinations     Function - The Amazon Resource Name (ARN) of a Lambda function.    Queue - The ARN of a standard SQS queue.    Topic - The ARN of a standard SNS topic.    Event Bus - The ARN of an Amazon EventBridge event bus",
           args: {
             name: "structure",
             generators: generators.listDestinationConfigArns,
@@ -3724,7 +3962,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function.  Name formats     Function name - my-function.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function.  Name formats     Function name \u2013 my-function.    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -3767,9 +4005,65 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "put-runtime-management-config",
+      description:
+        "Sets the runtime management configuration for a function's version. For more information, see Runtime updates",
+      options: [
+        {
+          name: "--function-name",
+          description:
+            "The name or ARN of the Lambda function.  Name formats     Function name \u2013 my-function.    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--qualifier",
+          description:
+            "Specify a version of the function. This can be $LATEST or a published version number. If no value is specified, the configuration for the $LATEST version is returned",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--update-runtime-on",
+          description:
+            "Specify the runtime update mode.    Auto (default) - Automatically update to the most recent and secure runtime version using a Two-phase runtime version rollout. This is the best choice for most customers to ensure they always benefit from runtime updates.    Function update - Lambda updates the runtime of your function to the most recent and secure runtime version when you update your function. This approach synchronizes runtime updates with function deployments, giving you control over when runtime updates are applied and allowing you to detect and mitigate rare runtime update incompatibilities early. When using this setting, you need to regularly update your functions to keep their runtime up-to-date.    Manual - You specify a runtime version in your function configuration. The function will use this runtime version indefinitely. In the rare case where a new runtime version is incompatible with an existing function, this allows you to roll back your function to an earlier runtime version. For more information, see Roll back a runtime version",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--runtime-version-arn",
+          description:
+            "The ARN of the runtime version you want the function to use.  This is only required if you're using the Manual runtime update mode",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "remove-layer-version-permission",
       description:
-        "Removes a statement from the permissions policy for a version of an AWS Lambda layer. For more information, see AddLayerVersionPermission",
+        "Removes a statement from the permissions policy for a version of an Lambda layer. For more information, see AddLayerVersionPermission",
       options: [
         {
           name: "--layer-name",
@@ -3828,12 +4122,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "remove-permission",
       description:
-        "Revokes function-use permission from an AWS service or another account. You can get the ID of the statement from the output of GetPolicy",
+        "Revokes function-use permission from an Amazon Web Service or another Amazon Web Services account. You can get the ID of the statement from the output of GetPolicy",
       options: [
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function, version, or alias.  Name formats     Function name - my-function (name-only), my-function:v1 (with alias).    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function, version, or alias.  Name formats     Function name \u2013 my-function (name-only), my-function:v1 (with alias).    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -3859,7 +4153,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--revision-id",
           description:
-            "Only update the policy if the revision ID matches the ID that's specified. Use this option to avoid modifying a policy that has changed since you last read it",
+            "Update the policy only if the revision ID matches the ID that's specified. Use this option to avoid modifying a policy that has changed since you last read it",
           args: {
             name: "string",
             generators: generators.getFunctionRevisionId,
@@ -3902,7 +4196,6 @@ const completionSpec: Fig.Spec = {
           description: "A list of tags to apply to the function",
           args: {
             name: "map",
-            description: "Key1=string,Key2=string",
           },
         },
         {
@@ -3972,7 +4265,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -4005,7 +4298,6 @@ const completionSpec: Fig.Spec = {
           description: "The routing configuration of the alias",
           args: {
             name: "structure",
-            description: "AdditionalVersionWeights={Key1=double,Key2=double}",
           },
         },
         {
@@ -4063,7 +4355,6 @@ const completionSpec: Fig.Spec = {
           description: "Signing profiles for this code signing configuration",
           args: {
             name: "structure",
-            description: "SigningProfileVersionArns=string,string",
           },
         },
         {
@@ -4071,7 +4362,6 @@ const completionSpec: Fig.Spec = {
           description: "The code signing policy",
           args: {
             name: "structure",
-            description: "UntrustedArtifactOnDeployment=string",
           },
         },
         {
@@ -4097,7 +4387,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-event-source-mapping",
       description:
-        "Updates an event source mapping. You can change the function that AWS Lambda invokes, or pause invocation and resume later from the same location. The following error handling options are only available for stream sources (DynamoDB and Kinesis):    BisectBatchOnFunctionError - If the function returns an error, split the batch in two and retry.    DestinationConfig - Send discarded records to an Amazon SQS queue or Amazon SNS topic.    MaximumRecordAgeInSeconds - Discard records older than the specified age. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires    MaximumRetryAttempts - Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.    ParallelizationFactor - Process multiple batches from each shard concurrently",
+        "Updates an event source mapping. You can change the function that Lambda invokes, or pause invocation and resume later from the same location. For details about how to configure different event sources, see the following topics.      Amazon DynamoDB Streams      Amazon Kinesis      Amazon SQS      Amazon MQ and RabbitMQ      Amazon MSK      Apache Kafka      Amazon DocumentDB    The following error handling options are available only for stream sources (DynamoDB and Kinesis):    BisectBatchOnFunctionError \u2013 If the function returns an error, split the batch in two and retry.    DestinationConfig \u2013 Send discarded records to an Amazon SQS queue or Amazon SNS topic.    MaximumRecordAgeInSeconds \u2013 Discard records older than the specified age. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires    MaximumRetryAttempts \u2013 Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.    ParallelizationFactor \u2013 Process multiple batches from each shard concurrently.   For information about which configuration parameters apply to each event source, see the following topics.     Amazon DynamoDB Streams      Amazon Kinesis      Amazon SQS      Amazon MQ and RabbitMQ      Amazon MSK      Apache Kafka      Amazon DocumentDB",
       options: [
         {
           name: "--uuid",
@@ -4110,7 +4400,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Version or Alias ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it's limited to 64 characters in length",
+            "The name or ARN of the Lambda function.  Name formats     Function name \u2013 MyFunction.    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Version or Alias ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD.    Partial ARN \u2013 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it's limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -4119,25 +4409,33 @@ const completionSpec: Fig.Spec = {
         {
           name: "--enabled",
           description:
-            "If true, the event source mapping is active. Set to false to pause polling and invocation",
+            "When true, the event source mapping is active. When false, Lambda pauses polling and invocation. Default: True",
         },
         {
           name: "--no-enabled",
           description:
-            "If true, the event source mapping is active. Set to false to pause polling and invocation",
+            "When true, the event source mapping is active. When false, Lambda pauses polling and invocation. Default: True",
         },
         {
           name: "--batch-size",
           description:
-            "The maximum number of items to retrieve in a single batch.    Amazon Kinesis - Default 100. Max 10,000.    Amazon DynamoDB Streams - Default 100. Max 1,000.    Amazon Simple Queue Service - Default 10. For standard queues the max is 10,000. For FIFO queues the max is 10.    Amazon Managed Streaming for Apache Kafka - Default 100. Max 10,000.    Self-Managed Apache Kafka - Default 100. Max 10,000",
+            "The maximum number of records in each batch that Lambda pulls from your stream or queue and sends to your function. Lambda passes all of the records in the batch to the function in a single call, up to the payload limit for synchronous invocation (6 MB).    Amazon Kinesis \u2013 Default 100. Max 10,000.    Amazon DynamoDB Streams \u2013 Default 100. Max 10,000.    Amazon Simple Queue Service \u2013 Default 10. For standard queues the max is 10,000. For FIFO queues the max is 10.    Amazon Managed Streaming for Apache Kafka \u2013 Default 100. Max 10,000.    Self-managed Apache Kafka \u2013 Default 100. Max 10,000.    Amazon MQ (ActiveMQ and RabbitMQ) \u2013 Default 100. Max 10,000.    DocumentDB \u2013 Default 100. Max 10,000",
           args: {
             name: "integer",
           },
         },
         {
+          name: "--filter-criteria",
+          description:
+            "An object that defines the filter criteria that determine whether Lambda should process an event. For more information, see Lambda event filtering",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--maximum-batching-window-in-seconds",
           description:
-            "(Streams and SQS standard queues) The maximum amount of time to gather records before invoking the function, in seconds",
+            "The maximum amount of time, in seconds, that Lambda spends gathering records before invoking the function. You can configure MaximumBatchingWindowInSeconds to any value from 0 seconds to 300 seconds in increments of seconds. For streams and Amazon SQS event sources, the default batching window is 0 seconds. For Amazon MSK, Self-managed Apache Kafka, Amazon MQ, and DocumentDB event sources, the default batching window is 500 ms. Note that because you can only change MaximumBatchingWindowInSeconds in increments of seconds, you cannot revert back to the 500 ms default batching window after you have changed it. To restore the default batching window, you must create a new event source mapping. Related setting: For streams and Amazon SQS event sources, when you set BatchSize to a value greater than 10, you must set MaximumBatchingWindowInSeconds to at least 1",
           args: {
             name: "integer",
           },
@@ -4145,17 +4443,15 @@ const completionSpec: Fig.Spec = {
         {
           name: "--destination-config",
           description:
-            "(Streams) An Amazon SQS queue or Amazon SNS topic destination for discarded records",
+            "(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Kafka only) A configuration object that specifies the destination of an event after Lambda processes it",
           args: {
             name: "structure",
-            description:
-              "OnSuccess={Destination=string},OnFailure={Destination=string}",
           },
         },
         {
           name: "--maximum-record-age-in-seconds",
           description:
-            "(Streams) Discard records older than the specified age. The default value is infinite (-1)",
+            "(Kinesis and DynamoDB Streams only) Discard records older than the specified age. The default value is infinite (-1)",
           args: {
             name: "integer",
           },
@@ -4163,17 +4459,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bisect-batch-on-function-error",
           description:
-            "(Streams) If the function returns an error, split the batch in two and retry",
+            "(Kinesis and DynamoDB Streams only) If the function returns an error, split the batch in two and retry",
         },
         {
           name: "--no-bisect-batch-on-function-error",
           description:
-            "(Streams) If the function returns an error, split the batch in two and retry",
+            "(Kinesis and DynamoDB Streams only) If the function returns an error, split the batch in two and retry",
         },
         {
           name: "--maximum-retry-attempts",
           description:
-            "(Streams) Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records will be retried until the record expires",
+            "(Kinesis and DynamoDB Streams only) Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires",
           args: {
             name: "integer",
           },
@@ -4181,7 +4477,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--parallelization-factor",
           description:
-            "(Streams) The number of batches to process from each shard concurrently",
+            "(Kinesis and DynamoDB Streams only) The number of batches to process from each shard concurrently",
           args: {
             name: "integer",
           },
@@ -4189,7 +4485,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--source-access-configurations",
           description:
-            "An array of the authentication protocol, or the VPC components to secure your event source",
+            "An array of authentication protocols or VPC components required to secure your event source",
           args: {
             name: "list",
           },
@@ -4197,7 +4493,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tumbling-window-in-seconds",
           description:
-            "(Streams) The duration in seconds of a processing window. The range is between 1 second up to 900 seconds",
+            "(Kinesis and DynamoDB Streams only) The duration in seconds of a processing window for DynamoDB and Kinesis Streams event sources. A value of 0 seconds indicates no tumbling window",
           args: {
             name: "integer",
           },
@@ -4205,10 +4501,26 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-response-types",
           description:
-            "(Streams) A list of current response type enums applied to the event source mapping",
+            "(Kinesis, DynamoDB Streams, and Amazon SQS) A list of current response type enums applied to the event source mapping",
           args: {
             name: "list",
             isVariadic: true,
+          },
+        },
+        {
+          name: "--scaling-config",
+          description:
+            "(Amazon SQS only) The scaling configuration for the event source. For more information, see Configuring maximum concurrency for Amazon SQS event sources",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--document-db-event-source-config",
+          description:
+            "Specific configuration settings for a DocumentDB event source",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -4234,12 +4546,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-function-code",
       description:
-        "Updates a Lambda function's code. If code signing is enabled for the function, the code package must be signed by a trusted publisher. For more information, see Configuring code signing. The function's code is locked when you publish a version. You can't modify the code of a published version, only the unpublished version.  For a function defined as a container image, Lambda resolves the image tag to an image digest. In Amazon ECR, if you update the image tag to a new image, Lambda does not automatically update the function",
+        "Updates a Lambda function's code. If code signing is enabled for the function, the code package must be signed by a trusted publisher. For more information, see Configuring code signing for Lambda. If the function's package type is Image, then you must specify the code package in ImageUri as the URI of a container image in the Amazon ECR registry. If the function's package type is Zip, then you must specify the deployment package as a .zip file archive. Enter the Amazon S3 bucket and key of the code .zip file location. You can also provide the function code inline using the ZipFile field. The code in the deployment package must be compatible with the target instruction set architecture of the function (x86-64 or arm64). The function's code is locked when you publish a version. You can't modify the code of a published version, only the unpublished version.  For a function defined as a container image, Lambda resolves the image tag to an image digest. In Amazon ECR, if you update the image tag to a new image, Lambda does not automatically update the function",
       options: [
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function.  Name formats     Function name - my-function.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function.  Name formats     Function name \u2013 my-function.    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -4257,7 +4569,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--s3-bucket",
           description:
-            "An Amazon S3 bucket in the same AWS Region as your function. The bucket can be in a different AWS account",
+            "An Amazon S3 bucket in the same Amazon Web Services Region as your function. The bucket can be in a different Amazon Web Services account. Use only with a function defined with a .zip file archive deployment package",
           args: {
             name: "string",
             generators: generators.listBuckets,
@@ -4265,7 +4577,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--s3-key",
-          description: "The Amazon S3 key of the deployment package",
+          description:
+            "The Amazon S3 key of the deployment package. Use only with a function defined with a .zip file archive deployment package",
           args: {
             name: "string",
             generators: generators.listS3Objects,
@@ -4282,7 +4595,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--image-uri",
-          description: "URI of a container image in the Amazon ECR registry",
+          description:
+            "URI of a container image in the Amazon ECR registry. Do not use for a function defined with a .zip file archive",
           args: {
             name: "string",
           },
@@ -4310,10 +4624,18 @@ const completionSpec: Fig.Spec = {
         {
           name: "--revision-id",
           description:
-            "Only update the function if the revision ID matches the ID that's specified. Use this option to avoid modifying a function that has changed since you last read it",
+            "Update the function only if the revision ID matches the ID that's specified. Use this option to avoid modifying a function that has changed since you last read it",
           args: {
             name: "string",
             generators: generators.getFunctionRevisionId,
+          },
+        },
+        {
+          name: "--architectures",
+          description:
+            "The instruction set architecture that the function supports. Enter a string array with one of the valid values (arm64 or x86_64). The default value is x86_64",
+          args: {
+            name: "list",
           },
         },
         {
@@ -4339,12 +4661,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-function-configuration",
       description:
-        "Modify the version-specific settings of a Lambda function. When you update a function, Lambda provisions an instance of the function and its supporting resources. If your function connects to a VPC, this process can take a minute. During this time, you can't modify the function, but you can still invoke it. The LastUpdateStatus, LastUpdateStatusReason, and LastUpdateStatusReasonCode fields in the response from GetFunctionConfiguration indicate when the update is complete and the function is processing events with the new configuration. For more information, see Function States. These settings can vary between versions of a function and are locked when you publish a version. You can't modify the configuration of a published version, only the unpublished version. To configure function concurrency, use PutFunctionConcurrency. To grant invoke permissions to an account or AWS service, use AddPermission",
+        "Modify the version-specific settings of a Lambda function. When you update a function, Lambda provisions an instance of the function and its supporting resources. If your function connects to a VPC, this process can take a minute. During this time, you can't modify the function, but you can still invoke it. The LastUpdateStatus, LastUpdateStatusReason, and LastUpdateStatusReasonCode fields in the response from GetFunctionConfiguration indicate when the update is complete and the function is processing events with the new configuration. For more information, see Lambda function states. These settings can vary between versions of a function and are locked when you publish a version. You can't modify the configuration of a published version, only the unpublished version. To configure function concurrency, use PutFunctionConcurrency. To grant invoke permissions to an Amazon Web Services account or Amazon Web Service, use AddPermission",
       options: [
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function.  Name formats     Function name - my-function.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function.  Name formats     Function name \u2013 my-function.    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -4362,7 +4684,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--handler",
           description:
-            "The name of the method within your code that Lambda calls to execute your function. The format includes the file name. It can also include namespaces and other qualifiers, depending on the runtime. For more information, see Programming Model",
+            "The name of the method within your code that Lambda calls to run your function. Handler is required if the deployment package is a .zip file archive. The format includes the file name. It can also include namespaces and other qualifiers, depending on the runtime. For more information, see Lambda programming model",
           args: {
             name: "string",
           },
@@ -4377,7 +4699,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--timeout",
           description:
-            "The amount of time that Lambda allows a function to run before stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds",
+            "The amount of time (in seconds) that Lambda allows a function to run before stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds. For more information, see Lambda execution environment",
           args: {
             name: "integer",
           },
@@ -4385,7 +4707,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--memory-size",
           description:
-            "The amount of memory available to the function at runtime. Increasing the function's memory also increases its CPU allocation. The default value is 128 MB. The value can be any multiple of 1 MB",
+            "The amount of memory available to the function at runtime. Increasing the function memory also increases its CPU allocation. The default value is 128 MB. The value can be any multiple of 1 MB",
           args: {
             name: "integer",
           },
@@ -4393,11 +4715,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "--vpc-config",
           description:
-            "For network connectivity to AWS resources in a VPC, specify a list of security groups and subnets in the VPC. When you connect a function to a VPC, it can only access resources and the internet through that VPC. For more information, see VPC Settings",
+            "For network connectivity to Amazon Web Services resources in a VPC, specify a list of security groups and subnets in the VPC. When you connect a function to a VPC, it can access resources and the internet only through that VPC. For more information, see Configuring a Lambda function to access resources in a VPC",
           args: {
             name: "structure",
-            description:
-              "SubnetIds=string,string,SecurityGroupIds=string,string",
           },
         },
         {
@@ -4406,12 +4726,12 @@ const completionSpec: Fig.Spec = {
             "Environment variables that are accessible from function code during execution",
           args: {
             name: "structure",
-            description: "Variables={Key1=string,Key2=string}",
           },
         },
         {
           name: "--runtime",
-          description: "The identifier of the function's runtime",
+          description:
+            "The identifier of the function's runtime. Runtime is required if the deployment package is a .zip file archive. The following list includes deprecated runtimes. For more information, see Runtime deprecation policy",
           args: {
             name: "string",
             suggestions: runtimes,
@@ -4420,7 +4740,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--dead-letter-config",
           description:
-            "A dead letter queue configuration that specifies the queue or topic where Lambda sends asynchronous events when they fail processing. For more information, see Dead Letter Queues",
+            "A dead-letter queue configuration that specifies the queue or topic where Lambda sends asynchronous events when they fail processing. For more information, see Dead-letter queues",
           args: {
             name: "structure",
           },
@@ -4428,7 +4748,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kms-key-arn",
           description:
-            "The ARN of the AWS Key Management Service (AWS KMS) key that's used to encrypt your function's environment variables. If it's not provided, AWS Lambda uses a default service key",
+            "The ARN of the Key Management Service (KMS) customer managed key that's used to encrypt your function's environment variables. When Lambda SnapStart is activated, Lambda also uses this key is to encrypt your function's snapshot. If you deploy your function using a container image, Lambda also uses this key to encrypt your function when it's deployed. Note that this is not the same key that's used to protect your container image in the Amazon Elastic Container Registry (Amazon ECR). If you don't provide a customer managed key, Lambda uses a default service key",
           args: {
             name: "string",
             generators: generators.listKmsKeys,
@@ -4437,7 +4757,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tracing-config",
           description:
-            "Set Mode to Active to sample and trace a subset of incoming requests with AWS X-Ray",
+            "Set Mode to Active to sample and trace a subset of incoming requests with X-Ray",
           args: {
             name: "structure",
             suggestions: ["Mode=Active", "Mode=PassThrough"],
@@ -4446,7 +4766,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--revision-id",
           description:
-            "Only update the function if the revision ID matches the ID that's specified. Use this option to avoid modifying a function that has changed since you last read it",
+            "Update the function only if the revision ID matches the ID that's specified. Use this option to avoid modifying a function that has changed since you last read it",
           args: {
             name: "string",
             generators: generators.getFunctionRevisionId,
@@ -4468,17 +4788,37 @@ const completionSpec: Fig.Spec = {
             name: "list",
             isVariadic: true,
             generators: generators.listFilesystemConfigs,
-            description: "Arn=string,LocalMountPath=string",
           },
         },
         {
           name: "--image-config",
           description:
-            "Container image configuration values that override the values in the container image Dockerfile",
+            "Container image configuration values that override the values in the container image Docker file",
           args: {
             name: "structure",
-            description:
-              "EntryPoint=string,string,Command=string,string,WorkingDirectory=string",
+          },
+        },
+        {
+          name: "--ephemeral-storage",
+          description:
+            "The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For more information, see Configuring ephemeral storage (console)",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--snap-start",
+          description: "The function's SnapStart setting",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--logging-config",
+          description:
+            "The function's Amazon CloudWatch Logs configuration settings",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -4509,7 +4849,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-name",
           description:
-            "The name of the Lambda function, version, or alias.  Name formats     Function name - my-function (name-only), my-function:v1 (with alias).    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+            "The name or ARN of the Lambda function, version, or alias.  Name formats     Function name - my-function (name-only), my-function:v1 (with alias).    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -4542,11 +4882,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "--destination-config",
           description:
-            "A destination for events after they have been sent to a function for processing.  Destinations     Function - The Amazon Resource Name (ARN) of a Lambda function.    Queue - The ARN of an SQS queue.    Topic - The ARN of an SNS topic.    Event Bus - The ARN of an Amazon EventBridge event bus",
+            "A destination for events after they have been sent to a function for processing.  Destinations     Function - The Amazon Resource Name (ARN) of a Lambda function.    Queue - The ARN of a standard SQS queue.    Topic - The ARN of a standard SNS topic.    Event Bus - The ARN of an Amazon EventBridge event bus",
           args: {
             name: "structure",
-            description:
-              "OnSuccess={Destination=string},OnFailure={Destination=string}",
           },
         },
         {
@@ -4570,6 +4908,68 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "update-function-url-config",
+      description: "Updates the configuration for a Lambda function URL",
+      options: [
+        {
+          name: "--function-name",
+          description:
+            "The name or ARN of the Lambda function.  Name formats     Function name \u2013 my-function.    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--qualifier",
+          description: "The alias name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--auth-type",
+          description:
+            "The type of authentication that your function URL uses. Set to AWS_IAM if you want to restrict access to authenticated users only. Set to NONE if you want to bypass IAM authentication to create a public endpoint. For more information, see Security and auth model for Lambda function URLs",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cors",
+          description:
+            "The cross-origin resource sharing (CORS) settings for your function URL",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--invoke-mode",
+          description:
+            "Use one of the following options:    BUFFERED \u2013 This is the default option. Lambda invokes your function using the Invoke API operation. Invocation results are available when the payload is complete. The maximum payload size is 6 MB.    RESPONSE_STREAM \u2013 Your function streams payload results as they become available. Lambda invokes your function using the InvokeWithResponseStream API operation. The maximum response payload size is 20 MB, however, you can request a quota increase",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "wait",
       description:
         "Wait until a particular condition is satisfied. Each subcommand polls an API until the listed requirement is met",
@@ -4577,12 +4977,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "function-active",
           description:
-            "Waits for the function's State to be Active. It will poll every 5 seconds until a successful state has been reached. This will exit with a return code of 255 after 60 failed checks",
+            "Waits for the function's State to be Active. This waiter uses GetFunctionConfiguration API. This should be used after new function creation. It will poll every 5 seconds until a successful state has been reached. This will exit with a return code of 255 after 60 failed checks",
           options: [
             {
               name: "--function-name",
               description:
-                "The name of the Lambda function, version, or alias.  Name formats     Function name - my-function (name-only), my-function:v1 (with alias).    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+                "The name or ARN of the Lambda function, version, or alias.  Name formats     Function name \u2013 my-function (name-only), my-function:v1 (with alias).    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
               args: {
                 name: "string",
                 generators: generators.listLambdaFunctions,
@@ -4618,6 +5018,46 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
+          name: "function-active-v2",
+          description:
+            "Waits for the function's State to be Active. This waiter uses GetFunction API. This should be used after new function creation. It will poll every 1 seconds until a successful state has been reached. This will exit with a return code of 255 after 300 failed checks",
+          options: [
+            {
+              name: "--function-name",
+              description:
+                "The name or ARN of the Lambda function, version, or alias.  Name formats     Function name \u2013 my-function (name-only), my-function:v1 (with alias).    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--qualifier",
+              description:
+                "Specify a version or alias to get details about a published version of the function",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cli-input-json",
+              description:
+                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--generate-cli-skeleton",
+              description:
+                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+              args: {
+                name: "string",
+                suggestions: ["input", "output"],
+              },
+            },
+          ],
+        },
+        {
           name: "function-exists",
           description:
             "Wait until 200 response is received when polling with ``get-function``. It will poll every 1 seconds until a successful state has been reached. This will exit with a return code of 255 after 20 failed checks",
@@ -4625,7 +5065,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--function-name",
               description:
-                "The name of the Lambda function, version, or alias.  Name formats     Function name - my-function (name-only), my-function:v1 (with alias).    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+                "The name or ARN of the Lambda function, version, or alias.  Name formats     Function name \u2013 my-function (name-only), my-function:v1 (with alias).    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
               args: {
                 name: "string",
                 generators: generators.listLambdaFunctions,
@@ -4663,12 +5103,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "function-updated",
           description:
-            "Waits for the function's LastUpdateStatus to be Successful. It will poll every 5 seconds until a successful state has been reached. This will exit with a return code of 255 after 60 failed checks",
+            "Waits for the function's LastUpdateStatus to be Successful. This waiter uses GetFunctionConfiguration API. This should be used after function updates. It will poll every 5 seconds until a successful state has been reached. This will exit with a return code of 255 after 60 failed checks",
           options: [
             {
               name: "--function-name",
               description:
-                "The name of the Lambda function, version, or alias.  Name formats     Function name - my-function (name-only), my-function:v1 (with alias).    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+                "The name or ARN of the Lambda function, version, or alias.  Name formats     Function name \u2013 my-function (name-only), my-function:v1 (with alias).    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
               args: {
                 name: "string",
                 generators: generators.listLambdaFunctions,
@@ -4703,9 +5143,88 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "function-updated-v2",
+          description:
+            "Waits for the function's LastUpdateStatus to be Successful. This waiter uses GetFunction API. This should be used after function updates. It will poll every 1 seconds until a successful state has been reached. This will exit with a return code of 255 after 300 failed checks",
+          options: [
+            {
+              name: "--function-name",
+              description:
+                "The name or ARN of the Lambda function, version, or alias.  Name formats     Function name \u2013 my-function (name-only), my-function:v1 (with alias).    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--qualifier",
+              description:
+                "Specify a version or alias to get details about a published version of the function",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cli-input-json",
+              description:
+                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--generate-cli-skeleton",
+              description:
+                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+              args: {
+                name: "string",
+                suggestions: ["input", "output"],
+              },
+            },
+          ],
+        },
+        {
+          name: "published-version-active",
+          description:
+            "Waits for the published version's State to be Active. This waiter uses GetFunctionConfiguration API. This should be used after new version is published. It will poll every 5 seconds until a successful state has been reached. This will exit with a return code of 255 after 312 failed checks",
+          options: [
+            {
+              name: "--function-name",
+              description:
+                "The name or ARN of the Lambda function, version, or alias.  Name formats     Function name \u2013 my-function (name-only), my-function:v1 (with alias).    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--qualifier",
+              description:
+                "Specify a version or alias to get details about a published version of the function",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cli-input-json",
+              description:
+                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--generate-cli-skeleton",
+              description:
+                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+              args: {
+                name: "string",
+                suggestions: ["input", "output"],
+              },
+            },
+          ],
+        },
       ],
     },
   ],
 };
-
 export default completionSpec;

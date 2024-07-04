@@ -1,10 +1,20 @@
 version: 2
 updates:
-  - package-ecosystem: 'github-actions'
-    directory: '/'
+  - package-ecosystem: "github-actions"
+    directory: "/"
     schedule:
-      interval: 'daily'
-  - package-ecosystem: 'npm'
-    directory: '/'
+      interval: "daily"
+    open-pull-requests-limit: 100
+  - package-ecosystem: "npm"
+    directory: "/"
     schedule:
-      interval: 'weekly'
+      interval: "weekly"
+    open-pull-requests-limit: 100
+    groups:
+      typescript-eslint:
+        patterns:
+          - "@typescript-eslint/*"
+      fig:
+        patterns:
+          - "@fig/*"
+          - "@withfig/*"

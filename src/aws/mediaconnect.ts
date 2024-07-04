@@ -3,6 +3,118 @@ const completionSpec: Fig.Spec = {
   description: "API for AWS Elemental MediaConnect",
   subcommands: [
     {
+      name: "add-bridge-outputs",
+      description: "Adds outputs to an existing bridge",
+      options: [
+        {
+          name: "--bridge-arn",
+          description: "The ARN of the bridge that you want to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--outputs",
+          description: "The outputs that you want to add to this bridge",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "add-bridge-sources",
+      description: "Adds sources to an existing bridge",
+      options: [
+        {
+          name: "--bridge-arn",
+          description: "The ARN of the bridge that you want to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sources",
+          description: "The sources that you want to add to this bridge",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "add-flow-media-streams",
+      description:
+        "Adds media streams to an existing flow. After you add a media stream to a flow, you can associate it with a source and/or an output that uses the ST 2110 JPEG XS or CDI protocol",
+      options: [
+        {
+          name: "--flow-arn",
+          description: "The Amazon Resource Name (ARN) of the flow",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--media-streams",
+          description: "The media streams that you want to add to the flow",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "add-flow-outputs",
       description:
         "Adds outputs to an existing flow. You can create up to 50 outputs per flow",
@@ -115,6 +227,81 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-bridge",
+      description: "Creates a new bridge. The request must include one source",
+      options: [
+        {
+          name: "--egress-gateway-bridge",
+          description:
+            "Create a bridge with the egress bridge type. An egress bridge is a cloud-to-ground bridge. The content comes from an existing MediaConnect flow and is delivered to your premises",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--ingress-gateway-bridge",
+          description:
+            "Create a bridge with the ingress bridge type. An ingress bridge is a ground-to-cloud bridge. The content originates at your premises and is delivered to the cloud",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--name",
+          description:
+            "The name of the bridge. This name can not be modified after the bridge is created",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--outputs",
+          description: "The outputs that you want to add to this bridge",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--placement-arn",
+          description: "The bridge placement Amazon Resource Number (ARN)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--source-failover-config",
+          description: "The settings for source failover",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--sources",
+          description: "The sources that you want to add to this bridge",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-flow",
       description:
         "Creates a new flow. The request must include one source. The request optionally can include outputs (up to 50) and entitlements (up to 50)",
@@ -130,6 +317,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--entitlements",
           description: "The entitlements that you want to grant on a flow",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--media-streams",
+          description:
+            "The media streams that you want to add to the flow. You can associate these media streams with sources and outputs on the flow",
           args: {
             name: "list",
           },
@@ -173,6 +368,91 @@ const completionSpec: Fig.Spec = {
           description: "The VPC interfaces you want on the flow",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--maintenance",
+          description: "Create maintenance setting for a flow",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-gateway",
+      description:
+        "Creates a new gateway. The request must include at least one network (up to 4)",
+      options: [
+        {
+          name: "--egress-cidr-blocks",
+          description:
+            "The range of IP addresses that are allowed to contribute content or initiate output requests for flows communicating with this gateway. These IP addresses should be in the form of a Classless Inter-Domain Routing (CIDR) block; for example, 10.0.0.0/16",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--name",
+          description:
+            "The name of the gateway. This name can not be modified after the gateway is created",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--networks",
+          description: "The list of networks that you want to add",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-bridge",
+      description:
+        "Deletes a bridge. Before you can delete a bridge, you must stop the bridge",
+      options: [
+        {
+          name: "--bridge-arn",
+          description: "The ARN of the bridge that you want to delete",
+          args: {
+            name: "string",
           },
         },
         {
@@ -226,6 +506,109 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-gateway",
+      description:
+        "Deletes a gateway. Before you can delete a gateway, you must deregister its instances and delete its bridges",
+      options: [
+        {
+          name: "--gateway-arn",
+          description: "The ARN of the gateway that you want to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "deregister-gateway-instance",
+      description:
+        "Deregisters an instance. Before you deregister an instance, all bridges running on the instance must be stopped. If you want to deregister an instance without stopping the bridges, you must use the --force option",
+      options: [
+        {
+          name: "--force",
+          description:
+            "Force the deregistration of an instance. Force will deregister an instance, even if there are bridges running on it",
+        },
+        {
+          name: "--no-force",
+          description:
+            "Force the deregistration of an instance. Force will deregister an instance, even if there are bridges running on it",
+        },
+        {
+          name: "--gateway-instance-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the gateway that contains the instance that you want to deregister",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-bridge",
+      description: "Displays the details of a bridge",
+      options: [
+        {
+          name: "--bridge-arn",
+          description: "The ARN of the bridge that you want to describe",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "describe-flow",
       description:
         "Displays the details of a flow. The response includes the flow ARN, name, and Availability Zone, as well as details about the source, outputs, and entitlements",
@@ -233,6 +616,100 @@ const completionSpec: Fig.Spec = {
         {
           name: "--flow-arn",
           description: "The ARN of the flow that you want to describe",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-flow-source-metadata",
+      description:
+        "Displays details of the flow's source stream. The response contains information about the contents of the stream and its programs",
+      options: [
+        {
+          name: "--flow-arn",
+          description: "The Amazon Resource Name (ARN) of the flow",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-gateway",
+      description:
+        "Displays the details of a gateway. The response includes the gateway ARN, name, and CIDR blocks, as well as details about the networks",
+      options: [
+        {
+          name: "--gateway-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the gateway that you want to describe",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-gateway-instance",
+      description: "Displays the details of an instance",
+      options: [
+        {
+          name: "--gateway-instance-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the gateway instance that you want to describe",
           args: {
             name: "string",
           },
@@ -356,6 +833,78 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-bridges",
+      description:
+        "Displays a list of bridges that are associated with this account and an optionally specified Arn. This request returns a paginated result",
+      options: [
+        {
+          name: "--filter-arn",
+          description:
+            "Filter the list results to display only the bridges associated with the selected Amazon Resource Name (ARN)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return per API request. For example, you submit a ListBridges request with MaxResults set at 5. Although 20 items match your request, the service returns no more than the first 5 items. (The service also returns a NextToken value that you can use to fetch the next batch of results.) The service might return fewer results than the MaxResults value. If MaxResults is not included in the request, the service defaults to pagination with a maximum of 10 results per page",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The token that identifies which batch of results that you want to see. For example, you submit a ListBridges request with MaxResults set at 5. The service returns the first batch of results (up to 5) and a NextToken value. To see the next batch of results, you can submit the ListBridges request a second time and specify the NextToken value",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-entitlements",
       description:
         "Displays a list of all entitlements that have been granted to this account. This request returns 20 results per page",
@@ -436,6 +985,142 @@ const completionSpec: Fig.Spec = {
           name: "--next-token",
           description:
             "The token that identifies which batch of results that you want to see. For example, you submit a ListFlows request with MaxResults set at 5. The service returns the first batch of results (up to 5) and a NextToken value. To see the next batch of results, you can submit the ListFlows request a second time and specify the NextToken value",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-gateway-instances",
+      description:
+        "Displays a list of instances associated with the AWS account. This request returns a paginated result. You can use the filterArn property to display only the instances associated with the selected Gateway Amazon Resource Name (ARN)",
+      options: [
+        {
+          name: "--filter-arn",
+          description:
+            "Filter the list results to display only the instances associated with the selected Gateway Amazon Resource Name (ARN)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return per API request. For example, you submit a ListInstances request with MaxResults set at 5. Although 20 items match your request, the service returns no more than the first 5 items. (The service also returns a NextToken value that you can use to fetch the next batch of results.) The service might return fewer results than the MaxResults value. If MaxResults is not included in the request, the service defaults to pagination with a maximum of 10 results per page",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The token that identifies which batch of results that you want to see. For example, you submit a ListInstances request with MaxResults set at 5. The service returns the first batch of results (up to 5) and a NextToken value. To see the next batch of results, you can submit the ListInstances request a second time and specify the NextToken value",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-gateways",
+      description:
+        "Displays a list of gateways that are associated with this account. This request returns a paginated result",
+      options: [
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return per API request. For example, you submit a ListGateways request with MaxResults set at 5. Although 20 items match your request, the service returns no more than the first 5 items. (The service also returns a NextToken value that you can use to fetch the next batch of results.) The service might return fewer results than the MaxResults value. If MaxResults is not included in the request, the service defaults to pagination with a maximum of 10 results per page",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The token that identifies which batch of results that you want to see. For example, you submit a ListGateways request with MaxResults set at 5. The service returns the first batch of results (up to 5) and a NextToken value. To see the next batch of results, you can submit the ListGateways request a second time and specify the NextToken value",
           args: {
             name: "string",
           },
@@ -665,6 +1350,118 @@ const completionSpec: Fig.Spec = {
           name: "--start",
           description:
             "The date and time that you want the reservation to begin, in Coordinated Universal Time (UTC). You can specify any date and time between 12:00am on the first day of the current month to the current time on today's date, inclusive. Specify the start in a 24-hour notation. Use the following format: YYYY-MM-DDTHH:mm:SSZ, where T and Z are literal characters. For example, to specify 11:30pm on March 5, 2020, enter 2020-03-05T23:30:00Z",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "remove-bridge-output",
+      description: "Removes an output from a bridge",
+      options: [
+        {
+          name: "--bridge-arn",
+          description: "The ARN of the bridge that you want to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--output-name",
+          description: "The name of the bridge output that you want to remove",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "remove-bridge-source",
+      description: "Removes a source from a bridge",
+      options: [
+        {
+          name: "--bridge-arn",
+          description: "The ARN of the bridge that you want to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--source-name",
+          description: "The name of the bridge source that you want to remove",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "remove-flow-media-stream",
+      description:
+        "Removes a media stream from a flow. This action is only available if the media stream is not associated with a source or output",
+      options: [
+        {
+          name: "--flow-arn",
+          description: "The Amazon Resource Name (ARN) of the flow",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--media-stream-name",
+          description: "The name of the media stream that you want to remove",
           args: {
             name: "string",
           },
@@ -979,6 +1776,187 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "update-bridge",
+      description: "Updates the bridge",
+      options: [
+        {
+          name: "--bridge-arn",
+          description:
+            "The Amazon Resource Number (ARN) of the bridge that you want to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--egress-gateway-bridge",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--ingress-gateway-bridge",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--source-failover-config",
+          description: "The settings for source failover",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-bridge-output",
+      description: "Updates an existing bridge output",
+      options: [
+        {
+          name: "--bridge-arn",
+          description: "The ARN of the bridge that you want to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--network-output",
+          description: "Update an existing network output",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--output-name",
+          description: "The name of the bridge output that you want to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-bridge-source",
+      description: "Updates an existing bridge source",
+      options: [
+        {
+          name: "--bridge-arn",
+          description: "The ARN of the bridge that you want to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--flow-source",
+          description: "Update the flow source of the bridge",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--network-source",
+          description: "Update the network source of the bridge",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--source-name",
+          description: "The name of the source that you want to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-bridge-state",
+      description: "Updates the bridge state",
+      options: [
+        {
+          name: "--bridge-arn",
+          description: "The ARN of the bridge that you want to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--desired-state",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "update-flow",
       description: "Updates flow",
       options: [
@@ -992,6 +1970,13 @@ const completionSpec: Fig.Spec = {
         {
           name: "--source-failover-config",
           description: "The settings for source failover",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--maintenance",
+          description: "Update maintenance setting for a flow",
           args: {
             name: "structure",
           },
@@ -1031,7 +2016,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--encryption",
           description:
-            "The type of encryption that will be used on the output associated with this entitlement",
+            "The type of encryption that will be used on the output associated with this entitlement. Allowable encryption types: static-key, speke",
           args: {
             name: "structure",
           },
@@ -1087,6 +2072,80 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "update-flow-media-stream",
+      description: "Updates an existing media stream",
+      options: [
+        {
+          name: "--attributes",
+          description:
+            "The attributes that you want to assign to the media stream",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--clock-rate",
+          description:
+            "The sample rate (in Hz) for the stream. If the media stream type is video or ancillary data, set this value to 90000. If the media stream type is audio, set this value to either 48000 or 96000",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--description",
+          description: "Description",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--flow-arn",
+          description: "The Amazon Resource Name (ARN) of the flow",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--media-stream-name",
+          description: "The name of the media stream that you want to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--media-stream-type",
+          description: "The type of media stream",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--video-format",
+          description: "The resolution of the video",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "update-flow-output",
       description: "Updates an existing flow output",
       options: [
@@ -1116,7 +2175,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--encryption",
           description:
-            "The type of key used for the encryption. If no keyType is provided, the service will use the default setting (static-key)",
+            "The type of key used for the encryption. If no keyType is provided, the service will use the default setting (static-key). Allowable encryption types: static-key",
           args: {
             name: "structure",
           },
@@ -1132,9 +2191,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-latency",
           description:
-            "The maximum latency in milliseconds for Zixi-based streams",
+            "The maximum latency in milliseconds. This parameter applies only to RIST-based, Zixi-based, and Fujitsu-based streams",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--media-stream-output-configurations",
+          description:
+            "The media streams that are associated with the output, and the parameters for those associations",
+          args: {
+            name: "list",
           },
         },
         {
@@ -1175,6 +2242,22 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--sender-control-port",
+          description:
+            "The port that the flow uses to send outbound requests to initiate connection with the sender",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--sender-ip-address",
+          description:
+            "The IP address that the flow communicates with to initiate connection with the sender",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--smoothing-latency",
           description:
             "The smoothing latency in milliseconds for RIST, RTP, and RTP-FEC streams",
@@ -1185,7 +2268,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--stream-id",
           description:
-            "The stream ID that you want to use for this transport. This parameter applies only to Zixi-based streams",
+            "The stream ID that you want to use for this transport. This parameter applies only to Zixi and SRT caller-based streams",
           args: {
             name: "string",
           },
@@ -1224,7 +2307,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--decryption",
           description:
-            "The type of encryption used on the content ingested from this source",
+            "The type of encryption used on the content ingested from this source. Allowable encryption types: static-key",
           args: {
             name: "structure",
           },
@@ -1264,7 +2347,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-bitrate",
           description:
-            "The smoothing max bitrate for RIST, RTP, and RTP-FEC streams",
+            "The smoothing max bitrate (in bps) for RIST, RTP, and RTP-FEC streams",
           args: {
             name: "integer",
           },
@@ -1272,9 +2355,25 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-latency",
           description:
-            "The maximum latency in milliseconds. This parameter applies only to RIST-based and Zixi-based streams",
+            "The maximum latency in milliseconds. This parameter applies only to RIST-based, Zixi-based, and Fujitsu-based streams",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--max-sync-buffer",
+          description:
+            "The size of the buffer (in milliseconds) to use to sync incoming source data",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--media-stream-source-configurations",
+          description:
+            "The media streams that are associated with the source, and the parameters for those associations",
+          args: {
+            name: "list",
           },
         },
         {
@@ -1293,6 +2392,22 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--sender-control-port",
+          description:
+            "The port that the flow uses to send outbound requests to initiate connection with the sender",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--sender-ip-address",
+          description:
+            "The IP address that the flow communicates with to initiate connection with the sender",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--source-arn",
           description: "The ARN of the source that you want to update",
           args: {
@@ -1300,17 +2415,30 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--source-listener-address",
+          description: "Source IP or domain name for SRT-caller protocol",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--source-listener-port",
+          description: "Source port for SRT-caller protocol",
+          args: {
+            name: "integer",
+          },
+        },
+        {
           name: "--stream-id",
           description:
-            "The stream ID that you want to use for this transport. This parameter applies only to Zixi-based streams",
+            "The stream ID that you want to use for this transport. This parameter applies only to Zixi and SRT caller-based streams",
           args: {
             name: "string",
           },
         },
         {
           name: "--vpc-interface-name",
-          description:
-            "The name of the VPC Interface to configure this Source with",
+          description: "The name of the VPC interface to use for this source",
           args: {
             name: "string",
           },
@@ -1319,6 +2447,53 @@ const completionSpec: Fig.Spec = {
           name: "--whitelist-cidr",
           description:
             "The range of IP addresses that should be allowed to contribute content to your source. These IP addresses should be in the form of a Classless Inter-Domain Routing (CIDR) block; for example, 10.0.0.0/16",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--gateway-bridge-source",
+          description:
+            "The source configuration for cloud flows receiving a stream from a bridge",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-gateway-instance",
+      description: "Updates the configuration of an existing Gateway Instance",
+      options: [
+        {
+          name: "--bridge-placement",
+          description:
+            "The availability of the instance to host new bridges. The bridgePlacement property can be LOCKED or AVAILABLE. If it is LOCKED, no new bridges can be deployed to this instance. If it is AVAILABLE, new bridges can be added to this instance",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--gateway-instance-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the instance that you want to update",
           args: {
             name: "string",
           },
@@ -1444,5 +2619,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;
