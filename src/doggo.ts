@@ -37,8 +37,9 @@ const completionSpec: Fig.Spec = {
       description: "Performs a reverse DNS lookup for an IPv4 or IPv6 address",
     },
     {
-      name: ["--any"],
-      description: "Query all supported DNS record types (A, AAAA, CNAME, MX, NS, PTR, SOA, SRV, TXT, CAA)",
+      name: "--any",
+      description:
+        "Query all supported DNS record types (A, AAAA, CNAME, MX, NS, PTR, SOA, SRV, TXT, CAA)",
     },
     {
       name: "--strategy",
