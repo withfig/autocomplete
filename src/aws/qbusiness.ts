@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "qbusiness",
   description:
-    "This is the Amazon Q Business API Reference. Amazon Q Business is a fully managed, generative-AI powered enterprise chat assistant that you can deploy within your organization. Amazon Q Business enhances employee productivity by supporting key tasks such as question-answering, knowledge discovery, writing email messages, summarizing text, drafting document outlines, and brainstorming ideas. Users ask questions of Amazon Q Business and get answers that are presented in a conversational manner. For an introduction to the service, see the  Amazon Q Business User Guide . For an overview of the Amazon Q Business APIs, see Overview of Amazon Q Business API operations. For information about the IAM access control permissions you need to use this API, see IAM roles for Amazon Q Business in the Amazon Q Business User Guide. You can use the following AWS SDKs to access Amazon Q Business APIs:    AWS SDK for C++     AWS SDK for Go     AWS SDK for Java     AWS SDK for JavaScript     AWS SDK for .NET     AWS SDK for Python (Boto3)     AWS SDK for Ruby    The following resources provide additional information about using the Amazon Q Business API:     Setting up for Amazon Q Business       Amazon Q Business CLI Reference       Amazon Web Services General Reference",
+    "This is the Amazon Q Business API Reference. Amazon Q Business is a fully managed, generative-AI powered enterprise chat assistant that you can deploy within your organization. Amazon Q Business enhances employee productivity by supporting key tasks such as question-answering, knowledge discovery, writing email messages, summarizing text, drafting document outlines, and brainstorming ideas. Users ask questions of Amazon Q Business and get answers that are presented in a conversational manner. For an introduction to the service, see the  Amazon Q Business User Guide . For an overview of the Amazon Q Business APIs, see Overview of Amazon Q Business API operations. For information about the IAM access control permissions you need to use this API, see IAM roles for Amazon Q Business in the Amazon Q Business User Guide. The following resources provide additional information about using the Amazon Q Business API:     Setting up for Amazon Q Business       Amazon Q Business CLI Reference       Amazon Web Services General Reference",
   subcommands: [
     {
       name: "batch-delete-document",
@@ -314,6 +314,14 @@ const completionSpec: Fig.Spec = {
           name: "--q-apps-configuration",
           description:
             "An option to allow end users to create and use Amazon Q Apps in the web experience",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--personalization-configuration",
+          description:
+            "Configuration information about chat response personalization. For more information, see Personalizing chat responses",
           args: {
             name: "structure",
           },
@@ -2902,6 +2910,14 @@ const completionSpec: Fig.Spec = {
           name: "--q-apps-configuration",
           description:
             "An option to allow end users to create and use Amazon Q Apps in the web experience",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--personalization-configuration",
+          description:
+            "Configuration information about chat response personalization. For more information, see Personalizing chat responses",
           args: {
             name: "structure",
           },
