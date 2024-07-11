@@ -3748,6 +3748,109 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-optimization-job",
+      description:
+        "Creates a job that optimizes a model for inference performance. To create the job, you provide the location of a source model, and you provide the settings for the optimization techniques that you want the job to apply. When the job completes successfully, SageMaker uploads the new optimized model to the output destination that you specify. For more information about how to use this action, and about the supported optimization techniques, see Optimize model inference with Amazon SageMaker",
+      options: [
+        {
+          name: "--optimization-job-name",
+          description: "A custom name for the new optimization job",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--role-arn",
+          description:
+            "The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker to perform tasks on your behalf.  During model optimization, Amazon SageMaker needs your permission to:   Read input data from an S3 bucket   Write model artifacts to an S3 bucket   Write logs to Amazon CloudWatch Logs   Publish metrics to Amazon CloudWatch   You grant permissions for all of these tasks to an IAM role. To pass this role to Amazon SageMaker, the caller of this API must have the iam:PassRole permission. For more information, see Amazon SageMaker Roles",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--model-source",
+          description:
+            "The location of the source model to optimize with an optimization job",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--deployment-instance-type",
+          description:
+            "The type of instance that hosts the optimized model that you create with the optimization job",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--optimization-environment",
+          description:
+            "The environment variables to set in the model container",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--optimization-configs",
+          description:
+            "Settings for each of the optimization techniques that the job applies",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--output-config",
+          description:
+            "Details for where to store the optimized model that you create with the optimization job",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--stopping-condition",
+          description:
+            "Specifies a limit to how long a job can run. When the job reaches the time limit, SageMaker ends the job. Use this API to cap costs. To stop a training job, SageMaker sends the algorithm the SIGTERM signal, which delays job termination for 120 seconds. Algorithms can use this 120-second window to save the model artifacts, so the results of training are not lost.  The training algorithms provided by SageMaker automatically save the intermediate results of a model training job when possible. This attempt to save artifacts is only a best effort case as model might not be in a state from which it can be saved. For example, if training has just started, the model might not be ready to save. When saved, this intermediate data is a valid model artifact. You can use it to create a model with CreateModel.  The Neural Topic Model (NTM) currently does not support saving intermediate model artifacts. When training NTMs, make sure that the maximum runtime is sufficient for the training job to complete",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "A list of key-value pairs associated with the optimization job. For more information, see Tagging Amazon Web Services resources in the Amazon Web Services General Reference Guide",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--vpc-config",
+          description:
+            "A VPC in Amazon VPC that your optimized model has access to",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-pipeline",
       description: "Creates a pipeline using a JSON pipeline definition",
       options: [
@@ -6413,6 +6516,36 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-optimization-job",
+      description: "Deletes an optimization job",
+      options: [
+        {
+          name: "--optimization-job-name",
+          description: "The name that you assigned to the optimization job",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-pipeline",
       description:
         "Deletes a pipeline if there are no running instances of the pipeline. To delete a pipeline, you must stop all running instances of the pipeline using the StopPipelineExecution API. When you delete a pipeline, all instances of the pipeline are deleted",
@@ -8338,6 +8471,36 @@ const completionSpec: Fig.Spec = {
         {
           name: "--notebook-instance-lifecycle-config-name",
           description: "The name of the lifecycle configuration to describe",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-optimization-job",
+      description: "Provides the properties of the specified optimization job",
+      options: [
+        {
+          name: "--optimization-job-name",
+          description: "The name that you assigned to the optimization job",
           args: {
             name: "string",
           },
@@ -15503,6 +15666,141 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-optimization-jobs",
+      description:
+        "Lists the optimization jobs in your account and their properties",
+      options: [
+        {
+          name: "--next-token",
+          description:
+            "A token that you use to get the next set of results following a truncated response. If the response to the previous request was truncated, that response provides the value for this token",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of optimization jobs to return in the response. The default is 50",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--creation-time-after",
+          description:
+            "Filters the results to only those optimization jobs that were created after the specified time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--creation-time-before",
+          description:
+            "Filters the results to only those optimization jobs that were created before the specified time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--last-modified-time-after",
+          description:
+            "Filters the results to only those optimization jobs that were updated after the specified time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--last-modified-time-before",
+          description:
+            "Filters the results to only those optimization jobs that were updated before the specified time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--optimization-contains",
+          description:
+            "Filters the results to only those optimization jobs that apply the specified optimization techniques. You can specify either Quantization or Compilation",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--name-contains",
+          description:
+            "Filters the results to only those optimization jobs with a name that contains the specified string",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--status-equals",
+          description:
+            "Filters the results to only those optimization jobs with the specified status",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-by",
+          description:
+            "The field by which to sort the optimization jobs in the response. The default is CreationTime",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description: "The sort order for results. The default is Ascending",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-pipeline-execution-steps",
       description: "Gets a list of PipeLineExecutionStep objects",
       options: [
@@ -18515,6 +18813,36 @@ const completionSpec: Fig.Spec = {
         {
           name: "--notebook-instance-name",
           description: "The name of the notebook instance to terminate",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "stop-optimization-job",
+      description: "Ends a running inference optimization job",
+      options: [
+        {
+          name: "--optimization-job-name",
+          description: "The name that you assigned to the optimization job",
           args: {
             name: "string",
           },
