@@ -4,6 +4,61 @@ const completionSpec: Fig.Spec = {
     "Describes the API operations for running inference using Amazon Bedrock models",
   subcommands: [
     {
+      name: "apply-guardrail",
+      description: "The action to apply a guardrail",
+      options: [
+        {
+          name: "--guardrail-identifier",
+          description:
+            "The guardrail identifier used in the request to apply the guardrail",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--guardrail-version",
+          description:
+            "The guardrail version used in the request to apply the guardrail",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--source",
+          description:
+            "The source of data used in the request to apply the guardrail",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--content",
+          description:
+            "The content details used in the request to apply the guardrail",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "converse",
       description:
         "Sends messages to the specified Amazon Bedrock model. Converse provides a consistent interface that works with all models that support messages. This allows you to write code once and use it with different models. Should a model have unique inference parameters, you can also pass those unique parameters to the model. For information about the Converse API, see Use the Converse API in the Amazon Bedrock User Guide. To use a guardrail, see Use a guardrail with the Converse API in the Amazon Bedrock User Guide. To use a tool with a model, see Tool use (Function calling) in the Amazon Bedrock User Guide  For example code, see Converse API examples in the Amazon Bedrock User Guide.  This operation requires permission for the bedrock:InvokeModel action",

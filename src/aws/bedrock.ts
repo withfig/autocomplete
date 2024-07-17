@@ -100,7 +100,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-guardrail",
       description:
-        "Creates a guardrail to block topics and to filter out harmful content.   Specify a name and optional description.   Specify messages for when the guardrail successfully blocks a prompt or a model response in the blockedInputMessaging and blockedOutputsMessaging fields.   Specify topics for the guardrail to deny in the topicPolicyConfig object. Each GuardrailTopicConfig object in the topicsConfig list pertains to one topic.   Give a name and description so that the guardrail can properly identify the topic.   Specify DENY in the type field.   (Optional) Provide up to five prompts that you would categorize as belonging to the topic in the examples list.     Specify filter strengths for the harmful categories defined in Amazon Bedrock in the contentPolicyConfig object. Each GuardrailContentFilterConfig object in the filtersConfig list pertains to a harmful category. For more information, see Content filters. For more information about the fields in a content filter, see GuardrailContentFilterConfig.   Specify the category in the type field.   Specify the strength of the filter for prompts in the inputStrength field and for model responses in the strength field of the GuardrailContentFilterConfig.     (Optional) For security, include the ARN of a KMS key in the kmsKeyId field.   (Optional) Attach any tags to the guardrail in the tags object. For more information, see Tag resources",
+        "Creates a guardrail to block topics and to implement safeguards for your generative AI applications. You can configure the following policies in a guardrail to avoid undesirable and harmful content, filter out denied topics and words, and remove sensitive information for privacy protection.    Content filters - Adjust filter strengths to block input prompts or model responses containing harmful content.    Denied topics - Define a set of topics that are undesirable in the context of your application. These topics will be blocked if detected in user queries or model responses.    Word filters - Configure filters to block undesirable words, phrases, and profanity. Such words can include offensive terms, competitor names etc.    Sensitive information filters - Block or mask sensitive information such as personally identifiable information (PII) or custom regex in user inputs and model responses.   In addition to the above policies, you can also configure the messages to be returned to the user if a user input or model response is in violation of the policies defined in the guardrail. For more information, see Guardrails for Amazon Bedrock in the Amazon Bedrock User Guide",
       options: [
         {
           name: "--name",
@@ -142,6 +142,14 @@ const completionSpec: Fig.Spec = {
           name: "--sensitive-information-policy-config",
           description:
             "The sensitive information policy to configure for the guardrail",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--contextual-grounding-policy-config",
+          description:
+            "The contextual grounding policy configuration used to create a guardrail",
           args: {
             name: "structure",
           },
@@ -211,7 +219,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--guardrail-identifier",
-          description: "The unique identifier of the guardrail",
+          description:
+            "The unique identifier of the guardrail. This can be an ID or the ARN",
           args: {
             name: "string",
           },
@@ -484,7 +493,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--guardrail-identifier",
-          description: "The unique identifier of the guardrail",
+          description:
+            "The unique identifier of the guardrail. This can be an ID or the ARN",
           args: {
             name: "string",
           },
@@ -671,7 +681,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--guardrail-identifier",
           description:
-            "The unique identifier of the guardrail for which to get details",
+            "The unique identifier of the guardrail for which to get details. This can be an ID or the ARN",
           args: {
             name: "string",
           },
@@ -1075,7 +1085,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--guardrail-identifier",
-          description: "The unique identifier of the guardrail",
+          description:
+            "The unique identifier of the guardrail. This can be an ID or the ARN",
           args: {
             name: "string",
           },
@@ -1568,11 +1579,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-guardrail",
       description:
-        "Updates a guardrail with the values you specify.   Specify a name and optional description.   Specify messages for when the guardrail successfully blocks a prompt or a model response in the blockedInputMessaging and blockedOutputsMessaging fields.   Specify topics for the guardrail to deny in the topicPolicyConfig object. Each GuardrailTopicConfig object in the topicsConfig list pertains to one topic.   Give a name and description so that the guardrail can properly identify the topic.   Specify DENY in the type field.   (Optional) Provide up to five prompts that you would categorize as belonging to the topic in the examples list.     Specify filter strengths for the harmful categories defined in Amazon Bedrock in the contentPolicyConfig object. Each GuardrailContentFilterConfig object in the filtersConfig list pertains to a harmful category. For more information, see Content filters. For more information about the fields in a content filter, see GuardrailContentFilterConfig.   Specify the category in the type field.   Specify the strength of the filter for prompts in the inputStrength field and for model responses in the strength field of the GuardrailContentFilterConfig.     (Optional) For security, include the ARN of a KMS key in the kmsKeyId field.   (Optional) Attach any tags to the guardrail in the tags object. For more information, see Tag resources",
+        "Updates a guardrail with the values you specify.   Specify a name and optional description.   Specify messages for when the guardrail successfully blocks a prompt or a model response in the blockedInputMessaging and blockedOutputsMessaging fields.   Specify topics for the guardrail to deny in the topicPolicyConfig object. Each GuardrailTopicConfig object in the topicsConfig list pertains to one topic.   Give a name and description so that the guardrail can properly identify the topic.   Specify DENY in the type field.   (Optional) Provide up to five prompts that you would categorize as belonging to the topic in the examples list.     Specify filter strengths for the harmful categories defined in Amazon Bedrock in the contentPolicyConfig object. Each GuardrailContentFilterConfig object in the filtersConfig list pertains to a harmful category. For more information, see Content filters. For more information about the fields in a content filter, see GuardrailContentFilterConfig.   Specify the category in the type field.   Specify the strength of the filter for prompts in the inputStrength field and for model responses in the strength field of the GuardrailContentFilterConfig.     (Optional) For security, include the ARN of a KMS key in the kmsKeyId field",
       options: [
         {
           name: "--guardrail-identifier",
-          description: "The unique identifier of the guardrail",
+          description:
+            "The unique identifier of the guardrail. This can be an ID or the ARN",
           args: {
             name: "string",
           },
@@ -1616,6 +1628,14 @@ const completionSpec: Fig.Spec = {
           name: "--sensitive-information-policy-config",
           description:
             "The sensitive information policy to configure for the guardrail",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--contextual-grounding-policy-config",
+          description:
+            "The contextual grounding policy configuration used to update a guardrail",
           args: {
             name: "structure",
           },
