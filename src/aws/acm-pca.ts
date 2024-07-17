@@ -488,7 +488,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-arn",
           description:
-            "The Amazon Resource Number (ARN) of the private CA that will have its policy retrieved. You can find the CA's ARN by calling the ListCertificateAuthorities action",
+            "The Amazon Resource Number (ARN) of the private CA that will have its policy retrieved. You can find the CA's ARN by calling the ListCertificateAuthorities action.  </p>",
           args: {
             name: "string",
           },
@@ -515,7 +515,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "import-certificate-authority-certificate",
       description:
-        "Imports a signed private CA certificate into Amazon Web Services Private CA. This action is used when you are using a chain of trust whose root is located outside Amazon Web Services Private CA. Before you can call this action, the following preparations must in place:   In Amazon Web Services Private CA, call the CreateCertificateAuthority action to create the private CA that you plan to back with the imported certificate.   Call the GetCertificateAuthorityCsr action to generate a certificate signing request (CSR).   Sign the CSR using a root or intermediate CA hosted by either an on-premises PKI hierarchy or by a commercial CA.   Create a certificate chain and copy the signed certificate and the certificate chain to your working directory.   Amazon Web Services Private CA supports three scenarios for installing a CA certificate:   Installing a certificate for a root CA hosted by Amazon Web Services Private CA.   Installing a subordinate CA certificate whose parent authority is hosted by Amazon Web Services Private CA.   Installing a subordinate CA certificate whose parent authority is externally hosted.   The following additional requirements apply when you import a CA certificate.   Only a self-signed certificate can be imported as a root CA.   A self-signed certificate cannot be imported as a subordinate CA.   Your certificate chain must not include the private CA certificate that you are importing.   Your root CA must be the last certificate in your chain. The subordinate certificate, if any, that your root CA signed must be next to last. The subordinate certificate signed by the preceding subordinate CA must come next, and so on until your chain is built.    The chain must be PEM-encoded.   The maximum allowed size of a certificate is 32 KB.   The maximum allowed size of a certificate chain is 2 MB.    Enforcement of Critical Constraints  Amazon Web Services Private CA allows the following extensions to be marked critical in the imported CA certificate or chain.   Authority key identifier   Basic constraints (must be marked critical)   Certificate policies   Extended key usage   Inhibit anyPolicy   Issuer alternative name   Key usage   Name constraints   Policy mappings   Subject alternative name   Subject directory attributes   Subject key identifier   Subject information access   Amazon Web Services Private CA rejects the following extensions when they are marked critical in an imported CA certificate or chain.   Authority information access   CRL distribution points   Freshest CRL   Policy constraints   Amazon Web Services Private Certificate Authority will also reject any other extension marked as critical not contained on the preceding list of allowed extensions",
+        "Imports a signed private CA certificate into Amazon Web Services Private CA. This action is used when you are using a chain of trust whose root is located outside Amazon Web Services Private CA. Before you can call this action, the following preparations must in place:   In Amazon Web Services Private CA, call the CreateCertificateAuthority action to create the private CA that you plan to back with the imported certificate.   Call the GetCertificateAuthorityCsr action to generate a certificate signing request (CSR).   Sign the CSR using a root or intermediate CA hosted by either an on-premises PKI hierarchy or by a commercial CA.   Create a certificate chain and copy the signed certificate and the certificate chain to your working directory.   Amazon Web Services Private CA supports three scenarios for installing a CA certificate:   Installing a certificate for a root CA hosted by Amazon Web Services Private CA.   Installing a subordinate CA certificate whose parent authority is hosted by Amazon Web Services Private CA.   Installing a subordinate CA certificate whose parent authority is externally hosted.   The following additional requirements apply when you import a CA certificate.   Only a self-signed certificate can be imported as a root CA.   A self-signed certificate cannot be imported as a subordinate CA.   Your certificate chain must not include the private CA certificate that you are importing.   Your root CA must be the last certificate in your chain. The subordinate certificate, if any, that your root CA signed must be next to last. The subordinate certificate signed by the preceding subordinate CA must come next, and so on until your chain is built.    The chain must be PEM-encoded.   The maximum allowed size of a certificate is 32 KB.   The maximum allowed size of a certificate chain is 2 MB.    Enforcement of Critical Constraints  Amazon Web Services Private CA allows the following extensions to be marked critical in the imported CA certificate or chain.   Basic constraints (must be marked critical)   Subject alternative names   Key usage   Extended key usage   Authority key identifier   Subject key identifier   Issuer alternative name   Subject directory attributes   Subject information access   Certificate policies   Policy mappings   Inhibit anyPolicy   Amazon Web Services Private CA rejects the following extensions when they are marked critical in an imported CA certificate or chain.   Name constraints   Policy constraints   CRL distribution points   Authority information access   Freshest CRL   Any other extension",
       options: [
         {
           name: "--certificate-authority-arn",
@@ -654,19 +654,19 @@ const completionSpec: Fig.Spec = {
         "Lists the private certificate authorities that you created by using the CreateCertificateAuthority action",
       options: [
         {
-          name: "--next-token",
-          description:
-            "Use this parameter when paginating results in a subsequent request after you receive a response with truncated results. Set it to the value of the NextToken parameter from the response you just received",
-          args: {
-            name: "string",
-          },
-        },
-        {
           name: "--max-results",
           description:
             "Use this parameter when paginating results to specify the maximum number of items to return in the response on each page. If additional items exist beyond the number you specify, the NextToken element is sent in the response. Use this NextToken value in a subsequent request to retrieve additional items. Although the maximum value is 1000, the action only returns a maximum of 100 items",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "Use this parameter when paginating results in a subsequent request after you receive a response with truncated results. Set it to the value of the NextToken parameter from the response you just received",
+          args: {
+            name: "string",
           },
         },
         {
@@ -726,11 +726,11 @@ const completionSpec: Fig.Spec = {
         "List all permissions on a private CA, if any, granted to the Certificate Manager (ACM) service principal (acm.amazonaws.com).  These permissions allow ACM to issue and renew ACM certificates that reside in the same Amazon Web Services account as the CA.  Permissions can be granted with the CreatePermission action and revoked with the DeletePermission action.  About Permissions    If the private CA and the certificates it issues reside in the same account, you can use CreatePermission to grant permissions for ACM to carry out automatic certificate renewals.   For automatic certificate renewal to succeed, the ACM service principal needs permissions to create, retrieve, and list certificates.   If the private CA and the ACM certificates reside in different accounts, then permissions cannot be used to enable automatic renewals. Instead, the ACM certificate owner must set up a resource-based policy to enable cross-account issuance and renewals. For more information, see Using a Resource Based Policy with Amazon Web Services Private CA",
       options: [
         {
-          name: "--certificate-authority-arn",
+          name: "--max-results",
           description:
-            "The Amazon Resource Number (ARN) of the private CA to inspect. You can find the ARN by calling the ListCertificateAuthorities action. This must be of the form: arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012 You can get a private CA's ARN by running the ListCertificateAuthorities action",
+            "When paginating results, use this parameter to specify the maximum number of items to return in the response. If additional items exist beyond the number you specify, the NextToken element is sent in the response. Use this NextToken value in a subsequent request to retrieve additional items",
           args: {
-            name: "string",
+            name: "integer",
           },
         },
         {
@@ -742,11 +742,11 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--max-results",
+          name: "--certificate-authority-arn",
           description:
-            "When paginating results, use this parameter to specify the maximum number of items to return in the response. If additional items exist beyond the number you specify, the NextToken element is sent in the response. Use this NextToken value in a subsequent request to retrieve additional items",
+            "The Amazon Resource Number (ARN) of the private CA to inspect. You can find the ARN by calling the ListCertificateAuthorities action. This must be of the form: arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012 You can get a private CA's ARN by running the ListCertificateAuthorities action",
           args: {
-            name: "integer",
+            name: "string",
           },
         },
         {
@@ -798,11 +798,11 @@ const completionSpec: Fig.Spec = {
         "Lists the tags, if any, that are associated with your private CA or one that has been shared with you. Tags are labels that you can use to identify and organize your CAs. Each tag consists of a key and an optional value. Call the TagCertificateAuthority action to add one or more tags to your CA. Call the UntagCertificateAuthority action to remove tags",
       options: [
         {
-          name: "--certificate-authority-arn",
+          name: "--max-results",
           description:
-            "The Amazon Resource Name (ARN) that was returned when you called the CreateCertificateAuthority action. This must be of the form:   arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012",
+            "Use this parameter when paginating results to specify the maximum number of items to return in the response. If additional items exist beyond the number you specify, the NextToken element is sent in the response. Use this NextToken value in a subsequent request to retrieve additional items",
           args: {
-            name: "string",
+            name: "integer",
           },
         },
         {
@@ -814,11 +814,11 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--max-results",
+          name: "--certificate-authority-arn",
           description:
-            "Use this parameter when paginating results to specify the maximum number of items to return in the response. If additional items exist beyond the number you specify, the NextToken element is sent in the response. Use this NextToken value in a subsequent request to retrieve additional items",
+            "The Amazon Resource Name (ARN) that was returned when you called the CreateCertificateAuthority action. This must be of the form:   arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012",
           args: {
-            name: "integer",
+            name: "string",
           },
         },
         {
@@ -1116,7 +1116,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "audit-report-created",
           description:
-            "Wait until a Audit Report is created It will poll every 3 seconds until a successful state has been reached. This will exit with a return code of 255 after 60 failed checks",
+            "Wait until a Audit Report is created It will poll every 3 seconds until a successful state has been reached. This will exit with a return code of 255 after 40 failed checks",
           options: [
             {
               name: "--certificate-authority-arn",
@@ -1156,7 +1156,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "certificate-authority-csr-created",
           description:
-            "Wait until a Certificate Authority CSR is created It will poll every 3 seconds until a successful state has been reached. This will exit with a return code of 255 after 60 failed checks",
+            "Wait until a Certificate Authority CSR is created It will poll every 3 seconds until a successful state has been reached. This will exit with a return code of 255 after 40 failed checks",
           options: [
             {
               name: "--certificate-authority-arn",
@@ -1188,7 +1188,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "certificate-issued",
           description:
-            "Wait until a certificate is issued It will poll every 1 seconds until a successful state has been reached. This will exit with a return code of 255 after 60 failed checks",
+            "Wait until a certificate is issued It will poll every 1 seconds until a successful state has been reached. This will exit with a return code of 255 after 120 failed checks",
           options: [
             {
               name: "--certificate-authority-arn",
