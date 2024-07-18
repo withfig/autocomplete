@@ -48,7 +48,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
         # Create a new github release with the newly created specs.zip file
       - name: Release
-        uses: softprops/action-gh-release@a74c6b72af54cfa997e81df42d94703d6313a2d0
+        uses: softprops/action-gh-release@fb2d03176f42a1f0dd433ca263f314051d3edd44
         with:
           files: specs.zip
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
