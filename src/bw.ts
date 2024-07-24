@@ -1384,6 +1384,144 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: "device-approval",
+      description:
+        "Manage device approval requests sent to organizations that use SSO with trusted devices",
+      icon: bwLogo32x32,
+      subcommands: [
+        {
+          name: "list",
+          description: "List all pending requests for an organisation",
+          icon: bwLogo32x32,
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Display help for the list sub-command",
+              priority: 1,
+            },
+            {
+              name: "--organizationid",
+              description: "The organisation id (required)",
+              args: {
+                name: "organizationid",
+                description: "Organisation ID",
+              },
+              priority: 100,
+            },
+          ],
+        },
+        {
+          name: "approve",
+          description: "Approve a pending request",
+          icon: bwLogo32x32,
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Display help for the approve sub-command",
+              priority: 49,
+            },
+            {
+              name: "requestId",
+              description: "The id of the request to approve",
+              args: {
+                name: "requestId",
+                description: "The id of the request to approve",
+                isVariadic: true,
+              },
+            },
+            {
+              name: "--organizationid",
+              description: "The organisation id (required)",
+              args: {
+                name: "organizationid",
+                description: "Organisation ID",
+              },
+              priority: 100,
+            },
+          ],
+        },
+        {
+          name: "approve-all",
+          description: "Approve all pending requests for an organisation",
+          icon: "fig://icon?type=alert",
+          isDangerous: true,
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Display help for the approve-all sub-command",
+              priority: 49,
+            },
+            {
+              name: "--organizationid",
+              description: "The organisation id (required)",
+              args: {
+                name: "organizationid",
+                description: "Organisation ID",
+              },
+              priority: 100,
+            },
+          ],
+        },
+        {
+          name: "deny",
+          description: "Deny a pending request",
+          icon: bwLogo32x32,
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Display help for the deny sub-command",
+              priority: 49,
+            },
+            {
+              name: "requestId",
+              description: "The id of the request to deny",
+              args: {
+                name: "requestId",
+                description: "The id of the request to approve",
+                isVariadic: true,
+              },
+            },
+            {
+              name: "--organizationid",
+              description: "The organisation id (required)",
+              args: {
+                name: "organizationid",
+                description: "Organisation ID",
+              },
+              priority: 100,
+            },
+          ],
+        },
+        {
+          name: "deny-all",
+          description: "Deny all pending requests for an organisation",
+          icon: bwLogo32x32,
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Display help for the deny-all sub-command",
+              priority: 49,
+            },
+            {
+              name: "--organizationid",
+              description: "The organisation id (required)",
+              args: {
+                name: "organizationid",
+                description: "Organisation ID",
+              },
+              priority: 100,
+            },
+          ],
+        },
+        {
+          name: "help",
+          description: "Display help for command",
+          priority: 49,
+          args: { name: "command", isOptional: true },
+        },
+      ],
+    },
+    {
       name: "receive",
       description: "Access a Bitwarden Send from a url",
       icon: bwLogo32x32,
@@ -1476,6 +1614,7 @@ const completionSpec: Fig.Spec = {
           "share",
           "send",
           "receive",
+          "device-approval",
         ],
         isOptional: true,
       },
