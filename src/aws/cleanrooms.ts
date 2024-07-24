@@ -546,6 +546,143 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-id-mapping-table",
+      description: "Creates an ID mapping table",
+      options: [
+        {
+          name: "--membership-identifier",
+          description:
+            "The unique identifier of the membership that contains the ID mapping table",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--name",
+          description: "A name for the ID mapping table",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "A description of the ID mapping table",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--input-reference-config",
+          description:
+            "The input reference configuration needed to create the ID mapping table",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--kms-key-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the Amazon Web Services KMS key. This value is used to encrypt the mapping table data that is stored by Clean Rooms",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-id-namespace-association",
+      description: "Creates an ID namespace association",
+      options: [
+        {
+          name: "--membership-identifier",
+          description:
+            "The unique identifier of the membership that contains the ID namespace association",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--input-reference-config",
+          description:
+            "The input reference configuration needed to create the ID namespace association",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--name",
+          description: "The name for the ID namespace association",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "The description of the ID namespace association",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--id-mapping-config",
+          description: "The configuration settings for the ID mapping table",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-membership",
       description:
         "Creates a membership for a specific collaboration identifier and joins the collaboration",
@@ -888,6 +1025,84 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-id-mapping-table",
+      description: "Deletes an ID mapping table",
+      options: [
+        {
+          name: "--id-mapping-table-identifier",
+          description:
+            "The unique identifier of the ID mapping table that you want to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--membership-identifier",
+          description:
+            "The unique identifier of the membership that contains the ID mapping table that you want to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-id-namespace-association",
+      description: "Deletes an ID namespace association",
+      options: [
+        {
+          name: "--id-namespace-association-identifier",
+          description:
+            "The unique identifier of the ID namespace association that you want to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--membership-identifier",
+          description:
+            "The unique identifier of the membership that contains the ID namespace association that you want to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-member",
       description:
         "Removes the specified member from a collaboration. The removed member is placed in the Removed status and can't interact with the collaboration. The removed member's data is inaccessible to active members of the collaboration",
@@ -1142,6 +1357,46 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-collaboration-id-namespace-association",
+      description:
+        "Retrieves an ID namespace association from a specific collaboration",
+      options: [
+        {
+          name: "--collaboration-identifier",
+          description:
+            "The unique identifier of the collaboration that contains the ID namespace association that you want to retrieve",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--id-namespace-association-identifier",
+          description:
+            "The unique identifier of the ID namespace association that you want to retrieve",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-collaboration-privacy-budget-template",
       description: "Returns details about a specified privacy budget template",
       options: [
@@ -1304,6 +1559,84 @@ const completionSpec: Fig.Spec = {
           name: "--membership-identifier",
           description:
             "A unique identifier for the membership that the configured table association belongs to. Currently accepts the membership ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-id-mapping-table",
+      description: "Retrieves an ID mapping table",
+      options: [
+        {
+          name: "--id-mapping-table-identifier",
+          description:
+            "The unique identifier of the ID mapping table identifier that you want to retrieve",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--membership-identifier",
+          description:
+            "The unique identifier of the membership that contains the ID mapping table that you want to retrieve",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-id-namespace-association",
+      description: "Retrieves an ID namespace association",
+      options: [
+        {
+          name: "--id-namespace-association-identifier",
+          description:
+            "The unique identifier of the ID namespace association that you want to retrieve",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--membership-identifier",
+          description:
+            "The unique identifier of the membership that contains the ID namespace association that you want to retrieve",
           args: {
             name: "string",
           },
@@ -1532,7 +1865,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -1540,7 +1873,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -1603,7 +1936,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -1611,7 +1944,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -1675,7 +2008,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -1683,7 +2016,79 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-collaboration-id-namespace-associations",
+      description:
+        "Returns a list of the ID namespace associations in a collaboration",
+      options: [
+        {
+          name: "--collaboration-identifier",
+          description:
+            "The unique identifier of the collaboration that contains the ID namespace associations that you want to retrieve",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The pagination token that's used to fetch the next set of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.>",
           args: {
             name: "integer",
           },
@@ -1746,7 +2151,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -1754,7 +2159,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -1824,7 +2229,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -1832,7 +2237,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -1888,7 +2293,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -1896,7 +2301,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -1967,7 +2372,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -1975,7 +2380,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -2038,7 +2443,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -2046,7 +2451,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -2101,7 +2506,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -2109,7 +2514,149 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-id-mapping-tables",
+      description: "Returns a list of ID mapping tables",
+      options: [
+        {
+          name: "--membership-identifier",
+          description:
+            "The unique identifier of the membership that contains the ID mapping tables that you want to view",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The pagination token that's used to fetch the next set of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-id-namespace-associations",
+      description: "Returns a list of ID namespace associations",
+      options: [
+        {
+          name: "--membership-identifier",
+          description:
+            "The unique identifier of the membership that contains the ID namespace association that you want to view",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The pagination token that's used to fetch the next set of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met",
           args: {
             name: "integer",
           },
@@ -2172,7 +2719,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -2180,7 +2727,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -2236,7 +2783,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -2244,7 +2791,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -2316,7 +2863,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -2324,7 +2871,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -2395,7 +2942,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -2403,7 +2950,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -2472,7 +3019,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -2480,7 +3027,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service can return a nextToken even if the maximum results has not been met",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -2542,8 +3089,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--schema-type",
-          description:
-            "If present, filter schemas by schema type. The only valid schema type is currently `TABLE`",
+          description: "If present, filter schemas by schema type",
           args: {
             name: "string",
           },
@@ -2551,7 +3097,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -2559,7 +3105,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -2615,6 +3161,46 @@ const completionSpec: Fig.Spec = {
           name: "--resource-arn",
           description:
             "The Amazon Resource Name (ARN) associated with the resource you want to list tags on",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "populate-id-mapping-table",
+      description:
+        "Defines the information that's necessary to populate an ID mapping table",
+      options: [
+        {
+          name: "--id-mapping-table-identifier",
+          description:
+            "The unique identifier of the ID mapping table that you want to populate",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--membership-identifier",
+          description:
+            "The unique identifier of the membership that contains the ID mapping table that you want to populate",
           args: {
             name: "string",
           },
@@ -3077,6 +3663,122 @@ const completionSpec: Fig.Spec = {
             "The service will assume this role to access catalog metadata and query the table",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-id-mapping-table",
+      description:
+        "Provides the details that are necessary to update an ID mapping table",
+      options: [
+        {
+          name: "--id-mapping-table-identifier",
+          description:
+            "The unique identifier of the ID mapping table that you want to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--membership-identifier",
+          description:
+            "The unique identifier of the membership that contains the ID mapping table that you want to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "A new description for the ID mapping table",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--kms-key-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the Amazon Web Services KMS key",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-id-namespace-association",
+      description:
+        "Provides the details that are necessary to update an ID namespace association",
+      options: [
+        {
+          name: "--id-namespace-association-identifier",
+          description:
+            "The unique identifier of the ID namespace association that you want to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--membership-identifier",
+          description:
+            "The unique identifier of the membership that contains the ID namespace association that you want to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--name",
+          description: "A new name for the ID namespace association",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "A new description for the ID namespace association",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--id-mapping-config",
+          description: "The configuration settings for the ID mapping table",
+          args: {
+            name: "structure",
           },
         },
         {

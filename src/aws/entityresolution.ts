@@ -35,7 +35,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--effect",
           description:
-            "Determines whether the permissions specified in the policy are to be allowed (Allow) or denied (Deny)",
+            "Determines whether the permissions specified in the policy are to be allowed (Allow) or denied (Deny).   If you set the value of the effect parameter to Deny for the AddPolicyStatement operation, you must also set the value of the effect parameter in the policy to Deny for the PutPolicy operation",
           args: {
             name: "string",
           },
@@ -135,7 +135,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--id-mapping-techniques",
           description:
-            "An object which defines the idMappingType and the providerProperties",
+            "An object which defines the ID mapping technique and any additional configurations",
           args: {
             name: "structure",
           },
@@ -1397,7 +1397,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--policy",
-          description: "The resource-based policy",
+          description:
+            "The resource-based policy.  If you set the value of the effect parameter in the policy to Deny for the PutPolicy operation, you must also set the value of the effect parameter to Deny for the AddPolicyStatement operation",
           args: {
             name: "string",
           },
@@ -1591,7 +1592,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--id-mapping-techniques",
           description:
-            "An object which defines the idMappingType and the providerProperties",
+            "An object which defines the ID mapping technique and any additional configurations",
           args: {
             name: "structure",
           },
