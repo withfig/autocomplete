@@ -345,6 +345,73 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-asset-filter",
+      description: "Creates a data asset filter",
+      options: [
+        {
+          name: "--asset-identifier",
+          description: "The ID of the data asset",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique, case-sensitive identifier that is provided to ensure the idempotency of the request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--configuration",
+          description: "The configuration of the asset filter",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--description",
+          description: "The description of the asset filter",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--domain-identifier",
+          description:
+            "The ID of the domain in which you want to create an asset filter",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--name",
+          description: "The name of the asset filter",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-asset-revision",
       description: "Creates a revision of the asset",
       options: [
@@ -1708,6 +1775,51 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-asset-filter",
+      description: "Deletes an asset filter",
+      options: [
+        {
+          name: "--asset-identifier",
+          description: "The ID of the data asset",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--domain-identifier",
+          description:
+            "The ID of the domain where you want to delete an asset filter",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--identifier",
+          description: "The ID of the asset filter that you want to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-asset-type",
       description: "Deletes an asset type in Amazon DataZone",
       options: [
@@ -2511,6 +2623,51 @@ const completionSpec: Fig.Spec = {
         {
           name: "--revision",
           description: "The revision of the Amazon DataZone asset",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-asset-filter",
+      description: "Gets an asset filter",
+      options: [
+        {
+          name: "--asset-identifier",
+          description: "The ID of the data asset",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--domain-identifier",
+          description:
+            "The ID of the domain where you want to get an asset filter",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--identifier",
+          description: "The ID of the asset filter",
           args: {
             name: "string",
           },
@@ -3496,6 +3653,91 @@ const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-asset-filters",
+      description: "Lists asset filters",
+      options: [
+        {
+          name: "--asset-identifier",
+          description: "The ID of the data asset",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--domain-identifier",
+          description:
+            "The ID of the domain where you want to list asset filters",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of asset filters to return in a single call to ListAssetFilters. When the number of asset filters to be listed is greater than the value of MaxResults, the response contains a NextToken value that you can use in a subsequent call to ListAssetFilters to list the next set of asset filters",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "When the number of asset filters is greater than the default value for the MaxResults parameter, or if you explicitly specify a value for MaxResults that is less than the number of asset filters, the response includes a pagination token named NextToken. You can specify this NextToken value in a subsequent call to ListAssetFilters to list the next set of asset filters",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--status",
+          description: "The status of the asset filter",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -5624,6 +5866,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--provisioning-configurations",
+          description: "The provisioning configuration of a blueprint",
+          args: {
+            name: "list",
+          },
+        },
+        {
           name: "--provisioning-role-arn",
           description: "The ARN of the provisioning role",
           args: {
@@ -6497,6 +6746,72 @@ const completionSpec: Fig.Spec = {
           description: "Specifies the tag keys for the UntagResource action",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-asset-filter",
+      description: "Updates an asset filter",
+      options: [
+        {
+          name: "--asset-identifier",
+          description: "The ID of the data asset",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--configuration",
+          description: "The configuration of the asset filter",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--description",
+          description: "The description of the asset filter",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--domain-identifier",
+          description:
+            "The ID of the domain where you want to update an asset filter",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--identifier",
+          description: "The ID of the asset filter",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--name",
+          description: "The name of the asset filter",
+          args: {
+            name: "string",
           },
         },
         {

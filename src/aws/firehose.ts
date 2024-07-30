@@ -128,6 +128,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--iceberg-destination-configuration",
+          description:
+            "Configure Apache Iceberg Tables destination.  Amazon Data Firehose is in preview release and is subject to change",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -648,6 +656,14 @@ const completionSpec: Fig.Spec = {
           name: "--snowflake-destination-update",
           description:
             "Update to the Snowflake destination configuration settings",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--iceberg-destination-update",
+          description:
+            "Describes an update for a destination in Apache Iceberg Tables.  Amazon Data Firehose is in preview release and is subject to change",
           args: {
             name: "structure",
           },

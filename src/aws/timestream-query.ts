@@ -635,7 +635,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--query-pricing-model",
-          description: "The pricing model for queries in an account",
+          description:
+            "The pricing model for queries in an account.  The QueryPricingModel parameter is used by several Timestream operations; however, the UpdateAccountSettings API operation doesn't recognize any values other than COMPUTE_UNITS",
           args: {
             name: "string",
           },

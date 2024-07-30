@@ -1116,7 +1116,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "audit-report-created",
           description:
-            "Wait until a Audit Report is created It will poll every 3 seconds until a successful state has been reached. This will exit with a return code of 255 after 40 failed checks",
+            "Wait until a Audit Report is created It will poll every 3 seconds until a successful state has been reached. This will exit with a return code of 255 after 60 failed checks",
           options: [
             {
               name: "--certificate-authority-arn",
@@ -1156,7 +1156,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "certificate-authority-csr-created",
           description:
-            "Wait until a Certificate Authority CSR is created It will poll every 3 seconds until a successful state has been reached. This will exit with a return code of 255 after 40 failed checks",
+            "Wait until a Certificate Authority CSR is created It will poll every 3 seconds until a successful state has been reached. This will exit with a return code of 255 after 60 failed checks",
           options: [
             {
               name: "--certificate-authority-arn",
@@ -1188,7 +1188,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "certificate-issued",
           description:
-            "Wait until a certificate is issued It will poll every 1 seconds until a successful state has been reached. This will exit with a return code of 255 after 120 failed checks",
+            "Wait until a certificate is issued It will poll every 1 seconds until a successful state has been reached. This will exit with a return code of 255 after 60 failed checks",
           options: [
             {
               name: "--certificate-authority-arn",
