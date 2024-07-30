@@ -28,10 +28,10 @@ const completionSpec: Fig.Spec = {
         }
       })(),
       (async () => {
-        if (await fileExists(executeShellCommand, "anotherCommand")) {
+        if (await fileExists(executeShellCommand, "bin/console")) {
           subcommands.push({
-            name: "anotherCommand",
-            loadSpec: "php/anotherCommand",
+            name: "bin/console",
+            loadSpec: "php/bin-console",
           });
         }
       })(),
