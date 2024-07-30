@@ -17,24 +17,24 @@ const completionSpec: Fig.Spec = {
     const subcommands = [];
 
     await Promise.all([
-      async () => {
+      (async () => {
         if (await fileExists(executeShellCommand, "artisan")) {
           subcommands.push({ name: "artisan", loadSpec: "php/artisan" });
         }
-      },
-      async () => {
+      })(),
+      (async () => {
         if (await fileExists(executeShellCommand, "please")) {
           subcommands.push({ name: "please", loadSpec: "php/please" });
         }
-      },
-      async () => {
-        if (await fileExists(executeShellCommand, "bin/console")) {
+      })(),
+      (async () => {
+        if (await fileExists(executeShellCommand, "anotherCommand")) {
           subcommands.push({
-            name: "bin/console",
-            loadSpec: "php/bin-console",
+            name: "anotherCommand",
+            loadSpec: "php/anotherCommand",
           });
         }
-      },
+      })(),
     ]);
 
     return {
