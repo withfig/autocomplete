@@ -102,7 +102,7 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["-b", "-remote-branch"],
+          name: ["-b", "--remote-branch"],
           description:
             "The remote branch to commit to for GitHub Pages. This overrides the value specified in config",
           args: {
