@@ -255,7 +255,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--upstream-registry-url",
           description:
-            "The registry URL of the upstream public registry to use as the source for the pull through cache rule. The following is the syntax to use for each supported upstream registry.   Amazon ECR Public (ecr-public) - public.ecr.aws    Docker Hub (docker-hub) - registry-1.docker.io    Quay (quay) - quay.io    Kubernetes (k8s) - registry.k8s.io    GitHub Container Registry (github-container-registry) - ghcr.io    Microsoft Azure Container Registry (azure-container-registry) - <custom>.azurecr.io    GitLab Container Registry (gitlab-container-registry) - registry.gitlab.com",
+            "The registry URL of the upstream public registry to use as the source for the pull through cache rule. The following is the syntax to use for each supported upstream registry.   Amazon ECR Public (ecr-public) - public.ecr.aws    Docker Hub (docker-hub) - registry-1.docker.io    Quay (quay) - quay.io    Kubernetes (k8s) - registry.k8s.io    GitHub Container Registry (github-container-registry) - ghcr.io    Microsoft Azure Container Registry (azure-container-registry) - <custom>.azurecr.io",
           args: {
             name: "string",
           },
@@ -353,6 +353,101 @@ const completionSpec: Fig.Spec = {
             "The encryption configuration for the repository. This determines how the contents of your repository are encrypted at rest",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-repository-creation-template",
+      description:
+        "Creates a repository creation template. This template is used to define the settings for repositories created by Amazon ECR on your behalf. For example, repositories created through pull through cache actions. For more information, see Private repository creation templates in the Amazon Elastic Container Registry User Guide",
+      options: [
+        {
+          name: "--prefix",
+          description:
+            "The repository namespace prefix to associate with the template. All repositories created using this namespace prefix will have the settings defined in this template applied. For example, a prefix of prod would apply to all repositories beginning with prod/. Similarly, a prefix of prod/team would apply to all repositories beginning with prod/team/. To apply a template to all repositories in your registry that don't have an associated creation template, you can use ROOT as the prefix.  There is always an assumed / applied to the end of the prefix. If you specify ecr-public as the prefix, Amazon ECR treats that as ecr-public/. When using a pull through cache rule, the repository prefix you specify during rule creation is what you should specify as your repository creation template prefix as well",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "A description for the repository creation template",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--encryption-configuration",
+          description:
+            "The encryption configuration to use for repositories created using the template",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--resource-tags",
+          description:
+            "The metadata to apply to the repository to help you categorize and organize. Each tag consists of a key and an optional value, both of which you define. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--image-tag-mutability",
+          description:
+            "The tag mutability setting for the repository. If this parameter is omitted, the default setting of MUTABLE will be used which will allow image tags to be overwritten. If IMMUTABLE is specified, all image tags within the repository will be immutable which will prevent them from being overwritten",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--repository-policy",
+          description:
+            "The repository policy to apply to repositories created using the template. A repository policy is a permissions policy associated with a repository to control access permissions",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--lifecycle-policy",
+          description:
+            "The lifecycle policy to use for repositories created using the template",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--applied-for",
+          description:
+            "A list of enumerable strings representing the Amazon ECR repository creation scenarios that this template will apply towards. The two supported scenarios are PULL_THROUGH_CACHE and REPLICATION",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--custom-role-arn",
+          description:
+            "The ARN of the role to be assumed by Amazon ECR. This role must be in the same account as the registry that you are configuring",
+          args: {
+            name: "string",
           },
         },
         {
@@ -504,6 +599,37 @@ const completionSpec: Fig.Spec = {
           name: "--no-force",
           description:
             "If true, deleting the repository force deletes the contents of the repository. If false, the repository must be empty before attempting to delete it",
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-repository-creation-template",
+      description: "Deletes a repository creation template",
+      options: [
+        {
+          name: "--prefix",
+          description:
+            "The repository namespace prefix associated with the repository creation template",
+          args: {
+            name: "string",
+          },
         },
         {
           name: "--cli-input-json",
@@ -926,6 +1052,78 @@ const completionSpec: Fig.Spec = {
           name: "--max-results",
           description:
             "The maximum number of repository results returned by DescribeRepositories in paginated output. When this parameter is used, DescribeRepositories only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another DescribeRepositories request with the returned nextToken value. This value can be between 1 and 1000. If this parameter is not used, then DescribeRepositories returns up to 100 results and a nextToken value, if applicable. This option cannot be used when you specify repositories with repositoryNames",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-repository-creation-templates",
+      description:
+        "Returns details about the repository creation templates in a registry. The prefixes request parameter can be used to return the details for a specific repository creation template",
+      options: [
+        {
+          name: "--prefixes",
+          description:
+            "The repository namespace prefixes associated with the repository creation templates to describe. If this value is not specified, all repository creation templates are returned",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The nextToken value returned from a previous paginated DescribeRepositoryCreationTemplates request where maxResults was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the nextToken value. This value is null when there are no more results to return.  This token should be treated as an opaque identifier that is only used to retrieve the next items in a list and not for other programmatic purposes",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of repository results returned by DescribeRepositoryCreationTemplatesRequest in paginated output. When this parameter is used, DescribeRepositoryCreationTemplatesRequest only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another DescribeRepositoryCreationTemplatesRequest request with the returned nextToken value. This value can be between 1 and 1000. If this parameter is not used, then DescribeRepositoryCreationTemplatesRequest returns up to 100 results and a nextToken value, if applicable",
           args: {
             name: "integer",
           },
@@ -1717,7 +1915,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-replication-configuration",
       description:
-        "Creates or updates the replication configuration for a registry. The existing replication configuration for a repository can be retrieved with the DescribeRegistry API action. The first time the PutReplicationConfiguration API is called, a service-linked IAM role is created in your account for the replication process. For more information, see Using service-linked roles for Amazon ECR in the Amazon Elastic Container Registry User Guide.  When configuring cross-account replication, the destination account must grant the source account permission to replicate. This permission is controlled using a registry permissions policy. For more information, see PutRegistryPolicy",
+        "Creates or updates the replication configuration for a registry. The existing replication configuration for a repository can be retrieved with the DescribeRegistry API action. The first time the PutReplicationConfiguration API is called, a service-linked IAM role is created in your account for the replication process. For more information, see Using service-linked roles for Amazon ECR in the Amazon Elastic Container Registry User Guide. For more information on the custom role for replication, see Creating an IAM role for replication.  When configuring cross-account replication, the destination account must grant the source account permission to replicate. This permission is controlled using a registry permissions policy. For more information, see PutRegistryPolicy",
       options: [
         {
           name: "--replication-configuration",
@@ -2000,6 +2198,100 @@ const completionSpec: Fig.Spec = {
           name: "--credential-arn",
           description:
             "The Amazon Resource Name (ARN) of the Amazon Web Services Secrets Manager secret that identifies the credentials to authenticate to the upstream registry",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-repository-creation-template",
+      description: "Updates an existing repository creation template",
+      options: [
+        {
+          name: "--prefix",
+          description:
+            "The repository namespace prefix that matches an existing repository creation template in the registry. All repositories created using this namespace prefix will have the settings defined in this template applied. For example, a prefix of prod would apply to all repositories beginning with prod/. This includes a repository named prod/team1 as well as a repository named prod/repository1. To apply a template to all repositories in your registry that don't have an associated creation template, you can use ROOT as the prefix",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "A description for the repository creation template",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--encryption-configuration",
+          description:
+            "The encryption configuration to associate with the repository creation template",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--resource-tags",
+          description:
+            "The metadata to apply to the repository to help you categorize and organize. Each tag consists of a key and an optional value, both of which you define. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--image-tag-mutability",
+          description:
+            "Updates the tag mutability setting for the repository. If this parameter is omitted, the default setting of MUTABLE will be used which will allow image tags to be overwritten. If IMMUTABLE is specified, all image tags within the repository will be immutable which will prevent them from being overwritten",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--repository-policy",
+          description:
+            "Updates the repository policy created using the template. A repository policy is a permissions policy associated with a repository to control access permissions",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--lifecycle-policy",
+          description:
+            "Updates the lifecycle policy associated with the specified repository creation template",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--applied-for",
+          description:
+            "Updates the list of enumerable strings representing the Amazon ECR repository creation scenarios that this template will apply towards. The two supported scenarios are PULL_THROUGH_CACHE and REPLICATION",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--custom-role-arn",
+          description:
+            "The ARN of the role to be assumed by Amazon ECR. This role must be in the same account as the registry that you are configuring",
           args: {
             name: "string",
           },

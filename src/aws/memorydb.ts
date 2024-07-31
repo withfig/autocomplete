@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "memorydb",
   description:
-    "MemoryDB for Redis is a fully managed, Redis-compatible, in-memory database that delivers ultra-fast performance and Multi-AZ durability for modern applications built using microservices architectures. MemoryDB stores the entire database in-memory, enabling low latency and high throughput data access. It is compatible with Redis, a popular open source data store, enabling you to leverage Redis\u2019 flexible and friendly data structures, APIs, and commands",
+    "MemoryDB is a fully managed, Redis OSS-compatible, in-memory database that delivers ultra-fast performance and Multi-AZ durability for modern applications built using microservices architectures. MemoryDB stores the entire database in-memory, enabling low latency and high throughput data access. It is compatible with Redis OSS, a popular open source data store, enabling you to leverage Redis OSS\u2019 flexible and friendly data structures, APIs, and commands",
   subcommands: [
     {
       name: "batch-update-cluster",
@@ -309,7 +309,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--engine-version",
           description:
-            "The version number of the Redis engine to be used for the cluster",
+            "The version number of the Redis OSS engine to be used for the cluster",
           args: {
             name: "string",
           },
@@ -915,11 +915,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "describe-engine-versions",
-      description: "Returns a list of the available Redis engine versions",
+      description: "Returns a list of the available Redis OSS engine versions",
       options: [
         {
           name: "--engine-version",
-          description: "The Redis engine version",
+          description: "The Redis OSS engine version",
           args: {
             name: "string",
           },

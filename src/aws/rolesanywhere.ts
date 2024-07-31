@@ -9,6 +9,16 @@ const completionSpec: Fig.Spec = {
         "Creates a profile, a list of the roles that Roles Anywhere service is trusted to assume. You use profiles to intersect permissions with IAM managed policies.  Required permissions:  rolesanywhere:CreateProfile",
       options: [
         {
+          name: "--accept-role-session-name",
+          description:
+            "Used to determine if a custom role session name will be accepted in a temporary credential request",
+        },
+        {
+          name: "--no-accept-role-session-name",
+          description:
+            "Used to determine if a custom role session name will be accepted in a temporary credential request",
+        },
+        {
           name: "--duration-seconds",
           description:
             "Used to determine how long sessions vended using this profile are valid for. See the Expiration section of the CreateSession API documentation page for more details. In requests, if this value is not provided, the default value will be 3600",
@@ -1176,6 +1186,16 @@ const completionSpec: Fig.Spec = {
       description:
         "Updates a profile, a list of the roles that IAM Roles Anywhere service is trusted to assume. You use profiles to intersect permissions with IAM managed policies.  Required permissions:  rolesanywhere:UpdateProfile",
       options: [
+        {
+          name: "--accept-role-session-name",
+          description:
+            "Used to determine if a custom role session name will be accepted in a temporary credential request",
+        },
+        {
+          name: "--no-accept-role-session-name",
+          description:
+            "Used to determine if a custom role session name will be accepted in a temporary credential request",
+        },
         {
           name: "--duration-seconds",
           description:
