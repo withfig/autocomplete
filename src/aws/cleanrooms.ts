@@ -450,7 +450,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--analysis-rule-policy",
           description:
-            "The entire created configured table analysis rule object",
+            "The analysis rule policy that was created for the configured table",
           args: {
             name: "structure",
           },
@@ -524,6 +524,61 @@ const completionSpec: Fig.Spec = {
             "An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource",
           args: {
             name: "map",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-configured-table-association-analysis-rule",
+      description:
+        "Creates a new analysis rule for an associated configured table",
+      options: [
+        {
+          name: "--membership-identifier",
+          description:
+            "A unique identifier for the membership that the configured table association belongs to. Currently accepts the membership ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--configured-table-association-identifier",
+          description:
+            "The unique ID for the configured table association. Currently accepts the configured table association ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--analysis-rule-type",
+          description: "The type of analysis rule",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--analysis-rule-policy",
+          description:
+            "The analysis rule policy that was created for the configured table association",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -1001,6 +1056,53 @@ const completionSpec: Fig.Spec = {
           name: "--membership-identifier",
           description:
             "A unique identifier for the membership that the configured table association belongs to. Currently accepts the membership ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-configured-table-association-analysis-rule",
+      description:
+        "Deletes an analysis rule for a configured table association",
+      options: [
+        {
+          name: "--membership-identifier",
+          description:
+            "A unique identifier for the membership that the configured table association belongs to. Currently accepts the membership ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--configured-table-association-identifier",
+          description:
+            "The identi\ufb01er for the con\ufb01gured table association that's related to the analysis rule that you want to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--analysis-rule-type",
+          description: "The type of the analysis rule that you want to delete",
           args: {
             name: "string",
           },
@@ -1583,6 +1685,53 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-configured-table-association-analysis-rule",
+      description:
+        "Retrieves the analysis rule for a configured table association",
+      options: [
+        {
+          name: "--membership-identifier",
+          description:
+            "A unique identifier for the membership that the configured table association belongs to. Currently accepts the membership ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--configured-table-association-identifier",
+          description:
+            "The identi\ufb01er for the con\ufb01gured table association that's related to the analysis rule",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--analysis-rule-type",
+          description: "The type of analysis rule that you want to retrieve",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-id-mapping-table",
       description: "Retrieves an ID mapping table",
       options: [
@@ -1865,7 +2014,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The pagination token that's used to fetch the next set of results",
+            "The token value retrieved from a previous call to access the next page of results",
           args: {
             name: "string",
           },
@@ -1873,7 +2022,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
+            "The maximum size of the results that is returned per call",
           args: {
             name: "integer",
           },
@@ -1936,7 +2085,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The pagination token that's used to fetch the next set of results",
+            "The token value retrieved from a previous call to access the next page of results",
           args: {
             name: "string",
           },
@@ -1944,7 +2093,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
+            "The maximum size of the results that is returned per call",
           args: {
             name: "integer",
           },
@@ -2008,7 +2157,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The pagination token that's used to fetch the next set of results",
+            "The token value retrieved from a previous call to access the next page of results",
           args: {
             name: "string",
           },
@@ -2016,7 +2165,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
+            "The maximum size of the results that is returned per call",
           args: {
             name: "integer",
           },
@@ -2151,7 +2300,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The pagination token that's used to fetch the next set of results",
+            "The token value retrieved from a previous call to access the next page of results",
           args: {
             name: "string",
           },
@@ -2159,7 +2308,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
+            "The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met",
           args: {
             name: "integer",
           },
@@ -2229,7 +2378,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
+            "The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met",
           args: {
             name: "integer",
           },
@@ -2237,7 +2386,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The pagination token that's used to fetch the next set of results",
+            "The token value retrieved from a previous call to access the next page of results",
           args: {
             name: "string",
           },
@@ -2293,7 +2442,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The pagination token that's used to fetch the next set of results",
+            "The token value retrieved from a previous call to access the next page of results",
           args: {
             name: "string",
           },
@@ -2301,7 +2450,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
+            "The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met",
           args: {
             name: "integer",
           },
@@ -2372,7 +2521,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The pagination token that's used to fetch the next set of results",
+            "The token value retrieved from a previous call to access the next page of results",
           args: {
             name: "string",
           },
@@ -2380,7 +2529,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
+            "The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met",
           args: {
             name: "integer",
           },
@@ -2443,7 +2592,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The pagination token that's used to fetch the next set of results",
+            "The token value retrieved from a previous call to access the next page of results",
           args: {
             name: "string",
           },
@@ -2451,7 +2600,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
+            "The maximum size of the results that is returned per call",
           args: {
             name: "integer",
           },
@@ -2506,7 +2655,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The pagination token that's used to fetch the next set of results",
+            "The token value retrieved from a previous call to access the next page of results",
           args: {
             name: "string",
           },
@@ -2514,7 +2663,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
+            "The maximum size of the results that is returned per call",
           args: {
             name: "integer",
           },
@@ -2719,7 +2868,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The pagination token that's used to fetch the next set of results",
+            "The token value retrieved from a previous call to access the next page of results",
           args: {
             name: "string",
           },
@@ -2727,7 +2876,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
+            "The maximum size of the results that is returned per call",
           args: {
             name: "integer",
           },
@@ -2783,7 +2932,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The pagination token that's used to fetch the next set of results",
+            "The token value retrieved from a previous call to access the next page of results",
           args: {
             name: "string",
           },
@@ -2791,7 +2940,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
+            "The maximum size of the results that is returned per call",
           args: {
             name: "integer",
           },
@@ -2863,7 +3012,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The pagination token that's used to fetch the next set of results",
+            "The token value retrieved from a previous call to access the next page of results",
           args: {
             name: "string",
           },
@@ -2871,7 +3020,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
+            "The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met",
           args: {
             name: "integer",
           },
@@ -2942,7 +3091,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The pagination token that's used to fetch the next set of results",
+            "The token value retrieved from a previous call to access the next page of results",
           args: {
             name: "string",
           },
@@ -2950,7 +3099,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
+            "The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met",
           args: {
             name: "integer",
           },
@@ -3019,7 +3168,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The pagination token that's used to fetch the next set of results",
+            "The token value retrieved from a previous call to access the next page of results",
           args: {
             name: "string",
           },
@@ -3027,7 +3176,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
+            "The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service can return a nextToken even if the maximum results has not been met",
           args: {
             name: "integer",
           },
@@ -3089,7 +3238,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--schema-type",
-          description: "If present, filter schemas by schema type",
+          description:
+            "If present, filter schemas by schema type. The only valid schema type is currently `TABLE`",
           args: {
             name: "string",
           },
@@ -3097,7 +3247,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The pagination token that's used to fetch the next set of results",
+            "The token value retrieved from a previous call to access the next page of results",
           args: {
             name: "string",
           },
@@ -3105,7 +3255,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
+            "The maximum size of the results that is returned per call",
           args: {
             name: "integer",
           },
@@ -3663,6 +3813,61 @@ const completionSpec: Fig.Spec = {
             "The service will assume this role to access catalog metadata and query the table",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-configured-table-association-analysis-rule",
+      description:
+        "Updates the analysis rule for a configured table association",
+      options: [
+        {
+          name: "--membership-identifier",
+          description:
+            "A unique identifier for the membership that the configured table association belongs to. Currently accepts the membership ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--configured-table-association-identifier",
+          description:
+            "The identifier for the configured table association to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--analysis-rule-type",
+          description: "The analysis rule type that you want to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--analysis-rule-policy",
+          description:
+            "The updated analysis rule policy for the con\ufb01gured table association",
+          args: {
+            name: "structure",
           },
         },
         {

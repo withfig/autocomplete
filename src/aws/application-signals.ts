@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "application-signals",
   description:
-    "This is a Preview release of the Application Signals API Reference. Operations and parameters are subject to change before the general availability release.  Use CloudWatch Application Signals for comprehensive observability of your cloud-based applications. It enables real-time service health dashboards and helps you track long-term performance trends against your business goals. The application-centric view provides you with unified visibility across your applications, services, and dependencies, so you can proactively monitor and efficiently triage any issues that may arise, ensuring optimal customer experience. Application Signals provides the following benefits:   Automatically collect metrics and traces from your applications, and display key metrics such as call volume, availability, latency, faults, and errors.    Create and monitor service level objectives (SLOs).    See a map of your application topology that Application Signals automatically discovers, that gives you a visual representation of your applications, dependencies, and their connectivity",
+    "Use CloudWatch Application Signals for comprehensive observability of your cloud-based applications. It enables real-time service health dashboards and helps you track long-term performance trends against your business goals. The application-centric view provides you with unified visibility across your applications, services, and dependencies, so you can proactively monitor and efficiently triage any issues that may arise, ensuring optimal customer experience. Application Signals provides the following benefits:   Automatically collect metrics and traces from your applications, and display key metrics such as call volume, availability, latency, faults, and errors.    Create and monitor service level objectives (SLOs).    See a map of your application topology that Application Signals automatically discovers, that gives you a visual representation of your applications, dependencies, and their connectivity.   Application Signals works with CloudWatch RUM, CloudWatch Synthetics canaries, and Amazon Web Services Service Catalog AppRegistry, to display your client pages, Synthetics canaries, and application names within dashboards and maps",
   subcommands: [
     {
       name: "batch-get-service-level-objective-budget-report",
@@ -144,7 +144,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--start-time",
           description:
-            "The start of the time period to retrieve information about. When used in a raw HTTP Query API, it is formatted as be epoch time in seconds. For example: 1698778057",
+            "The start of the time period to retrieve information about. When used in a raw HTTP Query API, it is formatted as be epoch time in seconds. For example: 1698778057  Your requested start time will be rounded to the nearest hour",
           args: {
             name: "timestamp",
           },
@@ -152,7 +152,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--end-time",
           description:
-            "The end of the time period to retrieve information about. When used in a raw HTTP Query API, it is formatted as be epoch time in seconds. For example: 1698778057",
+            "The end of the time period to retrieve information about. When used in a raw HTTP Query API, it is formatted as be epoch time in seconds. For example: 1698778057  Your requested start time will be rounded to the nearest hour",
           args: {
             name: "timestamp",
           },
@@ -223,7 +223,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--start-time",
           description:
-            "The start of the time period to retrieve information about. When used in a raw HTTP Query API, it is formatted as be epoch time in seconds. For example: 1698778057",
+            "The start of the time period to retrieve information about. When used in a raw HTTP Query API, it is formatted as be epoch time in seconds. For example: 1698778057  Your requested start time will be rounded to the nearest hour",
           args: {
             name: "timestamp",
           },
@@ -231,7 +231,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--end-time",
           description:
-            "The end of the time period to retrieve information about. When used in a raw HTTP Query API, it is formatted as be epoch time in seconds. For example: 1698778057",
+            "The end of the time period to retrieve information about. When used in a raw HTTP Query API, it is formatted as be epoch time in seconds. For example: 1698778057  Your requested end time will be rounded to the nearest hour",
           args: {
             name: "timestamp",
           },
@@ -311,7 +311,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--start-time",
           description:
-            "The start of the time period to retrieve information about. When used in a raw HTTP Query API, it is formatted as be epoch time in seconds. For example: 1698778057",
+            "The start of the time period to retrieve information about. When used in a raw HTTP Query API, it is formatted as be epoch time in seconds. For example: 1698778057  Your requested start time will be rounded to the nearest hour",
           args: {
             name: "timestamp",
           },
@@ -319,7 +319,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--end-time",
           description:
-            "The end of the time period to retrieve information about. When used in a raw HTTP Query API, it is formatted as be epoch time in seconds. For example: 1698778057",
+            "The end of the time period to retrieve information about. When used in a raw HTTP Query API, it is formatted as be epoch time in seconds. For example: 1698778057  Your requested start time will be rounded to the nearest hour",
           args: {
             name: "timestamp",
           },
@@ -478,7 +478,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--start-time",
           description:
-            "The start of the time period to retrieve information about. When used in a raw HTTP Query API, it is formatted as be epoch time in seconds. For example: 1698778057",
+            "The start of the time period to retrieve information about. When used in a raw HTTP Query API, it is formatted as be epoch time in seconds. For example: 1698778057  Your requested start time will be rounded to the nearest hour",
           args: {
             name: "timestamp",
           },
@@ -486,7 +486,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--end-time",
           description:
-            "The end of the time period to retrieve information about. When used in a raw HTTP Query API, it is formatted as be epoch time in seconds. For example: 1698778057",
+            "The end of the time period to retrieve information about. When used in a raw HTTP Query API, it is formatted as be epoch time in seconds. For example: 1698778057  Your requested end time will be rounded to the nearest hour",
           args: {
             name: "timestamp",
           },
@@ -566,7 +566,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--start-time",
           description:
-            "The start of the time period to retrieve information about. When used in a raw HTTP Query API, it is formatted as be epoch time in seconds. For example: 1698778057",
+            "The start of the time period to retrieve information about. When used in a raw HTTP Query API, it is formatted as be epoch time in seconds. For example: 1698778057  Your requested start time will be rounded to the nearest hour",
           args: {
             name: "timestamp",
           },
@@ -574,7 +574,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--end-time",
           description:
-            "The end of the time period to retrieve information about. When used in a raw HTTP Query API, it is formatted as be epoch time in seconds. For example: 1698778057",
+            "The end of the time period to retrieve information about. When used in a raw HTTP Query API, it is formatted as be epoch time in seconds. For example: 1698778057  Your requested start time will be rounded to the nearest hour",
           args: {
             name: "timestamp",
           },

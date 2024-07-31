@@ -3002,6 +3002,45 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-environment-credentials",
+      description: "Gets the credentials of an environment in Amazon DataZone",
+      options: [
+        {
+          name: "--domain-identifier",
+          description:
+            "The ID of the Amazon DataZone domain in which this environment and its credentials exist",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--environment-identifier",
+          description:
+            "The ID of the environment whose credentials this operation gets",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-environment-profile",
       description: "Gets an evinronment profile in Amazon DataZone",
       options: [

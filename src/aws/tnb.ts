@@ -248,7 +248,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-sol-function-instance",
       description:
-        "Gets the details of a network function instance, including the instantation state and metadata from the function package descriptor in the network function package. A network function instance is a function in a function package",
+        "Gets the details of a network function instance, including the instantiation state and metadata from the function package descriptor in the network function package. A network function instance is a function in a function package",
       options: [
         {
           name: "--vnf-instance-id",
@@ -543,7 +543,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. When you use this API, the tags are transferred to the network operation that is created. Use tags to search and filter your resources or track your Amazon Web Services costs",
+            "A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. When you use this API, the tags are only applied to the network operation that is created. These tags are not applied to the network instance. Use tags to search and filter your resources or track your Amazon Web Services costs",
           args: {
             name: "map",
           },
@@ -772,6 +772,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description: "The token for the next page of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--ns-instance-id",
+          description:
+            "Network instance id filter, to retrieve network operations associated to a network instance",
           args: {
             name: "string",
           },
@@ -1056,7 +1064,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. When you use this API, the tags are transferred to the network operation that is created. Use tags to search and filter your resources or track your Amazon Web Services costs",
+            "A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. When you use this API, the tags are only applied to the network operation that is created. These tags are not applied to the network instance. Use tags to search and filter your resources or track your Amazon Web Services costs",
           args: {
             name: "map",
           },
@@ -1159,12 +1167,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-sol-network-instance",
       description:
-        "Update a network instance. A network instance is a single network created in Amazon Web Services TNB that can be deployed and on which life-cycle operations (like terminate, update, and delete) can be performed",
+        "Update a network instance. A network instance is a single network created in Amazon Web Services TNB that can be deployed and on which life-cycle operations (like terminate, update, and delete) can be performed. Choose the updateType parameter to target the necessary update of the network instance",
       options: [
         {
           name: "--modify-vnf-info-data",
           description:
-            "Identifies the network function information parameters and/or the configurable properties of the network function to be modified",
+            "Identifies the network function information parameters and/or the configurable properties of the network function to be modified. Include this property only if the update type is MODIFY_VNF_INFORMATION",
           args: {
             name: "structure",
           },
@@ -1179,14 +1187,23 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. When you use this API, the tags are transferred to the network operation that is created. Use tags to search and filter your resources or track your Amazon Web Services costs",
+            "A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. When you use this API, the tags are only applied to the network operation that is created. These tags are not applied to the network instance. Use tags to search and filter your resources or track your Amazon Web Services costs",
           args: {
             name: "map",
           },
         },
         {
+          name: "--update-ns",
+          description:
+            "Identifies the network service descriptor and the configurable properties of the descriptor, to be used for the update. Include this property only if the update type is UPDATE_NS",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--update-type",
-          description: "The type of update",
+          description:
+            "The type of update.   Use the MODIFY_VNF_INFORMATION update type, to update a specific network function configuration, in the network instance.   Use the UPDATE_NS update type, to update the network instance to a new network service descriptor",
           args: {
             name: "string",
           },

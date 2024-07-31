@@ -679,6 +679,43 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-shared-trust-store-association",
+      description: "Deletes a shared trust store association",
+      options: [
+        {
+          name: "--trust-store-arn",
+          description: "The Amazon Resource Name (ARN) of the trust store",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--resource-arn",
+          description: "The Amazon Resource Name (ARN) of the resource",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-target-group",
       description:
         "Deletes the specified target group. You can delete a target group if it is not referenced by any actions. Deleting a target group also deletes any associated health checks. Deleting a target group does not affect its registered targets. For example, any EC2 instances continue to run until you stop or terminate them",
@@ -1371,7 +1408,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--include",
-          description: "Used to inclue anomaly detection information",
+          description: "Used to include anomaly detection information",
           args: {
             name: "list",
           },
@@ -1444,7 +1481,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-trust-store-revocations",
       description:
-        "Describes the revocation files in use by the specified trust store arn, or revocation ID",
+        "Describes the revocation files in use by the specified trust store or revocation files",
       options: [
         {
           name: "--trust-store-arn",
@@ -1497,8 +1534,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "describe-trust-stores",
-      description:
-        "Describes all trust stores for a given account by trust store arn\u2019s or name",
+      description: "Describes all trust stores for the specified account",
       options: [
         {
           name: "--trust-store-arns",
@@ -1527,6 +1563,36 @@ const completionSpec: Fig.Spec = {
           description: "The maximum number of results to return with this call",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-resource-policy",
+      description: "Retrieves the resource policy for a specified resource",
+      options: [
+        {
+          name: "--resource-arn",
+          description: "The Amazon Resource Name (ARN) of the resource",
+          args: {
+            name: "string",
           },
         },
         {
@@ -1928,7 +1994,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "modify-trust-store",
-      description: "Update the ca certificate bundle for a given trust store",
+      description:
+        "Update the ca certificate bundle for the specified trust store",
       options: [
         {
           name: "--trust-store-arn",
@@ -2147,7 +2214,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ip-address-type",
           description:
-            "Note: Internal load balancers must use the ipv4 IP address type. [Application Load Balancers] The IP address type. The possible values are ipv4 (for only IPv4 addresses), dualstack (for IPv4 and IPv6 addresses), and dualstack-without-public-ipv4 (for IPv6 only public addresses, with private IPv4 and IPv6 addresses). [Network Load Balancers] The IP address type. The possible values are ipv4 (for only IPv4 addresses) and dualstack (for IPv4 and IPv6 addresses). You can\u2019t specify dualstack for a load balancer with a UDP or TCP_UDP listener. [Gateway Load Balancers] The IP address type. The possible values are ipv4 (for only IPv4 addresses) and dualstack (for IPv4 and IPv6 addresses)",
+            "Note: Internal load balancers must use the ipv4 IP address type. [Application Load Balancers] The IP address type. The possible values are ipv4 (for only IPv4 addresses), dualstack (for IPv4 and IPv6 addresses), and dualstack-without-public-ipv4 (for IPv6 only public addresses, with private IPv4 and IPv6 addresses). Note: Application Load Balancer authentication only supports IPv4 addresses when connecting to an Identity Provider (IdP) or Amazon Cognito endpoint. Without a public IPv4 address the load balancer cannot complete the authentication process, resulting in HTTP 500 errors. [Network Load Balancers] The IP address type. The possible values are ipv4 (for only IPv4 addresses) and dualstack (for IPv4 and IPv6 addresses). You can\u2019t specify dualstack for a load balancer with a UDP or TCP_UDP listener. [Gateway Load Balancers] The IP address type. The possible values are ipv4 (for only IPv4 addresses) and dualstack (for IPv4 and IPv6 addresses)",
           args: {
             name: "string",
           },
@@ -2542,7 +2609,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--include",
-              description: "Used to inclue anomaly detection information",
+              description: "Used to include anomaly detection information",
               args: {
                 name: "list",
               },
@@ -2587,7 +2654,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--include",
-              description: "Used to inclue anomaly detection information",
+              description: "Used to include anomaly detection information",
               args: {
                 name: "list",
               },
