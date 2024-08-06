@@ -108,6 +108,7 @@ const completionSpec: Fig.Spec = {
                     'data',
                     'initial-build',
                     'q',
+                    'git-hooks',
                     'finish',
                 ],
             },
