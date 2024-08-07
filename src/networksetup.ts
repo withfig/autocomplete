@@ -744,6 +744,44 @@ const completionSpec: Fig.Spec = {
         isVariadic: true,
       },
     },
+    {
+      name: "-setMTUAndMediaAutomatically",
+      description:
+        "Set hardwareport or device specified back to automatically setting the MTU and Media",
+      args: {
+        name: "hardwarePort",
+        generators: hardwareports,
+      },
+    },
+    {
+      name: "-getMTU",
+      description: "Get the MTU value for hardwareport or device specified",
+      args: {
+        name: "hardwarePort",
+        generators: hardwareports,
+      },
+    },
+    {
+      name: "-setMTU",
+      description: "Set MTU for hardwareport or device specified",
+      args: [
+        { name: "hardwarePort", generators: hardwareports },
+        {
+          name: "value",
+          description:
+            "The MTU value to set, typically an integer representing the maximum packet size",
+        },
+      ],
+    },
+    {
+      name: "-listValidMTURange",
+      description:
+        "List the valid MTU range for hardwareport or device specified",
+      args: {
+        name: "hardwareport",
+        generators: hardwareports,
+      },
+    },
   ],
 };
 
