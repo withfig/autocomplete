@@ -1086,6 +1086,19 @@ const completionSpec: Fig.Spec = {
         generators: locations,
       },
     },
+    {
+      name: "-version",
+      description: "Displays version of networksetup tool",
+    },
+    {
+      name: "-help",
+      description:
+        "Displays a list of all the commands available in the Network Setup Tool, with explanatory information",
+    },
+    {
+      name: "-printcommands",
+      description: "Displays a list of commands with no detail",
+    },
   ],
 };
 
