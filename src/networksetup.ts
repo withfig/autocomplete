@@ -141,6 +141,39 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "-getadditionalroutes",
+      description:
+        "Use this command to display the list of additional IPv4 routes configured for the service",
+      args: {
+        name: "networkservice",
+        generators: networkservices,
+      },
+    },
+    {
+      name: "-setadditionalroutes",
+      description:
+        "Use this command to set the list of IPv4 additional routes configured for the service. Each route is specified as a (destination address, subnet mask, gateway address) tuple. Specifying no tuples clears the list of routes",
+      args: [
+        { name: "networkservice", generators: networkservices },
+        {
+          name: "dest mask gate",
+          description:
+            "One or more tuples of (destination address, subnet mask, gateway address). Specify 'Empty' to clear routes",
+          isOptional: true,
+          isVariadic: true,
+        },
+      ],
+    },
+    {
+      name: "-setv4off",
+      description:
+        "Use this command to turn IPv4 off on the specified <networkservice>",
+      args: {
+        name: "networkservice",
+        generators: networkservices,
+      },
+    },
   ],
 };
 
