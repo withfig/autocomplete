@@ -39,6 +39,23 @@ const networkservices: Fig.Generator = {
   },
 };
 
+const wirelessInterfaces: Fig.Generator = {
+  script: ["networksetup", "-listallhardwareports"],
+  postProcess: (out) => {
+    const suggestions: Fig.Suggestion[] = [];
+    const re = /^Hardware Port: (.*?)\n.*?Device: (.*?)$/gms;
+    for (const match of out.matchAll(re)) {
+      if (match[1] === "Wi-Fi") {
+        suggestions.push({
+          name: match[2],
+          description: `Hardwareport: ${match[1]}`,
+        });
+      }
+    }
+    return suggestions;
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "networksetup",
   description: "Configuration tool for network settings in System Preferences",
@@ -548,6 +565,47 @@ const completionSpec: Fig.Spec = {
         name: "networkservice",
         generators: networkservices,
       },
+    },
+    {
+      name: "-getairportnetwork",
+      description: "Displays current Wi-Fi Network",
+      args: {
+        name: "hardwareport",
+        generators: wirelessInterfaces,
+      },
+    },
+    {
+      name: "-setairportnetwork",
+      description:
+        "Set Wi-Fi Network to <network> using optional [password] if specified",
+      args: [
+        { name: "hardwareport", generators: wirelessInterfaces },
+        {
+          name: "network",
+          description: "The name of the Wi-Fi network to connect to",
+        },
+        {
+          name: "password",
+          description: "Optional password for the Wi-Fi network",
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "-getairportpower",
+      description: "Displays whether Wi-Fi power is on or off",
+      args: {
+        name: "hardwareport",
+        generators: wirelessInterfaces,
+      },
+    },
+    {
+      name: "-setairportpower",
+      description: "Set Wi-Fi power to either <on> or <off>",
+      args: [
+        { name: "hardwareport", generators: wirelessInterfaces },
+        { name: "on | off", suggestions: ["on", "off"] },
+      ],
     },
   ],
 };
