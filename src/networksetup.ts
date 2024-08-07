@@ -14,7 +14,7 @@ const hardwareports: Fig.Generator = {
 };
 
 const networkservices: Fig.Generator = {
-  script: ["networksetup2", "-listallnetworkservices"],
+  script: ["networksetup", "-listallnetworkservices"],
   postProcess: (out) => {
     const suggestions: Fig.Suggestion[] = [];
     const lines = out.split("\n");
