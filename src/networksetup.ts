@@ -672,6 +672,78 @@ const completionSpec: Fig.Spec = {
         generators: wirelessInterfaces,
       },
     },
+    {
+      name: "-getnetworkserviceenabled",
+      description:
+        "Displays whether a service is on or off (enabled or disabled)",
+      args: {
+        name: "networkservice",
+        generators: networkservices,
+      },
+    },
+    {
+      name: "-setnetworkserviceenabled",
+      description:
+        "Use this command to turn the specified network service on or off (enable or disable)",
+      args: [
+        { name: "networkservice", generators: networkservices },
+        { name: "on | off", suggestions: ["on", "off"] },
+      ],
+    },
+    {
+      name: "-createnetworkservice",
+      description:
+        "Create a service named <networkservice> on port <hardwareport>. The new service will be enabled by default",
+      args: [
+        {
+          name: "networkservicename",
+          description: "The name for the new network service",
+        },
+        { name: "hardwareport", generators: hardwareports },
+      ],
+    },
+    {
+      name: "-renamenetworkservice",
+      description:
+        "Use this command to rename the specified network service <networkservice> to <newnetworkservicename>",
+      args: [
+        { name: "networkservice", generators: networkservices },
+        {
+          name: "newnetworkservicename",
+          description: "The new name for the network service",
+        },
+      ],
+    },
+    {
+      name: "-duplicatenetworkservice",
+      description:
+        "Use this command to duplicate an existing network service <networkservice> and rename it to the specified name <newnetworkservicename>",
+      args: [
+        { name: "networkservice", generators: networkservices },
+        {
+          name: "newnetworkservicename",
+          description: "The new name for the duplicated network service",
+        },
+      ],
+    },
+    {
+      name: "-removenetworkservice",
+      description:
+        "Use this command to delete a network service <networkservice>. You cannot use this command to delete the last remaining service for a hardware port. To do so, you use the -setnetworkserviceenabled command",
+      args: {
+        name: "networkservice",
+        generators: networkservices,
+      },
+    },
+    {
+      name: "-ordernetworkservices",
+      description: `Use this command to designate the order network services are contacted on the specified hardware port. Name the network you want contacted first, then the second, and so on. Use "listnetworkserviceorder" to view current service order. Note: use quotes around service names which contain spaces (ie. "Built-in Ethernet")`,
+      args: {
+        name: "service",
+        generators: networkservices,
+        isVariadic: true,
+      },
+    },
   ],
 };
 
