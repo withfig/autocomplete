@@ -17,6 +17,11 @@ const completionSpec: Fig.Spec = {
       description:
         "Displays list of hardware ports with corresponding device name and ethernet address",
     },
+    {
+        name: "-detectnewhardware",
+        description:
+          "Detects new network hardware and creates a default network service on the hardware",
+      },
   ],
 };
 
