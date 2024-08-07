@@ -83,6 +83,20 @@ const bonds: Fig.Generator = {
   },
 };
 
+const pppoeServices: Fig.Generator = {
+  script: ["networksetup", "-listpppoeservices"],
+  postProcess: (out) => {
+    const suggestions: Fig.Suggestion[] = [];
+    const lines = out.trim().split("\n");
+    for (const line of lines) {
+      if (line.trim()) {
+        suggestions.push({ name: line.trim(), description: "PPPoE Service" });
+      }
+    }
+    return suggestions;
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "networksetup",
   description: "Configuration tool for network settings in System Preferences",
@@ -942,6 +956,79 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "bond",
         generators: bonds,
+      },
+    },
+    {
+      name: "-listpppoeservices",
+      description: "List all PPPoE services in the current set",
+    },
+    {
+      name: "-showpppoestatus",
+      description:
+        "Display the status of the PPPoE service with the specified name",
+      args: {
+        name: "name",
+        generators: pppoeServices,
+      },
+    },
+    {
+      name: "-createpppoeservice",
+      description:
+        "Create a PPPoE service on the specified device with the service name specified",
+      args: [
+        {
+          name: "device",
+          description: "The network device to create the PPPoE service on",
+          generators: interfaces,
+        },
+        { name: "name", description: "The name for the new PPPoE service" },
+        { name: "account", description: "The PPPoE account name" },
+        { name: "password", description: "The PPPoE account password" },
+        {
+          name: "pppoeName",
+          description: "Optional name for the PPPoE service",
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "-deletepppoeservice",
+      description: "Delete the service",
+      args: {
+        name: "service",
+        generators: pppoeServices,
+      },
+    },
+    {
+      name: "-setpppoeaccountname",
+      description: "Set the account name for the service",
+      args: [
+        { name: "service", generators: pppoeServices },
+        { name: "account", description: "The PPPoE account name" },
+      ],
+    },
+    {
+      name: "-setpppoepassword",
+      description: "Set the password for the service",
+      args: [
+        { name: "service", generators: pppoeServices },
+        { name: "password", description: "The PPPoE account password" },
+      ],
+    },
+    {
+      name: "-connectpppoeservice",
+      description: "Connect the service",
+      args: {
+        name: "service",
+        generators: pppoeServices,
+      },
+    },
+    {
+      name: "-disconnectpppoeservice",
+      description: "Disconnect the service",
+      args: {
+        name: "service",
+        generators: pppoeServices,
       },
     },
   ],
