@@ -782,6 +782,44 @@ const completionSpec: Fig.Spec = {
         generators: hardwareports,
       },
     },
+    {
+      name: "-getMedia",
+      description:
+        "Show both the current setting for media and the active media on hardwareport or device specified",
+      args: {
+        name: "hardwareport",
+        generators: hardwareports,
+      },
+    },
+    {
+      name: "-setMedia",
+      description:
+        "Set media for hardwareport or device specified to subtype. Specify optional [option1] and additional options depending on subtype. Any number of valid options can be specified",
+      args: [
+        { name: "hardwarePort", generators: hardwareports },
+        {
+          name: "subtype",
+          description:
+            "The media subtype to set for the hardware port or device",
+        },
+        {
+          name: "option",
+          description:
+            "Additional options relevant to the <subtype>. Can include multiple values depending on the subtype",
+          isOptional: true,
+          isVariadic: true,
+        },
+      ],
+    },
+    {
+      name: "-listValidMedia",
+      description:
+        "List valid media options for hardwareport or device name. Enumerates available subtypes and options per subtype",
+      args: {
+        name: "hardwareport",
+        generators: hardwareports,
+      },
+    },
   ],
 };
 
