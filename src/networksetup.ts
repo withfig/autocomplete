@@ -238,6 +238,27 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "-getdnsservers",
+      description: "Displays DNS info for <networkservice>",
+      args: {
+        name: "networkservice",
+        generators: networkservices,
+      },
+    },
+    {
+      name: "-setdnsservers",
+      description: `Use this command to specify the IP addresses of servers you want the specified <networkservice> to use to resolve domain names. You can list any number of servers (replace dns1, dns2, and so on with the IP addresses of domain name servers). If you want to clear all DNS entries for the specified network service, type "empty" in place of the DNS server names`,
+      args: [
+        { name: "networkservice", generators: networkservices },
+        {
+          name: "dns",
+          description:
+            "IP addresses of DNS servers. Use 'empty' to clear all DNS entries",
+          isVariadic: true,
+        },
+      ],
+    },
   ],
 };
 
