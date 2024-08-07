@@ -280,6 +280,41 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "-create6to4service",
+      description:
+        "Use this command to create a new 6 to 4 service with name <newnetworkservicename>",
+      args: {
+        name: "newnetworkservicename",
+        description: "The name of the new 6 to 4 service to be created",
+      },
+    },
+    {
+      name: "-set6to4automatic",
+      description:
+        "Use this command to set the 6 to 4 service such that it will get the relay address automatically",
+      args: {
+        name: "newnetworkservicename",
+        description:
+          "The name of the 6 to 4 service to be configured for automatic relay address retrieval",
+      },
+    },
+    {
+      name: "-set6to4manual",
+      description:
+        "Use this command to set the 6 to 4 service such that it will get the relay address manually. Specify the <relayaddress> that you would like to set",
+      args: [
+        {
+          name: "newnetworkservicename",
+          description: "The name of the 6 to 4 service to be configured",
+        },
+        {
+          name: "relayaddress",
+          description:
+            "The manually specified relay address to be used by the 6 to 4 service",
+        },
+      ],
+    },
   ],
 };
 
