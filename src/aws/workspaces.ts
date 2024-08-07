@@ -2591,7 +2591,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--applications",
           description:
-            "If specified, the version of Microsoft Office to subscribe to. Valid only for Windows 10 and 11 BYOL images. For more information about subscribing to Office for BYOL images, see  Bring Your Own Windows Desktop Licenses.    Although this parameter is an array, only one item is allowed at this time.   Windows 11 only supports Microsoft_Office_2019",
+            "If specified, the version of Microsoft Office to subscribe to. Valid only for Windows 10 and 11 BYOL images. For more information about subscribing to Office for BYOL images, see  Bring Your Own Windows Desktop Licenses.    Although this parameter is an array, only one item is allowed at this time.   During the image import process, non-GPU WSP WorkSpaces with Windows 11 support only Microsoft_Office_2019. GPU WSP WorkSpaces with Windows 11 do not support Office installation",
           args: {
             name: "list",
           },

@@ -445,7 +445,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--custom-role-arn",
           description:
-            "The ARN of the role to be assumed by Amazon ECR. This role must be in the same account as the registry that you are configuring",
+            "The ARN of the role to be assumed by Amazon ECR. This role must be in the same account as the registry that you are configuring. Amazon ECR will assume your supplied role when the customRoleArn is specified. When this field isn't specified, Amazon ECR will use the service-linked role for the repository creation template",
           args: {
             name: "string",
           },
@@ -1172,6 +1172,36 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-account-setting",
+      description: "Retrieves the basic scan type version name",
+      options: [
+        {
+          name: "--name",
+          description: "Basic scan type version name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-authorization-token",
       description:
         "Retrieves an authorization token. An authorization token represents your IAM authentication credentials and can be used to access any Amazon ECR registry that your IAM principal has access to. The authorization token is valid for 12 hours. The authorizationToken returned is a base64 encoded string that can be decoded and used in a docker login command to authenticate to a registry. The CLI offers an get-login-password command that simplifies the login process. For more information, see Registry authentication in the Amazon Elastic Container Registry User Guide",
@@ -1603,6 +1633,45 @@ const completionSpec: Fig.Spec = {
           name: "--resource-arn",
           description:
             "The Amazon Resource Name (ARN) that identifies the resource for which to list the tags. Currently, the only supported resource is an Amazon ECR repository",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "put-account-setting",
+      description:
+        "Allows you to change the basic scan type version by setting the name parameter to either CLAIR to AWS_NATIVE",
+      options: [
+        {
+          name: "--name",
+          description: "Basic scan type version name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--value",
+          description:
+            "Setting value that determines what basic scan type is being used: AWS_NATIVE or CLAIR",
           args: {
             name: "string",
           },
@@ -2291,7 +2360,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--custom-role-arn",
           description:
-            "The ARN of the role to be assumed by Amazon ECR. This role must be in the same account as the registry that you are configuring",
+            "The ARN of the role to be assumed by Amazon ECR. This role must be in the same account as the registry that you are configuring. Amazon ECR will assume your supplied role when the customRoleArn is specified. When this field isn't specified, Amazon ECR will use the service-linked role for the repository creation template",
           args: {
             name: "string",
           },
