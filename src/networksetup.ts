@@ -490,6 +490,27 @@ const completionSpec: Fig.Spec = {
         { name: "on | off", suggestions: ["on", "off"] },
       ],
     },
+    {
+      name: "-getproxybypassdomains",
+      description: "Displays Bypass Domain Names for <networkservice>",
+      args: {
+        name: "networkservice",
+        generators: networkservices,
+      },
+    },
+    {
+      name: "-setproxybypassdomains",
+      description: `Set the Bypass Domain Name Servers for <networkservice> to <domain1> [domain2] [...]. Any number of Domain Name servers can be specified. Specify "Empty" for <domain1> to clear all Domain Name entries`,
+      args: [
+        { name: "networkservice", generators: networkservices },
+        {
+          name: "domain",
+          description:
+            "Domains to bypass proxy for. Use 'Empty' to clear all bypass domains",
+          isVariadic: true,
+        },
+      ],
+    },
   ],
 };
 
