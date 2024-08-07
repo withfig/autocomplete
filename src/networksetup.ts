@@ -820,6 +820,42 @@ const completionSpec: Fig.Spec = {
         generators: hardwareports,
       },
     },
+    {
+      name: "-createVLAN",
+      description:
+        "Create a VLAN with the name <name> over the parent device <parentdevice> and with the tag <tag>",
+      args: [
+        { name: "name", description: "The name to assign to the new VLAN" },
+        {
+          name: "parentdevice",
+          description: "The parent device over which the VLAN will be created",
+          generators: hardwareports,
+        },
+        { name: "tag", description: "The VLAN tag to assign to the new VLAN" },
+      ],
+    },
+    {
+      name: "-deleteVLAN",
+      description:
+        "Delete the VLAN with the name <name> over the parent device <parentdevice> and with the tag <tag>",
+      args: [
+        { name: "name", description: "The name of the VLAN to be deleted" },
+        {
+          name: "parentdevice",
+          description: "The parent device on which the VLAN is configured",
+          generators: hardwareports,
+        },
+        { name: "tag", description: "The VLAN tag of the VLAN to be deleted" },
+      ],
+    },
+    {
+      name: "-listVLANs",
+      description: "List the VLANs that have been created",
+    },
+    {
+      name: "-listdevicesthatsupportVLAN",
+      description: "List the devices that support VLANs",
+    },
   ],
 };
 
