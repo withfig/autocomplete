@@ -174,6 +174,70 @@ const completionSpec: Fig.Spec = {
         generators: networkservices,
       },
     },
+    {
+      name: "-setv6off",
+      description:
+        "Use this command to turn IPv6 off on the specified <networkservice>",
+      args: {
+        name: "networkservice",
+        generators: networkservices,
+      },
+    },
+    {
+      name: "-setv6automatic",
+      description:
+        "Use this command to set IPv6 to get its addresses automatically for <networkservice>",
+      args: {
+        name: "networkservice",
+        generators: networkservices,
+      },
+    },
+    {
+      name: "-setv6linklocal",
+      description:
+        "Use this command to set IPv6 to only use link local for <networkservice>",
+      args: {
+        name: "networkservice",
+        generators: networkservices,
+      },
+    },
+    {
+      name: "-setv6manual",
+      description:
+        "Use this command to set IPv6 to get its addresses manually for <networkservice>. Specify the ip address, the prefix length and the router",
+      args: [
+        { name: "ip", description: "The IPv6 address to assign" },
+        {
+          name: "prefixlength",
+          description: "The prefix length for the IPv6 address (e.g., 64)",
+        },
+        { name: "router", description: "The IPv6 address of the router" },
+      ],
+    },
+    {
+      name: "-getv6additionalroutes",
+      description:
+        "Use this command to display the list of additional IPv6 routes configured for the service",
+      args: {
+        name: "networkservice",
+        generators: networkservices,
+      },
+    },
+    {
+      name: "-setv6additionalroutes",
+      description:
+        "Use this command to set the list of additional routes configured for the service. Each route is specified as a (destination address, prefix length, gateway address) tuple. Specifying no tuples clears the list of routes",
+      args: [
+        { name: "networkservice", generators: networkservices },
+        {
+          name: "dest prefixlength gate",
+          description:
+            "The list of routes, each specified as a tuple of destination address, prefix length, and gateway address. Provide multiple routes or omit this to clear all routes",
+          isOptional: true,
+          isVariadic: true,
+        },
+      ],
+    },
   ],
 };
 
