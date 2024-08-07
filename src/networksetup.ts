@@ -56,6 +56,33 @@ const wirelessInterfaces: Fig.Generator = {
   },
 };
 
+const interfaces: Fig.Generator = {
+  script: ["networksetup", "-listallhardwareports"],
+  postProcess: (out) => {
+    const suggestions: Fig.Suggestion[] = [];
+    const re = /^Hardware Port: (.*?)\n.*?Device: (.*?)$/gms;
+    for (const match of out.matchAll(re)) {
+      suggestions.push({
+        name: match[2],
+        description: `Hardwareport: ${match[1]}`,
+      });
+    }
+    return suggestions;
+  },
+};
+
+const bonds: Fig.Generator = {
+  script: ["networksetup", "-listBonds"],
+  postProcess: (out) => {
+    const suggestions: Fig.Suggestion[] = [];
+    const re = /^interface name: (.*?)\n.*?user-defined-name: (.*?)$/gms;
+    for (const match of out.matchAll(re)) {
+      suggestions.push({ name: match[2], description: "Bonds" });
+    }
+    return suggestions;
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "networksetup",
   description: "Configuration tool for network settings in System Preferences",
@@ -855,6 +882,67 @@ const completionSpec: Fig.Spec = {
     {
       name: "-listdevicesthatsupportVLAN",
       description: "List the devices that support VLANs",
+    },
+    {
+      name: "-isBondSupported",
+      description:
+        "Displays YES if the device can be added to a bond. NO if it cannot",
+      args: {
+        name: "device",
+        generators: interfaces,
+      },
+    },
+    {
+      name: "-createBond",
+      description:
+        "Create a bond with the user-defined-name name and optionally add any listed devices if they support bonding",
+      args: [
+        { name: "name", description: "The user-defined name for the new bond" },
+        {
+          name: "device",
+          description:
+            "The devices to include in the bond. Any number of devices can be specified",
+          generators: interfaces,
+          isOptional: true,
+          isVariadic: true,
+        },
+      ],
+    },
+    {
+      name: "-deleteBond",
+      description: "Delete the bond with the specified device-name",
+      args: {
+        name: "bond",
+        generators: bonds,
+      },
+    },
+    {
+      name: "-addDeviceToBond",
+      description: "Add device to bond",
+      args: [
+        { name: "device", generators: interfaces },
+        { name: "bond", generators: bonds },
+      ],
+    },
+    {
+      name: "-removeDeviceFromBond",
+      description: "Remove device from bond",
+      args: [
+        { name: "device", generators: interfaces },
+        { name: "bond", generators: bonds },
+      ],
+    },
+    {
+      name: "-listBonds",
+      description: "List of all bonds",
+    },
+    {
+      name: "-showBondStatus",
+      description: "Display the status of the specified bond",
+      args: {
+        name: "bond",
+        generators: bonds,
+      },
     },
   ],
 };
