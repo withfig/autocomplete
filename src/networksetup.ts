@@ -97,6 +97,23 @@ const pppoeServices: Fig.Generator = {
   },
 };
 
+const locations: Fig.Generator = {
+  script: ["networksetup", "-listlocations"],
+  postProcess: (out) => {
+    const suggestions: Fig.Suggestion[] = [];
+    const lines = out.trim().split("\n");
+    for (const line of lines) {
+      if (line.trim()) {
+        suggestions.push({
+          name: line.trim(),
+          description: "Network Location",
+        });
+      }
+    }
+    return suggestions;
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "networksetup",
   description: "Configuration tool for network settings in System Preferences",
@@ -1029,6 +1046,44 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "service",
         generators: pppoeServices,
+      },
+    },
+    {
+      name: "-listlocations",
+      description: "List all network locations",
+    },
+    {
+      name: "-getcurrentlocation",
+      description: "Display the name of the current set",
+    },
+    {
+      name: "-createlocation",
+      description:
+        "Create a set with the user-defined-name name and optionally populate it with the default services",
+      args: [
+        { name: "location", description: "The name for the new location" },
+        {
+          name: "populate",
+          description:
+            "Specify 'true' to populate with default services or 'false' to create an empty location",
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "-deletelocation",
+      description: "Delete the set",
+      args: {
+        name: "location",
+        generators: locations,
+      },
+    },
+    {
+      name: "-switchtolocation",
+      description: "Make the specified set the current set",
+      args: {
+        name: "location",
+        generators: locations,
       },
     },
   ],
