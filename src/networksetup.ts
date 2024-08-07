@@ -373,6 +373,65 @@ const completionSpec: Fig.Spec = {
         { name: "on | off", suggestions: ["on", "off"] },
       ],
     },
+    {
+      name: "-getsecurewebproxy",
+      description:
+        "Displays Secure Web proxy (server, port, enabled value) info for <networkservice>",
+      args: {
+        name: "networkservice",
+        generators: networkservices,
+      },
+    },
+    {
+      name: "-setsecurewebproxy",
+      description:
+        "Set Secure Web proxy for <networkservice> with <domain> and <port number>. Turns proxy on. Optionally, specify <on> or <off> for <authenticated> to enable and disable authenticated proxy support. Specify <username> and <password> if you turn authenticated proxy support on",
+      args: [
+        { name: "networkservice", generators: networkservices },
+        {
+          name: "domain",
+          description: "The proxy server's domain or IP address",
+        },
+        {
+          name: "portnumber",
+          description: "The port number for the proxy server",
+        },
+        {
+          name: "authenticated",
+          description: "Specify whether proxy authentication is required",
+          isOptional: true,
+          suggestions: [
+            {
+              name: "on",
+              description:
+                "Specify <on> for <authenticated> to enable authenticated proxy support",
+            },
+            {
+              name: "off",
+              description:
+                "Specify <off> for <authenticated> to disable authenticated proxy support",
+            },
+          ],
+        },
+        {
+          name: "username",
+          description: "The username for proxy authentication",
+        },
+        {
+          name: "password",
+          description: "The password for proxy authentication",
+        },
+      ],
+    },
+    {
+      name: "-setsecurewebproxystate",
+      description:
+        "Set Secure Web proxy on <networkservice> to either <on> or <off>",
+      args: [
+        { name: "networkservice", generators: networkservices },
+        { name: "on | off", suggestions: ["on", "off"] },
+      ],
+    },
   ],
 };
 
