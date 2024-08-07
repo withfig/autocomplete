@@ -607,6 +607,71 @@ const completionSpec: Fig.Spec = {
         { name: "on | off", suggestions: ["on", "off"] },
       ],
     },
+    {
+      name: "-listpreferredwirelessnetworks",
+      description: "List the preferred wireless networks for <hardwareport>",
+      args: {
+        name: "hardwareport",
+        generators: wirelessInterfaces,
+      },
+    },
+    {
+      name: "-addpreferredwirelessnetworkatindex",
+      description:
+        "Add wireless network named <network> to preferred list for <hardwareport> at <index>. Store the optional password in the keychain",
+      args: [
+        { name: "hardwareport", generators: wirelessInterfaces },
+        {
+          name: "network",
+          description: "The name of the Wi-Fi network to add",
+        },
+        { name: "index", description: "The position in the preferred list" },
+        {
+          name: "securitytype",
+          description: "The security type of the network",
+          suggestions: [
+            { name: "OPEN", description: "No security" },
+            { name: "WPA", description: "WPA Personal" },
+            { name: "WPA2", description: "WPA2 Personal" },
+            { name: "WPA/WPA2", description: "WPA/WPA2 Personal" },
+            { name: "WPAE", description: "WPA Enterprise" },
+            { name: "WPA2E", description: "WPA2 Enterprise" },
+            {
+              name: "WPAE/WPA2E",
+              description: "WPA/WPA2 Enterprise",
+            },
+            { name: "WEP", description: "Plain WEP" },
+            { name: "8021XWEP", description: "802.1X WEP" },
+          ],
+        },
+        {
+          name: "password",
+          description: "Optional password for the network",
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "-removepreferredwirelessnetwork",
+      description:
+        "Remove <network> from the preferred wireless network list for <hardwareport>",
+      args: [
+        { name: "hardwareport", generators: wirelessInterfaces },
+        {
+          name: "network",
+          description: "The name of the Wi-Fi network to remove",
+        },
+      ],
+    },
+    {
+      name: "-removeallpreferredwirelessnetworks",
+      description:
+        "Remove all networks from the preferred wireless network list for <hardwareport>",
+      args: {
+        name: "hardwareport",
+        generators: wirelessInterfaces,
+      },
+    },
   ],
 };
 
