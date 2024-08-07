@@ -511,6 +511,44 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "-getproxyautodiscovery",
+      description: "Displays Proxy Auto Discover for <networkservice>",
+      args: {
+        name: "networkservice",
+        generators: networkservices,
+      },
+    },
+    {
+      name: "-setproxyautodiscovery",
+      description:
+        "Set Proxy Auto Discover for <networkservice> to either <on> or <off>",
+      args: [
+        { name: "networkservice", generators: networkservices },
+        { name: "on | off", suggestions: ["on", "off"] },
+      ],
+    },
+    {
+      name: "-setautoproxyurl",
+      description:
+        "Set proxy auto-config to url for <networkservice> and enable it",
+      args: [
+        { name: "networkservice", generators: networkservices },
+        {
+          name: "url",
+          description: "The URL of the proxy auto-config (PAC) file",
+        },
+      ],
+    },
+    {
+      name: "-getautoproxyurl",
+      description:
+        "Displays proxy auto-config (url, enabled) info for <networkservice>",
+      args: {
+        name: "networkservice",
+        generators: networkservices,
+      },
+    },
   ],
 };
 
