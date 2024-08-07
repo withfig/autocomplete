@@ -259,6 +259,27 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "-getsearchdomains",
+      description: "Displays Domain Name info for <networkservice>",
+      args: {
+        name: "networkservice",
+        generators: networkservices,
+      },
+    },
+    {
+      name: "-setsearchdomains",
+      description: `Use this command to designate the search domain for the specified <networkservice>. You can list any number of search domains (replace domain1, domain2, and so on with the name of a local domain). If you want to clear all search domain entries for the specified network service, type “empty” in place of the domain name`,
+      args: [
+        { name: "networkservice", generators: networkservices },
+        {
+          name: "domain",
+          description:
+            "List of search domains. Use 'empty' to clear all existing domains",
+          isVariadic: true,
+        },
+      ],
+    },
   ],
 };
 
