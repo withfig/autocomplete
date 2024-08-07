@@ -6,7 +6,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-evaluation-job",
       description:
-        "API operation for creating and managing Amazon Bedrock automatic model evaluation jobs and model evaluation jobs that use human workers. To learn more about the requirements for creating a model evaluation job see, Model evaluations",
+        "API operation for creating and managing Amazon Bedrock automatic model evaluation jobs and model evaluation jobs that use human workers. To learn more about the requirements for creating a model evaluation job see, Model evaluation",
       options: [
         {
           name: "--job-name",
@@ -236,6 +236,69 @@ const completionSpec: Fig.Spec = {
           name: "--client-request-token",
           description:
             "A unique, case-sensitive identifier to ensure that the API request completes no more than once. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see Ensuring idempotency in the Amazon S3 User Guide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-model-copy-job",
+      description:
+        "Copies a model to another region so that it can be used there. For more information, see Copy models to be used in other regions in the Amazon Bedrock User Guide",
+      options: [
+        {
+          name: "--source-model-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the model to be copied",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--target-model-name",
+          description: "A name for the copied model",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--model-kms-key-id",
+          description:
+            "The ARN of the KMS key that you use to encrypt the model copy",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--target-model-tags",
+          description:
+            "Tags to associate with the target model. For more information, see Tag resources in the Amazon Bedrock User Guide",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--client-request-token",
+          description:
+            "A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see Ensuring idempotency",
           args: {
             name: "string",
           },
@@ -614,7 +677,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-evaluation-job",
       description:
-        "Retrieves the properties associated with a model evaluation job, including the status of the job. For more information, see Model evaluations",
+        "Retrieves the properties associated with a model evaluation job, including the status of the job. For more information, see Model evaluation",
       options: [
         {
           name: "--job-identifier",
@@ -690,6 +753,37 @@ const completionSpec: Fig.Spec = {
           name: "--guardrail-version",
           description:
             "The version of the guardrail for which to get details. If you don't specify a version, the response returns details for the DRAFT version",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-model-copy-job",
+      description:
+        "Retrieves information about a model copy job. For more information, see Copy models to be used in other regions in the Amazon Bedrock User Guide",
+      options: [
+        {
+          name: "--job-arn",
+          description: "The Amazon Resource Name (ARN) of the model copy job",
           args: {
             name: "string",
           },
@@ -845,7 +939,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--max-results",
-          description: "Maximum number of results to return in the response",
+          description:
+            "The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the nextToken field when making another request to return the next batch of results",
           args: {
             name: "integer",
           },
@@ -853,7 +948,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "Continuation token from the previous response, for Amazon Bedrock to list the next set of results",
+            "If the total number of results is greater than the maxResults value provided in the request, enter the token returned in the nextToken field in the response in this field to return the next batch of results",
           args: {
             name: "string",
           },
@@ -871,6 +966,16 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "string",
           },
+        },
+        {
+          name: "--is-owned",
+          description:
+            "Return custom models depending on if the current account owns them (true) or if they were shared with the current account (false)",
+        },
+        {
+          name: "--no-is-owned",
+          description:
+            "Return custom models depending on if the current account owns them (true) or if they were shared with the current account (false)",
         },
         {
           name: "--cli-input-json",
@@ -1151,6 +1256,134 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-model-copy-jobs",
+      description:
+        "Returns a list of model copy jobs that you have submitted. You can filter the jobs to return based on one or more criteria. For more information, see Copy models to be used in other regions in the Amazon Bedrock User Guide",
+      options: [
+        {
+          name: "--creation-time-after",
+          description:
+            "Filters for model copy jobs created after the specified time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--creation-time-before",
+          description:
+            "Filters for model copy jobs created before the specified time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--status-equals",
+          description:
+            "Filters for model copy jobs whose status matches the value that you specify",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--source-account-equals",
+          description:
+            "Filters for model copy jobs in which the account that the source model belongs to is equal to the value that you specify",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--source-model-arn-equals",
+          description:
+            "Filters for model copy jobs in which the Amazon Resource Name (ARN) of the source model to is equal to the value that you specify",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--target-model-name-contains",
+          description:
+            "Filters for model copy jobs in which the name of the copied model contains the string that you specify",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the nextToken field when making another request to return the next batch of results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If the total number of results is greater than the maxResults value provided in the request, enter the token returned in the nextToken field in the response in this field to return the next batch of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-by",
+          description:
+            "The field to sort by in the returned list of model copy jobs",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description:
+            "Specifies whether to sort the results in ascending or descending order",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-model-customization-jobs",
       description:
         "Returns a list of model customization jobs that you have submitted. You can filter the jobs to return based on one or more criteria. For more information, see Custom models in the Amazon Bedrock User Guide",
@@ -1188,7 +1421,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--max-results",
-          description: "Maximum number of results to return in the response",
+          description:
+            "The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the nextToken field when making another request to return the next batch of results",
           args: {
             name: "integer",
           },
@@ -1196,7 +1430,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "Continuation token from the previous response, for Amazon Bedrock to list the next set of results",
+            "If the total number of results is greater than the maxResults value provided in the request, enter the token returned in the nextToken field in the response in this field to return the next batch of results",
           args: {
             name: "string",
           },

@@ -602,7 +602,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-cluster",
       description:
-        "Deletes a cluster. It also deletes all associated nodes and node endpoints",
+        "Deletes a cluster. It also deletes all associated nodes and node endpoints   CreateSnapshot permission is required to create a final snapshot. Without this permission, the API call will fail with an Access Denied exception",
       options: [
         {
           name: "--cluster-name",
