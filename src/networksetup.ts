@@ -94,6 +94,53 @@ const completionSpec: Fig.Spec = {
         generators: networkservices,
       },
     },
+    {
+      name: "-setmanual",
+      description:
+        "Set the TCP/IP configuration for <networkservice> to manual with IP address set to <ip>, Subnet Mask set to <subnet>, and Router address set to <router>",
+      args: [
+        { name: "networkservice", generators: networkservices },
+        {
+          name: "ip",
+          description: "The IP address to set for the network service",
+        },
+        { name: "subnet", description: "The subnet mask to apply" },
+        { name: "router", description: "The router address to set" },
+      ],
+    },
+    {
+      name: "-setdhcp",
+      description: `Use this command to set the TCP/IP configuration for the specified <networkservice> to use DHCP. The client ID is optional. Specify "Empty" for [clientid] to clear the DHCP client id`,
+      args: [
+        { name: "networkservice", generators: networkservices },
+        {
+          name: "clientid",
+          description: "Optional DHCP client ID. Use 'Empty' to clear it",
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "-setbootp",
+      description:
+        "Use this command to set the TCP/IP configuration for the specified <networkservice> to use BOOTP",
+      args: {
+        name: "networkservice",
+        generators: networkservices,
+      },
+    },
+    {
+      name: "-setmanualwithdhcprouter",
+      description:
+        "Use this command to specify a manual IP address to use for DHCP for the specified <networkservice>",
+      args: [
+        { name: "networkservice", generators: networkservices },
+        {
+          name: "ip",
+          description: "The IP address to set for the network service",
+        },
+      ],
+    },
   ],
 };
 
