@@ -3,11 +3,15 @@ const getInstalledPackages: Fig.Generator = {
   postProcess: function (out) {
     const lines = out.split("\n");
     const installedPackages = [];
-    for (let i = 2; i < lines.length; i++) {
-      installedPackages.push({
-        name: lines[i],
-        icon: "🐍",
-      });
+    for (let i = 3; i < lines.length; i++) {
+      const line = lines[i].trim();
+      if (line) {
+        const packageName = line.split(/\s+/)[0];
+        installedPackages.push({
+          name: packageName,
+          icon: "🐍",
+        });
+      }
     }
     return installedPackages;
   },
