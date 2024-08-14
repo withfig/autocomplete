@@ -323,6 +323,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--blank-node-handling",
+          description:
+            "The method to handle blank nodes in the dataset. Currently, only convertToIri is supported, meaning blank nodes are converted to unique IRIs at load time. Must be provided when format is ntriples. For more information, see Handling RDF values",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--role-arn",
           description:
             "The ARN of the IAM role that will allow access to the data that is to be imported",
@@ -1283,6 +1291,14 @@ const completionSpec: Fig.Spec = {
           name: "--format",
           description:
             "Specifies the format of Amazon S3 data to be imported. Valid values are CSV, which identifies the Gremlin CSV format or OPENCYPHER, which identies the openCypher load format",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--blank-node-handling",
+          description:
+            "The method to handle blank nodes in the dataset. Currently, only convertToIri is supported, meaning blank nodes are converted to unique IRIs at load time. Must be provided when format is ntriples. For more information, see Handling RDF values",
           args: {
             name: "string",
           },

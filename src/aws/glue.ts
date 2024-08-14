@@ -632,6 +632,44 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "batch-put-data-quality-statistic-annotation",
+      description:
+        "Annotate datapoints over time for a specific data quality statistic",
+      options: [
+        {
+          name: "--inclusion-annotations",
+          description: "A list of DatapointInclusionAnnotation's",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--client-token",
+          description: "Client Token",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "batch-stop-job-run",
       description: "Stops one or more job runs for a specified job definition",
       options: [
@@ -1300,6 +1338,14 @@ const completionSpec: Fig.Spec = {
             "A target table associated with the data quality ruleset",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--data-quality-security-configuration",
+          description:
+            "The name of the security configuration created with the data quality encryption option",
+          args: {
+            name: "string",
           },
         },
         {
@@ -4571,6 +4617,81 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-data-quality-model",
+      description:
+        "Retrieve the training status of the model along with more information (CompletedOn, StartedOn, FailureReason)",
+      options: [
+        {
+          name: "--statistic-id",
+          description: "The Statistic ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--profile-id",
+          description: "The Profile ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-data-quality-model-result",
+      description: "Retrieve a statistic's predictions for a given Profile ID",
+      options: [
+        {
+          name: "--statistic-id",
+          description: "The Statistic ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--profile-id",
+          description: "The Profile ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-data-quality-result",
       description: "Retrieves the result of a data quality rule evaluation",
       options: [
@@ -6248,6 +6369,16 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--include-status-details",
+          description:
+            "Specifies whether to include status details related to a request to create or update an Glue Data Catalog view",
+        },
+        {
+          name: "--no-include-status-details",
+          description:
+            "Specifies whether to include status details related to a request to create or update an Glue Data Catalog view",
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -6519,6 +6650,24 @@ const completionSpec: Fig.Spec = {
             "The time as of when to read the table contents. If not set, the most recent transaction commit time will be used. Cannot be specified along with TransactionId",
           args: {
             name: "timestamp",
+          },
+        },
+        {
+          name: "--include-status-details",
+          description:
+            "Specifies whether to include status details related to a request to create or update an Glue Data Catalog view",
+        },
+        {
+          name: "--no-include-status-details",
+          description:
+            "Specifies whether to include status details related to a request to create or update an Glue Data Catalog view",
+        },
+        {
+          name: "--attributes-to-get",
+          description:
+            "Specifies the table fields returned by the GetTables call. This parameter doesn\u2019t accept an empty list. The request must include NAME. The following are the valid combinations of values:    NAME - Names of all tables in the database.    NAME, TABLE_TYPE - Names of all tables and the table types",
+          args: {
+            name: "list",
           },
         },
         {
@@ -7841,6 +7990,124 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-data-quality-statistic-annotations",
+      description: "Retrieve annotations for a data quality statistic",
+      options: [
+        {
+          name: "--statistic-id",
+          description: "The Statistic ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--profile-id",
+          description: "The Profile ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--timestamp-filter",
+          description: "A timestamp filter",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return in this request",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description: "A pagination token to retrieve the next set of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-data-quality-statistics",
+      description: "Retrieves a list of data quality statistics",
+      options: [
+        {
+          name: "--statistic-id",
+          description: "The Statistic ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--profile-id",
+          description: "The Profile ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--timestamp-filter",
+          description: "A timestamp filter",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return in this request",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description: "A pagination token to request the next page of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-dev-endpoints",
       description:
         "Retrieves the names of all DevEndpoint resources in this Amazon Web Services account, or the resources with the specified tag. This operation allows you to see which resources are available in your account, and their names. This operation takes the optional Tags field, which you can use as a filter on the response so that tagged resources can be retrieved as a group. If you choose to use tags filtering, only resources with the tag are retrieved",
@@ -8631,6 +8898,44 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "put-data-quality-profile-annotation",
+      description: "Annotate all datapoints for a Profile",
+      options: [
+        {
+          name: "--profile-id",
+          description:
+            "The ID of the data quality monitoring profile to annotate",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--inclusion-annotation",
+          description: "The inclusion annotation value to apply to the profile",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "put-resource-policy",
       description: "Sets the Data Catalog resource policy for access control",
       options: [
@@ -9139,6 +9444,16 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--include-status-details",
+          description:
+            "Specifies whether to include status details related to a request to create or update an Glue Data Catalog view",
+        },
+        {
+          name: "--no-include-status-details",
+          description:
+            "Specifies whether to include status details related to a request to create or update an Glue Data Catalog view",
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -9380,6 +9695,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--created-ruleset-name",
           description: "A name for the ruleset",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--data-quality-security-configuration",
+          description:
+            "The name of the security configuration created with the data quality encryption option",
           args: {
             name: "string",
           },

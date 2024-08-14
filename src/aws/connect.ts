@@ -1383,7 +1383,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-instance",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Initiates an Amazon Connect instance with all the supported channels enabled. It does not attach any storage, such as Amazon Simple Storage Service (Amazon S3) or Amazon Kinesis. It also does not allow for any configurations on features, such as Contact Lens for Amazon Connect.  Amazon Connect enforces a limit on the total number of instances that you can create or delete in 30 days. If you exceed this limit, you will get an error message indicating there has been an excessive number of attempts at creating or deleting instances. You must wait 30 days before you can restart creating and deleting instances in your account",
+        "This API is in preview release for Amazon Connect and is subject to change. Initiates an Amazon Connect instance with all the supported channels enabled. It does not attach any storage, such as Amazon Simple Storage Service (Amazon S3) or Amazon Kinesis. It also does not allow for any configurations on features, such as Contact Lens for Amazon Connect.  For more information, see Create an Amazon Connect instance in the Amazon Connect Administrator Guide. Amazon Connect enforces a limit on the total number of instances that you can create or delete in 30 days. If you exceed this limit, you will get an error message indicating there has been an excessive number of attempts at creating or deleting instances. You must wait 30 days before you can restart creating and deleting instances in your account",
       options: [
         {
           name: "--client-token",
@@ -1659,7 +1659,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-predefined-attribute",
       description:
-        "Creates a new predefined attribute for the specified Amazon Connect instance",
+        "Creates a new predefined attribute for the specified Amazon Connect instance. Predefined attributes are attributes in an Amazon Connect instance that can be used to route contacts to an agent or pools of agents within a queue. For more information, see Create predefined attributes for routing contacts to agents",
       options: [
         {
           name: "--instance-id",
@@ -2073,7 +2073,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "create-security-profile",
-      description: "Creates a security profile",
+      description:
+        "Creates a security profile. For information about security profiles, see Security Profiles in the Amazon Connect Administrator Guide. For a mapping of the API name and user interface name of the security profile permissions, see List of security profile permissions",
       options: [
         {
           name: "--security-profile-name",
@@ -3034,7 +3035,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-instance",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Deletes the Amazon Connect instance. Amazon Connect enforces a limit on the total number of instances that you can create or delete in 30 days. If you exceed this limit, you will get an error message indicating there has been an excessive number of attempts at creating or deleting instances. You must wait 30 days before you can restart creating and deleting instances in your account",
+        "This API is in preview release for Amazon Connect and is subject to change. Deletes the Amazon Connect instance. For more information, see Delete your Amazon Connect instance in the Amazon Connect Administrator Guide. Amazon Connect enforces a limit on the total number of instances that you can create or delete in 30 days. If you exceed this limit, you will get an error message indicating there has been an excessive number of attempts at creating or deleting instances. You must wait 30 days before you can restart creating and deleting instances in your account",
       options: [
         {
           name: "--instance-id",
@@ -3181,7 +3182,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-queue",
-      description: "Deletes a queue",
+      description:
+        "Deletes a queue. It isn't possible to delete a queue by using the Amazon Connect admin website",
       options: [
         {
           name: "--instance-id",
@@ -4158,7 +4160,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-predefined-attribute",
       description:
-        "Describes a predefined attribute for the specified Amazon Connect instance",
+        "Describes a predefined attribute for the specified Amazon Connect instance. Predefined attributes are attributes in an Amazon Connect instance that can be used to route contacts to an agent or pools of agents within a queue. For more information, see Create predefined attributes for routing contacts to agents",
       options: [
         {
           name: "--instance-id",
@@ -4387,7 +4389,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "describe-security-profile",
-      description: "Gets basic information about the security profle",
+      description:
+        "Gets basic information about the security profile. For information about security profiles, see Security Profiles in the Amazon Connect Administrator Guide. For a mapping of the API name and user interface name of the security profile permissions, see List of security profile permissions",
       options: [
         {
           name: "--security-profile-id",
@@ -7602,7 +7605,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-predefined-attributes",
       description:
-        "Lists predefined attributes for the specified Amazon Connect instance",
+        "Lists predefined attributes for the specified Amazon Connect instance. Predefined attributes are attributes in an Amazon Connect instance that can be used to route contacts to an agent or pools of agents within a queue. For more information, see Create predefined attributes for routing contacts to agents",
       options: [
         {
           name: "--instance-id",
@@ -8434,7 +8437,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-security-profile-permissions",
-      description: "Lists the permissions granted to a security profile",
+      description:
+        "Lists the permissions granted to a security profile. For information about security profiles, see Security Profiles in the Amazon Connect Administrator Guide. For a mapping of the API name and user interface name of the security profile permissions, see List of security profile permissions",
       options: [
         {
           name: "--security-profile-id",
@@ -8512,7 +8516,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-security-profiles",
       description:
-        "Provides summary information about the security profiles for the specified Amazon Connect instance. For more information about security profiles, see Security Profiles in the Amazon Connect Administrator Guide",
+        "Provides summary information about the security profiles for the specified Amazon Connect instance. For more information about security profiles, see Security Profiles in the Amazon Connect Administrator Guide. For a mapping of the API name and user interface name of the security profile permissions, see List of security profile permissions",
       options: [
         {
           name: "--instance-id",
@@ -10175,7 +10179,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "search-predefined-attributes",
-      description: "Predefined attributes that meet certain criteria",
+      description:
+        "Searches predefined attributes that meet certain criteria. Predefined attributes are attributes in an Amazon Connect instance that can be used to route contacts to an agent or pools of agents within a queue. For more information, see Create predefined attributes for routing contacts to agents",
       options: [
         {
           name: "--instance-id",
@@ -10683,7 +10688,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "search-security-profiles",
       description:
-        "Searches security profiles in an Amazon Connect instance, with optional filtering",
+        "Searches security profiles in an Amazon Connect instance, with optional filtering. For information about security profiles, see Security Profiles in the Amazon Connect Administrator Guide. For a mapping of the API name and user interface name of the security profile permissions, see List of security profile permissions",
       options: [
         {
           name: "--instance-id",
@@ -12912,6 +12917,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--routing-criteria",
+          description:
+            "Updates the routing criteria on the contact. These properties can be used to change how a\u2028 contact is routed within the queue",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -13391,7 +13404,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-predefined-attribute",
       description:
-        "Updates a predefined attribute for the specified Amazon Connect instance",
+        "Updates a predefined attribute for the specified Amazon Connect instance. Predefined attributes are attributes in an Amazon Connect instance that can be used to route contacts to an agent or pools of agents within a queue. For more information, see Create predefined attributes for routing contacts to agents",
       options: [
         {
           name: "--instance-id",
@@ -14144,7 +14157,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "update-security-profile",
-      description: "Updates a security profile",
+      description:
+        "Updates a security profile. For information about security profiles, see Security Profiles in the Amazon Connect Administrator Guide. For a mapping of the API name and user interface name of the security profile permissions, see List of security profile permissions",
       options: [
         {
           name: "--description",
