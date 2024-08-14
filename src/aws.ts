@@ -117,7 +117,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "appintegrations",
       description:
-        "The Amazon AppIntegrations service enables you to configure and reuse connections to external applications. For information about how you can use external applications with Amazon Connect, see Set up pre-built integrations and Deliver information to agents using Amazon Connect Wisdom in the Amazon Connect Administrator Guide",
+        "Amazon AppIntegrations actions     Amazon AppIntegrations data types    The Amazon AppIntegrations service enables you to configure and reuse connections to external applications. For information about how you can use external applications with Amazon Connect, see the following topics in the Amazon Connect Administrator Guide:    Third-party applications (3p apps) in the agent workspace     Use Amazon Q in Connect for generative AI\u2013powered agent assistance in real-time",
       loadSpec: "aws/appintegrations",
     },
     {
@@ -857,7 +857,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "fis",
       description:
-        "Fault Injection Service is a managed service that enables you to perform fault injection experiments on your Amazon Web Services workloads. For more information, see the Fault Injection Service User Guide",
+        "Amazon Web Services Fault Injection Service is a managed service that enables you to perform fault injection experiments on your Amazon Web Services workloads. For more information, see the Fault Injection Service User Guide",
       loadSpec: "aws/fis",
     },
     {

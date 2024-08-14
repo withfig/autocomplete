@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "fis",
   description:
-    "Fault Injection Service is a managed service that enables you to perform fault injection experiments on your Amazon Web Services workloads. For more information, see the Fault Injection Service User Guide",
+    "Amazon Web Services Fault Injection Service is a managed service that enables you to perform fault injection experiments on your Amazon Web Services workloads. For more information, see the Fault Injection Service User Guide",
   subcommands: [
     {
       name: "create-experiment-template",

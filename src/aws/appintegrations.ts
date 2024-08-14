@@ -1,12 +1,11 @@
 const completionSpec: Fig.Spec = {
   name: "appintegrations",
   description:
-    "The Amazon AppIntegrations service enables you to configure and reuse connections to external applications. For information about how you can use external applications with Amazon Connect, see Set up pre-built integrations and Deliver information to agents using Amazon Connect Wisdom in the Amazon Connect Administrator Guide",
+    "Amazon AppIntegrations actions     Amazon AppIntegrations data types    The Amazon AppIntegrations service enables you to configure and reuse connections to external applications. For information about how you can use external applications with Amazon Connect, see the following topics in the Amazon Connect Administrator Guide:    Third-party applications (3p apps) in the agent workspace     Use Amazon Q in Connect for generative AI\u2013powered agent assistance in real-time",
   subcommands: [
     {
       name: "create-application",
-      description:
-        "This API is in preview release and subject to change. Creates and persists an Application resource",
+      description: "Creates and persists an Application resource",
       options: [
         {
           name: "--name",
@@ -115,7 +114,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--kms-key",
-          description: "The KMS key for the DataIntegration",
+          description: "The KMS key ARN for the DataIntegration",
           args: {
             name: "string",
           },
@@ -165,6 +164,82 @@ const completionSpec: Fig.Spec = {
             "The configuration for what data should be pulled from the source",
           args: {
             name: "map",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-data-integration-association",
+      description: "Creates and persists a DataIntegrationAssociation resource",
+      options: [
+        {
+          name: "--data-integration-identifier",
+          description: "A unique identifier for the DataIntegration",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--client-id",
+          description:
+            "The identifier for the client that is associated with the DataIntegration association",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--object-configuration",
+          description:
+            "The configuration for what data should be pulled from the source",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--destination-uri",
+          description: "The URI of the data destination",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--client-association-metadata",
+          description: "The mapping of metadata to be extracted from the data",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see Making retries safe with idempotent APIs",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--execution-configuration",
+          description:
+            "The configuration for how the files should be pulled from the source",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -349,8 +424,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-application",
-      description:
-        "This API is in preview release and subject to change. Get an Application resource",
+      description: "Get an Application resource",
       options: [
         {
           name: "--arn",
@@ -511,8 +585,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-applications",
-      description:
-        "This API is in preview release and subject to change. Lists applications in the account",
+      description: "Lists applications in the account",
       options: [
         {
           name: "--next-token",
@@ -945,8 +1018,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "update-application",
-      description:
-        "This API is in preview release and subject to change. Updates and persists an Application resource",
+      description: "Updates and persists an Application resource",
       options: [
         {
           name: "--arn",
@@ -1042,6 +1114,53 @@ const completionSpec: Fig.Spec = {
           description: "A description of the DataIntegration",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-data-integration-association",
+      description:
+        "Updates and persists a DataIntegrationAssociation resource.   Updating a DataIntegrationAssociation with ExecutionConfiguration will rerun the on-demand job",
+      options: [
+        {
+          name: "--data-integration-identifier",
+          description: "A unique identifier for the DataIntegration",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--data-integration-association-identifier",
+          description:
+            "A unique identifier. of the DataIntegrationAssociation resource",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--execution-configuration",
+          description:
+            "The configuration for how the files should be pulled from the source",
+          args: {
+            name: "structure",
           },
         },
         {

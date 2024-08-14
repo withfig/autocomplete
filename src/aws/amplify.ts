@@ -492,6 +492,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--cache-config",
+          description: "The cache configuration for the Amplify app",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -2402,6 +2409,13 @@ const completionSpec: Fig.Spec = {
             "The personal access token for a GitHub repository for an Amplify app. The personal access token is used to authorize access to a GitHub repository using the Amplify GitHub App. The token is not stored. Use accessToken for GitHub repositories only. To authorize access to a repository provider such as Bitbucket or CodeCommit, use oauthToken. You must specify either accessToken or oauthToken when you update an app. Existing Amplify apps deployed from a GitHub repository using OAuth continue to work with CI/CD. However, we strongly recommend that you migrate these apps to use the GitHub App. For more information, see Migrating an existing OAuth app to the Amplify GitHub App in the Amplify User Guide",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--cache-config",
+          description: "The cache configuration for the Amplify app",
+          args: {
+            name: "structure",
           },
         },
         {
