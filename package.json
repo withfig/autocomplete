@@ -1,19 +1,22 @@
 {
   "name": "@withfig/autocomplete",
-  "version": "2.656.0",
+  "version": "2.675.0",
   "description": "Fig Autocomplete Specs",
   "schemaVersion": "v7",
   "main": "./build/index",
   "types": "./build/index.d.ts",
   "type": "module",
-  "packageManager": "pnpm@8.14.0",
+  "packageManager": "pnpm@9.1.0+sha256.22e36fba7f4880ecf749a5ca128b8435da085ecd49575e7fb9e64d6bf4fad394",
   "engines": {
     "node": ">=20",
-    "pnpm": ">=8.14.0"
+    "pnpm": ">=9"
   },
   "browserslist": [
-    "safari >=12",
-    "edge >=79"
+    "safari >= 15",
+    "last 2 chrome versions",
+    "last 2 edge versions",
+    "last 2 firefox versions",
+    "maintained node versions"
   ],
   "scripts": {
     "dev": "npx @withfig/autocomplete-tools dev",
@@ -68,26 +71,24 @@
   "bugs": "https://github.com/withfig/autocomplete/issues",
   "repository": "https://github.com/withfig/autocomplete",
   "devDependencies": {
-    "@fig/eslint-config-autocomplete": "^1.2.1",
-    "@typescript-eslint/eslint-plugin": "^7.3.1",
-    "@typescript-eslint/parser": "^7.3.1",
-    "@withfig/autocomplete-tools": "^2.9.2",
-    "@withfig/autocomplete-types": "^1.30.0",
+    "@fig/eslint-config-autocomplete": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.14.1",
+    "@withfig/autocomplete-tools": "^2.10.0",
+    "@withfig/autocomplete-types": "^1.31.0",
     "danger": "^11.3.1",
     "eslint": "^8.57.0",
+    "eslint-plugin-compat": "4.2.0",
     "husky": "^9.0.11",
-    "lint-staged": "^15.2.2",
-    "prettier": "^3.1.1",
-    "typescript": "~5.3.3"
+    "lint-staged": "^15.2.7",
+    "prettier": "^3.3.2",
+    "typescript": "~5.5.2"
   },
   "dependencies": {
     "@fig/autocomplete-generators": "^2.4.0",
     "@fig/autocomplete-helpers": "^1.0.7",
-    "semver": "^7.6.0",
+    "semver": "^7.6.2",
     "strip-json-comments": "^5.0.1",
-    "yaml": "^2.4.1"
-  },
-  "resolutions": {
-    "word-wrap": "1.2.4"
+    "yaml": "^2.4.5"
   }
 }

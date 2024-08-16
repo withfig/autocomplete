@@ -12,7 +12,7 @@ const formulaNames: Fig.Generator = {
     }
     return output.split("\n").map((formulaName) => {
       return {
-        name: formulaName.replaceAll(/['"]/g, "").trim(),
+        name: formulaName.replace(/['"]/g, "").trim(),
         description: `Execute ${formulaName}`,
       };
     });

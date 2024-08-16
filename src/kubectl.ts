@@ -3807,10 +3807,6 @@ const completionSpec: Fig.Spec = {
           description:
             "If true, shows client version only (no server required)",
         },
-        {
-          name: "--short",
-          description: "If true, print just the version number",
-        },
       ],
     },
     {

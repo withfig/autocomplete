@@ -25,7 +25,7 @@ jobs:
           node-version-file: package.json
         # Install all dependencies
       - name: Install pnpm
-        uses: pnpm/action-setup@v3.0.0
+        uses: pnpm/action-setup@v4.0.0
       - name: install
         run: pnpm install --frozen-lockfile
         # Transpile all specs from ts to js
@@ -48,7 +48,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
         # Create a new github release with the newly created specs.zip file
       - name: Release
-        uses: softprops/action-gh-release@9d7c94cfd0a1f3ed45544c887983e9fa900f0564
+        uses: softprops/action-gh-release@c062e08bd532815e2082a85e87e3ef29c3e6d191
         with:
           files: specs.zip
           tag_name: ${{ steps.tag_version.outputs.new_tag }}

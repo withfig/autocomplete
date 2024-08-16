@@ -4,6 +4,126 @@ const completionSpec: Fig.Spec = {
     "Amazon AppStream 2.0 This is the Amazon AppStream 2.0 API Reference. This documentation provides descriptions and syntax for each of the actions and data types in AppStream 2.0. AppStream 2.0 is a fully managed, secure application streaming service that lets you stream desktop applications to users without rewriting applications. AppStream 2.0 manages the AWS resources that are required to host and run your applications, scales automatically, and provides access to your users on demand.   You can call the AppStream 2.0 API operations by using an interface VPC endpoint (interface endpoint). For more information, see Access AppStream 2.0 API Operations and CLI Commands Through an Interface VPC Endpoint in the Amazon AppStream 2.0 Administration Guide.  To learn more about AppStream 2.0, see the following resources:    Amazon AppStream 2.0 product page     Amazon AppStream 2.0 documentation",
   subcommands: [
     {
+      name: "associate-app-block-builder-app-block",
+      description:
+        "Associates the specified app block builder with the specified app block",
+      options: [
+        {
+          name: "--app-block-arn",
+          description: "The ARN of the app block",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--app-block-builder-name",
+          description: "The name of the app block builder",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "associate-application-fleet",
+      description:
+        "Associates the specified application with the specified fleet. This is only supported for Elastic fleets",
+      options: [
+        {
+          name: "--fleet-name",
+          description: "The name of the fleet",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--application-arn",
+          description: "The ARN of the application",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "associate-application-to-entitlement",
+      description: "Associates an application to entitle",
+      options: [
+        {
+          name: "--stack-name",
+          description: "The name of the stack",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--entitlement-name",
+          description: "The name of the entitlement",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--application-identifier",
+          description: "The identifier of the application",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "associate-fleet",
       description: "Associates the specified fleet with the specified stack",
       options: [
@@ -158,6 +278,336 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-app-block",
+      description:
+        "Creates an app block. App blocks are an Amazon AppStream 2.0 resource that stores the details about the virtual hard disk in an S3 bucket. It also stores the setup script with details about how to mount the virtual hard disk. The virtual hard disk includes the application binaries and other files necessary to launch your applications. Multiple applications can be assigned to a single app block. This is only supported for Elastic fleets",
+      options: [
+        {
+          name: "--name",
+          description: "The name of the app block",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "The description of the app block",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--display-name",
+          description:
+            "The display name of the app block. This is not displayed to the user",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--source-s3-location",
+          description: "The source S3 location of the app block",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--setup-script-details",
+          description:
+            "The setup script details of the app block. This must be provided for the CUSTOM PackagingType",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--tags",
+          description: "The tags assigned to the app block",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--post-setup-script-details",
+          description:
+            "The post setup script details of the app block. This can only be provided for the APPSTREAM2 PackagingType",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--packaging-type",
+          description: "The packaging type of the app block",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-app-block-builder",
+      description: "Creates an app block builder",
+      options: [
+        {
+          name: "--name",
+          description: "The unique name for the app block builder",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "The description of the app block builder",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--display-name",
+          description: "The display name of the app block builder",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "The tags to associate with the app block builder. A tag is a key-value pair, and the value is optional. For example, Environment=Test. If you do not specify a value, Environment=.  If you do not specify a value, the value is set to an empty string. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following special characters:  _ . : / = + \\ - @ For more information, see Tagging Your Resources in the Amazon AppStream 2.0 Administration Guide",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--platform",
+          description:
+            "The platform of the app block builder.  WINDOWS_SERVER_2019 is the only valid value",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--instance-type",
+          description:
+            "The instance type to use when launching the app block builder. The following instance types are available:   stream.standard.small   stream.standard.medium   stream.standard.large   stream.standard.xlarge   stream.standard.2xlarge",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--vpc-config",
+          description:
+            "The VPC configuration for the app block builder. App block builders require that you specify at least two subnets in different availability zones",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--enable-default-internet-access",
+          description:
+            "Enables or disables default internet access for the app block builder",
+        },
+        {
+          name: "--no-enable-default-internet-access",
+          description:
+            "Enables or disables default internet access for the app block builder",
+        },
+        {
+          name: "--iam-role-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the IAM role to apply to the app block builder. To assume a role, the app block builder calls the AWS Security Token Service (STS) AssumeRole API operation and passes the ARN of the role to use. The operation creates a new session with temporary credentials. AppStream 2.0 retrieves the temporary credentials and creates the appstream_machine_role credential profile on the instance. For more information, see Using an IAM Role to Grant Permissions to Applications and Scripts Running on AppStream 2.0 Streaming Instances in the Amazon AppStream 2.0 Administration Guide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--access-endpoints",
+          description:
+            "The list of interface VPC endpoint (interface endpoint) objects. Administrators can connect to the app block builder only through the specified endpoints",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-app-block-builder-streaming-url",
+      description:
+        "Creates a URL to start a create app block builder streaming session",
+      options: [
+        {
+          name: "--app-block-builder-name",
+          description: "The name of the app block builder",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--validity",
+          description:
+            "The time that the streaming URL will be valid, in seconds. Specify a value between 1 and 604800 seconds. The default is 3600 seconds",
+          args: {
+            name: "long",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-application",
+      description:
+        "Creates an application. Applications are an Amazon AppStream 2.0 resource that stores the details about how to launch applications on Elastic fleet streaming instances. An application consists of the launch details, icon, and display name. Applications are associated with an app block that contains the application binaries and other files. The applications assigned to an Elastic fleet are the applications users can launch.  This is only supported for Elastic fleets",
+      options: [
+        {
+          name: "--name",
+          description:
+            "The name of the application. This name is visible to users when display name is not specified",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--display-name",
+          description:
+            "The display name of the application. This name is visible to users in the application catalog",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "The description of the application",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--icon-s3-location",
+          description: "The location in S3 of the application icon",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--launch-path",
+          description: "The launch path of the application",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--working-directory",
+          description: "The working directory of the application",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--launch-parameters",
+          description: "The launch parameters of the application",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--platforms",
+          description:
+            "The platforms the application supports. WINDOWS_SERVER_2019 and AMAZON_LINUX2 are supported for Elastic fleets",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--instance-families",
+          description:
+            "The instance families the application supports. Valid values are GENERAL_PURPOSE and GRAPHICS_G4",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--app-block-arn",
+          description:
+            "The app block ARN to which the application should be associated",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description: "The tags assigned to the application",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-directory-config",
       description:
         "Creates a Directory Config object in AppStream 2.0. This object includes the configuration information required to join fleets and image builders to Microsoft Active Directory domains",
@@ -187,6 +637,74 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--certificate-based-auth-properties",
+          description:
+            "The certificate-based authentication properties used to authenticate SAML 2.0 Identity Provider (IdP) user identities to Active Directory domain-joined streaming instances. Fallback is turned on by default when certificate-based authentication is Enabled . Fallback allows users to log in using their AD domain password if certificate-based authentication is unsuccessful, or to unlock a desktop lock screen. Enabled_no_directory_login_fallback enables certificate-based authentication, but does not allow users to log in using their AD domain password. Users will be disconnected to re-authenticate using certificates",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-entitlement",
+      description:
+        "Creates a new entitlement. Entitlements control access to specific applications within a stack, based on user attributes. Entitlements apply to SAML 2.0 federated user identities. Amazon AppStream 2.0 user pool and streaming URL users are entitled to all applications in a stack. Entitlements don't apply to the desktop stream view application, or to applications managed by a dynamic app provider using the Dynamic Application Framework",
+      options: [
+        {
+          name: "--name",
+          description: "The name of the entitlement",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--stack-name",
+          description:
+            "The name of the stack with which the entitlement is associated",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "The description of the entitlement",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--app-visibility",
+          description: "Specifies whether all or selected apps are entitled",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--attributes",
+          description: "The attributes of the entitlement",
+          args: {
+            name: "list",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -208,7 +726,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-fleet",
       description:
-        "Creates a fleet. A fleet consists of streaming instances that run a specified image",
+        "Creates a fleet. A fleet consists of streaming instances that your users access for their applications and desktops",
       options: [
         {
           name: "--name",
@@ -234,7 +752,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--instance-type",
           description:
-            "The instance type to use when launching fleet instances. The following instance types are available:   stream.standard.small   stream.standard.medium   stream.standard.large   stream.compute.large   stream.compute.xlarge   stream.compute.2xlarge   stream.compute.4xlarge   stream.compute.8xlarge   stream.memory.large   stream.memory.xlarge   stream.memory.2xlarge   stream.memory.4xlarge   stream.memory.8xlarge   stream.memory.z1d.large   stream.memory.z1d.xlarge   stream.memory.z1d.2xlarge   stream.memory.z1d.3xlarge   stream.memory.z1d.6xlarge   stream.memory.z1d.12xlarge   stream.graphics-design.large   stream.graphics-design.xlarge   stream.graphics-design.2xlarge   stream.graphics-design.4xlarge   stream.graphics-desktop.2xlarge   stream.graphics.g4dn.xlarge   stream.graphics.g4dn.2xlarge   stream.graphics.g4dn.4xlarge   stream.graphics.g4dn.8xlarge   stream.graphics.g4dn.12xlarge   stream.graphics.g4dn.16xlarge   stream.graphics-pro.4xlarge   stream.graphics-pro.8xlarge   stream.graphics-pro.16xlarge",
+            "The instance type to use when launching fleet instances. The following instance types are available:   stream.standard.small   stream.standard.medium   stream.standard.large   stream.standard.xlarge   stream.standard.2xlarge   stream.compute.large   stream.compute.xlarge   stream.compute.2xlarge   stream.compute.4xlarge   stream.compute.8xlarge   stream.memory.large   stream.memory.xlarge   stream.memory.2xlarge   stream.memory.4xlarge   stream.memory.8xlarge   stream.memory.z1d.large   stream.memory.z1d.xlarge   stream.memory.z1d.2xlarge   stream.memory.z1d.3xlarge   stream.memory.z1d.6xlarge   stream.memory.z1d.12xlarge   stream.graphics-design.large   stream.graphics-design.xlarge   stream.graphics-design.2xlarge   stream.graphics-design.4xlarge   stream.graphics-desktop.2xlarge   stream.graphics.g4dn.xlarge   stream.graphics.g4dn.2xlarge   stream.graphics.g4dn.4xlarge   stream.graphics.g4dn.8xlarge   stream.graphics.g4dn.12xlarge   stream.graphics.g4dn.16xlarge   stream.graphics.g5.xlarge   stream.graphics.g5.2xlarge   stream.graphics.g5.4xlarge   stream.graphics.g5.8xlarge   stream.graphics.g5.12xlarge   stream.graphics.g5.16xlarge   stream.graphics.g5.24xlarge   stream.graphics-pro.4xlarge   stream.graphics-pro.8xlarge   stream.graphics-pro.16xlarge   The following instance types are available for Elastic fleets:   stream.standard.small   stream.standard.medium   stream.standard.large   stream.standard.xlarge   stream.standard.2xlarge",
           args: {
             name: "string",
           },
@@ -249,14 +767,16 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--compute-capacity",
-          description: "The desired capacity for the fleet",
+          description:
+            "The desired capacity for the fleet. This is not allowed for Elastic fleets. For Elastic fleets, specify MaxConcurrentSessions instead",
           args: {
             name: "structure",
           },
         },
         {
           name: "--vpc-config",
-          description: "The VPC configuration for the fleet",
+          description:
+            "The VPC configuration for the fleet. This is required for Elastic fleets, but not required for other fleet types. Elastic fleets require that you specify at least two subnets in different availability zones",
           args: {
             name: "structure",
           },
@@ -264,7 +784,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-user-duration-in-seconds",
           description:
-            "The maximum amount of time that a streaming session can remain active, in seconds. If users are still connected to a streaming instance five minutes before this limit is reached, they are prompted to save any open documents before being disconnected. After this time elapses, the instance is terminated and replaced by a new instance. Specify a value between 600 and 360000",
+            "The maximum amount of time that a streaming session can remain active, in seconds. If users are still connected to a streaming instance five minutes before this limit is reached, they are prompted to save any open documents before being disconnected. After this time elapses, the instance is terminated and replaced by a new instance. Specify a value between 600 and 432000",
           args: {
             name: "integer",
           },
@@ -272,7 +792,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--disconnect-timeout-in-seconds",
           description:
-            "The amount of time that a streaming session remains active after users disconnect. If users try to reconnect to the streaming session after a disconnection or network interruption within this time interval, they are connected to their previous session. Otherwise, they are connected to a new session with a new streaming instance.  Specify a value between 60 and 360000",
+            "The amount of time that a streaming session remains active after users disconnect. If users try to reconnect to the streaming session after a disconnection or network interruption within this time interval, they are connected to their previous session. Otherwise, they are connected to a new session with a new streaming instance.  Specify a value between 60 and 36000",
           args: {
             name: "integer",
           },
@@ -304,7 +824,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--domain-join-info",
           description:
-            "The name of the directory and organizational unit (OU) to use to join the fleet to a Microsoft Active Directory domain",
+            "The name of the directory and organizational unit (OU) to use to join the fleet to a Microsoft Active Directory domain. This is not allowed for Elastic fleets",
           args: {
             name: "structure",
           },
@@ -320,7 +840,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--idle-disconnect-timeout-in-seconds",
           description:
-            "The amount of time that users can be idle (inactive) before they are disconnected from their streaming session and the DisconnectTimeoutInSeconds time interval begins. Users are notified before they are disconnected due to inactivity. If they try to reconnect to the streaming session before the time interval specified in DisconnectTimeoutInSeconds elapses, they are connected to their previous session. Users are considered idle when they stop providing keyboard or mouse input during their streaming session. File uploads and downloads, audio in, audio out, and pixels changing do not qualify as user activity. If users continue to be idle after the time interval in IdleDisconnectTimeoutInSeconds elapses, they are disconnected. To prevent users from being disconnected due to inactivity, specify a value of 0. Otherwise, specify a value between 60 and 3600. The default value is 0.  If you enable this feature, we recommend that you specify a value that corresponds exactly to a whole number of minutes (for example, 60, 120, and 180). If you don't do this, the value is rounded to the nearest minute. For example, if you specify a value of 70, users are disconnected after 1 minute of inactivity. If you specify a value that is at the midpoint between two different minutes, the value is rounded up. For example, if you specify a value of 90, users are disconnected after 2 minutes of inactivity",
+            "The amount of time that users can be idle (inactive) before they are disconnected from their streaming session and the DisconnectTimeoutInSeconds time interval begins. Users are notified before they are disconnected due to inactivity. If they try to reconnect to the streaming session before the time interval specified in DisconnectTimeoutInSeconds elapses, they are connected to their previous session. Users are considered idle when they stop providing keyboard or mouse input during their streaming session. File uploads and downloads, audio in, audio out, and pixels changing do not qualify as user activity. If users continue to be idle after the time interval in IdleDisconnectTimeoutInSeconds elapses, they are disconnected. To prevent users from being disconnected due to inactivity, specify a value of 0. Otherwise, specify a value between 60 and 36000. The default value is 0.  If you enable this feature, we recommend that you specify a value that corresponds exactly to a whole number of minutes (for example, 60, 120, and 180). If you don't do this, the value is rounded to the nearest minute. For example, if you specify a value of 70, users are disconnected after 1 minute of inactivity. If you specify a value that is at the midpoint between two different minutes, the value is rounded up. For example, if you specify a value of 90, users are disconnected after 2 minutes of inactivity",
           args: {
             name: "integer",
           },
@@ -339,6 +859,46 @@ const completionSpec: Fig.Spec = {
             "The AppStream 2.0 view that is displayed to your users when they stream from the fleet. When APP is specified, only the windows of applications opened by users display. When DESKTOP is specified, the standard desktop that is provided by the operating system displays. The default value is APP",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--platform",
+          description:
+            "The fleet platform. WINDOWS_SERVER_2019 and AMAZON_LINUX2 are supported for Elastic fleets",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-concurrent-sessions",
+          description:
+            "The maximum concurrent sessions of the Elastic fleet. This is required for Elastic fleets, and not allowed for other fleet types",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--usb-device-filter-strings",
+          description:
+            "The USB device filter strings that specify which USB devices a user can redirect to the fleet streaming session, when using the Windows native client. This is allowed but not required for Elastic fleets",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--session-script-s3-location",
+          description:
+            "The S3 location of the session scripts configuration zip file. This only applies to Elastic fleets",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--max-sessions-per-instance",
+          description:
+            "The maximum number of user sessions on an instance. This only applies to multi-session fleets",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -613,6 +1173,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--streaming-experience-settings",
+          description:
+            "The streaming protocol you want your stack to prefer. This can be UDP or TCP. Currently, UDP is only supported in the Windows native client",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -679,6 +1247,77 @@ const completionSpec: Fig.Spec = {
             "The session context. For more information, see Session Context in the Amazon AppStream 2.0 Administration Guide",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-theme-for-stack",
+      description:
+        "Creates custom branding that customizes the appearance of the streaming application catalog page",
+      options: [
+        {
+          name: "--stack-name",
+          description: "The name of the stack for the theme",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--footer-links",
+          description:
+            "The links that are displayed in the footer of the streaming application catalog page. These links are helpful resources for users, such as the organization's IT support and product marketing sites",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--title-text",
+          description:
+            "The title that is displayed at the top of the browser tab during users' application streaming sessions",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--theme-styling",
+          description:
+            "The color theme that is applied to website links, text, and buttons. These colors are also applied as accents in the background for the streaming application catalog page",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--organization-logo-s3-location",
+          description:
+            "The organization logo that appears on the streaming application catalog page",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--favicon-s3-location",
+          description:
+            "The S3 location of the favicon. The favicon enables users to recognize their application streaming site in a browser full of tabs or bookmarks. It is displayed at the top of the browser tab for the application streaming site during users' streaming sessions",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -857,6 +1496,97 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-app-block",
+      description: "Deletes an app block",
+      options: [
+        {
+          name: "--name",
+          description: "The name of the app block",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-app-block-builder",
+      description:
+        "Deletes an app block builder. An app block builder can only be deleted when it has no association with an app block",
+      options: [
+        {
+          name: "--name",
+          description: "The name of the app block builder",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-application",
+      description: "Deletes an application",
+      options: [
+        {
+          name: "--name",
+          description: "The name of the application",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-directory-config",
       description:
         "Deletes the specified Directory Config object from AppStream 2.0. This object includes the information required to join streaming instances to an Active Directory domain",
@@ -864,6 +1594,44 @@ const completionSpec: Fig.Spec = {
         {
           name: "--directory-name",
           description: "The name of the directory configuration",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-entitlement",
+      description: "Deletes the specified entitlement",
+      options: [
+        {
+          name: "--name",
+          description: "The name of the entitlement",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--stack-name",
+          description:
+            "The name of the stack with which the entitlement is associated",
           args: {
             name: "string",
           },
@@ -1050,6 +1818,37 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-theme-for-stack",
+      description:
+        "Deletes custom branding that customizes the appearance of the streaming application catalog page",
+      options: [
+        {
+          name: "--stack-name",
+          description: "The name of the stack for the theme",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-usage-report-subscription",
       description: "Disables usage report generation",
       options: [
@@ -1090,6 +1889,249 @@ const completionSpec: Fig.Spec = {
             "The authentication type for the user. You must specify USERPOOL",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-app-block-builder-app-block-associations",
+      description:
+        "Retrieves a list that describes one or more app block builder associations",
+      options: [
+        {
+          name: "--app-block-arn",
+          description: "The ARN of the app block",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--app-block-builder-name",
+          description: "The name of the app block builder",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum size of each page of results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The pagination token used to retrieve the next page of results for this operation",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-app-block-builders",
+      description:
+        "Retrieves a list that describes one or more app block builders",
+      options: [
+        {
+          name: "--names",
+          description: "The names of the app block builders",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The pagination token used to retrieve the next page of results for this operation",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum size of each page of results. The maximum value is 25",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-app-blocks",
+      description: "Retrieves a list that describes one or more app blocks",
+      options: [
+        {
+          name: "--arns",
+          description: "The ARNs of the app blocks",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The pagination token used to retrieve the next page of results for this operation",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum size of each page of results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-application-fleet-associations",
+      description:
+        "Retrieves a list that describes one or more application fleet associations. Either ApplicationArn or FleetName must be specified",
+      options: [
+        {
+          name: "--fleet-name",
+          description: "The name of the fleet",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--application-arn",
+          description: "The ARN of the application",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum size of each page of results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The pagination token used to retrieve the next page of results for this operation",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-applications",
+      description: "Retrieves a list that describes one or more applications",
+      options: [
+        {
+          name: "--arns",
+          description: "The ARNs for the applications",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The pagination token used to retrieve the next page of results for this operation",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum size of each page of results",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -1168,6 +2210,59 @@ const completionSpec: Fig.Spec = {
             "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-entitlements",
+      description: "Retrieves a list that describes one of more entitlements",
+      options: [
+        {
+          name: "--name",
+          description: "The name of the entitlement",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--stack-name",
+          description:
+            "The name of the stack with which the entitlement is associated",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The pagination token used to retrieve the next page of results for this operation",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum size of each page of results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
           },
         },
         {
@@ -1499,6 +2594,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--instance-id",
+          description: "The identifier for the instance hosting the session",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -1583,6 +2685,37 @@ const completionSpec: Fig.Spec = {
             "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-theme-for-stack",
+      description:
+        "Retrieves a list that describes the theme for a specified stack. A theme is custom branding that customizes the appearance of the streaming application catalog page",
+      options: [
+        {
+          name: "--stack-name",
+          description: "The name of the stack for the theme",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
           },
         },
         {
@@ -1833,6 +2966,128 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "disassociate-app-block-builder-app-block",
+      description:
+        "Disassociates a specified app block builder from a specified app block",
+      options: [
+        {
+          name: "--app-block-arn",
+          description: "The ARN of the app block",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--app-block-builder-name",
+          description: "The name of the app block builder",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "disassociate-application-fleet",
+      description: "Disassociates the specified application from the fleet",
+      options: [
+        {
+          name: "--fleet-name",
+          description: "The name of the fleet",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--application-arn",
+          description: "The ARN of the application",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "disassociate-application-from-entitlement",
+      description:
+        "Deletes the specified application from the specified entitlement",
+      options: [
+        {
+          name: "--stack-name",
+          description:
+            "The name of the stack with which the entitlement is associated",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--entitlement-name",
+          description: "The name of the entitlement",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--application-identifier",
+          description:
+            "The identifier of the application to remove from the entitlement",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "disassociate-fleet",
       description: "Disassociates the specified fleet from the specified stack",
       options: [
@@ -2050,6 +3305,59 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-entitled-applications",
+      description: "Retrieves a list of entitled applications",
+      options: [
+        {
+          name: "--stack-name",
+          description:
+            "The name of the stack with which the entitlement is associated",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--entitlement-name",
+          description: "The name of the entitlement",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The pagination token used to retrieve the next page of results for this operation",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum size of each page of results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-tags-for-resource",
       description:
         "Retrieves a list of all tags for the specified AppStream 2.0 resource. You can tag AppStream 2.0 image builders, images, fleets, and stacks. For more information about tags, see Tagging Your Resources in the Amazon AppStream 2.0 Administration Guide",
@@ -2057,6 +3365,37 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-arn",
           description: "The Amazon Resource Name (ARN) of the resource",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "start-app-block-builder",
+      description:
+        "Starts an app block builder. An app block builder can only be started when it's associated with an app block. Starting an app block builder starts a new instance, which is equivalent to an elastic fleet instance with application builder assistance functionality",
+      options: [
+        {
+          name: "--name",
+          description: "The name of the app block builder",
           args: {
             name: "string",
           },
@@ -2125,6 +3464,37 @@ const completionSpec: Fig.Spec = {
           name: "--appstream-agent-version",
           description:
             "The version of the AppStream 2.0 agent to use for this image builder. To use the latest version of the AppStream 2.0 agent, specify [LATEST]",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "stop-app-block-builder",
+      description:
+        "Stops an app block builder. Stopping an app block builder terminates the instance, and the instance state is not persisted",
+      options: [
+        {
+          name: "--name",
+          description: "The name of the app block builder",
           args: {
             name: "string",
           },
@@ -2286,6 +3656,196 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "update-app-block-builder",
+      description:
+        "Updates an app block builder. If the app block builder is in the STARTING or STOPPING state, you can't update it. If the app block builder is in the RUNNING state, you can only update the DisplayName and Description. If the app block builder is in the STOPPED state, you can update any attribute except the Name",
+      options: [
+        {
+          name: "--name",
+          description: "The unique name for the app block builder",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "The description of the app block builder",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--display-name",
+          description: "The display name of the app block builder",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--platform",
+          description:
+            "The platform of the app block builder.  WINDOWS_SERVER_2019 is the only valid value",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--instance-type",
+          description:
+            "The instance type to use when launching the app block builder. The following instance types are available:   stream.standard.small   stream.standard.medium   stream.standard.large   stream.standard.xlarge   stream.standard.2xlarge",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--vpc-config",
+          description:
+            "The VPC configuration for the app block builder. App block builders require that you specify at least two subnets in different availability zones",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--enable-default-internet-access",
+          description:
+            "Enables or disables default internet access for the app block builder",
+        },
+        {
+          name: "--no-enable-default-internet-access",
+          description:
+            "Enables or disables default internet access for the app block builder",
+        },
+        {
+          name: "--iam-role-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the IAM role to apply to the app block builder. To assume a role, the app block builder calls the AWS Security Token Service (STS) AssumeRole API operation and passes the ARN of the role to use. The operation creates a new session with temporary credentials. AppStream 2.0 retrieves the temporary credentials and creates the appstream_machine_role credential profile on the instance. For more information, see Using an IAM Role to Grant Permissions to Applications and Scripts Running on AppStream 2.0 Streaming Instances in the Amazon AppStream 2.0 Administration Guide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--access-endpoints",
+          description:
+            "The list of interface VPC endpoint (interface endpoint) objects. Administrators can connect to the app block builder only through the specified endpoints",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--attributes-to-delete",
+          description: "The attributes to delete from the app block builder",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-application",
+      description: "Updates the specified application",
+      options: [
+        {
+          name: "--name",
+          description:
+            "The name of the application. This name is visible to users when display name is not specified",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--display-name",
+          description:
+            "The display name of the application. This name is visible to users in the application catalog",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "The description of the application",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--icon-s3-location",
+          description: "The icon S3 location of the application",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--launch-path",
+          description: "The launch path of the application",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--working-directory",
+          description: "The working directory of the application",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--launch-parameters",
+          description: "The launch parameters of the application",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--app-block-arn",
+          description: "The ARN of the app block",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--attributes-to-delete",
+          description: "The attributes to delete for an application",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "update-directory-config",
       description:
         "Updates the specified Directory Config object in AppStream 2.0. This object includes the configuration information required to join fleets and image builders to Microsoft Active Directory domains",
@@ -2314,6 +3874,74 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--certificate-based-auth-properties",
+          description:
+            "The certificate-based authentication properties used to authenticate SAML 2.0 Identity Provider (IdP) user identities to Active Directory domain-joined streaming instances. Fallback is turned on by default when certificate-based authentication is Enabled . Fallback allows users to log in using their AD domain password if certificate-based authentication is unsuccessful, or to unlock a desktop lock screen. Enabled_no_directory_login_fallback enables certificate-based authentication, but does not allow users to log in using their AD domain password. Users will be disconnected to re-authenticate using certificates",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-entitlement",
+      description: "Updates the specified entitlement",
+      options: [
+        {
+          name: "--name",
+          description: "The name of the entitlement",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--stack-name",
+          description:
+            "The name of the stack with which the entitlement is associated",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "The description of the entitlement",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--app-visibility",
+          description:
+            "Specifies whether all or only selected apps are entitled",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--attributes",
+          description: "The attributes of the entitlement",
+          args: {
+            name: "list",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -2335,7 +3963,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-fleet",
       description:
-        "Updates the specified fleet. If the fleet is in the STOPPED state, you can update any attribute except the fleet name. If the fleet is in the RUNNING state, you can update the DisplayName, ComputeCapacity, ImageARN, ImageName, IdleDisconnectTimeoutInSeconds, and DisconnectTimeoutInSeconds attributes. If the fleet is in the STARTING or STOPPING state, you can't update it",
+        "Updates the specified fleet. If the fleet is in the STOPPED state, you can update any attribute except the fleet name. If the fleet is in the RUNNING state, you can update the following based on the fleet type:   Always-On and On-Demand fleet types You can update the DisplayName, ComputeCapacity, ImageARN, ImageName, IdleDisconnectTimeoutInSeconds, and DisconnectTimeoutInSeconds attributes.   Elastic fleet type You can update the DisplayName, IdleDisconnectTimeoutInSeconds, DisconnectTimeoutInSeconds, MaxConcurrentSessions, SessionScriptS3Location and UsbDeviceFilterStrings attributes.   If the fleet is in the STARTING or STOPPED state, you can't update it",
       options: [
         {
           name: "--image-name",
@@ -2361,21 +3989,23 @@ const completionSpec: Fig.Spec = {
         {
           name: "--instance-type",
           description:
-            "The instance type to use when launching fleet instances. The following instance types are available:   stream.standard.small   stream.standard.medium   stream.standard.large   stream.compute.large   stream.compute.xlarge   stream.compute.2xlarge   stream.compute.4xlarge   stream.compute.8xlarge   stream.memory.large   stream.memory.xlarge   stream.memory.2xlarge   stream.memory.4xlarge   stream.memory.8xlarge   stream.memory.z1d.large   stream.memory.z1d.xlarge   stream.memory.z1d.2xlarge   stream.memory.z1d.3xlarge   stream.memory.z1d.6xlarge   stream.memory.z1d.12xlarge   stream.graphics-design.large   stream.graphics-design.xlarge   stream.graphics-design.2xlarge   stream.graphics-design.4xlarge   stream.graphics-desktop.2xlarge   stream.graphics.g4dn.xlarge   stream.graphics.g4dn.2xlarge   stream.graphics.g4dn.4xlarge   stream.graphics.g4dn.8xlarge   stream.graphics.g4dn.12xlarge   stream.graphics.g4dn.16xlarge   stream.graphics-pro.4xlarge   stream.graphics-pro.8xlarge   stream.graphics-pro.16xlarge",
+            "The instance type to use when launching fleet instances. The following instance types are available:   stream.standard.small   stream.standard.medium   stream.standard.large   stream.standard.xlarge   stream.standard.2xlarge   stream.compute.large   stream.compute.xlarge   stream.compute.2xlarge   stream.compute.4xlarge   stream.compute.8xlarge   stream.memory.large   stream.memory.xlarge   stream.memory.2xlarge   stream.memory.4xlarge   stream.memory.8xlarge   stream.memory.z1d.large   stream.memory.z1d.xlarge   stream.memory.z1d.2xlarge   stream.memory.z1d.3xlarge   stream.memory.z1d.6xlarge   stream.memory.z1d.12xlarge   stream.graphics-design.large   stream.graphics-design.xlarge   stream.graphics-design.2xlarge   stream.graphics-design.4xlarge   stream.graphics-desktop.2xlarge   stream.graphics.g4dn.xlarge   stream.graphics.g4dn.2xlarge   stream.graphics.g4dn.4xlarge   stream.graphics.g4dn.8xlarge   stream.graphics.g4dn.12xlarge   stream.graphics.g4dn.16xlarge   stream.graphics-pro.4xlarge   stream.graphics-pro.8xlarge   stream.graphics-pro.16xlarge   The following instance types are available for Elastic fleets:   stream.standard.small   stream.standard.medium   stream.standard.large   stream.standard.xlarge   stream.standard.2xlarge",
           args: {
             name: "string",
           },
         },
         {
           name: "--compute-capacity",
-          description: "The desired capacity for the fleet",
+          description:
+            "The desired capacity for the fleet. This is not allowed for Elastic fleets",
           args: {
             name: "structure",
           },
         },
         {
           name: "--vpc-config",
-          description: "The VPC configuration for the fleet",
+          description:
+            "The VPC configuration for the fleet. This is required for Elastic fleets, but not required for other fleet types. Elastic fleets require that you specify at least two subnets in different availability zones",
           args: {
             name: "structure",
           },
@@ -2383,7 +4013,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-user-duration-in-seconds",
           description:
-            "The maximum amount of time that a streaming session can remain active, in seconds. If users are still connected to a streaming instance five minutes before this limit is reached, they are prompted to save any open documents before being disconnected. After this time elapses, the instance is terminated and replaced by a new instance. Specify a value between 600 and 360000",
+            "The maximum amount of time that a streaming session can remain active, in seconds. If users are still connected to a streaming instance five minutes before this limit is reached, they are prompted to save any open documents before being disconnected. After this time elapses, the instance is terminated and replaced by a new instance. Specify a value between 600 and 432000",
           args: {
             name: "integer",
           },
@@ -2391,7 +4021,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--disconnect-timeout-in-seconds",
           description:
-            "The amount of time that a streaming session remains active after users disconnect. If users try to reconnect to the streaming session after a disconnection or network interruption within this time interval, they are connected to their previous session. Otherwise, they are connected to a new session with a new streaming instance.  Specify a value between 60 and 360000",
+            "The amount of time that a streaming session remains active after users disconnect. If users try to reconnect to the streaming session after a disconnection or network interruption within this time interval, they are connected to their previous session. Otherwise, they are connected to a new session with a new streaming instance.  Specify a value between 60 and 36000",
           args: {
             name: "integer",
           },
@@ -2439,7 +4069,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--idle-disconnect-timeout-in-seconds",
           description:
-            "The amount of time that users can be idle (inactive) before they are disconnected from their streaming session and the DisconnectTimeoutInSeconds time interval begins. Users are notified before they are disconnected due to inactivity. If users try to reconnect to the streaming session before the time interval specified in DisconnectTimeoutInSeconds elapses, they are connected to their previous session. Users are considered idle when they stop providing keyboard or mouse input during their streaming session. File uploads and downloads, audio in, audio out, and pixels changing do not qualify as user activity. If users continue to be idle after the time interval in IdleDisconnectTimeoutInSeconds elapses, they are disconnected.  To prevent users from being disconnected due to inactivity, specify a value of 0. Otherwise, specify a value between 60 and 3600. The default value is 0.  If you enable this feature, we recommend that you specify a value that corresponds exactly to a whole number of minutes (for example, 60, 120, and 180). If you don't do this, the value is rounded to the nearest minute. For example, if you specify a value of 70, users are disconnected after 1 minute of inactivity. If you specify a value that is at the midpoint between two different minutes, the value is rounded up. For example, if you specify a value of 90, users are disconnected after 2 minutes of inactivity",
+            "The amount of time that users can be idle (inactive) before they are disconnected from their streaming session and the DisconnectTimeoutInSeconds time interval begins. Users are notified before they are disconnected due to inactivity. If users try to reconnect to the streaming session before the time interval specified in DisconnectTimeoutInSeconds elapses, they are connected to their previous session. Users are considered idle when they stop providing keyboard or mouse input during their streaming session. File uploads and downloads, audio in, audio out, and pixels changing do not qualify as user activity. If users continue to be idle after the time interval in IdleDisconnectTimeoutInSeconds elapses, they are disconnected.  To prevent users from being disconnected due to inactivity, specify a value of 0. Otherwise, specify a value between 60 and 36000. The default value is 0.  If you enable this feature, we recommend that you specify a value that corresponds exactly to a whole number of minutes (for example, 60, 120, and 180). If you don't do this, the value is rounded to the nearest minute. For example, if you specify a value of 70, users are disconnected after 1 minute of inactivity. If you specify a value that is at the midpoint between two different minutes, the value is rounded up. For example, if you specify a value of 90, users are disconnected after 2 minutes of inactivity",
           args: {
             name: "integer",
           },
@@ -2465,6 +4095,45 @@ const completionSpec: Fig.Spec = {
             "The AppStream 2.0 view that is displayed to your users when they stream from the fleet. When APP is specified, only the windows of applications opened by users display. When DESKTOP is specified, the standard desktop that is provided by the operating system displays. The default value is APP",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--platform",
+          description:
+            "The platform of the fleet. WINDOWS_SERVER_2019 and AMAZON_LINUX2 are supported for Elastic fleets",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-concurrent-sessions",
+          description: "The maximum number of concurrent sessions for a fleet",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--usb-device-filter-strings",
+          description:
+            "The USB device filter strings that specify which USB devices a user can redirect to the fleet streaming session, when using the Windows native client. This is allowed but not required for Elastic fleets",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--session-script-s3-location",
+          description:
+            "The S3 location of the session scripts configuration zip file. This only applies to Elastic fleets",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--max-sessions-per-instance",
+          description:
+            "The maximum number of user sessions on an instance. This only applies to multi-session fleets",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -2630,6 +4299,100 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--streaming-experience-settings",
+          description:
+            "The streaming protocol you want your stack to prefer. This can be UDP or TCP. Currently, UDP is only supported in the Windows native client",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-theme-for-stack",
+      description:
+        "Updates custom branding that customizes the appearance of the streaming application catalog page",
+      options: [
+        {
+          name: "--stack-name",
+          description: "The name of the stack for the theme",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--footer-links",
+          description:
+            "The links that are displayed in the footer of the streaming application catalog page. These links are helpful resources for users, such as the organization's IT support and product marketing sites",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--title-text",
+          description:
+            "The title that is displayed at the top of the browser tab during users' application streaming sessions",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--theme-styling",
+          description:
+            "The color theme that is applied to website links, text, and buttons. These colors are also applied as accents in the background for the streaming application catalog page",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--organization-logo-s3-location",
+          description:
+            "The organization logo that appears on the streaming application catalog page",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--favicon-s3-location",
+          description:
+            "The S3 location of the favicon. The favicon enables users to recognize their application streaming site in a browser full of tabs or bookmarks. It is displayed at the top of the browser tab for the application streaming site during users' streaming sessions",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--state",
+          description:
+            "Specifies whether custom branding should be applied to catalog page or not",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--attributes-to-delete",
+          description: "The attributes to delete",
+          args: {
+            name: "list",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -2656,7 +4419,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "fleet-started",
           description:
-            "Wait until JMESPath query Fleets[].State returns ACTIVE for all elements when polling with ``describe-fleets``. It will poll every 30 seconds until a successful state has been reached. This will exit with a return code of 255 after 40 failed checks",
+            "Wait until JMESPath query Fleets[].State returns RUNNING for all elements when polling with ``describe-fleets``. It will poll every 30 seconds until a successful state has been reached. This will exit with a return code of 255 after 40 failed checks",
           options: [
             {
               name: "--names",
@@ -2711,7 +4474,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "fleet-stopped",
           description:
-            "Wait until JMESPath query Fleets[].State returns INACTIVE for all elements when polling with ``describe-fleets``. It will poll every 30 seconds until a successful state has been reached. This will exit with a return code of 255 after 40 failed checks",
+            "Wait until JMESPath query Fleets[].State returns STOPPED for all elements when polling with ``describe-fleets``. It will poll every 30 seconds until a successful state has been reached. This will exit with a return code of 255 after 40 failed checks",
           options: [
             {
               name: "--names",
@@ -2767,5 +4530,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
 export default completionSpec;

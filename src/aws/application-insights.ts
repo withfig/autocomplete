@@ -4,6 +4,52 @@ const completionSpec: Fig.Spec = {
     "Amazon CloudWatch Application Insights  Amazon CloudWatch Application Insights is a service that helps you detect common problems with your applications. It enables you to pinpoint the source of issues in your applications (built with technologies such as Microsoft IIS, .NET, and Microsoft SQL Server), by providing key insights into detected problems. After you onboard your application, CloudWatch Application Insights identifies, recommends, and sets up metrics and logs. It continuously analyzes and correlates your metrics and logs for unusual behavior to surface actionable problems with your application. For example, if your application is slow and unresponsive and leading to HTTP 500 errors in your Application Load Balancer (ALB), Application Insights informs you that a memory pressure problem with your SQL Server database is occurring. It bases this analysis on impactful metrics and log errors",
   subcommands: [
     {
+      name: "add-workload",
+      description:
+        "Adds a workload to a component. Each component can have at most five workloads",
+      options: [
+        {
+          name: "--resource-group-name",
+          description: "The name of the resource group",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--component-name",
+          description: "The name of the component",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--workload-configuration",
+          description:
+            "The configuration settings of the workload. The value is the escaped JSON of the configuration",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-application",
       description: "Adds an application that is created from a resource group",
       options: [
@@ -49,6 +95,44 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
           },
+        },
+        {
+          name: "--auto-config-enabled",
+          description:
+            "Indicates whether Application Insights automatically configures unmonitored resources in the resource group",
+        },
+        {
+          name: "--no-auto-config-enabled",
+          description:
+            "Indicates whether Application Insights automatically configures unmonitored resources in the resource group",
+        },
+        {
+          name: "--auto-create",
+          description:
+            "Configures all of the resources in the resource group by applying the recommended configurations",
+        },
+        {
+          name: "--no-auto-create",
+          description:
+            "Configures all of the resources in the resource group by applying the recommended configurations",
+        },
+        {
+          name: "--grouping-type",
+          description:
+            "Application Insights can create applications based on a resource group or on an account. To create an account-based application using all of the resources in the account, set this parameter to ACCOUNT_BASED",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--attach-missing-permission",
+          description:
+            "If set to true, the managed policies for SSM and CW will be attached to the instance roles if they are missing",
+        },
+        {
+          name: "--no-attach-missing-permission",
+          description:
+            "If set to true, the managed policies for SSM and CW will be attached to the instance roles if they are missing",
         },
         {
           name: "--cli-input-json",
@@ -299,6 +383,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--account-id",
+          description: "The AWS account ID for the resource group owner",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -337,6 +428,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--account-id",
+          description: "The AWS account ID for the resource group owner",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -369,6 +467,13 @@ const completionSpec: Fig.Spec = {
         {
           name: "--component-name",
           description: "The name of the component",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--account-id",
+          description: "The AWS account ID for the resource group owner",
           args: {
             name: "string",
           },
@@ -413,8 +518,21 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--tier",
-          description:
-            "The tier of the application component. Supported tiers include DOT_NET_CORE, DOT_NET_WORKER, DOT_NET_WEB, SQL_SERVER, and DEFAULT",
+          description: "The tier of the application component",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--workload-name",
+          description: "The name of the workload",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--recommendation-type",
+          description: "The recommended configuration type",
           args: {
             name: "string",
           },
@@ -464,6 +582,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--account-id",
+          description: "The AWS account ID for the resource group owner",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -489,6 +614,13 @@ const completionSpec: Fig.Spec = {
         {
           name: "--observation-id",
           description: "The ID of the observation",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--account-id",
+          description: "The AWS account ID for the resource group owner",
           args: {
             name: "string",
           },
@@ -524,6 +656,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--account-id",
+          description:
+            "The AWS account ID for the owner of the resource group affected by the problem",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -550,6 +690,64 @@ const completionSpec: Fig.Spec = {
         {
           name: "--problem-id",
           description: "The ID of the problem",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--account-id",
+          description: "The AWS account ID for the resource group owner",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-workload",
+      description: "Describes a workload and its configuration",
+      options: [
+        {
+          name: "--resource-group-name",
+          description: "The name of the resource group",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--component-name",
+          description: "The name of the component",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--workload-id",
+          description: "The ID of the workload",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--account-id",
+          description: "The AWS account ID for the workload owner",
           args: {
             name: "string",
           },
@@ -588,6 +786,13 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description: "The token to request the next page of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--account-id",
+          description: "The AWS account ID for the resource group owner",
           args: {
             name: "string",
           },
@@ -634,6 +839,13 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description: "The token to request the next page of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--account-id",
+          description: "The AWS account ID for the resource group owner",
           args: {
             name: "string",
           },
@@ -708,6 +920,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--account-id",
+          description: "The AWS account ID for the resource group owner",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -748,6 +967,13 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description: "The token to request the next page of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--account-id",
+          description: "The AWS account ID for the resource group owner",
           args: {
             name: "string",
           },
@@ -805,6 +1031,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--account-id",
+          description: "The AWS account ID for the resource group owner",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -827,6 +1060,13 @@ const completionSpec: Fig.Spec = {
       name: "list-problems",
       description: "Lists the problems with your application",
       options: [
+        {
+          name: "--account-id",
+          description: "The AWS account ID for the resource group owner",
+          args: {
+            name: "string",
+          },
+        },
         {
           name: "--resource-group-name",
           description: "The name of the resource group",
@@ -866,6 +1106,21 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--component-name",
+          description: "The name of the component",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--visibility",
+          description:
+            "Specifies whether or not you can view the problem. If not specified, visible and ignored problems are returned",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -893,6 +1148,110 @@ const completionSpec: Fig.Spec = {
           name: "--resource-arn",
           description:
             "The Amazon Resource Name (ARN) of the application that you want to retrieve tag information for",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-workloads",
+      description:
+        "Lists the workloads that are configured on a given component",
+      options: [
+        {
+          name: "--resource-group-name",
+          description: "The name of the resource group",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--component-name",
+          description: "The name of the component",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned NextToken value",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description: "The token to request the next page of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--account-id",
+          description: "The AWS account ID of the owner of the workload",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "remove-workload",
+      description: "Remove workload from a component",
+      options: [
+        {
+          name: "--resource-group-name",
+          description: "The name of the resource group",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--component-name",
+          description: "The name of the component",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--workload-id",
+          description: "The ID of the workload",
           args: {
             name: "string",
           },
@@ -1046,6 +1405,24 @@ const completionSpec: Fig.Spec = {
             "Disassociates the SNS topic from the opsItem created for detected problems",
         },
         {
+          name: "--auto-config-enabled",
+          description: "Turns auto-configuration on or off",
+        },
+        {
+          name: "--no-auto-config-enabled",
+          description: "Turns auto-configuration on or off",
+        },
+        {
+          name: "--attach-missing-permission",
+          description:
+            "If set to true, the managed policies for SSM and CW will be attached to the instance roles if they are missing",
+        },
+        {
+          name: "--no-attach-missing-permission",
+          description:
+            "If set to true, the managed policies for SSM and CW will be attached to the instance roles if they are missing",
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -1147,8 +1524,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--tier",
-          description:
-            "The tier of the application component. Supported tiers include DOT_NET_WORKER, DOT_NET_WEB, DOT_NET_CORE, SQL_SERVER, and DEFAULT",
+          description: "The tier of the application component",
           args: {
             name: "string",
           },
@@ -1160,6 +1536,16 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "string",
           },
+        },
+        {
+          name: "--auto-config-enabled",
+          description:
+            "Automatically configures the component by applying the recommended configurations",
+        },
+        {
+          name: "--no-auto-config-enabled",
+          description:
+            "Automatically configures the component by applying the recommended configurations",
         },
         {
           name: "--cli-input-json",
@@ -1240,7 +1626,106 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "update-problem",
+      description:
+        "Updates the visibility of the problem or specifies the problem as RESOLVED",
+      options: [
+        {
+          name: "--problem-id",
+          description: "The ID of the problem",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--update-status",
+          description:
+            "The status of the problem. Arguments can be passed for only problems that show a status of RECOVERING",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--visibility",
+          description:
+            "The visibility of a problem. When you pass a value of IGNORED, the problem is removed from the default view, and all notifications for the problem are suspended. When VISIBLE is passed, the IGNORED action is reversed",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-workload",
+      description:
+        "Adds a workload to a component. Each component can have at most five workloads",
+      options: [
+        {
+          name: "--resource-group-name",
+          description: "The name of the resource group",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--component-name",
+          description: "The name of the component",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--workload-id",
+          description: "The ID of the workload",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--workload-configuration",
+          description:
+            "The configuration settings of the workload. The value is the escaped JSON of the configuration",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
   ],
 };
-
 export default completionSpec;
