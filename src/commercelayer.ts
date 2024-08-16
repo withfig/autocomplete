@@ -609,524 +609,6 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: "checkout",
-      description: "Create checkout urls",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {},
-          hidden: true,
-        },
-        {
-          name: ["-a", "--accessToken"],
-          description:
-            "Custom access token to use instead of the one used for login",
-          args: {},
-          isRequired: true,
-          hidden: false,
-        },
-        {
-          name: "--open",
-          description: "Open checkout url in default browser",
-        },
-        {
-          name: "--staging",
-          description: "Connect to checkout application in staging environment",
-          hidden: true,
-        },
-        {
-          name: ["-O", "--order"],
-          description: "An order id",
-          args: {},
-        },
-        {
-          name: ["-S", "--sku"],
-          description: "An sku code",
-          args: {},
-        },
-        {
-          name: ["-B", "--bundle"],
-          description: "A bundle code",
-          args: {},
-        },
-        {
-          name: ["-m", "--market"],
-          description: "A market number",
-          args: {},
-        },
-        {
-          name: ["-c", "--coupon"],
-          description: "A promo code",
-          args: {},
-        },
-        {
-          name: ["-e", "--email"],
-          description: "A customer email",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "checkout:order",
-      description: "Create checkout urls starting from an existing order",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {},
-          hidden: true,
-        },
-        {
-          name: ["-a", "--accessToken"],
-          description:
-            "Custom access token to use instead of the one used for login",
-          args: {},
-          isRequired: true,
-          hidden: false,
-        },
-        {
-          name: "--open",
-          description: "Open checkout url in default browser",
-        },
-        {
-          name: "--staging",
-          description: "Connect to checkout application in staging environment",
-          hidden: true,
-        },
-      ],
-      args: {
-        name: "id",
-        description: "Unique id of the order",
-      },
-    },
-    {
-      name: "imports",
-      description:
-        "List all the created imports or show details of a single import",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {},
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-A", "--all"],
-          description: "Show all imports instead of first 25 only",
-        },
-        {
-          name: ["-t", "--type"],
-          description: "The type of resource imported",
-          args: {
-            suggestions: [
-              "addresses",
-              "bundles",
-              "coupons",
-              "customer_addresses",
-              "customer_payment_sources",
-              "customer_subscriptions",
-              "customers",
-              "gift_cards",
-              "line_items",
-              "line_item_options",
-              "orders",
-              "price_tiers",
-              "prices",
-              "shipping_categories",
-              "sku_lists",
-              "sku_list_items",
-              "sku_options",
-              "skus",
-              "stock_items",
-              "tags",
-              "tax_categories",
-            ],
-          },
-        },
-        {
-          name: ["-g", "--group"],
-          description:
-            "The group id associated to the import in case of multi-chunk imports",
-          args: {},
-        },
-        {
-          name: ["-s", "--status"],
-          description: "The import job status",
-          args: {
-            suggestions: ["in_progress", "pending", "completed", "interrupted"],
-          },
-        },
-        {
-          name: ["-e", "--errors"],
-          description: "Show only imports with errors",
-        },
-        {
-          name: ["-w", "--warnings"],
-          description: "Show only import with warnings",
-        },
-        {
-          name: ["-l", "--limit"],
-          description: "Limit number of imports in output",
-          args: {},
-        },
-      ],
-      args: {
-        name: "id",
-        description: "Unique id of the import to be retrieved",
-        isOptional: true,
-      },
-    },
-    {
-      name: ["imports:create", "imp:create", "import"],
-      description: "Create a new import",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {},
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-t", "--type"],
-          description: "The type of resource being imported",
-          args: {
-            description: "Addresses|bundles|coupons|customer_addresses|etc",
-            suggestions: [
-              "addresses",
-              "bundles",
-              "coupons",
-              "customer_addresses",
-              "customer_payment_sources",
-              "customer_subscriptions",
-              "customers",
-              "gift_cards",
-              "line_items",
-              "line_item_options",
-              "orders",
-              "price_tiers",
-              "prices",
-              "shipping_categories",
-              "sku_lists",
-              "sku_list_items",
-              "sku_options",
-              "skus",
-              "stock_items",
-              "tags",
-              "tax_categories",
-            ],
-          },
-          isRequired: true,
-        },
-        {
-          name: ["-p", "--parent"],
-          description:
-            "The id of the parent resource to be associated with imported data",
-          args: {},
-        },
-        {
-          name: ["-i", "--inputs"],
-          description: "The path of the file containing the data to import",
-          args: {},
-          isRequired: true,
-        },
-        {
-          name: ["-C", "--csv"],
-          description: "Accept input file in csv format",
-        },
-        {
-          name: ["-D", "--delimiter"],
-          description:
-            "The delimiter character used in the csv input file (one of ',', ';', '|', tab)",
-          args: {
-            suggestions: [",", ";", "|", "TAB"],
-          },
-        },
-        {
-          name: ["-b", "--blind"],
-          description:
-            "Execute in blind mode without showing the progress monitor",
-        },
-        {
-          name: ["-q", "--quiet"],
-          description: "Execute command without showing warning messages",
-        },
-      ],
-    },
-    {
-      name: ["imports:delete", "imp:delete"],
-      description: "Delete an existing import",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {},
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-      ],
-      args: {
-        name: "id",
-        description: "Unique id of the import",
-      },
-    },
-    {
-      name: ["imports:details", "imp:details"],
-      description: "Show the details of an existing import",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {},
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-i", "--inputs"],
-          description: "Show input items associated with the import",
-        },
-        {
-          name: ["-l", "--logs"],
-          description:
-            "Show warning and error logs related to the import process",
-        },
-        {
-          name: ["-S", "--save-inputs"],
-          description: "Save import inputs to local file",
-          args: {},
-        },
-      ],
-      args: {
-        name: "id",
-        description: "Unique id of the import",
-      },
-    },
-    {
-      name: ["imports:group", "imp:group"],
-      description: "List all the imports related to an import group",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {},
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-      ],
-      args: {
-        name: "group_id",
-        description: "Unique id of the group import",
-      },
-    },
-    {
-      name: ["imports:list", "imp:list"],
-      description: "List all the created imports",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {},
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-A", "--all"],
-          description: "Show all imports instead of first 25 only",
-        },
-        {
-          name: ["-t", "--type"],
-          description: "The type of resource imported",
-          args: {
-            suggestions: [
-              "addresses",
-              "bundles",
-              "coupons",
-              "customer_addresses",
-              "customer_payment_sources",
-              "customer_subscriptions",
-              "customers",
-              "gift_cards",
-              "line_items",
-              "line_item_options",
-              "orders",
-              "price_tiers",
-              "prices",
-              "shipping_categories",
-              "sku_lists",
-              "sku_list_items",
-              "sku_options",
-              "skus",
-              "stock_items",
-              "tags",
-              "tax_categories",
-            ],
-          },
-        },
-        {
-          name: ["-g", "--group"],
-          description:
-            "The group id associated to the import in case of multi-chunk imports",
-          args: {},
-        },
-        {
-          name: ["-s", "--status"],
-          description: "The import job status",
-          args: {
-            suggestions: ["in_progress", "pending", "completed", "interrupted"],
-          },
-        },
-        {
-          name: ["-e", "--errors"],
-          description: "Show only imports with errors",
-        },
-        {
-          name: ["-w", "--warnings"],
-          description: "Show only import with warnings",
-        },
-        {
-          name: ["-l", "--limit"],
-          description: "Limit number of imports in output",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: ["imports:types", "imp:types"],
-      description: "Show online documentation for supported resources",
-      options: [
-        {
-          name: ["-O", "--open"],
-          description: "Open online documentation page",
-        },
-      ],
-    },
-    {
-      name: "microstore",
-      description: "Create microstore urls",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {},
-          hidden: true,
-        },
-        {
-          name: ["-a", "--accessToken"],
-          args: {},
-          isRequired: true,
-          hidden: false,
-        },
-        {
-          name: "--open",
-          description: "Open microstore url in default browser",
-        },
-        {
-          name: ["-S", "--skuListId"],
-          description: "The sku list id",
-          args: {},
-          isRequired: true,
-        },
-        {
-          name: ["-A", "--all"],
-          description: "Activate the buy all button",
-        },
-        {
-          name: ["-C", "--cart"],
-          description: "Activate the cart application",
-        },
-        {
-          name: ["-I", "--inline"],
-          description: "Disable redirect to cart application",
-        },
-      ],
-    },
-    {
       name: "seeder:check",
       description: "Execute a check on seeder data",
       options: [
@@ -1271,128 +753,6 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: ["token:decode", "token:info"],
-      description: "Decode a commerce layer access token",
-      args: {
-        name: "token",
-        description: "The access token to be decoded",
-      },
-    },
-    {
-      name: "token:generate",
-      description: "Start a wizard to generate a custom access token",
-      options: [
-        {
-          name: ["-d", "--domain"],
-          args: {},
-          hidden: true,
-        },
-        {
-          name: ["-p", "--print"],
-          description: "Print users answers",
-          hidden: true,
-        },
-        {
-          name: ["-i", "--info"],
-          description: "Print generated token info",
-        },
-        {
-          name: ["-c", "--check"],
-          description: "Check generated access token",
-        },
-      ],
-    },
-    {
-      name: "token:get",
-      description: "Get a new access token",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {},
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {},
-          hidden: true,
-        },
-        {
-          name: ["-i", "--clientId"],
-          description: "Application client_id",
-          args: {},
-          isRequired: true,
-        },
-        {
-          name: ["-s", "--clientSecret"],
-          description: "Application client_secret",
-          args: {},
-        },
-        {
-          name: ["-S", "--scope"],
-          description: "Access token scope (market, stock location)",
-          args: {},
-        },
-        {
-          name: ["-e", "--email"],
-          description: "Customer email",
-          args: {},
-        },
-        {
-          name: ["-p", "--password"],
-          description: "Customer secret password",
-          args: {},
-        },
-        {
-          name: "--info",
-          description: "Show access token info",
-        },
-        {
-          name: ["-P", "--provisioning"],
-          description: "Execute login to provisioning api",
-        },
-      ],
-    },
-    {
-      name: "token:revoke",
-      description: "Revoke a commerce layer access token",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {},
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {},
-          hidden: true,
-        },
-        {
-          name: ["-i", "--clientId"],
-          description: "Application client_id",
-          args: {},
-          isRequired: true,
-        },
-        {
-          name: ["-s", "--clientSecret"],
-          description: "Application client_secret",
-          args: {},
-        },
-        {
-          name: ["-S", "--scope"],
-          description: "Access token scope",
-          args: {},
-        },
-        {
-          name: ["-P", "--provisioning"],
-          description: "Execute login to provisioning api",
-        },
-      ],
-      args: {
-        name: "token",
-        description: "Access token to revoke",
-      },
-    },
-    {
       name: "resources",
       description: "List all the available commerce layer api resources",
       options: [
@@ -1479,6 +839,11 @@ const completionSpec: Fig.Spec = {
           name: "--load-args",
           description: "Load previously saved command arguments",
           args: {},
+        },
+        {
+          name: ["-I", "--force-include"],
+          description: "Force resources inclusion beyond the 3rd level",
+          hidden: true,
         },
         {
           name: ["-w", "--where"],
@@ -1707,6 +1072,11 @@ const completionSpec: Fig.Spec = {
           description: "Show only response headers",
         },
         {
+          name: ["-I", "--force-include"],
+          description: "Force resources inclusion beyond the 3rd level",
+          hidden: true,
+        },
+        {
           name: ["-a", "--attribute"],
           description: "Define a resource attribute",
           args: {},
@@ -1756,6 +1126,7 @@ const completionSpec: Fig.Spec = {
           "braintree_payment",
           "bundle",
           "buy_x_pay_y_promotion",
+          "carrier_account",
           "checkout_com_gateway",
           "checkout_com_payment",
           "cleanup",
@@ -1792,6 +1163,7 @@ const completionSpec: Fig.Spec = {
           "klarna_payment",
           "line_item",
           "line_item_option",
+          "link",
           "manual_gateway",
           "manual_tax_calculator",
           "market",
@@ -1812,6 +1184,7 @@ const completionSpec: Fig.Spec = {
           "price",
           "price_frequency_tier",
           "price_list",
+          "price_list_scheduler",
           "price_volume_tier",
           "recurring_order_copy",
           "return",
@@ -1932,6 +1305,11 @@ const completionSpec: Fig.Spec = {
           name: ["-Y", "--headers-only"],
           description: "Show only response headers",
         },
+        {
+          name: ["-I", "--force-include"],
+          description: "Force resources inclusion beyond the 3rd level",
+          hidden: true,
+        },
       ],
       args: [
         {
@@ -1952,6 +1330,7 @@ const completionSpec: Fig.Spec = {
             "braintree_payment",
             "bundle",
             "buy_x_pay_y_promotion",
+            "carrier_account",
             "checkout_com_gateway",
             "checkout_com_payment",
             "cleanup",
@@ -1988,6 +1367,7 @@ const completionSpec: Fig.Spec = {
             "klarna_payment",
             "line_item",
             "line_item_option",
+            "link",
             "manual_gateway",
             "manual_tax_calculator",
             "market",
@@ -2008,6 +1388,7 @@ const completionSpec: Fig.Spec = {
             "price",
             "price_frequency_tier",
             "price_list",
+            "price_list_scheduler",
             "price_volume_tier",
             "recurring_order_copy",
             "return",
@@ -2161,6 +1542,11 @@ const completionSpec: Fig.Spec = {
           description: "Show only response headers",
         },
         {
+          name: ["-I", "--force-include"],
+          description: "Force resources inclusion beyond the 3rd level",
+          hidden: true,
+        },
+        {
           name: ["-x", "--save"],
           description: "Save command output to file",
           args: {},
@@ -2195,11 +1581,6 @@ const completionSpec: Fig.Spec = {
           name: ["-s", "--sort"],
           description: "Defines results ordering",
           args: {},
-        },
-        {
-          name: ["-I", "--force-include"],
-          description: "Force resources inclusion beyond the 3rd level",
-          hidden: true,
         },
       ],
       args: [
@@ -2305,6 +1686,11 @@ const completionSpec: Fig.Spec = {
           description: "Show only response headers",
         },
         {
+          name: ["-I", "--force-include"],
+          description: "Force resources inclusion beyond the 3rd level",
+          hidden: true,
+        },
+        {
           name: ["-w", "--where"],
           description: "Comma separated list of query filters",
           args: {},
@@ -2340,11 +1726,6 @@ const completionSpec: Fig.Spec = {
           description: "Extract subfields from object attributes",
           args: {},
         },
-        {
-          name: ["-I", "--force-include"],
-          description: "Force resources inclusion beyond the 3rd level",
-          hidden: true,
-        },
       ],
       args: [
         {
@@ -2357,6 +1738,34 @@ const completionSpec: Fig.Spec = {
           isOptional: true,
         },
       ],
+    },
+    {
+      name: ["resources:last", "last", "res:last"],
+      description: "Show the last id of a resource type",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+      ],
+      args: {
+        name: "resource",
+        description: "The resource type",
+      },
     },
     {
       name: ["resources:list", "list", "rl", "res:list"],
@@ -2445,6 +1854,11 @@ const completionSpec: Fig.Spec = {
           description: "Show only response headers",
         },
         {
+          name: ["-I", "--force-include"],
+          description: "Force resources inclusion beyond the 3rd level",
+          hidden: true,
+        },
+        {
           name: ["-w", "--where"],
           description: "Comma separated list of query filters",
           args: {},
@@ -2479,11 +1893,6 @@ const completionSpec: Fig.Spec = {
           name: ["-e", "--extract"],
           description: "Extract subfields from object attributes",
           args: {},
-        },
-        {
-          name: ["-I", "--force-include"],
-          description: "Force resources inclusion beyond the 3rd level",
-          hidden: true,
         },
       ],
       args: {
@@ -2546,6 +1955,7 @@ const completionSpec: Fig.Spec = {
           "klarna_payments",
           "line_items",
           "line_item_options",
+          "links",
           "manual_gateways",
           "manual_tax_calculators",
           "markets",
@@ -2569,6 +1979,7 @@ const completionSpec: Fig.Spec = {
           "prices",
           "price_frequency_tiers",
           "price_lists",
+          "price_list_schedulers",
           "price_tiers",
           "price_volume_tiers",
           "promotions",
@@ -2702,6 +2113,11 @@ const completionSpec: Fig.Spec = {
           description: "Show only response headers",
         },
         {
+          name: ["-I", "--force-include"],
+          description: "Force resources inclusion beyond the 3rd level",
+          hidden: true,
+        },
+        {
           name: ["-w", "--where"],
           description: "Comma separated list of query filters",
           args: {},
@@ -2736,11 +2152,6 @@ const completionSpec: Fig.Spec = {
           name: ["-e", "--extract"],
           description: "Extract subfields from object attributes",
           args: {},
-        },
-        {
-          name: ["-I", "--force-include"],
-          description: "Force resources inclusion beyond the 3rd level",
-          hidden: true,
         },
       ],
       args: [
@@ -2846,6 +2257,11 @@ const completionSpec: Fig.Spec = {
           description: "Show only response headers",
         },
         {
+          name: ["-I", "--force-include"],
+          description: "Force resources inclusion beyond the 3rd level",
+          hidden: true,
+        },
+        {
           name: ["-x", "--save"],
           description: "Save command output to file",
           args: {},
@@ -2924,6 +2340,7 @@ const completionSpec: Fig.Spec = {
             "klarna_payment",
             "line_item",
             "line_item_option",
+            "link",
             "manual_gateway",
             "manual_tax_calculator",
             "market",
@@ -2948,6 +2365,7 @@ const completionSpec: Fig.Spec = {
             "price",
             "price_frequency_tier",
             "price_list",
+            "price_list_scheduler",
             "price_tier",
             "price_volume_tier",
             "promotion",
@@ -3092,6 +2510,11 @@ const completionSpec: Fig.Spec = {
           description: "Show only response headers",
         },
         {
+          name: ["-I", "--force-include"],
+          description: "Force resources inclusion beyond the 3rd level",
+          hidden: true,
+        },
+        {
           name: ["-a", "--attribute"],
           description: "Define a resource attribute",
           args: {},
@@ -3148,6 +2571,7 @@ const completionSpec: Fig.Spec = {
             "bundle",
             "buy_x_pay_y_promotion",
             "capture",
+            "carrier_account",
             "checkout_com_gateway",
             "checkout_com_payment",
             "coupon",
@@ -3162,6 +2586,7 @@ const completionSpec: Fig.Spec = {
             "customer_payment_source",
             "customer_subscription",
             "delivery_lead_time",
+            "event",
             "external_gateway",
             "external_payment",
             "external_promotion",
@@ -3181,6 +2606,7 @@ const completionSpec: Fig.Spec = {
             "klarna_payment",
             "line_item",
             "line_item_option",
+            "link",
             "manual_gateway",
             "manual_tax_calculator",
             "market",
@@ -3201,6 +2627,7 @@ const completionSpec: Fig.Spec = {
             "price",
             "price_frequency_tier",
             "price_list",
+            "price_list_scheduler",
             "price_volume_tier",
             "recurring_order_copy",
             "return",
@@ -3238,6 +2665,1498 @@ const completionSpec: Fig.Spec = {
           name: "id",
           description: "Id of the resource to update",
           isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "links",
+      description: "List all the links or the details of a single link",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: ["-a", "--accessToken"],
+          description:
+            "Custom access token to use instead of the one used for login",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-A", "--all"],
+          description: "Show all links instead of first 25 only",
+        },
+        {
+          name: ["-l", "--limit"],
+          description: "Limit number of links in output",
+          args: {},
+        },
+        {
+          name: ["-n", "--name"],
+          description: "The name of the link",
+          args: {},
+        },
+        {
+          name: ["-S", "--link_scope"],
+          description: "The scope of the link",
+          args: {},
+        },
+        {
+          name: ["-s", "--starts"],
+          description: "Look at the description of flag 'expires' for details",
+          args: {},
+        },
+        {
+          name: ["-e", "--expires"],
+          description:
+            "Use the standard iso format with operators [gt, gteq, eq, lt, lteq]",
+          args: {},
+        },
+        {
+          name: "--sort",
+          description: "A comma separated list of fields to sort by",
+          args: {},
+        },
+        {
+          name: ["-L", "--locale"],
+          description: "Show dates in locale time zone and format",
+        },
+        {
+          name: ["-H", "--hide-empty"],
+          description: "Hide empty attributes",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the link to get a single link",
+        isOptional: true,
+      },
+    },
+    {
+      name: ["links:create", "link"],
+      description: "Create a new resource link",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: ["-a", "--accessToken"],
+          description:
+            "Custom access token to use instead of the one used for login",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-t", "--item_type"],
+          description: "The type of the resource for which the link is created",
+          args: {},
+        },
+        {
+          name: ["-i", "--item_id"],
+          description: "The id of the resource for which the link is created",
+          args: {},
+        },
+        {
+          name: ["-I", "--client_id"],
+          description:
+            "The client_id of the application of kind sales_channel to be used with the link",
+          args: {},
+        },
+        {
+          name: "--scope",
+          description: "The application scope",
+          args: {},
+          hidden: true,
+        },
+        {
+          name: ["-S", "--link_scope"],
+          description: "The scope of the link",
+          args: {},
+        },
+        {
+          name: ["-n", "--name"],
+          description: "The name associated to the the link",
+          args: {},
+        },
+        {
+          name: ["-s", "--starts"],
+          description: "Use the standard iso format: https://developer",
+          args: {},
+        },
+        {
+          name: ["-e", "--expires"],
+          description: "Use the standard iso format: https://developer",
+          args: {},
+        },
+        {
+          name: ["-D", "--link_domain"],
+          description: "The domain of the link",
+          args: {
+            default: "c11r.link",
+          },
+        },
+        {
+          name: "--open",
+          description: "Open link in default browser",
+        },
+      ],
+    },
+    {
+      name: "links:delete",
+      description: "Delete an existent resource link",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: ["-a", "--accessToken"],
+          description:
+            "Custom access token to use instead of the one used for login",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The id of the link",
+      },
+    },
+    {
+      name: ["links:details", "links:show", "links:get"],
+      description: "Show link details",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: ["-a", "--accessToken"],
+          description:
+            "Custom access token to use instead of the one used for login",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-H", "--hide-empty"],
+          description: "Hide empty attributes",
+        },
+        {
+          name: ["-L", "--locale"],
+          description: "Show dates in locale time zone and format",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The id of the link",
+      },
+    },
+    {
+      name: "links:disable",
+      description: "Disable an existing enabled link",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: ["-a", "--accessToken"],
+          description:
+            "Custom access token to use instead of the one used for login",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The id of the link",
+      },
+    },
+    {
+      name: "links:enable",
+      description: "Enable an existend disabled link",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: ["-a", "--accessToken"],
+          description:
+            "Custom access token to use instead of the one used for login",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The id of the link",
+      },
+    },
+    {
+      name: "links:list",
+      description: "List all the created links",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: ["-a", "--accessToken"],
+          description:
+            "Custom access token to use instead of the one used for login",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-A", "--all"],
+          description: "Show all links instead of first 25 only",
+        },
+        {
+          name: ["-l", "--limit"],
+          description: "Limit number of links in output",
+          args: {},
+        },
+        {
+          name: ["-n", "--name"],
+          description: "The name of the link",
+          args: {},
+        },
+        {
+          name: ["-S", "--link_scope"],
+          description: "The scope of the link",
+          args: {},
+        },
+        {
+          name: ["-s", "--starts"],
+          description: "Look at the description of flag 'expires' for details",
+          args: {},
+        },
+        {
+          name: ["-e", "--expires"],
+          description:
+            "Use the standard iso format with operators [gt, gteq, eq, lt, lteq]",
+          args: {},
+        },
+        {
+          name: "--sort",
+          description: "A comma separated list of fields to sort by",
+          args: {},
+        },
+        {
+          name: ["-L", "--locale"],
+          description: "Show dates in locale time zone and format",
+        },
+      ],
+    },
+    {
+      name: "links:open",
+      description: "Open an existent resource link",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: ["-a", "--accessToken"],
+          description:
+            "Custom access token to use instead of the one used for login",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The id of the link",
+      },
+    },
+    {
+      name: "links:resources",
+      description: "Show linkable resources",
+      options: [
+        {
+          name: ["-O", "--open"],
+          description: "Open online documentation page",
+        },
+      ],
+    },
+    {
+      name: "links:update",
+      description: "Create a new resource link",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: ["-a", "--accessToken"],
+          description:
+            "Custom access token to use instead of the one used for login",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-t", "--item_type"],
+          description: "The type of the resource for which the link is created",
+          args: {},
+        },
+        {
+          name: ["-i", "--item_id"],
+          description: "The id of the resource for which the link is created",
+          args: {},
+        },
+        {
+          name: ["-I", "--client_id"],
+          description:
+            "The client_id of the application of kind sales_channel to be used with the link",
+          args: {},
+        },
+        {
+          name: "--scope",
+          description: "The application scope",
+          args: {},
+          hidden: true,
+        },
+        {
+          name: ["-S", "--link_scope"],
+          description: "The scope of the link",
+          args: {},
+        },
+        {
+          name: ["-n", "--name"],
+          description: "The name associated to the the link",
+          args: {},
+        },
+        {
+          name: ["-s", "--starts"],
+          description: "Use the standard iso format: https://developer",
+          args: {},
+        },
+        {
+          name: ["-e", "--expires"],
+          description: "Use the standard iso format: https://developer",
+          args: {},
+        },
+        {
+          name: ["-D", "--link_domain"],
+          description: "The domain of the link",
+          args: {
+            default: "c11r.link",
+          },
+        },
+        {
+          name: "--open",
+          description: "Open link in default browser",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The id of the link",
+      },
+    },
+    {
+      name: "webhooks",
+      description:
+        "List all the registered webhooks or the details of a single webhook",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-c", "--circuit"],
+          description: "Show only webhooks with circuit in the declared state",
+          args: {
+            suggestions: ["open", "closed"],
+          },
+        },
+        {
+          name: ["-t", "--topic"],
+          description: "The event that triggered the webhook",
+          args: {},
+        },
+        {
+          name: ["-H", "--hide-empty"],
+          description: "Hide empty attributes",
+        },
+        {
+          name: ["-e", "--events"],
+          description:
+            "Show the last event callbacks associated to the webhook",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the webhook to get a single webhook",
+        isOptional: true,
+      },
+    },
+    {
+      name: ["webhooks:create", "wh:create"],
+      description: "Create a new webhook",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-t", "--topic"],
+          description:
+            "The identifier of the event that will trigger the webhook",
+          args: {},
+          isRequired: true,
+        },
+        {
+          name: ["-u", "--url"],
+          description: "The callback url used to post data",
+          args: {},
+          isRequired: true,
+        },
+        {
+          name: ["-i", "--include"],
+          description:
+            "A comma separated list of related resources to be included",
+          args: {},
+        },
+        {
+          name: ["-n", "--name"],
+          description: "The webhook short name",
+          args: {},
+        },
+      ],
+    },
+    {
+      name: ["webhooks:destroy", "webhooks:delete", "wh:delete", "wh:destroy"],
+      description: "Destroy an existing webhook",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the webhook",
+      },
+    },
+    {
+      name: ["webhooks:details", "wh:details"],
+      description: "Show the details of an existing webhook",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-H", "--hide-empty"],
+          description: "Hide empty attributes",
+        },
+        {
+          name: ["-e", "--events"],
+          description:
+            "Show the last event callbacks associated to the webhook",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the webhook",
+      },
+    },
+    {
+      name: ["webhooks:disable", "wh:disable"],
+      description: "Disable an enabled webhook",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the webhook",
+      },
+    },
+    {
+      name: ["webhooks:enable", "wh:enable"],
+      description: "Enable a disabled webhook",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the webhook",
+      },
+    },
+    {
+      name: ["webhooks:event", "wh:event"],
+      description: "Show the details of a firedf webhook event",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--payload"],
+          description: "Show the event payload sent to the callback endpoint",
+        },
+        {
+          name: ["-f", "--format"],
+          description: "Format the payload output",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the webhook",
+      },
+    },
+    {
+      name: ["webhooks:events", "wh:events"],
+      description: "List all the events associated to the webhook",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-A", "--all"],
+          description: "Show all events instead of first 25 only",
+        },
+        {
+          name: ["-l", "--limit"],
+          description: "Limit number of events in output",
+          args: {},
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the webhook",
+      },
+    },
+    {
+      name: ["webhooks:list", "wh:list"],
+      description: "List all the registered webhooks",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-c", "--circuit"],
+          description: "Show only webhooks with circuit in the declared state",
+          args: {
+            suggestions: ["open", "closed"],
+          },
+        },
+        {
+          name: ["-t", "--topic"],
+          description: "The event that triggered the webhook",
+          args: {},
+        },
+      ],
+    },
+    {
+      name: ["webhooks:listen", "wh:listen"],
+      description: "Listen a webhook for outgoing callbacks",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-t", "--time"],
+          description: "Waiting time for the first event",
+          args: {
+            default: "120",
+          },
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the webhook",
+      },
+    },
+    {
+      name: ["webhooks:payload", "wh:payload"],
+      description: "Show the payload associated to an event callback",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-f", "--format"],
+          description: "Format the payload output",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the webhook",
+      },
+    },
+    {
+      name: ["webhooks:reset", "wh:reset"],
+      description: "Reset the circuit breaker associated to the webhook",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the webhook",
+      },
+    },
+    {
+      name: ["webhooks:topics", "wh:topics"],
+      description: "Show online documentation for supported events",
+    },
+    {
+      name: ["webhooks:update", "wh:update"],
+      description: "Update an existing webhook",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-t", "--topic"],
+          description:
+            "The identifier of the event that will trigger the webhook",
+          args: {},
+        },
+        {
+          name: ["-u", "--url"],
+          description: "The callback url used to post data",
+          args: {},
+        },
+        {
+          name: ["-i", "--include"],
+          description:
+            "A comma separated list of related resources to be included",
+          args: {},
+        },
+        {
+          name: ["-n", "--name"],
+          description: "The webhook short name",
+          args: {},
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the webhook",
+      },
+    },
+    {
+      name: "microstore",
+      description: "Create microstore urls",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: ["-a", "--accessToken"],
+          description:
+            "Custom access token to use instead of the one used for login",
+          args: {},
+          isRequired: true,
+          hidden: false,
+        },
+        {
+          name: "--open",
+          description: "Open microstore url in default browser",
+        },
+        {
+          name: "--staging",
+          description:
+            "Connect to microstore application in staging environment",
+          hidden: true,
+        },
+        {
+          name: ["-S", "--skuListId"],
+          description: "The sku list id",
+          args: {},
+        },
+        {
+          name: ["-K", "--skuId"],
+          description: "The sku id",
+          args: {},
+        },
+        {
+          name: ["-A", "--all"],
+          description: "Activate the buy all button",
+        },
+        {
+          name: ["-C", "--cart"],
+          description: "Activate the cart application",
+        },
+        {
+          name: ["-I", "--inline"],
+          description: "Disable redirect to cart application",
+          exclusiveOn: ["--no-inline"],
+        },
+        {
+          name: "--no-inline",
+        },
+        {
+          name: ["-l", "--lang"],
+          description: "The language used for microstore",
+          args: {
+            suggestions: ["en", "it"],
+            default: "en",
+          },
+        },
+      ],
+    },
+    {
+      name: "checkout",
+      description: "Create checkout urls",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: ["-a", "--accessToken"],
+          description:
+            "Custom access token to use instead of the one used for login",
+          args: {},
+          isRequired: true,
+          hidden: false,
+        },
+        {
+          name: "--open",
+          description: "Open checkout url in default browser",
+        },
+        {
+          name: "--staging",
+          description: "Connect to checkout application in staging environment",
+          hidden: true,
+        },
+        {
+          name: ["-l", "--link"],
+          description: "Generate short link",
+        },
+        {
+          name: ["-O", "--order"],
+          description: "An order id",
+          args: {},
+        },
+        {
+          name: ["-S", "--sku"],
+          description: "An sku code",
+          args: {},
+        },
+        {
+          name: ["-B", "--bundle"],
+          description: "A bundle code",
+          args: {},
+        },
+        {
+          name: ["-m", "--market"],
+          description: "A market number",
+          args: {},
+        },
+        {
+          name: ["-c", "--coupon"],
+          description: "A promo code",
+          args: {},
+        },
+        {
+          name: ["-e", "--email"],
+          description: "A customer email",
+          args: {},
+        },
+      ],
+    },
+    {
+      name: "checkout:order",
+      description: "Create checkout urls starting from an existing order",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: ["-a", "--accessToken"],
+          description:
+            "Custom access token to use instead of the one used for login",
+          args: {},
+          isRequired: true,
+          hidden: false,
+        },
+        {
+          name: "--open",
+          description: "Open checkout url in default browser",
+        },
+        {
+          name: "--staging",
+          description: "Connect to checkout application in staging environment",
+          hidden: true,
+        },
+        {
+          name: ["-l", "--link"],
+          description: "Generate short link",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the order",
+      },
+    },
+    {
+      name: "imports",
+      description:
+        "List all the created imports or show details of a single import",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-A", "--all"],
+          description: "Show all imports instead of first 25 only",
+        },
+        {
+          name: ["-t", "--type"],
+          description: "The type of resource imported",
+          args: {
+            suggestions: [
+              "addresses",
+              "bundles",
+              "coupons",
+              "customer_addresses",
+              "customer_payment_sources",
+              "customer_subscriptions",
+              "customers",
+              "gift_cards",
+              "line_items",
+              "line_item_options",
+              "orders",
+              "price_tiers",
+              "prices",
+              "shipping_categories",
+              "sku_lists",
+              "sku_list_items",
+              "sku_options",
+              "skus",
+              "stock_items",
+              "stock_transfers",
+              "tags",
+              "tax_categories",
+            ],
+          },
+        },
+        {
+          name: ["-g", "--group"],
+          description:
+            "The group id associated to the import in case of multi-chunk imports",
+          args: {},
+        },
+        {
+          name: ["-s", "--status"],
+          description: "The import job status",
+          args: {
+            suggestions: ["in_progress", "pending", "completed", "interrupted"],
+          },
+        },
+        {
+          name: ["-e", "--errors"],
+          description: "Show only imports with errors",
+        },
+        {
+          name: ["-w", "--warnings"],
+          description: "Show only import with warnings",
+        },
+        {
+          name: ["-l", "--limit"],
+          description: "Limit number of imports in output",
+          args: {},
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the import to be retrieved",
+        isOptional: true,
+      },
+    },
+    {
+      name: ["imports:create", "imp:create", "import"],
+      description: "Create a new import",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-t", "--type"],
+          description: "The type of resource being imported",
+          args: {
+            description: "Addresses|bundles|coupons|customer_addresses|etc",
+            suggestions: [
+              "addresses",
+              "bundles",
+              "coupons",
+              "customer_addresses",
+              "customer_payment_sources",
+              "customer_subscriptions",
+              "customers",
+              "gift_cards",
+              "line_items",
+              "line_item_options",
+              "orders",
+              "price_tiers",
+              "prices",
+              "shipping_categories",
+              "sku_lists",
+              "sku_list_items",
+              "sku_options",
+              "skus",
+              "stock_items",
+              "stock_transfers",
+              "tags",
+              "tax_categories",
+            ],
+          },
+          isRequired: true,
+        },
+        {
+          name: ["-p", "--parent"],
+          description:
+            "The id of the parent resource to be associated with imported data",
+          args: {},
+        },
+        {
+          name: ["-i", "--inputs"],
+          description: "The path of the file containing the data to import",
+          args: {},
+          isRequired: true,
+        },
+        {
+          name: ["-C", "--csv"],
+          description: "Accept input file in csv format",
+        },
+        {
+          name: ["-b", "--blind"],
+          description:
+            "Execute in blind mode without showing the progress monitor",
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Execute command without showing warning messages",
+        },
+      ],
+    },
+    {
+      name: ["imports:delete", "imp:delete"],
+      description: "Delete an existing import",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the import",
+      },
+    },
+    {
+      name: ["imports:details", "imp:details"],
+      description: "Show the details of an existing import",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-i", "--inputs"],
+          description: "Show input items associated with the import",
+        },
+        {
+          name: ["-l", "--logs"],
+          description:
+            "Show warning and error logs related to the import process",
+        },
+        {
+          name: ["-S", "--save-inputs"],
+          description: "Save import inputs to local file",
+          args: {},
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the import",
+      },
+    },
+    {
+      name: ["imports:group", "imp:group"],
+      description: "List all the imports related to an import group",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+      ],
+      args: {
+        name: "group_id",
+        description: "Unique id of the group import",
+      },
+    },
+    {
+      name: ["imports:list", "imp:list"],
+      description: "List all the created imports",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-A", "--all"],
+          description: "Show all imports instead of first 25 only",
+        },
+        {
+          name: ["-t", "--type"],
+          description: "The type of resource imported",
+          args: {
+            suggestions: [
+              "addresses",
+              "bundles",
+              "coupons",
+              "customer_addresses",
+              "customer_payment_sources",
+              "customer_subscriptions",
+              "customers",
+              "gift_cards",
+              "line_items",
+              "line_item_options",
+              "orders",
+              "price_tiers",
+              "prices",
+              "shipping_categories",
+              "sku_lists",
+              "sku_list_items",
+              "sku_options",
+              "skus",
+              "stock_items",
+              "stock_transfers",
+              "tags",
+              "tax_categories",
+            ],
+          },
+        },
+        {
+          name: ["-g", "--group"],
+          description:
+            "The group id associated to the import in case of multi-chunk imports",
+          args: {},
+        },
+        {
+          name: ["-s", "--status"],
+          description: "The import job status",
+          args: {
+            suggestions: ["in_progress", "pending", "completed", "interrupted"],
+          },
+        },
+        {
+          name: ["-e", "--errors"],
+          description: "Show only imports with errors",
+        },
+        {
+          name: ["-w", "--warnings"],
+          description: "Show only import with warnings",
+        },
+        {
+          name: ["-l", "--limit"],
+          description: "Limit number of imports in output",
+          args: {},
+        },
+      ],
+    },
+    {
+      name: ["imports:types", "imp:types"],
+      description: "Show online documentation for supported resources",
+      options: [
+        {
+          name: ["-O", "--open"],
+          description: "Open online documentation page",
         },
       ],
     },
@@ -3773,6 +4692,47 @@ const completionSpec: Fig.Spec = {
           description: "The trigger attribute value",
           args: {},
           isRequired: true,
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the order",
+      },
+    },
+    {
+      name: "orders:fulfill",
+      description:
+        "Send this attribute if you want to mark as fulfilled a shipped/delivered order",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified order",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
         },
       ],
       args: {
@@ -4481,114 +5441,45 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: "webhooks",
-      description:
-        "List all the registered webhooks or the details of a single webhook",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {},
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-c", "--circuit"],
-          description: "Show only webhooks with circuit in the declared state",
-          args: {
-            suggestions: ["open", "closed"],
-          },
-        },
-        {
-          name: ["-t", "--topic"],
-          description: "The event that triggered the webhook",
-          args: {},
-        },
-        {
-          name: ["-H", "--hide-empty"],
-          description: "Hide empty attributes",
-        },
-        {
-          name: ["-e", "--events"],
-          description:
-            "Show the last event callbacks associated to the webhook",
-        },
-      ],
+      name: ["token:decode", "token:info"],
+      description: "Decode a commerce layer access token",
       args: {
-        name: "id",
-        description: "Unique id of the webhook to get a single webhook",
-        isOptional: true,
+        name: "token",
+        description: "The access token to be decoded",
       },
     },
     {
-      name: ["webhooks:create", "wh:create"],
-      description: "Create a new webhook",
+      name: "token:generate",
+      description: "Start a wizard to generate a custom access token",
       options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
         {
           name: ["-d", "--domain"],
           args: {},
           hidden: true,
         },
         {
-          name: "--accessToken",
-          args: {},
-          isRequired: true,
+          name: ["-p", "--print"],
+          description: "Print users answers",
           hidden: true,
         },
         {
-          name: ["-t", "--topic"],
-          description:
-            "The identifier of the event that will trigger the webhook",
-          args: {},
-          isRequired: true,
+          name: ["-i", "--info"],
+          description: "Print generated token info",
         },
         {
-          name: ["-u", "--url"],
-          description: "The callback url used to post data",
-          args: {},
-          isRequired: true,
-        },
-        {
-          name: ["-i", "--include"],
-          description:
-            "A comma separated list of related resources to be included",
-          args: {},
-        },
-        {
-          name: ["-n", "--name"],
-          description: "The webhook short name",
-          args: {},
+          name: ["-c", "--check"],
+          description: "Check generated access token",
         },
       ],
     },
     {
-      name: ["webhooks:destroy", "webhooks:delete", "wh:delete", "wh:destroy"],
-      description: "Destroy an existing webhook",
+      name: "token:get",
+      description: "Get a new access token",
       options: [
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
           args: {},
-          isRequired: true,
-          hidden: true,
         },
         {
           name: ["-d", "--domain"],
@@ -4596,27 +5487,49 @@ const completionSpec: Fig.Spec = {
           hidden: true,
         },
         {
-          name: "--accessToken",
+          name: ["-i", "--clientId"],
+          description: "Application client_id",
           args: {},
           isRequired: true,
-          hidden: true,
+        },
+        {
+          name: ["-s", "--clientSecret"],
+          description: "Application client_secret",
+          args: {},
+        },
+        {
+          name: ["-S", "--scope"],
+          description: "Access token scope (market, stock location)",
+          args: {},
+        },
+        {
+          name: ["-e", "--email"],
+          description: "Customer email",
+          args: {},
+        },
+        {
+          name: ["-p", "--password"],
+          description: "Customer secret password",
+          args: {},
+        },
+        {
+          name: "--info",
+          description: "Show access token info",
+        },
+        {
+          name: ["-P", "--provisioning"],
+          description: "Execute login to provisioning api",
         },
       ],
-      args: {
-        name: "id",
-        description: "Unique id of the webhook",
-      },
     },
     {
-      name: ["webhooks:details", "wh:details"],
-      description: "Show the details of an existing webhook",
+      name: "token:revoke",
+      description: "Revoke a commerce layer access token",
       options: [
         {
           name: ["-o", "--organization"],
           description: "The slug of your organization",
           args: {},
-          isRequired: true,
-          hidden: true,
         },
         {
           name: ["-d", "--domain"],
@@ -4624,282 +5537,29 @@ const completionSpec: Fig.Spec = {
           hidden: true,
         },
         {
-          name: "--accessToken",
+          name: ["-i", "--clientId"],
+          description: "Application client_id",
           args: {},
           isRequired: true,
-          hidden: true,
         },
         {
-          name: ["-H", "--hide-empty"],
-          description: "Hide empty attributes",
-        },
-        {
-          name: ["-e", "--events"],
-          description:
-            "Show the last event callbacks associated to the webhook",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "Unique id of the webhook",
-      },
-    },
-    {
-      name: ["webhooks:event", "wh:event"],
-      description: "Show the details of a firedf webhook event",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
+          name: ["-s", "--clientSecret"],
+          description: "Application client_secret",
           args: {},
-          isRequired: true,
-          hidden: true,
         },
         {
-          name: ["-d", "--domain"],
+          name: ["-S", "--scope"],
+          description: "Access token scope",
           args: {},
-          hidden: true,
         },
         {
-          name: "--accessToken",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-p", "--payload"],
-          description: "Show the event payload sent to the callback endpoint",
-        },
-        {
-          name: ["-f", "--format"],
-          description: "Format the payload output",
+          name: ["-P", "--provisioning"],
+          description: "Execute login to provisioning api",
         },
       ],
       args: {
-        name: "id",
-        description: "Unique id of the webhook",
-      },
-    },
-    {
-      name: ["webhooks:events", "wh:events"],
-      description: "List all the events associated to the webhook",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {},
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-A", "--all"],
-          description: "Show all events instead of first 25 only",
-        },
-        {
-          name: ["-l", "--limit"],
-          description: "Limit number of events in output",
-          args: {},
-        },
-      ],
-      args: {
-        name: "id",
-        description: "Unique id of the webhook",
-      },
-    },
-    {
-      name: ["webhooks:list", "wh:list"],
-      description: "List all the registered webhooks",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {},
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-c", "--circuit"],
-          description: "Show only webhooks with circuit in the declared state",
-          args: {
-            suggestions: ["open", "closed"],
-          },
-        },
-        {
-          name: ["-t", "--topic"],
-          description: "The event that triggered the webhook",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: ["webhooks:listen", "wh:listen"],
-      description: "Listen a webhook for outgoing callbacks",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {},
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-t", "--time"],
-          description: "Waiting time for the first event",
-          args: {
-            default: "120",
-          },
-        },
-      ],
-      args: {
-        name: "id",
-        description: "Unique id of the webhook",
-      },
-    },
-    {
-      name: ["webhooks:payload", "wh:payload"],
-      description: "Show the payload associated to an event callback",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {},
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-f", "--format"],
-          description: "Format the payload output",
-        },
-      ],
-      args: {
-        name: "id",
-        description: "Unique id of the webhook",
-      },
-    },
-    {
-      name: ["webhooks:reset", "wh:reset"],
-      description: "Reset the circuit breaker associated to the webhook",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {},
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-      ],
-      args: {
-        name: "id",
-        description: "Unique id of the webhook",
-      },
-    },
-    {
-      name: ["webhooks:topics", "wh:topics"],
-      description: "Show online documentation for supported events",
-    },
-    {
-      name: ["webhooks:update", "wh:update"],
-      description: "Update an existing webhook",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {},
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-t", "--topic"],
-          description:
-            "The identifier of the event that will trigger the webhook",
-          args: {},
-        },
-        {
-          name: ["-u", "--url"],
-          description: "The callback url used to post data",
-          args: {},
-        },
-        {
-          name: ["-i", "--include"],
-          description:
-            "A comma separated list of related resources to be included",
-          args: {},
-        },
-        {
-          name: ["-n", "--name"],
-          description: "The webhook short name",
-          args: {},
-        },
-      ],
-      args: {
-        name: "id",
-        description: "Unique id of the webhook",
+        name: "token",
+        description: "Access token to revoke",
       },
     },
     {
@@ -5066,7 +5726,49 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "authorization:capture_amount_cents",
-      description: "The associated capture amount, in cents",
+      description:
+        "Send this attribute as a value in cents if you want to overwrite the amount to b",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified resource",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the resource",
+      },
+    },
+    {
+      name: "authorization:forward",
+      description:
+        "Send this attribute if you want to forwrad a stuck transaction to succeeded and",
       options: [
         {
           name: ["-o", "--organization"],
@@ -5512,6 +6214,47 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: "capture:forward",
+      description:
+        "Send this attribute if you want to forwrad a stuck transaction to succeeded and",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified resource",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the resource",
+      },
+    },
+    {
       name: "capture:refund",
       description:
         "Send this attribute if you want to create a refund for this capture",
@@ -5554,7 +6297,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "capture:refund_amount_cents",
-      description: "The associated refund amount, in cents",
+      description:
+        "Send this attribute as a value in cents if you want to overwrite the amount to b",
       options: [
         {
           name: ["-o", "--organization"],
@@ -7185,6 +7929,88 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: "link:disable",
+      description:
+        "Send this attribute if you want to mark this resource as disabled",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified resource",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the resource",
+      },
+    },
+    {
+      name: "link:enable",
+      description:
+        "Send this attribute if you want to mark this resource as enabled",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified resource",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the resource",
+      },
+    },
+    {
       name: "market",
       description: "Execute an action on a resource of type markets",
       options: [
@@ -7470,6 +8296,47 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: "order_subscription:convert",
+      description:
+        "Send this attribute if you want to convert a manual subscription to an automatic",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified resource",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the resource",
+      },
+    },
+    {
       name: "order_subscription:deactivate",
       description:
         "Send this attribute if you want to mark this subscription as inactive",
@@ -7633,7 +8500,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "order:authorization_amount_cents",
-      description: "The authorization amount, in cents",
+      description:
+        "Send this attribute as a value in cents if you want to overwrite the amount to b",
       options: [
         {
           name: ["-o", "--organization"],
@@ -8002,6 +8870,47 @@ const completionSpec: Fig.Spec = {
           description: "The trigger attribute value",
           args: {},
           isRequired: true,
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the resource",
+      },
+    },
+    {
+      name: "order:fulfill",
+      description:
+        "Send this attribute if you want to mark as fulfilled a shipped/delivered order",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified resource",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
         },
       ],
       args: {
@@ -8955,6 +9864,129 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: "price_list_scheduler",
+      description:
+        "Execute an action on a resource of type price_list_schedulers",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified resource",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the resource",
+      },
+    },
+    {
+      name: "price_list_scheduler:disable",
+      description:
+        "Send this attribute if you want to mark this resource as disabled",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified resource",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the resource",
+      },
+    },
+    {
+      name: "price_list_scheduler:enable",
+      description:
+        "Send this attribute if you want to mark this resource as enabled",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified resource",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the resource",
+      },
+    },
+    {
       name: "return",
       description: "Execute an action on a resource of type returns",
       options: [
@@ -9200,6 +10232,88 @@ const completionSpec: Fig.Spec = {
       name: "return:receive",
       description:
         "Send this attribute if you want to mark this return as received",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified resource",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the resource",
+      },
+    },
+    {
+      name: "return:refund",
+      description:
+        "Send this attribute if you want to create a refund for this return",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified resource",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the resource",
+      },
+    },
+    {
+      name: "return:refund_amount_cents",
+      description:
+        "Send this attribute as a value in cents to specify the amount to be refunded",
       options: [
         {
           name: ["-o", "--organization"],
@@ -9562,9 +10676,91 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: "shipment:cancel",
+      description:
+        "Send this attribute if you want to mark this shipment as cancelled (unless alrea",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified resource",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the resource",
+      },
+    },
+    {
       name: "shipment:decrement_stock",
       description:
         "Send this attribute if you want to automatically decrement and release the stock",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-p", "--print"],
+          description: "Print out the modified resource",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "Print result in json format",
+        },
+        {
+          name: ["-u", "--unformatted"],
+          description: "Print json output without indentation",
+        },
+      ],
+      args: {
+        name: "id",
+        description: "The unique id of the resource",
+      },
+    },
+    {
+      name: "shipment:deliver",
+      description:
+        "Send this attribute if you want to mark this shipment as delivered",
       options: [
         {
           name: ["-o", "--organization"],
@@ -11072,469 +12268,6 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: "exports",
-      description:
-        "List all the created exports or show details of a single export",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {},
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-A", "--all"],
-          description: "Show all exports instead of first 25 only",
-        },
-        {
-          name: ["-t", "--type"],
-          description: "The type of resource exported",
-          args: {
-            suggestions: [
-              "addresses",
-              "authorizations",
-              "bundles",
-              "captures",
-              "coupons",
-              "customer_addresses",
-              "customer_subscriptions",
-              "customers",
-              "gift_cards",
-              "line_items",
-              "orders",
-              "payment_methods",
-              "price_tiers",
-              "prices",
-              "refunds",
-              "shipments",
-              "shipping_categories",
-              "shipping_methods",
-              "sku_lists",
-              "sku_list_items",
-              "sku_options",
-              "skus",
-              "stock_items",
-              "tags",
-              "tax_categories",
-              "transactions",
-              "voids",
-            ],
-          },
-        },
-        {
-          name: ["-s", "--status"],
-          description: "The export job status",
-          args: {
-            suggestions: ["in_progress", "pending", "completed", "interrupted"],
-          },
-        },
-        {
-          name: ["-l", "--limit"],
-          description: "Limit number of exports in output",
-          args: {},
-        },
-      ],
-      args: {
-        name: "id",
-        description: "Unique id of the export to be retrieved",
-        isOptional: true,
-      },
-    },
-    {
-      name: ["exports:all", "exp:all", "export"],
-      description: "Export all the records",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {},
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-t", "--type"],
-          description: "The type of resource being exported",
-          args: {
-            description: "Addresses|authorizations|bundles|captures|etc",
-            suggestions: [
-              "addresses",
-              "authorizations",
-              "bundles",
-              "captures",
-              "coupons",
-              "customer_addresses",
-              "customer_subscriptions",
-              "customers",
-              "gift_cards",
-              "line_items",
-              "orders",
-              "payment_methods",
-              "price_tiers",
-              "prices",
-              "refunds",
-              "shipments",
-              "shipping_categories",
-              "shipping_methods",
-              "sku_lists",
-              "sku_list_items",
-              "sku_options",
-              "skus",
-              "stock_items",
-              "tags",
-              "tax_categories",
-              "transactions",
-              "voids",
-            ],
-          },
-          isRequired: true,
-        },
-        {
-          name: ["-i", "--include"],
-          description: "Comma separated resources to include",
-          args: {},
-        },
-        {
-          name: ["-w", "--where"],
-          description: "Comma separated list of query filters",
-          args: {},
-        },
-        {
-          name: ["-D", "--dry-data"],
-          description: "Skip redundant attributes",
-        },
-        {
-          name: ["-F", "--format"],
-          description: "Export file format",
-          args: {
-            suggestions: ["csv", "json"],
-            default: "json",
-          },
-        },
-        {
-          name: ["-C", "--csv"],
-          description: "Export data in csv format",
-        },
-        {
-          name: ["-x", "--save"],
-          description: "Save command output to file",
-          args: {},
-        },
-        {
-          name: ["-X", "--save-path"],
-          description:
-            "Save command output to file and create missing path directories",
-          args: {},
-        },
-        {
-          name: ["-N", "--notify"],
-          description: "Force system notification when export has finished",
-          hidden: true,
-        },
-        {
-          name: ["-b", "--blind"],
-          description:
-            "Execute in blind mode without showing the progress monitor",
-        },
-        {
-          name: ["-P", "--prettify"],
-          description: "Prettify json output format",
-        },
-        {
-          name: ["-O", "--open"],
-          description: "Open automatically the file after a successful export",
-        },
-        {
-          name: ["-q", "--quiet"],
-          description: "Execute command without showing warning messages",
-        },
-        {
-          name: ["-k", "--keep"],
-          description: "Keep original export files in temp dir",
-        },
-      ],
-      hidden: false,
-    },
-    {
-      name: ["exports:create", "exp:create"],
-      description: "Create a new export",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {},
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-t", "--type"],
-          description: "The type of resource being exported",
-          args: {
-            description: "Addresses|authorizations|bundles|captures|etc",
-            suggestions: [
-              "addresses",
-              "authorizations",
-              "bundles",
-              "captures",
-              "coupons",
-              "customer_addresses",
-              "customer_subscriptions",
-              "customers",
-              "gift_cards",
-              "line_items",
-              "orders",
-              "payment_methods",
-              "price_tiers",
-              "prices",
-              "refunds",
-              "shipments",
-              "shipping_categories",
-              "shipping_methods",
-              "sku_lists",
-              "sku_list_items",
-              "sku_options",
-              "skus",
-              "stock_items",
-              "tags",
-              "tax_categories",
-              "transactions",
-              "voids",
-            ],
-          },
-          isRequired: true,
-        },
-        {
-          name: ["-i", "--include"],
-          description: "Comma separated resources to include",
-          args: {},
-        },
-        {
-          name: ["-w", "--where"],
-          description: "Comma separated list of query filters",
-          args: {},
-        },
-        {
-          name: ["-D", "--dry-data"],
-          description: "Skip redundant attributes",
-        },
-        {
-          name: ["-F", "--format"],
-          description: "Export file format",
-          args: {
-            suggestions: ["csv", "json"],
-            default: "json",
-          },
-        },
-        {
-          name: ["-C", "--csv"],
-          description: "Export data in csv format",
-        },
-        {
-          name: ["-x", "--save"],
-          description: "Save command output to file",
-          args: {},
-        },
-        {
-          name: ["-X", "--save-path"],
-          description:
-            "Save command output to file and create missing path directories",
-          args: {},
-        },
-        {
-          name: ["-N", "--notify"],
-          description: "Force system notification when export has finished",
-          hidden: true,
-        },
-        {
-          name: ["-b", "--blind"],
-          description:
-            "Execute in blind mode without showing the progress monitor",
-        },
-        {
-          name: ["-P", "--prettify"],
-          description: "Prettify json output format",
-        },
-        {
-          name: ["-O", "--open"],
-          description: "Open automatically the file after a successful export",
-        },
-      ],
-    },
-    {
-      name: ["exports:details", "exp:details"],
-      description: "Show the details of an existing export",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {},
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-      ],
-      args: {
-        name: "id",
-        description: "Unique id of the export",
-      },
-    },
-    {
-      name: ["exports:group", "exp:group"],
-      description: "List all the exports related to an export group",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {},
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-      ],
-      args: {
-        name: "group_id",
-        description: "Unique id of the group export",
-      },
-    },
-    {
-      name: ["exports:list", "exp:list"],
-      description: "List all the created exports",
-      options: [
-        {
-          name: ["-o", "--organization"],
-          description: "The slug of your organization",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-d", "--domain"],
-          args: {},
-          hidden: true,
-        },
-        {
-          name: "--accessToken",
-          args: {},
-          isRequired: true,
-          hidden: true,
-        },
-        {
-          name: ["-A", "--all"],
-          description: "Show all exports instead of first 25 only",
-        },
-        {
-          name: ["-t", "--type"],
-          description: "The type of resource exported",
-          args: {
-            suggestions: [
-              "addresses",
-              "authorizations",
-              "bundles",
-              "captures",
-              "coupons",
-              "customer_addresses",
-              "customer_subscriptions",
-              "customers",
-              "gift_cards",
-              "line_items",
-              "orders",
-              "payment_methods",
-              "price_tiers",
-              "prices",
-              "refunds",
-              "shipments",
-              "shipping_categories",
-              "shipping_methods",
-              "sku_lists",
-              "sku_list_items",
-              "sku_options",
-              "skus",
-              "stock_items",
-              "tags",
-              "tax_categories",
-              "transactions",
-              "voids",
-            ],
-          },
-        },
-        {
-          name: ["-s", "--status"],
-          description: "The export job status",
-          args: {
-            suggestions: ["in_progress", "pending", "completed", "interrupted"],
-          },
-        },
-        {
-          name: ["-l", "--limit"],
-          description: "Limit number of exports in output",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: ["exports:types", "exp:types"],
-      description: "Show online documentation for supported resources",
-      options: [
-        {
-          name: ["-O", "--open"],
-          description: "Open online documentation page",
-        },
-      ],
-    },
-    {
       name: "cleanups",
       description:
         "List all the created cleanups or show details of a single cleanup",
@@ -11775,6 +12508,481 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["cleanups:types", "clp:types"],
+      description: "Show online documentation for supported resources",
+      options: [
+        {
+          name: ["-O", "--open"],
+          description: "Open online documentation page",
+        },
+      ],
+    },
+    {
+      name: "exports",
+      description:
+        "List all the created exports or show details of a single export",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-A", "--all"],
+          description: "Show all exports instead of first 25 only",
+        },
+        {
+          name: ["-t", "--type"],
+          description: "The type of resource exported",
+          args: {
+            suggestions: [
+              "addresses",
+              "authorizations",
+              "bundles",
+              "captures",
+              "coupons",
+              "customer_addresses",
+              "customer_payment_sources",
+              "customer_subscriptions",
+              "customers",
+              "gift_cards",
+              "line_items",
+              "line_item_options",
+              "orders",
+              "payment_methods",
+              "price_tiers",
+              "prices",
+              "refunds",
+              "shipments",
+              "shipping_categories",
+              "shipping_methods",
+              "sku_lists",
+              "sku_list_items",
+              "sku_options",
+              "skus",
+              "stock_items",
+              "stock_transfers",
+              "tags",
+              "tax_categories",
+              "transactions",
+              "voids",
+            ],
+          },
+        },
+        {
+          name: ["-s", "--status"],
+          description: "The export job status",
+          args: {
+            suggestions: ["in_progress", "pending", "completed", "interrupted"],
+          },
+        },
+        {
+          name: ["-l", "--limit"],
+          description: "Limit number of exports in output",
+          args: {},
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the export to be retrieved",
+        isOptional: true,
+      },
+    },
+    {
+      name: ["exports:all", "exp:all", "export"],
+      description: "Export all the records",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-t", "--type"],
+          description: "The type of resource being exported",
+          args: {
+            description: "Addresses|authorizations|bundles|captures|etc",
+            suggestions: [
+              "addresses",
+              "authorizations",
+              "bundles",
+              "captures",
+              "coupons",
+              "customer_addresses",
+              "customer_payment_sources",
+              "customer_subscriptions",
+              "customers",
+              "gift_cards",
+              "line_items",
+              "line_item_options",
+              "orders",
+              "payment_methods",
+              "price_tiers",
+              "prices",
+              "refunds",
+              "shipments",
+              "shipping_categories",
+              "shipping_methods",
+              "sku_lists",
+              "sku_list_items",
+              "sku_options",
+              "skus",
+              "stock_items",
+              "stock_transfers",
+              "tags",
+              "tax_categories",
+              "transactions",
+              "voids",
+            ],
+          },
+          isRequired: true,
+        },
+        {
+          name: ["-i", "--include"],
+          description: "Comma separated resources to include",
+          args: {},
+        },
+        {
+          name: ["-w", "--where"],
+          description: "Comma separated list of query filters",
+          args: {},
+        },
+        {
+          name: ["-D", "--dry-data"],
+          description: "Skip redundant attributes",
+        },
+        {
+          name: ["-F", "--format"],
+          description: "Export file format",
+          args: {
+            suggestions: ["csv", "json"],
+            default: "json",
+          },
+        },
+        {
+          name: ["-C", "--csv"],
+          description: "Export data in csv format",
+        },
+        {
+          name: ["-x", "--save"],
+          description: "Save command output to file",
+          args: {},
+        },
+        {
+          name: ["-X", "--save-path"],
+          description:
+            "Save command output to file and create missing path directories",
+          args: {},
+        },
+        {
+          name: ["-N", "--notify"],
+          description: "Force system notification when export has finished",
+          hidden: true,
+        },
+        {
+          name: ["-b", "--blind"],
+          description:
+            "Execute in blind mode without showing the progress monitor",
+        },
+        {
+          name: ["-P", "--prettify"],
+          description: "Prettify json output format",
+        },
+        {
+          name: ["-O", "--open"],
+          description: "Open automatically the file after a successful export",
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Execute command without showing warning messages",
+        },
+        {
+          name: ["-k", "--keep"],
+          description: "Keep original export files in temp dir",
+        },
+      ],
+      hidden: false,
+    },
+    {
+      name: ["exports:create", "exp:create"],
+      description: "Create a new export",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-t", "--type"],
+          description: "The type of resource being exported",
+          args: {
+            description: "Addresses|authorizations|bundles|captures|etc",
+            suggestions: [
+              "addresses",
+              "authorizations",
+              "bundles",
+              "captures",
+              "coupons",
+              "customer_addresses",
+              "customer_payment_sources",
+              "customer_subscriptions",
+              "customers",
+              "gift_cards",
+              "line_items",
+              "line_item_options",
+              "orders",
+              "payment_methods",
+              "price_tiers",
+              "prices",
+              "refunds",
+              "shipments",
+              "shipping_categories",
+              "shipping_methods",
+              "sku_lists",
+              "sku_list_items",
+              "sku_options",
+              "skus",
+              "stock_items",
+              "stock_transfers",
+              "tags",
+              "tax_categories",
+              "transactions",
+              "voids",
+            ],
+          },
+          isRequired: true,
+        },
+        {
+          name: ["-i", "--include"],
+          description: "Comma separated resources to include",
+          args: {},
+        },
+        {
+          name: ["-w", "--where"],
+          description: "Comma separated list of query filters",
+          args: {},
+        },
+        {
+          name: ["-D", "--dry-data"],
+          description: "Skip redundant attributes",
+        },
+        {
+          name: ["-F", "--format"],
+          description: "Export file format",
+          args: {
+            suggestions: ["csv", "json"],
+            default: "json",
+          },
+        },
+        {
+          name: ["-C", "--csv"],
+          description: "Export data in csv format",
+        },
+        {
+          name: ["-x", "--save"],
+          description: "Save command output to file",
+          args: {},
+        },
+        {
+          name: ["-X", "--save-path"],
+          description:
+            "Save command output to file and create missing path directories",
+          args: {},
+        },
+        {
+          name: ["-N", "--notify"],
+          description: "Force system notification when export has finished",
+          hidden: true,
+        },
+        {
+          name: ["-b", "--blind"],
+          description:
+            "Execute in blind mode without showing the progress monitor",
+        },
+        {
+          name: ["-P", "--prettify"],
+          description: "Prettify json output format",
+        },
+        {
+          name: ["-O", "--open"],
+          description: "Open automatically the file after a successful export",
+        },
+      ],
+    },
+    {
+      name: ["exports:details", "exp:details"],
+      description: "Show the details of an existing export",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+      ],
+      args: {
+        name: "id",
+        description: "Unique id of the export",
+      },
+    },
+    {
+      name: ["exports:group", "exp:group"],
+      description: "List all the exports related to an export group",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+      ],
+      args: {
+        name: "group_id",
+        description: "Unique id of the group export",
+      },
+    },
+    {
+      name: ["exports:list", "exp:list"],
+      description: "List all the created exports",
+      options: [
+        {
+          name: ["-o", "--organization"],
+          description: "The slug of your organization",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-d", "--domain"],
+          args: {},
+          hidden: true,
+        },
+        {
+          name: "--accessToken",
+          args: {},
+          isRequired: true,
+          hidden: true,
+        },
+        {
+          name: ["-A", "--all"],
+          description: "Show all exports instead of first 25 only",
+        },
+        {
+          name: ["-t", "--type"],
+          description: "The type of resource exported",
+          args: {
+            suggestions: [
+              "addresses",
+              "authorizations",
+              "bundles",
+              "captures",
+              "coupons",
+              "customer_addresses",
+              "customer_payment_sources",
+              "customer_subscriptions",
+              "customers",
+              "gift_cards",
+              "line_items",
+              "line_item_options",
+              "orders",
+              "payment_methods",
+              "price_tiers",
+              "prices",
+              "refunds",
+              "shipments",
+              "shipping_categories",
+              "shipping_methods",
+              "sku_lists",
+              "sku_list_items",
+              "sku_options",
+              "skus",
+              "stock_items",
+              "stock_transfers",
+              "tags",
+              "tax_categories",
+              "transactions",
+              "voids",
+            ],
+          },
+        },
+        {
+          name: ["-s", "--status"],
+          description: "The export job status",
+          args: {
+            suggestions: ["in_progress", "pending", "completed", "interrupted"],
+          },
+        },
+        {
+          name: ["-l", "--limit"],
+          description: "Limit number of exports in output",
+          args: {},
+        },
+      ],
+    },
+    {
+      name: ["exports:types", "exp:types"],
       description: "Show online documentation for supported resources",
       options: [
         {
@@ -13158,8 +14366,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["plugins:install", "plugins:add"],
-      description:
-        "Uses bundled npm executable to install plugins into <%= config",
+      description: "Uses npm to install plugins",
       options: [
         {
           name: "--json",
