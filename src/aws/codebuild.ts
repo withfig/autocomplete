@@ -276,6 +276,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--image-id",
+          description: "The Amazon Machine Image (AMI) of the compute fleet",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--fleet-service-role",
           description:
             "The service role associated with the compute fleet. For more information, see  Allow a user to add a permission policy for a fleet service role in the CodeBuild User Guide",
@@ -1145,7 +1152,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "import-source-credentials",
       description:
-        "Imports the source repository credentials for an CodeBuild project that has its source code stored in a GitHub, GitHub Enterprise, or Bitbucket repository",
+        "Imports the source repository credentials for an CodeBuild project that has its source code stored in a GitHub, GitHub Enterprise, GitLab, GitLab Self Managed, or Bitbucket repository",
       options: [
         {
           name: "--username",
@@ -1158,7 +1165,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--token",
           description:
-            "For GitHub or GitHub Enterprise, this is the personal access token. For Bitbucket, this is either the access token or the app password. For the authType CODECONNECTIONS, this is the connectionArn",
+            "For GitHub or GitHub Enterprise, this is the personal access token. For Bitbucket, this is either the access token or the app password. For the authType CODECONNECTIONS, this is the connectionArn. For the authType SECRETS_MANAGER, this is the secretArn",
           args: {
             name: "string",
           },
@@ -1173,7 +1180,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--auth-type",
           description:
-            "The type of authentication used to connect to a GitHub, GitHub Enterprise, GitLab, GitLab Self Managed, or Bitbucket repository. An OAUTH connection is not supported by the API and must be created using the CodeBuild console. Note that CODECONNECTIONS is only valid for GitLab and GitLab Self Managed",
+            "The type of authentication used to connect to a GitHub, GitHub Enterprise, GitLab, GitLab Self Managed, or Bitbucket repository. An OAUTH connection is not supported by the API and must be created using the CodeBuild console",
           args: {
             name: "string",
           },
@@ -2899,6 +2906,13 @@ const completionSpec: Fig.Spec = {
             "Information about the VPC configuration that CodeBuild accesses",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--image-id",
+          description: "The Amazon Machine Image (AMI) of the compute fleet",
+          args: {
+            name: "string",
           },
         },
         {

@@ -449,6 +449,93 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-model-invocation-job",
+      description:
+        "Creates a job to invoke a model on multiple prompts (batch inference). Format your data according to Format your inference data and upload it to an Amazon S3 bucket. For more information, see Create a batch inference job. The response returns a jobArn that you can use to stop or get details about the job. You can check the status of the job by sending a GetModelCustomizationJob request",
+      options: [
+        {
+          name: "--job-name",
+          description: "A name to give the batch inference job",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--role-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the service role with permissions to carry out and manage batch inference. You can use the console to create a default service role or follow the steps at Create a service role for batch inference",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--client-request-token",
+          description:
+            "A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see Ensuring idempotency",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--model-id",
+          description:
+            "The unique identifier of the foundation model to use for the batch inference job",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--input-data-config",
+          description:
+            "Details about the location of the input to the batch inference job",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--output-data-config",
+          description:
+            "Details about the location of the output of the batch inference job",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--timeout-duration-in-hours",
+          description:
+            "The number of hours after which to force the batch inference job to time out",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "Any tags to associate with the batch inference job. For more information, see Tagging Amazon Bedrock resources",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-provisioned-model-throughput",
       description:
         "Creates dedicated throughput for a base or custom model with the model units and for the duration that you specify. For pricing details, see Amazon Bedrock Pricing. For more information, see Provisioned Throughput in the Amazon Bedrock User Guide",
@@ -815,6 +902,38 @@ const completionSpec: Fig.Spec = {
         {
           name: "--job-identifier",
           description: "Identifier for the customization job",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-model-invocation-job",
+      description:
+        "Gets details about a batch inference job. For more information, see View details about a batch inference job",
+      options: [
+        {
+          name: "--job-identifier",
+          description:
+            "The Amazon Resource Name (ARN) of the batch inference job",
           args: {
             name: "string",
           },
@@ -1493,6 +1612,117 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-model-invocation-jobs",
+      description:
+        "Lists all batch inference jobs in the account. For more information, see View details about a batch inference job",
+      options: [
+        {
+          name: "--submit-time-after",
+          description:
+            "Specify a time to filter for batch inference jobs that were submitted after the time you specify",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--submit-time-before",
+          description:
+            "Specify a time to filter for batch inference jobs that were submitted before the time you specify",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--status-equals",
+          description:
+            "Specify a status to filter for batch inference jobs whose statuses match the string you specify",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--name-contains",
+          description:
+            "Specify a string to filter for batch inference jobs whose names contain the string",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return. If there are more results than the number that you specify, a nextToken value is returned. Use the nextToken in a request to return the next batch of results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If there were more results than the value you specified in the maxResults field in a previous ListModelInvocationJobs request, the response would have returned a nextToken value. To see the next batch of results, send the nextToken value in another request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-by",
+          description: "An attribute by which to sort the results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description:
+            "Specifies whether to sort the results by ascending or descending order",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-provisioned-model-throughputs",
       description:
         "Lists the Provisioned Throughputs in the account. For more information, see Provisioned Throughput in the Amazon Bedrock User Guide",
@@ -1710,6 +1940,38 @@ const completionSpec: Fig.Spec = {
         {
           name: "--job-identifier",
           description: "Job identifier of the job to stop",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "stop-model-invocation-job",
+      description:
+        "Stops a batch inference job. You're only charged for tokens that were already processed. For more information, see Stop a batch inference job",
+      options: [
+        {
+          name: "--job-identifier",
+          description:
+            "The Amazon Resource Name (ARN) of the batch inference job to stop",
           args: {
             name: "string",
           },
