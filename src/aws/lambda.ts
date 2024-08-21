@@ -1298,7 +1298,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--maximum-batching-window-in-seconds",
           description:
-            "The maximum amount of time, in seconds, that Lambda spends gathering records before invoking the function. You can configure MaximumBatchingWindowInSeconds to any value from 0 seconds to 300 seconds in increments of seconds. For streams and Amazon SQS event sources, the default batching window is 0 seconds. For Amazon MSK, Self-managed Apache Kafka, Amazon MQ, and DocumentDB event sources, the default batching window is 500 ms. Note that because you can only change MaximumBatchingWindowInSeconds in increments of seconds, you cannot revert back to the 500 ms default batching window after you have changed it. To restore the default batching window, you must create a new event source mapping. Related setting: For streams and Amazon SQS event sources, when you set BatchSize to a value greater than 10, you must set MaximumBatchingWindowInSeconds to at least 1",
+            "The maximum amount of time, in seconds, that Lambda spends gathering records before invoking the function. You can configure MaximumBatchingWindowInSeconds to any value from 0 seconds to 300 seconds in increments of seconds. For Kinesis, DynamoDB, and Amazon SQS event sources, the default batching window is 0 seconds. For Amazon MSK, Self-managed Apache Kafka, Amazon MQ, and DocumentDB event sources, the default batching window is 500 ms. Note that because you can only change MaximumBatchingWindowInSeconds in increments of seconds, you cannot revert back to the 500 ms default batching window after you have changed it. To restore the default batching window, you must create a new event source mapping. Related setting: For Kinesis, DynamoDB, and Amazon SQS event sources, when you set BatchSize to a value greater than 10, you must set MaximumBatchingWindowInSeconds to at least 1",
           args: {
             name: "integer",
           },
@@ -1481,7 +1481,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--runtime",
           description:
-            "The identifier of the function's runtime. Runtime is required if the deployment package is a .zip file archive. The following list includes deprecated runtimes. For more information, see Runtime deprecation policy",
+            "The identifier of the function's  runtime. Runtime is required if the deployment package is a .zip file archive. Specifying a runtime results in an error if you're deploying a function using a container image. The following list includes deprecated runtimes. Lambda blocks creating new functions and updating existing functions shortly after each runtime is deprecated. For more information, see Runtime use after deprecation. For a list of all currently supported runtimes, see Supported runtimes",
           args: {
             name: "string",
             suggestions: runtimes,
@@ -2472,6 +2472,36 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-function-recursion-config",
+      description:
+        "Returns your function's recursive loop detection configuration",
+      options: [
+        {
+          name: "--function-name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-function-url-config",
       description: "Returns details about a Lambda function URL",
       options: [
@@ -3343,7 +3373,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--compatible-runtime",
           description:
-            "A runtime identifier. For example, java21. The following list includes deprecated runtimes. For more information, see Runtime deprecation policy",
+            "A runtime identifier. The following list includes deprecated runtimes. For more information, see Runtime use after deprecation. For a list of all currently supported runtimes, see Supported runtimes",
           args: {
             name: "string",
             suggestions: runtimes,
@@ -3423,7 +3453,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--compatible-runtime",
           description:
-            "A runtime identifier. For example, java21. The following list includes deprecated runtimes. For more information, see Runtime deprecation policy",
+            "A runtime identifier. The following list includes deprecated runtimes. For more information, see Runtime use after deprecation. For a list of all currently supported runtimes, see Supported runtimes",
           args: {
             name: "string",
             suggestions: runtimes,
@@ -3955,6 +3985,46 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "put-function-recursion-config",
+      description:
+        "Sets your function's recursive loop detection configuration. When you configure a Lambda function to output to the same service or resource that invokes the function, it's possible to create an infinite recursive loop. For example, a Lambda function might write a message to an Amazon Simple Queue Service (Amazon SQS) queue, which then invokes the same function. This invocation causes the function to write another message to the queue, which in turn invokes the function again. Lambda can detect certain types of recursive loops shortly after they occur. When Lambda detects a recursive loop and your function's recursive loop detection configuration is set to Terminate, it stops your function being invoked and notifies you",
+      options: [
+        {
+          name: "--function-name",
+          description:
+            "The name or ARN of the Lambda function.  Name formats     Function name \u2013 my-function.    Function ARN \u2013 arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN \u2013 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--recursive-loop",
+          description:
+            "If you set your function's recursive loop detection configuration to Allow, Lambda doesn't take any action when it detects your function being invoked as part of a recursive loop. We recommend that you only use this setting if your design intentionally uses a Lambda function to write data back to the same Amazon Web Services resource that invokes it. If you set your function's recursive loop detection configuration to Terminate, Lambda stops your function being invoked and notifies you when it detects your function being invoked as part of a recursive loop. By default, Lambda sets your function's configuration to Terminate.  If your design intentionally uses a Lambda function to write data back to the same Amazon Web Services resource that invokes the function, then use caution and implement suitable guard rails to prevent unexpected charges being billed to your Amazon Web Services account. To learn more about best practices for using recursive invocation patterns, see Recursive patterns that cause run-away Lambda functions in Serverless Land",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "put-provisioned-concurrency-config",
       description:
         "Adds a provisioned concurrency configuration to a function's alias or version",
@@ -4435,7 +4505,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--maximum-batching-window-in-seconds",
           description:
-            "The maximum amount of time, in seconds, that Lambda spends gathering records before invoking the function. You can configure MaximumBatchingWindowInSeconds to any value from 0 seconds to 300 seconds in increments of seconds. For streams and Amazon SQS event sources, the default batching window is 0 seconds. For Amazon MSK, Self-managed Apache Kafka, Amazon MQ, and DocumentDB event sources, the default batching window is 500 ms. Note that because you can only change MaximumBatchingWindowInSeconds in increments of seconds, you cannot revert back to the 500 ms default batching window after you have changed it. To restore the default batching window, you must create a new event source mapping. Related setting: For streams and Amazon SQS event sources, when you set BatchSize to a value greater than 10, you must set MaximumBatchingWindowInSeconds to at least 1",
+            "The maximum amount of time, in seconds, that Lambda spends gathering records before invoking the function. You can configure MaximumBatchingWindowInSeconds to any value from 0 seconds to 300 seconds in increments of seconds. For Kinesis, DynamoDB, and Amazon SQS event sources, the default batching window is 0 seconds. For Amazon MSK, Self-managed Apache Kafka, Amazon MQ, and DocumentDB event sources, the default batching window is 500 ms. Note that because you can only change MaximumBatchingWindowInSeconds in increments of seconds, you cannot revert back to the 500 ms default batching window after you have changed it. To restore the default batching window, you must create a new event source mapping. Related setting: For Kinesis, DynamoDB, and Amazon SQS event sources, when you set BatchSize to a value greater than 10, you must set MaximumBatchingWindowInSeconds to at least 1",
           args: {
             name: "integer",
           },
@@ -4731,7 +4801,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--runtime",
           description:
-            "The identifier of the function's runtime. Runtime is required if the deployment package is a .zip file archive. The following list includes deprecated runtimes. For more information, see Runtime deprecation policy",
+            "The identifier of the function's  runtime. Runtime is required if the deployment package is a .zip file archive. Specifying a runtime results in an error if you're deploying a function using a container image. The following list includes deprecated runtimes. Lambda blocks creating new functions and updating existing functions shortly after each runtime is deprecated. For more information, see Runtime use after deprecation. For a list of all currently supported runtimes, see Supported runtimes",
           args: {
             name: "string",
             suggestions: runtimes,
