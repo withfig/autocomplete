@@ -413,7 +413,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of tags. For more information, see Tagging Amazon RDS Resources in the Amazon RDS User Guide",
+            "A list of tags. For more information, see Tagging Amazon RDS resources in the Amazon RDS User Guide or Tagging Amazon Aurora and Amazon RDS resources in the Amazon Aurora User Guide",
           args: {
             name: "list",
           },
@@ -487,7 +487,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of tags. For more information, see Tagging Amazon RDS Resources in the Amazon RDS User Guide",
+            "A list of tags. For more information, see Tagging Amazon RDS resources in the Amazon RDS User Guide or Tagging Amazon Aurora and Amazon RDS resources in the Amazon Aurora User Guide",
           args: {
             name: "list",
           },
@@ -550,7 +550,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of tags. For more information, see Tagging Amazon RDS Resources in the Amazon RDS User Guide",
+            "A list of tags. For more information, see Tagging Amazon RDS resources in the Amazon RDS User Guide or Tagging Amazon Aurora and Amazon RDS resources in the Amazon Aurora User Guide",
           args: {
             name: "list",
           },
@@ -606,7 +606,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of tags. For more information, see Tagging Amazon RDS Resources in the Amazon RDS User Guide",
+            "A list of tags. For more information, see Tagging Amazon RDS resources in the Amazon RDS User Guide or Tagging Amazon Aurora and Amazon RDS resources in the Amazon Aurora User Guide",
           args: {
             name: "list",
           },
@@ -712,7 +712,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of tags. For more information, see Tagging Amazon RDS Resources in the Amazon RDS User Guide",
+            "A list of tags. For more information, see Tagging Amazon RDS resources in the Amazon RDS User Guide or Tagging Amazon Aurora and Amazon RDS resources in the Amazon Aurora User Guide",
           args: {
             name: "list",
           },
@@ -895,7 +895,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of tags. For more information, see Tagging Amazon RDS Resources in the Amazon RDS User Guide",
+            "A list of tags. For more information, see Tagging Amazon RDS resources in the Amazon RDS User Guide or Tagging Amazon Aurora and Amazon RDS resources in the Amazon Aurora User Guide",
           args: {
             name: "list",
           },
@@ -1260,12 +1260,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--publicly-accessible",
           description:
-            "Specifies whether the DB cluster is publicly accessible. When the DB cluster is publicly accessible, its Domain Name System (DNS) endpoint resolves to the private IP address from within the DB cluster's virtual private cloud (VPC). It resolves to the public IP address from outside of the DB cluster's VPC. Access to the DB cluster is ultimately controlled by the security group it uses. That public access isn't permitted if the security group assigned to the DB cluster doesn't permit it. When the DB cluster isn't publicly accessible, it is an internal DB cluster with a DNS name that resolves to a private IP address. Valid for Cluster Type: Multi-AZ DB clusters only Default: The default behavior varies depending on whether DBSubnetGroupName is specified. If DBSubnetGroupName isn't specified, and PubliclyAccessible isn't specified, the following applies:   If the default VPC in the target Region doesn\u2019t have an internet gateway attached to it, the DB cluster is private.   If the default VPC in the target Region has an internet gateway attached to it, the DB cluster is public.   If DBSubnetGroupName is specified, and PubliclyAccessible isn't specified, the following applies:   If the subnets are part of a VPC that doesn\u2019t have an internet gateway attached to it, the DB cluster is private.   If the subnets are part of a VPC that has an internet gateway attached to it, the DB cluster is public",
+            "Specifies whether the DB cluster is publicly accessible. When the DB cluster is publicly accessible and you connect from outside of the DB cluster's virtual private cloud (VPC), its Domain Name System (DNS) endpoint resolves to the public IP address. When you connect from within the same VPC as the DB cluster, the endpoint resolves to the private IP address. Access to the DB cluster is ultimately controlled by the security group it uses. That public access isn't permitted if the security group assigned to the DB cluster doesn't permit it. When the DB cluster isn't publicly accessible, it is an internal DB cluster with a DNS name that resolves to a private IP address. Valid for Cluster Type: Multi-AZ DB clusters only Default: The default behavior varies depending on whether DBSubnetGroupName is specified. If DBSubnetGroupName isn't specified, and PubliclyAccessible isn't specified, the following applies:   If the default VPC in the target Region doesn\u2019t have an internet gateway attached to it, the DB cluster is private.   If the default VPC in the target Region has an internet gateway attached to it, the DB cluster is public.   If DBSubnetGroupName is specified, and PubliclyAccessible isn't specified, the following applies:   If the subnets are part of a VPC that doesn\u2019t have an internet gateway attached to it, the DB cluster is private.   If the subnets are part of a VPC that has an internet gateway attached to it, the DB cluster is public",
         },
         {
           name: "--no-publicly-accessible",
           description:
-            "Specifies whether the DB cluster is publicly accessible. When the DB cluster is publicly accessible, its Domain Name System (DNS) endpoint resolves to the private IP address from within the DB cluster's virtual private cloud (VPC). It resolves to the public IP address from outside of the DB cluster's VPC. Access to the DB cluster is ultimately controlled by the security group it uses. That public access isn't permitted if the security group assigned to the DB cluster doesn't permit it. When the DB cluster isn't publicly accessible, it is an internal DB cluster with a DNS name that resolves to a private IP address. Valid for Cluster Type: Multi-AZ DB clusters only Default: The default behavior varies depending on whether DBSubnetGroupName is specified. If DBSubnetGroupName isn't specified, and PubliclyAccessible isn't specified, the following applies:   If the default VPC in the target Region doesn\u2019t have an internet gateway attached to it, the DB cluster is private.   If the default VPC in the target Region has an internet gateway attached to it, the DB cluster is public.   If DBSubnetGroupName is specified, and PubliclyAccessible isn't specified, the following applies:   If the subnets are part of a VPC that doesn\u2019t have an internet gateway attached to it, the DB cluster is private.   If the subnets are part of a VPC that has an internet gateway attached to it, the DB cluster is public",
+            "Specifies whether the DB cluster is publicly accessible. When the DB cluster is publicly accessible and you connect from outside of the DB cluster's virtual private cloud (VPC), its Domain Name System (DNS) endpoint resolves to the public IP address. When you connect from within the same VPC as the DB cluster, the endpoint resolves to the private IP address. Access to the DB cluster is ultimately controlled by the security group it uses. That public access isn't permitted if the security group assigned to the DB cluster doesn't permit it. When the DB cluster isn't publicly accessible, it is an internal DB cluster with a DNS name that resolves to a private IP address. Valid for Cluster Type: Multi-AZ DB clusters only Default: The default behavior varies depending on whether DBSubnetGroupName is specified. If DBSubnetGroupName isn't specified, and PubliclyAccessible isn't specified, the following applies:   If the default VPC in the target Region doesn\u2019t have an internet gateway attached to it, the DB cluster is private.   If the default VPC in the target Region has an internet gateway attached to it, the DB cluster is public.   If DBSubnetGroupName is specified, and PubliclyAccessible isn't specified, the following applies:   If the subnets are part of a VPC that doesn\u2019t have an internet gateway attached to it, the DB cluster is private.   If the subnets are part of a VPC that has an internet gateway attached to it, the DB cluster is public",
         },
         {
           name: "--auto-minor-version-upgrade",
@@ -1798,12 +1798,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--publicly-accessible",
           description:
-            "Specifies whether the DB instance is publicly accessible. When the DB instance is publicly accessible, its Domain Name System (DNS) endpoint resolves to the private IP address from within the DB instance's virtual private cloud (VPC). It resolves to the public IP address from outside of the DB instance's VPC. Access to the DB instance is ultimately controlled by the security group it uses. That public access is not permitted if the security group assigned to the DB instance doesn't permit it. When the DB instance isn't publicly accessible, it is an internal DB instance with a DNS name that resolves to a private IP address. Default: The default behavior varies depending on whether DBSubnetGroupName is specified. If DBSubnetGroupName isn't specified, and PubliclyAccessible isn't specified, the following applies:   If the default VPC in the target Region doesn\u2019t have an internet gateway attached to it, the DB instance is private.   If the default VPC in the target Region has an internet gateway attached to it, the DB instance is public.   If DBSubnetGroupName is specified, and PubliclyAccessible isn't specified, the following applies:   If the subnets are part of a VPC that doesn\u2019t have an internet gateway attached to it, the DB instance is private.   If the subnets are part of a VPC that has an internet gateway attached to it, the DB instance is public",
+            "Specifies whether the DB instance is publicly accessible. When the DB instance is publicly accessible and you connect from outside of the DB instance's virtual private cloud (VPC), its Domain Name System (DNS) endpoint resolves to the public IP address. When you connect from within the same VPC as the DB instance, the endpoint resolves to the private IP address. Access to the DB instance is ultimately controlled by the security group it uses. That public access is not permitted if the security group assigned to the DB instance doesn't permit it. When the DB instance isn't publicly accessible, it is an internal DB instance with a DNS name that resolves to a private IP address. Default: The default behavior varies depending on whether DBSubnetGroupName is specified. If DBSubnetGroupName isn't specified, and PubliclyAccessible isn't specified, the following applies:   If the default VPC in the target Region doesn\u2019t have an internet gateway attached to it, the DB instance is private.   If the default VPC in the target Region has an internet gateway attached to it, the DB instance is public.   If DBSubnetGroupName is specified, and PubliclyAccessible isn't specified, the following applies:   If the subnets are part of a VPC that doesn\u2019t have an internet gateway attached to it, the DB instance is private.   If the subnets are part of a VPC that has an internet gateway attached to it, the DB instance is public",
         },
         {
           name: "--no-publicly-accessible",
           description:
-            "Specifies whether the DB instance is publicly accessible. When the DB instance is publicly accessible, its Domain Name System (DNS) endpoint resolves to the private IP address from within the DB instance's virtual private cloud (VPC). It resolves to the public IP address from outside of the DB instance's VPC. Access to the DB instance is ultimately controlled by the security group it uses. That public access is not permitted if the security group assigned to the DB instance doesn't permit it. When the DB instance isn't publicly accessible, it is an internal DB instance with a DNS name that resolves to a private IP address. Default: The default behavior varies depending on whether DBSubnetGroupName is specified. If DBSubnetGroupName isn't specified, and PubliclyAccessible isn't specified, the following applies:   If the default VPC in the target Region doesn\u2019t have an internet gateway attached to it, the DB instance is private.   If the default VPC in the target Region has an internet gateway attached to it, the DB instance is public.   If DBSubnetGroupName is specified, and PubliclyAccessible isn't specified, the following applies:   If the subnets are part of a VPC that doesn\u2019t have an internet gateway attached to it, the DB instance is private.   If the subnets are part of a VPC that has an internet gateway attached to it, the DB instance is public",
+            "Specifies whether the DB instance is publicly accessible. When the DB instance is publicly accessible and you connect from outside of the DB instance's virtual private cloud (VPC), its Domain Name System (DNS) endpoint resolves to the public IP address. When you connect from within the same VPC as the DB instance, the endpoint resolves to the private IP address. Access to the DB instance is ultimately controlled by the security group it uses. That public access is not permitted if the security group assigned to the DB instance doesn't permit it. When the DB instance isn't publicly accessible, it is an internal DB instance with a DNS name that resolves to a private IP address. Default: The default behavior varies depending on whether DBSubnetGroupName is specified. If DBSubnetGroupName isn't specified, and PubliclyAccessible isn't specified, the following applies:   If the default VPC in the target Region doesn\u2019t have an internet gateway attached to it, the DB instance is private.   If the default VPC in the target Region has an internet gateway attached to it, the DB instance is public.   If DBSubnetGroupName is specified, and PubliclyAccessible isn't specified, the following applies:   If the subnets are part of a VPC that doesn\u2019t have an internet gateway attached to it, the DB instance is private.   If the subnets are part of a VPC that has an internet gateway attached to it, the DB instance is public",
         },
         {
           name: "--tags",
@@ -2247,7 +2247,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of tags. For more information, see Tagging Amazon RDS Resources in the Amazon RDS User Guide",
+            "A list of tags. For more information, see Tagging Amazon RDS resources in the Amazon RDS User Guide or Tagging Amazon Aurora and Amazon RDS resources in the Amazon Aurora User Guide",
           args: {
             name: "list",
           },
@@ -2766,7 +2766,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of tags. For more information, see Tagging Amazon RDS Resources in the Amazon RDS User Guide",
+            "A list of tags. For more information, see Tagging Amazon RDS resources in the Amazon RDS User Guide or Tagging Amazon Aurora and Amazon RDS resources in the Amazon Aurora User Guide",
           args: {
             name: "list",
           },
@@ -2873,6 +2873,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--min-acu",
+          description:
+            "The minimum capacity of the DB shard group in Aurora capacity units (ACUs)",
+          args: {
+            name: "double",
+          },
+        },
+        {
           name: "--publicly-accessible",
           description:
             "Specifies whether the DB shard group is publicly accessible. When the DB shard group is publicly accessible, its Domain Name System (DNS) endpoint resolves to the private IP address from within the DB shard group's virtual private cloud (VPC). It resolves to the public IP address from outside of the DB shard group's VPC. Access to the DB shard group is ultimately controlled by the security group it uses. That public access is not permitted if the security group assigned to the DB shard group doesn't permit it. When the DB shard group isn't publicly accessible, it is an internal DB shard group with a DNS name that resolves to a private IP address. Default: The default behavior varies depending on whether DBSubnetGroupName is specified. If DBSubnetGroupName isn't specified, and PubliclyAccessible isn't specified, the following applies:   If the default VPC in the target Region doesn\u2019t have an internet gateway attached to it, the DB shard group is private.   If the default VPC in the target Region has an internet gateway attached to it, the DB shard group is public.   If DBSubnetGroupName is specified, and PubliclyAccessible isn't specified, the following applies:   If the subnets are part of a VPC that doesn\u2019t have an internet gateway attached to it, the DB shard group is private.   If the subnets are part of a VPC that has an internet gateway attached to it, the DB shard group is public",
@@ -2925,7 +2933,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of tags. For more information, see Tagging Amazon RDS Resources in the Amazon RDS User Guide",
+            "A list of tags. For more information, see Tagging Amazon RDS resources in the Amazon RDS User Guide or Tagging Amazon Aurora and Amazon RDS resources in the Amazon Aurora User Guide",
           args: {
             name: "list",
           },
@@ -3060,7 +3068,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of tags. For more information, see Tagging Amazon RDS Resources in the Amazon RDS User Guide",
+            "A list of tags. For more information, see Tagging Amazon RDS resources in the Amazon RDS User Guide or Tagging Amazon Aurora and Amazon RDS resources in the Amazon Aurora User Guide",
           args: {
             name: "list",
           },
@@ -3222,7 +3230,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of tags. For more information, see Tagging Amazon RDS Resources in the Amazon RDS User Guide",
+            "A list of tags. For more information, see Tagging Amazon RDS resources in the Amazon RDS User Guide or Tagging Amazon Aurora and Amazon RDS resources in the Amazon Aurora User Guide",
           args: {
             name: "list",
           },
@@ -3378,7 +3386,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of tags. For more information, see Tagging Amazon RDS Resources in the Amazon RDS User Guide",
+            "A list of tags. For more information, see Tagging Amazon RDS resources in the Amazon RDS User Guide or Tagging Amazon Aurora and Amazon RDS resources in the Amazon Aurora User Guide",
           args: {
             name: "list",
           },
@@ -3500,17 +3508,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--skip-final-snapshot",
           description:
-            "Specifies whether to skip the creation of a final DB cluster snapshot before the DB cluster is deleted. If skip is specified, no DB cluster snapshot is created. If skip isn't specified, a DB cluster snapshot is created before the DB cluster is deleted. By default, skip isn't specified, and the DB cluster snapshot is created. By default, this parameter is disabled.  You must specify a FinalDBSnapshotIdentifier parameter if SkipFinalSnapshot is disabled",
+            "Specifies whether to skip the creation of a final DB cluster snapshot before RDS deletes the DB cluster. If you set this value to true, RDS doesn't create a final DB cluster snapshot. If you set this value to false or don't specify it, RDS creates a DB cluster snapshot before it deletes the DB cluster. By default, this parameter is disabled, so RDS creates a final DB cluster snapshot.  If SkipFinalSnapshot is disabled, you must specify a value for the FinalDBSnapshotIdentifier parameter",
         },
         {
           name: "--no-skip-final-snapshot",
           description:
-            "Specifies whether to skip the creation of a final DB cluster snapshot before the DB cluster is deleted. If skip is specified, no DB cluster snapshot is created. If skip isn't specified, a DB cluster snapshot is created before the DB cluster is deleted. By default, skip isn't specified, and the DB cluster snapshot is created. By default, this parameter is disabled.  You must specify a FinalDBSnapshotIdentifier parameter if SkipFinalSnapshot is disabled",
+            "Specifies whether to skip the creation of a final DB cluster snapshot before RDS deletes the DB cluster. If you set this value to true, RDS doesn't create a final DB cluster snapshot. If you set this value to false or don't specify it, RDS creates a DB cluster snapshot before it deletes the DB cluster. By default, this parameter is disabled, so RDS creates a final DB cluster snapshot.  If SkipFinalSnapshot is disabled, you must specify a value for the FinalDBSnapshotIdentifier parameter",
         },
         {
           name: "--final-db-snapshot-identifier",
           description:
-            "The DB cluster snapshot identifier of the new DB cluster snapshot created when SkipFinalSnapshot is disabled.  Specifying this parameter and also skipping the creation of a final DB cluster snapshot with the SkipFinalShapshot parameter results in an error.  Constraints:   Must be 1 to 255 letters, numbers, or hyphens.   First character must be a letter   Can't end with a hyphen or contain two consecutive hyphens",
+            "The DB cluster snapshot identifier of the new DB cluster snapshot created when SkipFinalSnapshot is disabled.  If you specify this parameter and also skip the creation of a final DB cluster snapshot with the SkipFinalShapshot parameter, the request results in an error.  Constraints:   Must be 1 to 255 letters, numbers, or hyphens.   First character must be a letter   Can't end with a hyphen or contain two consecutive hyphens",
           args: {
             name: "string",
           },
@@ -7520,7 +7528,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-pending-maintenance-actions",
       description:
-        "Returns a list of resources (for example, DB instances) that have at least one pending maintenance action",
+        "Returns a list of resources (for example, DB instances) that have at least one pending maintenance action. This API follows an eventual consistency model. This means that the result of the DescribePendingMaintenanceActions command might not be immediately visible to all subsequent RDS commands. Keep this in mind when you use DescribePendingMaintenanceActions immediately after using a previous API command such as ApplyPendingMaintenanceActions",
       options: [
         {
           name: "--resource-identifier",
@@ -9361,12 +9369,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--publicly-accessible",
           description:
-            "Specifies whether the DB instance is publicly accessible. When the DB cluster is publicly accessible, its Domain Name System (DNS) endpoint resolves to the private IP address from within the DB cluster's virtual private cloud (VPC). It resolves to the public IP address from outside of the DB cluster's VPC. Access to the DB cluster is ultimately controlled by the security group it uses. That public access isn't permitted if the security group assigned to the DB cluster doesn't permit it. When the DB instance isn't publicly accessible, it is an internal DB instance with a DNS name that resolves to a private IP address.  PubliclyAccessible only applies to DB instances in a VPC. The DB instance must be part of a public subnet and PubliclyAccessible must be enabled for it to be publicly accessible. Changes to the PubliclyAccessible parameter are applied immediately regardless of the value of the ApplyImmediately parameter",
+            "Specifies whether the DB instance is publicly accessible. When the DB instance is publicly accessible and you connect from outside of the DB instance's virtual private cloud (VPC), its Domain Name System (DNS) endpoint resolves to the public IP address. When you connect from within the same VPC as the DB instance, the endpoint resolves to the private IP address. Access to the DB instance is ultimately controlled by the security group it uses. That public access isn't permitted if the security group assigned to the DB instance doesn't permit it. When the DB instance isn't publicly accessible, it is an internal DB instance with a DNS name that resolves to a private IP address.  PubliclyAccessible only applies to DB instances in a VPC. The DB instance must be part of a public subnet and PubliclyAccessible must be enabled for it to be publicly accessible. Changes to the PubliclyAccessible parameter are applied immediately regardless of the value of the ApplyImmediately parameter",
         },
         {
           name: "--no-publicly-accessible",
           description:
-            "Specifies whether the DB instance is publicly accessible. When the DB cluster is publicly accessible, its Domain Name System (DNS) endpoint resolves to the private IP address from within the DB cluster's virtual private cloud (VPC). It resolves to the public IP address from outside of the DB cluster's VPC. Access to the DB cluster is ultimately controlled by the security group it uses. That public access isn't permitted if the security group assigned to the DB cluster doesn't permit it. When the DB instance isn't publicly accessible, it is an internal DB instance with a DNS name that resolves to a private IP address.  PubliclyAccessible only applies to DB instances in a VPC. The DB instance must be part of a public subnet and PubliclyAccessible must be enabled for it to be publicly accessible. Changes to the PubliclyAccessible parameter are applied immediately regardless of the value of the ApplyImmediately parameter",
+            "Specifies whether the DB instance is publicly accessible. When the DB instance is publicly accessible and you connect from outside of the DB instance's virtual private cloud (VPC), its Domain Name System (DNS) endpoint resolves to the public IP address. When you connect from within the same VPC as the DB instance, the endpoint resolves to the private IP address. Access to the DB instance is ultimately controlled by the security group it uses. That public access isn't permitted if the security group assigned to the DB instance doesn't permit it. When the DB instance isn't publicly accessible, it is an internal DB instance with a DNS name that resolves to a private IP address.  PubliclyAccessible only applies to DB instances in a VPC. The DB instance must be part of a public subnet and PubliclyAccessible must be enabled for it to be publicly accessible. Changes to the PubliclyAccessible parameter are applied immediately regardless of the value of the ApplyImmediately parameter",
         },
         {
           name: "--monitoring-role-arn",
@@ -9928,6 +9936,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--min-acu",
+          description:
+            "The minimum capacity of the DB shard group in Aurora capacity units (ACUs)",
+          args: {
+            name: "double",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -10445,7 +10461,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of tags. For more information, see Tagging Amazon RDS Resources in the Amazon RDS User Guide",
+            "A list of tags. For more information, see Tagging Amazon RDS resources in the Amazon RDS User Guide or Tagging Amazon Aurora and Amazon RDS resources in the Amazon Aurora User Guide",
           args: {
             name: "list",
           },
@@ -11076,7 +11092,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of tags. For more information, see Tagging Amazon RDS Resources in the Amazon RDS User Guide",
+            "A list of tags. For more information, see Tagging Amazon RDS resources in the Amazon RDS User Guide or Tagging Amazon Aurora and Amazon RDS resources in the Amazon Aurora User Guide",
           args: {
             name: "list",
           },
@@ -11621,7 +11637,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of tags. For more information, see Tagging Amazon RDS Resources in the Amazon RDS User Guide",
+            "A list of tags. For more information, see Tagging Amazon RDS resources in the Amazon RDS User Guide or Tagging Amazon Aurora and Amazon RDS resources in the Amazon Aurora User Guide",
           args: {
             name: "list",
           },
@@ -11938,7 +11954,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of tags. For more information, see Tagging Amazon RDS Resources in the Amazon RDS User Guide",
+            "A list of tags. For more information, see Tagging Amazon RDS resources in the Amazon RDS User Guide or Tagging Amazon Aurora and Amazon RDS resources in the Amazon Aurora User Guide",
           args: {
             name: "list",
           },
@@ -12797,7 +12813,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of tags. For more information, see Tagging Amazon RDS Resources in the Amazon RDS User Guide",
+            "A list of tags. For more information, see Tagging Amazon RDS resources in the Amazon RDS User Guide or Tagging Amazon Aurora and Amazon RDS resources in the Amazon Aurora User Guide",
           args: {
             name: "list",
           },

@@ -6,7 +6,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-evaluation-job",
       description:
-        "API operation for creating and managing Amazon Bedrock automatic model evaluation jobs and model evaluation jobs that use human workers. To learn more about the requirements for creating a model evaluation job see, Model evaluations",
+        "API operation for creating and managing Amazon Bedrock automatic model evaluation jobs and model evaluation jobs that use human workers. To learn more about the requirements for creating a model evaluation job see, Model evaluation",
       options: [
         {
           name: "--job-name",
@@ -100,7 +100,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-guardrail",
       description:
-        "Creates a guardrail to block topics and to filter out harmful content.   Specify a name and optional description.   Specify messages for when the guardrail successfully blocks a prompt or a model response in the blockedInputMessaging and blockedOutputsMessaging fields.   Specify topics for the guardrail to deny in the topicPolicyConfig object. Each GuardrailTopicConfig object in the topicsConfig list pertains to one topic.   Give a name and description so that the guardrail can properly identify the topic.   Specify DENY in the type field.   (Optional) Provide up to five prompts that you would categorize as belonging to the topic in the examples list.     Specify filter strengths for the harmful categories defined in Amazon Bedrock in the contentPolicyConfig object. Each GuardrailContentFilterConfig object in the filtersConfig list pertains to a harmful category. For more information, see Content filters. For more information about the fields in a content filter, see GuardrailContentFilterConfig.   Specify the category in the type field.   Specify the strength of the filter for prompts in the inputStrength field and for model responses in the strength field of the GuardrailContentFilterConfig.     (Optional) For security, include the ARN of a KMS key in the kmsKeyId field.   (Optional) Attach any tags to the guardrail in the tags object. For more information, see Tag resources",
+        "Creates a guardrail to block topics and to implement safeguards for your generative AI applications. You can configure the following policies in a guardrail to avoid undesirable and harmful content, filter out denied topics and words, and remove sensitive information for privacy protection.    Content filters - Adjust filter strengths to block input prompts or model responses containing harmful content.    Denied topics - Define a set of topics that are undesirable in the context of your application. These topics will be blocked if detected in user queries or model responses.    Word filters - Configure filters to block undesirable words, phrases, and profanity. Such words can include offensive terms, competitor names etc.    Sensitive information filters - Block or mask sensitive information such as personally identifiable information (PII) or custom regex in user inputs and model responses.   In addition to the above policies, you can also configure the messages to be returned to the user if a user input or model response is in violation of the policies defined in the guardrail. For more information, see Guardrails for Amazon Bedrock in the Amazon Bedrock User Guide",
       options: [
         {
           name: "--name",
@@ -142,6 +142,14 @@ const completionSpec: Fig.Spec = {
           name: "--sensitive-information-policy-config",
           description:
             "The sensitive information policy to configure for the guardrail",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--contextual-grounding-policy-config",
+          description:
+            "The contextual grounding policy configuration used to create a guardrail",
           args: {
             name: "structure",
           },
@@ -211,7 +219,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--guardrail-identifier",
-          description: "The unique identifier of the guardrail",
+          description:
+            "The unique identifier of the guardrail. This can be an ID or the ARN",
           args: {
             name: "string",
           },
@@ -227,6 +236,69 @@ const completionSpec: Fig.Spec = {
           name: "--client-request-token",
           description:
             "A unique, case-sensitive identifier to ensure that the API request completes no more than once. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see Ensuring idempotency in the Amazon S3 User Guide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-model-copy-job",
+      description:
+        "Copies a model to another region so that it can be used there. For more information, see Copy models to be used in other regions in the Amazon Bedrock User Guide",
+      options: [
+        {
+          name: "--source-model-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the model to be copied",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--target-model-name",
+          description: "A name for the copied model",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--model-kms-key-id",
+          description:
+            "The ARN of the KMS key that you use to encrypt the model copy",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--target-model-tags",
+          description:
+            "Tags to associate with the target model. For more information, see Tag resources in the Amazon Bedrock User Guide",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--client-request-token",
+          description:
+            "A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see Ensuring idempotency",
           args: {
             name: "string",
           },
@@ -377,6 +449,93 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-model-invocation-job",
+      description:
+        "Creates a job to invoke a model on multiple prompts (batch inference). Format your data according to Format your inference data and upload it to an Amazon S3 bucket. For more information, see Create a batch inference job. The response returns a jobArn that you can use to stop or get details about the job. You can check the status of the job by sending a GetModelCustomizationJob request",
+      options: [
+        {
+          name: "--job-name",
+          description: "A name to give the batch inference job",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--role-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the service role with permissions to carry out and manage batch inference. You can use the console to create a default service role or follow the steps at Create a service role for batch inference",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--client-request-token",
+          description:
+            "A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see Ensuring idempotency",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--model-id",
+          description:
+            "The unique identifier of the foundation model to use for the batch inference job",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--input-data-config",
+          description:
+            "Details about the location of the input to the batch inference job",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--output-data-config",
+          description:
+            "Details about the location of the output of the batch inference job",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--timeout-duration-in-hours",
+          description:
+            "The number of hours after which to force the batch inference job to time out",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "Any tags to associate with the batch inference job. For more information, see Tagging Amazon Bedrock resources",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-provisioned-model-throughput",
       description:
         "Creates dedicated throughput for a base or custom model with the model units and for the duration that you specify. For pricing details, see Amazon Bedrock Pricing. For more information, see Provisioned Throughput in the Amazon Bedrock User Guide",
@@ -484,7 +643,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--guardrail-identifier",
-          description: "The unique identifier of the guardrail",
+          description:
+            "The unique identifier of the guardrail. This can be an ID or the ARN",
           args: {
             name: "string",
           },
@@ -604,7 +764,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-evaluation-job",
       description:
-        "Retrieves the properties associated with a model evaluation job, including the status of the job. For more information, see Model evaluations",
+        "Retrieves the properties associated with a model evaluation job, including the status of the job. For more information, see Model evaluation",
       options: [
         {
           name: "--job-identifier",
@@ -671,7 +831,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--guardrail-identifier",
           description:
-            "The unique identifier of the guardrail for which to get details",
+            "The unique identifier of the guardrail for which to get details. This can be an ID or the ARN",
           args: {
             name: "string",
           },
@@ -704,6 +864,37 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-model-copy-job",
+      description:
+        "Retrieves information about a model copy job. For more information, see Copy models to be used in other regions in the Amazon Bedrock User Guide",
+      options: [
+        {
+          name: "--job-arn",
+          description: "The Amazon Resource Name (ARN) of the model copy job",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-model-customization-job",
       description:
         "Retrieves the properties associated with a model-customization job, including the status of the job. For more information, see Custom models in the Amazon Bedrock User Guide",
@@ -711,6 +902,38 @@ const completionSpec: Fig.Spec = {
         {
           name: "--job-identifier",
           description: "Identifier for the customization job",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-model-invocation-job",
+      description:
+        "Gets details about a batch inference job. For more information, see View details about a batch inference job",
+      options: [
+        {
+          name: "--job-identifier",
+          description:
+            "The Amazon Resource Name (ARN) of the batch inference job",
           args: {
             name: "string",
           },
@@ -835,7 +1058,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--max-results",
-          description: "Maximum number of results to return in the response",
+          description:
+            "The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the nextToken field when making another request to return the next batch of results",
           args: {
             name: "integer",
           },
@@ -843,7 +1067,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "Continuation token from the previous response, for Amazon Bedrock to list the next set of results",
+            "If the total number of results is greater than the maxResults value provided in the request, enter the token returned in the nextToken field in the response in this field to return the next batch of results",
           args: {
             name: "string",
           },
@@ -861,6 +1085,16 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "string",
           },
+        },
+        {
+          name: "--is-owned",
+          description:
+            "Return custom models depending on if the current account owns them (true) or if they were shared with the current account (false)",
+        },
+        {
+          name: "--no-is-owned",
+          description:
+            "Return custom models depending on if the current account owns them (true) or if they were shared with the current account (false)",
         },
         {
           name: "--cli-input-json",
@@ -1075,7 +1309,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--guardrail-identifier",
-          description: "The unique identifier of the guardrail",
+          description:
+            "The unique identifier of the guardrail. This can be an ID or the ARN",
           args: {
             name: "string",
           },
@@ -1092,6 +1327,134 @@ const completionSpec: Fig.Spec = {
           name: "--next-token",
           description:
             "If there are more results than were returned in the response, the response returns a nextToken that you can send in another ListGuardrails request to see the next batch of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-model-copy-jobs",
+      description:
+        "Returns a list of model copy jobs that you have submitted. You can filter the jobs to return based on one or more criteria. For more information, see Copy models to be used in other regions in the Amazon Bedrock User Guide",
+      options: [
+        {
+          name: "--creation-time-after",
+          description:
+            "Filters for model copy jobs created after the specified time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--creation-time-before",
+          description:
+            "Filters for model copy jobs created before the specified time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--status-equals",
+          description:
+            "Filters for model copy jobs whose status matches the value that you specify",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--source-account-equals",
+          description:
+            "Filters for model copy jobs in which the account that the source model belongs to is equal to the value that you specify",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--source-model-arn-equals",
+          description:
+            "Filters for model copy jobs in which the Amazon Resource Name (ARN) of the source model to is equal to the value that you specify",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--target-model-name-contains",
+          description:
+            "Filters for model copy jobs in which the name of the copied model contains the string that you specify",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the nextToken field when making another request to return the next batch of results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If the total number of results is greater than the maxResults value provided in the request, enter the token returned in the nextToken field in the response in this field to return the next batch of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-by",
+          description:
+            "The field to sort by in the returned list of model copy jobs",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description:
+            "Specifies whether to sort the results in ascending or descending order",
           args: {
             name: "string",
           },
@@ -1177,7 +1540,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--max-results",
-          description: "Maximum number of results to return in the response",
+          description:
+            "The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the nextToken field when making another request to return the next batch of results",
           args: {
             name: "integer",
           },
@@ -1185,7 +1549,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "Continuation token from the previous response, for Amazon Bedrock to list the next set of results",
+            "If the total number of results is greater than the maxResults value provided in the request, enter the token returned in the nextToken field in the response in this field to return the next batch of results",
           args: {
             name: "string",
           },
@@ -1200,6 +1564,117 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sort-order",
           description: "The sort order of the results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-model-invocation-jobs",
+      description:
+        "Lists all batch inference jobs in the account. For more information, see View details about a batch inference job",
+      options: [
+        {
+          name: "--submit-time-after",
+          description:
+            "Specify a time to filter for batch inference jobs that were submitted after the time you specify",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--submit-time-before",
+          description:
+            "Specify a time to filter for batch inference jobs that were submitted before the time you specify",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--status-equals",
+          description:
+            "Specify a status to filter for batch inference jobs whose statuses match the string you specify",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--name-contains",
+          description:
+            "Specify a string to filter for batch inference jobs whose names contain the string",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return. If there are more results than the number that you specify, a nextToken value is returned. Use the nextToken in a request to return the next batch of results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If there were more results than the value you specified in the maxResults field in a previous ListModelInvocationJobs request, the response would have returned a nextToken value. To see the next batch of results, send the nextToken value in another request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-by",
+          description: "An attribute by which to sort the results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description:
+            "Specifies whether to sort the results by ascending or descending order",
           args: {
             name: "string",
           },
@@ -1489,6 +1964,38 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "stop-model-invocation-job",
+      description:
+        "Stops a batch inference job. You're only charged for tokens that were already processed. For more information, see Stop a batch inference job",
+      options: [
+        {
+          name: "--job-identifier",
+          description:
+            "The Amazon Resource Name (ARN) of the batch inference job to stop",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "tag-resource",
       description:
         "Associate tags with a resource. For more information, see Tagging resources in the Amazon Bedrock User Guide",
@@ -1568,11 +2075,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-guardrail",
       description:
-        "Updates a guardrail with the values you specify.   Specify a name and optional description.   Specify messages for when the guardrail successfully blocks a prompt or a model response in the blockedInputMessaging and blockedOutputsMessaging fields.   Specify topics for the guardrail to deny in the topicPolicyConfig object. Each GuardrailTopicConfig object in the topicsConfig list pertains to one topic.   Give a name and description so that the guardrail can properly identify the topic.   Specify DENY in the type field.   (Optional) Provide up to five prompts that you would categorize as belonging to the topic in the examples list.     Specify filter strengths for the harmful categories defined in Amazon Bedrock in the contentPolicyConfig object. Each GuardrailContentFilterConfig object in the filtersConfig list pertains to a harmful category. For more information, see Content filters. For more information about the fields in a content filter, see GuardrailContentFilterConfig.   Specify the category in the type field.   Specify the strength of the filter for prompts in the inputStrength field and for model responses in the strength field of the GuardrailContentFilterConfig.     (Optional) For security, include the ARN of a KMS key in the kmsKeyId field.   (Optional) Attach any tags to the guardrail in the tags object. For more information, see Tag resources",
+        "Updates a guardrail with the values you specify.   Specify a name and optional description.   Specify messages for when the guardrail successfully blocks a prompt or a model response in the blockedInputMessaging and blockedOutputsMessaging fields.   Specify topics for the guardrail to deny in the topicPolicyConfig object. Each GuardrailTopicConfig object in the topicsConfig list pertains to one topic.   Give a name and description so that the guardrail can properly identify the topic.   Specify DENY in the type field.   (Optional) Provide up to five prompts that you would categorize as belonging to the topic in the examples list.     Specify filter strengths for the harmful categories defined in Amazon Bedrock in the contentPolicyConfig object. Each GuardrailContentFilterConfig object in the filtersConfig list pertains to a harmful category. For more information, see Content filters. For more information about the fields in a content filter, see GuardrailContentFilterConfig.   Specify the category in the type field.   Specify the strength of the filter for prompts in the inputStrength field and for model responses in the strength field of the GuardrailContentFilterConfig.     (Optional) For security, include the ARN of a KMS key in the kmsKeyId field",
       options: [
         {
           name: "--guardrail-identifier",
-          description: "The unique identifier of the guardrail",
+          description:
+            "The unique identifier of the guardrail. This can be an ID or the ARN",
           args: {
             name: "string",
           },
@@ -1616,6 +2124,14 @@ const completionSpec: Fig.Spec = {
           name: "--sensitive-information-policy-config",
           description:
             "The sensitive information policy to configure for the guardrail",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--contextual-grounding-policy-config",
+          description:
+            "The contextual grounding policy configuration used to update a guardrail",
           args: {
             name: "structure",
           },

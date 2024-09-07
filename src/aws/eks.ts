@@ -754,6 +754,14 @@ const completionSpec: Fig.Spec = {
             "If you set this value to False when creating a cluster, the default networking add-ons will not be installed. The default networking addons include vpc-cni, coredns, and kube-proxy. Use this option when you plan to install third-party alternative add-ons or self-manage the default networking add-ons",
         },
         {
+          name: "--upgrade-policy",
+          description:
+            "New clusters, by default, have extended support enabled. You can disable extended support when creating a cluster by setting this value to STANDARD",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--kubernetes-version",
           description:
             "The desired Kubernetes version for your cluster. If you don't specify a value here, the default version available in Amazon EKS is used.  The default version might not be the latest version available",
@@ -3415,6 +3423,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--access-config",
           description: "The access configuration for the cluster",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--upgrade-policy",
+          description:
+            "You can enable or disable extended support for clusters currently on standard support. You cannot disable extended support once it starts. You must enable extended support before your cluster exits standard support",
           args: {
             name: "structure",
           },

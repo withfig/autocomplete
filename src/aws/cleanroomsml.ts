@@ -9,8 +9,30 @@ const completionSpec: Fig.Spec = {
         "Defines the information necessary to create an audience model. An audience model is a machine learning model that Clean Rooms ML trains to measure similarity between users. Clean Rooms ML manages training and storing the audience model. The audience model can be used in multiple calls to the StartAudienceGenerationJob API",
       options: [
         {
-          name: "--description",
-          description: "The description of the audience model",
+          name: "--training-data-start-time",
+          description: "The start date and time of the training window",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--training-data-end-time",
+          description: "The end date and time of the training window",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--name",
+          description: "The name of the audience model resource",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--training-dataset-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the training dataset for this audience model",
           args: {
             name: "string",
           },
@@ -24,13 +46,6 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--name",
-          description: "The name of the audience model resource",
-          args: {
-            name: "string",
-          },
-        },
-        {
           name: "--tags",
           description:
             "The optional metadata that you apply to the resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. The following basic restrictions apply to tags:   Maximum number of tags per resource - 50.   For each resource, each tag key must be unique, and each tag key can have only one value.   Maximum key length - 128 Unicode characters in UTF-8.   Maximum value length - 256 Unicode characters in UTF-8.   If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.   Tag keys and values are case sensitive.   Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has aws as its prefix but the key does not, then Clean Rooms ML considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of aws do not count against your tags per resource limit",
@@ -39,23 +54,8 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--training-data-end-time",
-          description: "The end date and time of the training window",
-          args: {
-            name: "timestamp",
-          },
-        },
-        {
-          name: "--training-data-start-time",
-          description: "The start date and time of the training window",
-          args: {
-            name: "timestamp",
-          },
-        },
-        {
-          name: "--training-dataset-arn",
-          description:
-            "The Amazon Resource Name (ARN) of the training dataset for this audience model",
+          name: "--description",
+          description: "The description of the audience model",
           args: {
             name: "string",
           },
@@ -85,47 +85,16 @@ const completionSpec: Fig.Spec = {
         "Defines the information necessary to create a configured audience model",
       options: [
         {
+          name: "--name",
+          description: "The name of the configured audience model",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--audience-model-arn",
           description:
             "The Amazon Resource Name (ARN) of the audience model to use for the configured audience model",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--audience-size-config",
-          description:
-            "Configure the list of output sizes of audiences that can be created using this configured audience model. A request to StartAudienceGenerationJob that uses this configured audience model must have an audienceSize selected from this list. You can use the ABSOLUTE AudienceSize to configure out audience sizes using the count of identifiers in the output. You can use the Percentage AudienceSize to configure sizes in the range 1-100 percent",
-          args: {
-            name: "structure",
-          },
-        },
-        {
-          name: "--child-resource-tag-on-create-policy",
-          description:
-            "Configure how the service tags audience generation jobs created using this configured audience model. If you specify NONE, the tags from the StartAudienceGenerationJob request determine the tags of the audience generation job. If you specify FROM_PARENT_RESOURCE, the audience generation job inherits the tags from the configured audience model, by default. Tags in the StartAudienceGenerationJob will override the default. When the client is in a different account than the configured audience model, the tags from the client are never applied to a resource in the caller's account",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--description",
-          description: "The description of the configured audience model",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--min-matching-seed-size",
-          description:
-            "The minimum number of users from the seed audience that must match with users in the training data of the audience model. The default value is 500",
-          args: {
-            name: "integer",
-          },
-        },
-        {
-          name: "--name",
-          description: "The name of the configured audience model",
           args: {
             name: "string",
           },
@@ -139,10 +108,33 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--description",
+          description: "The description of the configured audience model",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--shared-audience-metrics",
           description: "Whether audience metrics are shared",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--min-matching-seed-size",
+          description:
+            "The minimum number of users from the seed audience that must match with users in the training data of the audience model. The default value is 500",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--audience-size-config",
+          description:
+            "Configure the list of output sizes of audiences that can be created using this configured audience model. A request to StartAudienceGenerationJob that uses this configured audience model must have an audienceSize selected from this list. You can use the ABSOLUTE AudienceSize to configure out audience sizes using the count of identifiers in the output. You can use the Percentage AudienceSize to configure sizes in the range 1-100 percent",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -151,6 +143,14 @@ const completionSpec: Fig.Spec = {
             "The optional metadata that you apply to the resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. The following basic restrictions apply to tags:   Maximum number of tags per resource - 50.   For each resource, each tag key must be unique, and each tag key can have only one value.   Maximum key length - 128 Unicode characters in UTF-8.   Maximum value length - 256 Unicode characters in UTF-8.   If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.   Tag keys and values are case sensitive.   Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has aws as its prefix but the key does not, then Clean Rooms ML considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of aws do not count against your tags per resource limit",
           args: {
             name: "map",
+          },
+        },
+        {
+          name: "--child-resource-tag-on-create-policy",
+          description:
+            "Configure how the service tags audience generation jobs created using this configured audience model. If you specify NONE, the tags from the StartAudienceGenerationJob request determine the tags of the audience generation job. If you specify FROM_PARENT_RESOURCE, the audience generation job inherits the tags from the configured audience model, by default. Tags in the StartAudienceGenerationJob will override the default. When the client is in a different account than the configured audience model, the tags from the client are never applied to a resource in the caller's account",
+          args: {
+            name: "string",
           },
         },
         {
@@ -178,13 +178,6 @@ const completionSpec: Fig.Spec = {
         "Defines the information necessary to create a training dataset. In Clean Rooms ML, the TrainingDataset is metadata that points to a Glue table, which is read only during AudienceModel creation",
       options: [
         {
-          name: "--description",
-          description: "The description of the training dataset",
-          args: {
-            name: "string",
-          },
-        },
-        {
           name: "--name",
           description:
             "The name of the training dataset. This name must be unique in your account and region",
@@ -201,6 +194,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--training-data",
+          description:
+            "An array of information that lists the Dataset objects, which specifies the dataset type and details on its location and schema. You must provide a role that has read access to these tables",
+          args: {
+            name: "list",
+          },
+        },
+        {
           name: "--tags",
           description:
             "The optional metadata that you apply to the resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. The following basic restrictions apply to tags:   Maximum number of tags per resource - 50.   For each resource, each tag key must be unique, and each tag key can have only one value.   Maximum key length - 128 Unicode characters in UTF-8.   Maximum value length - 256 Unicode characters in UTF-8.   If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.   Tag keys and values are case sensitive.   Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has aws as its prefix but the key does not, then Clean Rooms ML considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of aws do not count against your tags per resource limit",
@@ -209,11 +210,10 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--training-data",
-          description:
-            "An array of information that lists the Dataset objects, which specifies the dataset type and details on its location and schema. You must provide a role that has read access to these tables",
+          name: "--description",
+          description: "The description of the training dataset",
           args: {
-            name: "list",
+            name: "string",
           },
         },
         {
@@ -556,9 +556,9 @@ const completionSpec: Fig.Spec = {
       description: "Returns a list of the audience export jobs",
       options: [
         {
-          name: "--audience-generation-job-arn",
+          name: "--next-token",
           description:
-            "The Amazon Resource Name (ARN) of the audience generation job that you are interested in",
+            "The token value retrieved from a previous call to access the next page of results",
           args: {
             name: "string",
           },
@@ -572,9 +572,9 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--next-token",
+          name: "--audience-generation-job-arn",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The Amazon Resource Name (ARN) of the audience generation job that you are interested in",
           args: {
             name: "string",
           },
@@ -627,17 +627,9 @@ const completionSpec: Fig.Spec = {
       description: "Returns a list of audience generation jobs",
       options: [
         {
-          name: "--collaboration-id",
+          name: "--next-token",
           description:
-            "The identifier of the collaboration that contains the audience generation jobs that you are interested in",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--configured-audience-model-arn",
-          description:
-            "The Amazon Resource Name (ARN) of the configured audience model that was used for the audience generation jobs that you are interested in",
+            "The token value retrieved from a previous call to access the next page of results",
           args: {
             name: "string",
           },
@@ -651,9 +643,17 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--next-token",
+          name: "--configured-audience-model-arn",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The Amazon Resource Name (ARN) of the configured audience model that was used for the audience generation jobs that you are interested in",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--collaboration-id",
+          description:
+            "The identifier of the collaboration that contains the audience generation jobs that you are interested in",
           args: {
             name: "string",
           },
@@ -706,19 +706,19 @@ const completionSpec: Fig.Spec = {
       description: "Returns a list of audience models",
       options: [
         {
-          name: "--max-results",
-          description:
-            "The maximum size of the results that is returned per call",
-          args: {
-            name: "integer",
-          },
-        },
-        {
           name: "--next-token",
           description:
             "The token value retrieved from a previous call to access the next page of results",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum size of the results that is returned per call",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -769,19 +769,19 @@ const completionSpec: Fig.Spec = {
       description: "Returns a list of the configured audience models",
       options: [
         {
-          name: "--max-results",
-          description:
-            "The maximum size of the results that is returned per call",
-          args: {
-            name: "integer",
-          },
-        },
-        {
           name: "--next-token",
           description:
             "The token value retrieved from a previous call to access the next page of results",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum size of the results that is returned per call",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -863,19 +863,19 @@ const completionSpec: Fig.Spec = {
       description: "Returns a list of training datasets",
       options: [
         {
-          name: "--max-results",
-          description:
-            "The maximum size of the results that is returned per call",
-          args: {
-            name: "integer",
-          },
-        },
-        {
           name: "--next-token",
           description:
             "The token value retrieved from a previous call to access the next page of results",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum size of the results that is returned per call",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -942,17 +942,17 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--policy-existence-condition",
+          name: "--previous-policy-hash",
           description:
-            "Use this to prevent unexpected concurrent modification of the policy",
+            "A cryptographic hash of the contents of the policy used to prevent unexpected concurrent modification of the policy",
           args: {
             name: "string",
           },
         },
         {
-          name: "--previous-policy-hash",
+          name: "--policy-existence-condition",
           description:
-            "A cryptographic hash of the contents of the policy used to prevent unexpected concurrent modification of the policy",
+            "Use this to prevent unexpected concurrent modification of the policy",
           args: {
             name: "string",
           },
@@ -982,6 +982,13 @@ const completionSpec: Fig.Spec = {
         "Export an audience of a specified size after you have generated an audience",
       options: [
         {
+          name: "--name",
+          description: "The name of the audience export job",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--audience-generation-job-arn",
           description:
             "The Amazon Resource Name (ARN) of the audience generation job that you want to export",
@@ -1000,13 +1007,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "--description",
           description: "The description of the audience export job",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--name",
-          description: "The name of the audience export job",
           args: {
             name: "string",
           },
@@ -1035,9 +1035,8 @@ const completionSpec: Fig.Spec = {
       description: "Information necessary to start the audience generation job",
       options: [
         {
-          name: "--collaboration-id",
-          description:
-            "The identifier of the collaboration that contains the audience generation job",
+          name: "--name",
+          description: "The name of the audience generation job",
           args: {
             name: "string",
           },
@@ -1051,10 +1050,11 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--description",
-          description: "The description of the audience generation job",
+          name: "--seed-audience",
+          description:
+            "The seed audience that is used to generate the audience",
           args: {
-            name: "string",
+            name: "structure",
           },
         },
         {
@@ -1068,18 +1068,18 @@ const completionSpec: Fig.Spec = {
             "Whether the seed audience is included in the audience generation output",
         },
         {
-          name: "--name",
-          description: "The name of the audience generation job",
+          name: "--collaboration-id",
+          description:
+            "The identifier of the collaboration that contains the audience generation job",
           args: {
             name: "string",
           },
         },
         {
-          name: "--seed-audience",
-          description:
-            "The seed audience that is used to generate the audience",
+          name: "--description",
+          description: "The description of the audience generation job",
           args: {
-            name: "structure",
+            name: "string",
           },
         },
         {
@@ -1192,21 +1192,6 @@ const completionSpec: Fig.Spec = {
         "Provides the information necessary to update a configured audience model. Updates that impact audience generation jobs take effect when a new job starts, but do not impact currently running jobs",
       options: [
         {
-          name: "--audience-model-arn",
-          description:
-            "The Amazon Resource Name (ARN) of the new audience model that you want to use",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--audience-size-config",
-          description: "The new audience size configuration",
-          args: {
-            name: "structure",
-          },
-        },
-        {
           name: "--configured-audience-model-arn",
           description:
             "The Amazon Resource Name (ARN) of the configured audience model that you want to update",
@@ -1215,10 +1200,25 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--description",
-          description: "The new description of the configured audience model",
+          name: "--output-config",
+          description: "The new output configuration",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--audience-model-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the new audience model that you want to use",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--shared-audience-metrics",
+          description: "The new value for whether to share audience metrics",
+          args: {
+            name: "list",
           },
         },
         {
@@ -1230,17 +1230,17 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--output-config",
-          description: "The new output configuration",
+          name: "--audience-size-config",
+          description: "The new audience size configuration",
           args: {
             name: "structure",
           },
         },
         {
-          name: "--shared-audience-metrics",
-          description: "The new value for whether to share audience metrics",
+          name: "--description",
+          description: "The new description of the configured audience model",
           args: {
-            name: "list",
+            name: "string",
           },
         },
         {

@@ -317,7 +317,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--role-arn",
           description:
-            "The ARN of the IAM role to assume to run the scheduled action. This IAM role must have permission to run the Amazon Redshift Serverless API operation in the scheduled action. This IAM role must allow the Amazon Redshift scheduler to schedule creating snapshots. (Principal scheduler.redshift.amazonaws.com) to assume permissions on your behalf. For more information about the IAM role to use with the Amazon Redshift scheduler, see Using Identity-Based Policies for Amazon Redshift in the Amazon Redshift Cluster Management Guide",
+            "The ARN of the IAM role to assume to run the scheduled action. This IAM role must have permission to run the Amazon Redshift Serverless API operation in the scheduled action. This IAM role must allow the Amazon Redshift scheduler to schedule creating snapshots. (Principal scheduler.redshift.amazonaws.com) to assume permissions on your behalf. For more information about the IAM role to use with the Amazon Redshift scheduler, see Using Identity-Based Policies for Amazon Redshift in the Amazon Redshift Management Guide",
           args: {
             name: "string",
           },
@@ -579,6 +579,14 @@ const completionSpec: Fig.Spec = {
           name: "--no-enhanced-vpc-routing",
           description:
             "The value that specifies whether to turn on enhanced virtual private cloud (VPC) routing, which forces Amazon Redshift Serverless to route traffic through your VPC instead of over the internet",
+        },
+        {
+          name: "--ip-address-type",
+          description:
+            "The IP address type that the workgroup supports. Possible values are ipv4 and dualstack",
+          args: {
+            name: "string",
+          },
         },
         {
           name: "--max-capacity",
@@ -2813,7 +2821,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--role-arn",
           description:
-            "The ARN of the IAM role to assume to run the scheduled action. This IAM role must have permission to run the Amazon Redshift Serverless API operation in the scheduled action. This IAM role must allow the Amazon Redshift scheduler to schedule creating snapshots (Principal scheduler.redshift.amazonaws.com) to assume permissions on your behalf. For more information about the IAM role to use with the Amazon Redshift scheduler, see Using Identity-Based Policies for Amazon Redshift in the Amazon Redshift Cluster Management Guide",
+            "The ARN of the IAM role to assume to run the scheduled action. This IAM role must have permission to run the Amazon Redshift Serverless API operation in the scheduled action. This IAM role must allow the Amazon Redshift scheduler to schedule creating snapshots (Principal scheduler.redshift.amazonaws.com) to assume permissions on your behalf. For more information about the IAM role to use with the Amazon Redshift scheduler, see Using Identity-Based Policies for Amazon Redshift in the Amazon Redshift Management Guide",
           args: {
             name: "string",
           },
@@ -3027,6 +3035,14 @@ const completionSpec: Fig.Spec = {
           name: "--no-enhanced-vpc-routing",
           description:
             "The value that specifies whether to turn on enhanced virtual private cloud (VPC) routing, which forces Amazon Redshift Serverless to route traffic through your VPC",
+        },
+        {
+          name: "--ip-address-type",
+          description:
+            "The IP address type that the workgroup supports. Possible values are ipv4 and dualstack",
+          args: {
+            name: "string",
+          },
         },
         {
           name: "--max-capacity",

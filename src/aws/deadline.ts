@@ -15,6 +15,21 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--principal-id",
+          description: "The member's principal ID to associate with the farm",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--principal-type",
+          description:
+            "The principal type of the member to associate with the farm",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--identity-store-id",
           description:
             "The identity store ID of the member to associate with the farm",
@@ -26,21 +41,6 @@ const completionSpec: Fig.Spec = {
           name: "--membership-level",
           description:
             "The principal's membership level for the associated farm",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--principal-id",
-          description: "The member's principal ID to associate with the farm",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--principal-type",
-          description:
-            "The principal type of the member to associate with the farm",
           args: {
             name: "string",
           },
@@ -83,6 +83,21 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--principal-id",
+          description: "The member's principal ID to associate with a fleet",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--principal-type",
+          description:
+            "The member's principal type to associate with the fleet",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--identity-store-id",
           description:
             "The member's identity store ID to associate with the fleet",
@@ -94,21 +109,6 @@ const completionSpec: Fig.Spec = {
           name: "--membership-level",
           description:
             "The principal's membership level for the associated fleet",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--principal-id",
-          description: "The member's principal ID to associate with a fleet",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--principal-type",
-          description:
-            "The member's principal type to associate with the fleet",
           args: {
             name: "string",
           },
@@ -144,9 +144,8 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--identity-store-id",
-          description:
-            "The member's identity store ID to associate with the job",
+          name: "--queue-id",
+          description: "The queue ID to associate to the member",
           args: {
             name: "string",
           },
@@ -154,14 +153,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "--job-id",
           description: "The job ID to associate with the member",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--membership-level",
-          description:
-            "The principal's membership level for the associated job",
           args: {
             name: "string",
           },
@@ -181,8 +172,17 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID to associate to the member",
+          name: "--identity-store-id",
+          description:
+            "The member's identity store ID to associate with the job",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--membership-level",
+          description:
+            "The principal's membership level for the associated job",
           args: {
             name: "string",
           },
@@ -218,17 +218,8 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--identity-store-id",
-          description:
-            "The member's identity store ID to associate with the queue",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--membership-level",
-          description:
-            "The principal's membership level for the associated queue",
+          name: "--queue-id",
+          description: "The ID of the queue to associate to the member",
           args: {
             name: "string",
           },
@@ -249,8 +240,17 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--queue-id",
-          description: "The ID of the queue to associate to the member",
+          name: "--identity-store-id",
+          description:
+            "The member's identity store ID to associate with the queue",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--membership-level",
+          description:
+            "The principal's membership level for the associated queue",
           args: {
             name: "string",
           },
@@ -452,15 +452,15 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID of the worker assuming the queue role",
+          name: "--worker-id",
+          description: "The worker ID of the worker assuming the queue role",
           args: {
             name: "string",
           },
         },
         {
-          name: "--worker-id",
-          description: "The worker ID of the worker assuming the queue role",
+          name: "--queue-id",
+          description: "The queue ID of the worker assuming the queue role",
           args: {
             name: "string",
           },
@@ -505,19 +505,19 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--identifiers",
-          description:
-            "The job identifiers to include within the job entity batch details",
-          args: {
-            name: "list",
-          },
-        },
-        {
           name: "--worker-id",
           description:
             "The worker ID of the worker containing the job details to get",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--identifiers",
+          description:
+            "The job identifiers to include within the job entity batch details",
+          args: {
+            name: "list",
           },
         },
         {
@@ -597,38 +597,9 @@ const completionSpec: Fig.Spec = {
         "Creates a budget to set spending thresholds for your rendering activity",
       options: [
         {
-          name: "--actions",
-          description:
-            "The budget actions to specify what happens when the budget runs out",
-          args: {
-            name: "list",
-          },
-        },
-        {
-          name: "--approximate-dollar-limit",
-          description: "The dollar limit based on consumed usage",
-          args: {
-            name: "float",
-          },
-        },
-        {
           name: "--client-token",
           description:
             "The unique token which the server uses to recognize retries of the same request",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--description",
-          description: "The description of the budget",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--display-name",
-          description: "The display name of the budget",
           args: {
             name: "string",
           },
@@ -641,15 +612,46 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--schedule",
-          description: "The schedule to associate with this budget",
+          name: "--usage-tracking-resource",
+          description: "The queue ID provided to this budget to track usage",
           args: {
             name: "structure",
           },
         },
         {
-          name: "--usage-tracking-resource",
-          description: "The queue ID provided to this budget to track usage",
+          name: "--display-name",
+          description:
+            "The display name of the budget.  This field can store any content. Escape or encode this content before displaying it on a webpage or any other system that might interpret the content of this field",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description:
+            "The description of the budget.  This field can store any content. Escape or encode this content before displaying it on a webpage or any other system that might interpret the content of this field",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--approximate-dollar-limit",
+          description: "The dollar limit based on consumed usage",
+          args: {
+            name: "float",
+          },
+        },
+        {
+          name: "--actions",
+          description:
+            "The budget actions to specify what happens when the budget runs out",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--schedule",
+          description: "The schedule to associate with this budget",
           args: {
             name: "structure",
           },
@@ -687,15 +689,17 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--description",
-          description: "The description of the farm",
+          name: "--display-name",
+          description:
+            "The display name of the farm.  This field can store any content. Escape or encode this content before displaying it on a webpage or any other system that might interpret the content of this field",
           args: {
             name: "string",
           },
         },
         {
-          name: "--display-name",
-          description: "The display name of the farm",
+          name: "--description",
+          description:
+            "The description of the farm.  This field can store any content. Escape or encode this content before displaying it on a webpage or any other system that might interpret the content of this field",
           args: {
             name: "string",
           },
@@ -748,28 +752,6 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--configuration",
-          description:
-            "The configuration settings for the fleet. Customer managed fleets are self-managed. Service managed Amazon EC2 fleets are managed by Deadline Cloud",
-          args: {
-            name: "structure",
-          },
-        },
-        {
-          name: "--description",
-          description: "The description of the fleet",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--display-name",
-          description: "The display name of the fleet",
-          args: {
-            name: "string",
-          },
-        },
-        {
           name: "--farm-id",
           description: "The farm ID of the farm to connect to the fleet",
           args: {
@@ -777,10 +759,27 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--max-worker-count",
-          description: "The maximum number of workers for the fleet",
+          name: "--display-name",
+          description:
+            "The display name of the fleet.  This field can store any content. Escape or encode this content before displaying it on a webpage or any other system that might interpret the content of this field",
           args: {
-            name: "integer",
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description:
+            "The description of the fleet.  This field can store any content. Escape or encode this content before displaying it on a webpage or any other system that might interpret the content of this field",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--role-arn",
+          description:
+            "The IAM role ARN for the role that the fleet's workers will use",
+          args: {
+            name: "string",
           },
         },
         {
@@ -791,11 +790,18 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--role-arn",
-          description:
-            "The IAM role ARN for the role that the fleet's workers will use",
+          name: "--max-worker-count",
+          description: "The maximum number of workers for the fleet",
           args: {
-            name: "string",
+            name: "integer",
+          },
+        },
+        {
+          name: "--configuration",
+          description:
+            "The configuration settings for the fleet. Customer managed fleets are self-managed. Service managed Amazon EC2 fleets are managed by Deadline Cloud",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -828,59 +834,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-job",
       description:
-        "Creates a job. A job is a render submission submitted by a user. It contains specific job properties outlined as steps and tasks",
+        "Creates a job. A job is a set of instructions that AWS Deadline Cloud uses to schedule and run work on available workers. For more information, see Deadline Cloud jobs",
       options: [
-        {
-          name: "--attachments",
-          description:
-            "The attachments for the job. Attach files required for the job to run to a render job",
-          args: {
-            name: "structure",
-          },
-        },
-        {
-          name: "--client-token",
-          description:
-            "The unique token which the server uses to recognize retries of the same request",
-          args: {
-            name: "string",
-          },
-        },
         {
           name: "--farm-id",
           description: "The farm ID of the farm to connect to the job",
           args: {
             name: "string",
-          },
-        },
-        {
-          name: "--max-failed-tasks-count",
-          description:
-            "The number of task failures before the job stops running and is marked as FAILED",
-          args: {
-            name: "integer",
-          },
-        },
-        {
-          name: "--max-retries-per-task",
-          description: "The maximum number of retries for a job",
-          args: {
-            name: "integer",
-          },
-        },
-        {
-          name: "--parameters",
-          description: "The parameters for the job",
-          args: {
-            name: "map",
-          },
-        },
-        {
-          name: "--priority",
-          description:
-            "The priority of the job on a scale of 1 to 100. The highest priority is 1",
-          args: {
-            name: "integer",
           },
         },
         {
@@ -891,17 +851,9 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--storage-profile-id",
+          name: "--client-token",
           description:
-            "The storage profile ID for the storage profile to connect to the job",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--target-task-run-status",
-          description:
-            "The initial status of the job's tasks when they are created. Tasks that are created with a SUSPENDED status will not run until you update their status",
+            "The unique token which the server uses to recognize retries of the same request",
           args: {
             name: "string",
           },
@@ -918,6 +870,60 @@ const completionSpec: Fig.Spec = {
           description: "The file type for the job template",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--priority",
+          description:
+            "The priority of the job on a scale of 0 to 100. The highest priority (first scheduled) is 100. When two jobs have the same priority, the oldest job is scheduled first",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--parameters",
+          description: "The parameters for the job",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--attachments",
+          description:
+            "The attachments for the job. Attach files required for the job to run to a render job",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--storage-profile-id",
+          description:
+            "The storage profile ID for the storage profile to connect to the job",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--target-task-run-status",
+          description:
+            "The initial job status when it is created. Jobs that are created with a SUSPENDED status will not run until manually requeued",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-failed-tasks-count",
+          description:
+            "The number of task failures before the job stops running and is marked as FAILED",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-retries-per-task",
+          description: "The maximum number of retries for each task",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -953,10 +959,11 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--security-group-ids",
-          description: "The security group IDs",
+          name: "--vpc-id",
+          description:
+            "The VPC (virtual private cloud) ID to use with the license endpoint",
           args: {
-            name: "list",
+            name: "string",
           },
         },
         {
@@ -967,19 +974,18 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--security-group-ids",
+          description: "The security group IDs",
+          args: {
+            name: "list",
+          },
+        },
+        {
           name: "--tags",
           description:
             "Each tag consists of a tag key and a tag value. Tag keys and values are both required, but tag values can be empty strings",
           args: {
             name: "map",
-          },
-        },
-        {
-          name: "--vpc-id",
-          description:
-            "The VPC (virtual private cloud) ID to use with the license endpoint",
-          args: {
-            name: "string",
           },
         },
         {
@@ -1017,7 +1023,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--display-name",
           description:
-            "The name that you give the monitor that is displayed in the Deadline Cloud console",
+            "The name that you give the monitor that is displayed in the Deadline Cloud console.  This field can store any content. Escape or encode this content before displaying it on a webpage or any other system that might interpret the content of this field",
           args: {
             name: "string",
           },
@@ -1031,17 +1037,17 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--role-arn",
+          name: "--subdomain",
           description:
-            "The Amazon Resource Name (ARN) of the IAM role that the monitor uses to connect to Deadline Cloud. Every user that signs in to the monitor using IAM Identity Center uses this role to access Deadline Cloud resources",
+            "The subdomain to use when creating the monitor URL. The full URL of the monitor is subdomain.Region.deadlinecloud.amazonaws.com",
           args: {
             name: "string",
           },
         },
         {
-          name: "--subdomain",
+          name: "--role-arn",
           description:
-            "The subdomain to use when creating the monitor URL. The full URL of the monitor is subdomain.Region.deadlinecloud.amazonaws.com",
+            "The Amazon Resource Name (ARN) of the IAM role that the monitor uses to connect to Deadline Cloud. Every user that signs in to the monitor using IAM Identity Center uses this role to access Deadline Cloud resources",
           args: {
             name: "string",
           },
@@ -1071,16 +1077,32 @@ const completionSpec: Fig.Spec = {
         "Creates a queue to coordinate the order in which jobs run on a farm. A queue can also specify where to pull resources and indicate where to output completed jobs",
       options: [
         {
-          name: "--allowed-storage-profile-ids",
-          description: "The storage profile IDs to include in the queue",
-          args: {
-            name: "list",
-          },
-        },
-        {
           name: "--client-token",
           description:
             "The unique token which the server uses to recognize retries of the same request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--farm-id",
+          description: "The farm ID of the farm to connect to the queue",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--display-name",
+          description:
+            "The display name of the queue.  This field can store any content. Escape or encode this content before displaying it on a webpage or any other system that might interpret the content of this field",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description:
+            "The description of the queue.  This field can store any content. Escape or encode this content before displaying it on a webpage or any other system that might interpret the content of this field",
           args: {
             name: "string",
           },
@@ -1094,32 +1116,19 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--description",
-          description: "The description of the queue",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--display-name",
-          description: "The display name of the queue",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--farm-id",
-          description: "The farm ID of the farm to connect to the queue",
-          args: {
-            name: "string",
-          },
-        },
-        {
           name: "--job-attachment-settings",
           description:
             "The job attachment settings for the queue. These are the Amazon S3 bucket name and the Amazon S3 prefix",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--role-arn",
+          description:
+            "The IAM role ARN that workers will use while running jobs for this queue",
+          args: {
+            name: "string",
           },
         },
         {
@@ -1137,11 +1146,10 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--role-arn",
-          description:
-            "The IAM role ARN that workers will use while running jobs for this queue",
+          name: "--allowed-storage-profile-ids",
+          description: "The storage profile IDs to include in the queue",
           args: {
-            name: "string",
+            name: "list",
           },
         },
         {
@@ -1192,6 +1200,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--queue-id",
+          description: "The queue ID to connect the queue and environment",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--priority",
           description:
             "Sets the priority of the environments in the queue from 0 to 10,000, where 0 is the highest priority. If two environments share the same priority value, the environment created first takes higher priority",
@@ -1200,8 +1215,8 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID to connect the queue and environment",
+          name: "--template-type",
+          description: "The template's file type, JSON or YAML",
           args: {
             name: "string",
           },
@@ -1209,13 +1224,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "--template",
           description: "The environment template to use in the queue",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--template-type",
-          description: "The template's file type, JSON or YAML",
           args: {
             name: "string",
           },
@@ -1251,15 +1259,15 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--fleet-id",
-          description: "The fleet ID",
+          name: "--queue-id",
+          description: "The queue ID",
           args: {
             name: "string",
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID",
+          name: "--fleet-id",
+          description: "The fleet ID",
           args: {
             name: "string",
           },
@@ -1297,16 +1305,25 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--display-name",
-          description: "The display name of the storage profile",
+          name: "--farm-id",
+          description:
+            "The farm ID of the farm to connect to the storage profile",
           args: {
             name: "string",
           },
         },
         {
-          name: "--farm-id",
+          name: "--display-name",
           description:
-            "The farm ID of the farm to connect to the storage profile",
+            "The display name of the storage profile.  This field can store any content. Escape or encode this content before displaying it on a webpage or any other system that might interpret the content of this field",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--os-family",
+          description:
+            "The type of operating system (OS) for the storage profile",
           args: {
             name: "string",
           },
@@ -1316,14 +1333,6 @@ const completionSpec: Fig.Spec = {
           description: "File system paths to include in the storage profile",
           args: {
             name: "list",
-          },
-        },
-        {
-          name: "--os-family",
-          description:
-            "The type of operating system (OS) for the storage profile",
-          args: {
-            name: "string",
           },
         },
         {
@@ -1351,14 +1360,6 @@ const completionSpec: Fig.Spec = {
         "Creates a worker. A worker tells your instance how much processing power (vCPU), and memory (GiB) you\u2019ll need to assemble the digital assets held within a particular instance. You can specify certain instance types to use, or let the worker know which instances types to exclude",
       options: [
         {
-          name: "--client-token",
-          description:
-            "The unique token which the server uses to recognize retries of the same request",
-          args: {
-            name: "string",
-          },
-        },
-        {
           name: "--farm-id",
           description: "The farm ID of the farm to connect to the worker",
           args: {
@@ -1377,6 +1378,14 @@ const completionSpec: Fig.Spec = {
           description: "The IP address and host name of the worker",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "The unique token which the server uses to recognize retries of the same request",
+          args: {
+            name: "string",
           },
         },
         {
@@ -1403,15 +1412,15 @@ const completionSpec: Fig.Spec = {
       description: "Deletes a budget",
       options: [
         {
-          name: "--budget-id",
-          description: "The budget ID of the budget to delete",
+          name: "--farm-id",
+          description: "The farm ID of the farm to remove from the budget",
           args: {
             name: "string",
           },
         },
         {
-          name: "--farm-id",
-          description: "The farm ID of the farm to remove from the budget",
+          name: "--budget-id",
+          description: "The budget ID of the budget to delete",
           args: {
             name: "string",
           },
@@ -1613,7 +1622,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-queue",
-      description: "Deletes a queue",
+      description:
+        "Deletes a queue.  You can't recover the jobs in a queue if you delete the queue. Deleting the queue also deletes the jobs in that queue",
       options: [
         {
           name: "--farm-id",
@@ -1661,16 +1671,16 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--queue-environment-id",
-          description:
-            "The queue environment ID of the queue environment to delete",
+          name: "--queue-id",
+          description: "The queue ID of the queue environment to delete",
           args: {
             name: "string",
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID of the queue environment to delete",
+          name: "--queue-environment-id",
+          description:
+            "The queue environment ID of the queue environment to delete",
           args: {
             name: "string",
           },
@@ -1707,15 +1717,15 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--fleet-id",
-          description: "The fleet ID of the queue-fleet association",
+          name: "--queue-id",
+          description: "The queue ID of the queue-fleet association",
           args: {
             name: "string",
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID of the queue-fleet association",
+          name: "--fleet-id",
+          description: "The fleet ID of the queue-fleet association",
           args: {
             name: "string",
           },
@@ -1918,6 +1928,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--queue-id",
+          description:
+            "The queue ID connected to a job for which you're disassociating a member",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--job-id",
           description: "The job ID to disassociate from a member in a job",
           args: {
@@ -1927,14 +1945,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "--principal-id",
           description: "A member's principal ID to disassociate from a job",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--queue-id",
-          description:
-            "The queue ID connected to a job for which you're disassociating a member",
           args: {
             name: "string",
           },
@@ -1971,16 +1981,16 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--principal-id",
-          description: "A member's principal ID to disassociate from a queue",
+          name: "--queue-id",
+          description:
+            "The queue ID of the queue in which you're disassociating from a member",
           args: {
             name: "string",
           },
         },
         {
-          name: "--queue-id",
-          description:
-            "The queue ID of the queue in which you're disassociating from a member",
+          name: "--principal-id",
+          description: "A member's principal ID to disassociate from a queue",
           args: {
             name: "string",
           },
@@ -2009,15 +2019,15 @@ const completionSpec: Fig.Spec = {
       description: "Get a budget",
       options: [
         {
-          name: "--budget-id",
-          description: "The budget ID",
+          name: "--farm-id",
+          description: "The farm ID of the farm connected to the budget",
           args: {
             name: "string",
           },
         },
         {
-          name: "--farm-id",
-          description: "The farm ID of the farm connected to the budget",
+          name: "--budget-id",
+          description: "The budget ID",
           args: {
             name: "string",
           },
@@ -2262,15 +2272,15 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--queue-environment-id",
-          description: "The queue environment ID",
+          name: "--queue-id",
+          description: "The queue ID for the queue environment",
           args: {
             name: "string",
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID for the queue environment",
+          name: "--queue-environment-id",
+          description: "The queue environment ID",
           args: {
             name: "string",
           },
@@ -2307,15 +2317,15 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--fleet-id",
-          description: "The fleet ID for the queue-fleet association",
+          name: "--queue-id",
+          description: "The queue ID for the queue-fleet association",
           args: {
             name: "string",
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID for the queue-fleet association",
+          name: "--fleet-id",
+          description: "The fleet ID for the queue-fleet association",
           args: {
             name: "string",
           },
@@ -2351,15 +2361,15 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--job-id",
-          description: "The job ID for the session",
+          name: "--queue-id",
+          description: "The queue ID for the session",
           args: {
             name: "string",
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID for the session",
+          name: "--job-id",
+          description: "The job ID for the session",
           args: {
             name: "string",
           },
@@ -2402,15 +2412,15 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--job-id",
-          description: "The job ID for the session",
+          name: "--queue-id",
+          description: "The queue ID for the session action",
           args: {
             name: "string",
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID for the session action",
+          name: "--job-id",
+          description: "The job ID for the session",
           args: {
             name: "string",
           },
@@ -2447,17 +2457,17 @@ const completionSpec: Fig.Spec = {
         "Gets a set of statistics for queues or farms. Before you can call the GetSessionStatisticsAggregation operation, you must first call the StartSessionsStatisticsAggregation operation. Statistics are available for 1 hour after you call the StartSessionsStatisticsAggregation operation",
       options: [
         {
-          name: "--aggregation-id",
+          name: "--farm-id",
           description:
-            "The identifier returned by the StartSessionsStatisticsAggregation operation that identifies the aggregated statistics",
+            "The identifier of the farm to include in the statistics. This should be the same as the farm ID used in the call to the StartSessionsStatisticsAggregation operation",
           args: {
             name: "string",
           },
         },
         {
-          name: "--farm-id",
+          name: "--aggregation-id",
           description:
-            "The identifier of the farm to include in the statistics. This should be the same as the farm ID used in the call to the StartSessionsStatisticsAggregation operation",
+            "The identifier returned by the StartSessionsStatisticsAggregation operation that identifies the aggregated statistics",
           args: {
             name: "string",
           },
@@ -2533,15 +2543,15 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--job-id",
-          description: "The job ID for the step",
+          name: "--queue-id",
+          description: "The queue ID for the step",
           args: {
             name: "string",
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID for the step",
+          name: "--job-id",
+          description: "The job ID for the step",
           args: {
             name: "string",
           },
@@ -2666,15 +2676,15 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--job-id",
-          description: "The job ID of the job connected to the task",
+          name: "--queue-id",
+          description: "The queue ID for the queue connected to the task",
           args: {
             name: "string",
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID for the queue connected to the task",
+          name: "--job-id",
+          description: "The job ID of the job connected to the task",
           args: {
             name: "string",
           },
@@ -2761,19 +2771,19 @@ const completionSpec: Fig.Spec = {
       description: "A list of the available metered products",
       options: [
         {
-          name: "--max-results",
-          description:
-            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
-          args: {
-            name: "integer",
-          },
-        },
-        {
           name: "--next-token",
           description:
             "The token for the next set of results, or null to start from the beginning",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -2824,6 +2834,14 @@ const completionSpec: Fig.Spec = {
       description: "A list of budgets in a farm",
       options: [
         {
+          name: "--next-token",
+          description:
+            "The token for the next set of results, or null to start from the beginning",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--farm-id",
           description: "The farm ID associated with the budgets",
           args: {
@@ -2836,14 +2854,6 @@ const completionSpec: Fig.Spec = {
             "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
           args: {
             name: "integer",
-          },
-        },
-        {
-          name: "--next-token",
-          description:
-            "The token for the next set of results, or null to start from the beginning",
-          args: {
-            name: "string",
           },
         },
         {
@@ -2908,19 +2918,19 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--max-results",
-          description:
-            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
-          args: {
-            name: "integer",
-          },
-        },
-        {
           name: "--next-token",
           description:
             "The token for the next set of results, or null to start from the beginning",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -2971,14 +2981,6 @@ const completionSpec: Fig.Spec = {
       description: "Lists farms",
       options: [
         {
-          name: "--max-results",
-          description:
-            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
-          args: {
-            name: "integer",
-          },
-        },
-        {
           name: "--next-token",
           description:
             "The token for the next set of results, or null to start from the beginning",
@@ -2991,6 +2993,14 @@ const completionSpec: Fig.Spec = {
           description: "The principal ID of the member to list on the farm",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -3055,19 +3065,19 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--max-results",
-          description:
-            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
-          args: {
-            name: "integer",
-          },
-        },
-        {
           name: "--next-token",
           description:
             "The token for the next set of results, or null to start from the beginning",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -3118,31 +3128,8 @@ const completionSpec: Fig.Spec = {
       description: "Lists fleets",
       options: [
         {
-          name: "--display-name",
-          description: "The display names of a list of fleets",
-          args: {
-            name: "string",
-          },
-        },
-        {
           name: "--farm-id",
           description: "The farm ID of the fleets",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--max-results",
-          description:
-            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
-          args: {
-            name: "integer",
-          },
-        },
-        {
-          name: "--next-token",
-          description:
-            "The token for the next set of results, or null to start from the beginning",
           args: {
             name: "string",
           },
@@ -3156,10 +3143,34 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--display-name",
+          description:
+            "The display names of a list of fleets.  This field can store any content. Escape or encode this content before displaying it on a webpage or any other system that might interpret the content of this field",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--status",
           description: "The status of the fleet",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The token for the next set of results, or null to start from the beginning",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -3217,18 +3228,17 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--job-id",
-          description: "The job ID to include on the list",
+          name: "--queue-id",
+          description: "The queue ID to include on the list",
           args: {
             name: "string",
           },
         },
         {
-          name: "--max-results",
-          description:
-            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
+          name: "--job-id",
+          description: "The job ID to include on the list",
           args: {
-            name: "integer",
+            name: "string",
           },
         },
         {
@@ -3240,10 +3250,11 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID to include on the list",
+          name: "--max-results",
+          description:
+            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
           args: {
-            name: "string",
+            name: "integer",
           },
         },
         {
@@ -3301,22 +3312,6 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--max-results",
-          description:
-            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
-          args: {
-            name: "integer",
-          },
-        },
-        {
-          name: "--next-token",
-          description:
-            "The token for the next set of results, or null to start from the beginning",
-          args: {
-            name: "string",
-          },
-        },
-        {
           name: "--principal-id",
           description: "The principal ID of the members on the jobs",
           args: {
@@ -3328,6 +3323,22 @@ const completionSpec: Fig.Spec = {
           description: "The queue ID for the job",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The token for the next set of results, or null to start from the beginning",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -3378,19 +3389,19 @@ const completionSpec: Fig.Spec = {
       description: "Lists license endpoints",
       options: [
         {
-          name: "--max-results",
-          description:
-            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
-          args: {
-            name: "integer",
-          },
-        },
-        {
           name: "--next-token",
           description:
             "The token for the next set of results, or null to start from the beginning",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -3449,19 +3460,19 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--max-results",
-          description:
-            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
-          args: {
-            name: "integer",
-          },
-        },
-        {
           name: "--next-token",
           description:
             "The token for the next set of results, or null to start from the beginning",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -3512,19 +3523,19 @@ const completionSpec: Fig.Spec = {
       description: "Gets a list of your monitors in Deadline Cloud",
       options: [
         {
-          name: "--max-results",
-          description:
-            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
-          args: {
-            name: "integer",
-          },
-        },
-        {
           name: "--next-token",
           description:
             "The token for the next set of results, or null to start from the beginning",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -3582,11 +3593,10 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--max-results",
-          description:
-            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
+          name: "--queue-id",
+          description: "The queue ID for the queue environment list",
           args: {
-            name: "integer",
+            name: "string",
           },
         },
         {
@@ -3598,10 +3608,11 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID for the queue environment list",
+          name: "--max-results",
+          description:
+            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
           args: {
-            name: "string",
+            name: "integer",
           },
         },
         {
@@ -3659,18 +3670,17 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--fleet-id",
-          description: "The fleet ID for the queue-fleet association list",
+          name: "--queue-id",
+          description: "The queue ID for the queue-fleet association list",
           args: {
             name: "string",
           },
         },
         {
-          name: "--max-results",
-          description:
-            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
+          name: "--fleet-id",
+          description: "The fleet ID for the queue-fleet association list",
           args: {
-            name: "integer",
+            name: "string",
           },
         },
         {
@@ -3682,10 +3692,11 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID for the queue-fleet association list",
+          name: "--max-results",
+          description:
+            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
           args: {
-            name: "string",
+            name: "integer",
           },
         },
         {
@@ -3743,11 +3754,10 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--max-results",
-          description:
-            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
+          name: "--queue-id",
+          description: "The queue ID to include on the list",
           args: {
-            name: "integer",
+            name: "string",
           },
         },
         {
@@ -3759,10 +3769,11 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID to include on the list",
+          name: "--max-results",
+          description:
+            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
           args: {
-            name: "string",
+            name: "integer",
           },
         },
         {
@@ -3820,11 +3831,18 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--max-results",
-          description:
-            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
+          name: "--principal-id",
+          description: "The principal IDs to include in the list of queues",
           args: {
-            name: "integer",
+            name: "string",
+          },
+        },
+        {
+          name: "--status",
+          description:
+            "The status of the queues listed.    ACTIVE\u2013The queues are active.    SCHEDULING\u2013The queues are scheduling.    SCHEDULING_BLOCKED\u2013The queue scheduling is blocked for these queues",
+          args: {
+            name: "string",
           },
         },
         {
@@ -3836,19 +3854,11 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--principal-id",
+          name: "--max-results",
           description:
-            "The principal ID. This filter is only valid when using Nimble Studio credentials and should match the user ID in the credentials of the caller",
+            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
           args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--status",
-          description:
-            "The status of the queues listed.    ACTIVE\u2013The queues are active.    SCHEDULING\u2013The queues are scheduling.    SCHEDULING_BLOCKED\u2013The queue scheduling is blocked for these queues",
-          args: {
-            name: "string",
+            name: "integer",
           },
         },
         {
@@ -3906,31 +3916,15 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--job-id",
-          description: "The job ID for the session actions list",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--max-results",
-          description:
-            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
-          args: {
-            name: "integer",
-          },
-        },
-        {
-          name: "--next-token",
-          description:
-            "The token for the next set of results, or null to start from the beginning",
-          args: {
-            name: "string",
-          },
-        },
-        {
           name: "--queue-id",
           description: "The queue ID for the session actions list",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--job-id",
+          description: "The job ID for the session actions list",
           args: {
             name: "string",
           },
@@ -3947,6 +3941,22 @@ const completionSpec: Fig.Spec = {
           description: "The task ID for the session actions list",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The token for the next set of results, or null to start from the beginning",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -4004,18 +4014,17 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--job-id",
-          description: "The job ID for the list of sessions",
+          name: "--queue-id",
+          description: "The queue ID for the list of sessions",
           args: {
             name: "string",
           },
         },
         {
-          name: "--max-results",
-          description:
-            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
+          name: "--job-id",
+          description: "The job ID for the list of sessions",
           args: {
-            name: "integer",
+            name: "string",
           },
         },
         {
@@ -4027,10 +4036,11 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID for the list of sessions",
+          name: "--max-results",
+          description:
+            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
           args: {
-            name: "string",
+            name: "integer",
           },
         },
         {
@@ -4095,11 +4105,10 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--max-results",
-          description:
-            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
+          name: "--worker-id",
+          description: "The worker ID for the session",
           args: {
-            name: "integer",
+            name: "string",
           },
         },
         {
@@ -4111,10 +4120,11 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--worker-id",
-          description: "The worker ID for the session",
+          name: "--max-results",
+          description:
+            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
           args: {
-            name: "string",
+            name: "integer",
           },
         },
         {
@@ -4172,6 +4182,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--queue-id",
+          description: "The queue ID for the step consumer",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--job-id",
           description: "The job ID for the step consumer",
           args: {
@@ -4179,11 +4196,10 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--max-results",
-          description:
-            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
+          name: "--step-id",
+          description: "The step ID to include on the list",
           args: {
-            name: "integer",
+            name: "string",
           },
         },
         {
@@ -4195,17 +4211,11 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID for the step consumer",
+          name: "--max-results",
+          description:
+            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
           args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--step-id",
-          description: "The step ID to include on the list",
-          args: {
-            name: "string",
+            name: "integer",
           },
         },
         {
@@ -4263,6 +4273,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--queue-id",
+          description: "The queue ID for the step dependencies list",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--job-id",
           description: "The job ID for the step dependencies list",
           args: {
@@ -4270,11 +4287,10 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--max-results",
-          description:
-            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
+          name: "--step-id",
+          description: "The step ID to include on the list",
           args: {
-            name: "integer",
+            name: "string",
           },
         },
         {
@@ -4286,17 +4302,11 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID for the step dependencies list",
+          name: "--max-results",
+          description:
+            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
           args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--step-id",
-          description: "The step ID to include on the list",
-          args: {
-            name: "string",
+            name: "integer",
           },
         },
         {
@@ -4354,18 +4364,17 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--job-id",
-          description: "The job ID to include on the list of steps",
+          name: "--queue-id",
+          description: "The queue ID to include on the list of steps",
           args: {
             name: "string",
           },
         },
         {
-          name: "--max-results",
-          description:
-            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
+          name: "--job-id",
+          description: "The job ID to include on the list of steps",
           args: {
-            name: "integer",
+            name: "string",
           },
         },
         {
@@ -4377,10 +4386,11 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID to include on the list of steps",
+          name: "--max-results",
+          description:
+            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
           args: {
-            name: "string",
+            name: "integer",
           },
         },
         {
@@ -4438,19 +4448,19 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--max-results",
-          description:
-            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
-          args: {
-            name: "integer",
-          },
-        },
-        {
           name: "--next-token",
           description:
             "The token for the next set of results, or null to start from the beginning",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -4508,11 +4518,10 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--max-results",
-          description:
-            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
+          name: "--queue-id",
+          description: "The queue ID for the storage profile",
           args: {
-            name: "integer",
+            name: "string",
           },
         },
         {
@@ -4524,10 +4533,11 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID for the storage profile",
+          name: "--max-results",
+          description:
+            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
           args: {
-            name: "string",
+            name: "integer",
           },
         },
         {
@@ -4615,6 +4625,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--queue-id",
+          description: "The queue ID connected to the tasks",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--job-id",
           description: "The job ID for the tasks",
           args: {
@@ -4622,11 +4639,10 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--max-results",
-          description:
-            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
+          name: "--step-id",
+          description: "The step ID for the tasks",
           args: {
-            name: "integer",
+            name: "string",
           },
         },
         {
@@ -4638,17 +4654,11 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID connected to the tasks",
+          name: "--max-results",
+          description:
+            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
           args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--step-id",
-          description: "The step ID for the tasks",
-          args: {
-            name: "string",
+            name: "integer",
           },
         },
         {
@@ -4713,19 +4723,19 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--max-results",
-          description:
-            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
-          args: {
-            name: "integer",
-          },
-        },
-        {
           name: "--next-token",
           description:
             "The token for the next set of results, or null to start from the beginning",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -4820,11 +4830,25 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--queue-ids",
+          description: "The queue ID to use in the job search",
+          args: {
+            name: "list",
+          },
+        },
+        {
           name: "--filter-expressions",
           description:
             "The filter expression, AND or OR, to use when searching among a group of search strings in a resource. You can use two groupings per search each within parenthesis ()",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--sort-expressions",
+          description: "The search terms for a resource",
+          args: {
+            name: "list",
           },
         },
         {
@@ -4841,20 +4865,6 @@ const completionSpec: Fig.Spec = {
             "Specifies the number of items per page for the resource",
           args: {
             name: "integer",
-          },
-        },
-        {
-          name: "--queue-ids",
-          description: "The queue ID to use in the job search",
-          args: {
-            name: "list",
-          },
-        },
-        {
-          name: "--sort-expressions",
-          description: "The search terms for a resource",
-          args: {
-            name: "list",
           },
         },
         {
@@ -4888,11 +4898,32 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--queue-ids",
+          description: "The queue IDs in the step search",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--job-id",
+          description: "The job ID to use in the step search",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--filter-expressions",
           description:
             "The filter expression, AND or OR, to use when searching among a group of search strings in a resource. You can use two groupings per search each within parenthesis ()",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--sort-expressions",
+          description: "The search terms for a resource",
+          args: {
+            name: "list",
           },
         },
         {
@@ -4904,32 +4935,11 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--job-id",
-          description: "The job ID to use in the step search",
-          args: {
-            name: "string",
-          },
-        },
-        {
           name: "--page-size",
           description:
             "Specifies the number of items per page for the resource",
           args: {
             name: "integer",
-          },
-        },
-        {
-          name: "--queue-ids",
-          description: "The queue IDs in the step search",
-          args: {
-            name: "list",
-          },
-        },
-        {
-          name: "--sort-expressions",
-          description: "The search terms for a resource",
-          args: {
-            name: "list",
           },
         },
         {
@@ -4963,11 +4973,32 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--queue-ids",
+          description: "The queue IDs to include in the search",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--job-id",
+          description: "The job ID for the task search",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--filter-expressions",
           description:
             "The filter expression, AND or OR, to use when searching among a group of search strings in a resource. You can use two groupings per search each within parenthesis ()",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--sort-expressions",
+          description: "The search terms for a resource",
+          args: {
+            name: "list",
           },
         },
         {
@@ -4979,32 +5010,11 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--job-id",
-          description: "The job ID for the task search",
-          args: {
-            name: "string",
-          },
-        },
-        {
           name: "--page-size",
           description:
             "Specifies the number of items per page for the resource",
           args: {
             name: "integer",
-          },
-        },
-        {
-          name: "--queue-ids",
-          description: "The queue IDs to include in the search",
-          args: {
-            name: "list",
-          },
-        },
-        {
-          name: "--sort-expressions",
-          description: "The search terms for a resource",
-          args: {
-            name: "list",
           },
         },
         {
@@ -5038,6 +5048,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--fleet-ids",
+          description: "The fleet ID of the workers to search for",
+          args: {
+            name: "list",
+          },
+        },
+        {
           name: "--filter-expressions",
           description:
             "The filter expression, AND or OR, to use when searching among a group of search strings in a resource. You can use two groupings per search each within parenthesis ()",
@@ -5046,8 +5063,8 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--fleet-ids",
-          description: "The fleet ID of the workers to search for",
+          name: "--sort-expressions",
+          description: "The search terms for a resource",
           args: {
             name: "list",
           },
@@ -5066,13 +5083,6 @@ const completionSpec: Fig.Spec = {
             "Specifies the number of items per page for the resource",
           args: {
             name: "integer",
-          },
-        },
-        {
-          name: "--sort-expressions",
-          description: "The search terms for a resource",
-          args: {
-            name: "list",
           },
         },
         {
@@ -5097,34 +5107,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "start-sessions-statistics-aggregation",
       description:
-        "Starts an asynchronous request for getting aggregated statistics about queues and farms. Get the statistics using the GetSessionsStatisticsAggregation operation. Statistics are available for 1 hour after you call the StartSessionsStatisticsAggregation operation",
+        "Starts an asynchronous request for getting aggregated statistics about queues and farms. Get the statistics using the GetSessionsStatisticsAggregation operation. You can only have one running aggregation for your Deadline Cloud farm. Call the GetSessionsStatisticsAggregation operation and check the status field to see if an aggregation is running. Statistics are available for 1 hour after you call the StartSessionsStatisticsAggregation operation",
       options: [
-        {
-          name: "--end-time",
-          description:
-            "The Linux timestamp of the date and time that the statistics end",
-          args: {
-            name: "timestamp",
-          },
-        },
         {
           name: "--farm-id",
           description:
             "The identifier of the farm that contains queues or fleets to return statistics for",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--group-by",
-          description: "The field to use to group the statistics",
-          args: {
-            name: "list",
-          },
-        },
-        {
-          name: "--period",
-          description: "The period to aggregate the statistics",
           args: {
             name: "string",
           },
@@ -5146,10 +5134,11 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--statistics",
-          description: "One to four statistics to return",
+          name: "--end-time",
+          description:
+            "The Linux timestamp of the date and time that the statistics end",
           args: {
-            name: "list",
+            name: "timestamp",
           },
         },
         {
@@ -5158,6 +5147,27 @@ const completionSpec: Fig.Spec = {
             'The timezone to use for the statistics. Use UTC notation such as "UTC+8."',
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--period",
+          description: "The period to aggregate the statistics",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--group-by",
+          description: "The field to use to group the statistics",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--statistics",
+          description: "One to four statistics to return",
+          args: {
+            name: "list",
           },
         },
         {
@@ -5261,6 +5271,60 @@ const completionSpec: Fig.Spec = {
         "Updates a budget that sets spending thresholds for rendering activity",
       options: [
         {
+          name: "--client-token",
+          description:
+            "The unique token which the server uses to recognize retries of the same request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--farm-id",
+          description: "The farm ID of the budget to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--budget-id",
+          description: "The budget ID to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--display-name",
+          description:
+            "The display name of the budget to update.  This field can store any content. Escape or encode this content before displaying it on a webpage or any other system that might interpret the content of this field",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description:
+            "The description of the budget to update.  This field can store any content. Escape or encode this content before displaying it on a webpage or any other system that might interpret the content of this field",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--status",
+          description:
+            "Updates the status of the budget.    ACTIVE\u2013The budget is being evaluated.    INACTIVE\u2013The budget is inactive. This can include Expired, Canceled, or deleted Deleted statuses",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--approximate-dollar-limit",
+          description:
+            "The dollar limit to update on the budget. Based on consumed usage",
+          args: {
+            name: "float",
+          },
+        },
+        {
           name: "--actions-to-add",
           description:
             "The budget actions to add. Budget actions specify what happens when the budget runs out",
@@ -5276,62 +5340,10 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--approximate-dollar-limit",
-          description:
-            "The dollar limit to update on the budget. Based on consumed usage",
-          args: {
-            name: "float",
-          },
-        },
-        {
-          name: "--budget-id",
-          description: "The budget ID to update",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--client-token",
-          description:
-            "The unique token which the server uses to recognize retries of the same request",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--description",
-          description: "The description of the budget to update",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--display-name",
-          description: "The display name of the budget to update",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--farm-id",
-          description: "The farm ID of the budget to update",
-          args: {
-            name: "string",
-          },
-        },
-        {
           name: "--schedule",
           description: "The schedule to update",
           args: {
             name: "structure",
-          },
-        },
-        {
-          name: "--status",
-          description:
-            "Updates the status of the budget.    ACTIVE\u2013The budget is being evaluated.    INACTIVE\u2013The budget is inactive. This can include Expired, Canceled, or deleted Deleted statuses",
-          args: {
-            name: "string",
           },
         },
         {
@@ -5358,22 +5370,24 @@ const completionSpec: Fig.Spec = {
       description: "Updates a farm",
       options: [
         {
-          name: "--description",
-          description: "The description of the farm to update",
+          name: "--farm-id",
+          description: "The farm ID to update",
           args: {
             name: "string",
           },
         },
         {
           name: "--display-name",
-          description: "The display name of the farm to update",
+          description:
+            "The display name of the farm to update.  This field can store any content. Escape or encode this content before displaying it on a webpage or any other system that might interpret the content of this field",
           args: {
             name: "string",
           },
         },
         {
-          name: "--farm-id",
-          description: "The farm ID to update",
+          name: "--description",
+          description:
+            "The description of the farm to update.  This field can store any content. Escape or encode this content before displaying it on a webpage or any other system that might interpret the content of this field",
           args: {
             name: "string",
           },
@@ -5410,27 +5424,6 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--configuration",
-          description: "The fleet configuration to update",
-          args: {
-            name: "structure",
-          },
-        },
-        {
-          name: "--description",
-          description: "The description of the fleet to update",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--display-name",
-          description: "The display name of the fleet to update",
-          args: {
-            name: "string",
-          },
-        },
-        {
           name: "--farm-id",
           description: "The farm ID to update",
           args: {
@@ -5445,10 +5438,27 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--max-worker-count",
-          description: "The maximum number of workers in the fleet",
+          name: "--display-name",
+          description:
+            "The display name of the fleet to update.  This field can store any content. Escape or encode this content before displaying it on a webpage or any other system that might interpret the content of this field",
           args: {
-            name: "integer",
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description:
+            "The description of the fleet to update.  This field can store any content. Escape or encode this content before displaying it on a webpage or any other system that might interpret the content of this field",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--role-arn",
+          description:
+            "The IAM role ARN that the fleet's workers assume while running jobs",
+          args: {
+            name: "string",
           },
         },
         {
@@ -5459,11 +5469,17 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--role-arn",
-          description:
-            "The IAM role ARN that the fleet's workers assume while running jobs",
+          name: "--max-worker-count",
+          description: "The maximum number of workers in the fleet",
           args: {
-            name: "string",
+            name: "integer",
+          },
+        },
+        {
+          name: "--configuration",
+          description: "The fleet configuration to update",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -5487,7 +5503,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "update-job",
-      description: "Updates a job",
+      description:
+        "Updates a job.  When you change the status of the job to ARCHIVED, the job can't be scheduled or archived.  An archived jobs and its steps and tasks are deleted after 120 days. The job can't be recovered",
       options: [
         {
           name: "--client-token",
@@ -5505,6 +5522,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--queue-id",
+          description: "The queue ID of the job to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--job-id",
           description: "The job ID to update",
           args: {
@@ -5512,10 +5536,17 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--lifecycle-status",
-          description: "The status of a job in its lifecycle",
+          name: "--target-task-run-status",
+          description: "The task status to update the job's tasks to",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--priority",
+          description: "The job priority to update",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -5534,22 +5565,9 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--priority",
-          description: "The job priority to update",
-          args: {
-            name: "integer",
-          },
-        },
-        {
-          name: "--queue-id",
-          description: "The queue ID of the job to update",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--target-task-run-status",
-          description: "The task status to update the job's tasks to",
+          name: "--lifecycle-status",
+          description:
+            "The status of a job in its lifecycle. When you change the status of the job to ARCHIVED, the job can't be scheduled or archived.  An archived jobs and its steps and tasks are deleted after 120 days. The job can't be recovered",
           args: {
             name: "string",
           },
@@ -5579,23 +5597,8 @@ const completionSpec: Fig.Spec = {
         "Modifies the settings for a Deadline Cloud monitor. You can modify one or all of the settings when you call UpdateMonitor",
       options: [
         {
-          name: "--display-name",
-          description: "The new value to use for the monitor's display name",
-          args: {
-            name: "string",
-          },
-        },
-        {
           name: "--monitor-id",
           description: "The unique identifier of the monitor to update",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--role-arn",
-          description:
-            "The Amazon Resource Name (ARN) of the new IAM role to use with the monitor",
           args: {
             name: "string",
           },
@@ -5604,6 +5607,22 @@ const completionSpec: Fig.Spec = {
           name: "--subdomain",
           description:
             "The new value of the subdomain to use when forming the monitor URL",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--display-name",
+          description:
+            "The new value to use for the monitor's display name.  This field can store any content. Escape or encode this content before displaying it on a webpage or any other system that might interpret the content of this field",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--role-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the new IAM role to use with the monitor",
           args: {
             name: "string",
           },
@@ -5632,22 +5651,38 @@ const completionSpec: Fig.Spec = {
       description: "Updates a queue",
       options: [
         {
-          name: "--allowed-storage-profile-ids-to-add",
-          description: "The storage profile IDs to add",
-          args: {
-            name: "list",
-          },
-        },
-        {
-          name: "--allowed-storage-profile-ids-to-remove",
-          description: "The storage profile ID to remove",
-          args: {
-            name: "list",
-          },
-        },
-        {
           name: "--client-token",
           description: "The idempotency token to update in the queue",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--farm-id",
+          description: "The farm ID to update in the queue",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--queue-id",
+          description: "The queue ID to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--display-name",
+          description:
+            "The display name of the queue to update.  This field can store any content. Escape or encode this content before displaying it on a webpage or any other system that might interpret the content of this field",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description:
+            "The description of the queue to update.  This field can store any content. Escape or encode this content before displaying it on a webpage or any other system that might interpret the content of this field",
           args: {
             name: "string",
           },
@@ -5661,31 +5696,18 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--description",
-          description: "The description of the queue to update",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--display-name",
-          description: "The display name of the queue to update",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--farm-id",
-          description: "The farm ID to update in the queue",
-          args: {
-            name: "string",
-          },
-        },
-        {
           name: "--job-attachment-settings",
           description: "The job attachment settings to update for the queue",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--role-arn",
+          description:
+            "The IAM role ARN that's used to run jobs from this queue",
+          args: {
+            name: "string",
           },
         },
         {
@@ -5694,13 +5716,6 @@ const completionSpec: Fig.Spec = {
             "Update the jobs in the queue to run as a specified POSIX user",
           args: {
             name: "structure",
-          },
-        },
-        {
-          name: "--queue-id",
-          description: "The queue ID to update",
-          args: {
-            name: "string",
           },
         },
         {
@@ -5720,11 +5735,17 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--role-arn",
-          description:
-            "The IAM role ARN that's used to run jobs from this queue",
+          name: "--allowed-storage-profile-ids-to-add",
+          description: "The storage profile IDs to add",
           args: {
-            name: "string",
+            name: "list",
+          },
+        },
+        {
+          name: "--allowed-storage-profile-ids-to-remove",
+          description: "The storage profile ID to remove",
+          args: {
+            name: "list",
           },
         },
         {
@@ -5766,10 +5787,10 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--priority",
-          description: "The priority to update",
+          name: "--queue-id",
+          description: "The queue ID of the queue environment to update",
           args: {
-            name: "integer",
+            name: "string",
           },
         },
         {
@@ -5780,8 +5801,15 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID of the queue environment to update",
+          name: "--priority",
+          description: "The priority to update",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--template-type",
+          description: "The template type to update",
           args: {
             name: "string",
           },
@@ -5789,13 +5817,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "--template",
           description: "The template to update",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--template-type",
-          description: "The template type to update",
           args: {
             name: "string",
           },
@@ -5831,15 +5852,15 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--fleet-id",
-          description: "The fleet ID to update",
+          name: "--queue-id",
+          description: "The queue ID to update",
           args: {
             name: "string",
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID to update",
+          name: "--fleet-id",
+          description: "The fleet ID to update",
           args: {
             name: "string",
           },
@@ -5890,15 +5911,15 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--job-id",
-          description: "The job ID to update in the session",
+          name: "--queue-id",
+          description: "The queue ID to update in the session",
           args: {
             name: "string",
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID to update in the session",
+          name: "--job-id",
+          description: "The job ID to update in the session",
           args: {
             name: "string",
           },
@@ -5956,15 +5977,15 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--job-id",
-          description: "The job ID to update",
+          name: "--queue-id",
+          description: "The queue ID to update",
           args: {
             name: "string",
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID to update",
+          name: "--job-id",
+          description: "The job ID to update",
           args: {
             name: "string",
           },
@@ -6015,15 +6036,30 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--display-name",
-          description: "The display name of the storage profile to update",
+          name: "--farm-id",
+          description: "The farm ID to update",
           args: {
             name: "string",
           },
         },
         {
-          name: "--farm-id",
-          description: "The farm ID to update",
+          name: "--storage-profile-id",
+          description: "The storage profile ID to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--display-name",
+          description:
+            "The display name of the storage profile to update.  This field can store any content. Escape or encode this content before displaying it on a webpage or any other system that might interpret the content of this field",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--os-family",
+          description: "The OS system to update",
           args: {
             name: "string",
           },
@@ -6040,20 +6076,6 @@ const completionSpec: Fig.Spec = {
           description: "The file system location names to remove",
           args: {
             name: "list",
-          },
-        },
-        {
-          name: "--os-family",
-          description: "The OS system to update",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--storage-profile-id",
-          description: "The storage profile ID to update",
-          args: {
-            name: "string",
           },
         },
         {
@@ -6095,15 +6117,15 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--job-id",
-          description: "The job ID to update",
+          name: "--queue-id",
+          description: "The queue ID to update",
           args: {
             name: "string",
           },
         },
         {
-          name: "--queue-id",
-          description: "The queue ID to update",
+          name: "--job-id",
+          description: "The job ID to update",
           args: {
             name: "string",
           },
@@ -6116,15 +6138,15 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--target-run-status",
-          description: "The run status with which to start the task",
+          name: "--task-id",
+          description: "The task ID to update",
           args: {
             name: "string",
           },
         },
         {
-          name: "--task-id",
-          description: "The task ID to update",
+          name: "--target-run-status",
+          description: "The run status with which to start the task",
           args: {
             name: "string",
           },
@@ -6153,13 +6175,6 @@ const completionSpec: Fig.Spec = {
       description: "Updates a worker",
       options: [
         {
-          name: "--capabilities",
-          description: "The worker capabilities to update",
-          args: {
-            name: "structure",
-          },
-        },
-        {
           name: "--farm-id",
           description: "The farm ID to update",
           args: {
@@ -6174,10 +6189,10 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--host-properties",
-          description: "The host properties to update",
+          name: "--worker-id",
+          description: "The worker ID to update",
           args: {
-            name: "structure",
+            name: "string",
           },
         },
         {
@@ -6188,10 +6203,17 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--worker-id",
-          description: "The worker ID to update",
+          name: "--capabilities",
+          description: "The worker capabilities to update",
           args: {
-            name: "string",
+            name: "structure",
+          },
+        },
+        {
+          name: "--host-properties",
+          description: "The host properties to update",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -6232,18 +6254,18 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--worker-id",
+          description: "The worker ID to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--updated-session-actions",
           description:
             "The session actions associated with the worker schedule to update",
           args: {
             name: "map",
-          },
-        },
-        {
-          name: "--worker-id",
-          description: "The worker ID to update",
-          args: {
-            name: "string",
           },
         },
         {
@@ -6429,15 +6451,15 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: "--fleet-id",
-              description: "The fleet ID for the queue-fleet association",
+              name: "--queue-id",
+              description: "The queue ID for the queue-fleet association",
               args: {
                 name: "string",
               },
             },
             {
-              name: "--queue-id",
-              description: "The queue ID for the queue-fleet association",
+              name: "--fleet-id",
+              description: "The fleet ID for the queue-fleet association",
               args: {
                 name: "string",
               },

@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "stepfunctions",
   description:
-    "Step Functions Step Functions is a service that lets you coordinate the components of distributed applications and microservices using visual workflows. You can use Step Functions to build applications from individual components, each of which performs a discrete function, or task, allowing you to scale and change applications quickly. Step Functions provides a console that helps visualize the components of your application as a series of steps. Step Functions automatically triggers and tracks each step, and retries steps when there are errors, so your application executes predictably and in the right order every time. Step Functions logs the state of each step, so you can quickly diagnose and debug any issues. Step Functions manages operations and underlying infrastructure to ensure your application is available at any scale. You can run tasks on Amazon Web Services, your own servers, or any system that has access to Amazon Web Services. You can access and use Step Functions using the console, the Amazon Web Services SDKs, or an HTTP API. For more information about Step Functions, see the  Step Functions Developer Guide .  If you use the Step Functions API actions using Amazon Web Services SDK integrations, make sure the API actions are in camel case and parameter names are in Pascal case. For example, you could use Step Functions API action startSyncExecution and specify its parameter as StateMachineArn",
+    "Step Functions Step Functions coordinates the components of distributed applications and microservices using visual workflows. You can use Step Functions to build applications from individual components, each of which performs a discrete function, or task, allowing you to scale and change applications quickly. Step Functions provides a console that helps visualize the components of your application as a series of steps. Step Functions automatically triggers and tracks each step, and retries steps when there are errors, so your application executes predictably and in the right order every time. Step Functions logs the state of each step, so you can quickly diagnose and debug any issues. Step Functions manages operations and underlying infrastructure to ensure your application is available at any scale. You can run tasks on Amazon Web Services, your own servers, or any system that has access to Amazon Web Services. You can access and use Step Functions using the console, the Amazon Web Services SDKs, or an HTTP API. For more information about Step Functions, see the  Step Functions Developer Guide .  If you use the Step Functions API actions using Amazon Web Services SDK integrations, make sure the API actions are in camel case and parameter names are in Pascal case. For example, you could use Step Functions API action startSyncExecution and specify its parameter as StateMachineArn",
   subcommands: [
     {
       name: "create-activity",
@@ -22,6 +22,13 @@ const completionSpec: Fig.Spec = {
             "The list of tags to add to a resource. An array of key-value pairs. For more information, see Using Cost Allocation Tags in the Amazon Web Services Billing and Cost Management User Guide, and Controlling Access Using IAM Tags. Tags may only contain Unicode letters, digits, white space, or these symbols: _ . : / = + - @",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--encryption-configuration",
+          description: "Settings to configure server-side encryption",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -46,7 +53,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-state-machine",
       description:
-        "Creates a state machine. A state machine consists of a collection of states that can do work (Task states), determine to which states to transition next (Choice states), stop an execution with an error (Fail states), and so on. State machines are specified using a JSON-based, structured language. For more information, see Amazon States Language in the Step Functions User Guide. If you set the publish parameter of this API action to true, it publishes version 1 as the first revision of the state machine.  This operation is eventually consistent. The results are best effort and may not reflect very recent updates and changes.    CreateStateMachine is an idempotent API. Subsequent requests won\u2019t create a duplicate resource if it was already created. CreateStateMachine's idempotency check is based on the state machine name, definition, type, LoggingConfiguration, and TracingConfiguration. The check is also based on the publish and versionDescription parameters. If a following request has a different roleArn or tags, Step Functions will ignore these differences and treat it as an idempotent request of the previous. In this case, roleArn and tags will not be updated, even if they are different",
+        "Creates a state machine. A state machine consists of a collection of states that can do work (Task states), determine to which states to transition next (Choice states), stop an execution with an error (Fail states), and so on. State machines are specified using a JSON-based, structured language. For more information, see Amazon States Language in the Step Functions User Guide. If you set the publish parameter of this API action to true, it publishes version 1 as the first revision of the state machine.  For additional control over security, you can encrypt your data using a customer-managed key for Step Functions state machines. You can configure a symmetric KMS key and data key reuse period when creating or updating a State Machine. The execution history and state machine definition will be encrypted with the key applied to the State Machine.   This operation is eventually consistent. The results are best effort and may not reflect very recent updates and changes.    CreateStateMachine is an idempotent API. Subsequent requests won\u2019t create a duplicate resource if it was already created. CreateStateMachine's idempotency check is based on the state machine name, definition, type, LoggingConfiguration, TracingConfiguration, and EncryptionConfiguration The check is also based on the publish and versionDescription parameters. If a following request has a different roleArn or tags, Step Functions will ignore these differences and treat it as an idempotent request of the previous. In this case, roleArn and tags will not be updated, even if they are different",
       options: [
         {
           name: "--name",
@@ -119,6 +126,13 @@ const completionSpec: Fig.Spec = {
             "Sets description about the state machine version. You can only set the description if the publish parameter is set to true. Otherwise, if you set versionDescription, but publish to false, this API action throws ValidationException",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--encryption-configuration",
+          description: "Settings to configure server-side encryption",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -360,6 +374,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--included-data",
+          description:
+            "If your state machine definition is encrypted with a KMS key, callers must have kms:Decrypt permission to decrypt the definition. Alternatively, you can call DescribeStateMachine API with includedData = METADATA_ONLY to get a successful response without the encrypted definition",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -424,6 +446,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--included-data",
+          description:
+            "If your state machine definition is encrypted with a KMS key, callers must have kms:Decrypt permission to decrypt the definition. Alternatively, you can call the API with includedData = METADATA_ONLY to get a successful response without the encrypted definition.   When calling a labelled ARN for an encrypted state machine, the includedData = METADATA_ONLY parameter will not apply because Step Functions needs to decrypt the entire state machine definition to get the Distributed Map state\u2019s definition. In this case, the API caller needs to have kms:Decrypt permission",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -483,6 +513,14 @@ const completionSpec: Fig.Spec = {
           name: "--execution-arn",
           description:
             "The Amazon Resource Name (ARN) of the execution you want state machine information for",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--included-data",
+          description:
+            "If your state machine definition is encrypted with a KMS key, callers must have kms:Decrypt permission to decrypt the definition. Alternatively, you can call the API with includedData = METADATA_ONLY to get a successful response without the encrypted definition",
           args: {
             name: "string",
           },
@@ -1147,7 +1185,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "send-task-failure",
       description:
-        "Used by activity workers, Task states using the callback pattern, and optionally Task states using the job run pattern to report that the task identified by the taskToken failed",
+        "Used by activity workers, Task states using the callback pattern, and optionally Task states using the job run pattern to report that the task identified by the taskToken failed. For an execution with encryption enabled, Step Functions will encrypt the error and cause fields using the KMS key for the execution role. A caller can mark a task as fail without using any KMS permissions in the execution role if the caller provides a null value for both error and cause fields because no data needs to be encrypted",
       options: [
         {
           name: "--task-token",
@@ -1356,6 +1394,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--included-data",
+          description:
+            "If your state machine definition is encrypted with a KMS key, callers must have kms:Decrypt permission to decrypt the definition. Alternatively, you can call the API with includedData = METADATA_ONLY to get a successful response without the encrypted definition",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -1377,7 +1423,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "stop-execution",
       description:
-        "Stops an execution. This API action is not supported by EXPRESS state machines",
+        "Stops an execution. This API action is not supported by EXPRESS state machines. For an execution with encryption enabled, Step Functions will encrypt the error and cause fields using the KMS key for the execution role. A caller can stop an execution without using any KMS permissions in the execution role if the caller provides a null value for both error and cause fields because no data needs to be encrypted",
       options: [
         {
           name: "--execution-arn",
@@ -1623,7 +1669,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-state-machine",
       description:
-        "Updates an existing state machine by modifying its definition, roleArn, or loggingConfiguration. Running executions will continue to use the previous definition and roleArn. You must include at least one of definition or roleArn or you will receive a MissingRequiredParameter error. A qualified state machine ARN refers to a Distributed Map state defined within a state machine. For example, the qualified state machine ARN arn:partition:states:region:account-id:stateMachine:stateMachineName/mapStateLabel refers to a Distributed Map state with a label mapStateLabel in the state machine named stateMachineName. A qualified state machine ARN can either refer to a Distributed Map state defined within a state machine, a version ARN, or an alias ARN. The following are some examples of qualified and unqualified state machine ARNs:   The following qualified state machine ARN refers to a Distributed Map state with a label mapStateLabel in a state machine named myStateMachine.  arn:partition:states:region:account-id:stateMachine:myStateMachine/mapStateLabel   If you provide a qualified state machine ARN that refers to a Distributed Map state, the request fails with ValidationException.    The following qualified state machine ARN refers to an alias named PROD.  arn:<partition>:states:<region>:<account-id>:stateMachine:<myStateMachine:PROD>   If you provide a qualified state machine ARN that refers to a version ARN or an alias ARN, the request starts execution for that version or alias.    The following unqualified state machine ARN refers to a state machine named myStateMachine.  arn:<partition>:states:<region>:<account-id>:stateMachine:<myStateMachine>    After you update your state machine, you can set the publish parameter to true in the same action to publish a new version. This way, you can opt-in to strict versioning of your state machine.  Step Functions assigns monotonically increasing integers for state machine versions, starting at version number 1.   All StartExecution calls within a few seconds use the updated definition and roleArn. Executions started immediately after you call UpdateStateMachine may use the previous state machine definition and roleArn",
+        "Updates an existing state machine by modifying its definition, roleArn, loggingConfiguration, or EncryptionConfiguration. Running executions will continue to use the previous definition and roleArn. You must include at least one of definition or roleArn or you will receive a MissingRequiredParameter error. A qualified state machine ARN refers to a Distributed Map state defined within a state machine. For example, the qualified state machine ARN arn:partition:states:region:account-id:stateMachine:stateMachineName/mapStateLabel refers to a Distributed Map state with a label mapStateLabel in the state machine named stateMachineName. A qualified state machine ARN can either refer to a Distributed Map state defined within a state machine, a version ARN, or an alias ARN. The following are some examples of qualified and unqualified state machine ARNs:   The following qualified state machine ARN refers to a Distributed Map state with a label mapStateLabel in a state machine named myStateMachine.  arn:partition:states:region:account-id:stateMachine:myStateMachine/mapStateLabel   If you provide a qualified state machine ARN that refers to a Distributed Map state, the request fails with ValidationException.    The following qualified state machine ARN refers to an alias named PROD.  arn:<partition>:states:<region>:<account-id>:stateMachine:<myStateMachine:PROD>   If you provide a qualified state machine ARN that refers to a version ARN or an alias ARN, the request starts execution for that version or alias.    The following unqualified state machine ARN refers to a state machine named myStateMachine.  arn:<partition>:states:<region>:<account-id>:stateMachine:<myStateMachine>    After you update your state machine, you can set the publish parameter to true in the same action to publish a new version. This way, you can opt-in to strict versioning of your state machine.  Step Functions assigns monotonically increasing integers for state machine versions, starting at version number 1.   All StartExecution calls within a few seconds use the updated definition and roleArn. Executions started immediately after you call UpdateStateMachine may use the previous state machine definition and roleArn",
       options: [
         {
           name: "--state-machine-arn",
@@ -1679,6 +1725,13 @@ const completionSpec: Fig.Spec = {
             "An optional description of the state machine version to publish. You can only specify the versionDescription parameter if you've set publish to true",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--encryption-configuration",
+          description: "Settings to configure server-side encryption",
+          args: {
+            name: "structure",
           },
         },
         {

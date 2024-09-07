@@ -481,6 +481,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--srt-settings",
+          description: "The settings associated with an SRT input",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -2787,6 +2794,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--srt-settings",
+          description: "The settings associated with an SRT input",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -2935,6 +2949,14 @@ const completionSpec: Fig.Spec = {
           description: "Name of the multiplex",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--packet-identifiers-mapping",
+          description:
+            "Placeholder documentation for MultiplexPacketIdentifiersMapping",
+          args: {
+            name: "map",
           },
         },
         {

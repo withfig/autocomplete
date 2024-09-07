@@ -2511,6 +2511,66 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "failover-global-cluster",
+      description:
+        "Promotes the specified secondary DB cluster to be the primary DB cluster in the global cluster when failing over a global cluster occurs. Use this operation to respond to an unplanned event, such as a regional disaster in the primary region. Failing over can result in a loss of write transaction data that wasn't replicated to the chosen secondary before the failover event occurred. However, the recovery process that promotes a DB instance on the chosen seconday DB cluster to be the primary writer DB instance guarantees that the data is in a transactionally consistent state",
+      options: [
+        {
+          name: "--global-cluster-identifier",
+          description:
+            "The identifier of the Amazon DocumentDB global cluster to apply this operation. The identifier is the unique key assigned by the user when the cluster is created. In other words, it's the name of the global cluster. Constraints:   Must match the identifier of an existing global cluster.   Minimum length of 1. Maximum length of 255.   Pattern: [A-Za-z][0-9A-Za-z-:._]*",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--target-db-cluster-identifier",
+          description:
+            "The identifier of the secondary Amazon DocumentDB cluster that you want to promote to the primary for the global cluster. Use the Amazon Resource Name (ARN) for the identifier so that Amazon DocumentDB can locate the cluster in its Amazon Web Services region. Constraints:   Must match the identifier of an existing secondary cluster.   Minimum length of 1. Maximum length of 255.   Pattern: [A-Za-z][0-9A-Za-z-:._]*",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--allow-data-loss",
+          description:
+            "Specifies whether to allow data loss for this global cluster operation. Allowing data loss triggers a global failover operation. If you don't specify AllowDataLoss, the global cluster operation defaults to a switchover. Constraints:   Can't be specified together with the Switchover parameter",
+        },
+        {
+          name: "--no-allow-data-loss",
+          description:
+            "Specifies whether to allow data loss for this global cluster operation. Allowing data loss triggers a global failover operation. If you don't specify AllowDataLoss, the global cluster operation defaults to a switchover. Constraints:   Can't be specified together with the Switchover parameter",
+        },
+        {
+          name: "--switchover",
+          description:
+            "Specifies whether to switch over this global database cluster. Constraints:   Can't be specified together with the AllowDataLoss parameter",
+        },
+        {
+          name: "--no-switchover",
+          description:
+            "Specifies whether to switch over this global database cluster. Constraints:   Can't be specified together with the AllowDataLoss parameter",
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-tags-for-resource",
       description: "Lists all tags on an Amazon DocumentDB resource",
       options: [

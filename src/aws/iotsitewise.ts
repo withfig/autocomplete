@@ -525,7 +525,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--asset-model-name",
-          description: "A unique, friendly name for the asset model",
+          description: "A unique name for the asset model",
           args: {
             name: "string",
           },
@@ -556,7 +556,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--asset-model-composite-models",
           description:
-            "The composite models that are part of this asset model. It groups properties (such as attributes, measurements, transforms, and metrics) and child composite models that model parts of your industrial equipment. Each composite model has a type that defines the properties that the composite model supports. Use composite models to define alarms on this asset model.  When creating custom composite models, you need to use CreateAssetModelCompositeModel. For more information, see <LINK>",
+            "The composite models that are part of this asset model. It groups properties (such as attributes, measurements, transforms, and metrics) and child composite models that model parts of your industrial equipment. Each composite model has a type that defines the properties that the composite model supports. Use composite models to define alarms on this asset model.  When creating custom composite models, you need to use CreateAssetModelCompositeModel. For more information, see Creating custom composite models (Components) in the IoT SiteWise User Guide",
           args: {
             name: "list",
           },
@@ -666,7 +666,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--asset-model-composite-model-name",
-          description: "A unique, friendly name for the composite model",
+          description: "A unique name for the composite model",
           args: {
             name: "string",
           },
@@ -689,7 +689,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--composed-asset-model-id",
-          description: "The ID of a composite model on this asset",
+          description:
+            "The ID of a component model which is reused to create this composite model",
           args: {
             name: "string",
           },
@@ -697,7 +698,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--asset-model-composite-model-properties",
           description:
-            "The property definitions of the composite model. For more information, see <LINK>. You can specify up to 200 properties per composite model. For more information, see Quotas in the IoT SiteWise User Guide",
+            "The property definitions of the composite model. For more information, see  Inline custom composite models in the IoT SiteWise User Guide. You can specify up to 200 properties per composite model. For more information, see Quotas in the IoT SiteWise User Guide",
           args: {
             name: "list",
           },
@@ -879,7 +880,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--gateway-name",
-          description: "A unique, friendly name for the gateway",
+          description: "A unique name for the gateway",
           args: {
             name: "string",
           },
@@ -4373,7 +4374,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-asset-model",
       description:
-        "Updates an asset model and all of the assets that were created from the model. Each asset created from the model inherits the updated asset model's property and hierarchy definitions. For more information, see Updating assets and models in the IoT SiteWise User Guide.  This operation overwrites the existing model with the provided model. To avoid deleting your asset model's properties or hierarchies, you must include their IDs and definitions in the updated asset model payload. For more information, see DescribeAssetModel. If you remove a property from an asset model, IoT SiteWise deletes all previous data for that property. If you remove a hierarchy definition from an asset model, IoT SiteWise disassociates every asset associated with that hierarchy. You can't change the type or data type of an existing property",
+        "Updates an asset model and all of the assets that were created from the model. Each asset created from the model inherits the updated asset model's property and hierarchy definitions. For more information, see Updating assets and models in the IoT SiteWise User Guide.  If you remove a property from an asset model, IoT SiteWise deletes all previous data for that property. You can\u2019t change the type or data type of an existing property. To replace an existing asset model property with a new one with the same name, do the following:   Submit an UpdateAssetModel request with the entire existing property removed.   Submit a second UpdateAssetModel request that includes the new property. The new asset property will have the same name as the previous one and IoT SiteWise will generate a new unique id",
       options: [
         {
           name: "--asset-model-id",
@@ -4385,7 +4386,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--asset-model-name",
-          description: "A unique, friendly name for the asset model",
+          description: "A unique name for the asset model",
           args: {
             name: "string",
           },
@@ -4416,7 +4417,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--asset-model-composite-models",
           description:
-            "The composite models that are part of this asset model. It groups properties (such as attributes, measurements, transforms, and metrics) and child composite models that model parts of your industrial equipment. Each composite model has a type that defines the properties that the composite model supports. Use composite models to define alarms on this asset model.  When creating custom composite models, you need to use CreateAssetModelCompositeModel. For more information, see <LINK>",
+            "The composite models that are part of this asset model. It groups properties (such as attributes, measurements, transforms, and metrics) and child composite models that model parts of your industrial equipment. Each composite model has a type that defines the properties that the composite model supports. Use composite models to define alarms on this asset model.  When creating custom composite models, you need to use CreateAssetModelCompositeModel. For more information, see Creating custom composite models (Components) in the IoT SiteWise User Guide",
           args: {
             name: "list",
           },
@@ -4492,7 +4493,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--asset-model-composite-model-name",
-          description: "A unique, friendly name for the composite model",
+          description: "A unique name for the composite model",
           args: {
             name: "string",
           },
@@ -4508,7 +4509,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--asset-model-composite-model-properties",
           description:
-            "The property definitions of the composite model. For more information, see <LINK>. You can specify up to 200 properties per composite model. For more information, see Quotas in the IoT SiteWise User Guide",
+            "The property definitions of the composite model. For more information, see  Inline custom composite models in the IoT SiteWise User Guide. You can specify up to 200 properties per composite model. For more information, see Quotas in the IoT SiteWise User Guide",
           args: {
             name: "list",
           },
@@ -4677,7 +4678,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--gateway-name",
-          description: "A unique, friendly name for the gateway",
+          description: "A unique name for the gateway",
           args: {
             name: "string",
           },

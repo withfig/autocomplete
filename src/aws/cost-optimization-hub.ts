@@ -161,9 +161,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum number of recommendations that are returned for the request",
+            "The maximum number of recommendations to be returned for the request",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--metrics",
+          description:
+            "Additional metrics to be returned for the request. The only valid value is savingsPercentage",
+          args: {
+            name: "list",
           },
         },
         {
@@ -306,7 +314,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-enrollment-status",
       description:
-        "Updates the enrollment (opt in and opt out) status of an account to the Cost Optimization Hub service. If the account is a management account of an organization, this action can also be used to enroll member accounts of the organization. You must have the appropriate permissions to opt in to Cost Optimization Hub and to view its recommendations. When you opt in, Cost Optimization Hub automatically creates a service-linked role in your account to access its data",
+        "Updates the enrollment (opt in and opt out) status of an account to the Cost Optimization Hub service. If the account is a management account or delegated administrator of an organization, this action can also be used to enroll member accounts of the organization. You must have the appropriate permissions to opt in to Cost Optimization Hub and to view its recommendations. When you opt in, Cost Optimization Hub automatically creates a service-linked role in your account to access its data",
       options: [
         {
           name: "--status",
@@ -318,12 +326,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--include-member-accounts",
           description:
-            "Indicates whether to enroll member accounts of the organization if the account is the management account",
+            "Indicates whether to enroll member accounts of the organization if the account is the management account or delegated administrator",
         },
         {
           name: "--no-include-member-accounts",
           description:
-            "Indicates whether to enroll member accounts of the organization if the account is the management account",
+            "Indicates whether to enroll member accounts of the organization if the account is the management account or delegated administrator",
         },
         {
           name: "--cli-input-json",

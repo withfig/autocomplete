@@ -3426,7 +3426,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--dry-run",
           description:
-            "Only print the commands that would be executed to connect your tool with your repository without making any changes to your configuration",
+            "Only print the commands that would be executed to connect your tool with your repository without making any changes to your configuration. Note that this prints the unredacted auth token as part of the output",
         },
       ],
     },
