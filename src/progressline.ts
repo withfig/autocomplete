@@ -13,7 +13,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["--static-text", "-t"],
-      description: "Set static text to display instead of the latest stdin data",
+      description:
+        "Set static text to display instead of the latest stdin data",
       args: {
         name: "text",
       },
