@@ -1,6 +1,6 @@
 const shelveSubcommands: Fig.Subcommand[] = [
   {
-    name: "create",
+    name: ["create", "c", "init"],
     description: "Create a new project",
     icon: "🚀",
     options: [
@@ -14,13 +14,13 @@ const shelveSubcommands: Fig.Subcommand[] = [
     ],
   },
   {
-    name: "pull",
-    description: "Retrieve the environment variables from Shelve",
+    name: ["pull", "pl"],
+    description: "Pull variables for specified environment to .env file",
     icon: "📥",
     options: [
       {
         name: ["--env", "-e"],
-        description: "Retrieve the environment variables from Shelve",
+        description: "Specify the environment",
         args: {
           name: "environment",
         },
@@ -28,13 +28,13 @@ const shelveSubcommands: Fig.Subcommand[] = [
     ],
   },
   {
-    name: "push",
-    description: "Send the environment variables to Shelve",
+    name: ["push", "ps"],
+    description: "Push variables for specified environment to Shelve",
     icon: "📤",
     options: [
       {
         name: ["--env", "-e"],
-        description: "Send the environment variables to Shelve",
+        description: "Specify the environment",
         args: {
           name: "environment",
         },
@@ -42,9 +42,14 @@ const shelveSubcommands: Fig.Subcommand[] = [
     ],
   },
   {
-    name: "generate",
-    description: "Generate resources for the project",
+    name: ["generate", "g"],
+    description: "Generate resources for a project",
     icon: "🔄",
+  },
+  {
+    name: ["config", "cf"],
+    description: "Show the current configuration",
+    icon: "⚙️",
   },
   {
     name: ["--help", "-h"],
