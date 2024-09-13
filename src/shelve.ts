@@ -1,6 +1,6 @@
 const shelveSubcommands: Fig.Subcommand[] = [
   {
-    name: ["create", "init", "c"],
+    name: "create",
     description: "Create a new project",
     icon: "🚀",
     options: [
@@ -14,22 +14,7 @@ const shelveSubcommands: Fig.Subcommand[] = [
     ],
   },
   {
-    name: ["login", "li"],
-    description: "Authenticate with Shelve",
-    icon: "🔑",
-  },
-  {
-    name: ["logout", "lo"],
-    description: "Logout the current authenticated user",
-    icon: "🔓",
-  },
-  {
-    name: ["whoami", "w"],
-    description: "Shows the username of the currently logged-in user",
-    icon: "👤",
-  },
-  {
-    name: ["pull", "pl"],
+    name: "pull",
     description: "Retrieve the environment variables from Shelve",
     icon: "📥",
     options: [
@@ -43,7 +28,7 @@ const shelveSubcommands: Fig.Subcommand[] = [
     ],
   },
   {
-    name: ["push", "ps"],
+    name: "push",
     description: "Send the environment variables to Shelve",
     icon: "📤",
     options: [
@@ -57,23 +42,9 @@ const shelveSubcommands: Fig.Subcommand[] = [
     ],
   },
   {
-    name: ["link", "l"],
-    description: "Link the current directory with a Shelve project",
-    icon: "🔗",
-    options: [
-      {
-        name: ["--name", "-n"],
-        description: "Name of the project",
-        args: {
-          name: "project-name",
-        },
-      },
-    ],
-  },
-  {
-    name: ["unlink", "ul"],
-    description: "Unlink the current directory from a Shelve project",
-    icon: "🔗",
+    name: "generate",
+    description: "Generate resources for the project",
+    icon: "🔄",
   },
   {
     name: ["--help", "-h"],
