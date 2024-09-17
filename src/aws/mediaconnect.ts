@@ -378,6 +378,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--source-monitoring-config",
+          description: "The settings for source monitoring",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -643,6 +650,36 @@ const completionSpec: Fig.Spec = {
       name: "describe-flow-source-metadata",
       description:
         "Displays details of the flow's source stream. The response contains information about the contents of the stream and its programs",
+      options: [
+        {
+          name: "--flow-arn",
+          description: "The Amazon Resource Name (ARN) of the flow",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-flow-source-thumbnail",
+      description: "Displays the thumbnail details of a flow's source stream",
       options: [
         {
           name: "--flow-arn",
@@ -1977,6 +2014,13 @@ const completionSpec: Fig.Spec = {
         {
           name: "--maintenance",
           description: "Update maintenance setting for a flow",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--source-monitoring-config",
+          description: "The settings for source monitoring",
           args: {
             name: "structure",
           },

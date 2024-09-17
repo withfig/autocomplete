@@ -1837,7 +1837,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--voice-tone-analysis-task-id",
-          description: "The ID of the voice tone anlysis task",
+          description: "The ID of the voice tone analysis task",
           args: {
             name: "string",
           },
@@ -3713,7 +3713,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--country",
-          description: "The country in the address being validated",
+          description:
+            "The country in the address being validated as two-letter country code in ISO 3166-1 alpha-2 format, such as US. For more information, see ISO 3166-1 alpha-2 in Wikipedia",
           args: {
             name: "string",
           },

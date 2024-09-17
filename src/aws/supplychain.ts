@@ -89,7 +89,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "send-data-integration-event",
       description:
-        "Send transactional data events with real-time data for analysis or monitoring",
+        "Send the transactional data payload for the event with real-time data for analysis or monitoring. The real-time data events are stored in an Amazon Web Services service before being processed and stored in data lake. New data events are synced with data lake at 5 PM GMT everyday. The updated transactional data is available in data lake after ingestion",
       options: [
         {
           name: "--instance-id",
@@ -107,7 +107,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--data",
-          description: "The data payload of the event",
+          description:
+            "The data payload of the event. For more information on the data schema to use, see Data entities supported in AWS Supply Chain",
           args: {
             name: "string",
           },

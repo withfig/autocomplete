@@ -6,7 +6,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "batch-get-service-level-objective-budget-report",
       description:
-        "Use this operation to retrieve one or more service level objective (SLO) budget reports. An error budget is the amount of time in unhealthy periods that your service can accumulate during an interval before your overall SLO budget health is breached and the SLO is considered to be unmet. For example, an SLO with a threshold of 99.95% and a monthly interval translates to an error budget of 21.9 minutes of downtime in a 30-day month. Budget reports include a health indicator, the attainment value, and remaining budget. For more information about SLO error budgets, see  SLO concepts",
+        "Use this operation to retrieve one or more service level objective (SLO) budget reports. An error budget is the amount of time or requests in an unhealthy state that your service can accumulate during an interval before your overall SLO budget health is breached and the SLO is considered to be unmet. For example, an SLO with a threshold of 99.95% and a monthly interval translates to an error budget of 21.9 minutes of downtime in a 30-day month. Budget reports include a health indicator, the attainment value, and remaining budget. For more information about SLO error budgets, see  SLO concepts",
       options: [
         {
           name: "--timestamp",
@@ -46,7 +46,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-service-level-objective",
       description:
-        "Creates a service level objective (SLO), which can help you ensure that your critical business operations are meeting customer expectations. Use SLOs to set and track specific target levels for the reliability and availability of your applications and services. SLOs use service level indicators (SLIs) to calculate whether the application is performing at the level that you want. Create an SLO to set a target for a service or operation\u2019s availability or latency. CloudWatch measures this target frequently you can find whether it has been breached.  When you create an SLO, you set an attainment goal for it. An attainment goal is the ratio of good periods that meet the threshold requirements to the total periods within the interval. For example, an attainment goal of 99.9% means that within your interval, you are targeting 99.9% of the periods to be in healthy state. After you have created an SLO, you can retrieve error budget reports for it. An error budget is the number of periods or amount of time that your service can accumulate during an interval before your overall SLO budget health is breached and the SLO is considered to be unmet. for example, an SLO with a threshold that 99.95% of requests must be completed under 2000ms every month translates to an error budget of 21.9 minutes of downtime per month. When you call this operation, Application Signals creates the AWSServiceRoleForCloudWatchApplicationSignals service-linked role, if it doesn't already exist in your account. This service- linked role has the following permissions:    xray:GetServiceGraph     logs:StartQuery     logs:GetQueryResults     cloudwatch:GetMetricData     cloudwatch:ListMetrics     tag:GetResources     autoscaling:DescribeAutoScalingGroups    You can easily set SLO targets for your applications that are discovered by Application Signals, using critical metrics such as latency and availability. You can also set SLOs against any CloudWatch metric or math expression that produces a time series. For more information about SLOs, see  Service level objectives (SLOs)",
+        "Creates a service level objective (SLO), which can help you ensure that your critical business operations are meeting customer expectations. Use SLOs to set and track specific target levels for the reliability and availability of your applications and services. SLOs use service level indicators (SLIs) to calculate whether the application is performing at the level that you want. Create an SLO to set a target for a service or operation\u2019s availability or latency. CloudWatch measures this target frequently you can find whether it has been breached.  The target performance quality that is defined for an SLO is the attainment goal. You can set SLO targets for your applications that are discovered by Application Signals, using critical metrics such as latency and availability. You can also set SLOs against any CloudWatch metric or math expression that produces a time series. When you create an SLO, you specify whether it is a period-based SLO or a request-based SLO. Each type of SLO has a different way of evaluating your application's performance against its attainment goal.   A period-based SLO uses defined periods of time within a specified total time interval. For each period of time, Application Signals determines whether the application met its goal. The attainment rate is calculated as the number of good periods/number of total periods. For example, for a period-based SLO, meeting an attainment goal of 99.9% means that within your interval, your application must meet its performance goal during at least 99.9% of the time periods.   A request-based SLO doesn't use pre-defined periods of time. Instead, the SLO measures number of good requests/number of total requests during the interval. At any time, you can find the ratio of good requests to total requests for the interval up to the time stamp that you specify, and measure that ratio against the goal set in your SLO.   After you have created an SLO, you can retrieve error budget reports for it. An error budget is the amount of time or amount of requests that your application can be non-compliant with the SLO's goal, and still have your application meet the goal.   For a period-based SLO, the error budget starts at a number defined by the highest number of periods that can fail to meet the threshold, while still meeting the overall goal. The remaining error budget decreases with every failed period that is recorded. The error budget within one interval can never increase. For example, an SLO with a threshold that 99.95% of requests must be completed under 2000ms every month translates to an error budget of 21.9 minutes of downtime per month.   For a request-based SLO, the remaining error budget is dynamic and can increase or decrease, depending on the ratio of good requests to total requests.   For more information about SLOs, see  Service level objectives (SLOs).  When you perform a CreateServiceLevelObjective operation, Application Signals creates the AWSServiceRoleForCloudWatchApplicationSignals service-linked role, if it doesn't already exist in your account. This service- linked role has the following permissions:    xray:GetServiceGraph     logs:StartQuery     logs:GetQueryResults     cloudwatch:GetMetricData     cloudwatch:ListMetrics     tag:GetResources     autoscaling:DescribeAutoScalingGroups",
       options: [
         {
           name: "--name",
@@ -65,7 +65,15 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sli-config",
           description:
-            "A structure that contains information about what service and what performance metric that this SLO will monitor",
+            "If this SLO is a period-based SLO, this structure defines the information about what performance metric this SLO will monitor. You can't specify both RequestBasedSliConfig and SliConfig in the same operation",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--request-based-sli-config",
+          description:
+            "If this SLO is a request-based SLO, this structure defines the information about what performance metric this SLO will monitor. You can't specify both RequestBasedSliConfig and SliConfig in the same operation",
           args: {
             name: "structure",
           },
@@ -73,7 +81,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--goal",
           description:
-            "A structure that contains the attributes that determine the goal of the SLO. This includes the time period for evaluation and the attainment threshold",
+            "This structure contains the attributes that determine the goal of the SLO",
           args: {
             name: "structure",
           },
@@ -775,7 +783,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-service-level-objective",
       description:
-        "Updates an existing service level objective (SLO). If you omit parameters, the previous values of those parameters are retained",
+        "Updates an existing service level objective (SLO). If you omit parameters, the previous values of those parameters are retained.  You cannot change from a period-based SLO to a request-based SLO, or change from a request-based SLO to a period-based SLO",
       options: [
         {
           name: "--id",
@@ -795,7 +803,15 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sli-config",
           description:
-            "A structure that contains information about what performance metric this SLO will monitor",
+            "If this SLO is a period-based SLO, this structure defines the information about what performance metric this SLO will monitor",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--request-based-sli-config",
+          description:
+            "If this SLO is a request-based SLO, this structure defines the information about what performance metric this SLO will monitor. You can't specify both SliConfig and RequestBasedSliConfig in the same operation",
           args: {
             name: "structure",
           },

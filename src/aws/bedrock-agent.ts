@@ -70,7 +70,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-agent",
       description:
-        "Creates an agent that orchestrates interactions between foundation models, data sources, software applications, user conversations, and APIs to carry out tasks to help customers.   Specify the following fields for security purposes.    agentResourceRoleArn \u2013 The Amazon Resource Name (ARN) of the role with permissions to invoke API operations on an agent.   (Optional) customerEncryptionKeyArn \u2013 The Amazon Resource Name (ARN) of a KMS key to encrypt the creation of the agent.   (Optional) idleSessionTTLinSeconds \u2013 Specify the number of seconds for which the agent should maintain session information. After this time expires, the subsequent InvokeAgent request begins a new session.     To enable your agent to retain conversational context across multiple sessions, include a memoryConfiguration object. For more information, see Configure memory.   To override the default prompt behavior for agent orchestration and to use advanced prompts, include a promptOverrideConfiguration object. For more information, see Advanced prompts.   If you agent fails to be created, the response returns a list of failureReasons alongside a list of recommendedActions for you to troubleshoot",
+        "Creates an agent that orchestrates interactions between foundation models, data sources, software applications, user conversations, and APIs to carry out tasks to help customers.   Specify the following fields for security purposes.    agentResourceRoleArn \u2013 The Amazon Resource Name (ARN) of the role with permissions to invoke API operations on an agent.   (Optional) customerEncryptionKeyArn \u2013 The Amazon Resource Name (ARN) of a KMS key to encrypt the creation of the agent.   (Optional) idleSessionTTLinSeconds \u2013 Specify the number of seconds for which the agent should maintain session information. After this time expires, the subsequent InvokeAgent request begins a new session.     To enable your agent to retain conversational context across multiple sessions, include a memoryConfiguration object. For more information, see Configure memory.   To override the default prompt behavior for agent orchestration and to use advanced prompts, include a promptOverrideConfiguration object. For more information, see Advanced prompts.   If your agent fails to be created, the response returns a list of failureReasons alongside a list of recommendedActions for you to troubleshoot.   The agent instructions will not be honored if your agent has only one knowledge base, uses default prompts, has no action group, and user input is disabled",
       options: [
         {
           name: "--agent-name",
@@ -371,7 +371,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--data-deletion-policy",
           description:
-            "The data deletion policy for the data source. You can set the data deletion policy to:   DELETE: Deletes all underlying data belonging to the data source from the vector store upon deletion of a knowledge base or data source resource. Note that the vector store itself is not deleted, only the underlying data. This flag is ignored if an Amazon Web Services account is deleted.   RETAIN: Retains all underlying data in your vector store upon deletion of a knowledge base or data source resource",
+            "The data deletion policy for the data source. You can set the data deletion policy to:   DELETE: Deletes all data from your data source that\u2019s converted into vector embeddings upon deletion of a knowledge base or data source resource. Note that the vector store itself is not deleted, only the data. This flag is ignored if an Amazon Web Services account is deleted.   RETAIN: Retains all data from your data source that\u2019s converted into vector embeddings upon deletion of a knowledge base or data source resource. Note that the vector store itself is not deleted if you delete a knowledge base or data source resource",
           args: {
             name: "string",
           },
@@ -1226,7 +1226,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-prompt",
       description:
-        "Deletes a prompt or a prompt version from the Prompt management tool. For more information, see Delete prompts from the Prompt management tool and Delete a version of a prompt from the Prompt management tool in the Amazon Bedrock User Guide",
+        "Deletes a prompt or a version of it, depending on whether you include the promptVersion field or not. For more information, see Delete prompts from the Prompt management tool and Delete a version of a prompt from the Prompt management tool in the Amazon Bedrock User Guide",
       options: [
         {
           name: "--prompt-identifier",
@@ -1237,7 +1237,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--prompt-version",
-          description: "The version of the prompt to delete",
+          description:
+            "The version of the prompt to delete. To delete the prompt, omit this field",
           args: {
             name: "string",
           },
@@ -1738,7 +1739,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-prompt",
       description:
-        "Retrieves information about a prompt or a version of it. For more information, see View information about prompts using Prompt management and View information about a version of your prompt in the Amazon Bedrock User Guide",
+        "Retrieves information about the working draft (DRAFT version) of a prompt or a version of it, depending on whether you include the promptVersion field or not. For more information, see View information about prompts using Prompt management and View information about a version of your prompt in the Amazon Bedrock User Guide",
       options: [
         {
           name: "--prompt-identifier",
@@ -1750,7 +1751,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--prompt-version",
           description:
-            "The version of the prompt about which you want to retrieve information",
+            "The version of the prompt about which you want to retrieve information. Omit this field to return information about the working draft of the prompt",
           args: {
             name: "string",
           },
@@ -2578,7 +2579,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-prompts",
       description:
-        "Returns a list of prompts from the Prompt management tool and information about each prompt. For more information, see View information about prompts using Prompt management in the Amazon Bedrock User Guide",
+        "Returns either information about the working draft (DRAFT version) of each prompt in an account, or information about of all versions of a prompt, depending on whether you include the promptIdentifier field or not. For more information, see View information about prompts using Prompt management in the Amazon Bedrock User Guide",
       options: [
         {
           name: "--max-results",
@@ -2598,7 +2599,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--prompt-identifier",
-          description: "The unique identifier of the prompt",
+          description:
+            "The unique identifier of the prompt for whose versions you want to return information. Omit this field to list information about all prompts in an account",
           args: {
             name: "string",
           },
@@ -3369,7 +3371,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--description",
-          description: "A description for the flow alias",
+          description: "A description for the alias",
           args: {
             name: "string",
           },
@@ -3383,7 +3385,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--name",
-          description: "The name of the flow alias",
+          description: "The name of the alias",
           args: {
             name: "string",
           },

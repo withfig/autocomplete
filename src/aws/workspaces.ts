@@ -1877,6 +1877,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--filters",
+          description: "The filter condition for the WorkSpaces",
+          args: {
+            name: "list",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -3341,6 +3348,21 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--idc-instance-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the identity center instance",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--microsoft-entra-config",
+          description: "The details about Microsoft Entra config",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--workspace-type",
           description:
             "Indicates whether the directory's WorkSpace type is personal or pools",
@@ -3484,7 +3506,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "start-workspaces",
       description:
-        "Starts the specified WorkSpaces. You cannot start a WorkSpace unless it has a running mode of AutoStop and a state of STOPPED",
+        "Starts the specified WorkSpaces. You cannot start a WorkSpace unless it has a running mode of AutoStop or Manual and a state of STOPPED",
       options: [
         {
           name: "--start-workspace-requests",
@@ -3547,7 +3569,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "stop-workspaces",
       description:
-        "Stops the specified WorkSpaces. You cannot stop a WorkSpace unless it has a running mode of AutoStop and a state of AVAILABLE, IMPAIRED, UNHEALTHY, or ERROR",
+        "Stops the specified WorkSpaces. You cannot stop a WorkSpace unless it has a running mode of AutoStop or Manual and a state of AVAILABLE, IMPAIRED, UNHEALTHY, or ERROR",
       options: [
         {
           name: "--stop-workspace-requests",

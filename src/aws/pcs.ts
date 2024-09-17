@@ -1,181 +1,63 @@
 const completionSpec: Fig.Spec = {
-  name: "qapps",
+  name: "pcs",
   description:
-    "The Amazon Q Apps feature capability within Amazon Q Business allows web experience users to create lightweight, purpose-built AI apps to fulfill specific tasks from within their web experience. For example, users can create a Q App that exclusively generates marketing-related content to improve your marketing team's productivity or a Q App for writing customer emails and creating promotional content using a certain style of voice, tone, and branding. For more information on the capabilities, see Amazon Q Apps capabilities in the Amazon Q Business User Guide.  For an overview of the Amazon Q App APIs, see Overview of Amazon Q Apps API operations. For information about the IAM access control permissions you need to use the Amazon Q Apps API, see  IAM role for the Amazon Q Business web experience including Amazon Q Apps in the Amazon Q Business User Guide",
+    "Amazon Web Services Parallel Computing Service (Amazon Web Services PCS) is a managed service that makes it easier for you to run and scale your high performance computing (HPC) workloads, and build scientific and engineering models on Amazon Web Services using Slurm. For more information, see the Amazon Web Services Parallel Computing Service User Guide. This reference describes the actions and data types of the service management API. You can use the Amazon Web Services SDKs to call the API actions in software, or use the Command Line Interface (CLI) to call the API actions manually. These API actions manage the service through an Amazon Web Services account. The API actions operate on Amazon Web Services PCS resources. A resource is an entity in Amazon Web Services that you can work with. Amazon Web Services services create resources when you use the features of the service. Examples of Amazon Web Services PCS resources include clusters, compute node groups, and queues. For more information about resources in Amazon Web Services, see Resource in the Resource Explorer User Guide.  An Amazon Web Services PCS compute node is an Amazon EC2 instance. You don't launch compute nodes directly. Amazon Web Services PCS uses configuration information that you provide to launch compute nodes in your Amazon Web Services account. You receive billing charges for your running compute nodes. Amazon Web Services PCS automatically terminates your compute nodes when you delete the Amazon Web Services PCS resources related to those compute nodes",
   subcommands: [
     {
-      name: "associate-library-item-review",
+      name: "create-cluster",
       description:
-        "Associates a rating or review for a library item with the user submitting the request. This increments the rating count for the specified library item",
+        "Creates a cluster in your account. Amazon Web Services PCS creates the cluster controller in a service-owned account. The cluster controller communicates with the cluster resources in your account. The subnets and security groups for the cluster must already exist before you use this API action.  It takes time for Amazon Web Services PCS to create the cluster. The cluster is in a Creating state until it is ready to use. There can only be 1 cluster in a Creating state per Amazon Web Services Region per Amazon Web Services account. CreateCluster fails with a ServiceQuotaExceededException if there is already a cluster in a Creating state",
       options: [
         {
-          name: "--instance-id",
-          description:
-            "The unique identifier for the Amazon Q Business application environment instance",
+          name: "--cluster-name",
+          description: "A name to identify the cluster. Example: MyCluster",
           args: {
             name: "string",
           },
         },
         {
-          name: "--library-item-id",
+          name: "--scheduler",
           description:
-            "The unique identifier of the library item to associate the review with",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "associate-q-app-with-user",
-      description:
-        "This operation creates a link between the user's identity calling the operation and a specific Q App. This is useful to mark the Q App as a favorite for the user if the user doesn't own the Amazon Q App so they can still run it and see it in their inventory of Q Apps",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--app-id",
-          description: "The ID of the Amazon Q App to associate with the user",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "create-library-item",
-      description:
-        "Creates a new library item for an Amazon Q App, allowing it to be discovered and used by other allowed users",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--app-id",
-          description:
-            "The unique identifier of the Amazon Q App to publish to the library",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--app-version",
-          description:
-            "The version of the Amazon Q App to publish to the library",
-          args: {
-            name: "integer",
-          },
-        },
-        {
-          name: "--categories",
-          description:
-            "The categories to associate with the library item for easier discovery",
-          args: {
-            name: "list",
-          },
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "create-q-app",
-      description:
-        "Creates a new Amazon Q App based on the provided definition. The Q App definition specifies the cards and flow of the Q App. This operation also calculates the dependencies between the cards by inspecting the references in the prompts",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--title",
-          description: "The title of the new Q App",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--description",
-          description: "The description of the new Q App",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--app-definition",
-          description:
-            "The definition of the new Q App, specifying the cards and flow",
+            "The cluster management and job scheduling software associated with the cluster",
           args: {
             name: "structure",
           },
         },
         {
+          name: "--size",
+          description:
+            "A value that determines the maximum number of compute nodes in the cluster and the maximum number of jobs (active and queued).    SMALL: 32 compute nodes and 256 jobs    MEDIUM: 512 compute nodes and 8192 jobs    LARGE: 2048 compute nodes and 16,384 jobs",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--networking",
+          description:
+            "The networking configuration used to set up the cluster's control plane",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--slurm-configuration",
+          description: "Additional options related to the Slurm scheduler",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate 1 for you",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--tags",
-          description: "Optional tags to associate with the new Q App",
+          description:
+            "1 or more tags added to the resource. Each tag consists of a tag key and tag value. The tag value is optional and can be an empty string",
           args: {
             name: "map",
           },
@@ -200,21 +82,210 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "delete-library-item",
+      name: "create-compute-node-group",
       description:
-        "Deletes a library item for an Amazon Q App, removing it from the library so it can no longer be discovered or used by other users",
+        "Creates a managed set of compute nodes. You associate a compute node group with a cluster through 1 or more Amazon Web Services PCS queues or as part of the login fleet. A compute node group includes the definition of the compute properties and lifecycle management. Amazon Web Services PCS uses the information you provide to this API action to launch compute nodes in your account. You can only specify subnets in the same Amazon VPC as your cluster. You receive billing charges for the compute nodes that Amazon Web Services PCS launches in your account. You must already have a launch template before you call this API. For more information, see Launch an instance from a launch template in the Amazon Elastic Compute Cloud User Guide for Linux Instances",
       options: [
         {
-          name: "--instance-id",
+          name: "--cluster-identifier",
           description:
-            "The unique identifier of the Amazon Q Business application environment instance",
+            "The name or ID of the cluster to create a compute node group in",
           args: {
             name: "string",
           },
         },
         {
-          name: "--library-item-id",
-          description: "The unique identifier of the library item to delete",
+          name: "--compute-node-group-name",
+          description: "A name to identify the cluster. Example: MyCluster",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--ami-id",
+          description:
+            "The ID of the Amazon Machine Image (AMI) that Amazon Web Services PCS uses to launch compute nodes (Amazon EC2 instances). If you don't provide this value, Amazon Web Services PCS uses the AMI ID specified in the custom launch template",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--subnet-ids",
+          description:
+            "The list of subnet IDs where the compute node group launches instances. Subnets must be in the same VPC as the cluster",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--purchase-option",
+          description:
+            "Specifies how EC2 instances are purchased on your behalf. Amazon Web Services PCS supports On-Demand and Spot instances. For more information, see Instance purchasing options in the Amazon Elastic Compute Cloud User Guide. If you don't provide this option, it defaults to On-Demand",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--custom-launch-template",
+          description:
+            "An Amazon EC2 launch template Amazon Web Services PCS uses to launch compute nodes",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--iam-instance-profile-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the IAM instance profile used to pass an IAM role when launching EC2 instances. The role contained in your instance profile must have pcs:RegisterComputeNodeGroupInstance permissions attached in order to provision instances correctly. The resource identifier of the ARN must start with AWSPCS. For example, arn:aws:iam:123456789012:instance-profile/AWSPCSMyComputeNodeInstanceProfile",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--scaling-configuration",
+          description:
+            "Specifies the boundaries of the compute node group auto scaling",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--instance-configs",
+          description:
+            "A list of EC2 instance configurations that Amazon Web Services PCS can provision in the compute node group",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--spot-options",
+          description:
+            "Additional configuration when you specify SPOT as the purchaseOption for the CreateComputeNodeGroup API action",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--slurm-configuration",
+          description: "Additional options related to the Slurm scheduler",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate 1 for you",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "1 or more tags added to the resource. Each tag consists of a tag key and tag value. The tag value is optional and can be an empty string",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-queue",
+      description:
+        "Creates a job queue. You must associate 1 or more compute node groups with the queue. You can associate 1 compute node group with multiple queues",
+      options: [
+        {
+          name: "--cluster-identifier",
+          description:
+            "The name or ID of the cluster for which to create a queue",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--queue-name",
+          description: "A name to identify the queue",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--compute-node-group-configurations",
+          description:
+            "The list of compute node group configurations to associate with the queue. Queues assign jobs to associated compute node groups",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate 1 for you",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "1 or more tags added to the resource. Each tag consists of a tag key and tag value. The tag value is optional and can be an empty string",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-cluster",
+      description:
+        "Deletes a cluster and all its linked resources. You must delete all queues and compute node groups associated with the cluster before you can delete the cluster",
+      options: [
+        {
+          name: "--cluster-identifier",
+          description: "The name or ID of the cluster to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate 1 for you",
           args: {
             name: "string",
           },
@@ -239,21 +310,29 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "delete-q-app",
+      name: "delete-compute-node-group",
       description:
-        "Deletes an Amazon Q App owned by the user. If the Q App was previously published to the library, it is also removed from the library",
+        "Deletes a compute node group. You must delete all queues associated with the compute node group first",
       options: [
         {
-          name: "--instance-id",
+          name: "--cluster-identifier",
           description:
-            "The unique identifier of the Amazon Q Business application environment instance",
+            "The name or ID of the cluster of the compute node group",
           args: {
             name: "string",
           },
         },
         {
-          name: "--app-id",
-          description: "The unique identifier of the Q App to delete",
+          name: "--compute-node-group-identifier",
+          description: "The name or ID of the compute node group to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate 1 for you",
           args: {
             name: "string",
           },
@@ -278,22 +357,28 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "disassociate-library-item-review",
+      name: "delete-queue",
       description:
-        "Removes a rating or review previously submitted by the user for a library item",
+        "Deletes a job queue. If the compute node group associated with this queue isn't associated with any other queues, Amazon Web Services PCS terminates all the compute nodes for this queue",
       options: [
         {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
+          name: "--cluster-identifier",
+          description: "The name or ID of the cluster of the queue",
           args: {
             name: "string",
           },
         },
         {
-          name: "--library-item-id",
+          name: "--queue-identifier",
+          description: "The name or ID of the queue to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--client-token",
           description:
-            "The unique identifier of the library item to remove the review from",
+            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate 1 for you",
           args: {
             name: "string",
           },
@@ -318,22 +403,13 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "disassociate-q-app-from-user",
+      name: "get-cluster",
       description:
-        "Disassociates a Q App from a user removing the user's access to run the Q App",
+        "Returns detailed information about a running cluster in your account. This API action provides networking information, endpoint information for communication with the scheduler, and provisioning status",
       options: [
         {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--app-id",
-          description:
-            "The unique identifier of the Q App to disassociate from the user",
+          name: "--cluster-identifier",
+          description: "The name or ID of the cluster of the queue",
           args: {
             name: "string",
           },
@@ -358,29 +434,20 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "get-library-item",
+      name: "get-compute-node-group",
       description:
-        "Retrieves details about a library item for an Amazon Q App, including its metadata, categories, ratings, and usage statistics",
+        "Returns detailed information about a compute node group. This API action provides networking information, EC2 instance type, compute node group status, and scheduler (such as Slurm) configuration",
       options: [
         {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
+          name: "--cluster-identifier",
+          description: "The name or ID of the cluster",
           args: {
             name: "string",
           },
         },
         {
-          name: "--library-item-id",
-          description: "The unique identifier of the library item to retrieve",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--app-id",
-          description:
-            "The unique identifier of the Amazon Q App associated with the library item",
+          name: "--compute-node-group-identifier",
+          description: "The name or ID of the compute node group",
           args: {
             name: "string",
           },
@@ -405,21 +472,20 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "get-q-app",
+      name: "get-queue",
       description:
-        "Retrieves the full details of an Q App, including its definition specifying the cards and flow",
+        "Returns detailed information about a queue. The information includes the compute node groups that the queue uses to schedule jobs",
       options: [
         {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
+          name: "--cluster-identifier",
+          description: "The name or ID of the cluster of the queue",
           args: {
             name: "string",
           },
         },
         {
-          name: "--app-id",
-          description: "The unique identifier of the Q App to retrieve",
+          name: "--queue-identifier",
+          description: "The name or ID of the queue",
           args: {
             name: "string",
           },
@@ -444,155 +510,23 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "get-q-app-session",
-      description:
-        "Retrieves the current state and results for an active session of an Amazon Q App",
+      name: "list-clusters",
+      description: "Returns a list of running clusters in your account",
       options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--session-id",
-          description: "The unique identifier of the Q App session to retrieve",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "import-document",
-      description:
-        "Uploads a file that can then be used either as a default in a FileUploadCard from Q App definition or as a file that is used inside a single Q App run. The purpose of the document is determined by a scope parameter that indicates whether it is at the app definition level or at the app session level",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--card-id",
-          description:
-            "The unique identifier of the card the file is associated with, if applicable",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--app-id",
-          description:
-            "The unique identifier of the Q App the file is associated with",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--file-contents-base64",
-          description: "The base64-encoded contents of the file to upload",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--file-name",
-          description: "The name of the file being uploaded",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--scope",
-          description:
-            "Whether the file is associated with an Q App definition or a specific Q App session",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--session-id",
-          description:
-            "The unique identifier of the Q App session the file is associated with, if applicable",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "list-library-items",
-      description:
-        "Lists the library items for Amazon Q Apps that are published and available for users in your Amazon Web Services account",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--limit",
-          description:
-            "The maximum number of library items to return in the response",
-          args: {
-            name: "integer",
-          },
-        },
         {
           name: "--next-token",
-          description: "The token to request the next page of results",
+          description:
+            "The value of nextToken is a unique pagination token for each page of results returned. If nextToken is returned, there are more results available. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 24 hours. Using an expired pagination token returns an HTTP 400 InvalidToken error",
           args: {
             name: "string",
           },
         },
         {
-          name: "--category-id",
-          description: "Optional category to filter the library items by",
+          name: "--max-results",
+          description:
+            "The maximum number of results that are returned per call. You can use nextToken to obtain further pages of results. The default is 10 results, and the maximum allowed page size is 100 results. A value of 0 uses the default",
           args: {
-            name: "string",
+            name: "integer",
           },
         },
         {
@@ -639,30 +573,102 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "list-q-apps",
+      name: "list-compute-node-groups",
       description:
-        "Lists the Amazon Q Apps owned by or associated with the user either because they created it or because they used it from the library in the past. The user identity is extracted from the credentials used to invoke this operation",
+        "Returns a list of all compute node groups associated with a cluster",
       options: [
         {
-          name: "--instance-id",
+          name: "--cluster-identifier",
           description:
-            "The unique identifier of the Amazon Q Business application environment instance",
+            "The name or ID of the cluster to list compute node groups for",
           args: {
             name: "string",
           },
         },
         {
-          name: "--limit",
-          description: "The maximum number of Q Apps to return in the response",
+          name: "--next-token",
+          description:
+            "The value of nextToken is a unique pagination token for each page of results returned. If nextToken is returned, there are more results available. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 24 hours. Using an expired pagination token returns an HTTP 400 InvalidToken error",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results that are returned per call. You can use nextToken to obtain further pages of results. The default is 10 results, and the maximum allowed page size is 100 results. A value of 0 uses the default",
           args: {
             name: "integer",
           },
         },
         {
-          name: "--next-token",
-          description: "The token to request the next page of results",
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-queues",
+      description: "Returns a list of all queues associated with a cluster",
+      options: [
+        {
+          name: "--cluster-identifier",
+          description: "The name or ID of the cluster to list queues for",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The value of nextToken is a unique pagination token for each page of results returned. If nextToken is returned, there are more results available. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 24 hours. Using an expired pagination token returns an HTTP 400 InvalidToken error",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results that are returned per call. You can use nextToken to obtain further pages of results. The default is 10 results, and the maximum allowed page size is 100 results. A value of 0 uses the default",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -710,12 +716,13 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-tags-for-resource",
-      description: "Lists the tags associated with an Amazon Q Apps resource",
+      description:
+        "Returns a list of all tags on an Amazon Web Services PCS resource",
       options: [
         {
           name: "--resource-arn",
           description:
-            "The Amazon Resource Name (ARN) of the resource whose tags should be listed",
+            "The Amazon Resource Name (ARN) of the resource for which to list tags",
           args: {
             name: "string",
           },
@@ -740,123 +747,21 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "predict-q-app",
+      name: "register-compute-node-group-instance",
       description:
-        "Generates an Amazon Q App definition based on either a conversation or a problem statement provided as input.The resulting app definition can be used to call CreateQApp. This API doesn't create Amazon Q Apps directly",
+        "This API action isn't intended for you to use.  Amazon Web Services PCS uses this API action to register the compute nodes it launches in your account",
       options: [
         {
-          name: "--instance-id",
+          name: "--cluster-identifier",
           description:
-            "The unique identifier of the Amazon Q Business application environment instance",
+            "The name or ID of the cluster to register the compute node group instance in",
           args: {
             name: "string",
           },
         },
         {
-          name: "--options",
-          description:
-            "The input to generate the Q App definition from, either a conversation or problem statement",
-          args: {
-            name: "structure",
-          },
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "start-q-app-session",
-      description:
-        "Starts a new session for an Amazon Q App, allowing inputs to be provided and the app to be run.  Each Q App session will be condensed into a single conversation in the web experience",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--app-id",
-          description:
-            "The unique identifier of the Q App to start a session for",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--app-version",
-          description: "The version of the Q App to use for the session",
-          args: {
-            name: "integer",
-          },
-        },
-        {
-          name: "--initial-values",
-          description:
-            "Optional initial input values to provide for the Q App session",
-          args: {
-            name: "list",
-          },
-        },
-        {
-          name: "--tags",
-          description: "Optional tags to associate with the new Q App session",
-          args: {
-            name: "map",
-          },
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "stop-q-app-session",
-      description:
-        "Stops an active session for an Amazon Q App.This deletes all data related to the session and makes it invalid for future uses. The results of the session will be persisted as part of the conversation",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--session-id",
-          description: "The unique identifier of the Q App session to stop",
+          name: "--bootstrap-id",
+          description: "The client-generated token to allow for retries",
           args: {
             name: "string",
           },
@@ -882,18 +787,20 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "tag-resource",
-      description: "Associates tags with an Amazon Q Apps resource",
+      description:
+        "Adds or edits tags on an Amazon Web Services PCS resource. Each tag consists of a tag key and a tag value. The tag key and tag value are case-sensitive strings. The tag value can be an empty (null) string. To add a tag, specify a new tag key and a tag value. To edit a tag, specify an existing tag key and a new tag value",
       options: [
         {
           name: "--resource-arn",
-          description: "The Amazon Resource Name (ARN) of the resource to tag",
+          description: "The Amazon Resource Name (ARN) of the resource",
           args: {
             name: "string",
           },
         },
         {
           name: "--tags",
-          description: "The tags to associate with the resource",
+          description:
+            "1 or more tags added to the resource. Each tag consists of a tag key and tag value. The tag value is optional and can be an empty string",
           args: {
             name: "map",
           },
@@ -919,19 +826,20 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "untag-resource",
-      description: "Disassociates tags from an Amazon Q Apps resource",
+      description:
+        "Deletes tags from an Amazon Web Services PCS resource. To delete a tag, specify the tag key and the Amazon Resource Name (ARN) of the Amazon Web Services PCS resource",
       options: [
         {
           name: "--resource-arn",
-          description:
-            "The Amazon Resource Name (ARN) of the resource to disassociate the tag from",
+          description: "The Amazon Resource Name (ARN) of the resource",
           args: {
             name: "string",
           },
         },
         {
           name: "--tag-keys",
-          description: "The keys of the tags to disassociate from the resource",
+          description:
+            "1 or more tag keys to remove from the resource. Specify only tag keys and not tag values",
           args: {
             name: "list",
           },
@@ -956,148 +864,97 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "update-library-item",
-      description: "Updates the library item for an Amazon Q App",
+      name: "update-compute-node-group",
+      description:
+        "Updates a compute node group. You can update many of the fields related to your compute node group including the configurations for networking, compute nodes, and settings specific to your scheduler (such as Slurm)",
       options: [
         {
-          name: "--instance-id",
+          name: "--cluster-identifier",
           description:
-            "The unique identifier of the Amazon Q Business application environment instance",
+            "The name or ID of the cluster of the compute node group",
           args: {
             name: "string",
           },
         },
         {
-          name: "--library-item-id",
-          description: "The unique identifier of the library item to update",
+          name: "--compute-node-group-identifier",
+          description: "The name or ID of the compute node group",
           args: {
             name: "string",
           },
         },
         {
-          name: "--status",
+          name: "--ami-id",
           description:
-            'The new status to set for the library item, such as "Published" or "Hidden"',
+            "The ID of the Amazon Machine Image (AMI) that Amazon Web Services PCS uses to launch instances. If not provided, Amazon Web Services PCS uses the AMI ID specified in the custom launch template",
           args: {
             name: "string",
           },
         },
         {
-          name: "--categories",
-          description: "The new categories to associate with the library item",
+          name: "--subnet-ids",
+          description:
+            "The list of subnet IDs where the compute node group provisions instances. The subnets must be in the same VPC as the cluster",
           args: {
             name: "list",
           },
         },
         {
-          name: "--cli-input-json",
+          name: "--custom-launch-template",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "update-library-item-metadata",
-      description:
-        "Updates the verification status of a library item for an Amazon Q App",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--library-item-id",
-          description: "The unique identifier of the updated library item",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--is-verified",
-          description: "The verification status of the library item",
-        },
-        {
-          name: "--no-is-verified",
-          description: "The verification status of the library item",
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "update-q-app",
-      description:
-        "Updates an existing Amazon Q App, allowing modifications to its title, description, and definition",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--app-id",
-          description: "The unique identifier of the Q App to update",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--title",
-          description: "The new title for the Q App",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--description",
-          description: "The new description for the Q App",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--app-definition",
-          description:
-            "The new definition specifying the cards and flow for the Q App",
+            "An Amazon EC2 launch template Amazon Web Services PCS uses to launch compute nodes",
           args: {
             name: "structure",
           },
         },
         {
+          name: "--purchase-option",
+          description:
+            "Specifies how EC2 instances are purchased on your behalf. Amazon Web Services PCS supports On-Demand and Spot instances. For more information, see Instance purchasing options in the Amazon Elastic Compute Cloud User Guide. If you don't provide this option, it defaults to On-Demand",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--spot-options",
+          description:
+            "Additional configuration when you specify SPOT as the purchaseOption for the CreateComputeNodeGroup API action",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--scaling-configuration",
+          description:
+            "Specifies the boundaries of the compute node group auto scaling",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--iam-instance-profile-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the IAM instance profile used to pass an IAM role when launching EC2 instances. The role contained in your instance profile must have pcs:RegisterComputeNodeGroupInstance permissions attached to provision instances correctly",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--slurm-configuration",
+          description: "Additional options related to the Slurm scheduler",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate 1 for you",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -1117,32 +974,38 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "update-q-app-session",
+      name: "update-queue",
       description:
-        "Updates the session for a given Q App sessionId. This is only valid when at least one card of the session is in the WAITING state. Data for each WAITING card can be provided as input. If inputs are not provided, the call will be accepted but session will not move forward. Inputs for cards that are not in the WAITING status will be ignored",
+        "Updates the compute node group configuration of a queue. Use this API to change the compute node groups that the queue can send jobs to",
       options: [
         {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
+          name: "--cluster-identifier",
+          description: "The name or ID of the cluster of the queue",
           args: {
             name: "string",
           },
         },
         {
-          name: "--session-id",
-          description:
-            "The unique identifier of the Q App session to provide input for",
+          name: "--queue-identifier",
+          description: "The name or ID of the queue",
           args: {
             name: "string",
           },
         },
         {
-          name: "--values",
+          name: "--compute-node-group-configurations",
           description:
-            "The input values to provide for the current state of the Q App session",
+            "The list of compute node group configurations to associate with the queue. Queues assign jobs to associated compute node groups",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate 1 for you",
+          args: {
+            name: "string",
           },
         },
         {
@@ -1166,4 +1029,5 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
+
 export default completionSpec;

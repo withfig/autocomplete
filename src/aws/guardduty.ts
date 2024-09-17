@@ -218,7 +218,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The ID of the detector belonging to the GuardDuty account that you want to create a filter for",
+            "The detector ID associated with the GuardDuty account for which you want to create a filter",
           args: {
             name: "string",
           },
@@ -304,7 +304,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector of the GuardDuty account that you want to create an IPSet for",
+            "The unique ID of the detector of the GuardDuty account for which you want to create an IPSet",
           args: {
             name: "string",
           },
@@ -389,7 +389,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--role",
           description:
-            "IAM role with permissions required to scan and add tags to the associated protected resource",
+            "Amazon Resource Name (ARN) of the IAM role that has the permissions to scan and add tags to the associated protected resource",
           args: {
             name: "string",
           },
@@ -444,7 +444,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector of the GuardDuty account that you want to associate member accounts with",
+            "The unique ID of the detector of the GuardDuty account for which you want to associate member accounts",
           args: {
             name: "string",
           },
@@ -479,7 +479,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-publishing-destination",
       description:
-        "Creates a publishing destination to export findings to. The resource to export findings to must exist before you use this operation",
+        "Creates a publishing destination where you can export your GuardDuty findings. Before you start exporting the findings, the destination resource must exist",
       options: [
         {
           name: "--detector-id",
@@ -538,7 +538,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--detector-id",
-          description: "The ID of the detector to create sample findings for",
+          description:
+            "The ID of the detector for which you need to create sample findings",
           args: {
             name: "string",
           },
@@ -577,7 +578,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector of the GuardDuty account that you want to create a threatIntelSet for",
+            "The unique ID of the detector of the GuardDuty account for which you want to create a ThreatIntelSet",
           args: {
             name: "string",
           },
@@ -718,7 +719,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector that the filter is associated with",
+            "The unique ID of the detector that is associated with the filter",
           args: {
             name: "string",
           },
@@ -939,7 +940,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector that the threatIntelSet is associated with",
+            "The unique ID of the detector that is associated with the threatIntelSet",
           args: {
             name: "string",
           },
@@ -1067,7 +1068,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The ID of the detector to retrieve information about the delegated administrator from",
+            "The detector ID of the delegated administrator for which you need to retrieve the information",
           args: {
             name: "string",
           },
@@ -1353,8 +1354,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--detector-id",
-          description:
-            "The unique ID of the GuardDuty detector associated to the coverage statistics",
+          description: "The unique ID of the GuardDuty detector",
           args: {
             name: "string",
           },
@@ -1397,7 +1397,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-detector",
       description:
-        "Retrieves an Amazon GuardDuty detector specified by the detectorId. There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see Regions and endpoints",
+        "Retrieves a GuardDuty detector specified by the detectorId. There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see Regions and endpoints",
       options: [
         {
           name: "--detector-id",
@@ -1433,7 +1433,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector that the filter is associated with",
+            "The unique ID of the detector that is associated with this filter",
           args: {
             name: "string",
           },
@@ -1513,12 +1513,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-findings-statistics",
       description:
-        "Lists Amazon GuardDuty findings statistics for the specified detector ID. There might be regional differences because some flags might not be available in all the Regions where GuardDuty is currently supported. For more information, see Regions and endpoints",
+        "Lists GuardDuty findings statistics for the specified detector ID. You must provide either findingStatisticTypes or groupBy parameter, and not both. You can use the maxResults and orderBy parameters only when using groupBy. There might be regional differences because some flags might not be available in all the Regions where GuardDuty is currently supported. For more information, see Regions and endpoints",
       options: [
         {
           name: "--detector-id",
           description:
-            "The ID of the detector that specifies the GuardDuty service whose findings' statistics you want to retrieve",
+            "The ID of the detector whose findings statistics you want to retrieve",
           args: {
             name: "string",
           },
@@ -1536,6 +1536,30 @@ const completionSpec: Fig.Spec = {
             "Represents the criteria that is used for querying findings",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--group-by",
+          description:
+            "Displays the findings statistics grouped by one of the listed valid values",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--order-by",
+          description:
+            "Displays the sorted findings in the requested order. The default value of orderBy is DESC. You can use this parameter only with the groupBy parameter",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to be returned in the response. The default value is 25. You can use this parameter only with the groupBy parameter",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -1564,7 +1588,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector that the IPSet is associated with",
+            "The unique ID of the detector that is associated with the IPSet",
           args: {
             name: "string",
           },
@@ -1659,7 +1683,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector that the scan setting is associated with",
+            "The unique ID of the detector that is associated with this scan",
           args: {
             name: "string",
           },
@@ -1729,7 +1753,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--account-ids",
-          description: "The account ID of the member account",
+          description: "A list of member account IDs",
           args: {
             name: "list",
           },
@@ -1865,7 +1889,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector that the threatIntelSet is associated with",
+            "The unique ID of the detector that is associated with the threatIntelSet",
           args: {
             name: "string",
           },
@@ -1975,7 +1999,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector of the GuardDuty account that you want to invite members with",
+            "The unique ID of the detector of the GuardDuty account with which you want to invite members",
           args: {
             name: "string",
           },
@@ -2184,7 +2208,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector that the filter is associated with",
+            "The unique ID of the detector that is associated with the filter",
           args: {
             name: "string",
           },
@@ -2264,7 +2288,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--finding-criteria",
           description:
-            "Represents the criteria used for querying findings. Valid values include:   JSON field name   accountId   region   confidence   id   resource.accessKeyDetails.accessKeyId   resource.accessKeyDetails.principalId   resource.accessKeyDetails.userName   resource.accessKeyDetails.userType   resource.instanceDetails.iamInstanceProfile.id   resource.instanceDetails.imageId   resource.instanceDetails.instanceId   resource.instanceDetails.networkInterfaces.ipv6Addresses   resource.instanceDetails.networkInterfaces.privateIpAddresses.privateIpAddress   resource.instanceDetails.networkInterfaces.publicDnsName   resource.instanceDetails.networkInterfaces.publicIp   resource.instanceDetails.networkInterfaces.securityGroups.groupId   resource.instanceDetails.networkInterfaces.securityGroups.groupName   resource.instanceDetails.networkInterfaces.subnetId   resource.instanceDetails.networkInterfaces.vpcId   resource.instanceDetails.tags.key   resource.instanceDetails.tags.value   resource.resourceType   service.action.actionType   service.action.awsApiCallAction.api   service.action.awsApiCallAction.callerType   service.action.awsApiCallAction.remoteIpDetails.city.cityName   service.action.awsApiCallAction.remoteIpDetails.country.countryName   service.action.awsApiCallAction.remoteIpDetails.ipAddressV4   service.action.awsApiCallAction.remoteIpDetails.organization.asn   service.action.awsApiCallAction.remoteIpDetails.organization.asnOrg   service.action.awsApiCallAction.serviceName   service.action.dnsRequestAction.domain   service.action.dnsRequestAction.domainWithSuffix   service.action.networkConnectionAction.blocked   service.action.networkConnectionAction.connectionDirection   service.action.networkConnectionAction.localPortDetails.port   service.action.networkConnectionAction.protocol   service.action.networkConnectionAction.remoteIpDetails.country.countryName   service.action.networkConnectionAction.remoteIpDetails.ipAddressV4   service.action.networkConnectionAction.remoteIpDetails.organization.asn   service.action.networkConnectionAction.remoteIpDetails.organization.asnOrg   service.action.networkConnectionAction.remotePortDetails.port   service.additionalInfo.threatListName   service.archived When this attribute is set to 'true', only archived findings are listed. When it's set to 'false', only unarchived findings are listed. When this attribute is not set, all existing findings are listed.   service.resourceRole   severity   type   updatedAt Type: Timestamp in Unix Epoch millisecond format: 1486685375000",
+            "Represents the criteria used for querying findings. Valid values include:   JSON field name   accountId   region   confidence   id   resource.accessKeyDetails.accessKeyId   resource.accessKeyDetails.principalId   resource.accessKeyDetails.userName   resource.accessKeyDetails.userType   resource.instanceDetails.iamInstanceProfile.id   resource.instanceDetails.imageId   resource.instanceDetails.instanceId   resource.instanceDetails.networkInterfaces.ipv6Addresses   resource.instanceDetails.networkInterfaces.privateIpAddresses.privateIpAddress   resource.instanceDetails.networkInterfaces.publicDnsName   resource.instanceDetails.networkInterfaces.publicIp   resource.instanceDetails.networkInterfaces.securityGroups.groupId   resource.instanceDetails.networkInterfaces.securityGroups.groupName   resource.instanceDetails.networkInterfaces.subnetId   resource.instanceDetails.networkInterfaces.vpcId   resource.instanceDetails.tags.key   resource.instanceDetails.tags.value   resource.resourceType   service.action.actionType   service.action.awsApiCallAction.api   service.action.awsApiCallAction.callerType   service.action.awsApiCallAction.remoteIpDetails.city.cityName   service.action.awsApiCallAction.remoteIpDetails.country.countryName   service.action.awsApiCallAction.remoteIpDetails.ipAddressV4   service.action.awsApiCallAction.remoteIpDetails.organization.asn   service.action.awsApiCallAction.remoteIpDetails.organization.asnOrg   service.action.awsApiCallAction.serviceName   service.action.dnsRequestAction.domain   service.action.dnsRequestAction.domainWithSuffix   service.action.networkConnectionAction.blocked   service.action.networkConnectionAction.connectionDirection   service.action.networkConnectionAction.localPortDetails.port   service.action.networkConnectionAction.protocol   service.action.networkConnectionAction.remoteIpDetails.country.countryName   service.action.networkConnectionAction.remoteIpDetails.ipAddressV4   service.action.networkConnectionAction.remoteIpDetails.organization.asn   service.action.networkConnectionAction.remoteIpDetails.organization.asnOrg   service.action.networkConnectionAction.remotePortDetails.port   service.additionalInfo.threatListName   service.archived When this attribute is set to 'true', only archived findings are listed. When it's set to 'false', only unarchived findings are listed. When this attribute is not set, all existing findings are listed.   service.ebsVolumeScanDetails.scanId   service.resourceRole   severity   type   updatedAt Type: Timestamp in Unix Epoch millisecond format: 1486685375000",
           args: {
             name: "structure",
           },
@@ -2343,7 +2367,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector that the IPSet is associated with",
+            "The unique ID of the detector that is associated with IPSet",
           args: {
             name: "string",
           },
@@ -2511,7 +2535,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector the member is associated with",
+            "The unique ID of the detector that is associated with the member",
           args: {
             name: "string",
           },
@@ -2655,7 +2679,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The ID of the detector to retrieve publishing destinations for",
+            "The detector ID for which you want to retrieve the publishing destination",
           args: {
             name: "string",
           },
@@ -2735,7 +2759,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector that the threatIntelSet is associated with",
+            "The unique ID of the detector that is associated with the threatIntelSet",
           args: {
             name: "string",
           },
@@ -3168,7 +3192,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The ID of the detector associated with the findings to update feedback for",
+            "The ID of the detector that is associated with the findings for which you want to update the feedback",
           args: {
             name: "string",
           },
@@ -3293,7 +3317,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--role",
           description:
-            "IAM role with permissions required to scan and add tags to the associated protected resource",
+            "Amazon Resource Name (ARN) of the IAM role with permissions to scan and add tags to the associated protected resource",
           args: {
             name: "string",
           },

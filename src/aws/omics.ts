@@ -540,7 +540,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "create-run-group",
-      description: "Creates a run group",
+      description:
+        "You can optionally create a run group to limit the compute resources for the runs that you add to the group",
       options: [
         {
           name: "--name",
@@ -551,21 +552,24 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--max-cpus",
-          description: "The maximum number of CPUs to use in the group",
+          description:
+            "The maximum number of CPUs that can run concurrently across all active runs in the run group",
           args: {
             name: "integer",
           },
         },
         {
           name: "--max-runs",
-          description: "The maximum number of concurrent runs for the group",
+          description:
+            "The maximum number of runs that can be running at the same time",
           args: {
             name: "integer",
           },
         },
         {
           name: "--max-duration",
-          description: "A maximum run time for the group in minutes",
+          description:
+            "The maximum time for each run (in minutes). If a run exceeds the maximum run time, the run fails automatically",
           args: {
             name: "integer",
           },
@@ -587,7 +591,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--max-gpus",
-          description: "The maximum GPUs that can be used by a run group",
+          description:
+            "The maximum number of GPUs that can run concurrently across all active runs in the run group",
           args: {
             name: "integer",
           },
@@ -689,7 +694,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-share",
       description:
-        "Creates a cross-account shared resource. The resource owner makes an offer to share the resource with the principal subscriber (an AWS user with a different account than the resource owner). The following resources support cross-account sharing:   Healthomics variant stores   Healthomics annotation stores   Private workflows",
+        "Creates a cross-account shared resource. The resource owner makes an offer to share the resource with the principal subscriber (an AWS user with a different account than the resource owner). The following resources support cross-account sharing:   HealthOmics variant stores   HealthOmics annotation stores   Private workflows",
       options: [
         {
           name: "--resource-arn",
@@ -845,7 +850,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--storage-capacity",
-          description: "The storage capacity for the workflow in gibibytes",
+          description:
+            "The default storage capacity for the workflow runs, in gibibytes",
           args: {
             name: "integer",
           },

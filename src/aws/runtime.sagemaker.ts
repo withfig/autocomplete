@@ -95,6 +95,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--session-id",
+          description:
+            "Creates a stateful session or identifies an existing one. You can do one of the following:   Create a stateful session by specifying the value NEW_SESSION.   Send your request to an existing stateful session by specifying the ID of that session.   With a stateful session, you can send multiple requests to a stateful model. When you create a session with a stateful model, the model must create the session ID and set the expiration time. The model must also provide that information in the response to your request. You can get the ID and timestamp from the NewSessionId response parameter. For any subsequent request where you specify that session ID, SageMaker routes the request to the same instance that supports the session",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "outfile",
           description: "Filename where the content will be saved",
           args: {

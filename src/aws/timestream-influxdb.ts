@@ -553,6 +553,22 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--db-instance-type",
+          description:
+            "The Timestream for InfluxDB DB instance type to run InfluxDB on",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--deployment-type",
+          description:
+            "Specifies whether the DB instance will be deployed as a standalone instance or with a Multi-AZ standby for high availability",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
