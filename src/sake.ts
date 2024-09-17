@@ -27,6 +27,35 @@ const completionSpec: Fig.Spec = {
   name: "sake",
   description:
     "🍶 Swift-based utility for managing command execution with dependencies and conditions, inspired by Make",
+  generateSpec: async (_tokens, executeShellCommand) => {
+    const { stdout } = await executeShellCommand({
+      command: "sake",
+      args: ["list", "--json"],
+    });
+    const commands = JSON.parse(stdout);
+    const subcommands = Object.keys(commands.groups).reduce(
+      (acc, groupName) => {
+        const group = commands.groups[groupName];
+        return [
+          ...acc,
+          ...group.map((command) => {
+            return {
+              name: command.name,
+              description: command.description || "The command to run",
+              priority: 76,
+              icon: "🍶",
+              options: [...commonOptions, ...commonCommandSpecificOptions],
+            };
+          }),
+        ];
+      },
+      []
+    );
+    return {
+      name: "sake",
+      subcommands,
+    };
+  },
   subcommands: [
     {
       name: "init",
@@ -61,7 +90,7 @@ const completionSpec: Fig.Spec = {
         description: "The command to run",
         generators: {
           script: ["sake", "list", "--json"],
-          postProcess: function (output) {
+          postProcess: (output) => {
             const commands = JSON.parse(output);
             return Object.keys(commands.groups).reduce((acc, groupName) => {
               const group = commands.groups[groupName];
@@ -72,6 +101,7 @@ const completionSpec: Fig.Spec = {
                     name: command.name,
                     description: command.description,
                     priority: 76,
+                    icon: "🍶",
                   };
                 }),
               ];
