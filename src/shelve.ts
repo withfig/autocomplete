@@ -1,6 +1,6 @@
 const shelveSubcommands: Fig.Subcommand[] = [
   {
-    name: ["create", "init", "c"],
+    name: ["create", "c", "init"],
     description: "Create a new project",
     icon: "🚀",
     options: [
@@ -14,28 +14,13 @@ const shelveSubcommands: Fig.Subcommand[] = [
     ],
   },
   {
-    name: ["login", "li"],
-    description: "Authenticate with Shelve",
-    icon: "🔑",
-  },
-  {
-    name: ["logout", "lo"],
-    description: "Logout the current authenticated user",
-    icon: "🔓",
-  },
-  {
-    name: ["whoami", "w"],
-    description: "Shows the username of the currently logged-in user",
-    icon: "👤",
-  },
-  {
     name: ["pull", "pl"],
-    description: "Retrieve the environment variables from Shelve",
+    description: "Pull variables for specified environment to .env file",
     icon: "📥",
     options: [
       {
         name: ["--env", "-e"],
-        description: "Retrieve the environment variables from Shelve",
+        description: "Specify the environment",
         args: {
           name: "environment",
         },
@@ -44,12 +29,12 @@ const shelveSubcommands: Fig.Subcommand[] = [
   },
   {
     name: ["push", "ps"],
-    description: "Send the environment variables to Shelve",
+    description: "Push variables for specified environment to Shelve",
     icon: "📤",
     options: [
       {
         name: ["--env", "-e"],
-        description: "Send the environment variables to Shelve",
+        description: "Specify the environment",
         args: {
           name: "environment",
         },
@@ -57,23 +42,14 @@ const shelveSubcommands: Fig.Subcommand[] = [
     ],
   },
   {
-    name: ["link", "l"],
-    description: "Link the current directory with a Shelve project",
-    icon: "🔗",
-    options: [
-      {
-        name: ["--name", "-n"],
-        description: "Name of the project",
-        args: {
-          name: "project-name",
-        },
-      },
-    ],
+    name: ["generate", "g"],
+    description: "Generate resources for a project",
+    icon: "🔄",
   },
   {
-    name: ["unlink", "ul"],
-    description: "Unlink the current directory from a Shelve project",
-    icon: "🔗",
+    name: ["config", "cf"],
+    description: "Show the current configuration",
+    icon: "⚙️",
   },
   {
     name: ["--help", "-h"],
