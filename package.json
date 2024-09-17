@@ -64,7 +64,8 @@
   "files": [
     "build/**/*.js",
     "build/**/*.css",
-    "build/**/*.json"
+    "build/**/*.json",
+    "icons/*.png"
   ],
   "author": "",
   "license": "ISC",
