@@ -782,6 +782,22 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--orchestrator",
+          description:
+            'The type of orchestrator to use for the SageMaker HyperPod cluster. Currently, the only supported value is "eks", which is to use an Amazon Elastic Kubernetes Service (EKS) cluster as the orchestrator',
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--node-recovery",
+          description:
+            "The node recovery mode for the SageMaker HyperPod cluster. When set to Automatic, SageMaker HyperPod will automatically reboot or replace faulty nodes when issues are detected. When set to None, cluster administrators will need to manually manage any faulty cluster instances",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -4685,7 +4701,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--environment",
           description:
-            "The environment variables to set in the Docker container. We support up to 16 key and values entries in the map",
+            "The environment variables to set in the Docker container. Don't include any sensitive data in your environment variables. We support up to 16 key and values entries in the map",
           args: {
             name: "map",
           },
@@ -19186,6 +19202,14 @@ const completionSpec: Fig.Spec = {
           description: "Specify the instance groups to update",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--node-recovery",
+          description:
+            "The node recovery mode to be applied to the SageMaker HyperPod cluster",
+          args: {
+            name: "string",
           },
         },
         {

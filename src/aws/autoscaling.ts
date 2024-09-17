@@ -432,7 +432,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--health-check-type",
           description:
-            "A comma-separated value string of one or more health check types. The valid values are EC2, ELB, and VPC_LATTICE. EC2 is the default health check and cannot be disabled. For more information, see Health checks for instances in an Auto Scaling group in the Amazon EC2 Auto Scaling User Guide. Only specify EC2 if you must clear a value that was previously set",
+            "A comma-separated value string of one or more health check types. The valid values are EC2, EBS, ELB, and VPC_LATTICE. EC2 is the default health check and cannot be disabled. For more information, see Health checks for instances in an Auto Scaling group in the Amazon EC2 Auto Scaling User Guide. Only specify EC2 if you must clear a value that was previously set",
           args: {
             name: "string",
           },
@@ -3311,7 +3311,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "set-instance-health",
       description:
-        "Sets the health status of the specified instance. For more information, see Health checks for instances in an Auto Scaling group in the Amazon EC2 Auto Scaling User Guide",
+        "Sets the health status of the specified instance. For more information, see Set up a custom health check for your Auto Scaling group in the Amazon EC2 Auto Scaling User Guide",
       options: [
         {
           name: "--instance-id",
@@ -3618,7 +3618,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--health-check-type",
           description:
-            "A comma-separated value string of one or more health check types. The valid values are EC2, ELB, and VPC_LATTICE. EC2 is the default health check and cannot be disabled. For more information, see Health checks for instances in an Auto Scaling group in the Amazon EC2 Auto Scaling User Guide. Only specify EC2 if you must clear a value that was previously set",
+            "A comma-separated value string of one or more health check types. The valid values are EC2, EBS, ELB, and VPC_LATTICE. EC2 is the default health check and cannot be disabled. For more information, see Health checks for instances in an Auto Scaling group in the Amazon EC2 Auto Scaling User Guide. Only specify EC2 if you must clear a value that was previously set",
           args: {
             name: "string",
           },

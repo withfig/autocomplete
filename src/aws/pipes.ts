@@ -97,6 +97,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--kms-key-identifier",
+          description:
+            "The identifier of the KMS customer managed key for EventBridge to use, if you choose to use a customer managed key to encrypt pipe data. The identifier can be the key Amazon Resource Name (ARN), KeyId, key alias, or key alias ARN. If you do not specify a customer managed key identifier, EventBridge uses an Amazon Web Services owned key to encrypt pipe data. For more information, see Managing keys in the Key Management Service Developer Guide",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -518,6 +526,14 @@ const completionSpec: Fig.Spec = {
           description: "The logging configuration settings for the pipe",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--kms-key-identifier",
+          description:
+            "The identifier of the KMS customer managed key for EventBridge to use, if you choose to use a customer managed key to encrypt pipe data. The identifier can be the key Amazon Resource Name (ARN), KeyId, key alias, or key alias ARN. To update a pipe that is using the default Amazon Web Services owned key to use a customer managed key instead, or update a pipe that is using a customer managed key to use a different customer managed key, specify a customer managed key identifier. To update a pipe that is using a customer managed key to use the default Amazon Web Services owned key, specify an empty string. For more information, see Managing keys in the Key Management Service Developer Guide",
+          args: {
+            name: "string",
           },
         },
         {

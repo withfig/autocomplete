@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "pca-connector-scep",
   description:
-    "Connector for SCEP (Preview) is in preview release for Amazon Web Services Private Certificate Authority and is subject to change.  Connector for SCEP (Preview) creates a connector between Amazon Web Services Private CA and your SCEP-enabled clients and devices. For more information, see Connector for SCEP in the Amazon Web Services Private CA User Guide",
+    "Connector for SCEP creates a connector between Amazon Web Services Private CA and your SCEP-enabled clients and devices. For more information, see Connector for SCEP in the Amazon Web Services Private CA User Guide",
   subcommands: [
     {
       name: "create-challenge",

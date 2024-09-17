@@ -49,6 +49,21 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--session-id",
+          description: "The session identifier of the query",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--session-keep-alive-seconds",
+          description:
+            "The number of seconds to keep the session alive after the query finishes. The maximum time a session can keep alive is 24 hours. After 24 hours, the session is forced closed and the query is terminated",
+          args: {
+            name: "integer",
+          },
+        },
+        {
           name: "--sqls",
           description:
             "One or more SQL statements to run.  The SQL statements are run as a single transaction. They run serially in the order of the array. Subsequent SQL statements don't start until the previous statement in the array completes. If any SQL statement fails, then because they are run as one transaction, all work is rolled back.</p>",
@@ -343,6 +358,21 @@ const completionSpec: Fig.Spec = {
             "The name or ARN of the secret that enables access to the database. This parameter is required when authenticating using Secrets Manager",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--session-id",
+          description: "The session identifier of the query",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--session-keep-alive-seconds",
+          description:
+            "The number of seconds to keep the session alive after the query finishes. The maximum time a session can keep alive is 24 hours. After 24 hours, the session is forced closed and the query is terminated",
+          args: {
+            name: "integer",
           },
         },
         {
