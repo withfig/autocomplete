@@ -517,6 +517,26 @@ const completionSpec: Fig.Spec = {
             ],
         },
         {
+            name: 'stage-leads-db',
+            description: 'Clones the production leads database for staging',
+            args: {
+                name: 'flags',
+                description: 'Specific command to run',
+
+                suggestions: ['et-6086'],
+            },
+            options: [
+                {
+                    name: ['--help', '-h'],
+                    description: 'Show help for ff stage-leads-db',
+                },
+                {
+                    name: ['--delete', '-d'],
+                    description: 'Deletes the RDS',
+                },
+            ],
+        },
+        {
             name: 'stage-spf',
             description: 'Clones the production SPF database for staging',
             args: {
