@@ -114,7 +114,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--output", "-o"],
               description:
-                "The file to output the migrated config to, example usage: 'oh-my-posh config migrate --output ~/.config.omp.json'",
+                "The file to output the migrated config to, example usage: 'oh-my-posh config export --output ~/.config.omp.json'",
               args: {
                 name: "OUTPUT",
                 description: "The file to write to",
