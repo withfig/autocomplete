@@ -113,7 +113,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--foundation-model",
           description:
-            "The foundation model to be used for orchestration by the agent you create",
+            "The Amazon Resource Name (ARN) of the foundation model to be used for orchestration by the agent you create",
           args: {
             name: "string",
           },

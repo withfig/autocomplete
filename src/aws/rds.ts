@@ -2229,7 +2229,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--db-parameter-group-name",
           description:
-            "The name of the DB parameter group to associate with this DB instance. If you don't specify a value for DBParameterGroupName, then Amazon RDS uses the DBParameterGroup of the source DB instance for a same Region read replica, or the default DBParameterGroup for the specified DB engine for a cross-Region read replica. Specifying a parameter group for this operation is only supported for MySQL DB instances for cross-Region read replicas and for Oracle DB instances. It isn't supported for MySQL DB instances for same Region read replicas or for RDS Custom. Constraints:   Must be 1 to 255 letters, numbers, or hyphens.   First character must be a letter.   Can't end with a hyphen or contain two consecutive hyphens",
+            "The name of the DB parameter group to associate with this read replica DB instance. For Single-AZ or Multi-AZ DB instance read replica instances, if you don't specify a value for DBParameterGroupName, then Amazon RDS uses the DBParameterGroup of the source DB instance for a same Region read replica, or the default DBParameterGroup for the specified DB engine for a cross-Region read replica. For Multi-AZ DB cluster same Region read replica instances, if you don't specify a value for DBParameterGroupName, then Amazon RDS uses the default DBParameterGroup. Specifying a parameter group for this operation is only supported for MySQL DB instances for cross-Region read replicas, for Multi-AZ DB cluster read replica instances, and for Oracle DB instances. It isn't supported for MySQL DB instances for same Region read replicas or for RDS Custom. Constraints:   Must be 1 to 255 letters, numbers, or hyphens.   First character must be a letter.   Can't end with a hyphen or contain two consecutive hyphens",
           args: {
             name: "string",
           },
@@ -2859,7 +2859,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--compute-redundancy",
           description:
-            "Specifies whether to create standby instances for the DB shard group. Valid values are the following:   0 - Creates a single, primary DB instance for each physical shard. This is the default value, and the only one supported for the preview.   1 - Creates a primary DB instance and a standby instance in a different Availability Zone (AZ) for each physical shard.   2 - Creates a primary DB instance and two standby instances in different AZs for each physical shard",
+            "Specifies whether to create standby DB shard groups for the DB shard group. Valid values are the following:   0 - Creates a DB shard group without a standby DB shard group. This is the default value.   1 - Creates a DB shard group with a standby DB shard group in a different Availability Zone (AZ).   2 - Creates a DB shard group with two standby DB shard groups in two different AZs",
           args: {
             name: "integer",
           },
@@ -9951,6 +9951,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--compute-redundancy",
+          description:
+            "Specifies whether to create standby DB shard groups for the DB shard group. Valid values are the following:   0 - Creates a DB shard group without a standby DB shard group. This is the default value.   1 - Creates a DB shard group with a standby DB shard group in a different Availability Zone (AZ).   2 - Creates a DB shard group with two standby DB shard groups in two different AZs",
+          args: {
+            name: "integer",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -11838,7 +11846,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "restore-db-instance-from-db-snapshot",
       description:
-        "Creates a new DB instance from a DB snapshot. The target database is created from the source database restore point with most of the source's original configuration, including the default security group and DB parameter group. By default, the new DB instance is created as a Single-AZ deployment, except when the instance is a SQL Server instance that has an option group associated with mirroring. In this case, the instance becomes a Multi-AZ deployment, not a Single-AZ deployment. If you want to replace your original DB instance with the new, restored DB instance, then rename your original DB instance before you call the RestoreDBInstanceFromDBSnapshot operation. RDS doesn't allow two DB instances with the same name. After you have renamed your original DB instance with a different identifier, then you can pass the original name of the DB instance as the DBInstanceIdentifier in the call to the RestoreDBInstanceFromDBSnapshot operation. The result is that you replace the original DB instance with the DB instance created from the snapshot. If you are restoring from a shared manual DB snapshot, the DBSnapshotIdentifier must be the ARN of the shared DB snapshot.  This command doesn't apply to Aurora MySQL and Aurora PostgreSQL. For Aurora, use RestoreDBClusterFromSnapshot",
+        "Creates a new DB instance from a DB snapshot. The target database is created from the source database restore point with most of the source's original configuration, including the default security group and DB parameter group. By default, the new DB instance is created as a Single-AZ deployment, except when the instance is a SQL Server instance that has an option group associated with mirroring. In this case, the instance becomes a Multi-AZ deployment, not a Single-AZ deployment. If you want to replace your original DB instance with the new, restored DB instance, then rename your original DB instance before you call the RestoreDBInstanceFromDBSnapshot operation. RDS doesn't allow two DB instances with the same name. After you have renamed your original DB instance with a different identifier, then you can pass the original name of the DB instance as the DBInstanceIdentifier in the call to the RestoreDBInstanceFromDBSnapshot operation. The result is that you replace the original DB instance with the DB instance created from the snapshot. If you are restoring from a shared manual DB snapshot, the DBSnapshotIdentifier must be the ARN of the shared DB snapshot. To restore from a DB snapshot with an unsupported engine version, you must first upgrade the engine version of the snapshot. For more information about upgrading a RDS for MySQL DB snapshot engine version, see Upgrading a MySQL DB snapshot engine version. For more information about upgrading a RDS for PostgreSQL DB snapshot engine version, Upgrading a PostgreSQL DB snapshot engine version.  This command doesn't apply to Aurora MySQL and Aurora PostgreSQL. For Aurora, use RestoreDBClusterFromSnapshot",
       options: [
         {
           name: "--db-instance-identifier",

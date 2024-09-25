@@ -251,6 +251,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--pull-request-comment",
+          description:
+            "A toggle that specifies whether to enable or disable pull request comments for the sync configuration to be created",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -1208,6 +1216,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--trigger-resource-update-on",
           description: "When to trigger Git sync to begin the stack update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--pull-request-comment",
+          description:
+            "TA toggle that specifies whether to enable or disable pull request comments for the sync configuration to be updated",
           args: {
             name: "string",
           },

@@ -2467,7 +2467,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--s3-location",
           description:
-            "Required. Information about the location of the application revision to be uploaded to Amazon S3. You must specify both a bucket and a key that represent the Amazon S3 bucket name and the object key name. Content will be zipped before uploading. Use the format s3://\\/\\",
+            "Required. Information about the location of the application revision to be uploaded to Amazon S3. You must specify both a bucket and a key that represent the Amazon S3 bucket name and the object key name. Content will be zipped before uploading. Use the format s3:///",
           args: {
             name: "string",
           },

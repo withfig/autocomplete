@@ -96,7 +96,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--inference-config",
           description:
-            "Specify the models you want to use in your model evaluation job. Automatic model evaluation jobs support a single model, and model evaluation job that use human workers support two models",
+            "Specify the models you want to use in your model evaluation job. Automatic model evaluation jobs support a single model or inference profile, and model evaluation job that use human workers support two models or inference profiles",
           args: {
             name: "structure",
           },

@@ -10441,6 +10441,46 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "test-connection",
+      description:
+        "Tests a connection to a service to validate the service credentials that you provide. You can either provide an existing connection name or a TestConnectionInput for testing a non-existing connection input. Providing both at the same time will cause an error. If the action is successful, the service sends back an HTTP 200 response",
+      options: [
+        {
+          name: "--connection-name",
+          description:
+            "Optional. The name of the connection to test. If only name is provided, the operation will get the connection and use that for testing",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--test-connection-input",
+          description:
+            "A structure that is used to specify testing a connection to a service",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "untag-resource",
       description: "Removes tags from a resource",
       options: [
