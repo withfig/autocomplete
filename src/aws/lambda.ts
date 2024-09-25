@@ -1016,7 +1016,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "add-permission",
       description:
-        "Grants an Amazon Web Servicesservice, Amazon Web Services account, or Amazon Web Services organization permission to use a function. You can apply the policy at the function level, or specify a qualifier to restrict access to a single version or alias. If you use a qualifier, the invoker must use the full Amazon Resource Name (ARN) of that version or alias to invoke the function. Note: Lambda does not support adding policies to version $LATEST. To grant permission to another account, specify the account ID as the Principal. To grant permission to an organization defined in Organizations, specify the organization ID as the PrincipalOrgID. For Amazon Web Servicesservices, the principal is a domain-style identifier that the service defines, such as s3.amazonaws.com or sns.amazonaws.com. For Amazon Web Servicesservices, you can also specify the ARN of the associated resource as the SourceArn. If you grant permission to a service principal without specifying the source, other accounts could potentially configure resources in their account to invoke your Lambda function. This operation adds a statement to a resource-based permissions policy for the function. For more information about function policies, see Using resource-based policies for Lambda",
+        "Grants a principal permission to use a function. You can apply the policy at the function level, or specify a qualifier to restrict access to a single version or alias. If you use a qualifier, the invoker must use the full Amazon Resource Name (ARN) of that version or alias to invoke the function. Note: Lambda does not support adding policies to version $LATEST. To grant permission to another account, specify the account ID as the Principal. To grant permission to an organization defined in Organizations, specify the organization ID as the PrincipalOrgID. For Amazon Web Servicesservices, the principal is a domain-style identifier that the service defines, such as s3.amazonaws.com or sns.amazonaws.com. For Amazon Web Servicesservices, you can also specify the ARN of the associated resource as the SourceArn. If you grant permission to a service principal without specifying the source, other accounts could potentially configure resources in their account to invoke your Lambda function. This operation adds a statement to a resource-based permissions policy for the function. For more information about function policies, see Using resource-based policies for Lambda",
       options: [
         {
           name: "--function-name",
@@ -1047,7 +1047,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--principal",
           description:
-            "The Amazon Web Servicesservice or Amazon Web Services account that invokes the function. If you specify a service, use SourceArn or SourceAccount to limit who can invoke the function through that service",
+            "The Amazon Web Servicesservice, Amazon Web Services account, IAM user, or IAM role that invokes the function. If you specify a service, use SourceArn or SourceAccount to limit who can invoke the function through that service",
           args: {
             name: "string",
             generators: [generators.getPrincipal, generators.awsPrincipals],
@@ -1227,6 +1227,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--tags",
+          description:
+            "A list of tags to add to the code signing configuration",
+          args: {
+            name: "map",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -1360,6 +1368,13 @@ const completionSpec: Fig.Spec = {
             "(Kinesis and DynamoDB Streams only) Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--tags",
+          description: "A list of tags to apply to the event source mapping",
+          args: {
+            name: "map",
           },
         },
         {
@@ -2152,7 +2167,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-resource-policy",
-      description: "Deletes a resource-based policy from a function",
+      description:
+        "The option to create and modify full JSON resource-based policies, and to use the PutResourcePolicy, GetResourcePolicy, and DeleteResourcePolicy APIs, won't be available in all Amazon Web Services Regions until September 30, 2024.  Deletes a resource-based policy from a function",
       options: [
         {
           name: "--resource-arn",
@@ -2788,7 +2804,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-public-access-block-config",
-      description: "Retrieve the public-access settings for a function",
+      description:
+        "The option to configure public-access settings, and to use the PutPublicAccessBlock and GetPublicAccessBlock APIs, won't be available in all Amazon Web Services Regions until September 30, 2024.  Retrieve the public-access settings for a function",
       options: [
         {
           name: "--resource-arn",
@@ -2819,7 +2836,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-resource-policy",
-      description: "Retrieves the resource-based policy attached to a function",
+      description:
+        "The option to create and modify full JSON resource-based policies, and to use the PutResourcePolicy, GetResourcePolicy, and DeleteResourcePolicy APIs, won't be available in all Amazon Web Services Regions until September 30, 2024.  Retrieves the resource-based policy attached to a function",
       options: [
         {
           name: "--resource-arn",
@@ -3695,12 +3713,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-tags",
       description:
-        "Returns a function's tags. You can also view tags with GetFunction",
+        "Returns a function, event source mapping, or code signing configuration's tags. You can also view funciton tags with GetFunction",
       options: [
         {
           name: "--resource",
           description:
-            "The function's Amazon Resource Name (ARN). Note: Lambda does not support adding tags to aliases or versions",
+            "The resource's Amazon Resource Name (ARN). Note: Lambda does not support adding tags to function aliases or versions",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -4186,7 +4204,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-public-access-block-config",
       description:
-        "Configure your function's public-access settings. To control public access to a Lambda function, you can choose whether to allow the creation of resource-based policies that allow public access to that function. You can also block public access to a function, even if it has an existing resource-based policy that allows it",
+        "The option to configure public-access settings, and to use the PutPublicAccessBlock and GetPublicAccessBlock APIs, won't be available in all Amazon Web Services Regions until September 30, 2024.  Configure your function's public-access settings. To control public access to a Lambda function, you can choose whether to allow the creation of resource-based policies that allow public access to that function. You can also block public access to a function, even if it has an existing resource-based policy that allows it",
       options: [
         {
           name: "--resource-arn",
@@ -4226,7 +4244,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-resource-policy",
       description:
-        "Adds a resource-based policy to a function. You can use resource-based policies to grant access to other Amazon Web Services accounts, organizations, or services. Resource-based policies apply to a single function, version, or alias.  Adding a resource-based policy using this API action replaces any existing policy you've previously created. This means that if you've previously added resource-based permissions to a function using the AddPermission action, those permissions will be overwritten by your new policy",
+        "The option to create and modify full JSON resource-based policies, and to use the PutResourcePolicy, GetResourcePolicy, and DeleteResourcePolicy APIs, won't be available in all Amazon Web Services Regions until September 30, 2024.  Adds a resource-based policy to a function. You can use resource-based policies to grant access to other Amazon Web Services accounts, organizations, or services. Resource-based policies apply to a single function, version, or alias.  Adding a resource-based policy using this API action replaces any existing policy you've previously created. This means that if you've previously added resource-based permissions to a function using the AddPermission action, those permissions will be overwritten by your new policy",
       options: [
         {
           name: "--resource-arn",
@@ -4448,11 +4466,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "tag-resource",
-      description: "Adds tags to a function",
+      description:
+        "Adds tags to a function, event source mapping, or code signing configuration",
       options: [
         {
           name: "--resource",
-          description: "The function's Amazon Resource Name (ARN)",
+          description: "The resource's Amazon Resource Name (ARN)",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -4460,7 +4479,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--tags",
-          description: "A list of tags to apply to the function",
+          description: "A list of tags to apply to the resource",
           args: {
             name: "map",
           },
@@ -4487,11 +4506,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "untag-resource",
-      description: "Removes tags from a function",
+      description:
+        "Removes tags from a function, event source mapping, or code signing configuration",
       options: [
         {
           name: "--resource",
-          description: "The function's Amazon Resource Name (ARN)",
+          description: "The resource's Amazon Resource Name (ARN)",
           args: {
             name: "string",
             generators: generators.listLambdaFunctions,
@@ -4499,7 +4519,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--tag-keys",
-          description: "A list of tag keys to remove from the function",
+          description: "A list of tag keys to remove from the resource",
           args: {
             name: "list",
             isVariadic: true,

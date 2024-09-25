@@ -11,7 +11,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--pool-id",
           description:
-            "The pool to update with the new Identity. This value can be either the PoolId or PoolArn, and you can find these values using DescribePools",
+            "The pool to update with the new Identity. This value can be either the PoolId or PoolArn, and you can find these values using DescribePools.  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "string",
           },
@@ -19,7 +19,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--origination-identity",
           description:
-            "The origination identity to use, such as PhoneNumberId, PhoneNumberArn, SenderId, or SenderIdArn. You can use DescribePhoneNumbers to find the values for PhoneNumberId and PhoneNumberArn, while DescribeSenderIds can be used to get the values for SenderId and SenderIdArn",
+            "The origination identity to use, such as PhoneNumberId, PhoneNumberArn, SenderId, or SenderIdArn. You can use DescribePhoneNumbers to find the values for PhoneNumberId and PhoneNumberArn, while DescribeSenderIds can be used to get the values for SenderId and SenderIdArn.  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "string",
           },
@@ -278,7 +278,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--origination-identity",
           description:
-            "The origination identity to use such as a PhoneNumberId, PhoneNumberArn, SenderId or SenderIdArn. You can use DescribePhoneNumbers to find the values for PhoneNumberId and PhoneNumberArn while DescribeSenderIds can be used to get the values for SenderId and SenderIdArn. After the pool is created you can add more origination identities to the pool by using AssociateOriginationIdentity",
+            "The origination identity to use such as a PhoneNumberId, PhoneNumberArn, SenderId or SenderIdArn. You can use DescribePhoneNumbers to find the values for PhoneNumberId and PhoneNumberArn while DescribeSenderIds can be used to get the values for SenderId and SenderIdArn. After the pool is created you can add more origination identities to the pool by using AssociateOriginationIdentity.  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "string",
           },
@@ -781,7 +781,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--origination-identity",
           description:
-            "The origination identity to use such as a PhoneNumberId, PhoneNumberArn, PoolId or PoolArn. You can use DescribePhoneNumbers to find the values for PhoneNumberId and PhoneNumberArn and DescribePools to find the values of PoolId and PoolArn",
+            "The origination identity to use such as a PhoneNumberId, PhoneNumberArn, PoolId or PoolArn. You can use DescribePhoneNumbers to find the values for PhoneNumberId and PhoneNumberArn and DescribePools to find the values of PoolId and PoolArn.  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "string",
           },
@@ -844,7 +844,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--opt-out-list-name",
           description:
-            "The OptOutListName or OptOutListArn of the OptOutList to delete. You can use DescribeOptOutLists to find the values for OptOutListName and OptOutListArn",
+            "The OptOutListName or OptOutListArn of the OptOutList to delete. You can use DescribeOptOutLists to find the values for OptOutListName and OptOutListArn.  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "string",
           },
@@ -876,7 +876,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--opt-out-list-name",
           description:
-            "The OptOutListName or OptOutListArn to remove the phone number from",
+            "The OptOutListName or OptOutListArn to remove the phone number from.  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "string",
           },
@@ -916,7 +916,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--pool-id",
           description:
-            "The PoolId or PoolArn of the pool to delete. You can use DescribePools to find the values for PoolId and PoolArn",
+            "The PoolId or PoolArn of the pool to delete. You can use DescribePools to find the values for PoolId and PoolArn .  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "string",
           },
@@ -1047,6 +1047,38 @@ const completionSpec: Fig.Spec = {
           name: "--field-path",
           description:
             "The path to the registration form field. You can use DescribeRegistrationFieldDefinitions for a list of FieldPaths",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-resource-policy",
+      description:
+        "Deletes the resource-based policy document attached to the AWS End User Messaging SMS and Voice resource. A shared resource can be a Pool, Opt-out list, Sender Id, or Phone number",
+      options: [
+        {
+          name: "--resource-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the AWS End User Messaging SMS and Voice resource you're deleting the resource-based policy from",
           args: {
             name: "string",
           },
@@ -1365,7 +1397,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--origination-identity",
           description:
-            "The origination identity to use such as a PhoneNumberId, PhoneNumberArn, SenderId or SenderIdArn. You can use DescribePhoneNumbers to find the values for PhoneNumberId and PhoneNumberArn while DescribeSenderIds can be used to get the values for SenderId and SenderIdArn",
+            "The origination identity to use such as a PhoneNumberId, PhoneNumberArn, SenderId or SenderIdArn. You can use DescribePhoneNumbers to find the values for PhoneNumberId and PhoneNumberArn while DescribeSenderIds can be used to get the values for SenderId and SenderIdArn.  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "string",
           },
@@ -1451,7 +1483,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--opt-out-list-names",
           description:
-            "The OptOutLists to show the details of. This is an array of strings that can be either the OptOutListName or OptOutListArn",
+            "The OptOutLists to show the details of. This is an array of strings that can be either the OptOutListName or OptOutListArn.  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "list",
           },
@@ -1470,6 +1502,14 @@ const completionSpec: Fig.Spec = {
             "The maximum number of results to return per each request",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--owner",
+          description:
+            "Use SELF to filter the list of Opt-Out List to ones your account owns or use SHARED to filter on Opt-Out List shared with your account. The Owner and OptOutListNames parameters can't be used at the same time",
+          args: {
+            name: "string",
           },
         },
         {
@@ -1523,7 +1563,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--opt-out-list-name",
           description:
-            "The OptOutListName or OptOutListArn of the OptOutList. You can use DescribeOptOutLists to find the values for OptOutListName and OptOutListArn",
+            "The OptOutListName or OptOutListArn of the OptOutList. You can use DescribeOptOutLists to find the values for OptOutListName and OptOutListArn.  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "string",
           },
@@ -1611,7 +1651,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--phone-number-ids",
           description:
-            "The unique identifier of phone numbers to find information about. This is an array of strings that can be either the PhoneNumberId or PhoneNumberArn",
+            "The unique identifier of phone numbers to find information about. This is an array of strings that can be either the PhoneNumberId or PhoneNumberArn.  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "list",
           },
@@ -1638,6 +1678,14 @@ const completionSpec: Fig.Spec = {
             "The maximum number of results to return per each request",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--owner",
+          description:
+            "Use SELF to filter the list of phone numbers to ones your account owns or use SHARED to filter on phone numbers shared with your account. The Owner and PhoneNumberIds parameters can't be used at the same time",
+          args: {
+            name: "string",
           },
         },
         {
@@ -1691,7 +1739,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--pool-ids",
           description:
-            "The unique identifier of pools to find. This is an array of strings that can be either the PoolId or PoolArn",
+            "The unique identifier of pools to find. This is an array of strings that can be either the PoolId or PoolArn.  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "list",
           },
@@ -1717,6 +1765,14 @@ const completionSpec: Fig.Spec = {
             "The maximum number of results to return per each request",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--owner",
+          description:
+            "Use SELF to filter the list of Pools to ones your account owns or use SHARED to filter on Pools shared with your account. The Owner and PoolIds parameters can't be used at the same time",
+          args: {
+            name: "string",
           },
         },
         {
@@ -2428,7 +2484,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--sender-ids",
-          description: "An array of SenderIdAndCountry objects to search for",
+          description:
+            "An array of SenderIdAndCountry objects to search for.  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "list",
           },
@@ -2455,6 +2512,14 @@ const completionSpec: Fig.Spec = {
             "The maximum number of results to return per each request",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--owner",
+          description:
+            "Use SELF to filter the list of Sender Ids to ones your account owns or use SHARED to filter on Sender Ids shared with your account. The Owner and SenderIds parameters can't be used at the same time",
+          args: {
+            name: "string",
           },
         },
         {
@@ -2658,7 +2723,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--pool-id",
           description:
-            "The unique identifier for the pool to disassociate with the origination identity. This value can be either the PoolId or PoolArn",
+            "The unique identifier for the pool to disassociate with the origination identity. This value can be either the PoolId or PoolArn.  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "string",
           },
@@ -2666,7 +2731,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--origination-identity",
           description:
-            "The origination identity to use such as a PhoneNumberId, PhoneNumberArn, SenderId or SenderIdArn. You can use DescribePhoneNumbers find the values for PhoneNumberId and PhoneNumberArn, or use DescribeSenderIds to get the values for SenderId and SenderIdArn",
+            "The origination identity to use such as a PhoneNumberId, PhoneNumberArn, SenderId or SenderIdArn. You can use DescribePhoneNumbers find the values for PhoneNumberId and PhoneNumberArn, or use DescribeSenderIds to get the values for SenderId and SenderIdArn.  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "string",
           },
@@ -2814,6 +2879,38 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-resource-policy",
+      description:
+        "Retrieves the JSON text of the resource-based policy document attached to the AWS End User Messaging SMS and Voice resource. A shared resource can be a Pool, Opt-out list, Sender Id, or Phone number",
+      options: [
+        {
+          name: "--resource-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the AWS End User Messaging SMS and Voice resource attached to the resource-based policy",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-pool-origination-identities",
       description:
         "Lists all associated origination identities in your pool. If you specify filters, the output includes information for only those origination identities that meet the filter criteria",
@@ -2821,7 +2918,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--pool-id",
           description:
-            "The unique identifier for the pool. This value can be either the PoolId or PoolArn",
+            "The unique identifier for the pool. This value can be either the PoolId or PoolArn.  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "string",
           },
@@ -3011,7 +3108,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--origination-identity",
           description:
-            "The origination identity to use such as a PhoneNumberId, PhoneNumberArn, SenderId or SenderIdArn. You can use DescribePhoneNumbers get the values for PhoneNumberId and PhoneNumberArn while DescribeSenderIds can be used to get the values for SenderId and SenderIdArn",
+            "The origination identity to use such as a PhoneNumberId, PhoneNumberArn, SenderId or SenderIdArn. You can use DescribePhoneNumbers get the values for PhoneNumberId and PhoneNumberArn while DescribeSenderIds can be used to get the values for SenderId and SenderIdArn.  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "string",
           },
@@ -3065,7 +3162,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--opt-out-list-name",
           description:
-            "The OptOutListName or OptOutListArn to add the phone number to",
+            "The OptOutListName or OptOutListArn to add the phone number to.  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "string",
           },
@@ -3157,6 +3254,45 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "put-resource-policy",
+      description:
+        "Attaches a resource-based policy to a AWS End User Messaging SMS and Voice resource(phone number, sender Id, phone poll, or opt-out list) that is used for sharing the resource. A shared resource can be a Pool, Opt-out list, Sender Id, or Phone number. For more information about resource-based policies, see Working with shared resources in the AWS End User Messaging SMS User Guide",
+      options: [
+        {
+          name: "--resource-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the AWS End User Messaging SMS and Voice resource to attach the resource-based policy to",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--policy",
+          description: "The JSON formatted resource-based policy to attach",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "release-phone-number",
       description:
         "Releases an existing origination phone number in your account. Once released, a phone number is no longer available for sending messages. If the origination phone number has deletion protection enabled or is associated with a pool, an error is returned",
@@ -3164,7 +3300,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--phone-number-id",
           description:
-            "The PhoneNumberId or PhoneNumberArn of the phone number to release. You can use DescribePhoneNumbers to get the values for PhoneNumberId and PhoneNumberArn",
+            "The PhoneNumberId or PhoneNumberArn of the phone number to release. You can use DescribePhoneNumbers to get the values for PhoneNumberId and PhoneNumberArn.  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "string",
           },
@@ -3265,7 +3401,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--opt-out-list-name",
           description:
-            "The name of the OptOutList to associate with the phone number. You can use the OptOutListName or OptOutListArn",
+            "The name of the OptOutList to associate with the phone number. You can use the OptOutListName or OptOutListArn.  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "string",
           },
@@ -3273,7 +3409,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--pool-id",
           description:
-            "The pool to associated with the phone number. You can use the PoolId or PoolArn",
+            "The pool to associated with the phone number. You can use the PoolId or PoolArn.   If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "string",
           },
@@ -3434,7 +3570,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--origination-identity",
           description:
-            "The origination identity of the message. This can be either the PhoneNumber, PhoneNumberId, PhoneNumberArn, SenderId, SenderIdArn, PoolId, or PoolArn",
+            "The origination identity of the message. This can be either the PhoneNumber, PhoneNumberId, PhoneNumberArn, SenderId, SenderIdArn, PoolId, or PoolArn.  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "string",
           },
@@ -3497,7 +3633,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--origination-identity",
           description:
-            "The origination identity of the message. This can be either the PhoneNumber, PhoneNumberId, PhoneNumberArn, SenderId, SenderIdArn, PoolId, or PoolArn",
+            "The origination identity of the message. This can be either the PhoneNumber, PhoneNumberId, PhoneNumberArn, SenderId, SenderIdArn, PoolId, or PoolArn.  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "string",
           },
@@ -3601,7 +3737,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--origination-identity",
           description:
-            "The origination identity of the message. This can be either the PhoneNumber, PhoneNumberId, PhoneNumberArn, SenderId, SenderIdArn, PoolId, or PoolArn",
+            "The origination identity of the message. This can be either the PhoneNumber, PhoneNumberId, PhoneNumberArn, SenderId, SenderIdArn, PoolId, or PoolArn.  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "string",
           },
@@ -3720,7 +3856,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--origination-identity",
           description:
-            "The origination identity to use for the voice call. This can be the PhoneNumber, PhoneNumberId, PhoneNumberArn, PoolId, or PoolArn",
+            "The origination identity to use for the voice call. This can be the PhoneNumber, PhoneNumberId, PhoneNumberArn, PoolId, or PoolArn.  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "string",
           },
@@ -4215,7 +4351,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--phone-number-id",
           description:
-            "The unique identifier of the phone number. Valid values for this field can be either the PhoneNumberId or PhoneNumberArn",
+            "The unique identifier of the phone number. Valid values for this field can be either the PhoneNumberId or PhoneNumberArn.  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "string",
           },
@@ -4300,7 +4436,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--pool-id",
           description:
-            "The unique identifier of the pool to update. Valid values are either the PoolId or PoolArn",
+            "The unique identifier of the pool to update. Valid values are either the PoolId or PoolArn.  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "string",
           },
@@ -4343,7 +4479,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--opt-out-list-name",
           description:
-            "The OptOutList to associate with the pool. Valid values are either OptOutListName or OptOutListArn",
+            "The OptOutList to associate with the pool. Valid values are either OptOutListName or OptOutListArn.  If you are using a shared AWS End User Messaging SMS and Voice resource then you must use the full Amazon Resource Name(ARN)",
           args: {
             name: "string",
           },

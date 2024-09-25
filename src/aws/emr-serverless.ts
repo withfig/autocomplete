@@ -169,6 +169,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--scheduler-configuration",
+          description:
+            "The scheduler configuration for batch and streaming jobs running on this application. Supported with release labels emr-7.0.0 and above",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -962,6 +970,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--monitoring-configuration",
           description: "The configuration setting for monitoring",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--scheduler-configuration",
+          description:
+            "The scheduler configuration for batch and streaming jobs running on this application. Supported with release labels emr-7.0.0 and above",
           args: {
             name: "structure",
           },
