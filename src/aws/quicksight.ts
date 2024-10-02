@@ -4291,6 +4291,37 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "describe-q-personalization-configuration",
+      description: "Describes a personalization configuration",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account that contains the personalization configuration that the user wants described",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "describe-refresh-schedule",
       description: "Provides a summary of a refresh schedule",
       options: [
@@ -9725,6 +9756,45 @@ const completionSpec: Fig.Spec = {
           name: "--no-public-sharing-enabled",
           description:
             "A Boolean value that indicates whether public sharing is turned on for an Amazon QuickSight account",
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-q-personalization-configuration",
+      description: "Updates a personalization configuration",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account account that contains the personalization configuration that the user wants to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--personalization-mode",
+          description:
+            "An option to allow Amazon QuickSight to customize data stories with user specific metadata, specifically location and job information, in your IAM Identity Center instance",
+          args: {
+            name: "string",
+          },
         },
         {
           name: "--cli-input-json",

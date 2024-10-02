@@ -136,7 +136,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--iam-instance-profile-arn",
           description:
-            "The Amazon Resource Name (ARN) of the IAM instance profile used to pass an IAM role when launching EC2 instances. The role contained in your instance profile must have pcs:RegisterComputeNodeGroupInstance permissions attached in order to provision instances correctly. The resource identifier of the ARN must start with AWSPCS. For example, arn:aws:iam:123456789012:instance-profile/AWSPCSMyComputeNodeInstanceProfile",
+            "The Amazon Resource Name (ARN) of the IAM instance profile used to pass an IAM role when launching EC2 instances. The role contained in your instance profile must have the pcs:RegisterComputeNodeGroupInstance permission. The resource identifier of the ARN must start with AWSPCS or it must have /aws-pcs/ in its path.  Examples     arn:aws:iam::111122223333:instance-profile/AWSPCS-example-role-1     arn:aws:iam::111122223333:instance-profile/aws-pcs/example-role-2",
           args: {
             name: "string",
           },
@@ -934,7 +934,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--iam-instance-profile-arn",
           description:
-            "The Amazon Resource Name (ARN) of the IAM instance profile used to pass an IAM role when launching EC2 instances. The role contained in your instance profile must have pcs:RegisterComputeNodeGroupInstance permissions attached to provision instances correctly",
+            "The Amazon Resource Name (ARN) of the IAM instance profile used to pass an IAM role when launching EC2 instances. The role contained in your instance profile must have the pcs:RegisterComputeNodeGroupInstance permission. The resource identifier of the ARN must start with AWSPCS or it must have /aws-pcs/ in its path.  Examples     arn:aws:iam::111122223333:instance-profile/AWSPCS-example-role-1     arn:aws:iam::111122223333:instance-profile/aws-pcs/example-role-2",
           args: {
             name: "string",
           },

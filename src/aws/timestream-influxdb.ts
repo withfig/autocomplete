@@ -130,6 +130,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--port",
+          description:
+            "The port number on which InfluxDB accepts connections. Valid Values: 1024-65535 Default: 8086 Constraints: The value can't be 2375-2376, 7788-7799, 8090, or 51678-51680",
+          args: {
+            name: "integer",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -550,6 +558,14 @@ const completionSpec: Fig.Spec = {
             "The id of the DB parameter group to assign to your DB instance. DB parameter groups specify how the database is configured. For example, DB parameter groups can specify the limit for query concurrency",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--port",
+          description:
+            "The port number on which InfluxDB accepts connections. If you change the Port value, your database restarts immediately. Valid Values: 1024-65535 Default: 8086 Constraints: The value can't be 2375-2376, 7788-7799, 8090, or 51678-51680",
+          args: {
+            name: "integer",
           },
         },
         {

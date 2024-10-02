@@ -1,12 +1,12 @@
 const completionSpec: Fig.Spec = {
   name: "securityhub",
   description:
-    "Security Hub provides you with a comprehensive view of your security state in Amazon Web Services and helps you assess your Amazon Web Services environment against security industry standards and best practices. Security Hub collects security data across Amazon Web Services accounts, Amazon Web Servicesservices, and supported third-party products and helps you analyze your security trends and identify the highest priority security issues. To help you manage the security state of your organization, Security Hub supports multiple security standards. These include the Amazon Web Services Foundational Security Best Practices (FSBP) standard developed by Amazon Web Services, and external compliance frameworks such as the Center for Internet Security (CIS), the Payment Card Industry Data Security Standard (PCI DSS), and the National Institute of Standards and Technology (NIST). Each standard includes several security controls, each of which represents a security best practice. Security Hub runs checks against security controls and generates control findings to help you assess your compliance against security best practices. In addition to generating control findings, Security Hub also receives findings from other Amazon Web Servicesservices, such as Amazon GuardDuty and Amazon Inspector, and supported third-party products. This gives you a single pane of glass into a variety of security-related issues. You can also send Security Hub findings to other Amazon Web Servicesservices and supported third-party products. Security Hub offers automation features that help you triage and remediate security issues. For example, you can use automation rules to automatically update critical findings when a security check fails. You can also leverage the integration with Amazon EventBridge to trigger automatic responses to specific findings. This guide, the Security Hub API Reference, provides information about the Security Hub API. This includes supported resources, HTTP methods, parameters, and schemas. If you're new to Security Hub, you might find it helpful to also review the  Security Hub User Guide . The user guide explains key concepts and provides procedures that demonstrate how to use Security Hub features. It also provides information about topics such as integrating Security Hub with other Amazon Web Servicesservices. In addition to interacting with Security Hub by making calls to the Security Hub API, you can use a current version of an Amazon Web Services command line tool or SDK. Amazon Web Services provides tools and SDKs that consist of libraries and sample code for various languages and platforms, such as PowerShell, Java, Go, Python, C++, and .NET. These tools and SDKs provide convenient, programmatic access to Security Hub and other Amazon Web Servicesservices . They also handle tasks such as signing requests, managing errors, and retrying requests automatically. For information about installing and using the Amazon Web Services tools and SDKs, see Tools to Build on Amazon Web Services. With the exception of operations that are related to central configuration, Security Hub API requests are executed only in the Amazon Web Services Region that is currently active or in the specific Amazon Web Services Region that you specify in your request. Any configuration or settings change that results from the operation is applied only to that Region. To make the same change in other Regions, call the same API operation in each Region in which you want to apply the change. When you use central configuration, API requests for enabling Security Hub, standards, and controls are executed in the home Region and all linked Regions. For a list of central configuration operations, see the Central configuration terms and concepts section of the Security Hub User Guide. The following throttling limits apply to Security Hub API operations.    BatchEnableStandards - RateLimit of 1 request per second. BurstLimit of 1 request per second.    GetFindings - RateLimit of 3 requests per second. BurstLimit of 6 requests per second.    BatchImportFindings - RateLimit of 10 requests per second. BurstLimit of 30 requests per second.    BatchUpdateFindings - RateLimit of 10 requests per second. BurstLimit of 30 requests per second.    UpdateStandardsControl - RateLimit of 1 request per second. BurstLimit of 5 requests per second.   All other operations - RateLimit of 10 requests per second. BurstLimit of 30 requests per second",
+    "Security Hub provides you with a comprehensive view of your security state in Amazon Web Services and helps you assess your Amazon Web Services environment against security industry standards and best practices. Security Hub collects security data across Amazon Web Services accounts, Amazon Web Services services, and supported third-party products and helps you analyze your security trends and identify the highest priority security issues. To help you manage the security state of your organization, Security Hub supports multiple security standards. These include the Amazon Web Services Foundational Security Best Practices (FSBP) standard developed by Amazon Web Services, and external compliance frameworks such as the Center for Internet Security (CIS), the Payment Card Industry Data Security Standard (PCI DSS), and the National Institute of Standards and Technology (NIST). Each standard includes several security controls, each of which represents a security best practice. Security Hub runs checks against security controls and generates control findings to help you assess your compliance against security best practices. In addition to generating control findings, Security Hub also receives findings from other Amazon Web Services services, such as Amazon GuardDuty and Amazon Inspector, and supported third-party products. This gives you a single pane of glass into a variety of security-related issues. You can also send Security Hub findings to other Amazon Web Services services and supported third-party products. Security Hub offers automation features that help you triage and remediate security issues. For example, you can use automation rules to automatically update critical findings when a security check fails. You can also leverage the integration with Amazon EventBridge to trigger automatic responses to specific findings. This guide, the Security Hub API Reference, provides information about the Security Hub API. This includes supported resources, HTTP methods, parameters, and schemas. If you're new to Security Hub, you might find it helpful to also review the  Security Hub User Guide . The user guide explains key concepts and provides procedures that demonstrate how to use Security Hub features. It also provides information about topics such as integrating Security Hub with other Amazon Web Services services. In addition to interacting with Security Hub by making calls to the Security Hub API, you can use a current version of an Amazon Web Services command line tool or SDK. Amazon Web Services provides tools and SDKs that consist of libraries and sample code for various languages and platforms, such as PowerShell, Java, Go, Python, C++, and .NET. These tools and SDKs provide convenient, programmatic access to Security Hub and other Amazon Web Services services . They also handle tasks such as signing requests, managing errors, and retrying requests automatically. For information about installing and using the Amazon Web Services tools and SDKs, see Tools to Build on Amazon Web Services. With the exception of operations that are related to central configuration, Security Hub API requests are executed only in the Amazon Web Services Region that is currently active or in the specific Amazon Web Services Region that you specify in your request. Any configuration or settings change that results from the operation is applied only to that Region. To make the same change in other Regions, call the same API operation in each Region in which you want to apply the change. When you use central configuration, API requests for enabling Security Hub, standards, and controls are executed in the home Region and all linked Regions. For a list of central configuration operations, see the Central configuration terms and concepts section of the Security Hub User Guide. The following throttling limits apply to Security Hub API operations.    BatchEnableStandards - RateLimit of 1 request per second. BurstLimit of 1 request per second.    GetFindings - RateLimit of 3 requests per second. BurstLimit of 6 requests per second.    BatchImportFindings - RateLimit of 10 requests per second. BurstLimit of 30 requests per second.    BatchUpdateFindings - RateLimit of 10 requests per second. BurstLimit of 30 requests per second.    UpdateStandardsControl - RateLimit of 1 request per second. BurstLimit of 5 requests per second.   All other operations - RateLimit of 10 requests per second. BurstLimit of 30 requests per second",
   subcommands: [
     {
       name: "accept-administrator-invitation",
       description:
-        "Accepts the invitation to be a member account and be monitored by the Security Hub administrator account that the invitation was sent from. This operation is only used by member accounts that are not added through Organizations. When the member account accepts the invitation, permission is granted to the administrator account to view findings generated in the member account",
+        "We recommend using Organizations instead of Security Hub invitations to manage your member accounts. For information, see Managing Security Hub administrator and member accounts with Organizations in the Security Hub User Guide.  Accepts the invitation to be a member account and be monitored by the Security Hub administrator account that the invitation was sent from. This operation is only used by member accounts that are not added through Organizations. When the member account accepts the invitation, permission is granted to the administrator account to view findings generated in the member account",
       options: [
         {
           name: "--administrator-id",
@@ -370,7 +370,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "batch-update-findings",
       description:
-        "Used by Security Hub customers to update information about their investigation into a finding. Requested by administrator accounts or member accounts. Administrator accounts can update findings for their account and their member accounts. Member accounts can update findings for their account. Updates from BatchUpdateFindings do not affect the value of UpdatedAt for a finding. Administrator and member accounts can use BatchUpdateFindings to update the following finding fields and objects.    Confidence     Criticality     Note     RelatedFindings     Severity     Types     UserDefinedFields     VerificationState     Workflow    You can configure IAM policies to restrict access to fields and field values. For example, you might not want member accounts to be able to suppress findings or change the finding severity. See Configuring access to BatchUpdateFindings in the Security Hub User Guide",
+        "Used by Security Hub customers to update information about their investigation into a finding. Requested by administrator accounts or member accounts. Administrator accounts can update findings for their account and their member accounts. Member accounts can update findings for their account. Updates from BatchUpdateFindings don't affect the value of UpdatedAt for a finding. Administrator and member accounts can use BatchUpdateFindings to update the following finding fields and objects.    Confidence     Criticality     Note     RelatedFindings     Severity     Types     UserDefinedFields     VerificationState     Workflow    You can configure IAM policies to restrict access to fields and field values. For example, you might not want member accounts to be able to suppress findings or change the finding severity. See Configuring access to BatchUpdateFindings in the Security Hub User Guide",
       options: [
         {
           name: "--finding-identifiers",
@@ -692,7 +692,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-finding-aggregator",
       description:
-        "Used to enable finding aggregation. Must be called from the aggregation Region. For more details about cross-Region replication, see Configuring finding aggregation in the Security Hub User Guide",
+        "The aggregation Region is now called the home Region.  Used to enable cross-Region aggregation. This operation can be invoked from the home Region only. For information about how cross-Region aggregation works, see Understanding cross-Region aggregation in Security Hub in the Security Hub User Guide",
       options: [
         {
           name: "--region-linking-mode",
@@ -705,7 +705,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--regions",
           description:
-            "If RegionLinkingMode is ALL_REGIONS_EXCEPT_SPECIFIED, then this is a space-separated list of Regions that do not aggregate findings to the aggregation Region. If RegionLinkingMode is SPECIFIED_REGIONS, then this is a space-separated list of Regions that do aggregate findings to the aggregation Region.  An InvalidInputException error results if you populate this field while RegionLinkingMode is NO_REGIONS",
+            "If RegionLinkingMode is ALL_REGIONS_EXCEPT_SPECIFIED, then this is a space-separated list of Regions that don't replicate and send findings to the home Region. If RegionLinkingMode is SPECIFIED_REGIONS, then this is a space-separated list of Regions that do replicate and send findings to the home Region.  An InvalidInputException error results if you populate this field while RegionLinkingMode is NO_REGIONS",
           args: {
             name: "list",
           },
@@ -779,7 +779,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-members",
       description:
-        "Creates a member association in Security Hub between the specified accounts and the account used to make the request, which is the administrator account. If you are integrated with Organizations, then the administrator account is designated by the organization management account.  CreateMembers is always used to add accounts that are not organization members. For accounts that are managed using Organizations, CreateMembers is only used in the following cases:   Security Hub is not configured to automatically add new organization accounts.   The account was disassociated or deleted in Security Hub.   This action can only be used by an account that has Security Hub enabled. To enable Security Hub, you can use the EnableSecurityHub operation. For accounts that are not organization members, you create the account association and then send an invitation to the member account. To send the invitation, you use the InviteMembers operation. If the account owner accepts the invitation, the account becomes a member account in Security Hub. Accounts that are managed using Organizations do not receive an invitation. They automatically become a member account in Security Hub.   If the organization account does not have Security Hub enabled, then Security Hub and the default standards are automatically enabled. Note that Security Hub cannot be enabled automatically for the organization management account. The organization management account must enable Security Hub before the administrator account enables it as a member account.   For organization accounts that already have Security Hub enabled, Security Hub does not make any other changes to those accounts. It does not change their enabled standards or controls.   A permissions policy is added that permits the administrator account to view the findings generated in the member account. To remove the association between the administrator and member accounts, use the DisassociateFromMasterAccount or DisassociateMembers operation",
+        "Creates a member association in Security Hub between the specified accounts and the account used to make the request, which is the administrator account. If you are integrated with Organizations, then the administrator account is designated by the organization management account.  CreateMembers is always used to add accounts that are not organization members. For accounts that are managed using Organizations, CreateMembers is only used in the following cases:   Security Hub is not configured to automatically add new organization accounts.   The account was disassociated or deleted in Security Hub.   This action can only be used by an account that has Security Hub enabled. To enable Security Hub, you can use the EnableSecurityHub operation. For accounts that are not organization members, you create the account association and then send an invitation to the member account. To send the invitation, you use the InviteMembers operation. If the account owner accepts the invitation, the account becomes a member account in Security Hub. Accounts that are managed using Organizations don't receive an invitation. They automatically become a member account in Security Hub.   If the organization account does not have Security Hub enabled, then Security Hub and the default standards are automatically enabled. Note that Security Hub cannot be enabled automatically for the organization management account. The organization management account must enable Security Hub before the administrator account enables it as a member account.   For organization accounts that already have Security Hub enabled, Security Hub does not make any other changes to those accounts. It does not change their enabled standards or controls.   A permissions policy is added that permits the administrator account to view the findings generated in the member account. To remove the association between the administrator and member accounts, use the DisassociateFromMasterAccount or DisassociateMembers operation",
       options: [
         {
           name: "--account-details",
@@ -811,7 +811,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "decline-invitations",
       description:
-        "Declines invitations to become a member account. A prospective member account uses this operation to decline an invitation to become a member. This operation is only called by member accounts that aren't part of an organization. Organization accounts don't receive invitations",
+        "We recommend using Organizations instead of Security Hub invitations to manage your member accounts. For information, see Managing Security Hub administrator and member accounts with Organizations in the Security Hub User Guide.  Declines invitations to become a Security Hub member account. A prospective member account uses this operation to decline an invitation to become a member. Only member accounts that aren't part of an Amazon Web Services organization should use this operation. Organization accounts don't receive invitations",
       options: [
         {
           name: "--account-ids",
@@ -907,7 +907,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-finding-aggregator",
       description:
-        "Deletes a finding aggregator. When you delete the finding aggregator, you stop finding aggregation. When you stop finding aggregation, findings that were already aggregated to the aggregation Region are still visible from the aggregation Region. New findings and finding updates are not aggregated",
+        "The aggregation Region is now called the home Region.  Deletes a finding aggregator. When you delete the finding aggregator, you stop cross-Region aggregation. Finding replication stops occurring from the linked Regions to the home Region. When you stop cross-Region aggregation, findings that were already replicated and sent to the home Region are still visible from the home Region. However, new findings and finding updates are no longer replicated and sent to the home Region",
       options: [
         {
           name: "--finding-aggregator-arn",
@@ -969,7 +969,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-invitations",
       description:
-        "Deletes invitations received by the Amazon Web Services account to become a member account. A Security Hub administrator account can use this operation to delete invitations sent to one or more member accounts. This operation is only used to delete invitations that are sent to member accounts that aren't part of an organization. Organization accounts don't receive invitations",
+        "We recommend using Organizations instead of Security Hub invitations to manage your member accounts. For information, see Managing Security Hub administrator and member accounts with Organizations in the Security Hub User Guide.  Deletes invitations to become a Security Hub member account. A Security Hub administrator account can use this operation to delete invitations sent to one or more prospective member accounts. This operation is only used to delete invitations that are sent to prospective member accounts that aren't part of an Amazon Web Services organization. Organization accounts don't receive invitations",
       options: [
         {
           name: "--account-ids",
@@ -1159,7 +1159,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-products",
       description:
-        "Returns information about product integrations in Security Hub. You can optionally provide an integration ARN. If you provide an integration ARN, then the results only include that integration. If you do not provide an integration ARN, then the results include all of the available product integrations",
+        "Returns information about product integrations in Security Hub. You can optionally provide an integration ARN. If you provide an integration ARN, then the results only include that integration. If you don't provide an integration ARN, then the results include all of the available product integrations",
       options: [
         {
           name: "--next-token",
@@ -1608,12 +1608,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--enable-default-standards",
           description:
-            "Whether to enable the security standards that Security Hub has designated as automatically enabled. If you do not provide a value for EnableDefaultStandards, it is set to true. To not enable the automatically enabled standards, set EnableDefaultStandards to false",
+            "Whether to enable the security standards that Security Hub has designated as automatically enabled. If you don't provide a value for EnableDefaultStandards, it is set to true. To not enable the automatically enabled standards, set EnableDefaultStandards to false",
         },
         {
           name: "--no-enable-default-standards",
           description:
-            "Whether to enable the security standards that Security Hub has designated as automatically enabled. If you do not provide a value for EnableDefaultStandards, it is set to true. To not enable the automatically enabled standards, set EnableDefaultStandards to false",
+            "Whether to enable the security standards that Security Hub has designated as automatically enabled. If you don't provide a value for EnableDefaultStandards, it is set to true. To not enable the automatically enabled standards, set EnableDefaultStandards to false",
         },
         {
           name: "--control-finding-generator",
@@ -1803,7 +1803,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-finding-aggregator",
-      description: "Returns the current finding aggregation configuration",
+      description:
+        "The aggregation Region is now called the home Region.  Returns the current configuration in the calling account for cross-Region aggregation. A finding aggregator is a resource that establishes the home Region and any linked Regions",
       options: [
         {
           name: "--finding-aggregator-arn",
@@ -1923,7 +1924,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-findings",
       description:
-        "Returns a list of findings that match the specified criteria. If finding aggregation is enabled, then when you call GetFindings from the aggregation Region, the results include all of the matching findings from both the aggregation Region and the linked Regions",
+        "Returns a list of findings that match the specified criteria. If cross-Region aggregation is enabled, then when you call GetFindings from the home Region, the results include all of the matching findings from both the home Region and linked Regions",
       options: [
         {
           name: "--filters",
@@ -2038,7 +2039,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--insight-arns",
           description:
-            "The ARNs of the insights to describe. If you do not provide any insight ARNs, then GetInsights returns all of your custom insights. It does not return any managed insights",
+            "The ARNs of the insights to describe. If you don't provide any insight ARNs, then GetInsights returns all of your custom insights. It does not return any managed insights",
           args: {
             name: "list",
           },
@@ -2104,7 +2105,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-invitations-count",
       description:
-        "Returns the count of all Security Hub membership invitations that were sent to the current member account, not including the currently accepted invitation",
+        "We recommend using Organizations instead of Security Hub invitations to manage your member accounts. For information, see Managing Security Hub administrator and member accounts with Organizations in the Security Hub User Guide.  Returns the count of all Security Hub membership invitations that were sent to the calling member account, not including the currently accepted invitation",
       options: [
         {
           name: "--cli-input-json",
@@ -2216,7 +2217,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "invite-members",
       description:
-        "Invites other Amazon Web Services accounts to become member accounts for the Security Hub administrator account that the invitation is sent from. This operation is only used to invite accounts that do not belong to an organization. Organization accounts do not receive invitations. Before you can use this action to invite a member, you must first use the CreateMembers action to create the member account in Security Hub. When the account owner enables Security Hub and accepts the invitation to become a member account, the administrator account can view the findings generated from the member account",
+        "We recommend using Organizations instead of Security Hub invitations to manage your member accounts. For information, see Managing Security Hub administrator and member accounts with Organizations in the Security Hub User Guide.  Invites other Amazon Web Services accounts to become member accounts for the Security Hub administrator account that the invitation is sent from. This operation is only used to invite accounts that don't belong to an Amazon Web Services organization. Organization accounts don't receive invitations. Before you can use this action to invite a member, you must first use the CreateMembers action to create the member account in Security Hub. When the account owner enables Security Hub and accepts the invitation to become a member account, the administrator account can view the findings generated in the member account",
       options: [
         {
           name: "--account-ids",
@@ -2487,7 +2488,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-finding-aggregators",
       description:
-        "If finding aggregation is enabled, then ListFindingAggregators returns the ARN of the finding aggregator. You can run this operation from any Region",
+        "If cross-Region aggregation is enabled, then ListFindingAggregators returns the Amazon Resource Name (ARN) of the finding aggregator. You can run this operation from any Amazon Web Services Region",
       options: [
         {
           name: "--next-token",
@@ -2551,7 +2552,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-invitations",
       description:
-        "Lists all Security Hub membership invitations that were sent to the current Amazon Web Services account. This operation is only used by accounts that are managed by invitation. Accounts that are managed using the integration with Organizations do not receive invitations",
+        "We recommend using Organizations instead of Security Hub invitations to manage your member accounts. For information, see Managing Security Hub administrator and member accounts with Organizations in the Security Hub User Guide.  Lists all Security Hub membership invitations that were sent to the calling account. Only accounts that are managed by invitation can use this operation. Accounts that are managed using the integration with Organizations don't receive invitations",
       options: [
         {
           name: "--max-results",
@@ -3185,7 +3186,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-finding-aggregator",
       description:
-        "Updates the finding aggregation configuration. Used to update the Region linking mode and the list of included or excluded Regions. You cannot use UpdateFindingAggregator to change the aggregation Region. You must run UpdateFindingAggregator from the current aggregation Region",
+        "The aggregation Region is now called the home Region.  Updates cross-Region aggregation settings. You can use this operation to update the Region linking mode and the list of included or excluded Amazon Web Services Regions. However, you can't use this operation to change the home Region. You can invoke this operation from the current home Region only",
       options: [
         {
           name: "--finding-aggregator-arn",
@@ -3206,7 +3207,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--regions",
           description:
-            "If RegionLinkingMode is ALL_REGIONS_EXCEPT_SPECIFIED, then this is a space-separated list of Regions that do not aggregate findings to the aggregation Region. If RegionLinkingMode is SPECIFIED_REGIONS, then this is a space-separated list of Regions that do aggregate findings to the aggregation Region. An InvalidInputException error results if you populate this field while RegionLinkingMode is NO_REGIONS",
+            "If RegionLinkingMode is ALL_REGIONS_EXCEPT_SPECIFIED, then this is a space-separated list of Regions that don't replicate and send findings to the home Region. If RegionLinkingMode is SPECIFIED_REGIONS, then this is a space-separated list of Regions that do replicate and send findings to the home Region. An InvalidInputException error results if you populate this field while RegionLinkingMode is NO_REGIONS",
           args: {
             name: "list",
           },
