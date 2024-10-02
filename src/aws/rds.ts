@@ -1346,6 +1346,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--cluster-scalability-type",
+          description:
+            "Specifies the scalability mode of the Aurora DB cluster. When set to limitless, the cluster operates as an Aurora Limitless Database. When set to standard (the default), the cluster uses normal DB instance creation. Valid for: Aurora DB clusters only  You can't modify this setting after you create the DB cluster",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--db-system-id",
           description: "Reserved for future use",
           args: {
@@ -2889,6 +2897,14 @@ const completionSpec: Fig.Spec = {
           name: "--no-publicly-accessible",
           description:
             "Specifies whether the DB shard group is publicly accessible. When the DB shard group is publicly accessible, its Domain Name System (DNS) endpoint resolves to the private IP address from within the DB shard group's virtual private cloud (VPC). It resolves to the public IP address from outside of the DB shard group's VPC. Access to the DB shard group is ultimately controlled by the security group it uses. That public access is not permitted if the security group assigned to the DB shard group doesn't permit it. When the DB shard group isn't publicly accessible, it is an internal DB shard group with a DNS name that resolves to a private IP address. Default: The default behavior varies depending on whether DBSubnetGroupName is specified. If DBSubnetGroupName isn't specified, and PubliclyAccessible isn't specified, the following applies:   If the default VPC in the target Region doesn\u2019t have an internet gateway attached to it, the DB shard group is private.   If the default VPC in the target Region has an internet gateway attached to it, the DB shard group is public.   If DBSubnetGroupName is specified, and PubliclyAccessible isn't specified, the following applies:   If the subnets are part of a VPC that doesn\u2019t have an internet gateway attached to it, the DB shard group is private.   If the subnets are part of a VPC that has an internet gateway attached to it, the DB shard group is public",
+        },
+        {
+          name: "--tags",
+          description:
+            "A list of tags. For more information, see Tagging Amazon RDS resources in the Amazon RDS User Guide or Tagging Amazon Aurora and Amazon RDS resources in the Amazon Aurora User Guide",
+          args: {
+            name: "list",
+          },
         },
         {
           name: "--cli-input-json",

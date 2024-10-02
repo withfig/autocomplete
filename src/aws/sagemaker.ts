@@ -1280,6 +1280,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--tag-propagation",
+          description:
+            "Indicates whether custom tag propagation is supported for the domain. Defaults to DISABLED",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--default-space-settings",
           description: "The default settings used to create a space",
           args: {
@@ -19508,6 +19516,14 @@ const completionSpec: Fig.Spec = {
           name: "--app-network-access-type",
           description:
             "Specifies the VPC used for non-EFS traffic.    PublicInternetOnly - Non-EFS traffic is through a VPC managed by Amazon SageMaker, which allows direct internet access.    VpcOnly - All Studio traffic is through the specified VPC and subnets.   This configuration can only be modified if there are no apps in the InService, Pending, or Deleting state. The configuration cannot be updated if DomainSettings.RStudioServerProDomainSettings.DomainExecutionRoleArn is already set or DomainSettings.RStudioServerProDomainSettings.DomainExecutionRoleArn is provided as part of the same request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tag-propagation",
+          description:
+            "Indicates whether custom tag propagation is supported for the domain. Defaults to DISABLED",
           args: {
             name: "string",
           },

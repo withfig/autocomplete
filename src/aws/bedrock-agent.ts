@@ -638,7 +638,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-knowledge-base",
       description:
-        "Creates a knowledge base that contains data sources from which information can be queried and used by LLMs. To create a knowledge base, you must first set up your data sources and configure a supported vector store. For more information, see Set up your data for ingestion.  If you prefer to let Amazon Bedrock create and manage a vector store for you in Amazon OpenSearch Service, use the console. For more information, see Create a knowledge base.    Provide the name and an optional description.   Provide the Amazon Resource Name (ARN) with permissions to create a knowledge base in the roleArn field.   Provide the embedding model to use in the embeddingModelArn field in the knowledgeBaseConfiguration object.   Provide the configuration for your vector store in the storageConfiguration object.   For an Amazon OpenSearch Service database, use the opensearchServerlessConfiguration object. For more information, see Create a vector store in Amazon OpenSearch Service.   For an Amazon Aurora database, use the RdsConfiguration object. For more information, see Create a vector store in Amazon Aurora.   For a Pinecone database, use the pineconeConfiguration object. For more information, see Create a vector store in Pinecone.   For a Redis Enterprise Cloud database, use the redisEnterpriseCloudConfiguration object. For more information, see Create a vector store in Redis Enterprise Cloud",
+        "Creates a knowledge base. A knowledge base contains your data sources so that Large Language Models (LLMs) can use your data. To create a knowledge base, you must first set up your data sources and configure a supported vector store. For more information, see Set up a knowledge base.  If you prefer to let Amazon Bedrock create and manage a vector store for you in Amazon OpenSearch Service, use the console. For more information, see Create a knowledge base.    Provide the name and an optional description.   Provide the Amazon Resource Name (ARN) with permissions to create a knowledge base in the roleArn field.   Provide the embedding model to use in the embeddingModelArn field in the knowledgeBaseConfiguration object.   Provide the configuration for your vector store in the storageConfiguration object.   For an Amazon OpenSearch Service database, use the opensearchServerlessConfiguration object. For more information, see Create a vector store in Amazon OpenSearch Service.   For an Amazon Aurora database, use the RdsConfiguration object. For more information, see Create a vector store in Amazon Aurora.   For a Pinecone database, use the pineconeConfiguration object. For more information, see Create a vector store in Pinecone.   For a Redis Enterprise Cloud database, use the redisEnterpriseCloudConfiguration object. For more information, see Create a vector store in Redis Enterprise Cloud",
       options: [
         {
           name: "--client-token",
@@ -1524,7 +1524,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--knowledge-base-id",
           description:
-            "The unique identifier of the knowledge base that the data source was added to",
+            "The unique identifier of the knowledge base for the data source",
           args: {
             name: "string",
           },
@@ -1661,19 +1661,20 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-ingestion-job",
       description:
-        "Gets information about a ingestion job, in which a data source is added to a knowledge base",
+        "Gets information about a data ingestion job. Data sources are ingested into your knowledge base so that Large Lanaguage Models (LLMs) can use your data",
       options: [
         {
           name: "--data-source-id",
           description:
-            "The unique identifier of the data source in the ingestion job",
+            "The unique identifier of the data source for the data ingestion job you want to get information on",
           args: {
             name: "string",
           },
         },
         {
           name: "--ingestion-job-id",
-          description: "The unique identifier of the ingestion job",
+          description:
+            "The unique identifier of the data ingestion job you want to get information on",
           args: {
             name: "string",
           },
@@ -1681,7 +1682,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--knowledge-base-id",
           description:
-            "The unique identifier of the knowledge base for which the ingestion job applies",
+            "The unique identifier of the knowledge base for the data ingestion job you want to get information on",
           args: {
             name: "string",
           },
@@ -1712,7 +1713,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--knowledge-base-id",
           description:
-            "The unique identifier of the knowledge base for which to get information",
+            "The unique identifier of the knowledge base you want to get information on",
           args: {
             name: "string",
           },
@@ -2420,12 +2421,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-ingestion-jobs",
       description:
-        "Lists the ingestion jobs for a data source and information about each of them",
+        "Lists the data ingestion jobs for a data source. The list also includes information about each job",
       options: [
         {
           name: "--data-source-id",
           description:
-            "The unique identifier of the data source for which to return ingestion jobs",
+            "The unique identifier of the data source for the list of data ingestion jobs",
           args: {
             name: "string",
           },
@@ -2433,7 +2434,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--filters",
           description:
-            "Contains a definition of a filter for which to filter the results",
+            "Contains information about the filters for filtering the data",
           args: {
             name: "list",
           },
@@ -2441,7 +2442,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--knowledge-base-id",
           description:
-            "The unique identifier of the knowledge base for which to return ingestion jobs",
+            "The unique identifier of the knowledge base for the list of data ingestion jobs",
           args: {
             name: "string",
           },
@@ -2464,7 +2465,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--sort-by",
-          description: "Contains details about how to sort the results",
+          description: "Contains details about how to sort the data",
           args: {
             name: "structure",
           },
@@ -2515,7 +2516,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-knowledge-bases",
       description:
-        "Lists the knowledge bases in an account and information about each of them",
+        "Lists the knowledge bases in an account. The list also includesinformation about each knowledge base",
       options: [
         {
           name: "--max-results",
@@ -2745,7 +2746,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "start-ingestion-job",
       description:
-        "Begins an ingestion job, in which a data source is added to a knowledge base",
+        "Begins a data ingestion job. Data sources are ingested into your knowledge base so that Large Language Models (LLMs) can use your data",
       options: [
         {
           name: "--client-token",
@@ -2757,14 +2758,15 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--data-source-id",
-          description: "The unique identifier of the data source to ingest",
+          description:
+            "The unique identifier of the data source you want to ingest into your knowledge base",
           args: {
             name: "string",
           },
         },
         {
           name: "--description",
-          description: "A description of the ingestion job",
+          description: "A description of the data ingestion job",
           args: {
             name: "string",
           },
@@ -2772,7 +2774,55 @@ const completionSpec: Fig.Spec = {
         {
           name: "--knowledge-base-id",
           description:
-            "The unique identifier of the knowledge base to which to add the data source",
+            "The unique identifier of the knowledge base for the data ingestion job",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "stop-ingestion-job",
+      description:
+        "Stops a currently running data ingestion job. You can send a StartIngestionJob request again to ingest the rest of your data when you are ready",
+      options: [
+        {
+          name: "--data-source-id",
+          description:
+            "The unique identifier of the data source for the data ingestion job you want to stop",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--ingestion-job-id",
+          description:
+            "The unique identifier of the data ingestion job you want to stop",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--knowledge-base-id",
+          description:
+            "The unique identifier of the knowledge base for the data ingestion job you want to stop",
           args: {
             name: "string",
           },
