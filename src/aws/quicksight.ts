@@ -8281,6 +8281,24 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--include-folder-memberships",
+          description:
+            "A Boolean that determines if the exported asset carries over information about the folders that the asset is a member of",
+        },
+        {
+          name: "--no-include-folder-memberships",
+          description:
+            "A Boolean that determines if the exported asset carries over information about the folders that the asset is a member of",
+        },
+        {
+          name: "--include-folder-members",
+          description:
+            "A setting that indicates whether you want to include folder assets. You can also use this setting to recusrsively include all subfolders of an exported folder",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",

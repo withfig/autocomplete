@@ -119,6 +119,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--capability-options",
+          description:
+            "Specify the structure that contains the details for the associated capabilities",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--client-token",
           description: "Reserved for future use",
           args: {
@@ -230,9 +238,57 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-starter-mapping-template",
+      description:
+        "Amazon Web Services B2B Data Interchange uses a mapping template in JSONata or XSLT format to transform a customer input file into a JSON or XML file that can be converted to EDI. If you provide a sample EDI file with the same structure as the EDI files that you wish to generate, then the service can generate a mapping template. The starter template contains placeholder values which you can replace with JSONata or XSLT expressions to take data from your input file and insert it into the JSON or XML file that is used to generate the EDI. If you do not provide a sample EDI file, then the service can generate a mapping template based on the EDI settings in the templateDetails parameter.   Currently, we only support generating a template that can generate the input to produce an Outbound X12 EDI file",
+      options: [
+        {
+          name: "--output-sample-location",
+          description:
+            "Specify the location of the sample EDI file that is used to generate the mapping template",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--mapping-type",
+          description:
+            "Specify the format for the mapping template: either JSONATA or XSLT",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--template-details",
+          description:
+            "Describes the details needed for generating the template. Specify the X12 transaction set and version for which the template is used: currently, we only support X12",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-transformer",
       description:
-        "Creates a transformer. A transformer describes how to process the incoming EDI documents and extract the necessary information to the output file",
+        "Creates a transformer. Amazon Web Services B2B Data Interchange currently supports two scenarios:    Inbound EDI: the Amazon Web Services customer receives an EDI file from their trading partner. Amazon Web Services B2B Data Interchange converts this EDI file into a JSON or XML file with a service-defined structure. A mapping template provided by the customer, in JSONata or XSLT format, is optionally applied to this file to produce a JSON or XML file with the structure the customer requires.    Outbound EDI: the Amazon Web Services customer has a JSON or XML file containing data that they wish to use in an EDI file. A mapping template, provided by the customer (in either JSONata or XSLT format) is applied to this file to generate a JSON or XML file in the service-defined structure. This file is then converted to an EDI file.    The following fields are provided for backwards compatibility only: fileFormat, mappingTemplate, ediType, and sampleDocument.   Use the mapping data type in place of mappingTemplate and fileFormat    Use the sampleDocuments data type in place of sampleDocument    Use either the inputConversion or outputConversion in place of ediType",
       options: [
         {
           name: "--name",
@@ -240,6 +296,21 @@ const completionSpec: Fig.Spec = {
             "Specifies the name of the transformer, used to identify it",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--client-token",
+          description: "Reserved for future use",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "Specifies the key-value pairs assigned to ARNs that you can use to group and search for resources by type. You can attach this metadata to resources (capabilities, partnerships, and so on) for any purpose",
+          args: {
+            name: "list",
           },
         },
         {
@@ -253,7 +324,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--mapping-template",
           description:
-            "Specifies the mapping template for the transformer. This template is used to map the parsed EDI file using JSONata or XSLT",
+            "Specifies the mapping template for the transformer. This template is used to map the parsed EDI file using JSONata or XSLT.  This parameter is available for backwards compatibility. Use the Mapping data type instead",
           args: {
             name: "string",
           },
@@ -275,18 +346,35 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--client-token",
-          description: "Reserved for future use",
+          name: "--input-conversion",
+          description:
+            "Specify the InputConversion object, which contains the format options for the inbound transformation",
           args: {
-            name: "string",
+            name: "structure",
           },
         },
         {
-          name: "--tags",
+          name: "--mapping",
           description:
-            "Specifies the key-value pairs assigned to ARNs that you can use to group and search for resources by type. You can attach this metadata to resources (capabilities, partnerships, and so on) for any purpose",
+            "Specify the structure that contains the mapping template and its language (either XSLT or JSONATA)",
           args: {
-            name: "list",
+            name: "structure",
+          },
+        },
+        {
+          name: "--output-conversion",
+          description:
+            "A structure that contains the OutputConversion object, which contains the format options for the outbound transformation",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--sample-documents",
+          description:
+            "Specify a structure that contains the Amazon S3 bucket and an array of the corresponding keys used to identify the location for your sample documents",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -407,7 +495,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-transformer",
       description:
-        "Deletes the specified transformer. A transformer describes how to process the incoming EDI documents and extract the necessary information to the output file",
+        "Deletes the specified transformer. A transformer can take an EDI file as input and transform it into a JSON-or XML-formatted document. Alternatively, a transformer can take a JSON-or XML-formatted document as input and transform it into an EDI file",
       options: [
         {
           name: "--transformer-id",
@@ -535,7 +623,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-transformer",
       description:
-        "Retrieves the details for the transformer specified by the transformer ID. A transformer describes how to process the incoming EDI documents and extract the necessary information to the output file",
+        "Retrieves the details for the transformer specified by the transformer ID. A transformer can take an EDI file as input and transform it into a JSON-or XML-formatted document. Alternatively, a transformer can take a JSON-or XML-formatted document as input and transform it into an EDI file",
       options: [
         {
           name: "--transformer-id",
@@ -836,7 +924,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-transformers",
       description:
-        "Lists the available transformers. A transformer describes how to process the incoming EDI documents and extract the necessary information to the output file",
+        "Lists the available transformers. A transformer can take an EDI file as input and transform it into a JSON-or XML-formatted document. Alternatively, a transformer can take a JSON-or XML-formatted document as input and transform it into an EDI file",
       options: [
         {
           name: "--next-token",
@@ -900,7 +988,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "start-transformer-job",
       description:
-        "Runs a job, using a transformer, to parse input EDI (electronic data interchange) file into the output structures used by Amazon Web Services B2BI Data Interchange. If you only want to transform EDI (electronic data interchange) documents, you don't need to create profiles, partnerships or capabilities. Just create and configure a transformer, and then run the StartTransformerJob API to process your files",
+        "Runs a job, using a transformer, to parse input EDI (electronic data interchange) file into the output structures used by Amazon Web Services B2B Data Interchange. If you only want to transform EDI (electronic data interchange) documents, you don't need to create profiles, partnerships or capabilities. Just create and configure a transformer, and then run the StartTransformerJob API to process your files",
       options: [
         {
           name: "--input-file",
@@ -993,6 +1081,45 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "test-conversion",
+      description:
+        "This operation mimics the latter half of a typical Outbound EDI request. It takes an input JSON/XML in the B2Bi shape as input, converts it to an X12 EDI string, and return that string",
+      options: [
+        {
+          name: "--source",
+          description: "Specify the source file for an outbound EDI request",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--target",
+          description:
+            "Specify the format (X12 is the only currently supported format), and other details for the conversion target",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "test-mapping",
       description:
         "Maps the input file according to the provided template file. The API call downloads the file contents from the Amazon S3 location, and passes the contents in as a string, to the inputFileContent parameter",
@@ -1008,7 +1135,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--mapping-template",
           description:
-            "Specifies the mapping template for the transformer. This template is used to map the parsed EDI file using JSONata or XSLT",
+            "Specifies the mapping template for the transformer. This template is used to map the parsed EDI file using JSONata or XSLT.  This parameter is available for backwards compatibility. Use the Mapping data type instead",
           args: {
             name: "string",
           },
@@ -1213,6 +1340,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--capability-options",
+          description:
+            "To update, specify the structure that contains the details for the associated capabilities",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -1296,7 +1431,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-transformer",
       description:
-        "Updates the specified parameters for a transformer. A transformer describes how to process the incoming EDI documents and extract the necessary information to the output file",
+        "Updates the specified parameters for a transformer. A transformer can take an EDI file as input and transform it into a JSON-or XML-formatted document. Alternatively, a transformer can take a JSON-or XML-formatted document as input and transform it into an EDI file",
       options: [
         {
           name: "--transformer-id",
@@ -1315,6 +1450,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--status",
+          description:
+            "Specifies the transformer's status. You can update the state of the transformer, from active to inactive, or inactive to active",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--file-format",
           description:
             "Specifies that the currently supported file formats for EDI transformations are JSON and XML",
@@ -1325,15 +1468,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--mapping-template",
           description:
-            "Specifies the mapping template for the transformer. This template is used to map the parsed EDI file using JSONata or XSLT",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--status",
-          description:
-            "Specifies the transformer's status. You can update the state of the transformer, from active to inactive, or inactive to active",
+            "Specifies the mapping template for the transformer. This template is used to map the parsed EDI file using JSONata or XSLT.  This parameter is available for backwards compatibility. Use the Mapping data type instead",
           args: {
             name: "string",
           },
@@ -1352,6 +1487,38 @@ const completionSpec: Fig.Spec = {
             "Specifies a sample EDI document that is used by a transformer as a guide for processing the EDI data",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--input-conversion",
+          description:
+            "To update, specify the InputConversion object, which contains the format options for the inbound transformation",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--mapping",
+          description:
+            "Specify the structure that contains the mapping template and its language (either XSLT or JSONATA)",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--output-conversion",
+          description:
+            "To update, specify the OutputConversion object, which contains the format options for the outbound transformation",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--sample-documents",
+          description:
+            "Specify a structure that contains the Amazon S3 bucket and an array of the corresponding keys used to identify the location for your sample documents",
+          args: {
+            name: "structure",
           },
         },
         {
