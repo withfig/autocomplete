@@ -161,7 +161,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "associate-sbom-with-package-version",
       description:
-        "Associates a software bill of materials (SBOM) with a specific software package version. Requires permission to access the AssociateSbomWithPackageVersion action",
+        "Associates the selected software bill of materials (SBOM) with a specific software package version. Requires permission to access the AssociateSbomWithPackageVersion action",
       options: [
         {
           name: "--package-name",
@@ -180,7 +180,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sbom",
           description:
-            "The Amazon S3 location for the software bill of materials associated with a software package version",
+            "A specific software bill of matrerials associated with a software package version",
           args: {
             name: "structure",
           },
@@ -894,7 +894,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-billing-group",
       description:
-        "Creates a billing group. Requires permission to access the CreateBillingGroup action",
+        "Creates a billing group. If this call is made multiple times using the same billing group name and configuration, the call will succeed. If this call is made with the same billing group name but different configuration a ResourceAlreadyExistsException is thrown. Requires permission to access the CreateBillingGroup action",
       options: [
         {
           name: "--billing-group-name",
@@ -1243,6 +1243,30 @@ const completionSpec: Fig.Spec = {
         {
           name: "--server-certificate-config",
           description: "The server certificate configuration",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--authentication-type",
+          description:
+            "An enumerated string that speci\ufb01es the authentication type.    CUSTOM_AUTH_X509 - Use custom authentication and authorization with additional details from the X.509 client certificate.      CUSTOM_AUTH - Use custom authentication and authorization. For more information, see Custom authentication and authorization.      AWS_X509 - Use X.509 client certificates without custom authentication and authorization. For more information, see X.509 client certificates.      AWS_SIGV4 - Use Amazon Web Services Signature Version 4. For more information, see IAM users, groups, and roles.      DEFAULT - Use a combination of port and Application Layer Protocol Negotiation (ALPN) to specify authentication type. For more information, see Device communication protocols",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--application-protocol",
+          description:
+            "An enumerated string that speci\ufb01es the application-layer protocol.    SECURE_MQTT - MQTT over TLS.      MQTT_WSS - MQTT over WebSocket.      HTTPS - HTTP over TLS.      DEFAULT - Use a combination of port and Application Layer Protocol Negotiation (ALPN) to specify application_layer protocol. For more information, see Device communication protocols",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--client-certificate-config",
+          description:
+            "An object that speci\ufb01es the client certificate con\ufb01guration for a domain",
           args: {
             name: "structure",
           },
@@ -2041,7 +2065,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--recipe",
           description:
-            "The inline job document associated with a software package version used for a quick job deployment via IoT Jobs",
+            "The inline job document associated with a software package version used for a quick job deployment",
           args: {
             name: "string",
           },
@@ -2348,7 +2372,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-role-alias",
       description:
-        "Creates a role alias. Requires permission to access the CreateRoleAlias action",
+        "Creates a role alias. Requires permission to access the CreateRoleAlias action.  The value of  credentialDurationSeconds  must be less than or equal to the maximum session duration of the IAM role that the role alias references. For more information, see  Modifying a role maximum session duration (Amazon Web Services API) from the Amazon Web Services Identity and Access Management User Guide",
       options: [
         {
           name: "--role-alias",
@@ -2729,7 +2753,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-thing-type",
       description:
-        "Creates a new thing type. Requires permission to access the CreateThingType action",
+        "Creates a new thing type. If this call is made multiple times using the same thing type name and configuration, the call will succeed. If this call is made with the same thing type name but different configuration a ResourceAlreadyExistsException is thrown.  Requires permission to access the CreateThingType action",
       options: [
         {
           name: "--thing-type-name",
@@ -5403,7 +5427,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "disassociate-sbom-from-package-version",
       description:
-        "Disassociates a software bill of materials (SBOM) from a specific software package version. Requires permission to access the DisassociateSbomWithPackageVersion action",
+        "Disassociates the selected software bill of materials (SBOM) from a specific software package version. Requires permission to access the DisassociateSbomWithPackageVersion action",
       options: [
         {
           name: "--package-name",
@@ -12478,6 +12502,30 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--authentication-type",
+          description:
+            "An enumerated string that speci\ufb01es the authentication type.    CUSTOM_AUTH_X509 - Use custom authentication and authorization with additional details from the X.509 client certificate.      CUSTOM_AUTH - Use custom authentication and authorization. For more information, see Custom authentication and authorization.      AWS_X509 - Use X.509 client certificates without custom authentication and authorization. For more information, see X.509 client certificates.      AWS_SIGV4 - Use Amazon Web Services Signature Version 4. For more information, see IAM users, groups, and roles.      DEFAULT  - Use a combination of port and Application Layer Protocol Negotiation (ALPN) to specify authentication type. For more information, see Device communication protocols",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--application-protocol",
+          description:
+            "An enumerated string that speci\ufb01es the application-layer protocol.    SECURE_MQTT - MQTT over TLS.      MQTT_WSS - MQTT over WebSocket.      HTTPS - HTTP over TLS.      DEFAULT - Use a combination of port and Application Layer Protocol Negotiation (ALPN) to specify application_layer protocol. For more information, see Device communication protocols",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--client-certificate-config",
+          description:
+            "An object that speci\ufb01es the client certificate con\ufb01guration for a domain",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -13018,7 +13066,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--recipe",
           description:
-            "The inline job document associated with a software package version used for a quick job deployment via IoT Jobs",
+            "The inline job document associated with a software package version used for a quick job deployment",
           args: {
             name: "string",
           },
@@ -13132,7 +13180,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-role-alias",
       description:
-        "Updates a role alias. Requires permission to access the UpdateRoleAlias action",
+        "Updates a role alias. Requires permission to access the UpdateRoleAlias action.  The value of  credentialDurationSeconds  must be less than or equal to the maximum session duration of the IAM role that the role alias references. For more information, see  Modifying a role maximum session duration (Amazon Web Services API) from the Amazon Web Services Identity and Access Management User Guide",
       options: [
         {
           name: "--role-alias",

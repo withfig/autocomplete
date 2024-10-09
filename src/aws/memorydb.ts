@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "memorydb",
   description:
-    "MemoryDB is a fully managed, Redis OSS-compatible, in-memory database that delivers ultra-fast performance and Multi-AZ durability for modern applications built using microservices architectures. MemoryDB stores the entire database in-memory, enabling low latency and high throughput data access. It is compatible with Redis OSS, a popular open source data store, enabling you to leverage Redis OSS\u2019 flexible and friendly data structures, APIs, and commands",
+    "MemoryDB for Redis is a fully managed, Redis-compatible, in-memory database that delivers ultra-fast performance and Multi-AZ durability for modern applications built using microservices architectures. MemoryDB stores the entire database in-memory, enabling low latency and high throughput data access. It is compatible with Redis, a popular open source data store, enabling you to leverage Redis\u2019 flexible and friendly data structures, APIs, and commands",
   subcommands: [
     {
       name: "batch-update-cluster",
@@ -307,9 +307,17 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--engine",
+          description:
+            "The name of the engine to be used for the nodes in this cluster. The value must be set to either Redis or Valkey",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--engine-version",
           description:
-            "The version number of the Redis OSS engine to be used for the cluster",
+            "The version number of the engine to be used for the cluster",
           args: {
             name: "string",
           },
@@ -602,7 +610,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-cluster",
       description:
-        "Deletes a cluster. It also deletes all associated nodes and node endpoints   CreateSnapshot permission is required to create a final snapshot. Without this permission, the API call will fail with an Access Denied exception",
+        "Deletes a cluster. It also deletes all associated nodes and node endpoints",
       options: [
         {
           name: "--cluster-name",
@@ -915,11 +923,19 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "describe-engine-versions",
-      description: "Returns a list of the available Redis OSS engine versions",
+      description: "Returns a list of the available engine versions",
       options: [
         {
+          name: "--engine",
+          description:
+            "The engine version to return. Valid values are either valkey or redis",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--engine-version",
-          description: "The Redis OSS engine version",
+          description: "The engine version",
           args: {
             name: "string",
           },
@@ -2183,6 +2199,14 @@ const completionSpec: Fig.Spec = {
           name: "--node-type",
           description:
             "A valid node type that you want to scale this cluster up or down to",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--engine",
+          description:
+            "The name of the engine to be used for the nodes in this cluster. The value must be set to either Redis or Valkey",
           args: {
             name: "string",
           },
