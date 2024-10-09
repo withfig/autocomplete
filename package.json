@@ -73,8 +73,8 @@
   "repository": "https://github.com/withfig/autocomplete",
   "devDependencies": {
     "@fig/eslint-config-autocomplete": "^2.0.0",
-    "@typescript-eslint/eslint-plugin": "^7.14.1",
-    "@typescript-eslint/parser": "^7.14.1",
+    "@typescript-eslint/eslint-plugin": "^8.8.0",
+    "@typescript-eslint/parser": "^8.8.0",
     "@withfig/autocomplete-tools": "^2.10.0",
     "@withfig/autocomplete-types": "^1.31.0",
     "danger": "^11.3.1",
