@@ -276,6 +276,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--proxy-configuration",
+          description: "The proxy configuration of the compute fleet",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--image-id",
           description: "The Amazon Machine Image (AMI) of the compute fleet",
           args: {
@@ -2904,6 +2911,13 @@ const completionSpec: Fig.Spec = {
           name: "--vpc-config",
           description:
             "Information about the VPC configuration that CodeBuild accesses",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--proxy-configuration",
+          description: "The proxy configuration of the compute fleet",
           args: {
             name: "structure",
           },

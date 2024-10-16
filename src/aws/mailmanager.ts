@@ -1587,6 +1587,16 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--include-metadata",
+          description:
+            "Whether to include message metadata as JSON files in the export",
+        },
+        {
+          name: "--no-include-metadata",
+          description:
+            "Whether to include message metadata as JSON files in the export",
+        },
+        {
           name: "--max-results",
           description:
             "The maximum number of email items to include in the export",
