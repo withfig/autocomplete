@@ -237,11 +237,14 @@ const completionSpec: Fig.Spec = {
     enablePlugin("nextjs", "Next.js"),
     enablePlugin("react-perf", "React Performance"),
     enablePlugin("Promise"),
+    enablePlugin("Import"),
+    enablePlugin("jsx-a11y", "JSX A11y"),
+    enablePlugin("Node"),
+    enablePlugin("Security"),
     disablePlugin("React"),
     disablePlugin("Unicorn"),
     disablePlugin("Oxc"),
     disablePlugin("TypeScript"),
-    disablePlugin("Import"),
 
     // ================================= LINTS =================================
     {
@@ -267,6 +270,14 @@ const completionSpec: Fig.Spec = {
       name: "--fix",
       description:
         "Fix as many issues as possible. Only unfixed issues are reported in the output",
+    },
+    {
+      name: "--fix-suggestions",
+      description: "Apply auto-fixable suggestions. May change program behavior"
+    },
+    {
+      name: "--fix-dangerously",
+      description: "Apply dangerous fixes and/or suggestions. Review changes carefully",
     },
     // ================================ OUTPUT =================================
     {
