@@ -142,7 +142,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--user-groups",
           description:
-            "The groups that a user associated with the chat input belongs to",
+            "The group names that a user associated with the chat input belongs to",
           args: {
             name: "list",
           },
@@ -258,7 +258,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--role-arn",
           description:
-            "The Amazon Resource Name (ARN) of an IAM role with permissions to access your Amazon CloudWatch logs and metrics",
+            "The Amazon Resource Name (ARN) of an IAM role with permissions to access your Amazon CloudWatch logs and metrics. If this property is not specified, Amazon Q Business will create a service linked role (SLR) and use it as the application's role",
           args: {
             name: "string",
           },
@@ -809,6 +809,14 @@ const completionSpec: Fig.Spec = {
             "Determines whether sample prompts are enabled in the web experience for an end user",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--origins",
+          description:
+            "Sets the website domain origins that are allowed to embed the Amazon Q Business web experience.  The <i>domain origin</i> refers to the base URL for accessing a website including the protocol (<code>http/https</code>), the domain name, and the port number (if specified). </p> <note> <p>You must only submit a <i>base URL</i> and not a full path. For example, <code>https://docs.aws.amazon.com</code>.</p> </note>",
+          args: {
+            name: "list",
           },
         },
         {
@@ -3486,6 +3494,14 @@ const completionSpec: Fig.Spec = {
             "Information about the identity provider (IdP) used to authenticate end users of an Amazon Q Business web experience",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--origins",
+          description:
+            "Updates the website domain origins that are allowed to embed the Amazon Q Business web experience.  The <i>domain origin</i> refers to the <i>base URL</i> for accessing a website including the protocol (<code>http/https</code>), the domain name, and the port number (if specified).</p> <note> <ul> <li> <p>Any values except <code>null</code> submitted as part of this update will replace all previous values.</p> </li> <li> <p>You must only submit a <i>base URL</i> and not a full path. For example, <code>https://docs.aws.amazon.com</code>.</p> </li> </ul> </note>",
+          args: {
+            name: "list",
           },
         },
         {

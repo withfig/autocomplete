@@ -101,11 +101,24 @@ const completionSpec: Fig.Spec = {
         "Creates a new channel and an associated stream key to start streaming",
       options: [
         {
-          name: "--name",
-          description: "Channel name",
-          args: {
-            name: "string",
-          },
+          name: "--authorized",
+          description:
+            "Whether the channel is private (enabled for playback authorization). Default: false",
+        },
+        {
+          name: "--no-authorized",
+          description:
+            "Whether the channel is private (enabled for playback authorization). Default: false",
+        },
+        {
+          name: "--insecure-ingest",
+          description:
+            "Whether the channel allows insecure RTMP and SRT ingest. Default: false",
+        },
+        {
+          name: "--no-insecure-ingest",
+          description:
+            "Whether the channel allows insecure RTMP and SRT ingest. Default: false",
         },
         {
           name: "--latency-mode",
@@ -116,22 +129,27 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--type",
-          description:
-            "Channel type, which determines the allowable resolution and bitrate. If you exceed the allowable input resolution or bitrate, the stream probably will disconnect immediately. Default: STANDARD. For details, see Channel Types",
+          name: "--name",
+          description: "Channel name",
           args: {
             name: "string",
           },
         },
         {
-          name: "--authorized",
+          name: "--playback-restriction-policy-arn",
           description:
-            "Whether the channel is private (enabled for playback authorization). Default: false",
+            'Playback-restriction-policy ARN. A valid ARN value here both specifies the ARN and enables playback restriction. Default: "" (empty string, no playback restriction policy is applied)',
+          args: {
+            name: "string",
+          },
         },
         {
-          name: "--no-authorized",
+          name: "--preset",
           description:
-            "Whether the channel is private (enabled for playback authorization). Default: false",
+            'Optional transcode preset for the channel. This is selectable only for ADVANCED_HD and ADVANCED_SD channel types. For those channel types, the default preset is HIGHER_BANDWIDTH_DELIVERY. For other channel types (BASIC and STANDARD), preset is the empty string ("")',
+          args: {
+            name: "string",
+          },
         },
         {
           name: "--recording-configuration-arn",
@@ -150,27 +168,9 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--insecure-ingest",
+          name: "--type",
           description:
-            "Whether the channel allows insecure RTMP and SRT ingest. Default: false",
-        },
-        {
-          name: "--no-insecure-ingest",
-          description:
-            "Whether the channel allows insecure RTMP and SRT ingest. Default: false",
-        },
-        {
-          name: "--preset",
-          description:
-            'Optional transcode preset for the channel. This is selectable only for ADVANCED_HD and ADVANCED_SD channel types. For those channel types, the default preset is HIGHER_BANDWIDTH_DELIVERY. For other channel types (BASIC and STANDARD), preset is the empty string ("")',
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--playback-restriction-policy-arn",
-          description:
-            'Playback-restriction-policy ARN. A valid ARN value here both specifies the ARN and enables playback restriction. Default: "" (empty string, no playback restriction policy is applied)',
+            "Channel type, which determines the allowable resolution and bitrate. If you exceed the allowable input resolution or bitrate, the stream probably will disconnect immediately. Default: STANDARD. For details, see Channel Types",
           args: {
             name: "string",
           },
@@ -266,6 +266,14 @@ const completionSpec: Fig.Spec = {
         "Creates a new recording configuration, used to enable recording to Amazon S3.  Known issue: In the us-east-1 region, if you use the Amazon Web Services CLI to create a recording configuration, it returns success even if the S3 bucket is in a different region. In this case, the state of the recording configuration is CREATE_FAILED (instead of ACTIVE). (In other regions, the CLI correctly returns failure if the bucket is in a different region.)  Workaround: Ensure that your S3 bucket is in the same region as the recording configuration. If you create a recording configuration in a different region as your S3 bucket, delete that recording configuration and create a new one with an S3 bucket from the correct region",
       options: [
         {
+          name: "--destination-configuration",
+          description:
+            "A complex type that contains a destination configuration for where recorded video will be stored",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--name",
           description:
             "Recording-configuration name. The value does not need to be unique",
@@ -274,9 +282,17 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--destination-configuration",
+          name: "--recording-reconnect-window-seconds",
           description:
-            "A complex type that contains a destination configuration for where recorded video will be stored",
+            "If a broadcast disconnects and then reconnects within the specified interval, the multiple streams will be considered a single broadcast and merged together. Default: 0",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--rendition-configuration",
+          description:
+            "Object that describes which renditions should be recorded for a stream",
           args: {
             name: "structure",
           },
@@ -293,22 +309,6 @@ const completionSpec: Fig.Spec = {
           name: "--thumbnail-configuration",
           description:
             "A complex type that allows you to enable/disable the recording of thumbnails for a live session and modify the interval at which thumbnails are generated for the live session",
-          args: {
-            name: "structure",
-          },
-        },
-        {
-          name: "--recording-reconnect-window-seconds",
-          description:
-            "If a broadcast disconnects and then reconnects within the specified interval, the multiple streams will be considered a single broadcast and merged together. Default: 0",
-          args: {
-            name: "integer",
-          },
-        },
-        {
-          name: "--rendition-configuration",
-          description:
-            "Object that describes which renditions should be recorded for a stream",
           args: {
             name: "structure",
           },
@@ -753,16 +753,16 @@ const completionSpec: Fig.Spec = {
         "Imports the public portion of a new key pair and returns its arn and fingerprint. The privateKey can then be used to generate viewer authorization tokens, to grant viewers access to private channels. For more information, see Setting Up Private Channels in the Amazon IVS User Guide",
       options: [
         {
-          name: "--public-key-material",
-          description: "The public portion of a customer-generated key pair",
+          name: "--name",
+          description:
+            "Playback-key-pair name. The value does not need to be unique",
           args: {
             name: "string",
           },
         },
         {
-          name: "--name",
-          description:
-            "Playback-key-pair name. The value does not need to be unique",
+          name: "--public-key-material",
+          description: "The public portion of a customer-generated key pair",
           args: {
             name: "string",
           },
@@ -807,14 +807,6 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--filter-by-recording-configuration-arn",
-          description:
-            "Filters the channel list to match the specified recording-configuration ARN",
-          args: {
-            name: "string",
-          },
-        },
-        {
           name: "--filter-by-playback-restriction-policy-arn",
           description: "Filters the channel list to match the specified policy",
           args: {
@@ -822,9 +814,9 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--next-token",
+          name: "--filter-by-recording-configuration-arn",
           description:
-            "The first channel to retrieve. This is used for pagination; see the nextToken response field",
+            "Filters the channel list to match the specified recording-configuration ARN",
           args: {
             name: "string",
           },
@@ -834,6 +826,14 @@ const completionSpec: Fig.Spec = {
           description: "Maximum number of channels to return. Default: 100",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The first channel to retrieve. This is used for pagination; see the nextToken response field",
+          args: {
+            name: "string",
           },
         },
         {
@@ -885,19 +885,19 @@ const completionSpec: Fig.Spec = {
         "Gets summary information about playback key pairs. For more information, see Setting Up Private Channels in the Amazon IVS User Guide",
       options: [
         {
-          name: "--next-token",
-          description:
-            "The first key pair to retrieve. This is used for pagination; see the nextToken response field",
-          args: {
-            name: "string",
-          },
-        },
-        {
           name: "--max-results",
           description:
             "Maximum number of key pairs to return. Default: your service quota or 100, whichever is smaller",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The first key pair to retrieve. This is used for pagination; see the nextToken response field",
+          args: {
+            name: "string",
           },
         },
         {
@@ -949,18 +949,18 @@ const completionSpec: Fig.Spec = {
         "Gets summary information about playback restriction policies",
       options: [
         {
+          name: "--max-results",
+          description: "Maximum number of policies to return. Default: 1",
+          args: {
+            name: "integer",
+          },
+        },
+        {
           name: "--next-token",
           description:
             "The first policy to retrieve. This is used for pagination; see the nextToken response field",
           args: {
             name: "string",
-          },
-        },
-        {
-          name: "--max-results",
-          description: "Maximum number of policies to return. Default: 1",
-          args: {
-            name: "integer",
           },
         },
         {
@@ -988,19 +988,19 @@ const completionSpec: Fig.Spec = {
         "Gets summary information about all recording configurations in your account, in the Amazon Web Services region where the API request is processed",
       options: [
         {
-          name: "--next-token",
-          description:
-            "The first recording configuration to retrieve. This is used for pagination; see the nextToken response field",
-          args: {
-            name: "string",
-          },
-        },
-        {
           name: "--max-results",
           description:
             "Maximum number of recording configurations to return. Default: your service quota or 100, whichever is smaller",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The first recording configuration to retrieve. This is used for pagination; see the nextToken response field",
+          args: {
+            name: "string",
           },
         },
         {
@@ -1059,18 +1059,18 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--max-results",
+          description: "Maximum number of streamKeys to return. Default: 1",
+          args: {
+            name: "integer",
+          },
+        },
+        {
           name: "--next-token",
           description:
             "The first stream key to retrieve. This is used for pagination; see the nextToken response field",
           args: {
             name: "string",
-          },
-        },
-        {
-          name: "--max-results",
-          description: "Maximum number of streamKeys to return. Default: 1",
-          args: {
-            name: "integer",
           },
         },
         {
@@ -1129,18 +1129,18 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--max-results",
+          description: "Maximum number of streams to return. Default: 100",
+          args: {
+            name: "integer",
+          },
+        },
+        {
           name: "--next-token",
           description:
             "The first stream to retrieve. This is used for pagination; see the nextToken response field",
           args: {
             name: "string",
-          },
-        },
-        {
-          name: "--max-results",
-          description: "Maximum number of streams to return. Default: 100",
-          args: {
-            name: "integer",
           },
         },
         {
@@ -1176,18 +1176,18 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--max-results",
+          description: "Maximum number of streams to return. Default: 100",
+          args: {
+            name: "integer",
+          },
+        },
+        {
           name: "--next-token",
           description:
             "The first stream to retrieve. This is used for pagination; see the nextToken response field",
           args: {
             name: "string",
-          },
-        },
-        {
-          name: "--max-results",
-          description: "Maximum number of streams to return. Default: 100",
-          args: {
-            name: "integer",
           },
         },
         {
@@ -1477,29 +1477,6 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--name",
-          description: "Channel name",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--latency-mode",
-          description:
-            "Channel latency mode. Use NORMAL to broadcast and deliver live video up to Full HD. Use LOW for near-real-time interaction with viewers",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--type",
-          description:
-            "Channel type, which determines the allowable resolution and bitrate. If you exceed the allowable input resolution or bitrate, the stream probably will disconnect immediately. Default: STANDARD. For details, see Channel Types",
-          args: {
-            name: "string",
-          },
-        },
-        {
           name: "--authorized",
           description:
             "Whether the channel is private (enabled for playback authorization)",
@@ -1508,14 +1485,6 @@ const completionSpec: Fig.Spec = {
           name: "--no-authorized",
           description:
             "Whether the channel is private (enabled for playback authorization)",
-        },
-        {
-          name: "--recording-configuration-arn",
-          description:
-            "Recording-configuration ARN. A valid ARN value here both specifies the ARN and enables recording. If this is set to an empty string, recording is disabled",
-          args: {
-            name: "string",
-          },
         },
         {
           name: "--insecure-ingest",
@@ -1528,9 +1497,16 @@ const completionSpec: Fig.Spec = {
             "Whether the channel allows insecure RTMP and SRT ingest. Default: false",
         },
         {
-          name: "--preset",
+          name: "--latency-mode",
           description:
-            'Optional transcode preset for the channel. This is selectable only for ADVANCED_HD and ADVANCED_SD channel types. For those channel types, the default preset is HIGHER_BANDWIDTH_DELIVERY. For other channel types (BASIC and STANDARD), preset is the empty string ("")',
+            "Channel latency mode. Use NORMAL to broadcast and deliver live video up to Full HD. Use LOW for near-real-time interaction with viewers",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--name",
+          description: "Channel name",
           args: {
             name: "string",
           },
@@ -1539,6 +1515,30 @@ const completionSpec: Fig.Spec = {
           name: "--playback-restriction-policy-arn",
           description:
             "Playback-restriction-policy ARN. A valid ARN value here both specifies the ARN and enables playback restriction. If this is set to an empty string, playback restriction policy is disabled",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--preset",
+          description:
+            'Optional transcode preset for the channel. This is selectable only for ADVANCED_HD and ADVANCED_SD channel types. For those channel types, the default preset is HIGHER_BANDWIDTH_DELIVERY. For other channel types (BASIC and STANDARD), preset is the empty string ("")',
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--recording-configuration-arn",
+          description:
+            "Recording-configuration ARN. A valid ARN value here both specifies the ARN and enables recording. If this is set to an empty string, recording is disabled",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--type",
+          description:
+            "Channel type, which determines the allowable resolution and bitrate. If you exceed the allowable input resolution or bitrate, the stream probably will disconnect immediately. Default: STANDARD. For details, see Channel Types",
           args: {
             name: "string",
           },
@@ -1567,13 +1567,6 @@ const completionSpec: Fig.Spec = {
       description: "Updates a specified playback restriction policy",
       options: [
         {
-          name: "--arn",
-          description: "ARN of the playback-restriction-policy to be updated",
-          args: {
-            name: "string",
-          },
-        },
-        {
           name: "--allowed-countries",
           description:
             "A list of country codes that control geoblocking restriction. Allowed values are the officially assigned ISO 3166-1 alpha-2 codes. Default: All countries (an empty array)",
@@ -1587,6 +1580,13 @@ const completionSpec: Fig.Spec = {
             "A list of origin sites that control CORS restriction. Allowed values are the same as valid values of the Origin header defined at https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin. Default: All origins (an empty array)",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--arn",
+          description: "ARN of the playback-restriction-policy to be updated",
+          args: {
+            name: "string",
           },
         },
         {
