@@ -872,6 +872,36 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "describe-listener-attributes",
+      description: "Describes the attributes for the specified listener",
+      options: [
+        {
+          name: "--listener-arn",
+          description: "The Amazon Resource Name (ARN) of the listener",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "describe-listener-certificates",
       description:
         "Describes the default certificate and the certificate list for the specified HTTPS or TLS listener. If the default certificate is also in the certificate list, it appears twice in the results (once with IsDefault set to true and once with IsDefault set to false). For more information, see SSL certificates in the Application Load Balancers Guide or Server certificates in the Network Load Balancers Guide",
@@ -1769,6 +1799,44 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "modify-listener-attributes",
+      description:
+        "Modifies the specified attributes of the specified listener",
+      options: [
+        {
+          name: "--listener-arn",
+          description: "The Amazon Resource Name (ARN) of the listener",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--attributes",
+          description: "The listener attributes",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "modify-load-balancer-attributes",
       description:
         "Modifies the specified attributes of the specified Application Load Balancer, Network Load Balancer, or Gateway Load Balancer. If any of the specified attributes can't be modified as requested, the call fails. Any existing attributes that you do not modify retain their current values",
@@ -1968,7 +2036,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--attributes",
-          description: "The attributes",
+          description: "The target group attributes",
           args: {
             name: "list",
           },

@@ -204,7 +204,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "retrieve-and-generate",
       description:
-        "Queries a knowledge base and generates responses based on the retrieved results. The response only cites sources that are relevant to the query",
+        "Queries a knowledge base and generates responses based on the retrieved results and using the specified foundation model or inference profile. The response only cites sources that are relevant to the query",
       options: [
         {
           name: "--input",

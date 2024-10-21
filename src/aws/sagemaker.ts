@@ -782,6 +782,22 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--orchestrator",
+          description:
+            'The type of orchestrator to use for the SageMaker HyperPod cluster. Currently, the only supported value is "eks", which is to use an Amazon Elastic Kubernetes Service (EKS) cluster as the orchestrator',
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--node-recovery",
+          description:
+            "The node recovery mode for the SageMaker HyperPod cluster. When set to Automatic, SageMaker HyperPod will automatically reboot or replace faulty nodes when issues are detected. When set to None, cluster administrators will need to manually manage any faulty cluster instances",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -1259,6 +1275,14 @@ const completionSpec: Fig.Spec = {
           name: "--app-security-group-management",
           description:
             "The entity that creates and manages the required security groups for inter-app communication in VPCOnly mode. Required when CreateDomain.AppNetworkAccessType is VPCOnly and DomainSettings.RStudioServerProDomainSettings.DomainExecutionRoleArn is provided. If setting up the domain for use with RStudio, this value must be set to Service",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tag-propagation",
+          description:
+            "Indicates whether custom tag propagation is supported for the domain. Defaults to DISABLED",
           args: {
             name: "string",
           },
@@ -4685,7 +4709,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--environment",
           description:
-            "The environment variables to set in the Docker container. We support up to 16 key and values entries in the map",
+            "The environment variables to set in the Docker container. Don't include any sensitive data in your environment variables. We support up to 16 key and values entries in the map",
           args: {
             name: "map",
           },
@@ -19189,6 +19213,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--node-recovery",
+          description:
+            "The node recovery mode to be applied to the SageMaker HyperPod cluster",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -19484,6 +19516,14 @@ const completionSpec: Fig.Spec = {
           name: "--app-network-access-type",
           description:
             "Specifies the VPC used for non-EFS traffic.    PublicInternetOnly - Non-EFS traffic is through a VPC managed by Amazon SageMaker, which allows direct internet access.    VpcOnly - All Studio traffic is through the specified VPC and subnets.   This configuration can only be modified if there are no apps in the InService, Pending, or Deleting state. The configuration cannot be updated if DomainSettings.RStudioServerProDomainSettings.DomainExecutionRoleArn is already set or DomainSettings.RStudioServerProDomainSettings.DomainExecutionRoleArn is provided as part of the same request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tag-propagation",
+          description:
+            "Indicates whether custom tag propagation is supported for the domain. Defaults to DISABLED",
           args: {
             name: "string",
           },

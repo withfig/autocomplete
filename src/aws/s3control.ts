@@ -11,7 +11,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--account-id",
           description:
-            "The ID of the Amazon Web Services account that is making this request",
+            "The Amazon Web Services account ID of the S3 Access Grants instance",
           args: {
             name: "string",
           },
@@ -51,7 +51,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--account-id",
           description:
-            "The ID of the Amazon Web Services account that is making this request",
+            "The Amazon Web Services account ID of the S3 Access Grants instance",
           args: {
             name: "string",
           },
@@ -139,7 +139,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--account-id",
           description:
-            "The ID of the Amazon Web Services account that is making this request",
+            "The Amazon Web Services account ID of the S3 Access Grants instance",
           args: {
             name: "string",
           },
@@ -187,7 +187,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--account-id",
           description:
-            "The ID of the Amazon Web Services account that is making this request",
+            "The Amazon Web Services account ID of the S3 Access Grants instance",
           args: {
             name: "string",
           },
@@ -675,7 +675,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--account-id",
           description:
-            "The ID of the Amazon Web Services account that is making this request",
+            "The Amazon Web Services account ID of the S3 Access Grants instance",
           args: {
             name: "string",
           },
@@ -715,7 +715,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--account-id",
           description:
-            "The ID of the Amazon Web Services account that is making this request",
+            "The Amazon Web Services account ID of the S3 Access Grants instance",
           args: {
             name: "string",
           },
@@ -747,7 +747,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--account-id",
           description:
-            "The ID of the Amazon Web Services account that is making this request",
+            "The Amazon Web Services account ID of the S3 Access Grants instance",
           args: {
             name: "string",
           },
@@ -779,7 +779,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--account-id",
           description:
-            "The ID of the Amazon Web Services account that is making this request",
+            "The Amazon Web Services account ID of the S3 Access Grants instance",
           args: {
             name: "string",
           },
@@ -1492,7 +1492,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--account-id",
           description:
-            "The ID of the Amazon Web Services account that is making this request",
+            "The Amazon Web Services account ID of the S3 Access Grants instance",
           args: {
             name: "string",
           },
@@ -1524,7 +1524,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--account-id",
           description:
-            "The ID of the Amazon Web Services account that is making this request",
+            "The Amazon Web Services account ID of the S3 Access Grants instance",
           args: {
             name: "string",
           },
@@ -1559,12 +1559,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-access-grants-instance",
       description:
-        "Retrieves the S3 Access Grants instance for a Region in your account.   Permissions  You must have the s3:GetAccessGrantsInstance permission to use this operation",
+        "Retrieves the S3 Access Grants instance for a Region in your account.   Permissions  You must have the s3:GetAccessGrantsInstance permission to use this operation.      GetAccessGrantsInstance is not supported for cross-account access. You can only call the API from the account that owns the S3 Access Grants instance",
       options: [
         {
           name: "--account-id",
           description:
-            "The ID of the Amazon Web Services account that is making this request",
+            "The Amazon Web Services account ID of the S3 Access Grants instance",
           args: {
             name: "string",
           },
@@ -1636,7 +1636,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--account-id",
           description:
-            "The ID of the Amazon Web Services account that is making this request",
+            "The Amazon Web Services account ID of the S3 Access Grants instance",
           args: {
             name: "string",
           },
@@ -1668,7 +1668,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--account-id",
           description:
-            "The ID of the Amazon Web Services account that is making this request",
+            "The Amazon Web Services account ID of the S3 Access Grants instance",
           args: {
             name: "string",
           },
@@ -2225,7 +2225,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--account-id",
           description:
-            "The ID of the Amazon Web Services account that is making this request",
+            "The Amazon Web Services account ID of the S3 Access Grants instance",
           args: {
             name: "string",
           },
@@ -2644,7 +2644,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--account-id",
           description:
-            "The ID of the Amazon Web Services account that is making this request",
+            "The Amazon Web Services account ID of the S3 Access Grants instance",
           args: {
             name: "string",
           },
@@ -2732,7 +2732,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--account-id",
           description:
-            "The ID of the Amazon Web Services account that is making this request",
+            "The Amazon Web Services account ID of the S3 Access Grants instance",
           args: {
             name: "string",
           },
@@ -2780,7 +2780,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--account-id",
           description:
-            "The ID of the Amazon Web Services account that is making this request",
+            "The Amazon Web Services account ID of the S3 Access Grants instance",
           args: {
             name: "string",
           },
@@ -2912,6 +2912,96 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "integer",
           },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-caller-access-grants",
+      description:
+        "Returns a list of the access grants that were given to the caller using S3 Access Grants and that allow the caller to access the S3 data of the Amazon Web Services account specified in the request.  Permissions  You must have the s3:ListCallerAccessGrants permission to use this operation",
+      options: [
+        {
+          name: "--account-id",
+          description:
+            "The Amazon Web Services account ID of the S3 Access Grants instance",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--grant-scope",
+          description:
+            "The S3 path of the data that you would like to access. Must start with s3://. You can optionally pass only the beginning characters of a path, and S3 Access Grants will search for all applicable grants for the path fragment",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "A pagination token to request the next page of results. Pass this value into a subsequent List Caller Access Grants request in order to retrieve the next page of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of access grants that you would like returned in the List Caller Access Grants response. If the results include the pagination token NextToken, make another call using the NextToken to determine if there are more results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--allowed-by-application",
+          description:
+            "If this optional parameter is passed in the request, a filter is applied to the results. The results will include only the access grants for the caller's Identity Center application or for any other applications (ALL)",
+        },
+        {
+          name: "--no-allowed-by-application",
+          description:
+            "If this optional parameter is passed in the request, a filter is applied to the results. The results will include only the access grants for the caller's Identity Center application or for any other applications (ALL)",
         },
         {
           name: "--cli-input-json",
@@ -3236,7 +3326,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--account-id",
           description:
-            "The ID of the Amazon Web Services account that is making this request",
+            "The Amazon Web Services account ID of the S3 Access Grants instance",
           args: {
             name: "string",
           },
@@ -4055,7 +4145,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--account-id",
           description:
-            "The ID of the Amazon Web Services account that is making this request",
+            "The Amazon Web Services account ID of the S3 Access Grants instance",
           args: {
             name: "string",
           },

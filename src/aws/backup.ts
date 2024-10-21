@@ -6,12 +6,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "cancel-legal-hold",
       description:
-        "This action removes the specified legal hold on a recovery point. This action can only be performed by a user with sufficient permissions",
+        "Removes the specified legal hold on a recovery point. This action can only be performed by a user with sufficient permissions",
       options: [
         {
           name: "--legal-hold-id",
-          description:
-            "Legal hold ID required to remove the specified legal hold on a recovery point",
+          description: "The ID of the legal hold",
           args: {
             name: "string",
           },
@@ -19,7 +18,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cancel-description",
           description:
-            "String describing the reason for removing the legal hold",
+            "A string the describes the reason for removing the legal hold",
           args: {
             name: "string",
           },
@@ -27,7 +26,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--retain-record-in-days",
           description:
-            "The integer amount in days specifying amount of days after this API operation to remove legal hold",
+            "The integer amount, in days, after which to remove legal hold",
           args: {
             name: "long",
           },
@@ -59,15 +58,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--backup-plan",
           description:
-            "Specifies the body of a backup plan. Includes a BackupPlanName and one or more sets of Rules",
+            "The body of a backup plan. Includes a BackupPlanName and one or more sets of Rules",
           args: {
             name: "structure",
           },
         },
         {
           name: "--backup-plan-tags",
-          description:
-            "To help organize your resources, you can assign your own metadata to the resources that you create. Each tag is a key-value pair. The specified tags are assigned to all backups created with this plan",
+          description: "The tags to assign to the backup plan",
           args: {
             name: "map",
           },
@@ -106,8 +104,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--backup-plan-id",
-          description:
-            "Uniquely identifies the backup plan to be associated with the selection of resources",
+          description: "The ID of the backup plan",
           args: {
             name: "string",
           },
@@ -115,7 +112,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--backup-selection",
           description:
-            "Specifies the body of a request to assign a set of resources to a backup plan",
+            "The body of a request to assign a set of resources to a backup plan",
           args: {
             name: "structure",
           },
@@ -162,8 +159,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--backup-vault-tags",
-          description:
-            "Metadata that you can assign to help organize the resources that you create. Each tag is a key-value pair",
+          description: "The tags to assign to the backup vault",
           args: {
             name: "map",
           },
@@ -227,7 +223,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--framework-controls",
           description:
-            "A list of the controls that make up the framework. Each control in the list has a name, input parameters, and scope",
+            "The controls that make up the framework. Each control in the list has a name, input parameters, and scope",
           args: {
             name: "list",
           },
@@ -242,8 +238,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--framework-tags",
-          description:
-            "Metadata that you can assign to help organize the frameworks that you create. Each tag is a key-value pair",
+          description: "The tags to assign to the framework",
           args: {
             name: "map",
           },
@@ -270,18 +265,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-legal-hold",
       description:
-        "This action creates a legal hold on a recovery point (backup). A legal hold is a restraint on altering or deleting a backup until an authorized user cancels the legal hold. Any actions to delete or disassociate a recovery point will fail with an error if one or more active legal holds are on the recovery point",
+        "Creates a legal hold on a recovery point (backup). A legal hold is a restraint on altering or deleting a backup until an authorized user cancels the legal hold. Any actions to delete or disassociate a recovery point will fail with an error if one or more active legal holds are on the recovery point",
       options: [
         {
           name: "--title",
-          description: "This is the string title of the legal hold",
+          description: "The title of the legal hold",
           args: {
             name: "string",
           },
         },
         {
           name: "--description",
-          description: "This is the string description of the legal hold",
+          description: "The description of the legal hold",
           args: {
             name: "string",
           },
@@ -297,7 +292,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--recovery-point-selection",
           description:
-            "This specifies criteria to assign a set of resources, such as resource types or backup vaults",
+            "The criteria to assign a set of resources, such as resource types or backup vaults",
           args: {
             name: "structure",
           },
@@ -332,19 +327,19 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-logically-air-gapped-backup-vault",
       description:
-        "This request creates a logical container to where backups may be copied. This request includes a name, the Region, the maximum number of retention days, the minimum number of retention days, and optionally can include tags and a creator request ID.  Do not include sensitive data, such as passport numbers, in the name of a backup vault",
+        "Creates a logical container to where backups may be copied. This request includes a name, the Region, the maximum number of retention days, the minimum number of retention days, and optionally can include tags and a creator request ID.  Do not include sensitive data, such as passport numbers, in the name of a backup vault",
       options: [
         {
           name: "--backup-vault-name",
-          description: "This is the name of the vault that is being created",
+          description:
+            "The name of a logical container where backups are stored. Logically air-gapped backup vaults are identified by names that are unique to the account used to create them and the Region where they are created",
           args: {
             name: "string",
           },
         },
         {
           name: "--backup-vault-tags",
-          description:
-            "These are the tags that will be included in the newly-created vault",
+          description: "The tags to assign to the vault",
           args: {
             name: "map",
           },
@@ -352,7 +347,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--creator-request-id",
           description:
-            "This is the ID of the creation request. This parameter is optional. If used, this parameter must contain 1 to 50 alphanumeric or '-_.' characters",
+            "The ID of the creation request. This parameter is optional. If used, this parameter must contain 1 to 50 alphanumeric or '-_.' characters",
           args: {
             name: "string",
           },
@@ -360,7 +355,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--min-retention-days",
           description:
-            "This setting specifies the minimum retention period that the vault retains its recovery points. If this parameter is not specified, no minimum retention period is enforced. If specified, any backup or copy job to the vault must have a lifecycle policy with a retention period equal to or longer than the minimum retention period. If a job retention period is shorter than that minimum retention period, then the vault fails the backup or copy job, and you should either modify your lifecycle settings or use a different vault",
+            "This setting specifies the minimum retention period that the vault retains its recovery points. The minimum value accepted is 7 days",
           args: {
             name: "long",
           },
@@ -368,7 +363,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-retention-days",
           description:
-            "This is the setting that specifies the maximum retention period that the vault retains its recovery points. If this parameter is not specified, Backup does not enforce a maximum retention period on the recovery points in the vault (allowing indefinite storage). If specified, any backup or copy job to the vault must have a lifecycle policy with a retention period equal to or shorter than the maximum retention period. If the job retention period is longer than that maximum retention period, then the vault fails the backup or copy job, and you should either modify your lifecycle settings or use a different vault",
+            "The maximum retention period that the vault retains its recovery points",
           args: {
             name: "long",
           },
@@ -431,8 +426,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--report-plan-tags",
-          description:
-            "Metadata that you can assign to help organize the report plans that you create. Each tag is a key-value pair",
+          description: "The tags to assign to the report plan",
           args: {
             name: "map",
           },
@@ -467,7 +461,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-restore-testing-plan",
       description:
-        "This is the first of two steps to create a restore testing plan; once this request is successful, finish the procedure with request CreateRestoreTestingSelection. You must include the parameter RestoreTestingPlan. You may optionally include CreatorRequestId and Tags",
+        "Creates a restore testing plan. The first of two steps to create a restore testing plan. After this request is successful, finish the procedure using CreateRestoreTestingSelection",
       options: [
         {
           name: "--creator-request-id",
@@ -487,8 +481,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--tags",
-          description:
-            "Optional tags to include. A tag is a key-value pair you can use to manage, filter, and search for your resources. Allowed characters include UTF-8 letters,numbers, spaces, and the following characters: + - = . _ : /",
+          description: "The tags to assign to the restore testing plan",
           args: {
             name: "map",
           },
@@ -638,7 +631,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--backup-vault-name",
           description:
-            "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens",
+            "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created",
           args: {
             name: "string",
           },
@@ -733,7 +726,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--backup-vault-name",
           description:
-            "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Region where they are created. They consist of lowercase letters, numbers, and hyphens",
+            "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Region where they are created",
           args: {
             name: "string",
           },
@@ -795,7 +788,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--backup-vault-name",
           description:
-            "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens",
+            "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created",
           args: {
             name: "string",
           },
@@ -968,14 +961,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--backup-vault-name",
           description:
-            "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens",
+            "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created",
           args: {
             name: "string",
           },
         },
         {
           name: "--backup-vault-account-id",
-          description: "This is the account ID of the specified backup vault",
+          description: "The account ID of the specified backup vault",
           args: {
             name: "string",
           },
@@ -1125,7 +1118,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--backup-vault-name",
           description:
-            "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens",
+            "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created",
           args: {
             name: "string",
           },
@@ -1140,7 +1133,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--backup-vault-account-id",
-          description: "This is the account ID of the specified backup vault",
+          description: "The account ID of the specified backup vault",
           args: {
             name: "string",
           },
@@ -1330,7 +1323,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--backup-vault-name",
           description:
-            "This is the name of a logical container where the child (nested) recovery point is stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens",
+            "The name of a logical container where the child (nested) recovery point is stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created",
           args: {
             name: "string",
           },
@@ -1338,7 +1331,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--recovery-point-arn",
           description:
-            "This is the Amazon Resource Name (ARN) that uniquely identifies the child (nested) recovery point; for example, arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45",
+            "The Amazon Resource Name (ARN) that uniquely identifies the child (nested) recovery point; for example, arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45",
           args: {
             name: "string",
           },
@@ -1542,7 +1535,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--backup-vault-name",
           description:
-            "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens",
+            "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created",
           args: {
             name: "string",
           },
@@ -1573,7 +1566,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--backup-vault-name",
           description:
-            "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens",
+            "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created",
           args: {
             name: "string",
           },
@@ -1604,8 +1597,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--legal-hold-id",
-          description:
-            "This is the ID required to use GetLegalHold. This unique ID is associated with a specific legal hold",
+          description: "The ID of the legal hold",
           args: {
             name: "string",
           },
@@ -1637,7 +1629,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--backup-vault-name",
           description:
-            "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens",
+            "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created",
           args: {
             name: "string",
           },
@@ -1652,7 +1644,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--backup-vault-account-id",
-          description: "This is the account ID of the specified backup vault",
+          description: "The account ID of the specified backup vault",
           args: {
             name: "string",
           },
@@ -1715,7 +1707,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--backup-vault-account-id",
-          description: "This is the account ID of the specified backup vault",
+          description: "The account ID of the specified backup vault",
           args: {
             name: "string",
           },
@@ -1888,7 +1880,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--aggregation-period",
           description:
-            "This is the period that sets the boundaries for returned results. Acceptable values include    ONE_DAY for daily job count for the prior 14 days.    SEVEN_DAYS for the aggregated job count for the prior 7 days.    FOURTEEN_DAYS for aggregated job count for prior 14 days",
+            "The period for the returned results.    ONE_DAY - The daily job count for the prior 14 days.    SEVEN_DAYS - The aggregated job count for the prior 7 days.    FOURTEEN_DAYS - The aggregated job count for prior 14 days",
           args: {
             name: "string",
           },
@@ -1896,7 +1888,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "This parameter sets the maximum number of items to be returned. The value is an integer. Range of accepted values is from 1 to 500",
+            "The maximum number of items to be returned. The value is an integer. Range of accepted values is from 1 to 500",
           args: {
             name: "integer",
           },
@@ -1967,7 +1959,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--by-backup-vault-name",
           description:
-            "Returns only backup jobs that will be stored in the specified backup vault. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens",
+            "Returns only backup jobs that will be stored in the specified backup vault. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created",
           args: {
             name: "string",
           },
@@ -1991,7 +1983,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--by-resource-type",
           description:
-            "Returns only backup jobs for the specified resources:    Aurora for Amazon Aurora    CloudFormation for CloudFormation    DocumentDB for Amazon DocumentDB (with MongoDB compatibility)    DynamoDB for Amazon DynamoDB    EBS for Amazon Elastic Block Store    EC2 for Amazon Elastic Compute Cloud    EFS for Amazon Elastic File System    FSx for Amazon FSx    Neptune for Amazon Neptune    Redshift for Amazon Redshift    RDS for Amazon Relational Database Service    SAP HANA on Amazon EC2 for SAP HANA databases    Storage Gateway for Storage Gateway    S3 for Amazon S3    Timestream for Amazon Timestream    VirtualMachine for virtual machines",
+            "Returns only backup jobs for the specified resources:    Aurora for Amazon Aurora    CloudFormation for CloudFormation    DocumentDB for Amazon DocumentDB (with MongoDB compatibility)    DynamoDB for Amazon DynamoDB    EBS for Amazon Elastic Block Store    EC2 for Amazon Elastic Compute Cloud    EFS for Amazon Elastic File System    FSx for Amazon FSx    Neptune for Amazon Neptune    RDS for Amazon Relational Database Service    Redshift for Amazon Redshift    S3 for Amazon Simple Storage Service (Amazon S3)    SAP HANA on Amazon EC2 for SAP HANA databases on Amazon Elastic Compute Cloud instances    Storage Gateway for Storage Gateway    Timestream for Amazon Timestream    VirtualMachine for VMware virtual machines",
           args: {
             name: "string",
           },
@@ -2081,8 +2073,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-backup-plan-templates",
-      description:
-        "Returns metadata of your saved backup plan templates, including the template ID, name, and the creation and deletion dates",
+      description: "Lists the backup plan templates",
       options: [
         {
           name: "--next-token",
@@ -2094,7 +2085,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--max-results",
-          description: "The maximum number of items to be returned",
+          description: "The maximum number of items to return",
           args: {
             name: "integer",
           },
@@ -2214,8 +2205,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-backup-plans",
-      description:
-        "Returns a list of all active backup plans for an authenticated account. The list contains information such as Amazon Resource Names (ARNs), plan IDs, creation and deletion dates, version IDs, plan names, and creator request IDs",
+      description: "Lists the active backup plans for the account",
       options: [
         {
           name: "--next-token",
@@ -2476,7 +2466,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--aggregation-period",
           description:
-            "This is the period that sets the boundaries for returned results.    ONE_DAY for daily job count for the prior 14 days.    SEVEN_DAYS for the aggregated job count for the prior 7 days.    FOURTEEN_DAYS for aggregated job count for prior 14 days",
+            "The period for the returned results.    ONE_DAY - The daily job count for the prior 14 days.    SEVEN_DAYS - The aggregated job count for the prior 7 days.    FOURTEEN_DAYS - The aggregated job count for prior 14 days",
           args: {
             name: "string",
           },
@@ -2569,7 +2559,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--by-resource-type",
           description:
-            "Returns only backup jobs for the specified resources:    Aurora for Amazon Aurora    CloudFormation for CloudFormation    DocumentDB for Amazon DocumentDB (with MongoDB compatibility)    DynamoDB for Amazon DynamoDB    EBS for Amazon Elastic Block Store    EC2 for Amazon Elastic Compute Cloud    EFS for Amazon Elastic File System    FSx for Amazon FSx    Neptune for Amazon Neptune    Redshift for Amazon Redshift    RDS for Amazon Relational Database Service    SAP HANA on Amazon EC2 for SAP HANA databases    Storage Gateway for Storage Gateway    S3 for Amazon S3    Timestream for Amazon Timestream    VirtualMachine for virtual machines",
+            "Returns only backup jobs for the specified resources:    Aurora for Amazon Aurora    CloudFormation for CloudFormation    DocumentDB for Amazon DocumentDB (with MongoDB compatibility)    DynamoDB for Amazon DynamoDB    EBS for Amazon Elastic Block Store    EC2 for Amazon Elastic Compute Cloud    EFS for Amazon Elastic File System    FSx for Amazon FSx    Neptune for Amazon Neptune    RDS for Amazon Relational Database Service    Redshift for Amazon Redshift    S3 for Amazon Simple Storage Service (Amazon S3)    SAP HANA on Amazon EC2 for SAP HANA databases on Amazon Elastic Compute Cloud instances    Storage Gateway for Storage Gateway    Timestream for Amazon Timestream    VirtualMachine for VMware virtual machines",
           args: {
             name: "string",
           },
@@ -2577,7 +2567,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--by-destination-vault-arn",
           description:
-            "An Amazon Resource Name (ARN) that uniquely identifies a source backup vault to copy from; for example, arn:aws:backup:us-east-1:123456789012:vault:aBackupVault",
+            "An Amazon Resource Name (ARN) that uniquely identifies a source backup vault to copy from; for example, arn:aws:backup:us-east-1:123456789012:backup-vault:aBackupVault",
           args: {
             name: "string",
           },
@@ -2840,7 +2830,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--backup-vault-name",
           description:
-            "This is the list of protected resources by backup vault within the vault(s) you specify by name",
+            "The list of protected resources by backup vault within the vault(s) you specify by name",
           args: {
             name: "string",
           },
@@ -2848,7 +2838,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--backup-vault-account-id",
           description:
-            "This is the list of protected resources by backup vault within the vault(s) you specify by account ID",
+            "The list of protected resources by backup vault within the vault(s) you specify by account ID",
           args: {
             name: "string",
           },
@@ -2919,7 +2909,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--backup-vault-name",
           description:
-            "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens.  Backup vault name might not be available when a supported service creates the backup",
+            "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created.  Backup vault name might not be available when a supported service creates the backup",
           args: {
             name: "string",
           },
@@ -2958,7 +2948,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--by-resource-type",
           description:
-            "Returns only recovery points that match the specified resource type(s):    Aurora for Amazon Aurora    CloudFormation for CloudFormation    DocumentDB for Amazon DocumentDB (with MongoDB compatibility)    DynamoDB for Amazon DynamoDB    EBS for Amazon Elastic Block Store    EC2 for Amazon Elastic Compute Cloud    EFS for Amazon Elastic File System    FSx for Amazon FSx    Neptune for Amazon Neptune    Redshift for Amazon Redshift    RDS for Amazon Relational Database Service    SAP HANA on Amazon EC2 for SAP HANA databases    Storage Gateway for Storage Gateway    S3 for Amazon S3    Timestream for Amazon Timestream    VirtualMachine for virtual machines",
+            "Returns only recovery points that match the specified resource type(s):    Aurora for Amazon Aurora    CloudFormation for CloudFormation    DocumentDB for Amazon DocumentDB (with MongoDB compatibility)    DynamoDB for Amazon DynamoDB    EBS for Amazon Elastic Block Store    EC2 for Amazon Elastic Compute Cloud    EFS for Amazon Elastic File System    FSx for Amazon FSx    Neptune for Amazon Neptune    RDS for Amazon Relational Database Service    Redshift for Amazon Redshift    S3 for Amazon Simple Storage Service (Amazon S3)    SAP HANA on Amazon EC2 for SAP HANA databases on Amazon Elastic Compute Cloud instances    Storage Gateway for Storage Gateway    Timestream for Amazon Timestream    VirtualMachine for VMware virtual machines",
           args: {
             name: "string",
           },
@@ -3045,7 +3035,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--legal-hold-id",
-          description: "This is the ID of the legal hold",
+          description: "The ID of the legal hold",
           args: {
             name: "string",
           },
@@ -3053,7 +3043,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "This is the next item following a partial list of returned resources. For example, if a request is made to return MaxResults number of resources, NextToken allows you to return more items in your list starting at the location pointed to by the next token",
+            "The next item following a partial list of returned resources. For example, if a request is made to return MaxResults number of resources, NextToken allows you to return more items in your list starting at the location pointed to by the next token",
           args: {
             name: "string",
           },
@@ -3061,7 +3051,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "This is the maximum number of resource list items to be returned",
+            "The maximum number of resource list items to be returned",
           args: {
             name: "integer",
           },
@@ -3112,7 +3102,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-recovery-points-by-resource",
       description:
-        "Returns detailed information about all the recovery points of the type specified by a resource Amazon Resource Name (ARN).  For Amazon EFS and Amazon EC2, this action only lists recovery points created by Backup",
+        "The information about the recovery points of the type specified by a resource Amazon Resource Name (ARN).  For Amazon EFS and Amazon EC2, this action only lists recovery points created by Backup",
       options: [
         {
           name: "--resource-arn",
@@ -3334,7 +3324,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--aggregation-period",
           description:
-            "This is the period that sets the boundaries for returned results. Acceptable values include    ONE_DAY for daily job count for the prior 14 days.    SEVEN_DAYS for the aggregated job count for the prior 7 days.    FOURTEEN_DAYS for aggregated job count for prior 14 days",
+            "The period for the returned results.    ONE_DAY - The daily job count for the prior 14 days.    SEVEN_DAYS - The aggregated job count for the prior 7 days.    FOURTEEN_DAYS - The aggregated job count for prior 14 days",
           args: {
             name: "string",
           },
@@ -3405,7 +3395,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--by-resource-type",
           description:
-            "Include this parameter to return only restore jobs for the specified resources:    Aurora for Amazon Aurora    CloudFormation for CloudFormation    DocumentDB for Amazon DocumentDB (with MongoDB compatibility)    DynamoDB for Amazon DynamoDB    EBS for Amazon Elastic Block Store    EC2 for Amazon Elastic Compute Cloud    EFS for Amazon Elastic File System    FSx for Amazon FSx    Neptune for Amazon Neptune    Redshift for Amazon Redshift    RDS for Amazon Relational Database Service    SAP HANA on Amazon EC2 for SAP HANA databases    Storage Gateway for Storage Gateway    S3 for Amazon S3    Timestream for Amazon Timestream    VirtualMachine for virtual machines",
+            "Include this parameter to return only restore jobs for the specified resources:    Aurora for Amazon Aurora    CloudFormation for CloudFormation    DocumentDB for Amazon DocumentDB (with MongoDB compatibility)    DynamoDB for Amazon DynamoDB    EBS for Amazon Elastic Block Store    EC2 for Amazon Elastic Compute Cloud    EFS for Amazon Elastic File System    FSx for Amazon FSx    Neptune for Amazon Neptune    RDS for Amazon Relational Database Service    Redshift for Amazon Redshift    S3 for Amazon Simple Storage Service (Amazon S3)    SAP HANA on Amazon EC2 for SAP HANA databases on Amazon Elastic Compute Cloud instances    Storage Gateway for Storage Gateway    Timestream for Amazon Timestream    VirtualMachine for VMware virtual machines",
           args: {
             name: "string",
           },
@@ -3732,7 +3722,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-tags",
       description:
-        'Returns a list of key-value pairs assigned to a target recovery point, backup plan, or backup vault.  ListTags only works for resource types that support full Backup management of their backups. Those resource types are listed in the "Full Backup management" section of the  Feature availability by resource table',
+        "Returns the tags assigned to the resource, such as a target recovery point, backup plan, or backup vault",
       options: [
         {
           name: "--resource-arn",
@@ -3784,7 +3774,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--backup-vault-name",
           description:
-            "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens",
+            "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created",
           args: {
             name: "string",
           },
@@ -3818,7 +3808,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-backup-vault-lock-configuration",
       description:
-        "Applies Backup Vault Lock to a backup vault, preventing attempts to delete any recovery point stored in or created in a backup vault. Vault Lock also prevents attempts to update the lifecycle policy that controls the retention period of any recovery point currently stored in a backup vault. If specified, Vault Lock enforces a minimum and maximum retention period for future backup and copy jobs that target a backup vault.  Backup Vault Lock has been assessed by Cohasset Associates for use in environments that are subject to SEC 17a-4, CFTC, and FINRA regulations. For more information about how Backup Vault Lock relates to these regulations, see the Cohasset Associates Compliance Assessment",
+        "Applies Backup Vault Lock to a backup vault, preventing attempts to delete any recovery point stored in or created in a backup vault. Vault Lock also prevents attempts to update the lifecycle policy that controls the retention period of any recovery point currently stored in a backup vault. If specified, Vault Lock enforces a minimum and maximum retention period for future backup and copy jobs that target a backup vault.  Backup Vault Lock has been assessed by Cohasset Associates for use in environments that are subject to SEC 17a-4, CFTC, and FINRA regulations. For more information about how Backup Vault Lock relates to these regulations, see the Cohasset Associates Compliance Assessment.   For more information, see Backup Vault Lock",
       options: [
         {
           name: "--backup-vault-name",
@@ -3831,7 +3821,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--min-retention-days",
           description:
-            "The Backup Vault Lock configuration that specifies the minimum retention period that the vault retains its recovery points. This setting can be useful if, for example, your organization's policies require you to retain certain data for at least seven years (2555 days). If this parameter is not specified, Vault Lock will not enforce a minimum retention period. If this parameter is specified, any backup or copy job to the vault must have a lifecycle policy with a retention period equal to or longer than the minimum retention period. If the job's retention period is shorter than that minimum retention period, then the vault fails that backup or copy job, and you should either modify your lifecycle settings or use a different vault. The shortest minimum retention period you can specify is 1 day. Recovery points already saved in the vault prior to Vault Lock are not affected",
+            "The Backup Vault Lock configuration that specifies the minimum retention period that the vault retains its recovery points. This setting can be useful if, for example, your organization's policies require you to retain certain data for at least seven years (2555 days). This parameter is required when a vault lock is created through CloudFormation; otherwise, this parameter is optional. If this parameter is not specified, Vault Lock will not enforce a minimum retention period. If this parameter is specified, any backup or copy job to the vault must have a lifecycle policy with a retention period equal to or longer than the minimum retention period. If the job's retention period is shorter than that minimum retention period, then the vault fails that backup or copy job, and you should either modify your lifecycle settings or use a different vault. The shortest minimum retention period you can specify is 1 day. Recovery points already saved in the vault prior to Vault Lock are not affected",
           args: {
             name: "long",
           },
@@ -3879,7 +3869,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--backup-vault-name",
           description:
-            "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens",
+            "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created",
           args: {
             name: "string",
           },
@@ -3895,7 +3885,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--backup-vault-events",
           description:
-            "An array of events that indicate the status of jobs to back up resources to the backup vault. For common use cases and code samples, see Using Amazon SNS to track Backup events. The following events are supported:    BACKUP_JOB_STARTED | BACKUP_JOB_COMPLETED     COPY_JOB_STARTED | COPY_JOB_SUCCESSFUL | COPY_JOB_FAILED     RESTORE_JOB_STARTED | RESTORE_JOB_COMPLETED | RECOVERY_POINT_MODIFIED     S3_BACKUP_OBJECT_FAILED | S3_RESTORE_OBJECT_FAILED     The list below shows items that are deprecated events (for reference) and are no longer in use. They are no longer supported and will not return statuses or notifications. Refer to the list above for current supported events",
+            "An array of events that indicate the status of jobs to back up resources to the backup vault. For common use cases and code samples, see Using Amazon SNS to track Backup events. The following events are supported:    BACKUP_JOB_STARTED | BACKUP_JOB_COMPLETED     COPY_JOB_STARTED | COPY_JOB_SUCCESSFUL | COPY_JOB_FAILED     RESTORE_JOB_STARTED | RESTORE_JOB_COMPLETED | RECOVERY_POINT_MODIFIED     S3_BACKUP_OBJECT_FAILED | S3_RESTORE_OBJECT_FAILED     The list below includes both supported events and deprecated events that are no longer in use (for reference). Deprecated events do not return statuses or notifications. Refer to the list above for the supported events",
           args: {
             name: "list",
           },
@@ -3934,7 +3924,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--validation-status",
-          description: "This is the status of your restore validation",
+          description: "The status of your restore validation",
           args: {
             name: "string",
           },
@@ -3973,7 +3963,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--backup-vault-name",
           description:
-            "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens",
+            "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created",
           args: {
             name: "string",
           },
@@ -4021,15 +4011,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--lifecycle",
           description:
-            'The lifecycle defines when a protected resource is transitioned to cold storage and when it expires. Backup will transition and expire backups automatically according to the lifecycle that you define.  Backups transitioned to cold storage must be stored in cold storage for a minimum of 90 days. Therefore, the \u201cretention\u201d setting must be 90 days greater than the \u201ctransition to cold after days\u201d setting. The \u201ctransition to cold after days\u201d setting cannot be changed after a backup has been transitioned to cold.  Resource types that are able to be transitioned to cold storage are listed in the "Lifecycle to cold storage" section of the  Feature availability by resource table. Backup ignores this expression for other resource types. This parameter has a maximum value of 100 years (36,500 days)',
+            "The lifecycle defines when a protected resource is transitioned to cold storage and when it expires. Backup will transition and expire backups automatically according to the lifecycle that you define.  Backups transitioned to cold storage must be stored in cold storage for a minimum of 90 days. Therefore, the \u201cretention\u201d setting must be 90 days greater than the \u201ctransition to cold after days\u201d setting. The \u201ctransition to cold after days\u201d setting cannot be changed after a backup has been transitioned to cold.  Resource types that can transition to cold storage are listed in the Feature availability by resource table. Backup ignores this expression for other resource types. This parameter has a maximum value of 100 years (36,500 days)",
           args: {
             name: "structure",
           },
         },
         {
           name: "--recovery-point-tags",
-          description:
-            "To help organize your resources, you can assign your own metadata to the resources that you create. Each tag is a key-value pair",
+          description: "The tags to assign to the resources",
           args: {
             name: "map",
           },
@@ -4037,7 +4026,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--backup-options",
           description:
-            'Specifies the backup option for a selected resource. This option is only available for Windows Volume Shadow Copy Service (VSS) backup jobs. Valid values: Set to "WindowsVSS":"enabled" to enable the WindowsVSS backup option and create a Windows VSS backup. Set to "WindowsVSS""disabled" to create a regular backup. The WindowsVSS option is not enabled by default',
+            'The backup option for a selected resource. This option is only available for Windows Volume Shadow Copy Service (VSS) backup jobs. Valid values: Set to "WindowsVSS":"enabled" to enable the WindowsVSS backup option and create a Windows VSS backup. Set to "WindowsVSS""disabled" to create a regular backup. The WindowsVSS option is not enabled by default',
           args: {
             name: "map",
           },
@@ -4077,7 +4066,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--source-backup-vault-name",
           description:
-            "The name of a logical source container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens",
+            "The name of a logical source container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created",
           args: {
             name: "string",
           },
@@ -4085,7 +4074,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--destination-backup-vault-arn",
           description:
-            "An Amazon Resource Name (ARN) that uniquely identifies a destination backup vault to copy to; for example, arn:aws:backup:us-east-1:123456789012:vault:aBackupVault",
+            "An Amazon Resource Name (ARN) that uniquely identifies a destination backup vault to copy to; for example, arn:aws:backup:us-east-1:123456789012:backup-vault:aBackupVault",
           args: {
             name: "string",
           },
@@ -4109,7 +4098,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--lifecycle",
           description:
-            'Contains an array of Transition objects specifying how long in days before a recovery point transitions to cold storage or is deleted. Backups transitioned to cold storage must be stored in cold storage for a minimum of 90 days. Therefore, on the console, the \u201cretention\u201d setting must be 90 days greater than the \u201ctransition to cold after days\u201d setting. The \u201ctransition to cold after days\u201d setting cannot be changed after a backup has been transitioned to cold. Resource types that are able to be transitioned to cold storage are listed in the "Lifecycle to cold storage" section of the  Feature availability by resource table. Backup ignores this expression for other resource types',
+            "Specifies the time period, in days, before a recovery point transitions to cold storage or is deleted. Backups transitioned to cold storage must be stored in cold storage for a minimum of 90 days. Therefore, on the console, the retention setting must be 90 days greater than the transition to cold after days setting. The transition to cold after days setting can't be changed after a backup has been transitioned to cold. Resource types that can transition to cold storage are listed in the Feature availability by resource table. Backup ignores this expression for other resource types. To remove the existing lifecycle and retention periods and keep your recovery points indefinitely, specify -1 for MoveToColdStorageAfterDays and DeleteAfterDays",
           args: {
             name: "structure",
           },
@@ -4188,7 +4177,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--metadata",
           description:
-            'A set of metadata key-value pairs. Contains information, such as a resource name, required to restore a recovery point.  You can get configuration metadata about a resource at the time it was backed up by calling GetRecoveryPointRestoreMetadata. However, values in addition to those provided by GetRecoveryPointRestoreMetadata might be required to restore a resource. For example, you might need to provide a new resource name if the original already exists. You need to specify specific metadata to restore an Amazon Elastic File System (Amazon EFS) instance:    file-system-id: The ID of the Amazon EFS file system that is backed up by Backup. Returned in GetRecoveryPointRestoreMetadata.    Encrypted: A Boolean value that, if true, specifies that the file system is encrypted. If KmsKeyId is specified, Encrypted must be set to true.    KmsKeyId: Specifies the Amazon Web Services KMS key that is used to encrypt the restored file system. You can specify a key from another Amazon Web Services account provided that key it is properly shared with your account via Amazon Web Services KMS.    PerformanceMode: Specifies the throughput mode of the file system.    CreationToken: A user-supplied value that ensures the uniqueness (idempotency) of the request.    newFileSystem: A Boolean value that, if true, specifies that the recovery point is restored to a new Amazon EFS file system.    ItemsToRestore: An array of one to five strings where each string is a file path. Use ItemsToRestore to restore specific files or directories rather than the entire file system. This parameter is optional. For example, "itemsToRestore":"[\\"/my.test\\"]"',
+            "A set of metadata key-value pairs. You can get configuration metadata about a resource at the time it was backed up by calling GetRecoveryPointRestoreMetadata. However, values in addition to those provided by GetRecoveryPointRestoreMetadata might be required to restore a resource. For example, you might need to provide a new resource name if the original already exists. For more information about the metadata for each resource, see the following:    Metadata for Amazon Aurora     Metadata for Amazon DocumentDB     Metadata for CloudFormation     Metadata for Amazon DynamoDB      Metadata for Amazon EBS     Metadata for Amazon EC2     Metadata for Amazon EFS     Metadata for Amazon FSx     Metadata for Amazon Neptune     Metadata for Amazon RDS     Metadata for Amazon Redshift     Metadata for Storage Gateway     Metadata for Amazon S3     Metadata for Amazon Timestream     Metadata for virtual machines",
           args: {
             name: "map",
           },
@@ -4212,7 +4201,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-type",
           description:
-            "Starts a job to restore a recovery point for one of the following resources:    Aurora for Amazon Aurora    DocumentDB for Amazon DocumentDB (with MongoDB compatibility)    CloudFormation for CloudFormation    DynamoDB for Amazon DynamoDB    EBS for Amazon Elastic Block Store    EC2 for Amazon Elastic Compute Cloud    EFS for Amazon Elastic File System    FSx for Amazon FSx    Neptune for Amazon Neptune    RDS for Amazon Relational Database Service    Redshift for Amazon Redshift    Storage Gateway for Storage Gateway    S3 for Amazon S3    Timestream for Amazon Timestream    VirtualMachine for virtual machines",
+            "Starts a job to restore a recovery point for one of the following resources:    Aurora - Amazon Aurora    DocumentDB - Amazon DocumentDB    CloudFormation - CloudFormation    DynamoDB - Amazon DynamoDB    EBS - Amazon Elastic Block Store    EC2 - Amazon Elastic Compute Cloud    EFS - Amazon Elastic File System    FSx - Amazon FSx    Neptune - Amazon Neptune    RDS - Amazon Relational Database Service    Redshift - Amazon Redshift    Storage Gateway - Storage Gateway    S3 - Amazon Simple Storage Service    Timestream - Amazon Timestream    VirtualMachine - Virtual machines",
           args: {
             name: "string",
           },
@@ -4249,7 +4238,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "stop-backup-job",
       description:
-        "Attempts to cancel a job to create a one-time backup of a resource. This action is not supported for the following services: Amazon FSx for Windows File Server, Amazon FSx for Lustre, Amazon FSx for NetApp ONTAP , Amazon FSx for OpenZFS, Amazon DocumentDB (with MongoDB compatibility), Amazon RDS, Amazon Aurora, and Amazon Neptune",
+        "Attempts to cancel a job to create a one-time backup of a resource. This action is not supported for the following services: Amazon FSx for Windows File Server, Amazon FSx for Lustre, Amazon FSx for NetApp ONTAP, Amazon FSx for OpenZFS, Amazon DocumentDB (with MongoDB compatibility), Amazon RDS, Amazon Aurora, and Amazon Neptune",
       options: [
         {
           name: "--backup-job-id",
@@ -4281,12 +4270,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "tag-resource",
       description:
-        "Assigns a set of key-value pairs to a recovery point, backup plan, or backup vault identified by an Amazon Resource Name (ARN)",
+        "Assigns a set of key-value pairs to a recovery point, backup plan, or backup vault identified by an Amazon Resource Name (ARN). This API is supported for recovery points for resource types including Aurora, Amazon DocumentDB. Amazon EBS, Amazon FSx, Neptune, and Amazon RDS",
       options: [
         {
           name: "--resource-arn",
           description:
-            "An ARN that uniquely identifies a resource. The format of the ARN depends on the type of the tagged resource",
+            "An ARN that uniquely identifies a resource. The format of the ARN depends on the type of the tagged resource. ARNs that do not include backup are incompatible with tagging. TagResource and UntagResource with invalid ARNs will result in an error. Acceptable ARN content can include arn:aws:backup:us-east. Invalid ARN content may look like arn:aws:ec2:us-east",
           args: {
             name: "string",
           },
@@ -4321,12 +4310,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "untag-resource",
       description:
-        "Removes a set of key-value pairs from a recovery point, backup plan, or backup vault identified by an Amazon Resource Name (ARN)",
+        "Removes a set of key-value pairs from a recovery point, backup plan, or backup vault identified by an Amazon Resource Name (ARN) This API is not supported for recovery points for resource types including Aurora, Amazon DocumentDB. Amazon EBS, Amazon FSx, Neptune, and Amazon RDS",
       options: [
         {
           name: "--resource-arn",
           description:
-            "An ARN that uniquely identifies a resource. The format of the ARN depends on the type of the tagged resource",
+            "An ARN that uniquely identifies a resource. The format of the ARN depends on the type of the tagged resource. ARNs that do not include backup are incompatible with tagging. TagResource and UntagResource with invalid ARNs will result in an error. Acceptable ARN content can include arn:aws:backup:us-east. Invalid ARN content may look like arn:aws:ec2:us-east",
           args: {
             name: "string",
           },
@@ -4334,7 +4323,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tag-key-list",
           description:
-            "A list of keys to identify which key-value tags to remove from a resource",
+            "The keys to identify which key-value tags to remove from a resource",
           args: {
             name: "list",
           },
@@ -4361,11 +4350,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-backup-plan",
       description:
-        "Updates an existing backup plan identified by its backupPlanId with the input document in JSON format. The new version is uniquely identified by a VersionId",
+        "Updates the specified backup plan. The new version is uniquely identified by its ID",
       options: [
         {
           name: "--backup-plan-id",
-          description: "Uniquely identifies a backup plan",
+          description: "The ID of the backup plan",
           args: {
             name: "string",
           },
@@ -4373,7 +4362,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--backup-plan",
           description:
-            "Specifies the body of a backup plan. Includes a BackupPlanName and one or more sets of Rules",
+            "The body of a backup plan. Includes a BackupPlanName and one or more sets of Rules",
           args: {
             name: "structure",
           },
@@ -4399,8 +4388,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "update-framework",
-      description:
-        "Updates an existing framework identified by its FrameworkName with the input document in JSON format",
+      description: "Updates the specified framework",
       options: [
         {
           name: "--framework-name",
@@ -4421,7 +4409,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--framework-controls",
           description:
-            "A list of the controls that make up the framework. Each control in the list has a name, input parameters, and scope",
+            "The controls that make up the framework. Each control in the list has a name, input parameters, and scope",
           args: {
             name: "list",
           },
@@ -4488,12 +4476,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-recovery-point-lifecycle",
       description:
-        'Sets the transition lifecycle of a recovery point. The lifecycle defines when a protected resource is transitioned to cold storage and when it expires. Backup transitions and expires backups automatically according to the lifecycle that you define. Backups transitioned to cold storage must be stored in cold storage for a minimum of 90 days. Therefore, the \u201cretention\u201d setting must be 90 days greater than the \u201ctransition to cold after days\u201d setting. The \u201ctransition to cold after days\u201d setting cannot be changed after a backup has been transitioned to cold. Resource types that are able to be transitioned to cold storage are listed in the "Lifecycle to cold storage" section of the  Feature availability by resource table. Backup ignores this expression for other resource types. This operation does not support continuous backups',
+        "Sets the transition lifecycle of a recovery point. The lifecycle defines when a protected resource is transitioned to cold storage and when it expires. Backup transitions and expires backups automatically according to the lifecycle that you define. Resource types that can transition to cold storage are listed in the Feature availability by resource table. Backup ignores this expression for other resource types. Backups transitioned to cold storage must be stored in cold storage for a minimum of 90 days. Therefore, the \u201cretention\u201d setting must be 90 days greater than the \u201ctransition to cold after days\u201d setting. The \u201ctransition to cold after days\u201d setting cannot be changed after a backup has been transitioned to cold.  If your lifecycle currently uses the parameters DeleteAfterDays and MoveToColdStorageAfterDays, include these parameters and their values when you call this operation. Not including them may result in your plan updating with null values.  This operation does not support continuous backups",
       options: [
         {
           name: "--backup-vault-name",
           description:
-            "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens",
+            "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created",
           args: {
             name: "string",
           },
@@ -4575,8 +4563,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "update-report-plan",
-      description:
-        "Updates an existing report plan identified by its ReportPlanName with the input document in JSON format",
+      description: "Updates the specified report plan",
       options: [
         {
           name: "--report-plan-name",
@@ -4597,7 +4584,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--report-delivery-channel",
           description:
-            "A structure that contains information about where to deliver your reports, specifically your Amazon S3 bucket name, S3 key prefix, and the formats of your reports",
+            "The information about where to deliver your reports, specifically your Amazon S3 bucket name, S3 key prefix, and the formats of your reports",
           args: {
             name: "structure",
           },
@@ -4605,7 +4592,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--report-setting",
           description:
-            "Identifies the report template for the report. Reports are built using a report template. The report templates are:  RESOURCE_COMPLIANCE_REPORT | CONTROL_COMPLIANCE_REPORT | BACKUP_JOB_REPORT | COPY_JOB_REPORT | RESTORE_JOB_REPORT  If the report template is RESOURCE_COMPLIANCE_REPORT or CONTROL_COMPLIANCE_REPORT, this API resource also describes the report coverage by Amazon Web Services Regions and frameworks",
+            "The report template for the report. Reports are built using a report template. The report templates are:  RESOURCE_COMPLIANCE_REPORT | CONTROL_COMPLIANCE_REPORT | BACKUP_JOB_REPORT | COPY_JOB_REPORT | RESTORE_JOB_REPORT  If the report template is RESOURCE_COMPLIANCE_REPORT or CONTROL_COMPLIANCE_REPORT, this API resource also describes the report coverage by Amazon Web Services Regions and frameworks",
           args: {
             name: "structure",
           },
@@ -4651,8 +4638,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--restore-testing-plan-name",
-          description:
-            "This is the restore testing plan name you wish to update",
+          description: "The name of the restore testing plan name",
           args: {
             name: "string",
           },
@@ -4679,7 +4665,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-restore-testing-selection",
       description:
-        "Most elements except the RestoreTestingSelectionName can be updated with this request.  RestoreTestingSelection can use either protected resource ARNs or conditions, but not both. That is, if your selection has ProtectedResourceArns, requesting an update with the parameter ProtectedResourceConditions will be unsuccessful",
+        "Updates the specified restore testing selection. Most elements except the RestoreTestingSelectionName can be updated with this request. You can use either protected resource ARNs or conditions, but not both",
       options: [
         {
           name: "--restore-testing-plan-name",
@@ -4700,7 +4686,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--restore-testing-selection-name",
           description:
-            "This is the required restore testing selection name of the restore testing selection you wish to update",
+            "The required restore testing selection name of the restore testing selection you wish to update",
           args: {
             name: "string",
           },

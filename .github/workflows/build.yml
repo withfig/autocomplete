@@ -35,8 +35,10 @@ jobs:
       - name: bundle files
         run: |
           mv build/ specs/
+          mv icons/ specs/
           zip -r specs.zip specs/
           mv specs/ build/
+          mv build/icons icons
         # Bump the version and create a git tag with the new version
       - name: Bump version and push tag
         id: tag_version

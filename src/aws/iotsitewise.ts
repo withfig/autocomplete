@@ -531,6 +531,30 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--asset-model-type",
+          description:
+            "The type of asset model.    ASSET_MODEL \u2013 (default) An asset model that you can use to create assets. Can't be included as a component in another asset model.    COMPONENT_MODEL \u2013 A reusable component that you can include in the composite models of other asset models. You can't create assets directly from this type of asset model",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--asset-model-id",
+          description:
+            "The ID to assign to the asset model, if desired. IoT SiteWise automatically generates a unique ID for you, so this parameter is never required. However, if you prefer to supply your own ID instead, you can specify it here in UUID format. If you specify your own ID, it must be globally unique",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--asset-model-external-id",
+          description:
+            "An external ID to assign to the asset model. The external ID must be unique within your Amazon Web Services account. For more information, see Using external IDs in the IoT SiteWise User Guide",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--asset-model-description",
           description: "A description for the asset model",
           args: {
@@ -578,30 +602,6 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--asset-model-id",
-          description:
-            "The ID to assign to the asset model, if desired. IoT SiteWise automatically generates a unique ID for you, so this parameter is never required. However, if you prefer to supply your own ID instead, you can specify it here in UUID format. If you specify your own ID, it must be globally unique",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--asset-model-external-id",
-          description:
-            "An external ID to assign to the asset model. The external ID must be unique within your Amazon Web Services account. For more information, see Using external IDs in the IoT SiteWise User Guide",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--asset-model-type",
-          description:
-            "The type of asset model.    ASSET_MODEL \u2013 (default) An asset model that you can use to create assets. Can't be included as a component in another asset model.    COMPONENT_MODEL \u2013 A reusable component that you can include in the composite models of other asset models. You can't create assets directly from this type of asset model",
-          args: {
-            name: "string",
-          },
-        },
-        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -634,17 +634,17 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--parent-asset-model-composite-model-id",
+          name: "--asset-model-composite-model-external-id",
           description:
-            "The ID of the parent composite model in this asset model relationship",
+            "An external ID to assign to the composite model. If the composite model is a derived composite model, or one nested inside a component model, you can only set the external ID using UpdateAssetModelCompositeModel and specifying the derived ID of the model or property from the created model it's a part of",
           args: {
             name: "string",
           },
         },
         {
-          name: "--asset-model-composite-model-external-id",
+          name: "--parent-asset-model-composite-model-id",
           description:
-            "An external ID to assign to the composite model. If the composite model is a derived composite model, or one nested inside a component model, you can only set the external ID using UpdateAssetModelCompositeModel and specifying the derived ID of the model or property from the created model it's a part of",
+            "The ID of the parent composite model in this asset model relationship",
           args: {
             name: "string",
           },
@@ -701,6 +701,30 @@ const completionSpec: Fig.Spec = {
             "The property definitions of the composite model. For more information, see  Inline custom composite models in the IoT SiteWise User Guide. You can specify up to 200 properties per composite model. For more information, see Quotas in the IoT SiteWise User Guide",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--if-match",
+          description:
+            "The expected current entity tag (ETag) for the asset model\u2019s latest or active version (specified using matchForVersionType). The create request is rejected if the tag does not match the latest or active version's current entity tag. See Optimistic locking for asset model writes in the IoT SiteWise User Guide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--if-none-match",
+          description:
+            "Accepts * to reject the create request if an active version (specified using matchForVersionType as ACTIVE) already exists for the asset model",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--match-for-version-type",
+          description:
+            "Specifies the asset model version type (LATEST or ACTIVE) used in conjunction with If-Match or If-None-Match headers to determine the target ETag for the create operation",
+          args: {
+            name: "string",
           },
         },
         {
@@ -1184,6 +1208,30 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--if-match",
+          description:
+            "The expected current entity tag (ETag) for the asset model\u2019s latest or active version (specified using matchForVersionType). The delete request is rejected if the tag does not match the latest or active version's current entity tag. See Optimistic locking for asset model writes in the IoT SiteWise User Guide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--if-none-match",
+          description:
+            "Accepts * to reject the delete request if an active version (specified using matchForVersionType as ACTIVE) already exists for the asset model",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--match-for-version-type",
+          description:
+            "Specifies the asset model version type (LATEST or ACTIVE) used in conjunction with If-Match or If-None-Match headers to determine the target ETag for the delete operation",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -1225,6 +1273,30 @@ const completionSpec: Fig.Spec = {
           name: "--client-token",
           description:
             "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--if-match",
+          description:
+            "The expected current entity tag (ETag) for the asset model\u2019s latest or active version (specified using matchForVersionType). The delete request is rejected if the tag does not match the latest or active version's current entity tag. See Optimistic locking for asset model writes in the IoT SiteWise User Guide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--if-none-match",
+          description:
+            "Accepts * to reject the delete request if an active version (specified using matchForVersionType as ACTIVE) already exists for the asset model",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--match-for-version-type",
+          description:
+            "Specifies the asset model version type (LATEST or ACTIVE) used in conjunction with If-Match or If-None-Match headers to determine the target ETag for the delete operation",
           args: {
             name: "string",
           },
@@ -1613,6 +1685,14 @@ const completionSpec: Fig.Spec = {
             "Whether or not to exclude asset model properties from the response",
         },
         {
+          name: "--asset-model-version",
+          description:
+            "The version alias that specifies the latest or active version of the asset model. The details are returned in the response. The default value is LATEST. See  Asset model versions in the IoT SiteWise User Guide",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -1648,6 +1728,14 @@ const completionSpec: Fig.Spec = {
           name: "--asset-model-composite-model-id",
           description:
             "The ID of a composite model on this asset model. This can be either the actual ID in UUID format, or else externalId: followed by the external ID, if it has one. For more information, see Referencing objects with external IDs in the IoT SiteWise User Guide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--asset-model-version",
+          description:
+            "The version alias that specifies the latest or active version of the asset model. The details are returned in the response. The default value is LATEST. See  Asset model versions in the IoT SiteWise User Guide",
           args: {
             name: "string",
           },
@@ -2908,6 +2996,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--asset-model-version",
+          description:
+            "The version alias that specifies the latest or active version of the asset model. The details are returned in the response. The default value is LATEST. See  Asset model versions in the IoT SiteWise User Guide",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -2988,6 +3084,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--asset-model-version",
+          description:
+            "The version alias that specifies the latest or active version of the asset model. The details are returned in the response. The default value is LATEST. See  Asset model versions in the IoT SiteWise User Guide",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -3036,6 +3140,14 @@ const completionSpec: Fig.Spec = {
         "Retrieves a paginated list of summaries of all asset models",
       options: [
         {
+          name: "--asset-model-types",
+          description:
+            "The type of asset model. If you don't provide an assetModelTypes, all types of asset models are returned.    ASSET_MODEL \u2013 An asset model that you can use to create assets. Can't be included as a component in another asset model.    COMPONENT_MODEL \u2013 A reusable component that you can include in the composite models of other asset models. You can't create assets directly from this type of asset model",
+          args: {
+            name: "list",
+          },
+        },
+        {
           name: "--next-token",
           description:
             "The token to be used for the next set of paginated results",
@@ -3052,11 +3164,11 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--asset-model-types",
+          name: "--asset-model-version",
           description:
-            "The type of asset model.    ASSET_MODEL \u2013 (default) An asset model that you can use to create assets. Can't be included as a component in another asset model.    COMPONENT_MODEL \u2013 A reusable component that you can include in the composite models of other asset models. You can't create assets directly from this type of asset model",
+            "The version alias that specifies the latest or active version of the asset model. The details are returned in the response. The default value is LATEST. See  Asset model versions in the IoT SiteWise User Guide",
           args: {
-            name: "list",
+            name: "string",
           },
         },
         {
@@ -3345,7 +3457,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-associated-assets",
       description:
-        "Retrieves a paginated list of associated assets. You can use this operation to do the following:   List child assets associated to a parent asset by a hierarchy that you specify.   List an asset's parent asset",
+        "Retrieves a paginated list of associated assets. You can use this operation to do the following:    CHILD - List all child assets associated to the asset.    PARENT - List the asset's parent asset",
       options: [
         {
           name: "--asset-id",
@@ -3358,7 +3470,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--hierarchy-id",
           description:
-            "The ID of the hierarchy by which child assets are associated to the asset. (This can be either the actual ID in UUID format, or else externalId: followed by the external ID, if it has one. For more information, see Referencing objects with external IDs in the IoT SiteWise User Guide.) To find a hierarchy ID, use the DescribeAsset or DescribeAssetModel operations. This parameter is required if you choose CHILD for traversalDirection. For more information, see Asset hierarchies in the IoT SiteWise User Guide",
+            "(Optional) If you don't provide a hierarchyId, all the immediate assets in the traversalDirection will be returned.   The ID of the hierarchy by which child assets are associated to the asset. (This can be either the actual ID in UUID format, or else externalId: followed by the external ID, if it has one. For more information, see Referencing objects with external IDs in the IoT SiteWise User Guide.) For more information, see Asset hierarchies in the IoT SiteWise User Guide",
           args: {
             name: "string",
           },
@@ -3366,7 +3478,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--traversal-direction",
           description:
-            "The direction to list associated assets. Choose one of the following options:    CHILD \u2013 The list includes all child assets associated to the asset. The hierarchyId parameter is required if you choose CHILD.    PARENT \u2013 The list includes the asset's parent asset.   Default: CHILD",
+            "The direction to list associated assets. Choose one of the following options:    CHILD \u2013 The list includes all child assets associated to the asset.    PARENT \u2013 The list includes the asset's parent asset.   Default: CHILD",
           args: {
             name: "string",
           },
@@ -4385,6 +4497,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--asset-model-external-id",
+          description:
+            "An external ID to assign to the asset model. The asset model must not already have an external ID. The external ID must be unique within your Amazon Web Services account. For more information, see Using external IDs in the IoT SiteWise User Guide",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--asset-model-name",
           description: "A unique name for the asset model",
           args: {
@@ -4431,9 +4551,25 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--asset-model-external-id",
+          name: "--if-match",
           description:
-            "An external ID to assign to the asset model. The asset model must not already have an external ID. The external ID must be unique within your Amazon Web Services account. For more information, see Using external IDs in the IoT SiteWise User Guide",
+            "The expected current entity tag (ETag) for the asset model\u2019s latest or active version (specified using matchForVersionType). The update request is rejected if the tag does not match the latest or active version's current entity tag. See Optimistic locking for asset model writes in the IoT SiteWise User Guide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--if-none-match",
+          description:
+            "Accepts * to reject the update request if an active version (specified using matchForVersionType as ACTIVE) already exists for the asset model",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--match-for-version-type",
+          description:
+            "Specifies the asset model version type (LATEST or ACTIVE) used in conjunction with If-Match or If-None-Match headers to determine the target ETag for the update operation",
           args: {
             name: "string",
           },
@@ -4512,6 +4648,30 @@ const completionSpec: Fig.Spec = {
             "The property definitions of the composite model. For more information, see  Inline custom composite models in the IoT SiteWise User Guide. You can specify up to 200 properties per composite model. For more information, see Quotas in the IoT SiteWise User Guide",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--if-match",
+          description:
+            "The expected current entity tag (ETag) for the asset model\u2019s latest or active version (specified using matchForVersionType). The update request is rejected if the tag does not match the latest or active version's current entity tag. See Optimistic locking for asset model writes in the IoT SiteWise User Guide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--if-none-match",
+          description:
+            "Accepts * to reject the update request if an active version (specified using matchForVersionType as ACTIVE) already exists for the asset model",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--match-for-version-type",
+          description:
+            "Specifies the asset model version type (LATEST or ACTIVE) used in conjunction with If-Match or If-None-Match headers to determine the target ETag for the update operation",
+          args: {
+            name: "string",
           },
         },
         {
@@ -4963,6 +5123,14 @@ const completionSpec: Fig.Spec = {
                 "Whether or not to exclude asset model properties from the response",
             },
             {
+              name: "--asset-model-version",
+              description:
+                "The version alias that specifies the latest or active version of the asset model. The details are returned in the response. The default value is LATEST. See  Asset model versions in the IoT SiteWise User Guide",
+              args: {
+                name: "string",
+              },
+            },
+            {
               name: "--cli-input-json",
               description:
                 "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -5003,6 +5171,14 @@ const completionSpec: Fig.Spec = {
               name: "--no-exclude-properties",
               description:
                 "Whether or not to exclude asset model properties from the response",
+            },
+            {
+              name: "--asset-model-version",
+              description:
+                "The version alias that specifies the latest or active version of the asset model. The details are returned in the response. The default value is LATEST. See  Asset model versions in the IoT SiteWise User Guide",
+              args: {
+                name: "string",
+              },
             },
             {
               name: "--cli-input-json",

@@ -159,6 +159,60 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "associate-sbom-with-package-version",
+      description:
+        "Associates the selected software bill of materials (SBOM) with a specific software package version. Requires permission to access the AssociateSbomWithPackageVersion action",
+      options: [
+        {
+          name: "--package-name",
+          description: "The name of the new software package",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--version-name",
+          description: "The name of the new package version",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sbom",
+          description:
+            "A specific software bill of matrerials associated with a software package version",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "associate-targets-with-job",
       description:
         'Associates a group with a continuous job. The following criteria must be met:    The job must have been created with the targetSelection field set to "CONTINUOUS".   The job status must currently be "IN_PROGRESS".   The total number of targets associated with a job must not exceed 100.   Requires permission to access the AssociateTargetsWithJob action',
@@ -840,7 +894,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-billing-group",
       description:
-        "Creates a billing group. Requires permission to access the CreateBillingGroup action",
+        "Creates a billing group. If this call is made multiple times using the same billing group name and configuration, the call will succeed. If this call is made with the same billing group name but different configuration a ResourceAlreadyExistsException is thrown. Requires permission to access the CreateBillingGroup action",
       options: [
         {
           name: "--billing-group-name",
@@ -1189,6 +1243,30 @@ const completionSpec: Fig.Spec = {
         {
           name: "--server-certificate-config",
           description: "The server certificate configuration",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--authentication-type",
+          description:
+            "An enumerated string that speci\ufb01es the authentication type.    CUSTOM_AUTH_X509 - Use custom authentication and authorization with additional details from the X.509 client certificate.      CUSTOM_AUTH - Use custom authentication and authorization. For more information, see Custom authentication and authorization.      AWS_X509 - Use X.509 client certificates without custom authentication and authorization. For more information, see X.509 client certificates.      AWS_SIGV4 - Use Amazon Web Services Signature Version 4. For more information, see IAM users, groups, and roles.      DEFAULT - Use a combination of port and Application Layer Protocol Negotiation (ALPN) to specify authentication type. For more information, see Device communication protocols",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--application-protocol",
+          description:
+            "An enumerated string that speci\ufb01es the application-layer protocol.    SECURE_MQTT - MQTT over TLS.      MQTT_WSS - MQTT over WebSocket.      HTTPS - HTTP over TLS.      DEFAULT - Use a combination of port and Application Layer Protocol Negotiation (ALPN) to specify application_layer protocol. For more information, see Device communication protocols",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--client-certificate-config",
+          description:
+            "An object that speci\ufb01es the client certificate con\ufb01guration for a domain",
           args: {
             name: "structure",
           },
@@ -1977,6 +2055,22 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--artifact",
+          description:
+            "The various build components created during the build process such as libraries and configuration files that make up a software package version",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--recipe",
+          description:
+            "The inline job document associated with a software package version used for a quick job deployment",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--tags",
           description:
             "Metadata that can be used to manage the package version",
@@ -2278,7 +2372,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-role-alias",
       description:
-        "Creates a role alias. Requires permission to access the CreateRoleAlias action",
+        "Creates a role alias. Requires permission to access the CreateRoleAlias action.  The value of  credentialDurationSeconds  must be less than or equal to the maximum session duration of the IAM role that the role alias references. For more information, see  Modifying a role maximum session duration (Amazon Web Services API) from the Amazon Web Services Identity and Access Management User Guide",
       options: [
         {
           name: "--role-alias",
@@ -2659,7 +2753,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-thing-type",
       description:
-        "Creates a new thing type. Requires permission to access the CreateThingType action",
+        "Creates a new thing type. If this call is made multiple times using the same thing type name and configuration, the call will succeed. If this call is made with the same thing type name but different configuration a ResourceAlreadyExistsException is thrown.  Requires permission to access the CreateThingType action",
       options: [
         {
           name: "--thing-type-name",
@@ -4648,6 +4742,16 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--before-substitution",
+          description:
+            "A flag that provides a view of the job document before and after the substitution parameters have been resolved with their exact values",
+        },
+        {
+          name: "--no-before-substitution",
+          description:
+            "A flag that provides a view of the job document before and after the substitution parameters have been resolved with their exact values",
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -5321,6 +5425,52 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "disassociate-sbom-from-package-version",
+      description:
+        "Disassociates the selected software bill of materials (SBOM) from a specific software package version. Requires permission to access the DisassociateSbomWithPackageVersion action",
+      options: [
+        {
+          name: "--package-name",
+          description: "The name of the new software package",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--version-name",
+          description: "The name of the new package version",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "enable-topic-rule",
       description:
         "Enables the rule. Requires permission to access the EnableTopicRule action",
@@ -5615,6 +5765,16 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "string",
           },
+        },
+        {
+          name: "--before-substitution",
+          description:
+            "A flag that provides a view of the job document before and after the substitution parameters have been resolved with their exact values",
+        },
+        {
+          name: "--no-before-substitution",
+          description:
+            "A flag that provides a view of the job document before and after the substitution parameters have been resolved with their exact values",
         },
         {
           name: "--cli-input-json",
@@ -9054,6 +9214,90 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-sbom-validation-results",
+      description:
+        "The validation results for all software bill of materials (SBOM) attached to a specific software package version. Requires permission to access the ListSbomValidationResults action",
+      options: [
+        {
+          name: "--package-name",
+          description: "The name of the new software package",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--version-name",
+          description: "The name of the new package version",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--validation-result",
+          description: "The end result of the",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum number of results to return at one time",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "A token that can be used to retrieve the next set of results, or null if there are no additional results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-scheduled-audits",
       description:
         "Lists all of your scheduled audits. Requires permission to access the ListScheduledAudits action",
@@ -12258,6 +12502,30 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--authentication-type",
+          description:
+            "An enumerated string that speci\ufb01es the authentication type.    CUSTOM_AUTH_X509 - Use custom authentication and authorization with additional details from the X.509 client certificate.      CUSTOM_AUTH - Use custom authentication and authorization. For more information, see Custom authentication and authorization.      AWS_X509 - Use X.509 client certificates without custom authentication and authorization. For more information, see X.509 client certificates.      AWS_SIGV4 - Use Amazon Web Services Signature Version 4. For more information, see IAM users, groups, and roles.      DEFAULT  - Use a combination of port and Application Layer Protocol Negotiation (ALPN) to specify authentication type. For more information, see Device communication protocols",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--application-protocol",
+          description:
+            "An enumerated string that speci\ufb01es the application-layer protocol.    SECURE_MQTT - MQTT over TLS.      MQTT_WSS - MQTT over WebSocket.      HTTPS - HTTP over TLS.      DEFAULT - Use a combination of port and Application Layer Protocol Negotiation (ALPN) to specify application_layer protocol. For more information, see Device communication protocols",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--client-certificate-config",
+          description:
+            "An object that speci\ufb01es the client certificate con\ufb01guration for a domain",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -12780,9 +13048,25 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--artifact",
+          description:
+            "The various components that make up a software package version",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--action",
           description:
             "The status that the package version should be assigned. For more information, see Package version lifecycle",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--recipe",
+          description:
+            "The inline job document associated with a software package version used for a quick job deployment",
           args: {
             name: "string",
           },
@@ -12896,7 +13180,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-role-alias",
       description:
-        "Updates a role alias. Requires permission to access the UpdateRoleAlias action",
+        "Updates a role alias. Requires permission to access the UpdateRoleAlias action.  The value of  credentialDurationSeconds  must be less than or equal to the maximum session duration of the IAM role that the role alias references. For more information, see  Modifying a role maximum session duration (Amazon Web Services API) from the Amazon Web Services Identity and Access Management User Guide",
       options: [
         {
           name: "--role-alias",

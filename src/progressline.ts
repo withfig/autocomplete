@@ -12,6 +12,14 @@ const completionSpec: Fig.Spec = {
       description: "Log all lines above the progress line",
     },
     {
+      name: ["--static-text", "-t"],
+      description:
+        "Set static text to display instead of the latest stdin data",
+      args: {
+        name: "text",
+      },
+    },
+    {
       name: ["--activity-style", "-s"],
       args: {
         name: "style",

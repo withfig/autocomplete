@@ -1,6 +1,6 @@
 {
   "name": "@withfig/autocomplete",
-  "version": "2.675.0",
+  "version": "2.682.0",
   "description": "Fig Autocomplete Specs",
   "schemaVersion": "v7",
   "main": "./build/index",
@@ -64,7 +64,8 @@
   "files": [
     "build/**/*.js",
     "build/**/*.css",
-    "build/**/*.json"
+    "build/**/*.json",
+    "icons/*.png"
   ],
   "author": "",
   "license": "ISC",

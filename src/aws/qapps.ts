@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "qapps",
   description:
-    "The Amazon Q Apps feature capability within Amazon Q Business allows web experience users to create lightweight, purpose-built AI apps to fulfill specific tasks from within their web experience. For example, users can create an Q Appthat exclusively generates marketing-related content to improve your marketing team's productivity or a Q App for marketing content-generation like writing customer emails and creating promotional content using a certain style of voice, tone, and branding. For more information, see Amazon Q App in the Amazon Q Business User Guide",
+    "The Amazon Q Apps feature capability within Amazon Q Business allows web experience users to create lightweight, purpose-built AI apps to fulfill specific tasks from within their web experience. For example, users can create a Q App that exclusively generates marketing-related content to improve your marketing team's productivity or a Q App for writing customer emails and creating promotional content using a certain style of voice, tone, and branding. For more information on the capabilities, see Amazon Q Apps capabilities in the Amazon Q Business User Guide.  For an overview of the Amazon Q App APIs, see Overview of Amazon Q Apps API operations. For information about the IAM access control permissions you need to use the Amazon Q Apps API, see  IAM role for the Amazon Q Business web experience including Amazon Q Apps in the Amazon Q Business User Guide",
   subcommands: [
     {
       name: "associate-library-item-review",
@@ -957,8 +957,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "update-library-item",
-      description:
-        "Updates the metadata and status of a library item for an Amazon Q App",
+      description: "Updates the library item for an Amazon Q App",
       options: [
         {
           name: "--instance-id",
@@ -989,6 +988,53 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
           },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-library-item-metadata",
+      description:
+        "Updates the verification status of a library item for an Amazon Q App",
+      options: [
+        {
+          name: "--instance-id",
+          description:
+            "The unique identifier of the Amazon Q Business application environment instance",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--library-item-id",
+          description: "The unique identifier of the updated library item",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--is-verified",
+          description: "The verification status of the library item",
+        },
+        {
+          name: "--no-is-verified",
+          description: "The verification status of the library item",
         },
         {
           name: "--cli-input-json",

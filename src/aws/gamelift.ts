@@ -185,7 +185,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--operating-system",
           description:
-            "The operating system that your game server binaries run on. This value determines the type of fleet resources that you use for this build. If your game build contains multiple executables, they all must run on the same operating system. You must specify a valid operating system in this request. There is no default value. You can't change a build's operating system later.  If you have active fleets using the Windows Server 2012 operating system, you can continue to create new builds using this OS until October 10, 2023, when Microsoft ends its support. All others must use Windows Server 2016 when creating new Windows-based builds",
+            "The operating system that your game server binaries run on. This value determines the type of fleet resources that you use for this build. If your game build contains multiple executables, they all must run on the same operating system. You must specify a valid operating system in this request. There is no default value. You can't change a build's operating system later.  Amazon Linux 2 (AL2) will reach end of support on 6/30/2025. See more details in the Amazon Linux 2 FAQs. For game servers that are hosted on AL2 and use Amazon GameLift server SDK 4.x., first update the game server build to server SDK 5.x, and then deploy to AL2023 instances. See  Migrate to Amazon GameLift server SDK version 5",
           args: {
             name: "string",
           },
@@ -281,7 +281,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--operating-system",
           description:
-            "The platform that is used by containers in the container group definition. All containers in a group must run on the same operating system",
+            "The platform that is used by containers in the container group definition. All containers in a group must run on the same operating system.  Amazon Linux 2 (AL2) will reach end of support on 6/30/2025. See more details in the Amazon Linux 2 FAQs. For game servers that are hosted on AL2 and use Amazon GameLift server SDK 4.x., first update the game server build to server SDK 5.x, and then deploy to AL2023 instances. See  Migrate to Amazon GameLift server SDK version 5",
           args: {
             name: "string",
           },
@@ -464,7 +464,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--locations",
           description:
-            "A set of remote locations to deploy additional instances to and manage as part of the fleet. This parameter can only be used when creating fleets in Amazon Web Services Regions that support multiple locations. You can add any Amazon GameLift-supported Amazon Web Services Region as a remote location, in the form of an Amazon Web Services Region code, such as us-west-2 or Local Zone code. To create a fleet with instances in the home Region only, don't set this parameter.  When using this parameter, Amazon GameLift requires you to include your home location in the request",
+            "A set of remote locations to deploy additional instances to and manage as a multi-location fleet. Use this parameter when creating a fleet in Amazon Web Services Regions that support multiple locations. You can add any Amazon Web Services Region or Local Zone that's supported by Amazon GameLift. Provide a list of one or more Amazon Web Services Region codes, such as us-west-2, or Local Zone names. When using this parameter, Amazon GameLift requires you to include your home location in the request. For a list of supported Regions and Local Zones, see  Amazon GameLift service locations for managed hosting",
           args: {
             name: "list",
           },
@@ -530,7 +530,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-fleet-locations",
       description:
-        "This operation has been expanded to use with the Amazon GameLift containers feature, which is currently in public preview.  Adds remote locations to an EC2 or container fleet and begins populating the new locations with instances. The new instances conform to the fleet's instance type, auto-scaling, and other configuration settings.  You can't add remote locations to a fleet that resides in an Amazon Web Services Region that doesn't support multiple locations. Fleets created prior to March 2021 can't support multiple locations.  To add fleet locations, specify the fleet to be updated and provide a list of one or more locations.  If successful, this operation returns the list of added locations with their status set to NEW. Amazon GameLift initiates the process of starting an instance in each added location. You can track the status of each new location by monitoring location creation events using DescribeFleetEvents.  Learn more   Setting up fleets   Multi-location fleets",
+        "This operation has been expanded to use with the Amazon GameLift containers feature, which is currently in public preview.  Adds remote locations to an EC2 or container fleet and begins populating the new locations with instances. The new instances conform to the fleet's instance type, auto-scaling, and other configuration settings.  You can't add remote locations to a fleet that resides in an Amazon Web Services Region that doesn't support multiple locations. Fleets created prior to March 2021 can't support multiple locations.  To add fleet locations, specify the fleet to be updated and provide a list of one or more locations.  If successful, this operation returns the list of added locations with their status set to NEW. Amazon GameLift initiates the process of starting an instance in each added location. You can track the status of each new location by monitoring location creation events using DescribeFleetEvents.  Learn more   Setting up fleets   Update fleet locations    Amazon GameLift service locations for managed hosting",
       options: [
         {
           name: "--fleet-id",
@@ -893,7 +893,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of labels to assign to the new matchmaking configuration resource. Tags are developer-defined key-value pairs. Tagging Amazon Web Services resources are useful for resource management, access management and cost allocation. For more information, see  Tagging Amazon Web Services Resources in the Amazon Web Services General Rareference",
+            "A list of labels to assign to the new resource. Tags are developer-defined key-value pairs. Tagging Amazon Web Services resources are useful for resource management, access management, and cost allocation. For more information, see  Tagging Amazon Web Services Resources in the Amazon Web Services General Rareference",
           args: {
             name: "list",
           },
@@ -2335,7 +2335,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-fleet-location-attributes",
       description:
-        "Retrieves information on a fleet's remote locations, including life-cycle status and any suspended fleet activity.  This operation can be used in the following ways:    To get data for specific locations, provide a fleet identifier and a list of locations. Location data is returned in the order that it is requested.    To get data for all locations, provide a fleet identifier only. Location data is returned in no particular order.    When requesting attributes for multiple locations, use the pagination parameters to retrieve results as a set of sequential pages.  If successful, a LocationAttributes object is returned for each requested location. If the fleet does not have a requested location, no information is returned. This operation does not return the home Region. To get information on a fleet's home Region, call DescribeFleetAttributes.  Learn more   Setting up Amazon GameLift fleets",
+        "Retrieves information on a fleet's remote locations, including life-cycle status and any suspended fleet activity.  This operation can be used in the following ways:    To get data for specific locations, provide a fleet identifier and a list of locations. Location data is returned in the order that it is requested.    To get data for all locations, provide a fleet identifier only. Location data is returned in no particular order.    When requesting attributes for multiple locations, use the pagination parameters to retrieve results as a set of sequential pages.  If successful, a LocationAttributes object is returned for each requested location. If the fleet does not have a requested location, no information is returned. This operation does not return the home Region. To get information on a fleet's home Region, call DescribeFleetAttributes.  Learn more   Setting up Amazon GameLift fleets    Amazon GameLift service locations for managed hosting",
       options: [
         {
           name: "--fleet-id",
@@ -2391,7 +2391,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-fleet-location-capacity",
       description:
-        "Retrieves the resource capacity settings for a fleet location. The data returned includes the current capacity (number of EC2 instances) and some scaling settings for the requested fleet location. For a container fleet, this operation also returns counts for replica container groups. Use this operation to retrieve capacity information for a fleet's remote location or home Region (you can also retrieve home Region capacity by calling DescribeFleetCapacity). To retrieve capacity data, identify a fleet and location.  If successful, a FleetCapacity object is returned for the requested fleet location.   Learn more   Setting up Amazon GameLift fleets   GameLift metrics for fleets",
+        "Retrieves the resource capacity settings for a fleet location. The data returned includes the current capacity (number of EC2 instances) and some scaling settings for the requested fleet location. For a container fleet, this operation also returns counts for replica container groups. Use this operation to retrieve capacity information for a fleet's remote location or home Region (you can also retrieve home Region capacity by calling DescribeFleetCapacity). To retrieve capacity data, identify a fleet and location.  If successful, a FleetCapacity object is returned for the requested fleet location.   Learn more   Setting up Amazon GameLift fleets    Amazon GameLift service locations for managed hosting  GameLift metrics for fleets",
       options: [
         {
           name: "--fleet-id",
@@ -2431,7 +2431,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-fleet-location-utilization",
       description:
-        "Retrieves current usage data for a fleet location. Utilization data provides a snapshot of current game hosting activity at the requested location. Use this operation to retrieve utilization information for a fleet's remote location or home Region (you can also retrieve home Region utilization by calling DescribeFleetUtilization). To retrieve utilization data, identify a fleet and location.  If successful, a FleetUtilization object is returned for the requested fleet location.   Learn more   Setting up Amazon GameLift fleets   GameLift metrics for fleets",
+        "Retrieves current usage data for a fleet location. Utilization data provides a snapshot of current game hosting activity at the requested location. Use this operation to retrieve utilization information for a fleet's remote location or home Region (you can also retrieve home Region utilization by calling DescribeFleetUtilization). To retrieve utilization data, identify a fleet and location.  If successful, a FleetUtilization object is returned for the requested fleet location.   Learn more   Setting up Amazon GameLift fleets    Amazon GameLift service locations for managed hosting  GameLift metrics for fleets",
       options: [
         {
           name: "--fleet-id",
@@ -3620,7 +3620,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-compute-access",
       description:
-        "This operation has been expanded to use with the Amazon GameLift containers feature, which is currently in public preview.  Requests authorization to remotely connect to a hosting resource in a Amazon GameLift managed fleet. This operation is not used with Amazon GameLift Anywhere fleets To request access, specify the compute name and the fleet ID. If successful, this operation returns a set of temporary Amazon Web Services credentials, including a two-part access key and a session token.  EC2 fleets  With an EC2 fleet (where compute type is EC2), use these credentials with Amazon EC2 Systems Manager (SSM) to start a session with the compute. For more details, see  Starting a session (CLI) in the Amazon EC2 Systems Manager User Guide.  Container fleets  With a container fleet (where compute type is CONTAINER), use these credentials and the target value with SSM to connect to the fleet instance where the container is running. After you're connected to the instance, use Docker commands to interact with the container.  Learn more     Remotely connect to fleet instances     Debug fleet issues      Remotely connect to a container fleet",
+        "This operation has been expanded to use with the Amazon GameLift containers feature, which is currently in public preview.  Requests authorization to remotely connect to a hosting resource in a Amazon GameLift managed fleet. This operation is not used with Amazon GameLift Anywhere fleets To request access, specify the compute name and the fleet ID. If successful, this operation returns a set of temporary Amazon Web Services credentials, including a two-part access key and a session token.  EC2 fleets  With an EC2 fleet (where compute type is EC2), use these credentials with Amazon EC2 Systems Manager (SSM) to start a session with the compute. For more details, see  Starting a session (CLI) in the Amazon EC2 Systems Manager User Guide.  Container fleets  With a container fleet (where compute type is CONTAINER), use these credentials and the target value with SSM to connect to the fleet instance where the container is running. After you're connected to the instance, use Docker commands to interact with the container.  Learn more     Remotely connect to fleet instances     Debug fleet issues",
       options: [
         {
           name: "--fleet-id",
@@ -4611,7 +4611,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ip-address",
           description:
-            "The IP address of the compute resource. Amazon GameLift requires either a DNS name or IP address",
+            "The IP address of the compute resource. Amazon GameLift requires either a DNS name or IP address. When registering an Anywhere fleet, an IP address is required",
           args: {
             name: "string",
           },
@@ -4619,7 +4619,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--location",
           description:
-            "The name of a custom location to associate with the compute resource being registered",
+            "The name of a custom location to associate with the compute resource being registered. This parameter is required when registering a compute for an Anywhere fleet",
           args: {
             name: "string",
           },
