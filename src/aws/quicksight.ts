@@ -7699,6 +7699,16 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--restore-to-folders",
+          description:
+            "A boolean value that determines if the analysis will be restored to folders that it previously resided in. A True value restores analysis back to all folders that it previously resided in. A False value restores the analysis but does not restore the analysis back to all previously resided folders. Restoring a restricted analysis requires this parameter to be set to True",
+        },
+        {
+          name: "--no-restore-to-folders",
+          description:
+            "A boolean value that determines if the analysis will be restored to folders that it previously resided in. A True value restores analysis back to all folders that it previously resided in. A False value restores the analysis but does not restore the analysis back to all previously resided folders. Restoring a restricted analysis requires this parameter to be set to True",
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -8456,6 +8466,54 @@ const completionSpec: Fig.Spec = {
             "A structure that describes the configuration of the dashboard snapshot",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "start-dashboard-snapshot-job-schedule",
+      description:
+        "Starts an asynchronous job that runs an existing dashboard schedule and sends the dashboard snapshot through email.  Only one job can run simultaneously in a given schedule. Repeated requests are skipped with a 202 HTTP status code. For more information, see Scheduling and sending Amazon QuickSight reports by email and Configuring email report settings for a Amazon QuickSight dashboard in the Amazon QuickSight User Guide",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account that the dashboard snapshot job is executed in",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--dashboard-id",
+          description:
+            "The ID of the dashboard that you want to start a snapshot job schedule for",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--schedule-id",
+          description:
+            "The ID of the schedule that you want to start a snapshot job schedule for. The schedule ID can be found in the Amazon QuickSight console in the Schedules pane of the dashboard that the schedule is configured for",
+          args: {
+            name: "string",
           },
         },
         {

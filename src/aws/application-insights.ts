@@ -89,6 +89,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--sns-notification-arn",
+          description: "The SNS notification topic ARN",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--tags",
           description:
             "List of tags to add to the application. tag key (Key) and an associated tag value (Value). The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters",
@@ -234,7 +241,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--rank",
           description:
-            "Rank of the log pattern. Must be a value between 1 and 1,000,000. The patterns are sorted by rank, so we recommend that you set your highest priority patterns with the lowest rank. A pattern of rank 1 will be the first to get matched to a log line. A pattern of rank 1,000,000 will be last to get matched. When you configure custom log patterns from the console, a Low severity pattern translates to a 750,000 rank. A Medium severity pattern translates to a 500,000 rank. And a High severity pattern translates to a 250,000 rank. Rank values less than 1 or greater than 1,000,000 are reserved for AWS-provided patterns",
+            "Rank of the log pattern. Must be a value between 1 and 1,000,000. The patterns are sorted by rank, so we recommend that you set your highest priority patterns with the lowest rank. A pattern of rank 1 will be the first to get matched to a log line. A pattern of rank 1,000,000 will be last to get matched. When you configure custom log patterns from the console, a Low severity pattern translates to a 750,000 rank. A Medium severity pattern translates to a 500,000 rank. And a High severity pattern translates to a 250,000 rank. Rank values less than 1 or greater than 1,000,000 are reserved for Amazon Web Services provided patterns",
           args: {
             name: "integer",
           },
@@ -384,7 +391,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--account-id",
-          description: "The AWS account ID for the resource group owner",
+          description:
+            "The Amazon Web Services account ID for the resource group owner",
           args: {
             name: "string",
           },
@@ -429,7 +437,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--account-id",
-          description: "The AWS account ID for the resource group owner",
+          description:
+            "The Amazon Web Services account ID for the resource group owner",
           args: {
             name: "string",
           },
@@ -473,7 +482,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--account-id",
-          description: "The AWS account ID for the resource group owner",
+          description:
+            "The Amazon Web Services account ID for the resource group owner",
           args: {
             name: "string",
           },
@@ -525,7 +535,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--workload-name",
-          description: "The name of the workload",
+          description:
+            "The name of the workload. The name of the workload is required when the tier of the application component is SAP_ASE_SINGLE_NODE or SAP_ASE_HIGH_AVAILABILITY",
           args: {
             name: "string",
           },
@@ -583,7 +594,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--account-id",
-          description: "The AWS account ID for the resource group owner",
+          description:
+            "The Amazon Web Services account ID for the resource group owner",
           args: {
             name: "string",
           },
@@ -620,7 +632,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--account-id",
-          description: "The AWS account ID for the resource group owner",
+          description:
+            "The Amazon Web Services account ID for the resource group owner",
           args: {
             name: "string",
           },
@@ -658,7 +671,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--account-id",
           description:
-            "The AWS account ID for the owner of the resource group affected by the problem",
+            "The Amazon Web Services account ID for the owner of the resource group affected by the problem",
           args: {
             name: "string",
           },
@@ -696,7 +709,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--account-id",
-          description: "The AWS account ID for the resource group owner",
+          description:
+            "The Amazon Web Services account ID for the resource group owner",
           args: {
             name: "string",
           },
@@ -747,7 +761,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--account-id",
-          description: "The AWS account ID for the workload owner",
+          description:
+            "The Amazon Web Services account ID for the workload owner",
           args: {
             name: "string",
           },
@@ -792,7 +807,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--account-id",
-          description: "The AWS account ID for the resource group owner",
+          description:
+            "The Amazon Web Services account ID for the resource group owner",
           args: {
             name: "string",
           },
@@ -845,7 +861,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--account-id",
-          description: "The AWS account ID for the resource group owner",
+          description:
+            "The Amazon Web Services account ID for the resource group owner",
           args: {
             name: "string",
           },
@@ -921,7 +938,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--account-id",
-          description: "The AWS account ID for the resource group owner",
+          description:
+            "The Amazon Web Services account ID for the resource group owner",
           args: {
             name: "string",
           },
@@ -973,7 +991,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--account-id",
-          description: "The AWS account ID for the resource group owner",
+          description:
+            "The Amazon Web Services account ID for the resource group owner",
           args: {
             name: "string",
           },
@@ -1032,7 +1051,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--account-id",
-          description: "The AWS account ID for the resource group owner",
+          description:
+            "The Amazon Web Services account ID for the resource group owner",
           args: {
             name: "string",
           },
@@ -1062,7 +1082,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--account-id",
-          description: "The AWS account ID for the resource group owner",
+          description:
+            "The Amazon Web Services account ID for the resource group owner",
           args: {
             name: "string",
           },
@@ -1207,7 +1228,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--account-id",
-          description: "The AWS account ID of the owner of the workload",
+          description:
+            "The Amazon Web Services account ID of the owner of the workload",
           args: {
             name: "string",
           },
@@ -1390,6 +1412,14 @@ const completionSpec: Fig.Spec = {
           name: "--ops-item-sns-topic-arn",
           description:
             "The SNS topic provided to Application Insights that is associated to the created opsItem. Allows you to receive notifications for updates to the opsItem",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sns-notification-arn",
+          description:
+            "The SNS topic ARN. Allows you to receive SNS notifications for updates and issues with an application",
           args: {
             name: "string",
           },
@@ -1602,7 +1632,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--rank",
           description:
-            "Rank of the log pattern. Must be a value between 1 and 1,000,000. The patterns are sorted by rank, so we recommend that you set your highest priority patterns with the lowest rank. A pattern of rank 1 will be the first to get matched to a log line. A pattern of rank 1,000,000 will be last to get matched. When you configure custom log patterns from the console, a Low severity pattern translates to a 750,000 rank. A Medium severity pattern translates to a 500,000 rank. And a High severity pattern translates to a 250,000 rank. Rank values less than 1 or greater than 1,000,000 are reserved for AWS-provided patterns",
+            "Rank of the log pattern. Must be a value between 1 and 1,000,000. The patterns are sorted by rank, so we recommend that you set your highest priority patterns with the lowest rank. A pattern of rank 1 will be the first to get matched to a log line. A pattern of rank 1,000,000 will be last to get matched. When you configure custom log patterns from the console, a Low severity pattern translates to a 750,000 rank. A Medium severity pattern translates to a 500,000 rank. And a High severity pattern translates to a 250,000 rank. Rank values less than 1 or greater than 1,000,000 are reserved for Amazon Web Services provided patterns",
           args: {
             name: "integer",
           },
