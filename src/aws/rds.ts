@@ -1115,12 +1115,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--enable-iam-database-authentication",
           description:
-            "Specifies whether to enable mapping of Amazon Web Services Identity and Access Management (IAM) accounts to database accounts. By default, mapping isn't enabled. For more information, see  IAM Database Authentication in the Amazon Aurora User Guide. Valid for Cluster Type: Aurora DB clusters only",
+            "Specifies whether to enable mapping of Amazon Web Services Identity and Access Management (IAM) accounts to database accounts. By default, mapping isn't enabled. For more information, see  IAM Database Authentication in the Amazon Aurora User Guide or IAM database authentication for MariaDB, MySQL, and PostgreSQL in the Amazon RDS User Guide. Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters",
         },
         {
           name: "--no-enable-iam-database-authentication",
           description:
-            "Specifies whether to enable mapping of Amazon Web Services Identity and Access Management (IAM) accounts to database accounts. By default, mapping isn't enabled. For more information, see  IAM Database Authentication in the Amazon Aurora User Guide. Valid for Cluster Type: Aurora DB clusters only",
+            "Specifies whether to enable mapping of Amazon Web Services Identity and Access Management (IAM) accounts to database accounts. By default, mapping isn't enabled. For more information, see  IAM Database Authentication in the Amazon Aurora User Guide or IAM database authentication for MariaDB, MySQL, and PostgreSQL in the Amazon RDS User Guide. Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters",
         },
         {
           name: "--backtrack-window",
@@ -3934,7 +3934,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--db-shard-group-identifier",
-          description: "Teh name of the DB shard group to delete",
+          description: "The name of the DB shard group to delete",
           args: {
             name: "string",
           },
@@ -6214,7 +6214,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--db-shard-group-identifier",
           description:
-            "The user-supplied DB shard group identifier or the Amazon Resource Name (ARN) of the DB shard group. If this parameter is specified, information for only the specific DB shard group is returned. This parameter isn't case-sensitive. Constraints:   If supplied, must match an existing DB shard group identifier",
+            "The user-supplied DB shard group identifier. If this parameter is specified, information for only the specific DB shard group is returned. This parameter isn't case-sensitive. Constraints:   If supplied, must match an existing DB shard group identifier",
           args: {
             name: "string",
           },
@@ -8654,12 +8654,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--enable-iam-database-authentication",
           description:
-            "Specifies whether to enable mapping of Amazon Web Services Identity and Access Management (IAM) accounts to database accounts. By default, mapping isn't enabled. For more information, see  IAM Database Authentication in the Amazon Aurora User Guide. Valid for Cluster Type: Aurora DB clusters only",
+            "Specifies whether to enable mapping of Amazon Web Services Identity and Access Management (IAM) accounts to database accounts. By default, mapping isn't enabled. For more information, see  IAM Database Authentication in the Amazon Aurora User Guide or IAM database authentication for MariaDB, MySQL, and PostgreSQL in the Amazon RDS User Guide. Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters",
         },
         {
           name: "--no-enable-iam-database-authentication",
           description:
-            "Specifies whether to enable mapping of Amazon Web Services Identity and Access Management (IAM) accounts to database accounts. By default, mapping isn't enabled. For more information, see  IAM Database Authentication in the Amazon Aurora User Guide. Valid for Cluster Type: Aurora DB clusters only",
+            "Specifies whether to enable mapping of Amazon Web Services Identity and Access Management (IAM) accounts to database accounts. By default, mapping isn't enabled. For more information, see  IAM Database Authentication in the Amazon Aurora User Guide or IAM database authentication for MariaDB, MySQL, and PostgreSQL in the Amazon RDS User Guide. Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters",
         },
         {
           name: "--backtrack-window",
@@ -8828,12 +8828,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--enable-performance-insights",
           description:
-            "Specifies whether to turn on Performance Insights for the DB cluster. For more information, see  Using Amazon Performance Insights in the Amazon RDS User Guide. Valid for Cluster Type: Multi-AZ DB clusters only",
+            "Specifies whether to turn on Performance Insights for the DB cluster. For more information, see  Using Amazon Performance Insights in the Amazon RDS User Guide. Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters",
         },
         {
           name: "--no-enable-performance-insights",
           description:
-            "Specifies whether to turn on Performance Insights for the DB cluster. For more information, see  Using Amazon Performance Insights in the Amazon RDS User Guide. Valid for Cluster Type: Multi-AZ DB clusters only",
+            "Specifies whether to turn on Performance Insights for the DB cluster. For more information, see  Using Amazon Performance Insights in the Amazon RDS User Guide. Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters",
         },
         {
           name: "--performance-insights-kms-key-id",
@@ -11419,12 +11419,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--enable-iam-database-authentication",
           description:
-            "Specifies whether to enable mapping of Amazon Web Services Identity and Access Management (IAM) accounts to database accounts. By default, mapping isn't enabled. For more information, see  IAM Database Authentication in the Amazon Aurora User Guide. Valid for: Aurora DB clusters only",
+            "Specifies whether to enable mapping of Amazon Web Services Identity and Access Management (IAM) accounts to database accounts. By default, mapping isn't enabled. For more information, see  IAM Database Authentication in the Amazon Aurora User Guide or  IAM database authentication for MariaDB, MySQL, and PostgreSQL in the Amazon RDS User Guide. Valid for: Aurora DB clusters and Multi-AZ DB clusters",
         },
         {
           name: "--no-enable-iam-database-authentication",
           description:
-            "Specifies whether to enable mapping of Amazon Web Services Identity and Access Management (IAM) accounts to database accounts. By default, mapping isn't enabled. For more information, see  IAM Database Authentication in the Amazon Aurora User Guide. Valid for: Aurora DB clusters only",
+            "Specifies whether to enable mapping of Amazon Web Services Identity and Access Management (IAM) accounts to database accounts. By default, mapping isn't enabled. For more information, see  IAM Database Authentication in the Amazon Aurora User Guide or  IAM database authentication for MariaDB, MySQL, and PostgreSQL in the Amazon RDS User Guide. Valid for: Aurora DB clusters and Multi-AZ DB clusters",
         },
         {
           name: "--backtrack-window",
@@ -11684,12 +11684,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--enable-iam-database-authentication",
           description:
-            "Specifies whether to enable mapping of Amazon Web Services Identity and Access Management (IAM) accounts to database accounts. By default, mapping isn't enabled. For more information, see  IAM Database Authentication in the Amazon Aurora User Guide. Valid for: Aurora DB clusters only",
+            "Specifies whether to enable mapping of Amazon Web Services Identity and Access Management (IAM) accounts to database accounts. By default, mapping isn't enabled. For more information, see  IAM Database Authentication in the Amazon Aurora User Guide or  IAM database authentication for MariaDB, MySQL, and PostgreSQL in the Amazon RDS User Guide. Valid for: Aurora DB clusters and Multi-AZ DB clusters",
         },
         {
           name: "--no-enable-iam-database-authentication",
           description:
-            "Specifies whether to enable mapping of Amazon Web Services Identity and Access Management (IAM) accounts to database accounts. By default, mapping isn't enabled. For more information, see  IAM Database Authentication in the Amazon Aurora User Guide. Valid for: Aurora DB clusters only",
+            "Specifies whether to enable mapping of Amazon Web Services Identity and Access Management (IAM) accounts to database accounts. By default, mapping isn't enabled. For more information, see  IAM Database Authentication in the Amazon Aurora User Guide or  IAM database authentication for MariaDB, MySQL, and PostgreSQL in the Amazon RDS User Guide. Valid for: Aurora DB clusters and Multi-AZ DB clusters",
         },
         {
           name: "--backtrack-window",
@@ -13594,7 +13594,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--blue-green-deployment-identifier",
           description:
-            "The unique identifier of the blue/green deployment. Constraints:   Must match an existing blue/green deployment identifier",
+            "The resource ID of the blue/green deployment. Constraints:   Must match an existing blue/green deployment resource ID",
           args: {
             name: "string",
           },

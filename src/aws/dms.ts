@@ -155,6 +155,100 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-data-migration",
+      description: "Creates a data migration using the provided settings",
+      options: [
+        {
+          name: "--data-migration-name",
+          description:
+            "A user-friendly name for the data migration. Data migration names have the following constraints:   Must begin with a letter, and can only contain ASCII letters, digits, and hyphens.    Can't end with a hyphen or contain two consecutive hyphens.   Length must be from 1 to 255 characters",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--migration-project-identifier",
+          description: "An identifier for the migration project",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--data-migration-type",
+          description:
+            "Specifies if the data migration is full-load only, change data capture (CDC) only, or full-load and CDC",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--service-access-role-arn",
+          description:
+            "The Amazon Resource Name (ARN) for the service access role that you want to use to create the data migration",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--enable-cloudwatch-logs",
+          description:
+            "Specifies whether to enable CloudWatch logs for the data migration",
+        },
+        {
+          name: "--no-enable-cloudwatch-logs",
+          description:
+            "Specifies whether to enable CloudWatch logs for the data migration",
+        },
+        {
+          name: "--source-data-settings",
+          description: "Specifies information about the source data provider",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--number-of-jobs",
+          description:
+            "The number of parallel jobs that trigger parallel threads to unload the tables from the source, and then load them to the target",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--tags",
+          description: "One or more tags to be assigned to the data migration",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--selection-rules",
+          description:
+            "An optional JSON string specifying what tables, views, and schemas to include or exclude from the migration",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-data-provider",
       description:
         "Creates a data provider using the provided settings. A data provider stores a data store type and location information about your database",
@@ -238,7 +332,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--engine-name",
           description:
-            'The type of engine for the endpoint. Valid values, depending on the EndpointType value, include "mysql", "oracle", "postgres", "mariadb", "aurora", "aurora-postgresql", "opensearch", "redshift", "s3", "db2", "db2-zos", "azuredb", "sybase", "dynamodb", "mongodb", "kinesis", "kafka", "elasticsearch", "docdb", "sqlserver", "neptune", and "babelfish"',
+            'The type of engine for the endpoint. Valid values, depending on the EndpointType value, include "mysql", "oracle", "postgres", "mariadb", "aurora", "aurora-postgresql", "opensearch", "redshift", "s3", "db2", "db2-zos", "azuredb", "sybase", "dynamodb", "mongodb", "kinesis", "kafka", "elasticsearch", "docdb", "sqlserver", "neptune", "babelfish", redshift-serverless, aurora-serverless, aurora-postgresql-serverless, gcp-mysql, azure-sql-managed-instance, redis, dms-transfer',
           args: {
             name: "string",
           },
@@ -1101,7 +1195,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--replication-subnet-group-identifier",
           description:
-            'The name for the replication subnet group. This value is stored as a lowercase string. Constraints: Must contain no more than 255 alphanumeric characters, periods, spaces, underscores, or hyphens. Must not be "default". Example: mySubnetgroup',
+            'The name for the replication subnet group. This value is stored as a lowercase string. Constraints: Must contain no more than 255 alphanumeric characters, periods, underscores, or hyphens. Must not be "default". Example: mySubnetgroup',
           args: {
             name: "string",
           },
@@ -1321,6 +1415,37 @@ const completionSpec: Fig.Spec = {
           name: "--replication-instance-arn",
           description:
             "The Amazon Resource Name (ARN) of the replication instance",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-data-migration",
+      description: "Deletes the specified data migration",
+      options: [
+        {
+          name: "--data-migration-identifier",
+          description:
+            "The identifier (name or ARN) of the data migration to delete",
           args: {
             name: "string",
           },
@@ -1985,6 +2110,96 @@ const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-data-migrations",
+      description: "Returns information about data migrations",
+      options: [
+        {
+          name: "--filters",
+          description: "Filters applied to the data migrations",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--max-records",
+          description:
+            "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--marker",
+          description:
+            "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--without-settings",
+          description:
+            "An option to set to avoid returning information about settings. Use this to reduce overhead when setting information is too large. To use this option, choose true; otherwise, choose false (the default)",
+        },
+        {
+          name: "--no-without-settings",
+          description:
+            "An option to set to avoid returning information about settings. Use this to reduce overhead when setting information is too large. To use this option, choose true; otherwise, choose false (the default)",
+        },
+        {
+          name: "--without-statistics",
+          description:
+            "An option to set to avoid returning information about statistics. Use this to reduce overhead when statistics information is too large. To use this option, choose true; otherwise, choose false (the default)",
+        },
+        {
+          name: "--no-without-statistics",
+          description:
+            "An option to set to avoid returning information about statistics. Use this to reduce overhead when statistics information is too large. To use this option, choose true; otherwise, choose false (the default)",
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -4342,6 +4557,92 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "modify-data-migration",
+      description: "Modifies an existing DMS data migration",
+      options: [
+        {
+          name: "--data-migration-identifier",
+          description:
+            "The identifier (name or ARN) of the data migration to modify",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--data-migration-name",
+          description: "The new name for the data migration",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--enable-cloudwatch-logs",
+          description:
+            "Whether to enable Cloudwatch logs for the data migration",
+        },
+        {
+          name: "--no-enable-cloudwatch-logs",
+          description:
+            "Whether to enable Cloudwatch logs for the data migration",
+        },
+        {
+          name: "--service-access-role-arn",
+          description: "The new service access role ARN for the data migration",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--data-migration-type",
+          description: "The new migration type for the data migration",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--source-data-settings",
+          description:
+            "The new information about the source data provider for the data migration",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--number-of-jobs",
+          description:
+            "The number of parallel jobs that trigger parallel threads to unload the tables from the source, and then load them to the target",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--selection-rules",
+          description:
+            "A JSON-formatted string that defines what objects to include and exclude from the migration",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "modify-data-provider",
       description:
         "Modifies the specified data provider using the provided settings.  You must remove the data provider from all migration projects before you can modify it",
@@ -5600,6 +5901,45 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "start-data-migration",
+      description: "Starts the specified data migration",
+      options: [
+        {
+          name: "--data-migration-identifier",
+          description:
+            "The identifier (name or ARN) of the data migration to start",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--start-type",
+          description:
+            "Specifies the start type for the data migration. Valid values include start-replication, reload-target, and resume-processing",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "start-extension-pack-association",
       description:
         "Applies the extension pack to your target database. An extension pack is an add-on module that emulates functions present in a source database that are required when converting objects to the target database",
@@ -6141,6 +6481,45 @@ const completionSpec: Fig.Spec = {
             "Space-separated list of names for specific individual assessments that you want to exclude. These names come from the default list of individual assessments that DMS supports for the associated migration task. This task is specified by ReplicationTaskArn.  You can't set a value for Exclude if you also set a value for IncludeOnly in the API operation. To identify the names of the default individual assessments that DMS supports for the associated migration task, run the DescribeApplicableIndividualAssessments operation using its own ReplicationTaskArn request parameter",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "One or more tags to be assigned to the premigration assessment run that you want to start",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "stop-data-migration",
+      description: "Stops the specified data migration",
+      options: [
+        {
+          name: "--data-migration-identifier",
+          description:
+            "The identifier (name or ARN) of the data migration to stop",
+          args: {
+            name: "string",
           },
         },
         {
