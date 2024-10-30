@@ -317,7 +317,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--format",
           description:
-            "Specifies the format of S3 data to be imported. Valid values are CSV, which identifies the Gremlin CSV format or OPENCYPHER, which identies the openCypher load format",
+            "Specifies the format of S3 data to be imported. Valid values are CSV, which identifies the Gremlin CSV format, OPEN_CYPHER, which identifies the openCypher load format, or ntriples, which identifies the RDF n-triples format",
           args: {
             name: "string",
           },

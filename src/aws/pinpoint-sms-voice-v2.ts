@@ -484,12 +484,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-registration-attachment",
       description:
-        "Create a new registration attachment to use for uploading a file or a URL to a file. The maximum file size is 1MiB and valid file extensions are PDF, JPEG and PNG. For example, many sender ID registrations require a signed \u201cletter of authorization\u201d (LOA) to be submitted",
+        "Create a new registration attachment to use for uploading a file or a URL to a file. The maximum file size is 500KB and valid file extensions are PDF, JPEG and PNG. For example, many sender ID registrations require a signed \u201cletter of authorization\u201d (LOA) to be submitted. Use either AttachmentUrl or AttachmentBody to upload your attachment. If both are specified then an exception is returned",
       options: [
         {
           name: "--attachment-body",
           description:
-            "The registration file to upload. The maximum file size is 1MiB and valid file extensions are PDF, JPEG and PNG",
+            "The registration file to upload. The maximum file size is 500KB and valid file extensions are PDF, JPEG and PNG",
           args: {
             name: "blob",
           },
@@ -497,7 +497,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--attachment-url",
           description:
-            "A URL to the required registration file. For example, you can provide the S3 object URL",
+            "Registration files have to be stored in an Amazon S3 bucket. The URI to use when sending is in the format s3://BucketName/FileName",
           args: {
             name: "string",
           },
@@ -1558,7 +1558,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-opted-out-numbers",
       description:
-        "Describes the specified opted out destination numbers or all opted out destination numbers in an opt-out list. If you specify opted out numbers, the output includes information for only the specified opted out numbers. If you specify filters, the output includes information for only those opted out numbers that meet the filter criteria. If you don't specify opted out numbers or filters, the output includes information for all opted out destination numbers in your opt-out list. If you specify an opted out number that isn't valid, an error is returned",
+        "Describes the specified opted out destination numbers or all opted out destination numbers in an opt-out list. If you specify opted out numbers, the output includes information for only the specified opted out numbers. If you specify filters, the output includes information for only those opted out numbers that meet the filter criteria. If you don't specify opted out numbers or filters, the output includes information for all opted out destination numbers in your opt-out list. If you specify an opted out number that isn't valid, an exception is returned",
       options: [
         {
           name: "--opt-out-list-name",
@@ -1571,7 +1571,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--opted-out-numbers",
           description:
-            "An array of phone numbers to search for in the OptOutList",
+            "An array of phone numbers to search for in the OptOutList. If you specify an opted out number that isn't valid, an exception is returned",
           args: {
             name: "list",
           },

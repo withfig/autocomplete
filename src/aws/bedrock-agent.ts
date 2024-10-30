@@ -1661,7 +1661,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-ingestion-job",
       description:
-        "Gets information about a data ingestion job. Data sources are ingested into your knowledge base so that Large Lanaguage Models (LLMs) can use your data",
+        "Gets information about a data ingestion job. Data sources are ingested into your knowledge base so that Large Language Models (LLMs) can use your data",
       options: [
         {
           name: "--data-source-id",

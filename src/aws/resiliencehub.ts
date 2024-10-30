@@ -137,6 +137,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--aws-application-arn",
+          description:
+            "Amazon Resource Name (ARN) of Resource Groups group that is integrated with an AppRegistry application. For more information about ARNs, see  Amazon Resource Names (ARNs) in the Amazon Web Services General Reference guide",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--client-token",
           description:
             "Used for an idempotency token. A client token is a unique, case-sensitive string of up to 64 ASCII characters. You should not reuse the same client token for other API requests",
@@ -1425,7 +1433,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-app-assessment-compliance-drifts",
       description:
-        "List of compliance drifts that were detected while running an assessment",
+        "Indicates the list of compliance drifts that were detected while running an assessment",
       options: [
         {
           name: "--assessment-arn",
@@ -2026,6 +2034,14 @@ const completionSpec: Fig.Spec = {
           name: "--app-arn",
           description:
             "Amazon Resource Name (ARN) of the Resilience Hub application. The format for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For more information about ARNs, see  Amazon Resource Names (ARNs) in the Amazon Web Services General Reference guide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--aws-application-arn",
+          description:
+            "Amazon Resource Name (ARN) of Resource Groups group that is integrated with an AppRegistry application. For more information about ARNs, see  Amazon Resource Names (ARNs) in the Amazon Web Services General Reference guide",
           args: {
             name: "string",
           },
