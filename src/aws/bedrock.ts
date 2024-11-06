@@ -291,6 +291,68 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-inference-profile",
+      description:
+        "Creates an application inference profile to track metrics and costs when invoking a model. To create an application inference profile for a foundation model in one region, specify the ARN of the model in that region. To create an application inference profile for a foundation model across multiple regions, specify the ARN of the system-defined inference profile that contains the regions that you want to route requests to. For more information, see Increase throughput and resilience with cross-region inference in Amazon Bedrock. in the Amazon Bedrock User Guide",
+      options: [
+        {
+          name: "--inference-profile-name",
+          description: "A name for the inference profile",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "A description for the inference profile",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--client-request-token",
+          description:
+            "A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see Ensuring idempotency",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--model-source",
+          description:
+            "The foundation model or system-defined inference profile that the inference profile will track metrics and costs for",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "An array of objects, each of which contains a tag and its value. For more information, see Tagging resources in the Amazon Bedrock User Guide",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-model-copy-job",
       description:
         "Copies a model to another region so that it can be used there. For more information, see Copy models to be used in other regions in the Amazon Bedrock User Guide",
@@ -835,6 +897,38 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-inference-profile",
+      description:
+        "Deletes an application inference profile. For more information, see Increase throughput and resilience with cross-region inference in Amazon Bedrock. in the Amazon Bedrock User Guide",
+      options: [
+        {
+          name: "--inference-profile-identifier",
+          description:
+            "The Amazon Resource Name (ARN) or ID of the application inference profile to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-model-invocation-logging-configuration",
       description: "Delete the invocation logging",
       options: [
@@ -1057,11 +1151,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-inference-profile",
       description:
-        "Gets information about an inference profile. For more information, see the Amazon Bedrock User Guide",
+        "Gets information about an inference profile. For more information, see Increase throughput and resilience with cross-region inference in Amazon Bedrock. in the Amazon Bedrock User Guide",
       options: [
         {
           name: "--inference-profile-identifier",
-          description: "The unique identifier of the inference profile",
+          description:
+            "The ID or Amazon Resource Name (ARN) of the inference profile",
           args: {
             name: "string",
           },
@@ -1733,7 +1828,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-inference-profiles",
-      description: "Returns a list of inference profiles that you can use",
+      description:
+        "Returns a list of inference profiles that you can use. For more information, see Increase throughput and resilience with cross-region inference in Amazon Bedrock. in the Amazon Bedrock User Guide",
       options: [
         {
           name: "--max-results",
@@ -1747,6 +1843,14 @@ const completionSpec: Fig.Spec = {
           name: "--next-token",
           description:
             "If the total number of results is greater than the maxResults value provided in the request, enter the token returned in the nextToken field in the response in this field to return the next batch of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--type-equals",
+          description:
+            "Filters for inference profiles that match the type you specify.    SYSTEM_DEFINED \u2013 The inference profile is defined by Amazon Bedrock. You can route inference requests across regions with these inference profiles.    APPLICATION \u2013 The inference profile was created by a user. This type of inference profile can track metrics and costs when invoking the model in it. The inference profile may route requests to one or multiple regions",
           args: {
             name: "string",
           },

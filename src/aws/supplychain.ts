@@ -53,7 +53,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-data-integration-flow",
       description:
-        "Create DataIntegrationFlow to map one or more different sources to one target using the SQL transformation query",
+        "Enables you to programmatically create a data pipeline to ingest data from source systems such as Amazon S3 buckets, to a predefined Amazon Web Services Supply Chain dataset (product, inbound_order) or a temporary dataset along with the data transformation query provided with the API",
       options: [
         {
           name: "--instance-id",
@@ -120,7 +120,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "create-data-lake-dataset",
-      description: "Create a data lake dataset",
+      description:
+        "Enables you to programmatically create an Amazon Web Services Supply Chain data lake dataset. Developers can create the datasets using their pre-defined or custom schema for a given instance ID, namespace, and dataset name",
       options: [
         {
           name: "--instance-id",
@@ -190,7 +191,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-instance",
       description:
-        "Create a new instance for AWS Supply Chain. This is an asynchronous operation. Upon receiving a CreateInstance request, AWS Supply Chain immediately returns the instance resource, with instance ID, and the initializing state while simultaneously creating all required Amazon Web Services resources for an instance creation. You can use GetInstance to check the status of the instance",
+        "Enables you to programmatically create an Amazon Web Services Supply Chain instance by applying KMS keys and relevant information associated with the API without using the Amazon Web Services console. This is an asynchronous operation. Upon receiving a CreateInstance request, Amazon Web Services Supply Chain immediately returns the instance resource, instance ID, and the initializing state while simultaneously creating all required Amazon Web Services resources for an instance creation. You can use GetInstance to check the status of the instance. If the instance results in an unhealthy state, you need to check the error message, delete the current instance, and recreate a new one based on the mitigation from the error message",
       options: [
         {
           name: "--instance-name",
@@ -250,7 +251,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-data-integration-flow",
-      description: "Delete the DataIntegrationFlow",
+      description:
+        "Enable you to programmatically delete an existing data pipeline for the provided Amazon Web Services Supply Chain instance and DataIntegrationFlow name",
       options: [
         {
           name: "--instance-id",
@@ -288,7 +290,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-data-lake-dataset",
-      description: "Delete a data lake dataset",
+      description:
+        "Enables you to programmatically delete an Amazon Web Services Supply Chain data lake dataset. Developers can delete the existing datasets for a given instance ID, namespace, and instance name",
       options: [
         {
           name: "--instance-id",
@@ -335,7 +338,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-instance",
       description:
-        "Delete the instance. This is an asynchronous operation. Upon receiving a DeleteInstance request, AWS Supply Chain immediately returns a response with the instance resource, delete state while cleaning up all Amazon Web Services resources created during the instance creation process. You can use the GetInstance action to check the instance status",
+        "Enables you to programmatically delete an Amazon Web Services Supply Chain instance by deleting the KMS keys and relevant information associated with the API without using the Amazon Web Services console. This is an asynchronous operation. Upon receiving a DeleteInstance request, Amazon Web Services Supply Chain immediately returns a response with the instance resource, delete state while cleaning up all Amazon Web Services resources created during the instance creation process. You can use the GetInstance action to check the instance status",
       options: [
         {
           name: "--instance-id",
@@ -402,7 +405,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-data-integration-flow",
-      description: "View the DataIntegrationFlow details",
+      description:
+        "Enables you to programmatically view a specific data pipeline for the provided Amazon Web Services Supply Chain instance and DataIntegrationFlow name",
       options: [
         {
           name: "--instance-id",
@@ -440,7 +444,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-data-lake-dataset",
-      description: "Get a data lake dataset",
+      description:
+        "Enables you to programmatically view an Amazon Web Services Supply Chain data lake dataset. Developers can view the data lake dataset information such as namespace, schema, and so on for a given instance ID, namespace, and dataset name",
       options: [
         {
           name: "--instance-id",
@@ -487,7 +492,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-instance",
-      description: "Get the AWS Supply Chain instance details",
+      description:
+        "Enables you to programmatically retrieve the information related to an Amazon Web Services Supply Chain instance ID",
       options: [
         {
           name: "--instance-id",
@@ -517,7 +523,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-data-integration-flows",
-      description: "Lists all the DataIntegrationFlows in a paginated way",
+      description:
+        "Enables you to programmatically list all data pipelines for the provided Amazon Web Services Supply Chain instance",
       options: [
         {
           name: "--instance-id",
@@ -589,7 +596,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-data-lake-datasets",
       description:
-        "List the data lake datasets for a specific instance and name space",
+        "Enables you to programmatically view the list of Amazon Web Services Supply Chain data lake datasets. Developers can view the datasets and the corresponding information such as namespace, schema, and so on for a given instance ID and namespace",
       options: [
         {
           name: "--instance-id",
@@ -667,7 +674,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-instances",
-      description: "List all the AWS Supply Chain instances in a paginated way",
+      description:
+        "List all Amazon Web Services Supply Chain instances for a specific account. Enables you to programmatically list all Amazon Web Services Supply Chain instances based on their account ID, instance name, and state of the instance (active or delete)",
       options: [
         {
           name: "--next-token",
@@ -745,7 +753,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-tags-for-resource",
       description:
-        "List all the tags for an Amazon Web ServicesSupply Chain resource",
+        "List all the tags for an Amazon Web ServicesSupply Chain resource. You can list all the tags added to a resource. By listing the tags, developers can view the tag level information on a resource and perform actions such as, deleting a resource associated with a particular tag",
       options: [
         {
           name: "--resource-arn",
@@ -845,7 +853,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "tag-resource",
       description:
-        "Create tags for an Amazon Web Services Supply chain resource",
+        "You can create tags during or after creating a resource such as instance, data flow, or dataset in AWS Supply chain. During the data ingestion process, you can add tags such as dev, test, or prod to data flows created during the data ingestion process in the AWS Supply Chain datasets. You can use these tags to identify a group of resources or a single resource used by the developer",
       options: [
         {
           name: "--resource-arn",
@@ -885,7 +893,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "untag-resource",
       description:
-        "Delete tags for an Amazon Web Services Supply chain resource",
+        "You can delete tags for an Amazon Web Services Supply chain resource such as instance, data flow, or dataset in AWS Supply Chain. During the data ingestion process, you can delete tags such as dev, test, or prod to data flows created during the data ingestion process in the AWS Supply Chain datasets",
       options: [
         {
           name: "--resource-arn",
@@ -924,7 +932,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "update-data-integration-flow",
-      description: "Update the DataIntegrationFlow",
+      description:
+        "Enables you to programmatically update an existing data pipeline to ingest data from the source systems such as, Amazon S3 buckets, to a predefined Amazon Web Services Supply Chain dataset (product, inbound_order) or a temporary dataset along with the data transformation query provided with the API",
       options: [
         {
           name: "--instance-id",
@@ -986,7 +995,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "update-data-lake-dataset",
-      description: "Update a data lake dataset",
+      description:
+        "Enables you to programmatically update an Amazon Web Services Supply Chain data lake dataset. Developers can update the description of a data lake dataset for a given instance ID, namespace, and dataset name",
       options: [
         {
           name: "--instance-id",
@@ -1039,7 +1049,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "update-instance",
-      description: "Update the instance",
+      description:
+        "Enables you to programmatically update an Amazon Web Services Supply Chain instance description by providing all the relevant information such as account ID, instance ID and so on without using the AWS console",
       options: [
         {
           name: "--instance-id",

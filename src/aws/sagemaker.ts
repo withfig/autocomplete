@@ -128,6 +128,46 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "batch-delete-cluster-nodes",
+      description:
+        "Deletes specific nodes within a SageMaker HyperPod cluster. BatchDeleteClusterNodes accepts a cluster name and a list of node IDs.    To safeguard your work, back up your data to Amazon S3 or an FSx for Lustre file system before invoking the API on a worker node group. This will help prevent any potential data loss from the instance root volume. For more information about backup, see Use the backup script provided by SageMaker HyperPod.    If you want to invoke this API on an existing cluster, you'll first need to patch the cluster by running the UpdateClusterSoftware API. For more information about patching a cluster, see Update the SageMaker HyperPod platform software of a cluster",
+      options: [
+        {
+          name: "--cluster-name",
+          description:
+            "The name of the SageMaker HyperPod cluster from which to delete the specified nodes",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--node-ids",
+          description:
+            "A list of node IDs to be deleted from the specified cluster.  For SageMaker HyperPod clusters using the Slurm workload manager, you cannot remove instances that are configured as Slurm controller nodes",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "batch-describe-model-package",
       description:
         "This action batch describes a list of versioned model packages",
@@ -1289,7 +1329,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--default-space-settings",
-          description: "The default settings used to create a space",
+          description:
+            "The default settings for shared spaces that users create in the domain",
           args: {
             name: "structure",
           },
@@ -3368,6 +3409,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--model-life-cycle",
+          description:
+            "A structure describing the current state of the model in its life cycle",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -3668,7 +3717,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--accelerator-types",
           description:
-            "A list of Elastic Inference (EI) instance types to associate with this notebook instance. Currently, only one instance type can be associated with a notebook instance. For more information, see Using Elastic Inference in Amazon SageMaker",
+            "This parameter is no longer supported. Elastic Inference (EI) is no longer available. This parameter was used to specify a list of EI instance types to associate with this notebook instance",
           args: {
             name: "list",
           },
@@ -3975,7 +4024,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-presigned-domain-url",
       description:
-        "Creates a URL for a specified UserProfile in a Domain. When accessed in a web browser, the user will be automatically signed in to the domain, and granted access to all of the Apps and files associated with the Domain's Amazon Elastic File System volume. This operation can only be called when the authentication mode equals IAM.  The IAM role or user passed to this API defines the permissions to access the app. Once the presigned URL is created, no additional permission is required to access this URL. IAM authorization policies for this API are also enforced for every HTTP request and WebSocket frame that attempts to connect to the app. You can restrict access to this API and to the URL that it returns to a list of IP addresses, Amazon VPCs or Amazon VPC Endpoints that you specify. For more information, see Connect to Amazon SageMaker Studio Through an Interface VPC Endpoint .  The URL that you get from a call to CreatePresignedDomainUrl has a default timeout of 5 minutes. You can configure this value using ExpiresInSeconds. If you try to use the URL after the timeout limit expires, you are directed to the Amazon Web Services console sign-in page",
+        "Creates a URL for a specified UserProfile in a Domain. When accessed in a web browser, the user will be automatically signed in to the domain, and granted access to all of the Apps and files associated with the Domain's Amazon Elastic File System volume. This operation can only be called when the authentication mode equals IAM.  The IAM role or user passed to this API defines the permissions to access the app. Once the presigned URL is created, no additional permission is required to access this URL. IAM authorization policies for this API are also enforced for every HTTP request and WebSocket frame that attempts to connect to the app. You can restrict access to this API and to the URL that it returns to a list of IP addresses, Amazon VPCs or Amazon VPC Endpoints that you specify. For more information, see Connect to Amazon SageMaker Studio Through an Interface VPC Endpoint .    The URL that you get from a call to CreatePresignedDomainUrl has a default timeout of 5 minutes. You can configure this value using ExpiresInSeconds. If you try to use the URL after the timeout limit expires, you are directed to the Amazon Web Services console sign-in page.   The JupyterLab session default expiration time is 12 hours. You can configure this value using SessionExpirationDurationInSeconds",
       options: [
         {
           name: "--domain-id",
@@ -19242,7 +19291,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-cluster-software",
       description:
-        "Updates the platform software of a SageMaker HyperPod cluster for security patching. To learn how to use this API, see Update the SageMaker HyperPod platform software of a cluster",
+        "Updates the platform software of a SageMaker HyperPod cluster for security patching. To learn how to use this API, see Update the SageMaker HyperPod platform software of a cluster.  The UpgradeClusterSoftware API call may impact your SageMaker HyperPod cluster uptime and availability. Plan accordingly to mitigate potential disruptions to your workloads",
       options: [
         {
           name: "--cluster-name",
@@ -19499,7 +19548,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--default-space-settings",
           description:
-            "The default settings used to create a space within the domain",
+            "The default settings for shared spaces that users create in the domain",
           args: {
             name: "structure",
           },
@@ -20388,6 +20437,22 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--model-life-cycle",
+          description:
+            "A structure describing the current state of the model in its life cycle",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique token that guarantees that the call to this API is idempotent",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -20570,7 +20635,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--accelerator-types",
           description:
-            "A list of the Elastic Inference (EI) instance types to associate with this notebook instance. Currently only one EI instance type can be associated with a notebook instance. For more information, see Using Elastic Inference in Amazon SageMaker",
+            "This parameter is no longer supported. Elastic Inference (EI) is no longer available. This parameter was used to specify a list of the EI instance types to associate with this notebook instance",
           args: {
             name: "list",
           },
@@ -20578,12 +20643,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--disassociate-accelerator-types",
           description:
-            "A list of the Elastic Inference (EI) instance types to remove from this notebook instance. This operation is idempotent. If you specify an accelerator type that is not associated with the notebook instance when you call this method, it does not throw an error",
+            "This parameter is no longer supported. Elastic Inference (EI) is no longer available. This parameter was used to specify a list of the EI instance types to remove from this notebook instance",
         },
         {
           name: "--no-disassociate-accelerator-types",
           description:
-            "A list of the Elastic Inference (EI) instance types to remove from this notebook instance. This operation is idempotent. If you specify an accelerator type that is not associated with the notebook instance when you call this method, it does not throw an error",
+            "This parameter is no longer supported. Elastic Inference (EI) is no longer available. This parameter was used to specify a list of the EI instance types to remove from this notebook instance",
         },
         {
           name: "--disassociate-default-code-repository",

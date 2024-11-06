@@ -150,6 +150,60 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-api",
+      description:
+        "Creates an Api object. Use this operation to create an AppSync API with your preferred configuration, such as an Event API that provides real-time message publishing and message subscriptions over WebSockets",
+      options: [
+        {
+          name: "--name",
+          description: "The name for the Api",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--owner-contact",
+          description: "The owner contact information for the Api",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "A map with keys of TagKey objects and values of TagValue objects",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--event-config",
+          description:
+            "The Event API configuration. This includes the default authorization configuration for connecting, publishing, and subscribing to an Event API",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-api-cache",
       description: "Creates a cache for the GraphQL API",
       options: [
@@ -256,6 +310,76 @@ const completionSpec: Fig.Spec = {
             "From the creation time, the time after which the API key expires. The date is represented as seconds since the epoch, rounded down to the nearest hour. The default value for this parameter is 7 days from creation time. For more information, see",
           args: {
             name: "long",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-channel-namespace",
+      description: "Creates a ChannelNamespace for an Api",
+      options: [
+        {
+          name: "--api-id",
+          description: "The Api ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--name",
+          description:
+            "The name of the ChannelNamespace. This name must be unique within the Api",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--subscribe-auth-modes",
+          description:
+            "The authorization mode to use for subscribing to messages on the channel namespace. This configuration overrides the default Api authorization configuration",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--publish-auth-modes",
+          description:
+            "The authorization mode to use for publishing messages on the channel namespace. This configuration overrides the default Api authorization configuration",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--code-handlers",
+          description:
+            "The event handler functions that run custom business logic to process published events and subscribe requests",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "A map with keys of TagKey objects and values of TagValue objects",
+          args: {
+            name: "map",
           },
         },
         {
@@ -619,14 +743,6 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--visibility",
-          description:
-            "Sets the value of the GraphQL API to public (GLOBAL) or private (PRIVATE). If no value is provided, the visibility will be set to GLOBAL by default. This value cannot be changed once the API has been created",
-          args: {
-            name: "string",
-          },
-        },
-        {
           name: "--api-type",
           description:
             "The value that indicates whether the GraphQL API is a standard API (GRAPHQL) or merged API (MERGED)",
@@ -638,6 +754,14 @@ const completionSpec: Fig.Spec = {
           name: "--merged-api-execution-role-arn",
           description:
             "The Identity and Access Management service role ARN for a merged API. The AppSync service assumes this role on behalf of the Merged API to validate access to source APIs at runtime and to prompt the AUTO_MERGE to update the merged API endpoint with the source API changes automatically",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--visibility",
+          description:
+            "Sets the value of the GraphQL API to public (GLOBAL) or private (PRIVATE). If no value is provided, the visibility will be set to GLOBAL by default. This value cannot be changed once the API has been created",
           args: {
             name: "string",
           },
@@ -877,6 +1001,36 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-api",
+      description: "Deletes an Api object",
+      options: [
+        {
+          name: "--api-id",
+          description: "The Api ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-api-cache",
       description: "Deletes an ApiCache object",
       options: [
@@ -920,6 +1074,43 @@ const completionSpec: Fig.Spec = {
         {
           name: "--id",
           description: "The ID for the API key",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-channel-namespace",
+      description: "Deletes a ChannelNamespace",
+      options: [
+        {
+          name: "--api-id",
+          description: "The ID of the Api associated with the ChannelNamespace",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--name",
+          description: "The name of the ChannelNamespace",
           args: {
             name: "string",
           },
@@ -1395,6 +1586,36 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-api",
+      description: "Retrieves an Api object",
+      options: [
+        {
+          name: "--api-id",
+          description: "The Api ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-api-association",
       description: "Retrieves an ApiAssociation object",
       options: [
@@ -1431,6 +1652,43 @@ const completionSpec: Fig.Spec = {
         {
           name: "--api-id",
           description: "The API ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-channel-namespace",
+      description: "Retrieves the channel namespace for a specified Api",
+      options: [
+        {
+          name: "--api-id",
+          description: "The Api ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--name",
+          description: "The name of the ChannelNamespace",
           args: {
             name: "string",
           },
@@ -1507,12 +1765,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--include-models-sdl",
           description:
-            "A boolean flag that determines whether SDL should be generated for introspected types or not. If set to true, each model will contain an sdl property that contains the SDL for that type. The SDL only contains the type data and no additional metadata or directives",
+            "A boolean flag that determines whether SDL should be generated for introspected types. If set to true, each model will contain an sdl property that contains the SDL for that type. The SDL only contains the type data and no additional metadata or directives",
         },
         {
           name: "--no-include-models-sdl",
           description:
-            "A boolean flag that determines whether SDL should be generated for introspected types or not. If set to true, each model will contain an sdl property that contains the SDL for that type. The SDL only contains the type data and no additional metadata or directives",
+            "A boolean flag that determines whether SDL should be generated for introspected types. If set to true, each model will contain an sdl property that contains the SDL for that type. The SDL only contains the type data and no additional metadata or directives",
         },
         {
           name: "--next-token",
@@ -1881,6 +2139,141 @@ const completionSpec: Fig.Spec = {
         {
           name: "--api-id",
           description: "The API ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "An identifier that was returned from the previous call to this operation, which you can use to return the next set of items in the list",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results that you want the request to return",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-apis",
+      description:
+        "Lists the APIs in your AppSync account.  ListApis returns only the high level API details. For more detailed information about an API, use GetApi",
+      options: [
+        {
+          name: "--next-token",
+          description:
+            "An identifier that was returned from the previous call to this operation, which you can use to return the next set of items in the list",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results that you want the request to return",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-channel-namespaces",
+      description:
+        "Lists the channel namespaces for a specified Api.  ListChannelNamespaces returns only high level details for the channel namespace. To retrieve code handlers, use GetChannelNamespace",
+      options: [
+        {
+          name: "--api-id",
+          description: "The Api ID",
           args: {
             name: "string",
           },
@@ -2868,6 +3261,58 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "update-api",
+      description: "Updates an Api",
+      options: [
+        {
+          name: "--api-id",
+          description: "The Api ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--name",
+          description: "The name of the Api",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--owner-contact",
+          description: "The owner contact information for the Api",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--event-config",
+          description:
+            "The new event configuration. This includes the default authorization configuration for connecting, publishing, and subscribing to an Event API",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "update-api-cache",
       description: "Updates the cache for the GraphQL API",
       options: [
@@ -2961,6 +3406,67 @@ const completionSpec: Fig.Spec = {
             "From the update time, the time after which the API key expires. The date is represented as seconds since the epoch. For more information, see",
           args: {
             name: "long",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-channel-namespace",
+      description: "Updates a ChannelNamespace associated with an Api",
+      options: [
+        {
+          name: "--api-id",
+          description: "The Api ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--name",
+          description: "The name of the ChannelNamespace",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--subscribe-auth-modes",
+          description:
+            "The authorization mode to use for subscribing to messages on the channel namespace. This configuration overrides the default Api authorization configuration",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--publish-auth-modes",
+          description:
+            "The authorization mode to use for publishing messages on the channel namespace. This configuration overrides the default Api authorization configuration",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--code-handlers",
+          description:
+            "The event handler functions that run custom business logic to process published events and subscribe requests",
+          args: {
+            name: "string",
           },
         },
         {

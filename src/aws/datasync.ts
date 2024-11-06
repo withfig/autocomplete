@@ -126,12 +126,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-agent",
       description:
-        "Activates an DataSync agent that you've deployed in your storage environment. The activation process associates the agent with your Amazon Web Services account. If you haven't deployed an agent yet, see the following topics to learn more:    Agent requirements     Create an agent     If you're transferring between Amazon Web Services storage services, you don't need a DataSync agent",
+        "Activates an DataSync agent that you deploy in your storage environment. The activation process associates the agent with your Amazon Web Services account. If you haven't deployed an agent yet, see Do I need a DataSync agent?",
       options: [
         {
           name: "--activation-key",
           description:
-            "Specifies your DataSync agent's activation key. If you don't have an activation key, see Activate your agent",
+            "Specifies your DataSync agent's activation key. If you don't have an activation key, see Activating your agent",
           args: {
             name: "string",
           },
@@ -139,7 +139,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--agent-name",
           description:
-            "Specifies a name for your agent. You can see this name in the DataSync console",
+            "Specifies a name for your agent. We recommend specifying a name that you can remember",
           args: {
             name: "string",
           },
@@ -155,7 +155,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--vpc-endpoint-id",
           description:
-            "Specifies the ID of the VPC endpoint that you want your agent to connect to. For example, a VPC endpoint ID looks like vpce-01234d5aff67890e1.  The VPC endpoint you use must include the DataSync service name (for example, com.amazonaws.us-east-2.datasync)",
+            "Specifies the ID of the VPC service endpoint that you're using. For example, a VPC endpoint ID looks like vpce-01234d5aff67890e1.  The VPC service endpoint you use must include the DataSync service name (for example, com.amazonaws.us-east-2.datasync)",
           args: {
             name: "string",
           },
@@ -163,7 +163,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--subnet-arns",
           description:
-            "Specifies the ARN of the subnet where you want to run your DataSync task when using a VPC endpoint. This is the subnet where DataSync creates and manages the network interfaces for your transfer. You can only specify one ARN",
+            "Specifies the ARN of the subnet where your VPC service endpoint is located. You can only specify one ARN",
           args: {
             name: "list",
           },
@@ -171,7 +171,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--security-group-arns",
           description:
-            "Specifies the Amazon Resource Name (ARN) of the security group that protects your task's network interfaces when using a virtual private cloud (VPC) endpoint. You can only specify one ARN",
+            "Specifies the Amazon Resource Name (ARN) of the security group that allows traffic between your agent and VPC service endpoint. You can only specify one ARN",
           args: {
             name: "list",
           },
@@ -291,14 +291,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--subdirectory",
           description:
-            "Specifies a mount path for your Amazon EFS file system. This is where DataSync reads or writes data (depending on if this is a source or destination location). By default, DataSync uses the root directory, but you can also include subdirectories.  You must specify a value with forward slashes (for example, /path/to/folder)",
+            "Specifies a mount path for your Amazon EFS file system. This is where DataSync reads or writes data (depending on if this is a source or destination location) on your file system. By default, DataSync uses the root directory (or access point if you provide one by using AccessPointArn). You can also include subdirectories using forward slashes (for example, /path/to/folder)",
           args: {
             name: "string",
           },
         },
         {
           name: "--efs-filesystem-arn",
-          description: "Specifies the ARN for the Amazon EFS file system",
+          description: "Specifies the ARN for your Amazon EFS file system",
           args: {
             name: "string",
           },
@@ -306,7 +306,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ec2-config",
           description:
-            "Specifies the subnet and security groups DataSync uses to access your Amazon EFS file system",
+            "Specifies the subnet and security groups DataSync uses to connect to one of your Amazon EFS file system's mount targets",
           args: {
             name: "structure",
           },
@@ -322,7 +322,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--access-point-arn",
           description:
-            "Specifies the Amazon Resource Name (ARN) of the access point that DataSync uses to access the Amazon EFS file system",
+            "Specifies the Amazon Resource Name (ARN) of the access point that DataSync uses to mount your Amazon EFS file system. For more information, see Accessing restricted file systems",
           args: {
             name: "string",
           },
@@ -330,7 +330,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--file-system-access-role-arn",
           description:
-            "Specifies an Identity and Access Management (IAM) role that DataSync assumes when mounting the Amazon EFS file system",
+            "Specifies an Identity and Access Management (IAM) role that allows DataSync to access your Amazon EFS file system. For information on creating this role, see Creating a DataSync IAM role for file system access",
           args: {
             name: "string",
           },
@@ -338,7 +338,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--in-transit-encryption",
           description:
-            "Specifies whether you want DataSync to use Transport Layer Security (TLS) 1.2 encryption when it copies data to or from the Amazon EFS file system. If you specify an access point using AccessPointArn or an IAM role using FileSystemAccessRoleArn, you must set this parameter to TLS1_2",
+            "Specifies whether you want DataSync to use Transport Layer Security (TLS) 1.2 encryption when it transfers data to or from your Amazon EFS file system. If you specify an access point using AccessPointArn or an IAM role using FileSystemAccessRoleArn, you must set this parameter to TLS1_2",
           args: {
             name: "string",
           },
@@ -570,7 +570,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--security-group-arns",
           description:
-            "Specifies the ARNs of the security groups that provide access to your file system's preferred subnet.  If you choose a security group that doesn't allow connections from within itself, do one of the following:   Configure the security group to allow it to communicate within itself.   Choose a different security group that can communicate with the mount target's security group",
+            "Specifies the ARNs of the Amazon EC2 security groups that provide access to your file system's preferred subnet. The security groups that you specify must be able to communicate with your file system's security groups. For information about configuring security groups for file system access, see the  Amazon FSx for Windows File Server User Guide .  If you choose a security group that doesn't allow connections from within itself, do one of the following:   Configure the security group to allow it to communicate within itself.   Choose a different security group that can communicate with the mount target's security group",
           args: {
             name: "list",
           },
@@ -722,7 +722,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--agent-arns",
           description:
-            "The Amazon Resource Names (ARNs) of the agents that are used to connect to the HDFS cluster",
+            "The Amazon Resource Names (ARNs) of the DataSync agents that can connect to your HDFS cluster",
           args: {
             name: "list",
           },
@@ -778,7 +778,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--on-prem-config",
           description:
-            "Specifies the Amazon Resource Name (ARN) of the DataSync agent that want to connect to your NFS file server. You can specify more than one agent. For more information, see Using multiple agents for transfers",
+            "Specifies the Amazon Resource Name (ARN) of the DataSync agent that can connect to your NFS file server. You can specify more than one agent. For more information, see Using multiple DataSync agents",
           args: {
             name: "structure",
           },
@@ -882,7 +882,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--agent-arns",
           description:
-            "Specifies the Amazon Resource Names (ARNs) of the DataSync agents that can securely connect with your location",
+            "Specifies the Amazon Resource Names (ARNs) of the DataSync agents that can connect with your object storage system",
           args: {
             name: "list",
           },
@@ -1042,7 +1042,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--agent-arns",
           description:
-            "Specifies the DataSync agent (or agents) which you want to connect to your SMB file server. You specify an agent by using its Amazon Resource Name (ARN)",
+            "Specifies the DataSync agent (or agents) that can connect to your SMB file server. You specify an agent by using its Amazon Resource Name (ARN)",
           args: {
             name: "list",
           },
@@ -1105,7 +1105,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cloud-watch-log-group-arn",
           description:
-            "Specifies the Amazon Resource Name (ARN) of an Amazon CloudWatch log group for monitoring your task",
+            "Specifies the Amazon Resource Name (ARN) of an Amazon CloudWatch log group for monitoring your task. For Enhanced mode tasks, you don't need to specify anything. DataSync automatically sends logs to a CloudWatch log group named /aws/datasync",
           args: {
             name: "string",
           },
@@ -1152,7 +1152,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--includes",
           description:
-            "Specifies include filters define the files, objects, and folders in your source location that you want DataSync to transfer. For more information and examples, see Specifying what DataSync transfers by using filters",
+            "Specifies include filters that define the files, objects, and folders in your source location that you want DataSync to transfer. For more information and examples, see Specifying what DataSync transfers by using filters",
           args: {
             name: "list",
           },
@@ -1171,6 +1171,14 @@ const completionSpec: Fig.Spec = {
             "Specifies how you want to configure a task report, which provides detailed information about your DataSync transfer. For more information, see Monitoring your DataSync transfers with task reports. When using this parameter, your caller identity (the role that you're using DataSync with) must have the iam:PassRole permission. The AWSDataSyncFullAccess policy includes this permission",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--task-mode",
+          description:
+            "Specifies one of the following task modes for your data transfer:    ENHANCED - Transfer virtually unlimited numbers of objects with enhanced metrics, more detailed logs, and higher performance than Basic mode. Currently available for transfers between Amazon S3 locations.  To create an Enhanced mode task, the IAM role that you use to call the CreateTask operation must have the iam:CreateServiceLinkedRole permission.     BASIC (default) - Transfer files or objects between Amazon Web Services storage and on-premises, edge, or other cloud storage. DataSync quotas apply.   For more information, see Understanding task mode differences",
+          args: {
+            name: "string",
           },
         },
         {
@@ -1944,7 +1952,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-task-execution",
       description:
-        "Provides information about an execution of your DataSync task. You can use this operation to help monitor the progress of an ongoing transfer or check the results of the transfer",
+        "Provides information about an execution of your DataSync task. You can use this operation to help monitor the progress of an ongoing data transfer or check the results of the transfer.  Some DescribeTaskExecution response elements are only relevant to a specific task mode. For information, see Understanding task mode differences and Understanding data transfer performance metrics",
       options: [
         {
           name: "--task-execution-arn",
@@ -2593,7 +2601,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "start-task-execution",
       description:
-        "Starts an DataSync transfer task. For each task, you can only run one task execution at a time. There are several phases to a task execution. For more information, see Task execution statuses.  If you're planning to transfer data to or from an Amazon S3 location, review how DataSync can affect your S3 request charges and the DataSync pricing page before you begin",
+        "Starts an DataSync transfer task. For each task, you can only run one task execution at a time. There are several steps to a task execution. For more information, see Task execution statuses.  If you're planning to transfer data to or from an Amazon S3 location, review how DataSync can affect your S3 request charges and the DataSync pricing page before you begin",
       options: [
         {
           name: "--task-arn",
@@ -3040,7 +3048,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--agent-arns",
           description:
-            "The ARNs of the agents that are used to connect to the HDFS cluster",
+            "The Amazon Resource Names (ARNs) of the DataSync agents that can connect to your HDFS cluster",
           args: {
             name: "list",
           },
@@ -3088,7 +3096,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--on-prem-config",
           description:
-            "The DataSync agents that are connecting to a Network File System (NFS) location",
+            "The DataSync agents that can connect to your Network File System (NFS) file server",
           args: {
             name: "structure",
           },
@@ -3176,7 +3184,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--agent-arns",
           description:
-            "Specifies the Amazon Resource Names (ARNs) of the DataSync agents that can securely connect with your location",
+            "Specifies the Amazon Resource Names (ARNs) of the DataSync agents that can connect with your object storage system",
           args: {
             name: "list",
           },
@@ -3256,7 +3264,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--agent-arns",
           description:
-            "Specifies the DataSync agent (or agents) which you want to connect to your SMB file server. You specify an agent by using its Amazon Resource Name (ARN)",
+            "Specifies the DataSync agent (or agents) that can connect to your SMB file server. You specify an agent by using its Amazon Resource Name (ARN)",
           args: {
             name: "list",
           },
@@ -3406,7 +3414,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cloud-watch-log-group-arn",
           description:
-            "Specifies the Amazon Resource Name (ARN) of an Amazon CloudWatch log group for monitoring your task",
+            "Specifies the Amazon Resource Name (ARN) of an Amazon CloudWatch log group for monitoring your task. For Enhanced mode tasks, you must use /aws/datasync as your log group name. For example:  arn:aws:logs:us-east-1:111222333444:log-group:/aws/datasync:*  For more information, see Monitoring data transfers with CloudWatch Logs",
           args: {
             name: "string",
           },
