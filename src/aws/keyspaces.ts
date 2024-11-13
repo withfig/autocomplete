@@ -6,7 +6,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-keyspace",
       description:
-        "The CreateKeyspace operation adds a new keyspace to your account. In an Amazon Web Services account, keyspace names must be unique within each Region.  CreateKeyspace is an asynchronous operation. You can monitor the creation status of the new keyspace by using the GetKeyspace operation. For more information, see Creating keyspaces in the Amazon Keyspaces Developer Guide",
+        "The CreateKeyspace operation adds a new keyspace to your account. In an Amazon Web Services account, keyspace names must be unique within each Region.  CreateKeyspace is an asynchronous operation. You can monitor the creation status of the new keyspace by using the GetKeyspace operation. For more information, see Create a keyspace in the Amazon Keyspaces Developer Guide",
       options: [
         {
           name: "--keyspace-name",
@@ -53,7 +53,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-table",
       description:
-        "The CreateTable operation adds a new table to the specified keyspace. Within a keyspace, table names must be unique.  CreateTable is an asynchronous operation. When the request is received, the status of the table is set to CREATING. You can monitor the creation status of the new table by using the GetTable operation, which returns the current status of the table. You can start using a table when the status is ACTIVE. For more information, see Creating tables in the Amazon Keyspaces Developer Guide",
+        "The CreateTable operation adds a new table to the specified keyspace. Within a keyspace, table names must be unique.  CreateTable is an asynchronous operation. When the request is received, the status of the table is set to CREATING. You can monitor the creation status of the new table by using the GetTable operation, which returns the current status of the table. You can start using a table when the status is ACTIVE. For more information, see Create a table in the Amazon Keyspaces Developer Guide",
       options: [
         {
           name: "--keyspace-name",
@@ -178,6 +178,53 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-type",
+      description:
+        "The CreateType operation creates a new user-defined type in the specified keyspace.  For more information, see User-defined types (UDTs) in the Amazon Keyspaces Developer Guide",
+      options: [
+        {
+          name: "--keyspace-name",
+          description: "The name of the keyspace",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--type-name",
+          description:
+            "The name of the user-defined type.  UDT names must contain 48 characters or less, must begin with an alphabetic character, and can only contain alpha-numeric characters and underscores. Amazon Keyspaces converts upper case characters automatically into lower case characters.  Alternatively, you can declare a UDT name in double quotes. When declaring a UDT name inside double quotes, Amazon Keyspaces preserves upper casing and allows special characters. You can also use double quotes as part of the name when you create the UDT, but you must escape each double quote character with an additional double quote character",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--field-definitions",
+          description:
+            "The field definitions, consisting of names and types, that define this type",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-keyspace",
       description:
         "The DeleteKeyspace operation deletes a keyspace and all of its tables",
@@ -247,6 +294,44 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-type",
+      description:
+        "The DeleteType operation deletes a user-defined type (UDT). You can only delete a type that is not used in a table or another UDT",
+      options: [
+        {
+          name: "--keyspace-name",
+          description: "The name of the keyspace of the to be deleted type",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--type-name",
+          description: "The name of the type to be deleted",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-keyspace",
       description:
         "Returns the name and the Amazon Resource Name (ARN) of the specified table",
@@ -280,7 +365,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-table",
       description:
-        "Returns information about the table, including the table's name and current status, the keyspace name, configuration settings, and metadata. To read table metadata using GetTable, Select action permissions for the table and system tables are required to complete the operation",
+        "Returns information about the table, including the table's name and current status, the keyspace name, configuration settings, and metadata. To read table metadata using GetTable, the IAM principal needs Select action permissions for the table and the system keyspace",
       options: [
         {
           name: "--keyspace-name",
@@ -354,8 +439,47 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-type",
+      description:
+        "The GetType operation returns information about the type, for example the field definitions, the timestamp when the type was last modified, the level of nesting, the status, and details about if the type is used in other types and tables.  To read keyspace metadata using GetType, the IAM principal needs Select action permissions for the system keyspace",
+      options: [
+        {
+          name: "--keyspace-name",
+          description: "The name of the keyspace that contains this type",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--type-name",
+          description:
+            "The formatted name of the type. For example, if the name of the type was created without double quotes, Amazon Keyspaces saved the name in lower-case characters. If the name was created in double quotes, you must use double quotes to specify the type name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-keyspaces",
-      description: "Returns a list of keyspaces",
+      description: "The ListKeyspaces operation returns a list of keyspaces",
       options: [
         {
           name: "--next-token",
@@ -418,7 +542,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-tables",
-      description: "Returns a list of tables for a specified keyspace",
+      description:
+        "The ListTables operation returns a list of tables for a specified keyspace. To read keyspace metadata using ListTables, the IAM principal needs Select action permissions for the system keyspace",
       options: [
         {
           name: "--next-token",
@@ -489,7 +614,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-tags-for-resource",
       description:
-        "Returns a list of all tags associated with the specified Amazon Keyspaces resource",
+        "Returns a list of all tags associated with the specified Amazon Keyspaces resource. To read keyspace metadata using ListTagsForResource, the IAM principal needs Select action permissions for the specified resource and the system keyspace",
       options: [
         {
           name: "--resource-arn",
@@ -513,6 +638,78 @@ const completionSpec: Fig.Spec = {
             "The total number of tags to return in the output. If the total number of tags available is more than the value specified, a NextToken is provided in the output. To resume pagination, provide the NextToken value as an argument of a subsequent API invocation",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-types",
+      description:
+        "The ListTypes operation returns a list of types for a specified keyspace.  To read keyspace metadata using ListTypes, the IAM principal needs Select action permissions for the system keyspace",
+      options: [
+        {
+          name: "--next-token",
+          description:
+            "The pagination token. To resume pagination, provide the NextToken value as an argument of a subsequent API invocation",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The total number of types to return in the output. If the total number of types available is more than the value specified, a NextToken is provided in the output. To resume pagination, provide the NextToken value as an argument of a subsequent API invocation",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--keyspace-name",
+          description:
+            "The name of the keyspace that contains the listed types",
+          args: {
+            name: "string",
           },
         },
         {

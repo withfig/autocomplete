@@ -85,7 +85,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-delivery",
       description:
-        "Creates a delivery. A delivery is a connection between a logical delivery source and a logical delivery destination that you have already created. Only some Amazon Web Services services support being configured as a delivery source using this operation. These services are listed as Supported [V2 Permissions] in the table at Enabling logging from Amazon Web Services services.  A delivery destination can represent a log group in CloudWatch Logs, an Amazon S3 bucket, or a delivery stream in Firehose. To configure logs delivery between a supported Amazon Web Services service and a destination, you must do the following:   Create a delivery source, which is a logical object that represents the resource that is actually sending the logs. For more information, see PutDeliverySource.   Create a delivery destination, which is a logical object that represents the actual delivery destination. For more information, see PutDeliveryDestination.   If you are delivering logs cross-account, you must use PutDeliveryDestinationPolicy in the destination account to assign an IAM policy to the destination. This policy allows delivery to that destination.    Use CreateDelivery to create a delivery by pairing exactly one delivery source and one delivery destination.    You can configure a single delivery source to send logs to multiple destinations by creating multiple deliveries. You can also create multiple deliveries to configure multiple delivery sources to send logs to the same delivery destination. You can't update an existing delivery. You can only create and delete deliveries",
+        "Creates a delivery. A delivery is a connection between a logical delivery source and a logical delivery destination that you have already created. Only some Amazon Web Services services support being configured as a delivery source using this operation. These services are listed as Supported [V2 Permissions] in the table at Enabling logging from Amazon Web Services services.  A delivery destination can represent a log group in CloudWatch Logs, an Amazon S3 bucket, or a delivery stream in Firehose. To configure logs delivery between a supported Amazon Web Services service and a destination, you must do the following:   Create a delivery source, which is a logical object that represents the resource that is actually sending the logs. For more information, see PutDeliverySource.   Create a delivery destination, which is a logical object that represents the actual delivery destination. For more information, see PutDeliveryDestination.   If you are delivering logs cross-account, you must use PutDeliveryDestinationPolicy in the destination account to assign an IAM policy to the destination. This policy allows delivery to that destination.    Use CreateDelivery to create a delivery by pairing exactly one delivery source and one delivery destination.    You can configure a single delivery source to send logs to multiple destinations by creating multiple deliveries. You can also create multiple deliveries to configure multiple delivery sources to send logs to the same delivery destination. To update an existing delivery configuration, use UpdateDeliveryConfiguration",
       options: [
         {
           name: "--delivery-source-name",
@@ -106,7 +106,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--record-fields",
           description:
-            "The list of record fields to be delivered to the destination, in order. If the delivery\u2019s log source has mandatory fields, they must be included in this list",
+            "The list of record fields to be delivered to the destination, in order. If the delivery's log source has mandatory fields, they must be included in this list",
           args: {
             name: "list",
           },
@@ -122,7 +122,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--s3-delivery-configuration",
           description:
-            "This structure contains parameters that are valid only when the delivery\u2019s delivery destination is an S3 bucket",
+            "This structure contains parameters that are valid only when the delivery's delivery destination is an S3 bucket",
           args: {
             name: "structure",
           },
@@ -208,7 +208,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--destination-prefix",
           description:
-            "The prefix used as the start of the key for every object exported. If you don't specify a value, the default is exportedlogs",
+            "The prefix used as the start of the key for every object exported. If you don't specify a value, the default is exportedlogs. The length of this parameter must comply with the S3 object key name length limits. The object key name is a sequence of Unicode characters with UTF-8 encoding, and can be up to 1,024 bytes",
           args: {
             name: "string",
           },
@@ -1393,7 +1393,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-log-groups",
       description:
-        "Lists the specified log groups. You can list all your log groups or filter the results by prefix. The results are ASCII-sorted by log group name. CloudWatch Logs doesn\u2019t support IAM policies that control access to the DescribeLogGroups action by using the aws:ResourceTag/key-name  condition key. Other CloudWatch Logs actions do support the use of the aws:ResourceTag/key-name  condition key to control access. For more information about using tags to control access, see Controlling access to Amazon Web Services resources using tags. If you are using CloudWatch cross-account observability, you can use this operation in a monitoring account and view data from the linked source accounts. For more information, see CloudWatch cross-account observability",
+        "Lists the specified log groups. You can list all your log groups or filter the results by prefix. The results are ASCII-sorted by log group name. CloudWatch Logs doesn't support IAM policies that control access to the DescribeLogGroups action by using the aws:ResourceTag/key-name  condition key. Other CloudWatch Logs actions do support the use of the aws:ResourceTag/key-name  condition key to control access. For more information about using tags to control access, see Controlling access to Amazon Web Services resources using tags. If you are using CloudWatch cross-account observability, you can use this operation in a monitoring account and view data from the linked source accounts. For more information, see CloudWatch cross-account observability",
       options: [
         {
           name: "--account-identifiers",
@@ -3349,7 +3349,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-retention-policy",
       description:
-        "Sets the retention of the specified log group. With a retention policy, you can configure the number of days for which to retain log events in the specified log group.  CloudWatch Logs doesn\u2019t immediately delete log events when they reach their retention setting. It typically takes up to 72 hours after that before log events are deleted, but in rare situations might take longer. To illustrate, imagine that you change a log group to have a longer retention setting when it contains log events that are past the expiration date, but haven\u2019t been deleted. Those log events will take up to 72 hours to be deleted after the new retention date is reached. To make sure that log data is deleted permanently, keep a log group at its lower retention setting until 72 hours after the previous retention period ends. Alternatively, wait to change the retention setting until you confirm that the earlier log events are deleted.  When log events reach their retention setting they are marked for deletion. After they are marked for deletion, they do not add to your archival storage costs anymore, even if they are not actually deleted until later. These log events marked for deletion are also not included when you use an API to retrieve the storedBytes value to see how many bytes a log group is storing",
+        "Sets the retention of the specified log group. With a retention policy, you can configure the number of days for which to retain log events in the specified log group.  CloudWatch Logs doesn't immediately delete log events when they reach their retention setting. It typically takes up to 72 hours after that before log events are deleted, but in rare situations might take longer. To illustrate, imagine that you change a log group to have a longer retention setting when it contains log events that are past the expiration date, but haven't been deleted. Those log events will take up to 72 hours to be deleted after the new retention date is reached. To make sure that log data is deleted permanently, keep a log group at its lower retention setting until 72 hours after the previous retention period ends. Alternatively, wait to change the retention setting until you confirm that the earlier log events are deleted.  When log events reach their retention setting they are marked for deletion. After they are marked for deletion, they do not add to your archival storage costs anymore, even if they are not actually deleted until later. These log events marked for deletion are also not included when you use an API to retrieve the storedBytes value to see how many bytes a log group is storing",
       options: [
         {
           name: "--log-group-name",
@@ -3554,7 +3554,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--limit",
           description:
-            "The maximum number of log events to return in the query. If the query string uses the fields command, only the specified fields and their values are returned. The default is 1000",
+            "The maximum number of log events to return in the query. If the query string uses the fields command, only the specified fields and their values are returned. The default is 10,000",
           args: {
             name: "integer",
           },
@@ -3613,7 +3613,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "tag-log-group",
       description:
-        "The TagLogGroup operation is on the path to deprecation. We recommend that you use TagResource instead.  Adds or updates the specified tags for the specified log group. To list the tags for a log group, use ListTagsForResource. To remove tags, use UntagResource. For more information about tags, see Tag Log Groups in Amazon CloudWatch Logs in the Amazon CloudWatch Logs User Guide. CloudWatch Logs doesn\u2019t support IAM policies that prevent users from assigning specified tags to log groups using the aws:Resource/key-name  or aws:TagKeys condition keys. For more information about using tags to control access, see Controlling access to Amazon Web Services resources using tags",
+        "The TagLogGroup operation is on the path to deprecation. We recommend that you use TagResource instead.  Adds or updates the specified tags for the specified log group. To list the tags for a log group, use ListTagsForResource. To remove tags, use UntagResource. For more information about tags, see Tag Log Groups in Amazon CloudWatch Logs in the Amazon CloudWatch Logs User Guide. CloudWatch Logs doesn't support IAM policies that prevent users from assigning specified tags to log groups using the aws:Resource/key-name  or aws:TagKeys condition keys. For more information about using tags to control access, see Controlling access to Amazon Web Services resources using tags",
       options: [
         {
           name: "--log-group-name",
@@ -3730,7 +3730,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "untag-log-group",
       description:
-        "The UntagLogGroup operation is on the path to deprecation. We recommend that you use UntagResource instead.  Removes the specified tags from the specified log group. To list the tags for a log group, use ListTagsForResource. To add tags, use TagResource. CloudWatch Logs doesn\u2019t support IAM policies that prevent users from assigning specified tags to log groups using the aws:Resource/key-name  or aws:TagKeys condition keys",
+        "The UntagLogGroup operation is on the path to deprecation. We recommend that you use UntagResource instead.  Removes the specified tags from the specified log group. To list the tags for a log group, use ListTagsForResource. To add tags, use TagResource. CloudWatch Logs doesn't support IAM policies that prevent users from assigning specified tags to log groups using the aws:Resource/key-name  or aws:TagKeys condition keys",
       options: [
         {
           name: "--log-group-name",
@@ -3807,7 +3807,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-anomaly",
       description:
-        "Use this operation to suppress anomaly detection for a specified anomaly or pattern. If you suppress an anomaly, CloudWatch Logs won\u2019t report new occurrences of that anomaly and won't update that anomaly with new data. If you suppress a pattern, CloudWatch Logs won\u2019t report any anomalies related to that pattern. You must specify either anomalyId or patternId, but you can't specify both parameters in the same operation. If you have previously used this operation to suppress detection of a pattern or anomaly, you can use it again to cause CloudWatch Logs to end the suppression. To do this, use this operation and specify the anomaly or pattern to stop suppressing, and omit the suppressionType and suppressionPeriod parameters",
+        "Use this operation to suppress anomaly detection for a specified anomaly or pattern. If you suppress an anomaly, CloudWatch Logs won't report new occurrences of that anomaly and won't update that anomaly with new data. If you suppress a pattern, CloudWatch Logs won't report any anomalies related to that pattern. You must specify either anomalyId or patternId, but you can't specify both parameters in the same operation. If you have previously used this operation to suppress detection of a pattern or anomaly, you can use it again to cause CloudWatch Logs to end the suppression. To do this, use this operation and specify the anomaly or pattern to stop suppressing, and omit the suppressionType and suppressionPeriod parameters",
       options: [
         {
           name: "--anomaly-id",
@@ -3850,6 +3850,16 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--baseline",
+          description:
+            "Set this to true to prevent CloudWatch Logs from displaying this behavior as an anomaly in the future. The behavior is then treated as baseline behavior. However, if similar but more severe occurrences of this behavior occur in the future, those will still be reported as anomalies.  The default is false",
+        },
+        {
+          name: "--no-baseline",
+          description:
+            "Set this to true to prevent CloudWatch Logs from displaying this behavior as an anomaly in the future. The behavior is then treated as baseline behavior. However, if similar but more severe occurrences of this behavior occur in the future, those will still be reported as anomalies.  The default is false",
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -3883,7 +3893,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--record-fields",
           description:
-            "The list of record fields to be delivered to the destination, in order. If the delivery\u2019s log source has mandatory fields, they must be included in this list",
+            "The list of record fields to be delivered to the destination, in order. If the delivery's log source has mandatory fields, they must be included in this list",
           args: {
             name: "list",
           },
@@ -3899,7 +3909,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--s3-delivery-configuration",
           description:
-            "This structure contains parameters that are valid only when the delivery\u2019s delivery destination is an S3 bucket",
+            "This structure contains parameters that are valid only when the delivery's delivery destination is an S3 bucket",
           args: {
             name: "structure",
           },

@@ -67,7 +67,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--log-group-arn",
           description:
-            "The ARN of the CloudWatch log group to which the vended log data will be published. This log group must exist prior to calling this API",
+            "The ARN of the CloudWatch log group to which the vended log data will be published. This log group must exist prior to calling this operation",
           args: {
             name: "string",
           },
@@ -165,12 +165,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-scraper",
       description:
-        "The CreateScraper operation creates a scraper to collect metrics. A scraper pulls metrics from Prometheus-compatible sources within an Amazon EKS cluster, and sends them to your Amazon Managed Service for Prometheus workspace. You can configure the scraper to control what metrics are collected, and what transformations are applied prior to sending them to your workspace. If needed, an IAM role will be created for you that gives Amazon Managed Service for Prometheus access to the metrics in your cluster. For more information, see Using roles for scraping metrics from EKS in the Amazon Managed Service for Prometheus User Guide. You cannot update a scraper. If you want to change the configuration of the scraper, create a new scraper and delete the old one. The scrapeConfiguration parameter contains the base64-encoded version of the YAML configuration file.  For more information about collectors, including what metrics are collected, and how to configure the scraper, see Amazon Web Services managed collectors in the Amazon Managed Service for Prometheus User Guide",
+        "The CreateScraper operation creates a scraper to collect metrics. A scraper pulls metrics from Prometheus-compatible sources within an Amazon EKS cluster, and sends them to your Amazon Managed Service for Prometheus workspace. Scrapers are flexible, and can be configured to control what metrics are collected, the frequency of collection, what transformations are applied to the metrics, and more. An IAM role will be created for you that Amazon Managed Service for Prometheus uses to access the metrics in your cluster. You must configure this role with a policy that allows it to scrape metrics from your cluster. For more information, see Configuring your Amazon EKS cluster in the Amazon Managed Service for Prometheus User Guide. The scrapeConfiguration parameter contains the base-64 encoded YAML configuration for the scraper.  For more information about collectors, including what metrics are collected, and how to configure the scraper, see Using an Amazon Web Services managed collector in the Amazon Managed Service for Prometheus User Guide",
       options: [
         {
           name: "--alias",
           description:
-            "(optional) a name to associate with the scraper. This is for your use, and does not need to be unique",
+            "(optional) An alias to associate with the scraper. This is for your use, and does not need to be unique",
           args: {
             name: "string",
           },
@@ -836,12 +836,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-tags-for-resource",
       description:
-        "The ListTagsForResource operation returns the tags that are associated with an Amazon Managed Service for Prometheus resource. Currently, the only resources that can be tagged are workspaces and rule groups namespaces",
+        "The ListTagsForResource operation returns the tags that are associated with an Amazon Managed Service for Prometheus resource. Currently, the only resources that can be tagged are scrapers, workspaces, and rule groups namespaces",
       options: [
         {
           name: "--resource-arn",
           description:
-            "The ARN of the resource to list tages for. Must be a workspace or rule groups namespace resource",
+            "The ARN of the resource to list tages for. Must be a workspace, scraper, or rule groups namespace resource",
           args: {
             name: "string",
           },
@@ -1044,12 +1044,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "tag-resource",
       description:
-        "The TagResource operation associates tags with an Amazon Managed Service for Prometheus resource. The only resources that can be tagged are workspaces and rule groups namespaces.  If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag",
+        "The TagResource operation associates tags with an Amazon Managed Service for Prometheus resource. The only resources that can be tagged are rule groups namespaces, scrapers, and workspaces. If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag. To remove a tag, use UntagResource",
       options: [
         {
           name: "--resource-arn",
-          description:
-            "The ARN of the workspace or rule groups namespace to apply tags to",
+          description: "The ARN of the resource to apply tags to",
           args: {
             name: "string",
           },
@@ -1057,7 +1056,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "The list of tag keys and values to associate with the resource. Keys may not begin with aws:",
+            "The list of tag keys and values to associate with the resource. Keys must not begin with aws:",
           args: {
             name: "map",
           },
@@ -1084,11 +1083,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "untag-resource",
       description:
-        "Removes the specified tags from an Amazon Managed Service for Prometheus resource. The only resources that can be tagged are workspaces and rule groups namespaces",
+        "Removes the specified tags from an Amazon Managed Service for Prometheus resource. The only resources that can be tagged are rule groups namespaces, scrapers, and workspaces",
       options: [
         {
           name: "--resource-arn",
-          description: "The ARN of the workspace or rule groups namespace",
+          description: "The ARN of the resource from which to remove a tag",
           args: {
             name: "string",
           },
@@ -1144,6 +1143,68 @@ const completionSpec: Fig.Spec = {
           name: "--workspace-id",
           description:
             "The ID of the workspace to update the logging configuration for",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-scraper",
+      description:
+        "Updates an existing scraper. You can't use this function to update the source from which the scraper is collecting metrics. To change the source, delete the scraper and create a new one",
+      options: [
+        {
+          name: "--alias",
+          description: "The new alias of the scraper",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique identifier that you can provide to ensure the idempotency of the request. Case-sensitive",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--destination",
+          description:
+            "The new Amazon Managed Service for Prometheus workspace to send metrics to",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--scrape-configuration",
+          description:
+            "Contains the base-64 encoded YAML configuration for the scraper.  For more information about configuring a scraper, see Using an Amazon Web Services managed collector in the Amazon Managed Service for Prometheus User Guide",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--scraper-id",
+          description: "The ID of the scraper to update",
           args: {
             name: "string",
           },

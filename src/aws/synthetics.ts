@@ -137,6 +137,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--provisioned-resource-cleanup",
+          description:
+            "Specifies whether to also delete the Lambda functions and layers used by this canary when the canary is deleted. If you omit this parameter, the default of AUTOMATIC is used, which means that the Lambda functions and layers will be deleted when the canary is deleted. If the value of this parameter is OFF, then the value of the DeleteLambda parameter of the DeleteCanary operation determines whether the Lambda functions and layers will be deleted",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--tags",
           description:
             "A list of key-value pairs to associate with the canary. You can associate as many as 50 tags with a canary. Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only the resources that have certain tag values. To have the tags that you apply to this canary also be applied to the Lambda function that the canary uses, specify this parameter with the value lambda-function",
@@ -214,7 +222,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-canary",
       description:
-        "Permanently deletes the specified canary. If you specify DeleteLambda to true, CloudWatch Synthetics also deletes the Lambda functions and layers that are used by the canary. Other resources used and created by the canary are not automatically deleted. After you delete a canary that you do not intend to use again, you should also delete the following:   The CloudWatch alarms created for this canary. These alarms have a name of Synthetics-Alarm-first-198-characters-of-canary-name-canaryId-alarm number     Amazon S3 objects and buckets, such as the canary's artifact location.   IAM roles created for the canary. If they were created in the console, these roles have the name  role/service-role/CloudWatchSyntheticsRole-First-21-Characters-of-CanaryName     CloudWatch Logs log groups created for the canary. These logs groups have the name /aws/lambda/cwsyn-First-21-Characters-of-CanaryName     Before you delete a canary, you might want to use GetCanary to display the information about this canary. Make note of the information returned by this operation so that you can delete these resources after you delete the canary",
+        "Permanently deletes the specified canary. If the canary's ProvisionedResourceCleanup field is set to AUTOMATIC or you specify DeleteLambda in this operation as true, CloudWatch Synthetics also deletes the Lambda functions and layers that are used by the canary. Other resources used and created by the canary are not automatically deleted. After you delete a canary, you should also delete the following:   The CloudWatch alarms created for this canary. These alarms have a name of Synthetics-Alarm-first-198-characters-of-canary-name-canaryId-alarm number     Amazon S3 objects and buckets, such as the canary's artifact location.   IAM roles created for the canary. If they were created in the console, these roles have the name  role/service-role/CloudWatchSyntheticsRole-First-21-Characters-of-CanaryName     CloudWatch Logs log groups created for the canary. These logs groups have the name /aws/lambda/cwsyn-First-21-Characters-of-CanaryName     Before you delete a canary, you might want to use GetCanary to display the information about this canary. Make note of the information returned by this operation so that you can delete these resources after you delete the canary",
       options: [
         {
           name: "--name",
@@ -227,12 +235,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--delete-lambda",
           description:
-            "Specifies whether to also delete the Lambda functions and layers used by this canary. The default is false. Type: Boolean",
+            "Specifies whether to also delete the Lambda functions and layers used by this canary. The default is false. Your setting for this parameter is used only if the canary doesn't have AUTOMATIC for its ProvisionedResourceCleanup field. If that field is set to AUTOMATIC, then the Lambda functions and layers will be deleted when this canary is deleted.  Type: Boolean",
         },
         {
           name: "--no-delete-lambda",
           description:
-            "Specifies whether to also delete the Lambda functions and layers used by this canary. The default is false. Type: Boolean",
+            "Specifies whether to also delete the Lambda functions and layers used by this canary. The default is false. Your setting for this parameter is used only if the canary doesn't have AUTOMATIC for its ProvisionedResourceCleanup field. If that field is set to AUTOMATIC, then the Lambda functions and layers will be deleted when this canary is deleted.  Type: Boolean",
         },
         {
           name: "--cli-input-json",
@@ -977,6 +985,14 @@ const completionSpec: Fig.Spec = {
             "A structure that contains the configuration for canary artifacts, including the encryption-at-rest settings for artifacts that the canary uploads to Amazon S3",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--provisioned-resource-cleanup",
+          description:
+            "Specifies whether to also delete the Lambda functions and layers used by this canary when the canary is deleted. If the value of this parameter is OFF, then the value of the DeleteLambda parameter of the DeleteCanary operation determines whether the Lambda functions and layers will be deleted",
+          args: {
+            name: "string",
           },
         },
         {

@@ -55,6 +55,22 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--sse-aws-key-management-params",
+          description:
+            "An object that contains server side encryption parameters to be used by media capture pipeline. The parameters can also be used by media concatenation pipeline taking media capture pipeline as a media source",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--sink-iam-role-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the sink role to be used with AwsKmsKeyId in SseAwsKeyManagementParams. Can only interact with S3Bucket sink type. The role must belong to the caller\u2019s account and be able to act on behalf of the caller during the API call. All minimum policy permissions requirements for the caller to perform sink-related actions are the same for SinkIamRoleArn. Additionally, the role must have permission to kms:GenerateDataKey using KMS key supplied as AwsKmsKeyId in SseAwsKeyManagementParams. If media concatenation will be required later, the role must also have permission to kms:Decrypt for the same KMS key",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--tags",
           description: "The tag key-value pairs",
           args: {

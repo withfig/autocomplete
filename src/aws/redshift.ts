@@ -1452,7 +1452,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "create-integration",
-      description: "Creates a zero-ETL integration with Amazon Redshift",
+      description:
+        "Creates a zero-ETL integration or S3 event integration with Amazon Redshift",
       options: [
         {
           name: "--source-arn",
@@ -2354,7 +2355,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-integration",
-      description: "Deletes a zero-ETL integration with Amazon Redshift",
+      description:
+        "Deletes a zero-ETL integration or S3 event integration with Amazon Redshift",
       options: [
         {
           name: "--integration-arn",
@@ -4570,7 +4572,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-integrations",
       description:
-        "Describes one or more zero-ETL integrations with Amazon Redshift",
+        "Describes one or more zero-ETL or S3 event integrations with Amazon Redshift",
       options: [
         {
           name: "--integration-arn",
@@ -5659,7 +5661,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-type",
           description:
-            "The type of resource with which you want to view tags. Valid resource types are:    Cluster   CIDR/IP   EC2 security group   Snapshot   Cluster security group   Subnet group   HSM connection   HSM certificate   Parameter group   Snapshot copy grant   Integration (zero-ETL integration)  To describe the tags associated with an integration, don't specify ResourceType, instead specify the ResourceName of the integration.    For more information about Amazon Redshift resource types and constructing ARNs, go to Specifying Policy Elements: Actions, Effects, Resources, and Principals in the Amazon Redshift Cluster Management Guide",
+            "The type of resource with which you want to view tags. Valid resource types are:    Cluster   CIDR/IP   EC2 security group   Snapshot   Cluster security group   Subnet group   HSM connection   HSM certificate   Parameter group   Snapshot copy grant   Integration (zero-ETL integration or S3 event integration)  To describe the tags associated with an integration, don't specify ResourceType, instead specify the ResourceName of the integration.    For more information about Amazon Redshift resource types and constructing ARNs, go to Specifying Policy Elements: Actions, Effects, Resources, and Principals in the Amazon Redshift Cluster Management Guide",
           args: {
             name: "string",
           },
@@ -7401,7 +7403,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "modify-integration",
-      description: "Modifies a zero-ETL integration with Amazon Redshift",
+      description:
+        "Modifies a zero-ETL integration or S3 event integration with Amazon Redshift",
       options: [
         {
           name: "--integration-arn",

@@ -1603,7 +1603,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kms-key-arn",
           description:
-            "The ARN of the Key Management Service (KMS) customer managed key that's used to encrypt your function's environment variables. When Lambda SnapStart is activated, Lambda also uses this key is to encrypt your function's snapshot. If you deploy your function using a container image, Lambda also uses this key to encrypt your function when it's deployed. Note that this is not the same key that's used to protect your container image in the Amazon Elastic Container Registry (Amazon ECR). If you don't provide a customer managed key, Lambda uses a default service key",
+            "The ARN of the Key Management Service (KMS) customer managed key that's used to encrypt the following resources:   The function's environment variables.   The function's Lambda SnapStart snapshots.   When used with SourceKMSKeyArn, the unzipped version of the .zip deployment package that's used for function invocations. For more information, see  Specifying a customer managed key for Lambda.   The optimized version of the container image that's used for function invocations. Note that this is not the same key that's used to protect your container image in the Amazon Elastic Container Registry (Amazon ECR). For more information, see Function lifecycle.   If you don't provide a customer managed key, Lambda uses an Amazon Web Services owned key or an Amazon Web Services managed key",
           args: {
             name: "string",
             generators: generators.listKmsKeys,
@@ -4742,6 +4742,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--source-kms-key-arn",
+          description:
+            "The ARN of the Key Management Service (KMS) customer managed key that's used to encrypt your function's .zip deployment package. If you don't provide a customer managed key, Lambda uses an Amazon Web Services managed key",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -4851,7 +4859,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--kms-key-arn",
           description:
-            "The ARN of the Key Management Service (KMS) customer managed key that's used to encrypt your function's environment variables. When Lambda SnapStart is activated, Lambda also uses this key is to encrypt your function's snapshot. If you deploy your function using a container image, Lambda also uses this key to encrypt your function when it's deployed. Note that this is not the same key that's used to protect your container image in the Amazon Elastic Container Registry (Amazon ECR). If you don't provide a customer managed key, Lambda uses a default service key",
+            "The ARN of the Key Management Service (KMS) customer managed key that's used to encrypt the following resources:   The function's environment variables.   The function's Lambda SnapStart snapshots.   When used with SourceKMSKeyArn, the unzipped version of the .zip deployment package that's used for function invocations. For more information, see  Specifying a customer managed key for Lambda.   The optimized version of the container image that's used for function invocations. Note that this is not the same key that's used to protect your container image in the Amazon Elastic Container Registry (Amazon ECR). For more information, see Function lifecycle.   If you don't provide a customer managed key, Lambda uses an Amazon Web Services owned key or an Amazon Web Services managed key",
           args: {
             name: "string",
             generators: generators.listKmsKeys,

@@ -59,7 +59,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector of the GuardDuty member account",
+            "The unique ID of the detector of the GuardDuty member account. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -107,7 +107,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The ID of the detector that specifies the GuardDuty service whose findings you want to archive",
+            "The ID of the detector that specifies the GuardDuty service whose findings you want to archive. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -218,7 +218,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The detector ID associated with the GuardDuty account for which you want to create a filter",
+            "The detector ID associated with the GuardDuty account for which you want to create a filter. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -304,7 +304,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector of the GuardDuty account for which you want to create an IPSet",
+            "The unique ID of the detector of the GuardDuty account for which you want to create an IPSet. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -444,7 +444,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector of the GuardDuty account for which you want to associate member accounts",
+            "The unique ID of the detector of the GuardDuty account for which you want to associate member accounts. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -484,7 +484,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The ID of the GuardDuty detector associated with the publishing destination",
+            "The ID of the GuardDuty detector associated with the publishing destination. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -539,7 +539,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The ID of the detector for which you need to create sample findings",
+            "The ID of the detector for which you need to create sample findings. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -578,7 +578,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector of the GuardDuty account for which you want to create a ThreatIntelSet",
+            "The unique ID of the detector of the GuardDuty account for which you want to create a ThreatIntelSet. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -688,7 +688,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--detector-id",
-          description: "The unique ID of the detector that you want to delete",
+          description:
+            "The unique ID of the detector that you want to delete. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -719,7 +720,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector that is associated with the filter",
+            "The unique ID of the detector that is associated with the filter. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -758,7 +759,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector associated with the IPSet",
+            "The unique ID of the detector associated with the IPSet. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -861,7 +862,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector of the GuardDuty account whose members you want to delete",
+            "The unique ID of the detector of the GuardDuty account whose members you want to delete. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -901,7 +902,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector associated with the publishing destination to delete",
+            "The unique ID of the detector associated with the publishing destination to delete. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -940,7 +941,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector that is associated with the threatIntelSet",
+            "The unique ID of the detector that is associated with the threatIntelSet. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -980,7 +981,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector that the request is associated with",
+            "The unique ID of the detector that the request is associated with. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -1068,7 +1069,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The detector ID of the delegated administrator for which you need to retrieve the information",
+            "The detector ID of the delegated administrator for which you need to retrieve the information. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -1116,7 +1117,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector associated with the publishing destination to retrieve",
+            "The unique ID of the detector associated with the publishing destination to retrieve. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -1354,7 +1355,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--detector-id",
-          description: "The unique ID of the GuardDuty detector",
+          description:
+            "The unique ID of the GuardDuty detector. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -1401,7 +1403,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--detector-id",
-          description: "The unique ID of the detector that you want to get",
+          description:
+            "The unique ID of the detector that you want to get. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -1433,7 +1436,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector that is associated with this filter",
+            "The unique ID of the detector that is associated with this filter. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -1472,7 +1475,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The ID of the detector that specifies the GuardDuty service whose findings you want to retrieve",
+            "The ID of the detector that specifies the GuardDuty service whose findings you want to retrieve. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -1518,7 +1521,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The ID of the detector whose findings statistics you want to retrieve",
+            "The ID of the detector whose findings statistics you want to retrieve. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -1588,7 +1591,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector that is associated with the IPSet",
+            "The unique ID of the detector that is associated with the IPSet. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -1683,7 +1686,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector that is associated with this scan",
+            "The unique ID of the detector that is associated with this scan. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -1715,7 +1718,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector of the GuardDuty member account",
+            "The unique ID of the detector of the GuardDuty member account. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -1746,7 +1749,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--detector-id",
-          description: "The detector ID for the administrator account",
+          description:
+            "The detector ID for the administrator account. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -1785,7 +1789,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector of the GuardDuty account whose members you want to retrieve",
+            "The unique ID of the detector of the GuardDuty account whose members you want to retrieve. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -1849,7 +1853,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector of the GuardDuty member account",
+            "The unique ID of the detector of the GuardDuty member account. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -1889,7 +1893,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector that is associated with the threatIntelSet",
+            "The unique ID of the detector that is associated with the threatIntelSet. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -1929,7 +1933,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The ID of the detector that specifies the GuardDuty service whose usage statistics you want to retrieve",
+            "The ID of the detector that specifies the GuardDuty service whose usage statistics you want to retrieve. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -1999,7 +2003,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector of the GuardDuty account with which you want to invite members",
+            "The unique ID of the detector of the GuardDuty account with which you want to invite members. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -2057,7 +2061,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector whose coverage details you want to retrieve",
+            "The unique ID of the detector whose coverage details you want to retrieve. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -2208,7 +2212,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector that is associated with the filter",
+            "The unique ID of the detector that is associated with the filter. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -2280,7 +2284,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The ID of the detector that specifies the GuardDuty service whose findings you want to list",
+            "The ID of the detector that specifies the GuardDuty service whose findings you want to list. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -2367,7 +2371,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector that is associated with IPSet",
+            "The unique ID of the detector that is associated with IPSet. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -2535,7 +2539,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector that is associated with the member",
+            "The unique ID of the detector that is associated with the member. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -2679,7 +2683,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The detector ID for which you want to retrieve the publishing destination",
+            "The detector ID for which you want to retrieve the publishing destination. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -2759,7 +2763,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector that is associated with the threatIntelSet",
+            "The unique ID of the detector that is associated with the threatIntelSet. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -2863,7 +2867,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector of the GuardDuty administrator account associated with the member accounts to monitor",
+            "The unique ID of the detector of the GuardDuty administrator account associated with the member accounts to monitor. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -2903,7 +2907,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector associated with the GuardDuty administrator account that is monitoring member accounts",
+            "The unique ID of the detector associated with the GuardDuty administrator account that is monitoring member accounts. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -2980,7 +2984,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The ID of the detector associated with the findings to unarchive",
+            "The ID of the detector associated with the findings to unarchive. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -3056,7 +3060,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--detector-id",
-          description: "The unique ID of the detector to update",
+          description:
+            "The unique ID of the detector to update. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -3121,7 +3126,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector that specifies the GuardDuty service where you want to update a filter",
+            "The unique ID of the detector that specifies the GuardDuty service where you want to update a filter. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -3192,7 +3197,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The ID of the detector that is associated with the findings for which you want to update the feedback",
+            "The ID of the detector that is associated with the findings for which you want to update the feedback. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -3245,7 +3250,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The detectorID that specifies the GuardDuty service whose IPSet you want to update",
+            "The detectorID that specifies the GuardDuty service whose IPSet you want to update. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -3365,7 +3370,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The unique ID of the detector that specifies the GuardDuty service where you want to update scan settings",
+            "The unique ID of the detector that specifies the GuardDuty service where you want to update scan settings. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -3412,7 +3417,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--detector-id",
-          description: "The detector ID of the administrator account",
+          description:
+            "The detector ID of the administrator account. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -3466,7 +3472,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The ID of the detector that configures the delegated administrator",
+            "The ID of the detector that configures the delegated administrator. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -3531,7 +3537,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The ID of the detector associated with the publishing destinations to update",
+            "The ID of the detector associated with the publishing destinations to update. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },
@@ -3578,7 +3584,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--detector-id",
           description:
-            "The detectorID that specifies the GuardDuty service whose ThreatIntelSet you want to update",
+            "The detectorID that specifies the GuardDuty service whose ThreatIntelSet you want to update. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API",
           args: {
             name: "string",
           },

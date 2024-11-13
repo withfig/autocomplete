@@ -1556,7 +1556,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-coverage",
-      description: "Lists coverage details for you environment",
+      description: "Lists coverage details for your environment",
       options: [
         {
           name: "--filter-criteria",
@@ -2390,7 +2390,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "stop-cis-session",
       description:
-        "Stops a CIS session. This API is used by the Amazon Inspector SSM plugin to communicate with the Amazon Inspector service. The Amazon Inspector SSM plugin calls this API to start a CIS scan session for the scan ID supplied by the service",
+        "Stops a CIS session. This API is used by the Amazon Inspector SSM plugin to communicate with the Amazon Inspector service. The Amazon Inspector SSM plugin calls this API to stop a CIS scan session for the scan ID supplied by the service",
       options: [
         {
           name: "--message",

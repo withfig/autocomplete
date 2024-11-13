@@ -246,7 +246,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-application",
       description:
-        "Creates an Amazon Q Business application.  There are new tiers for Amazon Q Business. Not all features in Amazon Q Business Pro are also available in Amazon Q Business Lite. For information on what's included in Amazon Q Business Lite and what's included in Amazon Q Business Pro, see Amazon Q Business tiers. You must use the Amazon Q Business console to assign subscription tiers to users",
+        "Creates an Amazon Q Business application.  There are new tiers for Amazon Q Business. Not all features in Amazon Q Business Pro are also available in Amazon Q Business Lite. For information on what's included in Amazon Q Business Lite and what's included in Amazon Q Business Pro, see Amazon Q Business tiers. You must use the Amazon Q Business console to assign subscription tiers to users.   A Amazon Q Apps service linked role will be created if it's absent in the Amazon Web Services account when the QAppsConfiguration is enabled in the request. For more information, see  Using service-linked roles for Q Apps",
       options: [
         {
           name: "--display-name",
@@ -2704,6 +2704,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--role-arn",
+          description:
+            "The Amazon Resource Name (ARN) of an IAM role that has access to the S3 file that contains your list of users that belong to a group.The Amazon Resource Name (ARN) of an IAM role that has access to the S3 file that contains your list of users that belong to a group",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -2898,7 +2906,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "update-application",
-      description: "Updates an existing Amazon Q Business application",
+      description:
+        "Updates an existing Amazon Q Business application.   A Amazon Q Apps service-linked role will be created if it's absent in the Amazon Web Services account when the QAppsConfiguration is enabled in the request. For more information, see  Using service-linked roles for Q Apps",
       options: [
         {
           name: "--application-id",

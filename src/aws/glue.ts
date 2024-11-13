@@ -1056,6 +1056,96 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-column-statistics-task-settings",
+      description: "Creates settings for a column statistics task",
+      options: [
+        {
+          name: "--database-name",
+          description: "The name of the database where the table resides",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--table-name",
+          description:
+            "The name of the table for which to generate column statistics",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--role",
+          description: "The role used for running the column statistics",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--schedule",
+          description:
+            "A schedule for running the column statistics, specified in CRON syntax",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--column-name-list",
+          description: "A list of column names for which to run statistics",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--sample-size",
+          description: "The percentage of data to sample",
+          args: {
+            name: "double",
+          },
+        },
+        {
+          name: "--catalog-id",
+          description:
+            "The ID of the Data Catalog in which the database resides",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--security-configuration",
+          description:
+            "Name of the security configuration that is used to encrypt CloudWatch logs",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description: "A map of tags",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-connection",
       description:
         "Creates a connection definition in the Data Catalog. Connections used for creating federated resources require the IAM glue:PassConnection permission",
@@ -2932,6 +3022,44 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-column-statistics-task-settings",
+      description: "Deletes settings for a column statistics task",
+      options: [
+        {
+          name: "--database-name",
+          description: "The name of the database where the table resides",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--table-name",
+          description:
+            "The name of the table for which to delete column statistics",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-connection",
       description: "Deletes a connection from the Data Catalog",
       options: [
@@ -4241,6 +4369,44 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description: "A continuation token, if this is a continuation call",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-column-statistics-task-settings",
+      description: "Gets settings for a column statistics task",
+      options: [
+        {
+          name: "--database-name",
+          description: "The name of the database where the table resides",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--table-name",
+          description:
+            "The name of the table for which to retrieve column statistics",
           args: {
             name: "string",
           },
@@ -9630,6 +9796,44 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "start-column-statistics-task-run-schedule",
+      description: "Starts a column statistics task run schedule",
+      options: [
+        {
+          name: "--database-name",
+          description: "The name of the database where the table resides",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--table-name",
+          description:
+            "The name of the table for which to start a column statistic task run schedule",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "start-crawler",
       description:
         "Starts a crawl using the specified crawler, regardless of what is scheduled. If the crawler is already running, returns a CrawlerRunningException",
@@ -10237,6 +10441,44 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "stop-column-statistics-task-run-schedule",
+      description: "Stops a column statistics task run schedule",
+      options: [
+        {
+          name: "--database-name",
+          description: "The name of the database where the table resides",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--table-name",
+          description:
+            "The name of the table for which to stop a column statistic task run schedule",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "stop-crawler",
       description: "If the specified crawler is running, stops the crawl",
       options: [
@@ -10709,6 +10951,89 @@ const completionSpec: Fig.Spec = {
           description: "A list of the column statistics",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-column-statistics-task-settings",
+      description: "Updates settings for a column statistics task",
+      options: [
+        {
+          name: "--database-name",
+          description: "The name of the database where the table resides",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--table-name",
+          description:
+            "The name of the table for which to generate column statistics",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--role",
+          description: "The role used for running the column statistics",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--schedule",
+          description:
+            "A schedule for running the column statistics, specified in CRON syntax",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--column-name-list",
+          description: "A list of column names for which to run statistics",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--sample-size",
+          description: "The percentage of data to sample",
+          args: {
+            name: "double",
+          },
+        },
+        {
+          name: "--catalog-id",
+          description:
+            "The ID of the Data Catalog in which the database resides",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--security-configuration",
+          description:
+            "Name of the security configuration that is used to encrypt CloudWatch logs",
+          args: {
+            name: "string",
           },
         },
         {
