@@ -613,6 +613,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--price-performance-target",
+          description:
+            "An object that represents the price performance target settings for the workgroup",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--publicly-accessible",
           description:
             "A value that specifies whether the workgroup can be accessed from a public network",
@@ -3058,6 +3066,14 @@ const completionSpec: Fig.Spec = {
             "The custom port to use when connecting to a workgroup. Valid port ranges are 5431-5455 and 8191-8215. The default is 5439",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--price-performance-target",
+          description:
+            "An object that represents the price performance target settings for the workgroup",
+          args: {
+            name: "structure",
           },
         },
         {

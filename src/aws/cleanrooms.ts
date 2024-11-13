@@ -229,6 +229,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--creator-ml-member-abilities",
+          description:
+            "The ML abilities granted to the collaboration creator. Custom ML modeling is in beta release and is subject to change. For beta terms and conditions, see Betas and Previews in the Amazon Web Services Service Terms",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--creator-display-name",
           description: "The display name of the collaboration creator",
           args: {
@@ -265,6 +273,13 @@ const completionSpec: Fig.Spec = {
             "The collaboration creator's payment responsibilities set by the collaboration creator.  If the collaboration creator hasn't specified anyone as the member paying for query compute costs, then the member who can query is the default payer",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--analytics-engine",
+          description: "The analytics engine",
+          args: {
+            name: "string",
           },
         },
         {
@@ -2014,7 +2029,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -2022,7 +2037,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -2085,7 +2100,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -2093,7 +2108,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -2157,7 +2172,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -2165,7 +2180,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -2300,7 +2315,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -2308,7 +2323,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -2378,7 +2393,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -2386,7 +2401,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -2442,7 +2457,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -2450,7 +2465,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -2521,7 +2536,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -2529,7 +2544,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -2592,7 +2607,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -2600,7 +2615,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -2655,7 +2670,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -2663,7 +2678,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -2868,7 +2883,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -2876,7 +2891,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -2932,7 +2947,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -2940,7 +2955,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -3012,7 +3027,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -3020,7 +3035,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -3091,7 +3106,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -3099,7 +3114,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -3168,7 +3183,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -3176,7 +3191,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service can return a nextToken even if the maximum results has not been met",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -3238,8 +3253,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--schema-type",
-          description:
-            "If present, filter schemas by schema type. The only valid schema type is currently `TABLE`",
+          description: "If present, filter schemas by schema type",
           args: {
             name: "string",
           },
@@ -3247,7 +3261,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token value retrieved from a previous call to access the next page of results",
+            "The pagination token that's used to fetch the next set of results",
           args: {
             name: "string",
           },
@@ -3255,7 +3269,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum size of the results that is returned per call",
+            "The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met",
           args: {
             name: "integer",
           },
@@ -3443,6 +3457,13 @@ const completionSpec: Fig.Spec = {
         {
           name: "--result-configuration",
           description: "The details needed to write the query results",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--compute-configuration",
+          description: "The compute configuration for the protected query",
           args: {
             name: "structure",
           },

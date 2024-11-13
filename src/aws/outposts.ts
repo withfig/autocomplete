@@ -703,6 +703,103 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-asset-instances",
+      description:
+        "A list of Amazon EC2 instances, belonging to all accounts, running on the specified Outpost. Does not include Amazon EBS or Amazon S3 instances",
+      options: [
+        {
+          name: "--outpost-identifier",
+          description: "The ID of the Outpost",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--asset-id-filter",
+          description: "Filters the results by asset ID",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--instance-type-filter",
+          description: "Filters the results by instance ID",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--account-id-filter",
+          description: "Filters the results by account ID",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--aws-service-filter",
+          description: "Filters the results by Amazon Web Services service",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum page size",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description: "The pagination token",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-assets",
       description:
         "Lists the hardware assets for the specified Outpost. Use filters to return specific results. If you specify multiple filters, the results include only the resources that match all of the specified filters. For a filter where you can specify multiple values, the results include items that match any of the values that you specify for the filter",
@@ -741,6 +838,83 @@ const completionSpec: Fig.Spec = {
           description: "Filters the results by state",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-blocking-instances-for-capacity-task",
+      description:
+        "A list of Amazon EC2 instances running on the Outpost and belonging to the account that initiated the capacity task. Use this list to specify the instances you cannot stop to free up capacity to run the capacity task",
+      options: [
+        {
+          name: "--outpost-identifier",
+          description:
+            "The ID or ARN of the Outpost associated with the specified capacity task",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--capacity-task-id",
+          description: "The ID of the capacity task",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum page size",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description: "The pagination token",
+          args: {
+            name: "string",
           },
         },
         {
@@ -1216,7 +1390,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "start-capacity-task",
       description:
-        "Starts the specified capacity task. You can have one active capacity task for an order",
+        "Starts the specified capacity task. You can have one active capacity task per order or Outpost",
       options: [
         {
           name: "--outpost-identifier",
@@ -1242,6 +1416,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--instances-to-exclude",
+          description:
+            "List of user-specified running instances that must not be stopped in order to free up the capacity needed to run the capacity task",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--dry-run",
           description:
             "You can request a dry run to determine if the instance type and instance size changes is above or below available instance capacity. Requesting a dry run does not make any changes to your plan",
@@ -1250,6 +1432,14 @@ const completionSpec: Fig.Spec = {
           name: "--no-dry-run",
           description:
             "You can request a dry run to determine if the instance type and instance size changes is above or below available instance capacity. Requesting a dry run does not make any changes to your plan",
+        },
+        {
+          name: "--task-action-on-blocking-instances",
+          description:
+            "Specify one of the following options in case an instance is blocking the capacity task from running.    WAIT_FOR_EVACUATION - Checks every 10 minutes over 48 hours to determine if instances have stopped and capacity is available to complete the task.    FAIL_TASK - The capacity task fails",
+          args: {
+            name: "string",
+          },
         },
         {
           name: "--cli-input-json",

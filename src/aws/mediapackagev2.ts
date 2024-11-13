@@ -4,6 +4,69 @@ const completionSpec: Fig.Spec = {
     "This guide is intended for creating AWS Elemental MediaPackage resources in MediaPackage Version 2 (v2) starting from May 2023. To get started with MediaPackage v2, create your MediaPackage resources. There isn't an automated process to migrate your resources from MediaPackage v1 to MediaPackage v2.  The names of the entities that you use to access this API, like URLs and ARNs, all have the versioning information added, like \"v2\", to distinguish from the prior version. If you used MediaPackage prior to this release, you can't use the MediaPackage v2 CLI or the MediaPackage v2 API to access any MediaPackage v1 resources. If you created resources in MediaPackage v1, use video on demand (VOD) workflows, and aren't looking to migrate to MediaPackage v2 yet, see the MediaPackage v1 Live API Reference.  This is the AWS Elemental MediaPackage v2 Live REST API Reference. It describes all the MediaPackage API operations for live content in detail, and provides sample requests, responses, and errors for the supported web services protocols. We assume that you have the IAM permissions that you need to use MediaPackage via the REST API. We also assume that you are familiar with the features and operations of MediaPackage, as described in the AWS Elemental MediaPackage User Guide",
   subcommands: [
     {
+      name: "cancel-harvest-job",
+      description: "Cancels an in-progress harvest job",
+      options: [
+        {
+          name: "--channel-group-name",
+          description:
+            "The name of the channel group containing the channel from which the harvest job is running",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--channel-name",
+          description:
+            "The name of the channel from which the harvest job is running",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--origin-endpoint-name",
+          description:
+            "The name of the origin endpoint that the harvest job is harvesting from. This cannot be changed after the harvest job is submitted",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--harvest-job-name",
+          description:
+            "The name of the harvest job to cancel. This name must be unique within the channel and cannot be changed after the harvest job is submitted",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--e-tag",
+          description:
+            "The current Entity Tag (ETag) associated with the harvest job. Used for concurrency control",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-channel",
       description:
         "Create a channel to start receiving content streams. The channel represents the input to MediaPackage for incoming live content from an encoder such as AWS Elemental MediaLive. The channel receives content, and after packaging it, outputs it through an origin endpoint to downstream devices (such as video players or CDNs) that request the content. You can create only one channel with each request. We recommend that you spread out channels between channel groups, such as putting redundant channels in the same AWS Region in different channel groups",
@@ -108,6 +171,106 @@ const completionSpec: Fig.Spec = {
           name: "--tags",
           description:
             'A comma-separated list of tag key:value pairs that you define. For example:  "Key1": "Value1",   "Key2": "Value2"',
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-harvest-job",
+      description:
+        "Creates a new harvest job to export content from a MediaPackage v2 channel to an S3 bucket",
+      options: [
+        {
+          name: "--channel-group-name",
+          description:
+            "The name of the channel group containing the channel from which to harvest content",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--channel-name",
+          description: "The name of the channel from which to harvest content",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--origin-endpoint-name",
+          description:
+            "The name of the origin endpoint from which to harvest content",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "An optional description for the harvest job",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--harvested-manifests",
+          description: "A list of manifests to be harvested",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--schedule-configuration",
+          description:
+            "The configuration for when the harvest job should run, including start and end times",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--destination",
+          description:
+            "The S3 destination where the harvested content will be placed",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--harvest-job-name",
+          description:
+            "A name for the harvest job. This name must be unique within the channel",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description: "A collection of tags associated with the harvest job",
           args: {
             name: "map",
           },
@@ -574,6 +737,60 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-harvest-job",
+      description: "Retrieves the details of a specific harvest job",
+      options: [
+        {
+          name: "--channel-group-name",
+          description:
+            "The name of the channel group containing the channel associated with the harvest job",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--channel-name",
+          description:
+            "The name of the channel associated with the harvest job",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--origin-endpoint-name",
+          description:
+            "The name of the origin endpoint associated with the harvest job",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--harvest-job-name",
+          description: "The name of the harvest job to retrieve",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-origin-endpoint",
       description:
         "Retrieves the specified origin endpoint that's configured in AWS Elemental MediaPackage to obtain its playback URL and to view the packaging settings that it's currently using",
@@ -758,6 +975,102 @@ const completionSpec: Fig.Spec = {
           name: "--next-token",
           description:
             "The pagination token from the GET list request. Use the token to fetch the next page of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-harvest-jobs",
+      description:
+        "Retrieves a list of harvest jobs that match the specified criteria",
+      options: [
+        {
+          name: "--channel-group-name",
+          description:
+            "The name of the channel group to filter the harvest jobs by. If specified, only harvest jobs associated with channels in this group will be returned",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--channel-name",
+          description:
+            "The name of the channel to filter the harvest jobs by. If specified, only harvest jobs associated with this channel will be returned",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--origin-endpoint-name",
+          description:
+            "The name of the origin endpoint to filter the harvest jobs by. If specified, only harvest jobs associated with this origin endpoint will be returned",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--status",
+          description:
+            "The status to filter the harvest jobs by. If specified, only harvest jobs with this status will be returned",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of harvest jobs to return in a single request. If not specified, a default value will be used",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "A token used for pagination. Provide this value in subsequent requests to retrieve the next set of results",
           args: {
             name: "string",
           },
@@ -1313,6 +1626,68 @@ const completionSpec: Fig.Spec = {
             name: "string",
             suggestions: ["input", "output"],
           },
+        },
+      ],
+    },
+    {
+      name: "wait",
+      description:
+        "Wait until a particular condition is satisfied. Each subcommand polls an API until the listed requirement is met",
+      subcommands: [
+        {
+          name: "harvest-job-finished",
+          description:
+            "Wait until JMESPath query Status returns COMPLETED when polling with ``get-harvest-job``. It will poll every 2 seconds until a successful state has been reached. This will exit with a return code of 255 after 60 failed checks",
+          options: [
+            {
+              name: "--channel-group-name",
+              description:
+                "The name of the channel group containing the channel associated with the harvest job",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--channel-name",
+              description:
+                "The name of the channel associated with the harvest job",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--origin-endpoint-name",
+              description:
+                "The name of the origin endpoint associated with the harvest job",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--harvest-job-name",
+              description: "The name of the harvest job to retrieve",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cli-input-json",
+              description:
+                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--generate-cli-skeleton",
+              description:
+                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+              args: {
+                name: "string",
+                suggestions: ["input", "output"],
+              },
+            },
+          ],
         },
       ],
     },

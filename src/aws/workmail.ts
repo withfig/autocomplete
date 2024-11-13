@@ -340,6 +340,51 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-identity-center-application",
+      description:
+        "Creates the WorkMail application in IAM Identity Center that can be used later in the WorkMail - IdC integration. For more information, see PutIdentityProviderConfiguration. This action does not affect the authentication settings for any WorkMail organizations",
+      options: [
+        {
+          name: "--name",
+          description: "The name of the IAM Identity Center application",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--instance-arn",
+          description: "The Amazon Resource Name (ARN) of the instance",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--client-token",
+          description: "The idempotency token associated with the request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-impersonation-role",
       description:
         "Creates an impersonation role for the given WorkMail organization.  Idempotency ensures that an API request completes no more than one time. With an idempotent request, if the original request completes successfully, any subsequent retries also complete successfully without performing any further actions",
@@ -729,6 +774,14 @@ const completionSpec: Fig.Spec = {
             "If this parameter is enabled, the user will be hidden from the address book",
         },
         {
+          name: "--identity-provider-user-id",
+          description:
+            "User ID from the IAM Identity Center. If this parameter is empty it will be updated automatically when the user logs in for the first time to the mailbox associated with WorkMail",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -920,6 +973,68 @@ const completionSpec: Fig.Spec = {
           name: "--group-id",
           description:
             "The identifier of the group to be deleted. The identifier can be the GroupId, or Groupname. The following identity formats are available:   Group ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234   Group name: group",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-identity-center-application",
+      description:
+        "Deletes the IAM Identity Center application from WorkMail. This action does not affect the authentication settings for any WorkMail organizations",
+      options: [
+        {
+          name: "--application-arn",
+          description: "The Amazon Resource Name (ARN) of the application",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-identity-provider-configuration",
+      description:
+        "Disables the integration between IdC and WorkMail. Authentication will continue with the directory as it was before the IdC integration. You might have to reset your directory passwords and reconfigure your desktop and mobile email clients",
+      options: [
+        {
+          name: "--organization-id",
+          description: "The Organization ID",
           args: {
             name: "string",
           },
@@ -1154,6 +1269,54 @@ const completionSpec: Fig.Spec = {
           name: "--no-force-delete",
           description:
             "Deletes a WorkMail organization even if the organization has enabled users",
+        },
+        {
+          name: "--delete-identity-center-application",
+          description:
+            "Deletes IAM Identity Center application for WorkMail. This action does not affect authentication settings for any organization",
+        },
+        {
+          name: "--no-delete-identity-center-application",
+          description:
+            "Deletes IAM Identity Center application for WorkMail. This action does not affect authentication settings for any organization",
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-personal-access-token",
+      description:
+        "Deletes the Personal Access Token from the provided WorkMail Organization",
+      options: [
+        {
+          name: "--organization-id",
+          description: "The Organization ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--personal-access-token-id",
+          description: "The Personal Access Token ID",
+          args: {
+            name: "string",
+          },
         },
         {
           name: "--cli-input-json",
@@ -1455,6 +1618,37 @@ const completionSpec: Fig.Spec = {
           name: "--group-id",
           description:
             "The identifier for the group to be described. The identifier can accept GroupId, Groupname, or email. The following identity formats are available:   Group ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234   Email address: group@domain.tld   Group name: group",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-identity-provider-configuration",
+      description:
+        "Returns detailed information on the current IdC setup for the WorkMail organization",
+      options: [
+        {
+          name: "--organization-id",
+          description: "The Organization ID",
           args: {
             name: "string",
           },
@@ -2090,6 +2284,44 @@ const completionSpec: Fig.Spec = {
           name: "--device-id",
           description:
             "The mobile device to which the override applies. DeviceId is case insensitive",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-personal-access-token-metadata",
+      description:
+        "Requests details of a specific Personal Access Token within the WorkMail organization",
+      options: [
+        {
+          name: "--organization-id",
+          description: "The Organization ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--personal-access-token-id",
+          description: "The Personal Access Token ID",
           args: {
             name: "string",
           },
@@ -2895,6 +3127,83 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-personal-access-tokens",
+      description: "Returns a summary of your Personal Access Tokens",
+      options: [
+        {
+          name: "--organization-id",
+          description: "The Organization ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--user-id",
+          description: "The WorkMail User ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The token from the previous response to query the next page",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum amount of items that should be returned in a response",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-resource-delegates",
       description:
         "Lists the delegates associated with a resource. Users and groups can be resource delegates and answer requests on behalf of the resource",
@@ -3299,6 +3608,58 @@ const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the CloudWatch Log group associated with the email monitoring configuration",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "put-identity-provider-configuration",
+      description:
+        "Enables integration between IAM Identity Center (IdC) and WorkMail to proxy authentication requests for mailbox users. You can connect your IdC directory or your external directory to WorkMail through IdC and manage access to WorkMail mailboxes in a single place. For enhanced protection, you could enable Multifactor Authentication (MFA) and Personal Access Tokens",
+      options: [
+        {
+          name: "--organization-id",
+          description: "The ID of the WorkMail Organization",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--authentication-mode",
+          description: "The authentication mode used in WorkMail",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--identity-center-configuration",
+          description: "The details of the IAM Identity Center configuration",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--personal-access-token-configuration",
+          description: "The details of the Personal Access Token configuration",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -3987,7 +4348,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "update-group",
-      description: "Updates attibutes in a group",
+      description: "Updates attributes in a group",
       options: [
         {
           name: "--organization-id",
@@ -4500,7 +4861,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--zip-code",
-          description: "Updates the user's zipcode",
+          description: "Updates the user's zip code",
           args: {
             name: "string",
           },
@@ -4522,6 +4883,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--office",
           description: "Updates the user's office",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--identity-provider-user-id",
+          description:
+            "User ID from the IAM Identity Center. If this parameter is empty it will be updated automatically when the user logs in for the first time to the mailbox associated with WorkMail",
           args: {
             name: "string",
           },

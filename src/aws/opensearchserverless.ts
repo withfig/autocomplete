@@ -351,6 +351,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--iam-identity-center-options",
+          description:
+            "Describes IAM Identity Center options in the form of a key-value map. This field is required if you specify iamidentitycenter for the type parameter",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--name",
           description: "The name of the security configuration",
           args: {
@@ -1588,6 +1596,14 @@ const completionSpec: Fig.Spec = {
           description: "A description of the security configuration",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--iam-identity-center-options-updates",
+          description:
+            "Describes IAM Identity Center options in the form of a key-value map",
+          args: {
+            name: "structure",
           },
         },
         {
