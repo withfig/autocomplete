@@ -18,7 +18,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--reason",
           description:
-            "A message to attach to the job that explains the reason for canceling it. This message is returned by future DescribeJobs operations on the job. This message is also recorded in the Batch activity logs",
+            "A message to attach to the job that explains the reason for canceling it. This message is returned by future DescribeJobs operations on the job. It is also recorded in the Batch activity logs. This parameter has as limit of 1024 characters",
           args: {
             name: "string",
           },
@@ -161,7 +161,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--scheduling-policy-arn",
           description:
-            "The Amazon Resource Name (ARN) of the fair share scheduling policy. If this parameter is specified, the job queue uses a fair share scheduling policy. If this parameter isn't specified, the job queue uses a first in, first out (FIFO) scheduling policy. After a job queue is created, you can replace but can't remove the fair share scheduling policy. The format is aws:Partition:batch:Region:Account:scheduling-policy/Name . An example is aws:aws:batch:us-west-2:123456789012:scheduling-policy/MySchedulingPolicy",
+            "The Amazon Resource Name (ARN) of the fair share scheduling policy. Job queues that don't have a scheduling policy are scheduled in a first-in, first-out (FIFO) model. After a job queue has a scheduling policy, it can be replaced but can't be removed. The format is aws:Partition:batch:Region:Account:scheduling-policy/Name . An example is aws:aws:batch:us-west-2:123456789012:scheduling-policy/MySchedulingPolicy. A job queue without a scheduling policy is scheduled as a FIFO job queue and can't have a scheduling policy added. Jobs queues with a scheduling policy can have a maximum of 500 active fair share identifiers. When the limit has been reached, submissions of any jobs that add a new fair share identifier fail",
           args: {
             name: "string",
           },
@@ -193,7 +193,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--job-state-time-limit-actions",
           description:
-            "The set of actions that Batch performs on jobs that remain at the head of the job queue in the specified state longer than specified times. Batch will perform each action after maxTimeSeconds has passed",
+            "The set of actions that Batch performs on jobs that remain at the head of the job queue in the specified state longer than specified times. Batch will perform each action after maxTimeSeconds has passed. (Note: The minimum value for maxTimeSeconds is 600 (10 minutes) and its maximum value is 86,400 (24 hours).)",
           args: {
             name: "list",
           },
@@ -1250,7 +1250,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--reason",
           description:
-            "A message to attach to the job that explains the reason for canceling it. This message is returned by future DescribeJobs operations on the job. This message is also recorded in the Batch activity logs",
+            "A message to attach to the job that explains the reason for canceling it. This message is returned by future DescribeJobs operations on the job. It is also recorded in the Batch activity logs. This parameter has as limit of 1024 characters",
           args: {
             name: "string",
           },
@@ -1437,7 +1437,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--job-state-time-limit-actions",
           description:
-            "The set of actions that Batch perform on jobs that remain at the head of the job queue in the specified state longer than specified times. Batch will perform each action after maxTimeSeconds has passed",
+            "The set of actions that Batch perform on jobs that remain at the head of the job queue in the specified state longer than specified times. Batch will perform each action after maxTimeSeconds has passed. (Note: The minimum value for maxTimeSeconds is 600 (10 minutes) and its maximum value is 86,400 (24 hours).)",
           args: {
             name: "list",
           },

@@ -561,6 +561,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--availability-zone-distribution",
+          description:
+            "The instance capacity distribution across Availability Zones",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -3437,7 +3445,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--preferences",
           description:
-            "Sets your preferences for the instance refresh so that it performs as expected when you start it. Includes the instance warmup time, the minimum and maximum healthy percentages, and the behaviors that you want Amazon EC2 Auto Scaling to use if instances that are in Standby state or protected from scale in are found. You can also choose to enable additional features, such as the following:   Auto rollback   Checkpoints   CloudWatch alarms   Skip matching",
+            "Sets your preferences for the instance refresh so that it performs as expected when you start it. Includes the instance warmup time, the minimum and maximum healthy percentages, and the behaviors that you want Amazon EC2 Auto Scaling to use if instances that are in Standby state or protected from scale in are found. You can also choose to enable additional features, such as the following:   Auto rollback   Checkpoints   CloudWatch alarms   Skip matching   Bake time",
           args: {
             name: "structure",
           },
@@ -3718,6 +3726,14 @@ const completionSpec: Fig.Spec = {
           name: "--instance-maintenance-policy",
           description:
             "An instance maintenance policy. For more information, see Set instance maintenance policy in the Amazon EC2 Auto Scaling User Guide",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--availability-zone-distribution",
+          description:
+            "The instance capacity distribution across Availability Zones",
           args: {
             name: "structure",
           },
