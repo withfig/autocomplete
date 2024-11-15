@@ -161,6 +161,7 @@ const completionSpec: Fig.Spec = {
                     'proxy',
                     'redis',
                     'velocity-php',
+                    'etl-php',
                 ],
             },
             options: [
@@ -192,6 +193,7 @@ const completionSpec: Fig.Spec = {
                     'proxy',
                     'redis',
                     'velocity-php',
+                    'etl-php',
                 ],
             },
             options: [
@@ -435,6 +437,7 @@ const completionSpec: Fig.Spec = {
                     'proxy',
                     'redis',
                     'velocity-php',
+                    'etl-php',
                 ],
             },
             options: [
