@@ -692,6 +692,46 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "generate-query",
+      description:
+        'Generates a query from a natural language prompt. This operation uses generative artificial intelligence (generative AI) to produce a ready-to-use SQL query from the prompt.  The prompt can be a question or a statement about the event data in your event data store. For example, you can enter prompts like "What are my top errors in the past month?" and \u201cGive me a list of users that used SNS.\u201d The prompt must be in English. For information about limitations, permissions, and supported Regions, see Create CloudTrail Lake queries from natural language prompts in the CloudTrail  user guide.  Do not include any personally identifying, confidential, or sensitive information in your prompts. This feature uses generative AI large language models (LLMs); we recommend double-checking the LLM response',
+      options: [
+        {
+          name: "--event-data-stores",
+          description:
+            "The ARN (or ID suffix of the ARN) of the event data store that you want to query. You can only specify one event data store",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--prompt",
+          description:
+            "The prompt that you want to use to generate the query. The prompt must be in English. For example prompts, see Example prompts in the CloudTrail  user guide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-channel",
       description: "Returns information about a specific channel",
       options: [

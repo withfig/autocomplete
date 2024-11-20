@@ -180,7 +180,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-type",
       description:
-        "The CreateType operation creates a new user-defined type in the specified keyspace.  For more information, see User-defined types (UDTs) in the Amazon Keyspaces Developer Guide",
+        "The CreateType operation creates a new user-defined type in the specified keyspace.  To configure the required permissions, see Permissions to create a UDT in the Amazon Keyspaces Developer Guide. For more information, see User-defined types (UDTs) in the Amazon Keyspaces Developer Guide",
       options: [
         {
           name: "--keyspace-name",
@@ -296,7 +296,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-type",
       description:
-        "The DeleteType operation deletes a user-defined type (UDT). You can only delete a type that is not used in a table or another UDT",
+        "The DeleteType operation deletes a user-defined type (UDT). You can only delete a type that is not used in a table or another UDT.  To configure the required permissions, see Permissions to delete a UDT in the Amazon Keyspaces Developer Guide",
       options: [
         {
           name: "--keyspace-name",
@@ -334,7 +334,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-keyspace",
       description:
-        "Returns the name and the Amazon Resource Name (ARN) of the specified table",
+        "Returns the name of the specified keyspace, the Amazon Resource Name (ARN), the replication strategy, the Amazon Web Services Regions of a multi-Region keyspace, and the status of newly added Regions after an UpdateKeyspace operation",
       options: [
         {
           name: "--keyspace-name",
@@ -441,7 +441,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-type",
       description:
-        "The GetType operation returns information about the type, for example the field definitions, the timestamp when the type was last modified, the level of nesting, the status, and details about if the type is used in other types and tables.  To read keyspace metadata using GetType, the IAM principal needs Select action permissions for the system keyspace",
+        "The GetType operation returns information about the type, for example the field definitions, the timestamp when the type was last modified, the level of nesting, the status, and details about if the type is used in other types and tables.  To read keyspace metadata using GetType, the IAM principal needs Select action permissions for the system keyspace. To configure the required permissions, see Permissions to view a UDT in the Amazon Keyspaces Developer Guide",
       options: [
         {
           name: "--keyspace-name",
@@ -686,7 +686,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-types",
       description:
-        "The ListTypes operation returns a list of types for a specified keyspace.  To read keyspace metadata using ListTypes, the IAM principal needs Select action permissions for the system keyspace",
+        "The ListTypes operation returns a list of types for a specified keyspace.  To read keyspace metadata using ListTypes, the IAM principal needs Select action permissions for the system keyspace. To configure the required permissions, see Permissions to view a UDT in the Amazon Keyspaces Developer Guide",
       options: [
         {
           name: "--next-token",
@@ -921,6 +921,53 @@ const completionSpec: Fig.Spec = {
             "A list of existing tags to be removed from the Amazon Keyspaces resource",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-keyspace",
+      description:
+        "Adds a new Amazon Web Services Region to the keyspace. You can add a new Region to a keyspace that is either a single or a multi-Region keyspace. The new replica Region is applied to all tables in the keyspace. For more information, see Add an Amazon Web Services Region to a keyspace in Amazon Keyspaces in the Amazon Keyspaces Developer Guide.  To change a single-Region to a multi-Region keyspace, you have to enable client-side timestamps for all tables in the keyspace. For more information, see Client-side timestamps in Amazon Keyspaces in the Amazon Keyspaces Developer Guide",
+      options: [
+        {
+          name: "--keyspace-name",
+          description: "The name of the keyspace",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--replication-specification",
+          description:
+            "The replication specification of the keyspace includes:    regionList - up to six Amazon Web Services Regions where the keyspace is replicated in.    replicationStrategy - the required value is SINGLE_REGION or MULTI_REGION",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--client-side-timestamps",
+          description:
+            "The client-side timestamp setting of the table. For more information, see How it works: Amazon Keyspaces client-side timestamps in the Amazon Keyspaces Developer Guide",
+          args: {
+            name: "structure",
           },
         },
         {

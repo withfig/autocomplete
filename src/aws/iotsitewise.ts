@@ -857,7 +857,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--dashboard-definition",
           description:
-            "The dashboard definition specified in a JSON literal. For detailed information, see Creating dashboards (CLI) in the IoT SiteWise User Guide",
+            "The dashboard definition specified in a JSON literal.   IoT SiteWise Monitor (Classic) see Create dashboards (CLI)    IoT SiteWise Monitor (AI-aware) see Create dashboards (CLI)    in the IoT SiteWise User Guide",
           args: {
             name: "string",
           },
@@ -874,6 +874,73 @@ const completionSpec: Fig.Spec = {
           name: "--tags",
           description:
             "A list of key-value pairs that contain metadata for the dashboard. For more information, see Tagging your IoT SiteWise resources in the IoT SiteWise User Guide",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-dataset",
+      description: "Creates a dataset to connect an external datasource",
+      options: [
+        {
+          name: "--dataset-id",
+          description: "The ID of the dataset",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--dataset-name",
+          description: "The name of the dataset",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--dataset-description",
+          description: "A description about the dataset, and its functionality",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--dataset-source",
+          description: "The data source for the dataset",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "A list of key-value pairs that contain metadata for the access policy. For more information, see Tagging your IoT SiteWise resources in the IoT SiteWise User Guide",
           args: {
             name: "map",
           },
@@ -1025,6 +1092,22 @@ const completionSpec: Fig.Spec = {
             "Contains the configuration information of an alarm created in an IoT SiteWise Monitor portal. You can use the alarm to monitor an asset property and get notified when the asset property value is outside a specified range. For more information, see Monitoring with alarms in the IoT SiteWise Application Guide",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--portal-type",
+          description:
+            "Define the type of portal. The value for IoT SiteWise Monitor (Classic) is SITEWISE_PORTAL_V1. The value for IoT SiteWise Monitor (AI-aware) is SITEWISE_PORTAL_V2",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--portal-type-configuration",
+          description:
+            "The configuration entry associated with the specific portal type. The value for IoT SiteWise Monitor (Classic) is SITEWISE_PORTAL_V1. The value for IoT SiteWise Monitor (AI-aware) is SITEWISE_PORTAL_V2",
+          args: {
+            name: "map",
           },
         },
         {
@@ -1327,6 +1410,44 @@ const completionSpec: Fig.Spec = {
         {
           name: "--dashboard-id",
           description: "The ID of the dashboard to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-dataset",
+      description: "Deletes a dataset. This cannot be undone",
+      options: [
+        {
+          name: "--dataset-id",
+          description: "The ID of the dataset",
           args: {
             name: "string",
           },
@@ -1861,6 +1982,36 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "describe-dataset",
+      description: "Retrieves information about a dataset",
+      options: [
+        {
+          name: "--dataset-id",
+          description: "The ID of the dataset",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "describe-default-encryption-configuration",
       description:
         "Retrieves information about the default encryption configuration for the Amazon Web Services account in the default or specified Region. For more information, see Key management in the IoT SiteWise User Guide",
@@ -2296,6 +2447,14 @@ const completionSpec: Fig.Spec = {
             "The maximum number of results to return at one time. The default is 25",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required",
+          args: {
+            name: "string",
           },
         },
         {
@@ -3758,6 +3917,77 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-datasets",
+      description:
+        "Retrieves a paginated list of datasets for a specific target resource",
+      options: [
+        {
+          name: "--source-type",
+          description: "The type of data source for the dataset",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The token for the next set of results, or null if there are no additional results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return for each paginated request",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-gateways",
       description: "Retrieves a paginated list of gateways",
       options: [
@@ -4793,9 +5023,68 @@ const completionSpec: Fig.Spec = {
         {
           name: "--dashboard-definition",
           description:
-            "The new dashboard definition, as specified in a JSON literal. For detailed information, see Creating dashboards (CLI) in the IoT SiteWise User Guide",
+            "The new dashboard definition, as specified in a JSON literal.   IoT SiteWise Monitor (Classic) see Create dashboards (CLI)    IoT SiteWise Monitor (AI-aware) see Create dashboards (CLI)    in the IoT SiteWise User Guide",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-dataset",
+      description: "Updates a dataset",
+      options: [
+        {
+          name: "--dataset-id",
+          description: "The ID of the dataset",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--dataset-name",
+          description: "The name of the dataset",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--dataset-description",
+          description: "A description about the dataset, and its functionality",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--dataset-source",
+          description: "The data source for the dataset",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -4979,6 +5268,22 @@ const completionSpec: Fig.Spec = {
             "Contains the configuration information of an alarm created in an IoT SiteWise Monitor portal. You can use the alarm to monitor an asset property and get notified when the asset property value is outside a specified range. For more information, see Monitoring with alarms in the IoT SiteWise Application Guide",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--portal-type",
+          description:
+            "Define the type of portal. The value for IoT SiteWise Monitor (Classic) is SITEWISE_PORTAL_V1. The value for IoT SiteWise Monitor (AI-aware) is SITEWISE_PORTAL_V2",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--portal-type-configuration",
+          description:
+            "The configuration entry associated with the specific portal type. The value for IoT SiteWise Monitor (Classic) is SITEWISE_PORTAL_V1. The value for IoT SiteWise Monitor (AI-aware) is SITEWISE_PORTAL_V2",
+          args: {
+            name: "map",
           },
         },
         {

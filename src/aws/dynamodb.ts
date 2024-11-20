@@ -312,6 +312,14 @@ const completionSpec: Fig.Spec = {
             "Indicates whether deletion protection is to be enabled (true) or disabled (false) on the table",
         },
         {
+          name: "--warm-throughput",
+          description:
+            "Represents the warm throughput (in read units per second and write units per second) for creating a table",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--resource-policy",
           description:
             "An Amazon Web Services resource-based policy document in JSON format that will be attached to the table. When you attach a resource-based policy while creating a table, the policy application is strongly consistent. The maximum size supported for a resource-based policy document is 20 KB. DynamoDB counts whitespaces when calculating the size of a policy against this limit. For a full list of all considerations that apply for resource-based policies, see Resource-based policy considerations.  You need to specify the CreateTable and PutResourcePolicy IAM actions for authorizing a user to create a table with a resource-based policy",
@@ -3252,6 +3260,14 @@ const completionSpec: Fig.Spec = {
           name: "--on-demand-throughput",
           description:
             "Updates the maximum number of read and write units for the specified table in on-demand capacity mode. If you use this parameter, you must specify MaxReadRequestUnits, MaxWriteRequestUnits, or both",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--warm-throughput",
+          description:
+            "Represents the warm throughput (in read units per second and write units per second) for updating a table",
           args: {
             name: "structure",
           },

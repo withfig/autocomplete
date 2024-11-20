@@ -265,6 +265,12 @@ const completionSpec: Fig.Spec = {
       loadSpec: "aws/bedrock-runtime",
     },
     {
+      name: "billing",
+      description:
+        "You can use the Billing API to programatically list the billing views available to you for a given time period. A billing view represents a set of billing data.  The Billing API provides the following endpoint:  https://billing.us-east-1.api.aws",
+      loadSpec: "aws/billing",
+    },
+    {
       name: "billingconductor",
       description:
         "Amazon Web Services Billing Conductor is a fully managed service that you can use to customize a proforma version of your billing data each month, to accurately show or chargeback your end customers. Amazon Web Services Billing Conductor doesn't change the way you're billed by Amazon Web Services each month by design. Instead, it provides you with a mechanism to configure, generate, and display rates to certain customers over a given billing period. You can also analyze the difference between the rates you apply to your accounting groupings relative to your actual rates from Amazon Web Services. As a result of your Amazon Web Services Billing Conductor configuration, the payer account can also see the custom rate applied on the billing details page of the Amazon Web Services Billing console, or configure a cost and usage report per billing group. This documentation shows how you can configure Amazon Web Services Billing Conductor using its API. For more information about using the Amazon Web Services Billing Conductor user interface, see the  Amazon Web Services Billing Conductor User Guide",
@@ -538,6 +544,11 @@ const completionSpec: Fig.Spec = {
       name: "connectcampaigns",
       description: "Provide APIs to create and manage Amazon Connect Campaigns",
       loadSpec: "aws/connectcampaigns",
+    },
+    {
+      name: "connectcampaignsv2",
+      description: "Provide APIs to create and manage Amazon Connect Campaigns",
+      loadSpec: "aws/connectcampaignsv2",
     },
     {
       name: "connectcases",
@@ -1599,6 +1610,12 @@ const completionSpec: Fig.Spec = {
       description:
         "AWS Panorama  Overview  This is the AWS Panorama API Reference. For an introduction to the service, see What is AWS Panorama? in the AWS Panorama Developer Guide",
       loadSpec: "aws/panorama",
+    },
+    {
+      name: "partnercentral-selling",
+      description:
+        "AWS Partner Central API for Selling  AWS Partner Central API for Selling Reference Guide  This Amazon Web Services (AWS) Partner Central API reference is designed to help AWS Partners integrate Customer Relationship Management (CRM) systems with AWS Partner Central. Partners can automate interactions with AWS Partner Central, which helps to ensure effective engagements in joint business activities. The API provides standard AWS API functionality. Access it by either using API Actions or by using an AWS SDK that's tailored to your programming language or platform. For more information, see Getting Started with AWS and Tools to Build on AWS.  Features offered by AWS Partner Central API     Opportunity management: Manages coselling opportunities through API actions such as CreateOpportunity, UpdateOpportunity, ListOpportunities, GetOpportunity, and AssignOpportunity.    AWS referral management: Manages referrals shared by AWS using actions such as ListEngagementInvitations, GetEngagementInvitation, StartEngagementByAcceptingInvitation, and RejectEngagementInvitation.    Entity association: Associates related entities such as AWS Products, Partner Solutions, and AWS Marketplace Private Offers with opportunities using the actions AssociateOpportunity, and DisassociateOpportunity.    View AWS opportunity details: Retrieves real-time summaries of AWS opportunities using the GetAWSOpportunitySummary action.    List solutions: Provides list APIs for listing partner offers using ListSolutions.    Event subscription: Subscribe to real-time opportunity updates through AWS EventBridge by using actions such as Opportunity Created, Opportunity Updated, Engagement Invitation Accepted, Engagement Invitation Rejected, and Engagement Invitation Created",
+      loadSpec: "aws/partnercentral-selling",
     },
     {
       name: "payment-cryptography",
