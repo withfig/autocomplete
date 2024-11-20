@@ -127,7 +127,5 @@ const completionSpec: Fig.Spec = {
       description: "Prints version information",
     },
   ],
-  // Only uncomment if ideviceinfo takes an argument
-  // args: {}
 };
 export default completionSpec;
