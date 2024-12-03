@@ -1257,7 +1257,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-event-source-mapping",
       description:
-        "Creates a mapping between an event source and an Lambda function. Lambda reads items from the event source and invokes the function. For details about how to configure different event sources, see the following topics.      Amazon DynamoDB Streams      Amazon Kinesis      Amazon SQS      Amazon MQ and RabbitMQ      Amazon MSK      Apache Kafka      Amazon DocumentDB    The following error handling options are available only for stream sources (DynamoDB and Kinesis):    BisectBatchOnFunctionError \u2013 If the function returns an error, split the batch in two and retry.    DestinationConfig \u2013 Send discarded records to an Amazon SQS queue or Amazon SNS topic.    MaximumRecordAgeInSeconds \u2013 Discard records older than the specified age. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires    MaximumRetryAttempts \u2013 Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.    ParallelizationFactor \u2013 Process multiple batches from each shard concurrently.   For information about which configuration parameters apply to each event source, see the following topics.     Amazon DynamoDB Streams      Amazon Kinesis      Amazon SQS      Amazon MQ and RabbitMQ      Amazon MSK      Apache Kafka      Amazon DocumentDB",
+        "Creates a mapping between an event source and an Lambda function. Lambda reads items from the event source and invokes the function. For details about how to configure different event sources, see the following topics.      Amazon DynamoDB Streams      Amazon Kinesis      Amazon SQS      Amazon MQ and RabbitMQ      Amazon MSK      Apache Kafka      Amazon DocumentDB    The following error handling options are available only for DynamoDB and Kinesis event sources:    BisectBatchOnFunctionError \u2013 If the function returns an error, split the batch in two and retry.    MaximumRecordAgeInSeconds \u2013 Discard records older than the specified age. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires    MaximumRetryAttempts \u2013 Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.    ParallelizationFactor \u2013 Process multiple batches from each shard concurrently.   For stream sources (DynamoDB, Kinesis, Amazon MSK, and self-managed Apache Kafka), the following option is also available:    DestinationConfig \u2013 Send discarded records to an Amazon SQS queue, Amazon SNS topic, or Amazon S3 bucket.   For information about which configuration parameters apply to each event source, see the following topics.     Amazon DynamoDB Streams      Amazon Kinesis      Amazon SQS      Amazon MQ and RabbitMQ      Amazon MSK      Apache Kafka      Amazon DocumentDB",
       options: [
         {
           name: "--event-source-arn",
@@ -1466,6 +1466,22 @@ const completionSpec: Fig.Spec = {
             "The ARN of the Key Management Service (KMS) customer managed key that Lambda uses to encrypt your function's filter criteria. By default, Lambda does not encrypt your filter criteria object. Specify this property to encrypt data using your own customer managed key",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--metrics-config",
+          description:
+            "The metrics configuration for your event source. For more information, see Event source mapping metrics",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--provisioned-poller-config",
+          description:
+            "(Amazon MSK and self-managed Apache Kafka only) The Provisioned Mode configuration for the event source. For more information, see Provisioned Mode",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -3943,7 +3959,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-function-event-invoke-config",
       description:
-        "Configures options for asynchronous invocation on a function, version, or alias. If a configuration already exists for a function, version, or alias, this operation overwrites it. If you exclude any settings, they are removed. To set one option without affecting existing settings for other options, use UpdateFunctionEventInvokeConfig. By default, Lambda retries an asynchronous invocation twice if the function returns an error. It retains events in a queue for up to six hours. When an event fails all processing attempts or stays in the asynchronous invocation queue for too long, Lambda discards it. To retain discarded events, configure a dead-letter queue with UpdateFunctionConfiguration. To send an invocation record to a queue, topic, function, or event bus, specify a destination. You can configure separate destinations for successful invocations (on-success) and events that fail all processing attempts (on-failure). You can configure destinations in addition to or instead of a dead-letter queue",
+        "Configures options for asynchronous invocation on a function, version, or alias. If a configuration already exists for a function, version, or alias, this operation overwrites it. If you exclude any settings, they are removed. To set one option without affecting existing settings for other options, use UpdateFunctionEventInvokeConfig. By default, Lambda retries an asynchronous invocation twice if the function returns an error. It retains events in a queue for up to six hours. When an event fails all processing attempts or stays in the asynchronous invocation queue for too long, Lambda discards it. To retain discarded events, configure a dead-letter queue with UpdateFunctionConfiguration. To send an invocation record to a queue, topic, S3 bucket, function, or event bus, specify a destination. You can configure separate destinations for successful invocations (on-success) and events that fail all processing attempts (on-failure). You can configure destinations in addition to or instead of a dead-letter queue.  S3 buckets are supported only for on-failure destinations. To retain records of successful invocations, use another destination type",
       options: [
         {
           name: "--function-name",
@@ -3981,7 +3997,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--destination-config",
           description:
-            "A destination for events after they have been sent to a function for processing.  Destinations     Function - The Amazon Resource Name (ARN) of a Lambda function.    Queue - The ARN of a standard SQS queue.    Topic - The ARN of a standard SNS topic.    Event Bus - The ARN of an Amazon EventBridge event bus",
+            "A destination for events after they have been sent to a function for processing.  Destinations     Function - The Amazon Resource Name (ARN) of a Lambda function.    Queue - The ARN of a standard SQS queue.    Bucket - The ARN of an Amazon S3 bucket.    Topic - The ARN of a standard SNS topic.    Event Bus - The ARN of an Amazon EventBridge event bus.    S3 buckets are supported only for on-failure destinations. To retain records of successful invocations, use another destination type",
           args: {
             name: "structure",
             generators: generators.listDestinationConfigArns,
@@ -4482,7 +4498,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-event-source-mapping",
       description:
-        "Updates an event source mapping. You can change the function that Lambda invokes, or pause invocation and resume later from the same location. For details about how to configure different event sources, see the following topics.      Amazon DynamoDB Streams      Amazon Kinesis      Amazon SQS      Amazon MQ and RabbitMQ      Amazon MSK      Apache Kafka      Amazon DocumentDB    The following error handling options are available only for stream sources (DynamoDB and Kinesis):    BisectBatchOnFunctionError \u2013 If the function returns an error, split the batch in two and retry.    DestinationConfig \u2013 Send discarded records to an Amazon SQS queue or Amazon SNS topic.    MaximumRecordAgeInSeconds \u2013 Discard records older than the specified age. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires    MaximumRetryAttempts \u2013 Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.    ParallelizationFactor \u2013 Process multiple batches from each shard concurrently.   For information about which configuration parameters apply to each event source, see the following topics.     Amazon DynamoDB Streams      Amazon Kinesis      Amazon SQS      Amazon MQ and RabbitMQ      Amazon MSK      Apache Kafka      Amazon DocumentDB",
+        "Updates an event source mapping. You can change the function that Lambda invokes, or pause invocation and resume later from the same location. For details about how to configure different event sources, see the following topics.      Amazon DynamoDB Streams      Amazon Kinesis      Amazon SQS      Amazon MQ and RabbitMQ      Amazon MSK      Apache Kafka      Amazon DocumentDB    The following error handling options are available only for DynamoDB and Kinesis event sources:    BisectBatchOnFunctionError \u2013 If the function returns an error, split the batch in two and retry.    MaximumRecordAgeInSeconds \u2013 Discard records older than the specified age. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires    MaximumRetryAttempts \u2013 Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.    ParallelizationFactor \u2013 Process multiple batches from each shard concurrently.   For stream sources (DynamoDB, Kinesis, Amazon MSK, and self-managed Apache Kafka), the following option is also available:    DestinationConfig \u2013 Send discarded records to an Amazon SQS queue, Amazon SNS topic, or Amazon S3 bucket.   For information about which configuration parameters apply to each event source, see the following topics.     Amazon DynamoDB Streams      Amazon Kinesis      Amazon SQS      Amazon MQ and RabbitMQ      Amazon MSK      Apache Kafka      Amazon DocumentDB",
       options: [
         {
           name: "--uuid",
@@ -4624,6 +4640,22 @@ const completionSpec: Fig.Spec = {
             "The ARN of the Key Management Service (KMS) customer managed key that Lambda uses to encrypt your function's filter criteria. By default, Lambda does not encrypt your filter criteria object. Specify this property to encrypt data using your own customer managed key",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--metrics-config",
+          description:
+            "The metrics configuration for your event source. For more information, see Event source mapping metrics",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--provisioned-poller-config",
+          description:
+            "(Amazon MSK and self-managed Apache Kafka only) The Provisioned Mode configuration for the event source. For more information, see Provisioned Mode",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -4993,7 +5025,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--destination-config",
           description:
-            "A destination for events after they have been sent to a function for processing.  Destinations     Function - The Amazon Resource Name (ARN) of a Lambda function.    Queue - The ARN of a standard SQS queue.    Topic - The ARN of a standard SNS topic.    Event Bus - The ARN of an Amazon EventBridge event bus",
+            "A destination for events after they have been sent to a function for processing.  Destinations     Function - The Amazon Resource Name (ARN) of a Lambda function.    Queue - The ARN of a standard SQS queue.    Bucket - The ARN of an Amazon S3 bucket.    Topic - The ARN of a standard SNS topic.    Event Bus - The ARN of an Amazon EventBridge event bus.    S3 buckets are supported only for on-failure destinations. To retain records of successful invocations, use another destination type",
           args: {
             name: "structure",
           },

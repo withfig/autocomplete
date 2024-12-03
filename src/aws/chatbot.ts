@@ -4,6 +4,45 @@ const completionSpec: Fig.Spec = {
     "The AWS Chatbot API Reference provides descriptions, API request parameters, and the XML response for each of the AWS Chatbot API actions. AWS Chatbot APIs are currently available in the following Regions:   US East (Ohio) - us-east-2    US West (Oregon) - us-west-2    Asia Pacific (Singapore) - ap-southeast-1    Europe (Ireland) - eu-west-1    The AWS Chatbot console can only be used in US East (Ohio). Your configuration data however, is stored in each of the relevant available Regions.  Your AWS CloudTrail events are logged in whatever Region you call from, not US East (N. Virginia) by default",
   subcommands: [
     {
+      name: "associate-to-configuration",
+      description:
+        "Links a resource (for example, a custom action) to a channel configuration",
+      options: [
+        {
+          name: "--resource",
+          description: "The resource Amazon Resource Name (ARN) to link",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--chat-configuration",
+          description:
+            "The channel configuration to associate with the resource",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-chime-webhook-configuration",
       description: "Creates an AWS Chatbot configuration for Amazon Chime",
       options: [
@@ -58,6 +97,78 @@ const completionSpec: Fig.Spec = {
             "A map of tags assigned to a resource. A tag is a string-to-string map of key-value pairs",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-custom-action",
+      description:
+        "Creates a custom action that can be invoked as an alias or as a button on a notification",
+      options: [
+        {
+          name: "--definition",
+          description:
+            "The definition of the command to run when invoked as an alias or as an action button",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--alias-name",
+          description:
+            "The name used to invoke this action in a chat channel. For example, @aws run my-alias",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--attachments",
+          description:
+            "Defines when this custom action button should be attached to a notification",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "A map of tags assigned to a resource. A tag is a string-to-string map of key-value pairs",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token returns the result from the original successful request. If you do not specify a client token, one is automatically generated by the SDK",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--action-name",
+          description:
+            "The name of the custom action. This name is included in the Amazon Resource Name (ARN)",
+          args: {
+            name: "string",
           },
         },
         {
@@ -329,6 +440,36 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-custom-action",
+      description: "Deletes a custom action",
+      options: [
+        {
+          name: "--custom-action-arn",
+          description: "The fully defined ARN of the custom action",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-microsoft-teams-channel-configuration",
       description:
         "Deletes a Microsoft Teams channel configuration for AWS Chatbot",
@@ -565,7 +706,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--chat-configuration-arn",
           description:
-            "An optional Amazon Resource Number (ARN) of a ChimeWebhookConfiguration to describe",
+            "An optional Amazon Resource Name (ARN) of a ChimeWebhookConfiguration to describe",
           args: {
             name: "string",
           },
@@ -637,7 +778,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--chat-configuration-arn",
           description:
-            "An optional Amazon Resource Number (ARN) of a SlackChannelConfiguration to describe",
+            "An optional Amazon Resource Name (ARN) of a SlackChannelConfiguration to describe",
           args: {
             name: "string",
           },
@@ -692,7 +833,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--chat-configuration-arn",
           description:
-            "The Amazon Resource Number (ARN) of the SlackChannelConfiguration associated with the user identities to describe",
+            "The Amazon Resource Name (ARN) of the SlackChannelConfiguration associated with the user identities to describe",
           args: {
             name: "string",
           },
@@ -821,9 +962,80 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "disassociate-from-configuration",
+      description:
+        "Unlink a resource, for example a custom action, from a channel configuration",
+      options: [
+        {
+          name: "--resource",
+          description:
+            "The resource (for example, a custom action) Amazon Resource Name (ARN) to unlink",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--chat-configuration",
+          description:
+            "The channel configuration the resource is being disassociated from",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-account-preferences",
       description: "Returns AWS Chatbot account preferences",
       options: [
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-custom-action",
+      description: "Returns a custom action",
+      options: [
+        {
+          name: "--custom-action-arn",
+          description:
+            "Returns the fully defined Amazon Resource Name (ARN) of the custom action",
+          args: {
+            name: "string",
+          },
+        },
         {
           name: "--cli-input-json",
           description:
@@ -851,7 +1063,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--chat-configuration-arn",
           description:
-            "The Amazon Resource Number (ARN) of the MicrosoftTeamsChannelConfiguration to retrieve",
+            "The Amazon Resource Name (ARN) of the MicrosoftTeamsChannelConfiguration to retrieve",
           args: {
             name: "string",
           },
@@ -862,6 +1074,139 @@ const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-associations",
+      description: "Lists resources associated with a channel configuration",
+      options: [
+        {
+          name: "--chat-configuration",
+          description: "The channel configuration to list associations for",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by MaxResults",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-custom-actions",
+      description: "Lists custom actions defined in this account",
+      options: [
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by MaxResults",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -1018,7 +1363,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--chat-configuration-arn",
           description:
-            "The Amazon Resource Number (ARN) of the MicrosoftTeamsChannelConfiguration associated with the user identities to list",
+            "The Amazon Resource Name (ARN) of the MicrosoftTeamsChannelConfiguration associated with the user identities to list",
           args: {
             name: "string",
           },
@@ -1089,7 +1434,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--resource-arn",
-          description: "The ARN you specified to list the tags of",
+          description: "The ARN of the resource to list tags for",
           args: {
             name: "string",
           },
@@ -1241,7 +1586,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--chat-configuration-arn",
           description:
-            "The Amazon Resource Number (ARN) of the ChimeWebhookConfiguration to update",
+            "The Amazon Resource Name (ARN) of the ChimeWebhookConfiguration to update",
           args: {
             name: "string",
           },
@@ -1304,13 +1649,68 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "update-custom-action",
+      description: "Updates a custom action",
+      options: [
+        {
+          name: "--custom-action-arn",
+          description:
+            "The fully defined Amazon Resource Name (ARN) of the custom action",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--definition",
+          description:
+            "The definition of the command to run when invoked as an alias or as an action button",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--alias-name",
+          description:
+            "The name used to invoke this action in the chat channel. For example, @aws run my-alias",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--attachments",
+          description:
+            "Defines when this custom action button should be attached to a notification",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "update-microsoft-teams-channel-configuration",
       description: "Updates an Microsoft Teams channel configuration",
       options: [
         {
           name: "--chat-configuration-arn",
           description:
-            "The Amazon Resource Number (ARN) of the TeamsChannelConfiguration to update",
+            "The Amazon Resource Name (ARN) of the TeamsChannelConfiguration to update",
           args: {
             name: "string",
           },
@@ -1396,7 +1796,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--chat-configuration-arn",
           description:
-            "The Amazon Resource Number (ARN) of the SlackChannelConfiguration to update",
+            "The Amazon Resource Name (ARN) of the SlackChannelConfiguration to update",
           args: {
             name: "string",
           },

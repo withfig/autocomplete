@@ -133,9 +133,87 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "rerank",
+      description:
+        "Reranks the relevance of sources based on queries. For more information, see Improve the relevance of query responses with a reranker model",
+      options: [
+        {
+          name: "--next-token",
+          description:
+            "If the total number of results was greater than could fit in a response, a token is returned in the nextToken field. You can enter that token in this field to return the next batch of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--queries",
+          description:
+            "An array of objects, each of which contains information about a query to submit to the reranker model",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--reranking-configuration",
+          description: "Contains configurations for reranking",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--sources",
+          description:
+            "An array of objects, each of which contains information about the sources to rerank",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "retrieve",
       description: "Queries a knowledge base and retrieves information from it",
       options: [
+        {
+          name: "--guardrail-configuration",
+          description: "Guardrail settings",
+          args: {
+            name: "structure",
+          },
+        },
         {
           name: "--knowledge-base-id",
           description: "The unique identifier of the knowledge base to query",

@@ -534,6 +534,75 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-predictive-scaling-forecast",
+      description:
+        "Retrieves the forecast data for a predictive scaling policy. Load forecasts are predictions of the hourly load values using historical load data from CloudWatch and an analysis of historical trends. Capacity forecasts are represented as predicted values for the minimum capacity that is needed on an hourly basis, based on the hourly load forecast. A minimum of 24 hours of data is required to create the initial forecasts. However, having a full 14 days of historical data results in more accurate forecasts",
+      options: [
+        {
+          name: "--service-namespace",
+          description:
+            "The namespace of the Amazon Web Services service that provides the resource. For a resource provided by your own application or service, use custom-resource instead",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--resource-id",
+          description: "The identifier of the resource",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--scalable-dimension",
+          description: "The scalable dimension",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--policy-name",
+          description: "The name of the policy",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--start-time",
+          description:
+            "The inclusive start time of the time range for the forecast data to get. At most, the date and time can be one year before the current date and time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--end-time",
+          description:
+            "The exclusive end time of the time range for the forecast data to get. The maximum time duration between the start and end time is 30 days",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-tags-for-resource",
       description:
         "Returns all the tags on the specified Application Auto Scaling scalable target. For general information about tags, including the format and syntax, see Tagging your Amazon Web Services resources in the Amazon Web Services General Reference",
@@ -622,6 +691,13 @@ const completionSpec: Fig.Spec = {
           name: "--target-tracking-scaling-policy-configuration",
           description:
             "A target tracking scaling policy. Includes support for predefined or customized metrics. This parameter is required if you are creating a policy and the policy type is TargetTrackingScaling",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--predictive-scaling-policy-configuration",
+          description: "The configuration of the predictive scaling policy",
           args: {
             name: "structure",
           },

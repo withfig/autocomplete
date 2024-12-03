@@ -1,378 +1,56 @@
 const completionSpec: Fig.Spec = {
-  name: "qapps",
+  name: "networkflowmonitor",
   description:
-    "The Amazon Q Apps feature capability within Amazon Q Business allows web experience users to create lightweight, purpose-built AI apps to fulfill specific tasks from within their web experience. For example, users can create a Q App that exclusively generates marketing-related content to improve your marketing team's productivity or a Q App for writing customer emails and creating promotional content using a certain style of voice, tone, and branding. For more information on the capabilities, see Amazon Q Apps capabilities in the Amazon Q Business User Guide.  For an overview of the Amazon Q App APIs, see Overview of Amazon Q Apps API operations. For information about the IAM access control permissions you need to use the Amazon Q Apps API, see  IAM role for the Amazon Q Business web experience including Amazon Q Apps in the Amazon Q Business User Guide",
+    "Network Flow Monitor is a feature of Amazon CloudWatch Network Monitoring that provides visibility into the performance of network flows for your Amazon Web Services workloads, between instances in subnets, as well as to and from Amazon Web Services. Lightweight agents that you install on the instances capture performance metrics for your network flows, such as packet loss and latency, and send them to the Network Flow Monitor backend. Then, you can view and analyze metrics from the top contributors for each metric type, to help troubleshoot issues. In addition, when you create a monitor, Network Flow Monitor provides a network health indicator (NHI) that informs you whether there were Amazon Web Services network issues for one or more of the network flows tracked by a monitor, during a time period that you choose. By using this value, you can independently determine if the Amazon Web Services network is impacting your workload during a specific time frame, to help you focus troubleshooting efforts. To learn more about Network Flow Monitor, see the Network Flow Monitor User Guide in the Amazon CloudWatch User Guide",
   subcommands: [
     {
-      name: "associate-library-item-review",
+      name: "create-monitor",
       description:
-        "Associates a rating or review for a library item with the user submitting the request. This increments the rating count for the specified library item",
+        "Create a monitor for specific network flows between local and remote resources, so that you can monitor network performance for one or several of your workloads. For each monitor, Network Flow Monitor publishes detailed end-to-end performance metrics and a network health indicators (NHI) that informs you whether there were Amazon Web Services network issues for one or more of the network flows tracked by a monitor, during a time period that you choose",
       options: [
         {
-          name: "--instance-id",
+          name: "--monitor-name",
+          description: "The name of the monitor",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--local-resources",
           description:
-            "The unique identifier for the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--library-item-id",
-          description:
-            "The unique identifier of the library item to associate the review with",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "associate-q-app-with-user",
-      description:
-        "This operation creates a link between the user's identity calling the operation and a specific Q App. This is useful to mark the Q App as a favorite for the user if the user doesn't own the Amazon Q App so they can still run it and see it in their inventory of Q Apps",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--app-id",
-          description: "The ID of the Amazon Q App to associate with the user",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "batch-create-category",
-      description:
-        "Creates Categories for the Amazon Q Business application environment instance. Web experience users use Categories to tag and filter library items. For more information, see Custom labels for Amazon Q Apps",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--categories",
-          description: "The list of category objects to be created",
+            "The local resources to monitor. A local resource, in a bi-directional flow of a workload, is the host where the agent is installed. For example, if a workload consists of an interaction between a web service and a backend database (for example, Amazon Relational Database Service (RDS)), the EC2 instance hosting the web service, which also runs the agent, is the local resource",
           args: {
             name: "list",
           },
         },
         {
-          name: "--cli-input-json",
+          name: "--remote-resources",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "batch-delete-category",
-      description:
-        "Deletes Categories for the Amazon Q Business application environment instance. Web experience users use Categories to tag and filter library items. For more information, see Custom labels for Amazon Q Apps",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--categories",
-          description: "The list of IDs of the categories to be deleted",
+            "The remote resources to monitor. A remote resource is the other endpoint in the bi-directional flow of a workload, with a local resource. For example, Amazon Relational Database Service (RDS) can be a remote resource",
           args: {
             name: "list",
           },
         },
         {
-          name: "--cli-input-json",
+          name: "--scope-arn",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+            "The Amazon Resource Name (ARN) of the scope for the monitor",
           args: {
             name: "string",
           },
         },
         {
-          name: "--generate-cli-skeleton",
+          name: "--client-token",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+            "A unique, case-sensitive string of up to 64 ASCII characters that you specify to make an idempotent API request. Don't reuse the same client token for other API requests",
           args: {
             name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "batch-update-category",
-      description:
-        "Updates Categories for the Amazon Q Business application environment instance. Web experience users use Categories to tag and filter library items. For more information, see Custom labels for Amazon Q Apps",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--categories",
-          description:
-            "The list of categories to be updated with their new values",
-          args: {
-            name: "list",
-          },
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "create-library-item",
-      description:
-        "Creates a new library item for an Amazon Q App, allowing it to be discovered and used by other allowed users",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--app-id",
-          description:
-            "The unique identifier of the Amazon Q App to publish to the library",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--app-version",
-          description:
-            "The version of the Amazon Q App to publish to the library",
-          args: {
-            name: "integer",
-          },
-        },
-        {
-          name: "--categories",
-          description:
-            "The categories to associate with the library item for easier discovery",
-          args: {
-            name: "list",
-          },
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "create-presigned-url",
-      description:
-        "Creates a presigned URL for an S3 POST operation to upload a file. You can use this URL to set a default file for a FileUploadCard in a Q App definition or to provide a file for a single Q App run. The scope parameter determines how the file will be used, either at the app definition level or the app session level",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--card-id",
-          description:
-            "The unique identifier of the card the file is associated with",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--app-id",
-          description:
-            "The unique identifier of the Q App the file is associated with",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--file-contents-sha256",
-          description:
-            "The Base64-encoded SHA-256 digest of the contents of the file to be uploaded",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--file-name",
-          description: "The name of the file to be uploaded",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--scope",
-          description:
-            "Whether the file is associated with a Q App definition or a specific Q App session",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--session-id",
-          description:
-            "The unique identifier of the Q App session the file is associated with, if applicable",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "create-q-app",
-      description:
-        "Creates a new Amazon Q App based on the provided definition. The Q App definition specifies the cards and flow of the Q App. This operation also calculates the dependencies between the cards by inspecting the references in the prompts",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--title",
-          description: "The title of the new Q App",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--description",
-          description: "The description of the new Q App",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--app-definition",
-          description:
-            "The definition of the new Q App, specifying the cards and flow",
-          args: {
-            name: "structure",
           },
         },
         {
           name: "--tags",
-          description: "Optional tags to associate with the new Q App",
+          description:
+            "The tags for a monitor. You can add a maximum of 200 tags",
           args: {
             name: "map",
           },
@@ -397,21 +75,60 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "delete-library-item",
+      name: "create-scope",
       description:
-        "Deletes a library item for an Amazon Q App, removing it from the library so it can no longer be discovered or used by other users",
+        "Create a scope of resources that you want to be available for Network Flow Monitor to generate metrics for, when you have active agents on those resources sending metrics reports to the Network Flow Monitor backend. This call returns a scope ID to identify the scope. When you create a scope, you enable permissions for Network Flow Monitor. The scope is set to the resources for the Amazon Web Services that enables the feature",
       options: [
         {
-          name: "--instance-id",
+          name: "--targets",
           description:
-            "The unique identifier of the Amazon Q Business application environment instance",
+            "The targets to define the scope to be monitored. Currently, a target is an Amazon Web Services account",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique, case-sensitive string of up to 64 ASCII characters that you specify to make an idempotent API request. Don't reuse the same client token for other API requests",
           args: {
             name: "string",
           },
         },
         {
-          name: "--library-item-id",
-          description: "The unique identifier of the library item to delete",
+          name: "--tags",
+          description:
+            "The tags for a scope. You can add a maximum of 200 tags",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-monitor",
+      description: "Deletes a monitor in Network Flow Monitor",
+      options: [
+        {
+          name: "--monitor-name",
+          description: "The name of the monitor to delete",
           args: {
             name: "string",
           },
@@ -436,21 +153,13 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "delete-q-app",
-      description:
-        "Deletes an Amazon Q App owned by the user. If the Q App was previously published to the library, it is also removed from the library",
+      name: "delete-scope",
+      description: "Deletes a scope that has been defined",
       options: [
         {
-          name: "--instance-id",
+          name: "--scope-id",
           description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--app-id",
-          description: "The unique identifier of the Q App to delete",
+            "The identifier for the scope that includes the resources you want to get data results for. A scope ID is an internally-generated identifier that includes all the resources for a specific root account",
           args: {
             name: "string",
           },
@@ -475,22 +184,13 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "describe-q-app-permissions",
+      name: "get-monitor",
       description:
-        "Describes read permissions for a Amazon Q App in Amazon Q Business application environment instance",
+        "Gets information about a monitor in Network Flow Monitor based on a monitor name. The information returned includes the Amazon Resource Name (ARN), create time, modified time, resources included in the monitor, and status information",
       options: [
         {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--app-id",
-          description:
-            "The unique identifier of the Amazon Q App for which to retrieve permissions",
+          name: "--monitor-name",
+          description: "The name of the monitor",
           args: {
             name: "string",
           },
@@ -515,436 +215,420 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "disassociate-library-item-review",
+      name: "get-query-results-monitor-top-contributors",
       description:
-        "Removes a rating or review previously submitted by the user for a library item",
+        "Return the data for a query with the Network Flow Monitor query interface. You specify the query that you want to return results for by providing a query ID and a monitor name. This query returns the top contributors for a specific monitor. Create a query ID for this call by calling the corresponding API call to start the query, StartQueryMonitorTopContributors. Use the scope ID that was returned for your account by CreateScope. Top contributors in Network Flow Monitor are network flows with the highest values for a specific metric type, related to a scope (for workload insights) or a monitor",
       options: [
         {
-          name: "--instance-id",
+          name: "--monitor-name",
+          description: "The name of the monitor",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--query-id",
           description:
-            "The unique identifier of the Amazon Q Business application environment instance",
+            "The identifier for the query. A query ID is an internally-generated identifier for a specific query returned from an API call to start a query",
           args: {
             name: "string",
-          },
-        },
-        {
-          name: "--library-item-id",
-          description:
-            "The unique identifier of the library item to remove the review from",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "disassociate-q-app-from-user",
-      description:
-        "Disassociates a Q App from a user removing the user's access to run the Q App",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--app-id",
-          description:
-            "The unique identifier of the Q App to disassociate from the user",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "export-q-app-session-data",
-      description:
-        "Exports the collected data of a Q App data collection session",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--session-id",
-          description:
-            "The unique identifier of the Q App data collection session",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "get-library-item",
-      description:
-        "Retrieves details about a library item for an Amazon Q App, including its metadata, categories, ratings, and usage statistics",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--library-item-id",
-          description: "The unique identifier of the library item to retrieve",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--app-id",
-          description:
-            "The unique identifier of the Amazon Q App associated with the library item",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "get-q-app",
-      description:
-        "Retrieves the full details of an Q App, including its definition specifying the cards and flow",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--app-id",
-          description: "The unique identifier of the Q App to retrieve",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--app-version",
-          description: "The version of the Q App",
-          args: {
-            name: "integer",
-          },
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "get-q-app-session",
-      description:
-        "Retrieves the current state and results for an active session of an Amazon Q App",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--session-id",
-          description: "The unique identifier of the Q App session to retrieve",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "get-q-app-session-metadata",
-      description: "Retrieves the current configuration of a Q App session",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--session-id",
-          description: "The unique identifier of the Q App session",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "import-document",
-      description:
-        "Uploads a file that can then be used either as a default in a FileUploadCard from Q App definition or as a file that is used inside a single Q App run. The purpose of the document is determined by a scope parameter that indicates whether it is at the app definition level or at the app session level",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--card-id",
-          description:
-            "The unique identifier of the card the file is associated with",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--app-id",
-          description:
-            "The unique identifier of the Q App the file is associated with",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--file-contents-base64",
-          description: "The base64-encoded contents of the file to upload",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--file-name",
-          description: "The name of the file being uploaded",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--scope",
-          description:
-            "Whether the file is associated with a Q App definition or a specific Q App session",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--session-id",
-          description:
-            "The unique identifier of the Q App session the file is associated with, if applicable",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "list-categories",
-      description:
-        "Lists the categories of a Amazon Q Business application environment instance. For more information, see Custom labels for Amazon Q Apps",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "list-library-items",
-      description:
-        "Lists the library items for Amazon Q Apps that are published and available for users in your Amazon Web Services account",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--limit",
-          description:
-            "The maximum number of library items to return in the response",
-          args: {
-            name: "integer",
           },
         },
         {
           name: "--next-token",
-          description: "The token to request the next page of results",
+          description:
+            "The token for the next set of results. You receive this token from a previous call",
           args: {
             name: "string",
           },
         },
         {
-          name: "--category-id",
-          description: "Optional category to filter the library items by",
+          name: "--max-results",
+          description:
+            "The number of query results that you want to return with this call",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-query-results-workload-insights-top-contributors",
+      description:
+        "Return the data for a query with the Network Flow Monitor query interface. You specify the query that you want to return results for by providing a query ID and a monitor name. This query returns the top contributors for a specific monitor. Create a query ID for this call by calling the corresponding API call to start the query, StartQueryWorkloadInsightsTopContributors. Use the scope ID that was returned for your account by CreateScope. Top contributors in Network Flow Monitor are network flows with the highest values for a specific metric type, related to a scope (for workload insights) or a monitor",
+      options: [
+        {
+          name: "--scope-id",
+          description:
+            "The identifier for the scope that includes the resources you want to get data results for. A scope ID is an internally-generated identifier that includes all the resources for a specific root account",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--query-id",
+          description:
+            "The identifier for the query. A query ID is an internally-generated identifier for a specific query returned from an API call to start a query",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The token for the next set of results. You receive this token from a previous call",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The number of query results that you want to return with this call",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-query-results-workload-insights-top-contributors-data",
+      description:
+        "Return the data for a query with the Network Flow Monitor query interface. Specify the query that you want to return results for by providing a query ID and a scope ID. This query returns data for the top contributors for workload insights. Workload insights provide a high level view of network flow performance data collected by agents for a scope. Create a query ID for this call by calling the corresponding API call to start the query, StartQueryWorkloadInsightsTopContributorsData. Use the scope ID that was returned for your account by CreateScope. Top contributors in Network Flow Monitor are network flows with the highest values for a specific metric type, related to a scope (for workload insights) or a monitor. The top contributor network flows overall for a specific metric type, for example, the number of retransmissions",
+      options: [
+        {
+          name: "--scope-id",
+          description:
+            "The identifier for the scope that includes the resources you want to get data results for. A scope ID is an internally-generated identifier that includes all the resources for a specific root account",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--query-id",
+          description:
+            "The identifier for the query. A query ID is an internally-generated identifier for a specific query returned from an API call to start a query",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The token for the next set of results. You receive this token from a previous call",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The number of query results that you want to return with this call",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-query-status-monitor-top-contributors",
+      description:
+        "Returns the current status of a query for the Network Flow Monitor query interface, for a specified query ID and monitor. This call returns the query status for the top contributors for a monitor. When you start a query, use this call to check the status of the query to make sure that it has has SUCCEEDED before you review the results. Use the same query ID that you used for the corresponding API call to start the query, StartQueryMonitorTopContributors. When you run a query, use this call to check the status of the query to make sure that the query has SUCCEEDED before you review the results",
+      options: [
+        {
+          name: "--monitor-name",
+          description: "The name of the monitor",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--query-id",
+          description:
+            "The identifier for the query. A query ID is an internally-generated identifier for a specific query returned from an API call to start a query",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-query-status-workload-insights-top-contributors",
+      description:
+        "Return the data for a query with the Network Flow Monitor query interface. Specify the query that you want to return results for by providing a query ID and a monitor name. This query returns the top contributors for workload insights. When you start a query, use this call to check the status of the query to make sure that it has has SUCCEEDED before you review the results. Use the same query ID that you used for the corresponding API call to start the query, StartQueryWorkloadInsightsTopContributors. Top contributors in Network Flow Monitor are network flows with the highest values for a specific metric type, related to a scope (for workload insights) or a monitor",
+      options: [
+        {
+          name: "--scope-id",
+          description:
+            "The identifier for the scope that includes the resources you want to get data results for. A scope ID is an internally-generated identifier that includes all the resources for a specific root account",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--query-id",
+          description:
+            "The identifier for the query. A query ID is an internally-generated identifier for a specific query returned from an API call to start a query",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-query-status-workload-insights-top-contributors-data",
+      description:
+        "Returns the current status of a query for the Network Flow Monitor query interface, for a specified query ID and monitor. This call returns the query status for the top contributors data for workload insights. When you start a query, use this call to check the status of the query to make sure that it has has SUCCEEDED before you review the results. Use the same query ID that you used for the corresponding API call to start the query, StartQueryWorkloadInsightsTopContributorsData. Top contributors in Network Flow Monitor are network flows with the highest values for a specific metric type, related to a scope (for workload insights) or a monitor. The top contributor network flows overall for a specific metric type, for example, the number of retransmissions",
+      options: [
+        {
+          name: "--scope-id",
+          description:
+            "The identifier for the scope that includes the resources you want to get data results for. A scope ID is an internally-generated identifier that includes all the resources for a specific root account. A scope ID is returned from a CreateScope API call",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--query-id",
+          description:
+            "The identifier for the query. A query ID is an internally-generated identifier for a specific query returned from an API call to start a query",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-scope",
+      description:
+        "Gets information about a scope, including the name, status, tags, and target details. The scope in Network Flow Monitor is an account",
+      options: [
+        {
+          name: "--scope-id",
+          description:
+            "The identifier for the scope that includes the resources you want to get data results for. A scope ID is an internally-generated identifier that includes all the resources for a specific root account. A scope ID is returned from a CreateScope API call",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-monitors",
+      description:
+        "List all monitors in an account. Optionally, you can list only monitors that have a specific status, by using the STATUS parameter",
+      options: [
+        {
+          name: "--next-token",
+          description:
+            "The token for the next set of results. You receive this token from a previous call",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The number of query results that you want to return with this call",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--monitor-status",
+          description:
+            "The status of a monitor. The status can be one of the following    PENDING: The monitor is in the process of being created.    ACTIVE: The monitor is active.    INACTIVE: The monitor is inactive.    ERROR: Monitor creation failed due to an error.    DELETING: The monitor is in the process of being deleted",
           args: {
             name: "string",
           },
@@ -993,70 +677,23 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "list-q-app-session-data",
-      description:
-        "Lists the collected data of a Q App data collection session",
+      name: "list-scopes",
+      description: "List all the scopes for an account",
       options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--session-id",
-          description:
-            "The unique identifier of the Q App data collection session",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "list-q-apps",
-      description:
-        "Lists the Amazon Q Apps owned by or associated with the user either because they created it or because they used it from the library in the past. The user identity is extracted from the credentials used to invoke this operation",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--limit",
-          description: "The maximum number of Q Apps to return in the response",
-          args: {
-            name: "integer",
-          },
-        },
         {
           name: "--next-token",
-          description: "The token to request the next page of results",
+          description:
+            "The token for the next set of results. You receive this token from a previous call",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The number of query results that you want to return with this call",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -1104,12 +741,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-tags-for-resource",
-      description: "Lists the tags associated with an Amazon Q Apps resource",
+      description: "Returns all the tags for a resource",
       options: [
         {
           name: "--resource-arn",
-          description:
-            "The Amazon Resource Name (ARN) of the resource whose tags should be listed",
+          description: "The Amazon Resource Name (ARN) of the resource",
           args: {
             name: "string",
           },
@@ -1134,93 +770,125 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "predict-q-app",
+      name: "start-query-monitor-top-contributors",
       description:
-        "Generates an Amazon Q App definition based on either a conversation or a problem statement provided as input.The resulting app definition can be used to call CreateQApp. This API doesn't create Amazon Q Apps directly",
+        "Start a query to return the data with the Network Flow Monitor query interface. Specify the query that you want to return results for by providing a query ID and a monitor name. This query returns the top contributors for a specific monitor. Top contributors in Network Flow Monitor are network flows with the highest values for a specific metric type, related to a scope (for workload insights) or a monitor",
       options: [
         {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
+          name: "--monitor-name",
+          description: "The name of the monitor",
           args: {
             name: "string",
           },
         },
         {
-          name: "--options",
+          name: "--start-time",
           description:
-            "The input to generate the Q App definition from, either a conversation or problem statement",
+            "The timestamp that is the date and time beginning of the period that you want to retrieve results for with your query",
           args: {
-            name: "structure",
+            name: "timestamp",
           },
         },
         {
-          name: "--cli-input-json",
+          name: "--end-time",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+            "The timestamp that is the date and time end of the period that you want to retrieve results for with your query",
           args: {
-            name: "string",
+            name: "timestamp",
           },
         },
         {
-          name: "--generate-cli-skeleton",
+          name: "--metric-name",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "start-q-app-session",
-      description:
-        "Starts a new session for an Amazon Q App, allowing inputs to be provided and the app to be run.  Each Q App session will be condensed into a single conversation in the web experience",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
+            "The metric that you want to query top contributors for. That is, you can specify this metric to return the top contributor network flows, for this type of metric, for a monitor and (optionally) within a specific category, such as network flows between Availability Zones",
           args: {
             name: "string",
           },
         },
         {
-          name: "--app-id",
+          name: "--destination-category",
           description:
-            "The unique identifier of the Q App to start a session for",
+            "The category that you want to query top contributors for, for a specific monitor. Destination categories can be one of the following:     INTRA_AZ: Top contributor network flows within a single Availability Zone    INTER_AZ: Top contributor network flows between Availability Zones    INTER_VPC: Top contributor network flows between VPCs    AWS_SERVICES: Top contributor network flows to or from Amazon Web Services services    UNCLASSIFIED: Top contributor network flows that do not have a bucket classification",
           args: {
             name: "string",
           },
         },
         {
-          name: "--app-version",
-          description: "The version of the Q App to use for the session",
+          name: "--limit",
+          description: "The maximum number of top contributors to return",
           args: {
             name: "integer",
           },
         },
         {
-          name: "--initial-values",
+          name: "--cli-input-json",
           description:
-            "Optional initial input values to provide for the Q App session",
-          args: {
-            name: "list",
-          },
-        },
-        {
-          name: "--session-id",
-          description: "The unique identifier of the a Q App session",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
         },
         {
-          name: "--tags",
-          description: "Optional tags to associate with the new Q App session",
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
-            name: "map",
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "start-query-workload-insights-top-contributors",
+      description:
+        "Start a query to return the data with the Network Flow Monitor query interface. Specify the query that you want to start by providing a query ID and a monitor name. This query returns the top contributors for a specific monitor. Top contributors in Network Flow Monitor are network flows with the highest values for a specific metric type, related to a scope (for workload insights) or a monitor",
+      options: [
+        {
+          name: "--scope-id",
+          description:
+            "The identifier for the scope that includes the resources you want to get data results for. A scope ID is an internally-generated identifier that includes all the resources for a specific root account. A scope ID is returned from a CreateScope API call",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--start-time",
+          description:
+            "The timestamp that is the date and time beginning of the period that you want to retrieve results for with your query",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--end-time",
+          description:
+            "The timestamp that is the date and time end of the period that you want to retrieve results for with your query",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--metric-name",
+          description:
+            "The metric that you want to query top contributors for. That is, you can specify this metric to return the top contributor network flows, for this type of metric, for a monitor and (optionally) within a specific category, such as network flows between Availability Zones",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--destination-category",
+          description:
+            "The destination category for a top contributors row. Destination categories can be one of the following:     INTRA_AZ: Top contributor network flows within a single Availability Zone    INTER_AZ: Top contributor network flows between Availability Zones    INTER_VPC: Top contributor network flows between VPCs    AWS_SERVICES: Top contributor network flows to or from Amazon Web Services services    UNCLASSIFIED: Top contributor network flows that do not have a bucket classification",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--limit",
+          description: "The maximum number of top contributors to return",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -1243,21 +911,165 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "stop-q-app-session",
+      name: "start-query-workload-insights-top-contributors-data",
       description:
-        "Stops an active session for an Amazon Q App.This deletes all data related to the session and makes it invalid for future uses. The results of the session will be persisted as part of the conversation",
+        "Return the data for a query with the Network Flow Monitor query interface. Specify the query that you want to return results for by providing a query ID and a scope ID. This query returns data for the top contributors for workload insights. Workload insights provide a high level view of network flow performance data collected by agents for a scope. A query ID is returned from an API call to start a query of a specific type; for example  Top contributors in Network Flow Monitor are network flows with the highest values for a specific metric type, related to a scope (for workload insights) or a monitor. The top contributor network flows overall for a specific metric type, for example, the number of retransmissions",
       options: [
         {
-          name: "--instance-id",
+          name: "--scope-id",
           description:
-            "The unique identifier of the Amazon Q Business application environment instance",
+            "The identifier for the scope that includes the resources you want to get data results for. A scope ID is an internally-generated identifier that includes all the resources for a specific root account",
           args: {
             name: "string",
           },
         },
         {
-          name: "--session-id",
-          description: "The unique identifier of the Q App session to stop",
+          name: "--start-time",
+          description:
+            "The timestamp that is the date and time beginning of the period that you want to retrieve results for with your query",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--end-time",
+          description:
+            "The timestamp that is the date and time end of the period that you want to retrieve results for with your query",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--metric-name",
+          description:
+            "The metric that you want to query top contributors for. That is, you can specify this metric to return the top contributor network flows, for this type of metric, for a monitor and (optionally) within a specific category, such as network flows between Availability Zones",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--destination-category",
+          description:
+            "The destination category for a top contributors. Destination categories can be one of the following:     INTRA_AZ: Top contributor network flows within a single Availability Zone    INTER_AZ: Top contributor network flows between Availability Zones    INTER_VPC: Top contributor network flows between VPCs    AWS_SERVICES: Top contributor network flows to or from Amazon Web Services services    UNCLASSIFIED: Top contributor network flows that do not have a bucket classification",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "stop-query-monitor-top-contributors",
+      description:
+        "Stop a query with the Network Flow Monitor query interface. Specify the query that you want to stop by providing a query ID and a monitor name. This query returns the top contributors for a specific monitor. Top contributors in Network Flow Monitor are network flows with the highest values for a specific metric type, related to a scope (for workload insights) or a monitor",
+      options: [
+        {
+          name: "--monitor-name",
+          description: "The name of the monitor",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--query-id",
+          description:
+            "The identifier for the query. A query ID is an internally-generated identifier for a specific query returned from an API call to start a query",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "stop-query-workload-insights-top-contributors",
+      description:
+        "Stop a query with the Network Flow Monitor query interface. Specify the query that you want to stop by providing a query ID and a monitor name. This query returns the top contributors for a specific monitor. Top contributors in Network Flow Monitor are network flows with the highest values for a specific metric type, related to a scope (for workload insights) or a monitor",
+      options: [
+        {
+          name: "--scope-id",
+          description:
+            "The identifier for the scope that includes the resources you want to get data results for. A scope ID is an internally-generated identifier that includes all the resources for a specific root account",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--query-id",
+          description:
+            "The identifier for the query. A query ID is an internally-generated identifier for a specific query returned from an API call to start a query",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "stop-query-workload-insights-top-contributors-data",
+      description:
+        "Return the data for a query with the Network Flow Monitor query interface. Specify the query that you want to return results for by providing a query ID and a scope ID. This query returns data for the top contributors for workload insights. Workload insights provide a high level view of network flow performance data collected by agents for a scope. Top contributors in Network Flow Monitor are network flows with the highest values for a specific metric type, related to a scope (for workload insights) or a monitor. The top contributor network flows overall for a specific metric type, for example, the number of retransmissions",
+      options: [
+        {
+          name: "--scope-id",
+          description:
+            "The identifier for the scope that includes the resources you want to get data results for. A scope ID is an internally-generated identifier that includes all the resources for a specific root account",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--query-id",
+          description:
+            "The identifier for the query. A query ID is an internally-generated identifier for a specific query returned from an API call to start a query",
           args: {
             name: "string",
           },
@@ -1283,18 +1095,18 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "tag-resource",
-      description: "Associates tags with an Amazon Q Apps resource",
+      description: "Adds a tag to a resource",
       options: [
         {
           name: "--resource-arn",
-          description: "The Amazon Resource Name (ARN) of the resource to tag",
+          description: "The Amazon Resource Name (ARN) of the resource",
           args: {
             name: "string",
           },
         },
         {
           name: "--tags",
-          description: "The tags to associate with the resource",
+          description: "The tags for a resource",
           args: {
             name: "map",
           },
@@ -1320,19 +1132,18 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "untag-resource",
-      description: "Disassociates tags from an Amazon Q Apps resource",
+      description: "Removes a tag from a resource",
       options: [
         {
           name: "--resource-arn",
-          description:
-            "The Amazon Resource Name (ARN) of the resource to disassociate the tag from",
+          description: "The Amazon Resource Name (ARN) of the resource",
           args: {
             name: "string",
           },
         },
         {
           name: "--tag-keys",
-          description: "The keys of the tags to disassociate from the resource",
+          description: "Keys that you specified when you tagged a resource",
           args: {
             name: "list",
           },
@@ -1357,199 +1168,55 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "update-library-item",
-      description: "Updates the library item for an Amazon Q App",
+      name: "update-monitor",
+      description:
+        "Update a monitor to add or remove local or remote resources",
       options: [
         {
-          name: "--instance-id",
+          name: "--monitor-name",
+          description: "The name of the monitor",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--local-resources-to-add",
           description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--library-item-id",
-          description: "The unique identifier of the library item to update",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--status",
-          description:
-            'The new status to set for the library item, such as "Published" or "Hidden"',
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--categories",
-          description: "The new categories to associate with the library item",
+            "The local resources to add, as an array of resources with identifiers and types",
           args: {
             name: "list",
           },
         },
         {
-          name: "--cli-input-json",
+          name: "--local-resources-to-remove",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "update-library-item-metadata",
-      description:
-        "Updates the verification status of a library item for an Amazon Q App",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--library-item-id",
-          description: "The unique identifier of the updated library item",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--is-verified",
-          description: "The verification status of the library item",
-        },
-        {
-          name: "--no-is-verified",
-          description: "The verification status of the library item",
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "update-q-app",
-      description:
-        "Updates an existing Amazon Q App, allowing modifications to its title, description, and definition",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--app-id",
-          description: "The unique identifier of the Q App to update",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--title",
-          description: "The new title for the Q App",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--description",
-          description: "The new description for the Q App",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--app-definition",
-          description:
-            "The new definition specifying the cards and flow for the Q App",
-          args: {
-            name: "structure",
-          },
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "update-q-app-permissions",
-      description:
-        "Updates read permissions for a Amazon Q App in Amazon Q Business application environment instance",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--app-id",
-          description:
-            "The unique identifier of the Amazon Q App for which permissions are being updated",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--grant-permissions",
-          description: "The list of permissions to grant for the Amazon Q App",
+            "The local resources to remove, as an array of resources with identifiers and types",
           args: {
             name: "list",
           },
         },
         {
-          name: "--revoke-permissions",
-          description: "The list of permissions to revoke for the Amazon Q App",
+          name: "--remote-resources-to-add",
+          description:
+            "The remove resources to add, as an array of resources with identifiers and types",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--remote-resources-to-remove",
+          description:
+            "The remove resources to remove, as an array of resources with identifiers and types",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique, case-sensitive string of up to 64 ASCII characters that you specify to make an idempotent API request. Don't reuse the same client token for other API requests",
+          args: {
+            name: "string",
           },
         },
         {
@@ -1572,87 +1239,30 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "update-q-app-session",
+      name: "update-scope",
       description:
-        "Updates the session for a given Q App sessionId. This is only valid when at least one card of the session is in the WAITING state. Data for each WAITING card can be provided as input. If inputs are not provided, the call will be accepted but session will not move forward. Inputs for cards that are not in the WAITING status will be ignored",
+        "Update a scope to add or remove resources that you want to be available for Network Flow Monitor to generate metrics for, when you have active agents on those resources sending metrics reports to the Network Flow Monitor backend",
       options: [
         {
-          name: "--instance-id",
+          name: "--scope-id",
           description:
-            "The unique identifier of the Amazon Q Business application environment instance",
+            "The identifier for the scope that includes the resources you want to get data results for. A scope ID is an internally-generated identifier that includes all the resources for a specific root account",
           args: {
             name: "string",
           },
         },
         {
-          name: "--session-id",
-          description:
-            "The unique identifier of the Q App session to provide input for",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--values",
-          description:
-            "The input values to provide for the current state of the Q App session",
+          name: "--resources-to-add",
+          description: "A list of resources to add to a scope",
           args: {
             name: "list",
           },
         },
         {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          name: "--resources-to-delete",
+          description: "A list of resources to delete from a scope",
           args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "update-q-app-session-metadata",
-      description:
-        "Updates the configuration metadata of a session for a given Q App sessionId",
-      options: [
-        {
-          name: "--instance-id",
-          description:
-            "The unique identifier of the Amazon Q Business application environment instance",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--session-id",
-          description:
-            "The unique identifier of the Q App session to update configuration for",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--session-name",
-          description: "The new name for the Q App session",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--sharing-configuration",
-          description:
-            "The new sharing configuration for the Q App data collection session",
-          args: {
-            name: "structure",
+            name: "list",
           },
         },
         {
@@ -1676,4 +1286,5 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
+
 export default completionSpec;

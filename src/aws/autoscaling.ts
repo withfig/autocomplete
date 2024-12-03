@@ -141,6 +141,16 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--skip-zonal-shift-validation",
+          description:
+            "If you enable zonal shift with cross-zone disabled load balancers, capacity could become imbalanced across Availability Zones. To skip the validation, specify true. For more information, see Auto Scaling group zonal shift in the Amazon EC2 Auto Scaling User Guide",
+        },
+        {
+          name: "--no-skip-zonal-shift-validation",
+          description:
+            "If you enable zonal shift with cross-zone disabled load balancers, capacity could become imbalanced across Availability Zones. To skip the validation, specify true. For more information, see Auto Scaling group zonal shift in the Amazon EC2 Auto Scaling User Guide",
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -564,6 +574,31 @@ const completionSpec: Fig.Spec = {
           name: "--availability-zone-distribution",
           description:
             "The instance capacity distribution across Availability Zones",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--availability-zone-impairment-policy",
+          description: "The policy for Availability Zone impairment",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--skip-zonal-shift-validation",
+          description:
+            "If you enable zonal shift with cross-zone disabled load balancers, capacity could become imbalanced across Availability Zones. To skip the validation, specify true. For more information, see Auto Scaling group zonal shift in the Amazon EC2 Auto Scaling User Guide",
+        },
+        {
+          name: "--no-skip-zonal-shift-validation",
+          description:
+            "If you enable zonal shift with cross-zone disabled load balancers, capacity could become imbalanced across Availability Zones. To skip the validation, specify true. For more information, see Auto Scaling group zonal shift in the Amazon EC2 Auto Scaling User Guide",
+        },
+        {
+          name: "--capacity-reservation-specification",
+          description:
+            "The capacity reservation specification for the Auto Scaling group",
           args: {
             name: "structure",
           },
@@ -3734,6 +3769,31 @@ const completionSpec: Fig.Spec = {
           name: "--availability-zone-distribution",
           description:
             "The instance capacity distribution across Availability Zones",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--availability-zone-impairment-policy",
+          description: "The policy for Availability Zone impairment",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--skip-zonal-shift-validation",
+          description:
+            "If you enable zonal shift with cross-zone disabled load balancers, capacity could become imbalanced across Availability Zones. To skip the validation, specify true. For more information, see Auto Scaling group zonal shift in the Amazon EC2 Auto Scaling User Guide",
+        },
+        {
+          name: "--no-skip-zonal-shift-validation",
+          description:
+            "If you enable zonal shift with cross-zone disabled load balancers, capacity could become imbalanced across Availability Zones. To skip the validation, specify true. For more information, see Auto Scaling group zonal shift in the Amazon EC2 Auto Scaling User Guide",
+        },
+        {
+          name: "--capacity-reservation-specification",
+          description:
+            "The capacity reservation specification for the Auto Scaling group",
           args: {
             name: "structure",
           },

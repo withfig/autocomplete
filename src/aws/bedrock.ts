@@ -6,11 +6,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "batch-delete-evaluation-job",
       description:
-        "Creates a batch deletion job. A model evaluation job can only be deleted if it has following status FAILED, COMPLETED, and STOPPED. You can request up to 25 model evaluation jobs be deleted in a single request",
+        "Deletes a batch of evaluation jobs. An evaluation job can only be deleted if it has following status FAILED, COMPLETED, and STOPPED. You can request up to 25 model evaluation jobs be deleted in a single request",
       options: [
         {
           name: "--job-identifiers",
-          description: "An array of model evaluation job ARNs to be deleted",
+          description:
+            "A list of one or more evaluation job Amazon Resource Names (ARNs) you want to delete",
           args: {
             name: "list",
           },
@@ -36,20 +37,19 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "create-evaluation-job",
-      description:
-        "API operation for creating and managing Amazon Bedrock automatic model evaluation jobs and model evaluation jobs that use human workers. To learn more about the requirements for creating a model evaluation job see, Model evaluation",
+      description: "Creates an evaluation job",
       options: [
         {
           name: "--job-name",
           description:
-            "The name of the model evaluation job. Model evaluation job names must unique with your AWS account, and your account's AWS region",
+            "A name for the evaluation job. Names must unique with your Amazon Web Services account, and your account's Amazon Web Services region",
           args: {
             name: "string",
           },
         },
         {
           name: "--job-description",
-          description: "A description of the model evaluation job",
+          description: "A description of the evaluation job",
           args: {
             name: "string",
           },
@@ -65,7 +65,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--role-arn",
           description:
-            "The Amazon Resource Name (ARN) of an IAM service role that Amazon Bedrock can assume to perform tasks on your behalf. The service role must have Amazon Bedrock as the service principal, and provide access to any Amazon S3 buckets specified in the EvaluationConfig object. To pass this role to Amazon Bedrock, the caller of this API must have the iam:PassRole permission. To learn more about the required permissions, see Required permissions",
+            "The Amazon Resource Name (ARN) of an IAM service role that Amazon Bedrock can assume to perform tasks on your behalf. To learn more about the required permissions, see Required permissions for model evaluations",
           args: {
             name: "string",
           },
@@ -73,7 +73,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--customer-encryption-key-id",
           description:
-            "Specify your customer managed key ARN that will be used to encrypt your model evaluation job",
+            "Specify your customer managed encryption key Amazon Resource Name (ARN) that will be used to encrypt your evaluation job",
           args: {
             name: "string",
           },
@@ -86,9 +86,17 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--application-type",
+          description:
+            "Specifies whether the evaluation job is for evaluating a model or evaluating a knowledge base (retrieval and response generation)",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--evaluation-config",
           description:
-            "Specifies whether the model evaluation job is automatic or uses human worker",
+            "Contains the configuration details of either an automated or human-based evaluation job",
           args: {
             name: "structure",
           },
@@ -96,7 +104,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--inference-config",
           description:
-            "Specify the models you want to use in your model evaluation job. Automatic model evaluation jobs support a single model or inference profile, and model evaluation job that use human workers support two models or inference profiles",
+            "Contains the configuration details of the inference model for the evaluation job. For model evaluation jobs, automated jobs support a single model or inference profile, and jobs that use human workers support two models or inference profiles",
           args: {
             name: "structure",
           },
@@ -104,7 +112,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--output-data-config",
           description:
-            "An object that defines where the results of model evaluation job will be saved in Amazon S3",
+            "Contains the configuration details of the Amazon S3 bucket for storing the results of the evaluation job",
           args: {
             name: "structure",
           },
@@ -1017,12 +1025,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-evaluation-job",
       description:
-        "Retrieves the properties associated with a model evaluation job, including the status of the job. For more information, see Model evaluation",
+        "Gets information about an evaluation job, such as the status of the job",
       options: [
         {
           name: "--job-identifier",
           description:
-            "The Amazon Resource Name (ARN) of the model evaluation job",
+            "The Amazon Resource Name (ARN) of the evaluation job you want get information on",
           args: {
             name: "string",
           },
@@ -1489,12 +1497,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-evaluation-jobs",
-      description: "Lists model evaluation jobs",
+      description: "Lists all existing evaluation jobs",
       options: [
         {
           name: "--creation-time-after",
           description:
-            "A filter that includes model evaluation jobs created after the time specified",
+            "A filter to only list evaluation jobs created after a specified time",
           args: {
             name: "timestamp",
           },
@@ -1502,21 +1510,31 @@ const completionSpec: Fig.Spec = {
         {
           name: "--creation-time-before",
           description:
-            "A filter that includes model evaluation jobs created prior to the time specified",
+            "A filter to only list evaluation jobs created before a specified time",
           args: {
             name: "timestamp",
           },
         },
         {
           name: "--status-equals",
-          description: "Only return jobs where the status condition is met",
+          description:
+            "A filter to only list evaluation jobs that are of a certain status",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--application-type-equals",
+          description:
+            "A filter to only list evaluation jobs that are either model evaluations or knowledge base evaluations",
           args: {
             name: "string",
           },
         },
         {
           name: "--name-contains",
-          description: "Query parameter string for model evaluation job names",
+          description:
+            "A filter to only list evaluation jobs that contain a specified string in the job name",
           args: {
             name: "string",
           },
@@ -1539,14 +1557,15 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sort-by",
           description:
-            "Allows you to sort model evaluation jobs by when they were created",
+            "Specifies a creation time to sort the list of evaluation jobs by when they were created",
           args: {
             name: "string",
           },
         },
         {
           name: "--sort-order",
-          description: "How you want the order of jobs sorted",
+          description:
+            "Specifies whether to sort the list of evaluation jobs by either ascending or descending order",
           args: {
             name: "string",
           },
@@ -2539,11 +2558,13 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "stop-evaluation-job",
-      description: "Stops an in progress model evaluation job",
+      description:
+        "Stops an evaluation job that is current being created or running",
       options: [
         {
           name: "--job-identifier",
-          description: "The ARN of the model evaluation job you want to stop",
+          description:
+            "The Amazon Resource Name (ARN) of the evaluation job you want to stop",
           args: {
             name: "string",
           },

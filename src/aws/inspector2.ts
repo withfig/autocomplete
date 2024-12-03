@@ -6,7 +6,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "associate-member",
       description:
-        "Associates an Amazon Web Services account with an Amazon Inspector delegated administrator. An HTTP 200 response indicates the association was successfully started, but doesn\u2019t indicate whether it was completed. You can check if the association completed by using ListMembers for multiple accounts or GetMembers for a single account",
+        "Associates an Amazon Web Services account with an Amazon Inspector delegated administrator. An HTTP 200 response indicates the association was started but doesn\u2019t indicate whether it completed. You can check if the association completed using ListMembers for multiple accounts or GetMembers for a single account. An HTTP 402 response indicates the association failed because the organization size exceeded its limit. For information on limits, see Amazon Inspector quotas",
       options: [
         {
           name: "--account-id",

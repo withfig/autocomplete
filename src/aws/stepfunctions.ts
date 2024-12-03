@@ -1555,6 +1555,14 @@ const completionSpec: Fig.Spec = {
             "Specifies whether or not to include secret information in the test result. For HTTP Tasks, a secret includes the data that an EventBridge connection adds to modify the HTTP request headers, query parameters, and body. Step Functions doesn't omit any information included in the state definition or the HTTP response. If you set revealSecrets to true, you must make sure that the IAM user that calls the TestState API has permission for the states:RevealSecrets action. For an example of IAM policy that sets the states:RevealSecrets permission, see IAM permissions to test a state. Without this permission, Step Functions throws an access denied error. By default, revealSecrets is set to false",
         },
         {
+          name: "--variables",
+          description:
+            "JSON object literal that sets variables used in the state under test. Object keys are the variable names and values are the variable values",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -1803,7 +1811,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "validate-state-machine-definition",
       description:
-        "Validates the syntax of a state machine definition. You can validate that a state machine definition is correct without creating a state machine resource. Step Functions will implicitly perform the same syntax check when you invoke CreateStateMachine and UpdateStateMachine. State machine definitions are specified using a JSON-based, structured language. For more information on Amazon States Language see Amazon States Language (ASL).  Suggested uses for ValidateStateMachineDefinition:   Integrate automated checks into your code review or Continuous Integration (CI) process to validate state machine definitions before starting deployments.   Run the validation from a Git pre-commit hook to check your state machine definitions before committing them to your source repository.    Errors found in the state machine definition will be returned in the response as a list of diagnostic elements, rather than raise an exception",
+        "Validates the syntax of a state machine definition specified in Amazon States Language (ASL), a JSON-based, structured language. You can validate that a state machine definition is correct without creating a state machine resource. Suggested uses for ValidateStateMachineDefinition:   Integrate automated checks into your code review or Continuous Integration (CI) process to check state machine definitions before starting deployments.   Run validation from a Git pre-commit hook to verify the definition before committing to your source repository.   Validation will look for problems in your state machine definition and return a result and a list of diagnostic elements. The result value will be OK when your workflow definition can be successfully created or updated. Note the result can be OK even when diagnostic warnings are present in the response. The result value will be FAIL when the workflow definition contains errors that would prevent you from creating or updating your state machine.  The list of ValidateStateMachineDefinitionDiagnostic data elements can contain zero or more WARNING and/or ERROR elements.  The ValidateStateMachineDefinition API might add new diagnostics in the future, adjust diagnostic codes, or change the message wording. Your automated processes should only rely on the value of the result field value (OK, FAIL). Do not rely on the exact order, count, or wording of diagnostic messages",
       options: [
         {
           name: "--definition",
