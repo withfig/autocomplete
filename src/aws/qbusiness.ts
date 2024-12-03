@@ -204,7 +204,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--chat-mode",
           description:
-            "The chat modes available to an Amazon Q Business end user.    RETRIEVAL_MODE - The default chat mode for an Amazon Q Business application. When this mode is enabled, Amazon Q Business generates responses only from data sources connected to an Amazon Q Business application.    CREATOR_MODE - By selecting this mode, users can choose to generate responses only from the LLM knowledge, without consulting connected data sources, for a chat request.    PLUGIN_MODE - By selecting this mode, users can choose to use plugins in chat.   For more information, see Admin controls and guardrails, Plugins, and Conversation settings",
+            'The chatMode parameter determines the chat modes available to Amazon Q Business users:    RETRIEVAL_MODE - If you choose this mode, Amazon Q generates responses solely from the data sources connected and indexed by the application. If an answer is not found in the data sources or there are no data sources available, Amazon Q will respond with a "No Answer Found" message, unless LLM knowledge has been enabled. In that case, Amazon Q will generate a response from the LLM knowledge    CREATOR_MODE - By selecting this mode, you can choose to generate responses only from the LLM knowledge. You can also attach files and have Amazon Q generate a response based on the data in those files. If the attached files do not contain an answer for the query, Amazon Q will automatically fall back to generating a response from the LLM knowledge.    PLUGIN_MODE - By selecting this mode, users can choose to use plugins in chat to get their responses.    If none of the modes are selected, Amazon Q will only respond using the information from the attached files.  For more information, see Admin controls and guardrails, Plugins, and Response sources',
           args: {
             name: "string",
           },
@@ -246,7 +246,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-application",
       description:
-        "Creates an Amazon Q Business application.  There are new tiers for Amazon Q Business. Not all features in Amazon Q Business Pro are also available in Amazon Q Business Lite. For information on what's included in Amazon Q Business Lite and what's included in Amazon Q Business Pro, see Amazon Q Business tiers. You must use the Amazon Q Business console to assign subscription tiers to users.   A Amazon Q Apps service linked role will be created if it's absent in the Amazon Web Services account when the QAppsConfiguration is enabled in the request. For more information, see  Using service-linked roles for Q Apps",
+        "Creates an Amazon Q Business application.  There are new tiers for Amazon Q Business. Not all features in Amazon Q Business Pro are also available in Amazon Q Business Lite. For information on what's included in Amazon Q Business Lite and what's included in Amazon Q Business Pro, see Amazon Q Business tiers. You must use the Amazon Q Business console to assign subscription tiers to users.  An Amazon Q Apps service linked role will be created if it's absent in the Amazon Web Services account when QAppsConfiguration is enabled in the request. For more information, see  Using service-linked roles for Q Apps. When you create an application, Amazon Q Business may securely transmit data for processing from your selected Amazon Web Services region, but within your geography. For more information, see Cross region inference in Amazon Q Business",
       options: [
         {
           name: "--display-name",
@@ -460,6 +460,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--media-extraction-configuration",
+          description:
+            "The configuration for extracting information from media in documents during ingestion",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -499,16 +507,16 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--type",
-          description:
-            "The index type that's suitable for your needs. For more information on what's included in each type of index, see Amazon Q Business tiers",
+          name: "--description",
+          description: "A description for the Amazon Q Business index",
           args: {
             name: "string",
           },
         },
         {
-          name: "--description",
-          description: "A description for the Amazon Q Business index",
+          name: "--type",
+          description:
+            "The index type that's suitable for your needs. For more information on what's included in each type of index, see Amazon Q Business tiers",
           args: {
             name: "string",
           },
@@ -847,6 +855,14 @@ const completionSpec: Fig.Spec = {
           name: "--identity-provider-configuration",
           description:
             "Information about the identity provider (IdP) used to authenticate end users of an Amazon Q Business web experience",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--browser-extension-configuration",
+          description:
+            "The browser extension configuration for an Amazon Q Business web experience.   For Amazon Q Business application using external OIDC-compliant identity providers (IdPs). The IdP administrator must add the browser extension sign-in redirect URLs to the IdP application. For more information, see Configure external OIDC identity provider for your browser extensions",
           args: {
             name: "structure",
           },
@@ -1516,6 +1532,60 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-media",
+      description:
+        "Returns the image bytes corresponding to a media object. If you have implemented your own application with the Chat and ChatSync APIs, and have enabled content extraction from visual data in Amazon Q Business, you use the GetMedia API operation to download the images so you can show them in your UI with responses. For more information, see Extracting semantic meaning from images and visuals",
+      options: [
+        {
+          name: "--application-id",
+          description:
+            "The identifier of the Amazon Q Business which contains the media object",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--conversation-id",
+          description: "The identifier of the Amazon Q Business conversation",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--message-id",
+          description: "The identifier of the Amazon Q Business message",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--media-id",
+          description:
+            "The identifier of the media object. You can find this in the sourceAttributions returned by the Chat, ChatSync, and ListMessages API responses",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-plugin",
       description:
         "Gets information about an existing Amazon Q Business plugin",
@@ -1673,7 +1743,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-applications",
-      description: "Lists Amazon Q Business applications",
+      description:
+        "Lists Amazon Q Business applications.  Amazon Q Business applications may securely transmit data for processing across Amazon Web Services Regions within your geography. For more information, see Cross region inference in Amazon Q Business",
       options: [
         {
           name: "--next-token",
@@ -1687,6 +1758,93 @@ const completionSpec: Fig.Spec = {
           name: "--max-results",
           description:
             "The maximum number of Amazon Q Business applications to return",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-attachments",
+      description:
+        "Gets a list of attachments associated with an Amazon Q Business web experience or a list of attachements associated with a specific Amazon Q Business conversation",
+      options: [
+        {
+          name: "--application-id",
+          description:
+            "The unique identifier for the Amazon Q Business application",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--conversation-id",
+          description:
+            "The unique identifier of the Amazon Q Business web experience conversation",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--user-id",
+          description:
+            "The unique identifier of the user involved in the Amazon Q Business web experience conversation",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If the number of attachments returned exceeds maxResults, Amazon Q Business returns a next token as a pagination token to retrieve the next set of attachments",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum number of attachements to return",
           args: {
             name: "integer",
           },
@@ -2282,7 +2440,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "If the number of retrievers returned exceeds maxResults, Amazon Q Business returns a next token as a pagination token to retrieve the next set of messages",
+            "If the number of messages returned exceeds maxResults, Amazon Q Business returns a next token as a pagination token to retrieve the next set of messages",
           args: {
             name: "string",
           },
@@ -2907,7 +3065,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-application",
       description:
-        "Updates an existing Amazon Q Business application.   A Amazon Q Apps service-linked role will be created if it's absent in the Amazon Web Services account when the QAppsConfiguration is enabled in the request. For more information, see  Using service-linked roles for Q Apps",
+        "Updates an existing Amazon Q Business application.  Amazon Q Business applications may securely transmit data for processing across Amazon Web Services Regions within your geography. For more information, see Cross region inference in Amazon Q Business.   An Amazon Q Apps service-linked role will be created if it's absent in the Amazon Web Services account when QAppsConfiguration is enabled in the request. For more information, see Using service-linked roles for Q Apps",
       options: [
         {
           name: "--application-id",
@@ -3153,6 +3311,14 @@ const completionSpec: Fig.Spec = {
           name: "--document-enrichment-configuration",
           description:
             "Provides the configuration information for altering document metadata and content during the document ingestion process. For more information, see Custom document enrichment",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--media-extraction-configuration",
+          description:
+            "The configuration for extracting information from media in documents for your data source",
           args: {
             name: "structure",
           },
@@ -3511,6 +3677,14 @@ const completionSpec: Fig.Spec = {
             "Updates the website domain origins that are allowed to embed the Amazon Q Business web experience.  The <i>domain origin</i> refers to the <i>base URL</i> for accessing a website including the protocol (<code>http/https</code>), the domain name, and the port number (if specified).</p> <note> <ul> <li> <p>Any values except <code>null</code> submitted as part of this update will replace all previous values.</p> </li> <li> <p>You must only submit a <i>base URL</i> and not a full path. For example, <code>https://docs.aws.amazon.com</code>.</p> </li> </ul> </note>",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--browser-extension-configuration",
+          description:
+            "The browser extension configuration for an Amazon Q Business web experience.   For Amazon Q Business application using external OIDC-compliant identity providers (IdPs). The IdP administrator must add the browser extension sign-in redirect URLs to the IdP application. For more information, see Configure external OIDC identity provider for your browser extensions",
+          args: {
+            name: "structure",
           },
         },
         {

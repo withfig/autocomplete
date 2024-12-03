@@ -1764,6 +1764,54 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-marketplace-resource",
+      description:
+        "Verify the subscription and perform resource dependency checks on the requested Amazon Web Services Marketplace resource. For Amazon Web Services Marketplace components, the response contains fields to download the components and their artifacts",
+      options: [
+        {
+          name: "--resource-type",
+          description:
+            "Specifies which type of Amazon Web Services Marketplace resource Image Builder retrieves",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--resource-arn",
+          description:
+            "The Amazon Resource Name (ARN) that uniquely identifies an Amazon Web Services Marketplace resource",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--resource-location",
+          description:
+            "The bucket path that you can specify to download the resource from Amazon S3",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-workflow",
       description: "Get a workflow resource object",
       options: [

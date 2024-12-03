@@ -2526,8 +2526,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "create-table-optimizer",
-      description:
-        "Creates a new table optimizer for a specific function. compaction is the only currently supported optimizer type",
+      description: "Creates a new table optimizer for a specific function",
       options: [
         {
           name: "--catalog-id",
@@ -2553,8 +2552,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--type",
-          description:
-            "The type of table optimizer. Currently, the only valid value is compaction",
+          description: "The type of table optimizer",
           args: {
             name: "string",
           },
@@ -8791,8 +8789,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--type",
-          description:
-            "The type of table optimizer. Currently, the only valid value is compaction",
+          description: "The type of table optimizer",
           args: {
             name: "string",
           },
@@ -12059,8 +12056,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--type",
-          description:
-            "The type of table optimizer. Currently, the only valid value is compaction",
+          description: "The type of table optimizer",
           args: {
             name: "string",
           },

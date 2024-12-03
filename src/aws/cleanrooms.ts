@@ -394,7 +394,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--table-reference",
-          description: "A reference to the Glue table being configured",
+          description: "A reference to the table being configured",
           args: {
             name: "structure",
           },

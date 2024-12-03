@@ -112,6 +112,22 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--input-switch-configuration",
+          description:
+            "The configuration for input switching based on the media quality confidence score (MQCS) as provided from AWS Elemental MediaLive. This setting is valid only when InputType is CMAF",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--output-header-configuration",
+          description:
+            "The settings for what common media server data (CMSD) headers AWS Elemental MediaPackage includes in responses to the CDN. This setting is valid only when InputType is CMAF",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--tags",
           description:
             'A comma-separated list of tag key:value pairs that you define. For example:  "Key1": "Value1",   "Key2": "Value2"',
@@ -1444,6 +1460,22 @@ const completionSpec: Fig.Spec = {
             "Any descriptive information that you want to add to the channel for future identification purposes",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--input-switch-configuration",
+          description:
+            "The configuration for input switching based on the media quality confidence score (MQCS) as provided from AWS Elemental MediaLive. This setting is valid only when InputType is CMAF",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--output-header-configuration",
+          description:
+            "The settings for what common media server data (CMSD) headers AWS Elemental MediaPackage includes in responses to the CDN. This setting is valid only when InputType is CMAF",
+          args: {
+            name: "structure",
           },
         },
         {

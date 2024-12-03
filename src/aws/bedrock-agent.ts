@@ -96,6 +96,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--custom-orchestration",
+          description:
+            "Contains details of the custom orchestration configured for the agent",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--customer-encryption-key-arn",
           description:
             "The Amazon Resource Name (ARN) of the KMS key with which to encrypt the agent",
@@ -148,6 +156,14 @@ const completionSpec: Fig.Spec = {
             "Contains the details of the memory configured for the agent",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--orchestration-type",
+          description:
+            "Specifies the type of orchestration strategy for the agent. This is set to DEFAULT orchestration type, by default",
+          args: {
+            name: "string",
           },
         },
         {
@@ -358,7 +374,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-data-source",
       description:
-        "Creates a data source connector for a knowledge base.  You can't change the chunkingConfiguration after you create the data source connector",
+        "Connects a knowledge base to a data source. You specify the configuration for the specific data source service in the dataSourceConfiguration field.  You can't change the chunkingConfiguration after you create the data source connector",
       options: [
         {
           name: "--client-token",
@@ -1224,6 +1240,62 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-knowledge-base-documents",
+      description:
+        "Deletes documents from a data source and syncs the changes to the knowledge base that is connected to it. For more information, see Ingest documents into a knowledge base in real-time in the Amazon Bedrock User Guide",
+      options: [
+        {
+          name: "--client-token",
+          description:
+            "A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see Ensuring idempotency",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--data-source-id",
+          description:
+            "The unique identifier of the data source that contains the documents",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--document-identifiers",
+          description:
+            "A list of objects, each of which contains information to identify a document to delete",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--knowledge-base-id",
+          description:
+            "The unique identifier of the knowledge base that is connected to the data source",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-prompt",
       description:
         "Deletes a prompt or a version of it, depending on whether you include the promptVersion field or not. For more information, see Delete prompts from the Prompt management tool and Delete a version of a prompt from the Prompt management tool in the Amazon Bedrock User Guide",
@@ -1738,6 +1810,54 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-knowledge-base-documents",
+      description:
+        "Retrieves specific documents from a data source that is connected to a knowledge base. For more information, see Ingest documents into a knowledge base in real-time in the Amazon Bedrock User Guide",
+      options: [
+        {
+          name: "--data-source-id",
+          description:
+            "The unique identifier of the data source that contains the documents",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--document-identifiers",
+          description:
+            "A list of objects, each of which contains information to identify a document for which to retrieve information",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--knowledge-base-id",
+          description:
+            "The unique identifier of the knowledge base that is connected to the data source",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-prompt",
       description:
         "Retrieves information about the working draft (DRAFT version) of a prompt or a version of it, depending on whether you include the promptVersion field or not. For more information, see View information about prompts using Prompt management and View information about a version of your prompt in the Amazon Bedrock User Guide",
@@ -1753,6 +1873,62 @@ const completionSpec: Fig.Spec = {
           name: "--prompt-version",
           description:
             "The version of the prompt about which you want to retrieve information. Omit this field to return information about the working draft of the prompt",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "ingest-knowledge-base-documents",
+      description:
+        "Ingests documents directly into the knowledge base that is connected to the data source. The dataSourceType specified in the content for each document must match the type of the data source that you specify in the header. For more information, see Ingest documents into a knowledge base in real-time in the Amazon Bedrock User Guide",
+      options: [
+        {
+          name: "--client-token",
+          description:
+            "A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see Ensuring idempotency",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--data-source-id",
+          description:
+            "The unique identifier of the data source connected to the knowledge base that you're adding documents to",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--documents",
+          description:
+            "A list of objects, each of which contains information about the documents to add",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--knowledge-base-id",
+          description:
+            "The unique identifier of the knowledge base to ingest the documents into",
           args: {
             name: "string",
           },
@@ -2514,6 +2690,86 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-knowledge-base-documents",
+      description:
+        "Retrieves all the documents contained in a data source that is connected to a knowledge base. For more information, see Ingest documents into a knowledge base in real-time in the Amazon Bedrock User Guide",
+      options: [
+        {
+          name: "--data-source-id",
+          description:
+            "The unique identifier of the data source that contains the documents",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--knowledge-base-id",
+          description:
+            "The unique identifier of the knowledge base that is connected to the data source",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the nextToken field when making another request to return the next batch of results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If the total number of results is greater than the maxResults value provided in the request, enter the token returned in the nextToken field in the response in this field to return the next batch of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-knowledge-bases",
       description:
         "Lists the knowledge bases in an account. The list also includesinformation about each knowledge base",
@@ -2950,6 +3206,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--custom-orchestration",
+          description:
+            "Contains details of the custom orchestration configured for the agent",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--customer-encryption-key-arn",
           description:
             "The Amazon Resource Name (ARN) of the KMS key with which to encrypt the agent",
@@ -3001,6 +3265,14 @@ const completionSpec: Fig.Spec = {
           description: "Specifies the new memory configuration for the agent",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--orchestration-type",
+          description:
+            "Specifies the type of orchestration strategy for the agent. This is set to DEFAULT orchestration type, by default",
+          args: {
+            name: "string",
           },
         },
         {

@@ -4903,6 +4903,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--engine",
+          description: "The engine for a specific user",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -4944,6 +4951,13 @@ const completionSpec: Fig.Spec = {
           description: "The list of user IDs to remove from the user group",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--engine",
+          description: "The engine for a user group",
+          args: {
+            name: "string",
           },
         },
         {

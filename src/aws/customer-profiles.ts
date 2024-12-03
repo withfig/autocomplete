@@ -57,6 +57,98 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "batch-get-calculated-attribute-for-profile",
+      description:
+        "Fetch the possible attribute values given the attribute name",
+      options: [
+        {
+          name: "--calculated-attribute-name",
+          description: "The unique name of the calculated attribute",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--domain-name",
+          description: "The unique name of the domain",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--profile-ids",
+          description:
+            "List of unique identifiers for customer profiles to retrieve",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--condition-overrides",
+          description:
+            "Overrides the condition block within the original calculated attribute definition",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "batch-get-profile",
+      description: "Get a batch of profiles",
+      options: [
+        {
+          name: "--domain-name",
+          description: "The unique name of the domain",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--profile-ids",
+          description:
+            "List of unique identifiers for customer profiles to retrieve",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-calculated-attribute-definition",
       description:
         "Creates a new calculated attribute definition. After creation, new object data ingested into Customer Profiles will be included in the calculated attribute, which can be retrieved for a profile using the GetCalculatedAttributeForProfile API. Defining a calculated attribute makes it available for all profiles within a domain. Each calculated attribute can only reference one ObjectType and at most, two fields from that ObjectType",
@@ -101,6 +193,14 @@ const completionSpec: Fig.Spec = {
           name: "--conditions",
           description:
             "The conditions including range, object count, and threshold for the calculated attribute",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--filter",
+          description:
+            "Defines how to filter incoming objects to include part of the Calculated Attribute",
           args: {
             name: "structure",
           },
@@ -250,6 +350,89 @@ const completionSpec: Fig.Spec = {
           name: "--tags",
           description:
             "The tags used to organize, track, or control access for this resource",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-event-trigger",
+      description:
+        "Creates an event trigger, which specifies the rules when to perform action based on customer's ingested data. Each event stream can be associated with only one integration in the same region and AWS account as the event stream",
+      options: [
+        {
+          name: "--domain-name",
+          description: "The unique name of the domain",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--event-trigger-name",
+          description: "The unique name of the event trigger",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--object-type-name",
+          description: "The unique name of the object type",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "The description of the event trigger",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--event-trigger-conditions",
+          description:
+            "A list of conditions that determine when an event should trigger the destination",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--segment-filter",
+          description:
+            "The destination is triggered only for profiles that meet the criteria of a segment definition",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--event-trigger-limits",
+          description:
+            "Defines limits controlling whether an event triggers the destination, based on ingestion latency and the number of invocations per profile over specific time periods",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--tags",
+          description: "An array of key-value pairs to apply to this resource",
           args: {
             name: "map",
           },
@@ -541,6 +724,181 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-segment-definition",
+      description:
+        "Creates a segment definition associated to the given domain",
+      options: [
+        {
+          name: "--domain-name",
+          description: "The unique name of the domain",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--segment-definition-name",
+          description: "The unique name of the segment definition",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--display-name",
+          description: "The display name of the segment definition",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "The description of the segment definition",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--segment-groups",
+          description:
+            "Specifies the base segments and dimensions for a segment definition along with their respective relationship",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "The tags used to organize, track, or control access for this resource",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-segment-estimate",
+      description: "Creates a segment estimate query",
+      options: [
+        {
+          name: "--domain-name",
+          description: "The unique name of the domain",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--segment-query",
+          description: "The segment query for calculating a segment estimate",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-segment-snapshot",
+      description:
+        "Triggers a job to export a segment to a specified destination",
+      options: [
+        {
+          name: "--domain-name",
+          description: "The unique name of the domain",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--segment-definition-name",
+          description:
+            "The name of the segment definition used in this snapshot request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--data-format",
+          description: "The format in which the segment will be exported",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--encryption-key",
+          description:
+            "The Amazon Resource Name (ARN) of the KMS key used to encrypt the exported segment",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--role-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the IAM role that allows Customer Profiles service principal to assume the role for conducting KMS and S3 operations",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--destination-uri",
+          description:
+            "The destination to which the segment will be exported. This field must be provided if the request is not submitted from the Amazon Connect Admin Website",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-calculated-attribute-definition",
       description:
         "Deletes an existing calculated attribute definition. Note that deleting a default calculated attribute is possible, however once deleted, you will be unable to undo that action and will need to recreate it on your own using the CreateCalculatedAttributeDefinition API if you want it back",
@@ -623,6 +981,44 @@ const completionSpec: Fig.Spec = {
         {
           name: "--event-stream-name",
           description: "The name of the event stream",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-event-trigger",
+      description:
+        "Disable and deletes the Event Trigger.  You cannot delete an Event Trigger with an active Integration associated",
+      options: [
+        {
+          name: "--domain-name",
+          description: "The unique name of the domain",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--event-trigger-name",
+          description: "The unique name of the event trigger",
           args: {
             name: "string",
           },
@@ -841,6 +1237,43 @@ const completionSpec: Fig.Spec = {
         {
           name: "--object-type-name",
           description: "The name of the profile object type",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-segment-definition",
+      description: "Deletes a segment definition from the domain",
+      options: [
+        {
+          name: "--domain-name",
+          description: "The unique name of the domain",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--segment-definition-name",
+          description: "The unique name of the segment definition",
           args: {
             name: "string",
           },
@@ -1147,6 +1580,43 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-event-trigger",
+      description: "Get a specific Event Trigger from the domain",
+      options: [
+        {
+          name: "--domain-name",
+          description: "The unique name of the domain",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--event-trigger-name",
+          description: "The unique name of the event trigger",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-identity-resolution-job",
       description:
         "Returns information about an Identity Resolution Job in a specific domain.  Identity Resolution Jobs are set up using the Amazon Connect admin console. For more information, see Use Identity Resolution to consolidate similar profiles",
@@ -1337,6 +1807,170 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-segment-definition",
+      description: "Gets a segment definition from the domain",
+      options: [
+        {
+          name: "--domain-name",
+          description: "The unique name of the domain",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--segment-definition-name",
+          description: "The unique name of the segment definition",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-segment-estimate",
+      description: "Gets the result of a segment estimate query",
+      options: [
+        {
+          name: "--domain-name",
+          description: "The unique name of the domain",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--estimate-id",
+          description:
+            "The query Id passed by a previous CreateSegmentEstimate operation",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-segment-membership",
+      description: "Determines if the given profiles are within a segment",
+      options: [
+        {
+          name: "--domain-name",
+          description: "The unique name of the domain",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--segment-definition-name",
+          description:
+            "The Id of the wanted segment. Needs to be a valid, and existing segment Id",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--profile-ids",
+          description: "The list of profile IDs to query for",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-segment-snapshot",
+      description: "Retrieve the latest status of a segment snapshot",
+      options: [
+        {
+          name: "--domain-name",
+          description: "The unique identifier of the domain",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--segment-definition-name",
+          description: "The unique name of the segment definition",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--snapshot-id",
+          description: "The unique identifier of the segment snapshot",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-similar-profiles",
       description:
         "Returns a set of profiles that belong to the same matching group using the matchId or profileId. You can also specify the type of matching that you want for finding similar profiles using either RULE_BASED_MATCHING or ML_BASED_MATCHING",
@@ -1392,6 +2026,30 @@ const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -1761,6 +2419,74 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-event-triggers",
+      description: "List all Event Triggers under a domain",
+      options: [
+        {
+          name: "--domain-name",
+          description: "The unique name of the domain",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description: "The pagination token to use with ListEventTriggers",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum number of results to return per page",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-identity-resolution-jobs",
       description:
         "Lists all of the Identity Resolution Jobs in your domain. The response sorts the list by JobStartTime",
@@ -1841,6 +2567,120 @@ const completionSpec: Fig.Spec = {
           name: "--no-include-hidden",
           description:
             "Boolean to indicate if hidden integration should be returned. Defaults to False",
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-object-type-attributes",
+      description:
+        "Fetch the possible attribute values given the attribute name",
+      options: [
+        {
+          name: "--next-token",
+          description: "The pagination token from the previous call",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum number of objects returned per page",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--domain-name",
+          description: "The unique identifier of the domain",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--object-type-name",
+          description: "The name of the profile object type",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-profile-attribute-values",
+      description:
+        "Fetch the possible attribute values given the attribute name",
+      options: [
+        {
+          name: "--domain-name",
+          description: "The unique identifier of the domain",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--attribute-name",
+          description: "The attribute name",
+          args: {
+            name: "string",
+          },
         },
         {
           name: "--cli-input-json",
@@ -2043,6 +2883,98 @@ const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-segment-definitions",
+      description: "Lists all segment definitions under a domain",
+      options: [
+        {
+          name: "--domain-name",
+          description: "The unique identifier of the domain",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum number of objects returned per page",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description: "The pagination token from the previous call",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -2273,6 +3205,14 @@ const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the IAM role. The Integration uses this role to make Customer Profiles requests on your behalf",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--event-trigger-names",
+          description:
+            "A list of unique names for active event triggers associated with the integration",
+          args: {
+            name: "list",
           },
         },
         {
@@ -2731,6 +3671,81 @@ const completionSpec: Fig.Spec = {
             "The tags used to organize, track, or control access for this resource",
           args: {
             name: "map",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-event-trigger",
+      description: "Update the properties of an Event Trigger",
+      options: [
+        {
+          name: "--domain-name",
+          description: "The unique name of the domain",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--event-trigger-name",
+          description: "The unique name of the event trigger",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--object-type-name",
+          description: "The unique name of the object type",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "The description of the event trigger",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--event-trigger-conditions",
+          description:
+            "A list of conditions that determine when an event should trigger the destination",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--segment-filter",
+          description:
+            "The destination is triggered only for profiles that meet the criteria of a segment definition",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--event-trigger-limits",
+          description:
+            "Defines limits controlling whether an event triggers the destination, based on ingestion latency and the number of invocations per profile over specific time periods",
+          args: {
+            name: "structure",
           },
         },
         {

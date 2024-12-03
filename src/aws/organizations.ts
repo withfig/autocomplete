@@ -38,7 +38,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "attach-policy",
       description:
-        "Attaches a policy to a root, an organizational unit (OU), or an individual account. How the policy affects accounts depends on the type of policy. Refer to the Organizations User Guide for information about each policy type:    SERVICE_CONTROL_POLICY     BACKUP_POLICY     TAG_POLICY     CHATBOT_POLICY     AISERVICES_OPT_OUT_POLICY    This operation can be called only from the organization's management account or by a member account that is a delegated administrator for an Amazon Web Services service",
+        "Attaches a policy to a root, an organizational unit (OU), or an individual account. How the policy affects accounts depends on the type of policy. Refer to the Organizations User Guide for information about each policy type:    SERVICE_CONTROL_POLICY     RESOURCE_CONTROL_POLICY     DECLARATIVE_POLICY_EC2     BACKUP_POLICY     TAG_POLICY     CHATBOT_POLICY     AISERVICES_OPT_OUT_POLICY    This operation can be called only from the organization's management account or by a member account that is a delegated administrator for an Amazon Web Services service",
       options: [
         {
           name: "--policy-id",
@@ -376,7 +376,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--type",
           description:
-            "The type of policy to create. You can specify one of the following values:    SERVICE_CONTROL_POLICY     BACKUP_POLICY     TAG_POLICY     CHATBOT_POLICY     AISERVICES_OPT_OUT_POLICY",
+            "The type of policy to create. You can specify one of the following values:    SERVICE_CONTROL_POLICY     RESOURCE_CONTROL_POLICY     DECLARATIVE_POLICY_EC2     BACKUP_POLICY     TAG_POLICY     CHATBOT_POLICY     AISERVICES_OPT_OUT_POLICY",
           args: {
             name: "string",
           },
@@ -659,12 +659,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-effective-policy",
       description:
-        "Returns the contents of the effective policy for specified policy type and account. The effective policy is the aggregation of any policies of the specified type that the account inherits, plus any policy of that type that is directly attached to the account. This operation applies only to policy types other than service control policies (SCPs). For more information about policy inheritance, see Understanding management policy inheritance in the Organizations User Guide. This operation can be called from any account in the organization",
+        "Returns the contents of the effective policy for specified policy type and account. The effective policy is the aggregation of any policies of the specified type that the account inherits, plus any policy of that type that is directly attached to the account. This operation applies only to management policies. It does not apply to authorization policies: service control policies (SCPs) and resource control policies (RCPs). For more information about policy inheritance, see Understanding management policy inheritance in the Organizations User Guide. This operation can be called from any account in the organization",
       options: [
         {
           name: "--policy-type",
           description:
-            "The type of policy that you want information about. You can specify one of the following values:    BACKUP_POLICY     TAG_POLICY     CHATBOT_POLICY     AISERVICES_OPT_OUT_POLICY",
+            "The type of policy that you want information about. You can specify one of the following values:    DECLARATIVE_POLICY_EC2     BACKUP_POLICY     TAG_POLICY     CHATBOT_POLICY     AISERVICES_OPT_OUT_POLICY",
           args: {
             name: "string",
           },
@@ -928,7 +928,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--policy-type",
           description:
-            "The policy type that you want to disable in this root. You can specify one of the following values:    SERVICE_CONTROL_POLICY     BACKUP_POLICY     TAG_POLICY     CHATBOT_POLICY     AISERVICES_OPT_OUT_POLICY",
+            "The policy type that you want to disable in this root. You can specify one of the following values:    SERVICE_CONTROL_POLICY     RESOURCE_CONTROL_POLICY     DECLARATIVE_POLICY_EC2     BACKUP_POLICY     TAG_POLICY     CHATBOT_POLICY     AISERVICES_OPT_OUT_POLICY",
           args: {
             name: "string",
           },
@@ -1024,7 +1024,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--policy-type",
           description:
-            "The policy type that you want to enable. You can specify one of the following values:    SERVICE_CONTROL_POLICY     BACKUP_POLICY     TAG_POLICY     CHATBOT_POLICY     AISERVICES_OPT_OUT_POLICY",
+            "The policy type that you want to enable. You can specify one of the following values:    SERVICE_CONTROL_POLICY     RESOURCE_CONTROL_POLICY     DECLARATIVE_POLICY_EC2     BACKUP_POLICY     TAG_POLICY     CHATBOT_POLICY     AISERVICES_OPT_OUT_POLICY",
           args: {
             name: "string",
           },
@@ -1912,7 +1912,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--filter",
           description:
-            "Specifies the type of policy that you want to include in the response. You must specify one of the following values:    SERVICE_CONTROL_POLICY     BACKUP_POLICY     TAG_POLICY     CHATBOT_POLICY     AISERVICES_OPT_OUT_POLICY",
+            "Specifies the type of policy that you want to include in the response. You must specify one of the following values:    SERVICE_CONTROL_POLICY     RESOURCE_CONTROL_POLICY     DECLARATIVE_POLICY_EC2     BACKUP_POLICY     TAG_POLICY     CHATBOT_POLICY     AISERVICES_OPT_OUT_POLICY",
           args: {
             name: "string",
           },
@@ -1992,7 +1992,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--filter",
           description:
-            "The type of policy that you want to include in the returned list. You must specify one of the following values:    SERVICE_CONTROL_POLICY     BACKUP_POLICY     TAG_POLICY     CHATBOT_POLICY     AISERVICES_OPT_OUT_POLICY",
+            "The type of policy that you want to include in the returned list. You must specify one of the following values:    SERVICE_CONTROL_POLICY     RESOURCE_CONTROL_POLICY     DECLARATIVE_POLICY_EC2     BACKUP_POLICY     TAG_POLICY     CHATBOT_POLICY     AISERVICES_OPT_OUT_POLICY",
           args: {
             name: "string",
           },

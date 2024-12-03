@@ -241,6 +241,12 @@ const completionSpec: Fig.Spec = {
       loadSpec: "aws/bcm-data-exports",
     },
     {
+      name: "bcm-pricing-calculator",
+      description:
+        "You can use the Pricing Calculator API to programmatically create estimates for your planned cloud use. You can model usage and commitments such as Savings Plans and Reserved Instances, and generate estimated costs using your discounts and benefit sharing preferences.  The Pricing Calculator API provides the following endpoint:    https://bcm-pricing-calculator.us-east-1.api.aws",
+      loadSpec: "aws/bcm-pricing-calculator",
+    },
+    {
       name: "bedrock",
       description:
         "Describes the API operations for creating, managing, fine-turning, and evaluating Amazon Bedrock models",
@@ -263,6 +269,12 @@ const completionSpec: Fig.Spec = {
       description:
         "Describes the API operations for running inference using Amazon Bedrock models",
       loadSpec: "aws/bedrock-runtime",
+    },
+    {
+      name: "billing",
+      description:
+        "You can use the Billing API to programatically list the billing views available to you for a given time period. A billing view represents a set of billing data.  The Billing API provides the following endpoint:  https://billing.us-east-1.api.aws",
+      loadSpec: "aws/billing",
     },
     {
       name: "billingconductor",
@@ -525,7 +537,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "connect",
       description:
-        "Amazon Connect actions     Amazon Connect data types    Amazon Connect is a cloud-based contact center solution that you use to set up and manage a customer contact center and provide reliable customer engagement at any scale. Amazon Connect provides metrics and real-time reporting that enable you to optimize contact routing. You can also resolve customer issues more efficiently by getting customers in touch with the appropriate agents. There are limits to the number of Amazon Connect resources that you can create. There are also limits to the number of requests that you can make per second. For more information, see Amazon Connect Service Quotas in the Amazon Connect Administrator Guide. You can connect programmatically to an Amazon Web Services service by using an endpoint. For a list of Amazon Connect endpoints, see Amazon Connect Endpoints",
+        "Amazon Connect actions     Amazon Connect data types    Amazon Connect is a cloud-based contact center solution that you use to set up and manage a customer contact center and provide reliable customer engagement at any scale. Amazon Connect provides metrics and real-time reporting that enable you to optimize contact routing. You can also resolve customer issues more efficiently by getting customers in touch with the appropriate agents. There are limits to the number of Amazon Connect resources that you can create. There are also limits to the number of requests that you can make per second. For more information, see Amazon Connect Service Quotas in the Amazon Connect Administrator Guide. You can use an endpoint to connect programmatically to an Amazon Web Services service. For a list of Amazon Connect endpoints, see Amazon Connect Endpoints",
       loadSpec: "aws/connect",
     },
     {
@@ -538,6 +550,11 @@ const completionSpec: Fig.Spec = {
       name: "connectcampaigns",
       description: "Provide APIs to create and manage Amazon Connect Campaigns",
       loadSpec: "aws/connectcampaigns",
+    },
+    {
+      name: "connectcampaignsv2",
+      description: "Provide APIs to create and manage Amazon Connect Campaigns",
+      loadSpec: "aws/connectcampaignsv2",
     },
     {
       name: "connectcases",
@@ -971,7 +988,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "health",
       description:
-        "Health The Health API provides access to the Health information that appears in the Health Dashboard. You can use the API operations to get information about events that might affect your Amazon Web Services and resources. You must have a Business, Enterprise On-Ramp, or Enterprise Support plan from Amazon Web Services Support to use the Health API. If you call the Health API from an Amazon Web Services account that doesn't have a Business, Enterprise On-Ramp, or Enterprise Support plan, you receive a SubscriptionRequiredException error. For API access, you need an access key ID and a secret access key. Use temporary credentials instead of long-term access keys when possible. Temporary credentials include an access key ID, a secret access key, and a security token that indicates when the credentials expire. For more information, see Best practices for managing Amazon Web Services access keys in the Amazon Web Services General Reference. You can use the Health endpoint health.us-east-1.amazonaws.com (HTTPS) to call the Health API operations. Health supports a multi-Region application architecture and has two regional endpoints in an active-passive configuration. You can use the high availability endpoint example to determine which Amazon Web Services Region is active, so that you can get the latest information from the API. For more information, see Accessing the Health API in the Health User Guide. For authentication of requests, Health uses the Signature Version 4 Signing Process. If your Amazon Web Services account is part of Organizations, you can use the Health organizational view feature. This feature provides a centralized view of Health events across all accounts in your organization. You can aggregate Health events in real time to identify accounts in your organization that are affected by an operational event or get notified of security vulnerabilities. Use the organizational view API operations to enable this feature and return event information. For more information, see Aggregating Health events in the Health User Guide.  When you use the Health API operations to return Health events, see the following recommendations:   Use the eventScopeCode parameter to specify whether to return Health events that are public or account-specific.   Use pagination to view all events from the response. For example, if you call the DescribeEventsForOrganization operation to get all events in your organization, you might receive several page results. Specify the nextToken in the next request to return more results",
+        "Health The Health API provides access to the Health information that appears in the Health Dashboard. You can use the API operations to get information about events that might affect your Amazon Web Services services and resources. You must have a Business, Enterprise On-Ramp, or Enterprise Support plan from Amazon Web Services Support to use the Health API. If you call the Health API from an Amazon Web Services account that doesn't have a Business, Enterprise On-Ramp, or Enterprise Support plan, you receive a SubscriptionRequiredException error. For API access, you need an access key ID and a secret access key. Use temporary credentials instead of long-term access keys when possible. Temporary credentials include an access key ID, a secret access key, and a security token that indicates when the credentials expire. For more information, see Best practices for managing Amazon Web Services access keys in the Amazon Web Services General Reference. You can use the Health endpoint health.us-east-1.amazonaws.com (HTTPS) to call the Health API operations. Health supports a multi-Region application architecture and has two regional endpoints in an active-passive configuration. You can use the high availability endpoint example to determine which Amazon Web Services Region is active, so that you can get the latest information from the API. For more information, see Accessing the Health API in the Health User Guide. For authentication of requests, Health uses the Signature Version 4 Signing Process. If your Amazon Web Services account is part of Organizations, you can use the Health organizational view feature. This feature provides a centralized view of Health events across all accounts in your organization. You can aggregate Health events in real time to identify accounts in your organization that are affected by an operational event or get notified of security vulnerabilities. Use the organizational view API operations to enable this feature and return event information. For more information, see Aggregating Health events in the Health User Guide.  When you use the Health API operations to return Health events, see the following recommendations:   Use the eventScopeCode parameter to specify whether to return Health events that are public or account-specific.   Use pagination to view all events from the response. For example, if you call the DescribeEventsForOrganization operation to get all events in your organization, you might receive several page results. Specify the nextToken in the next request to return more results",
       loadSpec: "aws/health",
     },
     {
@@ -1029,6 +1046,12 @@ const completionSpec: Fig.Spec = {
       loadSpec: "aws/internetmonitor",
     },
     {
+      name: "invoicing",
+      description:
+        "Amazon Web Services Invoice Configuration  You can use Amazon Web Services Invoice Configuration APIs to programmatically create, update, delete, get, and list invoice units. You can also programmatically fetch the information of the invoice receiver. For example, business legal name, address, and invoicing contacts.  You can use Amazon Web Services Invoice Configuration to receive separate Amazon Web Services invoices based your organizational needs. By using Amazon Web Services Invoice Configuration, you can configure invoice units that are groups of Amazon Web Services accounts that represent your business entities, and receive separate invoices for each business entity. You can also assign a unique member or payer account as the invoice receiver for each invoice unit. As you create new accounts within your Organizations using Amazon Web Services Invoice Configuration APIs, you can automate the creation of new invoice units and subsequently automate the addition of new accounts to your invoice units. Service endpoint You can use the following endpoints for Amazon Web Services Invoice Configuration:    https://invoicing.us-east-1.api.aws",
+      loadSpec: "aws/invoicing",
+    },
+    {
       name: "iot",
       description:
         "IoT IoT provides secure, bi-directional communication between Internet-connected devices (such as sensors, actuators, embedded devices, or smart appliances) and the Amazon Web Services cloud. You can discover your custom IoT-Data endpoint to communicate with, configure rules for data processing and integration with other services, organize resources associated with each device (Registry), configure logging, and create and manage policies and credentials to authenticate devices. The service endpoints that expose this API are listed in Amazon Web Services IoT Core Endpoints and Quotas. You must use the endpoint for the region that has the resources you want to access. The service name used by Amazon Web Services Signature Version 4 to sign the request is: execute-api. For more information about how IoT works, see the Developer Guide. For information about how to use the credentials provider for IoT, see Authorizing Direct Calls to Amazon Web Services Services",
@@ -1043,7 +1066,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "iot-jobs-data",
       description:
-        "AWS IoT Jobs is a service that allows you to define a set of jobs \u2014 remote operations that are sent to and executed on one or more devices connected to AWS IoT. For example, you can define a job that instructs a set of devices to download and install application or firmware updates, reboot, rotate certificates, or perform remote troubleshooting operations.  To create a job, you make a job document which is a description of the remote operations to be performed, and you specify a list of targets that should perform the operations. The targets can be individual things, thing groups or both.  AWS IoT Jobs sends a message to inform the targets that a job is available. The target starts the execution of the job by downloading the job document, performing the operations it specifies, and reporting its progress to AWS IoT. The Jobs service provides commands to track the progress of a job on a specific target and for all the targets of the job",
+        "IoT Jobs is a service that allows you to define a set of jobs \u2014 remote operations that are sent to and executed on one or more devices connected to Amazon Web Services IoT Core. For example, you can define a job that instructs a set of devices to download and install application or firmware updates, reboot, rotate certificates, or perform remote troubleshooting operations. Find the endpoint address for actions in the IoT jobs data plane by running this CLI command:  aws iot describe-endpoint --endpoint-type iot:Jobs  The service name used by Amazon Web Services Signature Version 4 to sign requests is: iot-jobs-data.  To create a job, you make a job document which is a description of the remote operations to be performed, and you specify a list of targets that should perform the operations. The targets can be individual things, thing groups or both.  IoT Jobs sends a message to inform the targets that a job is available. The target starts the execution of the job by downloading the job document, performing the operations it specifies, and reporting its progress to Amazon Web Services IoT Core. The Jobs service provides commands to track the progress of a job on a specific target and for all the targets of the job",
       loadSpec: "aws/iot-jobs-data",
     },
     {
@@ -1090,7 +1113,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "iotfleetwise",
       description:
-        "Amazon Web Services IoT FleetWise is a fully managed service that you can use to collect, model, and transfer vehicle data to the Amazon Web Services cloud at scale. With Amazon Web Services IoT FleetWise, you can standardize all of your vehicle data models, independent of the in-vehicle communication architecture, and define data collection rules to transfer only high-value data to the cloud.  For more information, see What is Amazon Web Services IoT FleetWise? in the Amazon Web Services IoT FleetWise Developer Guide",
+        "Amazon Web Services IoT FleetWise is a fully managed service that you can use to collect, model, and transfer vehicle data to the Amazon Web Services cloud at scale. With Amazon Web Services IoT FleetWise, you can standardize all of your vehicle data models, independent of the in-vehicle communication architecture, and define data collection rules to transfer only high-value data to the cloud.  For more information, see What is Amazon Web Services IoT FleetWise? in the Amazon Web Services IoT FleetWise Developer Guide.  Access to certain Amazon Web Services IoT FleetWise features is currently gated. For more information, see Amazon Web Services Region and feature availability in the Amazon Web Services IoT FleetWise Developer Guide",
       loadSpec: "aws/iotfleetwise",
     },
     {
@@ -1443,7 +1466,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "memorydb",
       description:
-        "MemoryDB for Redis is a fully managed, Redis-compatible, in-memory database that delivers ultra-fast performance and Multi-AZ durability for modern applications built using microservices architectures. MemoryDB stores the entire database in-memory, enabling low latency and high throughput data access. It is compatible with Redis, a popular open source data store, enabling you to leverage Redis\u2019 flexible and friendly data structures, APIs, and commands",
+        "MemoryDB is a fully managed, Redis OSS-compatible, in-memory database that delivers ultra-fast performance and Multi-AZ durability for modern applications built using microservices architectures. MemoryDB stores the entire database in-memory, enabling low latency and high throughput data access. It is compatible with Redis OSS, a popular open source data store, enabling you to leverage Redis OSS\u2019 flexible and friendly data structures, APIs, and commands",
       loadSpec: "aws/memorydb",
     },
     {
@@ -1529,6 +1552,12 @@ const completionSpec: Fig.Spec = {
       loadSpec: "aws/network-firewall",
     },
     {
+      name: "networkflowmonitor",
+      description:
+        "Network Flow Monitor is a feature of Amazon CloudWatch Network Monitoring that provides visibility into the performance of network flows for your Amazon Web Services workloads, between instances in subnets, as well as to and from Amazon Web Services. Lightweight agents that you install on the instances capture performance metrics for your network flows, such as packet loss and latency, and send them to the Network Flow Monitor backend. Then, you can view and analyze metrics from the top contributors for each metric type, to help troubleshoot issues. In addition, when you create a monitor, Network Flow Monitor provides a network health indicator (NHI) that informs you whether there were Amazon Web Services network issues for one or more of the network flows tracked by a monitor, during a time period that you choose. By using this value, you can independently determine if the Amazon Web Services network is impacting your workload during a specific time frame, to help you focus troubleshooting efforts. To learn more about Network Flow Monitor, see the Network Flow Monitor User Guide in the Amazon CloudWatch User Guide",
+      loadSpec: "aws/networkflowmonitor",
+    },
+    {
       name: "networkmanager",
       description:
         "Amazon Web Services enables you to centrally manage your Amazon Web Services Cloud WAN core network and your Transit Gateway network across Amazon Web Services accounts, Regions, and on-premises locations",
@@ -1541,10 +1570,28 @@ const completionSpec: Fig.Spec = {
       loadSpec: "aws/networkmonitor",
     },
     {
+      name: "notifications",
+      description:
+        "The AWS User Notifications API Reference provides descriptions, API request parameters, and the JSON response for each of the User Notification API actions. User Notification control APIs are currently available in US East (Virginia) - us-east-1.  GetNotificationEvent and ListNotificationEvents APIs are currently available in commercial partition Regions and only return notifications stored in the same Region in which they're called. The User Notifications console can only be used in US East (Virginia). Your data however, is stored in each Region chosen as a notification hub in addition to US East (Virginia)",
+      loadSpec: "aws/notifications",
+    },
+    {
+      name: "notificationscontacts",
+      description:
+        "AWS User Notifications Contacts is a service that allows you to create and manage email contacts for AWS User Notifications. The AWS User Notifications Contacts API Reference provides descriptions, API request parameters, and the JSON response for all email contact related API actions",
+      loadSpec: "aws/notificationscontacts",
+    },
+    {
       name: "oam",
       description:
         "Use Amazon CloudWatch Observability Access Manager to create and manage links between source accounts and monitoring accounts by using CloudWatch cross-account observability. With CloudWatch cross-account observability, you can monitor and troubleshoot applications that span multiple accounts within a Region. Seamlessly search, visualize, and analyze your metrics, logs, traces, and Application Insights applications in any of the linked accounts without account boundaries. Set up one or more Amazon Web Services accounts as monitoring accounts and link them with multiple source accounts. A monitoring account is a central Amazon Web Services account that can view and interact with observability data generated from source accounts. A source account is an individual Amazon Web Services account that generates observability data for the resources that reside in it. Source accounts share their observability data with the monitoring account. The shared observability data can include metrics in Amazon CloudWatch, logs in Amazon CloudWatch Logs, traces in X-Ray, and applications in Amazon CloudWatch Application Insights",
       loadSpec: "aws/oam",
+    },
+    {
+      name: "observabilityadmin",
+      description:
+        "Amazon CloudWatch Obsersavability Admin to control temletry config for your AWS Organization or account. Telemetry config con\ufb01g to discover and understand the state of telemetry con\ufb01guration for your AWS resources from a central view in the CloudWatch console. Telemetry con\ufb01g simpli\ufb01es the process of auditing your telemetry collection con\ufb01gurations across multiple resource types across your AWS Organization or account. For more information, see Auditing CloudWatch telemetry con\ufb01gurations in the CloudWatch User Guide. For information on the permissions you need to use this API, see Identity and access management for Amazon CloudWatch in the CloudWatch User Guide",
+      loadSpec: "aws/observabilityadmin",
     },
     {
       name: "omics",
@@ -1599,6 +1646,12 @@ const completionSpec: Fig.Spec = {
       description:
         "AWS Panorama  Overview  This is the AWS Panorama API Reference. For an introduction to the service, see What is AWS Panorama? in the AWS Panorama Developer Guide",
       loadSpec: "aws/panorama",
+    },
+    {
+      name: "partnercentral-selling",
+      description:
+        "AWS Partner Central API for Selling  AWS Partner Central API for Selling Reference Guide  This Amazon Web Services (AWS) Partner Central API reference is designed to help AWS Partners integrate Customer Relationship Management (CRM) systems with AWS Partner Central. Partners can automate interactions with AWS Partner Central, which helps to ensure effective engagements in joint business activities. The API provides standard AWS API functionality. Access it by either using API Actions or by using an AWS SDK that's tailored to your programming language or platform. For more information, see Getting Started with AWS and Tools to Build on AWS.  Features offered by AWS Partner Central API     Opportunity management: Manages coselling opportunities through API actions such as CreateOpportunity, UpdateOpportunity, ListOpportunities, GetOpportunity, and AssignOpportunity.    AWS referral management: Manages referrals shared by AWS using actions such as ListEngagementInvitations, GetEngagementInvitation, StartEngagementByAcceptingInvitation, and RejectEngagementInvitation.    Entity association: Associates related entities such as AWS Products, Partner Solutions, and AWS Marketplace Private Offers with opportunities using the actions AssociateOpportunity, and DisassociateOpportunity.    View AWS opportunity details: Retrieves real-time summaries of AWS opportunities using the GetAWSOpportunitySummary action.    List solutions: Provides list APIs for listing partner offers using ListSolutions.    Event subscription: Subscribe to real-time opportunity updates through AWS EventBridge by using actions such as Opportunity Created, Opportunity Updated, Engagement Invitation Accepted, Engagement Invitation Rejected, and Engagement Invitation Created",
+      loadSpec: "aws/partnercentral-selling",
     },
     {
       name: "payment-cryptography",
@@ -1957,6 +2010,12 @@ const completionSpec: Fig.Spec = {
       description:
         "Amazon Web Services Secrets Manager Amazon Web Services Secrets Manager provides a service to enable you to store, manage, and retrieve, secrets. This guide provides descriptions of the Secrets Manager API. For more information about using this service, see the Amazon Web Services Secrets Manager User Guide.  API Version  This version of the Secrets Manager API Reference documents the Secrets Manager API version 2017-10-17. For a list of endpoints, see Amazon Web Services Secrets Manager endpoints.  Support and Feedback for Amazon Web Services Secrets Manager  We welcome your feedback. Send your comments to awssecretsmanager-feedback@amazon.com, or post your feedback and questions in the Amazon Web Services Secrets Manager Discussion Forum. For more information about the Amazon Web Services Discussion Forums, see Forums Help.  Logging API Requests  Amazon Web Services Secrets Manager supports Amazon Web Services CloudTrail, a service that records Amazon Web Services API calls for your Amazon Web Services account and delivers log files to an Amazon S3 bucket. By using information that's collected by Amazon Web Services CloudTrail, you can determine the requests successfully made to Secrets Manager, who made the request, when it was made, and so on. For more about Amazon Web Services Secrets Manager and support for Amazon Web Services CloudTrail, see Logging Amazon Web Services Secrets Manager Events with Amazon Web Services CloudTrail in the Amazon Web Services Secrets Manager User Guide. To learn more about CloudTrail, including enabling it and find your log files, see the Amazon Web Services CloudTrail User Guide",
       loadSpec: "aws/secretsmanager",
+    },
+    {
+      name: "security-ir",
+      description:
+        "This guide provides documents the action and response elements for customer use of the service",
+      loadSpec: "aws/security-ir",
     },
     {
       name: "securityhub",

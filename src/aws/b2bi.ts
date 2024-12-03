@@ -525,6 +525,53 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "generate-mapping",
+      description:
+        "Takes sample input and output documents and uses Amazon Bedrock to generate a mapping automatically. Depending on the accuracy and other factors, you can then edit the mapping for your needs.  Before you can use the AI-assisted feature for Amazon Web Services B2B Data Interchange you must enable models in Amazon Bedrock. For details, see AI-assisted template mapping prerequisites in the Amazon Web Services B2B Data Interchange User guide",
+      options: [
+        {
+          name: "--input-file-content",
+          description:
+            "Provide the contents of a sample X12 EDI file (for inbound EDI) or JSON/XML file (for outbound EDI) to use as a starting point for the mapping",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--output-file-content",
+          description:
+            "Provide the contents of a sample X12 EDI file (for outbound EDI) or JSON/XML file (for inbound EDI) to use as a target for the mapping",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--mapping-type",
+          description: "Specify the mapping type: either JSONATA or XSLT",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-capability",
       description:
         "Retrieves the details for the specified capability. A trading capability contains the information required to transform incoming EDI documents into JSON or XML outputs",
@@ -1452,7 +1499,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--status",
           description:
-            "Specifies the transformer's status. You can update the state of the transformer, from active to inactive, or inactive to active",
+            "Specifies the transformer's status. You can update the state of the transformer from inactive to active",
           args: {
             name: "string",
           },

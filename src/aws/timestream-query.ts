@@ -246,7 +246,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "execute-scheduled-query",
       description:
-        "You can use this API to run a scheduled query manually.  If you enabled QueryInsights, this API also returns insights and metrics related to the query that you executed as part of an Amazon SNS notification. QueryInsights helps with performance tuning of your query",
+        "You can use this API to run a scheduled query manually.  If you enabled QueryInsights, this API also returns insights and metrics related to the query that you executed as part of an Amazon SNS notification. QueryInsights helps with performance tuning of your query. For more information about QueryInsights, see Using query insights to optimize queries in Amazon Timestream",
       options: [
         {
           name: "--scheduled-query-arn",
@@ -474,7 +474,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "query",
       description:
-        "Query is a synchronous operation that enables you to run a query against your Amazon Timestream data. If you enabled QueryInsights, this API also returns insights and metrics related to the query that you executed. QueryInsights helps with performance tuning of your query.  The maximum number of Query API requests you're allowed to make with QueryInsights enabled is 1 query per second (QPS). If you exceed this query rate, it might result in throttling.   Query will time out after 60 seconds. You must update the default timeout in the SDK to support a timeout of 60 seconds. See the code sample for details.  Your query request will fail in the following cases:    If you submit a Query request with the same client token outside of the 5-minute idempotency window.     If you submit a Query request with the same client token, but change other parameters, within the 5-minute idempotency window.     If the size of the row (including the query metadata) exceeds 1 MB, then the query will fail with the following error message:   Query aborted as max page response size has been exceeded by the output result row     If the IAM principal of the query initiator and the result reader are not the same and/or the query initiator and the result reader do not have the same query string in the query requests, the query will fail with an Invalid pagination token error",
+        "Query is a synchronous operation that enables you to run a query against your Amazon Timestream data. If you enabled QueryInsights, this API also returns insights and metrics related to the query that you executed. QueryInsights helps with performance tuning of your query. For more information about QueryInsights, see Using query insights to optimize queries in Amazon Timestream.  The maximum number of Query API requests you're allowed to make with QueryInsights enabled is 1 query per second (QPS). If you exceed this query rate, it might result in throttling.   Query will time out after 60 seconds. You must update the default timeout in the SDK to support a timeout of 60 seconds. See the code sample for details.  Your query request will fail in the following cases:    If you submit a Query request with the same client token outside of the 5-minute idempotency window.     If you submit a Query request with the same client token, but change other parameters, within the 5-minute idempotency window.     If the size of the row (including the query metadata) exceeds 1 MB, then the query will fail with the following error message:   Query aborted as max page response size has been exceeded by the output result row     If the IAM principal of the query initiator and the result reader are not the same and/or the query initiator and the result reader do not have the same query string in the query requests, the query will fail with an Invalid pagination token error",
       options: [
         {
           name: "--query-string",
@@ -645,7 +645,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-query-tcu",
           description:
-            "The maximum number of compute units the service will use at any point in time to serve your queries. To run queries, you must set a minimum capacity of 4 TCU. You can set the maximum number of TCU in multiples of 4, for example, 4, 8, 16, 32, and so on. The maximum value supported for MaxQueryTCU is 1000. To request an increase to this soft limit, contact Amazon Web Services Support. For information about the default quota for maxQueryTCU, see Default quotas",
+            "The maximum number of compute units the service will use at any point in time to serve your queries. To run queries, you must set a minimum capacity of 4 TCU. You can set the maximum number of TCU in multiples of 4, for example, 4, 8, 16, 32, and so on. The maximum value supported for MaxQueryTCU is 1000. To request an increase to this soft limit, contact Amazon Web Services Support. For information about the default quota for maxQueryTCU, see Default quotas. This configuration is applicable only for on-demand usage of Timestream Compute Units (TCUs). The maximum value supported for MaxQueryTCU is 1000. To request an increase to this soft limit, contact Amazon Web Services Support. For information about the default quota for maxQueryTCU, see Default quotas",
           args: {
             name: "integer",
           },
@@ -656,6 +656,14 @@ const completionSpec: Fig.Spec = {
             "The pricing model for queries in an account.  The QueryPricingModel parameter is used by several Timestream operations; however, the UpdateAccountSettings API operation doesn't recognize any values other than COMPUTE_UNITS",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--query-compute",
+          description:
+            "Modifies the query compute settings configured in your account, including the query pricing model and provisioned Timestream Compute Units (TCUs) in your account.  This API is idempotent, meaning that making the same request multiple times will have the same effect as making the request once",
+          args: {
+            name: "structure",
           },
         },
         {

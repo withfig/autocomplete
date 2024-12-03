@@ -1,64 +1,90 @@
 const completionSpec: Fig.Spec = {
-  name: "rbin",
+  name: "invoicing",
   description:
-    "This is the Recycle Bin API Reference. This documentation provides descriptions and syntax for each of the actions and data types in Recycle Bin. Recycle Bin is a resource recovery feature that enables you to restore accidentally deleted snapshots and EBS-backed AMIs. When using Recycle Bin, if your resources are deleted, they are retained in the Recycle Bin for a time period that you specify. You can restore a resource from the Recycle Bin at any time before its retention period expires. After you restore a resource from the Recycle Bin, the resource is removed from the Recycle Bin, and you can then use it in the same way you use any other resource of that type in your account. If the retention period expires and the resource is not restored, the resource is permanently deleted from the Recycle Bin and is no longer available for recovery. For more information about Recycle Bin, see  Recycle Bin in the Amazon Elastic Compute Cloud User Guide",
+    "Amazon Web Services Invoice Configuration  You can use Amazon Web Services Invoice Configuration APIs to programmatically create, update, delete, get, and list invoice units. You can also programmatically fetch the information of the invoice receiver. For example, business legal name, address, and invoicing contacts.  You can use Amazon Web Services Invoice Configuration to receive separate Amazon Web Services invoices based your organizational needs. By using Amazon Web Services Invoice Configuration, you can configure invoice units that are groups of Amazon Web Services accounts that represent your business entities, and receive separate invoices for each business entity. You can also assign a unique member or payer account as the invoice receiver for each invoice unit. As you create new accounts within your Organizations using Amazon Web Services Invoice Configuration APIs, you can automate the creation of new invoice units and subsequently automate the addition of new accounts to your invoice units. Service endpoint You can use the following endpoints for Amazon Web Services Invoice Configuration:    https://invoicing.us-east-1.api.aws",
   subcommands: [
     {
-      name: "create-rule",
+      name: "batch-get-invoice-profile",
       description:
-        "Creates a Recycle Bin retention rule. You can create two types of retention rules:    Tag-level retention rules - These retention rules use resource tags to identify the resources to protect. For each retention rule, you specify one or more tag key and value pairs. Resources (of the specified type) that have at least one of these tag key and value pairs are automatically retained in the Recycle Bin upon deletion. Use this type of retention rule to protect specific resources in your account based on their tags.    Region-level retention rules - These retention rules, by default, apply to all of the resources (of the specified type) in the Region, even if the resources are not tagged. However, you can specify exclusion tags to exclude resources that have specific tags. Use this type of retention rule to protect all resources of a specific type in a Region.   For more information, see  Create Recycle Bin retention rules in the Amazon EBS User Guide",
+        "This gets the invoice profile associated with a set of accounts. The accounts must be linked accounts under the requester management account organization",
       options: [
         {
-          name: "--retention-period",
+          name: "--account-ids",
           description:
-            "Information about the retention period for which the retention rule is to retain resources",
+            "Retrieves the corresponding invoice profile data for these account IDs",
           args: {
-            name: "structure",
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-invoice-unit",
+      description:
+        "This creates a new invoice unit with the provided definition",
+      options: [
+        {
+          name: "--name",
+          description:
+            "The unique name of the invoice unit that is shown on the generated invoice. This can't be changed once it is set. To change this name, you must delete the invoice unit recreate",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--invoice-receiver",
+          description:
+            "The Amazon Web Services account ID chosen to be the receiver of an invoice unit. All invoices generated for that invoice unit will be sent to this account ID",
+          args: {
+            name: "string",
           },
         },
         {
           name: "--description",
-          description: "The retention rule description",
+          description:
+            "The invoice unit's description. This can be changed at a later time",
           args: {
             name: "string",
           },
         },
         {
-          name: "--tags",
+          name: "--tax-inheritance-disabled",
           description:
-            "Information about the tags to assign to the retention rule",
-          args: {
-            name: "list",
-          },
+            "Whether the invoice unit based tax inheritance is/ should be enabled or disabled",
         },
         {
-          name: "--resource-type",
+          name: "--no-tax-inheritance-disabled",
           description:
-            "The resource type to be retained by the retention rule. Currently, only Amazon EBS snapshots and EBS-backed AMIs are supported. To retain snapshots, specify EBS_SNAPSHOT. To retain EBS-backed AMIs, specify EC2_IMAGE",
-          args: {
-            name: "string",
-          },
+            "Whether the invoice unit based tax inheritance is/ should be enabled or disabled",
         },
         {
-          name: "--resource-tags",
+          name: "--rule",
           description:
-            "[Tag-level retention rules only] Specifies the resource tags to use to identify resources that are to be retained by a tag-level retention rule. For tag-level retention rules, only deleted resources, of the specified resource type, that have one or more of the specified tag key and value pairs are retained. If a resource is deleted, but it does not have any of the specified tag key and value pairs, it is immediately deleted without being retained by the retention rule. You can add the same tag key and value pair to a maximum or five retention rules. To create a Region-level retention rule, omit this parameter. A Region-level retention rule does not have any resource tags specified. It retains all deleted resources of the specified resource type in the Region in which the rule is created, even if the resources are not tagged",
-          args: {
-            name: "list",
-          },
-        },
-        {
-          name: "--lock-configuration",
-          description:
-            "Information about the retention rule lock configuration",
+            "The InvoiceUnitRule object used to create invoice units",
           args: {
             name: "structure",
           },
         },
         {
-          name: "--exclude-resource-tags",
-          description:
-            "[Region-level retention rules only] Specifies the exclusion tags to use to identify resources that are to be excluded, or ignored, by a Region-level retention rule. Resources that have any of these tags are not retained by the retention rule upon deletion. You can't specify exclusion tags for tag-level retention rules",
+          name: "--resource-tags",
+          description: "The tag structure that contains a tag key and value",
           args: {
             name: "list",
           },
@@ -83,13 +109,14 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "delete-rule",
+      name: "delete-invoice-unit",
       description:
-        "Deletes a Recycle Bin retention rule. For more information, see  Delete Recycle Bin retention rules in the Amazon Elastic Compute Cloud User Guide",
+        "This deletes an invoice unit with the provided invoice unit ARN",
       options: [
         {
-          name: "--identifier",
-          description: "The unique ID of the retention rule",
+          name: "--invoice-unit-arn",
+          description:
+            "The ARN to identify an invoice unit. This information can't be modified or deleted",
           args: {
             name: "string",
           },
@@ -114,14 +141,23 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "get-rule",
-      description: "Gets information about a Recycle Bin retention rule",
+      name: "get-invoice-unit",
+      description: "This retrieves the invoice unit definition",
       options: [
         {
-          name: "--identifier",
-          description: "The unique ID of the retention rule",
+          name: "--invoice-unit-arn",
+          description:
+            "The ARN to identify an invoice unit. This information can't be modified or deleted",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--as-of",
+          description:
+            "The state of an invoice unit at a specified time. You can see legacy invoice units that are currently deleted if the AsOf time is set to before it was deleted. If an AsOf is not provided, the default value is the current time",
+          args: {
+            name: "timestamp",
           },
         },
         {
@@ -144,54 +180,40 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "list-rules",
-      description: "Lists the Recycle Bin retention rules in the Region",
+      name: "list-invoice-units",
+      description:
+        "This fetches a list of all invoice unit definitions for a given account, as of the provided AsOf date",
       options: [
+        {
+          name: "--filters",
+          description:
+            "An optional input to the list API. If multiple filters are specified, the returned list will be a configuration that match all of the provided filters. Supported filter types are InvoiceReceivers, Names, and Accounts",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The next token used to indicate where the returned list should start from",
+          args: {
+            name: "string",
+          },
+        },
         {
           name: "--max-results",
           description:
-            "The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned NextToken value",
+            "The maximum number of invoice units that can be returned",
           args: {
             name: "integer",
           },
         },
         {
-          name: "--next-token",
-          description: "The token for the next page of results",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--resource-type",
+          name: "--as-of",
           description:
-            "The resource type retained by the retention rule. Only retention rules that retain the specified resource type are listed. Currently, only Amazon EBS snapshots and EBS-backed AMIs are supported. To list retention rules that retain snapshots, specify EBS_SNAPSHOT. To list retention rules that retain EBS-backed AMIs, specify EC2_IMAGE",
+            "The state of an invoice unit at a specified time. You can see legacy invoice units that are currently deleted if the AsOf time is set to before it was deleted. If an AsOf is not provided, the default value is the current time",
           args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--resource-tags",
-          description:
-            "[Tag-level retention rules only] Information about the resource tags used to identify resources that are retained by the retention rule",
-          args: {
-            name: "list",
-          },
-        },
-        {
-          name: "--lock-state",
-          description:
-            "The lock state of the retention rules to list. Only retention rules with the specified lock state are returned",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--exclude-resource-tags",
-          description:
-            "[Region-level retention rules only] Information about the exclusion tags used to identify resources that are to be excluded, or ignored, by the retention rule",
-          args: {
-            name: "list",
+            name: "timestamp",
           },
         },
         {
@@ -239,52 +261,13 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-tags-for-resource",
-      description: "Lists the tags assigned to a retention rule",
+      description: "Lists the tags for a resource",
       options: [
         {
           name: "--resource-arn",
-          description: "The Amazon Resource Name (ARN) of the retention rule",
+          description: "The Amazon Resource Name (ARN) of tags to list",
           args: {
             name: "string",
-          },
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "lock-rule",
-      description:
-        "Locks a Region-level retention rule. A locked retention rule can't be modified or deleted.  You can't lock tag-level retention rules, or Region-level retention rules that have exclusion tags",
-      options: [
-        {
-          name: "--identifier",
-          description: "The unique ID of the retention rule",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--lock-configuration",
-          description:
-            "Information about the retention rule lock configuration",
-          args: {
-            name: "structure",
           },
         },
         {
@@ -308,52 +291,20 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "tag-resource",
-      description: "Assigns tags to the specified retention rule",
+      description: "Adds a tag to a resource",
       options: [
         {
           name: "--resource-arn",
-          description: "The Amazon Resource Name (ARN) of the retention rule",
+          description: "The Amazon Resource Name (ARN) of the tags",
           args: {
             name: "string",
           },
         },
         {
-          name: "--tags",
-          description:
-            "Information about the tags to assign to the retention rule",
+          name: "--resource-tags",
+          description: "Adds a tag to a resource",
           args: {
             name: "list",
-          },
-        },
-        {
-          name: "--cli-input-json",
-          description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--generate-cli-skeleton",
-          description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
-          args: {
-            name: "string",
-            suggestions: ["input", "output"],
-          },
-        },
-      ],
-    },
-    {
-      name: "unlock-rule",
-      description:
-        "Unlocks a retention rule. After a retention rule is unlocked, it can be modified or deleted only after the unlock delay period expires",
-      options: [
-        {
-          name: "--identifier",
-          description: "The unique ID of the retention rule",
-          args: {
-            name: "string",
           },
         },
         {
@@ -377,19 +328,18 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "untag-resource",
-      description: "Unassigns a tag from a retention rule",
+      description: "Removes a tag from a resource",
       options: [
         {
           name: "--resource-arn",
-          description: "The Amazon Resource Name (ARN) of the retention rule",
+          description: "The Amazon Resource Name (ARN) to untag",
           args: {
             name: "string",
           },
         },
         {
-          name: "--tag-keys",
-          description:
-            "The tag keys of the tags to unassign. All tags that have the specified tag key are unassigned",
+          name: "--resource-tag-keys",
+          description: "Keys for the tags to be removed",
           args: {
             name: "list",
           },
@@ -414,54 +364,42 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "update-rule",
+      name: "update-invoice-unit",
       description:
-        "Updates an existing Recycle Bin retention rule. You can update a retention rule's description, resource tags, and retention period at any time after creation. You can't update a retention rule's resource type after creation. For more information, see  Update Recycle Bin retention rules in the Amazon Elastic Compute Cloud User Guide",
+        "You can update the invoice unit configuration at any time, and Amazon Web Services will use the latest configuration at the end of the month",
       options: [
         {
-          name: "--identifier",
-          description: "The unique ID of the retention rule",
+          name: "--invoice-unit-arn",
+          description:
+            "The ARN to identify an invoice unit. This information can't be modified or deleted",
           args: {
             name: "string",
-          },
-        },
-        {
-          name: "--retention-period",
-          description:
-            "Information about the retention period for which the retention rule is to retain resources",
-          args: {
-            name: "structure",
           },
         },
         {
           name: "--description",
-          description: "The retention rule description",
+          description:
+            "The assigned description for an invoice unit. This information can't be modified or deleted",
           args: {
             name: "string",
           },
         },
         {
-          name: "--resource-type",
+          name: "--tax-inheritance-disabled",
           description:
-            "This parameter is currently not supported. You can't update a retention rule's resource type after creation",
-          args: {
-            name: "string",
-          },
+            "Whether the invoice unit based tax inheritance is/ should be enabled or disabled",
         },
         {
-          name: "--resource-tags",
+          name: "--no-tax-inheritance-disabled",
           description:
-            "[Tag-level retention rules only] Specifies the resource tags to use to identify resources that are to be retained by a tag-level retention rule. For tag-level retention rules, only deleted resources, of the specified resource type, that have one or more of the specified tag key and value pairs are retained. If a resource is deleted, but it does not have any of the specified tag key and value pairs, it is immediately deleted without being retained by the retention rule. You can add the same tag key and value pair to a maximum or five retention rules. To create a Region-level retention rule, omit this parameter. A Region-level retention rule does not have any resource tags specified. It retains all deleted resources of the specified resource type in the Region in which the rule is created, even if the resources are not tagged",
-          args: {
-            name: "list",
-          },
+            "Whether the invoice unit based tax inheritance is/ should be enabled or disabled",
         },
         {
-          name: "--exclude-resource-tags",
+          name: "--rule",
           description:
-            "[Region-level retention rules only] Specifies the exclusion tags to use to identify resources that are to be excluded, or ignored, by a Region-level retention rule. Resources that have any of these tags are not retained by the retention rule upon deletion. You can't specify exclusion tags for tag-level retention rules",
+            "The InvoiceUnitRule object used to update invoice units",
           args: {
-            name: "list",
+            name: "structure",
           },
         },
         {
@@ -485,4 +423,5 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
+
 export default completionSpec;

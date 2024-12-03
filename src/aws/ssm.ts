@@ -922,7 +922,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--global-filters",
           description:
-            "A set of global filters used to include patches in the baseline",
+            "A set of global filters used to include patches in the baseline.  The GlobalFilters parameter can be configured only by using the CLI or an Amazon Web Services SDK. It can't be configured from the Patch Manager console, and its value isn't displayed in the console",
           args: {
             name: "structure",
           },
@@ -1028,7 +1028,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-resource-data-sync",
       description:
-        "A resource data sync helps you view data from multiple sources in a single location. Amazon Web Services Systems Manager offers two types of resource data sync: SyncToDestination and SyncFromSource. You can configure Systems Manager Inventory to use the SyncToDestination type to synchronize Inventory data from multiple Amazon Web Services Regions to a single Amazon Simple Storage Service (Amazon S3) bucket. For more information, see Creatinga a resource data sync for Inventory in the Amazon Web Services Systems Manager User Guide. You can configure Systems Manager Explorer to use the SyncFromSource type to synchronize operational work items (OpsItems) and operational data (OpsData) from multiple Amazon Web Services Regions to a single Amazon S3 bucket. This type can synchronize OpsItems and OpsData from multiple Amazon Web Services accounts and Amazon Web Services Regions or EntireOrganization by using Organizations. For more information, see Setting up Systems Manager Explorer to display data from multiple accounts and Regions in the Amazon Web Services Systems Manager User Guide. A resource data sync is an asynchronous operation that returns immediately. After a successful initial sync is completed, the system continuously syncs data. To check the status of a sync, use the ListResourceDataSync.  By default, data isn't encrypted in Amazon S3. We strongly recommend that you enable encryption in Amazon S3 to ensure secure data storage. We also recommend that you secure access to the Amazon S3 bucket by creating a restrictive bucket policy",
+        "A resource data sync helps you view data from multiple sources in a single location. Amazon Web Services Systems Manager offers two types of resource data sync: SyncToDestination and SyncFromSource. You can configure Systems Manager Inventory to use the SyncToDestination type to synchronize Inventory data from multiple Amazon Web Services Regions to a single Amazon Simple Storage Service (Amazon S3) bucket. For more information, see Creating a resource data sync for Inventory in the Amazon Web Services Systems Manager User Guide. You can configure Systems Manager Explorer to use the SyncFromSource type to synchronize operational work items (OpsItems) and operational data (OpsData) from multiple Amazon Web Services Regions to a single Amazon S3 bucket. This type can synchronize OpsItems and OpsData from multiple Amazon Web Services accounts and Amazon Web Services Regions or EntireOrganization by using Organizations. For more information, see Setting up Systems Manager Explorer to display data from multiple accounts and Regions in the Amazon Web Services Systems Manager User Guide. A resource data sync is an asynchronous operation that returns immediately. After a successful initial sync is completed, the system continuously syncs data. To check the status of a sync, use the ListResourceDataSync.  By default, data isn't encrypted in Amazon S3. We strongly recommend that you enable encryption in Amazon S3 to ensure secure data storage. We also recommend that you secure access to the Amazon S3 bucket by creating a restrictive bucket policy",
       options: [
         {
           name: "--sync-name",
@@ -4482,6 +4482,37 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-execution-preview",
+      description:
+        "Initiates the process of retrieving an existing preview that shows the effects that running a specified Automation runbook would have on the targeted resources",
+      options: [
+        {
+          name: "--execution-preview-id",
+          description: "The ID of the existing execution preview",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-inventory",
       description:
         "Query inventory information. This includes managed node status, such as Stopped or Terminated",
@@ -5444,7 +5475,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--setting-id",
           description:
-            "The ID of the service setting to get. The setting ID can be one of the following.    /ssm/managed-instance/default-ec2-instance-management-role     /ssm/automation/customer-script-log-destination     /ssm/automation/customer-script-log-group-name     /ssm/documents/console/public-sharing-permission     /ssm/managed-instance/activation-tier     /ssm/opsinsights/opscenter     /ssm/parameter-store/default-parameter-tier     /ssm/parameter-store/high-throughput-enabled",
+            "The ID of the service setting to get. The setting ID can be one of the following.    /ssm/appmanager/appmanager-enabled     /ssm/automation/customer-script-log-destination     /ssm/automation/customer-script-log-group-name    /ssm/automation/enable-adaptive-concurrency    /ssm/documents/console/public-sharing-permission     /ssm/managed-instance/activation-tier     /ssm/managed-instance/default-ec2-instance-management-role     /ssm/opsinsights/opscenter     /ssm/parameter-store/default-parameter-tier     /ssm/parameter-store/high-throughput-enabled",
           args: {
             name: "string",
           },
@@ -6267,6 +6298,174 @@ const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-nodes",
+      description:
+        "Takes in filters and returns a list of managed nodes matching the filter criteria",
+      options: [
+        {
+          name: "--sync-name",
+          description:
+            "The name of the resource data sync to retrieve information about. Required for cross-account/cross-Region configurations. Optional for single account/single-Region configurations",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--filters",
+          description:
+            "One or more filters. Use a filter to return a more specific list of managed nodes",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The token for the next set of items to return. (You received this token from a previous call.)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-nodes-summary",
+      description:
+        "Generates a summary of managed instance/node metadata based on the filters and aggregators you specify. Results are grouped by the input aggregator you specify",
+      options: [
+        {
+          name: "--sync-name",
+          description:
+            "The name of the resource data sync to retrieve information about. Required for cross-account/cross-Region configuration. Optional for single account/single-Region configurations",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--filters",
+          description:
+            "One or more filters. Use a filter to generate a summary that matches your specified filter criteria",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--aggregators",
+          description:
+            "Specify one or more aggregators to return a count of managed nodes that match that expression. For example, a count of managed nodes by operating system",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The token for the next set of items to return. (You received this token from a previous call.) The call also returns a token that you can specify in a subsequent call to get the next set of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -7385,7 +7584,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--setting-id",
           description:
-            "The Amazon Resource Name (ARN) of the service setting to reset. The setting ID can be one of the following.    /ssm/managed-instance/default-ec2-instance-management-role     /ssm/automation/customer-script-log-destination     /ssm/automation/customer-script-log-group-name     /ssm/documents/console/public-sharing-permission     /ssm/managed-instance/activation-tier     /ssm/opsinsights/opscenter     /ssm/parameter-store/default-parameter-tier     /ssm/parameter-store/high-throughput-enabled",
+            "The Amazon Resource Name (ARN) of the service setting to reset. The setting ID can be one of the following.    /ssm/appmanager/appmanager-enabled     /ssm/automation/customer-script-log-destination     /ssm/automation/customer-script-log-group-name    /ssm/automation/enable-adaptive-concurrency    /ssm/documents/console/public-sharing-permission     /ssm/managed-instance/activation-tier     /ssm/managed-instance/default-ec2-instance-management-role     /ssm/opsinsights/opscenter     /ssm/parameter-store/default-parameter-tier     /ssm/parameter-store/high-throughput-enabled",
           args: {
             name: "string",
           },
@@ -7911,6 +8110,54 @@ const completionSpec: Fig.Spec = {
             "User-provided details about the change. If no details are provided, content specified in the Template information section of the associated change template is added",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "start-execution-preview",
+      description:
+        "Initiates the process of creating a preview showing the effects that running a specified Automation runbook would have on the targeted resources",
+      options: [
+        {
+          name: "--document-name",
+          description:
+            "The name of the Automation runbook to run. The result of the execution preview indicates what the impact would be of running this runbook",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--document-version",
+          description:
+            "The version of the Automation runbook to run. The default value is $DEFAULT",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--execution-inputs",
+          description:
+            "Information about the inputs that can be specified for the preview operation",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -9122,7 +9369,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--global-filters",
           description:
-            "A set of global filters used to include patches in the baseline",
+            "A set of global filters used to include patches in the baseline.  The GlobalFilters parameter can be configured only by using the CLI or an Amazon Web Services SDK. It can't be configured from the Patch Manager console, and its value isn't displayed in the console",
           args: {
             name: "structure",
           },
@@ -9275,7 +9522,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--setting-id",
           description:
-            "The Amazon Resource Name (ARN) of the service setting to update. For example, arn:aws:ssm:us-east-1:111122223333:servicesetting/ssm/parameter-store/high-throughput-enabled. The setting ID can be one of the following.    /ssm/managed-instance/default-ec2-instance-management-role     /ssm/automation/customer-script-log-destination     /ssm/automation/customer-script-log-group-name     /ssm/documents/console/public-sharing-permission     /ssm/managed-instance/activation-tier     /ssm/opsinsights/opscenter     /ssm/parameter-store/default-parameter-tier     /ssm/parameter-store/high-throughput-enabled     Permissions to update the /ssm/managed-instance/default-ec2-instance-management-role setting should only be provided to administrators. Implement least privilege access when allowing individuals to configure or modify the Default Host Management Configuration",
+            "The Amazon Resource Name (ARN) of the service setting to update. For example, arn:aws:ssm:us-east-1:111122223333:servicesetting/ssm/parameter-store/high-throughput-enabled. The setting ID can be one of the following.    /ssm/appmanager/appmanager-enabled     /ssm/automation/customer-script-log-destination     /ssm/automation/customer-script-log-group-name    /ssm/automation/enable-adaptive-concurrency    /ssm/documents/console/public-sharing-permission     /ssm/managed-instance/activation-tier     /ssm/managed-instance/default-ec2-instance-management-role     /ssm/opsinsights/opscenter     /ssm/parameter-store/default-parameter-tier     /ssm/parameter-store/high-throughput-enabled     Permissions to update the /ssm/managed-instance/default-ec2-instance-management-role setting should only be provided to administrators. Implement least privilege access when allowing individuals to configure or modify the Default Host Management Configuration",
           args: {
             name: "string",
           },
@@ -9283,7 +9530,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--setting-value",
           description:
-            "The new value to specify for the service setting. The following list specifies the available values for each setting.   For /ssm/managed-instance/default-ec2-instance-management-role, enter the name of an IAM role.    For /ssm/automation/customer-script-log-destination, enter CloudWatch.   For /ssm/automation/customer-script-log-group-name, enter the name of an Amazon CloudWatch Logs log group.   For /ssm/documents/console/public-sharing-permission, enter Enable or Disable.   For /ssm/managed-instance/activation-tier, enter standard or advanced.    For /ssm/opsinsights/opscenter, enter Enabled or Disabled.    For /ssm/parameter-store/default-parameter-tier, enter Standard, Advanced, or Intelligent-Tiering    For /ssm/parameter-store/high-throughput-enabled, enter true or false",
+            "The new value to specify for the service setting. The following list specifies the available values for each setting.   For /ssm/appmanager/appmanager-enabled, enter True or False.   For /ssm/automation/customer-script-log-destination, enter CloudWatch.   For /ssm/automation/customer-script-log-group-name, enter the name of an Amazon CloudWatch Logs log group.   For /ssm/documents/console/public-sharing-permission, enter Enable or Disable.   For /ssm/managed-instance/activation-tier, enter standard or advanced.   For /ssm/managed-instance/default-ec2-instance-management-role, enter the name of an IAM role.     For /ssm/opsinsights/opscenter, enter Enabled or Disabled.    For /ssm/parameter-store/default-parameter-tier, enter Standard, Advanced, or Intelligent-Tiering    For /ssm/parameter-store/high-throughput-enabled, enter true or false",
           args: {
             name: "string",
           },

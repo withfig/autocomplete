@@ -61,7 +61,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "converse",
       description:
-        "Sends messages to the specified Amazon Bedrock model. Converse provides a consistent interface that works with all models that support messages. This allows you to write code once and use it with different models. If a model has unique inference parameters, you can also pass those unique parameters to the model. Amazon Bedrock doesn't store any text, images, or documents that you provide as content. The data is only used to generate the response. You can submit a prompt by including it in the messages field, specifying the modelId of a foundation model or inference profile to run inference on it, and including any other fields that are relevant to your use case. You can also submit a prompt from Prompt management by specifying the ARN of the prompt version and including a map of variables to values in the promptVariables field. You can append more messages to the prompt by using the messages field. If you use a prompt from Prompt management, you can't include the following fields in the request: additionalModelRequestFields, inferenceConfig, system, or toolConfig. Instead, these fields must be defined through Prompt management. For more information, see Use a prompt from Prompt management. For information about the Converse API, see Use the Converse API in the Amazon Bedrock User Guide. To use a guardrail, see Use a guardrail with the Converse API in the Amazon Bedrock User Guide. To use a tool with a model, see Tool use (Function calling) in the Amazon Bedrock User Guide  For example code, see Converse API examples in the Amazon Bedrock User Guide.  This operation requires permission for the bedrock:InvokeModel action",
+        "Sends messages to the specified Amazon Bedrock model. Converse provides a consistent interface that works with all models that support messages. This allows you to write code once and use it with different models. If a model has unique inference parameters, you can also pass those unique parameters to the model. Amazon Bedrock doesn't store any text, images, or documents that you provide as content. The data is only used to generate the response. You can submit a prompt by including it in the messages field, specifying the modelId of a foundation model or inference profile to run inference on it, and including any other fields that are relevant to your use case. You can also submit a prompt from Prompt management by specifying the ARN of the prompt version and including a map of variables to values in the promptVariables field. You can append more messages to the prompt by using the messages field. If you use a prompt from Prompt management, you can't include the following fields in the request: additionalModelRequestFields, inferenceConfig, system, or toolConfig. Instead, these fields must be defined through Prompt management. For more information, see Use a prompt from Prompt management. For information about the Converse API, see Use the Converse API in the Amazon Bedrock User Guide. To use a guardrail, see Use a guardrail with the Converse API in the Amazon Bedrock User Guide. To use a tool with a model, see Tool use (Function calling) in the Amazon Bedrock User Guide  For example code, see Converse API examples in the Amazon Bedrock User Guide.  This operation requires permission for the bedrock:InvokeModel action.   To deny all inference access to resources that you specify in the modelId field, you need to deny access to the bedrock:InvokeModel and bedrock:InvokeModelWithResponseStream actions. Doing this also denies access to the resource through the base inference actions (InvokeModel and InvokeModelWithResponseStream). For more information see Deny access for inference on specific models.   For troubleshooting some of the common errors you might encounter when using the Converse API, see Troubleshooting Amazon Bedrock API Error Codes in the Amazon Bedrock User Guide",
       options: [
         {
           name: "--model-id",
@@ -135,6 +135,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--performance-config",
+          description: "Model performance settings for the request",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -156,7 +163,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "invoke-model",
       description:
-        "Invokes the specified Amazon Bedrock model to run inference using the prompt and inference parameters provided in the request body. You use model inference to generate text, images, and embeddings. For example code, see Invoke model code examples in the Amazon Bedrock User Guide.  This operation requires permission for the bedrock:InvokeModel action",
+        "Invokes the specified Amazon Bedrock model to run inference using the prompt and inference parameters provided in the request body. You use model inference to generate text, images, and embeddings. For example code, see Invoke model code examples in the Amazon Bedrock User Guide.  This operation requires permission for the bedrock:InvokeModel action.  To deny all inference access to resources that you specify in the modelId field, you need to deny access to the bedrock:InvokeModel and bedrock:InvokeModelWithResponseStream actions. Doing this also denies access to the resource through the Converse API actions (Converse and ConverseStream). For more information see Deny access for inference on specific models.   For troubleshooting some of the common errors you might encounter when using the InvokeModel API, see Troubleshooting Amazon Bedrock API Error Codes in the Amazon Bedrock User Guide",
       options: [
         {
           name: "--body",
@@ -185,7 +192,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--model-id",
           description:
-            "The unique identifier of the model to invoke to run inference. The modelId to provide depends on the type of model that you use:   If you use a base model, specify the model ID or its ARN. For a list of model IDs for base models, see Amazon Bedrock base model IDs (on-demand throughput) in the Amazon Bedrock User Guide.   If you use a provisioned model, specify the ARN of the Provisioned Throughput. For more information, see Run inference using a Provisioned Throughput in the Amazon Bedrock User Guide.   If you use a custom model, first purchase Provisioned Throughput for it. Then specify the ARN of the resulting provisioned model. For more information, see Use a custom model in Amazon Bedrock in the Amazon Bedrock User Guide.   If you use an imported model, specify the ARN of the imported model. You can get the model ARN from a successful call to CreateModelImportJob or from the Imported models page in the Amazon Bedrock console",
+            "The unique identifier of the model to invoke to run inference. The modelId to provide depends on the type of model or throughput that you use:   If you use a base model, specify the model ID or its ARN. For a list of model IDs for base models, see Amazon Bedrock base model IDs (on-demand throughput) in the Amazon Bedrock User Guide.   If you use an inference profile, specify the inference profile ID or its ARN. For a list of inference profile IDs, see Supported Regions and models for cross-region inference in the Amazon Bedrock User Guide.   If you use a provisioned model, specify the ARN of the Provisioned Throughput. For more information, see Run inference using a Provisioned Throughput in the Amazon Bedrock User Guide.   If you use a custom model, first purchase Provisioned Throughput for it. Then specify the ARN of the resulting provisioned model. For more information, see Use a custom model in Amazon Bedrock in the Amazon Bedrock User Guide.   If you use an imported model, specify the ARN of the imported model. You can get the model ARN from a successful call to CreateModelImportJob or from the Imported models page in the Amazon Bedrock console",
           args: {
             name: "string",
           },
@@ -210,6 +217,13 @@ const completionSpec: Fig.Spec = {
           name: "--guardrail-version",
           description:
             "The version number for the guardrail. The value can also be DRAFT",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--performance-config-latency",
+          description: "Model performance settings for the request",
           args: {
             name: "string",
           },

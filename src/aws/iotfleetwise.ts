@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "iotfleetwise",
   description:
-    "Amazon Web Services IoT FleetWise is a fully managed service that you can use to collect, model, and transfer vehicle data to the Amazon Web Services cloud at scale. With Amazon Web Services IoT FleetWise, you can standardize all of your vehicle data models, independent of the in-vehicle communication architecture, and define data collection rules to transfer only high-value data to the cloud.  For more information, see What is Amazon Web Services IoT FleetWise? in the Amazon Web Services IoT FleetWise Developer Guide",
+    "Amazon Web Services IoT FleetWise is a fully managed service that you can use to collect, model, and transfer vehicle data to the Amazon Web Services cloud at scale. With Amazon Web Services IoT FleetWise, you can standardize all of your vehicle data models, independent of the in-vehicle communication architecture, and define data collection rules to transfer only high-value data to the cloud.  For more information, see What is Amazon Web Services IoT FleetWise? in the Amazon Web Services IoT FleetWise Developer Guide.  Access to certain Amazon Web Services IoT FleetWise features is currently gated. For more information, see Amazon Web Services Region and feature availability in the Amazon Web Services IoT FleetWise Developer Guide",
   subcommands: [
     {
       name: "associate-vehicle-fleet",
@@ -108,7 +108,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-campaign",
       description:
-        "Creates an orchestration of data collection rules. The Amazon Web Services IoT FleetWise Edge Agent software running in vehicles uses campaigns to decide how to collect and transfer data to the cloud. You create campaigns in the cloud. After you or your team approve campaigns, Amazon Web Services IoT FleetWise automatically deploys them to vehicles.  For more information, see Collect and transfer data with campaigns in the Amazon Web Services IoT FleetWise Developer Guide",
+        "Creates an orchestration of data collection rules. The Amazon Web Services IoT FleetWise Edge Agent software running in vehicles uses campaigns to decide how to collect and transfer data to the cloud. You create campaigns in the cloud. After you or your team approve campaigns, Amazon Web Services IoT FleetWise automatically deploys them to vehicles.  For more information, see Collect and transfer data with campaigns in the Amazon Web Services IoT FleetWise Developer Guide.  Access to certain Amazon Web Services IoT FleetWise features is currently gated. For more information, see Amazon Web Services Region and feature availability in the Amazon Web Services IoT FleetWise Developer Guide",
       options: [
         {
           name: "--name",
@@ -144,7 +144,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--start-time",
           description:
-            "(Optional) The time, in milliseconds, to deliver a campaign after it was approved. If it's not specified, 0 is used. Default: 0",
+            "The time, in milliseconds, to deliver a campaign after it was approved. If it's not specified, 0 is used. Default: 0",
           args: {
             name: "timestamp",
           },
@@ -152,7 +152,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expiry-time",
           description:
-            "(Optional) The time the campaign expires, in seconds since epoch (January 1, 1970 at midnight UTC time). Vehicle data isn't collected after the campaign expires.  Default: 253402214400 (December 31, 9999, 00:00:00 UTC)",
+            "The time the campaign expires, in seconds since epoch (January 1, 1970 at midnight UTC time). Vehicle data isn't collected after the campaign expires.  Default: 253402214400 (December 31, 9999, 00:00:00 UTC)",
           args: {
             name: "timestamp",
           },
@@ -160,7 +160,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--post-trigger-collection-duration",
           description:
-            "(Optional) How long (in milliseconds) to collect raw data after a triggering event initiates the collection. If it's not specified, 0 is used. Default: 0",
+            "How long (in milliseconds) to collect raw data after a triggering event initiates the collection. If it's not specified, 0 is used. Default: 0",
           args: {
             name: "long",
           },
@@ -168,7 +168,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--diagnostics-mode",
           description:
-            "(Optional) Option for a vehicle to send diagnostic trouble codes to Amazon Web Services IoT FleetWise. If you want to send diagnostic trouble codes, use SEND_ACTIVE_DTCS. If it's not specified, OFF is used. Default: OFF",
+            "Option for a vehicle to send diagnostic trouble codes to Amazon Web Services IoT FleetWise. If you want to send diagnostic trouble codes, use SEND_ACTIVE_DTCS. If it's not specified, OFF is used. Default: OFF",
           args: {
             name: "string",
           },
@@ -176,7 +176,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--spooling-mode",
           description:
-            "(Optional) Whether to store collected data after a vehicle lost a connection with the cloud. After a connection is re-established, the data is automatically forwarded to Amazon Web Services IoT FleetWise. If you want to store collected data when a vehicle loses connection with the cloud, use TO_DISK. If it's not specified, OFF is used. Default: OFF",
+            "Determines whether to store collected data after a vehicle lost a connection with the cloud. After a connection is re-established, the data is automatically forwarded to Amazon Web Services IoT FleetWise. If you want to store collected data when a vehicle loses connection with the cloud, use TO_DISK. If it's not specified, OFF is used. Default: OFF",
           args: {
             name: "string",
           },
@@ -184,7 +184,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--compression",
           description:
-            "(Optional) Whether to compress signals before transmitting data to Amazon Web Services IoT FleetWise. If you don't want to compress the signals, use OFF. If it's not specified, SNAPPY is used.  Default: SNAPPY",
+            "Determines whether to compress signals before transmitting data to Amazon Web Services IoT FleetWise. If you don't want to compress the signals, use OFF. If it's not specified, SNAPPY is used.  Default: SNAPPY",
           args: {
             name: "string",
           },
@@ -192,7 +192,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--priority",
           description:
-            "(Optional) A number indicating the priority of one campaign over another campaign for a certain vehicle or fleet. A campaign with the lowest value is deployed to vehicles before any other campaigns. If it's not specified, 0 is used.  Default: 0",
+            "A number indicating the priority of one campaign over another campaign for a certain vehicle or fleet. A campaign with the lowest value is deployed to vehicles before any other campaigns. If it's not specified, 0 is used.  Default: 0",
           args: {
             name: "integer",
           },
@@ -200,7 +200,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--signals-to-collect",
           description:
-            "(Optional) A list of information about signals to collect",
+            "A list of information about signals to collect.   If you upload a signal as a condition in a data partition for a campaign, then those same signals must be included in signalsToCollect",
           args: {
             name: "list",
           },
@@ -216,7 +216,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--data-extra-dimensions",
           description:
-            "(Optional) A list of vehicle attributes to associate with a campaign.  Enrich the data with specified vehicle attributes. For example, add make and model to the campaign, and Amazon Web Services IoT FleetWise will associate the data with those attributes as dimensions in Amazon Timestream. You can then query the data against make and model. Default: An empty array",
+            "A list of vehicle attributes to associate with a campaign.  Enrich the data with specified vehicle attributes. For example, add make and model to the campaign, and Amazon Web Services IoT FleetWise will associate the data with those attributes as dimensions in Amazon Timestream. You can then query the data against make and model. Default: An empty array",
           args: {
             name: "list",
           },
@@ -231,7 +231,22 @@ const completionSpec: Fig.Spec = {
         {
           name: "--data-destination-configs",
           description:
-            "The destination where the campaign sends data. You can choose to send data to be stored in Amazon S3 or Amazon Timestream. Amazon S3 optimizes the cost of data storage and provides additional mechanisms to use vehicle data, such as data lakes, centralized data storage, data processing pipelines, and analytics. Amazon Web Services IoT FleetWise supports at-least-once file delivery to S3. Your vehicle data is stored on multiple Amazon Web Services IoT FleetWise servers for redundancy and high availability. You can use Amazon Timestream to access and analyze time series data, and Timestream to query vehicle data so that you can identify trends and patterns",
+            "The destination where the campaign sends data. You can send data to an MQTT topic, or store it in Amazon S3 or Amazon Timestream. MQTT is the publish/subscribe messaging protocol used by Amazon Web Services IoT to communicate with your devices. Amazon S3 optimizes the cost of data storage and provides additional mechanisms to use vehicle data, such as data lakes, centralized data storage, data processing pipelines, and analytics. Amazon Web Services IoT FleetWise supports at-least-once file delivery to S3. Your vehicle data is stored on multiple Amazon Web Services IoT FleetWise servers for redundancy and high availability. You can use Amazon Timestream to access and analyze time series data, and Timestream to query vehicle data so that you can identify trends and patterns",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--data-partitions",
+          description:
+            "The data partitions associated with the signals collected from the vehicle",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--signals-to-fetch",
+          description: "A list of information about signals to fetch",
           args: {
             name: "list",
           },
@@ -295,6 +310,14 @@ const completionSpec: Fig.Spec = {
             "A list of information about available network interfaces",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--default-for-unmapped-signals",
+          description:
+            "Use default decoders for all unmapped signals in the model. You don't need to provide any detailed decoding information.  Access to certain Amazon Web Services IoT FleetWise features is currently gated. For more information, see Amazon Web Services Region and feature availability in the Amazon Web Services IoT FleetWise Developer Guide",
+          args: {
+            name: "string",
           },
         },
         {
@@ -490,6 +513,83 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-state-template",
+      description:
+        "Creates a state template. State templates contain state properties, which are signals that belong to a signal catalog that is synchronized between the Amazon Web Services IoT FleetWise Edge and the Amazon Web Services Cloud.  Access to certain Amazon Web Services IoT FleetWise features is currently gated. For more information, see Amazon Web Services Region and feature availability in the Amazon Web Services IoT FleetWise Developer Guide",
+      options: [
+        {
+          name: "--name",
+          description: "The name of the state template",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "A brief description of the state template",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--signal-catalog-arn",
+          description:
+            "The ARN of the signal catalog associated with the state template",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--state-template-properties",
+          description:
+            "A list of signals from which data is collected. The state template properties contain the fully qualified names of the signals",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--data-extra-dimensions",
+          description:
+            "A list of vehicle attributes to associate with the payload published on the state template's MQTT topic. (See  Processing last known state vehicle data using MQTT messaging). For example, if you add Vehicle.Attributes.Make and Vehicle.Attributes.Model attributes, Amazon Web Services IoT FleetWise will enrich the protobuf encoded payload with those attributes in the extraDimensions field",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--metadata-extra-dimensions",
+          description:
+            "A list of vehicle attributes to associate with user properties of the messages published on the state template's MQTT topic. (See  Processing last known state vehicle data using MQTT messaging). For example, if you add Vehicle.Attributes.Make and Vehicle.Attributes.Model attributes, Amazon Web Services IoT FleetWise will include these attributes as User Properties with the MQTT message. Default: An empty array",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--tags",
+          description: "Metadata that can be used to manage the state template",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-vehicle",
       description:
         "Creates a vehicle, which is an instance of a vehicle model (model manifest). Vehicles created from the same vehicle model consist of the same signals inherited from the vehicle model.   If you have an existing Amazon Web Services IoT thing, you can use Amazon Web Services IoT FleetWise to create a vehicle and collect data from your thing.   For more information, see Create a vehicle (AWS CLI) in the Amazon Web Services IoT FleetWise Developer Guide",
@@ -518,7 +618,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--attributes",
           description:
-            'Static information about a vehicle in a key-value pair. For example: "engineType" : "1.3 L R2"  A campaign must include the keys (attribute names) in dataExtraDimensions for them to display in Amazon Timestream',
+            'Static information about a vehicle in a key-value pair. For example: "engineType" : "1.3 L R2"  To use attributes with Campaigns or State Templates, you must include them using the request parameters dataExtraDimensions and/or metadataExtraDimensions (for state templates only) when creating your campaign/state template',
           args: {
             name: "map",
           },
@@ -534,6 +634,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description: "Metadata that can be used to manage the vehicle",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--state-templates",
+          description:
+            "Associate state templates with the vehicle. You can monitor the last known state of the vehicle in near real time",
           args: {
             name: "list",
           },
@@ -591,7 +699,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-decoder-manifest",
       description:
-        "Deletes a decoder manifest. You can't delete a decoder manifest if it has vehicles associated with it.   If the decoder manifest is successfully deleted, Amazon Web Services IoT FleetWise sends back an HTTP 200 response with an empty body",
+        "Deletes a decoder manifest. You can't delete a decoder manifest if it has vehicles associated with it",
       options: [
         {
           name: "--name",
@@ -622,7 +730,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-fleet",
       description:
-        "Deletes a fleet. Before you delete a fleet, all vehicles must be dissociated from the fleet. For more information, see Delete a fleet (AWS CLI) in the Amazon Web Services IoT FleetWise Developer Guide.  If the fleet is successfully deleted, Amazon Web Services IoT FleetWise sends back an HTTP 200 response with an empty body",
+        "Deletes a fleet. Before you delete a fleet, all vehicles must be dissociated from the fleet. For more information, see Delete a fleet (AWS CLI) in the Amazon Web Services IoT FleetWise Developer Guide",
       options: [
         {
           name: "--fleet-id",
@@ -652,8 +760,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-model-manifest",
-      description:
-        "Deletes a vehicle model (model manifest).  If the vehicle model is successfully deleted, Amazon Web Services IoT FleetWise sends back an HTTP 200 response with an empty body",
+      description: "Deletes a vehicle model (model manifest)",
       options: [
         {
           name: "--name",
@@ -683,8 +790,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-signal-catalog",
-      description:
-        "Deletes a signal catalog.   If the signal catalog is successfully deleted, Amazon Web Services IoT FleetWise sends back an HTTP 200 response with an empty body",
+      description: "Deletes a signal catalog",
       options: [
         {
           name: "--name",
@@ -713,9 +819,38 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-state-template",
+      description: "Deletes a state template",
+      options: [
+        {
+          name: "--identifier",
+          description: "A unique, service-generated identifier",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-vehicle",
-      description:
-        "Deletes a vehicle and removes it from any campaigns.  If the vehicle is successfully deleted, Amazon Web Services IoT FleetWise sends back an HTTP 200 response with an empty body",
+      description: "Deletes a vehicle and removes it from any campaigns",
       options: [
         {
           name: "--vehicle-name",
@@ -746,7 +881,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "disassociate-vehicle-fleet",
       description:
-        "Removes, or disassociates, a vehicle from a fleet. Disassociating a vehicle from a fleet doesn't delete the vehicle.  If the vehicle is successfully dissociated from a fleet, Amazon Web Services IoT FleetWise sends back an HTTP 200 response with an empty body",
+        "Removes, or disassociates, a vehicle from a fleet. Disassociating a vehicle from a fleet doesn't delete the vehicle",
       options: [
         {
           name: "--vehicle-name",
@@ -784,7 +919,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-campaign",
-      description: "Retrieves information about a campaign",
+      description:
+        "Retrieves information about a campaign.   Access to certain Amazon Web Services IoT FleetWise features is currently gated. For more information, see Amazon Web Services Region and feature availability in the Amazon Web Services IoT FleetWise Developer Guide",
       options: [
         {
           name: "--name",
@@ -1008,6 +1144,37 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-state-template",
+      description:
+        "Retrieves information about a state template.  Access to certain Amazon Web Services IoT FleetWise features is currently gated. For more information, see Amazon Web Services Region and feature availability in the Amazon Web Services IoT FleetWise Developer Guide",
+      options: [
+        {
+          name: "--identifier",
+          description: "A unique, service-generated identifier",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-vehicle",
       description: "Retrieves information about a vehicle",
       options: [
@@ -1040,12 +1207,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-vehicle-status",
       description:
-        "Retrieves information about the status of a vehicle with any associated campaigns",
+        "Retrieves information about the status of campaigns, decoder manifests, or state templates associated with a vehicle",
       options: [
         {
           name: "--next-token",
           description:
-            "A pagination token for the next set of results. If the results of a search are large, only a portion of the results are returned, and a nextToken pagination token is returned in the response. To retrieve the next set of results, reissue the search request and include the returned token. When all results have been returned, the response does not contain a pagination token value",
+            "A pagination token for the next set of results. If the results of a search are large, only a portion of the results are returned, and a nextToken pagination token is returned in the response. To retrieve the next set of results, reissue the search request and include the returned token. When all results have been returned, the response does not contain a pagination token value. This parameter is only supported for resources of type CAMPAIGN",
           args: {
             name: "string",
           },
@@ -1053,7 +1220,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum number of items to return, between 1 and 100, inclusive",
+            "The maximum number of items to return, between 1 and 100, inclusive. This parameter is only supported for resources of type CAMPAIGN",
           args: {
             name: "integer",
           },
@@ -1111,7 +1278,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "import-decoder-manifest",
       description:
-        "Creates a decoder manifest using your existing CAN DBC file from your local device",
+        "Creates a decoder manifest using your existing CAN DBC file from your local device.  The CAN signal name must be unique and not repeated across CAN message definitions in a .dbc file",
       options: [
         {
           name: "--name",
@@ -1223,7 +1390,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--status",
           description:
-            "Optional parameter to filter the results by the status of each created campaign in your account. The status can be one of: CREATING, WAITING_FOR_APPROVAL, RUNNING, or SUSPENDED",
+            "An optional parameter to filter the results by the status of each created campaign in your account. The status can be one of: CREATING, WAITING_FOR_APPROVAL, RUNNING, or SUSPENDED",
           args: {
             name: "string",
           },
@@ -1910,6 +2077,70 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-state-templates",
+      description:
+        "Lists information about created state templates.  Access to certain Amazon Web Services IoT FleetWise features is currently gated. For more information, see Amazon Web Services Region and feature availability in the Amazon Web Services IoT FleetWise Developer Guide",
+      options: [
+        {
+          name: "--next-token",
+          description:
+            "The token to retrieve the next set of results, or null if there are no more results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of items to return, between 1 and 100, inclusive",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-tags-for-resource",
       description:
         "Lists the tags (metadata) you have assigned to the resource",
@@ -1956,7 +2187,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--attribute-names",
           description:
-            "The fully qualified names of the attributes. For example, the fully qualified name of an attribute might be Vehicle.Body.Engine.Type",
+            'The fully qualified names of the attributes. You can use this optional parameter to list the vehicles containing all the attributes in the request. For example, attributeNames could be "Vehicle.Body.Engine.Type, Vehicle.Color" and the corresponding attributeValues could be "1.3 L R2, Blue" . In this case, the API will filter vehicles with an attribute name Vehicle.Body.Engine.Type that contains a value of 1.3 L R2 AND an attribute name Vehicle.Color that contains a value of "Blue". A request must contain unique values for the attributeNames filter and the matching number of attributeValues filters to return the subset of vehicles that match the attributes filter condition',
           args: {
             name: "list",
           },
@@ -1964,7 +2195,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--attribute-values",
           description:
-            'Static information about a vehicle attribute value in string format. For example:  "1.3 L R2"',
+            'Static information about a vehicle attribute value in string format. You can use this optional parameter in conjunction with attributeNames to list the vehicles containing all the attributeValues corresponding to the attributeNames filter. For example, attributeValues could be "1.3 L R2, Blue" and the corresponding attributeNames filter could be "Vehicle.Body.Engine.Type, Vehicle.Color". In this case, the API will filter vehicles with attribute name Vehicle.Body.Engine.Type that contains a value of 1.3 L R2 AND an attribute name Vehicle.Color that contains a value of "Blue". A request must contain unique values for the attributeNames filter and the matching number of attributeValues filter to return the subset of vehicles that match the attributes filter condition',
           args: {
             name: "list",
           },
@@ -2414,6 +2645,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--default-for-unmapped-signals",
+          description:
+            "Use default decoders for all unmapped signals in the model. You don't need to provide any detailed decoding information.  Access to certain Amazon Web Services IoT FleetWise features is currently gated. For more information, see Amazon Web Services Region and feature availability in the Amazon Web Services IoT FleetWise Developer Guide",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -2434,8 +2673,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "update-fleet",
-      description:
-        "Updates the description of an existing fleet.   If the fleet is successfully updated, Amazon Web Services IoT FleetWise sends back an HTTP 200 response with an empty HTTP body",
+      description: "Updates the description of an existing fleet",
       options: [
         {
           name: "--fleet-id",
@@ -2594,6 +2832,76 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "update-state-template",
+      description:
+        "Updates a state template.  Access to certain Amazon Web Services IoT FleetWise features is currently gated. For more information, see Amazon Web Services Region and feature availability in the Amazon Web Services IoT FleetWise Developer Guide",
+      options: [
+        {
+          name: "--identifier",
+          description: "A unique, service-generated identifier",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "A brief description of the state template",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--state-template-properties-to-add",
+          description:
+            "Add signals from which data is collected as part of the state template",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--state-template-properties-to-remove",
+          description:
+            "Remove signals from which data is collected as part of the state template",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--data-extra-dimensions",
+          description:
+            "A list of vehicle attributes to associate with the payload published on the state template's MQTT topic. (See  Processing last known state vehicle data using MQTT messaging). For example, if you add Vehicle.Attributes.Make and Vehicle.Attributes.Model attributes, Amazon Web Services IoT FleetWise will enrich the protobuf encoded payload with those attributes in the extraDimensions field. Default: An empty array",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--metadata-extra-dimensions",
+          description:
+            "A list of vehicle attributes to associate with user properties of the messages published on the state template's MQTT topic. (See  Processing last known state vehicle data using MQTT messaging). For example, if you add Vehicle.Attributes.Make and Vehicle.Attributes.Model attributes, Amazon Web Services IoT FleetWise will include these attributes as User Properties with the MQTT message",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "update-vehicle",
       description: "Updates a vehicle",
       options: [
@@ -2634,6 +2942,20 @@ const completionSpec: Fig.Spec = {
             "The method the specified attributes will update the existing attributes on the vehicle. UseOverwite to replace the vehicle attributes with the specified attributes. Or use Merge to combine all attributes. This is required if attributes are present in the input",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--state-templates-to-add",
+          description: "Associate state templates with the vehicle",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--state-templates-to-remove",
+          description: "Remove state templates from the vehicle",
+          args: {
+            name: "list",
           },
         },
         {
