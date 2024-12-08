@@ -56,7 +56,7 @@ importers:
         version: 15.2.10
       prettier:
         specifier: ^3.3.2
-        version: 3.3.3
+        version: 3.4.1
       typescript:
         specifier: ~5.5.2
         version: 5.5.4
@@ -1484,8 +1484,8 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
-  prettier@3.3.3:
-    resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
+  prettier@3.4.1:
+    resolution: {integrity: sha512-G+YdqtITVZmOJje6QkXQWzl3fSfMxFwm1tjTyo9exhkmWSqC4Yhd1+lug++IlR2mvRVAxEDDWYkQdeSztajqgg==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -2143,7 +2143,7 @@ snapshots:
       esbuild: 0.20.2
       fast-glob: 3.3.2
       module-from-string: 3.3.0
-      prettier: 3.3.3
+      prettier: 3.4.1
       semver: 7.6.3
       typescript: 5.5.4
 
@@ -3170,7 +3170,7 @@ snapshots:
 
   prettier@2.8.8: {}
 
-  prettier@3.3.3: {}
+  prettier@3.4.1: {}
 
   prettyjson@1.2.5:
     dependencies:
