@@ -50,13 +50,13 @@ importers:
         version: 4.2.0(eslint@8.57.1)
       husky:
         specifier: ^9.0.11
-        version: 9.1.6
+        version: 9.1.7
       lint-staged:
         specifier: ^15.2.7
         version: 15.2.10
       prettier:
         specifier: ^3.3.2
-        version: 3.3.3
+        version: 3.4.1
       typescript:
         specifier: ~5.5.2
         version: 5.5.4
@@ -1084,8 +1084,8 @@ packages:
     resolution: {integrity: sha512-AXcZb6vzzrFAUE61HnN4mpLqd/cSIwNQjtNWR0euPm6y0iqx3G4gOXaIDdtdDwZmhwe82LA6+zinmW4UBWVePQ==}
     engines: {node: '>=16.17.0'}
 
-  husky@9.1.6:
-    resolution: {integrity: sha512-sqbjZKK7kf44hfdE94EoX8MZNk0n7HeW37O4YrVGCF4wzgQjp+akPAkfUK5LZ6KuR/6sqeAVuXHji+RzQgOn5A==}
+  husky@9.1.7:
+    resolution: {integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -1484,8 +1484,8 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
-  prettier@3.3.3:
-    resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
+  prettier@3.4.1:
+    resolution: {integrity: sha512-G+YdqtITVZmOJje6QkXQWzl3fSfMxFwm1tjTyo9exhkmWSqC4Yhd1+lug++IlR2mvRVAxEDDWYkQdeSztajqgg==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -2143,7 +2143,7 @@ snapshots:
       esbuild: 0.20.2
       fast-glob: 3.3.2
       module-from-string: 3.3.0
-      prettier: 3.3.3
+      prettier: 3.4.1
       semver: 7.6.3
       typescript: 5.5.4
 
@@ -2842,7 +2842,7 @@ snapshots:
 
   human-signals@5.0.0: {}
 
-  husky@9.1.6: {}
+  husky@9.1.7: {}
 
   hyperlinker@1.0.0: {}
 
@@ -3170,7 +3170,7 @@ snapshots:
 
   prettier@2.8.8: {}
 
-  prettier@3.3.3: {}
+  prettier@3.4.1: {}
 
   prettyjson@1.2.5:
     dependencies:
