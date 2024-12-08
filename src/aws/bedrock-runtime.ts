@@ -5,7 +5,8 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "apply-guardrail",
-      description: "The action to apply a guardrail",
+      description:
+        "The action to apply a guardrail. For troubleshooting some of the common errors you might encounter when using the ApplyGuardrail API, see Troubleshooting Amazon Bedrock API Error Codes in the Amazon Bedrock User Guide",
       options: [
         {
           name: "--guardrail-identifier",
@@ -97,7 +98,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tool-config",
           description:
-            "Configuration information for the tools that the model can use when generating a response.   This field is only supported by Anthropic Claude 3, Cohere Command R, Cohere Command R+, and Mistral Large models",
+            "Configuration information for the tools that the model can use when generating a response.  For information about models that support tool use, see Supported models and model features",
           args: {
             name: "structure",
           },
@@ -135,10 +136,48 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--request-metadata",
+          description:
+            "Key-value pairs that you can use to filter invocation logs",
+          args: {
+            name: "map",
+          },
+        },
+        {
           name: "--performance-config",
           description: "Model performance settings for the request",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-async-invoke",
+      description: "Retrieve information about an asynchronous invocation",
+      options: [
+        {
+          name: "--invocation-arn",
+          description: "The invocation's ARN",
+          args: {
+            name: "string",
           },
         },
         {
@@ -233,6 +272,164 @@ const completionSpec: Fig.Spec = {
           description: "Filename where the content will be saved",
           args: {
             name: "string",
+          },
+        },
+      ],
+    },
+    {
+      name: "list-async-invokes",
+      description: "Lists asynchronous invocations",
+      options: [
+        {
+          name: "--submit-time-after",
+          description: "Include invocations submitted after this time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--submit-time-before",
+          description: "Include invocations submitted before this time",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--status-equals",
+          description: "Filter invocations by status",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of invocations to return in one page of results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "Specify the pagination token from a previous request to retrieve the next page of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-by",
+          description: "How to sort the response",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description: "The sorting order for the response",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "start-async-invoke",
+      description:
+        "Starts an asynchronous invocation. This operation requires permission for the bedrock:InvokeModel action.  To deny all inference access to resources that you specify in the modelId field, you need to deny access to the bedrock:InvokeModel and bedrock:InvokeModelWithResponseStream actions. Doing this also denies access to the resource through the Converse API actions (Converse and ConverseStream). For more information see Deny access for inference on specific models",
+      options: [
+        {
+          name: "--client-request-token",
+          description:
+            "Specify idempotency token to ensure that requests are not duplicated",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--model-id",
+          description: "The model to invoke",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--model-input",
+          description: "Input to send to the model",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--output-data-config",
+          description: "Where to store the output",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--tags",
+          description: "Tags to apply to the invocation",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
           },
         },
       ],

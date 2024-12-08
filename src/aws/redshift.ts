@@ -583,7 +583,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-cluster",
       description:
-        "Creates a new cluster with the specified parameters. To create a cluster in Virtual Private Cloud (VPC), you must provide a cluster subnet group name. The cluster subnet group identifies the subnets of your VPC that Amazon Redshift uses when creating the cluster. For more information about managing clusters, go to Amazon Redshift Clusters in the Amazon Redshift Cluster Management Guide",
+        "Creates a new cluster with the specified parameters. To create a cluster in Virtual Private Cloud (VPC), you must provide a cluster subnet group name. The cluster subnet group identifies the subnets of your VPC that Amazon Redshift uses when creating the cluster. For more information about managing clusters, go to Amazon Redshift Clusters in the Amazon Redshift Cluster Management Guide. VPC Block Public Access (BPA) enables you to block resources in VPCs and subnets that you own in a Region from reaching or being reached from the internet through internet gateways and egress-only internet gateways. If a subnet group for a provisioned cluster is in an account with VPC BPA turned on, the following capabilities are blocked:   Creating a public cluster   Restoring a public cluster   Modifying a private cluster to be public   Adding a subnet with VPC BPA turned on to the subnet group when there's at least one public cluster within the group   For more information about VPC BPA, see Block public access to VPCs and subnets in the Amazon VPC User Guide",
       options: [
         {
           name: "--db-name",
@@ -2640,6 +2640,46 @@ const completionSpec: Fig.Spec = {
           description: "The identifier of the usage limit to delete",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "deregister-namespace",
+      description:
+        "Deregisters a cluster or serverless namespace from the Amazon Web Services Glue Data Catalog",
+      options: [
+        {
+          name: "--namespace-identifier",
+          description:
+            "The unique identifier of the cluster or serverless namespace that you want to deregister",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--consumer-identifiers",
+          description:
+            "An array containing the ID of the consumer account that you want to deregister the cluster or serverless namespace from",
+          args: {
+            name: "list",
           },
         },
         {
@@ -6614,7 +6654,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "modify-cluster",
       description:
-        "Modifies the settings for a cluster. You can also change node type and the number of nodes to scale up or down the cluster. When resizing a cluster, you must specify both the number of nodes and the node type even if one of the parameters does not change. You can add another security or parameter group, or change the admin user password. Resetting a cluster password or modifying the security groups associated with a cluster do not need a reboot. However, modifying a parameter group requires a reboot for parameters to take effect. For more information about managing clusters, go to Amazon Redshift Clusters in the Amazon Redshift Cluster Management Guide",
+        "Modifies the settings for a cluster. You can also change node type and the number of nodes to scale up or down the cluster. When resizing a cluster, you must specify both the number of nodes and the node type even if one of the parameters does not change. You can add another security or parameter group, or change the admin user password. Resetting a cluster password or modifying the security groups associated with a cluster do not need a reboot. However, modifying a parameter group requires a reboot for parameters to take effect. For more information about managing clusters, go to Amazon Redshift Clusters in the Amazon Redshift Cluster Management Guide. VPC Block Public Access (BPA) enables you to block resources in VPCs and subnets that you own in a Region from reaching or being reached from the internet through internet gateways and egress-only internet gateways. If a subnet group for a provisioned cluster is in an account with VPC BPA turned on, the following capabilities are blocked:   Creating a public cluster   Restoring a public cluster   Modifying a private cluster to be public   Adding a subnet with VPC BPA turned on to the subnet group when there's at least one public cluster within the group   For more information about VPC BPA, see Block public access to VPCs and subnets in the Amazon VPC User Guide",
       options: [
         {
           name: "--cluster-identifier",
@@ -7190,7 +7230,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "modify-cluster-subnet-group",
       description:
-        "Modifies a cluster subnet group to include the specified list of VPC subnets. The operation replaces the existing list of subnets with the new list of subnets",
+        "Modifies a cluster subnet group to include the specified list of VPC subnets. The operation replaces the existing list of subnets with the new list of subnets. VPC Block Public Access (BPA) enables you to block resources in VPCs and subnets that you own in a Region from reaching or being reached from the internet through internet gateways and egress-only internet gateways. If a subnet group for a provisioned cluster is in an account with VPC BPA turned on, the following capabilities are blocked:   Creating a public cluster   Restoring a public cluster   Modifying a private cluster to be public   Adding a subnet with VPC BPA turned on to the subnet group when there's at least one public cluster within the group   For more information about VPC BPA, see Block public access to VPCs and subnets in the Amazon VPC User Guide",
       options: [
         {
           name: "--cluster-subnet-group-name",
@@ -7882,6 +7922,46 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "register-namespace",
+      description:
+        "Registers a cluster or serverless namespace to the Amazon Web Services Glue Data Catalog",
+      options: [
+        {
+          name: "--namespace-identifier",
+          description:
+            "The unique identifier of the cluster or serverless namespace that you want to register",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--consumer-identifiers",
+          description:
+            "An array containing the ID of the consumer account that you want to register the namespace to",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "reject-data-share",
       description:
         "From a datashare consumer account, rejects the specified datashare",
@@ -8043,7 +8123,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "restore-from-cluster-snapshot",
       description:
-        "Creates a new cluster from a snapshot. By default, Amazon Redshift creates the resulting cluster with the same configuration as the original cluster from which the snapshot was created, except that the new cluster is created with the default cluster security and parameter groups. After Amazon Redshift creates the cluster, you can use the ModifyCluster API to associate a different security group and different parameter group with the restored cluster. If you are using a DS node type, you can also choose to change to another DS node type of the same size during restore. If you restore a cluster into a VPC, you must provide a cluster subnet group where you want the cluster restored.  For more information about working with snapshots, go to Amazon Redshift Snapshots in the Amazon Redshift Cluster Management Guide",
+        "Creates a new cluster from a snapshot. By default, Amazon Redshift creates the resulting cluster with the same configuration as the original cluster from which the snapshot was created, except that the new cluster is created with the default cluster security and parameter groups. After Amazon Redshift creates the cluster, you can use the ModifyCluster API to associate a different security group and different parameter group with the restored cluster. If you are using a DS node type, you can also choose to change to another DS node type of the same size during restore. If you restore a cluster into a VPC, you must provide a cluster subnet group where you want the cluster restored. VPC Block Public Access (BPA) enables you to block resources in VPCs and subnets that you own in a Region from reaching or being reached from the internet through internet gateways and egress-only internet gateways. If a subnet group for a provisioned cluster is in an account with VPC BPA turned on, the following capabilities are blocked:   Creating a public cluster   Restoring a public cluster   Modifying a private cluster to be public   Adding a subnet with VPC BPA turned on to the subnet group when there's at least one public cluster within the group   For more information about VPC BPA, see Block public access to VPCs and subnets in the Amazon VPC User Guide.  For more information about working with snapshots, go to Amazon Redshift Snapshots in the Amazon Redshift Cluster Management Guide",
       options: [
         {
           name: "--cluster-identifier",

@@ -139,7 +139,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-guardrail",
       description:
-        "Creates a guardrail to block topics and to implement safeguards for your generative AI applications. You can configure the following policies in a guardrail to avoid undesirable and harmful content, filter out denied topics and words, and remove sensitive information for privacy protection.    Content filters - Adjust filter strengths to block input prompts or model responses containing harmful content.    Denied topics - Define a set of topics that are undesirable in the context of your application. These topics will be blocked if detected in user queries or model responses.    Word filters - Configure filters to block undesirable words, phrases, and profanity. Such words can include offensive terms, competitor names etc.    Sensitive information filters - Block or mask sensitive information such as personally identifiable information (PII) or custom regex in user inputs and model responses.   In addition to the above policies, you can also configure the messages to be returned to the user if a user input or model response is in violation of the policies defined in the guardrail. For more information, see Guardrails for Amazon Bedrock in the Amazon Bedrock User Guide",
+        "Creates a guardrail to block topics and to implement safeguards for your generative AI applications. You can configure the following policies in a guardrail to avoid undesirable and harmful content, filter out denied topics and words, and remove sensitive information for privacy protection.    Content filters - Adjust filter strengths to block input prompts or model responses containing harmful content.    Denied topics - Define a set of topics that are undesirable in the context of your application. These topics will be blocked if detected in user queries or model responses.    Word filters - Configure filters to block undesirable words, phrases, and profanity. Such words can include offensive terms, competitor names etc.    Sensitive information filters - Block or mask sensitive information such as personally identifiable information (PII) or custom regex in user inputs and model responses.   In addition to the above policies, you can also configure the messages to be returned to the user if a user input or model response is in violation of the policies defined in the guardrail. For more information, see Amazon Bedrock Guardrails in the Amazon Bedrock User Guide",
       options: [
         {
           name: "--name",
@@ -526,6 +526,14 @@ const completionSpec: Fig.Spec = {
           name: "--vpc-config",
           description:
             "The configuration of the Virtual Private Cloud (VPC) that contains the resources that you're using for this job. For more information, see Protect your model customization jobs using a VPC",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--customization-config",
+          description:
+            "The customization configuration for the model customization job",
           args: {
             name: "structure",
           },
@@ -1284,7 +1292,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-model-invocation-job",
       description:
-        "Gets details about a batch inference job. For more information, see View details about a batch inference job",
+        "Gets details about a batch inference job. For more information, see Monitor batch inference jobs",
       options: [
         {
           name: "--job-identifier",
@@ -2289,7 +2297,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--status-equals",
           description:
-            "Specify a status to filter for batch inference jobs whose statuses match the string you specify",
+            "Specify a status to filter for batch inference jobs whose statuses match the string you specify. The following statuses are possible:   Submitted \u2013 This job has been submitted to a queue for validation.   Validating \u2013 This job is being validated for the requirements described in Format and upload your batch inference data. The criteria include the following:   Your IAM service role has access to the Amazon S3 buckets containing your files.   Your files are .jsonl files and each individual record is a JSON object in the correct format. Note that validation doesn't check if the modelInput value matches the request body for the model.   Your files fulfill the requirements for file size and number of records. For more information, see Quotas for Amazon Bedrock.     Scheduled \u2013 This job has been validated and is now in a queue. The job will automatically start when it reaches its turn.   Expired \u2013 This job timed out because it was scheduled but didn't begin before the set timeout duration. Submit a new job request.   InProgress \u2013 This job has begun. You can start viewing the results in the output S3 location.   Completed \u2013 This job has successfully completed. View the output files in the output S3 location.   PartiallyCompleted \u2013 This job has partially completed. Not all of your records could be processed in time. View the output files in the output S3 location.   Failed \u2013 This job has failed. Check the failure message for any further details. For further assistance, reach out to the Amazon Web Services Support Center.   Stopped \u2013 This job was stopped by a user.   Stopping \u2013 This job is being stopped by a user",
           args: {
             name: "string",
           },
