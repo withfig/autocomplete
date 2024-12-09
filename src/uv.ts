@@ -1,3 +1,23 @@
+// ////////////////////////////////////////////////////////////////// Generators //////////////////////////////////////////////////////////////////
+
+const dependenciesGenerator: Fig.Generator = {
+  script: {
+    command: "sh",
+    args: [
+      "-c",
+      "cat pyproject.toml | grep 'dependencies = ' -A 10 | grep -Eo '\"[^\"]+\"' | cut -d'>' -f1 | tr -d '\"'",
+    ],
+  },
+  postProcess: (out) => {
+    return out.split("\n").map((line) => {
+      return {
+        name: line,
+        description: "Dependency",
+      };
+    });
+  },
+};
+
 // ////////////////////////////////////////////////////////////////// Options //////////////////////////////////////////////////////////////////
 const indexOptions: Fig.Option[] = [
   {
@@ -547,24 +567,6 @@ const removeOptions: Fig.Option[] = [
     },
   },
 ];
-
-const dependenciesGenerator: Fig.Generator = {
-  script: {
-    command: "sh",
-    args: [
-      "-c",
-      "cat pyproject.toml | grep 'dependencies = ' -A 10 | grep -Eo '\"[^\"]+\"' | cut -d'>' -f1 | tr -d '\"'",
-    ],
-  },
-  postProcess: (out) => {
-    return out.split("\n").map((line) => {
-      return {
-        name: line,
-        description: "Dependency",
-      };
-    });
-  },
-};
 
 //    sync
 const syncOptions: Fig.Option[] = [
