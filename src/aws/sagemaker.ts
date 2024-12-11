@@ -857,6 +857,65 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-cluster-scheduler-config",
+      description:
+        "Create cluster policy configuration. This policy is used for task prioritization and fair-share allocation of idle compute. This helps prioritize critical workloads and distributes idle compute across entities",
+      options: [
+        {
+          name: "--name",
+          description: "Name for the cluster policy",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cluster-arn",
+          description: "ARN of the cluster",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--scheduler-config",
+          description: "Configuration about the monitoring schedule",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--description",
+          description: "Description of the cluster policy",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description: "Tags of the cluster policy",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-code-repository",
       description:
         "Creates a Git repository as a resource in your SageMaker account. You can associate the repository with notebook instances so that you can use Git source control for the notebooks you create. The Git repository is a resource in your SageMaker account, so it can be associated with more than one notebook instance, and it persists independently from the lifecycle of any notebook instances it is associated with. The repository can be hosted either in Amazon Web Services CodeCommit or in any other Git repository",
@@ -969,6 +1028,81 @@ const completionSpec: Fig.Spec = {
           name: "--tags",
           description:
             "An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging Amazon Web Services Resources",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-compute-quota",
+      description:
+        "Create compute allocation definition. This defines how compute is allocated, shared, and borrowed for specified entities. Specifically, how to lend and borrow idle compute and assign a fair-share weight to the specified entities",
+      options: [
+        {
+          name: "--name",
+          description: "Name to the compute allocation definition",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "Description of the compute allocation definition",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cluster-arn",
+          description: "ARN of the cluster",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--compute-quota-config",
+          description:
+            "Configuration of the compute allocation definition. This includes the resource sharing option, and the setting to preempt low priority tasks",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--compute-quota-target",
+          description: "The target entity to allocate compute resources to",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--activation-state",
+          description:
+            "The state of the compute allocation being described. Use to enable or disable compute allocation. Default is Enabled",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description: "Tags of the compute allocation definition",
           args: {
             name: "list",
           },
@@ -3932,6 +4066,158 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-partner-app",
+      description: "Creates an Amazon SageMaker Partner AI App",
+      options: [
+        {
+          name: "--name",
+          description: "The name to give the SageMaker Partner AI App",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--type",
+          description:
+            "The type of SageMaker Partner AI App to create. Must be one of the following: lakera-guard, comet, deepchecks-llm-evaluation, or fiddler",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--execution-role-arn",
+          description:
+            "The ARN of the IAM role that the partner application uses",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--maintenance-config",
+          description:
+            "Maintenance configuration settings for the SageMaker Partner AI App",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--tier",
+          description:
+            "Indicates the instance type and size of the cluster attached to the SageMaker Partner AI App",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--application-config",
+          description:
+            "Configuration settings for the SageMaker Partner AI App",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--auth-type",
+          description:
+            "The authorization type that users use to access the SageMaker Partner AI App",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--enable-iam-session-based-identity",
+          description:
+            "When set to TRUE, the SageMaker Partner AI App sets the Amazon Web Services IAM session name or the authenticated IAM user as the identity of the SageMaker Partner AI App user",
+        },
+        {
+          name: "--no-enable-iam-session-based-identity",
+          description:
+            "When set to TRUE, the SageMaker Partner AI App sets the Amazon Web Services IAM session name or the authenticated IAM user as the identity of the SageMaker Partner AI App user",
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique token that guarantees that the call to this API is idempotent",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "Each tag consists of a key and an optional value. Tag keys must be unique per resource",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-partner-app-presigned-url",
+      description:
+        "Creates a presigned URL to access an Amazon SageMaker Partner AI App",
+      options: [
+        {
+          name: "--arn",
+          description:
+            "The ARN of the SageMaker Partner AI App to create the presigned URL for",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--expires-in-seconds",
+          description:
+            "The time that will pass before the presigned URL expires",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--session-expiration-duration-in-seconds",
+          description:
+            "Indicates how long the Amazon SageMaker Partner AI App session can be accessed for after logging in",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-pipeline",
       description: "Creates a pipeline using a JSON pipeline definition",
       options: [
@@ -4681,6 +4967,53 @@ const completionSpec: Fig.Spec = {
             "Contains information about attribute-based access control (ABAC) for the training job",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-training-plan",
+      description:
+        "Creates a new training plan in SageMaker to reserve compute capacity. Amazon SageMaker Training Plan is a capability within SageMaker that allows customers to reserve and manage GPU capacity for large-scale AI model training. It provides a way to secure predictable access to computational resources within specific timelines and budgets, without the need to manage underlying infrastructure.   How it works  Plans can be created for specific resources such as SageMaker Training Jobs or SageMaker HyperPod clusters, automatically provisioning resources, setting up infrastructure, executing workloads, and handling infrastructure failures.  Plan creation workflow    Users search for available plan offerings based on their requirements (e.g., instance type, count, start time, duration) using the  SearchTrainingPlanOfferings  API operation.   They create a plan that best matches their needs using the ID of the plan offering they want to use.    After successful upfront payment, the plan's status becomes Scheduled.    The plan can be used to:   Queue training jobs.   Allocate to an instance group of a SageMaker HyperPod cluster.      When the plan start date arrives, it becomes Active. Based on available reserved capacity:   Training jobs are launched.   Instance groups are provisioned.      Plan composition  A plan can consist of one or more Reserved Capacities, each defined by a specific instance type, quantity, Availability Zone, duration, and start and end times. For more information about Reserved Capacity, see  ReservedCapacitySummary",
+      options: [
+        {
+          name: "--training-plan-name",
+          description: "The name of the training plan to create",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--training-plan-offering-id",
+          description:
+            "The unique identifier of the training plan offering to use for creating this plan",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "An array of key-value pairs to apply to this training plan",
+          args: {
+            name: "list",
           },
         },
         {
@@ -5477,6 +5810,36 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-cluster-scheduler-config",
+      description: "Deletes the cluster policy of the cluster",
+      options: [
+        {
+          name: "--cluster-scheduler-config-id",
+          description: "ID of the cluster policy",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-code-repository",
       description: "Deletes the specified Git repository from your account",
       options: [
@@ -5514,6 +5877,36 @@ const completionSpec: Fig.Spec = {
         {
           name: "--compilation-job-name",
           description: "The name of the compilation job to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-compute-quota",
+      description: "Deletes the compute allocation from the cluster",
+      options: [
+        {
+          name: "--compute-quota-id",
+          description: "ID of the compute allocation definition",
           args: {
             name: "string",
           },
@@ -6627,6 +7020,44 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-partner-app",
+      description: "Deletes a SageMaker Partner AI App",
+      options: [
+        {
+          name: "--arn",
+          description: "The ARN of the SageMaker Partner AI App to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique token that guarantees that the call to this API is idempotent",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-pipeline",
       description:
         "Deletes a pipeline if there are no running instances of the pipeline. To delete a pipeline, you must stop all running instances of the pipeline using the StopPipelineExecution API. When you delete a pipeline, all instances of the pipeline are deleted",
@@ -7319,6 +7750,44 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "describe-cluster-scheduler-config",
+      description:
+        "Description of the cluster policy. This policy is used for task prioritization and fair-share allocation. This helps prioritize critical workloads and distributes idle compute across entities",
+      options: [
+        {
+          name: "--cluster-scheduler-config-id",
+          description: "ID of the cluster policy",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cluster-scheduler-config-version",
+          description: "Version of the cluster policy",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "describe-code-repository",
       description: "Gets details about the specified Git repository",
       options: [
@@ -7359,6 +7828,43 @@ const completionSpec: Fig.Spec = {
             "The name of the model compilation job that you want information about",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-compute-quota",
+      description: "Description of the compute allocation definition",
+      options: [
+        {
+          name: "--compute-quota-id",
+          description: "ID of the compute allocation definition",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--compute-quota-version",
+          description: "Version of the compute allocation definition",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -8606,6 +9112,36 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "describe-partner-app",
+      description: "Gets information about a SageMaker Partner AI App",
+      options: [
+        {
+          name: "--arn",
+          description: "The ARN of the SageMaker Partner AI App to describe",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "describe-pipeline",
       description: "Describes the details of a pipeline",
       options: [
@@ -8869,6 +9405,37 @@ const completionSpec: Fig.Spec = {
         {
           name: "--training-job-name",
           description: "The name of the training job",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-training-plan",
+      description:
+        "Retrieves detailed information about a specific training plan",
+      options: [
+        {
+          name: "--training-plan-name",
+          description: "The name of the training plan to describe",
           args: {
             name: "string",
           },
@@ -10591,6 +11158,121 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-cluster-scheduler-configs",
+      description: "List the cluster policy configurations",
+      options: [
+        {
+          name: "--created-after",
+          description:
+            "Filter for after this creation time. The input for this parameter is a Unix timestamp. To convert a date and time into a Unix timestamp, see EpochConverter",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--created-before",
+          description:
+            "Filter for before this creation time. The input for this parameter is a Unix timestamp. To convert a date and time into a Unix timestamp, see EpochConverter",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--name-contains",
+          description: "Filter for name containing this string",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cluster-arn",
+          description: "Filter for ARN of the cluster",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--status",
+          description: "Filter for status",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-by",
+          description:
+            "Filter for sorting the list by a given value. For example, sort by name, creation time, or status",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description:
+            "The order of the list. By default, listed in Descending order according to by SortBy. To change the list order, you can specify SortOrder to be Ascending",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If the previous response was truncated, you will receive this token. Use it in your next request to receive the next set of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum number of cluster policies to list",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-clusters",
       description: "Retrieves the list of SageMaker HyperPod clusters",
       options: [
@@ -10646,6 +11328,14 @@ const completionSpec: Fig.Spec = {
           name: "--sort-order",
           description:
             "The sort order for results. The default value is Ascending",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--training-plan-arn",
+          description:
+            "The Amazon Resource Name (ARN); of the training plan to filter clusters by. For more information about reserving GPU capacity for your SageMaker HyperPod clusters using Amazon SageMaker Training Plan, see  CreateTrainingPlan",
           args: {
             name: "string",
           },
@@ -10892,6 +11582,122 @@ const completionSpec: Fig.Spec = {
           description: "The sort order for results. The default is Ascending",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-compute-quotas",
+      description: "List the resource allocation definitions",
+      options: [
+        {
+          name: "--created-after",
+          description:
+            "Filter for after this creation time. The input for this parameter is a Unix timestamp. To convert a date and time into a Unix timestamp, see EpochConverter",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--created-before",
+          description:
+            "Filter for before this creation time. The input for this parameter is a Unix timestamp. To convert a date and time into a Unix timestamp, see EpochConverter",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--name-contains",
+          description: "Filter for name containing this string",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--status",
+          description: "Filter for status",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cluster-arn",
+          description: "Filter for ARN of the cluster",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-by",
+          description:
+            "Filter for sorting the list by a given value. For example, sort by name, creation time, or status",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description:
+            "The order of the list. By default, listed in Descending order according to by SortBy. To change the list order, you can specify SortOrder to be Ascending",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If the previous response was truncated, you will receive this token. Use it in your next request to receive the next set of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of compute allocation definitions to list",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -15882,6 +16688,69 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-partner-apps",
+      description: "Lists all of the SageMaker Partner AI Apps in an account",
+      options: [
+        {
+          name: "--max-results",
+          description:
+            "This parameter defines the maximum number of results that can be returned in a single response. The MaxResults parameter is an upper bound, not a target. If there are more results available than the value specified, a NextToken is provided in the response. The NextToken indicates that the user should get the next set of results by providing this token as a part of a subsequent call. The default value for MaxResults is 10",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If the previous response was truncated, you will receive this token. Use it in your next request to receive the next set of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-pipeline-execution-steps",
       description: "Gets a list of PipeLineExecutionStep objects",
       options: [
@@ -17080,6 +17949,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--training-plan-arn-equals",
+          description:
+            "The Amazon Resource Name (ARN); of the training plan to filter training jobs by. For more information about reserving GPU capacity for your SageMaker training jobs using Amazon SageMaker Training Plan, see  CreateTrainingPlan",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -17172,6 +18049,109 @@ const completionSpec: Fig.Spec = {
           description: "The sort order for results. The default is Ascending",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-training-plans",
+      description: "Retrieves a list of training plans for the current account",
+      options: [
+        {
+          name: "--next-token",
+          description:
+            "A token to continue pagination if more results are available",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return in the response",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--start-time-after",
+          description:
+            "Filter to list only training plans with an actual start time after this date",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--start-time-before",
+          description:
+            "Filter to list only training plans with an actual start time before this date",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--sort-by",
+          description:
+            "The training plan field to sort the results by (e.g., StartTime, Status)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description:
+            "The order to sort the results (Ascending or Descending)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--filters",
+          description:
+            "Additional filters to apply to the list of training plans",
+          args: {
+            name: "list",
           },
         },
         {
@@ -18205,6 +19185,78 @@ const completionSpec: Fig.Spec = {
             "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "search-training-plan-offerings",
+      description:
+        "Searches for available training plan offerings based on specified criteria.    Users search for available plan offerings based on their requirements (e.g., instance type, count, start time, duration).    And then, they create a plan that best matches their needs using the ID of the plan offering they want to use.    For more information about how to reserve GPU capacity for your SageMaker training jobs or SageMaker HyperPod clusters using Amazon SageMaker Training Plan , see  CreateTrainingPlan",
+      options: [
+        {
+          name: "--instance-type",
+          description:
+            "The type of instance you want to search for in the available training plan offerings. This field allows you to filter the search results based on the specific compute resources you require for your SageMaker training jobs or SageMaker HyperPod clusters. When searching for training plan offerings, specifying the instance type helps you find Reserved Instances that match your computational needs",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--instance-count",
+          description:
+            "The number of instances you want to reserve in the training plan offerings. This allows you to specify the quantity of compute resources needed for your SageMaker training jobs or SageMaker HyperPod clusters, helping you find reserved capacity offerings that match your requirements",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--start-time-after",
+          description:
+            "A filter to search for training plan offerings with a start time after a specified date",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--end-time-before",
+          description:
+            "A filter to search for reserved capacity offerings with an end time before a specified date",
+          args: {
+            name: "timestamp",
+          },
+        },
+        {
+          name: "--duration-hours",
+          description:
+            "The desired duration in hours for the training plan offerings",
+          args: {
+            name: "long",
+          },
+        },
+        {
+          name: "--target-resources",
+          description:
+            "The target resources (e.g., SageMaker Training Jobs, SageMaker HyperPod) to search for in the offerings. Training plans are specific to their target resource.   A training plan designed for SageMaker training jobs can only be used to schedule and run training jobs.   A training plan for HyperPod clusters can be used exclusively to provide compute resources to a cluster's instance group",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
           },
         },
         {
@@ -19289,6 +20341,57 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "update-cluster-scheduler-config",
+      description: "Update the cluster policy configuration",
+      options: [
+        {
+          name: "--cluster-scheduler-config-id",
+          description: "ID of the cluster policy",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--target-version",
+          description: "Target version",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--scheduler-config",
+          description: "Cluster policy configuration",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--description",
+          description: "Description of the cluster policy",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "update-cluster-software",
       description:
         "Updates the platform software of a SageMaker HyperPod cluster for security patching. To learn how to use this API, see Update the SageMaker HyperPod platform software of a cluster.  The UpgradeClusterSoftware API call may impact your SageMaker HyperPod cluster uptime and availability. Plan accordingly to mitigate potential disruptions to your workloads",
@@ -19338,6 +20441,73 @@ const completionSpec: Fig.Spec = {
             'The configuration of the git repository, including the URL and the Amazon Resource Name (ARN) of the Amazon Web Services Secrets Manager secret that contains the credentials used to access the repository. The secret must have a staging label of AWSCURRENT and must be in the following format:  {"username": UserName, "password": Password}',
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-compute-quota",
+      description: "Update the compute allocation definition",
+      options: [
+        {
+          name: "--compute-quota-id",
+          description: "ID of the compute allocation definition",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--target-version",
+          description: "Target version",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--compute-quota-config",
+          description:
+            "Configuration of the compute allocation definition. This includes the resource sharing option, and the setting to preempt low priority tasks",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--compute-quota-target",
+          description: "The target entity to allocate compute resources to",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--activation-state",
+          description:
+            "The state of the compute allocation being described. Use to enable or disable compute allocation. Default is Enabled",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "Description of the compute allocation definition",
+          args: {
+            name: "string",
           },
         },
         {
@@ -20729,6 +21899,86 @@ const completionSpec: Fig.Spec = {
           name: "--on-start",
           description:
             "The shell script that runs every time you start a notebook instance, including when you create the notebook instance. The shell script must be a base64-encoded string",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-partner-app",
+      description: "Updates all of the SageMaker Partner AI Apps in an account",
+      options: [
+        {
+          name: "--arn",
+          description: "The ARN of the SageMaker Partner AI App to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--maintenance-config",
+          description:
+            "Maintenance configuration settings for the SageMaker Partner AI App",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--tier",
+          description:
+            "Indicates the instance type and size of the cluster attached to the SageMaker Partner AI App",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--application-config",
+          description:
+            "Configuration settings for the SageMaker Partner AI App",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--enable-iam-session-based-identity",
+          description:
+            "When set to TRUE, the SageMaker Partner AI App sets the Amazon Web Services IAM session name or the authenticated IAM user as the identity of the SageMaker Partner AI App user",
+        },
+        {
+          name: "--no-enable-iam-session-based-identity",
+          description:
+            "When set to TRUE, the SageMaker Partner AI App sets the Amazon Web Services IAM session name or the authenticated IAM user as the identity of the SageMaker Partner AI App user",
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique token that guarantees that the call to this API is idempotent",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "Each tag consists of a key and an optional value. Tag keys must be unique per resource",
           args: {
             name: "list",
           },
