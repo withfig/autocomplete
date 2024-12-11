@@ -265,6 +265,16 @@ const completionSpec: Fig.Spec = {
       loadSpec: "aws/bedrock-agent-runtime",
     },
     {
+      name: "bedrock-data-automation",
+      description: "Amazon Bedrock Keystone Build",
+      loadSpec: "aws/bedrock-data-automation",
+    },
+    {
+      name: "bedrock-data-automation-runtime",
+      description: "Amazon Bedrock Keystone Runtime",
+      loadSpec: "aws/bedrock-data-automation-runtime",
+    },
+    {
       name: "bedrock-runtime",
       description:
         "Describes the API operations for running inference using Amazon Bedrock models",
