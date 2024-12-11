@@ -2026,6 +2026,77 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-push-notification-registration",
+      description:
+        "Creates registration for a device token and a chat contact to receive real-time push notifications. For more information about push notifications, see Set up push notifications in Amazon Connect for mobile chat in the Amazon Connect Administrator Guide",
+      options: [
+        {
+          name: "--instance-id",
+          description:
+            "The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see Making retries safe with idempotent APIs",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--pinpoint-app-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the Pinpoint application",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--device-token",
+          description:
+            "The push notification token issued by the Apple or Google gateways",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--device-type",
+          description: "The device type to use when sending the message",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--contact-configuration",
+          description:
+            "The contact configuration for push notification registration",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-queue",
       description:
         "This API is in preview release for Amazon Connect and is subject to change. Creates a new queue for the specified Amazon Connect instance.    If the phone number is claimed to a traffic distribution group that was created in the same Region as the Amazon Connect instance where you are calling this API, then you can use a full phone number ARN or a UUID for OutboundCallerIdNumberId. However, if the phone number is claimed to a traffic distribution group that is in one Region, and you are calling this API from an instance in another Amazon Web Services Region that is associated with the traffic distribution group, you must provide a full phone number ARN. If a UUID is provided in this scenario, you will receive a ResourceNotFoundException.   Only use the phone number ARN format that doesn't contain instance in the path, for example, arn:aws:connect:us-east-1:1234567890:phone-number/uuid. This is the same ARN format that is returned when you call the ListPhoneNumbersV2 API.   If you plan to use IAM policies to allow/deny access to this API for phone number resources claimed to a traffic distribution group, see Allow or Deny queue API actions for phone numbers in a replica Region",
@@ -3472,6 +3543,52 @@ const completionSpec: Fig.Spec = {
         {
           name: "--prompt-id",
           description: "A unique identifier for the prompt",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-push-notification-registration",
+      description: "Deletes registration for a device token and a chat contact",
+      options: [
+        {
+          name: "--instance-id",
+          description:
+            "The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--registration-id",
+          description: "The identifier for the registration",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--contact-id",
+          description:
+            "The identifier of the contact within the Amazon Connect instance",
           args: {
             name: "string",
           },
