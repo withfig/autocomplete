@@ -22,7 +22,7 @@ importers:
         version: 5.0.1
       yaml:
         specifier: ^2.4.5
-        version: 2.5.1
+        version: 2.6.1
     devDependencies:
       '@fig/eslint-config-autocomplete':
         specifier: ^2.0.0
@@ -1751,6 +1751,11 @@ packages:
     engines: {node: '>= 14'}
     hasBin: true
 
+  yaml@2.6.1:
+    resolution: {integrity: sha512-7r0XPzioN/Q9kXBro/XPnA6kznR73DHq+GXh5ON7ZozRO6aMjbmiBuKste2wslTFkC5d1dw0GooOCepZXJ2SAg==}
+    engines: {node: '>= 14'}
+    hasBin: true
+
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
@@ -3398,5 +3403,7 @@ snapshots:
   xtend@4.0.2: {}
 
   yaml@2.5.1: {}
+
+  yaml@2.6.1: {}
 
   yocto-queue@0.1.0: {}
