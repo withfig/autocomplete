@@ -14,6 +14,26 @@ const dependenciesGenerator: Fig.Generator = {
         name: line,
         description: "Dependency",
         icon: "📦",
+        priority: 80,
+      };
+    });
+  },
+};
+
+const commandGenerator: Fig.Generator = {
+  script: {
+    command: "bash",
+    args: [
+      "-c",
+      'awk \'/\\[project\\.scripts\\]/ {f=1; next} /^\\[/ {f=0} f && /^[^#]/ {line = $0; sub(/[ \\t]*=.*/, "", line); gsub(/^[ \\t]+|[ \\t]+$/, "", line); print line}\' pyproject.toml',
+    ],
+  },
+  postProcess: (out) => {
+    return out.split("\n").map((line) => {
+      return {
+        name: line,
+        description: "Command",
+        icon: "fig://icon?type=command",
       };
     });
   },
@@ -1508,7 +1528,15 @@ const selfSubcommands: Fig.Subcommand[] = [
 ];
 
 const subcommands: Fig.Subcommand[] = [
-  { name: "run", description: "Run a command or script", options: runOptions },
+  {
+    name: "run",
+    description: "Run a command or script",
+    options: runOptions,
+    args: {
+      name: "command",
+      generators: commandGenerator,
+    },
+  },
   {
     name: "init",
     description: "Create a new project",
