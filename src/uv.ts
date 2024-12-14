@@ -1539,7 +1539,6 @@ const subcommands: Fig.Subcommand[] = [
   {
     name: "remove",
     description: "Remove dependencies from the project",
-    loadSpec: "uv/remove",
     args: {
       name: "dependencies",
       description: "Dependencies to remove",
@@ -1558,7 +1557,6 @@ const subcommands: Fig.Subcommand[] = [
   {
     name: "sync",
     description: "Update the project's environment",
-    loadSpec: "uv/sync",
     options: [
       ...syncOptions,
       ...indexOptions,
@@ -1571,7 +1569,6 @@ const subcommands: Fig.Subcommand[] = [
   {
     name: "lock",
     description: "Update the project's lockfile",
-    loadSpec: "uv/lock",
     options: [
       ...lockOptions,
       ...indexOptions,
@@ -1594,7 +1591,6 @@ const subcommands: Fig.Subcommand[] = [
   {
     name: "tree",
     description: "Display the project's dependency tree",
-    loadSpec: "uv/tree",
     options: [
       ...treeOptions,
       ...indexOptions,
@@ -1611,7 +1607,6 @@ const subcommands: Fig.Subcommand[] = [
   {
     name: "tool",
     description: "Run and install commands provided by Python packages",
-    loadSpec: "uv/tool",
     subcommands: toolSubcommands,
     options: [
       ...pythonOptions.filter(
@@ -1644,7 +1639,6 @@ const subcommands: Fig.Subcommand[] = [
   {
     name: "pip",
     description: "Manage Python packages with a pip-compatible interface",
-    loadSpec: "uv/pip",
     subcommands: pipSubcommands,
     options: [
       ...cacheOptions.filter(
