@@ -1657,6 +1657,7 @@ const subcommands: Fig.Subcommand[] = [
     description: "Create a virtual environment",
     options: [
       ...pythonOptions,
+      ...venvOptions,
       ...indexOptions.filter(
         (option) =>
           option.name !== "--index-strategy" &&
