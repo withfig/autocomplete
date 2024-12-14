@@ -1522,7 +1522,6 @@ const subcommands: Fig.Subcommand[] = [
   {
     name: "add",
     description: "Add dependencies to the project",
-    loadSpec: "uv/add",
     args: {
       name: "packages",
       description: "Packages to add",
