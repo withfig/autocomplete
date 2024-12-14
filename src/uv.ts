@@ -2,10 +2,10 @@
 
 const dependenciesGenerator: Fig.Generator = {
   script: {
-    command: "sh",
+    command: "bash",
     args: [
       "-c",
-      "cat pyproject.toml | grep 'dependencies = ' -A 10 | grep -Eo '\"[^\"]+\"' | cut -d'>' -f1 | tr -d '\"'",
+      'awk \'/dependencies = \\[/ {f=1; next} /\\]/ {f=0} f && /"/ {line = $0; gsub(/^[ \\t]*"/, "", line); sub(/>=.*$/, "", line); gsub(/",?$/, "", line); print line}\' pyproject.toml',
     ],
   },
   postProcess: (out) => {
@@ -13,6 +13,7 @@ const dependenciesGenerator: Fig.Generator = {
       return {
         name: line,
         description: "Dependency",
+        icon: "📦",
       };
     });
   },
