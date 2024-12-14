@@ -276,7 +276,7 @@ const runOptions: Fig.Option[] = [
     description: "Include dependencies from all dependency groups",
   },
   {
-    name: "-m",
+    name: ["-m", "--module"],
     description: "Run a Python module",
   },
   {
@@ -330,7 +330,7 @@ const runOptions: Fig.Option[] = [
     description: "Run without updating the `uv.lock` file",
   },
   {
-    name: "-s",
+    name: ["-s", "--script"],
     description: "Run the given path as a Python script",
   },
   {
