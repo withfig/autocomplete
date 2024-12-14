@@ -14,7 +14,6 @@ const dependenciesGenerator: Fig.Generator = {
         name: line,
         description: "Dependency",
         icon: "📦",
-        priority: 80,
       };
     });
   },
@@ -34,6 +33,7 @@ const commandGenerator: Fig.Generator = {
         name: line,
         description: "Command",
         icon: "fig://icon?type=command",
+        priority: 80,
       };
     });
   },
