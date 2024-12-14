@@ -14,6 +14,7 @@ const dependenciesGenerator: Fig.Generator = {
         name: line,
         description: "Dependency",
         icon: "📦",
+        priority: 80,
       };
     });
   },
