@@ -23,10 +23,7 @@ const dependenciesGenerator: Fig.Generator = {
 const commandGenerator: Fig.Generator = {
   script: {
     command: "bash",
-    args: [
-      "-c",
-      'awk \'/\\[project\\.scripts\\]/ {f=1; next} /^\\[/ {f=0} f && /^[^#]/ {line = $0; sub(/[ \\t]*=.*/, "", line); gsub(/^[ \\t]+|[ \\t]+$/, "", line); print line}\' pyproject.toml',
-    ],
+    args: ["-c", `uv run | grep -E '^- ' | sed 's/^- //'`],
   },
   postProcess: (out) => {
     return out.split("\n").map((line) => {
