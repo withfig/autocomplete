@@ -1,11 +1,21 @@
 const ListModelGenerator: Fig.Generator = {
   script: ["bash", "-c", "ollama ls | awk '!/NAME/ { print $1 }'"],
-  postProcess: (out) => out.trim().split("\n"),
+  postProcess: (out) => {
+    return out
+      .trim()
+      .split("\n")
+      .map((model) => ({ name: model }));
+  },
 };
 
 const RunModelGenerator: Fig.Generator = {
   script: ["bash", "-c", "ollama ps | awk '!/NAME/ { print $1 }'"],
-  postProcess: (out) => out.trim().split("\n"),
+  postProcess: (out) => {
+    return out
+      .trim()
+      .split("\n")
+      .map((model) => ({ name: model }));
+  },
 };
 
 const completionSpec: Fig.Spec = {
@@ -81,9 +91,9 @@ const completionSpec: Fig.Spec = {
       name: "cp",
       description: "Copy a model",
       args: {
-          name: "SOURCE",
-          generators: ListModelGenerator,
-        },
+        name: "SOURCE",
+        generators: ListModelGenerator,
+      },
     },
     {
       name: "rm",
