@@ -2,10 +2,10 @@
 
 const dependenciesGenerator: Fig.Generator = {
   script: {
-    command: "sh",
+    command: "bash",
     args: [
       "-c",
-      "cat pyproject.toml | grep 'dependencies = ' -A 10 | grep -Eo '\"[^\"]+\"' | cut -d'>' -f1 | tr -d '\"'",
+      'awk \'/dependencies = \\[/ {f=1; next} /\\]/ {f=0} f && /"/ {line = $0; gsub(/^[ \\t]*"/, "", line); sub(/>=.*$/, "", line); gsub(/",?$/, "", line); print line}\' pyproject.toml',
     ],
   },
   postProcess: (out) => {
@@ -13,6 +13,25 @@ const dependenciesGenerator: Fig.Generator = {
       return {
         name: line,
         description: "Dependency",
+        icon: "📦",
+        priority: 80,
+      };
+    });
+  },
+};
+
+const commandGenerator: Fig.Generator = {
+  script: {
+    command: "bash",
+    args: ["-c", `uv run | grep -E '^- ' | sed 's/^- //'`],
+  },
+  postProcess: (out) => {
+    return out.split("\n").map((line) => {
+      return {
+        name: line,
+        description: "Command",
+        icon: "fig://icon?type=command",
+        priority: 80,
       };
     });
   },
@@ -276,7 +295,7 @@ const runOptions: Fig.Option[] = [
     description: "Include dependencies from all dependency groups",
   },
   {
-    name: "-m",
+    name: ["-m", "--module"],
     description: "Run a Python module",
   },
   {
@@ -330,7 +349,7 @@ const runOptions: Fig.Option[] = [
     description: "Run without updating the `uv.lock` file",
   },
   {
-    name: "-s",
+    name: ["-s", "--script"],
     description: "Run the given path as a Python script",
   },
   {
@@ -1507,7 +1526,15 @@ const selfSubcommands: Fig.Subcommand[] = [
 ];
 
 const subcommands: Fig.Subcommand[] = [
-  { name: "run", description: "Run a command or script", options: runOptions },
+  {
+    name: "run",
+    description: "Run a command or script",
+    options: runOptions,
+    args: {
+      name: "command",
+      generators: commandGenerator,
+    },
+  },
   {
     name: "init",
     description: "Create a new project",
@@ -1522,7 +1549,6 @@ const subcommands: Fig.Subcommand[] = [
   {
     name: "add",
     description: "Add dependencies to the project",
-    loadSpec: "uv/add",
     args: {
       name: "packages",
       description: "Packages to add",
@@ -1540,7 +1566,6 @@ const subcommands: Fig.Subcommand[] = [
   {
     name: "remove",
     description: "Remove dependencies from the project",
-    loadSpec: "uv/remove",
     args: {
       name: "dependencies",
       description: "Dependencies to remove",
@@ -1559,7 +1584,6 @@ const subcommands: Fig.Subcommand[] = [
   {
     name: "sync",
     description: "Update the project's environment",
-    loadSpec: "uv/sync",
     options: [
       ...syncOptions,
       ...indexOptions,
@@ -1572,7 +1596,6 @@ const subcommands: Fig.Subcommand[] = [
   {
     name: "lock",
     description: "Update the project's lockfile",
-    loadSpec: "uv/lock",
     options: [
       ...lockOptions,
       ...indexOptions,
@@ -1595,7 +1618,6 @@ const subcommands: Fig.Subcommand[] = [
   {
     name: "tree",
     description: "Display the project's dependency tree",
-    loadSpec: "uv/tree",
     options: [
       ...treeOptions,
       ...indexOptions,
@@ -1612,7 +1634,6 @@ const subcommands: Fig.Subcommand[] = [
   {
     name: "tool",
     description: "Run and install commands provided by Python packages",
-    loadSpec: "uv/tool",
     subcommands: toolSubcommands,
     options: [
       ...pythonOptions.filter(
@@ -1645,7 +1666,6 @@ const subcommands: Fig.Subcommand[] = [
   {
     name: "pip",
     description: "Manage Python packages with a pip-compatible interface",
-    loadSpec: "uv/pip",
     subcommands: pipSubcommands,
     options: [
       ...cacheOptions.filter(
@@ -1664,6 +1684,7 @@ const subcommands: Fig.Subcommand[] = [
     description: "Create a virtual environment",
     options: [
       ...pythonOptions,
+      ...venvOptions,
       ...indexOptions.filter(
         (option) =>
           option.name !== "--index-strategy" &&
