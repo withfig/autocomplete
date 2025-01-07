@@ -5,6 +5,11 @@
   "schemaVersion": "v7",
   "main": "./build/index",
   "types": "./build/index.d.ts",
+  "exports": {
+    ".": "./build/index.js",
+    "./*.js": "./build/*.js",
+    "./aws/*.js": "./build/aws/*.js"
+  },
   "type": "module",
   "packageManager": "pnpm@9.1.0+sha256.22e36fba7f4880ecf749a5ca128b8435da085ecd49575e7fb9e64d6bf4fad394",
   "engines": {
@@ -65,6 +70,7 @@
     "build/**/*.js",
     "build/**/*.css",
     "build/**/*.json",
+    "build/**/*.d.ts",
     "icons/*.png"
   ],
   "author": "",
