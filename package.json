@@ -7,8 +7,7 @@
   "types": "./build/index.d.ts",
   "exports": {
     ".": "./build/index.js",
-    "./*.js": "./build/*.js",
-    "./aws/*.js": "./build/aws/*.js"
+    "./dynamic": "./build/dynamic/index.js"
   },
   "type": "module",
   "packageManager": "pnpm@9.1.0+sha256.22e36fba7f4880ecf749a5ca128b8435da085ecd49575e7fb9e64d6bf4fad394",
@@ -79,23 +78,23 @@
   "repository": "https://github.com/withfig/autocomplete",
   "devDependencies": {
     "@fig/eslint-config-autocomplete": "^2.0.0",
-    "@typescript-eslint/eslint-plugin": "^7.14.1",
-    "@typescript-eslint/parser": "^7.14.1",
-    "@withfig/autocomplete-tools": "^2.10.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "@withfig/autocomplete-tools": "^2.11.0",
     "@withfig/autocomplete-types": "^1.31.0",
     "danger": "^11.3.1",
-    "eslint": "^8.57.0",
+    "eslint": "^8.57.1",
     "eslint-plugin-compat": "4.2.0",
-    "husky": "^9.0.11",
-    "lint-staged": "^15.2.7",
-    "prettier": "^3.3.2",
-    "typescript": "~5.5.2"
+    "husky": "^9.1.7",
+    "lint-staged": "^15.3.0",
+    "prettier": "^3.4.2",
+    "typescript": "~5.5.4"
   },
   "dependencies": {
     "@fig/autocomplete-generators": "^2.4.0",
     "@fig/autocomplete-helpers": "^1.0.7",
-    "semver": "^7.6.2",
+    "semver": "^7.6.3",
     "strip-json-comments": "^5.0.1",
-    "yaml": "^2.4.5"
+    "yaml": "^2.7.0"
   }
 }
