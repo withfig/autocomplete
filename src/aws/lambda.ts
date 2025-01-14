@@ -1,4 +1,4 @@
-import awsRegions from "./regions";
+import awsRegions from "./regions.js";
 const awsPrincipals = [
   "a4b.amazonaws.com",
   "acm-pca.amazonaws.com",

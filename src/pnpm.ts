@@ -1,7 +1,7 @@
 // GENERATORS
 
-import { npmScriptsGenerator, npmSearchGenerator } from "./npm";
-import { dependenciesGenerator, nodeClis } from "./yarn";
+import { npmScriptsGenerator, npmSearchGenerator } from "./npm.js";
+import { dependenciesGenerator, nodeClis } from "./yarn.js";
 
 const filterMessages = (out: string): string => {
   return out.startsWith("warning:") || out.startsWith("error:")

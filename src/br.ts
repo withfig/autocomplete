@@ -1,1 +1,1 @@
-export { default } from "./broot";
+export { default } from "./broot.js";

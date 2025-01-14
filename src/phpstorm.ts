@@ -1,4 +1,4 @@
-import { generateInteliJCompletionSpec } from "./idea";
+import { generateInteliJCompletionSpec } from "./idea.js";
 
 const completionSpec = generateInteliJCompletionSpec("phpstorm", "PhpStorm");
 export default completionSpec;

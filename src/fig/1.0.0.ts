@@ -11,7 +11,7 @@ import {
   sshHostsGenerator,
   sshIdentityGenerator,
   userGenerator,
-} from "./shared";
+} from "./shared.js";
 
 const completion: Fig.Subcommand = {
   name: "fig",

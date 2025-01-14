@@ -1,4 +1,4 @@
-import node from "./node";
+import node from "./node.js";
 
 const versionArg: Fig.Arg = {
   name: "version",

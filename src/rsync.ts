@@ -1,4 +1,4 @@
-import { knownHosts, configHosts } from "./ssh";
+import { knownHosts, configHosts } from "./ssh.js";
 
 const infoArgs: Fig.SingleOrArray<Fig.Arg> = [
   { name: "BACKUP", description: "Mention files backed up" },

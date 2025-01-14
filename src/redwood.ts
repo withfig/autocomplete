@@ -1,4 +1,4 @@
-import prismaSpec from "./prisma";
+import prismaSpec from "./prisma.js";
 
 const icon = "https://avatars.githubusercontent.com/u/45050444?s=200&v=4";
 

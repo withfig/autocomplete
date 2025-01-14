@@ -6,7 +6,7 @@
 // transition, note that where you see flyctl as a command it can be replaced
 // with fly.
 
-import completionSpec from "./flyctl";
+import completionSpec from "./flyctl.js";
 
 export default {
   ...completionSpec,

@@ -10,7 +10,7 @@ schedule(async () => {
   });
 
   const hasGreetingComment = comments.some((comment) =>
-    comment.body.includes("id: greetingComment")
+    comment.body?.includes("id: greetingComment")
   );
 
   if (!hasGreetingComment) {

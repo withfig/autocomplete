@@ -1,2 +1,2 @@
-import completionSpec from "./commercelayer";
+import completionSpec from "./commercelayer.js";
 export default completionSpec;

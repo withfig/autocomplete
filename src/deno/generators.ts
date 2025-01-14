@@ -3,14 +3,14 @@
 import { filepaths, valueList } from "@fig/autocomplete-generators";
 import stripJsonComments from "strip-json-comments";
 
-import type { DenoConfigurationFileSchema } from "./config_schema";
+import type { DenoConfigurationFileSchema } from "./config_schema.js";
 import type {
   ClassMethodDef,
   ClassPropertyDef,
   DocNode,
   InterfaceMethodDef,
   InterfacePropertyDef,
-} from "./deno_doc";
+} from "./deno_doc.js";
 
 // --- Generate documentation symbols
 

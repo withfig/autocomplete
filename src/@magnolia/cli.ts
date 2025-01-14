@@ -1,1 +1,1 @@
-export { default } from "../mgnl";
+export { default } from "../mgnl.js";

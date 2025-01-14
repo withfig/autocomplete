@@ -1,4 +1,4 @@
-import autocannon from "./autocannon";
+import autocannon from "./autocannon.js";
 
 export const npxSuggestions: Fig.Suggestion[] = [
   {
