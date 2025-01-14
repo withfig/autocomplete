@@ -979,33 +979,6 @@ const subcommands: Fig.Subcommand[] = [
   {
     name: "setup",
     description: "Setup zellij and check its configuration",
-    /*
-    OPTIONS:
-        --check
-            Checks the configuration of zellij and displays currently used directories
-
-        --clean
-            Disables loading of configuration file at default location, loads the defaults that
-            zellij ships with
-
-        --dump-config
-            Dump the default configuration file to stdout
-
-        --dump-layout <DUMP_LAYOUT>
-            Dump specified layout to stdout
-
-        --dump-plugins [<DIR>...]
-            Dump the builtin plugins to DIR or "DATA DIR" if unspecified
-
-        --dump-swap-layout <DUMP_SWAP_LAYOUT>
-            Dump the specified swap layout file to stdout
-
-        --generate-auto-start <SHELL>
-            Generates auto-start script for the specified shell
-
-        --generate-completion <SHELL>
-            Generates completion for the specified shell
-    */
     options: [
       {
         name: "--check",
