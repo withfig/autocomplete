@@ -1,4 +1,4 @@
-import { dependenciesGenerator } from "./npm";
+import { dependenciesGenerator } from "./npm.js";
 import { filepaths } from "@fig/autocomplete-generators";
 
 const completionSpec: Fig.Spec = {

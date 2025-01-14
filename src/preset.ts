@@ -1,1 +1,1 @@
-export { default } from "./@preset/cli";
+export { default } from "./@preset/cli.js";

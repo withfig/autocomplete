@@ -1,4 +1,4 @@
-import elixir from "./elixir";
+import elixir from "./elixir.js";
 
 const completionSpec: Fig.Spec = {
   ...elixir,

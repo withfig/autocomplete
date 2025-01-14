@@ -1,4 +1,4 @@
-import { npmSearchGenerator } from "./npm";
+import { npmSearchGenerator } from "./npm.js";
 
 const completionSpec: Fig.Spec = {
   name: "ni",

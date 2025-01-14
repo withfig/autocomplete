@@ -1,4 +1,4 @@
-import { clangBase } from "./clang";
+import { clangBase } from "./clang.js";
 
 const colorOption: Fig.Option = {
   name: "--color",

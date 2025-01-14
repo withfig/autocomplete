@@ -1,4 +1,4 @@
-import awsRegions from "./regions";
+import awsRegions from "./regions.js";
 const callAs = ["SELF", "DELEGATED_ADMIN"];
 const typeSuggestion = ["RESOURCE", "MODULE"];
 const permissionModel = ["SERVICE_MANAGED", "SELF_MANAGED"];

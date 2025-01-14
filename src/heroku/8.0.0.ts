@@ -1,4 +1,4 @@
-import { getAppGenerator } from "./shared";
+import { getAppGenerator } from "./shared.js";
 
 const completionSpec: Fig.Spec = {
   name: "heroku",
