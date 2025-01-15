@@ -182,6 +182,84 @@ const completionSpec: Fig.Spec = {
     //   options: global_parameters,
     // },
     {
+      name: "acorn",
+      description: "Acorn commands for WordPress",
+      subcommands: [
+        {
+          name: "clear-compiled",
+          description: "Remove the compiled class file",
+        },
+        {
+          name: "completion",
+          description: "Dump the shell completion script",
+        },
+        {
+          name: "env",
+          description: "Display the current framework environment",
+        },
+        {
+          name: "help",
+          description: "Display help for a command",
+        },
+        {
+          name: "list",
+          description: "List commands",
+        },
+        {
+          name: "optimize",
+          description: "Cache the framework bootstrap files",
+        },
+        {
+          name: "acorn-init",
+          description: "Initializes required paths in the base directory",
+        },
+        {
+          name: "config:cache",
+          description: "Create a cache file for faster configuration loading",
+        },
+        {
+          name: "config:clear",
+          description: "Remove the configuration cache file",
+        },
+        {
+          name: "optimize:clear",
+          description: "Remove the cached bootstrap files",
+        },
+        {
+          name: "make:command",
+          description: "Create a new Artisan command",
+        },
+        {
+          name: "make:component",
+          description: "Create a new view component class",
+        },
+        {
+          name: "make:composer",
+          description: "Create a new view composer class",
+        },
+        {
+          name: "make:provider",
+          description: "Create a new service provider class",
+        },
+        {
+          name: "package:discover",
+          description: "Rebuild the cached package manifest",
+        },
+        {
+          name: "vendor:publish",
+          description: "Publish any publishable assets from vendor packages",
+        },
+        {
+          name: "view:cache",
+          description: "Compile all of the application's Blade templates",
+        },
+        {
+          name: "view:clear",
+          description: "Clear all compiled view files",
+        },
+      ],
+    },
+    {
       name: "cache",
       description:
         "Adds, removes, fetches, and flushes the WP Object Cache object",
