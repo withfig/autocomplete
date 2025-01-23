@@ -26,34 +26,8 @@ export const createNpmSearchHandler =
       return [];
     }
     // Add optional keyword parameter
-    const keywordParameter =
-      keywords?.length > 0 ? `+keywords:${keywords.join(",")}` : "";
+    const keywordParameter = keywords?.length > 0 ? keywords.join(" ") : "";
 
-    const queryPackagesUrl = keywordParameter
-      ? `https://api.npms.io/v2/search?size=20&q=${searchTerm}${keywordParameter}`
-      : `https://api.npms.io/v2/search/suggestions?q=${searchTerm}&size=20`;
-
-    // Query the API with the package name
-    const queryPackages = [
-      "-s",
-      "-H",
-      "Accept: application/json",
-      queryPackagesUrl,
-    ];
-    // We need to remove the '@' at the end of the searchTerm before querying versions
-    const queryVersions = [
-      "-s",
-      "-H",
-      "Accept: application/vnd.npm.install-v1+json",
-      `https://registry.npmjs.org/${searchTerm.slice(0, -1)}`,
-    ];
-    // If the end of our token is '@', then we want to generate version suggestions
-    // Otherwise, we want packages
-    const out = (query: string) =>
-      executeShellCommand({
-        command: "curl",
-        args: query[query.length - 1] === "@" ? queryVersions : queryPackages,
-      });
     // If our token starts with '@', then a 2nd '@' tells us we want
     // versions.
     // Otherwise, '@' anywhere else in the string will indicate the same.
@@ -62,9 +36,15 @@ export const createNpmSearchHandler =
       : searchTerm.includes("@");
 
     try {
-      const data = JSON.parse((await out(searchTerm)).stdout);
       if (shouldGetVersion) {
-        // create dist tags suggestions
+        const out = () =>
+          executeShellCommand({
+            command: "npm",
+            args: ["--json", "info", searchTerm.slice(0, -1)],
+          });
+
+        const data = JSON.parse((await out()).stdout);
+
         const versions = Object.entries(data["dist-tags"] || {}).map(
           ([key, value]) => ({
             name: key,
@@ -73,17 +53,24 @@ export const createNpmSearchHandler =
         ) as Fig.Suggestion[];
         // create versions
         versions.push(
-          ...Object.keys(data.versions)
+          ...data.versions
             .map((version) => ({ name: version }) as Fig.Suggestion)
             .reverse()
         );
         return versions;
       }
 
-      const results = keywordParameter ? data.results : data;
+      const out = () =>
+        executeShellCommand({
+          command: "npm",
+          args: ["--json", "search", keywordParameter, searchTerm],
+        });
+
+      const results = JSON.parse((await out()).stdout);
+
       return results.map((item) => ({
-        name: item.package.name,
-        description: item.package.description,
+        name: item.name,
+        description: item.description,
       })) as Fig.Suggestion[];
     } catch (error) {
       console.error({ error });
@@ -106,7 +93,11 @@ export const npmSearchGenerator: Fig.Generator = {
     // we see the first '@' so we can generate version suggestions
     return !(oldToken.includes("@") && newToken.includes("@"));
   },
-  getQueryTerm: "@",
+  getQueryTerm: (token) => {
+    // If we are looking for versions, there's no need filter the
+    // search anymore, otherwise use the query the user entered
+    return token.endsWith("@") ? "" : token;
+  },
   cache: {
     ttl: 1000 * 60 * 60 * 24 * 2, // 2 days
   },
