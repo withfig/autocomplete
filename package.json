@@ -70,7 +70,8 @@
     "build/**/*.css",
     "build/**/*.json",
     "build/**/*.d.ts",
-    "icons/*.png"
+    "icons/*.png",
+    "icons/*.svg"
   ],
   "author": "",
   "license": "ISC",
