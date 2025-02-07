@@ -13,6 +13,6 @@ jobs:
         with:
           node-version-file: package.json
       - name: Install pnpm
-        uses: pnpm/action-setup@v4.0.0
+        uses: pnpm/action-setup@v4.1.0
       - run: pnpm install --frozen-lockfile
       - run: pnpm test
