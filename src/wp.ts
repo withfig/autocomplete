@@ -186,68 +186,84 @@ const completionSpec: Fig.Spec = {
       description: "Acorn commands for WordPress",
       subcommands: [
         {
-          name: "clear-compiled",
-          description: "Remove the compiled class file",
+          name: "about",
+          description: "Display basic information about your application",
         },
         {
-          name: "completion",
-          description: "Dump the shell completion script",
+          name: "db",
+          description: "Start a new database CLI session",
         },
         {
-          name: "env",
-          description: "Display the current framework environment",
+          name: "migrate",
+          description: "Run the database migrations",
         },
         {
-          name: "help",
-          description: "Display help for a command",
+          name: "acorn:install",
+          description: "Install Acorn into the application",
         },
         {
-          name: "list",
-          description: "List commands",
+          name: "cache:clear",
+          description: "Flush the application cache",
         },
         {
-          name: "optimize",
-          description: "Cache the framework bootstrap files",
+          name: "cache:forget",
+          description: "Remove an item from the cache",
         },
         {
-          name: "acorn-init",
-          description: "Initializes required paths in the base directory",
+          name: "db:seed",
+          description: "Seed the database with records",
         },
         {
-          name: "config:cache",
-          description: "Create a cache file for faster configuration loading",
+          name: "db:wipe",
+          description: "Drop all tables, views, and types",
         },
         {
-          name: "config:clear",
-          description: "Remove the configuration cache file",
+          name: "key:generate",
+          description: "Set the application key",
         },
         {
-          name: "optimize:clear",
-          description: "Remove the cached bootstrap files",
+          name: "make:middleware",
+          description: "Create a new middleware class",
         },
         {
-          name: "make:command",
-          description: "Create a new Artisan command",
+          name: "make:migration",
+          description: "Create a new migration file",
         },
         {
-          name: "make:component",
-          description: "Create a new view component class",
+          name: "migrate:fresh",
+          description: "Drop all tables and re-run all migrations",
         },
         {
-          name: "make:composer",
-          description: "Create a new view composer class",
+          name: "migrate:install",
+          description: "Create the migration repository",
         },
         {
-          name: "make:provider",
-          description: "Create a new service provider class",
+          name: "migrate:refresh",
+          description: "Reset and re-run all migrations",
         },
         {
-          name: "package:discover",
-          description: "Rebuild the cached package manifest",
+          name: "migrate:reset",
+          description: "Rollback all database migrations",
         },
         {
-          name: "vendor:publish",
-          description: "Publish any publishable assets from vendor packages",
+          name: "migrate:rollback",
+          description: "Rollback the last database migration",
+        },
+        {
+          name: "migrate:status",
+          description: "Show the status of each migration",
+        },
+        {
+          name: "route:cache",
+          description: "Create a route cache file for faster route registration",
+        },
+        {
+          name: "route:clear",
+          description: "Remove the route cache file",
+        },
+        {
+          name: "route:list",
+          description: "List all registered routes",
         },
         {
           name: "view:cache",
