@@ -207,6 +207,143 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: ["list", "ls"],
+      description: "List runbooks",
+      args: {
+        template: "filepaths",
+      },
+      options: [
+        {
+          name: "--cache-dir",
+          description: "Specify cache directory for remote runbooks",
+          args: {
+            template: "folders",
+          },
+        },
+        {
+          name: "--env-file",
+          description: "Load environment variables from a file",
+          args: {
+            template: "filepaths",
+          },
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Help for list",
+        },
+        {
+          name: "--id",
+          description:
+            "Run the matching runbooks in order if there is only one runbook with a forward matching ID",
+          args: {
+            name: "id",
+          },
+        },
+        {
+          name: "--label",
+          description: "Run all runbooks matching the label specification",
+          args: {
+            name: "label",
+          },
+        },
+        {
+          name: ["-l", "-long"],
+          description: "Long format",
+        },
+        {
+          name: "--overlay",
+          description: "Overlay values on the runbook",
+          args: {
+            name: "values",
+          },
+        },
+        {
+          name: "--random",
+          description: "Run the specified number of runbooks at random",
+          args: {
+            name: "specified number",
+          },
+        },
+        {
+          name: "--retain-cache-dir",
+          description: "Retain cache directory for remote runbooks",
+        },
+        {
+          name: "--run",
+          description:
+            "Run all runbooks with a matching file path, treating the value passed to the option as an unanchored regular expression",
+          args: {
+            name: "path regex",
+          },
+        },
+        {
+          name: "--runner",
+          description: 'Set runner to runbook("key:dsn")',
+          args: {
+            name: "runner",
+          },
+        },
+        {
+          name: "--sample",
+          description: "Sample the specified number of runbooks",
+          args: {
+            name: "specified number",
+          },
+        },
+        {
+          name: "--shard-index",
+          description: "Index of distributed runbooks",
+          args: {
+            name: "index",
+          },
+        },
+        {
+          name: "--shard-n",
+          description: "Number of shards for distributing runbooks",
+          args: {
+            name: "number",
+          },
+        },
+        {
+          name: "--shuffle",
+          description: "Randomize the order of running runbooks",
+          args: {
+            isOptional: true,
+            suggestions: [
+              {
+                name: '"off"',
+                description: "(Default)",
+              },
+              {
+                name: '"on"',
+              },
+              {
+                name: "N",
+              },
+            ],
+          },
+        },
+        {
+          name: "--skip-included",
+          description: "Skip running the included runbook by itself",
+        },
+        {
+          name: "--underlay",
+          description: "Lay values under the runbook",
+          args: {
+            name: "values",
+          },
+        },
+        {
+          name: "--var",
+          description: 'Set var to runbook("key:value")',
+          args: {
+            name: "value",
+          },
+        },
+      ],
+    },
   ],
   options: [
     {
