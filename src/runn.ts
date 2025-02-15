@@ -1,3 +1,25 @@
+const globalFlags: Fig.Option[] = [
+  {
+    name: "--scopes",
+    description: "Additional scopes for runn",
+    args: {
+      suggestions: [
+        {
+          name: "read:parent",
+          description: "Required for reading files above the working directory",
+        },
+        {
+          name: "read:remote",
+          description: "Required for reading remote files",
+        },
+        {
+          name: "run:exec",
+          description: "Required for running Exec runner",
+        },
+      ],
+    },
+  },
+];
 const completionSpec: Fig.Spec = {
   name: "runn",
   description: "A tool for running operations following a scenario",
@@ -5,6 +27,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "help",
       description: "Help for runn",
+      options: [...globalFlags],
     },
     {
       name: "completion",
@@ -51,12 +74,14 @@ const completionSpec: Fig.Spec = {
           ],
         },
       ],
+      options: [...globalFlags],
     },
     {
       name: "coverage",
       description:
         "Show coverage for paths/operations of OpenAPI spec and methods of protocol buffers",
       options: [
+        ...globalFlags,
         {
           name: "--cache-dir",
           description: "Specify cache directory for remote runbooks",
@@ -214,6 +239,7 @@ const completionSpec: Fig.Spec = {
         template: "filepaths",
       },
       options: [
+        ...globalFlags,
         {
           name: "--cache-dir",
           description: "Specify cache directory for remote runbooks",
