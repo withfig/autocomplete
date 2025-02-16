@@ -333,21 +333,10 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--shuffle",
-          description: "Randomize the order of running runbooks",
+          description:
+            'Randomize the order of running runbooks (default "off")',
           args: {
-            isOptional: true,
-            suggestions: [
-              {
-                name: '"off"',
-                description: "(Default)",
-              },
-              {
-                name: '"on"',
-              },
-              {
-                name: "N",
-              },
-            ],
+            suggestions: ["off", "on", "N"],
           },
         },
         {
@@ -394,21 +383,9 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--concurrent",
-          description: "Run runbooks concurrently",
+          description: 'Run runbooks concurrently (default "off")',
           args: {
-            isOptional: true,
-            suggestions: [
-              {
-                name: '"off"',
-                description: "(Default)",
-              },
-              {
-                name: '"on"',
-              },
-              {
-                name: "N",
-              },
-            ],
+            suggestions: ["off", "on", "N"],
           },
         },
         {
@@ -483,7 +460,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "Help for coverage",
+          description: "Help for loadt",
         },
         {
           name: "--host-rules",
@@ -587,21 +564,10 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--shuffle",
-          description: "Randomize the order of running runbooks",
+          description:
+            'Randomize the order of running runbooks (default "off")',
           args: {
-            isOptional: true,
-            suggestions: [
-              {
-                name: '"off"',
-                description: "(Default)",
-              },
-              {
-                name: '"on"',
-              },
-              {
-                name: "N",
-              },
-            ],
+            suggestions: ["off", "on", "N"],
           },
         },
         {
@@ -688,13 +654,48 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "Help for coverage",
+          description: "Help for new",
         },
         {
           name: "--out",
           description: "Target path of runbook",
           args: {
             template: "folders",
+          },
+        },
+      ],
+    },
+    {
+      name: ["rprof", "rrprof", "rrrprof", "prof"],
+      description: "Read the runbook run profile",
+      args: {
+        template: "filepaths",
+      },
+      options: [
+        ...globalFlags,
+        {
+          name: "--depth",
+          description: "Depth of profile (default 4)",
+          args: {
+            name: "depth",
+          },
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Help for rprof",
+        },
+        {
+          name: "--sort",
+          description: "Sort order",
+          args: {
+            suggestions: ["elapsed", "started-at", "stopped-at"],
+          },
+        },
+        {
+          name: "--unit",
+          description: 'Time unit(default "ms")',
+          args: {
+            suggestions: ["ns", "us", "ms", "s", "m"],
           },
         },
       ],
@@ -712,5 +713,3 @@ const completionSpec: Fig.Spec = {
   ],
 };
 export default completionSpec;
-
-// debug, env-file, --cache-dir
