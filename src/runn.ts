@@ -651,6 +651,54 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: ["new", "append"],
+      description: "Create new runbook or append step to runbook",
+      options: [
+        ...globalFlags,
+        {
+          name: "--and-run",
+          description: "Run created runbook and capture the response for test",
+        },
+        {
+          name: "--desc",
+          description: "Description of runbook",
+          args: {
+            name: "description",
+          },
+        },
+        {
+          name: "--grpc-import-path",
+          description:
+            "Set the path to the directory where proto sources can be imported for gRPC runners",
+          args: {
+            template: "filepaths",
+          },
+        },
+        {
+          name: "--grpc-no-tls",
+          description: "Disable TLS use in all gRPC runners",
+        },
+        {
+          name: "--grpc-proto",
+          description: "Set the name of proto source for gRPC runners",
+          args: {
+            name: "proto source",
+          },
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Help for coverage",
+        },
+        {
+          name: "--out",
+          description: "Target path of runbook",
+          args: {
+            template: "folders",
+          },
+        },
+      ],
+    },
   ],
   options: [
     {
