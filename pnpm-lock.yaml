@@ -56,7 +56,7 @@ importers:
         version: 15.3.0
       prettier:
         specifier: ^3.4.2
-        version: 3.4.2
+        version: 3.5.1
       typescript:
         specifier: ~5.5.4
         version: 5.5.4
@@ -1491,8 +1491,8 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  prettier@3.4.2:
-    resolution: {integrity: sha512-e9MewbtFo+Fevyuxn/4rrcDAaq0IYxPGLvObpQjiZBMAzB9IGmzlnG9RZy3FFas+eBMu2vA0CszMeduow5dIuQ==}
+  prettier@3.5.1:
+    resolution: {integrity: sha512-hPpFQvHwL3Qv5AdRvBFMhnKo4tYxp0ReXiPn2bxkiohEX6mBeBwEpBSQTkD458RaaDKQMYSp4hX4UtfUTA5wDw==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -1958,7 +1958,7 @@ snapshots:
 
   '@fig/autocomplete-merge@1.4.0':
     dependencies:
-      prettier: 3.4.2
+      prettier: 3.5.1
       ts-morph: 22.0.0
       typescript: 5.5.4
 
@@ -2231,7 +2231,7 @@ snapshots:
       esbuild: 0.24.2
       fast-glob: 3.3.3
       module-from-string: 3.3.1
-      prettier: 3.4.2
+      prettier: 3.5.1
       semver: 7.6.3
       typescript: 5.5.4
 
@@ -3178,7 +3178,7 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier@3.4.2: {}
+  prettier@3.5.1: {}
 
   prettyjson@1.2.5:
     dependencies:
