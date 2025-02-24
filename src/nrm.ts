@@ -1,4 +1,4 @@
-import { dependenciesGenerator } from "./npm";
+import { dependenciesGenerator } from "./npm.js";
 
 const completionSpec: Fig.Spec = {
   name: "nrm",

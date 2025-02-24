@@ -1,4 +1,4 @@
-import { npmScriptsGenerator } from "./npm";
+import { npmScriptsGenerator } from "./npm.js";
 
 const completionSpec: Fig.Spec = {
   name: "nr",

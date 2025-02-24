@@ -1,4 +1,4 @@
-import sshSpec from "./ssh";
+import sshSpec from "./ssh.js";
 
 const globalOptions: Fig.Option[] = [
   { name: ["-l", "--login"], description: "Remote host login" },

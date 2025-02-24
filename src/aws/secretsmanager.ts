@@ -1,4 +1,4 @@
-import awsRegions from "./regions";
+import awsRegions from "./regions.js";
 const ttl = 30000;
 const appendFolderPath = (tokens: string[], prefix: string): string[] => {
   const baseLsCommand = ["ls", "-1ApL"];

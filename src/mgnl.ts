@@ -1,4 +1,4 @@
-import { createNpmSearchHandler, npmSearchGenerator } from "./npm";
+import { createNpmSearchHandler, npmSearchGenerator } from "./npm.js";
 
 const pathOption = (description: string): Fig.Option => ({
   name: ["-p", "--path"],

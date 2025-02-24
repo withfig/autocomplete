@@ -1,4 +1,4 @@
-import { existingUsersandGroups } from "./chown";
+import { existingUsersandGroups } from "./chown.js";
 
 const helpOption: Fig.Option = {
   name: ["-h", "--help"],

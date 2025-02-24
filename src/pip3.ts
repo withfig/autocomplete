@@ -1,4 +1,4 @@
-import pipCompletionSpec from "./pip";
+import pipCompletionSpec from "./pip.js";
 
 const completionSpec: Fig.Spec = {
   ...pipCompletionSpec,

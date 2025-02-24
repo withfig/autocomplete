@@ -1,6 +1,6 @@
 // REFERENCE: https://pipenv.pypa.io/en/stable/cli/
 import { filepaths } from "@fig/autocomplete-generators";
-import { packageList } from "./pip";
+import { packageList } from "./pip.js";
 
 const completionSpec: Fig.Spec = {
   name: "pipenv",
