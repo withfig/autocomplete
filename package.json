@@ -89,7 +89,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^15.3.0",
     "prettier": "^3.4.2",
-    "typescript": "~5.5.4"
+    "typescript": "~5.8.2"
   },
   "dependencies": {
     "@fig/autocomplete-generators": "^2.4.0",
