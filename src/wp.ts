@@ -182,6 +182,100 @@ const completionSpec: Fig.Spec = {
     //   options: global_parameters,
     // },
     {
+      name: "acorn",
+      description: "Acorn commands for WordPress",
+      subcommands: [
+        {
+          name: "about",
+          description: "Display basic information about your application",
+        },
+        {
+          name: "db",
+          description: "Start a new database CLI session",
+        },
+        {
+          name: "migrate",
+          description: "Run the database migrations",
+        },
+        {
+          name: "acorn:install",
+          description: "Install Acorn into the application",
+        },
+        {
+          name: "cache:clear",
+          description: "Flush the application cache",
+        },
+        {
+          name: "cache:forget",
+          description: "Remove an item from the cache",
+        },
+        {
+          name: "db:seed",
+          description: "Seed the database with records",
+        },
+        {
+          name: "db:wipe",
+          description: "Drop all tables, views, and types",
+        },
+        {
+          name: "key:generate",
+          description: "Set the application key",
+        },
+        {
+          name: "make:middleware",
+          description: "Create a new middleware class",
+        },
+        {
+          name: "make:migration",
+          description: "Create a new migration file",
+        },
+        {
+          name: "migrate:fresh",
+          description: "Drop all tables and re-run all migrations",
+        },
+        {
+          name: "migrate:install",
+          description: "Create the migration repository",
+        },
+        {
+          name: "migrate:refresh",
+          description: "Reset and re-run all migrations",
+        },
+        {
+          name: "migrate:reset",
+          description: "Rollback all database migrations",
+        },
+        {
+          name: "migrate:rollback",
+          description: "Rollback the last database migration",
+        },
+        {
+          name: "migrate:status",
+          description: "Show the status of each migration",
+        },
+        {
+          name: "route:cache",
+          description: "Create a route cache file for faster route registration",
+        },
+        {
+          name: "route:clear",
+          description: "Remove the route cache file",
+        },
+        {
+          name: "route:list",
+          description: "List all registered routes",
+        },
+        {
+          name: "view:cache",
+          description: "Compile all of the application's Blade templates",
+        },
+        {
+          name: "view:clear",
+          description: "Clear all compiled view files",
+        },
+      ],
+    },
+    {
       name: "cache",
       description:
         "Adds, removes, fetches, and flushes the WP Object Cache object",

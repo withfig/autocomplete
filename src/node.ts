@@ -83,14 +83,19 @@ const completionSpec: Fig.Subcommand = {
     },
   ],
   generateSpec: async (tokens, executeShellCommand) => {
-    const isAdonisJsonPresentCommand = "test -f .adonisrc.json";
+    const isAdonisJsonPresent = await executeShellCommand({
+      command: "bash",
+      args: ["-c", "test -f .adonisrc.json"],
+    });
+
+    const isAdonisRcTsPresent = await executeShellCommand({
+      command: "bash",
+      args: ["-c", "test -f adonisrc.ts"],
+    });
+
     if (
-      (
-        await executeShellCommand({
-          command: "bash",
-          args: ["-c", "isAdonisJsonPresentCommand"],
-        })
-      ).status === 0
+      isAdonisJsonPresent.status === 0 ||
+      isAdonisRcTsPresent.status === 0
     ) {
       return {
         name: "node",
