@@ -163,6 +163,16 @@ const completionSpec: Fig.Spec = {
               description: "Version of the configuration",
               args: { name: "version", suggestions: ["0", "1"] },
             },
+            {
+              name: "--branch",
+              description: "Git branch name",
+              args: { name: "branch_name" },
+            },
+            {
+              name: "--app-id",
+              description: "Amplify App ID",
+              args: { name: "app_id" },
+            },
           ],
         },
         {
@@ -238,6 +248,11 @@ const completionSpec: Fig.Spec = {
             {
               name: "--debug",
               description: "Print debug logs to the console",
+            },
+            {
+              name: "--statement-max-depth",
+              description: "Maximum depth of the generated GraphQL statements",
+              args: { name: "integer" },
             },
           ],
         },
@@ -324,7 +339,7 @@ const completionSpec: Fig.Spec = {
       description: "Display help information",
     },
     {
-      name: "--version",
+      name: ["--version", "-v"],
       description: "Display version information",
     },
     {
