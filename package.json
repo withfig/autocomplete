@@ -93,7 +93,7 @@
   },
   "dependencies": {
     "@fig/autocomplete-generators": "^2.4.0",
-    "@fig/autocomplete-helpers": "^1.0.7",
+    "@fig/autocomplete-helpers": "^2.0.0",
     "semver": "^7.6.3",
     "strip-json-comments": "^5.0.1",
     "yaml": "^2.7.0"
