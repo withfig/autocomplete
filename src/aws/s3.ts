@@ -1,5 +1,5 @@
 // TODO: suggest available s3 endpoints
-import awsRegions from "./regions";
+import awsRegions from "./regions.js";
 
 const storageClasses = [
   "STANDARD",

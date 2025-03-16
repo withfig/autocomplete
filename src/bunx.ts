@@ -1,4 +1,4 @@
-import { npxSuggestions } from "./npx";
+import { npxSuggestions } from "./npx.js";
 
 const bunx: Fig.Spec = {
   name: "bunx",

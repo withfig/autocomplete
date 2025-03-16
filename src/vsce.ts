@@ -1,5 +1,5 @@
 import { filepaths } from "@fig/autocomplete-generators";
-import { gitGenerators } from "./git";
+import { gitGenerators } from "./git.js";
 
 const targetSuggestions: string[] = [
   "win32-x64",

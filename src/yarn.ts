@@ -1,4 +1,4 @@
-import { npmScriptsGenerator, npmSearchGenerator } from "./npm";
+import { npmScriptsGenerator, npmSearchGenerator } from "./npm.js";
 
 export const yarnScriptParserDirectives: Fig.Arg["parserDirectives"] = {
   alias: async (token, executeShellCommand) => {

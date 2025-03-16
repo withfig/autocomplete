@@ -1,4 +1,4 @@
-import { storybookCommonOptions } from "./start-storybook";
+import { storybookCommonOptions } from "./start-storybook.js";
 
 const completionSpec: Fig.Spec = {
   name: "build-storybook",

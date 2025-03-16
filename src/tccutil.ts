@@ -1,4 +1,4 @@
-import { generateBundleIds } from "./open";
+import { generateBundleIds } from "./open.js";
 
 const commands: Fig.Suggestion[] = [
   {

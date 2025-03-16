@@ -1,5 +1,5 @@
-import goTask from "./task/go-task";
-import taskWarrior from "./task/taskwarrior";
+import goTask from "./task/go-task.js";
+import taskWarrior from "./task/taskwarrior.js";
 
 const completionSpec: Fig.Spec = {
   name: "task",

@@ -1,5 +1,5 @@
-import { npmScriptsGenerator } from "./npm";
-import { yarnScriptParserDirectives } from "./yarn";
+import { npmScriptsGenerator } from "./npm.js";
+import { yarnScriptParserDirectives } from "./yarn.js";
 
 const completionSpec: Fig.Spec = {
   name: "rushx",
