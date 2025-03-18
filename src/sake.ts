@@ -2,11 +2,19 @@ const commonOptions: Fig.Option[] = [
   {
     name: ["--config-path", "-c"],
     description: "Specify the path to the configuration file",
+    args: {
+      name: "path",
+      template: "filepaths",
+    },
     isPersistent: true,
   },
   {
     name: ["--sake-app-path", "-s"],
     description: "Specify the path for the SakeApp package",
+    args: {
+      name: "path",
+      template: "folders",
+    },
     isPersistent: true,
   },
 ];
@@ -21,12 +29,21 @@ const commonCommandSpecificOptions: Fig.Option[] = [
     },
     priority: 55,
   },
+  {
+    name: ["--sake-app-prebuilt-binary-path", "-b"],
+    description: "Specify the path to the prebuilt SakeApp binary",
+    args: {
+      name: "path",
+      template: "filepaths",
+    },
+    priority: 55,
+  },
 ];
 
 const completionSpec: Fig.Spec = {
   name: "sake",
   description:
-    "🍶 Swift-based utility for managing command execution with dependencies and conditions, inspired by Make",
+    "🍶 Swift-based utility for managing project commands, inspired by Make",
   generateSpec: async (_tokens, executeShellCommand) => {
     const { stdout } = await executeShellCommand({
       command: "sake",
@@ -38,7 +55,7 @@ const completionSpec: Fig.Spec = {
         const group = commands.groups[groupName];
         return [
           ...acc,
-          ...group.map((command) => {
+          ...group.map((command: { name: string; description: string }) => {
             return {
               name: command.name,
               description: command.description || "The command to run",
@@ -70,6 +87,11 @@ const completionSpec: Fig.Spec = {
       options: [...commonOptions],
     },
     {
+      name: "edit",
+      description: "Open the SakeApp in Xcode (macOS only)",
+      options: [...commonOptions],
+    },
+    {
       name: "list",
       description: "List all available commands defined in the SakeApp",
       options: [
@@ -78,6 +100,18 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--json", "-j"],
           description: "Output the list of commands in JSON format",
+          priority: 45,
+        },
+      ],
+    },
+    {
+      name: "build",
+      description: "Manually trigger a rebuild of the SakeApp",
+      options: [
+        ...commonOptions,
+        {
+          name: "--show-bin-path",
+          description: "Print the path to the built SakeApp executable",
           priority: 45,
         },
       ],
@@ -117,6 +151,11 @@ const completionSpec: Fig.Spec = {
       name: ["--help", "-h"],
       description: "Show help information",
       isPersistent: true,
+      priority: 40,
+    },
+    {
+      name: "--version",
+      description: "Show the version",
       priority: 40,
     },
   ],
