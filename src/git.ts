@@ -63,6 +63,8 @@ const postProcessBranches =
     }
 
     const seen = new Set<string>();
+    const local = new Set<string>();
+    const remote = new Set<string>();
     return output
       .split("\n")
       .filter((line) => !line.trim().startsWith("HEAD"))
@@ -71,6 +73,7 @@ const postProcessBranches =
         const parts = branch.match(/\S+/g);
         if (parts && parts.length > 1) {
           if (parts[0] === "*") {
+            local.add(branch.replace("*", "").trim());
             // We are in a detached HEAD state
             if (branch.includes("HEAD detached")) {
               return null;
@@ -93,6 +96,9 @@ const postProcessBranches =
         if (insertWithoutRemotes && name.startsWith("remotes/")) {
           name = name.slice(name.indexOf("/", 8) + 1);
           description = "Remote branch";
+          remote.add(name);
+        } else {
+          local.add(name);
         }
 
         const space = name.indexOf(" ");
@@ -106,6 +112,25 @@ const postProcessBranches =
           icon: "fig://icon?type=git",
           priority: 75,
         };
+      })
+      .map((suggestion) => {
+        if (local.has(suggestion.name) && remote.has(suggestion.name)) {
+          return suggestion;
+        } else if (local.has(suggestion.name) && !remote.has(suggestion.name)) {
+          return {
+            ...suggestion,
+            description: "Local branch",
+          };
+        } else if (!local.has(suggestion.name) && remote.has(suggestion.name)) {
+          return {
+            ...suggestion,
+            name: "remotes/origin/" + suggestion.name,
+            icon: "fig://icon?type=alert",
+            priority: 74,
+          };
+        }
+
+        return suggestion;
       })
       .filter((suggestion) => {
         if (!suggestion) return false;
