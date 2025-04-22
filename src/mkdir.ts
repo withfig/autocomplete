@@ -22,8 +22,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-Z", "--context"],
-      description:
-        "Set the SELinux security context of each created directory",
+      description: "Set the SELinux security context of each created directory",
       args: { name: "context" },
     },
     { name: "--help", description: "Display this help and exit" },
