@@ -124,7 +124,7 @@ If you aren't able to contribute, please feel free to open an
 #### What terminals does Amazon Q work with?
 
 Amazon Q for command line works with the native macOS Terminal app, [iTerm],
-[Tabby], [Hyper], [Kitty], [WezTerm], and [Alacritty]. It also works in the
+[Tabby], [Hyper], [Kitty], [WezTerm], [Alacritty], and [Ghostty]. It also works in the
 integrated terminals of [VSCode], [JetBrains IDEs], [Android Studio], and
 [Nova].
 
@@ -133,11 +133,12 @@ integrated terminals of [VSCode], [JetBrains IDEs], [Android Studio], and
 [hyper]: https://hyper.is
 [kitty]: https://sw.kovidgoyal.net/kitty
 [wezterm]: https://wezfurlong.org/wezterm/
-[alacritty]: https://alacritty.org/
-[vscode]: https://code.visualstudio.com/
-[jetbrains ides]: https://www.jetbrains.com/
-[android studio]: https://developer.android.com/studio
-[nova]: https://nova.app/
+[ghostty]: https://ghostty.org/
+[alacritty]: <https://alacritty.org/>
+[vscode]: <https://code.visualstudio.com/>
+[jetbrains ides]: <https://www.jetbrains.com/>
+[android studio]: <https://developer.android.com/studio>
+[nova]: <https://nova.app/>
 
 Want to see another terminal included? Check our
 [issue tracker](https://github.com/aws/q-command-line-discussions) and add your
@@ -168,7 +169,7 @@ Check out our
 Many of Amazon Q's 400+ contributors made their first open source contribution
 to Amazon Q!
 
-#### Amazon Q for command line doesn't work for me!
+#### Amazon Q for command line doesn't work for me
 
 Run `q doctor` to automatically debug issues with your installation. Otherwise
 make an issue in our GitHub discussions community:
