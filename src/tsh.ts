@@ -96,9 +96,14 @@ const completionSpec: Fig.Spec = {
           script: ["tsh", "ls", "--format=json"],
           postProcess: (out) => {
             return JSON.parse(out).map((elm) => {
+              const connection_string =
+                username.length > 0
+                  ? `${username}@${elm.spec.hostname}`
+                  : `${elm.spec.hostname}`;
+
               return {
-                name: elm.spec.hostname,
-                description: `Access expires: ${elm.metadata.expires}`,
+                name: connection_string,
+                description: `Connect to ${elm.spec.hostname} as ${username}`,
               };
             }); //[{ name: "hello" }];
           },
