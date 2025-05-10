@@ -1,4 +1,4 @@
-import { knownHosts, configHosts } from "./ssh";
+import { knownHosts, configHosts } from "./ssh.js";
 
 const completionSpec: Fig.Spec = {
   name: "scp",

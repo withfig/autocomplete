@@ -1,4 +1,4 @@
-import { awsProfileGenerator } from "./aws";
+import { awsProfileGenerator } from "./aws.js";
 
 const configEnvOption: Fig.Option = {
   name: "--config-env",

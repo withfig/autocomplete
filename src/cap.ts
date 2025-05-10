@@ -1,4 +1,4 @@
-import capacitor from "./capacitor";
+import capacitor from "./capacitor.js";
 
 const completionSpec: Fig.Spec = {
   ...capacitor,

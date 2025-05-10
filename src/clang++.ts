@@ -3,7 +3,7 @@ import {
   stdCPPSuggestions,
   stdOpenCLCPPSuggestions,
   stdHLSLSuggestions,
-} from "./clang";
+} from "./clang.js";
 
 const completionSpec: Fig.Spec = {
   ...clangBase,

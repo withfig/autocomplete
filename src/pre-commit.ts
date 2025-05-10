@@ -1,5 +1,5 @@
 import YAML from "yaml";
-import { gitGenerators } from "./git";
+import { gitGenerators } from "./git.js";
 
 const hooksInConfig: Fig.Generator = {
   script: ["cat", ".pre-commit-config.yaml"],

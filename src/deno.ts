@@ -5,7 +5,7 @@ import {
   generateTasks,
   generateVersions,
   generateUrlScript,
-} from "./deno/generators";
+} from "./deno/generators.js";
 
 const completion: Fig.Spec = {
   name: "deno",

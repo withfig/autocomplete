@@ -1,1 +1,1 @@
-export { default } from "./ns";
+export { default } from "./ns.js";

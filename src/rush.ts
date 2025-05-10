@@ -1,5 +1,5 @@
 import stripJsonComments from "strip-json-comments";
-import { npmSearchGenerator } from "./npm";
+import { npmSearchGenerator } from "./npm.js";
 
 interface IRushConfigurationProjectJson {
   packageName: string;

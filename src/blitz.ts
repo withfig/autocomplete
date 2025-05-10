@@ -1,4 +1,4 @@
-import prismaSpec from "./prisma";
+import prismaSpec from "./prisma.js";
 
 const prismaCommands = (prismaSpec as Fig.Subcommand).subcommands;
 

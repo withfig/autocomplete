@@ -1,5 +1,3 @@
-import fig from "./fig";
-
 const sharedArgs = {
   UID: {
     name: "UID",

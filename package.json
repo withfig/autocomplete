@@ -26,8 +26,8 @@
     "dev": "npx @withfig/autocomplete-tools dev",
     "create-spec": "npx @withfig/autocomplete-tools create-spec",
     "build": "npx @withfig/autocomplete-tools compile",
-    "lint": "eslint '**/*.ts' && npx prettier --check '**/*.ts' --parser typescript",
-    "lint:fix": "eslint '**/*.ts' --fix && npx prettier --write '**/*.ts' --parser typescript",
+    "lint": "eslint 'src/**/*.ts' && npx prettier --check 'src/**/*.ts' --parser typescript",
+    "lint:fix": "eslint 'src/**/*.ts' --fix && npx prettier --write 'src/**/*.ts' --parser typescript",
     "test": "tsc --noEmit && echo 'All specs passed validation. You are ready to push!'",
     "prepare": "husky install"
   },
@@ -93,7 +93,7 @@
   },
   "dependencies": {
     "@fig/autocomplete-generators": "^2.4.0",
-    "@fig/autocomplete-helpers": "^1.0.7",
+    "@fig/autocomplete-helpers": "2.0.0",
     "semver": "^7.6.3",
     "strip-json-comments": "^5.0.1",
     "yaml": "^2.7.0"

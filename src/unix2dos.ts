@@ -1,4 +1,4 @@
-import dos2unix from "./dos2unix";
+import dos2unix from "./dos2unix.js";
 
 const completionSpec: Fig.Spec = {
   ...dos2unix,

@@ -1,1 +1,1 @@
-export { default } from "./swagger-typescript-api";
+export { default } from "./swagger-typescript-api.js";
