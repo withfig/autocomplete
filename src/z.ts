@@ -5,6 +5,165 @@ interface ZSuggestion {
   time?: number;
 }
 
+interface ZoxideSuggestion {
+  name: string;
+  description: string;
+  icon: string;
+  path: string;
+  priority: number;
+}
+
+const REGEX_TRAILING_SLASH = /\/$/;
+const symbolicLinkCache = new Map<string, boolean>();
+
+function removeDuplicateSuggestions<T extends ZoxideSuggestion>(
+  suggestions: T[]
+) {
+  const uniqueSuggestions: T[] = [];
+  const suggestionPathToIndexMapping: Record<string, number> = {};
+
+  for (const newSuggestion of suggestions) {
+    const matchingSuggestionIndex =
+      suggestionPathToIndexMapping[newSuggestion.path];
+
+    if (matchingSuggestionIndex === undefined) {
+      uniqueSuggestions.push(newSuggestion);
+      suggestionPathToIndexMapping[newSuggestion.path] =
+        uniqueSuggestions.length - 1;
+    } else {
+      const seenSuggestion = uniqueSuggestions[matchingSuggestionIndex];
+      if (newSuggestion.priority > seenSuggestion.priority) {
+        uniqueSuggestions[matchingSuggestionIndex] = newSuggestion;
+      }
+    }
+  }
+
+  return uniqueSuggestions;
+}
+
+async function folderExists(path: string, execute: Fig.ExecuteCommandFunction) {
+  const { status } = await execute({
+    command: "bash",
+    args: ["-c", `test -d ${path}`],
+  });
+  return status === 0;
+}
+
+async function isSymbolicLink(
+  path: string,
+  execute: Fig.ExecuteCommandFunction
+) {
+  if (symbolicLinkCache.has(path)) {
+    return symbolicLinkCache.get(path);
+  }
+
+  const { status } = await execute({
+    command: "bash",
+    args: ["-c", `test -L ${path}`],
+  });
+
+  const pathIsSymlink = status === 0;
+  symbolicLinkCache.set(path, pathIsSymlink);
+  return pathIsSymlink;
+}
+
+async function expandSymlink(
+  symlinkPath: string,
+  execute: Fig.ExecuteCommandFunction
+) {
+  const args = ["-c", `readlink ${symlinkPath}`];
+  const { stdout } = await execute({
+    command: "bash",
+    args,
+  });
+  return stdout.trim();
+}
+
+async function expandPath(path: string, execute: Fig.ExecuteCommandFunction) {
+  const pathParts = path.split("/");
+  if (pathParts[0] === "") {
+    // Root paths like /Users require the slash to be kept
+    pathParts[1] = `/${pathParts[1]}`;
+    pathParts.shift();
+  }
+
+  if (pathParts.length === 1) {
+    // A root path can't be a symlink,
+    // so we know it's already expanded
+    return path;
+  }
+
+  for (const [index] of [...pathParts].entries()) {
+    const subPath = pathParts.slice(0, index + 1).join("/");
+    if (await isSymbolicLink(subPath, execute)) {
+      const expandedPath = await expandSymlink(subPath, execute);
+      pathParts.splice(0, index + 1, ...expandedPath.split("/"));
+    }
+  }
+
+  const expandedPath = pathParts.join("/");
+  return expandedPath;
+}
+
+async function getFoldersAtPath(
+  pathOrPartialPath: string,
+  cwd: string,
+  execute: Fig.ExecuteCommandFunction
+): Promise<ZSuggestion[]> {
+  let path: string;
+  let partialChildDirectory: string | undefined;
+
+  if (pathOrPartialPath && (await folderExists(pathOrPartialPath, execute))) {
+    path = pathOrPartialPath;
+  } else {
+    const pathSplit = pathOrPartialPath.split("/");
+    path =
+      pathSplit.length < 2
+        ? "." // If the path is just a single directory, list the contents of the current directory
+        : pathSplit.slice(0, pathSplit.length - 1).join("/");
+    partialChildDirectory = pathSplit.at(-1);
+  }
+
+  const args = [
+    "-c",
+    `ls -d -- ${path.replace(REGEX_TRAILING_SLASH, "")}/*/`,
+    ...(partialChildDirectory
+      ? ["|", "grep", "--", `"${path}/${partialChildDirectory}"`]
+      : []),
+  ];
+
+  const { status, stderr, stdout } = await execute({
+    command: "bash",
+    args,
+  });
+
+  const toReturn = await Promise.all(
+    stdout.split("\n").map(async (line) => {
+      const name = line.split("/").filter(Boolean).at(-1);
+      const path = line
+        .replace("./", `${cwd}/`)
+        .replace(REGEX_TRAILING_SLASH, "");
+      return {
+        name: `${name}/`,
+        path: await expandPath(path, execute),
+      };
+    })
+  );
+
+  console.log({
+    path,
+    toReturn,
+    args,
+    status,
+    stderr,
+    stdout,
+    pathOrPartialPath,
+    partialChildDirectory,
+  });
+
+  return toReturn;
+}
+
 async function getZHistory(
   execute: Fig.ExecuteCommandFunction
 ): Promise<ZSuggestion[]> {
@@ -24,23 +183,6 @@ async function getZHistory(
       // NOTE: 9000 is the default max priority. If a custom value is set this will work if "custom_value <= 9000" but not otherwise
       weight: 75 + (Number(weight) * 25) / 9000,
       time: Number(time),
-    };
-  });
-}
-
-async function getCurrentDirectoryFolders(
-  currentWorkingDirectory: string,
-  execute: Fig.ExecuteCommandFunction
-): Promise<ZSuggestion[]> {
-  const { stdout } = await execute({
-    command: "bash",
-    args: ["-c", "ls -d */"],
-  });
-  return stdout.split("\n").map((line) => {
-    const name = line.replace("/", "");
-    return {
-      name,
-      path: `${currentWorkingDirectory}/${name}`,
     };
   });
 }
@@ -70,17 +212,24 @@ const zShCompletionSpec: Fig.Spec = {
         const { currentWorkingDirectory } = context;
         const [zHistory, currentFolders] = await Promise.all([
           getZHistory(execute),
-          getCurrentDirectoryFolders(currentWorkingDirectory, execute),
+          getFoldersAtPath(
+            currentWorkingDirectory,
+            currentWorkingDirectory,
+            execute
+          ),
         ]);
         // merge z history and current folders and remove duplicates
-        const suggestions = [...zHistory, ...currentFolders].reduce<
-          ZSuggestion[]
-        >((acc, suggestion) => {
-          if (!acc.some(({ path }) => path === suggestion.path)) {
-            acc.push(suggestion);
-          }
-          return acc;
-        }, []);
+        const suggestions = removeDuplicateSuggestions(
+          [...zHistory, ...currentFolders].map((point) => ({
+            name: point.name,
+            description: point.path,
+            icon: "📁",
+            path: point.path,
+            priority: point.weight,
+            insertValue: point.name,
+            displayName: point.name,
+          }))
+        );
 
         // directory arg is variadic with each subsequent arg being an
         // additional filter. filtered will filter directories by all args.
@@ -88,14 +237,7 @@ const zShCompletionSpec: Fig.Spec = {
           tokens.filter((arg) => arg && arg !== "z" && !arg.startsWith("-")),
           suggestions
         );
-        return filteredSuggestions.map((point) => ({
-          name: point.name,
-          icon: "📁",
-          description: point.path,
-          priority: point.weight,
-          insertValue: point.name,
-          displayName: point.name,
-        }));
+        return filteredSuggestions;
       },
     },
   },
@@ -117,6 +259,55 @@ const zShCompletionSpec: Fig.Spec = {
   ],
 };
 
+async function getZoxideFolders(
+  tokens: string[],
+  execute: Fig.ExecuteCommandFunction,
+  cwd: string
+) {
+  let args: Fig.ExecuteCommandInput["args"];
+  if (tokens.length < 2 || tokens[1] === "") {
+    args = ["query", "--list", "--score"];
+  } else {
+    args = ["query", "--list", "--score", "--", tokens.at(1)];
+  }
+
+  const { stdout } = await execute({
+    command: "zoxide",
+    args,
+  });
+
+  console.log({ zoxideStdout: stdout });
+
+  return Promise.all(
+    stdout
+      .split("\n")
+      .filter(Boolean)
+      .map(async (line) => {
+        const trimmedLine = line.trim();
+        const spaceIndex = trimmedLine.indexOf(" ");
+        const score = Number(trimmedLine.slice(0, spaceIndex));
+        const fullPath = trimmedLine
+          .slice(spaceIndex + 1)
+          .replace(REGEX_TRAILING_SLASH, "");
+
+        const pathSplit = fullPath.split("/");
+        const parentFullPath = pathSplit
+          .slice(0, pathSplit.length - 1)
+          .join("/");
+        const folderName = pathSplit.at(-1);
+
+        const folderIsInCwd = cwd === parentFullPath;
+        return {
+          name: `${folderIsInCwd ? folderName : fullPath}/`,
+          description: `Score: ${score}`,
+          icon: "💾",
+          path: await expandPath(fullPath, execute),
+          priority: folderIsInCwd ? 9000 : score, // assign highest priority when in cwd
+        };
+      })
+  );
+}
+
 // https://github.com/ajeetdsouza/zoxide
 const zoxideCompletionSpec: Fig.Spec = {
   name: "z",
@@ -129,54 +320,20 @@ const zoxideCompletionSpec: Fig.Spec = {
       custom: async (
         tokens,
         executeShellCommand,
-        { currentWorkingDirectory }
+        { currentWorkingDirectory: cwd }
       ) => {
-        let args;
-        if (tokens.length < 2 || tokens[1] === "") {
-          args = ["query", "--list", "--score"];
-        } else {
-          args = [
-            "query",
-            "--list",
-            "--score",
-            "--",
-            tokens.slice(1).join(" "),
-          ];
-        }
+        const zoxideFolders = await getZoxideFolders(
+          tokens,
+          executeShellCommand,
+          cwd
+        );
 
-        const { stdout } = await executeShellCommand({
-          command: "zoxide",
-          args,
-        });
+        const pathToken = tokens[1];
 
-        const zoxideFolders = stdout.split("\n").map((line) => {
-          const trimmedLine = line.trim();
-          const spaceIndex = trimmedLine.indexOf(" ");
-          const score = Number(trimmedLine.slice(0, spaceIndex));
-          const fullPath = trimmedLine.slice(spaceIndex + 1);
-
-          const pathSplit = fullPath.split("/");
-          const parentFullPath = pathSplit
-            .slice(0, pathSplit.length - 1)
-            .join("/");
-          const folderName = pathSplit.at(-1);
-
-          const folderIsInCwd = currentWorkingDirectory === parentFullPath;
-          return {
-            name: folderIsInCwd ? folderName : fullPath,
-            description: `Score: ${score}`,
-            icon: "💾",
-            path: fullPath,
-            priority: folderIsInCwd ? 9000 : score, // assign highest priority when in cwd
-          };
-        });
-
-        const cwdFolders = (
-          await getCurrentDirectoryFolders(
-            currentWorkingDirectory,
-            executeShellCommand
-          )
-        ).map(({ name, path }) => ({
+        const lsFolders = [
+          ...(await getFoldersAtPath(cwd, cwd, executeShellCommand)),
+          ...(await getFoldersAtPath(pathToken, cwd, executeShellCommand)),
+        ].map(({ name, path }) => ({
           name,
           description: "Score: 0",
           icon: "📁",
@@ -184,16 +341,13 @@ const zoxideCompletionSpec: Fig.Spec = {
           priority: 8999, // display just below z's own suggestions for cwd
         }));
 
-        // Prefer zoxide suggestions over cwd suggestions
-        const uniqueFolders = [...zoxideFolders, ...cwdFolders].reduce(
-          (acc, folder) => {
-            if (!acc.some(({ path }) => path === folder.path)) {
-              acc.push(folder);
-            }
-            return acc;
-          },
-          []
-        );
+        const uniqueFolders = removeDuplicateSuggestions([
+          ...zoxideFolders,
+          ...lsFolders,
+        ]);
+
+        console.log({ zoxideFolders, lsFolders, uniqueFolders });
+
         return uniqueFolders;
       },
       trigger: {
