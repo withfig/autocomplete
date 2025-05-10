@@ -1,7 +1,50 @@
 const testsGenerator: Fig.Generator = {
-  custom: async (tokens, executeShellCommand) => {
-    // TODO: load the list of test files specified in testDir on playwright.config file
-    return [] as Fig.Suggestion[];
+  custom: async (token, executeShellCommand) => {
+    const basePathSearch = await executeShellCommand({
+      command: "bash",
+      args: ["-c", "cat playwright.config.ts | grep testDir"],
+    });
+
+    const dir = basePathSearch.stdout.match(/(['"])([./\w]+)(['"])/);
+    const baseDir = dir ? dir[2] : "tests";
+
+    // TODO: ideally do something along the lines of "if bunx exists use that otherwise use npx"
+    const tests = await executeShellCommand({
+      command: "npx",
+      args: ["playwright", "test", "--list"],
+    });
+
+    if (tests.status !== 0) {
+      return [];
+    }
+
+    const lines = tests.stdout
+      .split("\n")
+      .slice(1, -1)
+      .map((line) => line.split(" › ").slice(1))
+      .reduce<Record<string, Fig.Suggestion>>((acc, curr) => {
+        const [testPath, testLabel] = curr;
+        const withoutSpecifier = testPath.split(":", 1)[0];
+        if (!acc[withoutSpecifier]) {
+          acc[withoutSpecifier] = {
+            priority: 80,
+            name: `${baseDir}/${withoutSpecifier}`,
+            displayName: withoutSpecifier,
+            description: `Run all tests in ${withoutSpecifier}`,
+          };
+        }
+
+        acc[testPath] = {
+          priority: 80,
+          name: `${baseDir}/${testPath}`,
+          displayName: `${testPath} - ${testLabel}`,
+          description: `Run ${testLabel}`,
+        };
+
+        return acc;
+      }, {});
+
+    return Object.values(lines);
   },
 };
 
@@ -48,7 +91,9 @@ const helpOption: Fig.Option = {
 
 const completionSpec: Fig.Spec = {
   name: "playwright",
-  description: "",
+  icon: "https://playwright.dev/img/playwright-logo.svg",
+  description:
+    "Playwright enables reliable end-to-end testing for modern web apps",
   subcommands: [
     {
       name: "test",
@@ -58,7 +103,7 @@ const completionSpec: Fig.Spec = {
         description: "Test files to run",
         isOptional: true,
         isVariadic: true,
-        template: ["filepaths", "folders"],
+        generators: [{ template: ["filepaths", "folders"] }, testsGenerator],
       },
       options: [
         {
@@ -72,7 +117,10 @@ const completionSpec: Fig.Spec = {
           name: "--headed",
           description: "Run tests in headed browsers",
         },
-        helpOption,
+        {
+          name: "--list",
+          description: "List all tests in the project",
+        },
       ],
     },
     {
@@ -90,7 +138,6 @@ const completionSpec: Fig.Spec = {
           name: "--with-deps",
           description: "Install system dependencies for browsers",
         },
-        helpOption,
       ],
     },
   ],
