@@ -585,7 +585,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "browse",
-      description: "Open the repository in the browsera",
+      description: "Open the repository in the browser",
       args: {
         name: "[pr | issue | path[:line]",
         generators: ghGenerators.listPR,
