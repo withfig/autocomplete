@@ -32,7 +32,6 @@ const completionSpec: Fig.Spec = {
             suggestions: ["true", "false"],
             isOptional: true,
           },
-          
         },
       ],
     },
@@ -48,7 +47,6 @@ const completionSpec: Fig.Spec = {
             template: "folders",
             suggestions: ["profiles"],
           },
-          
         },
         {
           name: "--profiles-dir",
@@ -57,7 +55,6 @@ const completionSpec: Fig.Spec = {
             name: "path",
             template: "folders",
           },
-          
         },
         {
           name: "--profile",
@@ -66,7 +63,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
           },
-          
         },
         {
           name: "--target",
@@ -74,25 +70,21 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
           },
-          
         },
         {
           name: "--vars",
           args: {
             name: "vars",
           },
-          
         },
         {
           name: "--threads",
           args: {
             name: "number",
           },
-          
         },
         {
           name: "--no-version-check",
-          
         },
         {
           name: ["-s", "--select"],
@@ -101,7 +93,6 @@ const completionSpec: Fig.Spec = {
             name: "models",
             isVariadic: true,
           },
-          
         },
         {
           name: ["-m", "--models"],
@@ -110,7 +101,6 @@ const completionSpec: Fig.Spec = {
             name: "models",
             isVariadic: true,
           },
-          
         },
         {
           name: "--exclude",
@@ -118,25 +108,21 @@ const completionSpec: Fig.Spec = {
             name: "models",
             isVariadic: true,
           },
-          
         },
         {
           name: "--selector",
           args: {
             name: "selector_name",
           },
-          
         },
         {
           name: "--state",
           args: {
             name: "state",
           },
-          
         },
         {
           name: "--full-refresh",
-          
         },
         {
           name: "--verbose",
@@ -146,19 +132,16 @@ const completionSpec: Fig.Spec = {
             suggestions: ["true", "false"],
             isOptional: true,
           },
-          
         },
         {
           name: "--skip-warehouse-catalog",
           description:
             "Skip fetch warehouse catalog and use types in yml (default: false)",
-          
         },
         {
           name: "--skip-dbt-compile",
           description:
             "Skip `dbt compile` and deploy from the existing ./target/manifest.json (default: false)",
-          
         },
       ],
     },
@@ -179,7 +162,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "preview_name",
           },
-          
         },
         {
           name: "--project-dir",
@@ -190,7 +172,6 @@ const completionSpec: Fig.Spec = {
             suggestions: ["profiles"],
             isOptional: true,
           },
-          
         },
         {
           name: "--profiles-dir",
@@ -199,7 +180,6 @@ const completionSpec: Fig.Spec = {
             name: "path",
             template: "folders",
           },
-          
         },
         {
           name: "--profile",
@@ -208,7 +188,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
           },
-          
         },
         {
           name: "--target",
@@ -216,25 +195,21 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
           },
-          
         },
         {
           name: "--vars",
           args: {
             name: "vars",
           },
-          
         },
         {
           name: "--threads",
           args: {
             name: "number",
           },
-          
         },
         {
           name: "--no-version-check",
-          
         },
         {
           name: ["-s", "--select"],
@@ -242,7 +217,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "models",
           },
-          
         },
         {
           name: ["-m", "--models"],
@@ -250,32 +224,27 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "models",
           },
-          
         },
         {
           name: "--exclude",
           args: {
             name: "models",
           },
-          
         },
         {
           name: "--selector",
           args: {
             name: "selector_name",
           },
-          
         },
         {
           name: "--state",
           args: {
             name: "state",
           },
-          
         },
         {
           name: "--full-refresh",
-          
         },
         {
           name: "--verbose",
@@ -285,7 +254,6 @@ const completionSpec: Fig.Spec = {
             suggestions: ["true", "false"],
             isOptional: true,
           },
-          
         },
         {
           name: "--start-of-week",
@@ -294,19 +262,16 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "number",
           },
-          
         },
         {
           name: "--skip-warehouse-catalog",
           description:
             "Skip fetch warehouse catalog and use types in yml (default: false)",
-          
         },
         {
           name: "--skip-dbt-compile",
           description:
             "Skip `dbt compile` and deploy from the existing ./target/manifest.json (default: false)",
-          
         },
         {
           name: "--use-dbt-list",
@@ -316,7 +281,6 @@ const completionSpec: Fig.Spec = {
             name: "boolean",
             suggestions: ["true", "false"],
           },
-          
         },
         {
           name: "--ignore-errors",
@@ -326,7 +290,6 @@ const completionSpec: Fig.Spec = {
             suggestions: ["true", "false"],
             isOptional: true,
           },
-          
         },
       ],
     },
@@ -351,7 +314,6 @@ const completionSpec: Fig.Spec = {
             template: "folders",
             suggestions: ["profiles"],
           },
-          
         },
         {
           name: "--profiles-dir",
@@ -360,7 +322,6 @@ const completionSpec: Fig.Spec = {
             name: "path",
             template: "folders",
           },
-          
         },
         {
           name: "--profile",
@@ -369,7 +330,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
           },
-          
         },
         {
           name: "--target",
@@ -377,25 +337,21 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
           },
-          
         },
         {
           name: "--vars",
           args: {
             name: "vars",
           },
-          
         },
         {
           name: "--threads",
           args: {
             name: "number",
           },
-          
         },
         {
           name: "--no-version-check",
-          
         },
         {
           name: ["-s", "--select"],
@@ -403,7 +359,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "models",
           },
-          
         },
         {
           name: ["-m", "--models"],
@@ -411,32 +366,27 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "models",
           },
-          
         },
         {
           name: "--exclude",
           args: {
             name: "models",
           },
-          
         },
         {
           name: "--selector",
           args: {
             name: "selector_name",
           },
-          
         },
         {
           name: "--state",
           args: {
             name: "state",
           },
-          
         },
         {
           name: "--full-refresh",
-          
         },
         {
           name: "--verbose",
@@ -446,7 +396,6 @@ const completionSpec: Fig.Spec = {
             suggestions: ["true", "false"],
             isOptional: true,
           },
-          
         },
         {
           name: "--start-of-week",
@@ -455,19 +404,16 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "number",
           },
-          
         },
         {
           name: "--skip-warehouse-catalog",
           description:
             "Skip fetch warehouse catalog and use types in yml (default: false)",
-          
         },
         {
           name: "--skip-dbt-compile",
           description:
             "Skip `dbt compile` and deploy from the existing ./target/manifest.json (default: false)",
-          
         },
         {
           name: "--use-dbt-list",
@@ -477,7 +423,6 @@ const completionSpec: Fig.Spec = {
             name: "boolean",
             suggestions: ["true", "false"],
           },
-          
         },
         {
           name: "--ignore-errors",
@@ -487,7 +432,6 @@ const completionSpec: Fig.Spec = {
             suggestions: ["true", "false"],
             isOptional: true,
           },
-          
         },
       ],
     },
@@ -511,7 +455,6 @@ const completionSpec: Fig.Spec = {
             suggestions: ["true", "false"],
             isOptional: true,
           },
-          
         },
       ],
     },
@@ -527,7 +470,6 @@ const completionSpec: Fig.Spec = {
             suggestions: ["true", "false"],
             isOptional: true,
           },
-          
         },
         {
           name: ["-c", "--charts"],
@@ -537,7 +479,6 @@ const completionSpec: Fig.Spec = {
             name: "charts",
             isVariadic: true,
           },
-          
         },
         {
           name: ["-d", "--dashboards"],
@@ -547,13 +488,11 @@ const completionSpec: Fig.Spec = {
             name: "dashboards",
             isVariadic: true,
           },
-          
         },
         {
           name: ["-l", "--language-map"],
           description:
             "Generate a language maps for the downloaded charts and dashboards (default: false)",
-          
         },
         {
           name: ["-p", "--path"],
@@ -563,7 +502,6 @@ const completionSpec: Fig.Spec = {
             name: "path",
             template: "folders",
           },
-          
         },
         {
           name: "--project",
@@ -571,7 +509,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "project uuid",
           },
-          
         },
       ],
     },
@@ -587,7 +524,6 @@ const completionSpec: Fig.Spec = {
             suggestions: ["true", "false"],
             isOptional: true,
           },
-          
         },
         {
           name: ["-c", "--charts"],
@@ -596,7 +532,6 @@ const completionSpec: Fig.Spec = {
             name: "charts",
             isVariadic: true,
           },
-          
         },
         {
           name: ["-d", "--dashboards"],
@@ -605,13 +540,11 @@ const completionSpec: Fig.Spec = {
             name: "dashboards",
             isVariadic: true,
           },
-          
         },
         {
           name: "--force",
           description:
             "Force upload even if local files have not changed, use this when you want to upload files to a new project (default: false)",
-          
         },
         {
           name: ["-p", "--path"],
@@ -621,7 +554,6 @@ const completionSpec: Fig.Spec = {
             name: "path",
             template: "folders",
           },
-          
         },
         {
           name: "--project",
@@ -629,7 +561,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "project uuid",
           },
-          
         },
       ],
     },
@@ -645,7 +576,6 @@ const completionSpec: Fig.Spec = {
             template: "folders",
             suggestions: ["profiles"],
           },
-          
         },
         {
           name: "--profiles-dir",
@@ -654,7 +584,6 @@ const completionSpec: Fig.Spec = {
             name: "path",
             template: "folders",
           },
-          
         },
         {
           name: "--profile",
@@ -663,7 +592,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
           },
-          
         },
         {
           name: "--target",
@@ -671,25 +599,21 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
           },
-          
         },
         {
           name: "--vars",
           args: {
             name: "vars",
           },
-          
         },
         {
           name: "--threads",
           args: {
             name: "number",
           },
-          
         },
         {
           name: "--no-version-check",
-          
         },
         {
           name: ["-s", "--select"],
@@ -697,7 +621,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "models",
           },
-          
         },
         {
           name: ["-m", "--models"],
@@ -705,28 +628,24 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "models",
           },
-          
         },
         {
           name: "--exclude",
           args: {
             name: "models",
           },
-          
         },
         {
           name: "--selector",
           args: {
             name: "selector_name",
           },
-          
         },
         {
           name: "--state",
           args: {
             name: "state",
           },
-          
         },
         {
           name: "--full-refresh",
@@ -739,7 +658,6 @@ const completionSpec: Fig.Spec = {
             suggestions: ["true", "false"],
             isOptional: true,
           },
-          
         },
         {
           name: "--create",
@@ -748,7 +666,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "project name",
           },
-          
         },
         {
           name: "--start-of-week",
@@ -757,19 +674,16 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "number",
           },
-          
         },
         {
           name: "--skip-warehouse-catalog",
           description:
             "Skip fetch warehouse catalog and use types in yml (default: false)",
-          
         },
         {
           name: "--skip-dbt-compile",
           description:
             "Skip `dbt compile` and deploy from the existing ./target/manifest.json (default: false)",
-          
         },
         {
           name: "--use-dbt-list",
@@ -779,7 +693,6 @@ const completionSpec: Fig.Spec = {
             name: "boolean",
             suggestions: ["true", "false"],
           },
-          
         },
         {
           name: "--ignore-errors",
@@ -789,7 +702,6 @@ const completionSpec: Fig.Spec = {
             suggestions: ["true", "false"],
             isOptional: true,
           },
-          
         },
       ],
     },
@@ -805,7 +717,6 @@ const completionSpec: Fig.Spec = {
             suggestions: ["true", "false"],
             isOptional: true,
           },
-          
         },
       ],
     },
@@ -820,7 +731,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "project uuid",
           },
-          
         },
         {
           name: "--project-dir",
@@ -830,7 +740,6 @@ const completionSpec: Fig.Spec = {
             template: "folders",
             suggestions: ["profiles"],
           },
-          
         },
         {
           name: "--profiles-dir",
@@ -839,7 +748,6 @@ const completionSpec: Fig.Spec = {
             name: "path",
             template: "folders",
           },
-          
         },
         {
           name: "--profile",
@@ -848,7 +756,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
           },
-          
         },
         {
           name: "--target",
@@ -856,31 +763,26 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
           },
-          
         },
         {
           name: "--vars",
           args: {
             name: "vars",
           },
-          
         },
         {
           name: "--threads",
           args: {
             name: "number",
           },
-          
         },
         {
           name: "--no-version-check",
-          
         },
         {
           name: "--preview",
           description:
             "Validate the last preview if available (default: false)",
-          
         },
         {
           name: ["-s", "--select"],
@@ -888,7 +790,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "models",
           },
-          
         },
         {
           name: ["-m", "--models"],
@@ -896,32 +797,27 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "models",
           },
-          
         },
         {
           name: "--exclude",
           args: {
             name: "models",
           },
-          
         },
         {
           name: "--selector",
           args: {
             name: "selector_name",
           },
-          
         },
         {
           name: "--state",
           args: {
             name: "state",
           },
-          
         },
         {
           name: "--full-refresh",
-          
         },
         {
           name: "--verbose",
@@ -931,19 +827,16 @@ const completionSpec: Fig.Spec = {
             suggestions: ["true", "false"],
             isOptional: true,
           },
-          
         },
         {
           name: "--skip-warehouse-catalog",
           description:
             "Skip fetch warehouse catalog and use types in yml (default: false)",
-          
         },
         {
           name: "--skip-dbt-compile",
           description:
             "Skip `dbt compile` and deploy from the existing ./target/manifest.json (default: false)",
-          
         },
         {
           name: "--use-dbt-list",
@@ -953,7 +846,6 @@ const completionSpec: Fig.Spec = {
             name: "boolean",
             suggestions: ["true", "false"],
           },
-          
         },
         {
           name: "--only",
@@ -964,7 +856,6 @@ const completionSpec: Fig.Spec = {
             isVariadic: true,
             suggestions: ["charts", "dashboards", "tables"],
           },
-          
         },
       ],
     },
@@ -993,7 +884,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "models",
           },
-          
         },
         {
           name: "--project-dir",
@@ -1003,7 +893,6 @@ const completionSpec: Fig.Spec = {
             template: "folders",
             suggestions: ["profiles"],
           },
-          
         },
         {
           name: "--profiles-dir",
@@ -1012,7 +901,6 @@ const completionSpec: Fig.Spec = {
             name: "path",
             template: "folders",
           },
-          
         },
         {
           name: "--profile",
@@ -1021,7 +909,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
           },
-          
         },
         {
           name: "--target",
@@ -1029,30 +916,25 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
           },
-          
         },
         {
           name: "--vars",
           args: {
             name: "vars",
           },
-          
         },
         {
           name: ["-y", "--assume-yes"],
           description: "Assume yes to prompts (default: false)",
-          
         },
         {
           name: "--skip-existing",
           description: "Skip files that already exist (default: false)",
-          
         },
         {
           name: "--exclude-meta",
           description:
             "Exclude Lightdash metadata from the generated .yml (default: false)",
-          
         },
         {
           name: "--verbose",
@@ -1062,7 +944,6 @@ const completionSpec: Fig.Spec = {
             suggestions: ["true", "false"],
             isOptional: true,
           },
-          
         },
       ],
     },
@@ -1079,7 +960,6 @@ const completionSpec: Fig.Spec = {
             template: "folders",
             suggestions: ["profiles"],
           },
-          
         },
         {
           name: "--verbose",
@@ -1089,7 +969,6 @@ const completionSpec: Fig.Spec = {
             suggestions: ["true", "false"],
             isOptional: true,
           },
-          
         },
         {
           name: "--output",
