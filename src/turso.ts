@@ -1,3 +1,218 @@
+interface Organization {
+  name: string;
+  slug: string;
+  type: string;
+  overages: boolean;
+  blocked_reads: boolean;
+  blocked_writes: boolean;
+  plan_id: string;
+  plan_timeline: string;
+  platform: string;
+}
+
+interface Database {
+  Name: string;
+  DbId: string;
+  Hostname: string;
+  block_reads: boolean;
+  block_writes: boolean;
+  regions: string[];
+  primaryRegion: string;
+  group: string;
+  delete_protection: boolean;
+  parent?: {
+    id: string;
+    name: string;
+    branched_at: string;
+  };
+}
+
+interface DatabasesResponse {
+  databases: Database[];
+}
+
+interface Group {
+  name: string;
+  version: string;
+  uuid: string;
+  locations: string[];
+  primary: string;
+  delete_protection: boolean;
+}
+
+interface GroupsResponse {
+  groups: Group[];
+}
+
+async function getAuthToken(
+  executeCommand: (
+    args: Fig.ExecuteCommandInput
+  ) => Promise<Fig.ExecuteCommandOutput>
+): Promise<string | null> {
+  try {
+    const { stdout } = await executeCommand({
+      command: "turso",
+      args: ["auth", "token"],
+    });
+
+    // Extract JWT token using regex
+    const tokenMatch = stdout.match(
+      /ey[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+/
+    );
+    return tokenMatch ? tokenMatch[0] : null;
+  } catch (error) {
+    return null;
+  }
+}
+
+async function fetchOrganizations(
+  token: string,
+  executeCommand: (
+    args: Fig.ExecuteCommandInput
+  ) => Promise<Fig.ExecuteCommandOutput>
+): Promise<Organization[]> {
+  try {
+    const { stdout, stderr } = await executeCommand({
+      command: "curl",
+      args: [
+        "-s",
+        "-H",
+        `Authorization: Bearer ${token}`,
+        "https://api.turso.tech/v1/organizations",
+      ],
+    });
+
+    if (stderr) return [];
+
+    return JSON.parse(stdout);
+  } catch (error) {
+    return [];
+  }
+}
+
+async function fetchDatabases(
+  token: string,
+  orgSlug: string,
+  executeCommand: (
+    args: Fig.ExecuteCommandInput
+  ) => Promise<Fig.ExecuteCommandOutput>
+): Promise<DatabasesResponse> {
+  try {
+    const { stdout, stderr } = await executeCommand({
+      command: "curl",
+      args: [
+        "-s",
+        "-H",
+        `Authorization: Bearer ${token}`,
+        `https://api.turso.tech/v1/organizations/${orgSlug}/databases`,
+      ],
+    });
+
+    if (stderr) return { databases: [] };
+
+    return JSON.parse(stdout);
+  } catch (error) {
+    return { databases: [] };
+  }
+}
+
+async function fetchGroups(
+  token: string,
+  orgSlug: string,
+  executeCommand: (
+    args: Fig.ExecuteCommandInput
+  ) => Promise<Fig.ExecuteCommandOutput>
+): Promise<GroupsResponse> {
+  try {
+    const { stdout, stderr } = await executeCommand({
+      command: "curl",
+      args: [
+        "-s",
+        "-H",
+        `Authorization: Bearer ${token}`,
+        `https://api.turso.tech/v1/organizations/${orgSlug}/groups`,
+      ],
+    });
+
+    if (stderr) return { groups: [] };
+
+    return JSON.parse(stdout);
+  } catch (error) {
+    return { groups: [] };
+  }
+}
+
+// Reusable generators for autocompletion
+const databaseGenerator: Fig.Generator = {
+  custom: async (tokens, executeCommand) => {
+    try {
+      const token = await getAuthToken(executeCommand);
+      if (!token) return [];
+
+      const organizations = await fetchOrganizations(token, executeCommand);
+      if (!organizations || organizations.length === 0) return [];
+
+      const orgSlug = organizations[0].slug;
+      const databases = await fetchDatabases(token, orgSlug, executeCommand);
+
+      if (!databases || !databases.databases) return [];
+
+      return databases.databases.map((db) => ({
+        name: db.Name,
+        description: `Database in ${db.regions.join(", ")} regions`,
+        icon: "fig://icon?type=box",
+      }));
+    } catch (error) {
+      return [];
+    }
+  },
+};
+
+const groupGenerator: Fig.Generator = {
+  custom: async (tokens, executeCommand) => {
+    try {
+      const token = await getAuthToken(executeCommand);
+      if (!token) return [];
+
+      const organizations = await fetchOrganizations(token, executeCommand);
+      if (!organizations || organizations.length === 0) return [];
+
+      const orgSlug = organizations[0].slug;
+      const groups = await fetchGroups(token, orgSlug, executeCommand);
+
+      if (!groups || !groups.groups) return [];
+
+      return groups.groups.map((group) => ({
+        name: group.name,
+        description: `Group in ${group.locations.join(", ")} locations`,
+        icon: "fig://icon?type=box",
+      }));
+    } catch (error) {
+      return [];
+    }
+  },
+};
+
+const organizationGenerator: Fig.Generator = {
+  custom: async (tokens, executeCommand) => {
+    try {
+      const token = await getAuthToken(executeCommand);
+      if (!token) return [];
+
+      const organizations = await fetchOrganizations(token, executeCommand);
+      if (!organizations || organizations.length === 0) return [];
+
+      return organizations.map((org) => ({
+        name: org.slug,
+        description: `${org.name} (${org.type}, ${org.plan_id})`,
+        icon: "fig://icon?type=box",
+      }));
+    } catch (error) {
+      return [];
+    }
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "turso",
   description: "Turso CLI for managing Turso databases",
@@ -38,6 +253,9 @@ const completionSpec: Fig.Spec = {
             {
               name: "revoke",
               description: "Revoke an API token",
+              args: {
+                name: "api-token-name",
+              },
             },
           ],
         },
@@ -90,7 +308,7 @@ const completionSpec: Fig.Spec = {
               name: "autoupdate",
               description: "Configure autoupdate behavior",
               args: {
-                name: "on|off",
+                suggestions: ["on", "off"],
               },
             },
             {
@@ -134,6 +352,7 @@ const completionSpec: Fig.Spec = {
           description: "Destroy a database",
           args: {
             name: "name",
+            generators: databaseGenerator,
           },
         },
         {
@@ -141,6 +360,7 @@ const completionSpec: Fig.Spec = {
           description: "Export a database snapshot from Turso to SQLite file",
           args: {
             name: "name",
+            generators: databaseGenerator,
           },
         },
         {
@@ -157,6 +377,8 @@ const completionSpec: Fig.Spec = {
           description: "Inspect database",
           args: {
             name: "name",
+            isVariadic: true,
+            generators: databaseGenerator,
           },
         },
         {
@@ -172,6 +394,7 @@ const completionSpec: Fig.Spec = {
           description: "Replicate a database",
           args: {
             name: "name",
+            generators: databaseGenerator,
           },
         },
         {
@@ -183,6 +406,7 @@ const completionSpec: Fig.Spec = {
           description: "Show information from a database",
           args: {
             name: "name",
+            generators: databaseGenerator,
           },
         },
         {
@@ -198,6 +422,7 @@ const completionSpec: Fig.Spec = {
           description: "Updates the database to the latest turso version",
           args: {
             name: "name",
+            generators: databaseGenerator,
           },
         },
       ],
@@ -215,6 +440,7 @@ const completionSpec: Fig.Spec = {
           description: "Manage group config",
           args: {
             name: "name",
+            generators: groupGenerator,
           },
         },
         {
@@ -229,6 +455,7 @@ const completionSpec: Fig.Spec = {
           description: "Destroy a database group",
           args: {
             name: "name",
+            generators: groupGenerator,
           },
         },
         {
@@ -259,6 +486,7 @@ const completionSpec: Fig.Spec = {
           description: "Unarchive a database group",
           args: {
             name: "name",
+            generators: groupGenerator,
           },
         },
         {
@@ -266,6 +494,7 @@ const completionSpec: Fig.Spec = {
           description: "Updates the group",
           args: {
             name: "name",
+            generators: groupGenerator,
           },
         },
       ],
@@ -391,6 +620,7 @@ const completionSpec: Fig.Spec = {
             "Switch to an organization as the context for your commands",
           args: {
             name: "organization",
+            generators: organizationGenerator,
           },
         },
       ],
