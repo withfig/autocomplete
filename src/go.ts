@@ -675,6 +675,14 @@ const completionSpec: Fig.Spec = {
               name: "-v",
               description: "Print information about removed modules",
             },
+            {
+              name: "-o",
+              description:
+                'Create the vendor directory at the given path instead of "vendor". The go command can only use a vendor directory named "vendor" within the module root directory, so this flag is primarily useful for other tools',
+              args: {
+                name: "outdir",
+              },
+            },
           ],
         },
         {
