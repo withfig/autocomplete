@@ -8,9 +8,9 @@ const completionSpec: Fig.Spec = {
     const { stdout } = await executeShellCommand({
       command: "task",
       // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
-      args: ["--version"],
+      args: ["version"],
     });
-    return stdout.includes("Task") ? goTask : taskWarrior;
+    return stdout.includes("Taskwarrior") ? taskWarrior : goTask;
   },
 };
 
