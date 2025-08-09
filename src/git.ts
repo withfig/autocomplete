@@ -126,11 +126,17 @@ export const gitGenerators: Record<string, Fig.Generator> = {
         return [];
       }
 
-      return output.split("\n").map((line) => {
+      const lines = output.split("\n");
+      const firstLine = lines.length > 0 ? lines[0] : undefined;
+      const hashLength =
+        firstLine && firstLine.length > 0 ? firstLine.indexOf(" ") : 7;
+      const descriptionStart = hashLength + 1;
+
+      return lines.map((line) => {
         return {
-          name: line.substring(0, 7),
+          name: line.substring(0, hashLength),
           icon: "fig://icon?type=node",
-          description: line.substring(7),
+          description: line.substring(descriptionStart),
         };
       });
     },
