@@ -138,6 +138,7 @@ integrated terminals of [VSCode], [JetBrains IDEs], [Android Studio], and
 [jetbrains ides]: https://www.jetbrains.com/
 [android studio]: https://developer.android.com/studio
 [nova]: https://nova.app/
+[ghostty]: https://ghostty.org
 
 Want to see another terminal included? Check our
 [issue tracker](https://github.com/aws/q-command-line-discussions) and add your
