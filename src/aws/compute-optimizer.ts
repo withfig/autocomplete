@@ -442,6 +442,80 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "export-idle-recommendations",
+      description:
+        "Export optimization recommendations for your idle resources.  Recommendations are exported in a comma-separated values (CSV) file, and its metadata in a JavaScript Object Notation (JSON) file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see Exporting Recommendations in the Compute Optimizer User Guide. You can have only one idle resource export job in progress per Amazon Web Services Region",
+      options: [
+        {
+          name: "--account-ids",
+          description:
+            "The Amazon Web Services account IDs for the export idle resource recommendations.  If your account is the management account or the delegated administrator of an organization, use this parameter to specify the member account you want to export recommendations to. This parameter can't be specified together with the include member accounts parameter. The parameters are mutually exclusive. If this parameter or the include member accounts parameter is omitted, the recommendations for member accounts aren't included in the export. You can specify multiple account IDs per request",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--filters",
+          description:
+            "An array of objects to specify a filter that exports a more specific set of idle resource recommendations",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--fields-to-export",
+          description:
+            "The recommendations data to include in the export file. For more information about the fields that can be exported, see Exported files in the Compute Optimizer User Guide",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--s3-destination-config",
+          description:
+            "Describes the destination Amazon Simple Storage Service (Amazon S3) bucket name and key prefix for a recommendations export job. You must create the destination Amazon S3 bucket for your recommendations export before you create the export job. Compute Optimizer does not create the S3 bucket for you. After you create the S3 bucket, ensure that it has the required permission policy to allow Compute Optimizer to write the export file to it. If you plan to specify an object prefix when you create the export job, you must include the object prefix in the policy that you add to the S3 bucket. For more information, see Amazon S3 Bucket Policy for Compute Optimizer in the Compute Optimizer User Guide",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--file-format",
+          description:
+            "The format of the export file. The CSV file is the only export file format currently supported",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--include-member-accounts",
+          description:
+            "If your account is the management account or the delegated administrator of an organization, this parameter indicates whether to include recommendations for resources in all member accounts of the organization. The member accounts must also be opted in to Compute Optimizer, and trusted access for Compute Optimizer must be enabled in the organization account. For more information, see Compute Optimizer and Amazon Web Services Organizations trusted access in the Compute Optimizer User Guide. If this parameter is omitted, recommendations for member accounts of the organization aren't included in the export file. If this parameter or the account ID parameter is omitted, recommendations for member accounts aren't included in the export",
+        },
+        {
+          name: "--no-include-member-accounts",
+          description:
+            "If your account is the management account or the delegated administrator of an organization, this parameter indicates whether to include recommendations for resources in all member accounts of the organization. The member accounts must also be opted in to Compute Optimizer, and trusted access for Compute Optimizer must be enabled in the organization account. For more information, see Compute Optimizer and Amazon Web Services Organizations trusted access in the Compute Optimizer User Guide. If this parameter is omitted, recommendations for member accounts of the organization aren't included in the export file. If this parameter or the account ID parameter is omitted, recommendations for member accounts aren't included in the export",
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "export-lambda-function-recommendations",
       description:
         "Exports optimization recommendations for Lambda functions. Recommendations are exported in a comma-separated values (.csv) file, and its metadata in a JavaScript Object Notation (JSON) (.json) file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see Exporting Recommendations in the Compute Optimizer User Guide. You can have only one Lambda function export job in progress per Amazon Web Services Region",
@@ -1192,6 +1266,76 @@ const completionSpec: Fig.Spec = {
             "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-idle-recommendations",
+      description:
+        "Returns idle resource recommendations. Compute Optimizer generates recommendations for idle resources that meet a specific set of requirements. For more information, see Resource requirements in the Compute Optimizer User Guide",
+      options: [
+        {
+          name: "--resource-arns",
+          description: "The ARN that identifies the idle resource",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The token to advance to the next page of idle resource recommendations",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of idle resource recommendations to return with a single request.  To retrieve the remaining results, make another request with the returned nextToken value",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--filters",
+          description:
+            "An array of objects to specify a filter that returns a more specific list of idle resource recommendations",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--account-ids",
+          description:
+            "Return the idle resource recommendations to the specified Amazon Web Services account IDs. If your account is the management account or the delegated administrator of an organization, use this parameter to return the idle resource recommendations to specific member accounts. You can only specify one account ID per request",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--order-by",
+          description: "The order to sort the idle resource recommendations",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
           },
         },
         {

@@ -879,6 +879,37 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "describe-capacity-reservation",
+      description:
+        "Describes the capacity reservation status for the specified load balancer",
+      options: [
+        {
+          name: "--load-balancer-arn",
+          description: "The Amazon Resource Name (ARN) of the load balancer",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "describe-listener-attributes",
       description: "Describes the attributes for the specified listener",
       options: [
@@ -1700,6 +1731,52 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "long",
           },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "modify-capacity-reservation",
+      description:
+        "Modifies the capacity reservation of the specified load balancer. When modifying capacity reservation, you must include at least one MinimumLoadBalancerCapacity or ResetCapacityReservation",
+      options: [
+        {
+          name: "--load-balancer-arn",
+          description: "The Amazon Resource Name (ARN) of the load balancer",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--minimum-load-balancer-capacity",
+          description: "The minimum load balancer capacity reserved",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--reset-capacity-reservation",
+          description: "Resets the capacity reservation",
+        },
+        {
+          name: "--no-reset-capacity-reservation",
+          description: "Resets the capacity reservation",
         },
         {
           name: "--cli-input-json",

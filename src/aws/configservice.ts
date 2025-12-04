@@ -4,6 +4,46 @@ const completionSpec: Fig.Spec = {
     "Config Config provides a way to keep track of the configurations of all the Amazon Web Services resources associated with your Amazon Web Services account. You can use Config to get the current and historical configurations of each Amazon Web Services resource and also to get information about the relationship between the resources. An Amazon Web Services resource can be an Amazon Compute Cloud (Amazon EC2) instance, an Elastic Block Store (EBS) volume, an elastic network Interface (ENI), or a security group. For a complete list of resources currently supported by Config, see Supported Amazon Web Services resources. You can access and manage Config through the Amazon Web Services Management Console, the Amazon Web Services Command Line Interface (Amazon Web Services CLI), the Config API, or the Amazon Web Services SDKs for Config. This reference guide contains documentation for the Config API and the Amazon Web Services CLI commands that you can use to manage Config. The Config API uses the Signature Version 4 protocol for signing requests. For more information about how to sign a request with this protocol, see Signature Version 4 Signing Process. For detailed information about Config features and their associated actions or commands, as well as how to work with Amazon Web Services Management Console, see What Is Config in the Config Developer Guide",
   subcommands: [
     {
+      name: "associate-resource-types",
+      description:
+        "Adds all resource types specified in the ResourceTypes list to the RecordingGroup of specified configuration recorder and includes those resource types when recording. For this operation, the specified configuration recorder must use a RecordingStrategy that is either INCLUSION_BY_RESOURCE_TYPES or EXCLUSION_BY_RESOURCE_TYPES",
+      options: [
+        {
+          name: "--configuration-recorder-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the specified configuration recorder",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--resource-types",
+          description:
+            "The list of resource types you want to add to the recording group of the specified configuration recorder",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "batch-get-aggregate-resource-config",
       description:
         "Returns the current configuration items for resources that are present in your Config aggregator. The operation also returns a list of resources that are not processed in the current request. If there are no unprocessed resources, the operation returns an empty unprocessedResourceIdentifiers list.     The API does not return results for deleted resources.    The API does not return tags and relationships",
@@ -115,7 +155,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-config-rule",
       description:
-        "Deletes the specified Config rule and all of its evaluation results. Config sets the state of a rule to DELETING until the deletion is complete. You cannot update a rule while it is in this state. If you make a PutConfigRule or DeleteConfigRule request for the rule, you will receive a ResourceInUseException. You can check the state of a rule by using the DescribeConfigRules request",
+        "Deletes the specified Config rule and all of its evaluation results. Config sets the state of a rule to DELETING until the deletion is complete. You cannot update a rule while it is in this state. If you make a PutConfigRule or DeleteConfigRule request for the rule, you will receive a ResourceInUseException. You can check the state of a rule by using the DescribeConfigRules request.   Recommendation: Stop recording resource compliance before deleting rules  It is highly recommended that you stop recording for the AWS::Config::ResourceCompliance resource type before you delete rules in your account. Deleting rules creates CIs for AWS::Config::ResourceCompliance and can affect your Config configuration recorder costs. If you are deleting rules which evaluate a large number of resource types, this can lead to a spike in the number of CIs recorded. Best practice:   Stop recording AWS::Config::ResourceCompliance    Delete rule(s)   Turn on recording for AWS::Config::ResourceCompliance",
       options: [
         {
           name: "--config-rule-name",
@@ -177,12 +217,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-configuration-recorder",
       description:
-        "Deletes the configuration recorder. After the configuration recorder is deleted, Config will not record resource configuration changes until you create a new configuration recorder. This action does not delete the configuration information that was previously recorded. You will be able to access the previously recorded information by using the GetResourceConfigHistory action, but you will not be able to access this information in the Config console until you create a new configuration recorder",
+        "Deletes the customer managed configuration recorder. This operation does not delete the configuration information that was previously recorded. You will be able to access the previously recorded information by using the GetResourceConfigHistory operation, but you will not be able to access this information in the Config console until you have created a new customer managed configuration recorder",
       options: [
         {
           name: "--configuration-recorder-name",
           description:
-            "The name of the configuration recorder to be deleted. You can retrieve the name of your configuration recorder by using the DescribeConfigurationRecorders action",
+            "The name of the customer managed configuration recorder that you want to delete. You can retrieve the name of your configuration recorders by using the DescribeConfigurationRecorders operation",
           args: {
             name: "string",
           },
@@ -240,11 +280,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-delivery-channel",
       description:
-        "Deletes the delivery channel. Before you can delete the delivery channel, you must stop the configuration recorder by using the StopConfigurationRecorder action",
+        "Deletes the delivery channel. Before you can delete the delivery channel, you must stop the customer managed configuration recorder. You can use the StopConfigurationRecorder operation to stop the customer managed configuration recorder",
       options: [
         {
           name: "--delivery-channel-name",
-          description: "The name of the delivery channel to delete",
+          description:
+            "The name of the delivery channel that you want to delete",
           args: {
             name: "string",
           },
@@ -550,6 +591,38 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-service-linked-configuration-recorder",
+      description:
+        "Deletes an existing service-linked configuration recorder. This operation does not delete the configuration information that was previously recorded. You will be able to access the previously recorded information by using the GetResourceConfigHistory operation, but you will not be able to access this information in the Config console until you have created a new service-linked configuration recorder for the same service.   The recording scope determines if you receive configuration items  The recording scope is set by the service that is linked to the configuration recorder and determines whether you receive configuration items (CIs) in the delivery channel. If the recording scope is internal, you will not receive CIs in the delivery channel",
+      options: [
+        {
+          name: "--service-principal",
+          description:
+            "The service principal of the Amazon Web Services service for the service-linked configuration recorder that you want to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-stored-query",
       description:
         "Deletes the stored query for a single Amazon Web Services account and a single Amazon Web Services Region",
@@ -694,7 +767,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-aggregate-compliance-by-conformance-packs",
       description:
-        "Returns a list of the conformance packs and their associated compliance status with the count of compliant and noncompliant Config rules within each conformance pack. Also returns the total rule count which includes compliant rules, noncompliant rules, and rules that cannot be evaluated due to insufficient data.  The results can return an empty result page, but if you have a nextToken, the results are displayed on the next page",
+        "Returns a list of the existing and deleted conformance packs and their associated compliance status with the count of compliant and noncompliant Config rules within each conformance pack. Also returns the total rule count which includes compliant rules, noncompliant rules, and rules that cannot be evaluated due to insufficient data.  The results can return an empty result page, but if you have a nextToken, the results are displayed on the next page",
       options: [
         {
           name: "--configuration-aggregator-name",
@@ -837,7 +910,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-compliance-by-config-rule",
       description:
-        "Indicates whether the specified Config rules are compliant. If a rule is noncompliant, this action returns the number of Amazon Web Services resources that do not comply with the rule. A rule is compliant if all of the evaluated resources comply with it. It is noncompliant if any of these resources do not comply. If Config has no current evaluation results for the rule, it returns INSUFFICIENT_DATA. This result might indicate one of the following conditions:   Config has never invoked an evaluation for the rule. To check whether it has, use the DescribeConfigRuleEvaluationStatus action to get the LastSuccessfulInvocationTime and LastFailedInvocationTime.   The rule's Lambda function is failing to send evaluation results to Config. Verify that the role you assigned to your configuration recorder includes the config:PutEvaluations permission. If the rule is a custom rule, verify that the Lambda execution role includes the config:PutEvaluations permission.   The rule's Lambda function has returned NOT_APPLICABLE for all evaluation results. This can occur if the resources were deleted or removed from the rule's scope",
+        "Indicates whether the specified Config rules are compliant. If a rule is noncompliant, this operation returns the number of Amazon Web Services resources that do not comply with the rule. A rule is compliant if all of the evaluated resources comply with it. It is noncompliant if any of these resources do not comply. If Config has no current evaluation results for the rule, it returns INSUFFICIENT_DATA. This result might indicate one of the following conditions:   Config has never invoked an evaluation for the rule. To check whether it has, use the DescribeConfigRuleEvaluationStatus action to get the LastSuccessfulInvocationTime and LastFailedInvocationTime.   The rule's Lambda function is failing to send evaluation results to Config. Verify that the role you assigned to your configuration recorder includes the config:PutEvaluations permission. If the rule is a custom rule, verify that the Lambda execution role includes the config:PutEvaluations permission.   The rule's Lambda function has returned NOT_APPLICABLE for all evaluation results. This can occur if the resources were deleted or removed from the rule's scope",
       options: [
         {
           name: "--config-rule-names",
@@ -900,12 +973,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-compliance-by-resource",
       description:
-        "Indicates whether the specified Amazon Web Services resources are compliant. If a resource is noncompliant, this action returns the number of Config rules that the resource does not comply with. A resource is compliant if it complies with all the Config rules that evaluate it. It is noncompliant if it does not comply with one or more of these rules. If Config has no current evaluation results for the resource, it returns INSUFFICIENT_DATA. This result might indicate one of the following conditions about the rules that evaluate the resource:   Config has never invoked an evaluation for the rule. To check whether it has, use the DescribeConfigRuleEvaluationStatus action to get the LastSuccessfulInvocationTime and LastFailedInvocationTime.   The rule's Lambda function is failing to send evaluation results to Config. Verify that the role that you assigned to your configuration recorder includes the config:PutEvaluations permission. If the rule is a custom rule, verify that the Lambda execution role includes the config:PutEvaluations permission.   The rule's Lambda function has returned NOT_APPLICABLE for all evaluation results. This can occur if the resources were deleted or removed from the rule's scope",
+        "Indicates whether the specified Amazon Web Services resources are compliant. If a resource is noncompliant, this operation returns the number of Config rules that the resource does not comply with. A resource is compliant if it complies with all the Config rules that evaluate it. It is noncompliant if it does not comply with one or more of these rules. If Config has no current evaluation results for the resource, it returns INSUFFICIENT_DATA. This result might indicate one of the following conditions about the rules that evaluate the resource:   Config has never invoked an evaluation for the rule. To check whether it has, use the DescribeConfigRuleEvaluationStatus action to get the LastSuccessfulInvocationTime and LastFailedInvocationTime.   The rule's Lambda function is failing to send evaluation results to Config. Verify that the role that you assigned to your configuration recorder includes the config:PutEvaluations permission. If the rule is a custom rule, verify that the Lambda execution role includes the config:PutEvaluations permission.   The rule's Lambda function has returned NOT_APPLICABLE for all evaluation results. This can occur if the resources were deleted or removed from the rule's scope",
       options: [
         {
           name: "--resource-type",
           description:
-            "The types of Amazon Web Services resources for which you want compliance information (for example, AWS::EC2::Instance). For this action, you can specify that the resource type is an Amazon Web Services account by specifying AWS::::Account",
+            "The types of Amazon Web Services resources for which you want compliance information (for example, AWS::EC2::Instance). For this operation, you can specify that the resource type is an Amazon Web Services account by specifying AWS::::Account",
           args: {
             name: "string",
           },
@@ -1201,7 +1274,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-configuration-aggregators",
       description:
-        "Returns the details of one or more configuration aggregators. If the configuration aggregator is not specified, this action returns the details for all the configuration aggregators associated with the account",
+        "Returns the details of one or more configuration aggregators. If the configuration aggregator is not specified, this operation returns the details for all the configuration aggregators associated with the account",
       options: [
         {
           name: "--configuration-aggregator-names",
@@ -1272,14 +1345,30 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-configuration-recorder-status",
       description:
-        "Returns the current status of the specified configuration recorder as well as the status of the last recording event for the recorder. If a configuration recorder is not specified, this action returns the status of all configuration recorders associated with the account.  >You can specify only one configuration recorder for each Amazon Web Services Region for each account. For a detailed status of recording events over time, add your Config events to Amazon CloudWatch metrics and use CloudWatch metrics",
+        "Returns the current status of the configuration recorder you specify as well as the status of the last recording event for the configuration recorders. For a detailed status of recording events over time, add your Config events to Amazon CloudWatch metrics and use CloudWatch metrics. If a configuration recorder is not specified, this operation returns the status for the customer managed configuration recorder configured for the account, if applicable.  When making a request to this operation, you can only specify one configuration recorder",
       options: [
         {
           name: "--configuration-recorder-names",
           description:
-            "The name(s) of the configuration recorder. If the name is not specified, the action returns the current status of all the configuration recorders associated with the account",
+            "The name of the configuration recorder. If the name is not specified, the opertation returns the status for the customer managed configuration recorder configured for the account, if applicable.  When making a request to this operation, you can only specify one configuration recorder",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--service-principal",
+          description:
+            "For service-linked configuration recorders, you can use the service principal of the linked Amazon Web Services service to specify the configuration recorder",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--arn",
+          description:
+            "The Amazon Resource Name (ARN) of the configuration recorder that you want to specify",
+          args: {
+            name: "string",
           },
         },
         {
@@ -1304,13 +1393,30 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-configuration-recorders",
       description:
-        "Returns the details for the specified configuration recorders. If the configuration recorder is not specified, this action returns the details for all configuration recorders associated with the account.  You can specify only one configuration recorder for each Amazon Web Services Region for each account",
+        "Returns details for the configuration recorder you specify. If a configuration recorder is not specified, this operation returns details for the customer managed configuration recorder configured for the account, if applicable.  When making a request to this operation, you can only specify one configuration recorder",
       options: [
         {
           name: "--configuration-recorder-names",
-          description: "A list of configuration recorder names",
+          description:
+            "A list of names of the configuration recorders that you want to specify",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--service-principal",
+          description:
+            "For service-linked configuration recorders, you can use the service principal of the linked Amazon Web Services service to specify the configuration recorder",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--arn",
+          description:
+            "The Amazon Resource Name (ARN) of the configuration recorder that you want to specify",
+          args: {
+            name: "string",
           },
         },
         {
@@ -1531,7 +1637,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-delivery-channel-status",
       description:
-        "Returns the current status of the specified delivery channel. If a delivery channel is not specified, this action returns the current status of all delivery channels associated with the account.  Currently, you can specify only one delivery channel per region in your account",
+        "Returns the current status of the specified delivery channel. If a delivery channel is not specified, this operation returns the current status of all delivery channels associated with the account.  Currently, you can specify only one delivery channel per region in your account",
       options: [
         {
           name: "--delivery-channel-names",
@@ -1562,7 +1668,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-delivery-channels",
       description:
-        "Returns details about the specified delivery channel. If a delivery channel is not specified, this action returns the details of all delivery channels associated with the account.  Currently, you can specify only one delivery channel per region in your account",
+        "Returns details about the specified delivery channel. If a delivery channel is not specified, this operation returns the details of all delivery channels associated with the account.  Currently, you can specify only one delivery channel per region in your account",
       options: [
         {
           name: "--delivery-channel-names",
@@ -2035,7 +2141,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--config-rule-name",
-          description: "A list of Config rule names",
+          description: "The name of the Config rule",
           args: {
             name: "string",
           },
@@ -2110,7 +2216,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-retention-configurations",
       description:
-        "Returns the details of one or more retention configurations. If the retention configuration name is not specified, this action returns the details for all the retention configurations for that account.  Currently, Config supports only one retention configuration per region in your account",
+        "Returns the details of one or more retention configurations. If the retention configuration name is not specified, this operation returns the details for all the retention configurations for that account.  Currently, Config supports only one retention configuration per region in your account",
       options: [
         {
           name: "--retention-configuration-names",
@@ -2150,6 +2256,46 @@ const completionSpec: Fig.Spec = {
             "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "disassociate-resource-types",
+      description:
+        "Removes all resource types specified in the ResourceTypes list from the RecordingGroup of configuration recorder and excludes these resource types when recording. For this operation, the configuration recorder must use a RecordingStrategy that is either INCLUSION_BY_RESOURCE_TYPES or EXCLUSION_BY_RESOURCE_TYPES",
+      options: [
+        {
+          name: "--configuration-recorder-arn",
+          description:
+            "The Amazon Resource Name (ARN) of the specified configuration recorder",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--resource-types",
+          description:
+            "The list of resource types you want to remove from the recording group of the specified configuration recorder",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
           },
         },
         {
@@ -2454,7 +2600,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-aggregate-resource-config",
       description:
-        "Returns configuration item that is aggregated for your specific resource in a specific source account and region",
+        "Returns configuration item that is aggregated for your specific resource in a specific source account and region.  The API does not return results for deleted resources",
       options: [
         {
           name: "--configuration-aggregator-name",
@@ -3351,6 +3497,78 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-configuration-recorders",
+      description:
+        "Returns a list of configuration recorders depending on the filters you specify",
+      options: [
+        {
+          name: "--filters",
+          description:
+            "Filters the results based on a list of ConfigurationRecorderFilter objects that you specify",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to include in the response",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The NextToken string returned on a previous page that you use to get the next page of results in a paginated response",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-conformance-pack-compliance-scores",
       description:
         "Returns a list of conformance pack compliance scores. A compliance score is the percentage of the number of compliant rule-resource combinations in a conformance pack compared to the number of total possible rule-resource combinations in the conformance pack. This metric provides you with a high-level view of the compliance state of your conformance packs. You can use it to identify, investigate, and understand the level of compliance in your conformance packs.  Conformance packs with no evaluation results will have a compliance score of INSUFFICIENT_DATA",
@@ -3629,7 +3847,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-arn",
           description:
-            "The Amazon Resource Name (ARN) that identifies the resource for which to list the tags. Currently, the supported resources are ConfigRule, ConfigurationAggregator and AggregatorAuthorization",
+            "The Amazon Resource Name (ARN) that identifies the resource for which to list the tags. The following resources are supported:    ConfigurationRecorder     ConfigRule     OrganizationConfigRule     ConformancePack     OrganizationConformancePack     ConfigurationAggregator     AggregationAuthorization     StoredQuery",
           args: {
             name: "string",
           },
@@ -3696,7 +3914,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-aggregation-authorization",
       description:
-        "Authorizes the aggregator account and region to collect data from the source account and region.    PutAggregationAuthorization is an idempotent API. Subsequent requests won\u2019t create a duplicate resource if one was already created. If a following request has different tags values, Config will ignore these differences and treat it as an idempotent request of the previous. In this case, tags will not be updated, even if they are different",
+        "Authorizes the aggregator account and region to collect data from the source account and region.    Tags are added at creation and cannot be updated with this operation   PutAggregationAuthorization is an idempotent API. Subsequent requests won\u2019t create a duplicate resource if one was already created. If a following request has different tags values, Config will ignore these differences and treat it as an idempotent request of the previous. In this case, tags will not be updated, even if they are different. Use TagResource and UntagResource to update tags after creation",
       options: [
         {
           name: "--authorized-account-id",
@@ -3742,7 +3960,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-config-rule",
       description:
-        "Adds or updates an Config rule to evaluate if your Amazon Web Services resources comply with your desired configurations. For information on how many Config rules you can have per account, see  Service Limits  in the Config Developer Guide. There are two types of rules: Config Managed Rules and Config Custom Rules. You can use PutConfigRule to create both Config Managed Rules and Config Custom Rules. Config Managed Rules are predefined, customizable rules created by Config. For a list of managed rules, see List of Config Managed Rules. If you are adding an Config managed rule, you must specify the rule's identifier for the SourceIdentifier key. Config Custom Rules are rules that you create from scratch. There are two ways to create Config custom rules: with Lambda functions ( Lambda Developer Guide) and with Guard (Guard GitHub Repository), a policy-as-code language. Config custom rules created with Lambda are called Config Custom Lambda Rules and Config custom rules created with Guard are called Config Custom Policy Rules. If you are adding a new Config Custom Lambda rule, you first need to create an Lambda function that the rule invokes to evaluate your resources. When you use PutConfigRule to add a Custom Lambda rule to Config, you must specify the Amazon Resource Name (ARN) that Lambda assigns to the function. You specify the ARN in the SourceIdentifier key. This key is part of the Source object, which is part of the ConfigRule object.  For any new Config rule that you add, specify the ConfigRuleName in the ConfigRule object. Do not specify the ConfigRuleArn or the ConfigRuleId. These values are generated by Config for new rules. If you are updating a rule that you added previously, you can specify the rule by ConfigRuleName, ConfigRuleId, or ConfigRuleArn in the ConfigRule data type that you use in this request. For more information about developing and using Config rules, see Evaluating Resources with Config Rules in the Config Developer Guide.   PutConfigRule is an idempotent API. Subsequent requests won\u2019t create a duplicate resource if one was already created. If a following request has different tags values, Config will ignore these differences and treat it as an idempotent request of the previous. In this case, tags will not be updated, even if they are different",
+        "Adds or updates an Config rule to evaluate if your Amazon Web Services resources comply with your desired configurations. For information on how many Config rules you can have per account, see  Service Limits  in the Config Developer Guide. There are two types of rules: Config Managed Rules and Config Custom Rules. You can use PutConfigRule to create both Config Managed Rules and Config Custom Rules. Config Managed Rules are predefined, customizable rules created by Config. For a list of managed rules, see List of Config Managed Rules. If you are adding an Config managed rule, you must specify the rule's identifier for the SourceIdentifier key. Config Custom Rules are rules that you create from scratch. There are two ways to create Config custom rules: with Lambda functions ( Lambda Developer Guide) and with Guard (Guard GitHub Repository), a policy-as-code language. Config custom rules created with Lambda are called Config Custom Lambda Rules and Config custom rules created with Guard are called Config Custom Policy Rules. If you are adding a new Config Custom Lambda rule, you first need to create an Lambda function that the rule invokes to evaluate your resources. When you use PutConfigRule to add a Custom Lambda rule to Config, you must specify the Amazon Resource Name (ARN) that Lambda assigns to the function. You specify the ARN in the SourceIdentifier key. This key is part of the Source object, which is part of the ConfigRule object.  For any new Config rule that you add, specify the ConfigRuleName in the ConfigRule object. Do not specify the ConfigRuleArn or the ConfigRuleId. These values are generated by Config for new rules. If you are updating a rule that you added previously, you can specify the rule by ConfigRuleName, ConfigRuleId, or ConfigRuleArn in the ConfigRule data type that you use in this request. For more information about developing and using Config rules, see Evaluating Resources with Config Rules in the Config Developer Guide.   Tags are added at creation and cannot be updated with this operation   PutConfigRule is an idempotent API. Subsequent requests won\u2019t create a duplicate resource if one was already created. If a following request has different tags values, Config will ignore these differences and treat it as an idempotent request of the previous. In this case, tags will not be updated, even if they are different. Use TagResource and UntagResource to update tags after creation",
       options: [
         {
           name: "--config-rule",
@@ -3780,7 +3998,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-configuration-aggregator",
       description:
-        "Creates and updates the configuration aggregator with the selected source accounts and regions. The source account can be individual account(s) or an organization.  accountIds that are passed will be replaced with existing accounts. If you want to add additional accounts into the aggregator, call DescribeConfigurationAggregators to get the previous accounts and then append new ones.  Config should be enabled in source accounts and regions you want to aggregate. If your source type is an organization, you must be signed in to the management account or a registered delegated administrator and all the features must be enabled in your organization. If the caller is a management account, Config calls EnableAwsServiceAccess API to enable integration between Config and Organizations. If the caller is a registered delegated administrator, Config calls ListDelegatedAdministrators API to verify whether the caller is a valid delegated administrator. To register a delegated administrator, see Register a Delegated Administrator in the Config developer guide.     PutConfigurationAggregator is an idempotent API. Subsequent requests won\u2019t create a duplicate resource if one was already created. If a following request has different tags values, Config will ignore these differences and treat it as an idempotent request of the previous. In this case, tags will not be updated, even if they are different",
+        "Creates and updates the configuration aggregator with the selected source accounts and regions. The source account can be individual account(s) or an organization.  accountIds that are passed will be replaced with existing accounts. If you want to add additional accounts into the aggregator, call DescribeConfigurationAggregators to get the previous accounts and then append new ones.  Config should be enabled in source accounts and regions you want to aggregate. If your source type is an organization, you must be signed in to the management account or a registered delegated administrator and all the features must be enabled in your organization. If the caller is a management account, Config calls EnableAwsServiceAccess API to enable integration between Config and Organizations. If the caller is a registered delegated administrator, Config calls ListDelegatedAdministrators API to verify whether the caller is a valid delegated administrator. To register a delegated administrator, see Register a Delegated Administrator in the Config developer guide.     Tags are added at creation and cannot be updated with this operation   PutConfigurationAggregator is an idempotent API. Subsequent requests won\u2019t create a duplicate resource if one was already created. If a following request has different tags values, Config will ignore these differences and treat it as an idempotent request of the previous. In this case, tags will not be updated, even if they are different. Use TagResource and UntagResource to update tags after creation",
       options: [
         {
           name: "--configuration-aggregator-name",
@@ -3811,6 +4029,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--aggregator-filters",
+          description:
+            "An object to filter configuration recorders in an aggregator. Either ResourceType or ServicePrincipal is required",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -3832,20 +4058,28 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-configuration-recorder",
       description:
-        "Creates a new configuration recorder to record configuration changes for specified resource types. You can also use this action to change the roleARN or the recordingGroup of an existing recorder. For more information, see  Managing the Configuration Recorder  in the Config Developer Guide.  You can specify only one configuration recorder for each Amazon Web Services Region for each account. If the configuration recorder does not have the recordingGroup field specified, the default is to record all supported resource types",
+        "Creates or updates the customer managed configuration recorder. You can use this operation to create a new customer managed configuration recorder or to update the roleARN and the recordingGroup for an existing customer managed configuration recorder. To start the customer managed configuration recorder and begin recording configuration changes for the resource types you specify, use the StartConfigurationRecorder operation. For more information, see  Working with the Configuration Recorder  in the Config Developer Guide.   One customer managed configuration recorder per account per Region  You can create only one customer managed configuration recorder for each account for each Amazon Web Services Region.  Default is to record all supported resource types, excluding the global IAM resource types  If you have not specified values for the recordingGroup field, the default for the customer managed configuration recorder is to record all supported resource types, excluding the global IAM resource types: AWS::IAM::Group, AWS::IAM::Policy, AWS::IAM::Role, and AWS::IAM::User.  Tags are added at creation and cannot be updated   PutConfigurationRecorder is an idempotent API. Subsequent requests won\u2019t create a duplicate resource if one was already created. If a following request has different tags values, Config will ignore these differences and treat it as an idempotent request of the previous. In this case, tags will not be updated, even if they are different. Use TagResource and UntagResource to update tags after creation",
       options: [
         {
           name: "--configuration-recorder",
           description:
-            "An object for the configuration recorder to record configuration changes for specified resource types",
+            "An object for the configuration recorder. A configuration recorder records configuration changes for the resource types in scope",
           args: {
             name: "structure",
           },
         },
         {
+          name: "--tags",
+          description:
+            "The tags for the customer managed configuration recorder. Each tag consists of a key and an optional value, both of which you define",
+          args: {
+            name: "list",
+          },
+        },
+        {
           name: "--recording-group",
           description:
-            "Specifies which resource types Config records for configuration changes.    High Number of Config Evaluations  You may notice increased activity in your account during your initial month recording with Config when compared to subsequent months. During the initial bootstrapping process, Config runs evaluations on all the resources in your account that you have selected for Config to record. If you are running ephemeral workloads, you may see increased activity from Config as it records configuration changes associated with creating and deleting these temporary resources. An ephemeral workload is a temporary use of computing resources that are loaded and run when needed. Examples include Amazon Elastic Compute Cloud (Amazon EC2) Spot Instances, Amazon EMR jobs, and Auto Scaling. If you want to avoid the increased activity from running ephemeral workloads, you can run these types of workloads in a separate account with Config turned off to avoid increased configuration recording and rule evaluations",
+            "Specifies which resource types are in scope for the configuration recorder to record.    High Number of Config Evaluations  You might notice increased activity in your account during your initial month recording with Config when compared to subsequent months. During the initial bootstrapping process, Config runs evaluations on all the resources in your account that you have selected for Config to record. If you are running ephemeral workloads, you may see increased activity from Config as it records configuration changes associated with creating and deleting these temporary resources. An ephemeral workload is a temporary use of computing resources that are loaded and run when needed. Examples include Amazon Elastic Compute Cloud (Amazon EC2) Spot Instances, Amazon EMR jobs, and Auto Scaling. If you want to avoid the increased activity from running ephemeral workloads, you can set up the configuration recorder to exclude these resource types from being recorded, or run these types of workloads in a separate account with Config turned off to avoid increased configuration recording and rule evaluations",
           args: {
             name: "structure",
           },
@@ -3951,12 +4185,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-delivery-channel",
       description:
-        "Creates a delivery channel object to deliver configuration information and other compliance information to an Amazon S3 bucket and Amazon SNS topic. For more information, see Notifications that Config Sends to an Amazon SNS topic. Before you can create a delivery channel, you must create a configuration recorder. You can use this action to change the Amazon S3 bucket or an Amazon SNS topic of the existing delivery channel. To change the Amazon S3 bucket or an Amazon SNS topic, call this action and specify the changed values for the S3 bucket and the SNS topic. If you specify a different value for either the S3 bucket or the SNS topic, this action will keep the existing value for the parameter that is not changed.  You can have only one delivery channel per region in your account",
+        "Creates or updates a delivery channel to deliver configuration information and other compliance information. You can use this operation to create a new delivery channel or to update the Amazon S3 bucket and the Amazon SNS topic of an existing delivery channel. For more information, see  Working with the Delivery Channel  in the Config Developer Guide.    One delivery channel per account per Region  You can have only one delivery channel for each account for each Amazon Web Services Region",
       options: [
         {
           name: "--delivery-channel",
           description:
-            "The configuration delivery channel object that delivers the configuration information to an Amazon S3 bucket and to an Amazon SNS topic",
+            "An object for the delivery channel. A delivery channel sends notifications and updated configuration states",
           args: {
             name: "structure",
           },
@@ -3983,7 +4217,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-evaluations",
       description:
-        "Used by an Lambda function to deliver evaluation results to Config. This action is required in every Lambda function that is invoked by an Config rule",
+        "Used by an Lambda function to deliver evaluation results to Config. This operation is required in every Lambda function that is invoked by an Config rule",
       options: [
         {
           name: "--evaluations",
@@ -4246,7 +4480,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-remediation-exceptions",
       description:
-        "A remediation exception is when a specified resource is no longer considered for auto-remediation. This API adds a new exception or updates an existing exception for a specified resource with a specified Config rule.    Exceptions block auto remediation  Config generates a remediation exception when a problem occurs running a remediation action for a specified resource. Remediation exceptions blocks auto-remediation until the exception is cleared.    Manual remediation is recommended when placing an exception  When placing an exception on an Amazon Web Services resource, it is recommended that remediation is set as manual remediation until the given Config rule for the specified resource evaluates the resource as NON_COMPLIANT. Once the resource has been evaluated as NON_COMPLIANT, you can add remediation exceptions and change the remediation type back from Manual to Auto if you want to use auto-remediation. Otherwise, using auto-remediation before a NON_COMPLIANT evaluation result can delete resources before the exception is applied.    Exceptions can only be performed on non-compliant resources  Placing an exception can only be performed on resources that are NON_COMPLIANT. If you use this API for COMPLIANT resources or resources that are NOT_APPLICABLE, a remediation exception will not be generated. For more information on the conditions that initiate the possible Config evaluation results, see Concepts | Config Rules in the Config Developer Guide.    Auto remediation can be initiated even for compliant resources  If you enable auto remediation for a specific Config rule using the PutRemediationConfigurations API or the Config console, it initiates the remediation process for all non-compliant resources for that specific rule. The auto remediation process relies on the compliance data snapshot which is captured on a periodic basis. Any non-compliant resource that is updated between the snapshot schedule will continue to be remediated based on the last known compliance data snapshot. This means that in some cases auto remediation can be initiated even for compliant resources, since the bootstrap processor uses a database that can have stale evaluation results based on the last known compliance data snapshot",
+        "A remediation exception is when a specified resource is no longer considered for auto-remediation. This API adds a new exception or updates an existing exception for a specified resource with a specified Config rule.    Exceptions block auto remediation  Config generates a remediation exception when a problem occurs running a remediation action for a specified resource. Remediation exceptions blocks auto-remediation until the exception is cleared.    Manual remediation is recommended when placing an exception  When placing an exception on an Amazon Web Services resource, it is recommended that remediation is set as manual remediation until the given Config rule for the specified resource evaluates the resource as NON_COMPLIANT. Once the resource has been evaluated as NON_COMPLIANT, you can add remediation exceptions and change the remediation type back from Manual to Auto if you want to use auto-remediation. Otherwise, using auto-remediation before a NON_COMPLIANT evaluation result can delete resources before the exception is applied.    Exceptions can only be performed on non-compliant resources  Placing an exception can only be performed on resources that are NON_COMPLIANT. If you use this API for COMPLIANT resources or resources that are NOT_APPLICABLE, a remediation exception will not be generated. For more information on the conditions that initiate the possible Config evaluation results, see Concepts | Config Rules in the Config Developer Guide.    Exceptions cannot be placed on service-linked remediation actions  You cannot place an exception on service-linked remediation actions, such as remediation actions put by an organizational conformance pack.    Auto remediation can be initiated even for compliant resources  If you enable auto remediation for a specific Config rule using the PutRemediationConfigurations API or the Config console, it initiates the remediation process for all non-compliant resources for that specific rule. The auto remediation process relies on the compliance data snapshot which is captured on a periodic basis. Any non-compliant resource that is updated between the snapshot schedule will continue to be remediated based on the last known compliance data snapshot. This means that in some cases auto remediation can be initiated even for compliant resources, since the bootstrap processor uses a database that can have stale evaluation results based on the last known compliance data snapshot",
       options: [
         {
           name: "--config-rule-name",
@@ -4401,9 +4635,49 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "put-service-linked-configuration-recorder",
+      description:
+        "Creates a service-linked configuration recorder that is linked to a specific Amazon Web Services service based on the ServicePrincipal you specify. The configuration recorder's name, recordingGroup, recordingMode, and recordingScope is set by the service that is linked to the configuration recorder. For more information, see  Working with the Configuration Recorder  in the Config Developer Guide. This API creates a service-linked role AWSServiceRoleForConfig in your account. The service-linked role is created only when the role does not exist in your account.   The recording scope determines if you receive configuration items  The recording scope is set by the service that is linked to the configuration recorder and determines whether you receive configuration items (CIs) in the delivery channel. If the recording scope is internal, you will not receive CIs in the delivery channel.  Tags are added at creation and cannot be updated with this operation  Use TagResource and UntagResource to update tags after creation",
+      options: [
+        {
+          name: "--service-principal",
+          description:
+            "The service principal of the Amazon Web Services service for the service-linked configuration recorder that you want to create",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "The tags for a service-linked configuration recorder. Each tag consists of a key and an optional value, both of which you define",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "put-stored-query",
       description:
-        "Saves a new query or updates an existing saved query. The QueryName must be unique for a single Amazon Web Services account and a single Amazon Web Services Region. You can create upto 300 queries in a single Amazon Web Services account and a single Amazon Web Services Region.   PutStoredQuery is an idempotent API. Subsequent requests won\u2019t create a duplicate resource if one was already created. If a following request has different tags values, Config will ignore these differences and treat it as an idempotent request of the previous. In this case, tags will not be updated, even if they are different",
+        "Saves a new query or updates an existing saved query. The QueryName must be unique for a single Amazon Web Services account and a single Amazon Web Services Region. You can create upto 300 queries in a single Amazon Web Services account and a single Amazon Web Services Region.   Tags are added at creation and cannot be updated   PutStoredQuery is an idempotent API. Subsequent requests won\u2019t create a duplicate resource if one was already created. If a following request has different tags values, Config will ignore these differences and treat it as an idempotent request of the previous. In this case, tags will not be updated, even if they are different",
       options: [
         {
           name: "--stored-query",
@@ -4631,12 +4905,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "start-configuration-recorder",
       description:
-        "Starts recording configurations of the Amazon Web Services resources you have selected to record in your Amazon Web Services account. You must have created at least one delivery channel to successfully start the configuration recorder",
+        "Starts the customer managed configuration recorder. The customer managed configuration recorder will begin recording configuration changes for the resource types you specify. You must have created a delivery channel to successfully start the customer managed configuration recorder. You can use the PutDeliveryChannel operation to create a delivery channel",
       options: [
         {
           name: "--configuration-recorder-name",
           description:
-            "The name of the recorder object that records each configuration change made to the resources",
+            "The name of the customer managed configuration recorder that you want to start",
           args: {
             name: "string",
           },
@@ -4765,12 +5039,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "stop-configuration-recorder",
       description:
-        "Stops recording configurations of the Amazon Web Services resources you have selected to record in your Amazon Web Services account",
+        "Stops the customer managed configuration recorder. The customer managed configuration recorder will stop recording configuration changes for the resource types you have specified",
       options: [
         {
           name: "--configuration-recorder-name",
           description:
-            "The name of the recorder object that records each configuration change made to the resources",
+            "The name of the customer managed configuration recorder that you want to stop",
           args: {
             name: "string",
           },
@@ -4797,12 +5071,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "tag-resource",
       description:
-        "Associates the specified tags to a resource with the specified resourceArn. If existing tags on a resource are not specified in the request parameters, they are not changed. If existing tags are specified, however, then their values will be updated. When a resource is deleted, the tags associated with that resource are deleted as well",
+        "Associates the specified tags to a resource with the specified ResourceArn. If existing tags on a resource are not specified in the request parameters, they are not changed. If existing tags are specified, however, then their values will be updated. When a resource is deleted, the tags associated with that resource are deleted as well",
       options: [
         {
           name: "--resource-arn",
           description:
-            "The Amazon Resource Name (ARN) that identifies the resource for which to list the tags. Currently, the supported resources are ConfigRule, ConfigurationAggregator and AggregatorAuthorization",
+            "The Amazon Resource Name (ARN) that identifies the resource for which to list the tags. The following resources are supported:    ConfigurationRecorder     ConfigRule     OrganizationConfigRule     ConformancePack     OrganizationConformancePack     ConfigurationAggregator     AggregationAuthorization     StoredQuery",
           args: {
             name: "string",
           },
@@ -4840,7 +5114,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-arn",
           description:
-            "The Amazon Resource Name (ARN) that identifies the resource for which to list the tags. Currently, the supported resources are ConfigRule, ConfigurationAggregator and AggregatorAuthorization",
+            "The Amazon Resource Name (ARN) that identifies the resource for which to list the tags. The following resources are supported:    ConfigurationRecorder     ConfigRule     OrganizationConfigRule     ConformancePack     OrganizationConformancePack     ConfigurationAggregator     AggregationAuthorization     StoredQuery",
           args: {
             name: "string",
           },

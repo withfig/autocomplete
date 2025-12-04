@@ -163,6 +163,10 @@ export const npxSuggestions: Fig.Suggestion[] = [
     name: "astro",
     icon: "https://astro.build/favicon.svg",
   },
+  {
+    name: "ampx",
+    icon: "https://raw.githubusercontent.com/aws-amplify/docs/refs/heads/main/public/favicon.ico",
+  },
 ];
 
 const completionSpec: Fig.Spec = {

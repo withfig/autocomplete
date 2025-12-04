@@ -406,6 +406,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--thing-principal-type",
+          description:
+            "The type of the relation you want to specify when you attach a principal to a thing.    EXCLUSIVE_THING - Attaches the specified principal to the specified thing, exclusively. The thing will be the only thing that\u2019s attached to the principal.      NON_EXCLUSIVE_THING - Attaches the specified principal to the specified thing. Multiple things can be attached to the principal",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -1047,6 +1055,92 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-command",
+      description:
+        "Creates a command. A command contains reusable configurations that can be applied before they are sent to the devices",
+      options: [
+        {
+          name: "--command-id",
+          description:
+            "A unique identifier for the command. We recommend using UUID. Alpha-numeric characters, hyphens, and underscores are valid for use here",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--namespace",
+          description:
+            "The namespace of the command. The MQTT reserved topics and validations will be used for command executions according to the namespace setting",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--display-name",
+          description:
+            "The user-friendly name in the console for the command. This name doesn't have to be unique. You can update the user-friendly name after you define it",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "A short text decription of the command",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--payload",
+          description:
+            "The payload object for the command. You must specify this information when using the AWS-IoT namespace. You can upload a static payload file from your local storage that contains the instructions for the device to process. The payload file can use any format. To make sure that the device correctly interprets the payload, we recommend you to specify the payload content type",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--mandatory-parameters",
+          description:
+            "A list of parameters that are required by the StartCommandExecution API. These parameters need to be specified only when using the AWS-IoT-FleetWise namespace. You can either specify them here or when running the command using the StartCommandExecution API",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--role-arn",
+          description: "The IAM role that allows access to create the command",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "Name-value pairs that are used as metadata to manage a command",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-custom-metric",
       description:
         "Use this API to define a Custom Metric published by your devices to Device Defender.  Requires permission to access the CreateCustomMetric action",
@@ -1464,7 +1558,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--job-id",
           description:
-            'A job identifier which must be unique for your Amazon Web Services account. We recommend using a UUID. Alpha-numeric characters, "-" and "_" are valid for use here',
+            'A job identifier which must be unique for your account. We recommend using a UUID. Alpha-numeric characters, "-" and "_" are valid for use here',
           args: {
             name: "string",
           },
@@ -3120,6 +3214,76 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-command",
+      description: "Delete a command resource",
+      options: [
+        {
+          name: "--command-id",
+          description: "The unique identifier of the command to be deleted",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-command-execution",
+      description:
+        "Delete a command execution.  Only command executions that enter a terminal state can be deleted from your account",
+      options: [
+        {
+          name: "--execution-id",
+          description:
+            "The unique identifier of the command execution that you want to delete from your account",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--target-arn",
+          description:
+            "The Amazon Resource Number (ARN) of the target device for which you want to delete command executions",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-custom-metric",
       description:
         "Deletes a Device Defender detect custom metric.  Requires permission to access the DeleteCustomMetric action.  Before you can delete a custom metric, you must first remove the custom metric from all security profiles it's a part of. The security profile associated with the custom metric can be found using the ListSecurityProfiles API with metricName set to your custom metric name",
@@ -4744,12 +4908,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--before-substitution",
           description:
-            "A flag that provides a view of the job document before and after the substitution parameters have been resolved with their exact values",
+            "Provides a view of the job document before and after the substitution parameters have been resolved with their exact values",
         },
         {
           name: "--no-before-substitution",
           description:
-            "A flag that provides a view of the job document before and after the substitution parameters have been resolved with their exact values",
+            "Provides a view of the job document before and after the substitution parameters have been resolved with their exact values",
         },
         {
           name: "--cli-input-json",
@@ -5684,6 +5848,87 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-command",
+      description: "Gets information about the specified command",
+      options: [
+        {
+          name: "--command-id",
+          description:
+            "The unique identifier of the command for which you want to retrieve information",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-command-execution",
+      description:
+        "Gets information about the specific command execution on a single device",
+      options: [
+        {
+          name: "--execution-id",
+          description:
+            "The unique identifier for the command execution. This information is returned as a response of the StartCommandExecution API request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--target-arn",
+          description:
+            "The Amazon Resource Number (ARN) of the device on which the command execution is being performed",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--include-result",
+          description:
+            "Can be used to specify whether to include the result of the command execution in the GetCommandExecution API response. Your device can use this field to provide additional information about the command execution. You only need to specify this field when using the AWS-IoT namespace",
+        },
+        {
+          name: "--no-include-result",
+          description:
+            "Can be used to specify whether to include the result of the command execution in the GetCommandExecution API response. Your device can use this field to provide additional information about the command execution. You only need to specify this field when using the AWS-IoT namespace",
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-effective-policies",
       description:
         "Gets a list of the policies that have an effect on the authorization behavior of the specified device when it connects to the IoT device gateway. Requires permission to access the GetEffectivePolicies action",
@@ -5769,12 +6014,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--before-substitution",
           description:
-            "A flag that provides a view of the job document before and after the substitution parameters have been resolved with their exact values",
+            "Provides a view of the job document before and after the substitution parameters have been resolved with their exact values",
         },
         {
           name: "--no-before-substitution",
           description:
-            "A flag that provides a view of the job document before and after the substitution parameters have been resolved with their exact values",
+            "Provides a view of the job document before and after the substitution parameters have been resolved with their exact values",
         },
         {
           name: "--cli-input-json",
@@ -7262,6 +7507,212 @@ const completionSpec: Fig.Spec = {
             "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-command-executions",
+      description:
+        "List all command executions.  You must provide only the startedTimeFilter or the completedTimeFilter information. If you provide both time filters, the API will generate an error. You can use this information to find command executions that started within a specific timeframe",
+      options: [
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return in this operation",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "To retrieve the next set of results, the nextToken value from a previous response; otherwise null to receive the first set of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--namespace",
+          description: "The namespace of the command",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--status",
+          description:
+            "List all command executions for the device that have a particular status. For example, you can filter the list to display only command executions that have failed or timed out",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description:
+            "Specify whether to list the command executions that were created in the ascending or descending order. By default, the API returns all commands in the descending order based on the start time or completion time of the executions, that are determined by the startTimeFilter and completeTimeFilter parameters",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--started-time-filter",
+          description:
+            "List all command executions that started any time before or after the date and time that you specify. The date and time uses the format yyyy-MM-dd'T'HH:mm",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--completed-time-filter",
+          description:
+            "List all command executions that completed any time before or after the date and time that you specify. The date and time uses the format yyyy-MM-dd'T'HH:mm",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--target-arn",
+          description:
+            "The Amazon Resource Number (ARN) of the target device. You can use this information to list all command executions for a particular device",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--command-arn",
+          description:
+            "The Amazon Resource Number (ARN) of the command. You can use this information to list all command executions for a particular command",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-commands",
+      description: "List all commands in your account",
+      options: [
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return in this operation. By default, the API returns up to a maximum of 25 results. You can override this default value to return up to a maximum of 100 results for this operation",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "To retrieve the next set of results, the nextToken value from a previous response; otherwise null to receive the first set of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--namespace",
+          description:
+            "The namespace of the command. By default, the API returns all commands that have been created for both AWS-IoT and AWS-IoT-FleetWise namespaces. You can override this default value if you want to return all commands that have been created only for a specific namespace",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--command-parameter-name",
+          description:
+            "A filter that can be used to display the list of commands that have a specific command parameter name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sort-order",
+          description:
+            "Specify whether to list the commands that you have created in the ascending or descending order. By default, the API returns all commands in the descending order based on the time that they were created",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -8948,6 +9399,86 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-principal-things-v2",
+      description:
+        "Lists the things associated with the specified principal. A principal can be an X.509 certificate or an Amazon Cognito ID. Requires permission to access the ListPrincipalThings action",
+      options: [
+        {
+          name: "--next-token",
+          description:
+            "To retrieve the next set of results, the nextToken value from a previous response; otherwise null to receive the first set of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return in this operation",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--principal",
+          description:
+            "The principal. A principal can be an X.509 certificate or an Amazon Cognito ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--thing-principal-type",
+          description:
+            "The type of the relation you want to filter in the response. If no value is provided in this field, the response will list all things, including both the EXCLUSIVE_THING and NON_EXCLUSIVE_THING attachment types.    EXCLUSIVE_THING - Attaches the specified principal to the specified thing, exclusively. The thing will be the only thing that\u2019s attached to the principal.      NON_EXCLUSIVE_THING - Attaches the specified principal to the specified thing. Multiple things can be attached to the principal",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-provisioning-template-versions",
       description:
         "A list of provisioning template versions. Requires permission to access the ListProvisioningTemplateVersions action",
@@ -9955,6 +10486,85 @@ const completionSpec: Fig.Spec = {
         {
           name: "--thing-name",
           description: "The name of the thing",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-thing-principals-v2",
+      description:
+        "Lists the principals associated with the specified thing. A principal can be an X.509 certificate or an Amazon Cognito ID. Requires permission to access the ListThingPrincipals action",
+      options: [
+        {
+          name: "--next-token",
+          description:
+            "To retrieve the next set of results, the nextToken value from a previous response; otherwise null to receive the first set of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to return in this operation",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--thing-name",
+          description: "The name of the thing",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--thing-principal-type",
+          description:
+            "The type of the relation you want to filter in the response. If no value is provided in this field, the response will list all principals, including both the EXCLUSIVE_THING and NON_EXCLUSIVE_THING attachment types.    EXCLUSIVE_THING - Attaches the specified principal to the specified thing, exclusively. The thing will be the only thing that\u2019s attached to the principal.      NON_EXCLUSIVE_THING - Attaches the specified principal to the specified thing. Multiple things can be attached to the principal",
           args: {
             name: "string",
           },
@@ -12372,6 +12982,62 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "update-command",
+      description:
+        "Update information about a command or mark a command for deprecation",
+      options: [
+        {
+          name: "--command-id",
+          description: "The unique identifier of the command to be updated",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--display-name",
+          description:
+            "The new user-friendly name to use in the console for the command",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "A short text description of the command",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--deprecated",
+          description:
+            "A boolean that you can use to specify whether to deprecate a command",
+        },
+        {
+          name: "--no-deprecated",
+          description:
+            "A boolean that you can use to specify whether to deprecate a command",
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "update-custom-metric",
       description:
         "Updates a Device Defender detect custom metric.  Requires permission to access the UpdateCustomMetric action",
@@ -13611,6 +14277,44 @@ const completionSpec: Fig.Spec = {
           name: "--no-override-dynamic-groups",
           description:
             "Override dynamic thing groups with static thing groups when 10-group limit is reached. If a thing belongs to 10 thing groups, and one or more of those groups are dynamic thing groups, adding a thing to a static group removes the thing from the last dynamic group",
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-thing-type",
+      description: "Updates a thing type",
+      options: [
+        {
+          name: "--thing-type-name",
+          description: "The name of a thing type",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--thing-type-properties",
+          description:
+            "The ThingTypeProperties contains information about the thing type including: a thing type description, and a list of searchable thing attribute names",
+          args: {
+            name: "structure",
+          },
         },
         {
           name: "--cli-input-json",

@@ -484,6 +484,114 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-brand",
+      description: "Creates an Amazon QuickSight brand",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account that owns the brand",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--brand-id",
+          description: "The ID of the Amazon QuickSight brand",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--brand-definition",
+          description: "The definition of the brand",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "A map of the key-value pairs that are assigned to the brand",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-custom-permissions",
+      description: "Creates a custom permissions profile",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account that you want to create the custom permissions profile in",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--custom-permissions-name",
+          description:
+            "The name of the custom permissions profile that you want to create",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--capabilities",
+          description:
+            "A set of actions to include in the custom permissions profile",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "The tags to associate with the custom permissions profile",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-dashboard",
       description:
         "Creates a dashboard from either a template or directly with a DashboardDefinition. To first create a template, see the  CreateTemplate  API operation. A dashboard is an entity in Amazon QuickSight that identifies Amazon QuickSight reports, created from analyses. You can share Amazon QuickSight dashboards. With the right permissions, you can create scheduled email reports from them. If you have the correct permissions, you can create a dashboard from a template that exists in a different Amazon Web Services account",
@@ -1726,6 +1834,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--folder-arns",
+          description:
+            "The Folder ARN of the folder that you want the topic to reside in",
+          args: {
+            name: "list",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -2017,6 +2133,114 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-brand",
+      description: "Deletes an Amazon QuickSight brand",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account that owns the brand",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--brand-id",
+          description: "The ID of the Amazon QuickSight brand",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-brand-assignment",
+      description: "Deletes a brand assignment",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account that owns the brand assignment",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-custom-permissions",
+      description: "Deletes a custom permissions profile",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account that contains the custom permissions profile that you want to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--custom-permissions-name",
+          description:
+            "The name of the custom permissions profile that you want to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-dashboard",
       description: "Deletes a dashboard",
       options: [
@@ -2153,6 +2377,46 @@ const completionSpec: Fig.Spec = {
           name: "--data-source-id",
           description:
             "The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-default-q-business-application",
+      description:
+        "Deletes a linked Amazon Q Business application from an Amazon QuickSight account",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon QuickSight account that you want to disconnect from a Amazon Q Business application",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--namespace",
+          description:
+            "The Amazon QuickSight namespace that you want to delete a linked Amazon Q Business application from. If this field is left blank, the Amazon Q Business application is deleted from the default namespace. Currently, the default namespace is the only valid value for this parameter",
           args: {
             name: "string",
           },
@@ -2998,6 +3262,52 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-user-custom-permission",
+      description: "Deletes a custom permissions profile from a user",
+      options: [
+        {
+          name: "--user-name",
+          description:
+            "The username of the user that you want to remove custom permissions from",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account that contains the custom permission configuration that you want to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--namespace",
+          description: "The namespace that the user belongs to",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-vpc-connection",
       description: "Deletes a VPC connection",
       options: [
@@ -3349,6 +3659,159 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "describe-brand",
+      description: "Describes a brand",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account that owns the brand",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--brand-id",
+          description: "The ID of the Amazon QuickSight brand",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--version-id",
+          description:
+            "The ID of the specific version. The default value is the latest version",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-brand-assignment",
+      description: "Describes a brand assignment",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account that owns the brand assignment",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-brand-published-version",
+      description: "Describes the published version of the brand",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account that owns the brand",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--brand-id",
+          description: "The ID of the Amazon QuickSight brand",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-custom-permissions",
+      description: "Describes a custom permissions profile",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account that contains the custom permissions profile that you want described",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--custom-permissions-name",
+          description: "The name of the custom permissions profile to describe",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "describe-dashboard",
       description: "Provides a summary for a dashboard",
       options: [
@@ -3590,6 +4053,37 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "describe-dashboards-qa-configuration",
+      description: "Describes an existing dashboard QA configuration",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account that contains the dashboard QA configuration that you want described",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "describe-data-set",
       description:
         "Describes a dataset. This operation doesn't support datasets that include uploaded files as a source",
@@ -3757,6 +4251,46 @@ const completionSpec: Fig.Spec = {
           name: "--data-source-id",
           description:
             "The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-default-q-business-application",
+      description:
+        "Describes a Amazon Q Business application that is linked to an Amazon QuickSight account",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon QuickSight account that is linked to the Amazon Q Business application that you want described",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--namespace",
+          description:
+            "The Amazon QuickSight namespace that contains the linked Amazon Q Business application. If this field is left blank, the default namespace is used. Currently, the default namespace is the only valid value for this parameter",
           args: {
             name: "string",
           },
@@ -4298,6 +4832,38 @@ const completionSpec: Fig.Spec = {
           name: "--aws-account-id",
           description:
             "The ID of the Amazon Web Services account that contains the personalization configuration that the user wants described",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "describe-quick-sight-q-search-configuration",
+      description:
+        "Describes the state of a Amazon QuickSight Q Search configuration",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account that contains the Amazon QuickSight Q Search configuration that the user wants described",
           args: {
             name: "string",
           },
@@ -5139,6 +5705,60 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "generate-embed-url-for-registered-user-with-identity",
+      description:
+        "Generates an embed URL that you can use to embed an Amazon QuickSight experience in your website. This action can be used for any type of user that is registered in an Amazon QuickSight account that uses IAM Identity Center for authentication. This API requires identity-enhanced IAM Role sessions for the authenticated user that the API call is being made for. This API uses trusted identity propagation to ensure that an end user is authenticated and receives the embed URL that is specific to that user. The IAM Identity Center application that the user has logged into needs to have trusted Identity Propagation enabled for Amazon QuickSight with the scope value set to quicksight:read. Before you use this action, make sure that you have configured the relevant Amazon QuickSight resource and permissions",
+      options: [
+        {
+          name: "--aws-account-id",
+          description: "The ID of the Amazon Web Services registered user",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--session-lifetime-in-minutes",
+          description: "The validity of the session in minutes",
+          args: {
+            name: "long",
+          },
+        },
+        {
+          name: "--experience-configuration",
+          description:
+            "The type of experience you want to embed. For registered users, you can embed Amazon QuickSight dashboards or the Amazon QuickSight console.  Exactly one of the experience configurations is required. You can choose Dashboard or QuickSightConsole. You cannot choose more than one experience configuration",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--allowed-domains",
+          description:
+            "A list of domains to be allowed to generate the embed URL",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-dashboard-embed-url",
       description:
         "Generates a temporary session URL and authorization code(bearer token) that you can use to embed an Amazon QuickSight read-only dashboard in your website or application. Before you use this command, make sure that you have configured the dashboards and permissions.  Currently, you can use GetDashboardEmbedURL only from the server, not from the user's browser. The following rules apply to the generated URL:   They must be used together.   They can be used one time only.   They are valid for 5 minutes after you run this command.   You are charged only when the URL is used or there is interaction with Amazon QuickSight.   The resulting user session is valid for 15 minutes (default) up to 10 hours (maximum). You can use the optional SessionLifetimeInMinutes parameter to customize session duration.   For more information, see Embedding Analytics Using GetDashboardEmbedUrl in the Amazon QuickSight User Guide. For more information about the high-level steps for embedding and for an interactive demo of the ways you can customize embedding, visit the Amazon QuickSight Developer Portal",
@@ -5474,6 +6094,147 @@ const completionSpec: Fig.Spec = {
             "The maximum number of results to be returned per request",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-brands",
+      description: "Lists all brands in an Amazon QuickSight account",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account that owns the brands that you want to list",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to be returned in a single request",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The token for the next set of results, or null if there are no more results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-custom-permissions",
+      description: "Returns a list of all the custom permissions profiles",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account that contains the custom permissions profiles that you want to list",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum number of results to return",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The token for the next set of results, or null if there are no more results",
+          args: {
+            name: "string",
           },
         },
         {
@@ -7508,6 +8269,68 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "predict-qa-results",
+      description:
+        "Predicts existing visuals or generates new visuals to answer a given query",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account that the user wants to execute Predict QA results in",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--query-text",
+          description: "The query text to be used to predict QA results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--include-quick-sight-q-index",
+          description: "Indicates whether Q indicies are included or excluded",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--include-generated-answer",
+          description:
+            "Indicates whether generated answers are included or excluded",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-topics-to-consider",
+          description:
+            "The number of maximum topics to be considered to predict QA results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "put-data-set-refresh-properties",
       description:
         "Creates or updates the dataset refresh properties for the dataset",
@@ -8209,6 +9032,86 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "search-topics",
+      description:
+        "Searches for any Q topic that exists in an Amazon QuickSight account",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account that contains the topic that you want to find",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--filters",
+          description:
+            "The filters that you want to use to search for the topic",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "The token for the next set of results, or null if there are no more results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of results to be returned per request",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "start-asset-bundle-export-job",
       description:
         "Starts an Asset Bundle export job. An Asset Bundle export job exports specified Amazon QuickSight assets. You can also choose to export any asset dependencies in the same job. Export jobs run asynchronously and can be polled with a DescribeAssetBundleExportJob API call. When a job is successfully completed, a download URL that contains the exported assets is returned. The URL is valid for 5 minutes and can be refreshed with a DescribeAssetBundleExportJob API call. Each Amazon QuickSight account can run up to 5 export jobs concurrently. The API caller must have the necessary permissions in their IAM role to access each resource before the resources can be exported",
@@ -8863,6 +9766,220 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "update-application-with-token-exchange-grant",
+      description:
+        "Updates an Amazon QuickSight application with a token exchange grant. This operation only supports Amazon QuickSight applications that are registered with IAM Identity Center",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account to be updated with a token exchange grant",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--namespace",
+          description: "The namespace of the Amazon QuickSight application",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-brand",
+      description: "Updates a brand",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account that owns the brand",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--brand-id",
+          description: "The ID of the Amazon QuickSight brand",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--brand-definition",
+          description: "The definition of the brand",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-brand-assignment",
+      description: "Updates a brand assignment",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account that owns the brand assignment",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--brand-arn",
+          description: "The Amazon Resource Name (ARN) of the brand",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-brand-published-version",
+      description: "Updates the published version of a brand",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account that owns the brand",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--brand-id",
+          description: "The ID of the Amazon QuickSight brand",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--version-id",
+          description: "The ID of the published version",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-custom-permissions",
+      description: "Updates a custom permissions profile",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account that contains the custom permissions profile that you want to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--custom-permissions-name",
+          description:
+            "The name of the custom permissions profile that you want to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--capabilities",
+          description:
+            "A set of actions to include in the custom permissions profile",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "update-dashboard",
       description:
         "Updates a dashboard in an Amazon Web Services account.  Updating a Dashboard creates a new dashboard version but does not immediately publish the new version. You can update the published version of a dashboard by using the  UpdateDashboardPublishedVersion  API operation",
@@ -9104,6 +10221,45 @@ const completionSpec: Fig.Spec = {
           description: "The version number of the dashboard",
           args: {
             name: "long",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-dashboards-qa-configuration",
+      description: "Updates a Dashboard QA configuration",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account that contains the dashboard QA configuration that you want to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--dashboards-qa-status",
+          description:
+            "The status of dashboards QA configuration that you want to update",
+          args: {
+            name: "string",
           },
         },
         {
@@ -9415,6 +10571,54 @@ const completionSpec: Fig.Spec = {
             "A list of resource permissions that you want to revoke on the data source",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-default-q-business-application",
+      description:
+        "Updates a Amazon Q Business application that is linked to a Amazon QuickSight account",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon QuickSight account that is connected to the Amazon Q Business application that you want to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--namespace",
+          description:
+            "The Amazon QuickSight namespace that contains the linked Amazon Q Business application. If this field is left blank, the default namespace is used. Currently, the default namespace is the only valid value for this parameter",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--application-id",
+          description:
+            "The ID of the Amazon Q Business application that you want to update",
+          args: {
+            name: "string",
           },
         },
         {
@@ -9868,6 +11072,46 @@ const completionSpec: Fig.Spec = {
           name: "--personalization-mode",
           description:
             "An option to allow Amazon QuickSight to customize data stories with user specific metadata, specifically location and job information, in your IAM Identity Center instance",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-quick-sight-q-search-configuration",
+      description:
+        "Updates the state of a Amazon QuickSight Q Search configuration",
+      options: [
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account that contains the Amazon QuickSight Q Search configuration that you want to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--q-search-status",
+          description:
+            "The status of the Amazon QuickSight Q Search configuration that the user wants to update",
           args: {
             name: "string",
           },
@@ -10627,6 +11871,60 @@ const completionSpec: Fig.Spec = {
           name: "--external-login-id",
           description:
             "The identity ID for a user in the external login provider",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-user-custom-permission",
+      description: "Updates a custom permissions profile for a user",
+      options: [
+        {
+          name: "--user-name",
+          description:
+            "The username of the user that you want to update custom permissions for",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--aws-account-id",
+          description:
+            "The ID of the Amazon Web Services account that contains the custom permission configuration that you want to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--namespace",
+          description: "The namespace that the user belongs to",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--custom-permissions-name",
+          description:
+            "The name of the custom permissions that you want to update",
           args: {
             name: "string",
           },

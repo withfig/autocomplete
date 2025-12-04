@@ -3460,6 +3460,53 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-hook-results",
+      description:
+        "Returns summaries of invoked Hooks when a change set or Cloud Control API operation target is provided",
+      options: [
+        {
+          name: "--target-type",
+          description: "The type of operation being targeted by the Hook",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--target-id",
+          description:
+            "The logical ID of the target the operation is acting on by the Hook. If the target is a change set, it's the ARN of the change set. If the target is a Cloud Control API operation, this will be the HookRequestToken returned by the Cloud Control API operation request. For more information on the HookRequestToken, see ProgressEvent",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "A string that identifies the next page of events that you want to retrieve",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-imports",
       description:
         "Lists all stacks that are importing an exported output value. To modify or remove an exported output value, first use this action to see which stacks are using it. To see the exported output values in your account, see ListExports. For more information about importing an exported output value, see the Fn::ImportValue function",

@@ -4,6 +4,36 @@ const completionSpec: Fig.Spec = {
     "Neptune Analytics is a new analytics database engine for Amazon Neptune that helps customers get to insights faster by quickly processing large amounts of graph data, invoking popular graph analytic algorithms in low-latency queries, and getting analytics results in seconds",
   subcommands: [
     {
+      name: "cancel-export-task",
+      description: "Cancel the specified export task",
+      options: [
+        {
+          name: "--task-identifier",
+          description: "The unique identifier of the export task",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "cancel-import-task",
       description: "Deletes the specified import task",
       options: [
@@ -323,6 +353,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--parquet-type",
+          description: "The parquet type of the import task",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--blank-node-handling",
           description:
             "The method to handle blank nodes in the dataset. Currently, only convertToIri is supported, meaning blank nodes are converted to unique IRIs at load time. Must be provided when format is ntriples. For more information, see Handling RDF values",
@@ -590,6 +627,36 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-export-task",
+      description: "Retrieves a specified export task",
+      options: [
+        {
+          name: "--task-identifier",
+          description: "The unique identifier of the export task",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-graph",
       description: "Gets information about a specified graph",
       options: [
@@ -780,6 +847,67 @@ const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-export-tasks",
+      description: "Retrieves a list of export tasks",
+      options: [
+        {
+          name: "--next-token",
+          description: "Pagination token used to paginate input",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description: "The maximum number of export tasks to return",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -1258,6 +1386,87 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "start-export-task",
+      description:
+        "Export data from an existing Neptune Analytics graph to Amazon S3. The graph state should be AVAILABLE",
+      options: [
+        {
+          name: "--graph-identifier",
+          description: "The source graph identifier of the export task",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--role-arn",
+          description:
+            "The ARN of the IAM role that will allow data to be exported to the destination",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--format",
+          description: "The format of the export task",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--destination",
+          description: "The Amazon S3 URI where data will be exported to",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--kms-key-identifier",
+          description: "The KMS key identifier of the export task",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--parquet-type",
+          description: "The parquet type of the export task",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--export-filter",
+          description: "The export filter of the export task",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--tags",
+          description: "Tags to be applied to the export task",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "start-import-task",
       description:
         "Import data into existing Neptune Analytics graph from Amazon Simple Storage Service (S3). The graph needs to be empty and in the AVAILABLE state",
@@ -1291,6 +1500,13 @@ const completionSpec: Fig.Spec = {
           name: "--format",
           description:
             "Specifies the format of Amazon S3 data to be imported. Valid values are CSV, which identifies the Gremlin CSV format or OPENCYPHER, which identies the openCypher load format",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--parquet-type",
+          description: "The parquet type of the import task",
           args: {
             name: "string",
           },
@@ -1476,6 +1692,68 @@ const completionSpec: Fig.Spec = {
       description:
         "Wait until a particular condition is satisfied. Each subcommand polls an API until the listed requirement is met",
       subcommands: [
+        {
+          name: "export-task-cancelled",
+          description:
+            "Wait until Export Task is Cancelled It will poll every 60 seconds until a successful state has been reached. This will exit with a return code of 255 after 60 failed checks",
+          options: [
+            {
+              name: "--task-identifier",
+              description: "The unique identifier of the export task",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cli-input-json",
+              description:
+                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--generate-cli-skeleton",
+              description:
+                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+              args: {
+                name: "string",
+                suggestions: ["input", "output"],
+              },
+            },
+          ],
+        },
+        {
+          name: "export-task-successful",
+          description:
+            "Wait until Export Task is Successful It will poll every 60 seconds until a successful state has been reached. This will exit with a return code of 255 after 480 failed checks",
+          options: [
+            {
+              name: "--task-identifier",
+              description: "The unique identifier of the export task",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cli-input-json",
+              description:
+                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--generate-cli-skeleton",
+              description:
+                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+              args: {
+                name: "string",
+                suggestions: ["input", "output"],
+              },
+            },
+          ],
+        },
         {
           name: "graph-available",
           description:

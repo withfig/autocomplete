@@ -95,7 +95,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--access",
           description:
-            "An access object containing the permissions that shouldn't be granted by the specified policy. If only actions are specified, IAM Access Analyzer checks for access of the actions on all resources in the policy. If only resources are specified, then IAM Access Analyzer checks which actions have access to the specified resources. If both actions and resources are specified, then IAM Access Analyzer checks which of the specified actions have access to the specified resources",
+            "An access object containing the permissions that shouldn't be granted by the specified policy. If only actions are specified, IAM Access Analyzer checks for access to peform at least one of the actions on any resource in the policy. If only resources are specified, then IAM Access Analyzer checks for access to perform any action on at least one of the resources. If both actions and resources are specified, IAM Access Analyzer checks for access to perform at least one of the specified actions on at least one of the specified resources",
           args: {
             name: "list",
           },
@@ -103,7 +103,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--policy-type",
           description:
-            "The type of policy. Identity policies grant permissions to IAM principals. Identity policies include managed and inline policies for IAM roles, users, and groups. Resource policies grant permissions on Amazon Web Services resources. Resource policies include trust policies for IAM roles and bucket policies for Amazon S3 buckets. You can provide a generic input such as identity policy or resource policy or a specific input such as managed policy or Amazon S3 bucket policy",
+            "The type of policy. Identity policies grant permissions to IAM principals. Identity policies include managed and inline policies for IAM roles, users, and groups. Resource policies grant permissions on Amazon Web Services resources. Resource policies include trust policies for IAM roles and bucket policies for Amazon S3 buckets",
           args: {
             name: "string",
           },
@@ -290,7 +290,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--tags",
-          description: "An array of key-value pairs to apply to the analyzer",
+          description:
+            "An array of key-value pairs to apply to the analyzer. You can use the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. For the tag key, you can specify a value that is 1 to 128 characters in length and cannot be prefixed with aws:. For the tag value, you can specify a value that is 0 to 256 characters in length",
           args: {
             name: "map",
           },
@@ -305,7 +306,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--configuration",
           description:
-            "Specifies the configuration of the analyzer. If the analyzer is an unused access analyzer, the specified scope of unused access is used for the configuration. If the analyzer is an external access analyzer, this field is not used",
+            "Specifies the configuration of the analyzer. If the analyzer is an unused access analyzer, the specified scope of unused access is used for the configuration",
           args: {
             name: "structure",
           },
@@ -1049,7 +1050,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-analyzed-resources",
       description:
-        "Retrieves a list of resources of the specified type that have been analyzed by the specified external access analyzer. This action is not supported for unused access analyzers",
+        "Retrieves a list of resources of the specified type that have been analyzed by the specified analyzer",
       options: [
         {
           name: "--analyzer-arn",
@@ -1678,6 +1679,44 @@ const completionSpec: Fig.Spec = {
           description: "The key for the tag to add",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-analyzer",
+      description: "Modifies the configuration of an existing analyzer",
+      options: [
+        {
+          name: "--analyzer-name",
+          description: "The name of the analyzer to modify",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--configuration",
+          description:
+            "Contains information about the configuration of an analyzer for an Amazon Web Services organization or account",
+          args: {
+            name: "structure",
           },
         },
         {

@@ -27,7 +27,7 @@ export const createNpmSearchHandler =
     }
     // Add optional keyword parameter
     const keywordParameter =
-      keywords?.length > 0 ? `+keywords:${keywords.join(",")}` : "";
+      keywords && keywords.length > 0 ? `+keywords:${keywords.join(",")}` : "";
 
     const queryPackagesUrl = keywordParameter
       ? `https://api.npms.io/v2/search?size=20&q=${searchTerm}${keywordParameter}`
@@ -81,10 +81,12 @@ export const createNpmSearchHandler =
       }
 
       const results = keywordParameter ? data.results : data;
-      return results.map((item) => ({
-        name: item.package.name,
-        description: item.package.description,
-      })) as Fig.Suggestion[];
+      return results.map(
+        (item: { package: { name: string; description: string } }) => ({
+          name: item.package.name,
+          description: item.package.description,
+        })
+      ) as Fig.Suggestion[];
     } catch (error) {
       console.error({ error });
       return [];
@@ -128,7 +130,7 @@ const workspaceGenerator: Fig.Generator = {
       args: [`${npmPrefix}/package.json`],
     });
 
-    const suggestions = [];
+    const suggestions: Fig.Suggestion[] = [];
     try {
       if (out.trim() == "") {
         return suggestions;

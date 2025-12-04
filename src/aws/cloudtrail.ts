@@ -6,12 +6,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "add-tags",
       description:
-        "Adds one or more tags to a trail, event data store, or channel, up to a limit of 50. Overwrites an existing tag's value when a new value is specified for an existing tag key. Tag key names must be unique; you cannot have two keys with the same name but different values. If you specify a key without a value, the tag will be created with the specified key and a value of null. You can tag a trail or event data store that applies to all Amazon Web Services Regions only from the Region in which the trail or event data store was created (also known as its home Region)",
+        "Adds one or more tags to a trail, event data store, dashboard, or channel, up to a limit of 50. Overwrites an existing tag's value when a new value is specified for an existing tag key. Tag key names must be unique; you cannot have two keys with the same name but different values. If you specify a key without a value, the tag will be created with the specified key and a value of null. You can tag a trail or event data store that applies to all Amazon Web Services Regions only from the Region in which the trail or event data store was created (also known as its home Region)",
       options: [
         {
           name: "--resource-id",
           description:
-            "Specifies the ARN of the trail, event data store, or channel to which one or more tags will be added. The format of a trail ARN is: arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail  The format of an event data store ARN is: arn:aws:cloudtrail:us-east-2:123456789012:eventdatastore/EXAMPLE-f852-4e8f-8bd1-bcf6cEXAMPLE  The format of a channel ARN is: arn:aws:cloudtrail:us-east-2:123456789012:channel/01234567890",
+            "Specifies the ARN of the trail, event data store, dashboard, or channel to which one or more tags will be added. The format of a trail ARN is: arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail  The format of an event data store ARN is: arn:aws:cloudtrail:us-east-2:123456789012:eventdatastore/EXAMPLE-f852-4e8f-8bd1-bcf6cEXAMPLE  The format of a dashboard ARN is: arn:aws:cloudtrail:us-east-1:123456789012:dashboard/exampleDash  The format of a channel ARN is: arn:aws:cloudtrail:us-east-2:123456789012:channel/01234567890",
           args: {
             name: "string",
           },
@@ -59,6 +59,13 @@ const completionSpec: Fig.Spec = {
           name: "--query-id",
           description:
             "The ID of the query that you want to cancel. The QueryId comes from the response of a StartQuery operation",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--event-data-store-owner-account-id",
+          description: "The account ID of the event data store owner",
           args: {
             name: "string",
           },
@@ -113,6 +120,71 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description: "A list of tags",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-dashboard",
+      description:
+        "Creates a custom dashboard or the Highlights dashboard.     Custom dashboards - Custom dashboards allow you to query events in any event data store type. You can add up to 10 widgets to a custom dashboard. You can manually refresh a custom dashboard, or you can set a refresh schedule.    Highlights dashboard - You can create the Highlights dashboard to see a summary of key user activities and API usage across all your event data stores. CloudTrail Lake manages the Highlights dashboard and refreshes the dashboard every 6 hours. To create the Highlights dashboard, you must set and enable a refresh schedule.    CloudTrail runs queries to populate the dashboard's widgets during a manual or scheduled refresh. CloudTrail must be granted permissions to run the StartQuery operation on your behalf. To provide permissions, run the PutResourcePolicy operation to attach a resource-based policy to each event data store. For more information, see Example: Allow CloudTrail to run queries to populate a dashboard in the CloudTrail User Guide.   To set a refresh schedule, CloudTrail must be granted permissions to run the StartDashboardRefresh operation to refresh the dashboard on your behalf. To provide permissions, run the PutResourcePolicy operation to attach a resource-based policy to the dashboard. For more information, see  Resource-based policy example for a dashboard in the CloudTrail User Guide.  For more information about dashboards, see CloudTrail Lake dashboards in the CloudTrail User Guide",
+      options: [
+        {
+          name: "--name",
+          description:
+            "The name of the dashboard. The name must be unique to your account.  To create the Highlights dashboard, the name must be AWSCloudTrail-Highlights",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--refresh-schedule",
+          description:
+            "The refresh schedule configuration for the dashboard.  To create the Highlights dashboard, you must set a refresh schedule and set the Status to ENABLED. The Unit for the refresh schedule must be HOURS and the Value must be 6",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--tags-list",
+          description: "A list of tags",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--termination-protection-enabled",
+          description:
+            "Specifies whether termination protection is enabled for the dashboard. If termination protection is enabled, you cannot delete the dashboard until termination protection is disabled",
+        },
+        {
+          name: "--no-termination-protection-enabled",
+          description:
+            "Specifies whether termination protection is enabled for the dashboard. If termination protection is enabled, you cannot delete the dashboard until termination protection is disabled",
+        },
+        {
+          name: "--widgets",
+          description:
+            "An array of widgets for a custom dashboard. A custom dashboard can have a maximum of ten widgets.  You do not need to specify widgets for the Highlights dashboard",
           args: {
             name: "list",
           },
@@ -404,6 +476,37 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-dashboard",
+      description:
+        "Deletes the specified dashboard. You cannot delete a dashboard that has termination protection enabled",
+      options: [
+        {
+          name: "--dashboard-id",
+          description: "The name or ARN for the dashboard",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-event-data-store",
       description:
         "Disables the event data store specified by EventDataStore, which accepts an event data store ARN. After you run DeleteEventDataStore, the event data store enters a PENDING_DELETION state, and is automatically deleted after a wait period of seven days. TerminationProtectionEnabled must be set to False on the event data store and the FederationStatus must be DISABLED. You cannot delete an event data store if TerminationProtectionEnabled is True or the FederationStatus is ENABLED. After you run DeleteEventDataStore on an event data store, you cannot run ListQueries, DescribeQuery, or GetQueryResults on queries that are using an event data store in a PENDING_DELETION state. An event data store in the PENDING_DELETION state does not incur costs",
@@ -438,12 +541,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-resource-policy",
       description:
-        "Deletes the resource-based policy attached to the CloudTrail channel",
+        "Deletes the resource-based policy attached to the CloudTrail event data store, dashboard, or channel",
       options: [
         {
           name: "--resource-arn",
           description:
-            "The Amazon Resource Name (ARN) of the CloudTrail channel you're deleting the resource-based policy from. The following is the format of a resource ARN: arn:aws:cloudtrail:us-east-2:123456789012:channel/MyChannel",
+            "The Amazon Resource Name (ARN) of the CloudTrail event data store, dashboard, or channel you're deleting the resource-based policy from. Example event data store ARN format: arn:aws:cloudtrail:us-east-2:123456789012:eventdatastore/EXAMPLE-f852-4e8f-8bd1-bcf6cEXAMPLE  Example dashboard ARN format: arn:aws:cloudtrail:us-east-1:123456789012:dashboard/exampleDash  Example channel ARN format: arn:aws:cloudtrail:us-east-2:123456789012:channel/01234567890",
           args: {
             name: "string",
           },
@@ -534,7 +637,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-query",
       description:
-        "Returns metadata about a query, including query run time in milliseconds, number of events scanned and matched, and query status. If the query results were delivered to an S3 bucket, the response also provides the S3 URI and the delivery status. You must specify either a QueryID or a QueryAlias. Specifying the QueryAlias parameter returns information about the last query run for the alias",
+        "Returns metadata about a query, including query run time in milliseconds, number of events scanned and matched, and query status. If the query results were delivered to an S3 bucket, the response also provides the S3 URI and the delivery status. You must specify either QueryId or QueryAlias. Specifying the QueryAlias parameter returns information about the last query run for the alias. You can provide RefreshId along with QueryAlias to view the query results of a dashboard query for the specified RefreshId",
       options: [
         {
           name: "--event-data-store",
@@ -554,6 +657,20 @@ const completionSpec: Fig.Spec = {
         {
           name: "--query-alias",
           description: "The alias that identifies a query template",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--refresh-id",
+          description: "The ID of the dashboard refresh",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--event-data-store-owner-account-id",
+          description: "The account ID of the event data store owner",
           args: {
             name: "string",
           },
@@ -692,12 +809,82 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "generate-query",
+      description:
+        'Generates a query from a natural language prompt. This operation uses generative artificial intelligence (generative AI) to produce a ready-to-use SQL query from the prompt.  The prompt can be a question or a statement about the event data in your event data store. For example, you can enter prompts like "What are my top errors in the past month?" and \u201cGive me a list of users that used SNS.\u201d The prompt must be in English. For information about limitations, permissions, and supported Regions, see Create CloudTrail Lake queries from natural language prompts in the CloudTrail  user guide.  Do not include any personally identifying, confidential, or sensitive information in your prompts. This feature uses generative AI large language models (LLMs); we recommend double-checking the LLM response',
+      options: [
+        {
+          name: "--event-data-stores",
+          description:
+            "The ARN (or ID suffix of the ARN) of the event data store that you want to query. You can only specify one event data store",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--prompt",
+          description:
+            "The prompt that you want to use to generate the query. The prompt must be in English. For example prompts, see Example prompts in the CloudTrail  user guide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-channel",
       description: "Returns information about a specific channel",
       options: [
         {
           name: "--channel",
           description: "The ARN or UUID of a channel",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-dashboard",
+      description: "Returns the specified dashboard",
+      options: [
+        {
+          name: "--dashboard-id",
+          description: "The name or ARN for the dashboard",
           args: {
             name: "string",
           },
@@ -892,6 +1079,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--event-data-store-owner-account-id",
+          description: "The account ID of the event data store owner",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -913,12 +1107,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-resource-policy",
       description:
-        "Retrieves the JSON text of the resource-based policy document attached to the CloudTrail channel",
+        "Retrieves the JSON text of the resource-based policy document attached to the CloudTrail event data store, dashboard, or channel",
       options: [
         {
           name: "--resource-arn",
           description:
-            "The Amazon Resource Name (ARN) of the CloudTrail channel attached to the resource-based policy. The following is the format of a resource ARN: arn:aws:cloudtrail:us-east-2:123456789012:channel/MyChannel",
+            "The Amazon Resource Name (ARN) of the CloudTrail event data store, dashboard, or channel attached to the resource-based policy. Example event data store ARN format: arn:aws:cloudtrail:us-east-2:123456789012:eventdatastore/EXAMPLE-f852-4e8f-8bd1-bcf6cEXAMPLE  Example dashboard ARN format: arn:aws:cloudtrail:us-east-1:123456789012:dashboard/exampleDash  Example channel ARN format: arn:aws:cloudtrail:us-east-2:123456789012:channel/01234567890",
           args: {
             name: "string",
           },
@@ -981,7 +1175,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--name",
           description:
-            "Specifies the name or the CloudTrail ARN of the trail for which you are requesting status. To get the status of a shadow trail (a replication of the trail in another Region), you must specify its ARN. The following is the format of a trail ARN.  arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail",
+            "Specifies the name or the CloudTrail ARN of the trail for which you are requesting status. To get the status of a shadow trail (a replication of the trail in another Region), you must specify its ARN.  The following is the format of a trail ARN: arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail   If the trail is an organization trail and you are a member account in the organization in Organizations, you must provide the full ARN of that trail, and not just the name",
           args: {
             name: "string",
           },
@@ -1024,6 +1218,61 @@ const completionSpec: Fig.Spec = {
             "The token to use to get the next page of results after a previous API call. This token must be passed in with the same parameters that were specified in the original call. For example, if the original call specified an AttributeKey of 'Username' with a value of 'root', the call with NextToken should include those same parameters",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-dashboards",
+      description:
+        "Returns information about all dashboards in the account, in the current Region",
+      options: [
+        {
+          name: "--name-prefix",
+          description: "Specify a name prefix to filter on",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--type",
+          description:
+            "Specify a dashboard type to filter on: CUSTOM or MANAGED",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "A token you can use to get the next page of dashboard results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "The maximum number of dashboards to display on a single page",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -1297,7 +1546,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--data-type",
           description:
-            "Type of datapoints to return. Valid values are NonZeroData and FillWithZeros. The default is NonZeroData",
+            "Type of data points to return. Valid values are NonZeroData and FillWithZeros. The default is NonZeroData",
           args: {
             name: "string",
           },
@@ -1305,7 +1554,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum number of datapoints to return. Valid values are integers from 1 to 21600. The default value is 21600",
+            "The maximum number of data points to return. Valid values are integers from 1 to 21600. The default value is 21600",
           args: {
             name: "integer",
           },
@@ -1473,12 +1722,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-tags",
       description:
-        "Lists the tags for the specified trails, event data stores, or channels in the current Region",
+        "Lists the tags for the specified trails, event data stores, dashboards, or channels in the current Region",
       options: [
         {
           name: "--resource-id-list",
           description:
-            "Specifies a list of trail, event data store, or channel ARNs whose tags will be listed. The list has a limit of 20 ARNs.  Example trail ARN format: arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail  Example event data store ARN format: arn:aws:cloudtrail:us-east-2:123456789012:eventdatastore/EXAMPLE-f852-4e8f-8bd1-bcf6cEXAMPLE  Example channel ARN format: arn:aws:cloudtrail:us-east-2:123456789012:channel/01234567890",
+            "Specifies a list of trail, event data store, dashboard, or channel ARNs whose tags will be listed. The list has a limit of 20 ARNs.  Example trail ARN format: arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail  Example event data store ARN format: arn:aws:cloudtrail:us-east-2:123456789012:eventdatastore/EXAMPLE-f852-4e8f-8bd1-bcf6cEXAMPLE  Example dashboard ARN format: arn:aws:cloudtrail:us-east-1:123456789012:dashboard/exampleDash  Example channel ARN format: arn:aws:cloudtrail:us-east-2:123456789012:channel/01234567890",
           args: {
             name: "list",
           },
@@ -1775,12 +2024,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-resource-policy",
       description:
-        "Attaches a resource-based permission policy to a CloudTrail channel that is used for an integration with an event source outside of Amazon Web Services. For more information about resource-based policies, see CloudTrail resource-based policy examples in the CloudTrail User Guide",
+        "Attaches a resource-based permission policy to a CloudTrail event data store, dashboard, or channel. For more information about resource-based policies, see CloudTrail resource-based policy examples in the CloudTrail User Guide",
       options: [
         {
           name: "--resource-arn",
           description:
-            "The Amazon Resource Name (ARN) of the CloudTrail channel attached to the resource-based policy. The following is the format of a resource ARN: arn:aws:cloudtrail:us-east-2:123456789012:channel/MyChannel",
+            "The Amazon Resource Name (ARN) of the CloudTrail event data store, dashboard, or channel attached to the resource-based policy. Example event data store ARN format: arn:aws:cloudtrail:us-east-2:123456789012:eventdatastore/EXAMPLE-f852-4e8f-8bd1-bcf6cEXAMPLE  Example dashboard ARN format: arn:aws:cloudtrail:us-east-1:123456789012:dashboard/exampleDash  Example channel ARN format: arn:aws:cloudtrail:us-east-2:123456789012:channel/01234567890",
           args: {
             name: "string",
           },
@@ -1788,7 +2037,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-policy",
           description:
-            "A JSON-formatted string for an Amazon Web Services resource-based policy.  The following are requirements for the resource policy:    Contains only one action: cloudtrail-data:PutAuditEvents     Contains at least one statement. The policy can have a maximum of 20 statements.     Each statement contains at least one principal. A statement can have a maximum of 50 principals",
+            "A JSON-formatted string for an Amazon Web Services resource-based policy.   For example resource-based policies, see CloudTrail resource-based policy examples in the CloudTrail User Guide",
           args: {
             name: "string",
           },
@@ -1847,12 +2096,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "remove-tags",
       description:
-        "Removes the specified tags from a trail, event data store, or channel",
+        "Removes the specified tags from a trail, event data store, dashboard, or channel",
       options: [
         {
           name: "--resource-id",
           description:
-            "Specifies the ARN of the trail, event data store, or channel from which tags should be removed.  Example trail ARN format: arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail  Example event data store ARN format: arn:aws:cloudtrail:us-east-2:123456789012:eventdatastore/EXAMPLE-f852-4e8f-8bd1-bcf6cEXAMPLE  Example channel ARN format: arn:aws:cloudtrail:us-east-2:123456789012:channel/01234567890",
+            "Specifies the ARN of the trail, event data store, dashboard, or channel from which tags should be removed.  Example trail ARN format: arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail  Example event data store ARN format: arn:aws:cloudtrail:us-east-2:123456789012:eventdatastore/EXAMPLE-f852-4e8f-8bd1-bcf6cEXAMPLE  Example dashboard ARN format: arn:aws:cloudtrail:us-east-1:123456789012:dashboard/exampleDash  Example channel ARN format: arn:aws:cloudtrail:us-east-2:123456789012:channel/01234567890",
           args: {
             name: "string",
           },
@@ -1894,6 +2143,45 @@ const completionSpec: Fig.Spec = {
             "The ARN (or the ID suffix of the ARN) of the event data store that you want to restore",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "start-dashboard-refresh",
+      description:
+        "Starts a refresh of the specified dashboard.   Each time a dashboard is refreshed, CloudTrail runs queries to populate the dashboard's widgets. CloudTrail must be granted permissions to run the StartQuery operation on your behalf. To provide permissions, run the PutResourcePolicy operation to attach a resource-based policy to each event data store. For more information, see Example: Allow CloudTrail to run queries to populate a dashboard in the CloudTrail User Guide",
+      options: [
+        {
+          name: "--dashboard-id",
+          description: "The name or ARN of the dashboard",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--query-parameter-values",
+          description:
+            "The query parameter values for the dashboard  For custom dashboards, the following query parameters are valid: $StartTime$, $EndTime$, and $Period$. For managed dashboards, the following query parameters are valid: $StartTime$, $EndTime$, $Period$, and $EventDataStoreId$. The $EventDataStoreId$ query parameter is required",
+          args: {
+            name: "map",
           },
         },
         {
@@ -2078,6 +2366,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--event-data-store-owner-account-id",
+          description: "The account ID of the event data store owner",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -2217,6 +2512,62 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "string",
           },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-dashboard",
+      description:
+        "Updates the specified dashboard.   To set a refresh schedule, CloudTrail must be granted permissions to run the StartDashboardRefresh operation to refresh the dashboard on your behalf. To provide permissions, run the PutResourcePolicy operation to attach a resource-based policy to the dashboard. For more information, see  Resource-based policy example for a dashboard in the CloudTrail User Guide.   CloudTrail runs queries to populate the dashboard's widgets during a manual or scheduled refresh. CloudTrail must be granted permissions to run the StartQuery operation on your behalf. To provide permissions, run the PutResourcePolicy operation to attach a resource-based policy to each event data store. For more information, see Example: Allow CloudTrail to run queries to populate a dashboard in the CloudTrail User Guide",
+      options: [
+        {
+          name: "--dashboard-id",
+          description: "The name or ARN of the dashboard",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--widgets",
+          description:
+            "An array of widgets for the dashboard. A custom dashboard can have a maximum of 10 widgets.  To add new widgets, pass in an array that includes the existing widgets along with any new widgets. Run the GetDashboard operation to get the list of widgets for the dashboard. To remove widgets, pass in an array that includes the existing widgets minus the widgets you want removed",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--refresh-schedule",
+          description: "The refresh schedule configuration for the dashboard",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--termination-protection-enabled",
+          description:
+            "Specifies whether termination protection is enabled for the dashboard. If termination protection is enabled, you cannot delete the dashboard until termination protection is disabled",
+        },
+        {
+          name: "--no-termination-protection-enabled",
+          description:
+            "Specifies whether termination protection is enabled for the dashboard. If termination protection is enabled, you cannot delete the dashboard until termination protection is disabled",
         },
         {
           name: "--cli-input-json",

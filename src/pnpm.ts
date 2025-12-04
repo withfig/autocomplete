@@ -21,7 +21,7 @@ const searchBranches: Fig.Generator = {
     return output.split("\n").map((elm) => {
       let name = elm.trim();
       const parts = elm.match(/\S+/g);
-      if (parts.length > 1) {
+      if (parts && parts.length > 1) {
         if (parts[0] == "*") {
           // Current branch.
           return {
@@ -991,6 +991,10 @@ const completionSpec: Fig.Spec = {
       script: string[];
     };
 
+    if (postProcess === undefined) {
+      return undefined;
+    }
+
     const packages = postProcess(
       (
         await executeShellCommand({
@@ -999,10 +1003,12 @@ const completionSpec: Fig.Spec = {
         })
       ).stdout,
       tokens
-    ).map(({ name }) => name as string);
+    )
+      ?.filter((e) => e !== null)
+      .map(({ name }) => name as string);
 
     const subcommands = packages
-      .filter((name) => nodeClis.has(name))
+      ?.filter((name) => nodeClis.has(name))
       .map((name) => ({
         name,
         loadSpec: name,

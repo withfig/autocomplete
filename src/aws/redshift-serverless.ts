@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "redshift-serverless",
   description:
-    "This is an interface reference for Amazon Redshift Serverless. It contains documentation for one of the programming or command line interfaces you can use to manage Amazon Redshift Serverless.  Amazon Redshift Serverless automatically provisions data warehouse capacity and intelligently scales the underlying resources based on workload demands. Amazon Redshift Serverless adjusts capacity in seconds to deliver consistently high performance and simplified operations for even the most demanding and volatile workloads. Amazon Redshift Serverless lets you focus on using your data to acquire new insights for your business and customers.   To learn more about Amazon Redshift Serverless, see What is Amazon Redshift Serverless",
+    "This is an interface reference for Amazon Redshift Serverless. It contains documentation for one of the programming or command line interfaces you can use to manage Amazon Redshift Serverless.  Amazon Redshift Serverless automatically provisions data warehouse capacity and intelligently scales the underlying resources based on workload demands. Amazon Redshift Serverless adjusts capacity in seconds to deliver consistently high performance and simplified operations for even the most demanding and volatile workloads. Amazon Redshift Serverless lets you focus on using your data to acquire new insights for your business and customers.   To learn more about Amazon Redshift Serverless, see What is Amazon Redshift Serverless?",
   subcommands: [
     {
       name: "convert-recovery-point-to-snapshot",
@@ -552,7 +552,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "create-workgroup",
-      description: "Creates an workgroup in Amazon Redshift Serverless",
+      description:
+        "Creates an workgroup in Amazon Redshift Serverless. VPC Block Public Access (BPA) enables you to block resources in VPCs and subnets that you own in a Region from reaching or being reached from the internet through internet gateways and egress-only internet gateways. If a workgroup is in an account with VPC BPA turned on, the following capabilities are blocked:    Creating a public access workgroup   Modifying a private workgroup to public   Adding a subnet with VPC BPA turned on to the workgroup when the workgroup is public   For more information about VPC BPA, see Block public access to VPCs and subnets in the Amazon VPC User Guide",
       options: [
         {
           name: "--base-capacity",
@@ -976,7 +977,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-credentials",
       description:
-        "Returns a database user name and temporary password with temporary authorization to log in to Amazon Redshift Serverless. By default, the temporary credentials expire in 900 seconds. You can optionally specify a duration between 900 seconds (15 minutes) and 3600 seconds (60 minutes).  <p>The Identity and Access Management (IAM) user or role that runs GetCredentials must have an IAM policy attached that allows access to all necessary actions and resources.</p> <p>If the <code>DbName</code> parameter is specified, the IAM policy must allow access to the resource dbname for the specified database name.</p>",
+        "Returns a database user name and temporary password with temporary authorization to log in to Amazon Redshift Serverless. By default, the temporary credentials expire in 900 seconds. You can optionally specify a duration between 900 seconds (15 minutes) and 3600 seconds (60 minutes). The Identity and Access Management (IAM) user or role that runs GetCredentials must have an IAM policy attached that allows access to all necessary actions and resources. If the DbName parameter is specified, the IAM policy must allow access to the resource dbname for the specified database name",
       options: [
         {
           name: "--custom-domain-name",
@@ -1478,6 +1479,78 @@ const completionSpec: Fig.Spec = {
           name: "--workgroup-name",
           description:
             "The name of the workgroup associated with the VPC endpoint to return",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-managed-workgroups",
+      description:
+        "Returns information about a list of specified managed workgroups in your account",
+      options: [
+        {
+          name: "--max-results",
+          description:
+            "An optional parameter that specifies the maximum number of results to return. You can use nextToken to display the next page of results",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If your initial ListManagedWorkgroups operation returns a nextToken, you can include the returned nextToken in following ListManagedWorkgroups operations, which returns results in the next page",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--source-arn",
+          description:
+            "The Amazon Resource Name (ARN) for the managed workgroup in the AWS Glue Data Catalog",
           args: {
             name: "string",
           },
@@ -3016,7 +3089,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-workgroup",
       description:
-        "Updates a workgroup with the specified configuration settings. You can't update multiple parameters in one request. For example, you can update baseCapacity or port in a single request, but you can't update both in the same request",
+        "Updates a workgroup with the specified configuration settings. You can't update multiple parameters in one request. For example, you can update baseCapacity or port in a single request, but you can't update both in the same request. VPC Block Public Access (BPA) enables you to block resources in VPCs and subnets that you own in a Region from reaching or being reached from the internet through internet gateways and egress-only internet gateways. If a workgroup is in an account with VPC BPA turned on, the following capabilities are blocked:    Creating a public access workgroup   Modifying a private workgroup to public   Adding a subnet with VPC BPA turned on to the workgroup when the workgroup is public   For more information about VPC BPA, see Block public access to VPCs and subnets in the Amazon VPC User Guide",
       options: [
         {
           name: "--base-capacity",

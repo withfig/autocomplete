@@ -10,7 +10,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--listener-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the listener",
+          description: "The ID or ARN of the listener",
           args: {
             name: "string",
           },
@@ -24,7 +24,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--service-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the service",
+          description: "The ID or ARN of the service",
           args: {
             name: "string",
           },
@@ -71,8 +71,15 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--resource-identifier",
+          description: "The ID or ARN of the service network or service",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--service-network-log-type",
           description:
-            "The ID or Amazon Resource Name (ARN) of the service network or service",
+            "The type of log that monitors your Amazon VPC Lattice service networks",
           args: {
             name: "string",
           },
@@ -149,7 +156,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--service-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the service",
+          description: "The ID or ARN of the service",
           args: {
             name: "string",
           },
@@ -159,6 +166,185 @@ const completionSpec: Fig.Spec = {
           description: "The tags for the listener",
           args: {
             name: "map",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-resource-configuration",
+      description:
+        "Creates a resource configuration. A resource configuration defines a specific resource. You can associate a resource configuration with a service network or a VPC endpoint",
+      options: [
+        {
+          name: "--allow-association-to-shareable-service-network",
+          description:
+            "(SINGLE, GROUP, ARN) Specifies whether the resource configuration can be associated with a sharable service network. The default is false",
+        },
+        {
+          name: "--no-allow-association-to-shareable-service-network",
+          description:
+            "(SINGLE, GROUP, ARN) Specifies whether the resource configuration can be associated with a sharable service network. The default is false",
+        },
+        {
+          name: "--client-token",
+          description:
+            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you retry a request that completed successfully using the same client token and parameters, the retry succeeds without performing any actions. If the parameters aren't identical, the retry fails",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--name",
+          description:
+            "The name of the resource configuration. The name must be unique within the account. The valid characters are a-z, 0-9, and hyphens (-). You can't use a hyphen as the first or last character, or immediately after another hyphen",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--port-ranges",
+          description:
+            "(SINGLE, GROUP, CHILD) The TCP port ranges that a consumer can use to access a resource configuration (for example: 1-65535). You can separate port ranges using commas (for example: 1,2,22-30)",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--protocol",
+          description:
+            "(SINGLE, GROUP) The protocol accepted by the resource configuration",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--resource-configuration-definition",
+          description: "(SINGLE, CHILD, ARN) The resource configuration",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--resource-configuration-group-identifier",
+          description:
+            "(CHILD) The ID or ARN of the parent resource configuration (type is GROUP). This is used to associate a child resource configuration with a group resource configuration",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--resource-gateway-identifier",
+          description:
+            "(SINGLE, GROUP, ARN) The ID or ARN of the resource gateway used to connect to the resource configuration. For a child resource configuration, this value is inherited from the parent resource configuration",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description: "The tags for the resource configuration",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--type",
+          description:
+            "The type of resource configuration.    SINGLE - A single resource.    GROUP - A group of resources. You must create a group resource configuration before you create a child resource configuration.    CHILD - A single resource that is part of a group resource configuration.    ARN - An Amazon Web Services resource",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-resource-gateway",
+      description: "Creates a resource gateway",
+      options: [
+        {
+          name: "--client-token",
+          description:
+            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you retry a request that completed successfully using the same client token and parameters, the retry succeeds without performing any actions. If the parameters aren't identical, the retry fails",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--ip-address-type",
+          description: "The type of IP address used by the resource gateway",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--name",
+          description: "The name of the resource gateway",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--security-group-ids",
+          description:
+            "The IDs of the security groups to apply to the resource gateway. The security groups must be in the same VPC",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--subnet-ids",
+          description:
+            "The IDs of the VPC subnets in which to create the resource gateway",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--tags",
+          description: "The tags for the resource gateway",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--vpc-identifier",
+          description: "The ID of the VPC for the resource gateway",
+          args: {
+            name: "string",
           },
         },
         {
@@ -202,7 +388,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--listener-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the listener",
+          description: "The ID or ARN of the listener",
           args: {
             name: "string",
           },
@@ -232,7 +418,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--service-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the service",
+          description: "The ID or ARN of the service",
           args: {
             name: "string",
           },
@@ -362,6 +548,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--sharing-config",
+          description:
+            "Specify if the service network should be enabled for sharing",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--tags",
           description: "The tags for the service network",
           args: {
@@ -388,9 +582,64 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-service-network-resource-association",
+      description:
+        "Associates the specified service network with the specified resource configuration. This allows the resource configuration to receive connections through the service network, including through a service network VPC endpoint",
+      options: [
+        {
+          name: "--client-token",
+          description:
+            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you retry a request that completed successfully using the same client token and parameters, the retry succeeds without performing any actions. If the parameters aren't identical, the retry fails",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--resource-configuration-identifier",
+          description:
+            "The ID of the resource configuration to associate with the service network",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--service-network-identifier",
+          description:
+            "The ID of the service network to associate with the resource configuration",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description: "The tags for the association",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-service-network-service-association",
       description:
-        "Associates a service with a service network. For more information, see Manage service associations in the Amazon VPC Lattice User Guide. You can't use this operation if the service and service network are already associated or if there is a disassociation or deletion in progress. If the association fails, you can retry the operation by deleting the association and recreating it. You cannot associate a service and service network that are shared with a caller. The caller must own either the service or the service network. As a result of this operation, the association is created in the service network account and the association owner account",
+        "Associates the specified service with the specified service network. For more information, see Manage service associations in the Amazon VPC Lattice User Guide. You can't use this operation if the service and service network are already associated or if there is a disassociation or deletion in progress. If the association fails, you can retry the operation by deleting the association and recreating it. You cannot associate a service and service network that are shared with a caller. The caller must own either the service or the service network. As a result of this operation, the association is created in the service network account and the association owner account",
       options: [
         {
           name: "--client-token",
@@ -402,7 +651,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--service-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the service",
+          description: "The ID or ARN of the service",
           args: {
             name: "string",
           },
@@ -410,7 +659,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--service-network-identifier",
           description:
-            "The ID or Amazon Resource Name (ARN) of the service network. You must use the ARN if the resources specified in the operation are in different accounts",
+            "The ID or ARN of the service network. You must use an ARN if the resources are in different accounts",
           args: {
             name: "string",
           },
@@ -465,7 +714,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--service-network-identifier",
           description:
-            "The ID or Amazon Resource Name (ARN) of the service network. You must use the ARN when the resources specified in the operation are in different accounts",
+            "The ID or ARN of the service network. You must use an ARN if the resources are in different accounts",
           args: {
             name: "string",
           },
@@ -570,8 +819,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--access-log-subscription-identifier",
-          description:
-            "The ID or Amazon Resource Name (ARN) of the access log subscription",
+          description: "The ID or ARN of the access log subscription",
           args: {
             name: "string",
           },
@@ -602,7 +850,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--resource-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the resource",
+          description: "The ID or ARN of the resource",
           args: {
             name: "string",
           },
@@ -632,14 +880,105 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--listener-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the listener",
+          description: "The ID or ARN of the listener",
           args: {
             name: "string",
           },
         },
         {
           name: "--service-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the service",
+          description: "The ID or ARN of the service",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-resource-configuration",
+      description: "Deletes the specified resource configuration",
+      options: [
+        {
+          name: "--resource-configuration-identifier",
+          description: "The ID or ARN of the resource configuration",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-resource-endpoint-association",
+      description:
+        "Disassociates the resource configuration from the resource VPC endpoint",
+      options: [
+        {
+          name: "--resource-endpoint-association-identifier",
+          description: "The ID or ARN of the association",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-resource-gateway",
+      description: "Deletes the specified resource gateway",
+      options: [
+        {
+          name: "--resource-gateway-identifier",
+          description: "The ID or ARN of the resource gateway",
           args: {
             name: "string",
           },
@@ -700,21 +1039,21 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--listener-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the listener",
+          description: "The ID or ARN of the listener",
           args: {
             name: "string",
           },
         },
         {
           name: "--rule-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the rule",
+          description: "The ID or ARN of the rule",
           args: {
             name: "string",
           },
         },
         {
           name: "--service-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the service",
+          description: "The ID or ARN of the service",
           args: {
             name: "string",
           },
@@ -745,7 +1084,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--service-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the service",
+          description: "The ID or ARN of the service",
           args: {
             name: "string",
           },
@@ -776,8 +1115,38 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--service-network-identifier",
+          description: "The ID or ARN of the service network",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
           description:
-            "The Amazon Resource Name (ARN) or ID of the service network",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-service-network-resource-association",
+      description:
+        "Deletes the association between a service network and a resource configuration",
+      options: [
+        {
+          name: "--service-network-resource-association-identifier",
+          description: "The ID of the association",
           args: {
             name: "string",
           },
@@ -804,12 +1173,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-service-network-service-association",
       description:
-        "Deletes the association between a specified service and the specific service network. This operation fails if an association is still in progress",
+        "Deletes the association between a service and a service network. This operation fails if an association is still in progress",
       options: [
         {
           name: "--service-network-service-association-identifier",
-          description:
-            "The ID or Amazon Resource Name (ARN) of the association",
+          description: "The ID or ARN of the association",
           args: {
             name: "string",
           },
@@ -840,8 +1208,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--service-network-vpc-association-identifier",
-          description:
-            "The ID or Amazon Resource Name (ARN) of the association",
+          description: "The ID or ARN of the association",
           args: {
             name: "string",
           },
@@ -872,8 +1239,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--target-group-identifier",
-          description:
-            "The ID or Amazon Resource Name (ARN) of the target group",
+          description: "The ID or ARN of the target group",
           args: {
             name: "string",
           },
@@ -904,8 +1270,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--target-group-identifier",
-          description:
-            "The ID or Amazon Resource Name (ARN) of the target group",
+          description: "The ID or ARN of the target group",
           args: {
             name: "string",
           },
@@ -943,8 +1308,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--access-log-subscription-identifier",
-          description:
-            "The ID or Amazon Resource Name (ARN) of the access log subscription",
+          description: "The ID or ARN of the access log subscription",
           args: {
             name: "string",
           },
@@ -975,8 +1339,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--resource-identifier",
-          description:
-            "The ID or Amazon Resource Name (ARN) of the service network or service",
+          description: "The ID or ARN of the service network or service",
           args: {
             name: "string",
           },
@@ -1007,14 +1370,75 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--listener-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the listener",
+          description: "The ID or ARN of the listener",
           args: {
             name: "string",
           },
         },
         {
           name: "--service-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the service",
+          description: "The ID or ARN of the service",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-resource-configuration",
+      description:
+        "Retrieves information about the specified resource configuration",
+      options: [
+        {
+          name: "--resource-configuration-identifier",
+          description: "The ID of the resource configuration",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-resource-gateway",
+      description: "Retrieves information about the specified resource gateway",
+      options: [
+        {
+          name: "--resource-gateway-identifier",
+          description: "The ID of the resource gateway",
           args: {
             name: "string",
           },
@@ -1041,7 +1465,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-resource-policy",
       description:
-        "Retrieves information about the resource policy. The resource policy is an IAM policy created on behalf of the resource owner when they share a resource",
+        "Retrieves information about the specified resource policy. The resource policy is an IAM policy created on behalf of the resource owner when they share a resource",
       options: [
         {
           name: "--resource-arn",
@@ -1073,26 +1497,25 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-rule",
       description:
-        "Retrieves information about listener rules. You can also retrieve information about the default listener rule. For more information, see Listener rules in the Amazon VPC Lattice User Guide",
+        "Retrieves information about the specified listener rules. You can also retrieve information about the default listener rule. For more information, see Listener rules in the Amazon VPC Lattice User Guide",
       options: [
         {
           name: "--listener-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the listener",
+          description: "The ID or ARN of the listener",
           args: {
             name: "string",
           },
         },
         {
           name: "--rule-identifier",
-          description:
-            "The ID or Amazon Resource Name (ARN) of the listener rule",
+          description: "The ID or ARN of the listener rule",
           args: {
             name: "string",
           },
         },
         {
           name: "--service-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the service",
+          description: "The ID or ARN of the service",
           args: {
             name: "string",
           },
@@ -1122,7 +1545,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--service-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the service",
+          description: "The ID or ARN of the service",
           args: {
             name: "string",
           },
@@ -1152,8 +1575,38 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--service-network-identifier",
+          description: "The ID or ARN of the service network",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
           description:
-            "The ID or Amazon Resource Name (ARN) of the service network",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-service-network-resource-association",
+      description:
+        "Retrieves information about the specified association between a service network and a resource configuration",
+      options: [
+        {
+          name: "--service-network-resource-association-identifier",
+          description: "The ID of the association",
           args: {
             name: "string",
           },
@@ -1184,8 +1637,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--service-network-service-association-identifier",
-          description:
-            "The ID or Amazon Resource Name (ARN) of the association",
+          description: "The ID or ARN of the association",
           args: {
             name: "string",
           },
@@ -1212,12 +1664,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-service-network-vpc-association",
       description:
-        "Retrieves information about the association between a service network and a VPC",
+        "Retrieves information about the specified association between a service network and a VPC",
       options: [
         {
           name: "--service-network-vpc-association-identifier",
-          description:
-            "The ID or Amazon Resource Name (ARN) of the association",
+          description: "The ID or ARN of the association",
           args: {
             name: "string",
           },
@@ -1247,8 +1698,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--target-group-identifier",
-          description:
-            "The ID or Amazon Resource Name (ARN) of the target group",
+          description: "The ID or ARN of the target group",
           args: {
             name: "string",
           },
@@ -1275,7 +1725,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-access-log-subscriptions",
       description:
-        "Lists all access log subscriptions for the specified service network or service",
+        "Lists the access log subscriptions for the specified service network or service",
       options: [
         {
           name: "--max-results",
@@ -1293,8 +1743,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--resource-identifier",
-          description:
-            "The ID or Amazon Resource Name (ARN) of the service network or service",
+          description: "The ID or ARN of the service network or service",
           args: {
             name: "string",
           },
@@ -1362,7 +1811,237 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--service-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the service",
+          description: "The ID or ARN of the service",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-resource-configurations",
+      description:
+        "Lists the resource configurations owned by or shared with this account",
+      options: [
+        {
+          name: "--max-results",
+          description: "The maximum page size",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description: "A pagination token for the next page of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--resource-configuration-group-identifier",
+          description: "The ID of the group resource configuration",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--resource-gateway-identifier",
+          description:
+            "The ID of the resource gateway for the resource configuration",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-resource-endpoint-associations",
+      description: "Lists the associations for the specified VPC endpoint",
+      options: [
+        {
+          name: "--max-results",
+          description: "The maximum page size",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description: "A pagination token for the next page of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--resource-configuration-identifier",
+          description:
+            "The ID for the resource configuration associated with the VPC endpoint",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--resource-endpoint-association-identifier",
+          description: "The ID of the association",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--vpc-endpoint-id",
+          description: "The ID of the VPC endpoint in the association",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--vpc-endpoint-owner",
+          description: "The owner of the VPC endpoint in the association",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-resource-gateways",
+      description:
+        "Lists the resource gateways that you own or that were shared with you",
+      options: [
+        {
+          name: "--max-results",
+          description: "The maximum page size",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If there are additional results, a pagination token for the next page of results",
           args: {
             name: "string",
           },
@@ -1412,11 +2091,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-rules",
-      description: "Lists the rules for the listener",
+      description: "Lists the rules for the specified listener",
       options: [
         {
           name: "--listener-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the listener",
+          description: "The ID or ARN of the listener",
           args: {
             name: "string",
           },
@@ -1437,7 +2116,84 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--service-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the service",
+          description: "The ID or ARN of the service",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-service-network-resource-associations",
+      description:
+        "Lists the associations between a service network and a resource configuration",
+      options: [
+        {
+          name: "--max-results",
+          description: "The maximum page size",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If there are additional results, a pagination token for the next page of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--resource-configuration-identifier",
+          description: "The ID of the resource configurationk",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--service-network-identifier",
+          description: "The ID of the service network",
           args: {
             name: "string",
           },
@@ -1488,7 +2244,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-service-network-service-associations",
       description:
-        "Lists the associations between the service network and the service. You can filter the list either by service or service network. You must provide either the service network identifier or the service identifier. Every association in Amazon VPC Lattice is given a unique Amazon Resource Name (ARN), such as when a service network is associated with a VPC or when a service is associated with a service network. If the association is for a resource that is shared with another account, the association includes the local account ID as the prefix in the ARN for each account the resource is shared with",
+        "Lists the associations between a service network and a service. You can filter the list either by service or service network. You must provide either the service network identifier or the service identifier. Every association in Amazon VPC Lattice has a unique Amazon Resource Name (ARN), such as when a service network is associated with a VPC or when a service is associated with a service network. If the association is for a resource is shared with another account, the association includes the local account ID as the prefix in the ARN",
       options: [
         {
           name: "--max-results",
@@ -1506,15 +2262,14 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--service-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the service",
+          description: "The ID or ARN of the service",
           args: {
             name: "string",
           },
         },
         {
           name: "--service-network-identifier",
-          description:
-            "The ID or Amazon Resource Name (ARN) of the service network",
+          description: "The ID or ARN of the service network",
           args: {
             name: "string",
           },
@@ -1565,7 +2320,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-service-network-vpc-associations",
       description:
-        "Lists the service network and VPC associations. You can filter the list either by VPC or service network. You must provide either the service network identifier or the VPC identifier",
+        "Lists the associations between a service network and a VPC. You can filter the list either by VPC or service network. You must provide either the ID of the service network identifier or the ID of the VPC",
       options: [
         {
           name: "--max-results",
@@ -1583,15 +2338,85 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--service-network-identifier",
-          description:
-            "The ID or Amazon Resource Name (ARN) of the service network",
+          description: "The ID or ARN of the service network",
           args: {
             name: "string",
           },
         },
         {
           name: "--vpc-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the VPC",
+          description: "The ID or ARN of the VPC",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-service-network-vpc-endpoint-associations",
+      description:
+        "Lists the associations between a service network and a VPC endpoint",
+      options: [
+        {
+          name: "--max-results",
+          description: "The maximum page size",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "If there are additional results, a pagination token for the next page of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--service-network-identifier",
+          description:
+            "The ID of the service network associated with the VPC endpoint",
           args: {
             name: "string",
           },
@@ -1642,7 +2467,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-service-networks",
       description:
-        "Lists the service networks owned by the caller account or shared with the caller account. Also includes the account ID in the ARN to show which account owns the service network",
+        "Lists the service networks owned by or shared with this account. The account ID in the ARN shows which account owns the service network",
       options: [
         {
           name: "--max-results",
@@ -1821,7 +2646,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--vpc-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the VPC",
+          description: "The ID or ARN of the VPC",
           args: {
             name: "string",
           },
@@ -1890,8 +2715,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--target-group-identifier",
-          description:
-            "The ID or Amazon Resource Name (ARN) of the target group",
+          description: "The ID or ARN of the target group",
           args: {
             name: "string",
           },
@@ -1962,7 +2786,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-identifier",
           description:
-            "The ID or Amazon Resource Name (ARN) of the service network or service for which the policy is created",
+            "The ID or ARN of the service network or service for which the policy is created",
           args: {
             name: "string",
           },
@@ -2002,7 +2826,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-arn",
           description:
-            "The ID or Amazon Resource Name (ARN) of the service network or service for which the policy is created",
+            "The ID or ARN of the service network or service for which the policy is created",
           args: {
             name: "string",
           },
@@ -2033,8 +2857,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--target-group-identifier",
-          description:
-            "The ID or Amazon Resource Name (ARN) of the target group",
+          description: "The ID or ARN of the target group",
           args: {
             name: "string",
           },
@@ -2145,8 +2968,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--access-log-subscription-identifier",
-          description:
-            "The ID or Amazon Resource Name (ARN) of the access log subscription",
+          description: "The ID or ARN of the access log subscription",
           args: {
             name: "string",
           },
@@ -2191,14 +3013,14 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--listener-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the listener",
+          description: "The ID or ARN of the listener",
           args: {
             name: "string",
           },
         },
         {
           name: "--service-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the service",
+          description: "The ID or ARN of the service",
           args: {
             name: "string",
           },
@@ -2223,9 +3045,102 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "update-resource-configuration",
+      description: "Updates the specified resource configuration",
+      options: [
+        {
+          name: "--allow-association-to-shareable-service-network",
+          description:
+            "Indicates whether to add the resource configuration to service networks that are shared with other accounts",
+        },
+        {
+          name: "--no-allow-association-to-shareable-service-network",
+          description:
+            "Indicates whether to add the resource configuration to service networks that are shared with other accounts",
+        },
+        {
+          name: "--port-ranges",
+          description:
+            "The TCP port ranges that a consumer can use to access a resource configuration. You can separate port ranges with a comma. Example: 1-65535 or 1,2,22-30",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--resource-configuration-definition",
+          description: "The resource configuration",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--resource-configuration-identifier",
+          description: "The ID of the resource configuration",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-resource-gateway",
+      description: "Updates the specified resource gateway",
+      options: [
+        {
+          name: "--resource-gateway-identifier",
+          description: "The ID or ARN of the resource gateway",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--security-group-ids",
+          description:
+            "The IDs of the security groups associated with the resource gateway",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "update-rule",
       description:
-        "Updates a rule for the listener. You can't modify a default listener rule. To modify a default listener rule, use UpdateListener",
+        "Updates a specified rule for the listener. You can't modify a default listener rule. To modify a default listener rule, use UpdateListener",
       options: [
         {
           name: "--action",
@@ -2237,7 +3152,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--listener-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the listener",
+          description: "The ID or ARN of the listener",
           args: {
             name: "string",
           },
@@ -2259,14 +3174,14 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--rule-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the rule",
+          description: "The ID or ARN of the rule",
           args: {
             name: "string",
           },
         },
         {
           name: "--service-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the service",
+          description: "The ID or ARN of the service",
           args: {
             name: "string",
           },
@@ -2311,7 +3226,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--service-identifier",
-          description: "The ID or Amazon Resource Name (ARN) of the service",
+          description: "The ID or ARN of the service",
           args: {
             name: "string",
           },
@@ -2349,8 +3264,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--service-network-identifier",
-          description:
-            "The ID or Amazon Resource Name (ARN) of the service network",
+          description: "The ID or ARN of the service network",
           args: {
             name: "string",
           },
@@ -2377,7 +3291,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-service-network-vpc-association",
       description:
-        "Updates the service network and VPC association. If you add a security group to the service network and VPC association, the association must continue to always have at least one security group. You can add or edit security groups at any time. However, to remove all security groups, you must first delete the association and recreate it without security groups",
+        "Updates the service network and VPC association. If you add a security group to the service network and VPC association, the association must continue to have at least one security group. You can add or edit security groups at any time. However, to remove all security groups, you must first delete the association and then recreate it without security groups",
       options: [
         {
           name: "--security-group-ids",
@@ -2388,8 +3302,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--service-network-vpc-association-identifier",
-          description:
-            "The ID or Amazon Resource Name (ARN) of the association",
+          description: "The ID or ARN of the association",
           args: {
             name: "string",
           },
@@ -2426,8 +3339,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--target-group-identifier",
-          description:
-            "The ID or Amazon Resource Name (ARN) of the target group",
+          description: "The ID or ARN of the target group",
           args: {
             name: "string",
           },

@@ -95,6 +95,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--burn-rate-configurations",
+          description:
+            "Use this array to create burn rates for this SLO. Each burn rate is a metric that indicates how fast the service is consuming the error budget, relative to the attainment goal of the SLO",
+          args: {
+            name: "list",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -822,6 +830,14 @@ const completionSpec: Fig.Spec = {
             "A structure that contains the attributes that determine the goal of the SLO. This includes the time period for evaluation and the attainment threshold",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--burn-rate-configurations",
+          description:
+            "Use this array to create burn rates for this SLO. Each burn rate is a metric that indicates how fast the service is consuming the error budget, relative to the attainment goal of the SLO",
+          args: {
+            name: "list",
           },
         },
         {

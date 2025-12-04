@@ -40,7 +40,7 @@ const completionSpec: Fig.Spec = {
           // Bash's `kill` builtin has different output to /bin/kill
           script: ["env", "kill", "-l"],
           postProcess: (out) =>
-            out.match(/\w+/g).map((name) => ({
+            out.match(/\w+/g)?.map((name) => ({
               name,
               description: `Send ${name} instead of TERM`,
               icon: "fig://icon?type=string",

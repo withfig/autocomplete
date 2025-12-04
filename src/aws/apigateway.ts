@@ -204,6 +204,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--domain-name-id",
+          description:
+            "The identifier for the domain name resource. Supported only for private custom domain names",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--base-path",
           description:
             "The base path name that callers of the API must provide as part of the URL after the domain name. This value must be unique for all of the mappings across a single API. Specify '(none)' if you do not want callers to specify a base path name after the domain name",
@@ -455,7 +463,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--certificate-name",
           description:
-            "The user-friendly name of the certificate that will be used by edge-optimized endpoint for this domain name",
+            "The user-friendly name of the certificate that will be used by edge-optimized endpoint or private endpoint for this domain name",
           args: {
             name: "string",
           },
@@ -463,7 +471,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--certificate-body",
           description:
-            "[Deprecated] The body of the server certificate that will be used by edge-optimized endpoint for this domain name provided by your certificate authority",
+            "[Deprecated] The body of the server certificate that will be used by edge-optimized endpoint or private endpoint for this domain name provided by your certificate authority",
           args: {
             name: "string",
           },
@@ -487,7 +495,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--certificate-arn",
           description:
-            "The reference to an Amazon Web Services-managed certificate that will be used by edge-optimized endpoint for this domain name. Certificate Manager is the only supported source",
+            "The reference to an Amazon Web Services-managed certificate that will be used by edge-optimized endpoint or private endpoint for this domain name. Certificate Manager is the only supported source",
           args: {
             name: "string",
           },
@@ -546,6 +554,68 @@ const completionSpec: Fig.Spec = {
             "The ARN of the public certificate issued by ACM to validate ownership of your custom domain. Only required when configuring mutual TLS and using an ACM imported or private CA certificate ARN as the regionalCertificateArn",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--policy",
+          description:
+            "A stringified JSON policy document that applies to the execute-api service for this DomainName regardless of the caller and Method configuration. Supported only for private custom domain names",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "create-domain-name-access-association",
+      description:
+        "Creates a domain name access association resource between an access association source and a private custom domain name",
+      options: [
+        {
+          name: "--domain-name-arn",
+          description: "The ARN of the domain name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--access-association-source-type",
+          description: "The type of the domain name access association source",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--access-association-source",
+          description:
+            "The identifier of the domain name access association source. For a VPCE, the value is the VPC endpoint ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "The key-value map of strings. The valid character set is [a-zA-Z+-=._:/]. The tag key can be up to 128 characters and must not start with aws:. The tag value can be up to 256 characters",
+          args: {
+            name: "map",
           },
         },
         {
@@ -1196,6 +1266,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--domain-name-id",
+          description:
+            "The identifier for the domain name resource. Supported only for private custom domain names",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--base-path",
           description:
             "The base path name of the BasePathMapping resource to delete. To specify an empty base path, set this parameter to '(none)'",
@@ -1373,6 +1451,45 @@ const completionSpec: Fig.Spec = {
         {
           name: "--domain-name",
           description: "The name of the DomainName resource to be deleted",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--domain-name-id",
+          description:
+            "The identifier for the domain name resource. Supported only for private custom domain names",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-domain-name-access-association",
+      description:
+        "Deletes the DomainNameAccessAssociation resource. Only the AWS account that created the DomainNameAccessAssociation resource can delete it. To stop an access association source in another AWS account from accessing your private custom domain name, use the RejectDomainNameAccessAssociation operation",
+      options: [
+        {
+          name: "--domain-name-access-association-arn",
+          description: "The ARN of the domain name access association resource",
           args: {
             name: "string",
           },
@@ -2291,6 +2408,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--domain-name-id",
+          description:
+            "The identifier for the domain name resource. Supported only for private custom domain names",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--base-path",
           description:
             "The base path name that callers of the API must provide as part of the URL after the domain name. This value must be unique for all of the mappings across a single API. Specify '(none)' if you do not want callers to specify any base path name after the domain name",
@@ -2324,6 +2449,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--domain-name",
           description: "The domain name of a BasePathMapping resource",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--domain-name-id",
+          description:
+            "The identifier for the domain name resource. Supported only for private custom domain names",
           args: {
             name: "string",
           },
@@ -2858,6 +2991,62 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--domain-name-id",
+          description:
+            "The identifier for the domain name resource. Supported only for private custom domain names",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-domain-name-access-associations",
+      description:
+        "Represents a collection on DomainNameAccessAssociations resources",
+      options: [
+        {
+          name: "--position",
+          description:
+            "The current pagination position in the paged result set",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--limit",
+          description:
+            "The maximum number of returned results per page. The default value is 25 and the maximum value is 500",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--resource-owner",
+          description:
+            "The owner of the domain name access association. Use SELF to only list the domain name access associations owned by your own account. Use OTHER_ACCOUNTS to list the domain name access associations with your private custom domain names that are owned by other AWS accounts",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -2894,6 +3083,13 @@ const completionSpec: Fig.Spec = {
             "The maximum number of returned results per page. The default value is 25 and the maximum value is 500",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--resource-owner",
+          description: "The owner of the domain name access association",
+          args: {
+            name: "string",
           },
         },
         {
@@ -5137,6 +5333,44 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "reject-domain-name-access-association",
+      description:
+        "Rejects a domain name access association with a private custom domain name. To reject a domain name access association with an access association source in another AWS account, use this operation. To remove a domain name access association with an access association source in your own account, use the DeleteDomainNameAccessAssociation operation",
+      options: [
+        {
+          name: "--domain-name-access-association-arn",
+          description: "The ARN of the domain name access association resource",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--domain-name-arn",
+          description: "The ARN of the domain name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "tag-resource",
       description: "Adds or updates a tag on a given resource",
       options: [
@@ -5517,6 +5751,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--domain-name-id",
+          description:
+            "The identifier for the domain name resource. Supported only for private custom domain names",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--base-path",
           description:
             "The base path of the BasePathMapping resource to change. To specify an empty base path, set this parameter to '(none)'",
@@ -5734,6 +5976,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--domain-name",
           description: "The name of the DomainName resource to be changed",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--domain-name-id",
+          description:
+            "The identifier for the domain name resource. Supported only for private custom domain names",
           args: {
             name: "string",
           },

@@ -620,6 +620,68 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-direct-connect-gateway-attachment",
+      description:
+        "Creates an Amazon Web Services Direct Connect gateway attachment",
+      options: [
+        {
+          name: "--core-network-id",
+          description:
+            "The ID of the Cloud WAN core network that the Direct Connect gateway attachment should be attached to",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--direct-connect-gateway-arn",
+          description: "The ARN of the Direct Connect gateway attachment",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--edge-locations",
+          description:
+            "One or more core network edge locations that the Direct Connect gateway attachment is associated with",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "The key value tags to apply to the Direct Connect gateway attachment during creation",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--client-token",
+          description: "Client token",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-global-network",
       description: "Creates a new, empty global network",
       options: [
@@ -2279,6 +2341,38 @@ const completionSpec: Fig.Spec = {
             "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-direct-connect-gateway-attachment",
+      description:
+        "Returns information about a specific Amazon Web Services Direct Connect gateway attachment",
+      options: [
+        {
+          name: "--attachment-id",
+          description:
+            "The ID of the Direct Connect gateway attachment that you want to see details about",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
           },
         },
         {
@@ -4399,6 +4493,46 @@ const completionSpec: Fig.Spec = {
           description: "The ID of the site",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-direct-connect-gateway-attachment",
+      description:
+        "Updates the edge locations associated with an Amazon Web Services Direct Connect gateway attachment",
+      options: [
+        {
+          name: "--attachment-id",
+          description:
+            "The ID of the Direct Connect gateway attachment for the updated edge locations",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--edge-locations",
+          description:
+            "One or more edge locations to update for the Direct Connect gateway attachment. The updated array of edge locations overwrites the previous array of locations. EdgeLocations is only used for Direct Connect gateway attachments. Do",
+          args: {
+            name: "list",
           },
         },
         {

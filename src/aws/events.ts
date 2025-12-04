@@ -199,7 +199,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-connection",
       description:
-        "Creates a connection. A connection defines the authorization type and credentials to use for authorization with an API destination HTTP endpoint",
+        "Creates a connection. A connection defines the authorization type and credentials to use for authorization with an API destination HTTP endpoint. For more information, see Connections for endpoint targets in the Amazon EventBridge User Guide",
       options: [
         {
           name: "--name",
@@ -226,7 +226,15 @@ const completionSpec: Fig.Spec = {
         {
           name: "--auth-parameters",
           description:
-            "A CreateConnectionAuthRequestParameters object that contains the authorization parameters to use to authorize with the endpoint",
+            "The authorization parameters to use to authorize with the endpoint.  You must include only authorization parameters for the AuthorizationType you specify",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--invocation-connectivity-parameters",
+          description:
+            "For connections to private resource endpoints, the parameters to use for invoking the resource endpoint. For more information, see Connecting to private resources in the  Amazon EventBridge User Guide",
           args: {
             name: "structure",
           },
@@ -359,7 +367,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--dead-letter-config",
           description:
-            "Configuration details of the Amazon SQS queue for EventBridge to use as a dead-letter queue (DLQ). For more information, see Event retry policy and using dead-letter queues in the EventBridge User Guide",
+            "Configuration details of the Amazon SQS queue for EventBridge to use as a dead-letter queue (DLQ). For more information, see Using dead-letter queues to process undelivered events in the EventBridge User Guide",
           args: {
             name: "structure",
           },
@@ -1131,7 +1139,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token returned by a previous call to retrieve the next set of results",
+            "The token returned by a previous call, which you can use to retrieve the next set of results. The value of nextToken is a unique pagination token for each page. To retrieve the next page of results, make the call again using the returned token. Keep all other arguments unchanged.  Using an expired pagination token results in an HTTP 400 InvalidToken error",
           args: {
             name: "string",
           },
@@ -1194,7 +1202,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token returned by a previous call to retrieve the next set of results",
+            "The token returned by a previous call, which you can use to retrieve the next set of results. The value of nextToken is a unique pagination token for each page. To retrieve the next page of results, make the call again using the returned token. Keep all other arguments unchanged.  Using an expired pagination token results in an HTTP 400 InvalidToken error",
           args: {
             name: "string",
           },
@@ -1247,7 +1255,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token returned by a previous call to retrieve the next set of results",
+            "The token returned by a previous call, which you can use to retrieve the next set of results. The value of nextToken is a unique pagination token for each page. To retrieve the next page of results, make the call again using the returned token. Keep all other arguments unchanged.  Using an expired pagination token results in an HTTP 400 InvalidToken error",
           args: {
             name: "string",
           },
@@ -1302,7 +1310,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 24 hours. Using an expired pagination token will return an HTTP 400 InvalidToken error",
+            "The token returned by a previous call, which you can use to retrieve the next set of results. The value of nextToken is a unique pagination token for each page. To retrieve the next page of results, make the call again using the returned token. Keep all other arguments unchanged.  Using an expired pagination token results in an HTTP 400 InvalidToken error",
           args: {
             name: "string",
           },
@@ -1349,7 +1357,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token returned by a previous call to retrieve the next set of results",
+            "The token returned by a previous call, which you can use to retrieve the next set of results. The value of nextToken is a unique pagination token for each page. To retrieve the next page of results, make the call again using the returned token. Keep all other arguments unchanged.  Using an expired pagination token results in an HTTP 400 InvalidToken error",
           args: {
             name: "string",
           },
@@ -1397,7 +1405,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token returned by a previous call to retrieve the next set of results",
+            "The token returned by a previous call, which you can use to retrieve the next set of results. The value of nextToken is a unique pagination token for each page. To retrieve the next page of results, make the call again using the returned token. Keep all other arguments unchanged.  Using an expired pagination token results in an HTTP 400 InvalidToken error",
           args: {
             name: "string",
           },
@@ -1445,7 +1453,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token returned by a previous call to this operation. Specifying this retrieves the next set of results",
+            "The token returned by a previous call, which you can use to retrieve the next set of results. The value of nextToken is a unique pagination token for each page. To retrieve the next page of results, make the call again using the returned token. Keep all other arguments unchanged.  Using an expired pagination token results in an HTTP 400 InvalidToken error",
           args: {
             name: "string",
           },
@@ -1493,7 +1501,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token returned by a previous call to this operation. Specifying this retrieves the next set of results",
+            "The token returned by a previous call, which you can use to retrieve the next set of results. The value of nextToken is a unique pagination token for each page. To retrieve the next page of results, make the call again using the returned token. Keep all other arguments unchanged.  Using an expired pagination token results in an HTTP 400 InvalidToken error",
           args: {
             name: "string",
           },
@@ -1556,7 +1564,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token returned by a previous call to retrieve the next set of results",
+            "The token returned by a previous call, which you can use to retrieve the next set of results. The value of nextToken is a unique pagination token for each page. To retrieve the next page of results, make the call again using the returned token. Keep all other arguments unchanged.  Using an expired pagination token results in an HTTP 400 InvalidToken error",
           args: {
             name: "string",
           },
@@ -1610,7 +1618,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token returned by a previous call to retrieve the next set of results",
+            "The token returned by a previous call, which you can use to retrieve the next set of results. The value of nextToken is a unique pagination token for each page. To retrieve the next page of results, make the call again using the returned token. Keep all other arguments unchanged.  Using an expired pagination token results in an HTTP 400 InvalidToken error",
           args: {
             name: "string",
           },
@@ -1688,7 +1696,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token returned by a previous call to retrieve the next set of results",
+            "The token returned by a previous call, which you can use to retrieve the next set of results. The value of nextToken is a unique pagination token for each page. To retrieve the next page of results, make the call again using the returned token. Keep all other arguments unchanged.  Using an expired pagination token results in an HTTP 400 InvalidToken error",
           args: {
             name: "string",
           },
@@ -1798,7 +1806,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token returned by a previous call to retrieve the next set of results",
+            "The token returned by a previous call, which you can use to retrieve the next set of results. The value of nextToken is a unique pagination token for each page. To retrieve the next page of results, make the call again using the returned token. Keep all other arguments unchanged.  Using an expired pagination token results in an HTTP 400 InvalidToken error",
           args: {
             name: "string",
           },
@@ -1856,7 +1864,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-events",
       description:
-        "Sends custom events to Amazon EventBridge so that they can be matched to rules. The maximum size for a PutEvents event entry is 256 KB. Entry size is calculated including the event and any necessary characters and keys of the JSON representation of the event. To learn more, see Calculating PutEvents event entry size in the  Amazon EventBridge User Guide   PutEvents accepts the data in JSON format. For the JSON number (integer) data type, the constraints are: a minimum value of -9,223,372,036,854,775,808 and a maximum value of 9,223,372,036,854,775,807.  PutEvents will only process nested JSON up to 1100 levels deep",
+        "Sends custom events to Amazon EventBridge so that they can be matched to rules. The maximum size for a PutEvents event entry is 256 KB. Entry size is calculated including the event and any necessary characters and keys of the JSON representation of the event. To learn more, see Calculating PutEvents event entry size in the  Amazon EventBridge User Guide   PutEvents accepts the data in JSON format. For the JSON number (integer) data type, the constraints are: a minimum value of -9,223,372,036,854,775,808 and a maximum value of 9,223,372,036,854,775,807.  PutEvents will only process nested JSON up to 1000 levels deep",
       options: [
         {
           name: "--entries",
@@ -1927,7 +1935,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-permission",
       description:
-        "Running PutPermission permits the specified Amazon Web Services account or Amazon Web Services organization to put events to the specified event bus. Amazon EventBridge (CloudWatch Events) rules in your account are triggered by these events arriving to an event bus in your account.  For another account to send events to your account, that external account must have an EventBridge rule with your account's event bus as a target. To enable multiple Amazon Web Services accounts to put events to your event bus, run PutPermission once for each of these accounts. Or, if all the accounts are members of the same Amazon Web Services organization, you can run PutPermission once specifying Principal as \"*\" and specifying the Amazon Web Services organization ID in Condition, to grant permissions to all accounts in that organization. If you grant permissions using an organization, then accounts in that organization must specify a RoleArn with proper permissions when they use PutTarget to add your account's event bus as a target. For more information, see Sending and Receiving Events Between Amazon Web Services Accounts in the Amazon EventBridge User Guide. The permission policy on the event bus cannot exceed 10 KB in size",
+        "Running PutPermission permits the specified Amazon Web Services account or Amazon Web Services organization to put events to the specified event bus. Amazon EventBridge rules in your account are triggered by these events arriving to an event bus in your account.  For another account to send events to your account, that external account must have an EventBridge rule with your account's event bus as a target. To enable multiple Amazon Web Services accounts to put events to your event bus, run PutPermission once for each of these accounts. Or, if all the accounts are members of the same Amazon Web Services organization, you can run PutPermission once specifying Principal as \"*\" and specifying the Amazon Web Services organization ID in Condition, to grant permissions to all accounts in that organization. If you grant permissions using an organization, then accounts in that organization must specify a RoleArn with proper permissions when they use PutTarget to add your account's event bus as a target. For more information, see Sending and Receiving Events Between Amazon Web Services Accounts in the Amazon EventBridge User Guide. The permission policy on the event bus cannot exceed 10 KB in size",
       options: [
         {
           name: "--event-bus-name",
@@ -1999,7 +2007,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-rule",
       description:
-        "Creates or updates the specified rule. Rules are enabled by default, or based on value of the state. You can disable a rule using DisableRule. A single rule watches for events from a single event bus. Events generated by Amazon Web Services services go to your account's default event bus. Events generated by SaaS partner services or applications go to the matching partner event bus. If you have custom applications or services, you can specify whether their events go to your default event bus or a custom event bus that you have created. For more information, see CreateEventBus. If you are updating an existing rule, the rule is replaced with what you specify in this PutRule command. If you omit arguments in PutRule, the old values for those arguments are not kept. Instead, they are replaced with null values. When you create or update a rule, incoming events might not immediately start matching to new or updated rules. Allow a short period of time for changes to take effect. A rule must contain at least an EventPattern or ScheduleExpression. Rules with EventPatterns are triggered when a matching event is observed. Rules with ScheduleExpressions self-trigger based on the given schedule. A rule can have both an EventPattern and a ScheduleExpression, in which case the rule triggers on matching events as well as on a schedule. When you initially create a rule, you can optionally assign one or more tags to the rule. Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only rules with certain tag values. To use the PutRule operation and assign tags, you must have both the events:PutRule and events:TagResource permissions. If you are updating an existing rule, any tags you specify in the PutRule operation are ignored. To update the tags of an existing rule, use TagResource and UntagResource. Most services in Amazon Web Services treat : or / as the same character in Amazon Resource Names (ARNs). However, EventBridge uses an exact match in event patterns and rules. Be sure to use the correct ARN characters when creating event patterns so that they match the ARN syntax in the event you want to match. In EventBridge, it is possible to create rules that lead to infinite loops, where a rule is fired repeatedly. For example, a rule might detect that ACLs have changed on an S3 bucket, and trigger software to change them to the desired state. If the rule is not written carefully, the subsequent change to the ACLs fires the rule again, creating an infinite loop. To prevent this, write the rules so that the triggered actions do not re-fire the same rule. For example, your rule could fire only if ACLs are found to be in a bad state, instead of after any change.  An infinite loop can quickly cause higher than expected charges. We recommend that you use budgeting, which alerts you when charges exceed your specified limit. For more information, see Managing Your Costs with Budgets",
+        "Creates or updates the specified rule. Rules are enabled by default, or based on value of the state. You can disable a rule using DisableRule. A single rule watches for events from a single event bus. Events generated by Amazon Web Services services go to your account's default event bus. Events generated by SaaS partner services or applications go to the matching partner event bus. If you have custom applications or services, you can specify whether their events go to your default event bus or a custom event bus that you have created. For more information, see CreateEventBus. If you are updating an existing rule, the rule is replaced with what you specify in this PutRule command. If you omit arguments in PutRule, the old values for those arguments are not kept. Instead, they are replaced with null values. When you create or update a rule, incoming events might not immediately start matching to new or updated rules. Allow a short period of time for changes to take effect. A rule must contain at least an EventPattern or ScheduleExpression. Rules with EventPatterns are triggered when a matching event is observed. Rules with ScheduleExpressions self-trigger based on the given schedule. A rule can have both an EventPattern and a ScheduleExpression, in which case the rule triggers on matching events as well as on a schedule. When you initially create a rule, you can optionally assign one or more tags to the rule. Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only rules with certain tag values. To use the PutRule operation and assign tags, you must have both the events:PutRule and events:TagResource permissions. If you are updating an existing rule, any tags you specify in the PutRule operation are ignored. To update the tags of an existing rule, use TagResource and UntagResource. Most services in Amazon Web Services treat : or / as the same character in Amazon Resource Names (ARNs). However, EventBridge uses an exact match in event patterns and rules. Be sure to use the correct ARN characters when creating event patterns so that they match the ARN syntax in the event you want to match. In EventBridge, it is possible to create rules that lead to infinite loops, where a rule is fired repeatedly. For example, a rule might detect that ACLs have changed on an S3 bucket, and trigger software to change them to the desired state. If the rule is not written carefully, the subsequent change to the ACLs fires the rule again, creating an infinite loop. To prevent this, write the rules so that the triggered actions do not re-fire the same rule. For example, your rule could fire only if ACLs are found to be in a bad state, instead of after any change.  An infinite loop can quickly cause higher than expected charges. We recommend that you use budgeting, which alerts you when charges exceed your specified limit. For more information, see Managing Your Costs with Budgets. To create a rule that filters for management events from Amazon Web Services services, see Receiving read-only management events from Amazon Web Services services in the EventBridge User Guide",
       options: [
         {
           name: "--name",
@@ -2383,7 +2391,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "untag-resource",
       description:
-        "Removes one or more tags from the specified EventBridge resource. In Amazon EventBridge (CloudWatch Events), rules and event buses can be tagged",
+        "Removes one or more tags from the specified EventBridge resource. In Amazon EventBridge, rules and event buses can be tagged",
       options: [
         {
           name: "--resource-arn",
@@ -2571,6 +2579,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--invocation-connectivity-parameters",
+          description:
+            "For connections to private resource endpoints, the parameters to use for invoking the resource endpoint. For more information, see Connecting to private resources in the  Amazon EventBridge User Guide",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--cli-input-json",
           description:
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
@@ -2687,7 +2703,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--dead-letter-config",
           description:
-            "Configuration details of the Amazon SQS queue for EventBridge to use as a dead-letter queue (DLQ). For more information, see Event retry policy and using dead-letter queues in the EventBridge User Guide",
+            "Configuration details of the Amazon SQS queue for EventBridge to use as a dead-letter queue (DLQ). For more information, see Using dead-letter queues to process undelivered events in the EventBridge User Guide",
           args: {
             name: "structure",
           },

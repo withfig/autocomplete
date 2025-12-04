@@ -19,7 +19,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--entries",
           description:
-            "Indicates the list of resource grouping recommendations you want to include in your application",
+            "List of resource grouping recommendations you want to include in your application",
           args: {
             name: "list",
           },
@@ -505,14 +505,14 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--policy-description",
-          description: "The description for the policy",
+          description: "Description of the resiliency policy",
           args: {
             name: "string",
           },
         },
         {
           name: "--policy-name",
-          description: "The name of the policy",
+          description: "Name of the resiliency policy",
           args: {
             name: "string",
           },
@@ -1249,6 +1249,37 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "describe-metrics-export",
+      description:
+        "Describes the metrics of the application configuration being exported",
+      options: [
+        {
+          name: "--metrics-export-id",
+          description: "Identifier of the metrics export task",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "describe-resiliency-policy",
       description:
         "Describes a specified resiliency policy for an Resilience Hub application. The returned policy object includes creation time, data location constraints, the Amazon Resource Name (ARN) for the policy, tags, tier, and more",
@@ -1295,8 +1326,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--grouping-id",
-          description:
-            "Indicates the identifier of the grouping recommendation task",
+          description: "Identifier of the grouping recommendation task",
           args: {
             name: "string",
           },
@@ -1433,7 +1463,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-app-assessment-compliance-drifts",
       description:
-        "Indicates the list of compliance drifts that were detected while running an assessment",
+        "List of compliance drifts that were detected while running an assessment",
       options: [
         {
           name: "--assessment-arn",
@@ -1445,8 +1475,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--max-results",
-          description:
-            "Indicates the maximum number of compliance drifts requested",
+          description: "Maximum number of compliance drifts requested",
           args: {
             name: "integer",
           },
@@ -1481,7 +1510,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-app-assessment-resource-drifts",
       description:
-        "Indicates the list of resource drifts that were detected while running an assessment",
+        "List of resource drifts that were detected while running an assessment",
       options: [
         {
           name: "--assessment-arn",
@@ -1494,7 +1523,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "Indicates the maximum number of drift results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved",
+            "Maximum number of drift results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved",
           args: {
             name: "integer",
           },
@@ -2049,7 +2078,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--from-last-assessment-time",
           description:
-            "Indicates the lower limit of the range that is used to filter applications based on their last assessment times",
+            "Lower limit of the range that is used to filter applications based on their last assessment times",
           args: {
             name: "timestamp",
           },
@@ -2090,7 +2119,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--to-last-assessment-time",
           description:
-            "Indicates the upper limit of the range that is used to filter the applications based on their last assessment times",
+            "Upper limit of the range that is used to filter the applications based on their last assessment times",
           args: {
             name: "timestamp",
           },
@@ -2101,6 +2130,99 @@ const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-metrics",
+      description: "Lists the metrics that can be exported",
+      options: [
+        {
+          name: "--conditions",
+          description:
+            "Indicates the list of all the conditions that were applied on the metrics",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--data-source",
+          description: "Indicates the data source of the metrics",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--fields",
+          description: "Indicates the list of fields in the data source",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--max-results",
+          description:
+            "Maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--next-token",
+          description:
+            "Null, or the token from a previous call to get the next set of results",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--sorts",
+          description:
+            "(Optional) Indicates the order in which you want to sort the fields in the metrics. By default, the fields are sorted in the ascending order",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
           },
         },
         {
@@ -2218,7 +2340,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--policy-name",
-          description: "The name of the policy",
+          description: "Name of the resiliency policy",
           args: {
             name: "string",
           },
@@ -2638,7 +2760,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--entries",
           description:
-            "Indicates the list of resource grouping recommendations you have selected to exclude from your application",
+            "List of resource grouping recommendations you have selected to exclude from your application",
           args: {
             name: "list",
           },
@@ -2819,6 +2941,45 @@ const completionSpec: Fig.Spec = {
             "Tags assigned to the resource. A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key/value pair",
           args: {
             name: "map",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "start-metrics-export",
+      description: "Initiates the export task of metrics",
+      options: [
+        {
+          name: "--bucket-name",
+          description:
+            "(Optional) Specifies the name of the Amazon Simple Storage Service bucket where the exported metrics will be stored",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "Used for an idempotency token. A client token is a unique, case-sensitive string of up to 64 ASCII characters. You should not reuse the same client token for other API requests",
+          args: {
+            name: "string",
           },
         },
         {
@@ -3246,7 +3407,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--policy",
           description:
-            "The type of resiliency policy to be created, including the recovery time objective (RTO) and recovery point objective (RPO) in seconds",
+            "Resiliency policy to be created, including the recovery time objective (RTO) and recovery point objective (RPO) in seconds",
           args: {
             name: "map",
           },
@@ -3261,14 +3422,14 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--policy-description",
-          description: "The description for the policy",
+          description: "Description of the resiliency policy",
           args: {
             name: "string",
           },
         },
         {
           name: "--policy-name",
-          description: "The name of the policy",
+          description: "Name of the resiliency policy",
           args: {
             name: "string",
           },

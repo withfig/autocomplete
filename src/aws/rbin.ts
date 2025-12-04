@@ -6,7 +6,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-rule",
       description:
-        "Creates a Recycle Bin retention rule. For more information, see  Create Recycle Bin retention rules in the Amazon Elastic Compute Cloud User Guide",
+        "Creates a Recycle Bin retention rule. You can create two types of retention rules:    Tag-level retention rules - These retention rules use resource tags to identify the resources to protect. For each retention rule, you specify one or more tag key and value pairs. Resources (of the specified type) that have at least one of these tag key and value pairs are automatically retained in the Recycle Bin upon deletion. Use this type of retention rule to protect specific resources in your account based on their tags.    Region-level retention rules - These retention rules, by default, apply to all of the resources (of the specified type) in the Region, even if the resources are not tagged. However, you can specify exclusion tags to exclude resources that have specific tags. Use this type of retention rule to protect all resources of a specific type in a Region.   For more information, see  Create Recycle Bin retention rules in the Amazon EBS User Guide",
       options: [
         {
           name: "--retention-period",
@@ -42,7 +42,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-tags",
           description:
-            "Specifies the resource tags to use to identify resources that are to be retained by a tag-level retention rule. For tag-level retention rules, only deleted resources, of the specified resource type, that have one or more of the specified tag key and value pairs are retained. If a resource is deleted, but it does not have any of the specified tag key and value pairs, it is immediately deleted without being retained by the retention rule. You can add the same tag key and value pair to a maximum or five retention rules. To create a Region-level retention rule, omit this parameter. A Region-level retention rule does not have any resource tags specified. It retains all deleted resources of the specified resource type in the Region in which the rule is created, even if the resources are not tagged",
+            "[Tag-level retention rules only] Specifies the resource tags to use to identify resources that are to be retained by a tag-level retention rule. For tag-level retention rules, only deleted resources, of the specified resource type, that have one or more of the specified tag key and value pairs are retained. If a resource is deleted, but it does not have any of the specified tag key and value pairs, it is immediately deleted without being retained by the retention rule. You can add the same tag key and value pair to a maximum or five retention rules. To create a Region-level retention rule, omit this parameter. A Region-level retention rule does not have any resource tags specified. It retains all deleted resources of the specified resource type in the Region in which the rule is created, even if the resources are not tagged",
           args: {
             name: "list",
           },
@@ -53,6 +53,14 @@ const completionSpec: Fig.Spec = {
             "Information about the retention rule lock configuration",
           args: {
             name: "structure",
+          },
+        },
+        {
+          name: "--exclude-resource-tags",
+          description:
+            "[Region-level retention rules only] Specifies the exclusion tags to use to identify resources that are to be excluded, or ignored, by a Region-level retention rule. Resources that have any of these tags are not retained by the retention rule upon deletion. You can't specify exclusion tags for tag-level retention rules",
+          args: {
+            name: "list",
           },
         },
         {
@@ -165,7 +173,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-tags",
           description:
-            "Information about the resource tags used to identify resources that are retained by the retention rule",
+            "[Tag-level retention rules only] Information about the resource tags used to identify resources that are retained by the retention rule",
           args: {
             name: "list",
           },
@@ -176,6 +184,14 @@ const completionSpec: Fig.Spec = {
             "The lock state of the retention rules to list. Only retention rules with the specified lock state are returned",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--exclude-resource-tags",
+          description:
+            "[Region-level retention rules only] Information about the exclusion tags used to identify resources that are to be excluded, or ignored, by the retention rule",
+          args: {
+            name: "list",
           },
         },
         {
@@ -254,7 +270,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "lock-rule",
       description:
-        "Locks a retention rule. A locked retention rule can't be modified or deleted",
+        "Locks a Region-level retention rule. A locked retention rule can't be modified or deleted.  You can't lock tag-level retention rules, or Region-level retention rules that have exclusion tags",
       options: [
         {
           name: "--identifier",
@@ -435,7 +451,15 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-tags",
           description:
-            "Specifies the resource tags to use to identify resources that are to be retained by a tag-level retention rule. For tag-level retention rules, only deleted resources, of the specified resource type, that have one or more of the specified tag key and value pairs are retained. If a resource is deleted, but it does not have any of the specified tag key and value pairs, it is immediately deleted without being retained by the retention rule. You can add the same tag key and value pair to a maximum or five retention rules. To create a Region-level retention rule, omit this parameter. A Region-level retention rule does not have any resource tags specified. It retains all deleted resources of the specified resource type in the Region in which the rule is created, even if the resources are not tagged",
+            "[Tag-level retention rules only] Specifies the resource tags to use to identify resources that are to be retained by a tag-level retention rule. For tag-level retention rules, only deleted resources, of the specified resource type, that have one or more of the specified tag key and value pairs are retained. If a resource is deleted, but it does not have any of the specified tag key and value pairs, it is immediately deleted without being retained by the retention rule. You can add the same tag key and value pair to a maximum or five retention rules. To create a Region-level retention rule, omit this parameter. A Region-level retention rule does not have any resource tags specified. It retains all deleted resources of the specified resource type in the Region in which the rule is created, even if the resources are not tagged",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--exclude-resource-tags",
+          description:
+            "[Region-level retention rules only] Specifies the exclusion tags to use to identify resources that are to be excluded, or ignored, by a Region-level retention rule. Resources that have any of these tags are not retained by the retention rule upon deletion. You can't specify exclusion tags for tag-level retention rules",
           args: {
             name: "list",
           },

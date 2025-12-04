@@ -517,6 +517,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--descriptor",
+          description:
+            "The Descriptor specifies some metadata about the File being transferred using FUOTA e.g. the software version. It is sent transparently to the device. It is a binary field encoded in base64",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--lorawan",
           description: "The LoRaWAN information used with a FUOTA task",
           args: {
@@ -2160,7 +2168,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-resource-log-level",
       description:
-        "Fetches the log-level override, if any, for a given resource-ID and resource-type. It can be used for a wireless device or a wireless gateway",
+        "Fetches the log-level override, if any, for a given resource-ID and resource-type. It can be used for a wireless device, wireless gateway or fuota task",
       options: [
         {
           name: "--resource-identifier",
@@ -2173,7 +2181,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-type",
           description:
-            "The type of the resource, which can be WirelessDevice or WirelessGateway",
+            "The type of the resource, which can be WirelessDevice, WirelessGateway or FuotaTask",
           args: {
             name: "string",
           },
@@ -3428,7 +3436,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-type",
           description:
-            "The type of the resource, which can be WirelessDevice or WirelessGateway",
+            "The type of the resource, which can be WirelessDevice, WirelessGateway, or FuotaTask",
           args: {
             name: "string",
           },
@@ -3463,7 +3471,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "reset-all-resource-log-levels",
       description:
-        "Removes the log-level overrides for all resources; both wireless devices and wireless gateways",
+        "Removes the log-level overrides for all resources; wireless devices, wireless gateways, and fuota tasks",
       options: [
         {
           name: "--cli-input-json",
@@ -3487,7 +3495,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "reset-resource-log-level",
       description:
-        "Removes the log-level override, if any, for a specific resource-ID and resource-type. It can be used for a wireless device or a wireless gateway",
+        "Removes the log-level override, if any, for a specific resource-ID and resource-type. It can be used for a wireless device, a wireless gateway, or a fuota task",
       options: [
         {
           name: "--resource-identifier",
@@ -3500,7 +3508,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-type",
           description:
-            "The type of the resource, which can be WirelessDevice or WirelessGateway",
+            "The type of the resource, which can be WirelessDevice, WirelessGateway, or FuotaTask",
           args: {
             name: "string",
           },
@@ -4206,6 +4214,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--descriptor",
+          description:
+            "The Descriptor specifies some metadata about the File being transferred using FUOTA e.g. the software version. It is sent transparently to the device. It is a binary field encoded in base64",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--lorawan",
           description: "The LoRaWAN information used with a FUOTA task",
           args: {
@@ -4242,6 +4258,13 @@ const completionSpec: Fig.Spec = {
             "The log level for a log message. The log levels can be disabled, or set to ERROR to display less verbose logs containing only error information, or to INFO for more detailed logs",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--fuota-task-log-options",
+          description: "The list of fuota task log options",
+          args: {
+            name: "list",
           },
         },
         {

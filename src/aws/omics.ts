@@ -539,6 +539,84 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "create-run-cache",
+      description:
+        "You can create a run cache to save the task outputs from completed tasks in a run for a private workflow. Subsequent runs use the task outputs from the cache, rather than computing the task outputs again. You specify an Amazon S3 location where HealthOmics saves the cached data. This data must be immediately accessible (not in an archived state). For more information, see Creating a run cache in the AWS HealthOmics User Guide",
+      options: [
+        {
+          name: "--cache-behavior",
+          description:
+            "Default cache behavior for runs that use this cache. Supported values are:  CACHE_ON_FAILURE: Caches task outputs from completed tasks for runs that fail. This setting is useful if you're debugging a workflow that fails after several tasks completed successfully. The subsequent run uses the cache outputs for previously-completed tasks if the task definition, inputs, and container in ECR are identical to the prior run.  CACHE_ALWAYS: Caches task outputs from completed tasks for all runs. This setting is useful in development mode, but do not use it in a production setting. If you don't specify a value, the default behavior is CACHE_ON_FAILURE. When you start a run that uses this cache, you can override the default cache behavior. For more information, see Run cache behavior in the AWS HealthOmics User Guide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cache-s3-location",
+          description:
+            "Specify the S3 location for storing the cached task outputs. This data must be immediately accessible (not in an archived state)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "Enter a description of the run cache",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--name",
+          description: "Enter a user-friendly name for the run cache",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--request-id",
+          description:
+            "A unique request token, to ensure idempotency. If you don't specify a token, HealthOmics automatically generates a universally unique identifier (UUID) for the request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "Specify one or more tags to associate with this run cache",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--cache-bucket-owner-id",
+          description:
+            "The AWS account ID of the expected owner of the S3 bucket for the run cache. If not provided, your account ID is set as the owner of the bucket",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "create-run-group",
       description:
         "You can optionally create a run group to limit the compute resources for the runs that you add to the group",
@@ -670,6 +748,21 @@ const completionSpec: Fig.Spec = {
             "The ETag algorithm family to use for ingested read sets",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--propagated-set-level-tags",
+          description:
+            "The tags keys to propagate to the S3 objects associated with read sets in the sequence store",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--s3-access-config",
+          description: "S3 access configuration parameters",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -1082,12 +1175,73 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "delete-run-cache",
+      description:
+        "Delete a run cache. This action removes the cache metadata stored in the service account, but doesn't delete the data in Amazon S3. You can access the cache data in Amazon S3, for inspection or to troubleshoot issues. You can remove old cache data using standard S3 Delete operations.  For more information, see Deleting a run cache in the AWS HealthOmics User Guide",
+      options: [
+        {
+          name: "--id",
+          description: "Run cache identifier for the cache you want to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "delete-run-group",
       description: "Deletes a workflow run group",
       options: [
         {
           name: "--id",
           description: "The run group's ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-s3-access-policy",
+      description: "Deletes an access policy for the specified store",
+      options: [
+        {
+          name: "--s3-access-point-arn",
+          description: "The S3 access point ARN that has the access policy",
           args: {
             name: "string",
           },
@@ -1683,7 +1837,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-run",
       description:
-        "Gets information about a workflow run. If a workflow is shared with you, you cannot export information about the run",
+        "Gets information about a workflow run. If a workflow is shared with you, you cannot export information about the run. HealthOmics stores a fixed number of runs that are available to the console and API. If GetRun doesn't return the requested run, you can find run logs for all runs in the CloudWatch logs. For more information about viewing the run logs, see CloudWatch logs in the AWS HealthOmics User Guide",
       options: [
         {
           name: "--id",
@@ -1697,6 +1851,37 @@ const completionSpec: Fig.Spec = {
           description: "The run's export format",
           args: {
             name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-run-cache",
+      description:
+        "Retrieve the details for the specified run cache. For more information, see Call caching for HealthOmics runs in the AWS HealthOmics User Guide",
+      options: [
+        {
+          name: "--id",
+          description: "The identifier of the run cache to retrieve",
+          args: {
+            name: "string",
           },
         },
         {
@@ -1762,6 +1947,36 @@ const completionSpec: Fig.Spec = {
         {
           name: "--task-id",
           description: "The task's ID",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "get-s3-access-policy",
+      description: "Retrieves details about an access policy on a given store",
+      options: [
+        {
+          name: "--s3-access-point-arn",
+          description: "The S3 access point ARN that has the access policy",
           args: {
             name: "string",
           },
@@ -2886,6 +3101,60 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "list-run-caches",
+      description: "Retrieves a list of your run caches",
+      options: [
+        {
+          name: "--max-results",
+          description: "The maximum number of results to return",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
+          args: {
+            name: "integer",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "list-run-groups",
       description: "Retrieves a list of run groups",
       options: [
@@ -3018,7 +3287,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-runs",
-      description: "Retrieves a list of runs",
+      description:
+        "Retrieves a list of runs. HealthOmics stores a fixed number of runs that are available to the console and API. If the ListRuns response doesn't include specific runs that you expected, you can find run logs for all runs in the CloudWatch logs. For more information about viewing the run logs, see CloudWatch logs in the AWS HealthOmics User Guide",
       options: [
         {
           name: "--name",
@@ -3495,6 +3765,45 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "put-s3-access-policy",
+      description: "Adds an access policy to the specified store",
+      options: [
+        {
+          name: "--s3-access-point-arn",
+          description:
+            "The S3 access point ARN where you want to put the access policy",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--s3-access-policy",
+          description:
+            "The resource policy that controls S3 access to the store",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "start-annotation-import-job",
       description: "Starts an annotation import job",
       options: [
@@ -3780,7 +4089,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "start-run",
       description:
-        "Starts a workflow run. To duplicate a run, specify the run's ID and a role ARN. The remaining parameters are copied from the previous run. StartRun will not support re-run for a workflow that is shared with you. The total number of runs in your account is subject to a quota per Region. To avoid needing to delete runs manually, you can set the retention mode to REMOVE. Runs with this setting are deleted automatically when the run quoata is exceeded. By default, the run uses STATIC storage. For STATIC storage, set the storageCapacity field. You can set the storage type to DYNAMIC. You do not set storageCapacity, because HealthOmics dynamically scales the storage up or down as required. For more information about static and dynamic storage, see Running workflows in the AWS HealthOmics User Guide",
+        "Starts a workflow run. To duplicate a run, specify the run's ID and a role ARN. The remaining parameters are copied from the previous run. StartRun will not support re-run for a workflow that is shared with you. HealthOmics stores a fixed number of runs that are available to the console and API. By default, HealthOmics doesn't any remove any runs. If HealthOmics reaches the maximum number of runs, you must manually remove runs. To have older runs removed automatically, set the retention mode to REMOVE. By default, the run uses STATIC storage. For STATIC storage, set the storageCapacity field. You can set the storage type to DYNAMIC. You do not set storageCapacity, because HealthOmics dynamically scales the storage up or down as required. For more information about static and dynamic storage, see Running workflows in the AWS HealthOmics User Guide",
       options: [
         {
           name: "--workflow-id",
@@ -3813,6 +4122,22 @@ const completionSpec: Fig.Spec = {
         {
           name: "--name",
           description: "A name for the run",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cache-id",
+          description:
+            "Identifier of the cache associated with this run. If you don't specify a cache ID, no task outputs are cached for this run",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cache-behavior",
+          description:
+            "The cache behavior for the run. You specify this value if you want to override the default behavior for the cache. You had set the default value when you created the cache. For more information, see Run cache behavior in the AWS HealthOmics User Guide",
           args: {
             name: "string",
           },
@@ -3877,7 +4202,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--retention-mode",
-          description: "The retention mode for the run",
+          description:
+            "The retention mode for the run. The default value is RETAIN.  HealthOmics stores a fixed number of runs that are available to the console and API. In the default mode (RETAIN), you need to remove runs manually when the number of run exceeds the maximum. If you set the retention mode to REMOVE, HealthOmics automatically removes runs (that have mode set to REMOVE) when the number of run exceeds the maximum. All run logs are available in CloudWatch logs, if you need information about a run that is no longer available to the API. For more information about retention mode, see Specifying run retention mode in the AWS HealthOmics User Guide",
           args: {
             name: "string",
           },
@@ -4132,6 +4458,57 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "update-run-cache",
+      description: "Update a run cache",
+      options: [
+        {
+          name: "--cache-behavior",
+          description: "Update the default run cache behavior",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "Update the run cache description",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--id",
+          description: "The identifier of the run cache you want to update",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--name",
+          description: "Update the name of the run cache",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "update-run-group",
       description: "Updates a run group",
       options: [
@@ -4175,6 +4552,81 @@ const completionSpec: Fig.Spec = {
           description: "The maximum GPUs that can be used by a run group",
           args: {
             name: "integer",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-sequence-store",
+      description: "Update one or more parameters for the sequence store",
+      options: [
+        {
+          name: "--id",
+          description: "The ID of the sequence store",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--name",
+          description: "A name for the sequence store",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--description",
+          description: "A description for the sequence store",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--client-token",
+          description:
+            "To ensure that requests don't run multiple times, specify a unique token for each request",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--fallback-location",
+          description:
+            "The S3 URI of a bucket and folder to store Read Sets that fail to upload",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--propagated-set-level-tags",
+          description:
+            "The tags keys to propagate to the S3 objects associated with read sets in the sequence store",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--s3-access-config",
+          description: "S3 access configuration parameters",
+          args: {
+            name: "structure",
           },
         },
         {

@@ -370,6 +370,14 @@ const completionSpec: Fig.Spec = {
         "Create a new transcoding queue. For information about queues, see Working With Queues in the User Guide at https://docs.aws.amazon.com/mediaconvert/latest/ug/working-with-queues.html",
       options: [
         {
+          name: "--concurrent-jobs",
+          description:
+            "Specify the maximum number of jobs your queue can process concurrently. For on-demand queues, the value you enter is constrained by your service quotas for Maximum concurrent jobs, per on-demand queue and Maximum concurrent jobs, per account. For reserved queues, specify the number of jobs you can process concurrently in your reservation plan instead",
+          args: {
+            name: "integer",
+          },
+        },
+        {
           name: "--description",
           description:
             "Optional. A description of the queue that you are creating",
@@ -1592,6 +1600,14 @@ const completionSpec: Fig.Spec = {
       name: "update-queue",
       description: "Modify one of your existing queues",
       options: [
+        {
+          name: "--concurrent-jobs",
+          description:
+            "Specify the maximum number of jobs your queue can process concurrently. For on-demand queues, the value you enter is constrained by your service quotas for Maximum concurrent jobs, per on-demand queue and Maximum concurrent jobs, per account. For reserved queues, update your reservation plan instead in order to increase your yearly commitment",
+          args: {
+            name: "integer",
+          },
+        },
         {
           name: "--description",
           description:

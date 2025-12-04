@@ -1176,7 +1176,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--task-mode",
           description:
-            "Specifies one of the following task modes for your data transfer:    ENHANCED - Transfer virtually unlimited numbers of objects with enhanced metrics, more detailed logs, and higher performance than Basic mode. Currently available for transfers between Amazon S3 locations.  To create an Enhanced mode task, the IAM role that you use to call the CreateTask operation must have the iam:CreateServiceLinkedRole permission.     BASIC (default) - Transfer files or objects between Amazon Web Services storage and on-premises, edge, or other cloud storage. DataSync quotas apply.   For more information, see Understanding task mode differences",
+            "Specifies one of the following task modes for your data transfer:    ENHANCED - Transfer virtually unlimited numbers of objects with higher performance than Basic mode. Enhanced mode tasks optimize the data transfer process by listing, preparing, transferring, and verifying data in parallel. Enhanced mode is currently available for transfers between Amazon S3 locations.  To create an Enhanced mode task, the IAM role that you use to call the CreateTask operation must have the iam:CreateServiceLinkedRole permission.     BASIC (default) - Transfer files or objects between Amazon Web Services storage and all other supported DataSync locations. Basic mode tasks are subject to quotas on the number of files, objects, and directories in a dataset. Basic mode sequentially prepares, transfers, and verifies data, making it slower than Enhanced mode for most workloads.   For more information, see Understanding task mode differences",
           args: {
             name: "string",
           },
@@ -1952,7 +1952,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-task-execution",
       description:
-        "Provides information about an execution of your DataSync task. You can use this operation to help monitor the progress of an ongoing data transfer or check the results of the transfer.  Some DescribeTaskExecution response elements are only relevant to a specific task mode. For information, see Understanding task mode differences and Understanding data transfer performance metrics",
+        "Provides information about an execution of your DataSync task. You can use this operation to help monitor the progress of an ongoing data transfer or check the results of the transfer.  Some DescribeTaskExecution response elements are only relevant to a specific task mode. For information, see Understanding task mode differences and Understanding data transfer performance counters",
       options: [
         {
           name: "--task-execution-arn",

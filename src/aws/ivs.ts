@@ -111,6 +111,14 @@ const completionSpec: Fig.Spec = {
             "Whether the channel is private (enabled for playback authorization). Default: false",
         },
         {
+          name: "--container-format",
+          description:
+            "Indicates which content-packaging format is used (MPEG-TS or fMP4). If multitrackInputConfiguration is specified and enabled is true, then containerFormat is required and must be set to FRAGMENTED_MP4. Otherwise, containerFormat may be set to TS or FRAGMENTED_MP4. Default: TS",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--insecure-ingest",
           description:
             "Whether the channel allows insecure RTMP and SRT ingest. Default: false",
@@ -126,6 +134,14 @@ const completionSpec: Fig.Spec = {
             "Channel latency mode. Use NORMAL to broadcast and deliver live video up to Full HD. Use LOW for near-real-time interaction with viewers. Default: LOW",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--multitrack-input-configuration",
+          description:
+            "Object specifying multitrack input configuration. Default: no multitrack input configuration is specified",
+          args: {
+            name: "structure",
           },
         },
         {
@@ -1487,6 +1503,14 @@ const completionSpec: Fig.Spec = {
             "Whether the channel is private (enabled for playback authorization)",
         },
         {
+          name: "--container-format",
+          description:
+            "Indicates which content-packaging format is used (MPEG-TS or fMP4). If multitrackInputConfiguration is specified and enabled is true, then containerFormat is required and must be set to FRAGMENTED_MP4. Otherwise, containerFormat may be set to TS or FRAGMENTED_MP4. Default: TS",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--insecure-ingest",
           description:
             "Whether the channel allows insecure RTMP and SRT ingest. Default: false",
@@ -1502,6 +1526,14 @@ const completionSpec: Fig.Spec = {
             "Channel latency mode. Use NORMAL to broadcast and deliver live video up to Full HD. Use LOW for near-real-time interaction with viewers",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--multitrack-input-configuration",
+          description:
+            "Object specifying multitrack input configuration. Default: no multitrack input configuration is specified",
+          args: {
+            name: "structure",
           },
         },
         {

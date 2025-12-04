@@ -771,6 +771,30 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--remote-network-config",
+          description:
+            "The configuration in the cluster for EKS Hybrid Nodes. You can't change or update this configuration after the cluster is created",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--compute-config",
+          description:
+            "Enable or disable the compute capability of EKS Auto Mode when creating your EKS Auto Mode cluster. If the compute capability is enabled, EKS Auto Mode will create and delete EC2 Managed Instances in your Amazon Web Services account",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--storage-config",
+          description:
+            "Enable or disable the block storage capability of EKS Auto Mode when creating your EKS Auto Mode cluster. If the block storage capability is enabled, EKS Auto Mode will create and delete EBS volumes in your Amazon Web Services account",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--kubernetes-version",
           description:
             "The desired Kubernetes version for your cluster. If you don't specify a value here, the default version available in Amazon EKS is used.  The default version might not be the latest version available",
@@ -3448,6 +3472,29 @@ const completionSpec: Fig.Spec = {
           name: "--zonal-shift-config",
           description:
             "Enable or disable ARC zonal shift for the cluster. If zonal shift is enabled, Amazon Web Services configures zonal autoshift for the cluster. Zonal shift is a feature of Amazon Application Recovery Controller (ARC). ARC zonal shift is designed to be a temporary measure that allows you to move traffic for a resource away from an impaired AZ until the zonal shift expires or you cancel it. You can extend the zonal shift if necessary. You can start a zonal shift for an EKS cluster, or you can allow Amazon Web Services to do it for you by enabling zonal autoshift. This shift updates the flow of east-to-west network traffic in your cluster to only consider network endpoints for Pods running on worker nodes in healthy AZs. Additionally, any ALB or NLB handling ingress traffic for applications in your EKS cluster will automatically route traffic to targets in the healthy AZs. For more information about zonal shift in EKS, see Learn about Amazon Application Recovery Controller (ARC) Zonal Shift in Amazon EKS in the  Amazon EKS User Guide",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--compute-config",
+          description:
+            "Update the configuration of the compute capability of your EKS Auto Mode cluster. For example, enable the capability",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--kubernetes-network-config",
+          description: "The Kubernetes network configuration for the cluster",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--storage-config",
+          description:
+            "Update the configuration of the block storage capability of your EKS Auto Mode cluster. For example, enable the capability",
           args: {
             name: "structure",
           },

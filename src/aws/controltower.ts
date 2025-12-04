@@ -636,6 +636,16 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--include-children",
+          description:
+            "A value that can be set to include the child enabled baselines in responses. The default value is false",
+        },
+        {
+          name: "--no-include-children",
+          description:
+            "A value that can be set to include the child enabled baselines in responses. The default value is false",
+        },
+        {
           name: "--max-results",
           description: "The maximum number of results to be shown",
           args: {

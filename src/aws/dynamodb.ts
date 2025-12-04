@@ -312,6 +312,14 @@ const completionSpec: Fig.Spec = {
             "Indicates whether deletion protection is to be enabled (true) or disabled (false) on the table",
         },
         {
+          name: "--warm-throughput",
+          description:
+            "Represents the warm throughput (in read units per second and write units per second) for creating a table",
+          args: {
+            name: "structure",
+          },
+        },
+        {
           name: "--resource-policy",
           description:
             "An Amazon Web Services resource-based policy document in JSON format that will be attached to the table. When you attach a resource-based policy while creating a table, the policy application is strongly consistent. The maximum size supported for a resource-based policy document is 20 KB. DynamoDB counts whitespaces when calculating the size of a policy against this limit. For a full list of all considerations that apply for resource-based policies, see Resource-based policy considerations.  You need to specify the CreateTable and PutResourcePolicy IAM actions for authorizing a user to create a table with a resource-based policy",
@@ -3249,9 +3257,25 @@ const completionSpec: Fig.Spec = {
             "Indicates whether deletion protection is to be enabled (true) or disabled (false) on the table",
         },
         {
+          name: "--multi-region-consistency",
+          description:
+            "Specifies the consistency mode for a new global table. This parameter is only valid when you create a global table by specifying one or more Create actions in the ReplicaUpdates action list. You can specify one of the following consistency modes:    EVENTUAL: Configures a new global table for multi-Region eventual consistency. This is the default consistency mode for global tables.    STRONG: Configures a new global table for multi-Region strong consistency (preview).  Multi-Region strong consistency (MRSC) is a new DynamoDB global tables capability currently available in preview mode. For more information, see Global tables multi-Region strong consistency.    If you don't specify this parameter, the global table consistency mode defaults to EVENTUAL",
+          args: {
+            name: "string",
+          },
+        },
+        {
           name: "--on-demand-throughput",
           description:
             "Updates the maximum number of read and write units for the specified table in on-demand capacity mode. If you use this parameter, you must specify MaxReadRequestUnits, MaxWriteRequestUnits, or both",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--warm-throughput",
+          description:
+            "Represents the warm throughput (in read units per second and write units per second) for updating a table",
           args: {
             name: "structure",
           },

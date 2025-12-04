@@ -121,14 +121,22 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--name",
-          description: "Name of the application to be created",
+          description: "The name of the application to be created",
           args: {
             name: "string",
           },
         },
         {
           name: "--description",
-          description: "Description of the application to be created",
+          description: "The description of the application to be created",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--wave",
+          description:
+            "The name of the migration wave of the application to be created",
           args: {
             name: "string",
           },
@@ -1300,6 +1308,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--description",
           description: "New description of the application to be updated",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--wave",
+          description:
+            "The new migration wave of the application that you want to update",
           args: {
             name: "string",
           },

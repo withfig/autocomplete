@@ -87,14 +87,77 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "add-direct-query-data-source",
+      description:
+        "Adds a new data source in Amazon OpenSearch Service so that you can perform direct queries on external data",
+      options: [
+        {
+          name: "--data-source-name",
+          description:
+            "A unique, user-defined label to identify the data source within your OpenSearch Service environment",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--data-source-type",
+          description:
+            "The supported Amazon Web Services service that you want to use as the source for direct queries in OpenSearch Service",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--description",
+          description:
+            "An optional text field for providing additional context and details about the data source",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--open-search-arns",
+          description:
+            "A list of Amazon Resource Names (ARNs) for the OpenSearch collections that are associated with the direct query data source",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--tag-list",
+          description: "A list of tags attached to a domain",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "add-tags",
       description:
-        "Attaches tags to an existing Amazon OpenSearch Service domain. Tags are a set of case-sensitive key-value pairs. A domain can have up to 10 tags. For more information, see Tagging Amazon OpenSearch Service domains",
+        "Attaches tags to an existing Amazon OpenSearch Service domain, data source, or application.  Tags are a set of case-sensitive key-value pairs. A domain, data source, or application can have up to 10 tags. For more information, see Tagging Amazon OpenSearch Service resources",
       options: [
         {
           name: "--arn",
           description:
-            "Amazon Resource Name (ARN) for the OpenSearch Service domain to which you want to attach resource tags",
+            "Amazon Resource Name (ARN) for the OpenSearch Service domain, data source, or application to which you want to attach resource tags",
           args: {
             name: "string",
           },
@@ -831,6 +894,38 @@ const completionSpec: Fig.Spec = {
         {
           name: "--name",
           description: "The name of the data source to delete",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "delete-direct-query-data-source",
+      description:
+        "Deletes a previously configured direct query data source from Amazon OpenSearch Service",
+      options: [
+        {
+          name: "--data-source-name",
+          description:
+            "A unique, user-defined label to identify the data source within your OpenSearch Service environment",
           args: {
             name: "string",
           },
@@ -1802,6 +1897,38 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "get-direct-query-data-source",
+      description:
+        "Returns detailed configuration information for a specific direct query data source in Amazon OpenSearch Service",
+      options: [
+        {
+          name: "--data-source-name",
+          description:
+            "A unique, user-defined label that identifies the data source within your OpenSearch Service environment",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
       name: "get-domain-maintenance-status",
       description: "The status of the maintenance action",
       options: [
@@ -2043,6 +2170,38 @@ const completionSpec: Fig.Spec = {
         {
           name: "--domain-name",
           description: "The name of the domain",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "list-direct-query-data-sources",
+      description:
+        "Lists an inventory of all the direct query data sources that you have configured within Amazon OpenSearch Service",
+      options: [
+        {
+          name: "--next-token",
+          description:
+            "When nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Send the request again using the returned token to retrieve the next page",
           args: {
             name: "string",
           },
@@ -2376,12 +2535,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-tags",
       description:
-        "Returns all resource tags for an Amazon OpenSearch Service domain. For more information, see Tagging Amazon OpenSearch Service domains",
+        "Returns all resource tags for an Amazon OpenSearch Service domain, data source, or application. For more information, see Tagging Amazon OpenSearch Service resources",
       options: [
         {
           name: "--arn",
           description:
-            "Amazon Resource Name (ARN) for the domain to view tags for",
+            "Amazon Resource Name (ARN) for the domain, data source, or application to view tags for",
           args: {
             name: "string",
           },
@@ -2638,19 +2797,20 @@ const completionSpec: Fig.Spec = {
     {
       name: "remove-tags",
       description:
-        "Removes the specified set of tags from an Amazon OpenSearch Service domain. For more information, see  Tagging Amazon OpenSearch Service domains",
+        "Removes the specified set of tags from an Amazon OpenSearch Service domain, data source, or application. For more information, see  Tagging Amazon OpenSearch Service resources",
       options: [
         {
           name: "--arn",
           description:
-            "The Amazon Resource Name (ARN) of the domain from which you want to delete the specified tags",
+            "The Amazon Resource Name (ARN) of the domain, data source, or application from which you want to delete the specified tags",
           args: {
             name: "string",
           },
         },
         {
           name: "--tag-keys",
-          description: "The list of tag keys to remove from the domain",
+          description:
+            "The list of tag keys to remove from the domain, data source, or application",
           args: {
             name: "list",
           },
@@ -2897,6 +3057,62 @@ const completionSpec: Fig.Spec = {
           description: "The status of the data source update",
           args: {
             name: "string",
+          },
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+        },
+      ],
+    },
+    {
+      name: "update-direct-query-data-source",
+      description:
+        "Updates the configuration or properties of an existing direct query data source in Amazon OpenSearch Service",
+      options: [
+        {
+          name: "--data-source-name",
+          description:
+            "A unique, user-defined label to identify the data source within your OpenSearch Service environment",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--data-source-type",
+          description:
+            "The supported Amazon Web Services service that you want to use as the source for direct queries in OpenSearch Service",
+          args: {
+            name: "structure",
+          },
+        },
+        {
+          name: "--description",
+          description:
+            "An optional text field for providing additional context and details about the data source",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--open-search-arns",
+          description:
+            "A list of Amazon Resource Names (ARNs) for the OpenSearch collections that are associated with the direct query data source",
+          args: {
+            name: "list",
           },
         },
         {

@@ -261,7 +261,7 @@ type Version = {
 // Search for crates
 // If context is empty, return the most downloaded crates for the search term,
 // if there is an `@` in the context, return the versions for the crate
-const searchGenerator: Fig.Generator = {
+export const searchGenerator: Fig.Generator = {
   custom: async (context, executeShellCommand) => {
     const numberFormatter = new Intl.NumberFormat(undefined, {
       notation: "compact",
