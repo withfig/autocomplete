@@ -7,7 +7,7 @@ adds IDE-style completions for hundreds of popular CLIs like `git`, `npm`,
 `docker`, and `aws`. Start typing, and Amazon Q populates contextually relevant
 subcommands, options and arguments.
 
-> Amazon Q Developer CLI, formerly known as [Fig](https://fig.io), is open source. See [aws/amazon-q-developer-cli]( https://github.com/aws/amazon-q-developer-cli) to learn more.
+> Amazon Q Developer CLI, formerly known as [Fig](https://fig.io), is open source. See [aws/amazon-q-developer-cli](https://github.com/aws/amazon-q-developer-cli) to learn more.
 
 ## ⚡️ Installation
 

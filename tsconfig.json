@@ -4,22 +4,12 @@
     "outDir": "./build",
     "target": "ES2018",
     "module": "ESNext",
-    "lib": [
-      "ES2018",
-      "DOM"
-    ],
+    "lib": ["ES2022", "DOM"],
     "noImplicitAny": false,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
-    "types": [
-      "@withfig/autocomplete-types"
-    ]
+    "types": ["@withfig/autocomplete-types"]
   },
-  "exclude": [
-    "node_modules/"
-  ],
-  "include": [
-    "./src/**/*",
-    "dangerfile.ts"
-  ]
+  "exclude": ["node_modules/"],
+  "include": ["./src/**/*", "dangerfile.ts"]
 }
