@@ -21,3 +21,5 @@ jobs:
           branch: 'master'
           allowlist: mschrage,brendanfalk,bot*
           create-file-commit-message: 'chore: create `cla/signatures.json`'
+
+
