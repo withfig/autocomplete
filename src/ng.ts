@@ -126,6 +126,41 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "test",
+      description: "Run tests",
+      options: [
+        {
+          name: "--watch",
+          description: "Watch for file changes",
+          args: {
+            name: "boolean",
+            suggestions: ["true", "false"],
+            isOptional: true,
+          },
+        },
+        {
+          name: "--code-coverage",
+          description: "Generate code coverage report",
+        },
+        {
+          name: "--browsers",
+          description: "Browsers to test against",
+          args: {
+            name: "browser",
+            suggestions: ["Chrome", "ChromeHeadless"],
+          },
+        },
+        {
+          name: "--include",
+          description: "Path or files of the tests",
+          args: {
+            name: "filepaths",
+            template: "filepaths",
+          },
+        },
+      ],
+    },
+    {
       name: "version",
       description: "View your Angular CLI version (update for Angular 14+)",
     },
