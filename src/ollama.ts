@@ -64,6 +64,43 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "launch",
+      description:
+        "Launch the Ollama interactive menu, or directly launch a specific integration",
+      args: {
+        name: "integration",
+        isOptional: true,
+        suggestions: [
+          { name: "claude", description: "Claude Code" },
+          { name: "cline", description: "Cline" },
+          { name: "codex", description: "Codex" },
+          { name: "droid", description: "Droid" },
+          { name: "opencode", description: "OpenCode" },
+          { name: "openclaw", description: "OpenClaw" },
+          { name: "pi", description: "Pi" },
+          { name: "vscode", description: "VS Code" },
+        ],
+      },
+      options: [
+        {
+          name: "--model",
+          description: "Model to use",
+          args: {
+            name: "model",
+            generators: ListModelGenerator,
+          },
+        },
+        {
+          name: "--config",
+          description: "Configure without launching",
+        },
+        {
+          name: ["--yes", "-y"],
+          description: "Automatically answer yes to confirmation prompts",
+        },
+      ],
+    },
+    {
       name: "stop",
       description: "Stop the ollama server",
       args: {
@@ -122,6 +159,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "run",
           description: "Run a model",
+        },
+        {
+          name: "launch",
+          description: "Launch an integration from an interactive menu",
         },
         {
           name: "stop",
