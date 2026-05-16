@@ -1,0 +1,17 @@
+.DS_Store
+building_scripts/
+node_modules
+dist
+build
+npm-debug.log
+.env
+
+.idea
+.vscode
+specs
+
+# we use pnpm-lock.yaml for dependency management
+package-lock.json
+yarn.lock
+.pnp.*
+.yarn/*
