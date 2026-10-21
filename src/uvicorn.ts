@@ -92,7 +92,7 @@ const completionSpec: Fig.Spec = {
       description: "Event loop factory implementation",
       args: {
         name: "IMPLEMENTATION",
-        suggestions: ["auto", "asyncio", "uvloop", "zuvloop"],
+        suggestions: ["auto", "asyncio", "uvloop", "zuvloop", "none"],
         default: "auto",
       },
     },
@@ -114,7 +114,13 @@ const completionSpec: Fig.Spec = {
       description: "WebSocket protocol implementation",
       args: {
         name: "IMPLEMENTATION",
-        suggestions: ["auto", "websockets", "websockets-sansio", "wsproto"],
+        suggestions: [
+          "auto",
+          "websockets",
+          "websockets-sansio",
+          "wsproto",
+          "none",
+        ],
         default: "auto",
       },
     },
