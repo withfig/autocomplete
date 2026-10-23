@@ -93,6 +93,72 @@ const globalOptions: Fig.Option[] = [
   },
 ];
 
+const planOptions: Fig.Option[] = [
+  {
+    name: "-compact-warnings",
+    description:
+      "If Terraform produces any warnings that are not accompanied by errors, show them in a more compact form that includes only the summary messages",
+  },
+  {
+    name: "-destroy",
+    description: "If set, generates a plan to destroy all the known resources",
+  },
+  {
+    name: "-parallelism",
+    description:
+      "Limit the number of concurrent operation as Terraform walks the graph. Defaults to 10",
+    args: {
+      name: "number",
+    },
+  },
+  {
+    name: "-refresh",
+    requiresSeparator: true,
+    description: "Update the state prior to checking for differences",
+    args: {
+      name: "true or false",
+      suggestions: ["true", "false"],
+    },
+  },
+  {
+    name: "-state",
+    requiresSeparator: true,
+    description:
+      "Path to the state file. Defaults to 'terraform.tfstate'. Ignored when remote state is used",
+    args: {
+      template: "filepaths",
+    },
+  },
+  {
+    name: "-target",
+    displayName: "-target=resource",
+    description:
+      "A Resource Address to target. This flag can be used multiple times",
+    isRepeatable: true,
+  },
+  {
+    name: "-var",
+    insertValue: "-var {cursor}",
+    description:
+      "Set a variable in the Terraform configuration. This flag can be set multiple times",
+    isRepeatable: true,
+    args: {
+      name: "foo=bar",
+    },
+  },
+  {
+    name: "-var-file",
+    requiresSeparator: true,
+    description:
+      "Set variables in the Terraform configuration from a variable file",
+    args: {
+      template: "filepaths",
+    },
+  },
+  ...generalSubCommandOptions,
+  ...globalOptions,
+];
+
 const mainCommands: Fig.Subcommand[] = [
   {
     name: "init",
@@ -102,6 +168,11 @@ const mainCommands: Fig.Subcommand[] = [
         name: "-upgrade",
         description:
           "Opt to upgrade modules and plugins as part of their respective installation steps",
+      },
+      {
+        name: "-reconfigure",
+        description:
+          "Reconfigure the backend, ignoring any saved configuration",
       },
       ...generalSubCommandOptions,
       ...globalOptions,
@@ -117,84 +188,27 @@ const mainCommands: Fig.Subcommand[] = [
     description: "Show changes required by the current configuration",
     options: [
       {
-        name: "-compact-warnings",
-        description:
-          "If Terraform produces any warnings that are not accompanied by errors, show them in a more compact form that includes only the summary messages",
-      },
-      {
-        name: "-destroy",
-        description:
-          "If set, generates a plan to destroy all the known resources",
-      },
-      {
-        name: "-detailed-exitcode",
-        description: "Return a detailed exit code when the command exits",
-      },
-      {
         name: "-out",
         requiresSeparator: true,
         description: "The path to save the generated execution plan",
       },
       {
-        name: "-parallelism",
-        description:
-          "Limit the number of concurrent operation as Terraform walks the graph. Defaults to 10",
-        args: {
-          name: "number",
-        },
+        name: "-detailed-exitcode",
+        description: "Return a detailed exit code when the command exits",
       },
-      {
-        name: "-refresh",
-        requiresSeparator: true,
-        description: "Update the state prior to checking for differences",
-        args: {
-          name: "true or false",
-          suggestions: ["true", "false"],
-        },
-      },
-      {
-        name: "-state",
-        requiresSeparator: true,
-        description:
-          "Path to the state file. Defaults to 'terraform.tfstate'. Ignored when remote state is used",
-        args: {
-          template: "filepaths",
-        },
-      },
-      {
-        name: "-target",
-        displayName: "-target=resource",
-        description:
-          "A Resource Address to target. This flag can be used multiple times",
-        isRepeatable: true,
-      },
-      {
-        name: "-var",
-        insertValue: "-var {cursor}",
-        description:
-          "Set a variable in the Terraform configuration. This flag can be set multiple times",
-        isRepeatable: true,
-        args: {
-          name: "foo=bar",
-        },
-      },
-      {
-        name: "-var-file",
-        requiresSeparator: true,
-        description:
-          "Set variables in the Terraform configuration from a variable file",
-        args: {
-          template: "filepaths",
-        },
-      },
-      ...generalSubCommandOptions,
-      ...globalOptions,
+      ...planOptions,
     ],
   },
   {
     name: "apply",
     description: "Create or update infrastructure",
-    options: [...globalOptions],
+    options: [
+      {
+        name: "-auto-approve",
+        description: "Skip interactive approval of the plan before applying",
+      },
+      ...planOptions,
+    ],
   },
   {
     name: "destroy",
