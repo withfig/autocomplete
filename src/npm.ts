@@ -743,6 +743,73 @@ const completionSpec: Fig.Spec = {
       description: "Deprecate a version of a package",
       options: [registryOption],
     },
+    {
+      name: "diff",
+      description:
+        "Compare two versions of a package, or the files of the current package against a registry version, similar to git diff",
+      args: {
+        name: "paths",
+        isOptional: true,
+        isVariadic: true,
+        description:
+          "Limit the output to the given file paths or globs inside the package",
+      },
+      options: [
+        {
+          name: "--diff",
+          description:
+            "Define the arguments to compare: a package name, spec, version, or local directory; pass twice to compare two specs",
+          isRepeatable: true,
+          args: { name: "spec" },
+        },
+        {
+          name: "--diff-name-only",
+          description: "Print only the file names that differ",
+        },
+        {
+          name: "--diff-unified",
+          description:
+            "The number of lines of context to display around changes",
+          args: { name: "count" },
+        },
+        {
+          name: "--diff-ignore-all-space",
+          description: "Ignore whitespace when comparing lines",
+        },
+        {
+          name: "--diff-no-prefix",
+          description: "Do not show any source or destination prefix",
+        },
+        {
+          name: "--diff-src-prefix",
+          description: "The source prefix to show in the output",
+          args: { name: "prefix" },
+        },
+        {
+          name: "--diff-dst-prefix",
+          description: "The destination prefix to show in the output",
+          args: { name: "prefix" },
+        },
+        {
+          name: "--diff-text",
+          description: "Treat all files as text",
+        },
+        {
+          name: "--diff-stat",
+          description:
+            "Show a summary of the changes as a diffstat instead of the full diff",
+        },
+        {
+          name: "--tag",
+          description:
+            "The registry tag whose tarball is compared against the local files by default",
+          args: { name: "tag" },
+        },
+        ...workSpaceOptions,
+        globalOption,
+        registryOption,
+      ],
+    },
     { name: "dist-tag", description: "Modify package distribution tags" },
     {
       name: ["docs", "home"],
