@@ -9440,6 +9440,138 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "sparse-checkout",
+      description: "Reduce your working tree to a subset of tracked files",
+      subcommands: [
+        {
+          name: "list",
+          description: "Describe the patterns in the sparse-checkout file",
+        },
+        {
+          name: "init",
+          description: "Enable the sparse-checkout feature",
+          options: [
+            {
+              name: ["--cone", "--no-cone"],
+              description:
+                "Toggle cone mode pattern matching. Cone mode is the default",
+            },
+            {
+              name: ["--sparse-index", "--no-sparse-index"],
+              description:
+                "Toggle writing the index in a format that only contains the entries that pass the sparse-checkout rules",
+            },
+          ],
+        },
+        {
+          name: "set",
+          description:
+            "Replace the sparse-checkout patterns and update the working tree",
+          args: {
+            name: "pattern",
+            isOptional: true,
+            isVariadic: true,
+            description:
+              "In cone mode, directory names; otherwise, sparse-checkout patterns",
+          },
+          options: [
+            {
+              name: "--stdin",
+              description:
+                "Read the patterns from standard input instead of the arguments",
+            },
+            {
+              name: ["--cone", "--no-cone"],
+              description:
+                "Toggle cone mode pattern matching. Cone mode is the default",
+            },
+            {
+              name: ["--sparse-index", "--no-sparse-index"],
+              description:
+                "Toggle writing the index in a format that only contains the entries that pass the sparse-checkout rules",
+            },
+          ],
+        },
+        {
+          name: "add",
+          description:
+            "Add patterns to the sparse-checkout file and update the working tree",
+          args: {
+            name: "pattern",
+            isOptional: true,
+            isVariadic: true,
+            description:
+              "In cone mode, directory names; otherwise, sparse-checkout patterns",
+          },
+          options: [
+            {
+              name: "--stdin",
+              description:
+                "Read the patterns from standard input instead of the arguments",
+            },
+            {
+              name: ["--cone", "--no-cone"],
+              description:
+                "Toggle cone mode pattern matching. Cone mode is the default",
+            },
+            {
+              name: ["--sparse-index", "--no-sparse-index"],
+              description:
+                "Toggle writing the index in a format that only contains the entries that pass the sparse-checkout rules",
+            },
+          ],
+        },
+        {
+          name: "reapply",
+          description: "Reapply the sparse-checkout rules to the working tree",
+          options: [
+            {
+              name: ["--sparse-index", "--no-sparse-index"],
+              description:
+                "Toggle writing the index in a format that only contains the entries that pass the sparse-checkout rules",
+            },
+          ],
+        },
+        {
+          name: "disable",
+          description:
+            "Disable the sparse-checkout feature and restore the full working tree",
+        },
+        {
+          name: "check-rules",
+          description: "Check which paths satisfy the sparse-checkout rules",
+          args: {
+            name: "path",
+            isOptional: true,
+            isVariadic: true,
+            description:
+              "Paths to check against the rules; defaults to reading standard input",
+          },
+          options: [
+            {
+              name: ["-z", "--null"],
+              description:
+                "Terminate input and output paths with a NUL character instead of a linefeed",
+            },
+            {
+              name: "--no-cone",
+              description:
+                "Check the paths against the sparse-checkout file as non-cone mode patterns",
+            },
+            {
+              name: "--rules-file",
+              description:
+                "Check the paths against the given rules file instead of the sparse-checkout file",
+              args: {
+                name: "file",
+                template: "filepaths",
+              },
+            },
+          ],
+        },
+      ],
+    },
+    {
       name: "apply",
       description: "Apply a patch to files and/or to the index",
       options: [
