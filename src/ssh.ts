@@ -53,51 +53,102 @@ const getConfigLines = async (
   return [...configLines, ...includeLines.flat()];
 };
 
-export const knownHosts: Fig.Generator = {
-  custom: async (tokens, executeCommand, context) => {
-    const { stdout } = await executeCommand({
-      command: "cat",
-      // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
-      args: [`${context.environmentVariables["HOME"]}/.ssh/known_hosts`],
-    });
+const getKnownHostNames = async (
+  executeShellCommand: Fig.ExecuteCommandFunction,
+  home: string
+): Promise<string[]> => {
+  const { stdout } = await executeShellCommand({
+    command: "cat",
+    // eslint-disable-next-line @withfig/fig-linter/no-useless-arrays
+    args: [`${home}/.ssh/known_hosts`],
+  });
 
-    return stdout
-      .split("\n")
-      .map((line) => {
-        const match = knownHostRegex.exec(line);
-        if (match) {
-          return String(match);
-        }
-      })
-      .filter((value, index, self) => value && self.indexOf(value) === index)
-      .map((knownHost) => ({
-        name: (tokens[1].endsWith("@") ? tokens[1] : "") + knownHost, // also suggest when user@ is provided
-        description: "SSH host",
-      }));
+  return stdout
+    .split("\n")
+    .map((line) => {
+      const match = knownHostRegex.exec(line);
+      if (match) {
+        return String(match);
+      }
+    })
+    .filter((value, index, self) => value && self.indexOf(value) === index);
+};
+
+const getConfigHostNames = async (
+  executeShellCommand: Fig.ExecuteCommandFunction,
+  home: string
+): Promise<string[]> => {
+  const configLines = await getConfigLines(
+    "config",
+    executeShellCommand,
+    home,
+    "~/.ssh"
+  );
+
+  return configLines
+    .filter(
+      (line) =>
+        line.trim().toLowerCase().startsWith("host ") && !line.includes("*")
+    )
+    .flatMap((line) => line.trim().split(/\s+/).slice(1));
+};
+
+export const knownHosts: Fig.Generator = {
+  custom: async (tokens, executeShellCommand, context) => {
+    const names = await getKnownHostNames(
+      executeShellCommand,
+      context.environmentVariables["HOME"]
+    );
+    const userPrefix = tokens[1]?.endsWith("@") ? tokens[1] : "";
+    return names.map((knownHost) => ({
+      name: userPrefix + knownHost, // also suggest when user@ is provided
+      description: "SSH host",
+    }));
   },
   trigger: "@",
 };
 
 export const configHosts: Fig.Generator = {
   custom: async (tokens, executeShellCommand, context) => {
-    const configLines = await getConfigLines(
-      "config",
+    const names = await getConfigHostNames(
       executeShellCommand,
-      context.environmentVariables["HOME"],
-      "~/.ssh"
+      context.environmentVariables["HOME"]
     );
+    return names.map((host) => ({
+      name: host,
+      description: "SSH host",
+      priority: 90,
+    }));
+  },
+};
 
-    return configLines
-      .filter(
-        (line) =>
-          line.trim().toLowerCase().startsWith("host ") && !line.includes("*")
-      )
+const sshHosts: Fig.Generator = {
+  custom: async (tokens, executeShellCommand, context) => {
+    const home = context.environmentVariables["HOME"];
+    const [knownNames, configNames] = await Promise.all([
+      getKnownHostNames(executeShellCommand, home),
+      getConfigHostNames(executeShellCommand, home),
+    ]);
+
+    const userPrefix = tokens[1]?.endsWith("@") ? tokens[1] : "";
+
+    // Deduplicate across both sources so hosts defined in known_hosts
+    // and ~/.ssh/config are only suggested once
+    const seen = new Set<string>();
+    return [...knownNames, ...configNames]
+      .filter((host) => {
+        if (!host || seen.has(host)) {
+          return false;
+        }
+        seen.add(host);
+        return true;
+      })
       .map((host) => ({
-        name: host.split(" ")[1],
+        name: userPrefix + host, // also suggest when user@ is provided
         description: "SSH host",
-        priority: 90,
       }));
   },
+  trigger: "@",
 };
 
 const completionSpec: Fig.Spec = {
@@ -106,7 +157,7 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "user@hostname",
     description: "Address of remote machine to log into",
-    generators: [knownHosts, configHosts, { template: "history" }],
+    generators: [sshHosts, { template: "history" }],
   },
   options: [
     {
