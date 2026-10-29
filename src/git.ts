@@ -49,12 +49,15 @@ const postProcessTrackedFiles: Fig.Generator["postProcess"] = (
 
 interface PostProcessBranchesOptions {
   insertWithoutRemotes?: true;
+  // Keep the "<remote>/<branch>" form for remote branches, as accepted by
+  // git checkout to disambiguate branches that exist on multiple remotes
+  remoteBranchName?: true;
 }
 
 const postProcessBranches =
   (options: PostProcessBranchesOptions = {}): Fig.Generator["postProcess"] =>
   (out) => {
-    const { insertWithoutRemotes = false } = options;
+    const { insertWithoutRemotes = false, remoteBranchName = false } = options;
 
     const output = filterMessages(out);
 
@@ -92,6 +95,9 @@ const postProcessBranches =
 
         if (insertWithoutRemotes && name.startsWith("remotes/")) {
           name = name.slice(name.indexOf("/", 8) + 1);
+          description = "Remote branch";
+        } else if (remoteBranchName && name.startsWith("remotes/")) {
+          name = name.replace(/^remotes\//, "");
           description = "Remote branch";
         }
 
@@ -228,6 +234,20 @@ export const gitGenerators: Record<string, Fig.Generator> = {
         };
       });
     },
+  },
+
+  // All branches, keeping the "<remote>/<branch>" form for remote branches
+  // (git checkout accepts this to disambiguate multiple remotes)
+  checkoutBranches: {
+    script: [
+      "git",
+      "--no-optional-locks",
+      "branch",
+      "-a",
+      "--no-color",
+      "--sort=-committerdate",
+    ],
+    postProcess: postProcessBranches({ remoteBranchName: true }),
   },
 
   // All branches
@@ -8090,7 +8110,7 @@ const completionSpec: Fig.Spec = {
           isOptional: true,
           filterStrategy: "fuzzy",
           generators: [
-            gitGenerators.remoteLocalBranches,
+            gitGenerators.checkoutBranches,
             gitGenerators.tags,
             { template: ["filepaths", "folders"] },
           ],
