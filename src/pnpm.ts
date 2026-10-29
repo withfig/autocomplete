@@ -88,13 +88,34 @@ const generatorInstalledPackages: Fig.Generator = {
   },
 };
 
+const workspacePackagesGenerator: Fig.Generator = {
+  script: ["pnpm", "-r", "ls", "--json", "--depth", "-1"],
+  postProcess: function (out) {
+    const output = filterMessages(out);
+    try {
+      const packages = JSON.parse(output);
+      return packages
+        .filter((pkg) => pkg && pkg.name)
+        .map((pkg) => ({
+          name: pkg.name,
+          description: pkg.path
+            ? `Workspace package (${pkg.path})`
+            : "Workspace package",
+          icon: "📦",
+        }));
+    } catch {
+      return [];
+    }
+  },
+};
+
 const FILTER_OPTION: Fig.Option = {
-  name: "--filter",
+  name: ["--filter", "-F"],
   args: {
-    template: "filepaths",
     name: "Filepath / Package",
     description:
       "To only select packages under the specified directory, you may specify any absolute path, typically in POSIX format",
+    generators: [workspacePackagesGenerator, { template: "filepaths" }],
   },
   description: `Filtering allows you to restrict commands to specific subsets of packages.
 pnpm supports a rich selector syntax for picking packages by name or by relation.
