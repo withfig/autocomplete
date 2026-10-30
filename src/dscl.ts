@@ -100,6 +100,51 @@ const generateDsclPath: Fig.Generator = {
   },
 };
 
+// Suggest record attribute keys for the path being read/edited by running
+// `dscl -plist <datasource> -read <path>` and extracting the plist keys
+// (e.g. dsAttrTypeStandard:UserShell -> UserShell)
+const generateDsclKeys: Fig.Generator = {
+  custom: async (tokens, executeShellCommand) => {
+    const dsclIndex = tokens.indexOf("dscl");
+    const nonFlagTokens: string[] = [];
+    for (let i = dsclIndex + 1; i < tokens.length - 1; i++) {
+      const token = tokens[i];
+      if (token.startsWith("-")) {
+        continue;
+      }
+      if (dsclOptionsWithArgs.has(tokens[i - 1])) {
+        continue;
+      }
+      nonFlagTokens.push(token);
+    }
+    const datasource = nonFlagTokens[0];
+    // nonFlagTokens[1] is the dscl command (e.g. -read); [2] is the record path
+    const path = nonFlagTokens[2];
+    if (!datasource || !path) {
+      return [];
+    }
+    const { stdout } = await executeShellCommand({
+      command: "dscl",
+      args: ["-plist", datasource, "-read", path],
+    });
+    const seen = new Set<string>();
+    return [...stdout.matchAll(/<key>([^<]+)<\/key>/g)]
+      .map((match) => match[1])
+      .filter((key) => {
+        if (seen.has(key)) {
+          return false;
+        }
+        seen.add(key);
+        return true;
+      })
+      .map((key) => ({
+        name: key.slice(key.lastIndexOf(":") + 1),
+        description: key,
+        priority: 60,
+      }));
+  },
+};
+
 const dsclArgs = satisfies<Record<string, Fig.Arg>>()({
   path: {
     name: "path",
@@ -109,11 +154,13 @@ const dsclArgs = satisfies<Record<string, Fig.Arg>>()({
   key: {
     name: "key",
     description: "Directory Service record attribute type",
+    generators: generateDsclKeys,
   },
   keys: {
     name: "keys",
     description: "Directory Service record attribute type",
     isVariadic: true,
+    generators: generateDsclKeys,
   },
   plistPath: {
     name: "plist path",
