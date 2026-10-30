@@ -75,6 +75,10 @@ const postProcessBranches =
             if (branch.includes("HEAD detached")) {
               return null;
             }
+            // Detached HEAD during a rebase, e.g. "(no branch, rebasing main)"
+            if (branch.includes("(no branch")) {
+              return null;
+            }
             // Current branch
             return {
               name: branch.replace("*", "").trim(),
