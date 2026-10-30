@@ -28,16 +28,75 @@ const sharedPostProcess: Fig.Generator["postProcess"] = (out) => {
   })) as Fig.Suggestion[];
 };
 
+const apiResourcesPostProcess: Fig.Generator["postProcess"] = (out) => {
+  if (
+    sharedPostProcessChecks.connectedToCluster(out) ||
+    sharedPostProcessChecks.generalError(out)
+  ) {
+    return [];
+  }
+  // kubectl api-resources table: NAME SHORTNAMES APIVERSION NAMESPACED KIND
+  // Prefer short names and unqualified resource names over the group-qualified
+  // `-o name` forms (e.g. "deploy" and "deployments" instead of
+  // "deployments.apps"), which is what users type in practice
+  const seen = new Set<string>();
+  const suggestions: Fig.Suggestion[] = [];
+  const add = (name: string, description: string, priority: number) => {
+    if (!name || seen.has(name)) {
+      return;
+    }
+    seen.add(name);
+    suggestions.push({
+      name,
+      description,
+      priority,
+      icon: "fig://icon?type=kubernetes",
+    });
+  };
+  // Parse by header column offsets so empty SHORTNAMES cells don't shift fields
+  const header = out.split("\n")[0] ?? "";
+  const iName = header.indexOf("NAME");
+  const iShort = header.indexOf("SHORTNAMES");
+  const iApi = header.indexOf("APIVERSION");
+  const iNs = header.indexOf("NAMESPACED");
+  const iKind = header.indexOf("KIND");
+  if (iName === -1 || iApi === -1) {
+    return [];
+  }
+  for (const line of out.split("\n").slice(1)) {
+    const name = line.slice(iName, iShort >= 0 ? iShort : iApi).trim();
+    const shortnames = iShort >= 0 ? line.slice(iShort, iApi).trim() : "";
+    const apiVersion = line
+      .slice(iApi, iNs >= 0 ? iNs : iKind >= 0 ? iKind : undefined)
+      .trim();
+    const kind = iKind >= 0 ? line.slice(iKind).trim() : "";
+    if (!name) {
+      continue;
+    }
+    const description =
+      kind && kind !== apiVersion ? `${kind} (${apiVersion})` : apiVersion;
+    for (const shortname of shortnames.split(",")) {
+      add(shortname.trim(), description, 85);
+    }
+    add(name, description, 75);
+    const group = apiVersion.split("/")[0];
+    if (group && group.includes(".")) {
+      add(`${name}.${group}`, description, 50);
+    }
+  }
+  return suggestions;
+};
+
 const sharedArgs: Record<string, Fig.Arg> = {
   resourcesArg: {
     name: "Resource Type",
     generators: {
-      script: scripts.types,
+      script: ["kubectl", "api-resources"],
       cache: {
         strategy: "stale-while-revalidate",
         ttl: 1000 * 60 * 60,
       },
-      postProcess: sharedPostProcess,
+      postProcess: apiResourcesPostProcess,
     },
   },
   runningPodsArg: {
